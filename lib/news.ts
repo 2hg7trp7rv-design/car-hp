@@ -1,5 +1,5 @@
 // lib/news.ts
-import { notion, newsDatabaseId } from "./notion";
+import { notion, getDatabaseIdByTitle } from "./notion";
 
 export type NewsItem = {
   id: string;
@@ -12,8 +12,10 @@ export type NewsItem = {
 };
 
 export async function getLatestNews(limit = 5): Promise<NewsItem[]> {
+  const databaseId = await getDatabaseIdByTitle("news");
+
   const response = await notion.databases.query({
-    database_id: newsDatabaseId,
+    database_id: databaseId,
     sorts: [
       {
         property: "published_at",
@@ -26,37 +28,30 @@ export async function getLatestNews(limit = 5): Promise<NewsItem[]> {
   return response.results.map((page: any) => {
     const props = page.properties;
 
-    // タイトル列: news DBで「title」にリネームしている想定
-    // 念のため「名前」もフォールバック
     const titleProp = props["title"] ?? props["名前"];
     const title =
       titleProp?.title?.[0]?.plain_text ??
       titleProp?.title?.[0]?.text?.content ??
       "No title";
 
-    // source: テキストプロパティ想定
     const sourceProp = props["source"];
     const source =
       sourceProp?.rich_text?.[0]?.plain_text ??
       sourceProp?.rich_text?.[0]?.text?.content ??
       null;
 
-    // url: URLプロパティ
     const urlProp = props["url"];
     const url = urlProp?.url ?? null;
 
-    // published_at: 日付プロパティ
     const dateProp = props["published_at"];
     const publishedAt = dateProp?.date?.start ?? null;
 
-    // summary: テキスト（リッチテキスト）プロパティ
     const summaryProp = props["summary"];
     const summary =
       summaryProp?.rich_text?.[0]?.plain_text ??
       summaryProp?.rich_text?.[0]?.text?.content ??
       null;
 
-    // difficulty: セレクト basic / advanced
     const difficultyProp = props["difficulty"];
     const difficulty =
       (difficultyProp?.select?.name as "basic" | "advanced" | null) ?? null;
