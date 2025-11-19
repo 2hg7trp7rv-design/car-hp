@@ -1,4 +1,4 @@
-// lib/cars.ts// lib/cars.ts
+// lib/cars.ts
 import { notion, getDatabaseIdByTitle } from "./notion";
 
 export type Car = {
