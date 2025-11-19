@@ -34,4 +34,25 @@ export async function getAllCars(): Promise<Car[]> {
     const slug =
       slugProp?.rich_text?.[0]?.plain_text ??
       slugProp?.rich_text?.[0]?.text?.content ??
-     
+      page.id;
+
+    const makerProp = props["maker"];
+    const maker = makerProp?.select?.name ?? null;
+
+    const yearProp = props["release_year"];
+    const releaseYear = yearProp?.number ?? null;
+
+    const difficultyProp = props["difficulty"];
+    const difficulty =
+      (difficultyProp?.select?.name as "basic" | "advanced" | null) ?? null;
+
+    return {
+      id: page.id,
+      name,
+      slug,
+      maker,
+      releaseYear,
+      difficulty,
+    };
+  });
+}
