@@ -13,17 +13,39 @@ export type Car = {
 export async function getAllCars(): Promise<Car[]> {
   const databaseId = await getDatabaseIdByTitle("cars");
 
-  const response = await notion.databases.query({
-    database_id: databaseId,
-    sorts: [
-      {
-        property: "release_year",
-        direction: "descending",
-      },
-    ],
-  });
+  // release_year でソートしたいが、
+  // プロパティが無くても落ちないように try/catch でフォールバック
+  try {
+    const response = await notion.databases.query({
+      database_id: databaseId,
+      sorts: [
+        {
+          property: "release_year",
+          direction: "descending",
+        },
+      ],
+    });
 
-  return response.results.map((page: any) => {
+    return mapCars(response.results);
+  } catch (error: any) {
+    console.warn("cars: sort by release_year failed, fallback to created_time", error);
+
+    const response = await notion.databases.query({
+      database_id: databaseId,
+      sorts: [
+        {
+          timestamp: "created_time",
+          direction: "descending",
+        },
+      ],
+    });
+
+    return mapCars(response.results);
+  }
+}
+
+function mapCars(pages: any[]): Car[] {
+  return pages.map((page: any) => {
     const props = page.properties;
 
     const titleProp = props["名前"];
