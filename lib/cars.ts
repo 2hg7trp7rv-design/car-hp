@@ -1,5 +1,5 @@
 // lib/cars.ts
-import { notion, carsDatabaseId } from "./notion";
+import { notion, getDatabaseIdByTitle } from "./notion";
 
 export type Car = {
   id: string;
@@ -11,8 +11,10 @@ export type Car = {
 };
 
 export async function getAllCars(): Promise<Car[]> {
+  const databaseId = await getDatabaseIdByTitle("cars");
+
   const response = await notion.databases.query({
-    database_id: carsDatabaseId,
+    database_id: databaseId,
     sorts: [
       {
         property: "release_year",
