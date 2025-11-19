@@ -12,14 +12,15 @@ export type NewsItem = {
   difficulty: "basic" | "advanced" | null;
 };
 
-export async function getLatestNews(limit = 4): Promise<NewsItem[]> {
+export async function getLatestNews(limit = 10): Promise<NewsItem[]> {
   const databaseId = await getDatabaseIdByTitle("news");
 
+  // created_time で必ずソートできるようにする
   const response = await notion.databases.query({
     database_id: databaseId,
     sorts: [
       {
-        property: "日付",
+        timestamp: "created_time",
         direction: "descending",
       },
     ],
@@ -50,8 +51,9 @@ export async function getLatestNews(limit = 4): Promise<NewsItem[]> {
       sourceProp?.rich_text?.[0]?.text?.content ??
       null;
 
-    const dateProp = props["日付"];
-    const publishedAt = dateProp?.date?.start ?? null;
+    const dateProp = props["日付"] ?? props["published_at"];
+    const publishedAt =
+      dateProp?.date?.start ?? (page as any).created_time ?? null;
 
     const summaryProp = props["summary"];
     const summary =
