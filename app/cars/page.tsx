@@ -1,4 +1,5 @@
 // app/cars/page.tsx
+import Link from "next/link";
 import { getAllCars } from "@/lib/cars";
 
 export default async function CarsPage() {
@@ -15,32 +16,34 @@ export default async function CarsPage() {
 
       {cars.length === 0 ? (
         <p className="text-xs text-gray-500">
-          まだ車種データがありません。Notionの{" "}
-          <span className="font-mono">cars</span> データベースに行を追加してください。
+          まだ車種データがありません。
+          Notionの <span className="font-mono">cars</span> データベースに行を追加してください。
         </p>
       ) : (
         <div className="space-y-3">
           {cars.map((car) => (
-            <div
+            <Link
               key={car.id}
-              className="rounded-lg border border-gray-800 bg-gray-900/70 p-3 text-xs"
+              href={`/cars/${car.slug}`}
+              className="block"
             >
-              <div className="flex items-center justify-between gap-2">
-                <div>
-                  <div className="font-semibold text-white">{car.name}</div>
-                  <div className="mt-0.5 text-[11px] text-gray-400">
-                    {car.maker ?? "メーカー不明"}
-                    {car.releaseYear && `・${car.releaseYear}年`}
+              <div className="rounded-lg border border-gray-800 bg-gray-900/70 p-3 text-xs hover:border-purple-500 hover:bg-gray-900 transition-colors">
+                <div className="flex items-center justify-between gap-2">
+                  <div>
+                    <div className="font-semibold text-white">{car.name}</div>
+                    <div className="mt-0.5 text-[11px] text-gray-400">
+                      {car.maker ?? "メーカー不明"}
+                      {car.releaseYear && `・${car.releaseYear}年`}
+                    </div>
                   </div>
+                  {car.difficulty === "advanced" && (
+                    <span className="rounded bg-purple-700 px-2 py-0.5 text-[10px] text-white">
+                      マニアック解説あり
+                    </span>
+                  )}
                 </div>
-                {car.difficulty === "advanced" && (
-                  <span className="rounded bg-purple-700 px-2 py-0.5 text-[10px] text-white">
-                    マニアック解説あり
-                  </span>
-                )}
               </div>
-              {/* 後で、ここに個別ページへのリンクや比較の要約などを載せていける */}
-            </div>
+            </Link>
           ))}
         </div>
       )}
