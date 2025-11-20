@@ -3,6 +3,18 @@ import Link from "next/link";
 import { getAllCars } from "@/lib/cars";
 import { getLatestNews } from "@/lib/news";
 
+export const metadata = {
+  title: "Car Insight Hub",
+  description:
+    "新型車の情報と「何が変わったか」を、ライト層8割・マニアック2割でまとめるクルマ特化サイト。",
+};
+
+function formatDate(value: string | null): string {
+  if (!value) return "";
+  // 2025-01-01T00:00:00Z → 2025-01-01 形式に
+  return value.slice(0, 10);
+}
+
 export default async function HomePage() {
   const [cars, news] = await Promise.all([
     getAllCars(),
@@ -12,71 +24,80 @@ export default async function HomePage() {
   const latestCars = cars.slice(0, 4);
 
   return (
-    <div className="space-y-10">
-      <section className="space-y-4">
-        <p className="text-xs tracking-wide text-gray-400">
-          新車情報と装備の違いを、ライト層8割・マニアック2割でまとめるクルマ特化サイト
+    <main className="space-y-10">
+      {/* ヒーローエリア */}
+      <section className="space-y-3">
+        <h1 className="text-2xl font-semibold text-white">Car Insight Hub</h1>
+        <p className="text-xs leading-relaxed text-gray-300">
+          新型車の概要と、過去モデルからの変更点・良くなった点／悪くなった点を整理していくサイト。
+          少しクルマが好きな人から、装備の違いまで気になるマニアック層までを対象に、
+          「何が変わったか」がひと目で分かることを目指しています。
         </p>
-        <h1 className="text-2xl font-semibold text-white">
-          新型情報と「何が変わったか」を一気にチェック
-        </h1>
       </section>
 
-      <section className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-white">最新の登録車種</h2>
-          <Link href="/cars" className="text-xs text-gray-400 hover:text-white">
+      {/* 最新の登録車種 */}
+      <section className="space-y-3">
+        <div className="flex items-center justify-between text-xs">
+          <h2 className="font-semibold text-white">最新の登録車種</h2>
+          <Link
+            href="/cars"
+            className="text-[11px] text-purple-300 hover:text-purple-200"
+          >
             すべて見る →
           </Link>
         </div>
 
         {latestCars.length === 0 ? (
           <p className="text-xs text-gray-500">
-            まだ車種データがありません。Notionの{" "}
-            <span className="font-mono">cars</span> データベースに行を追加すると表示されます。
+            まだ車種データがありません。Notion の
+            <span className="font-mono">cars</span>
+            データベースに行を追加すると、ここに最新4件が表示されます。
           </p>
         ) : (
-          <div className="grid gap-3 md:grid-cols-2">
+          <div className="space-y-3">
             {latestCars.map((car) => (
               <Link
                 key={car.id}
-                href="/cars"
-                className="block rounded-lg border border-gray-800 bg-gray-900/70 p-3 text-xs hover:border-gray-500"
+                href={`/cars/${car.slug}`}
+                className="block rounded-lg border border-gray-800 bg-gray-900/70 p-3 text-xs transition hover:border-purple-500"
               >
-                <div className="flex items-center justify-between">
-                  <div className="font-semibold text-white">{car.name}</div>
-                  {car.releaseYear && (
-                    <div className="text-[10px] text-gray-400">
-                      {car.releaseYear}年
+                <div className="flex items-center justify-between gap-2">
+                  <div>
+                    <div className="font-semibold text-white">{car.name}</div>
+                    <div className="mt-0.5 text-[11px] text-gray-400">
+                      {car.maker ?? "メーカー不明"}
+                      {car.releaseYear && `・${car.releaseYear}年`}
                     </div>
+                  </div>
+                  {car.difficulty === "advanced" && (
+                    <span className="rounded bg-purple-700 px-2 py-0.5 text-[10px] text-white">
+                      マニアック解説あり
+                    </span>
                   )}
                 </div>
-                <div className="mt-1 text-[11px] text-gray-400">
-                  {car.maker ?? "メーカー不明"}
-                </div>
-                {car.difficulty === "advanced" && (
-                  <div className="mt-2 inline-flex items-center rounded bg-purple-700 px-2 py-0.5 text-[10px] text-white">
-                    マニアック解説あり
-                  </div>
-                )}
               </Link>
             ))}
           </div>
         )}
       </section>
 
-      <section className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-white">最新ニュース</h2>
-          <Link href="/news" className="text-xs text-gray-400 hover:text-white">
+      {/* 最新ニュース */}
+      <section className="space-y-3">
+        <div className="flex items-center justify-between text-xs">
+          <h2 className="font-semibold text-white">最新ニュース</h2>
+          <Link
+            href="/news"
+            className="text-[11px] text-purple-300 hover:text-purple-200"
+          >
             すべて見る →
           </Link>
         </div>
 
         {news.length === 0 ? (
           <p className="text-xs text-gray-500">
-            まだニュースがありません。Notionの{" "}
-            <span className="font-mono">news</span> データベースに行を追加すると表示されます。
+            まだニュースデータがありません。Notion の
+            <span className="font-mono">news</span>
+            データベースに行を追加すると、ここに最新4件が表示されます。
           </p>
         ) : (
           <div className="space-y-3">
@@ -86,21 +107,26 @@ export default async function HomePage() {
                 href={item.url ?? "#"}
                 target={item.url ? "_blank" : undefined}
                 rel={item.url ? "noreferrer" : undefined}
-                className="block rounded-lg border border-gray-800 bg-gray-900/70 p-3 text-xs hover:border-gray-500"
+                className="block rounded-lg border border-gray-800 bg-gray-900/70 p-3 text-xs transition hover:border-purple-500"
               >
-                <div className="font-semibold text-white">{item.title}</div>
-                <div className="mt-1 text-[11px] text-gray-400">
-                  {item.source ?? "ソース不明"}
-                  ・
-                  {item.publishedAt ?? ""}
+                <div className="flex items-center justify-between gap-2">
+                  <div>
+                    <div className="font-semibold text-white line-clamp-2">
+                      {item.title}
+                    </div>
+                    <div className="mt-0.5 text-[11px] text-gray-400">
+                      {item.source ?? "ソース不明"}
+                      {item.publishedAt && `・${formatDate(item.publishedAt)}`}
+                    </div>
+                  </div>
                   {item.difficulty === "advanced" && (
-                    <span className="ml-2 rounded bg-purple-700 px-2 py-0.5 text-[10px] text-white">
+                    <span className="rounded bg-purple-700 px-2 py-0.5 text-[10px] text-white">
                       マニアック寄り
                     </span>
                   )}
                 </div>
                 {item.summary && (
-                  <p className="mt-2 line-clamp-2 text-[11px] text-gray-300">
+                  <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-gray-300">
                     {item.summary}
                   </p>
                 )}
@@ -108,7 +134,12 @@ export default async function HomePage() {
             ))}
           </div>
         )}
+
+        <p className="pt-1 text-[10px] leading-relaxed text-gray-500">
+          ニュース内容は各メーカー公式サイト・プレスリリースをもとにした要約です。
+          詳細はリンク先の公式情報を確認してください。
+        </p>
       </section>
-    </div>
+    </main>
   );
 }
