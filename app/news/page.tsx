@@ -1,0 +1,79 @@
+// app/news/page.tsx
+import { getLatestNews } from "@/lib/news";
+
+export default async function NewsPage() {
+  const items = await getLatestNews(30);
+
+  return (
+    <div className="space-y-6">
+      <header className="space-y-2">
+        <h1 className="text-xl font-semibold text-white">ニュース一覧</h1>
+        <p className="text-xs text-gray-400">
+          新型車やマイナーチェンジ、技術トピックなどのニュースを
+          ざっくり把握するためのページ。
+        </p>
+      </header>
+
+      {items.length === 0 ? (
+        <p className="text-xs text-gray-500">
+          まだニュースデータがありません。
+          Notionの<span className="font-mono">news</span>データベースに行を追加してください。
+        </p>
+      ) : (
+        <div className="space-y-3">
+          {items.map((item) => (
+            <article
+              key={item.id}
+              className="rounded-lg border border-gray-800 bg-gray-900/70 p-3 text-xs leading-relaxed"
+            >
+              <header className="flex items-start justify-between gap-2">
+                <div>
+                  <h2 className="font-semibold text-white">
+                    {item.title ?? "No title"}
+                  </h2>
+                  <div className="mt-0.5 text-[11px] text-gray-400">
+                    {item.source ?? "ソース不明"}
+                    {item.publishedAt && `・${item.publishedAt}`}
+                  </div>
+                </div>
+                {item.difficulty === "advanced" && (
+                  <span className="rounded bg-purple-700 px-2 py-0.5 text-[10px] text-white">
+                    マニアック寄り
+                  </span>
+                )}
+              </header>
+
+              {item.summary && (
+                <p className="mt-2 text-[11px] text-gray-200 whitespace-pre-line">
+                  {item.summary}
+                </p>
+              )}
+
+              {item.keyPoints && (
+                <ul className="mt-2 list-none text-[11px] text-gray-200 whitespace-pre-line">
+                  {item.keyPoints
+                    .split("。")
+                    .filter((line) => line.trim().length > 0)
+                    .map((line, idx) => (
+                      <li key={idx}>・{line}。</li>
+                    ))}
+                </ul>
+              )}
+
+              {item.referenceUrl && (
+                <a
+                  href={item.referenceUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-block text-[11px] text-blue-300 underline"
+                >
+                  メーカー公式サイト・プレスリリースを見る
+                </a>
+              )}
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
