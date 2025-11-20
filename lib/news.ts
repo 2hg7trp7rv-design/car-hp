@@ -7,68 +7,60 @@ export type NewsItem = {
   summary: string | null;
   source: string | null;
   publishedAt: string | null;
-  difficulty: "basic" | "advanced" | null;
+  difficulty: string | null;
   referenceUrl: string | null;
   category: string | null;
   maker: string | null;
   modelName: string | null;
   tags: string[];
-  isFeatured: boolean;
-  viewCount: number;
 };
 
-function getTitle(prop: any): string {
-  const t = prop?.title?.[0];
-  if (!t) return "No title";
-  return t.plain_text ?? t.text?.content ?? "No title";
+const NEWS_DB_TITLE = "news";
+
+async function getNewsDatabaseId(): Promise<string> {
+  return getDatabaseIdByTitle(NEWS_DB_TITLE);
 }
 
-function getRichText(prop: any): string | null {
-  if (!prop?.rich_text) return null;
-  const text = prop.rich_text
-    .map((t: any) => t.plain_text ?? t.text?.content ?? "")
-    .join("");
-  return text.length > 0 ? text : null;
-}
-
-function mapNewsPage(page: any): NewsItem {
-  const props = page.properties ?? {};
+function mapPageToNewsItem(page: any): NewsItem {
+  const props = page.properties;
 
   const titleProp = props["title"];
+  const title =
+    titleProp?.title?.[0]?.plain_text ??
+    titleProp?.title?.[0]?.text?.content ??
+    "No title";
+
   const summaryProp = props["summary"];
+  const summary =
+    summaryProp?.rich_text?.map((t: any) => t.plain_text).join("") ?? null;
+
   const sourceProp = props["source"];
-  const publishedAtProp = props["published_at"];
+  const source =
+    sourceProp?.rich_text?.map((t: any) => t.plain_text).join("") ?? null;
+
+  const dateProp = props["published_at"];
+  const publishedAt = dateProp?.date?.start ?? null;
+
   const difficultyProp = props["difficulty"];
+  const difficulty = difficultyProp?.select?.name ?? null;
+
   const referenceUrlProp = props["reference_url"];
-  const categoryProp = props["category"];
-  const makerProp = props["maker"];
-  const modelNameProp = props["model_name"];
-  const tagsProp = props["tags"];
-  const isFeaturedProp = props["is_featured"];
-  const viewCountProp = props["view_count"];
-
-  const title = getTitle(titleProp);
-  const summary = getRichText(summaryProp);
-  const source = getRichText(sourceProp);
-
-  const publishedAt =
-    publishedAtProp?.date?.start ??
-    publishedAtProp?.date?.end ??
-    null;
-
-  const difficulty =
-    (difficultyProp?.select?.name as "basic" | "advanced" | null) ?? null;
-
   const referenceUrl = referenceUrlProp?.url ?? null;
+
+  const categoryProp = props["category"];
   const category = categoryProp?.select?.name ?? null;
-  const maker = getRichText(makerProp);
-  const modelName = getRichText(modelNameProp);
 
+  const makerProp = props["maker"];
+  const maker =
+    makerProp?.rich_text?.map((t: any) => t.plain_text).join("") ?? null;
+
+  const modelNameProp = props["model_name"];
+  const modelName =
+    modelNameProp?.rich_text?.map((t: any) => t.plain_text).join("") ?? null;
+
+  const tagsProp = props["tags"];
   const tags =
-    tagsProp?.multi_select?.map((t: any) => t.name).filter(Boolean) ?? [];
-
-  const isFeatured = isFeaturedProp?.checkbox ?? false;
-  const viewCount = viewCountProp?.number ?? 0;
+    tagsProp?.multi_select?.map((t: any) => t.name as string) ?? [];
 
   return {
     id: page.id,
@@ -82,35 +74,73 @@ function mapNewsPage(page: any): NewsItem {
     maker,
     modelName,
     tags,
-    isFeatured,
-    viewCount,
   };
 }
 
-export async function getLatestNews(limit = 30): Promise<NewsItem[]> {
-  const databaseId = await getDatabaseIdByTitle("news");
+export async function getLatestNews(limit = 50): Promise<NewsItem[]> {
+  const databaseId = await getNewsDatabaseId();
 
   const response = await notion.databases.query({
     database_id: databaseId,
-    page_size: limit,
     sorts: [
       {
         property: "published_at",
         direction: "descending",
       },
     ],
+    page_size: limit,
   });
 
-  return response.results.map((page: any) => mapNewsPage(page));
+  return response.results.map(mapPageToNewsItem);
 }
 
 export async function getNewsById(id: string): Promise<NewsItem | null> {
-  const page = await notion.pages.retrieve({ page_id: id });
-
-  // safety guard
-  if (!("properties" in page)) {
+  try {
+    const page: any = await notion.pages.retrieve({ page_id: id });
+    return mapPageToNewsItem(page);
+  } catch (e) {
     return null;
   }
+}
 
-  return mapNewsPage(page as any);
+export async function getNewsByCar(
+  maker: string | null,
+  modelName: string | null,
+  limit = 10,
+): Promise<NewsItem[]> {
+  if (!maker && !modelName) {
+    return [];
+  }
+
+  const databaseId = await getNewsDatabaseId();
+
+  const filters: any[] = [];
+  if (maker) {
+    filters.push({
+      property: "maker",
+      rich_text: { contains: maker },
+    });
+  }
+  if (modelName) {
+    filters.push({
+      property: "model_name",
+      rich_text: { contains: modelName },
+    });
+  }
+
+  const response = await notion.databases.query({
+    database_id: databaseId,
+    filter: {
+      and: filters,
+    },
+    sorts: [
+      {
+        property: "published_at",
+        direction: "descending",
+      },
+    ],
+    page_size: limit,
+  });
+
+  return response.results.map(mapPageToNewsItem);
 }
