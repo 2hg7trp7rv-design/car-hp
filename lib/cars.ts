@@ -7,7 +7,7 @@ export type Car = {
   slug: string;
   maker: string | null;
   releaseYear: number | null;
-  difficulty: "basic" | "advanced" | null;
+  difficulty: string | null;
   summary: string | null;
   specHighlights: string | null;
   pros: string | null;
@@ -16,7 +16,13 @@ export type Car = {
   referenceUrl: string | null;
 };
 
-function mapCar(page: any): Car {
+const CAR_DB_TITLE = "cars";
+
+async function getCarsDatabaseId(): Promise<string> {
+  return getDatabaseIdByTitle(CAR_DB_TITLE);
+}
+
+function mapPageToCar(page: any): Car {
   const props = page.properties;
 
   const titleProp = props["名前"];
@@ -32,33 +38,41 @@ function mapCar(page: any): Car {
     page.id;
 
   const makerProp = props["maker"];
-  const maker = makerProp?.select?.name ?? null;
+  const maker =
+    makerProp?.select?.name ??
+    makerProp?.rich_text?.[0]?.plain_text ??
+    null;
 
   const yearProp = props["release_year"];
   const releaseYear = yearProp?.number ?? null;
 
   const difficultyProp = props["difficulty"];
-  const difficulty =
-    (difficultyProp?.select?.name as "basic" | "advanced" | null) ?? null;
+  const difficulty = difficultyProp?.select?.name ?? null;
 
   const summaryProp = props["summary"];
-  const summary = summaryProp?.rich_text?.[0]?.plain_text ?? null;
+  const summary =
+    summaryProp?.rich_text?.map((t: any) => t.plain_text).join("") ?? null;
 
   const specHighlightsProp = props["spec_highlights"];
-  const specHighlights = specHighlightsProp?.rich_text?.[0]?.plain_text ?? null;
+  const specHighlights =
+    specHighlightsProp?.rich_text?.map((t: any) => t.plain_text).join("") ??
+    null;
 
   const prosProp = props["pros"];
-  const pros = prosProp?.rich_text?.[0]?.plain_text ?? null;
+  const pros =
+    prosProp?.rich_text?.map((t: any) => t.plain_text).join("") ?? null;
 
   const consProp = props["cons"];
-  const cons = consProp?.rich_text?.[0]?.plain_text ?? null;
+  const cons =
+    consProp?.rich_text?.map((t: any) => t.plain_text).join("") ?? null;
 
   const changeSummaryProp = props["change_summary"];
   const changeSummary =
-    changeSummaryProp?.rich_text?.[0]?.plain_text ?? null;
+    changeSummaryProp?.rich_text?.map((t: any) => t.plain_text).join("") ??
+    null;
 
-  const refUrlProp = props["reference_url"];
-  const referenceUrl = refUrlProp?.url ?? null;
+  const referenceUrlProp = props["reference_url"];
+  const referenceUrl = referenceUrlProp?.url ?? null;
 
   return {
     id: page.id,
@@ -77,7 +91,7 @@ function mapCar(page: any): Car {
 }
 
 export async function getAllCars(): Promise<Car[]> {
-  const databaseId = await getDatabaseIdByTitle("cars");
+  const databaseId = await getCarsDatabaseId();
 
   const response = await notion.databases.query({
     database_id: databaseId,
@@ -89,11 +103,11 @@ export async function getAllCars(): Promise<Car[]> {
     ],
   });
 
-  return response.results.map((page: any) => mapCar(page));
+  return response.results.map(mapPageToCar);
 }
 
 export async function getCarBySlug(slug: string): Promise<Car | null> {
-  const databaseId = await getDatabaseIdByTitle("cars");
+  const databaseId = await getCarsDatabaseId();
 
   const response = await notion.databases.query({
     database_id: databaseId,
@@ -103,10 +117,11 @@ export async function getCarBySlug(slug: string): Promise<Car | null> {
         equals: slug,
       },
     },
+    page_size: 1,
   });
 
-  const page = response.results[0];
-  if (!page) return null;
-
-  return mapCar(page);
+  if (response.results.length === 0) {
+    return null;
+  }
+  return mapPageToCar(response.results[0]);
 }
