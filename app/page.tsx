@@ -11,7 +11,6 @@ export const metadata = {
 
 function formatDate(value: string | null): string {
   if (!value) return "";
-  // 2025-01-01T00:00:00Z → 2025-01-01 形式に
   return value.slice(0, 10);
 }
 
@@ -81,7 +80,7 @@ export default async function HomePage() {
         )}
       </section>
 
-      {/* 最新ニュース */}
+      {/* 最新ニュース（クリックすると /news に飛ぶように変更） */}
       <section className="space-y-3">
         <div className="flex items-center justify-between text-xs">
           <h2 className="font-semibold text-white">最新ニュース</h2>
@@ -102,11 +101,9 @@ export default async function HomePage() {
         ) : (
           <div className="space-y-3">
             {news.map((item) => (
-              <a
+              <Link
                 key={item.id}
-                href={item.url ?? "#"}
-                target={item.url ? "_blank" : undefined}
-                rel={item.url ? "noreferrer" : undefined}
+                href="/news"
                 className="block rounded-lg border border-gray-800 bg-gray-900/70 p-3 text-xs transition hover:border-purple-500"
               >
                 <div className="flex items-center justify-between gap-2">
@@ -130,15 +127,10 @@ export default async function HomePage() {
                     {item.summary}
                   </p>
                 )}
-              </a>
+              </Link>
             ))}
           </div>
         )}
-
-        <p className="pt-1 text-[10px] leading-relaxed text-gray-500">
-          ニュース内容は各メーカー公式サイト・プレスリリースをもとにした要約です。
-          詳細はリンク先の公式情報を確認してください。
-        </p>
       </section>
     </main>
   );
