@@ -2,238 +2,186 @@
 import Link from "next/link";
 import { getLatestNews, type NewsItem } from "@/lib/news";
 
-type SearchParams = {
-  q?: string;
-  category?: string;
-  tag?: string;
-  maker?: string;
+export const metadata = {
+  title: "ニュース一覧 | Car Insight Hub",
 };
 
-export default async function NewsPage({
-  searchParams,
-}: {
-  searchParams?: SearchParams;
-}) {
-  const items = await getLatestNews(100);
+export default async function NewsPage() {
+  const items = await getLatestNews(60);
 
-  const q = (searchParams?.q ?? "").trim();
-  const category = (searchParams?.category ?? "").trim();
-  const tag = (searchParams?.tag ?? "").trim();
-  const maker = (searchParams?.maker ?? "").trim();
+  if (!items || items.length === 0) {
+    return (
+      <div className="space-y-4">
+        <header className="space-y-2">
+          <h1 className="text-xl font-semibold text-white">ニュース一覧</h1>
+          <p className="text-xs text-gray-400">
+            国内外メーカーの新型車やパワートレイン、装備変更などをざっくり把握するためのニュース一覧。
+          </p>
+        </header>
+        <p className="text-xs text-gray-500">
+          まだニュースデータがありません。Notionの
+          <span className="font-mono">news</span>
+          データベースに行を追加してください。
+        </p>
+      </div>
+    );
+  }
 
+  // おすすめフラグ付きだけをピックアップ
+  const featured = items.filter((i) => i.isFeatured).slice(0, 3);
+  const featuredIds = new Set(featured.map((i) => i.id));
+
+  // 残り
+  const others = items.filter((i) => !featuredIds.has(i.id));
+
+  // カテゴリ一覧
   const categories = Array.from(
     new Set(items.map((i) => i.category).filter(Boolean)),
   ) as string[];
 
-  const tags = Array.from(
-    new Set(items.flatMap((i) => i.tags)),
-  ).filter(Boolean);
-
-  const featured = items.filter((i) => i.isFeatured).slice(0, 3);
-  const featuredIds = new Set(featured.map((i) => i.id));
-
-  let filtered: NewsItem[] = items.filter((i) => !featuredIds.has(i.id));
-
-  if (category) {
-    filtered = filtered.filter((item) => item.category === category);
-  }
-
-  if (tag) {
-    filtered = filtered.filter((item) => item.tags.includes(tag));
-  }
-
-  if (maker) {
-    const makerLower = maker.toLowerCase();
-    filtered = filtered.filter((item) =>
-      (item.maker ?? "").toLowerCase().includes(makerLower),
-    );
-  }
-
-  if (q) {
-    const qLower = q.toLowerCase();
-    filtered = filtered.filter((item) => {
-      const haystack =
-        (
-          item.title +
-          " " +
-          (item.summary ?? "") +
-          " " +
-          (item.maker ?? "") +
-          " " +
-          (item.modelName ?? "")
-        ).toLowerCase();
-      return haystack.includes(qLower);
-    });
-  }
-
   return (
-    <div className="space-y-6">
+    <div className="space-y-10">
+      {/* ヘッダー */}
       <header className="space-y-3">
+        <div className="inline-flex items-center rounded-full border border-purple-500/40 bg-purple-900/20 px-3 py-1 text-[10px] font-medium text-purple-100">
+          新型車情報とマニアック解説をまとめてチェック
+        </div>
         <h1 className="text-xl font-semibold text-white">ニュース一覧</h1>
-        <p className="text-xs text-gray-400">
-          国内外メーカーの新型車やパワートレイン、装備変更などをざっくり把握するためのニュース一覧。
+        <p className="text-xs leading-relaxed text-gray-400">
+          国内外メーカーの新型車発表、パワートレインのアップデート、安全装備の刷新など。
+          ライト層でも読みやすく、マニアックな人は深掘りのきっかけにできるよう整理していきます。
         </p>
 
-        <form className="space-y-2 rounded-lg border border-gray-800 bg-gray-900/70 p-3 text-[11px]">
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-4">
-            <label className="space-y-1">
-              <div className="text-gray-400">キーワード</div>
-              <input
-                type="text"
-                name="q"
-                defaultValue={q}
-                placeholder="車名や装備名などで検索"
-                className="w-full rounded border border-gray-700 bg-gray-950 px-2 py-1 text-xs text-white outline-none"
-              />
-            </label>
-
-            <label className="space-y-1">
-              <div className="text-gray-400">カテゴリ</div>
-              <select
-                name="category"
-                defaultValue={category}
-                className="w-full rounded border border-gray-700 bg-gray-950 px-2 py-1 text-xs text-white outline-none"
+        {/* カテゴリのチップ（現状は表示のみ） */}
+        {categories.length > 0 && (
+          <div className="mt-1 flex flex-wrap gap-2">
+            {categories.map((cat) => (
+              <span
+                key={cat}
+                className="rounded-full border border-gray-700 bg-gray-800/80 px-2.5 py-1 text-[10px] text-gray-200"
               >
-                <option value="">すべて</option>
-                {categories.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            <label className="space-y-1">
-              <div className="text-gray-400">タグ</div>
-              <select
-                name="tag"
-                defaultValue={tag}
-                className="w-full rounded border border-gray-700 bg-gray-950 px-2 py-1 text-xs text-white outline-none"
-              >
-                <option value="">すべて</option>
-                {tags.map((t) => (
-                  <option key={t} value={t}>
-                    {t}
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            <label className="space-y-1">
-              <div className="text-gray-400">メーカー</div>
-              <input
-                type="text"
-                name="maker"
-                defaultValue={maker}
-                placeholder="TOYOTAなど"
-                className="w-full rounded border border-gray-700 bg-gray-950 px-2 py-1 text-xs text-white outline-none"
-              />
-            </label>
+                {cat}
+              </span>
+            ))}
           </div>
-
-          <div className="flex justify-end">
-            <button
-              type="submit"
-              className="rounded bg-purple-700 px-3 py-1 text-[11px] font-semibold text-white"
-            >
-              絞り込み
-            </button>
-          </div>
-        </form>
+        )}
       </header>
 
+      {/* おすすめニュース */}
       {featured.length > 0 && (
-        <section className="space-y-2">
-          <h2 className="text-sm font-semibold text-white">注目ニュース</h2>
-          <div className="space-y-2">
-            {featured.map((item) => (
-              <Link
-                key={item.id}
-                href={`/news/${item.id}`}
-                className="block rounded-lg border border-yellow-600/60 bg-yellow-900/20 p-3 text-xs hover:border-yellow-500 hover:bg-yellow-900/30"
-              >
-                <header className="flex items-start justify-between gap-3">
-                  <div>
-                    <h3 className="font-semibold text-white">
-                      {item.title ?? "No title"}
-                    </h3>
-                    <div className="mt-0.5 text-[11px] text-gray-300">
-                      {item.source ?? "ソース不明"}
-                      {item.publishedAt && `・${item.publishedAt}`}
-                    </div>
-                  </div>
-                  {item.difficulty === "advanced" && (
-                    <span className="rounded bg-purple-700 px-2 py-0.5 text-[10px] text-white">
-                      マニアック寄り
-                    </span>
-                  )}
-                </header>
-
-                {item.summary && (
-                  <p className="mt-1 text-[11px] text-gray-100 line-clamp-3 whitespace-pre-line">
-                    {item.summary}
-                  </p>
-                )}
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {filtered.length === 0 ? (
-        <p className="text-xs text-gray-500">
-          条件に合うニュースがありません。
-        </p>
-      ) : (
         <section className="space-y-3">
-          <h2 className="text-sm font-semibold text-white">ニュース一覧</h2>
-          <div className="space-y-3">
-            {filtered.map((item) => (
-              <article
-                key={item.id}
-                className="rounded-lg border border-gray-800 bg-gray-900/70 p-3 text-xs"
-              >
-                <header className="flex items-start justify-between gap-3">
-                  <div>
-                    <Link
-                      href={`/news/${item.id}`}
-                      className="font-semibold text-white hover:underline"
-                    >
-                      {item.title ?? "No title"}
-                    </Link>
-                    <div className="mt-0.5 text-[11px] text-gray-400">
-                      {item.source ?? "ソース不明"}
-                      {item.publishedAt && `・${item.publishedAt}`}
-                      {item.difficulty === "advanced" && (
-                        <span className="ml-2 rounded bg-purple-600 px-2 py-0.5 text-[10px] text-white">
-                          マニアック寄り
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </header>
-
-                {item.summary && (
-                  <p className="mt-1 text-[11px] text-gray-200 whitespace-pre-line">
-                    {item.summary}
-                  </p>
-                )}
-
-                {item.referenceUrl && (
-                  <a
-                    href={item.referenceUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-3 inline-block text-[11px] text-blue-400 underline"
-                  >
-                    メーカー公式サイト・プレスリリースを見る
-                  </a>
-                )}
-              </article>
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-white">ピックアップ３選</h2>
+            <span className="text-[10px] text-gray-400">
+              チェックしておきたいアップデートだけを厳選
+            </span>
+          </div>
+          <div className="grid gap-3">
+            {featured.map((item) => (
+              <NewsCard key={item.id} item={item} accent />
             ))}
           </div>
         </section>
       )}
+
+      {/* すべてのニュース */}
+      <section className="space-y-3">
+        <div className="flex items-center justify-between">
+          <h2 className="text-sm font-semibold text-white">すべてのニュース</h2>
+          <span className="text-[10px] text-gray-500">
+            新しいものから順に表示しています
+          </span>
+        </div>
+        <div className="grid gap-3">
+          {others.map((item) => (
+            <NewsCard key={item.id} item={item} />
+          ))}
+        </div>
+      </section>
     </div>
+  );
+}
+
+function NewsCard({ item, accent = false }: { item: NewsItem; accent?: boolean }) {
+  const difficultyLabel =
+    item.difficulty === "advanced" ? "マニアック寄り" : "ライト寄り";
+
+  return (
+    <article
+      className={`group rounded-xl border p-4 text-xs transition ${
+        accent
+          ? "border-purple-500/60 bg-gradient-to-br from-purple-900/40 via-slate-900/90 to-slate-950/95 shadow-[0_18px_45px_rgba(0,0,0,0.6)]"
+          : "border-gray-800 bg-slate-900/70 hover:border-purple-500/50 hover:bg-slate-900"
+      }`}
+    >
+      <Link href={`/news/${item.id}`} className="block h-full space-y-3">
+        {/* 上部メタ情報 */}
+        <header className="flex items-start justify-between gap-3">
+          <div className="space-y-1">
+            <h3 className="text-[13px] font-semibold leading-snug text-white group-hover:text-purple-100">
+              {item.title ?? "No title"}
+            </h3>
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] text-gray-400">
+              <span>{item.source ?? "ソース不明"}</span>
+              {item.publishedAt && <span>・{item.publishedAt}</span>}
+              {item.maker && (
+                <span className="rounded-full bg-gray-800/80 px-2 py-0.5 text-[9px] text-gray-200">
+                  {item.maker}
+                  {item.modelName ? `・${item.modelName}` : ""}
+                </span>
+              )}
+            </div>
+          </div>
+
+          <div className="flex flex-col items-end gap-1">
+            <span
+              className={`rounded-full px-2 py-0.5 text-[9px] ${
+                item.difficulty === "advanced"
+                  ? "bg-purple-600 text-white"
+                  : "bg-slate-700 text-slate-100"
+              }`}
+            >
+              {difficultyLabel}
+            </span>
+            {item.category && (
+              <span className="rounded-full bg-gray-800/80 px-2 py-0.5 text-[9px] text-gray-100">
+                {item.category}
+              </span>
+            )}
+          </div>
+        </header>
+
+        {/* 要約 */}
+        {item.summary && (
+          <p className="line-clamp-4 whitespace-pre-line text-[11px] leading-relaxed text-gray-200">
+            {item.summary}
+          </p>
+        )}
+
+        {/* タグ */}
+        {item.tags && item.tags.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 text-[9px]">
+            {item.tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full bg-slate-800/80 px-2 py-0.5 text-gray-200"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* メーカー公式リンク */}
+        {item.referenceUrl && (
+          <div className="pt-1 text-[10px]">
+            <span className="inline-flex items-center text-purple-300 group-hover:text-purple-200">
+              メーカー公式サイト・プレスリリースを見る
+              <span className="ml-1 text-[9px]">↗</span>
+            </span>
+          </div>
+        )}
+      </Link>
+    </article>
   );
 }
