@@ -11,6 +11,56 @@ export type NewsItem = {
   referenceUrl: string | null;
 };
 
+function mapPageToNewsItem(page: any): NewsItem {
+  const props = page.properties;
+
+  const titleProp = props["title"];
+  const title =
+    titleProp?.title?.[0]?.plain_text ??
+    titleProp?.title?.[0]?.text?.content ??
+    "No title";
+
+  const summaryProp = props["summary"];
+  const summary =
+    summaryProp?.rich_text?.[0]?.plain_text ??
+    summaryProp?.rich_text?.[0]?.text?.content ??
+    null;
+
+  const sourceProp = props["source"];
+  const source =
+    sourceProp?.rich_text?.[0]?.plain_text ??
+    sourceProp?.rich_text?.[0]?.text?.content ??
+    null;
+
+  const publishedProp = props["published_at"];
+  let publishedAt: string | null = null;
+  if (publishedProp?.date?.start) {
+    publishedAt = publishedProp.date.start;
+  }
+
+  const difficultyProp = props["difficulty"];
+  const difficulty =
+    (difficultyProp?.select?.name as "basic" | "advanced" | null) ?? null;
+
+  const refProp = props["reference_url"];
+  const referenceUrl =
+    refProp?.url ??
+    (refProp?.rich_text?.[0]?.plain_text ??
+      refProp?.rich_text?.[0]?.text?.content ??
+      null);
+
+  return {
+    id: page.id,
+    title,
+    summary,
+    source,
+    publishedAt,
+    difficulty,
+    referenceUrl,
+  };
+}
+
+// 一覧用
 export async function getLatestNews(limit = 20): Promise<NewsItem[]> {
   const databaseId = await getDatabaseIdByTitle("news");
 
@@ -25,52 +75,17 @@ export async function getLatestNews(limit = 20): Promise<NewsItem[]> {
     page_size: limit,
   });
 
-  return response.results.map((page: any) => {
-    const props = page.properties;
+  return response.results.map((page: any) => mapPageToNewsItem(page));
+}
 
-    const titleProp = props["title"];
-    const title =
-      titleProp?.title?.[0]?.plain_text ??
-      titleProp?.title?.[0]?.text?.content ??
-      "No title";
-
-    const summaryProp = props["summary"];
-    const summary =
-      summaryProp?.rich_text?.[0]?.plain_text ??
-      summaryProp?.rich_text?.[0]?.text?.content ??
-      null;
-
-    const sourceProp = props["source"];
-    const source =
-      sourceProp?.rich_text?.[0]?.plain_text ??
-      sourceProp?.rich_text?.[0]?.text?.content ??
-      null;
-
-    const publishedProp = props["published_at"];
-    let publishedAt: string | null = null;
-    if (publishedProp?.date?.start) {
-      publishedAt = publishedProp.date.start;
-    }
-
-    const difficultyProp = props["difficulty"];
-    const difficulty =
-      (difficultyProp?.select?.name as "basic" | "advanced" | null) ?? null;
-
-    const refProp = props["reference_url"];
-    const referenceUrl =
-      refProp?.url ??
-      (refProp?.rich_text?.[0]?.plain_text ??
-        refProp?.rich_text?.[0]?.text?.content ??
-        null);
-
-    return {
-      id: page.id,
-      title,
-      summary,
-      source,
-      publishedAt,
-      difficulty,
-      referenceUrl,
-    };
-  });
+// 詳細ページ用
+export async function getNewsById(id: string): Promise<NewsItem | null> {
+  try {
+    const page: any = await notion.pages.retrieve({ page_id: id });
+    if (!page || !("properties" in page)) return null;
+    return mapPageToNewsItem(page);
+  } catch (error) {
+    console.error("getNewsById error", error);
+    return null;
+  }
 }
