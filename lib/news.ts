@@ -13,52 +13,62 @@ export type NewsItem = {
   maker: string | null;
   modelName: string | null;
   tags: string[];
+  isFeatured: boolean;
+  viewCount: number;
 };
 
-function mapPageToNewsItem(page: any): NewsItem {
-  const props = page.properties;
+function getTitle(prop: any): string {
+  const t = prop?.title?.[0];
+  if (!t) return "No title";
+  return t.plain_text ?? t.text?.content ?? "No title";
+}
+
+function getRichText(prop: any): string | null {
+  if (!prop?.rich_text) return null;
+  const text = prop.rich_text
+    .map((t: any) => t.plain_text ?? t.text?.content ?? "")
+    .join("");
+  return text.length > 0 ? text : null;
+}
+
+function mapNewsPage(page: any): NewsItem {
+  const props = page.properties ?? {};
 
   const titleProp = props["title"];
-  const title =
-    titleProp?.title?.[0]?.plain_text ??
-    titleProp?.title?.[0]?.text?.content ??
-    "No title";
-
   const summaryProp = props["summary"];
-  const summary =
-    summaryProp?.rich_text?.map((t: any) => t.plain_text).join("") || null;
-
   const sourceProp = props["source"];
-  const source =
-    sourceProp?.rich_text?.map((t: any) => t.plain_text).join("") || null;
-
-  const publishedProp = props["published_at"];
-  let publishedAt: string | null = null;
-  if (publishedProp?.date?.start) {
-    publishedAt = publishedProp.date.start;
-  }
-
+  const publishedAtProp = props["published_at"];
   const difficultyProp = props["difficulty"];
+  const referenceUrlProp = props["reference_url"];
+  const categoryProp = props["category"];
+  const makerProp = props["maker"];
+  const modelNameProp = props["model_name"];
+  const tagsProp = props["tags"];
+  const isFeaturedProp = props["is_featured"];
+  const viewCountProp = props["view_count"];
+
+  const title = getTitle(titleProp);
+  const summary = getRichText(summaryProp);
+  const source = getRichText(sourceProp);
+
+  const publishedAt =
+    publishedAtProp?.date?.start ??
+    publishedAtProp?.date?.end ??
+    null;
+
   const difficulty =
     (difficultyProp?.select?.name as "basic" | "advanced" | null) ?? null;
 
-  const referenceProp = props["reference_url"];
-  const referenceUrl = referenceProp?.url ?? null;
-
-  const categoryProp = props["category"];
+  const referenceUrl = referenceUrlProp?.url ?? null;
   const category = categoryProp?.select?.name ?? null;
+  const maker = getRichText(makerProp);
+  const modelName = getRichText(modelNameProp);
 
-  const makerProp = props["maker"];
-  const maker =
-    makerProp?.rich_text?.map((t: any) => t.plain_text).join("") || null;
-
-  const modelNameProp = props["model_name"];
-  const modelName =
-    modelNameProp?.rich_text?.map((t: any) => t.plain_text).join("") || null;
-
-  const tagsProp = props["tags"];
   const tags =
-    tagsProp?.multi_select?.map((tag: any) => tag.name as string) ?? [];
+    tagsProp?.multi_select?.map((t: any) => t.name).filter(Boolean) ?? [];
+
+  const isFeatured = isFeaturedProp?.checkbox ?? false;
+  const viewCount = viewCountProp?.number ?? 0;
 
   return {
     id: page.id,
@@ -72,6 +82,8 @@ function mapPageToNewsItem(page: any): NewsItem {
     maker,
     modelName,
     tags,
+    isFeatured,
+    viewCount,
   };
 }
 
@@ -89,44 +101,16 @@ export async function getLatestNews(limit = 30): Promise<NewsItem[]> {
     ],
   });
 
-  return response.results.map(mapPageToNewsItem);
+  return response.results.map((page: any) => mapNewsPage(page));
 }
 
 export async function getNewsById(id: string): Promise<NewsItem | null> {
-  try {
-    const page = await notion.pages.retrieve({
-      page_id: id as string,
-    });
+  const page = await notion.pages.retrieve({ page_id: id });
 
-    return mapPageToNewsItem(page as any);
-  } catch (error) {
-    console.error("getNewsById error", error);
+  // safety guard
+  if (!("properties" in page)) {
     return null;
   }
-}
 
-export async function getAllNewsIds(): Promise<string[]> {
-  const databaseId = await getDatabaseIdByTitle("news");
-
-  const ids: string[] = [];
-  let cursor: string | undefined = undefined;
-
-  while (true) {
-    const response = await notion.databases.query({
-      database_id: databaseId,
-      start_cursor: cursor,
-      page_size: 100,
-    });
-
-    response.results.forEach((page: any) => {
-      ids.push(page.id);
-    });
-
-    if (!response.has_more || !response.next_cursor) {
-      break;
-    }
-    cursor = response.next_cursor;
-  }
-
-  return ids;
+  return mapNewsPage(page as any);
 }
