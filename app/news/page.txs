@@ -3,41 +3,50 @@ import { getLatestNews } from "@/lib/news";
 
 export const metadata = {
   title: "ニュース一覧 | Car Insight Hub",
+  description:
+    "メーカー公式リリースなどをもとにした、新型車・技術トピックのニュース一覧ページ。",
 };
 
+function formatDate(value: string | null): string {
+  if (!value) return "";
+  return value.slice(0, 10);
+}
+
 export default async function NewsPage() {
+  // とりあえず最新30件を取得
   const items = await getLatestNews(30);
 
   return (
     <div className="space-y-6">
       <header className="space-y-2">
-        <h1 className="text-xl font-semibold text-white">新車・技術ニュース</h1>
-        <p className="text-xs text-gray-400">
-          各メーカー公式のニュースやプレスリリースから、気になるトピックをピックアップして整理していくページです。
+        <h1 className="text-xl font-semibold text-white">ニュース一覧</h1>
+        <p className="text-xs leading-relaxed text-gray-300">
+          新型車の発表やマイナーチェンジ、技術トピックなどを、メーカー公式情報をベースに要約したページです。
+          詳細なスペックや価格は、各記事のリンク先で確認できます。
         </p>
       </header>
 
       {items.length === 0 ? (
         <p className="text-xs text-gray-500">
           まだニュースデータがありません。Notionの
-          <span className="font-mono">news</span>データベースに行を追加してください。
+          <span className="font-mono">news</span>
+          データベースに行を追加すると、ここに一覧が表示されます。
         </p>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-4">
           {items.map((item) => (
-            <a
+            <article
               key={item.id}
-              href={item.url ?? "#"}
-              target={item.url ? "_blank" : undefined}
-              rel={item.url ? "noreferrer" : undefined}
-              className="block rounded-lg border border-gray-800 bg-gray-900/70 p-3 text-xs transition hover:border-purple-500"
+              className="rounded-lg border border-gray-800 bg-gray-900/70 p-3 text-xs"
             >
               <div className="flex items-center justify-between gap-2">
                 <div>
-                  <div className="font-semibold text-white">{item.title}</div>
+                  <h2 className="font-semibold text-white">
+                    {item.title || "No title"}
+                  </h2>
                   <div className="mt-0.5 text-[11px] text-gray-400">
                     {item.source ?? "ソース不明"}
-                    {item.publishedAt && `・${item.publishedAt}`}
+                    {item.publishedAt && `・${formatDate(item.publishedAt)}`}
                   </div>
                 </div>
                 {item.difficulty === "advanced" && (
@@ -46,12 +55,26 @@ export default async function NewsPage() {
                   </span>
                 )}
               </div>
+
               {item.summary && (
-                <p className="mt-2 line-clamp-3 text-[11px] leading-relaxed text-gray-300">
+                <p className="mt-2 whitespace-pre-line text-[11px] leading-relaxed text-gray-200">
                   {item.summary}
                 </p>
               )}
-            </a>
+
+              {item.url && (
+                <p className="mt-3 text-[11px]">
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-purple-300 underline hover:text-purple-200"
+                  >
+                    メーカー公式サイト・プレスリリースを見る
+                  </a>
+                </p>
+              )}
+            </article>
           ))}
         </div>
       )}
