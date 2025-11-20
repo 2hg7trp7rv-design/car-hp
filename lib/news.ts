@@ -9,6 +9,10 @@ export type NewsItem = {
   publishedAt: string | null;
   difficulty: "basic" | "advanced" | null;
   referenceUrl: string | null;
+  category: string | null;
+  maker: string | null;
+  modelName: string | null;
+  tags: string[];
 };
 
 function mapPageToNewsItem(page: any): NewsItem {
@@ -22,15 +26,11 @@ function mapPageToNewsItem(page: any): NewsItem {
 
   const summaryProp = props["summary"];
   const summary =
-    summaryProp?.rich_text?.[0]?.plain_text ??
-    summaryProp?.rich_text?.[0]?.text?.content ??
-    null;
+    summaryProp?.rich_text?.map((t: any) => t.plain_text).join("") || null;
 
   const sourceProp = props["source"];
   const source =
-    sourceProp?.rich_text?.[0]?.plain_text ??
-    sourceProp?.rich_text?.[0]?.text?.content ??
-    null;
+    sourceProp?.rich_text?.map((t: any) => t.plain_text).join("") || null;
 
   const publishedProp = props["published_at"];
   let publishedAt: string | null = null;
@@ -42,12 +42,23 @@ function mapPageToNewsItem(page: any): NewsItem {
   const difficulty =
     (difficultyProp?.select?.name as "basic" | "advanced" | null) ?? null;
 
-  const refProp = props["reference_url"];
-  const referenceUrl =
-    refProp?.url ??
-    (refProp?.rich_text?.[0]?.plain_text ??
-      refProp?.rich_text?.[0]?.text?.content ??
-      null);
+  const referenceProp = props["reference_url"];
+  const referenceUrl = referenceProp?.url ?? null;
+
+  const categoryProp = props["category"];
+  const category = categoryProp?.select?.name ?? null;
+
+  const makerProp = props["maker"];
+  const maker =
+    makerProp?.rich_text?.map((t: any) => t.plain_text).join("") || null;
+
+  const modelNameProp = props["model_name"];
+  const modelName =
+    modelNameProp?.rich_text?.map((t: any) => t.plain_text).join("") || null;
+
+  const tagsProp = props["tags"];
+  const tags =
+    tagsProp?.multi_select?.map((tag: any) => tag.name as string) ?? [];
 
   return {
     id: page.id,
@@ -57,35 +68,65 @@ function mapPageToNewsItem(page: any): NewsItem {
     publishedAt,
     difficulty,
     referenceUrl,
+    category,
+    maker,
+    modelName,
+    tags,
   };
 }
 
-// 一覧用
-export async function getLatestNews(limit = 20): Promise<NewsItem[]> {
+export async function getLatestNews(limit = 30): Promise<NewsItem[]> {
   const databaseId = await getDatabaseIdByTitle("news");
 
   const response = await notion.databases.query({
     database_id: databaseId,
+    page_size: limit,
     sorts: [
       {
         property: "published_at",
         direction: "descending",
       },
     ],
-    page_size: limit,
   });
 
-  return response.results.map((page: any) => mapPageToNewsItem(page));
+  return response.results.map(mapPageToNewsItem);
 }
 
-// 詳細ページ用
 export async function getNewsById(id: string): Promise<NewsItem | null> {
   try {
-    const page: any = await notion.pages.retrieve({ page_id: id });
-    if (!page || !("properties" in page)) return null;
-    return mapPageToNewsItem(page);
+    const page = await notion.pages.retrieve({
+      page_id: id as string,
+    });
+
+    return mapPageToNewsItem(page as any);
   } catch (error) {
     console.error("getNewsById error", error);
     return null;
   }
+}
+
+export async function getAllNewsIds(): Promise<string[]> {
+  const databaseId = await getDatabaseIdByTitle("news");
+
+  const ids: string[] = [];
+  let cursor: string | undefined = undefined;
+
+  while (true) {
+    const response = await notion.databases.query({
+      database_id: databaseId,
+      start_cursor: cursor,
+      page_size: 100,
+    });
+
+    response.results.forEach((page: any) => {
+      ids.push(page.id);
+    });
+
+    if (!response.has_more || !response.next_cursor) {
+      break;
+    }
+    cursor = response.next_cursor;
+  }
+
+  return ids;
 }
