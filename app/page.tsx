@@ -1,6 +1,5 @@
 // app/page.tsx
 import Link from "next/link";
-import Image from "next/image";
 import { getLatestNews } from "@/lib/news";
 
 export default async function HomePage() {
@@ -10,23 +9,17 @@ export default async function HomePage() {
   return (
     <div className="bg-neutral-50">
       {/* ヒーロー 全画面画像＋テキスト＋ABOUT */}
-      <section className="relative min-h-[calc(100vh-72px)] overflow-hidden">
-        {/* 背景画像 */}
-        <div className="absolute inset-0">
-          <Image
-            src="/images/hero-sedan.jpg"
-            alt=""
-            fill
-            priority
-            className="object-cover"
-          />
-        </div>
-
-        {/* 暗めグラデーション（上に乗せる） */}
+      <section
+        className="
+          relative min-h-[calc(100vh-72px)] overflow-hidden
+          bg-[url('/images/hero-sedan.jpg')] bg-cover bg-center
+        "
+      >
+        {/* 暗めグラデーション */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/15" />
 
         {/* 中身 */}
-        <div className="relative z-10 flex h-full flex-col justify-between px-4 py-10 sm:px-6 lg:px-8">
+        <div className="relative z-10 flex h-full flex-col px-4 py-10 sm:px-6 lg:px-8">
           {/* 上側 キャッチコピー */}
           <div className="mt-6 flex justify-center">
             <div className="max-w-3xl text-center text-neutral-50">
@@ -59,8 +52,8 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* 下側 ABOUT を画像の上に載せる */}
-          <div className="mb-4 flex justify-center">
+          {/* ボタンとABOUTの間隔を広めにとる */}
+          <div className="mt-12 md:mt-16 mb-4 flex justify-center">
             <section className="w-full max-w-4xl rounded-2xl border border-white/20 bg-black/35 p-5 text-xs leading-relaxed text-neutral-100 shadow-sm shadow-black/40 backdrop-blur-md sm:p-6">
               <p className="text-[10px] uppercase tracking-[0.3em] text-sky-100">
                 ABOUT
