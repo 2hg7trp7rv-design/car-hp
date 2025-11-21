@@ -9,80 +9,92 @@ export default async function HomePage() {
 
   return (
     <div className="bg-neutral-50">
-      {/* ヒーロー 全画面画像＋テキストオーバーレイ */}
-      <section className="relative min-h-[calc(100vh-72px)]">
-        <Image
-          src="/images/hero-sedan.jpg"
-          alt="クルマのヒーローイメージ"
-          fill
-          priority
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
-        <div className="relative z-10 flex h-full items-center justify-center px-4 py-16">
-          <div className="max-w-3xl text-center text-neutral-50">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-sky-200">
-              CURATED AUTOMOTIVE JOURNAL
-            </p>
-            <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-              クルマを愉しむ人のためのカーサイト
-            </h1>
-            <p className="mt-4 text-sm leading-relaxed text-neutral-100 sm:text-base md:text-lg">
-              最新ニュース、試乗記、技術解説から中古車の目利きまで
-            </p>
-            <p className="mt-3 text-xs leading-relaxed text-neutral-200 sm:text-sm">
-              スタジオの静謐な光とともに、情報を愉しむ空間へ。
-            </p>
-            <div className="mt-7 flex flex-wrap justify-center gap-3 text-[11px] sm:text-xs">
-              <Link
-                href="/news"
-                className="inline-flex items-center rounded-full border border-sky-400 bg-sky-500/90 px-6 py-2 font-medium tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-sky-600"
-              >
-                最新ニュースを見る
-              </Link>
-              <Link
-                href="/reviews"
-                className="inline-flex items-center rounded-full border border-white/70 bg-white/10 px-6 py-2 font-medium tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-white/20"
-              >
-                試乗記を読む
-              </Link>
+      {/* ヒーロー 全画面画像＋テキスト＋ABOUT */}
+      <section className="relative min-h-[calc(100vh-72px)] overflow-hidden">
+        {/* 背景画像 */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/hero-sedan.jpg"
+            alt=""
+            fill
+            priority
+            className="object-cover"
+          />
+        </div>
+
+        {/* 暗めグラデーション（上に乗せる） */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/15" />
+
+        {/* 中身 */}
+        <div className="relative z-10 flex h-full flex-col justify-between px-4 py-10 sm:px-6 lg:px-8">
+          {/* 上側 キャッチコピー */}
+          <div className="mt-6 flex justify-center">
+            <div className="max-w-3xl text-center text-neutral-50">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-sky-200">
+                CURATED AUTOMOTIVE JOURNAL
+              </p>
+              <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+                クルマを愉しむ人のためのカーサイト
+              </h1>
+              <p className="mt-4 text-sm leading-relaxed text-neutral-100 sm:text-base md:text-lg">
+                最新ニュース、試乗記、技術解説から中古車の目利きまで
+              </p>
+              <p className="mt-3 text-xs leading-relaxed text-neutral-200 sm:text-sm">
+                スタジオの静謐な光とともに、情報を愉しむ空間へ。
+              </p>
+              <div className="mt-7 flex flex-wrap justify-center gap-3 text-[11px] sm:text-xs">
+                <Link
+                  href="/news"
+                  className="inline-flex items-center rounded-full border border-sky-400 bg-sky-500/90 px-6 py-2 font-medium tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-sky-600"
+                >
+                  最新ニュースを見る
+                </Link>
+                <Link
+                  href="/reviews"
+                  className="inline-flex items-center rounded-full border border-white/70 bg-white/10 px-6 py-2 font-medium tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-white/20"
+                >
+                  試乗記を読む
+                </Link>
+              </div>
             </div>
+          </div>
+
+          {/* 下側 ABOUT を画像の上に載せる */}
+          <div className="mb-4 flex justify-center">
+            <section className="w-full max-w-4xl rounded-2xl border border-white/20 bg-black/35 p-5 text-xs leading-relaxed text-neutral-100 shadow-sm shadow-black/40 backdrop-blur-md sm:p-6">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-sky-100">
+                ABOUT
+              </p>
+              <h2 className="mt-2 text-sm font-medium tracking-tight text-white">
+                高級ブティックのような佇まいで
+              </h2>
+              <p className="mt-3">
+                モノトーンとスカイブルーを基調にした静かなデザインで、
+                情報量の多いクルマの世界をすっきり整理して届けます。
+                読み疲れしないレイアウトと、落ち着いたトーンの文章を大切にしています。
+              </p>
+              <dl className="mt-4 grid grid-cols-2 gap-4 border-t border-white/15 pt-4 text-[11px] text-neutral-100">
+                <div>
+                  <dt className="text-[10px] uppercase tracking-[0.2em] text-neutral-200">
+                    FOCUS
+                  </dt>
+                  <dd className="mt-1">輸入車中心のニュースと解説</dd>
+                </div>
+                <div>
+                  <dt className="text-[10px] uppercase tracking-[0.2em] text-neutral-200">
+                    STYLE
+                  </dt>
+                  <dd className="mt-1">モノトーン＋スカイブルーのミニマルUI</dd>
+                </div>
+              </dl>
+            </section>
           </div>
         </div>
       </section>
 
+      {/* 最新ニュース3件 ブロック */}
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-6 lg:px-8">
-        {/* ABOUT */}
-        <section className="rounded-2xl border border-sky-50 bg-white/90 p-5 text-xs leading-relaxed text-neutral-600 shadow-sm shadow-sky-50">
-          <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-500">
-            ABOUT
-          </p>
-          <h2 className="mt-2 text-sm font-medium tracking-tight text-neutral-900">
-            高級ブティックのような佇まいで
-          </h2>
-          <p className="mt-3">
-            モノトーンとスカイブルーを基調にした静かなデザインで、
-            情報量の多いクルマの世界をすっきり整理して届けます。
-            読み疲れしないレイアウトと、落ち着いたトーンの文章を大切にしています。
-          </p>
-          <dl className="mt-4 grid grid-cols-2 gap-4 border-t border-neutral-100 pt-4 text-[11px] text-neutral-600">
-            <div>
-              <dt className="text-[10px] uppercase tracking-[0.2em] text-neutral-500">
-                FOCUS
-              </dt>
-              <dd className="mt-1">輸入車中心のニュースと解説</dd>
-            </div>
-            <div>
-              <dt className="text-[10px] uppercase tracking-[0.2em] text-neutral-500">
-                STYLE
-              </dt>
-              <dd className="mt-1">モノトーン＋スカイブルーのミニマルUI</dd>
-            </div>
-          </dl>
-        </section>
-
-        {/* 最新ニュース3件 */}
-        <section className="mt-10">
+        <section>
           <div className="flex items-baseline justify-between gap-3">
             <div>
               <p className="text-[10px] uppercase tracking-[0.3em] text-sky-600">
