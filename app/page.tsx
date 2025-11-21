@@ -8,7 +8,7 @@ export default async function HomePage() {
 
   return (
     <div className="relative bg-white">
-      {/* 背景 Tiffany系グラデーション（横方向 7割ティファニーブルー 3割白） */}
+      {/* 背景 Tiffany グラデーション */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
@@ -224,8 +224,6 @@ export default async function HomePage() {
               </p>
             </div>
           </section>
-
-          {/* 下部の空白カードは削除済み */}
         </main>
       </div>
     </div>
