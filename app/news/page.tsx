@@ -59,13 +59,13 @@ export default async function NewsPage({ searchParams }: Props) {
 
   return (
     <div className="relative min-h-screen bg-white">
-      {/* 横方向 7割スカイブルー 3割白 の背景グラデーション */}
+      {/* 背景 Tiffany系グラデーション（横方向 7割ティファニーブルー 3割白） */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(to right, rgba(191,219,254,0.95) 0%, rgba(191,219,254,0.95) 70%, #ffffff 100%)",
+            "linear-gradient(to right, rgba(129,216,208,0.65) 0%, rgba(129,216,208,0.65) 70%, #ffffff 100%)",
         }}
       />
 
