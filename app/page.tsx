@@ -157,7 +157,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* 読み物セクション（車の歴史を追加） */}
+        {/* 読み物セクション（車の歴史を含む） */}
         <section className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-2xl border border-neutral-200 bg-white/90 p-5 shadow-sm shadow-neutral-100">
             <p className="text-[10px] uppercase tracking-[0.25em] text-sky-600">
@@ -212,7 +212,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* コンセプトカード（タブ削除・1枚構成） */}
+        {/* コンセプトカード（タブ無し・テキストだけ） */}
         <section className="mt-12">
           <div className="overflow-hidden rounded-3xl border border-neutral-200 bg-gradient-to-r from-sky-50 via-white to-white shadow-sm shadow-neutral-100">
             <div className="px-5 py-6 sm:px-8 sm:py-7">
@@ -227,25 +227,6 @@ export default async function HomePage() {
                 情報もデザインも少しだけ余裕を持たせて配置しました。
                 わかりやすさと、読み終えたあとの心地よさをいちばん大切にしています。
               </p>
-
-              <dl className="mt-4 grid gap-4 border-t border-sky-100/70 pt-4 text-xs text-neutral-700 sm:grid-cols-2">
-                <div>
-                  <dt className="text-[10px] uppercase tracking-[0.22em] text-sky-600">
-                    FOCUS
-                  </dt>
-                  <dd className="mt-1">
-                    輸入車を中心に、ニュースと試乗記、技術解説を静かなトーンでまとめます。
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-[10px] uppercase tracking-[0.22em] text-sky-600">
-                    TONE
-                  </dt>
-                  <dd className="mt-1">
-                    モノトーンをベースに、少しだけスカイブルーを差し色にしたミニマルな紙面。
-                  </dd>
-                </div>
-              </dl>
             </div>
           </div>
         </section>
