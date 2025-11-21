@@ -17,23 +17,23 @@ export default async function NewsPage({ searchParams }: Props) {
   const makerFilter = searchParams?.maker ?? "";
   const tagFilter = searchParams?.tag ?? "";
 
-  const items = await getLatestNews(80);
+  const items = (await getLatestNews(80)) as any[];
 
   const categories = Array.from(
-    new Set(items.map((i: any) => i.category).filter(Boolean))
+    new Set(items.map((i) => i.category).filter(Boolean))
   ) as string[];
 
   const makers = Array.from(
-    new Set(items.map((i: any) => i.maker).filter(Boolean))
+    new Set(items.map((i) => i.maker).filter(Boolean))
   ) as string[];
 
   const tags = Array.from(
     new Set(
-      items.flatMap((i: any) => (Array.isArray(i.tags) ? i.tags : []))
+      items.flatMap((i) => (Array.isArray(i.tags) ? i.tags : []))
     )
   ) as string[];
 
-  const filtered = items.filter((item: any) => {
+  const filtered = items.filter((item) => {
     const matchesQ = q
       ? (item.title ?? "").toLowerCase().includes(q) ||
         (item.excerpt ?? "").toLowerCase().includes(q) ||
@@ -92,8 +92,8 @@ export default async function NewsPage({ searchParams }: Props) {
             </p>
           ) : (
             <ul className="grid gap-6 md:grid-cols-2">
-              {filtered.map((item: any) => (
-                <li key={item.slug ?? item.id}>
+              {filtered.map((item) => (
+                <li key={(item.slug as string) ?? String(item.id)}>
                   <NewsCard item={item} />
                 </li>
               ))}
@@ -220,18 +220,20 @@ function SelectField({
 }
 
 function NewsCard({ item }: { item: any }) {
-  const href = item.slug ? `/news/${item.slug}` : "#";
+  const id = (item.slug as string) ?? String(item.id);
+  const date =
+    item.date ?? item.publishedAt ?? item.createdAt ?? "";
 
   return (
     <Link
-      href={href}
+      href={`/news/${id}`}
       className="group block h-full rounded-2xl border border-neutral-200 bg-white/90 p-5 shadow-sm shadow-neutral-100 transition hover:-translate-y-[1px] hover:border-sky-200 hover:shadow-md hover:shadow-sky-100"
     >
       <div className="flex items-center justify-between gap-3 text-[11px] text-neutral-500">
         <span className="uppercase tracking-[0.18em] text-sky-600">
           {item.category ?? "NEWS"}
         </span>
-        <span>{item.date}</span>
+        <span>{date}</span>
       </div>
 
       <h2 className="mt-3 text-base font-medium tracking-tight text-neutral-900 group-hover:text-neutral-700">
