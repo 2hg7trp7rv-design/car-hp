@@ -55,11 +55,10 @@ export default async function NewsPage({ searchParams }: Props) {
 
   return (
     <div className="min-h-screen bg-neutral-50">
-      {/* ヘッダーセクション */}
       <header className="border-b border-neutral-200 bg-white/80 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-500">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-500">
               News
             </p>
             <h1 className="mt-1 text-2xl font-semibold tracking-tight text-neutral-900">
@@ -67,14 +66,13 @@ export default async function NewsPage({ searchParams }: Props) {
             </h1>
           </div>
           <div className="hidden text-right text-xs text-neutral-500 sm:block">
-            <p>厳選された国内外の情報を</p>
-            <p>シンプルに、美しく。</p>
+            <p>必要な情報だけを、シンプルに。</p>
+            <p>読み疲れしないニュース体験を。</p>
           </div>
         </div>
       </header>
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
-        {/* フィルタバー */}
         <section className="rounded-2xl border border-neutral-200 bg-white/70 p-4 shadow-sm shadow-neutral-100 backdrop-blur-sm sm:p-6">
           <FilterBar
             q={q}
@@ -87,7 +85,6 @@ export default async function NewsPage({ searchParams }: Props) {
           />
         </section>
 
-        {/* ニュース一覧 */}
         <section className="mt-8">
           {filtered.length === 0 ? (
             <p className="text-sm text-neutral-500">
@@ -172,7 +169,7 @@ function FilterBar({
       <div className="flex justify-end gap-2 sm:w-32">
         <button
           type="submit"
-          className="inline-flex w-full items-center justify-center rounded-full border border-neutral-900 bg-neutral-900 px-4 py-2 text-xs font-medium tracking-wide text-white transition hover:bg-neutral-800"
+          className="inline-flex w-full items-center justify-center rounded-full border border-neutral-900 bg-neutral-900 px-4 py-2 text-xs font-medium tracking-[0.18em] text-white transition hover:bg-neutral-800"
         >
           絞り込む
         </button>
