@@ -3,16 +3,18 @@ import { notion, getDatabaseIdByTitle } from "./notion";
 
 export type NewsItem = {
   id: string;
+  slug: string;
   title: string;
-  summary: string | null;
-  source: string | null;
-  publishedAt: string | null;
-  difficulty: string | null;
-  referenceUrl: string | null;
-  category: string | null;
-  maker: string | null;
-  modelName: string | null;
+  summary: string;
+  source: string;
+  published_at: string;
+  difficulty: string;
+  reference_url: string;
+  category: string;
+  maker: string;
+  model_name: string;
   tags: string[];
+  isFeatured: boolean; 
 };
 
 const NEWS_DB_TITLE = "news";
