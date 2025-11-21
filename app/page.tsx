@@ -7,7 +7,7 @@ export default async function HomePage() {
   const latest = items.slice(0, 3);
 
   return (
-    <div className="bg-neutral-50">
+    <div className="bg-gradient-to-b from-sky-50/60 via-white to-white">
       {/* ヒーロー 全画面画像＋テキスト＋最新ニュースカード */}
       <section
         className="relative min-h-[calc(100vh-72px)] overflow-hidden bg-cover bg-center"
@@ -157,8 +157,8 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* 読み物セクション */}
-        <section className="mt-12 grid gap-6 md:grid-cols-3">
+        {/* 読み物セクション（車の歴史を追加） */}
+        <section className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-2xl border border-neutral-200 bg-white/90 p-5 shadow-sm shadow-neutral-100">
             <p className="text-[10px] uppercase tracking-[0.25em] text-sky-600">
               DRIVE NOTE
@@ -197,41 +197,55 @@ export default async function HomePage() {
               じっくり選びたい人のための中古車リファレンスをめざします。
             </p>
           </div>
+
+          <div className="rounded-2xl border border-neutral-200 bg-white/90 p-5 shadow-sm shadow-neutral-100">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-sky-600">
+              HERITAGE
+            </p>
+            <h2 className="mt-2 text-sm font-semibold tracking-tight text-neutral-900">
+              クルマの歴史
+            </h2>
+            <p className="mt-3 text-xs leading-relaxed text-neutral-600">
+              名車が生まれた背景や時代ごとのデザインの流れを、写真とともにゆっくり振り返ります。
+              好きなブランドの系譜を、カタログを見るような感覚でたどっていけるコーナーです。
+            </p>
+          </div>
         </section>
 
-        {/* コンセプトカード */}
+        {/* コンセプトカード（タブ削除・1枚構成） */}
         <section className="mt-12">
           <div className="overflow-hidden rounded-3xl border border-neutral-200 bg-gradient-to-r from-sky-50 via-white to-white shadow-sm shadow-neutral-100">
-            <div className="flex flex-col gap-6 px-5 py-6 sm:flex-row sm:items-center sm:px-8 sm:py-7">
-              <div className="flex-1">
-                <p className="text-[10px] uppercase tracking-[0.3em] text-sky-700">
-                  CAR BOUTIQUE
-                </p>
-                <h2 className="mt-2 text-sm font-semibold tracking-tight text-neutral-900">
-                  静かな時間に、クルマのことを少しだけ深く。
-                </h2>
-                <p className="mt-3 text-xs leading-relaxed text-neutral-600">
-                  ティファニーやディオールのブティックのように、
-                  情報もデザインも少しだけ余裕を持たせて配置しました。
-                  わかりやすさと、読み終えたあとの心地よさをいちばん大切にしています。
-                </p>
-              </div>
-              <div className="sm:w-56">
-                <div className="rounded-2xl border border-sky-100 bg-white/70 px-4 py-3 text-[11px] text-neutral-700 shadow-sm shadow-sky-50">
-                  <p className="text-[10px] uppercase tracking-[0.22em] text-sky-600">
+            <div className="px-5 py-6 sm:px-8 sm:py-7">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-sky-700">
+                CAR BOUTIQUE
+              </p>
+              <h2 className="mt-2 text-sm font-semibold tracking-tight text-neutral-900">
+                静かな時間に、クルマのことを少しだけ深く。
+              </h2>
+              <p className="mt-3 text-xs leading-relaxed text-neutral-600">
+                ティファニーやディオールのブティックのように、
+                情報もデザインも少しだけ余裕を持たせて配置しました。
+                わかりやすさと、読み終えたあとの心地よさをいちばん大切にしています。
+              </p>
+
+              <dl className="mt-4 grid gap-4 border-t border-sky-100/70 pt-4 text-xs text-neutral-700 sm:grid-cols-2">
+                <div>
+                  <dt className="text-[10px] uppercase tracking-[0.22em] text-sky-600">
                     FOCUS
-                  </p>
-                  <p className="mt-1">
+                  </dt>
+                  <dd className="mt-1">
                     輸入車を中心に、ニュースと試乗記、技術解説を静かなトーンでまとめます。
-                  </p>
-                  <p className="mt-3 text-[10px] uppercase tracking-[0.22em] text-sky-600">
-                    TONE
-                  </p>
-                  <p className="mt-1">
-                    モノトーンをベースに、少しだけスカイブルーを差し色にしたミニマルな紙面。
-                  </p>
+                  </dd>
                 </div>
-              </div>
+                <div>
+                  <dt className="text-[10px] uppercase tracking-[0.22em] text-sky-600">
+                    TONE
+                  </dt>
+                  <dd className="mt-1">
+                    モノトーンをベースに、少しだけスカイブルーを差し色にしたミニマルな紙面。
+                  </dd>
+                </div>
+              </dl>
             </div>
           </div>
         </section>
