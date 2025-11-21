@@ -7,10 +7,9 @@ export default async function HomePage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-      {/* ヒーロー */}
       <section className="grid gap-10 border-b border-neutral-200 pb-12 md:grid-cols-[1.4fr_minmax(0,1fr)]">
         <div>
-          <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-500">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-sky-600">
             Curated Automotive Journal
           </p>
           <h1 className="mt-3 text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
@@ -26,20 +25,20 @@ export default async function HomePage() {
           <div className="mt-6 flex flex-wrap gap-3 text-xs">
             <Link
               href="/news"
-              className="inline-flex items-center rounded-full border border-neutral-900 bg-neutral-900 px-5 py-2 font-medium tracking-[0.18em] text-white transition hover:bg-neutral-800"
+              className="inline-flex items-center rounded-full border border-sky-600 bg-sky-600 px-5 py-2 font-medium tracking-[0.18em] text-white transition hover:bg-sky-700"
             >
               最新ニュースを見る
             </Link>
             <Link
               href="/reviews"
-              className="inline-flex items-center rounded-full border border-neutral-300 bg-white px-5 py-2 font-medium tracking-[0.18em] text-neutral-800 transition hover:border-neutral-900"
+              className="inline-flex items-center rounded-full border border-sky-200 bg-white px-5 py-2 font-medium tracking-[0.18em] text-neutral-800 transition hover:border-sky-400 hover:text-sky-700"
             >
               試乗記を読む
             </Link>
           </div>
         </div>
 
-        <div className="flex flex-col justify-between gap-6 rounded-2xl border border-neutral-200 bg-white/70 p-5 shadow-sm shadow-neutral-100 backdrop-blur-sm">
+        <div className="flex flex-col justify-between gap-6 rounded-2xl border border-sky-100 bg-white/80 p-5 shadow-sm shadow-sky-50 backdrop-blur-sm">
           <div>
             <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-500">
               About
@@ -49,9 +48,10 @@ export default async function HomePage() {
             </h2>
             <p className="mt-2 text-xs leading-relaxed text-neutral-600">
               情報量の多いクルマの世界を、
-              TiffanyやDiorのような「静かな高級感」をイメージした
+              TiffanyやDiorのような静かな高級感をイメージした
               UIで再構成。
-              余白とタイポグラフィを活かした、読み疲れしないレイアウトを徹底しています。
+              モノトーンをベースに、スカイブルーを一滴だけ加えた世界観で
+              読み疲れしないレイアウトを徹底しています。
             </p>
           </div>
           <dl className="grid grid-cols-2 gap-4 border-t border-neutral-100 pt-4 text-[11px] text-neutral-600">
@@ -65,17 +65,16 @@ export default async function HomePage() {
               <dt className="text-[10px] uppercase tracking-[0.2em] text-neutral-500">
                 Style
               </dt>
-              <dd className="mt-1">モノトーン＋差し色のミニマルUI</dd>
+              <dd className="mt-1">モノトーン＋スカイブルーのミニマルUI</dd>
             </div>
           </dl>
         </div>
       </section>
 
-      {/* 最新ニュース3件 */}
       <section className="mt-10">
         <div className="flex items-baseline justify-between gap-3">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-500">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-sky-600">
               Latest
             </p>
             <h2 className="mt-1 text-sm font-semibold tracking-tight text-neutral-900">
@@ -84,7 +83,7 @@ export default async function HomePage() {
           </div>
           <Link
             href="/news"
-            className="text-[11px] tracking-[0.18em] text-neutral-600 underline-offset-4 hover:text-neutral-900 hover:underline"
+            className="text-[11px] tracking-[0.18em] text-sky-700 underline-offset-4 hover:underline"
           >
             すべてのニュース
           </Link>
@@ -95,9 +94,9 @@ export default async function HomePage() {
             <Link
               key={item.slug ?? item.id}
               href={item.slug ? `/news/${item.slug}` : "/news"}
-              className="group block rounded-2xl border border-neutral-200 bg-white/80 p-4 text-sm shadow-sm shadow-neutral-100 transition hover:-translate-y-[1px] hover:shadow-md hover:shadow-neutral-200"
+              className="group block rounded-2xl border border-neutral-200 bg-white/90 p-4 text-sm shadow-sm shadow-neutral-100 transition hover:-translate-y-[1px] hover:border-sky-200 hover:shadow-md hover:shadow-sky-100"
             >
-              <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-500">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-sky-600">
                 {item.category ?? "NEWS"}
               </p>
               <h3 className="mt-2 line-clamp-2 text-sm font-medium tracking-tight text-neutral-900 group-hover:text-neutral-700">
