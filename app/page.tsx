@@ -3,10 +3,11 @@ import Link from "next/link";
 import { getLatestNews } from "@/lib/news";
 
 export default async function HomePage() {
-  const latest = await getLatestNews(3);
+  const latest = (await getLatestNews(3)) as any[];
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+      {/* ヒーロー */}
       <section className="grid gap-10 border-b border-neutral-200 pb-12 md:grid-cols-[1.4fr_minmax(0,1fr)]">
         <div>
           <p className="text-[10px] uppercase tracking-[0.3em] text-sky-600">
@@ -71,6 +72,7 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* 最新ニュース3件 */}
       <section className="mt-10">
         <div className="flex items-baseline justify-between gap-3">
           <div>
@@ -90,29 +92,35 @@ export default async function HomePage() {
         </div>
 
         <div className="mt-4 grid gap-6 md:grid-cols-3">
-          {latest.map((item: any) => (
-            <Link
-              key={item.slug ?? item.id}
-              href={item.slug ? `/news/${item.slug}` : "/news"}
-              className="group block rounded-2xl border border-neutral-200 bg-white/90 p-4 text-sm shadow-sm shadow-neutral-100 transition hover:-translate-y-[1px] hover:border-sky-200 hover:shadow-md hover:shadow-sky-100"
-            >
-              <p className="text-[10px] uppercase tracking-[0.2em] text-sky-600">
-                {item.category ?? "NEWS"}
-              </p>
-              <h3 className="mt-2 line-clamp-2 text-sm font-medium tracking-tight text-neutral-900 group-hover:text-neutral-700">
-                {item.title}
-              </h3>
-              {item.excerpt && (
-                <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-neutral-600">
-                  {item.excerpt}
+          {latest.map((item) => {
+            const id = (item.slug as string) ?? String(item.id);
+            const date =
+              item.date ?? item.publishedAt ?? item.createdAt ?? "";
+
+            return (
+              <Link
+                key={id}
+                href={`/news/${id}`}
+                className="group block rounded-2xl border border-neutral-200 bg-white/90 p-4 text-sm shadow-sm shadow-neutral-100 transition hover:-translate-y-[1px] hover:border-sky-200 hover:shadow-md hover:shadow-sky-100"
+              >
+                <p className="text-[10px] uppercase tracking-[0.2em] text-sky-600">
+                  {item.category ?? "NEWS"}
                 </p>
-              )}
-              <div className="mt-3 flex items-center justify-between text-[11px] text-neutral-500">
-                <span>{item.date}</span>
-                {item.maker && <span>{item.maker}</span>}
-              </div>
-            </Link>
-          ))}
+                <h3 className="mt-2 line-clamp-2 text-sm font-medium tracking-tight text-neutral-900 group-hover:text-neutral-700">
+                  {item.title}
+                </h3>
+                {item.excerpt && (
+                  <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-neutral-600">
+                    {item.excerpt}
+                  </p>
+                )}
+                <div className="mt-3 flex items-center justify-between text-[11px] text-neutral-500">
+                  <span>{date}</span>
+                  {item.maker && <span>{item.maker}</span>}
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
     </div>
