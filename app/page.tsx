@@ -8,13 +8,13 @@ export default async function HomePage() {
 
   return (
     <div className="relative bg-white">
-      {/* 横方向 7割スカイブルー 3割白 の背景グラデーション */}
+      {/* 背景 Tiffany系グラデーション（横方向 7割ティファニーブルー 3割白） */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(to right, rgba(191,219,254,0.95) 0%, rgba(191,219,254,0.95) 70%, #ffffff 100%)",
+            "linear-gradient(to right, rgba(129,216,208,0.65) 0%, rgba(129,216,208,0.65) 70%, #ffffff 100%)",
         }}
       />
 
@@ -27,6 +27,7 @@ export default async function HomePage() {
             backgroundImage: "url('/images/hero-sedan.jpg')",
           }}
         >
+          {/* 画像にかける暗めグラデーション */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
 
           <div className="relative z-10 flex h-full flex-col px-4 py-10 sm:px-6 lg:px-8">
@@ -121,7 +122,7 @@ export default async function HomePage() {
           <section>
             <div className="flex items-baseline justify-between gap-3">
               <div>
-                <p className="text-[10px] uppercase tracking-[0.3em] text-sky-600">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-sky-700">
                   LATEST
                 </p>
                 <h2 className="mt-1 text-sm font-semibold tracking-tight text-neutral-900">
@@ -224,10 +225,7 @@ export default async function HomePage() {
             </div>
           </section>
 
-          {/* コンセプト帯（グラデーションだけ） */}
-          <section className="mt-12">
-            <div className="h-[33vh] min-h-[220px] rounded-3xl border border-neutral-200 bg-gradient-to-r from-sky-50 via-white to-white shadow-sm shadow-neutral-100" />
-          </section>
+          {/* 下部の空白カードは削除済み */}
         </main>
       </div>
     </div>
