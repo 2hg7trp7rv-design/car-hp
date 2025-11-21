@@ -10,10 +10,8 @@ export default async function HomePage() {
     <div className="bg-neutral-50">
       {/* ヒーロー 全画面画像＋テキスト＋ABOUT */}
       <section
-        className="
-          relative min-h-[calc(100vh-72px)] overflow-hidden
-          bg-[url('/images/hero-sedan.jpg')] bg-cover bg-center
-        "
+        className="relative min-h-[calc(100vh-72px)] overflow-hidden bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/hero-sedan.jpg')" }}
       >
         {/* 暗めグラデーション */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/15" />
