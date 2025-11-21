@@ -59,7 +59,7 @@ export default async function NewsPage({ searchParams }: Props) {
 
   return (
     <div className="relative min-h-screen bg-white">
-      {/* 背景 Tiffany系グラデーション（横方向 7割ティファニーブルー 3割白） */}
+      {/* 背景 Tiffany グラデーション */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
