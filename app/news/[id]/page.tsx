@@ -10,21 +10,21 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  const items = await getLatestNews(200);
+  const items = (await getLatestNews(200)) as any[];
 
   // idパラメータとして使う値を決める
   // slugがあればslug、なければidを文字列化して使う
   return items
-    .filter((item: any) => item.slug || item.id)
-    .map((item: any) => ({
+    .filter((item) => item.slug || item.id)
+    .map((item) => ({
       id: (item.slug as string) ?? String(item.id),
     }));
 }
 
 export default async function NewsDetailPage({ params }: Props) {
-  const items = await getLatestNews(200);
+  const items = (await getLatestNews(200)) as any[];
 
-  const item = items.find((i: any) => {
+  const item = items.find((i) => {
     const slugOrId = (i.slug as string) ?? String(i.id);
     return slugOrId === params.id;
   });
@@ -32,6 +32,12 @@ export default async function NewsDetailPage({ params }: Props) {
   if (!item) {
     notFound();
   }
+
+  const date =
+    item.date ??
+    item.publishedAt ??
+    item.createdAt ??
+    "";
 
   return (
     <div className="min-h-screen bg-neutral-50">
@@ -46,7 +52,7 @@ export default async function NewsDetailPage({ params }: Props) {
             </h1>
           </div>
           <div className="hidden text-right text-[11px] text-neutral-500 sm:block">
-            <p>{item.date}</p>
+            {date && <p>{date}</p>}
             {item.maker && <p>{item.maker}</p>}
           </div>
         </div>
@@ -69,7 +75,7 @@ export default async function NewsDetailPage({ params }: Props) {
               ))}
           </div>
           <div className="text-right text-[11px] text-neutral-500 sm:hidden">
-            <p>{item.date}</p>
+            {date && <p>{date}</p>}
             {item.maker && <p>{item.maker}</p>}
           </div>
         </div>
