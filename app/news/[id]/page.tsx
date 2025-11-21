@@ -1,118 +1,104 @@
 // app/news/[id]/page.tsx
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getNewsById } from "@/lib/news";
+import { getLatestNews } from "@/lib/news";
 
 type Props = {
-  params: { id: string };
+  params: {
+    id: string;
+  };
 };
 
+export async function generateStaticParams() {
+  const items = await getLatestNews(200);
+
+  // idパラメータとして使う値を決める
+  // slugがあればslug、なければidを文字列化して使う
+  return items
+    .filter((item: any) => item.slug || item.id)
+    .map((item: any) => ({
+      id: (item.slug as string) ?? String(item.id),
+    }));
+}
+
 export default async function NewsDetailPage({ params }: Props) {
-  const item = await getNewsById(params.id);
+  const items = await getLatestNews(200);
+
+  const item = items.find((i: any) => {
+    const slugOrId = (i.slug as string) ?? String(i.id);
+    return slugOrId === params.id;
+  });
 
   if (!item) {
     notFound();
   }
 
-  const difficultyLabel =
-    item.difficulty === "advanced" ? "マニアック寄り" : "ライト寄り";
-
   return (
-    <div className="space-y-8">
-      {/* パンくずとメタ */}
-      <nav className="text-[11px] text-gray-400">
-        <Link href="/" className="hover:text-gray-200">
-          ホーム
-        </Link>
-        <span className="mx-1">/</span>
-        <Link href="/news" className="hover:text-gray-200">
-          ニュース一覧
-        </Link>
-        {item.maker && (
-          <>
-            <span className="mx-1">/</span>
-            <span className="text-gray-300">
-              {item.maker}
-              {item.modelName ? `・${item.modelName}` : ""}
-            </span>
-          </>
-        )}
-      </nav>
-
-      {/* タイトルブロック */}
-      <header className="space-y-4 rounded-2xl border border-gray-800 bg-gradient-to-br from-slate-900/80 via-slate-950 to-black px-4 py-5 shadow-[0_20px_50px_rgba(0,0,0,0.7)]">
-        <div className="flex flex-wrap items-center gap-2 text-[10px] text-gray-300">
-          {item.category && (
-            <span className="rounded-full bg-gray-800/90 px-2 py-0.5 text-[9px] text-gray-100">
-              {item.category}
-            </span>
-          )}
-          {item.maker && (
-            <span className="rounded-full bg-gray-900/80 px-2 py-0.5 text-[9px] text-gray-200">
-              {item.maker}
-              {item.modelName ? `・${item.modelName}` : ""}
-            </span>
-          )}
-          {item.publishedAt && (
-            <span className="text-[10px] text-gray-400">{item.publishedAt}</span>
-          )}
-          <span
-            className={`rounded-full px-2 py-0.5 text-[9px] ${
-              item.difficulty === "advanced"
-                ? "bg-purple-600 text-white"
-                : "bg-slate-700 text-slate-100"
-            }`}
-          >
-            {difficultyLabel}
-          </span>
-        </div>
-
-        <h1 className="text-lg font-semibold leading-snug text-white">
-          {item.title ?? "No title"}
-        </h1>
-
-        <p className="text-[11px] text-gray-400">
-          {item.source ?? "ソース不明"}
-        </p>
-
-        {item.tags && item.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 text-[9px]">
-            {item.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-slate-800/80 px-2 py-0.5 text-gray-200"
-              >
-                {tag}
-              </span>
-            ))}
+    <div className="min-h-screen bg-neutral-50">
+      <header className="border-b border-sky-100 bg-white/90 backdrop-blur">
+        <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-sky-600">
+              News
+            </p>
+            <h1 className="mt-1 text-xl font-semibold tracking-tight text-neutral-900">
+              {item.title}
+            </h1>
           </div>
-        )}
+          <div className="hidden text-right text-[11px] text-neutral-500 sm:block">
+            <p>{item.date}</p>
+            {item.maker && <p>{item.maker}</p>}
+          </div>
+        </div>
       </header>
 
-      {/* 本文要約 */}
-      {item.summary && (
-        <section className="rounded-2xl border border-gray-800 bg-slate-950/80 p-4 text-[11px] leading-relaxed text-gray-100">
-          <h2 className="mb-2 text-xs font-semibold text-gray-200">
-            ざっくり要点
-          </h2>
-          <p className="whitespace-pre-line">{item.summary}</p>
-        </section>
-      )}
+      <main className="mx-auto max-w-4xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+        <div className="mb-6 flex items-center justify-between gap-3 text-[11px] text-neutral-500">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="rounded-full border border-sky-100 bg-sky-50 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-sky-700">
+              {item.category ?? "NEWS"}
+            </span>
+            {Array.isArray(item.tags) &&
+              item.tags.map((tag: string) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-neutral-200 bg-white px-2 py-0.5 text-[11px] text-neutral-500"
+                >
+                  {tag}
+                </span>
+              ))}
+          </div>
+          <div className="text-right text-[11px] text-neutral-500 sm:hidden">
+            <p>{item.date}</p>
+            {item.maker && <p>{item.maker}</p>}
+          </div>
+        </div>
 
-      {/* 公式リンク */}
-      {item.referenceUrl && (
-        <section className="border-t border-gray-800 pt-4 text-[11px]">
-          <a
-            href={item.referenceUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center text-purple-300 hover:text-purple-200"
+        <article className="rounded-2xl border border-neutral-200 bg-white/90 p-6 text-sm leading-relaxed text-neutral-700 shadow-sm shadow-neutral-100">
+          {item.excerpt && (
+            <p className="mb-4 text-neutral-600">{item.excerpt}</p>
+          )}
+
+          {"content" in item && item.content ? (
+            <div className="space-y-4 text-sm leading-relaxed text-neutral-800">
+              {typeof item.content === "string" ? (
+                <p>{item.content}</p>
+              ) : null}
+            </div>
+          ) : (
+            <p className="text-neutral-500">詳細本文は現在準備中です。</p>
+          )}
+        </article>
+
+        <div className="mt-8 flex justify-between text-[11px] text-neutral-500">
+          <Link
+            href="/news"
+            className="inline-flex items-center gap-1 text-sky-700 underline-offset-4 hover:underline"
           >
-            メーカー公式サイト・プレスリリースを見る
-            <span className="ml-1 text-[9px]">↗</span>
-          </a>
-        </section>
-      )}
+            ← ニュース一覧に戻る
+          </Link>
+        </div>
+      </main>
     </div>
   );
 }
