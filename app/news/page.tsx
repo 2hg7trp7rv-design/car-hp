@@ -55,10 +55,10 @@ export default async function NewsPage({ searchParams }: Props) {
 
   return (
     <div className="min-h-screen bg-neutral-50">
-      <header className="border-b border-neutral-200 bg-white/80 backdrop-blur">
+      <header className="border-b border-sky-100 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-500">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-sky-600">
               News
             </p>
             <h1 className="mt-1 text-2xl font-semibold tracking-tight text-neutral-900">
@@ -67,13 +67,13 @@ export default async function NewsPage({ searchParams }: Props) {
           </div>
           <div className="hidden text-right text-xs text-neutral-500 sm:block">
             <p>必要な情報だけを、シンプルに。</p>
-            <p>読み疲れしないニュース体験を。</p>
+            <p>スカイブルーを添えたニュース体験を。</p>
           </div>
         </div>
       </header>
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
-        <section className="rounded-2xl border border-neutral-200 bg-white/70 p-4 shadow-sm shadow-neutral-100 backdrop-blur-sm sm:p-6">
+        <section className="rounded-2xl border border-sky-100 bg-white/80 p-4 shadow-sm shadow-sky-50 backdrop-blur-sm sm:p-6">
           <FilterBar
             q={q}
             categoryFilter={categoryFilter}
@@ -138,7 +138,7 @@ function FilterBar({
           name="q"
           defaultValue={q}
           placeholder="車名 技術用語 記事タイトルなど"
-          className="w-full rounded-xl border border-neutral-300 bg-white/70 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-400 outline-none transition focus:border-neutral-900 focus:ring-0"
+          className="w-full rounded-xl border border-neutral-300 bg-white/70 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-400 outline-none transition focus:border-sky-500 focus:ring-0"
         />
       </div>
 
@@ -169,7 +169,7 @@ function FilterBar({
       <div className="flex justify-end gap-2 sm:w-32">
         <button
           type="submit"
-          className="inline-flex w-full items-center justify-center rounded-full border border-neutral-900 bg-neutral-900 px-4 py-2 text-xs font-medium tracking-[0.18em] text-white transition hover:bg-neutral-800"
+          className="inline-flex w-full items-center justify-center rounded-full border border-sky-600 bg-sky-600 px-4 py-2 text-xs font-medium tracking-[0.18em] text-white transition hover:bg-sky-700"
         >
           絞り込む
         </button>
@@ -202,7 +202,7 @@ function SelectField({
         <select
           name={name}
           defaultValue={value}
-          className="w-full appearance-none rounded-xl border border-neutral-300 bg-white/70 px-3 py-2 text-sm text-neutral-900 outline-none transition focus:border-neutral-900 focus:ring-0"
+          className="w-full appearance-none rounded-xl border border-neutral-300 bg-white/70 px-3 py-2 text-sm text-neutral-900 outline-none transition focus:border-sky-500 focus:ring-0"
         >
           <option value="">{placeholder}</option>
           {options.map((opt) => (
@@ -225,10 +225,10 @@ function NewsCard({ item }: { item: any }) {
   return (
     <Link
       href={href}
-      className="group block h-full rounded-2xl border border-neutral-200 bg-white/80 p-5 shadow-sm shadow-neutral-100 transition hover:-translate-y-[1px] hover:shadow-md hover:shadow-neutral-200"
+      className="group block h-full rounded-2xl border border-neutral-200 bg-white/90 p-5 shadow-sm shadow-neutral-100 transition hover:-translate-y-[1px] hover:border-sky-200 hover:shadow-md hover:shadow-sky-100"
     >
       <div className="flex items-center justify-between gap-3 text-[11px] text-neutral-500">
-        <span className="uppercase tracking-[0.18em]">
+        <span className="uppercase tracking-[0.18em] text-sky-600">
           {item.category ?? "NEWS"}
         </span>
         <span>{item.date}</span>
@@ -249,7 +249,7 @@ function NewsCard({ item }: { item: any }) {
           item.tags.slice(0, 4).map((tag: string) => (
             <span
               key={tag}
-              className="rounded-full border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-[11px] text-neutral-500"
+              className="rounded-full border border-sky-100 bg-sky-50 px-2 py-0.5 text-[11px] text-sky-700"
             >
               {tag}
             </span>
