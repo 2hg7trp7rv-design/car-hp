@@ -8,18 +8,15 @@ export default async function HomePage() {
 
   return (
     <div className="bg-neutral-50">
-      {/* ヒーロー 全画面画像＋テキスト＋ABOUT */}
+      {/* ヒーロー 全画面画像＋テキスト＋最新ニュースカード */}
       <section
         className="relative min-h-[calc(100vh-72px)] overflow-hidden bg-cover bg-center"
         style={{
-          backgroundImage:
-            "url('https://raw.githubusercontent.com/2hg7trp7rv-design/car-hp/main/public/images/hero-sedan.jpg')",
+          backgroundImage: "url('/images/hero-sedan.jpg')",
         }}
       >
-        {/* 暗めグラデーション */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
 
-        {/* 中身 */}
         <div className="relative z-10 flex h-full flex-col px-4 py-10 sm:px-6 lg:px-8">
           {/* キャッチコピー */}
           <div className="mt-6 flex justify-center">
@@ -32,9 +29,6 @@ export default async function HomePage() {
               </h1>
               <p className="mt-4 text-sm leading-relaxed text-neutral-100 sm:text-base md:text-lg">
                 最新ニュース、試乗記、技術解説から中古車の目利きまで
-              </p>
-              <p className="mt-3 text-xs leading-relaxed text-neutral-200 sm:text-sm">
-                スタジオの静謐な光とともに、情報を愉しむ空間へ。
               </p>
               <div className="mt-7 flex flex-wrap justify-center gap-3 text-[11px] sm:text-xs">
                 <Link
@@ -53,40 +47,63 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* ボタンとABOUTの間隔を広めに */}
-          <div className="mt-16 md:mt-20 mb-4 flex justify-center">
-            <section className="w-full max-w-4xl rounded-2xl border border-white/20 bg-black/35 p-5 text-xs leading-relaxed text-neutral-100 shadow-sm shadow-black/40 backdrop-blur-md sm:p-6">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-sky-100">
-                ABOUT
-              </p>
-              <h2 className="mt-2 text-sm font-medium tracking-tight text-white">
-                高級ブティックのような佇まいで
-              </h2>
-              <p className="mt-3">
-                モノトーンとスカイブルーを基調にした静かなデザインで、
-                情報量の多いクルマの世界をすっきり整理して届けます。
-                読み疲れしないレイアウトと、落ち着いたトーンの文章を大切にしています。
-              </p>
-              <dl className="mt-4 grid grid-cols-2 gap-4 border-t border-white/15 pt-4 text-[11px] text-neutral-100">
+          {/* ヒーロー内の最新ニュースカード */}
+          <div className="mt-12 md:mt-16 mb-4 flex justify-center">
+            <section className="w-full max-w-4xl rounded-2xl border border-white/25 bg-black/40 p-5 text-xs leading-relaxed text-neutral-100 shadow-sm shadow-black/40 backdrop-blur-md sm:p-6">
+              <div className="flex items-baseline justify-between gap-2">
                 <div>
-                  <dt className="text-[10px] uppercase tracking-[0.2em] text-neutral-200">
-                    FOCUS
-                  </dt>
-                  <dd className="mt-1">輸入車中心のニュースと解説</dd>
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-sky-100">
+                    LATEST
+                  </p>
+                  <h2 className="mt-1 text-sm font-medium tracking-tight text-white">
+                    最新ニュース
+                  </h2>
                 </div>
-                <div>
-                  <dt className="text-[10px] uppercase tracking-[0.2em] text-neutral-200">
-                    STYLE
-                  </dt>
-                  <dd className="mt-1">モノトーン＋スカイブルーのミニマルUI</dd>
-                </div>
-              </dl>
+                <Link
+                  href="/news"
+                  className="text-[11px] tracking-[0.18em] text-sky-200 underline-offset-4 hover:underline"
+                >
+                  一覧を見る
+                </Link>
+              </div>
+
+              <div className="mt-4 space-y-3">
+                {latest.map((item, index) => {
+                  const id = String(index);
+                  const date =
+                    item.date ?? item.publishedAt ?? item.createdAt ?? "";
+                  return (
+                    <Link
+                      key={id}
+                      href={`/news/${id}`}
+                      className="group flex items-start justify-between gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left transition hover:border-sky-300/60 hover:bg-white/10"
+                    >
+                      <div className="flex-1">
+                        <p className="text-[10px] uppercase tracking-[0.25em] text-sky-200">
+                          {item.category ?? "NEWS"}
+                        </p>
+                        <p className="mt-1 line-clamp-2 text-xs font-medium text-neutral-50 group-hover:text-neutral-100">
+                          {item.title}
+                        </p>
+                      </div>
+                      <div className="hidden flex-col items-end text-[10px] text-neutral-200 sm:flex">
+                        {date && <span>{date}</span>}
+                        {item.maker && (
+                          <span className="mt-0.5 text-[10px] text-neutral-300">
+                            {item.maker}
+                          </span>
+                        )}
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
             </section>
           </div>
         </div>
       </section>
 
-      {/* 最新ニュース3件 */}
+      {/* 下段は従来どおりニュース3件のカード一覧 */}
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-6 lg:px-8">
         <section>
           <div className="flex items-baseline justify-between gap-3">
