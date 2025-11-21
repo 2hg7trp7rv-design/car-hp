@@ -1,9 +1,9 @@
 // app/page.tsx
 import Link from "next/link";
+import Image from "next/image";
 import { getLatestNews } from "@/lib/news";
 
 export default async function HomePage() {
-  // 一覧と同じ80件を取得し、先頭3件だけ表示
   const items = (await getLatestNews(80)) as any[];
   const latest = items.slice(0, 3);
 
@@ -41,36 +41,22 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-between gap-6 rounded-2xl border border-sky-100 bg-white/80 p-5 shadow-sm shadow-sky-50 backdrop-blur-sm">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-500">
-              About
-            </p>
-            <h2 className="mt-2 text-sm font-medium tracking-tight text-neutral-900">
-              高級ブティックのような佇まいで
-            </h2>
-            <p className="mt-2 text-xs leading-relaxed text-neutral-600">
-              情報量の多いクルマの世界を、
-              TiffanyやDiorのような静かな高級感をイメージした
-              UIで再構成。
-              モノトーンをベースに、スカイブルーを一滴だけ加えた世界観で
-              読み疲れしないレイアウトを徹底しています。
-            </p>
+        {/* ヒーロー画像＋簡単な説明 */}
+        <div className="flex flex-col gap-4">
+          <div className="overflow-hidden rounded-3xl border border-sky-100 bg-neutral-100">
+            <Image
+              src="/images/hero-sedan.jpg"
+              alt="ラグジュアリーセダンのサイドビュー"
+              width={800}
+              height={600}
+              priority
+              className="h-full w-full object-cover"
+            />
           </div>
-          <dl className="grid grid-cols-2 gap-4 border-t border-neutral-100 pt-4 text-[11px] text-neutral-600">
-            <div>
-              <dt className="text-[10px] uppercase tracking-[0.2em] text-neutral-500">
-                Focus
-              </dt>
-              <dd className="mt-1">輸入車中心のニュースと解説</dd>
-            </div>
-            <div>
-              <dt className="text-[10px] uppercase tracking-[0.2em] text-neutral-500">
-                Style
-              </dt>
-              <dd className="mt-1">モノトーン＋スカイブルーのミニマルUI</dd>
-            </div>
-          </dl>
+          <div className="rounded-2xl border border-sky-50 bg-white/90 p-4 text-xs leading-relaxed text-neutral-600 shadow-sm shadow-sky-50">
+            モノトーンの世界に、スカイブルーの光だけを落としたような
+            スタジオライティングで、静かな高級感を表現します。
+          </div>
         </div>
       </section>
 
@@ -95,7 +81,6 @@ export default async function HomePage() {
 
         <div className="mt-4 grid gap-6 md:grid-cols-3">
           {latest.map((item, index) => {
-            // 0,1,2…をそのままidとして使う
             const id = String(index);
             const date =
               item.date ?? item.publishedAt ?? item.createdAt ?? "";
@@ -105,7 +90,7 @@ export default async function HomePage() {
                 key={id}
                 href={`/news/${id}`}
                 className="group block rounded-2xl border border-neutral-200 bg-white/90 p-4 text-sm shadow-sm shadow-neutral-100 transition hover:-translate-y-[1px] hover:border-sky-200 hover:shadow-md hover:shadow-sky-100"
-              >
+            >
                 <p className="text-[10px] uppercase tracking-[0.2em] text-sky-600">
                   {item.category ?? "NEWS"}
                 </p>
