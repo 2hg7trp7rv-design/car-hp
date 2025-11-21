@@ -56,9 +56,8 @@ export default function RootLayout({
               <p className="tracking-[0.18em] uppercase text-neutral-500">
                 © {new Date().getFullYear()} Car Boutique
               </p>
-              <p className="text-neutral-500">
-                シンプルな余白に、少しだけスカイブルーを添えて。
-              </p>
+              
+            
             </div>
           </footer>
         </div>
