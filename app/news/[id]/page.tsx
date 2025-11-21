@@ -14,17 +14,13 @@ export default async function NewsDetailPage({ params }: Props) {
 
   const index = Number(params.id);
 
-  // 数値でない、範囲外なら404
   if (!Number.isInteger(index) || index < 0 || index >= items.length) {
     notFound();
   }
 
   const item = items[index];
   const date =
-    item.date ??
-    item.publishedAt ??
-    item.createdAt ??
-    "";
+    item.date ?? item.publishedAt ?? item.createdAt ?? "";
 
   return (
     <div className="min-h-screen bg-neutral-50">
