@@ -26,11 +26,11 @@ export default function RootLayout({
     <html lang="ja">
       <body className="min-h-screen bg-neutral-50 text-neutral-900 antialiased">
         <div className="flex min-h-screen flex-col">
-          <header className="border-b border-neutral-200 bg-white/80 backdrop-blur">
+          <header className="border-b border-sky-100 bg-white/90 backdrop-blur">
             <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
               <Link
                 href="/"
-                className="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-900"
+                className="text-xs font-semibold uppercase tracking-[0.3em] text-sky-700"
               >
                 CAR BOUTIQUE
               </Link>
@@ -39,23 +39,26 @@ export default function RootLayout({
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="tracking-[0.16em] transition hover:text-neutral-900"
+                    className="tracking-[0.16em] transition hover:text-sky-700"
                   >
                     {item.label}
                   </Link>
                 ))}
               </nav>
             </div>
+            <div className="h-[2px] bg-gradient-to-r from-sky-200 via-sky-400 to-sky-200" />
           </header>
 
           <main className="flex-1">{children}</main>
 
-          <footer className="border-t border-neutral-200 bg-white/80">
+          <footer className="border-t border-neutral-200 bg-white/90">
             <div className="mx-auto flex max-w-6xl flex-col justify-between gap-2 px-4 py-6 text-[11px] text-neutral-500 sm:flex-row sm:items-center sm:px-6 lg:px-8">
-              <p className="tracking-[0.18em] uppercase">
+              <p className="tracking-[0.18em] uppercase text-neutral-500">
                 © {new Date().getFullYear()} Car Boutique
               </p>
-              <p>シンプルで上質なクルマの情報を、静かに丁寧に。</p>
+              <p className="text-neutral-500">
+                シンプルな余白に、少しだけスカイブルーを添えて。
+              </p>
             </div>
           </footer>
         </div>
