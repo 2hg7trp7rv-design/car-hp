@@ -36,7 +36,7 @@ export default async function NewsDetailPage({ params }: Props) {
 
   return (
     <div className="relative min-h-screen bg-white">
-      {/* 背景 Tiffany 系グラデーション */}
+      {/* 背景 Tiffany グラデーション */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
@@ -104,7 +104,6 @@ export default async function NewsDetailPage({ params }: Props) {
               </p>
             )}
 
-            {/* 本文があれば content を優先、なければ excerpt を軽く伸ばす */}
             <div className="mt-4 space-y-4 text-[13px] leading-7">
               {item.content ? (
                 <p>{item.content}</p>
