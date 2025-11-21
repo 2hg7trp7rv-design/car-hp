@@ -3,7 +3,9 @@ import Link from "next/link";
 import { getLatestNews } from "@/lib/news";
 
 export default async function HomePage() {
-  const latest = (await getLatestNews(3)) as any[];
+  // 一覧と同じ80件を取得し、先頭3件だけ表示
+  const items = (await getLatestNews(80)) as any[];
+  const latest = items.slice(0, 3);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
@@ -92,8 +94,9 @@ export default async function HomePage() {
         </div>
 
         <div className="mt-4 grid gap-6 md:grid-cols-3">
-          {latest.map((item) => {
-            const id = (item.slug as string) ?? String(item.id);
+          {latest.map((item, index) => {
+            // 0,1,2…をそのままidとして使う
+            const id = String(index);
             const date =
               item.date ?? item.publishedAt ?? item.createdAt ?? "";
 
