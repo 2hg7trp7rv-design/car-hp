@@ -8,13 +8,17 @@ export default async function HomePage() {
 
   return (
     <div className="relative bg-white">
-      {/* 左1/3だけの横グラデーションレイヤー */}
+      {/* 横方向 7割スカイブルー 3割白 の背景グラデーション */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-sky-50 via-sky-50/0 to-transparent"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(191,219,254,0.95) 0%, rgba(191,219,254,0.95) 70%, #ffffff 100%)",
+        }}
       />
 
-      {/* ここから実コンテンツ */}
+      {/* コンテンツ本体 */}
       <div className="relative z-10">
         {/* ヒーロー 全画面画像＋テキスト＋最新ニュースカード */}
         <section
@@ -220,7 +224,7 @@ export default async function HomePage() {
             </div>
           </section>
 
-          {/* コンセプト帯 グラデーションだけ */}
+          {/* コンセプト帯（グラデーションだけ） */}
           <section className="mt-12">
             <div className="h-[33vh] min-h-[220px] rounded-3xl border border-neutral-200 bg-gradient-to-r from-sky-50 via-white to-white shadow-sm shadow-neutral-100" />
           </section>
