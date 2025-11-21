@@ -4,9 +4,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Car Insight Hub",
-  description: "新型車と装備の違いにフォーカスしたクルマ情報サイト",
+  title: "Car Boutique",
+  description: "シンプルで上質な大人のためのクルマ情報サイト",
 };
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/news", label: "News" },
+  { href: "/reviews", label: "試乗記" },
+  { href: "/tech", label: "技術解説" },
+  { href: "/used", label: "中古車" },
+  { href: "/columns", label: "コラム" },
+];
 
 export default function RootLayout({
   children,
@@ -15,30 +24,40 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className="bg-slate-950 text-slate-50">
-        <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-          <header className="sticky top-0 z-20 border-b border-slate-800/80 bg-black/60 backdrop-blur">
-            <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-              <Link href="/" className="text-sm font-semibold tracking-wide">
-                <span className="rounded-full bg-sky-500/20 px-2 py-1 text-xs text-sky-300">
-                  beta
-                </span>
-                <span className="ml-2 align-middle">Car Insight Hub</span>
+      <body className="min-h-screen bg-neutral-50 text-neutral-900 antialiased">
+        <div className="flex min-h-screen flex-col">
+          <header className="border-b border-neutral-200 bg-white/80 backdrop-blur">
+            <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+              <Link
+                href="/"
+                className="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-900"
+              >
+                CAR BOUTIQUE
               </Link>
-              <nav className="flex gap-6 text-xs text-slate-300">
-                <Link href="/" className="hover:text-white">
-                  ホーム
-                </Link>
-                <Link href="/cars" className="hover:text-white">
-                  車種一覧
-                </Link>
-                <Link href="/news" className="hover:text-white">
-                  ニュース
-                </Link>
+              <nav className="hidden gap-6 text-[11px] font-medium text-neutral-600 sm:flex">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="tracking-[0.16em] transition hover:text-neutral-900"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
               </nav>
             </div>
           </header>
-          <main className="mx-auto max-w-5xl px-4 py-6">{children}</main>
+
+          <main className="flex-1">{children}</main>
+
+          <footer className="border-t border-neutral-200 bg-white/80">
+            <div className="mx-auto flex max-w-6xl flex-col justify-between gap-2 px-4 py-6 text-[11px] text-neutral-500 sm:flex-row sm:items-center sm:px-6 lg:px-8">
+              <p className="tracking-[0.18em] uppercase">
+                © {new Date().getFullYear()} Car Boutique
+              </p>
+              <p>シンプルで上質なクルマの情報を、静かに丁寧に。</p>
+            </div>
+          </footer>
         </div>
       </body>
     </html>
