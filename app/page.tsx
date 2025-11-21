@@ -41,7 +41,7 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* ヒーロー画像＋簡単な説明 */}
+        {/* ヒーロー画像＋説明 */}
         <div className="flex flex-col gap-4">
           <div className="overflow-hidden rounded-3xl border border-sky-100 bg-neutral-100">
             <Image
@@ -90,7 +90,7 @@ export default async function HomePage() {
                 key={id}
                 href={`/news/${id}`}
                 className="group block rounded-2xl border border-neutral-200 bg-white/90 p-4 text-sm shadow-sm shadow-neutral-100 transition hover:-translate-y-[1px] hover:border-sky-200 hover:shadow-md hover:shadow-sky-100"
-            >
+              >
                 <p className="text-[10px] uppercase tracking-[0.2em] text-sky-600">
                   {item.category ?? "NEWS"}
                 </p>
