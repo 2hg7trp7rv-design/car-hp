@@ -9,54 +9,80 @@ export default async function HomePage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-      {/* ヒーロー */}
-      <section className="grid gap-10 border-b border-neutral-200 pb-12 md:grid-cols-[1.4fr_minmax(0,1fr)]">
-        <div>
-          <p className="text-[10px] uppercase tracking-[0.3em] text-sky-600">
-            Curated Automotive Journal
-          </p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
-            静かにクルマを愉しむ人のための
-            <br />
-            ブティック・カーサイト
-          </h1>
-          <p className="mt-4 max-w-xl text-sm leading-relaxed text-neutral-600">
-            最新ニュース、試乗記、技術解説から中古車の目利きまで。
-            派手な煽りよりも、上質な情報と読み心地のよさを大切にした
-            クルマ好きのためのメディアです。
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3 text-xs">
-            <Link
-              href="/news"
-              className="inline-flex items-center rounded-full border border-sky-600 bg-sky-600 px-5 py-2 font-medium tracking-[0.18em] text-white transition hover:bg-sky-700"
-            >
-              最新ニュースを見る
-            </Link>
-            <Link
-              href="/reviews"
-              className="inline-flex items-center rounded-full border border-sky-200 bg-white px-5 py-2 font-medium tracking-[0.18em] text-neutral-800 transition hover:border-sky-400 hover:text-sky-700"
-            >
-              試乗記を読む
-            </Link>
+      {/* ヒーロー セクション */}
+      <section className="grid gap-8 border-b border-neutral-200 pb-12 md:grid-cols-[1.5fr_minmax(0,1fr)]">
+        {/* 左側 画像＋テキストオーバーレイ */}
+        <div className="relative overflow-hidden rounded-3xl border border-sky-100 bg-neutral-100">
+          <Image
+            src="/images/hero-sedan.jpg"
+            alt="ラグジュアリーセダンのサイドビュー"
+            width={1200}
+            height={800}
+            priority
+            className="h-full w-full object-cover"
+          />
+
+          {/* 上に重ねるグラデーションとテキスト */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/30 to-transparent" />
+
+          <div className="pointer-events-none absolute inset-0 flex flex-col justify-end p-6 sm:p-8">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-sky-200">
+              Curated Automotive Journal
+            </p>
+            <h1 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+              クルマを愉しむ人のためのカーサイト
+            </h1>
+            <p className="mt-3 max-w-xl text-xs leading-relaxed text-neutral-100 sm:text-sm">
+              最新ニュース、試乗記、技術解説から中古車の目利きまで
+            </p>
+
+            <div className="mt-5 flex flex-wrap gap-3 text-[11px] sm:text-xs">
+              <Link
+                href="/news"
+                className="pointer-events-auto inline-flex items-center rounded-full border border-sky-400 bg-sky-500/90 px-5 py-2 font-medium tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-sky-600"
+              >
+                最新ニュースを見る
+              </Link>
+              <Link
+                href="/reviews"
+                className="pointer-events-auto inline-flex items-center rounded-full border border-white/60 bg-white/10 px-5 py-2 font-medium tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-white/20"
+              >
+                試乗記を読む
+              </Link>
+            </div>
           </div>
         </div>
 
-        {/* ヒーロー画像＋説明 */}
-        <div className="flex flex-col gap-4">
-          <div className="overflow-hidden rounded-3xl border border-sky-100 bg-neutral-100">
-            <Image
-              src="/images/hero-sedan.jpg"
-              alt="ラグジュアリーセダンのサイドビュー"
-              width={800}
-              height={600}
-              priority
-              className="h-full w-full object-cover"
-            />
+        {/* 右側 説明カード（テキスト変更済み） */}
+        <div className="flex flex-col justify-between gap-6 rounded-2xl border border-sky-50 bg-white/90 p-5 text-xs leading-relaxed text-neutral-600 shadow-sm shadow-sky-50">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-500">
+              About
+            </p>
+            <h2 className="mt-2 text-sm font-medium tracking-tight text-neutral-900">
+              高級ブティックのような佇まいで
+            </h2>
+            <p className="mt-3">
+              モノトーンとスカイブルーを基調にした静かなデザインで、
+              情報量の多いクルマの世界をすっきり整理して届けます。
+              読み疲れしないレイアウトと、落ち着いたトーンの文章を大切にしています。
+            </p>
           </div>
-          <div className="rounded-2xl border border-sky-50 bg-white/90 p-4 text-xs leading-relaxed text-neutral-600 shadow-sm shadow-sky-50">
-            モノトーンの世界に、スカイブルーの光だけを落としたような
-            スタジオライティングで、静かな高級感を表現します。
-          </div>
+
+          <dl className="grid grid-cols-2 gap-4 border-t border-neutral-100 pt-4 text-[11px] text-neutral-600">
+            <div>
+              <dt className="text-[10px] uppercase tracking-[0.2em] text-neutral-500">
+                Focus
+              </dt>
+              <dd className="mt-1">輸入車中心のニュースと解説</dd>
+            </div>
+            <div>
+              <dt className="text-[10px] uppercase tracking-[0.2em] text-neutral-500">
+                Style
+              </dt>
+              <dd className="mt-1">モノトーン＋スカイブルーのミニマルUI</dd>
+            </div>
+          </dl>
         </div>
       </section>
 
