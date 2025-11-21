@@ -1,5 +1,6 @@
 // app/news/page.tsx
 import Link from "next/link";
+import Image from "next/image";
 import { getLatestNews } from "@/lib/news";
 
 type Props = {
@@ -19,7 +20,7 @@ export default async function NewsPage({ searchParams }: Props) {
 
   const itemsRaw = (await getLatestNews(80)) as any[];
 
-  // 各記事に配列インデックス__idxを付与
+  // インデックスを__idxに付与
   const items = itemsRaw.map((item, index) => ({
     ...item,
     __idx: index,
@@ -231,12 +232,25 @@ function NewsCard({ item }: { item: any }) {
   const id = String(item.__idx);
   const date =
     item.date ?? item.publishedAt ?? item.createdAt ?? "";
+  const image = item.image ?? item.imageUrl ?? null;
 
   return (
     <Link
       href={`/news/${id}`}
       className="group block h-full rounded-2xl border border-neutral-200 bg-white/90 p-5 shadow-sm shadow-neutral-100 transition hover:-translate-y-[1px] hover:border-sky-200 hover:shadow-md hover:shadow-sky-100"
     >
+      {image && (
+        <div className="mb-3 overflow-hidden rounded-2xl border border-neutral-100 bg-neutral-100">
+          <Image
+            src={image}
+            alt={item.title ?? "ニュース画像"}
+            width={800}
+            height={450}
+            className="h-40 w-full object-cover transition duration-500 group-hover:scale-[1.02]"
+          />
+        </div>
+      )}
+
       <div className="flex items-center justify-between gap-3 text-[11px] text-neutral-500">
         <span className="uppercase tracking-[0.18em] text-sky-600">
           {item.category ?? "NEWS"}
