@@ -103,8 +103,9 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 下段は従来どおりニュース3件のカード一覧 */}
-      <main className="mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-6 lg:px-8">
+      {/* 下段コンテンツ */}
+      <main className="mx-auto max-w-6xl px-4 pb-20 pt-10 sm:px-6 lg:px-8">
+        {/* 最新ニュースカード三件 */}
         <section>
           <div className="flex items-baseline justify-between gap-3">
             <div>
@@ -153,6 +154,85 @@ export default async function HomePage() {
                 </Link>
               );
             })}
+          </div>
+        </section>
+
+        {/* 読み物セクション */}
+        <section className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="rounded-2xl border border-neutral-200 bg-white/90 p-5 shadow-sm shadow-neutral-100">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-sky-600">
+              DRIVE NOTE
+            </p>
+            <h2 className="mt-2 text-sm font-semibold tracking-tight text-neutral-900">
+              試乗記
+            </h2>
+            <p className="mt-3 text-xs leading-relaxed text-neutral-600">
+              最新モデルから少し前の名車まで、気になるクルマを静かな視点で丁寧にレビュー。
+              スペックだけでなく、乗り味や質感のニュアンスを言葉にしていきます。
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-neutral-200 bg-white/90 p-5 shadow-sm shadow-neutral-100">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-sky-600">
+              TECH FOCUS
+            </p>
+            <h2 className="mt-2 text-sm font-semibold tracking-tight text-neutral-900">
+              技術解説
+            </h2>
+            <p className="mt-3 text-xs leading-relaxed text-neutral-600">
+              エンジン、電動化、シャシー、先進運転支援まで。
+              難しい専門用語は控えめに、メカ好きも納得できる深さで仕組みをひもときます。
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-neutral-200 bg-white/90 p-5 shadow-sm shadow-neutral-100">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-sky-600">
+              USED LOUNGE
+            </p>
+            <h2 className="mt-2 text-sm font-semibold tracking-tight text-neutral-900">
+              中古車の目利き
+            </h2>
+            <p className="mt-3 text-xs leading-relaxed text-neutral-600">
+              気になるモデルの持病や年式ごとの違い、買う前に見ておきたいポイントを整理。
+              じっくり選びたい人のための中古車リファレンスをめざします。
+            </p>
+          </div>
+        </section>
+
+        {/* コンセプトカード */}
+        <section className="mt-12">
+          <div className="overflow-hidden rounded-3xl border border-neutral-200 bg-gradient-to-r from-sky-50 via-white to-white shadow-sm shadow-neutral-100">
+            <div className="flex flex-col gap-6 px-5 py-6 sm:flex-row sm:items-center sm:px-8 sm:py-7">
+              <div className="flex-1">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-sky-700">
+                  CAR BOUTIQUE
+                </p>
+                <h2 className="mt-2 text-sm font-semibold tracking-tight text-neutral-900">
+                  静かな時間に、クルマのことを少しだけ深く。
+                </h2>
+                <p className="mt-3 text-xs leading-relaxed text-neutral-600">
+                  ティファニーやディオールのブティックのように、
+                  情報もデザインも少しだけ余裕を持たせて配置しました。
+                  わかりやすさと、読み終えたあとの心地よさをいちばん大切にしています。
+                </p>
+              </div>
+              <div className="sm:w-56">
+                <div className="rounded-2xl border border-sky-100 bg-white/70 px-4 py-3 text-[11px] text-neutral-700 shadow-sm shadow-sky-50">
+                  <p className="text-[10px] uppercase tracking-[0.22em] text-sky-600">
+                    FOCUS
+                  </p>
+                  <p className="mt-1">
+                    輸入車を中心に、ニュースと試乗記、技術解説を静かなトーンでまとめます。
+                  </p>
+                  <p className="mt-3 text-[10px] uppercase tracking-[0.22em] text-sky-600">
+                    TONE
+                  </p>
+                  <p className="mt-1">
+                    モノトーンをベースに、少しだけスカイブルーを差し色にしたミニマルな紙面。
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </main>
