@@ -58,7 +58,7 @@ export default async function NewsPage({ searchParams }: Props) {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-50/60 via-white to-white">
+    <div className="min-h-screen bg-gradient-to-r from-sky-50/70 via-white to-white">
       <div className="mx-auto max-w-5xl px-4 pb-16 pt-10 sm:px-6 lg:px-8">
         {/* ヘッダー */}
         <header className="border-b border-neutral-200 pb-6">
