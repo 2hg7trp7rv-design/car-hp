@@ -9,30 +9,17 @@ type Props = {
   };
 };
 
-export async function generateStaticParams() {
-  const items = (await getLatestNews(200)) as any[];
-
-  // idパラメータとして使う値を決める
-  // slugがあればslug、なければidを文字列化して使う
-  return items
-    .filter((item) => item.slug || item.id)
-    .map((item) => ({
-      id: (item.slug as string) ?? String(item.id),
-    }));
-}
-
 export default async function NewsDetailPage({ params }: Props) {
-  const items = (await getLatestNews(200)) as any[];
+  const items = (await getLatestNews(80)) as any[];
 
-  const item = items.find((i) => {
-    const slugOrId = (i.slug as string) ?? String(i.id);
-    return slugOrId === params.id;
-  });
+  const index = Number(params.id);
 
-  if (!item) {
+  // 数値でない、範囲外なら404
+  if (!Number.isInteger(index) || index < 0 || index >= items.length) {
     notFound();
   }
 
+  const item = items[index];
   const date =
     item.date ??
     item.publishedAt ??
