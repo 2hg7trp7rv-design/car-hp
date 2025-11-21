@@ -7,7 +7,8 @@ export default async function HomePage() {
   const latest = items.slice(0, 3);
 
   return (
-    <div className="bg-gradient-to-b from-sky-50/60 via-white to-white">
+    return (
+  <div className="bg-gradient-to-r from-sky-50/70 via-white to-white">
       {/* ヒーロー 全画面画像＋テキスト＋最新ニュースカード */}
       <section
         className="relative min-h-[calc(100vh-72px)] overflow-hidden bg-cover bg-center"
@@ -212,24 +213,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* コンセプトカード（タブ無し・テキストだけ） */}
-        <section className="mt-12">
-          <div className="overflow-hidden rounded-3xl border border-neutral-200 bg-gradient-to-r from-sky-50 via-white to-white shadow-sm shadow-neutral-100">
-            <div className="px-5 py-6 sm:px-8 sm:py-7">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-sky-700">
-                CAR BOUTIQUE
-              </p>
-              <h2 className="mt-2 text-sm font-semibold tracking-tight text-neutral-900">
-                静かな時間に、クルマのことを少しだけ深く。
-              </h2>
-              <p className="mt-3 text-xs leading-relaxed text-neutral-600">
-                ティファニーやディオールのブティックのように、
-                情報もデザインも少しだけ余裕を持たせて配置しました。
-                わかりやすさと、読み終えたあとの心地よさをいちばん大切にしています。
-              </p>
-            </div>
-          </div>
-        </section>
+        
       </main>
     </div>
   );
