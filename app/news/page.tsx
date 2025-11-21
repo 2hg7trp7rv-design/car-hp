@@ -1,15 +1,16 @@
 // app/news/page.tsx
 import Link from "next/link";
-import Image from "next/image";
 import { getLatestNews } from "@/lib/news";
 
+type SearchParams = {
+  q?: string;
+  category?: string;
+  maker?: string;
+  tag?: string;
+};
+
 type Props = {
-  searchParams?: {
-    q?: string;
-    category?: string;
-    maker?: string;
-    tag?: string;
-  };
+  searchParams?: SearchParams;
 };
 
 export default async function NewsPage({ searchParams }: Props) {
@@ -18,13 +19,7 @@ export default async function NewsPage({ searchParams }: Props) {
   const makerFilter = searchParams?.maker ?? "";
   const tagFilter = searchParams?.tag ?? "";
 
-  const itemsRaw = (await getLatestNews(80)) as any[];
-
-  // インデックスを__idxに付与
-  const items = itemsRaw.map((item, index) => ({
-    ...item,
-    __idx: index,
-  }));
+  const items = (await getLatestNews(80)) as any[];
 
   const categories = Array.from(
     new Set(items.map((i) => i.category).filter(Boolean))
@@ -36,255 +31,211 @@ export default async function NewsPage({ searchParams }: Props) {
 
   const tags = Array.from(
     new Set(
-      items.flatMap((i) =>
-        Array.isArray(i.tags) ? i.tags : []
-      )
+      items
+        .flatMap((i) => (Array.isArray(i.tags) ? i.tags : []))
+        .filter(Boolean)
     )
   ) as string[];
 
-  const filtered = items.filter((item) => {
-    const matchesQ = q
-      ? (item.title ?? "").toLowerCase().includes(q) ||
-        (item.excerpt ?? "").toLowerCase().includes(q) ||
-        (item.maker ?? "").toLowerCase().includes(q)
-      : true;
+  const filtered = items.filter((item: any) => {
+    const text =
+      `${item.title ?? ""} ${item.excerpt ?? ""} ${item.maker ?? ""} ${
+        item.category ?? ""
+      }`
+        .toString()
+        .toLowerCase();
 
-    const matchesCategory = categoryFilter
+    const matchQ = q ? text.includes(q) : true;
+    const matchCategory = categoryFilter
       ? item.category === categoryFilter
       : true;
-
-    const matchesMaker = makerFilter ? item.maker === makerFilter : true;
-
-    const matchesTag = tagFilter
+    const matchMaker = makerFilter ? item.maker === makerFilter : true;
+    const matchTag = tagFilter
       ? Array.isArray(item.tags) && item.tags.includes(tagFilter)
       : true;
 
-    return matchesQ && matchesCategory && matchesMaker && matchesTag;
+    return matchQ && matchCategory && matchMaker && matchTag;
   });
 
   return (
-    <div className="min-h-screen bg-neutral-50">
-      <header className="border-b border-sky-100 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.3em] text-sky-600">
-              News
-            </p>
-            <h1 className="mt-1 text-2xl font-semibold tracking-tight text-neutral-900">
-              最新のクルマニュース
-            </h1>
-          </div>
-          <div className="hidden text-right text-xs text-neutral-500 sm:block">
-            <p>必要な情報だけを、シンプルに。</p>
-            <p>スカイブルーを添えたニュース体験を。</p>
-          </div>
-        </div>
-      </header>
+    <div className="bg-neutral-50">
+      <div className="mx-auto max-w-5xl px-4 pb-16 pt-10 sm:px-6 lg:px-8">
+        {/* ヘッダー */}
+        <header className="border-b border-neutral-200 pb-6">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-sky-700">
+            CAR BOUTIQUE JOURNAL
+          </p>
+          <h1 className="mt-2 text-xl font-semibold tracking-tight text-neutral-900">
+            ニュース一覧
+          </h1>
+          <p className="mt-2 text-xs text-neutral-600">
+            静かなトーンでまとめたクルマのニュースアーカイブ。メーカーやカテゴリーで絞り込みながら、気になるトピックをゆっくりと眺めることができます。
+          </p>
+        </header>
 
-      <main className="mx-auto max-w-6xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
-        <section className="rounded-2xl border border-sky-100 bg-white/80 p-4 shadow-sm shadow-sky-50 backdrop-blur-sm sm:p-6">
-          <FilterBar
-            q={q}
-            categoryFilter={categoryFilter}
-            makerFilter={makerFilter}
-            tagFilter={tagFilter}
-            categories={categories}
-            makers={makers}
-            tags={tags}
-          />
+        {/* フィルターエリア */}
+        <section className="mt-6 rounded-2xl border border-neutral-200 bg-white/80 p-4 shadow-sm shadow-neutral-100 backdrop-blur">
+          <form className="space-y-4 md:space-y-0 md:grid md:grid-cols-4 md:gap-4">
+            <div className="md:col-span-2">
+              <label className="text-[11px] font-medium tracking-[0.18em] text-neutral-600">
+                KEYWORD
+              </label>
+              <input
+                type="text"
+                name="q"
+                defaultValue={q}
+                placeholder="モデル名やキーワードで検索"
+                className="mt-1 w-full rounded-full border border-neutral-200 bg-neutral-50 px-3 py-2 text-xs text-neutral-800 outline-none placeholder:text-neutral-400 focus:border-sky-400 focus:ring-1 focus:ring-sky-300"
+              />
+            </div>
+            <div>
+              <label className="text-[11px] font-medium tracking-[0.18em] text-neutral-600">
+                CATEGORY
+              </label>
+              <select
+                name="category"
+                defaultValue={categoryFilter}
+                className="mt-1 w-full rounded-full border border-neutral-200 bg-neutral-50 px-3 py-2 text-xs text-neutral-800 outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-300"
+              >
+                <option value="">すべて</option>
+                {categories.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="text-[11px] font-medium tracking-[0.18em] text-neutral-600">
+                MAKER
+              </label>
+              <select
+                name="maker"
+                defaultValue={makerFilter}
+                className="mt-1 w-full rounded-full border border-neutral-200 bg-neutral-50 px-3 py-2 text-xs text-neutral-800 outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-300"
+              >
+                <option value="">すべて</option>
+                {makers.map((m) => (
+                  <option key={m} value={m}>
+                    {m}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {tags.length > 0 && (
+              <div className="md:col-span-4">
+                <label className="text-[11px] font-medium tracking-[0.18em] text-neutral-600">
+                  TAGS
+                </label>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <button
+                    type="submit"
+                    name="tag"
+                    value=""
+                    className={
+                      "rounded-full border px-3 py-1 text-[11px] " +
+                      (!tagFilter
+                        ? "border-sky-500 bg-sky-500 text-white"
+                        : "border-neutral-200 bg-white text-neutral-700")
+                    }
+                  >
+                    すべて
+                  </button>
+                  {tags.map((t) => {
+                    const active = tagFilter === t;
+                    return (
+                      <button
+                        key={t}
+                        type="submit"
+                        name="tag"
+                        value={t}
+                        className={
+                          "rounded-full border px-3 py-1 text-[11px] transition " +
+                          (active
+                            ? "border-sky-500 bg-sky-500 text-white"
+                            : "border-neutral-200 bg-white text-neutral-700 hover:border-sky-300 hover:text-sky-700")
+                        }
+                      >
+                        {t}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+            <div className="md:col-span-4 flex justify-end pt-1">
+              <button
+                type="submit"
+                className="inline-flex items-center rounded-full border border-sky-500 bg-sky-500 px-5 py-2 text-[11px] font-medium tracking-[0.18em] text-white transition hover:bg-sky-600"
+              >
+                絞り込む
+              </button>
+            </div>
+          </form>
         </section>
 
+        {/* 一覧 */}
         <section className="mt-8">
-          {filtered.length === 0 ? (
-            <p className="text-sm text-neutral-500">
-              条件に合うニュースが見つかりませんでした。
-            </p>
-          ) : (
-            <ul className="grid gap-6 md:grid-cols-2">
-              {filtered.map((item) => (
-                <li key={item.__idx}>
-                  <NewsCard item={item} />
-                </li>
-              ))}
-            </ul>
-          )}
+          <p className="text-[11px] text-neutral-500">
+            全{filtered.length}件の記事
+          </p>
+
+          <div className="mt-3 divide-y divide-neutral-200 rounded-2xl border border-neutral-200 bg-white/90 shadow-sm shadow-neutral-100">
+            {filtered.map((item: any, index: number) => {
+              const id = String(index);
+              const date =
+                item.date ?? item.publishedAt ?? item.createdAt ?? "";
+              const tagsForItem = Array.isArray(item.tags) ? item.tags : [];
+
+              return (
+                <Link
+                  key={id}
+                  href={`/news/${id}`}
+                  className="group block px-4 py-4 sm:px-5 sm:py-5"
+                >
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:gap-4">
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-[10px] uppercase tracking-[0.25em] text-sky-600">
+                          {item.category ?? "NEWS"}
+                        </span>
+                        {item.maker && (
+                          <span className="rounded-full border border-neutral-200 bg-neutral-50 px-2 py-[2px] text-[10px] text-neutral-600">
+                            {item.maker}
+                          </span>
+                        )}
+                      </div>
+                      <h2 className="mt-1 text-sm font-medium tracking-tight text-neutral-900 group-hover:text-neutral-700">
+                        {item.title}
+                      </h2>
+                      {item.excerpt && (
+                        <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-neutral-600">
+                          {item.excerpt}
+                        </p>
+                      )}
+                      {tagsForItem.length > 0 && (
+                        <div className="mt-2 flex flex-wrap gap-1">
+                          {tagsForItem.map((t: string) => (
+                            <span
+                              key={t}
+                              className="rounded-full bg-neutral-100 px-2 py-[2px] text-[10px] text-neutral-500"
+                            >
+                              #{t}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <div className="mt-1 text-right text-[10px] text-neutral-500 sm:mt-0 sm:w-32">
+                      {date && <p>{date}</p>}
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
         </section>
-      </main>
-    </div>
-  );
-}
-
-type FilterBarProps = {
-  q: string;
-  categoryFilter: string;
-  makerFilter: string;
-  tagFilter: string;
-  categories: string[];
-  makers: string[];
-  tags: string[];
-};
-
-function FilterBar({
-  q,
-  categoryFilter,
-  makerFilter,
-  tagFilter,
-  categories,
-  makers,
-  tags,
-}: FilterBarProps) {
-  return (
-    <form
-      method="get"
-      className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
-    >
-      <div className="flex-1 space-y-2">
-        <label className="block text-xs font-medium tracking-wide text-neutral-500">
-          キーワード検索
-        </label>
-        <input
-          type="search"
-          name="q"
-          defaultValue={q}
-          placeholder="車名 技術用語 記事タイトルなど"
-          className="w-full rounded-xl border border-neutral-300 bg-white/70 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-400 outline-none transition focus:border-sky-500 focus:ring-0"
-        />
-      </div>
-
-      <div className="grid flex-1 grid-cols-1 gap-3 sm:grid-cols-3">
-        <SelectField
-          name="category"
-          label="カテゴリ"
-          value={categoryFilter}
-          options={categories}
-          placeholder="すべて"
-        />
-        <SelectField
-          name="maker"
-          label="メーカー"
-          value={makerFilter}
-          options={makers}
-          placeholder="すべて"
-        />
-        <SelectField
-          name="tag"
-          label="タグ"
-          value={tagFilter}
-          options={tags}
-          placeholder="すべて"
-        />
-      </div>
-
-      <div className="flex justify-end gap-2 sm:w-32">
-        <button
-          type="submit"
-          className="inline-flex w-full items-center justify-center rounded-full border border-sky-600 bg-sky-600 px-4 py-2 text-xs font-medium tracking-[0.18em] text-white transition hover:bg-sky-700"
-        >
-          絞り込む
-        </button>
-      </div>
-    </form>
-  );
-}
-
-type SelectFieldProps = {
-  name: string;
-  label: string;
-  value: string;
-  options: string[];
-  placeholder: string;
-};
-
-function SelectField({
-  name,
-  label,
-  value,
-  options,
-  placeholder,
-}: SelectFieldProps) {
-  return (
-    <div className="space-y-2">
-      <label className="block text-xs font-medium tracking-wide text-neutral-500">
-        {label}
-      </label>
-      <div className="relative">
-        <select
-          name={name}
-          defaultValue={value}
-          className="w-full appearance-none rounded-xl border border-neutral-300 bg-white/70 px-3 py-2 text-sm text-neutral-900 outline-none transition focus:border-sky-500 focus:ring-0"
-        >
-          <option value="">{placeholder}</option>
-          {options.map((opt) => (
-            <option key={opt} value={opt}>
-              {opt}
-            </option>
-          ))}
-        </select>
-        <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-[10px] text-neutral-400">
-          ▼
-        </span>
       </div>
     </div>
-  );
-}
-
-function NewsCard({ item }: { item: any }) {
-  const id = String(item.__idx);
-  const date =
-    item.date ?? item.publishedAt ?? item.createdAt ?? "";
-  const image = item.image ?? item.imageUrl ?? null;
-
-  return (
-    <Link
-      href={`/news/${id}`}
-      className="group block h-full rounded-2xl border border-neutral-200 bg-white/90 p-5 shadow-sm shadow-neutral-100 transition hover:-translate-y-[1px] hover:border-sky-200 hover:shadow-md hover:shadow-sky-100"
-    >
-      {image && (
-        <div className="mb-3 overflow-hidden rounded-2xl border border-neutral-100 bg-neutral-100">
-          <Image
-            src={image}
-            alt={item.title ?? "ニュース画像"}
-            width={800}
-            height={450}
-            className="h-40 w-full object-cover transition duration-500 group-hover:scale-[1.02]"
-          />
-        </div>
-      )}
-
-      <div className="flex items-center justify-between gap-3 text-[11px] text-neutral-500">
-        <span className="uppercase tracking-[0.18em] text-sky-600">
-          {item.category ?? "NEWS"}
-        </span>
-        <span>{date}</span>
-      </div>
-
-      <h2 className="mt-3 text-base font-medium tracking-tight text-neutral-900 group-hover:text-neutral-700">
-        {item.title}
-      </h2>
-
-      {item.excerpt && (
-        <p className="mt-2 text-sm leading-relaxed text-neutral-600 line-clamp-3">
-          {item.excerpt}
-        </p>
-      )}
-
-      <div className="mt-3 flex flex-wrap gap-1.5">
-        {Array.isArray(item.tags) &&
-          item.tags.slice(0, 4).map((tag: string) => (
-            <span
-              key={tag}
-              className="rounded-full border border-sky-100 bg-sky-50 px-2 py-0.5 text-[11px] text-sky-700"
-            >
-              {tag}
-            </span>
-          ))}
-      </div>
-
-      {item.maker && (
-        <p className="mt-3 text-xs uppercase tracking-[0.18em] text-neutral-500">
-          {item.maker}
-        </p>
-      )}
-    </Link>
   );
 }
