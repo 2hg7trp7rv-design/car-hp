@@ -17,7 +17,13 @@ export default async function NewsPage({ searchParams }: Props) {
   const makerFilter = searchParams?.maker ?? "";
   const tagFilter = searchParams?.tag ?? "";
 
-  const items = (await getLatestNews(80)) as any[];
+  const itemsRaw = (await getLatestNews(80)) as any[];
+
+  // 各記事に配列インデックス__idxを付与
+  const items = itemsRaw.map((item, index) => ({
+    ...item,
+    __idx: index,
+  }));
 
   const categories = Array.from(
     new Set(items.map((i) => i.category).filter(Boolean))
@@ -29,7 +35,9 @@ export default async function NewsPage({ searchParams }: Props) {
 
   const tags = Array.from(
     new Set(
-      items.flatMap((i) => (Array.isArray(i.tags) ? i.tags : []))
+      items.flatMap((i) =>
+        Array.isArray(i.tags) ? i.tags : []
+      )
     )
   ) as string[];
 
@@ -93,7 +101,7 @@ export default async function NewsPage({ searchParams }: Props) {
           ) : (
             <ul className="grid gap-6 md:grid-cols-2">
               {filtered.map((item) => (
-                <li key={(item.slug as string) ?? String(item.id)}>
+                <li key={item.__idx}>
                   <NewsCard item={item} />
                 </li>
               ))}
@@ -220,7 +228,7 @@ function SelectField({
 }
 
 function NewsCard({ item }: { item: any }) {
-  const id = (item.slug as string) ?? String(item.id);
+  const id = String(item.__idx);
   const date =
     item.date ?? item.publishedAt ?? item.createdAt ?? "";
 
