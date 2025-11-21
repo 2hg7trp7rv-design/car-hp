@@ -1,63 +1,80 @@
 // app/layout.tsx
-import "./globals.css";
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
+import { Inter } from "next/font/google";
+import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Car Boutique",
-  description: "シンプルで上質な大人のためのクルマ情報サイト",
+  title: {
+    default: "CAR BOUTIQUE | 静かなトーンのクルマメディア",
+    template: "%s | CAR BOUTIQUE",
+  },
+  description:
+    "ティファニーのようなやわらかなブルーをアクセントに、静かなトーンでクルマのニュースや試乗記、技術解説、中古車情報を届けるカーサイト。",
+  openGraph: {
+    title: "CAR BOUTIQUE | 静かなトーンのクルマメディア",
+    description:
+      "ティファニーのようなやわらかなブルーをアクセントに、静かなトーンでクルマのニュースや試乗記、技術解説、中古車情報を届けるカーサイト。",
+    url: "https://car-hp.vercel.app",
+    siteName: "CAR BOUTIQUE",
+    locale: "ja_JP",
+    type: "website",
+  },
 };
 
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/news", label: "News" },
-  { href: "/reviews", label: "試乗記" },
-  { href: "/tech", label: "技術解説" },
-  { href: "/used", label: "中古車" },
-  { href: "/columns", label: "コラム" },
-];
+type RootLayoutProps = {
+  children: ReactNode;
+};
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ja">
-      <body className="min-h-screen bg-neutral-50 text-neutral-900 antialiased">
+      <body
+        className={`${inter.className} bg-neutral-50 text-neutral-900 text-[13px]`}
+      >
         <div className="flex min-h-screen flex-col">
-          <header className="border-b border-sky-100 bg-white/90 backdrop-blur">
-            <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+          {/* グローバルヘッダー */}
+          <header className="border-b border-neutral-200 bg-white/80 backdrop-blur-sm">
+            <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
               <Link
                 href="/"
-                className="text-xs font-semibold uppercase tracking-[0.3em] text-sky-700"
+                className="text-[11px] font-semibold tracking-[0.32em] text-sky-700"
               >
                 CAR BOUTIQUE
               </Link>
-              <nav className="hidden gap-6 text-[11px] font-medium text-neutral-600 sm:flex">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="tracking-[0.16em] transition hover:text-sky-700"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+              <nav className="flex flex-wrap gap-3 text-[11px] text-neutral-700">
+                <Link href="/news" className="hover:text-sky-700">
+                  News
+                </Link>
+                <Link href="/reviews" className="hover:text-sky-700">
+                  Drive Note
+                </Link>
+                <Link href="/tech" className="hover:text-sky-700">
+                  Tech
+                </Link>
+                <Link href="/used" className="hover:text-sky-700">
+                  Used
+                </Link>
+                <Link href="/heritage" className="hover:text-sky-700">
+                  Heritage
+                </Link>
               </nav>
             </div>
-            <div className="h-[2px] bg-gradient-to-r from-sky-200 via-sky-400 to-sky-200" />
           </header>
 
+          {/* ページ本体 */}
           <main className="flex-1">{children}</main>
 
-          <footer className="border-t border-neutral-200 bg-white/90">
-            <div className="mx-auto flex max-w-6xl flex-col justify-between gap-2 px-4 py-6 text-[11px] text-neutral-500 sm:flex-row sm:items-center sm:px-6 lg:px-8">
-              <p className="tracking-[0.18em] uppercase text-neutral-500">
-                © {new Date().getFullYear()} Car Boutique
+          {/* フッター */}
+          <footer className="border-t border-neutral-200 bg-white/80">
+            <div className="mx-auto max-w-6xl px-4 py-4 text-[11px] text-neutral-500 sm:px-6 lg:px-8">
+              <p>© 2025 CAR BOUTIQUE</p>
+              <p className="mt-1 text-neutral-400">
+                シンプルな余白に、少しだけティファニーブルーを添えて。
               </p>
-              
-            
             </div>
           </footer>
         </div>
