@@ -59,13 +59,17 @@ export default async function NewsPage({ searchParams }: Props) {
 
   return (
     <div className="relative min-h-screen bg-white">
-      {/* 左1/3だけの横グラデーションレイヤー */}
+      {/* 横方向 7割スカイブルー 3割白 の背景グラデーション */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-sky-50 via-sky-50/0 to-transparent"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(191,219,254,0.95) 0%, rgba(191,219,254,0.95) 70%, #ffffff 100%)",
+        }}
       />
 
-      {/* 実コンテンツ */}
+      {/* コンテンツ本体 */}
       <div className="relative z-10">
         <div className="mx-auto max-w-5xl px-4 pb-16 pt-10 sm:px-6 lg:px-8">
           {/* ヘッダー */}
