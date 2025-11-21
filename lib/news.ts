@@ -7,14 +7,14 @@ export type NewsItem = {
   title: string;
   summary: string;
   source: string;
-  published_at: string;
-  difficulty: string;
-  reference_url: string;
+  publishedAt: string | null;
+  difficulty: "basic" | "advanced" | null;
+  referenceUrl: string;
   category: string;
   maker: string;
-  model_name: string;
+  modelName: string;
   tags: string[];
-  isFeatured: boolean; 
+  isFeatured: boolean;
 };
 
 const NEWS_DB_TITLE = "news";
@@ -23,49 +23,96 @@ async function getNewsDatabaseId(): Promise<string> {
   return getDatabaseIdByTitle(NEWS_DB_TITLE);
 }
 
+// 共通のテキスト取り出しヘルパー
+function getPlainText(prop: any): string {
+  if (!prop) return "";
+  if (Array.isArray(prop)) {
+    return prop.map((t: any) => t.plain_text ?? "").join("");
+  }
+  if (prop.rich_text) {
+    return (prop.rich_text as any[])
+      .map((t: any) => t.plain_text ?? "")
+      .join("");
+  }
+  if (prop.title) {
+    return (prop.title as any[])
+      .map((t: any) => t.plain_text ?? "")
+      .join("");
+  }
+  if (typeof prop === "string") return prop;
+  return "";
+}
+
 function mapPageToNewsItem(page: any): NewsItem {
   const props = page.properties;
 
+  // タイトル
   const titleProp = props["title"];
   const title =
     titleProp?.title?.[0]?.plain_text ??
     titleProp?.title?.[0]?.text?.content ??
     "No title";
 
+  // slug（プロパティがなければタイトルから自動生成）
+  const slugProp = props["slug"];
+  const slugRaw = slugProp ? getPlainText(slugProp) : "";
+  const slug =
+    slugRaw ||
+    title
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "-");
+
+  // 概要
   const summaryProp = props["summary"];
-  const summary =
-    summaryProp?.rich_text?.map((t: any) => t.plain_text).join("") ?? null;
+  const summary = getPlainText(summaryProp);
 
+  // ソース
   const sourceProp = props["source"];
-  const source =
-    sourceProp?.rich_text?.map((t: any) => t.plain_text).join("") ?? null;
+  const source = getPlainText(sourceProp);
 
+  // 公開日
   const dateProp = props["published_at"];
   const publishedAt = dateProp?.date?.start ?? null;
 
+  // 難易度
   const difficultyProp = props["difficulty"];
-  const difficulty = difficultyProp?.select?.name ?? null;
+  const difficultyName = difficultyProp?.select?.name ?? null;
+  const difficulty =
+    difficultyName === "advanced" || difficultyName === "マニアック"
+      ? "advanced"
+      : difficultyName
+      ? "basic"
+      : null;
 
+  // 参考URL
   const referenceUrlProp = props["reference_url"];
-  const referenceUrl = referenceUrlProp?.url ?? null;
+  const referenceUrl = referenceUrlProp?.url ?? "";
 
+  // カテゴリ
   const categoryProp = props["category"];
-  const category = categoryProp?.select?.name ?? null;
+  const category = categoryProp?.select?.name ?? "";
 
+  // メーカー（テキストプロパティ想定）
   const makerProp = props["maker"];
-  const maker =
-    makerProp?.rich_text?.map((t: any) => t.plain_text).join("") ?? null;
+  const maker = getPlainText(makerProp);
 
+  // 車名（テキストプロパティ想定）
   const modelNameProp = props["model_name"];
-  const modelName =
-    modelNameProp?.rich_text?.map((t: any) => t.plain_text).join("") ?? null;
+  const modelName = getPlainText(modelNameProp);
 
+  // タグ（マルチセレクト）
   const tagsProp = props["tags"];
   const tags =
     tagsProp?.multi_select?.map((t: any) => t.name as string) ?? [];
 
+  // 注目記事フラグ（チェックボックス is_featured）
+  const isFeaturedProp = props["is_featured"];
+  const isFeatured = isFeaturedProp?.checkbox ?? false;
+
   return {
     id: page.id,
+    slug,
     title,
     summary,
     source,
@@ -76,6 +123,7 @@ function mapPageToNewsItem(page: any): NewsItem {
     maker,
     modelName,
     tags,
+    isFeatured,
   };
 }
 
@@ -86,6 +134,7 @@ export async function getLatestNews(limit = 50): Promise<NewsItem[]> {
     database_id: databaseId,
     sorts: [
       {
+        // Notion側のプロパティ名は published_at
         property: "published_at",
         direction: "descending",
       },
