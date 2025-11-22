@@ -1,159 +1,173 @@
 // app/page.tsx
 import Link from "next/link";
-import Image from "next/image";
 import { getLatestNews, type NewsItem } from "@/lib/news";
 
-export default async function HomePage() {
-  // ニュースを多めに取得して、このページ用に絞り込む
+type Props = {
+  searchParams?: {
+    tab?: string;
+  };
+};
+
+export default async function HomePage({ searchParams }: Props) {
   const items = await getLatestNews(30);
 
   const latest = items.slice(0, 3);
   const featured = items.filter((item) => item.featured).slice(0, 3);
 
-  return (
-    <div className="bg-gradient-to-r from-[#e4f4f7] via-white to-white">
-      <main className="mx-auto flex max-w-5xl flex-col gap-10 px-4 pb-16 pt-8 md:px-6 md:pt-10">
-        {/* ヒーロー: 画像全面＋上にテキスト */}
-              {/* ヒーロー セクション：フル幅画像＋白い半透明カード */}
-      <section className="relative overflow-hidden rounded-[32px] bg-slate-900/40 shadow-[0_30px_80px_rgba(15,23,42,0.55)]">
-        {/* 背景画像＋ティファニーブルーのかぶせ */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('/images/hero-sedan.jpg')] bg-cover bg-center" />
-          {/* 画像を少し落ち着かせるダークレイヤー */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/30 to-black/10" />
-          {/* ティファニーブルーのグラデーションを上にかける */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#81d8d0]/40 via-transparent to-transparent mix-blend-screen" />
-        </div>
+  const activeTab = searchParams?.tab === "featured" ? "featured" : "latest";
+  const activeList = activeTab === "featured" ? featured : latest;
 
-        {/* コンテンツ（白い半透明カード） */}
-        <div className="relative z-10 flex min-h-[360px] items-end px-6 py-10 sm:px-10 sm:py-14 lg:px-16">
-          <div className="max-w-xl rounded-3xl bg-white/75 p-6 backdrop-blur-md sm:p-8">
-            <p className="text-[11px] font-semibold tracking-[0.24em] text-sky-600">
-              CAR BOUTIQUE
-            </p>
-            <h1 className="mt-3 text-2xl font-semibold leading-snug text-slate-900 sm:text-3xl">
-              クルマを楽しむ人のためのカーサイト
-            </h1>
-            <p className="mt-4 text-[13px] leading-relaxed text-slate-700">
-              最新ニュース、試乗記、技術解説から中古車の目利きまで。
-            
-            </p>
+  return (
+    <div className="space-y-10">
+      {/* ヒーローセクション：画像フル幅＋上に白いパネルとタブ */}
+      <section className="relative overflow-hidden rounded-[40px] bg-slate-900 shadow-[0_22px_70px_rgba(15,23,42,0.65)]">
+        <div
+          className="relative h-[430px] w-full md:h-[520px]"
+          style={{
+            backgroundImage: "url(/images/hero-sedan.jpg)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          {/* 暗めグラデーションで文字を読みやすく */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-950/70 via-slate-950/35 to-slate-950/5" />
+
+          {/* コピー＋タブを重ねるコンテナ */}
+          <div className="relative flex h-full flex-col justify-between px-5 pb-8 pt-10 md:px-12 md:pt-12 md:pb-10">
+            {/* コピー用ホワイトパネル */}
+            <div className="max-w-xl rounded-3xl bg-white/75 p-6 text-slate-900 shadow-[0_18px_55px_rgba(15,23,42,0.35)] backdrop-blur-md md:p-7">
+              <p className="text-[11px] font-semibold tracking-[0.2em] text-sky-500">
+                CAR BOUTIQUE
+              </p>
+              <h1 className="mt-2 text-2xl font-semibold leading-snug md:text-3xl">
+                クルマを愉しむ人のためのカーサイト
+              </h1>
+              <p className="mt-3 text-[13px] leading-relaxed text-slate-700">
+                最新ニュース、試乗記、技術解説から中古車の目利きまで。派手な煽りよりも、
+                上質な情報と読み心地のよさを大切にした静かなトーンのクルマメディアです。
+              </p>
+            </div>
+
+            {/* タブ（最新ニュース / 注目ニュース）も画像上に重ねる */}
+            <div className="mt-6 flex">
+              <div className="inline-flex rounded-full bg-white/60 p-1 text-[12px] shadow-[0_10px_35px_rgba(15,23,42,0.35)] backdrop-blur-md">
+                <Link
+                  href={{ pathname: "/", query: { tab: "latest" } }}
+                  className={`rounded-full px-4 py-1.5 font-semibold transition ${
+                    activeTab === "latest"
+                      ? "bg-slate-900 text-white"
+                      : "text-slate-700 hover:text-slate-900"
+                  }`}
+                >
+                  最新ニュース
+                </Link>
+                <Link
+                  href={{ pathname: "/", query: { tab: "featured" } }}
+                  className={`rounded-full px-4 py-1.5 font-semibold transition ${
+                    activeTab === "featured"
+                      ? "bg-slate-900 text-white"
+                      : "text-slate-700 hover:text-slate-900"
+                  }`}
+                >
+                  注目ニュース
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-        {/* トップニュース（最新＋注目） */}
-        <TopNewsSection latest={latest} featured={featured} />
-      </main>
+      {/* ニュースリスト */}
+      <section className="space-y-4">
+        <div className="flex items-baseline justify-between px-1">
+          <h2 className="text-sm font-semibold text-slate-800">
+            {activeTab === "latest" ? "最新ニュース" : "注目ニュース"}
+          </h2>
+          <Link
+            href="/news"
+            className="text-[12px] text-sky-700 underline-offset-2 hover:text-sky-500 hover:underline"
+          >
+            ニュース一覧へ
+          </Link>
+        </div>
+
+        {activeList.length === 0 ? (
+          <p className="px-1 text-xs text-slate-500">
+            まだニュースが取得できていません。しばらくしてからもう一度ご覧ください。
+          </p>
+        ) : (
+          <div className="space-y-3">
+            {activeList.map((item) => (
+              <HomeNewsCard key={item.id} item={item} />
+            ))}
+          </div>
+        )}
+      </section>
     </div>
   );
 }
 
-function TopNewsSection(props: { latest: NewsItem[]; featured: NewsItem[] }) {
-  const { latest, featured } = props;
-
-  return (
-    <section className="space-y-4">
-      {/* タブ風ラベル */}
-      <div className="inline-flex rounded-full bg-white/70 p-1 shadow-md shadow-sky-100/80">
-        <span className="rounded-full bg-slate-900 px-4 py-1 text-[11px] font-semibold tracking-wide text-white">
-          最新ニュース
-        </span>
-        <span className="rounded-full px-4 py-1 text-[11px] font-semibold tracking-wide text-slate-500">
-          注目ニュース
-        </span>
-      </div>
-
-      {/* 2カラム（スマホでは縦並び） */}
-      <div className="grid gap-6 md:grid-cols-2">
-        {/* 最新ニュース */}
-        <div className="space-y-3">
-          {latest.map((item) => (
-            <NewsCard key={item.id} item={item} />
-          ))}
-        </div>
-
-        {/* 注目ニュース */}
-        <div className="space-y-3">
-          {featured.length === 0 ? (
-            <p className="text-xs text-slate-500">
-              注目ニュースはまだ準備中です。
-            </p>
-          ) : (
-            featured.map((item) => <NewsCard key={item.id} item={item} />)
-          )}
-        </div>
-      </div>
-
-      <div className="pt-1 text-right">
-        <Link
-          href="/news"
-          className="text-[11px] font-semibold text-sky-700 hover:text-sky-500"
-        >
-          ニュース一覧へ →
-        </Link>
-      </div>
-    </section>
-  );
-}
-
-// 日本語タイトル優先＋外部/オリジナルでラベル色を切り替えたカード
-function NewsCard({ item }: { item: NewsItem }) {
+/**
+ * トップページ用ニュースカード
+ * 日本語タイトル（titleJa）があれば優先表示
+ */
+function HomeNewsCard({ item }: { item: NewsItem }) {
   const displayTitle = item.titleJa ?? item.title;
+  const isExternal = item.type === "external" && !!item.sourceUrl;
+
+  const href = isExternal
+    ? (item.sourceUrl as string)
+    : `/news/${encodeURIComponent(item.id)}`;
+
   const dateLabel = item.publishedAt
     ? new Date(item.publishedAt).toLocaleDateString("ja-JP")
     : "";
 
-  const isExternal = item.type === "external";
+  const sourceLabel =
+    item.sourceName ?? (item.type === "original" ? "CAR BOUTIQUE" : "News");
 
-  const typeBadgeClass = isExternal
-    ? "bg-[#d7f5f5] text-[#007c7c]" // 外部:ティファニーブルー系
-    : "bg-slate-100 text-slate-500"; // オリジナル:淡グレー
+  const typeLabel = item.type === "external" ? "External" : "Original";
 
   return (
-    <a
-      href={item.sourceUrl ?? `/news/${encodeURIComponent(item.id)}`}
-      target={item.sourceUrl ? "_blank" : undefined}
-      rel={item.sourceUrl ? "noreferrer" : undefined}
-      className="block rounded-3xl border border-slate-100 bg-white/80 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.08)] backdrop-blur transition hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-[0_22px_60px_rgba(15,23,42,0.16)]"
+    <Link
+      href={href}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noreferrer" : undefined}
+      className="block rounded-[32px] border border-sky-50 bg-white/90 p-4 shadow-[0_18px_55px_rgba(15,23,42,0.18)] transition hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-[0_22px_65px_rgba(15,23,42,0.25)] backdrop-blur"
     >
-      <div className="mb-3 flex flex-wrap items-center gap-2 text-[11px]">
-        {item.sourceName && (
-          <span className="rounded-full bg-sky-900/90 px-3 py-1 text-[10px] font-semibold tracking-wide text-sky-50">
-            {item.sourceName}
-          </span>
-        )}
-        <span
-          className={
-            "rounded-full px-3 py-1 text-[10px] font-semibold tracking-wide " +
-            typeBadgeClass
-          }
-        >
-          {isExternal ? "External" : "Original"}
-        </span>
-        {item.category && (
-          <span className="rounded-full bg-slate-50 px-2.5 py-1 text-[10px] font-medium text-slate-500">
-            {item.category}
-          </span>
-        )}
+      <div className="flex items-start justify-between gap-2">
+        <div className="space-y-2">
+          {/* ラベル群 */}
+          <div className="flex flex-wrap gap-2 text-[11px]">
+            <span className="rounded-full bg-[#8fdde7] px-2.5 py-0.5 font-semibold text-slate-900">
+              {sourceLabel}
+            </span>
+            <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-slate-700">
+              {typeLabel}
+            </span>
+            {item.category && (
+              <span className="rounded-full bg-slate-50 px-2.5 py-0.5 text-slate-500">
+                {item.category}
+              </span>
+            )}
+          </div>
+
+          {/* タイトル＋リード */}
+          <h3 className="text-[15px] font-semibold leading-snug text-slate-900">
+            {displayTitle}
+          </h3>
+          {item.excerpt && (
+            <p className="text-[12px] leading-relaxed text-slate-600">
+              {item.excerpt}
+            </p>
+          )}
+
+          <p className="text-[11px] text-slate-400">
+            {sourceLabel}
+            {dateLabel && `　${dateLabel}`}
+          </p>
+        </div>
       </div>
-
-      <p className="text-sm font-semibold leading-relaxed text-slate-900">
-        {displayTitle}
-      </p>
-
-      {item.excerpt && (
-        <p className="mt-2 text-[11px] leading-relaxed text-slate-500">
-          {item.excerpt}
-        </p>
-      )}
-
-      <div className="mt-3 flex items-center justify-between text-[11px] text-slate-400">
-        <span className="truncate">
-          {item.maker ?? item.sourceName ?? "car boutique"}
-        </span>
-        {dateLabel && <span>{dateLabel}</span>}
-      </div>
-    </a>
+    </Link>
   );
 }
