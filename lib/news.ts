@@ -14,7 +14,7 @@ export interface NewsItem {
   category?: 'Drive Note' | 'Tech' | 'Used' | 'Heritage' | 'News';
 }
 
-// 手動で追加するオリジナル記事（ここに自分の記事を書きます）
+// 手動で追加するオリジナル記事
 const staticNewsItems: NewsItem[] = [
   {
     id: 'welcome-car-boutique',
@@ -25,12 +25,10 @@ const staticNewsItems: NewsItem[] = [
     summary: '車のスペックだけでなく、その背景にある物語やライフスタイルを提案する新しいメディアです。',
     category: 'Drive Note',
   },
-  // 記事を増やしたいときは、ここにカンマ区切りでオブジェクトを追加してください
 ];
 
 /**
  * RSSフィードのURLリスト
- * Car Watch, autoevolutionなどを登録
  */
 const RSS_FEEDS = [
   {
@@ -46,18 +44,16 @@ const RSS_FEEDS = [
 ];
 
 /**
- * シンプルなRSSパーサー（ライブラリ不要版）
- * iPhone環境等でnpm installが難しい場合でも動くように標準機能だけで実装
+ * シンプルなRSSパーサー
  */
 async function fetchAndParseRSS(feed: { url: string; name: string; lang: string }): Promise<NewsItem[]> {
   try {
-    // タイムアウト付きのフェッチ（5秒で諦める）
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 5000);
     
     const res = await fetch(feed.url, { 
       signal: controller.signal,
-      next: { revalidate: 600 } // 10分キャッシュ
+      next: { revalidate: 600 } 
     });
     clearTimeout(timeoutId);
 
@@ -66,15 +62,11 @@ async function fetchAndParseRSS(feed: { url: string; name: string; lang: string 
     const xmlText = await res.text();
     const items: NewsItem[] = [];
 
-    // 正規表現で簡易的にパース（ライブラリ依存を排除するため）
-    // <item>...</item> または <entry>...</entry> を抽出
     const itemRegex = /<(item|entry)>([\s\S]*?)<\/(item|entry)>/g;
     let match;
 
     while ((match = itemRegex.exec(xmlText)) !== null) {
       const content = match[2];
-      
-      // タグの中身を抽出するヘルパー
       const extract = (tag: string) => {
         const regex = new RegExp(`<${tag}[^>]*>(<!\\[CDATA\\[)?(.*?)(]]>)?<\/${tag}>`, 'i');
         const m = content.match(regex);
@@ -82,19 +74,20 @@ async function fetchAndParseRSS(feed: { url: string; name: string; lang: string 
       };
 
       const title = extract('title');
-      const link = extract('link') || extract('url'); // RSSのバージョンによって違うため
+      const link = extract('link') || extract('url');
       const dateStr = extract('pubDate') || extract('dc:date') || extract('updated');
+      const desc = extract('description') || extract('content:encoded');
       
-      // 必須項目がない場合はスキップ
       if (!title || !link) continue;
 
       items.push({
-        id: btoa(link).slice(0, 10), // URLをBase64化してID生成
+        id: btoa(link).slice(0, 10),
         title: title.replace(/&amp;/g, '&').replace(/&quot;/g, '"'),
-        titleJa: feed.lang === 'ja' ? title : undefined, // 日本語サイトならtitleJaに入れる
+        titleJa: feed.lang === 'ja' ? title : undefined,
         sourceUrl: link,
         sourceName: feed.name,
         publishedAt: dateStr ? new Date(dateStr).toISOString() : new Date().toISOString(),
+        summary: desc.replace(/<[^>]*>?/gm, '').slice(0, 100) + '...', // HTMLタグ除去して要約
         category: 'News',
       });
     }
@@ -103,7 +96,7 @@ async function fetchAndParseRSS(feed: { url: string; name: string; lang: string 
 
   } catch (error) {
     console.error(`Error fetching RSS from ${feed.name}:`, error);
-    return []; // エラー時は空配列を返し、全体を止めない
+    return [];
   }
 }
 
@@ -111,22 +104,15 @@ async function fetchAndParseRSS(feed: { url: string; name: string; lang: string 
  * 最新ニュースを一括取得するメイン関数
  */
 export async function getLatestNews(): Promise<NewsItem[]> {
-  // 1. RSSの並列取得
   const rssPromises = RSS_FEEDS.map(feed => fetchAndParseRSS(feed));
   const rssResults = await Promise.all(rssPromises);
-  
-  // 2. 配列を平坦化（フラットにする）
   const rssItems = rssResults.flat();
-
-  // 3. 静的記事と結合
   const allItems = [...staticNewsItems, ...rssItems];
 
-  // 4. 日付順にソート（新しい順）
   allItems.sort((a, b) => {
     return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
   });
 
-  // 5. 重複除去（念のためURLでチェック）
   const uniqueItems = Array.from(
     new Map(allItems.map((item) => [item.sourceUrl || item.id, item])).values()
   );
@@ -135,9 +121,25 @@ export async function getLatestNews(): Promise<NewsItem[]> {
 }
 
 /**
- * 特定のIDの記事を取得（詳細ページ用）
+ * 特定のIDの記事を取得
  */
 export async function getNewsById(id: string): Promise<NewsItem | undefined> {
   const allNews = await getLatestNews();
   return allNews.find(item => item.id === id || item.sourceUrl?.includes(decodeURIComponent(id)));
+}
+
+/**
+ * 【追加】特定の車種（キーワード）に関連するニュースを取得
+ * ※これが不足していたためエラーになっていました
+ */
+export async function getNewsByCar(carName: string): Promise<NewsItem[]> {
+  const allNews = await getLatestNews();
+  const lowerName = carName.toLowerCase();
+
+  // 記事タイトルまたは本文に車種名が含まれているものをフィルタリング
+  return allNews.filter(item => 
+    item.title.toLowerCase().includes(lowerName) ||
+    (item.titleJa && item.titleJa.toLowerCase().includes(lowerName)) ||
+    (item.summary && item.summary.toLowerCase().includes(lowerName))
+  );
 }
