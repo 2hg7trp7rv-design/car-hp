@@ -1,36 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
-  --foreground-rgb: 51, 65, 85;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
-/* デフォルトのフォントファミリーを上書き */
-@layer base {
-  body {
-    /* layout.tsxで定義したフォント変数を優先適用 */
-    font-family: var(--font-shippori), serif;
-    background-color: #fff;
-    color: #334155; /* slate-700 */
-  }
-  
-  /* 英語の見出しなどはこっちのフォントを優先 */
-  h1, h2, h3, h4, h5, h6, .font-serif {
-    font-family: var(--font-cormorant), var(--font-shippori), serif;
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
   }
 }
 
-/* スクロールバーも美しく（Webkit系） */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #0ABAB5; /* ティファニーブルー */
-  border-radius: 4px;
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }
