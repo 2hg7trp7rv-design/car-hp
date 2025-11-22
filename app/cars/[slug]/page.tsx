@@ -1,7 +1,7 @@
 // app/cars/[slug]/page.tsx
 import Link from "next/link";
 import { getCarBySlug } from "@/lib/cars";
-import { getNewsByCar } from "@/lib/news";
+import { getNewsByCar, type NewsItem } from "@/lib/news";
 
 type Props = {
   params: { slug: string };
@@ -21,7 +21,11 @@ export default async function CarDetailPage({ params }: Props) {
     );
   }
 
-  const relatedNews = await getNewsByCar(car.maker, car.name, 5);
+  // メーカー名と車名が両方あるときだけ関連記事を取得
+  let relatedNews: NewsItem[] = [];
+  if (car.maker && car.name) {
+    relatedNews = await getNewsByCar(car.maker, car.name, 5);
+  }
 
   return (
     <div className="space-y-6">
@@ -146,18 +150,16 @@ export default async function CarDetailPage({ params }: Props) {
                 <div className="flex items-start justify-between gap-2">
                   <div>
                     <p className="text-[11px] text-slate-400">
-                      {item.source ?? "ソース不明"}
-                      {item.publishedAt && ` ・ ${item.publishedAt}`}
+                      {item.sourceName ?? "CAR BOUTIQUE"}
+                      {item.publishedAt &&
+                        ` ・ ${new Date(item.publishedAt).toLocaleDateString(
+                          "ja-JP"
+                        )}`}
                     </p>
                     <p className="mt-0.5 text-xs font-semibold text-slate-50">
                       {item.title}
                     </p>
                   </div>
-                  {item.difficulty === "advanced" && (
-                    <span className="rounded-full bg-fuchsia-600 px-2 py-0.5 text-[10px] font-semibold text-white">
-                      マニアック寄り
-                    </span>
-                  )}
                 </div>
               </Link>
             ))}
