@@ -14,35 +14,33 @@ export default async function HomePage() {
     <div className="bg-gradient-to-r from-[#e4f4f7] via-white to-white">
       <main className="mx-auto flex max-w-5xl flex-col gap-10 px-4 pb-16 pt-8 md:px-6 md:pt-10">
         {/* ヒーロー: 画像全面＋上にテキスト */}
-        <section className="relative overflow-hidden rounded-3xl shadow-[0_24px_80px_rgba(15,23,42,0.35)]">
-          <div className="relative isolate">
-            <Image
-              src="/images/hero-sedan.jpg"
-              alt="クルマのスタジオライティング"
-              width={1600}
-              height={900}
-              priority
-              className="h-[280px] w-full object-cover md:h-[360px]"
-            />
+              {/* ヒーロー セクション：フル幅画像＋白い半透明カード */}
+      <section className="relative overflow-hidden rounded-[32px] bg-slate-900/40 shadow-[0_30px_80px_rgba(15,23,42,0.55)]">
+        {/* 背景画像＋ティファニーブルーのかぶせ */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[url('/images/hero-sedan.jpg')] bg-cover bg-center" />
+          {/* 画像を少し落ち着かせるダークレイヤー */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/30 to-black/10" />
+          {/* ティファニーブルーのグラデーションを上にかける */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#81d8d0]/40 via-transparent to-transparent mix-blend-screen" />
+        </div>
 
-            {/* 上からの暗めグラデーション */}
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/65 to-slate-900/25" />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent" />
-
-            {/* テキストブロック */}
-            <div className="relative z-10 flex h-full flex-col justify-center px-6 py-8 md:px-10 md:py-10">
-              <p className="text-[11px] font-semibold tracking-[0.28em] text-sky-200">
-                CAR BOUTIQUE
-              </p>
-              <h1 className="mt-3 text-2xl font-semibold leading-snug text-white md:text-3xl">
-                クルマを愉しむ人のためのカーサイト
-              </h1>
-              <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-100/90">
-                最新ニュース、試乗記、技術解説から中古車の目利きまで。派手な煽りよりも、上質な情報と読み心地のよさを大切にした静かなトーンのクルマメディアです。
-              </p>
-            </div>
+        {/* コンテンツ（白い半透明カード） */}
+        <div className="relative z-10 flex min-h-[360px] items-end px-6 py-10 sm:px-10 sm:py-14 lg:px-16">
+          <div className="max-w-xl rounded-3xl bg-white/75 p-6 backdrop-blur-md sm:p-8">
+            <p className="text-[11px] font-semibold tracking-[0.24em] text-sky-600">
+              CAR BOUTIQUE
+            </p>
+            <h1 className="mt-3 text-2xl font-semibold leading-snug text-slate-900 sm:text-3xl">
+              クルマを楽しむ人のためのカーサイト
+            </h1>
+            <p className="mt-4 text-[13px] leading-relaxed text-slate-700">
+              最新ニュース、試乗記、技術解説から中古車の目利きまで。
+            
+            </p>
           </div>
-        </section>
+        </div>
+      </section>
 
         {/* トップニュース（最新＋注目） */}
         <TopNewsSection latest={latest} featured={featured} />
