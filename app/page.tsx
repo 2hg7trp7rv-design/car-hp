@@ -19,23 +19,22 @@ export default async function HomePage({ searchParams }: Props) {
 
   return (
     <div className="space-y-10">
-      {/* ヒーローセクション：画像フル幅＋上に白いパネルとタブ */}
-      <section className="relative overflow-hidden rounded-[40px] bg-slate-900 shadow-[0_22px_70px_rgba(15,23,42,0.65)]">
+      {/* ヒーロー画像：フル幅、角丸なし */}
+      <section className="relative">
         <div
-          className="relative h-[430px] w-full md:h-[520px]"
+          className="relative h-[380px] w-full overflow-hidden md:h-[460px]"
           style={{
             backgroundImage: "url(/images/hero-sedan.jpg)",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         >
-          {/* 暗めグラデーションで文字を読みやすく */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-950/70 via-slate-950/35 to-slate-950/5" />
+          {/* 暗めグラデーションで読みやすく */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/65 via-slate-900/30 to-slate-900/5" />
 
-          {/* コピー＋タブを重ねるコンテナ */}
-          <div className="relative flex h-full flex-col justify-between px-5 pb-8 pt-10 md:px-12 md:pt-12 md:pb-10">
-            {/* コピー用ホワイトパネル */}
-            <div className="max-w-xl rounded-3xl bg-white/75 p-6 text-slate-900 shadow-[0_18px_55px_rgba(15,23,42,0.35)] backdrop-blur-md md:p-7">
+          {/* 画像の上に重ねるコピー用ホワイトパネル */}
+          <div className="relative flex h-full items-end px-4 pb-7 md:px-10 md:pb-10">
+            <div className="max-w-xl rounded-3xl bg-white/78 px-5 py-4 text-slate-900 shadow-[0_20px_60px_rgba(15,23,42,0.45)] backdrop-blur-md md:px-6 md:py-5">
               <p className="text-[11px] font-semibold tracking-[0.2em] text-sky-500">
                 CAR BOUTIQUE
               </p>
@@ -47,61 +46,65 @@ export default async function HomePage({ searchParams }: Props) {
                 上質な情報と読み心地のよさを大切にした静かなトーンのクルマメディアです。
               </p>
             </div>
+          </div>
+        </div>
 
-            {/* タブ（最新ニュース / 注目ニュース）も画像上に重ねる */}
-            <div className="mt-6 flex">
-              <div className="inline-flex rounded-full bg-white/60 p-1 text-[12px] shadow-[0_10px_35px_rgba(15,23,42,0.35)] backdrop-blur-md">
-                <Link
-                  href={{ pathname: "/", query: { tab: "latest" } }}
-                  className={`rounded-full px-4 py-1.5 font-semibold transition ${
-                    activeTab === "latest"
-                      ? "bg-slate-900 text-white"
-                      : "text-slate-700 hover:text-slate-900"
-                  }`}
-                >
-                  最新ニュース
-                </Link>
-                <Link
-                  href={{ pathname: "/", query: { tab: "featured" } }}
-                  className={`rounded-full px-4 py-1.5 font-semibold transition ${
-                    activeTab === "featured"
-                      ? "bg-slate-900 text-white"
-                      : "text-slate-700 hover:text-slate-900"
-                  }`}
-                >
-                  注目ニュース
-                </Link>
-              </div>
+        {/* タブ＋ニュースカード
+            画像の下端にかぶせるために、上方向マイナスマージンを使う */}
+        <div className="relative z-10 -mt-6 px-2 md:px-4">
+          {/* タブ自体も画像に少しかぶる位置 */}
+          <div className="mb-3 flex">
+            <div className="inline-flex rounded-full bg-white/80 p-1 text-[12px] shadow-[0_14px_40px_rgba(15,23,42,0.25)] backdrop-blur-md">
+              <Link
+                href={{ pathname: "/", query: { tab: "latest" } }}
+                className={`rounded-full px-4 py-1.5 font-semibold transition ${
+                  activeTab === "latest"
+                    ? "bg-slate-900 text-white"
+                    : "text-slate-700 hover:text-slate-900"
+                }`}
+              >
+                最新ニュース
+              </Link>
+              <Link
+                href={{ pathname: "/", query: { tab: "featured" } }}
+                className={`rounded-full px-4 py-1.5 font-semibold transition ${
+                  activeTab === "featured"
+                    ? "bg-slate-900 text-white"
+                    : "text-slate-700 hover:text-slate-900"
+                }`}
+              >
+                注目ニュース
+              </Link>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ニュースリスト */}
-      <section className="space-y-4">
-        <div className="flex items-baseline justify-between px-1">
-          <h2 className="text-sm font-semibold text-slate-800">
-            {activeTab === "latest" ? "最新ニュース" : "注目ニュース"}
-          </h2>
-          <Link
-            href="/news"
-            className="text-[12px] text-sky-700 underline-offset-2 hover:text-sky-500 hover:underline"
-          >
-            ニュース一覧へ
-          </Link>
-        </div>
+          {/* ニュースリスト */}
+          <section className="space-y-4">
+            <div className="flex items-baseline justify-between px-1">
+              <h2 className="text-sm font-semibold text-slate-800">
+                {activeTab === "latest" ? "最新ニュース" : "注目ニュース"}
+              </h2>
+              <Link
+                href="/news"
+                className="text-[12px] text-sky-700 underline-offset-2 hover:text-sky-500 hover:underline"
+              >
+                ニュース一覧へ
+              </Link>
+            </div>
 
-        {activeList.length === 0 ? (
-          <p className="px-1 text-xs text-slate-500">
-            まだニュースが取得できていません。しばらくしてからもう一度ご覧ください。
-          </p>
-        ) : (
-          <div className="space-y-3">
-            {activeList.map((item) => (
-              <HomeNewsCard key={item.id} item={item} />
-            ))}
-          </div>
-        )}
+            {activeList.length === 0 ? (
+              <p className="px-1 text-xs text-slate-500">
+                まだニュースが取得できていません。しばらくしてからもう一度ご覧ください。
+              </p>
+            ) : (
+              <div className="space-y-3">
+                {activeList.map((item) => (
+                  <HomeNewsCard key={item.id} item={item} />
+                ))}
+              </div>
+            )}
+          </section>
+        </div>
       </section>
     </div>
   );
@@ -133,7 +136,7 @@ function HomeNewsCard({ item }: { item: NewsItem }) {
       href={href}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noreferrer" : undefined}
-      className="block rounded-[32px] border border-sky-50 bg-white/90 p-4 shadow-[0_18px_55px_rgba(15,23,42,0.18)] transition hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-[0_22px_65px_rgba(15,23,42,0.25)] backdrop-blur"
+      className="block rounded-[32px] border border-sky-50 bg-white/95 p-4 shadow-[0_18px_55px_rgba(15,23,42,0.2)] transition hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-[0_22px_65px_rgba(15,23,42,0.28)] backdrop-blur"
     >
       <div className="flex items-start justify-between gap-2">
         <div className="space-y-2">
