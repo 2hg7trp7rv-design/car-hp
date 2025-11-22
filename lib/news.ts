@@ -1,8 +1,14 @@
 // lib/news.ts
 import { Client } from "@notionhq/client";
-import { unstable_cache } from "next/cache"; // キャッシュ機能のインポート
+import { unstable_cache } from "next/cache";
+import { getDatabaseIdByTitle } from "@/lib/notion";
 
-// --- 既存の型定義などは維持 ---
+// Notionクライアントの初期化
+// ※もし lib/notion.ts から notion を export している場合は import { notion } from "@/lib/notion" に変えてもOKです
+const notion = new Client({
+  auth: process.env.NOTION_TOKEN,
+});
+
 export type NewsItem = {
   id: string;
   title: string;
@@ -15,41 +21,95 @@ export type NewsItem = {
   sourceName?: string;
   sourceUrl?: string;
   type: "original" | "external";
-  content?: string; // 本文（originalの場合）
+  content?: string;
+  // 車種紐付け用（タグなどに車名が含まれると想定）
+  tags?: string[];
 };
 
-// Notionクライアントの初期化（lib/notion.tsがあればそちらを使用推奨ですが、ここでは便宜上記述）
-const notion = new Client({
-  auth: process.env.NOTION_TOKEN,
-});
-const DATABASE_ID = process.env.NOTION_DATABASE_ID; // 環境変数を確認してください
-
 /**
- * ニュース全件取得（キャッシュ対応版）
- * 1時間(3600秒)キャッシュし、高速化を図る
+ * Notionからニュース全件を取得し、キャッシュする関数
+ * これが全てのデータ取得の基盤となります。
  */
 export const getAllNewsCached = unstable_cache(
   async () => {
-    if (!DATABASE_ID) return [];
-    
-    // ※実際の実装ではここでNotion APIを叩くロジックが入ります
-    // 既存のgetLatestNewsの中身をここに移植するイメージです
-    // ここではデモ用に既存関数をラップする形を想定
-    return await fetchFromNotion(); 
+    try {
+      const databaseId = await getDatabaseIdByTitle("News");
+      
+      const response = await notion.databases.query({
+        database_id: databaseId,
+        sorts: [{ property: "PublishedAt", direction: "descending" }],
+        page_size: 100, // 必要に応じて増やしてください
+      });
+
+      return response.results.map((page: any) => {
+        const props = page.properties;
+        
+        // Notionのプロパティ名に合わせてデータをマッピング
+        // ※プロパティ名(Name, TitleJaなど)がご自身のNotionと異なる場合は修正してください
+        return {
+          id: page.id,
+          title: props.Name?.title?.[0]?.plain_text ?? "No Title",
+          titleJa: props.TitleJa?.rich_text?.[0]?.plain_text,
+          publishedAt: props.PublishedAt?.date?.start,
+          excerpt: props.Excerpt?.rich_text?.[0]?.plain_text,
+          category: props.Category?.select?.name,
+          sourceName: props.SourceName?.select?.name,
+          sourceUrl: props.SourceUrl?.url,
+          type: props.Type?.select?.name === "External" ? "external" : "original",
+          tags: props.Tags?.multi_select?.map((t: any) => t.name) || [],
+          content: "", // 一覧取得時は本文は空でOK
+        } as NewsItem;
+      });
+    } catch (error) {
+      console.error("Failed to fetch news:", error);
+      return [];
+    }
   },
-  ['all-news-cache'],
-  { revalidate: 3600, tags: ['news'] }
+  ['all-news-list'], // キャッシュキー
+  { revalidate: 3600, tags: ['news'] } // 1時間キャッシュ
 );
 
-// ※既存の fetchFromNotion (または getLatestNews) ロジックが必要です
-async function fetchFromNotion(): Promise<NewsItem[]> {
-    // ... 既存のNotionデータ取得ロジック ...
-    // ここは既存のコードを維持してください
-    return []; 
+/**
+ * 既存機能の互換実装
+ * キャッシュされたデータからフィルタリングして返します
+ */
+
+// 最新ニュースを取得
+export async function getLatestNews(limit: number = 10): Promise<NewsItem[]> {
+  const all = await getAllNewsCached();
+  return all.slice(0, limit);
 }
 
+// ID指定で取得
+export async function getNewsById(id: string): Promise<NewsItem | null> {
+  const all = await getAllNewsCached();
+  const found = all.find((item) => item.id === id);
+  
+  if (found) {
+    // Original記事の場合、詳細（本文）が必要ならここで別途取得するロジックを追加可能
+    // 今回はビルドを通すため、見つかったデータをそのまま返します
+    return found;
+  }
+  return null;
+}
 
-// --- 新規追加: ページネーション用ロジック ---
+// 車種に関連するニュースを取得 (app/cars/[slug]/page.tsxで使用)
+export async function getNewsByCar(slug: string): Promise<NewsItem[]> {
+  const all = await getAllNewsCached();
+  const lowerSlug = slug.toLowerCase();
+  
+  return all.filter((item) => {
+    // タグ、タイトル、本文に車種名が含まれているかチェック
+    const inTitle = item.title?.toLowerCase().includes(lowerSlug);
+    const inExcerpt = item.excerpt?.toLowerCase().includes(lowerSlug);
+    const inTags = item.tags?.some(t => t.toLowerCase().includes(lowerSlug));
+    return inTitle || inExcerpt || inTags;
+  });
+}
+
+/**
+ * 新機能: ページネーションと検索
+ */
 
 export type PaginationMeta = {
   currentPage: number;
@@ -64,12 +124,10 @@ export type PaginatedNewsResult = {
   meta: PaginationMeta;
 };
 
-const ITEMS_PER_PAGE = 12; // デザインバランスを考慮して12件
+const ITEMS_PER_PAGE = 12;
 
 export async function getPaginatedNews(page: number = 1): Promise<PaginatedNewsResult> {
-  // キャッシュされた全データからスライスして取得
-  // (小〜中規模サイトならこれが最も高速でAPI制限にかかりにくい)
-  const allNews = await getAllNewsCached(); 
+  const allNews = await getAllNewsCached();
   
   const totalItems = allNews.length;
   const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
@@ -92,7 +150,6 @@ export async function getPaginatedNews(page: number = 1): Promise<PaginatedNewsR
   };
 }
 
-// 検索用インデックス（軽量データ）を取得する関数
 export async function getSearchIndex() {
   const allNews = await getAllNewsCached();
   return allNews.map(item => ({
