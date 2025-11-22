@@ -18,7 +18,7 @@ export type NewsItem = {
   sourceUrl?: string; // 元記事URL
 };
 
-// ダミーデータ（オリジナル記事の例）
+// オリジナル記事のダミーデータ
 const staticNewsItems: NewsItem[] = [
   {
     id: "quiet-long-drive-sedan",
@@ -83,13 +83,12 @@ const staticNewsItems: NewsItem[] = [
   },
 ];
 
-// Car Watch のRSSから外部ニュースを取得（ビルド時に実行）
+// Car WatchのRSSから外部ニュースを取得（ビルド時に実行）
 async function fetchCarWatchNews(limit = 10): Promise<NewsItem[]> {
   try {
     const res = await fetch(
       "https://car.watch.impress.co.jp/data/rss/1.0/car/feed.rdf",
       {
-        // 毎回新鮮な情報を取りにいく（ビルド時なので問題なし）
         cache: "no-store",
       }
     );
@@ -100,7 +99,7 @@ async function fetchCarWatchNews(limit = 10): Promise<NewsItem[]> {
 
     const xml = await res.text();
 
-    // <item>ごとにざっくり分割
+    // itemごとに分割
     const rawItems = xml.split("<item").slice(1);
 
     const parsed: NewsItem[] = [];
@@ -111,13 +110,14 @@ async function fetchCarWatchNews(limit = 10): Promise<NewsItem[]> {
       const title = matchTag(block, "title");
       const link = matchTag(block, "link");
       const date =
-        matchTag(block, "dc:date") ?? new Date().toISOString().slice(0, 19) + "+09:00";
+        matchTag(block, "dc:date") ??
+        new Date().toISOString().slice(0, 19) + "+09:00";
 
       if (!title || !link) {
         continue;
       }
 
-      // タイトルから簡易スラッグ生成（日本語混じりでも動く程度）
+      // タイトルから簡易スラッグ生成
       const baseSlug = title
         .toLowerCase()
         .replace(/[\s、。・「」『』【】()（）[\]{}<>]/g, "-")
@@ -149,31 +149,30 @@ async function fetchCarWatchNews(limit = 10): Promise<NewsItem[]> {
 
     return parsed;
   } catch {
-    // 取得に失敗してもサイト全体が落ちないようにする
+    // 取得失敗時もサイト全体が落ちないように空配列を返す
     return [];
   }
 }
 
 // シンプルなタグ抽出ヘルパー
 function matchTag(block: string, tag: string): string | undefined {
-  // <title>...</title> みたいな単純なタグだけを対象
   const re = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i");
   const m = block.match(re);
   if (!m) return undefined;
 
-  // CDATA 対応（あれば外す）
   const raw = m[1].trim();
-  const cdata = raw.match(/^<!\[CDATA\[(.*)\]\]>$/s);
+
+  // CDATA対応（あれば外す）  sフラグは使わず[\s\S]で代用
+  const cdata = raw.match(/^<!\[CDATA\[([\s\S]*)\]\]>$/);
   if (cdata) {
     return cdata[1].trim();
   }
   return raw;
 }
 
-// ニュース一覧取得（オリジナル＋Car Watch RSS）
+// ニュース一覧取得（オリジナル＋Car Watch）
 export async function getLatestNews(limit?: number): Promise<NewsItem[]> {
   const staticItems = [...staticNewsItems];
-
   const externalFromCarWatch = await fetchCarWatchNews(20);
 
   const merged = [...staticItems, ...externalFromCarWatch];
