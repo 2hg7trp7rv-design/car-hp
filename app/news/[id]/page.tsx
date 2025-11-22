@@ -63,11 +63,13 @@ export default async function NewsDetailPage({ params }: Props) {
   }
 
   const displayTitle = item.titleJa ?? item.title;
-  const dateLabel = new Date(item.publishedAt).toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  });
+const dateLabel = item.publishedAt
+  ? new Date(item.publishedAt).toLocaleDateString("ja-JP", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    })
+  : "";
   const isExternal = item.type === "external";
 
   return (
