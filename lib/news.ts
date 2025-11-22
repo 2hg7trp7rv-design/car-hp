@@ -21,7 +21,6 @@ export type NewsItem = {
 // ダミーデータ（外部ニュース＋オリジナル記事の例）
 const newsItems: NewsItem[] = [
   {
-     {
     id: "quiet-long-drive-sedan",
     type: "original",
     title: "静かな長距離ドライブに向くミドルサイズセダンを考える",
