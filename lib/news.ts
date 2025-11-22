@@ -117,3 +117,19 @@ export async function getNewsById(id: string): Promise<NewsItem | null> {
   const items = await getLatestNews();
   return items.find((item) => item.id === id) ?? null;
 }
+
+export async function getNewsByCar(slug: string): Promise<NewsItem[]> {
+  const key = slug.toLowerCase();
+
+  const items = await getLatestNews();
+
+  return items.filter((item) => {
+    const maker = item.maker ?? "";
+    const tags = Array.isArray(item.tags) ? item.tags.join(" ") : "";
+    const title = item.title ?? "";
+
+    const text = `${maker} ${title} ${tags}`.toLowerCase();
+
+    return text.includes(key);
+  });
+}
