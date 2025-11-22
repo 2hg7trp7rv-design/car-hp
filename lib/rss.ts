@@ -1,6 +1,15 @@
 // lib/rss.ts
 import Parser from "rss-parser";
-import type { NewsItem } from "@/lib/news";
+
+export type RssArticle = {
+  id: string;
+  title: string;
+  link?: string;
+  publishedAt?: string;
+  excerpt?: string;
+  sourceName: string;
+  category?: string;
+};
 
 type RssFeedConfig = {
   url: string;
@@ -11,23 +20,27 @@ type RssFeedConfig = {
 const rssFeeds: RssFeedConfig[] = [
   {
     // 好きなRSSに差し替え可
-    url: process.env.RSS_FEED_1 || "https://response.jp/rss/index.rdf",
+    url: "https://response.jp/rss/index.rdf",
     sourceName: "Response.jp",
-    defaultCategory: "ニュース",
+    defaultCategory: "News",
   },
+  // ここにフィードを増やせる
+  // {
+  //   url: "https://car.watch.impress.co.jp/data/rss/1.0/ipw/feed.rdf",
+  //   sourceName: "Car Watch",
+  //   defaultCategory: "News",
+  // },
 ];
 
 const parser = new Parser();
 
 function createStableId(base: string): string {
   const normalized = encodeURIComponent(base).replace(/%/g, "-");
-  return `rss-${normalized.slice(0, 50)}`;
+  return `rss-${normalized.slice(0, 60)}`;
 }
 
-export async function fetchRssNews(
-  limitPerFeed: number = 10,
-): Promise<NewsItem[]> {
-  const collected: NewsItem[] = [];
+export async function fetchRssArticles(limitPerFeed: number = 20): Promise<RssArticle[]> {
+  const collected: RssArticle[] = [];
 
   for (const feed of rssFeeds) {
     if (!feed.url) continue;
@@ -50,23 +63,17 @@ export async function fetchRssNews(
         const publishedAt: string | undefined =
           anyItem.isoDate || anyItem.pubDate || undefined;
 
-        const newsItem: NewsItem = {
+        const article: RssArticle = {
           id: createStableId(idBase),
           title: anyItem.title || "No title",
-          titleJa: anyItem.title || "No title",
-          slug: undefined,
+          link: anyItem.link,
           publishedAt,
           excerpt: anyItem.contentSnippet || anyItem.content || "",
-          coverImage: undefined,
-          category: feed.defaultCategory,
           sourceName: feed.sourceName,
-          sourceUrl: anyItem.link,
-          type: "external",
-          content: "",
-          tags: [],
+          category: feed.defaultCategory,
         };
 
-        collected.push(newsItem);
+        collected.push(article);
       }
     } catch (error) {
       console.error("Failed to fetch RSS feed:", feed.url, error);
