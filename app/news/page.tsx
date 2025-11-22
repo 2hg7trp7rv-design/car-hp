@@ -2,239 +2,206 @@
 import Link from "next/link";
 import { getLatestNews, type NewsItem } from "@/lib/news";
 
-type Props = {
-  searchParams?: {
-    q?: string;
-    category?: string;
-    maker?: string;
-    tag?: string;
-  };
-};
+function formatDate(dateStr?: string) {
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  if (Number.isNaN(d.getTime())) return "";
+  return d.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+}
 
-export default async function NewsArchivePage({ searchParams }: Props) {
-  const qRaw = searchParams?.q ?? "";
-  const q = qRaw.trim().toLowerCase();
+function getDisplayTitle(item: NewsItem) {
+  return item.titleJa ?? item.title;
+}
 
-  const categoryFilter = searchParams?.category ?? "";
-  const makerFilter = searchParams?.maker ?? "";
-  const tagFilter = searchParams?.tag ?? "";
+function getSourceLabel(item: NewsItem) {
+  if (item.type === "original") return "Original";
+  return item.sourceName ?? "External";
+}
 
+export default async function NewsPage() {
   const items = await getLatestNews();
 
-  const categories = Array.from(
-    new Set(items.map((i) => i.category).filter(Boolean))
-  ) as string[];
+  if (!items || items.length === 0) {
+    return (
+      <main className="bg-gradient-to-r from-sky-50/70 via-white to-white">
+        <div className="mx-auto max-w-5xl px-4 py-10">
+          <h1 className="text-xl font-semibold text-slate-900">ニュース</h1>
+          <p className="mt-2 text-sm text-slate-600">
+            まだニュースが登録されていません。
+          </p>
+        </div>
+      </main>
+    );
+  }
 
-  const makers = Array.from(
-    new Set(items.map((i) => i.maker).filter(Boolean))
-  ) as string[];
-
-  const tags = Array.from(
-    new Set(
-      items.flatMap((i) => (Array.isArray(i.tags) ? i.tags : [])).filter(Boolean)
-    )
-  ) as string[];
-
-  const filtered = items.filter((item) => {
-    const text = [
-      item.title,
-      item.titleJa,
-      item.excerpt,
-      item.category,
-      item.maker,
-      Array.isArray(item.tags) ? item.tags.join(" ") : "",
-    ]
-      .filter(Boolean)
-      .join(" ")
-      .toLowerCase();
-
-    if (q && !text.includes(q)) return false;
-    if (categoryFilter && item.category !== categoryFilter) return false;
-    if (makerFilter && item.maker !== makerFilter) return false;
-    if (tagFilter && !(item.tags ?? []).includes(tagFilter)) return false;
-
-    return true;
-  });
+  const [lead, ...rest] = items;
+  const secondary = rest.slice(0, 4);
+  const others = rest.slice(4);
 
   return (
-    <div className="bg-gradient-to-r from-[#e4f4f7] via-white to-white">
-      <main className="mx-auto flex max-w-5xl flex-col gap-8 px-4 pb-16 pt-10 md:px-6">
-        {/* ヘッダーカード */}
-        <section className="rounded-3xl border border-sky-50 bg-white/80 p-6 shadow-[0_26px_70px_rgba(15,23,42,0.12)] backdrop-blur">
-          <p className="text-[11px] font-semibold tracking-[0.28em] text-sky-500">
+    <main className="bg-gradient-to-r from-sky-50/70 via-white to-white min-h-screen">
+      <div className="mx-auto max-w-5xl px-4 py-8 space-y-10">
+        {/* ページヘッダー */}
+        <header className="space-y-2">
+          <p className="text-[11px] tracking-[0.25em] text-sky-500">
             CAR BOUTIQUE JOURNAL
           </p>
-          <h1 className="mt-3 text-xl font-semibold text-slate-900">
-            ニュース一覧
+          <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+            ニュース
           </h1>
-          <p className="mt-3 text-[13px] leading-relaxed text-slate-600">
-            静かなトーンでまとめたクルマのニュースアーカイブ。メーカーやカテゴリーで絞り込みながら、気になるトピックをゆっくりと眺めることができます。
+          <p className="mt-1 text-sm leading-relaxed text-slate-600">
+            クルマにまつわる最新トピックを、静かなトーンでまとめたニュースページです。
+            大きな見出しでいま押さえておきたい記事を、その下に時系列で一覧表示します。
           </p>
-        </section>
+        </header>
 
-        {/* 絞り込み＋リスト */}
-        <section className="space-y-4">
-          <div className="rounded-3xl border border-slate-100 bg-white/85 p-4 shadow-[0_20px_55px_rgba(15,23,42,0.10)] backdrop-blur">
-            <form className="grid gap-4 md:grid-cols-3">
-              <div className="md:col-span-3">
-                <label className="block text-[11px] font-semibold tracking-wide text-slate-500">
-                  KEYWORD
-                </label>
-                <input
-                  name="q"
-                  defaultValue={qRaw}
-                  placeholder="モデル名やキーワードで検索"
-                  className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/70 px-4 py-2 text-[13px] text-slate-800 outline-none ring-0 placeholder:text-slate-400 focus:border-sky-400 focus:bg-white focus:ring-2 focus:ring-sky-100"
-                />
+        {/* トップニュース＋サブヘッドライン */}
+        <section className="grid gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1.3fr)] items-stretch">
+          {/* トップニュース（大きなカード） */}
+          <Link
+            href={`/news/${encodeURIComponent(lead.id)}`}
+            className="group relative overflow-hidden rounded-3xl bg-slate-900 text-white shadow-xl"
+          >
+            {/* 背景：ティファニーブルーグラデーション */}
+            <div className="absolute inset-0 bg-gradient-to-r from-sky-200 via-sky-100 to-white" />
+            {/* オーバーレイ（少し暗くして文字を読みやすく） */}
+            <div className="absolute inset-0 bg-slate-950/35" />
+
+            <div className="relative flex h-full flex-col justify-end p-6 md:p-8 space-y-4">
+              <div className="flex items-center gap-2 text-[11px]">
+                <span className="rounded-full bg-sky-500/80 px-3 py-0.5 font-semibold uppercase tracking-wide">
+                  Top News
+                </span>
+                <span className="rounded-full bg-white/15 px-3 py-0.5 text-[10px]">
+                  {getSourceLabel(lead)}
+                </span>
+                {lead.category && (
+                  <span className="rounded-full bg-white/8 px-3 py-0.5 text-[10px]">
+                    {lead.category}
+                  </span>
+                )}
               </div>
 
-              <div>
-                <label className="block text-[11px] font-semibold tracking-wide text-slate-500">
-                  CATEGORY
-                </label>
-                <select
-                  name="category"
-                  defaultValue={categoryFilter}
-                  className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/70 px-3 py-2 text-[13px] text-slate-800 outline-none ring-0 focus:border-sky-400 focus:bg-white focus:ring-2 focus:ring-sky-100"
+              <h2 className="text-lg font-semibold leading-snug md:text-xl">
+                {getDisplayTitle(lead)}
+              </h2>
+
+              {lead.excerpt && (
+                <p className="text-[13px] leading-relaxed text-slate-100/90 line-clamp-3">
+                  {lead.excerpt}
+                </p>
+              )}
+
+              <div className="mt-2 flex items-center justify-between text-[11px] text-slate-100/80">
+                <span>{formatDate(lead.publishedAt)}</span>
+                <span className="inline-flex items-center gap-1 text-sky-50 group-hover:text-sky-100">
+                  記事の詳細へ
+                  <span aria-hidden>→</span>
+                </span>
+              </div>
+            </div>
+          </Link>
+
+          {/* サブヘッドライン（リスト） */}
+          <div className="space-y-3 rounded-3xl bg-white/80 p-4 shadow-sm ring-1 ring-sky-100/70 backdrop-blur">
+            <div className="flex items-center justify-between">
+              <p className="text-[12px] font-semibold tracking-[0.16em] text-slate-500">
+                HEADLINES
+              </p>
+              <Link
+                href="/news/archive"
+                className="text-[11px] text-sky-500 hover:text-sky-600"
+              >
+                過去のニュース一覧へ
+              </Link>
+            </div>
+
+            <div className="divide-y divide-slate-100">
+              {secondary.map((item) => (
+                <Link
+                  key={item.id}
+                  href={`/news/${encodeURIComponent(item.id)}`}
+                  className="group flex flex-col gap-1 py-3"
                 >
-                  <option value="">すべて</option>
-                  {categories.map((c) => (
-                    <option key={c} value={c}>
-                      {c}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-semibold tracking-wide text-slate-500">
-                  MAKER
-                </label>
-                <select
-                  name="maker"
-                  defaultValue={makerFilter}
-                  className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/70 px-3 py-2 text-[13px] text-slate-800 outline-none ring-0 focus:border-sky-400 focus:bg-white focus:ring-2 focus:ring-sky-100"
-                >
-                  <option value="">すべて</option>
-                  {makers.map((m) => (
-                    <option key={m} value={m}>
-                      {m}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-semibold tracking-wide text-slate-500">
-                  TAG
-                </label>
-                <select
-                  name="tag"
-                  defaultValue={tagFilter}
-                  className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/70 px-3 py-2 text-[13px] text-slate-800 outline-none ring-0 focus:border-sky-400 focus:bg-white focus:ring-2 focus:ring-sky-100"
-                >
-                  <option value="">すべて</option>
-                  {tags.map((t) => (
-                    <option key={t} value={t}>
-                      {t}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="md:col-span-3 flex justify-end">
-                <button
-                  type="submit"
-                  className="rounded-full bg-sky-600 px-6 py-2 text-[12px] font-semibold text-white shadow-sm shadow-sky-200/80 transition hover:bg-sky-700"
-                >
-                  絞り込む
-                </button>
-              </div>
-            </form>
-          </div>
-
-          <div className="space-y-3">
-            <p className="text-[11px] text-slate-500">
-              全{filtered.length}件の記事
-            </p>
-
-            <div className="space-y-3">
-              {filtered.map((item) => (
-                <NewsCard key={item.id} item={item} />
+                  <div className="flex items-center gap-2 text-[10px]">
+                    <span className="rounded-full bg-slate-900/5 px-2 py-0.5 text-slate-600">
+                      {getSourceLabel(item)}
+                    </span>
+                    {item.category && (
+                      <span className="rounded-full bg-sky-50 px-2 py-0.5 text-sky-600">
+                        {item.category}
+                      </span>
+                    )}
+                    <span className="text-slate-400">
+                      {formatDate(item.publishedAt)}
+                    </span>
+                  </div>
+                  <p className="text-[13px] font-medium leading-snug text-slate-900 group-hover:text-sky-700">
+                    {getDisplayTitle(item)}
+                  </p>
+                </Link>
               ))}
             </div>
           </div>
         </section>
-      </main>
-    </div>
-  );
-}
 
-function NewsCard({ item }: { item: NewsItem }) {
-  const displayTitle = item.titleJa ?? item.title;
-  const dateLabel = item.publishedAt
-    ? new Date(item.publishedAt).toLocaleDateString("ja-JP")
-    : "";
+        {/* 下部：通常の一覧（Car Watchのリスト部分イメージ） */}
+        <section className="space-y-3">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-slate-900">
+              最新の記事一覧
+            </h2>
+            <p className="text-[11px] text-slate-500">
+              発行日の新しい順に最大20件まで表示します。
+            </p>
+          </div>
 
-  const isExternal = item.type === "external";
+          <div className="space-y-3">
+            {others.map((item) => (
+              <Link
+                key={item.id}
+                href={`/news/${encodeURIComponent(item.id)}`}
+                className="group block rounded-2xl bg-white/80 p-4 text-sm shadow-sm ring-1 ring-slate-100/80 backdrop-blur-sm hover:ring-sky-200"
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex flex-wrap items-center gap-2 text-[11px]">
+                    <span className="rounded-full bg-slate-900/5 px-2 py-0.5 text-slate-600">
+                      {getSourceLabel(item)}
+                    </span>
+                    {item.category && (
+                      <span className="rounded-full bg-sky-50 px-2 py-0.5 text-sky-700">
+                        {item.category}
+                      </span>
+                    )}
+                    {item.maker && (
+                      <span className="rounded-full bg-slate-100 px-2 py-0.5 text-slate-600">
+                        {item.maker}
+                      </span>
+                    )}
+                  </div>
+                  <span className="text-[11px] text-slate-400">
+                    {formatDate(item.publishedAt)}
+                  </span>
+                </div>
 
-  const href =
-    item.type === "external" && item.sourceUrl
-      ? item.sourceUrl
-      : `/news/${encodeURIComponent(item.id)}`;
+                <p className="mt-2 text-[13px] font-medium leading-snug text-slate-900 group-hover:text-sky-700">
+                  {getDisplayTitle(item)}
+                </p>
 
-  const linkProps =
-    item.type === "external" && item.sourceUrl
-      ? { target: "_blank", rel: "noreferrer" }
-      : {};
-
-  const typeBadgeClass = isExternal
-    ? "bg-[#d7f5f5] text-[#007c7c]"
-    : "bg-slate-100 text-slate-500";
-
-  return (
-    <a
-      href={href}
-      {...linkProps}
-      className="block rounded-3xl border border-slate-100 bg-white/85 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.08)] backdrop-blur transition hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-[0_22px_60px_rgba(15,23,42,0.16)]"
-    >
-      <div className="mb-3 flex flex-wrap items-center gap-2 text-[11px]">
-        {item.sourceName && (
-          <span className="rounded-full bg-sky-900/90 px-3 py-1 text-[10px] font-semibold tracking-wide text-sky-50">
-            {item.sourceName}
-          </span>
-        )}
-        <span
-          className={
-            "rounded-full px-3 py-1 text-[10px] font-semibold tracking-wide " +
-            typeBadgeClass
-          }
-        >
-          {isExternal ? "External" : "Original"}
-        </span>
-        {item.category && (
-          <span className="rounded-full bg-slate-50 px-2.5 py-1 text-[10px] font-medium text-slate-500">
-            {item.category}
-          </span>
-        )}
+                {item.excerpt && (
+                  <p className="mt-1 text-[12px] leading-relaxed text-slate-600 line-clamp-2">
+                    {item.excerpt}
+                  </p>
+                )}
+              </Link>
+            ))}
+          </div>
+        </section>
       </div>
-
-      <p className="text-sm font-semibold leading-relaxed text-slate-900">
-        {displayTitle}
-      </p>
-
-      {item.excerpt && (
-        <p className="mt-2 text-[11px] leading-relaxed text-slate-500">
-          {item.excerpt}
-        </p>
-      )}
-
-      <div className="mt-3 flex items-center justify-between text-[11px] text-slate-400">
-        <span className="truncate">
-          {item.maker ?? item.sourceName ?? "car boutique"}
-        </span>
-        {dateLabel && <span>{dateLabel}</span>}
-      </div>
-    </a>
+    </main>
   );
 }
