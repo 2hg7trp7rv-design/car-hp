@@ -7,181 +7,121 @@ type Props = {
 };
 
 export default async function NewsDetailPage({ params }: Props) {
-  const item = (await getNewsById(params.id)) as NewsItem | null;
+  const item = await getNewsById(params.id);
 
   if (!item) {
     return (
-      <div className="relative min-h-screen bg-white">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(129,216,208,0.65) 0%, rgba(129,216,208,0.65) 70%, #ffffff 100%)",
-          }}
-        />
-        <div className="relative z-10 mx-auto flex min-h-[60vh] max-w-3xl items-center justify-center px-4">
-          <p className="text-sm text-neutral-600">
-            記事が見つかりませんでした。
+      <div className="bg-gradient-to-r from-[#e4f4f7] via-white to-white">
+        <main className="mx-auto max-w-3xl px-4 pb-16 pt-10 md:px-6">
+          <p className="text-sm text-slate-600">
+            指定されたニュースが見つかりませんでした。
           </p>
-        </div>
+          <div className="mt-4">
+            <Link
+              href="/news"
+              className="text-[13px] font-semibold text-sky-700 hover:text-sky-500"
+            >
+              ニュース一覧へ戻る
+            </Link>
+          </div>
+        </main>
       </div>
     );
   }
 
-  const date = item.publishedAt.slice(0, 10);
-  const tags = Array.isArray(item.tags) ? item.tags : [];
+  const displayTitle = item.titleJa ?? item.title;
+  const dateLabel = item.publishedAt
+    ? new Date(item.publishedAt).toLocaleDateString("ja-JP", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      })
+    : "";
+
   const isExternal = item.type === "external";
 
   return (
-    <div className="relative min-h-screen bg-white">
-      {/* 背景 Tiffany グラデーション */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(129,216,208,0.65) 0%, rgba(129,216,208,0.65) 70%, #ffffff 100%)",
-        }}
-      />
+    <div className="bg-gradient-to-r from-[#e4f4f7] via-white to-white">
+      <main className="mx-auto max-w-3xl px-4 pb-16 pt-10 md:px-6">
+        <article className="rounded-3xl border border-slate-100 bg-white/90 p-6 shadow-[0_26px_70px_rgba(15,23,42,0.14)] backdrop-blur">
+          <p className="text-[11px] font-semibold tracking-[0.28em] text-sky-500">
+            CAR BOUTIQUE JOURNAL
+          </p>
 
-      <div className="relative z-10">
-        <div className="mx-auto max-w-3xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
-          {/* パンくず */}
-          <nav className="text-[11px] text-neutral-500">
-            <Link
-              href="/"
-              className="hover:text-neutral-700 hover:underline underline-offset-4"
-            >
-              Home
-            </Link>
-            <span className="mx-1">/</span>
-            <Link
-              href="/news"
-              className="hover:text-neutral-700 hover:underline underline-offset-4"
-            >
-              News
-            </Link>
-          </nav>
+          <h1 className="mt-3 text-xl font-semibold text-slate-900">
+            {displayTitle}
+          </h1>
 
-          {/* 記事ヘッダー */}
-          <header className="mt-4 rounded-2xl border border-neutral-200 bg-white/90 p-5 shadow-sm shadow-neutral-100 backdrop-blur">
-            <div className="flex flex-wrap items-center gap-2">
-              <p className="text-[10px] uppercase tracking-[0.25em] text-sky-600">
-                {item.category ?? "NEWS"}
-              </p>
-              <span
-                className={
-                  "rounded-full px-2 py-[1px] text-[9px] tracking-[0.18em] " +
-                  (isExternal
-                    ? "border border-sky-400 bg-sky-50 text-sky-700"
-                    : "border border-neutral-300 bg-neutral-50 text-neutral-700")
-                }
-              >
-                {isExternal ? "EXTERNAL" : "ORIGINAL"}
+          <div className="mt-3 flex flex-wrap items-center gap-2 text-[11px] text-slate-500">
+            {item.sourceName && (
+              <span className="rounded-full bg-sky-900/90 px-3 py-1 text-[10px] font-semibold tracking-wide text-sky-50">
+                {item.sourceName}
               </span>
-              {item.maker && (
-                <span className="rounded-full border border-neutral-200 bg-neutral-50 px-2 py-[2px] text-[10px] text-neutral-600">
-                  {item.maker}
-                </span>
-              )}
-              {isExternal && item.sourceName && (
-                <span className="text-[10px] text-neutral-500">
-                  出典:{item.sourceName}
-                </span>
-              )}
-            </div>
-
-            <h1 className="mt-2 text-lg font-semibold tracking-tight text-neutral-900 sm:text-xl">
-              {item.title}
-            </h1>
-
-            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-neutral-500">
-              {date && <span>{date}</span>}
-              {tags.length > 0 && (
-                <span className="flex flex-wrap gap-1">
-                  {tags.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full bg-neutral-100 px-2 py-[2px] text-[10px] text-neutral-500"
-                    >
-                      #{t}
-                    </span>
-                  ))}
-                </span>
-              )}
-            </div>
-          </header>
-
-          {/* 記事本文カード */}
-          <article className="mt-5 rounded-2xl border border-neutral-200 bg-white/95 p-5 text-sm leading-relaxed text-neutral-800 shadow-sm shadow-neutral-100 backdrop-blur">
-            {item.excerpt && (
-              <p className="text-[13px] font-medium text-neutral-800">
-                {item.excerpt}
-              </p>
             )}
+            <span
+              className={
+                "rounded-full px-3 py-1 text-[10px] font-semibold tracking-wide " +
+                (isExternal
+                  ? "bg-[#d7f5f5] text-[#007c7c]"
+                  : "bg-slate-100 text-slate-500")
+              }
+            >
+              {isExternal ? "External" : "Original"}
+            </span>
+            {item.category && (
+              <span className="rounded-full bg-slate-50 px-2.5 py-1 text-[10px] font-medium text-slate-500">
+                {item.category}
+              </span>
+            )}
+            {dateLabel && (
+              <span className="text-slate-400">公開日: {dateLabel}</span>
+            )}
+          </div>
 
-            <div className="mt-4 space-y-4 text-[13px] leading-7">
-              {isExternal ? (
-                <>
-                  <p>
-                    このニュースは外部メディアの記事を静かにキュレーションしたものです。
-                    詳細な内容や写真は、下のリンクから元記事をご覧ください。
-                  </p>
-                  {item.sourceName && item.sourceUrl && (
-                    <p className="mt-4">
-                      <a
-                        href={item.sourceUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center rounded-full border border-sky-500 bg-sky-500 px-5 py-2 text-[11px] font-medium tracking-[0.18em] text-white transition hover:bg-sky-600"
-                      >
-                        {item.sourceName}の元記事を読む
-                      </a>
-                    </p>
-                  )}
-                  <p className="mt-4 text-[11px] text-neutral-500">
-                    当サイトでは本文のコピーは行わず、
-                    タイトルと短いコメントのみを掲載しています。
-                  </p>
-                </>
-              ) : item.content ? (
-                item.content.split("\n\n").map((para, idx) => (
-                  <p key={idx}>{para}</p>
-                ))
-              ) : (
-                <>
-                  <p>
-                    この記事の本文は、今後追って追加していきます。ひとまず概要だけを静かなトーンでまとめています。
-                  </p>
-                  <p>
-                    スペックの羅列ではなく、実際の乗り味や質感、日常での扱いやすさなど、クルマの空気感が伝わるような記事を目指しています。
-                  </p>
-                  <p>
-                    内容は随時アップデートしていく予定ですので、気になるモデルがあればときどき覗いてみてください。
-                  </p>
-                </>
+          {item.excerpt && (
+            <p className="mt-4 border-l-2 border-sky-200 pl-4 text-[13px] leading-relaxed text-slate-600">
+              {item.excerpt}
+            </p>
+          )}
+
+          {/* 本文 or 外部リンク案内 */}
+          {item.type === "original" && item.content ? (
+            <div className="mt-6 space-y-4 text-[13px] leading-relaxed text-slate-700">
+              {item.content.split(/\n{2,}/).map((para, idx) => (
+                <p key={idx} className="whitespace-pre-wrap">
+                  {para}
+                </p>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-6 space-y-3 text-[13px] text-slate-650">
+              <p>
+                詳細な本文は元サイトに掲載されています。静かなトーンで眺めたい方のために、リンクだけをそっと置いておきます。
+              </p>
+              {item.sourceUrl && (
+                <a
+                  href={item.sourceUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-5 py-2 text-[12px] font-semibold text-white shadow-sm shadow-sky-200/80 transition hover:bg-sky-700"
+                >
+                  元記事を開く
+                  <span className="text-[10px] opacity-80">↗</span>
+                </a>
               )}
             </div>
-          </article>
+          )}
 
-          {/* 下部リンク */}
-          <div className="mt-8 flex justify-between text-[11px] text-neutral-500">
+          <div className="mt-8 border-t border-slate-100 pt-4 text-right">
             <Link
               href="/news"
-              className="underline-offset-4 hover:text-neutral-700 hover:underline"
+              className="text-[12px] font-semibold text-sky-700 hover:text-sky-500"
             >
-              ニュース一覧に戻る
-            </Link>
-            <Link
-              href="/"
-              className="underline-offset-4 hover:text-neutral-700 hover:underline"
-            >
-              トップページへ
+              ニュース一覧へ戻る →
             </Link>
           </div>
-        </div>
-      </div>
+        </article>
+      </main>
     </div>
   );
 }
