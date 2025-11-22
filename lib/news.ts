@@ -118,18 +118,31 @@ export async function getNewsById(id: string): Promise<NewsItem | null> {
   return items.find((item) => item.id === id) ?? null;
 }
 
-export async function getNewsByCar(slug: string): Promise<NewsItem[]> {
-  const key = slug.toLowerCase();
+export async function getNewsByCar(
+  maker: string,
+  name: string,
+  limit?: number
+): Promise<NewsItem[]> {
+  const keyMaker = maker.toLowerCase();
+  const keyName = name.toLowerCase();
 
   const items = await getLatestNews();
 
-  return items.filter((item) => {
-    const maker = item.maker ?? "";
-    const tags = Array.isArray(item.tags) ? item.tags.join(" ") : "";
-    const title = item.title ?? "";
+  const matched = items.filter((item) => {
+    const makerText = (item.maker ?? "").toLowerCase();
+    const titleText = (item.title ?? "").toLowerCase();
+    const tagsText = Array.isArray(item.tags)
+      ? item.tags.join(" ").toLowerCase()
+      : "";
 
-    const text = `${maker} ${title} ${tags}`.toLowerCase();
+    const text = `${makerText} ${titleText} ${tagsText}`;
 
-    return text.includes(key);
+    return text.includes(keyMaker) || text.includes(keyName);
   });
+
+  if (typeof limit === "number") {
+    return matched.slice(0, limit);
+  }
+
+  return matched;
 }
