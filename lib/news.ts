@@ -4,14 +4,17 @@
 export interface NewsItem {
   id: string;
   title: string;
-  titleJa?: string; // 日本語タイトル（あれば優先表示）
-  url?: string;     // 内部リンク用 (idベース)
-  sourceUrl?: string; // 外部リンク用
+  titleJa?: string;
+  url?: string;
+  sourceUrl?: string;
   sourceName: string;
   publishedAt: string;
   imageUrl?: string;
   summary?: string;
   category?: 'Drive Note' | 'Tech' | 'Used' | 'Heritage' | 'News';
+  // 【復活】UI側で必要なプロパティを追加
+  type: 'original' | 'external'; 
+  content?: string;
 }
 
 // 手動で追加するオリジナル記事
@@ -24,6 +27,16 @@ const staticNewsItems: NewsItem[] = [
     publishedAt: '2025-11-20T10:00:00Z',
     summary: '車のスペックだけでなく、その背景にある物語やライフスタイルを提案する新しいメディアです。',
     category: 'Drive Note',
+    type: 'original', // オリジナル記事であることを明記
+    content: `
+      CAR BOUTIQUEへようこそ。
+      
+      私たちは、単に車のスペックや価格を羅列するだけのメディアではありません。
+      その車が持つ背景、開発者の想い、そしてオーナーのライフスタイルにどのような彩りを与えるのか。
+      そうした「物語」を大切にする、新しい形のカーメディアです。
+      
+      コーヒーでも飲みながら、ゆっくりと記事を楽しんでいただければ幸いです。
+    `,
   },
 ];
 
@@ -87,8 +100,9 @@ async function fetchAndParseRSS(feed: { url: string; name: string; lang: string 
         sourceUrl: link,
         sourceName: feed.name,
         publishedAt: dateStr ? new Date(dateStr).toISOString() : new Date().toISOString(),
-        summary: desc.replace(/<[^>]*>?/gm, '').slice(0, 100) + '...', // HTMLタグ除去して要約
+        summary: desc.replace(/<[^>]*>?/gm, '').slice(0, 100) + '...',
         category: 'News',
+        type: 'external', // RSS由来の記事はすべて external (外部) とする
       });
     }
 
@@ -100,9 +114,6 @@ async function fetchAndParseRSS(feed: { url: string; name: string; lang: string 
   }
 }
 
-/**
- * 最新ニュースを一括取得するメイン関数
- */
 export async function getLatestNews(): Promise<NewsItem[]> {
   const rssPromises = RSS_FEEDS.map(feed => fetchAndParseRSS(feed));
   const rssResults = await Promise.all(rssPromises);
@@ -120,23 +131,15 @@ export async function getLatestNews(): Promise<NewsItem[]> {
   return uniqueItems;
 }
 
-/**
- * 特定のIDの記事を取得
- */
 export async function getNewsById(id: string): Promise<NewsItem | undefined> {
   const allNews = await getLatestNews();
   return allNews.find(item => item.id === id || item.sourceUrl?.includes(decodeURIComponent(id)));
 }
 
-/**
- * 【追加】特定の車種（キーワード）に関連するニュースを取得
- * ※これが不足していたためエラーになっていました
- */
 export async function getNewsByCar(carName: string): Promise<NewsItem[]> {
   const allNews = await getLatestNews();
   const lowerName = carName.toLowerCase();
 
-  // 記事タイトルまたは本文に車種名が含まれているものをフィルタリング
   return allNews.filter(item => 
     item.title.toLowerCase().includes(lowerName) ||
     (item.titleJa && item.titleJa.toLowerCase().includes(lowerName)) ||
