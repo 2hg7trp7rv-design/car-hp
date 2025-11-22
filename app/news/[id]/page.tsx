@@ -91,7 +91,7 @@ export default async function NewsDetailPage({ params }: Props) {
       },
     },
   };
-  const isExternal = item.type === "external";
+  
 
     return (
     <main className="min-h-screen bg-gradient-to-r from-[#D1F2EB] via-[#E8F8F5] to-white pb-20 font-sans">
