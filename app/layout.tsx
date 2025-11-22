@@ -1,6 +1,11 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Shippori_Mincho } from "next/font/google";
 import "./globals.css";
+
+// 追加
+import GlobalSearch from "@/components/GlobalSearch";
+import { getSearchIndex } from "@/lib/news";
 
 // 英語見出し用のエレガントなセリフ体
 const cormorant = Cormorant_Garamond({
@@ -23,17 +28,19 @@ export const metadata: Metadata = {
   description: "車のニュースと、その先にある物語を。",
 };
 
-export default function RootLayout({
+// RootLayoutをasyncに変更して、searchIndexを取得
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const searchIndex = await getSearchIndex();
+
   return (
     <html lang="ja" className={`${cormorant.variable} ${shippori.variable}`}>
-      {/* body全体に明朝体を適用。
-        Tailwindのfont-serifが効くように、変数をCSS変数として渡しています。
-      */}
-      <body className={`font-serif text-slate-700 antialiased min-h-screen bg-white selection:bg-[#0ABAB5] selection:text-white`}>
+      <body className="font-serif text-slate-700 antialiased min-h-screen bg-white selection:bg-[#0ABAB5] selection:text-white">
+        {/* グローバル検索（Cmd+K / Ctrl+Kで開く） */}
+        <GlobalSearch searchIndex={searchIndex} />
         {children}
       </body>
     </html>
