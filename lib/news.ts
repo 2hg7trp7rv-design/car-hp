@@ -3,21 +3,23 @@
 export type NewsItemType = "original" | "external";
 
 export type NewsItem = {
-  id: string; // /news/[id] で使うID
-  type: NewsItemType;
-  title: string;
-  excerpt?: string; // 一言コメント／リード文
-  content?: string; // オリジナル記事用の本文
+  id: string;            // /news/[id] で使うID
+  type: NewsItemType;    // "original" | "external"
+  title: string;         // 元の記事タイトル（英語でもOK）
+  titleJa?: string;      // 手動で付ける日本語タイトル（あればこちらを優先表示）
+  excerpt?: string;      // 一言コメント／リード文
+  content?: string;      // オリジナル記事用の本文
   category?: string;
   maker?: string;
   tags?: string[];
-  publishedAt: string; // ISO形式 "2025-01-10T09:00:00+09:00" など
+  publishedAt: string;   // ISO形式 "2025-01-10T09:00:00+09:00" など
 
   // 外部ニュース用
-  sourceName?: string; // 出典
-  sourceUrl?: string; // 元記事URL
+  sourceName?: string;   // 出典名: autoevolution など
+  sourceUrl?: string;    // 元記事URL
 
-  // トップページなどで使う注目フラグ
+  // オプション
+  difficulty?: "basic" | "advanced";
   featured?: boolean;
 };
 
