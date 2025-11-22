@@ -1,15 +1,13 @@
 // app/news/[id]/page.tsx
 import Link from "next/link";
-import { getLatestNews } from "@/lib/news";
+import { getNewsById, type NewsItem } from "@/lib/news";
 
 type Props = {
   params: { id: string };
 };
 
 export default async function NewsDetailPage({ params }: Props) {
-  const items = (await getLatestNews(80)) as any[];
-  const index = Number(params.id);
-  const item = items[index];
+  const item = (await getNewsById(params.id)) as NewsItem | null;
 
   if (!item) {
     return (
@@ -31,8 +29,9 @@ export default async function NewsDetailPage({ params }: Props) {
     );
   }
 
-  const date = item.date ?? item.publishedAt ?? item.createdAt ?? "";
+  const date = item.publishedAt.slice(0, 10);
   const tags = Array.isArray(item.tags) ? item.tags : [];
+  const isExternal = item.type === "external";
 
   return (
     <div className="relative min-h-screen bg-white">
@@ -67,23 +66,41 @@ export default async function NewsDetailPage({ params }: Props) {
 
           {/* 記事ヘッダー */}
           <header className="mt-4 rounded-2xl border border-neutral-200 bg-white/90 p-5 shadow-sm shadow-neutral-100 backdrop-blur">
-            <p className="text-[10px] uppercase tracking-[0.25em] text-sky-600">
-              {item.category ?? "NEWS"}
-            </p>
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="text-[10px] uppercase tracking-[0.25em] text-sky-600">
+                {item.category ?? "NEWS"}
+              </p>
+              <span
+                className={
+                  "rounded-full px-2 py-[1px] text-[9px] tracking-[0.18em] " +
+                  (isExternal
+                    ? "border border-sky-400 bg-sky-50 text-sky-700"
+                    : "border border-neutral-300 bg-neutral-50 text-neutral-700")
+                }
+              >
+                {isExternal ? "EXTERNAL" : "ORIGINAL"}
+              </span>
+              {item.maker && (
+                <span className="rounded-full border border-neutral-200 bg-neutral-50 px-2 py-[2px] text-[10px] text-neutral-600">
+                  {item.maker}
+                </span>
+              )}
+              {isExternal && item.sourceName && (
+                <span className="text-[10px] text-neutral-500">
+                  出典:{item.sourceName}
+                </span>
+              )}
+            </div>
+
             <h1 className="mt-2 text-lg font-semibold tracking-tight text-neutral-900 sm:text-xl">
               {item.title}
             </h1>
 
             <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-neutral-500">
               {date && <span>{date}</span>}
-              {item.maker && (
-                <span className="rounded-full border border-neutral-200 bg-neutral-50 px-2 py-[2px] text-[10px] text-neutral-600">
-                  {item.maker}
-                </span>
-              )}
               {tags.length > 0 && (
                 <span className="flex flex-wrap gap-1">
-                  {tags.map((t: string) => (
+                  {tags.map((t) => (
                     <span
                       key={t}
                       className="rounded-full bg-neutral-100 px-2 py-[2px] text-[10px] text-neutral-500"
@@ -105,13 +122,37 @@ export default async function NewsDetailPage({ params }: Props) {
             )}
 
             <div className="mt-4 space-y-4 text-[13px] leading-7">
-              {item.content ? (
-                <p>{item.content}</p>
+              {isExternal ? (
+                <>
+                  <p>
+                    このニュースは外部メディアの記事を静かにキュレーションしたものです。
+                    詳細な内容や写真は、下のリンクから元記事をご覧ください。
+                  </p>
+                  {item.sourceName && item.sourceUrl && (
+                    <p className="mt-4">
+                      <a
+                        href={item.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center rounded-full border border-sky-500 bg-sky-500 px-5 py-2 text-[11px] font-medium tracking-[0.18em] text-white transition hover:bg-sky-600"
+                      >
+                        {item.sourceName}の元記事を読む
+                      </a>
+                    </p>
+                  )}
+                  <p className="mt-4 text-[11px] text-neutral-500">
+                    当サイトでは本文のコピーは行わず、
+                    タイトルと短いコメントのみを掲載しています。
+                  </p>
+                </>
+              ) : item.content ? (
+                item.content.split("\n\n").map((para, idx) => (
+                  <p key={idx}>{para}</p>
+                ))
               ) : (
                 <>
                   <p>
-                    {item.excerpt ??
-                      "この記事の本文は、今後追って追加していきます。ひとまず概要だけを静かなトーンでまとめています。"}
+                    この記事の本文は、今後追って追加していきます。ひとまず概要だけを静かなトーンでまとめています。
                   </p>
                   <p>
                     スペックの羅列ではなく、実際の乗り味や質感、日常での扱いやすさなど、クルマの空気感が伝わるような記事を目指しています。
