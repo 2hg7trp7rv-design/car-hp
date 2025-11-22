@@ -16,6 +16,9 @@ export type NewsItem = {
   // 外部ニュース用
   sourceName?: string; // 出典
   sourceUrl?: string; // 元記事URL
+
+  // トップページなどで使う注目フラグ
+  featured?: boolean;
 };
 
 // オリジナル記事のダミーデータ
@@ -35,6 +38,7 @@ const staticNewsItems: NewsItem[] = [
     maker: "欧州車",
     tags: ["ミドルサイズセダン", "ロングドライブ", "高速道路"],
     publishedAt: "2025-01-10T09:00:00+09:00",
+    featured: true,
   },
   {
     id: "b48-vanos-tech",
@@ -50,6 +54,7 @@ const staticNewsItems: NewsItem[] = [
     maker: "BMW",
     tags: ["B48", "VANOS", "可変バルブタイミング", "技術解説"],
     publishedAt: "2025-01-08T20:00:00+09:00",
+    featured: true,
   },
   {
     id: "used-bmw-5series-buy-guide",
@@ -65,6 +70,7 @@ const staticNewsItems: NewsItem[] = [
     maker: "BMW",
     tags: ["中古車", "5シリーズ", "購入ガイド"],
     publishedAt: "2025-01-05T15:00:00+09:00",
+    featured: true,
   },
   {
     id: "heritage-bmw-5series-history",
@@ -83,6 +89,20 @@ const staticNewsItems: NewsItem[] = [
   },
 ];
 
+// 追加用テンプレート（コピーしてidなどを書き換えてstaticNewsItemsに足す）
+export const NEWS_ITEM_TEMPLATE: NewsItem = {
+  id: "unique-id-here",
+  type: "original",
+  title: "タイトルをここに",
+  excerpt: "リード文をここに",
+  content: "本文をここに\n\n複数行あってもOKです。",
+  category: "カテゴリ名",
+  maker: "メーカー名",
+  tags: ["タグ1", "タグ2"],
+  publishedAt: "2025-01-01T10:00:00+09:00",
+  featured: false,
+};
+
 // Car WatchのRSSから外部ニュースを取得（ビルド時に実行）
 async function fetchCarWatchNews(limit = 10): Promise<NewsItem[]> {
   try {
@@ -99,9 +119,7 @@ async function fetchCarWatchNews(limit = 10): Promise<NewsItem[]> {
 
     const xml = await res.text();
 
-    // itemごとに分割
     const rawItems = xml.split("<item").slice(1);
-
     const parsed: NewsItem[] = [];
 
     for (let i = 0; i < rawItems.length; i++) {
@@ -117,7 +135,6 @@ async function fetchCarWatchNews(limit = 10): Promise<NewsItem[]> {
         continue;
       }
 
-      // タイトルから簡易スラッグ生成
       const baseSlug = title
         .toLowerCase()
         .replace(/[\s、。・「」『』【】()（）[\]{}<>]/g, "-")
@@ -149,12 +166,75 @@ async function fetchCarWatchNews(limit = 10): Promise<NewsItem[]> {
 
     return parsed;
   } catch {
-    // 取得失敗時もサイト全体が落ちないように空配列を返す
     return [];
   }
 }
 
-// シンプルなタグ抽出ヘルパー
+// autoevolutionのRSSから外部ニュースを取得（グローバルニュース例）
+async function fetchAutoevolutionNews(limit = 10): Promise<NewsItem[]> {
+  try {
+    const res = await fetch("https://www.autoevolution.com/rss/backend.xml", {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      return [];
+    }
+
+    const xml = await res.text();
+    const rawItems = xml.split("<item").slice(1);
+    const parsed: NewsItem[] = [];
+
+    for (let i = 0; i < rawItems.length; i++) {
+      const block = "<item" + rawItems[i];
+
+      const title = matchTag(block, "title");
+      const link = matchTag(block, "link");
+      const date =
+        matchTag(block, "pubDate") ??
+        new Date().toISOString().slice(0, 19) + "+09:00";
+
+      if (!title || !link) {
+        continue;
+      }
+
+      const baseSlug = title
+        .toLowerCase()
+        .replace(/[\s、。・「」『』【】()（）[\]{}<>]/g, "-")
+        .replace(/[^a-z0-9\-ぁ-んァ-ン一-龠]/g, "")
+        .replace(/-+/g, "-")
+        .replace(/^-|-$/g, "")
+        .slice(0, 50);
+
+      const id = `autoevo-${baseSlug || "item"}-${i}`;
+
+      parsed.push({
+        id,
+        type: "external",
+        title,
+        excerpt:
+          "autoevolutionの最新記事へのリンクです。英語記事のため、詳細は元サイトでご覧ください。",
+        category: "News",
+        maker: "autoevolution",
+        tags: ["autoevolution"],
+        publishedAt: date,
+        sourceName: "autoevolution",
+        sourceUrl: link,
+      });
+
+      if (parsed.length >= limit) {
+        break;
+      }
+    }
+
+    return parsed;
+  } catch {
+    return [];
+  }
+}
+
+// タグ抽出ヘルパー（CDATA対応）
+// <tag>...</tag> から中身を抜き出す
 function matchTag(block: string, tag: string): string | undefined {
   const re = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i");
   const m = block.match(re);
@@ -162,7 +242,6 @@ function matchTag(block: string, tag: string): string | undefined {
 
   const raw = m[1].trim();
 
-  // CDATA対応（あれば外す）  sフラグは使わず[\s\S]で代用
   const cdata = raw.match(/^<!\[CDATA\[([\s\S]*)\]\]>$/);
   if (cdata) {
     return cdata[1].trim();
@@ -170,12 +249,16 @@ function matchTag(block: string, tag: string): string | undefined {
   return raw;
 }
 
-// ニュース一覧取得（オリジナル＋Car Watch）
+// ニュース一覧取得（オリジナル＋複数RSS）
 export async function getLatestNews(limit?: number): Promise<NewsItem[]> {
   const staticItems = [...staticNewsItems];
-  const externalFromCarWatch = await fetchCarWatchNews(20);
 
-  const merged = [...staticItems, ...externalFromCarWatch];
+  const [carWatch, autoevo] = await Promise.all([
+    fetchCarWatchNews(20),
+    fetchAutoevolutionNews(20),
+  ]);
+
+  const merged = [...staticItems, ...carWatch, ...autoevo];
 
   const sorted = merged.sort((a, b) => {
     return (
