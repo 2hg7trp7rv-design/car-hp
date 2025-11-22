@@ -1,9 +1,9 @@
 // app/page.tsx
 import Link from "next/link";
-import { getLatestNews } from "@/lib/news";
+import { getLatestNews, type NewsItem } from "@/lib/news";
 
 export default async function HomePage() {
-  const items = (await getLatestNews(80)) as any[];
+  const items = (await getLatestNews(80)) as NewsItem[];
   const latest = items.slice(0, 3);
 
   return (
@@ -81,26 +81,44 @@ export default async function HomePage() {
                 </div>
 
                 <div className="mt-4 space-y-3">
-                  {latest.map((item, index) => {
-                    const id = String(index);
-                    const date =
-                      item.date ?? item.publishedAt ?? item.createdAt ?? "";
+                  {latest.map((item) => {
+                    const date = item.publishedAt.slice(0, 10);
+                    const isExternal = item.type === "external";
+                    const href = `/news/${item.id}`;
+
                     return (
                       <Link
-                        key={id}
-                        href={`/news/${id}`}
+                        key={item.id}
+                        href={href}
                         className="group flex items-start justify-between gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left transition hover:border-sky-300/60 hover:bg-white/10"
                       >
                         <div className="flex-1">
-                          <p className="text-[10px] uppercase tracking-[0.25em] text-sky-200">
-                            {item.category ?? "NEWS"}
-                          </p>
+                          <div className="flex items-center gap-2">
+                            <p className="text-[9px] uppercase tracking-[0.25em] text-sky-200">
+                              {item.category ?? "NEWS"}
+                            </p>
+                            <span
+                              className={
+                                "rounded-full px-2 py-[1px] text-[9px] tracking-[0.18em] " +
+                                (isExternal
+                                  ? "border border-sky-300 bg-black/30 text-sky-100"
+                                  : "border border-white/40 bg-white/10 text-white")
+                              }
+                            >
+                              {isExternal ? "EXTERNAL" : "ORIGINAL"}
+                            </span>
+                          </div>
                           <p className="mt-1 line-clamp-2 text-xs font-medium text-neutral-50 group-hover:text-neutral-100">
                             {item.title}
                           </p>
+                          {item.excerpt && (
+                            <p className="mt-1 line-clamp-2 text-[11px] text-neutral-200">
+                              {item.excerpt}
+                            </p>
+                          )}
                         </div>
                         <div className="hidden flex-col items-end text-[10px] text-neutral-200 sm:flex">
-                          {date && <span>{date}</span>}
+                          <span>{date}</span>
                           {item.maker && (
                             <span className="mt-0.5 text-[10px] text-neutral-300">
                               {item.maker}
@@ -138,20 +156,32 @@ export default async function HomePage() {
             </div>
 
             <div className="mt-4 grid gap-6 md:grid-cols-3">
-              {latest.map((item, index) => {
-                const id = String(index);
-                const date =
-                  item.date ?? item.publishedAt ?? item.createdAt ?? "";
+              {latest.map((item) => {
+                const date = item.publishedAt.slice(0, 10);
+                const isExternal = item.type === "external";
+                const href = `/news/${item.id}`;
 
                 return (
                   <Link
-                    key={id}
-                    href={`/news/${id}`}
+                    key={item.id}
+                    href={href}
                     className="group block rounded-2xl border border-neutral-200 bg-white/90 p-4 text-sm shadow-sm shadow-neutral-100 transition hover:-translate-y-[1px] hover:border-sky-200 hover:shadow-md hover:shadow-sky-100"
                   >
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-sky-600">
-                      {item.category ?? "NEWS"}
-                    </p>
+                    <div className="flex items-center gap-2">
+                      <p className="text-[10px] uppercase tracking-[0.2em] text-sky-600">
+                        {item.category ?? "NEWS"}
+                      </p>
+                      <span
+                        className={
+                          "rounded-full px-2 py-[1px] text-[9px] tracking-[0.18em] " +
+                          (isExternal
+                            ? "border border-sky-400 bg-sky-50 text-sky-700"
+                            : "border border-neutral-300 bg-neutral-50 text-neutral-700")
+                        }
+                      >
+                        {isExternal ? "EXTERNAL" : "ORIGINAL"}
+                      </span>
+                    </div>
                     <h3 className="mt-2 line-clamp-2 text-sm font-medium tracking-tight text-neutral-900 group-hover:text-neutral-700">
                       {item.title}
                     </h3>
@@ -162,7 +192,14 @@ export default async function HomePage() {
                     )}
                     <div className="mt-3 flex items-center justify-between text-[11px] text-neutral-500">
                       <span>{date}</span>
-                      {item.maker && <span>{item.maker}</span>}
+                      <div className="flex items-center gap-2">
+                        {item.maker && <span>{item.maker}</span>}
+                        {isExternal && item.sourceName && (
+                          <span className="text-[10px] text-neutral-500">
+                            出典:{item.sourceName}
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </Link>
                 );
@@ -170,7 +207,7 @@ export default async function HomePage() {
             </div>
           </section>
 
-          {/* 読み物セクション */}
+          {/* 読み物セクション（4本のオリジナル系コーナー） */}
           <section className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-2xl border border-neutral-200 bg-white/90 p-5 shadow-sm shadow-neutral-100">
               <p className="text-[10px] uppercase tracking-[0.25em] text-sky-600">
