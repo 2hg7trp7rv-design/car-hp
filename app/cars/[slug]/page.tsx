@@ -21,11 +21,11 @@ export default async function CarDetailPage({ params }: Props) {
     );
   }
 
-  // メーカー名と車名が両方あるときだけ関連記事を取得
-  let relatedNews: NewsItem[] = [];
-  if (car.maker && car.name) {
-    relatedNews = await getNewsByCar(car.maker, car.name, 5);
-  }
+  const relatedNews = await getNewsByCar(
+    car.maker ?? "",
+    car.name ?? "",
+    5
+  );
 
   return (
     <div className="space-y-6">
@@ -142,26 +142,7 @@ export default async function CarDetailPage({ params }: Props) {
         ) : (
           <div className="space-y-2">
             {relatedNews.map((item) => (
-              <Link
-                key={item.id}
-                href={`/news/${encodeURIComponent(item.id)}`}
-                className="block rounded-xl border border-slate-800 bg-slate-900/70 p-3 text-[11px] transition hover:border-sky-500/60 hover:bg-slate-900"
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <div>
-                    <p className="text-[11px] text-slate-400">
-                      {item.sourceName ?? "CAR BOUTIQUE"}
-                      {item.publishedAt &&
-                        ` ・ ${new Date(item.publishedAt).toLocaleDateString(
-                          "ja-JP"
-                        )}`}
-                    </p>
-                    <p className="mt-0.5 text-xs font-semibold text-slate-50">
-                      {item.title}
-                    </p>
-                  </div>
-                </div>
-              </Link>
+              <RelatedNewsCard key={item.id} item={item} />
             ))}
           </div>
         )}
@@ -173,5 +154,36 @@ export default async function CarDetailPage({ params }: Props) {
         </Link>
       </div>
     </div>
+  );
+}
+
+function RelatedNewsCard({ item }: { item: NewsItem }) {
+  const displayTitle = item.titleJa ?? item.title;
+  const dateLabel = item.publishedAt
+    ? new Date(item.publishedAt).toLocaleDateString("ja-JP")
+    : "";
+
+  return (
+    <Link
+      href={`/news/${encodeURIComponent(item.id)}`}
+      className="block rounded-xl border border-slate-800 bg-slate-900/70 p-3 text-[11px] transition hover:border-sky-500/60 hover:bg-slate-900"
+    >
+      <div className="flex items-start justify-between gap-2">
+        <div>
+          <p className="text-[11px] text-slate-400">
+            {item.sourceName ?? item.maker ?? "car boutique"}
+            {dateLabel && ` ・ ${dateLabel}`}
+          </p>
+          <p className="mt-0.5 text-xs font-semibold text-slate-50">
+            {displayTitle}
+          </p>
+        </div>
+        {item.difficulty === "advanced" && (
+          <span className="rounded-full bg-fuchsia-600 px-2 py-0.5 text-[10px] font-semibold text-white">
+            マニアック寄り
+          </span>
+        )}
+      </div>
+    </Link>
   );
 }
