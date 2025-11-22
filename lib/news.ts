@@ -1,5 +1,6 @@
 // lib/news.ts
 
+// ニュース記事の型定義
 export interface NewsItem {
   id: string;
   title: string;
@@ -10,7 +11,6 @@ export interface NewsItem {
   publishedAt: string;
   imageUrl?: string;
   excerpt?: string;
-  summary?: string;
   category?: "Drive Note" | "Tech" | "Used" | "Heritage" | "News";
   type: "original" | "external";
   content?: string;
@@ -26,8 +26,6 @@ const staticNewsItems: NewsItem[] = [
     publishedAt: "2025-11-20T10:00:00Z",
     excerpt:
       "車のスペックだけでなく、その背景にある物語やライフスタイルを提案する新しいメディアです。",
-    summary:
-      "車のスペックだけでなく、その背景にある物語やライフスタイルを提案する新しいメディアです。",
     category: "Drive Note",
     type: "original",
     content: `
@@ -38,25 +36,22 @@ CAR BOUTIQUEへようこそ。
 そうした「物語」を大切にする、新しい形のカーメディアです。
 
 コーヒーでも飲みながら、ゆっくりと記事を楽しんでいただければ幸いです。
-    `.trim(),
+`,
   },
 ];
 
 /**
  * RSSフィードのURLリスト
+ * 現在は日本語（Car Watch）のみ
  */
-const RSS_FEEDS = [
+const RSS_FEEDS: { url: string; name: string; lang: string }[] = [
   {
     url: "https://car.watch.impress.co.jp/data/rss/1.0/cw/index.xml",
     name: "Car Watch",
     lang: "ja",
   },
-  // {
-  //   url: "https://www.autoevolution.com/rss/backend.xml",
-  //   name: "autoevolution",
-  //   lang: "en",
-  // },
 ];
+
 /**
  * シンプルなRSSパーサー
  */
@@ -75,9 +70,7 @@ async function fetchAndParseRSS(feed: {
     });
     clearTimeout(timeoutId);
 
-    if (!res.ok) {
-      throw new Error(`Failed to fetch ${feed.name}`);
-    }
+    if (!res.ok) throw new Error(`Failed to fetch ${feed.name}`);
 
     const xmlText = await res.text();
     const items: NewsItem[] = [];
@@ -97,32 +90,37 @@ async function fetchAndParseRSS(feed: {
         return m ? m[2].trim() : "";
       };
 
-      const title = extract("title");
+      const rawTitle = extract("title");
       const link = extract("link") || extract("url");
       const dateStr =
         extract("pubDate") || extract("dc:date") || extract("updated");
       const desc = extract("description") || extract("content:encoded");
 
-      if (!title || !link) continue;
+      if (!rawTitle || !link) continue;
 
-      const plainDesc = desc.replace(/<[^>]*>?/gm, "").trim();
-      const teaser =
-        plainDesc.length > 0
-          ? plainDesc.slice(0, 100) + (plainDesc.length > 100 ? "..." : "")
-          : "";
+      const title = rawTitle
+        .replace(/&amp;/g, "&")
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'");
+
+      const publishedAt = dateStr
+        ? new Date(dateStr).toISOString()
+        : new Date().toISOString();
+
+      const plainDesc = desc.replace(/<[^>]*>?/gm, "");
+      const excerpt =
+        plainDesc.length > 0 ? plainDesc.slice(0, 100) + "..." : "";
+
+      const id = Buffer.from(link).toString("base64").slice(0, 10);
 
       items.push({
-        // Node環境でも安全に動くよう、btoaは使わずURLそのものをidにする
-        id: link,
-        title: title.replace(/&amp;/g, "&").replace(/&quot;/g, '"'),
+        id,
+        title,
         titleJa: feed.lang === "ja" ? title : undefined,
         sourceUrl: link,
         sourceName: feed.name,
-        publishedAt: dateStr
-          ? new Date(dateStr).toISOString()
-          : new Date().toISOString(),
-        excerpt: teaser,
-        summary: teaser,
+        publishedAt,
+        excerpt,
         category: "News",
         type: "external",
       });
@@ -136,8 +134,8 @@ async function fetchAndParseRSS(feed: {
 }
 
 /**
- * 最新ニュースを一括取得
- * limitを指定すると、その件数でカット
+ * 最新ニュースを一括取得するメイン関数
+ * limit を指定すると最大件数を制限
  */
 export async function getLatestNews(limit?: number): Promise<NewsItem[]> {
   const rssPromises = RSS_FEEDS.map((feed) => fetchAndParseRSS(feed));
@@ -146,10 +144,11 @@ export async function getLatestNews(limit?: number): Promise<NewsItem[]> {
 
   const allItems = [...staticNewsItems, ...rssItems];
 
-  allItems.sort(
-    (a, b) =>
-      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
-  );
+  allItems.sort((a, b) => {
+    return (
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+    );
+  });
 
   const uniqueItems = Array.from(
     new Map(
@@ -165,71 +164,33 @@ export async function getLatestNews(limit?: number): Promise<NewsItem[]> {
 }
 
 /**
- * 特定IDの記事を取得
+ * IDまたはURLをもとに記事1件を取得
  */
 export async function getNewsById(
   id: string,
 ): Promise<NewsItem | undefined> {
   const allNews = await getLatestNews();
-  const decoded = decodeURIComponent(id);
-
   return allNews.find(
-    (item) => item.id === decoded || item.sourceUrl?.includes(decoded),
+    (item) => item.id === id || item.sourceUrl?.includes(decodeURIComponent(id)),
   );
 }
 
 /**
- * 車種に関連するニュース取得
- * getNewsByCar("プリウス")
- * getNewsByCar("トヨタ","プリウス",5)
- * どちらの呼び出し方にも対応
+ * 車名で関連ニュースを検索
  */
-export function getNewsByCar(
-  carName: string,
-  limit?: number,
-): Promise<NewsItem[]>;
-export function getNewsByCar(
-  maker: string,
-  carName: string,
-  limit?: number,
-): Promise<NewsItem[]>;
-export async function getNewsByCar(
-  makerOrName: string,
-  second?: string | number,
-  third?: number,
-): Promise<NewsItem[]> {
+export async function getNewsByCar(carName: string): Promise<NewsItem[]> {
   const allNews = await getLatestNews();
+  const lowerName = carName.toLowerCase();
 
-  let keyword: string;
-  let limit: number | undefined;
-
-  if (typeof second === "string") {
-    keyword = `${makerOrName} ${second}`.trim();
-    limit = typeof third === "number" ? third : undefined;
-  } else {
-    keyword = makerOrName;
-    limit = typeof second === "number" ? second : undefined;
-  }
-
-  const lower = keyword.toLowerCase();
-
-  const filtered = allNews.filter((item) => {
+  return allNews.filter((item) => {
     const title = item.title.toLowerCase();
     const titleJa = item.titleJa?.toLowerCase() ?? "";
     const excerpt = item.excerpt?.toLowerCase() ?? "";
-    const summary = item.summary?.toLowerCase() ?? "";
 
     return (
-      title.includes(lower) ||
-      titleJa.includes(lower) ||
-      excerpt.includes(lower) ||
-      summary.includes(lower)
+      title.includes(lowerName) ||
+      titleJa.includes(lowerName) ||
+      excerpt.includes(lowerName)
     );
   });
-
-  if (typeof limit === "number") {
-    return filtered.slice(0, limit);
-  }
-
-  return filtered;
 }
