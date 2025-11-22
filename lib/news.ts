@@ -1,11 +1,6 @@
 // lib/news.ts
-import { Client } from "@notionhq/client";
 import { unstable_cache } from "next/cache";
-import { getDatabaseIdByTitle } from "@/lib/notion";
-
-const notion = new Client({
-  auth: process.env.NOTION_TOKEN,
-});
+import { fetchRssArticles } from "@/lib/rss";
 
 export type NewsItem = {
   id: string;
@@ -24,70 +19,61 @@ export type NewsItem = {
 };
 
 /**
- * Notionからニュース全件を取得し、キャッシュする関数
- * これが全てのデータ取得の基盤となります。
+ * 全ニュースを取得（RSSのみ）
  */
 export const getAllNewsCached = unstable_cache(
   async (): Promise<NewsItem[]> => {
     try {
-      const databaseId = await getDatabaseIdByTitle("News");
+      const rssArticles = await fetchRssArticles(20);
 
-      const response = await notion.databases.query({
-        database_id: databaseId,
-        sorts: [{ property: "PublishedAt", direction: "descending" }],
-        page_size: 100,
+      const rssNews: NewsItem[] = rssArticles.map((a) => ({
+        id: a.id,
+        title: a.title,
+        titleJa: a.title,
+        slug: undefined,
+        publishedAt: a.publishedAt,
+        excerpt: a.excerpt,
+        coverImage: undefined,
+        category: a.category,
+        sourceName: a.sourceName,
+        sourceUrl: a.link,
+        type: "external",
+        content: "",
+        tags: [],
+      }));
+
+      // 日付で新しい順に並べ替え
+      rssNews.sort((a, b) => {
+        const aTime = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
+        const bTime = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
+        return bTime - aTime;
       });
 
-      return response.results.map((page: any) => {
-        const props = page.properties;
-
-        return {
-          id: page.id,
-          title: props.Name?.title?.[0]?.plain_text ?? "No Title",
-          titleJa: props.TitleJa?.rich_text?.[0]?.plain_text,
-          publishedAt: props.PublishedAt?.date?.start,
-          excerpt: props.Excerpt?.rich_text?.[0]?.plain_text,
-          category: props.Category?.select?.name,
-          sourceName: props.SourceName?.select?.name,
-          sourceUrl: props.SourceUrl?.url,
-          type:
-            props.Type?.select?.name === "External" ? "external" : "original",
-          tags: props.Tags?.multi_select?.map((t: any) => t.name) || [],
-          content: "",
-        } as NewsItem;
-      });
+      return rssNews;
     } catch (error) {
-      console.error("Failed to fetch news:", error);
+      console.error("Failed to fetch news from RSS:", error);
       return [];
     }
   },
   ["all-news-list"],
-  { revalidate: 3600, tags: ["news"] }
+  { revalidate: 1800, tags: ["news"] } // 30分ごとに再取得
 );
 
 /**
- * 既存機能の互換実装
- * キャッシュされたデータからフィルタリングして返します
+ * 一覧・詳細・関連ニュース用の既存関数
  */
 
-// 最新ニュースを取得
 export async function getLatestNews(limit: number = 10): Promise<NewsItem[]> {
   const all = await getAllNewsCached();
   return all.slice(0, limit);
 }
 
-// ID指定で取得
 export async function getNewsById(id: string): Promise<NewsItem | null> {
   const all = await getAllNewsCached();
   const found = all.find((item) => item.id === id);
-
-  if (found) {
-    return found;
-  }
-  return null;
+  return found ?? null;
 }
 
-// 車種に関連するニュースを取得 (app/cars/[slug]/page.tsxで使用)
 export async function getNewsByCar(slug: string): Promise<NewsItem[]> {
   const all = await getAllNewsCached();
   const lowerSlug = slug.toLowerCase();
@@ -99,10 +85,6 @@ export async function getNewsByCar(slug: string): Promise<NewsItem[]> {
     return inTitle || inExcerpt || inTags;
   });
 }
-
-/**
- * 新機能: ページネーションと検索
- */
 
 export type PaginationMeta = {
   currentPage: number;
