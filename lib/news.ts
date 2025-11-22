@@ -1,7 +1,9 @@
 // lib/news.ts
+// lib/news.ts
 import { Client } from "@notionhq/client";
 import { unstable_cache } from "next/cache";
 import { getDatabaseIdByTitle } from "@/lib/notion";
+import { fetchRssNews } from "@/lib/rss";
 
 // Notionクライアントの初期化
 // ※もし lib/notion.ts から notion を export している場合は import { notion } from "@/lib/notion" に変えてもOKです
@@ -34,12 +36,55 @@ export const getAllNewsCached = unstable_cache(
   async () => {
     try {
       const databaseId = await getDatabaseIdByTitle("News");
-      
+
       const response = await notion.databases.query({
         database_id: databaseId,
         sorts: [{ property: "PublishedAt", direction: "descending" }],
-        page_size: 100, // 必要に応じて増やしてください
+        page_size: 100,
       });
+
+      const notionItems: NewsItem[] = response.results.map((page: any) => {
+        const props = page.properties;
+
+        return {
+          id: page.id,
+          title: props.Name?.title?.[0]?.plain_text ?? "No Title",
+          titleJa: props.TitleJa?.rich_text?.[0]?.plain_text,
+          publishedAt: props.PublishedAt?.date?.start,
+          excerpt: props.Excerpt?.rich_text?.[0]?.plain_text,
+          category: props.Category?.select?.name,
+          sourceName: props.SourceName?.select?.name,
+          sourceUrl: props.SourceUrl?.url,
+          type: props.Type?.select?.name === "External" ? "external" : "original",
+          tags: props.Tags?.multi_select?.map((t: any) => t.name) || [],
+          content: "",
+        } as NewsItem;
+      });
+
+      let rssItems: NewsItem[] = [];
+      try {
+        rssItems = await fetchRssNews(10);
+      } catch (error) {
+        console.error("Failed to fetch RSS news:", error);
+      }
+
+      const allItems = [...notionItems, ...rssItems];
+
+      allItems.sort((a, b) => {
+        const aTime = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
+        const bTime = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
+        return bTime - aTime;
+      });
+
+      return allItems;
+    } catch (error) {
+      console.error("Failed to fetch news:", error);
+      return [];
+    }
+  },
+  ["all-news-list"],
+  { revalidate: 3600, tags: ["news"] },
+);
 
       return response.results.map((page: any) => {
         const props = page.properties;
