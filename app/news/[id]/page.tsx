@@ -62,33 +62,54 @@ export default async function NewsDetailPage({ params }: Props) {
     );
   }
 
-  const displayTitle = item.titleJa ?? item.title;
-const dateLabel = item.publishedAt
-  ? new Date(item.publishedAt).toLocaleDateString("ja-JP", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    })
-  : "";
+    const displayTitle = item.titleJa ?? item.title;
+  const dateLabel = new Date(item.publishedAt).toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
   const isExternal = item.type === "external";
 
-  return (
+  // 構造化データ(JSON-LD)
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: displayTitle,
+    ...(item.coverImage ? { image: [item.coverImage] } : {}),
+    datePublished: item.publishedAt,
+    dateModified: item.publishedAt,
+    author: {
+      "@type": "Organization",
+      name: item.sourceName ?? "CAR BOUTIQUE",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "CAR BOUTIQUE",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://car-hp.vercel.app/icon.png",
+      },
+    },
+  };
+  const isExternal = item.type === "external";
+
+    return (
     <main className="min-h-screen bg-gradient-to-r from-[#D1F2EB] via-[#E8F8F5] to-white pb-20 font-sans">
-      
       {/* ヘッダーエリア */}
       <nav className="bg-white/60 backdrop-blur-md border-b border-white/50 sticky top-0 z-10">
-        <div className="max-w-3xl mx-auto px-6 py-4 flex justify-between items-center">
-           <Link href="/news" className="text-xs text-slate-400 hover:text-[#0ABAB5] transition-colors">
-             &larr; Back to Journal
-           </Link>
-           <span className="text-[10px] text-slate-400 uppercase tracking-widest">Article</span>
-        </div>
+        {/* ...既存そのまま... */}
       </nav>
 
       <article className="max-w-3xl mx-auto px-6 pt-10">
-        
+        {/* JSON-LD構造化データ */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+
         {/* 記事ヘッダー */}
         <header className="space-y-6 mb-10 text-center">
+          {/* ここから下は既存のまま */}
           <div className="flex flex-wrap justify-center gap-3">
              <span className="bg-[#E0F7FA] text-[#006064] px-3 py-1 rounded-full text-[10px] font-bold tracking-wide uppercase">
                {item.sourceName}
