@@ -10,9 +10,11 @@ export interface NewsItem {
   sourceName: string;
   publishedAt: string;
   imageUrl?: string;
-  summary?: string;
+  
+  // 【修正】UI側にあわせて summary ではなく excerpt に統一
+  excerpt?: string;
+  
   category?: 'Drive Note' | 'Tech' | 'Used' | 'Heritage' | 'News';
-  // 【復活】UI側で必要なプロパティを追加
   type: 'original' | 'external'; 
   content?: string;
 }
@@ -25,9 +27,9 @@ const staticNewsItems: NewsItem[] = [
     titleJa: '愛車との豊かな時間を紡ぐ、新しい場所へようこそ',
     sourceName: 'CAR BOUTIQUE',
     publishedAt: '2025-11-20T10:00:00Z',
-    summary: '車のスペックだけでなく、その背景にある物語やライフスタイルを提案する新しいメディアです。',
+    excerpt: '車のスペックだけでなく、その背景にある物語やライフスタイルを提案する新しいメディアです。',
     category: 'Drive Note',
-    type: 'original', // オリジナル記事であることを明記
+    type: 'original',
     content: `
       CAR BOUTIQUEへようこそ。
       
@@ -100,9 +102,10 @@ async function fetchAndParseRSS(feed: { url: string; name: string; lang: string 
         sourceUrl: link,
         sourceName: feed.name,
         publishedAt: dateStr ? new Date(dateStr).toISOString() : new Date().toISOString(),
-        summary: desc.replace(/<[^>]*>?/gm, '').slice(0, 100) + '...',
+        // 【修正】ここを excerpt に格納
+        excerpt: desc.replace(/<[^>]*>?/gm, '').slice(0, 100) + '...',
         category: 'News',
-        type: 'external', // RSS由来の記事はすべて external (外部) とする
+        type: 'external',
       });
     }
 
@@ -114,7 +117,11 @@ async function fetchAndParseRSS(feed: { url: string; name: string; lang: string 
   }
 }
 
-export async function getLatestNews(): Promise<NewsItem[]> {
+/**
+ * 最新ニュースを一括取得するメイン関数
+ * 【修正】limit 引数を受け取れるように変更（アーカイブページ対応）
+ */
+export async function getLatestNews(limit?: number): Promise<NewsItem[]> {
   const rssPromises = RSS_FEEDS.map(feed => fetchAndParseRSS(feed));
   const rssResults = await Promise.all(rssPromises);
   const rssItems = rssResults.flat();
@@ -127,6 +134,11 @@ export async function getLatestNews(): Promise<NewsItem[]> {
   const uniqueItems = Array.from(
     new Map(allItems.map((item) => [item.sourceUrl || item.id, item])).values()
   );
+  
+  // limitがあれば切り取る
+  if (limit) {
+    return uniqueItems.slice(0, limit);
+  }
 
   return uniqueItems;
 }
@@ -143,6 +155,7 @@ export async function getNewsByCar(carName: string): Promise<NewsItem[]> {
   return allNews.filter(item => 
     item.title.toLowerCase().includes(lowerName) ||
     (item.titleJa && item.titleJa.toLowerCase().includes(lowerName)) ||
-    (item.summary && item.summary.toLowerCase().includes(lowerName))
+    // 【修正】summary ではなく excerpt を参照
+    (item.excerpt && item.excerpt.toLowerCase().includes(lowerName))
   );
 }
