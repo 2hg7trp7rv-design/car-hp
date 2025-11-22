@@ -51,13 +51,12 @@ const RSS_FEEDS = [
     name: "Car Watch",
     lang: "ja",
   },
-  {
-    url: "https://www.autoevolution.com/rss/backend.xml",
-    name: "autoevolution",
-    lang: "en",
-  },
+  // {
+  //   url: "https://www.autoevolution.com/rss/backend.xml",
+  //   name: "autoevolution",
+  //   lang: "en",
+  // },
 ];
-
 /**
  * シンプルなRSSパーサー
  */
