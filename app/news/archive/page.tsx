@@ -66,9 +66,10 @@ export default async function NewsArchivePage() {
                         {item.title}
                       </div>
                       <div className="mt-0.5 text-[11px] text-gray-400">
-                        {item.source ?? "ソース不明"}
-                        {item.publishedAt && `・${item.publishedAt}`}
-                      </div>
+                        {item.sourceName ?? "CAR BOUTIQUE"}
+                        {item.publishedAt &&
+                         ` ・ ${new Date(item.publishedAt).toLocaleDateString("ja-JP")}`}
+　　　　　　　　　　　　　　　</div>
                     </Link>
                   ))}
                 </div>
