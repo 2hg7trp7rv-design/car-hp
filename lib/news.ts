@@ -1,310 +1,143 @@
 // lib/news.ts
 
-export type NewsItemType = "original" | "external";
+// ニュース記事の型定義
+export interface NewsItem {
+  id: string;
+  title: string;
+  titleJa?: string; // 日本語タイトル（あれば優先表示）
+  url?: string;     // 内部リンク用 (idベース)
+  sourceUrl?: string; // 外部リンク用
+  sourceName: string;
+  publishedAt: string;
+  imageUrl?: string;
+  summary?: string;
+  category?: 'Drive Note' | 'Tech' | 'Used' | 'Heritage' | 'News';
+}
 
-export type NewsItem = {
-  id: string;            // /news/[id] で使うID
-  type: NewsItemType;    // "original" | "external"
-  title: string;         // 元の記事タイトル（英語でもOK）
-  titleJa?: string;      // 手動で付ける日本語タイトル（あればこちらを優先表示）
-  excerpt?: string;      // 一言コメント／リード文
-  content?: string;      // オリジナル記事用の本文
-  category?: string;
-  maker?: string;
-  tags?: string[];
-  publishedAt: string;   // ISO形式 "2025-01-10T09:00:00+09:00" など
-
-  // 外部ニュース用
-  sourceName?: string;   // 出典名: autoevolution など
-  sourceUrl?: string;    // 元記事URL
-
-  // オプション
-  difficulty?: "basic" | "advanced";
-  featured?: boolean;
-};
-
-// オリジナル記事のダミーデータ
+// 手動で追加するオリジナル記事（ここに自分の記事を書きます）
 const staticNewsItems: NewsItem[] = [
   {
-    id: "quiet-long-drive-sedan",
-    type: "original",
-    title: "静かな長距離ドライブに向くミドルサイズセダンを考える",
-    excerpt:
-      "派手さよりも、疲れにくさと上質な静けさにフォーカスしたミドルサイズセダンの魅力を整理します。",
-    content:
-      "最新型から一世代前のモデルまで、ミドルサイズセダンには「数字以上の楽さ」を持つクルマが少なくありません。\n\n" +
-      "ステアリングを切り込んだときの自然な初期応答、路面の荒れを角を立てずにいなすダンパーの仕事ぶり、そして高速巡航時の静けさ。\n" +
-      "どれも特別な演出ではなく、淡々と高いレベルでまとまっているクルマほど、長距離になればなるほど真価が見えてきます。\n\n" +
-      "この記事では、2リッタークラスのガソリンターボセダンを例に、静かな長距離ドライブに向くポイントを「シート」「遮音」「足まわり」の3つの視点から整理していきます。",
-    category: "Drive Note",
-    maker: "欧州車",
-    tags: ["ミドルサイズセダン", "ロングドライブ", "高速道路"],
-    publishedAt: "2025-01-10T09:00:00+09:00",
-    featured: true,
+    id: 'welcome-car-boutique',
+    title: 'Welcome to CAR BOUTIQUE',
+    titleJa: '愛車との豊かな時間を紡ぐ、新しい場所へようこそ',
+    sourceName: 'CAR BOUTIQUE',
+    publishedAt: '2025-11-20T10:00:00Z',
+    summary: '車のスペックだけでなく、その背景にある物語やライフスタイルを提案する新しいメディアです。',
+    category: 'Drive Note',
+  },
+  // 記事を増やしたいときは、ここにカンマ区切りでオブジェクトを追加してください
+];
+
+/**
+ * RSSフィードのURLリスト
+ * Car Watch, autoevolutionなどを登録
+ */
+const RSS_FEEDS = [
+  {
+    url: 'https://car.watch.impress.co.jp/data/rss/1.0/cw/index.xml',
+    name: 'Car Watch',
+    lang: 'ja',
   },
   {
-    id: "b48-vanos-tech",
-    type: "original",
-    title: "B48エンジンと可変バルブタイミング：VANOSの役割をやさしく整理",
-    excerpt:
-      "BMWのB48エンジンに搭載される可変バルブタイミング機構「VANOS」の仕組みと、トラブルシューティングの考え方をやわらかく解説します。",
-    content:
-      "B48エンジンは、直列4気筒ターボとしては非常にバランスの良い性格を持っています。その陰には、可変バルブタイミング機構「VANOS」の存在があります。\n\n" +
-      "この記事では、難しい数式や専門用語を極力避けながら、「カムシャフトの位相をずらすと何が変わるのか」「アイドリング時と高回転ではどのように制御が違うのか」といったポイントを整理します。\n\n" +
-      "また、実際のオーナー事例を直接特定できるような記述は避けつつ、一般論として症状とVANOSソレノイド不調との関係についても触れていきます。",
-    category: "Tech",
-    maker: "BMW",
-    tags: ["B48", "VANOS", "可変バルブタイミング", "技術解説"],
-    publishedAt: "2025-01-08T20:00:00+09:00",
-    featured: true,
-  },
-  {
-    id: "used-bmw-5series-buy-guide",
-    type: "original",
-    title: "中古のBMW 5シリーズを選ぶときに見ておきたいポイント",
-    excerpt:
-      "歴代5シリーズを中古で検討するときのチェックポイントを、できるだけ落ち着いた目線で整理しました。",
-    content:
-      "中古の5シリーズを選ぶときに気になるのは、「どこまで気にすべきか」というラインです。\n\n" +
-      "本記事では、走行距離や年式といった表面的な条件だけでなく、直近の整備履歴、タイヤやブレーキの残量、電装系の不具合傾向など、「試乗と簡単な確認」で見えてくるポイントに絞ってまとめています。\n\n" +
-      "過度に不安になるのではなく、必要なところだけ冷静にチェックしていく。そのための目安として使っていただける内容を目指しました。",
-    category: "Used",
-    maker: "BMW",
-    tags: ["中古車", "5シリーズ", "購入ガイド"],
-    publishedAt: "2025-01-05T15:00:00+09:00",
-    featured: true,
-  },
-  {
-    id: "heritage-bmw-5series-history",
-    type: "original",
-    title: "初代から現行型まで。ミドルクラスセダンの系譜を静かに振り返る",
-    excerpt:
-      "およそ半世紀にわたるミドルクラスセダンの流れを、カタログを眺めるような感覚でたどります。",
-    content:
-      "ミドルクラスセダンは、時代ごとの価値観や技術を一番素直に映すカテゴリーかもしれません。\n\n" +
-      "この記事では、各世代ごとの代表的なグレードやデザインの特徴を、あくまで「ざっくりと」振り返ります。細かな年次変更や限定車の網羅ではなく、「この世代はこういう雰囲気だった」という印象を整理することが目的です。\n\n" +
-      "最後に、現行モデルがどのようなポジションにいるのかも、静かなトーンでまとめてみます。",
-    category: "Heritage",
-    maker: "欧州車",
-    tags: ["セダン", "ヒストリー", "ヘリテージ"],
-    publishedAt: "2025-01-03T12:00:00+09:00",
+    url: 'https://www.autoevolution.com/rss/backend.xml',
+    name: 'autoevolution',
+    lang: 'en',
   },
 ];
 
-// 追加用テンプレート（コピーしてidなどを書き換えてstaticNewsItemsに足す）
-export const NEWS_ITEM_TEMPLATE: NewsItem = {
-  id: "unique-id-here",
-  type: "original",
-  title: "タイトルをここに",
-  excerpt: "リード文をここに",
-  content: "本文をここに\n\n複数行あってもOKです。",
-  category: "カテゴリ名",
-  maker: "メーカー名",
-  tags: ["タグ1", "タグ2"],
-  publishedAt: "2025-01-01T10:00:00+09:00",
-  featured: false,
-};
-
-// Car WatchのRSSから外部ニュースを取得（ビルド時に実行）
-async function fetchCarWatchNews(limit = 10): Promise<NewsItem[]> {
+/**
+ * シンプルなRSSパーサー（ライブラリ不要版）
+ * iPhone環境等でnpm installが難しい場合でも動くように標準機能だけで実装
+ */
+async function fetchAndParseRSS(feed: { url: string; name: string; lang: string }): Promise<NewsItem[]> {
   try {
-    const res = await fetch(
-      "https://car.watch.impress.co.jp/data/rss/1.0/car/feed.rdf",
-      {
-        cache: "no-store",
-      }
-    );
-
-    if (!res.ok) {
-      return [];
-    }
-
-    const xml = await res.text();
-
-    const rawItems = xml.split("<item").slice(1);
-    const parsed: NewsItem[] = [];
-
-    for (let i = 0; i < rawItems.length; i++) {
-      const block = "<item" + rawItems[i];
-
-      const title = matchTag(block, "title");
-      const link = matchTag(block, "link");
-      const date =
-        matchTag(block, "dc:date") ??
-        new Date().toISOString().slice(0, 19) + "+09:00";
-
-      if (!title || !link) {
-        continue;
-      }
-
-      const baseSlug = title
-        .toLowerCase()
-        .replace(/[\s、。・「」『』【】()（）[\]{}<>]/g, "-")
-        .replace(/[^a-z0-9\-ぁ-んァ-ン一-龠]/g, "")
-        .replace(/-+/g, "-")
-        .replace(/^-|-$/g, "")
-        .slice(0, 50);
-
-      const id = `carwatch-${baseSlug || "item"}-${i}`;
-
-      parsed.push({
-        id,
-        type: "external",
-        title,
-        excerpt:
-          "Car Watchの最新記事へのリンクです。詳細や写真は元記事でご覧ください。",
-        category: "News",
-        maker: "Car Watch",
-        tags: ["Car Watch"],
-        publishedAt: date,
-        sourceName: "Car Watch",
-        sourceUrl: link,
-      });
-
-      if (parsed.length >= limit) {
-        break;
-      }
-    }
-
-    return parsed;
-  } catch {
-    return [];
-  }
-}
-
-// autoevolutionのRSSから外部ニュースを取得（グローバルニュース例）
-async function fetchAutoevolutionNews(limit = 10): Promise<NewsItem[]> {
-  try {
-    const res = await fetch("https://www.autoevolution.com/rss/backend.xml", {
-      cache: "no-store",
+    // タイムアウト付きのフェッチ（5秒で諦める）
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    
+    const res = await fetch(feed.url, { 
+      signal: controller.signal,
+      next: { revalidate: 600 } // 10分キャッシュ
     });
+    clearTimeout(timeoutId);
 
-    if (!res.ok) {
-      return [];
-    }
+    if (!res.ok) throw new Error(`Failed to fetch ${feed.name}`);
 
-    const xml = await res.text();
-    const rawItems = xml.split("<item").slice(1);
-    const parsed: NewsItem[] = [];
+    const xmlText = await res.text();
+    const items: NewsItem[] = [];
 
-    for (let i = 0; i < rawItems.length; i++) {
-      const block = "<item" + rawItems[i];
+    // 正規表現で簡易的にパース（ライブラリ依存を排除するため）
+    // <item>...</item> または <entry>...</entry> を抽出
+    const itemRegex = /<(item|entry)>([\s\S]*?)<\/(item|entry)>/g;
+    let match;
 
-      const title = matchTag(block, "title");
-      const link = matchTag(block, "link");
-      const date =
-        matchTag(block, "pubDate") ??
-        new Date().toISOString().slice(0, 19) + "+09:00";
+    while ((match = itemRegex.exec(xmlText)) !== null) {
+      const content = match[2];
+      
+      // タグの中身を抽出するヘルパー
+      const extract = (tag: string) => {
+        const regex = new RegExp(`<${tag}[^>]*>(<!\\[CDATA\\[)?(.*?)(]]>)?<\/${tag}>`, 'i');
+        const m = content.match(regex);
+        return m ? m[2].trim() : '';
+      };
 
-      if (!title || !link) {
-        continue;
-      }
+      const title = extract('title');
+      const link = extract('link') || extract('url'); // RSSのバージョンによって違うため
+      const dateStr = extract('pubDate') || extract('dc:date') || extract('updated');
+      
+      // 必須項目がない場合はスキップ
+      if (!title || !link) continue;
 
-      const baseSlug = title
-        .toLowerCase()
-        .replace(/[\s、。・「」『』【】()（）[\]{}<>]/g, "-")
-        .replace(/[^a-z0-9\-ぁ-んァ-ン一-龠]/g, "")
-        .replace(/-+/g, "-")
-        .replace(/^-|-$/g, "")
-        .slice(0, 50);
-
-      const id = `autoevo-${baseSlug || "item"}-${i}`;
-
-      parsed.push({
-        id,
-        type: "external",
-        title,
-        excerpt:
-          "autoevolutionの最新記事へのリンクです。英語記事のため、詳細は元サイトでご覧ください。",
-        category: "News",
-        maker: "autoevolution",
-        tags: ["autoevolution"],
-        publishedAt: date,
-        sourceName: "autoevolution",
+      items.push({
+        id: btoa(link).slice(0, 10), // URLをBase64化してID生成
+        title: title.replace(/&amp;/g, '&').replace(/&quot;/g, '"'),
+        titleJa: feed.lang === 'ja' ? title : undefined, // 日本語サイトならtitleJaに入れる
         sourceUrl: link,
+        sourceName: feed.name,
+        publishedAt: dateStr ? new Date(dateStr).toISOString() : new Date().toISOString(),
+        category: 'News',
       });
-
-      if (parsed.length >= limit) {
-        break;
-      }
     }
 
-    return parsed;
-  } catch {
-    return [];
+    return items;
+
+  } catch (error) {
+    console.error(`Error fetching RSS from ${feed.name}:`, error);
+    return []; // エラー時は空配列を返し、全体を止めない
   }
 }
 
-// タグ抽出ヘルパー（CDATA対応）
-// <tag>...</tag> から中身を抜き出す
-function matchTag(block: string, tag: string): string | undefined {
-  const re = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i");
-  const m = block.match(re);
-  if (!m) return undefined;
+/**
+ * 最新ニュースを一括取得するメイン関数
+ */
+export async function getLatestNews(): Promise<NewsItem[]> {
+  // 1. RSSの並列取得
+  const rssPromises = RSS_FEEDS.map(feed => fetchAndParseRSS(feed));
+  const rssResults = await Promise.all(rssPromises);
+  
+  // 2. 配列を平坦化（フラットにする）
+  const rssItems = rssResults.flat();
 
-  const raw = m[1].trim();
+  // 3. 静的記事と結合
+  const allItems = [...staticNewsItems, ...rssItems];
 
-  const cdata = raw.match(/^<!\[CDATA\[([\s\S]*)\]\]>$/);
-  if (cdata) {
-    return cdata[1].trim();
-  }
-  return raw;
-}
-
-// ニュース一覧取得（オリジナル＋複数RSS）
-export async function getLatestNews(limit?: number): Promise<NewsItem[]> {
-  const staticItems = [...staticNewsItems];
-
-  const [carWatch, autoevo] = await Promise.all([
-    fetchCarWatchNews(20),
-    fetchAutoevolutionNews(20),
-  ]);
-
-  const merged = [...staticItems, ...carWatch, ...autoevo];
-
-  const sorted = merged.sort((a, b) => {
-    return (
-      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-    );
+  // 4. 日付順にソート（新しい順）
+  allItems.sort((a, b) => {
+    return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
   });
 
-  if (typeof limit === "number") {
-    return sorted.slice(0, limit);
-  }
-  return sorted;
+  // 5. 重複除去（念のためURLでチェック）
+  const uniqueItems = Array.from(
+    new Map(allItems.map((item) => [item.sourceUrl || item.id, item])).values()
+  );
+
+  return uniqueItems;
 }
 
-export async function getNewsById(id: string): Promise<NewsItem | null> {
-  const items = await getLatestNews();
-  return items.find((item) => item.id === id) ?? null;
-}
-
-// 車種ページ用 関連ニュース検索
-export async function getNewsByCar(
-  maker: string,
-  name: string,
-  limit?: number
-): Promise<NewsItem[]> {
-  const keyMaker = maker.toLowerCase();
-  const keyName = name.toLowerCase();
-
-  const items = await getLatestNews();
-
-  const matched = items.filter((item) => {
-    const makerText = (item.maker ?? "").toLowerCase();
-    const titleText = (item.title ?? "").toLowerCase();
-    const tagsText = Array.isArray(item.tags)
-      ? item.tags.join(" ").toLowerCase()
-      : "";
-
-    const text = `${makerText} ${titleText} ${tagsText}`;
-
-    return text.includes(keyMaker) || text.includes(keyName);
-  });
-
-  if (typeof limit === "number") {
-    return matched.slice(0, limit);
-  }
-
-  return matched;
+/**
+ * 特定のIDの記事を取得（詳細ページ用）
+ */
+export async function getNewsById(id: string): Promise<NewsItem | undefined> {
+  const allNews = await getLatestNews();
+  return allNews.find(item => item.id === id || item.sourceUrl?.includes(decodeURIComponent(id)));
 }
