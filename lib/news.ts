@@ -1,12 +1,8 @@
 // lib/news.ts
-// lib/news.ts
 import { Client } from "@notionhq/client";
 import { unstable_cache } from "next/cache";
 import { getDatabaseIdByTitle } from "@/lib/notion";
-import { fetchRssNews } from "@/lib/rss";
 
-// Notionクライアントの初期化
-// ※もし lib/notion.ts から notion を export している場合は import { notion } from "@/lib/notion" に変えてもOKです
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
@@ -24,7 +20,6 @@ export type NewsItem = {
   sourceUrl?: string;
   type: "original" | "external";
   content?: string;
-  // 車種紐付け用（タグなどに車名が含まれると想定）
   tags?: string[];
 };
 
@@ -33,7 +28,7 @@ export type NewsItem = {
  * これが全てのデータ取得の基盤となります。
  */
 export const getAllNewsCached = unstable_cache(
-  async () => {
+  async (): Promise<NewsItem[]> => {
     try {
       const databaseId = await getDatabaseIdByTitle("News");
 
@@ -43,7 +38,7 @@ export const getAllNewsCached = unstable_cache(
         page_size: 100,
       });
 
-      const notionItems: NewsItem[] = response.results.map((page: any) => {
+      return response.results.map((page: any) => {
         const props = page.properties;
 
         return {
@@ -55,63 +50,19 @@ export const getAllNewsCached = unstable_cache(
           category: props.Category?.select?.name,
           sourceName: props.SourceName?.select?.name,
           sourceUrl: props.SourceUrl?.url,
-          type: props.Type?.select?.name === "External" ? "external" : "original",
+          type:
+            props.Type?.select?.name === "External" ? "external" : "original",
           tags: props.Tags?.multi_select?.map((t: any) => t.name) || [],
           content: "",
         } as NewsItem;
       });
-
-      let rssItems: NewsItem[] = [];
-      try {
-        rssItems = await fetchRssNews(10);
-      } catch (error) {
-        console.error("Failed to fetch RSS news:", error);
-      }
-
-      const allItems = [...notionItems, ...rssItems];
-
-      allItems.sort((a, b) => {
-        const aTime = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
-        const bTime = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
-        return bTime - aTime;
-      });
-
-      return allItems;
     } catch (error) {
       console.error("Failed to fetch news:", error);
       return [];
     }
   },
   ["all-news-list"],
-  { revalidate: 3600, tags: ["news"] },
-);
-
-      return response.results.map((page: any) => {
-        const props = page.properties;
-        
-        // Notionのプロパティ名に合わせてデータをマッピング
-        // ※プロパティ名(Name, TitleJaなど)がご自身のNotionと異なる場合は修正してください
-        return {
-          id: page.id,
-          title: props.Name?.title?.[0]?.plain_text ?? "No Title",
-          titleJa: props.TitleJa?.rich_text?.[0]?.plain_text,
-          publishedAt: props.PublishedAt?.date?.start,
-          excerpt: props.Excerpt?.rich_text?.[0]?.plain_text,
-          category: props.Category?.select?.name,
-          sourceName: props.SourceName?.select?.name,
-          sourceUrl: props.SourceUrl?.url,
-          type: props.Type?.select?.name === "External" ? "external" : "original",
-          tags: props.Tags?.multi_select?.map((t: any) => t.name) || [],
-          content: "", // 一覧取得時は本文は空でOK
-        } as NewsItem;
-      });
-    } catch (error) {
-      console.error("Failed to fetch news:", error);
-      return [];
-    }
-  },
-  ['all-news-list'], // キャッシュキー
-  { revalidate: 3600, tags: ['news'] } // 1時間キャッシュ
+  { revalidate: 3600, tags: ["news"] }
 );
 
 /**
@@ -129,10 +80,8 @@ export async function getLatestNews(limit: number = 10): Promise<NewsItem[]> {
 export async function getNewsById(id: string): Promise<NewsItem | null> {
   const all = await getAllNewsCached();
   const found = all.find((item) => item.id === id);
-  
+
   if (found) {
-    // Original記事の場合、詳細（本文）が必要ならここで別途取得するロジックを追加可能
-    // 今回はビルドを通すため、見つかったデータをそのまま返します
     return found;
   }
   return null;
@@ -142,12 +91,11 @@ export async function getNewsById(id: string): Promise<NewsItem | null> {
 export async function getNewsByCar(slug: string): Promise<NewsItem[]> {
   const all = await getAllNewsCached();
   const lowerSlug = slug.toLowerCase();
-  
+
   return all.filter((item) => {
-    // タグ、タイトル、本文に車種名が含まれているかチェック
     const inTitle = item.title?.toLowerCase().includes(lowerSlug);
     const inExcerpt = item.excerpt?.toLowerCase().includes(lowerSlug);
-    const inTags = item.tags?.some(t => t.toLowerCase().includes(lowerSlug));
+    const inTags = item.tags?.some((t) => t.toLowerCase().includes(lowerSlug));
     return inTitle || inExcerpt || inTags;
   });
 }
@@ -171,18 +119,20 @@ export type PaginatedNewsResult = {
 
 const ITEMS_PER_PAGE = 12;
 
-export async function getPaginatedNews(page: number = 1): Promise<PaginatedNewsResult> {
+export async function getPaginatedNews(
+  page: number = 1,
+): Promise<PaginatedNewsResult> {
   const allNews = await getAllNewsCached();
-  
+
   const totalItems = allNews.length;
-  const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+  const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
   const safePage = Math.max(1, Math.min(page, totalPages));
-  
+
   const startIndex = (safePage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
-  
+
   const items = allNews.slice(startIndex, endIndex);
-  
+
   return {
     items,
     meta: {
@@ -197,7 +147,7 @@ export async function getPaginatedNews(page: number = 1): Promise<PaginatedNewsR
 
 export async function getSearchIndex() {
   const allNews = await getAllNewsCached();
-  return allNews.map(item => ({
+  return allNews.map((item) => ({
     id: item.id,
     title: item.titleJa ?? item.title,
     category: item.category ?? "News",
