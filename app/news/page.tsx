@@ -1,6 +1,6 @@
 // app/news/page.tsx
 import Link from "next/link";
-import { getLatestNews } from "@/lib/news";
+import { getLatestNews, type NewsItem } from "@/lib/news";
 
 type SearchParams = {
   q?: string;
@@ -19,7 +19,7 @@ export default async function NewsPage({ searchParams }: Props) {
   const makerFilter = searchParams?.maker ?? "";
   const tagFilter = searchParams?.tag ?? "";
 
-  const items = (await getLatestNews(80)) as any[];
+  const items = (await getLatestNews(80)) as NewsItem[];
 
   const categories = Array.from(
     new Set(items.map((i) => i.category).filter(Boolean))
@@ -37,7 +37,7 @@ export default async function NewsPage({ searchParams }: Props) {
     )
   ) as string[];
 
-  const filtered = items.filter((item: any) => {
+  const filtered = items.filter((item: NewsItem) => {
     const text =
       `${item.title ?? ""} ${item.excerpt ?? ""} ${item.maker ?? ""} ${
         item.category ?? ""
@@ -193,16 +193,16 @@ export default async function NewsPage({ searchParams }: Props) {
             </p>
 
             <div className="mt-3 divide-y divide-neutral-200 rounded-2xl border border-neutral-200 bg-white/90 shadow-sm shadow-neutral-100">
-              {filtered.map((item: any, index: number) => {
-                const id = String(index);
-                const date =
-                  item.date ?? item.publishedAt ?? item.createdAt ?? "";
+              {filtered.map((item) => {
+                const date = item.publishedAt.slice(0, 10);
                 const tagsForItem = Array.isArray(item.tags) ? item.tags : [];
+                const isExternal = item.type === "external";
+                const href = `/news/${item.id}`;
 
                 return (
                   <Link
-                    key={id}
-                    href={`/news/${id}`}
+                    key={item.id}
+                    href={href}
                     className="group block px-4 py-4 sm:px-5 sm:py-5"
                   >
                     <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:gap-4">
@@ -211,9 +211,24 @@ export default async function NewsPage({ searchParams }: Props) {
                           <span className="text-[10px] uppercase tracking-[0.25em] text-sky-600">
                             {item.category ?? "NEWS"}
                           </span>
+                          <span
+                            className={
+                              "rounded-full px-2 py-[1px] text-[9px] tracking-[0.18em] " +
+                              (isExternal
+                                ? "border border-sky-400 bg-sky-50 text-sky-700"
+                                : "border border-neutral-300 bg-neutral-50 text-neutral-700")
+                            }
+                          >
+                            {isExternal ? "EXTERNAL" : "ORIGINAL"}
+                          </span>
                           {item.maker && (
                             <span className="rounded-full border border-neutral-200 bg-neutral-50 px-2 py-[2px] text-[10px] text-neutral-600">
                               {item.maker}
+                            </span>
+                          )}
+                          {isExternal && item.sourceName && (
+                            <span className="text-[10px] text-neutral-500">
+                              出典:{item.sourceName}
                             </span>
                           )}
                         </div>
@@ -227,7 +242,7 @@ export default async function NewsPage({ searchParams }: Props) {
                         )}
                         {tagsForItem.length > 0 && (
                           <div className="mt-2 flex flex-wrap gap-1">
-                            {tagsForItem.map((t: string) => (
+                            {tagsForItem.map((t) => (
                               <span
                                 key={t}
                                 className="rounded-full bg-neutral-100 px-2 py-[2px] text-[10px] text-neutral-500"
