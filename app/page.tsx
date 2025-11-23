@@ -1,57 +1,43 @@
-import Link from "next/link";
+// app/page.tsx
+import { HeroSection } from "@/components/home/HeroSection";
+import { CategorySection } from "@/components/home/CategorySection";
+import TopNewsTabs from "@/components/TopNewsTabs";
 import { getLatestNews } from "@/lib/news";
 
 export default async function HomePage() {
-  const latest = await getLatestNews(5);
+  // RSSから最新ニュースを取得
+  const allNews = await getLatestNews(12);
+  const latest = allNews.slice(0, 3);
+  const featured = allNews.slice(3, 9);
 
   return (
     <main className="min-h-screen">
-      {/* ここにヒーローなど既存のセクション */}
+      {/* 1. ヒーローセクション */}
+      <HeroSection />
 
-      <section className="mx-auto max-w-5xl px-4 py-10">
-        <div className="mb-6 flex items-center justify-between">
-          <h2 className="text-xl font-semibold tracking-wide serif-font">
+      {/* 2. LATEST NEWS（NEWS/COLUMN/GUIDE/CARSより上に配置） */}
+      <section className="relative z-10 px-4 pt-16 pb-10 md:px-8">
+        <div className="mx-auto mb-8 max-w-5xl space-y-3">
+          <p className="serif-font text-[11px] uppercase tracking-[0.25em] text-slate-500">
+            The Journal
+          </p>
+          <h2 className="serif-font text-2xl font-bold text-foreground md:text-3xl">
             LATEST NEWS
           </h2>
-          <Link
-            href="/news"
-            className="text-xs font-semibold tracking-[0.2em] text-accent-foreground"
-          >
-            VIEW ALL NEWS →
-          </Link>
+          <p className="max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
+            日々のニュースから、少しディープな話題まで。
+            静かな時間に、気になるトピックだけさっと追えるダイジェストです。
+          </p>
         </div>
 
-        <div className="space-y-4">
-          {latest.map((item) => (
-            <article
-              key={item.id}
-              className="rounded-2xl border bg-white/80 p-4 shadow-sm backdrop-blur-sm"
-            >
-              <div className="mb-1 flex items-center gap-3 text-xs text-muted-foreground">
-                <span className="font-semibold">{item.source}</span>
-                <span>{item.publishedAt}</span>
-              </div>
-
-              <Link
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
-                <h3 className="mb-1 text-sm font-medium leading-snug hover:text-primary">
-                  {item.title}
-                </h3>
-              </Link>
-
-              <p className="text-xs text-muted-foreground line-clamp-2">
-                {item.summary}
-              </p>
-            </article>
-          ))}
+        <div className="mx-auto max-w-5xl">
+          {/* ここが最新ニュースタブ。カードを押すと /news/[id] に飛ぶ */}
+          <TopNewsTabs latest={latest} featured={featured} />
         </div>
       </section>
 
-      {/* ここに他のセクション */}
+      {/* 3. NEWS/COLUMN/GUIDE/CARS への入口カード */}
+      <CategorySection />
     </main>
   );
 }
