@@ -44,10 +44,10 @@ export default async function HomePage() {
     <main
       className="min-h-screen text-neutral-900"
       style={{
-        // 横方向に Tiffanyブルー (#0ABAB5) → 白 へ滑らかに変化するグラデーション
-        // 左側はTiffany感を強め、中央〜右で白へフェードアウト
+        // 横方向に、少し薄めたTiffany系カラーから白へ滑らかに変化させた40:60グラデーション
+        // 左0〜40%がTiffany系（#0ABAB5を少しミント寄りにした帯）、40〜100%で白にフェード
         backgroundImage:
-          "linear-gradient(90deg, #0ABAB5 0%, #0ABAB5 35%, #dff7f5 65%, #ffffff 100%)",
+          "linear-gradient(90deg, #c9f3ee 0%, #90ded7 20%, #0ABAB5 32%, #e9faf7 40%, #ffffff 100%)",
       }}
     >
       {/* ヒーロー: フルページ画像＋オーバーレイ＋コピー */}
@@ -88,7 +88,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ダッシュボードエリア（カードにしっかり影をつける） */}
+      {/* ダッシュボードエリア（カードにふわっとした影） */}
       <section className="mx-auto flex max-w-5xl flex-col gap-6 px-4 pb-10 pt-8">
         <div className="grid gap-4 sm:grid-cols-2">
           <Link
@@ -153,7 +153,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 最新ニュースセクション：背景は同じグラデーション上に、白カード＋影 */}
+      {/* 最新ニュースセクション */}
       <section className="mx-auto max-w-5xl px-4 pb-16">
         <div className="mb-4 flex items-baseline justify-between">
           <div>
