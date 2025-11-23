@@ -1,85 +1,102 @@
 // lib/news.ts
 import { unstable_cache } from "next/cache";
-import { fetchRssArticles } from "./rss";
-import type { RssArticle } from "./rss";
+import { fetchRssArticles } from "@/lib/rss";
 
 export type NewsItem = {
   id: string;
   title: string;
   titleJa?: string;
+  slug?: string;
   publishedAt?: string;
   excerpt?: string;
+  coverImage?: string;
   category?: string;
   sourceName?: string;
   sourceUrl?: string;
-  type?: "external" | "original";
-  tags?: string[];
+  type: "original" | "external";
   content?: string;
+  tags?: string[];
 };
 
-function normalizeRssArticles(articles: RssArticle[]): NewsItem[] {
-  return articles.map((a) => ({
-    id: a.id,
-    title: a.title,
-    publishedAt: a.publishedAt,
-    excerpt: a.excerpt,
-    category: a.category ?? "News",
-    sourceName: a.sourceName,
-    sourceUrl: a.link,
-    type: "external",
-    tags: a.category ? [a.category] : [],
-    content: "",
-  }));
-}
-
-// 全ニュース一覧をキャッシュ付きで取得 10分ごとに再検証
+/**
+ * 全ニュース取得（RSSのみ）＋キャッシュ
+ */
 export const getAllNewsCached = unstable_cache(
-  async () => {
-    const rssArticles = await fetchRssArticles(20);
-    const items = normalizeRssArticles(rssArticles);
+  async (): Promise<NewsItem[]> => {
+    try {
+      // RSSから記事取得
+      const rssArticles = await fetchRssArticles(50);
 
-    // 新しい順にソート
-    items.sort((a, b) => {
-      const aTime = a.publishedAt ? Date.parse(a.publishedAt) : 0;
-      const bTime = b.publishedAt ? Date.parse(b.publishedAt) : 0;
-      return bTime - aTime;
-    });
+      const rssNews: NewsItem[] = rssArticles.map((a) => ({
+        id: a.id,
+        title: a.title,
+        titleJa: a.title,
+        slug: undefined,
+        publishedAt: a.publishedAt,
+        excerpt: a.excerpt,
+        coverImage: undefined,
+        category: a.category,
+        sourceName: a.sourceName,
+        sourceUrl: a.link,
+        type: "external",
+        content: "",
+        tags: [],
+      }));
 
-    return items;
+      // 日付降順
+      rssNews.sort((a, b) => {
+        const aTime = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
+        const bTime = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
+        return bTime - aTime;
+      });
+
+      return rssNews;
+    } catch (error) {
+      console.error("Failed to fetch news from RSS:", error);
+      return [];
+    }
   },
-  ["all-news"],
+  ["all-news-list"],
   {
+    // 10分ごとに再取得
     revalidate: 600,
     tags: ["news"],
   },
 );
 
-export async function getLatestNews(
-  limit: number = 20,
-): Promise<NewsItem[]> {
+/**
+ * 既存機能の互換実装
+ */
+
+// 最新ニュース
+export async function getLatestNews(limit: number = 10): Promise<NewsItem[]> {
   const all = await getAllNewsCached();
   return all.slice(0, limit);
 }
 
+// ID指定で1件取得
 export async function getNewsById(id: string): Promise<NewsItem | null> {
   const all = await getAllNewsCached();
-  return all.find((item) => item.id === id) ?? null;
+  const found = all.find((item) => item.id === id);
+  return found ?? null;
 }
 
-export async function searchNewsBySlug(slug: string): Promise<NewsItem[]> {
+// 車種ページ用 関連ニュース取得
+export async function getNewsByCar(slug: string): Promise<NewsItem[]> {
   const all = await getAllNewsCached();
   const lowerSlug = slug.toLowerCase();
 
   return all.filter((item) => {
     const inTitle = item.title?.toLowerCase().includes(lowerSlug);
     const inExcerpt = item.excerpt?.toLowerCase().includes(lowerSlug);
-    const inTags = item.tags?.some((t) =>
-      t.toLowerCase().includes(lowerSlug),
-    );
+    const inTags = item.tags?.some((t) => t.toLowerCase().includes(lowerSlug));
     return inTitle || inExcerpt || inTags;
   });
 }
 
+/**
+ * ページネーションと検索
+ */
 export type PaginationMeta = {
   currentPage: number;
   totalPages: number;
@@ -121,6 +138,7 @@ export async function getPaginatedNews(
   };
 }
 
+// グローバルサーチ用のインデックス
 export async function getSearchIndex() {
   const allNews = await getAllNewsCached();
   return allNews.map((item) => ({
