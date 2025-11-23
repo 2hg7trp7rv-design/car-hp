@@ -4,13 +4,13 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%; /* 白 */
-    --foreground: 192 15% 25%; /* 濃いグレー (ティファニーブルーの補色系) */
+    --background: 0 0% 100%;
+    --foreground: 192 15% 25%;
 
-    --primary: 174 55% 68%; /* ティファニーブルー #81D8D0 */
+    --primary: 174 55% 68%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 174 30% 95%; /* 薄いティファニーブルー */
+    --secondary: 174 30% 95%;
     --secondary-foreground: 192 15% 25%;
 
     --muted: 210 40% 96.1%;
@@ -26,7 +26,7 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 174 55% 68%;
 
-    --radius: 1rem; // 角丸を少し大きめに
+    --radius: 1rem; /* 角丸を少し大きめに */
   }
 
   .dark {
@@ -60,21 +60,8 @@
   }
   body {
     @apply bg-tiffany-gradient text-foreground min-h-screen selection:bg-tiffany-200;
-    /* selectionでテキスト選択時の色も変更 */
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif tracking-tight;
-    /* 見出しをセリフ体にして高級感を出す（フォントは要検討だが一旦適用） */
+    @apply tracking-tight;
   }
-}
-
-/* 高級感のあるセリフ体（仮） */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
-
-body {
-    font-family: 'Noto Sans JP', sans-serif;
-}
-
-h1, h2, h3, .serif-font {
-    font-family: 'Cinzel', serif;
 }
