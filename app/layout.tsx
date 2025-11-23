@@ -1,15 +1,22 @@
 import type { Metadata } from 'next';
-import { Inter, Noto_Sans_JP, Cinzel } from 'next/font/google'; // フォント追加
+import { Inter, Noto_Sans_JP, Cinzel } from 'next/font/google';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const notoSansJP = Noto_Sans_JP({ subsets: ['latin'], weight: ['300', '400', '500', '700'], variable: '--font-noto-sans-jp' });
-const cinzel = Cinzel({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-cinzel' });
-
+const notoSansJP = Noto_Sans_JP({ 
+  subsets: ['latin'], 
+  weight: ['300', '400', '500', '700'], 
+  variable: '--font-noto-sans-jp' 
+});
+const cinzel = Cinzel({ 
+  subsets: ['latin'], 
+  weight: ['400', '700'], 
+  variable: '--font-cinzel' 
+});
 
 export const metadata: Metadata = {
-  title: 'CAR BOUTIQUE | 大人のための洗練されたカーメディア',
-  description: '車のある豊かなライフスタイルを提案する、新しい形のカーメディア。ニュース、コラム、車種情報など、オーナー目線の上質なコンテンツをお届けします。',
+  title: 'CAR BOUTIQUE',
+  description: '車のある豊かなライフスタイルを提案する、新しい形のカーメディア。',
 };
 
 export default function RootLayout({
@@ -25,7 +32,7 @@ export default function RootLayout({
         </main>
         <footer className="py-8 text-center text-sm text-muted-foreground/60 bg-white/40 backdrop-blur-md">
           <div className="container">
-            <p className="serif-font tracking-wider">© {new Date().getFullYear()} CAR BOUTIQUE. All Rights Reserved.</p>
+            <p className="font-serif tracking-wider">© {new Date().getFullYear()} CAR BOUTIQUE. All Rights Reserved.</p>
           </div>
         </footer>
       </body>
