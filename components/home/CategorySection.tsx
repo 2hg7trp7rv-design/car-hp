@@ -1,5 +1,46 @@
-import { CategoryCard } from './CategoryCard';
-import { Newspaper, BookOpen, Compass, CarFront } from 'lucide-react';
+import Link from 'next/link';
+import { Newspaper, BookOpen, Compass, CarFront, LucideIcon } from 'lucide-react';
+
+interface CategoryCardProps {
+  title: string;
+  description: string;
+  href: string;
+  icon?: LucideIcon;
+}
+
+function CategoryCard({ title, description, href, icon: Icon }: CategoryCardProps) {
+  return (
+    <Link href={href} className="block group">
+      <div 
+        className="
+          bg-white/80 backdrop-blur-sm rounded-3xl p-8 h-full
+          border border-tiffany-100
+          shadow-[0_8px_30px_rgb(0,0,0,0.04)]
+          hover:shadow-soft hover:-translate-y-1 hover:bg-white
+          transition-all duration-300 ease-out
+          flex flex-col
+        "
+      >
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-2xl font-bold tracking-tight text-foreground group-hover:text-tiffany-700 transition-colors font-serif">
+            {title}
+          </h3>
+          {Icon && (
+            <Icon className="w-6 h-6 text-tiffany-400 group-hover:text-tiffany-500 transition-colors" />
+          )}
+        </div>
+        <p className="text-muted-foreground leading-relaxed flex-grow font-light">
+          {description}
+        </p>
+        <div className="mt-6 flex justify-end">
+           <span className="text-sm text-tiffany-600 font-medium group-hover:underline underline-offset-4 decoration-tiffany-300">
+             Explore <span aria-hidden="true">→</span>
+           </span>
+        </div>
+      </div>
+    </Link>
+  );
+}
 
 const categories = [
   {
@@ -35,11 +76,7 @@ export function CategorySection() {
         {categories.map((category) => (
           <CategoryCard
             key={category.title}
-            title={category.title}
-            description={category.description}
-            href={category.href}
-            icon={category.icon}
-            // variant propは削除
+            {...category}
           />
         ))}
       </div>
