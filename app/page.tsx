@@ -4,17 +4,24 @@ import { getLatestNews } from "@/lib/news";
 
 export const revalidate = 600;
 
+// NewsItem型がurlを持っていないため、ここで「このページで使う形」に型を合わせる
+type LatestNewsItem = {
+  id: string;
+  title: string;
+  url: string;
+};
+
 export default async function HomePage() {
-  const latestNews = await getLatestNews(3);
+  const latestNews = (await getLatestNews(3)) as LatestNewsItem[];
 
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-50">
-      {/* Hero */}
+      {/* Hero（Tiffanyブルー×白グラデーション＋フル幅写真的レイアウト） */}
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0">
-          {/* Tiffanyブルー×白グラデーションのベース */}
+          {/* Tiffanyブルー×白のグラデーションベース */}
           <div className="h-full w-full bg-gradient-to-br from-sky-200 via-white to-sky-300 opacity-80" />
-          {/* うっすら暗くして文字を読みやすくする */}
+          {/* 文字の視認性を上げるためのダークオーバーレイ */}
           <div className="absolute inset-0 bg-neutral-950/60" />
         </div>
 
@@ -37,9 +44,7 @@ export default async function HomePage() {
           </div>
 
           <div className="flex flex-col gap-3 text-xs text-neutral-200">
-            <p className="uppercase tracking-[0.2em]">
-              Car Boutique
-            </p>
+            <p className="uppercase tracking-[0.2em]">Car Boutique</p>
             <p className="max-w-xs leading-relaxed">
               ニュースは自動で集め、
               本音のコラムとガイドは手で編んでいく。
@@ -59,9 +64,7 @@ export default async function HomePage() {
             <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
               News
             </p>
-            <p className="mt-2 text-sm font-medium tracking-tight">
-              最新ニュース
-            </p>
+            <p className="mt-2 text-sm font-medium tracking-tight">最新ニュース</p>
             <p className="mt-1 text-[11px] leading-relaxed text-neutral-400">
               国内外の主要メディアから集めたトピックを、
               見出しの一覧でさっと追えるように。
@@ -75,9 +78,7 @@ export default async function HomePage() {
             <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
               Column
             </p>
-            <p className="mt-2 text-sm font-medium tracking-tight">
-              コラムとストーリー
-            </p>
+            <p className="mt-2 text-sm font-medium tracking-tight">コラムとストーリー</p>
             <p className="mt-1 text-[11px] leading-relaxed text-neutral-400">
               オーナー目線の本音や、修理体験、技術の話をじっくり読むための場所。
             </p>
@@ -90,9 +91,7 @@ export default async function HomePage() {
             <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
               Guide
             </p>
-            <p className="mt-2 text-sm font-medium tracking-tight">
-              買い方と維持のガイド
-            </p>
+            <p className="mt-2 text-sm font-medium tracking-tight">買い方と維持のガイド</p>
             <p className="mt-1 text-[11px] leading-relaxed text-neutral-400">
               予算の組み方や維持費の感覚など、
               お金まわりの悩みを整理するためのガイドライン。
@@ -106,9 +105,7 @@ export default async function HomePage() {
             <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
               Cars
             </p>
-            <p className="mt-2 text-sm font-medium tracking-tight">
-              車種別ガレージ
-            </p>
+            <p className="mt-2 text-sm font-medium tracking-tight">車種別ガレージ</p>
             <p className="mt-1 text-[11px] leading-relaxed text-neutral-400">
               一台ごとの性格やトラブル傾向を、
               ニュースやコラムとあわせて整理していく予定です。
@@ -138,9 +135,7 @@ export default async function HomePage() {
 
         <div className="space-y-4">
           {latestNews.length === 0 && (
-            <p className="text-xs text-neutral-500">
-              ニュースの取得準備中です。
-            </p>
+            <p className="text-xs text-neutral-500">ニュースの取得準備中です。</p>
           )}
 
           {latestNews.map((item) => (
@@ -149,11 +144,7 @@ export default async function HomePage() {
               className="rounded-2xl border border-neutral-900 bg-neutral-900/40 px-4 py-4 transition hover:border-neutral-500 hover:bg-neutral-900"
             >
               <h3 className="text-sm font-medium leading-snug tracking-tight">
-                <Link
-                  href={item.url}
-                  target="_blank"
-                  className="hover:underline"
-                >
+                <Link href={item.url} target="_blank" className="hover:underline">
                   {item.title}
                 </Link>
               </h3>
