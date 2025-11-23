@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Noto_Sans_JP, Cinzel } from 'next/font/google';
-import './globals.css';
+import "./tokens.css";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const notoSansJP = Noto_Sans_JP({ 
