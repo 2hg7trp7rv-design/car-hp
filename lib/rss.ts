@@ -1,104 +1,162 @@
-// lib/rss.ts
+"use server";
+
 import Parser from "rss-parser";
 
 export type RssArticle = {
   id: string;
   title: string;
-  link?: string;
-  publishedAt?: string;
-  excerpt?: string;
+  link: string;
   sourceName: string;
-  category?: string;
+  publishedAt: string; // ISO8601
+  excerpt: string;
+  category: string;
+  tags: string[];
 };
 
 type RssFeedConfig = {
   url: string;
   sourceName: string;
-  defaultCategory?: string;
+  category?: string;
+  tags?: string[];
 };
 
+// RSSフィード一覧
+// 増やしたいときはこの配列に足すだけ
 const rssFeeds: RssFeedConfig[] = [
+  // 国産メディア（自動車ニュース系）
   {
-    // レスポンス（自動車総合ニュース）
     url: "https://response.jp/rss/index.rdf",
     sourceName: "Response.jp",
-    defaultCategory: "News",
+    category: "News",
   },
   {
-    // Car Watch（インプレスの自動車ニュース）
-    url: "https://car.watch.impress.co.jp/data/rss/1.0/ipw/feed.rdf",
-    sourceName: "Car Watch",
-    defaultCategory: "News",
-  },
-  {
-    // webCG 自動車ニュース
-    url: "https://www.webcg.net/list/feed/rss",
+    url: "https://www.webcg.net/rss/index.rdf",
     sourceName: "webCG",
-    defaultCategory: "News",
+    category: "News",
   },
   {
-    // TOYOTA グローバルニュース（日本語含む全ニュース）
-    url: "https://global.toyota/export/jp/allnews_rss.xml",
-    sourceName: "TOYOTA Global News",
-    defaultCategory: "メーカー情報",
+    url: "https://car.watch.impress.co.jp/data/rss/1.0/carwatch.rdf",
+    sourceName: "Car Watch",
+    category: "News",
   },
   {
-    // Honda クルマ関連ニュース
-    url: "https://www.honda.co.jp/rss/auto.xml",
-    sourceName: "Honda クルマ",
-    defaultCategory: "メーカー情報",
+    url: "https://bestcarweb.jp/feed",
+    sourceName: "ベストカーWeb",
+    category: "Column",
+  },
+  {
+    url: "https://motor-fan.jp/feed",
+    sourceName: "Motor-Fan.jp",
+    category: "Tech",
+  },
+  {
+    url: "https://www.autocar.jp/feed",
+    sourceName: "AUTOCAR JAPAN",
+    category: "News",
+  },
+  {
+    url: "https://topgear.tokyo/feed",
+    sourceName: "TopGear Japan",
+    category: "News",
+  },
+
+  // 海外メディア（EV・技術動向などスピード重視で数件追加）
+  {
+    url: "https://www.caranddriver.com/rss/all.xml",
+    sourceName: "Car and Driver",
+    category: "Global",
+  },
+  {
+    url: "https://www.motor1.com/rss/news/",
+    sourceName: "Motor1.com",
+    category: "Global",
+  },
+  {
+    url: "https://insideevs.com/news/rss/",
+    sourceName: "InsideEVs",
+    category: "EV",
   },
 ];
 
-const parser = new Parser();
+let parser: Parser | null = null;
 
-function createStableId(base: string): string {
-  const normalized = encodeURIComponent(base).replace(/%/g, "-");
-  return `rss-${normalized.slice(0, 60)}`;
+function getParser() {
+  if (!parser) {
+    parser = new Parser({
+      timeout: 10000,
+      headers: {
+        "User-Agent": "Car Boutique RSS Aggregator (+https://car-hp.vercel.app/)",
+      },
+    });
+  }
+  return parser;
 }
 
-export async function fetchRssArticles(
-  limitPerFeed: number = 20,
-): Promise<RssArticle[]> {
-  const collected: RssArticle[] = [];
+// 制御文字や改行を軽く整えるだけ（文字コード変換はしない）
+function normalizeText(input: string | undefined | null): string {
+  if (!input) return "";
+  return input
+    .replace(/[\r\n]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/**
+ * RSSフィードから記事をまとめて取得
+ * - フィードごとにエラーになっても他は継続
+ * - 公開日の新しい順に並べ替え
+ * - limit件まで返す
+ */
+export async function fetchRssArticles(limit: number = 50): Promise<RssArticle[]> {
+  const p = getParser();
+  const articles: RssArticle[] = [];
 
   for (const feed of rssFeeds) {
-    if (!feed.url) continue;
-
     try {
-      const parsed = await parser.parseURL(feed.url);
-      const items = (parsed.items || []).slice(0, limitPerFeed);
+      const parsed = await p.parseURL(feed.url);
 
-      for (const item of items) {
-        const anyItem = item as any;
+      for (const item of parsed.items ?? []) {
+        const title = normalizeText(item.title as string | undefined);
+        const link = (item.link || "").toString();
 
-        const idBase =
-          anyItem.guid ||
-          anyItem.link ||
-          anyItem.isoDate ||
-          anyItem.pubDate ||
-          anyItem.title ||
-          Math.random().toString(36);
+        if (!title || !link) continue;
 
-        const publishedAt: string | undefined =
-          anyItem.isoDate || anyItem.pubDate || undefined;
+        const rawDate =
+          (item.isoDate as string | undefined) ||
+          (item.pubDate as string | undefined) ||
+          undefined;
 
-        const article: RssArticle = {
-          id: createStableId(idBase),
-          title: anyItem.title || "No title",
-          link: anyItem.link,
-          publishedAt,
-          excerpt: anyItem.contentSnippet || anyItem.content || "",
+        const publishedAt = rawDate
+          ? new Date(rawDate).toISOString()
+          : new Date().toISOString();
+
+        const excerpt = normalizeText(
+          (item.contentSnippet as string | undefined) ||
+            (item.summary as string | undefined) ||
+            (item.content as string | undefined),
+        );
+
+        articles.push({
+          id: `rss-${encodeURIComponent(link)}`,
+          title,
+          link,
           sourceName: feed.sourceName,
-          category: feed.defaultCategory,
-        };
-
-        collected.push(article);
+          publishedAt,
+          excerpt,
+          category: feed.category ?? "News",
+          tags: feed.tags ?? [],
+        });
       }
-    } catch (error) {
-      console.error("Failed to fetch RSS feed:", feed.url, error);
+    } catch (err) {
+      console.error("[RSS] Failed to fetch:", feed.url, err);
+      // このフィードはスキップして次へ
+      continue;
     }
   }
 
-  return collected;
+  // 新しい順にソート
+  articles.sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
+
+  // 最新limit件だけ返す
+  return articles.slice(0, limit);
 }
