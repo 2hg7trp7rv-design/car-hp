@@ -7,14 +7,64 @@ type Props = {
   params: { id: string };
 };
 
-// 共通で使う「idからニュースを探す」関数
-async function findNewsItemById(id: string): Promise<NewsItem | undefined> {
-  // 十分多めに取っておく。必要に応じて増減してOK
+// 安全にdecodeするヘルパー
+function safeDecode(value: string): string {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+
+// params.idからNewsItemを探す共通関数
+async function findNewsItemById(rawId: string): Promise<NewsItem | undefined> {
+  // 多めに取得しておく
   const items = await getLatestNews(200);
 
-  // params.idはNext.js側で一度デコードされた値になる前提
-  // NewsItem.idと完全一致するものを探す
-  return items.find((item) => item.id === id);
+  const decoded1 = safeDecode(rawId);
+  const decoded2 = safeDecode(decoded1);
+
+  // 比較候補となる文字列たち
+  const idCandidates = Array.from(
+    new Set([rawId, decoded1, decoded2].filter(Boolean)),
+  );
+
+  // rss-プレフィックスを外した「記事URL」候補たち
+  const urlCandidates = idCandidates
+    .map((v) => (v.startsWith("rss-") ? v.slice(4) : v))
+    .filter(Boolean);
+
+  // 1.id同士の完全一致で探す（lib/news側がidを持っている場合）
+  const itemById = items.find((item: any) => {
+    const itemId = item.id as string | undefined;
+    return itemId && idCandidates.includes(itemId);
+  });
+  if (itemById) return itemById as NewsItem;
+
+  // 2.元記事URLで探す（idがURL由来の場合）
+  const itemByUrl = items.find((item: any) => {
+    const link =
+      (item.sourceUrl as string | undefined) ??
+      (item.link as string | undefined) ??
+      (item.url as string | undefined);
+
+    if (!link) return false;
+
+    // linkそのもの、またはエンコード/デコードされた形が一致しないかを見ておく
+    const linkDecoded1 = safeDecode(link);
+    const linkDecoded2 = safeDecode(linkDecoded1);
+
+    const linkCandidates = Array.from(
+      new Set([link, linkDecoded1, linkDecoded2]),
+    );
+
+    return linkCandidates.some((lc) => urlCandidates.includes(lc));
+  });
+
+  if (itemByUrl) return itemByUrl as NewsItem;
+
+  // ここまでで見つからなければundefined
+  return undefined;
 }
 
 // 日付表示用フォーマッタ
@@ -40,9 +90,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const title = item.titleJa ?? item.title;
+  const anyItem = item as any;
+  const title = anyItem.titleJa ?? anyItem.title;
   const description =
-    item.excerpt ?? "車のニュースと、その先にある物語を。";
+    anyItem.excerpt ?? "車のニュースと、その先にある物語を。";
 
   return {
     title: `${title} | CAR BOUTIQUE`,
@@ -51,7 +102,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${title} | CAR BOUTIQUE`,
       description,
       type: "article",
-      url: `https://car-hp.vercel.app/news/${encodeURIComponent(item.id)}`,
+      url: `https://car-hp.vercel.app/news/${encodeURIComponent(params.id)}`,
     },
     twitter: {
       card: "summary",
@@ -87,13 +138,13 @@ export default async function NewsDetailPage({ params }: Props) {
     );
   }
 
-  const title = item.titleJa ?? item.title;
-  const dateLabel = formatDate((item as any).publishedAt ?? (item as any).date);
-  const sourceName = (item as any).sourceName ?? "";
+  const anyItem = item as any;
+  const title = anyItem.titleJa ?? anyItem.title;
+  const dateLabel = formatDate(anyItem.publishedAt ?? anyItem.date);
+  const sourceName = anyItem.sourceName ?? "";
   const sourceUrl =
-    (item as any).sourceUrl ?? (item as any).link ?? (item as any).url ?? "";
-  const editorComment =
-    (item as any).editorComment ?? (item as any).comment ?? "";
+    anyItem.sourceUrl ?? anyItem.link ?? anyItem.url ?? "";
+  const editorComment = anyItem.editorComment ?? anyItem.comment ?? "";
 
   return (
     <main className="min-h-screen px-4 pt-24 pb-24 md:px-8">
@@ -113,9 +164,9 @@ export default async function NewsDetailPage({ params }: Props) {
           {sourceName && <span>•{sourceName}</span>}
         </div>
 
-        {item.excerpt && (
+        {anyItem.excerpt && (
           <p className="mt-6 text-sm leading-relaxed text-slate-700">
-            {item.excerpt}
+            {anyItem.excerpt}
           </p>
         )}
 
