@@ -83,13 +83,13 @@ const config: Config = {
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        "accordion-down": "accordion-down 0.2s.ease-out",
+        "accordion-up": "accordion-up 0.2s.ease-out",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         // 左40%が薄いティファニーブルー、右60%が白
-        tiffany-gradient:
+        "tiffany-gradient":
           "linear-gradient(90deg, #E1F9F7 0%, #E1F9F7 40%, #FFFFFF 100%)",
       },
       boxShadow: {
