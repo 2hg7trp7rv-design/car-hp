@@ -1,8 +1,8 @@
 // app/page.tsx
 import Link from "next/link";
 import TopNewsTabs from "@/components/TopNewsTabs";
-import { getAllNewsCached } from "@/lib/news";
 import TapLink from "@/components/TapLink";
+import { getAllNewsCached } from "@/lib/news";
 
 // ニュースの更新頻度（秒） 10分ごとに再生成
 export const revalidate = 600;
@@ -26,7 +26,7 @@ export default async function Home() {
         <div className="absolute inset-0 bg-slate-900/40 z-0" />
 
         {/* ヘッダー */}
-        <header className="absolute top-0 w-full py-6 px-6 flex items-center justify-between z-20 border-b border-white/20">
+        <header className="absolute top-0 w-full py-6 px-6 flex.items-center justify-between z-20 border-b border-white/20">
           <h1 className="text-2xl font-serif tracking-widest text-white font-bold">
             CAR BOUTIQUE
           </h1>
@@ -106,24 +106,24 @@ export default async function Home() {
 
                     {/* リンク矢印装飾 */}
                     <div className="flex justify-end">
-                      <span className="flex items-center text-[#0ABAB5] text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">
+                      <span className="flex items-center text-[#0ABAB5] text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all.duration-300">
                         Read more
-                        <span className="ml-2 text-lg">→</span>
+                        <span className="ml-2.text-lg">→</span>
                       </span>
                     </div>
                   </article>
                 ))}
               </div>
 
-              {/* VIEW ALL NEWS ボタン（タップ領域拡大済み） */}
-              <div className="mt-12 flex.justify-center">
-               <TapLink
-                href="/news"
-                className="inline-flex items-center justify-center min-w-[220px] min-h-[48px] rounded-full border border-[#0ABAB5] bg-white text-sm font-semibold tracking-[0.2em] text-[#0ABAB5] touch-manipulation shadow-[0_6px_20px_-8px_rgba(10,186,181,0.6)] hover:bg-[#0ABAB5] hover:text-white hover:shadow-[0_12px_35px_-12px_rgba(10,186,181,0.8)] transition-all.duration-300 uppercase"
-               >
-                   VIEW ALL NEWS
-               </TapLink>
-　　　　　　　　　</div>
+              {/* VIEW ALL NEWS ボタン（TapLink版） */}
+              <div className="mt-12 flex justify-center">
+                <TapLink
+                  href="/news"
+                  className="inline-flex items-center justify-center min-w-[220px] min-h-[48px] rounded-full border border-[#0ABAB5] bg-white text-sm font-semibold tracking-[0.2em] text-[#0ABAB5] touch-manipulation shadow-[0_6px_20px_-8px_rgba(10,186,181,0.6)] hover:bg-[#0ABAB5] hover:text-white hover:shadow-[0_12px_35px_-12px_rgba(10,186,181,0.8)] transition-all duration-300 uppercase"
+                >
+                  VIEW ALL NEWS
+                </TapLink>
+              </div>
             </>
           )}
         </div>
