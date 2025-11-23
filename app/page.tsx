@@ -44,14 +44,15 @@ export default async function HomePage() {
     <main
       className="min-h-screen text-neutral-900"
       style={{
-        // ページ全体のベースを Tiffanyブルーと白の横方向 50:50 グラデーションに固定
+        // 横方向に Tiffanyブルー (#0ABAB5) → 白 へ滑らかに変化するグラデーション
+        // 左側はTiffany感を強め、中央〜右で白へフェードアウト
         backgroundImage:
-          "linear-gradient(to right, #0ABAB5 0%, #0ABAB5 50%, #FFFFFF 50%, #FFFFFF 100%)",
+          "linear-gradient(90deg, #0ABAB5 0%, #0ABAB5 35%, #dff7f5 65%, #ffffff 100%)",
       }}
     >
       {/* ヒーロー: フルページ画像＋オーバーレイ＋コピー */}
       <section className="relative overflow-hidden">
-        {/* 背景画像: トップページで使うヒーロー画像 */}
+        {/* トップページで使うヒーロー画像 */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -87,12 +88,12 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ダッシュボードエリア */}
+      {/* ダッシュボードエリア（カードにしっかり影をつける） */}
       <section className="mx-auto flex max-w-5xl flex-col gap-6 px-4 pb-10 pt-8">
         <div className="grid gap-4 sm:grid-cols-2">
           <Link
             href="/news"
-            className="rounded-3xl border border-white/40 bg-neutral-900/92 px-5 py-4 text-neutral-50 shadow-lg shadow-black/25 backdrop-blur"
+            className="rounded-[28px] border border-black/10 bg-neutral-900/95 px-5 py-4 text-neutral-50 shadow-xl shadow-black/25 backdrop-blur"
           >
             <p className="text-[11px] tracking-[0.24em] text-white/60">
               NEWS
@@ -107,7 +108,7 @@ export default async function HomePage() {
 
           <Link
             href="/column"
-            className="rounded-3xl border border-white/40 bg-neutral-900/92 px-5 py-4 text-neutral-50 shadow-lg shadow-black/25 backdrop-blur"
+            className="rounded-[28px] border border-black/10 bg-neutral-900/95 px-5 py-4 text-neutral-50 shadow-xl shadow-black/25 backdrop-blur"
           >
             <p className="text-[11px] tracking-[0.24em] text-white/60">
               COLUMN
@@ -122,7 +123,7 @@ export default async function HomePage() {
 
           <Link
             href="/guide"
-            className="rounded-3xl border border-neutral-900/15 bg-white/85 px-5 py-4 text-neutral-900 shadow-sm backdrop-blur"
+            className="rounded-[28px] border border-white/60 bg-white/95 px-5 py-4 text-neutral-900 shadow-xl shadow-teal-500/20 backdrop-blur"
           >
             <p className="text-[11px] tracking-[0.24em] text-neutral-500">
               GUIDE
@@ -137,7 +138,7 @@ export default async function HomePage() {
 
           <Link
             href="/cars"
-            className="rounded-3xl border border-neutral-900/15 bg-white/85 px-5 py-4 text-neutral-900 shadow-sm backdrop-blur"
+            className="rounded-[28px] border border-white/60 bg-white/95 px-5 py-4 text-neutral-900 shadow-xl shadow-teal-500/20 backdrop-blur"
           >
             <p className="text-[11px] tracking-[0.24em] text-neutral-500">
               CARS
@@ -152,7 +153,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 最新ニュースセクション */}
+      {/* 最新ニュースセクション：背景は同じグラデーション上に、白カード＋影 */}
       <section className="mx-auto max-w-5xl px-4 pb-16">
         <div className="mb-4 flex items-baseline justify-between">
           <div>
@@ -165,7 +166,7 @@ export default async function HomePage() {
           </div>
           <Link
             href="/news"
-            className="text-[11px] font-medium text-neutral-800 underline-offset-2 hover:underline"
+            className="text-[11px] font-medium text-teal-700 underline-offset-2 hover:underline"
           >
             すべてのニュースを見る
           </Link>
@@ -176,7 +177,7 @@ export default async function HomePage() {
           {primaryNews.map((item) => (
             <article
               key={item.id}
-              className="flex flex-col justify-between rounded-2xl border border-neutral-200/80 bg-white/92 p-4 text-sm shadow-sm"
+              className="flex flex-col justify-between rounded-[24px] border border-white/80 bg-white/96 p-4 text-sm shadow-xl shadow-teal-500/15"
             >
               <div className="mb-3">
                 <div className="mb-1 flex flex-wrap items-center gap-2 text-[11px] text-neutral-500">
@@ -207,7 +208,7 @@ export default async function HomePage() {
                   <Link
                     href={item.url}
                     target="_blank"
-                    className="text-[11px] font-medium text-neutral-900 underline underline-offset-2"
+                    className="text-[11px] font-medium text-teal-700 underline underline-offset-2"
                   >
                     元記事を読む
                   </Link>
@@ -219,7 +220,7 @@ export default async function HomePage() {
 
         {/* 下段: そのほかの最新ニュース（3件） */}
         {secondaryNews.length > 0 && (
-          <div className="mt-6 space-y-3 rounded-2xl border border-neutral-200/80 bg-white/88 p-4 text-sm shadow-sm">
+          <div className="mt-6 space-y-3 rounded-[24px] border border-white/80 bg-white/94 p-4 text-sm shadow-xl shadow-teal-500/15">
             {secondaryNews.map((item) => (
               <article
                 key={item.id}
