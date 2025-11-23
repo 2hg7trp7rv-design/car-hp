@@ -55,7 +55,7 @@
   }
 }
 
-/* ベーススタイル */
+/* ベーススタイルとフォント適用 */
 @layer base {
   * {
     @apply border-border;
@@ -63,10 +63,11 @@
 
   body {
     @apply bg-tiffany-gradient text-foreground min-h-screen antialiased;
+    font-family: var(--font-noto-sans-jp), system-ui, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 
   ::selection {
-    /* Tiffany系の淡いハイライト */
     background-color: #c2f3ef;
     color: inherit;
   }
@@ -78,5 +79,12 @@
   h5,
   h6 {
     @apply tracking-tight;
+    font-family: var(--font-cinzel), system-ui, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .serif-font {
+    font-family: var(--font-cinzel), system-ui, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 }
