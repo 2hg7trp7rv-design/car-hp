@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ベースのテーマ変数 */
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -54,16 +55,20 @@
   }
 }
 
+/* ベーススタイル */
 @layer base {
   * {
-    /* Tailwind v4のエラー回避のため書き換え済み */
-    border-color: hsl(var(--border));
-    border-style: solid;
-    border-width: 0;
+    @apply border-border;
   }
 
   body {
-    @apply bg-tiffany-gradient text-foreground min-h-screen selection:bg-tiffany-200;
+    @apply bg-tiffany-gradient text-foreground min-h-screen antialiased;
+  }
+
+  ::selection {
+    /* Tiffany系の淡いハイライト */
+    background-color: #c2f3ef;
+    color: inherit;
   }
 
   h1,
