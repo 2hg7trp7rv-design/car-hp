@@ -2,159 +2,254 @@
 import Link from "next/link";
 import { getLatestNews } from "@/lib/news";
 
-export const revalidate = 600;
+export const revalidate = 300;
 
-// このページで使うニュースアイテムの形
 type LatestNewsItem = {
-  id: string;
+  id: string | number;
   title: string;
-  url?: string; // NewsItemの型には無い可能性があるので任意扱いにする
+  summary?: string;
+  source?: string;
+  publishedAt?: string;
+  url?: string;
 };
 
 export default async function HomePage() {
-  const latestNews = (await getLatestNews(3)) as LatestNewsItem[];
+  const rawItems: any[] = await getLatestNews(6);
+
+  const latestNews: LatestNewsItem[] = rawItems.map((item, index) => ({
+    id: item.id ?? index,
+    title: item.title ?? "",
+    summary:
+      item.summary ??
+      item.excerpt ??
+      item.description ??
+      "",
+    source:
+      item.source ??
+      item.siteName ??
+      item.feedTitle ??
+      "",
+    publishedAt:
+      item.publishedAt ??
+      item.date ??
+      item.isoDate ??
+      "",
+    url: item.url ?? item.link ?? "#",
+  }));
+
+  const primaryNews = latestNews.slice(0, 3);
+  const secondaryNews = latestNews.slice(3, 6);
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-50">
-      {/* Hero（Tiffanyブルー×白グラデーション＋フル幅イメージ的レイアウト） */}
+    <main className="min-h-screen bg-gradient-to-b from-[#d9f5ff] via-white to-[#a7e4ff] text-neutral-900">
+      {/* ヒーロー: フルページ画像＋オーバーレイ＋コピー */}
       <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0">
-          {/* Tiffanyブルー×白のグラデーションベース */}
-          <div className="h-full w-full bg-gradient-to-br from-sky-200 via-white to-sky-300 opacity-80" />
-          {/* 文字の視認性を上げるためのダークオーバーレイ */}
-          <div className="absolute inset-0 bg-neutral-950/60" />
-        </div>
+        {/* 背景画像: ここにトップページのフルページ画像を指定 */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/hero-main.jpg')",
+          }}
+          aria-hidden="true"
+        />
+        {/* 黒の薄いグラデーションオーバーレイ（文字の視認性確保） */}
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto flex min-h-[520px] max-w-5xl flex-col justify-center px-4 py-16 text-white">
+          <p className="mb-4 text-xs tracking-[0.28em] text-white/70">
+            CURATED AUTOMOTIVE JOURNAL
+          </p>
+          <h1 className="mb-4 text-4xl font-semibold tracking-tight sm:text-5xl">
+            Driving Elegance.
+          </h1>
+          <p className="mb-4 max-w-xl text-sm leading-relaxed text-white/80">
+            車のニュースと、その先にある物語を。静かな時間の中で、愛車と未来を想うための場所です。
+          </p>
+          <p className="mb-8 max-w-xl text-xs leading-relaxed text-white/70">
+            大手メディアの速報を選び取りつつ、オーナーの視点から少し深く解説していく小さなブティックメディアです。
+          </p>
 
-        <div className="relative mx-auto flex max-w-5xl flex-col gap-10 px-4 pb-16 pt-20 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-xl">
-            <p className="text-xs uppercase tracking-[0.3em] text-neutral-300">
-              Curated Automotive Journal
-            </p>
-            <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-              Driving Elegance.
-            </h1>
-            <p className="mt-4 text-sm leading-relaxed text-neutral-100">
-              車のニュースと、その先にある物語を。
-              静かな時間の中で、愛車との未来を想うための場所です。
-            </p>
-            <p className="mt-3 text-xs text-neutral-200">
-              大手メディアの速報を選び取りつつ、
-              オーナーの視点から少し深く解説していく小さなブティックメディアです。
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-3 text-xs text-neutral-200">
-            <p className="uppercase tracking-[0.2em]">Car Boutique</p>
-            <p className="max-w-xs leading-relaxed">
-              ニュースは自動で集め、
-              本音のコラムとガイドは手で編んでいく。
-              その二つが混ざり合う場所を目指しています。
+          <div className="space-y-2 text-[11px] text-white/70">
+            <p className="tracking-[0.24em]">CAR BOUTIQUE</p>
+            <p className="max-w-xl">
+              ニュースは自動で集め、本音のコラムとガイドは手で編んでいく。その二つが混ざり合う場所を目指しています。
             </p>
           </div>
         </div>
       </section>
 
-      {/* ダッシュボード的な入口 */}
-      <section className="border-y border-neutral-900 bg-neutral-900/40">
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 px-4 py-6 text-xs sm:grid-cols-4">
+      {/* ダッシュボードエリア */}
+      <section className="mx-auto flex max-w-5xl flex-col gap-6 px-4 pb-10 pt-8">
+        <div className="grid gap-4 sm:grid-cols-2">
           <Link
             href="/news"
-            className="group rounded-2xl border border-neutral-800 bg-neutral-950/40 px-4 py-4 transition hover:border-neutral-500 hover:bg-neutral-900"
+            className="rounded-3xl border border-white/40 bg-neutral-900/90 px-5 py-4 text-neutral-50 shadow-lg shadow-black/20 backdrop-blur"
           >
-            <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
-              News
+            <p className="text-[11px] tracking-[0.24em] text-white/60">
+              NEWS
             </p>
-            <p className="mt-2 text-sm font-medium tracking-tight">最新ニュース</p>
-            <p className="mt-1 text-[11px] leading-relaxed text-neutral-400">
-              国内外の主要メディアから集めたトピックを、
-              見出しの一覧でさっと追えるように。
+            <h2 className="mt-1 text-base font-semibold">
+              最新ニュース
+            </h2>
+            <p className="mt-1 text-[13px] leading-relaxed text-white/70">
+              国内外の主要メディアから集めたトピックを、見出しの一覧でさっと追えるように。
             </p>
           </Link>
 
           <Link
             href="/column"
-            className="group rounded-2xl border border-neutral-800 bg-neutral-950/40 px-4 py-4 transition hover:border-neutral-500 hover:bg-neutral-900"
+            className="rounded-3xl border border-white/40 bg-neutral-900/90 px-5 py-4 text-neutral-50 shadow-lg shadow-black/20 backdrop-blur"
           >
-            <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
-              Column
+            <p className="text-[11px] tracking-[0.24em] text-white/60">
+              COLUMN
             </p>
-            <p className="mt-2 text-sm font-medium tracking-tight">コラムとストーリー</p>
-            <p className="mt-1 text-[11px] leading-relaxed text-neutral-400">
+            <h2 className="mt-1 text-base font-semibold">
+              コラムとストーリー
+            </h2>
+            <p className="mt-1 text-[13px] leading-relaxed text-white/70">
               オーナー目線の本音や、修理体験、技術の話をじっくり読むための場所。
             </p>
           </Link>
 
           <Link
             href="/guide"
-            className="group rounded-2xl border border-neutral-800 bg-neutral-950/40 px-4 py-4 transition hover:border-neutral-500 hover:bg-neutral-900"
+            className="rounded-3xl border border-neutral-900/10 bg-white/80 px-5 py-4 text-neutral-900 shadow-sm backdrop-blur"
           >
-            <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
-              Guide
+            <p className="text-[11px] tracking-[0.24em] text-neutral-500">
+              GUIDE
             </p>
-            <p className="mt-2 text-sm font-medium tracking-tight">買い方と維持のガイド</p>
-            <p className="mt-1 text-[11px] leading-relaxed text-neutral-400">
-              予算の組み方や維持費の感覚など、
-              お金まわりの悩みを整理するためのガイドライン。
+            <h2 className="mt-1 text-base font-semibold">
+              お金と暮らしのガイド
+            </h2>
+            <p className="mt-1 text-[13px] leading-relaxed text-neutral-700">
+              買い方、売り方、維持費や保険など、暮らしに近い視点で車と向き合うための実用ガイド。
             </p>
           </Link>
 
           <Link
             href="/cars"
-            className="group rounded-2xl border border-neutral-800 bg-neutral-950/40 px-4 py-4 transition hover:border-neutral-500 hover:bg-neutral-900"
+            className="rounded-3xl border border-neutral-900/10 bg-white/80 px-5 py-4 text-neutral-900 shadow-sm backdrop-blur"
           >
-            <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
-              Cars
+            <p className="text-[11px] tracking-[0.24em] text-neutral-500">
+              CARS
             </p>
-            <p className="mt-2 text-sm font-medium tracking-tight">車種別ガレージ</p>
-            <p className="mt-1 text-[11px] leading-relaxed text-neutral-400">
-              一台ごとの性格やトラブル傾向を、
-              ニュースやコラムとあわせて整理していく予定です。
+            <h2 className="mt-1 text-base font-semibold">
+              車種からさがす
+            </h2>
+            <p className="mt-1 text-[13px] leading-relaxed text-neutral-700">
+              スペックや長所短所、トラブル傾向を一つのページにまとめた車種データの入り口。
             </p>
           </Link>
         </div>
       </section>
 
-      {/* 最新ニュース3件のダイジェスト */}
-      <section className="mx-auto max-w-5xl px-4 py-12">
-        <header className="mb-6 flex items-baseline justify-between gap-4">
+      {/* 最新ニュースセクション */}
+      <section className="mx-auto max-w-5xl px-4 pb-16">
+        <div className="mb-4 flex items-baseline justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.25em] text-neutral-400">
-              Latest
+            <p className="text-[11px] tracking-[0.24em] text-neutral-500">
+              NEWS
             </p>
-            <h2 className="mt-2 text-xl font-semibold tracking-tight">
-              最新ニュースのダイジェスト
+            <h2 className="text-lg font-semibold tracking-tight">
+              最新ニュース
             </h2>
           </div>
           <Link
             href="/news"
-            className="text-[11px] text-neutral-300 underline-offset-4 hover:underline"
+            className="text-[11px] font-medium text-neutral-700 underline-offset-2 hover:underline"
           >
             すべてのニュースを見る
           </Link>
-        </header>
+        </div>
 
-        <div className="space-y-4">
-          {latestNews.length === 0 && (
-            <p className="text-xs text-neutral-500">ニュースの取得準備中です。</p>
-          )}
-
-          {latestNews.map((item) => (
+        {/* 上段: 注目ニュース（3件） */}
+        <div className="grid gap-4 sm:grid-cols-3">
+          {primaryNews.map((item) => (
             <article
               key={item.id}
-              className="rounded-2xl border border-neutral-900 bg-neutral-900/40 px-4 py-4 transition hover:border-neutral-500 hover:bg-neutral-900"
+              className="flex flex-col justify-between rounded-2xl border border-neutral-200/80 bg-white/90 p-4 text-sm shadow-sm"
             >
-              <h3 className="text-sm font-medium leading-snug tracking-tight">
-                <Link
-                  href={item.url ?? "#"}
-                  target="_blank"
-                  className="hover:underline"
-                >
-                  {item.title}
-                </Link>
-              </h3>
+              <div className="mb-3">
+                <div className="mb-1 flex flex-wrap items-center gap-2 text-[11px] text-neutral-500">
+                  {item.source && (
+                    <span>{item.source}</span>
+                  )}
+                  {item.publishedAt && (
+                    <span>{item.publishedAt}</span>
+                  )}
+                </div>
+                <h3 className="text-sm font-medium leading-snug tracking-tight">
+                  {item.url ? (
+                    <Link
+                      href={item.url}
+                      target="_blank"
+                      className="hover:underline"
+                    >
+                      {item.title}
+                    </Link>
+                  ) : (
+                    item.title
+                  )}
+                </h3>
+              </div>
+              {item.summary && (
+                <p className="mb-3 line-clamp-3 text-[12px] leading-relaxed text-neutral-600">
+                  {item.summary}
+                </p>
+              )}
+              {item.url && (
+                <div className="mt-auto">
+                  <Link
+                    href={item.url}
+                    target="_blank"
+                    className="text-[11px] font-medium text-neutral-800 underline underline-offset-2"
+                  >
+                    元記事を読む
+                  </Link>
+                </div>
+              )}
             </article>
           ))}
         </div>
+
+        {/* 下段: そのほかの最新ニュース（3件） */}
+        {secondaryNews.length > 0 && (
+          <div className="mt-6 space-y-3 rounded-2xl border border-neutral-200/80 bg-white/80 p-4 text-sm shadow-sm">
+            {secondaryNews.map((item) => (
+              <article
+                key={item.id}
+                className="flex flex-col gap-1 border-b border-neutral-100 pb-3 last:border-b-0 last:pb-0"
+              >
+                <div className="flex flex-wrap items-center gap-2 text-[11px] text-neutral-500">
+                  {item.source && <span>{item.source}</span>}
+                  {item.publishedAt && (
+                    <span>{item.publishedAt}</span>
+                  )}
+                </div>
+                <h3 className="text-sm font-medium leading-snug tracking-tight">
+                  {item.url ? (
+                    <Link
+                      href={item.url}
+                      target="_blank"
+                      className="hover:underline"
+                    >
+                      {item.title}
+                    </Link>
+                  ) : (
+                    item.title
+                  )}
+                </h3>
+                {item.summary && (
+                  <p className="text-[12px] leading-relaxed text-neutral-600 line-clamp-2">
+                    {item.summary}
+                  </p>
+                )}
+              </article>
+            ))}
+          </div>
+        )}
       </section>
     </main>
   );
