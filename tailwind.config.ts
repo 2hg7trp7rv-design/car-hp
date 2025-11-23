@@ -74,13 +74,17 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       backgroundImage: {
-        'tiffany-gradient': 'linear-gradient(180deg, #E1F9F7 0%, #FFFFFF 100%)',
+        // 横方向 40:60 のティファニーブルー→白グラデーション
+        // 左側: やや薄めのTiffany系 / 右側: 白
+        tiffany-gradient:
+          "linear-gradient(90deg, #E1F9F7 0%, #E1F9F7 40%, #FFFFFF 100%)",
       },
       boxShadow: {
-        'soft': '0 4px 20px -2px rgba(129, 216, 208, 0.2)',
-      }
+        soft: "0 4px 20px -2px rgba(129, 216, 208, 0.2)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
 };
+
 export default config;
