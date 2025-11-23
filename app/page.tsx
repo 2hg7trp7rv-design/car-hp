@@ -114,7 +114,7 @@ export default async function Home() {
                 ))}
               </div>
 
-              {/* VIEW ALL NEWS ボタン（タップ領域拡大） */}
+              {/* VIEW ALL NEWS ボタン（タップ領域拡大済み） */}
               <div className="mt-12 flex justify-center">
                 <Link
                   href="/news"
