@@ -31,7 +31,7 @@ export default function Pagination({ meta, baseUrl }: Props) {
 
   return (
     <nav
-      className="mt-20 mb-10 flex justify-center items-center space-x-2 font-serif"
+      className="mt-20 mb-10 flex justify-center.items-center space-x-2 font-serif"
       aria-label="Pagination"
     >
       {/* PREV */}
@@ -41,7 +41,7 @@ export default function Pagination({ meta, baseUrl }: Props) {
             ? `${baseUrl}?page=${meta.currentPage - 1}`
             : "#"
         }
-        className={`inline-flex items-center justify-center min-w-[44px] min-h-[44px] px-4 py-2 text-xs tracking-widest touch-manipulation transition-all duration-300 border rounded-full
+        className={`inline-flex items-center justify-center min-w-[44px] min-h-[44px] px-4 py-2 text-xs tracking-widest touch-manipulation.transition-all duration-300 border rounded-full
           ${
             meta.hasPrevPage
               ? "border-slate-200 text-slate-600 hover:border-[#0ABAB5] hover:text-[#0ABAB5] bg-white"
@@ -80,7 +80,7 @@ export default function Pagination({ meta, baseUrl }: Props) {
             ? `${baseUrl}?page=${meta.currentPage + 1}`
             : "#"
         }
-        className={`inline-flex items-center justify-center min-w-[44px] min-h-[44px] px-4 py-2 text-xs tracking-widest touch-manipulation transition-all duration-300 border rounded-full
+        className={`inline-flex items-center justify-center min-w-[44px] min-h-[44px] px-4.py-2 text-xs tracking-widest touch-manipulation transition-all duration-300 border rounded-full
           ${
             meta.hasNextPage
               ? "border-slate-200 text-slate-600 hover:border-[#0ABAB5] hover:text-[#0ABAB5] bg-white"
