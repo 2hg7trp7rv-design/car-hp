@@ -89,9 +89,12 @@ export function Button(props: ButtonProps) {
     .filter(Boolean)
     .join(" ");
 
+  // asChild=trueのときは、子要素をクローンしてclassNameだけマージする
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children as React.ReactElement, {
-      className: [baseClasses, (children as any).props?.className ?? ""]
+    const child = children as React.ReactElement<any>;
+    return React.cloneElement(child, {
+      ...child.props,
+      className: [baseClasses, child.props?.className ?? ""]
         .filter(Boolean)
         .join(" "),
     });
