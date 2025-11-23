@@ -1,10 +1,16 @@
 // app/news/[id]/page.tsx
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getLatestNews, type NewsItem } from "@/lib/news";
 
 type Props = {
   params: { id: string };
+};
+
+type FetchedNews = {
+  url: string;
+  title: string;
+  description: string;
+  sourceName: string;
 };
 
 // 安全にdecodeするヘルパー
@@ -16,119 +22,211 @@ function safeDecode(value: string): string {
   }
 }
 
-// params.idからNewsItemを探す共通関数
-async function findNewsItemById(rawId: string): Promise<NewsItem | undefined> {
-  // 多めに取得しておく
-  const items = await getLatestNews(200);
+// id文字列から元記事URLを取り出す
+function decodeIdToUrl(rawId: string): string | null {
+  let v = rawId;
 
-  const decoded1 = safeDecode(rawId);
-  const decoded2 = safeDecode(decoded1);
+  // 何重かエンコードされていることを想定して数回decode
+  for (let i = 0; i < 4; i++) {
+    const decoded = safeDecode(v);
+    if (decoded === v) break;
+    v = decoded;
+  }
 
-  // 比較候補となる文字列たち
-  const idCandidates = Array.from(
-    new Set([rawId, decoded1, decoded2].filter(Boolean)),
-  );
+  // rss-プレフィックスを外す
+  if (v.startsWith("rss-")) {
+    v = v.slice(4);
+  }
 
-  // rss-プレフィックスを外した「記事URL」候補たち
-  const urlCandidates = idCandidates
-    .map((v) => (v.startsWith("rss-") ? v.slice(4) : v))
-    .filter(Boolean);
+  // 先頭の http/https を探す（位置だけゆるく見る）
+  const idx = v.indexOf("http");
+  if (idx === -1) return null;
 
-  // 1.id同士の完全一致で探す（lib/news側がidを持っている場合）
-  const itemById = items.find((item: any) => {
-    const itemId = item.id as string | undefined;
-    return itemId && idCandidates.includes(itemId);
+  const urlCandidate = v.slice(idx);
+
+  // 単純に「://」が含まれていればURLとして扱う
+  if (!urlCandidate.includes("://")) return null;
+
+  return urlCandidate;
+}
+
+// hostname→媒体名
+function getSourceNameFromHost(host: string): string {
+  const map: Record<string, string> = {
+    "response.jp": "Response.jp",
+    "www.autocar.jp": "AUTOCAR JAPAN",
+    "car.watch.impress.co.jp": "Car Watch",
+    "www.webcg.net": "webCG",
+    "www.motor1.com": "Motor1.com",
+    "insideevs.com": "InsideEVs",
+  };
+
+  const lower = host.toLowerCase();
+  if (map[lower]) return map[lower];
+
+  return host;
+}
+
+// HTMLから<meta>や<title>を抜き出す簡易関数
+function extractBetween(html: string, regex: RegExp): string | null {
+  const m = html.match(regex);
+  if (!m) return null;
+  const content = m[1]?.trim();
+  return content || null;
+}
+
+// URLからタイトル/説明/媒体名を取得
+async function fetchNewsFromUrl(url: string): Promise<FetchedNews | null> {
+  const res = await fetch(url, {
+    // 元記事サイトへのアクセス頻度を抑えるためにキャッシュ
+    next: { revalidate: 600 },
   });
-  if (itemById) return itemById as NewsItem;
 
-  // 2.元記事URLで探す（idがURL由来の場合）
-  const itemByUrl = items.find((item: any) => {
-    const link =
-      (item.sourceUrl as string | undefined) ??
-      (item.link as string | undefined) ??
-      (item.url as string | undefined);
+  if (!res.ok) {
+    return null;
+  }
 
-    if (!link) return false;
+  const html = await res.text();
 
-    // linkそのもの、またはエンコード/デコードされた形が一致しないかを見ておく
-    const linkDecoded1 = safeDecode(link);
-    const linkDecoded2 = safeDecode(linkDecoded1);
+  const ogTitle =
+    extractBetween(
+      html,
+      /<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["'][^>]*>/i,
+    ) ??
+    extractBetween(
+      html,
+      /<meta[^>]+name=["']twitter:title["'][^>]+content=["']([^"']+)["'][^>]*>/i,
+    );
+  const titleTag = extractBetween(html, /<title[^>]*>([^<]+)<\/title>/i);
 
-    const linkCandidates = Array.from(
-      new Set([link, linkDecoded1, linkDecoded2]),
+  const title = ogTitle ?? titleTag ?? url;
+
+  const ogDesc =
+    extractBetween(
+      html,
+      /<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']+)["'][^>]*>/i,
+    ) ??
+    extractBetween(
+      html,
+      /<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["'][^>]*>/i,
+    ) ??
+    extractBetween(
+      html,
+      /<meta[^>]+name=["']twitter:description["'][^>]+content=["']([^"']+)["'][^>]*>/i,
     );
 
-    return linkCandidates.some((lc) => urlCandidates.includes(lc));
-  });
+  const description =
+    ogDesc ??
+    "元記事の概要を表示できませんでしたが、以下のボタンから記事全体を確認できます。";
 
-  if (itemByUrl) return itemByUrl as NewsItem;
+  const host = new URL(url).host;
+  const sourceName = getSourceNameFromHost(host);
 
-  // ここまでで見つからなければundefined
-  return undefined;
+  return {
+    url,
+    title,
+    description,
+    sourceName,
+  };
 }
 
-// 日付表示用フォーマッタ
-function formatDate(dateString?: string | null): string {
-  if (!dateString) return "";
-  const date = new Date(dateString);
-  if (Number.isNaN(date.getTime())) return dateString;
-  return date.toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  });
+// 「ニュースが見つからない」デザイン（スクショのトーンに寄せる）
+function NotFoundView() {
+  return (
+    <main className="min-h-screen px-4 pt-24 pb-16 md:px-8">
+      <div className="mx-auto max-w-2xl text-center">
+        <p className="text-xs font-semibold tracking-[0.25em] text-slate-500">
+          NEWS
+        </p>
+        <h1 className="mt-5 text-lg font-medium leading-relaxed text-slate-700 md:text-xl">
+          指定されたニュースが見つかりませんでした。
+        </h1>
+        <div className="mt-8">
+          <Link
+            href="/news"
+            className="inline-flex items-center rounded-full border border-[#0ABAB5]/40 px-6 py-2 text-sm font-medium text-[#0ABAB5] shadow-[0_0_0_1px_rgba(255,255,255,0.6)] hover:bg-white/70"
+          >
+            ニュース一覧へ戻る
+          </Link>
+        </div>
+      </div>
+    </main>
+  );
 }
 
-// SEO: 動的にメタデータを生成
+// SEOメタデータ
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const item = await findNewsItemById(params.id);
+  const url = decodeIdToUrl(params.id);
 
-  if (!item) {
+  if (!url) {
     return {
       title: "記事が見つかりません | CAR BOUTIQUE",
       description: "指定されたニュースが見つかりませんでした。",
     };
   }
 
-  const anyItem = item as any;
-  const title = anyItem.titleJa ?? anyItem.title;
-  const description =
-    anyItem.excerpt ?? "車のニュースと、その先にある物語を。";
+  const item = await fetchNewsFromUrl(url);
+
+  if (!item) {
+    return {
+      title: "元記事を取得できません | CAR BOUTIQUE",
+      description: "元記事を取得できませんでした。",
+    };
+  }
 
   return {
-    title: `${title} | CAR BOUTIQUE`,
-    description,
+    title: `${item.title} | CAR BOUTIQUE`,
+    description: item.description,
     openGraph: {
-      title: `${title} | CAR BOUTIQUE`,
-      description,
+      title: `${item.title} | CAR BOUTIQUE`,
+      description: item.description,
       type: "article",
       url: `https://car-hp.vercel.app/news/${encodeURIComponent(params.id)}`,
     },
     twitter: {
       card: "summary",
-      title: `${title} | CAR BOUTIQUE`,
-      description,
+      title: `${item.title} | CAR BOUTIQUE`,
+      description: item.description,
     },
   };
 }
 
+// 本文
 export default async function NewsDetailPage({ params }: Props) {
-  const item = await findNewsItemById(params.id);
+  const url = decodeIdToUrl(params.id);
+
+  if (!url) {
+    return <NotFoundView />;
+  }
+
+  const item = await fetchNewsFromUrl(url);
 
   if (!item) {
+    // URLは解読できたが、記事取得に失敗したケース
     return (
       <main className="min-h-screen px-4 pt-24 pb-16 md:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-medium tracking-[0.25em] text-slate-500">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-xs font-semibold tracking-[0.25em] text-slate-500">
             NEWS
           </p>
-          <h1 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">
-            指定されたニュースが見つかりませんでした。
+          <h1 className="mt-5 text-lg font-medium leading-relaxed text-slate-700 md:text-xl">
+            元記事を取得できませんでした。
           </h1>
-          <div className="mt-8">
+          <p className="mt-4 text-sm text-slate-600">
+            サイト側の都合などで記事を読み込めませんでしたが、元記事は直接開くことができます。
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Link
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full bg-slate-900 px-6 py-2 text-sm font-medium text-white hover:bg-slate-800"
+            >
+              元記事を開く
+            </Link>
             <Link
               href="/news"
-              className="inline-flex items-center rounded-full border border-slate-300 px-5 py-2 text-sm font-medium text-slate-700 hover:border-slate-400 hover:bg-white/60"
+              className="inline-flex items-center rounded-full border border-[#0ABAB5]/40 px-6 py-2 text-sm font-medium text-[#0ABAB5] shadow-[0_0_0_1px_rgba(255,255,255,0.6)] hover:bg-white/70"
             >
               ニュース一覧へ戻る
             </Link>
@@ -138,13 +236,7 @@ export default async function NewsDetailPage({ params }: Props) {
     );
   }
 
-  const anyItem = item as any;
-  const title = anyItem.titleJa ?? anyItem.title;
-  const dateLabel = formatDate(anyItem.publishedAt ?? anyItem.date);
-  const sourceName = anyItem.sourceName ?? "";
-  const sourceUrl =
-    anyItem.sourceUrl ?? anyItem.link ?? anyItem.url ?? "";
-  const editorComment = anyItem.editorComment ?? anyItem.comment ?? "";
+  const { title, description, sourceName } = item;
 
   return (
     <main className="min-h-screen px-4 pt-24 pb-24 md:px-8">
@@ -160,37 +252,26 @@ export default async function NewsDetailPage({ params }: Props) {
         </h1>
 
         <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-slate-500">
-          {dateLabel && <span>{dateLabel}</span>}
-          {sourceName && <span>•{sourceName}</span>}
+          <span>{sourceName}</span>
         </div>
 
-        {anyItem.excerpt && (
-          <p className="mt-6 text-sm leading-relaxed text-slate-700">
-            {anyItem.excerpt}
-          </p>
-        )}
-
-        {editorComment && (
-          <div className="mt-8 rounded-2xl bg-slate-50 px-4 py-3 text-sm leading-relaxed text-slate-800">
-            {editorComment}
-          </div>
-        )}
+        <p className="mt-6 text-sm leading-relaxed text-slate-700">
+          {description}
+        </p>
 
         <div className="mt-10 flex flex-wrap gap-4">
-          {sourceUrl && (
-            <Link
-              href={sourceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-2 text-sm font-medium text-white hover:bg-slate-800"
-            >
-              元記事を読む
-            </Link>
-          )}
+          <Link
+            href={item.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-2 text-sm font-medium text-white hover:bg-slate-800"
+          >
+            元記事を読む
+          </Link>
 
           <Link
             href="/news"
-            className="inline-flex items-center justify-center rounded-full border border-slate-300 px-5 py-2 text-sm font-medium text-slate-700 hover:border-slate-400 hover:bg-white/60"
+            className="inline-flex items-center justify-center rounded-full border border-[#0ABAB5]/40 px-5 py-2 text-sm font-medium text-[#0ABAB5] shadow-[0_0_0_1px_rgba(255,255,255,0.6)] hover:bg-white/70"
           >
             ニュース一覧へ戻る
           </Link>
