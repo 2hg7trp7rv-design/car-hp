@@ -108,7 +108,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 最新ニュース3件のダイジェスト */}
+            {/* 最新ニュース3件のダイジェスト */}
       <section className="mx-auto max-w-5xl px-4 py-12">
         <header className="mb-6 flex items-baseline justify-between gap-4">
           <div>
@@ -140,35 +140,19 @@ export default async function HomePage() {
               className="rounded-2xl border border-neutral-900 bg-neutral-900/40 px-4 py-4 transition hover:border-neutral-500 hover:bg-neutral-900"
             >
               <div className="flex flex-wrap items-center gap-2 text-[11px] text-neutral-500">
-                {item.maker && (
-                  <span className="rounded-full border border-neutral-700 px-2 py-0.5">
-                    {item.maker}
-                  </span>
-                )}
-                {item.category && (
-                  <span className="rounded-full border border-neutral-700 px-2 py-0.5">
-                    {item.category}
-                  </span>
-                )}
-                {item.publishedAt && (
-                  <span>{item.publishedAt}</span>
-                )}
+                {item.source && <span>{item.source}</span>}
+                {item.publishedAt && <span>{item.publishedAt}</span>}
               </div>
+
               <h3 className="mt-2 text-sm font-medium leading-snug tracking-tight">
-                <Link href={item.url} target="_blank" className="hover:underline">
+                <Link
+                  href={item.url}
+                  target="_blank"
+                  className="hover:underline"
+                >
                   {item.title}
                 </Link>
               </h3>
-              {item.summary && (
-                <p className="mt-2 text-[11px] leading-relaxed text-neutral-300">
-                  {item.summary}
-                </p>
-              )}
-              {item.source && (
-                <p className="mt-3 text-[11px] text-neutral-500">
-                  出典:{item.source}
-                </p>
-              )}
             </article>
           ))}
         </div>
