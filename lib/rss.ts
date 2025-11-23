@@ -17,19 +17,38 @@ type RssFeedConfig = {
   defaultCategory?: string;
 };
 
+// 情報源を追加（約5サイト分）
 const rssFeeds: RssFeedConfig[] = [
   {
-    // 好きなRSSに差し替え可
+    // レスポンス
     url: "https://response.jp/rss/index.rdf",
     sourceName: "Response.jp",
     defaultCategory: "News",
   },
-  // ここにフィードを増やせる
-  // {
-  //   url: "https://car.watch.impress.co.jp/data/rss/1.0/ipw/feed.rdf",
-  //   sourceName: "Car Watch",
-  //   defaultCategory: "News",
-  // },
+  {
+    // webCG
+    url: "https://www.webcg.net/list/feed/rss",
+    sourceName: "webCG",
+    defaultCategory: "News",
+  },
+  {
+    // TOYOTA グローバルニュース
+    url: "https://global.toyota/export/jp/allnews_rss.xml",
+    sourceName: "TOYOTA Global News",
+    defaultCategory: "メーカー",
+  },
+  {
+    // AUTOCAR（英語）
+    url: "http://www.autocar.co.uk/rss",
+    sourceName: "AUTOCAR",
+    defaultCategory: "International",
+  },
+  {
+    // Honda 情報（企業ニュース系）
+    url: "https://www.honda.co.jp/rss/information.xml",
+    sourceName: "Honda Japan",
+    defaultCategory: "メーカー",
+  },
 ];
 
 const parser = new Parser();
@@ -39,7 +58,9 @@ function createStableId(base: string): string {
   return `rss-${normalized.slice(0, 60)}`;
 }
 
-export async function fetchRssArticles(limitPerFeed: number = 20): Promise<RssArticle[]> {
+export async function fetchRssArticles(
+  limitPerFeed: number = 20,
+): Promise<RssArticle[]> {
   const collected: RssArticle[] = [];
 
   for (const feed of rssFeeds) {
