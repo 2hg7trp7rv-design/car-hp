@@ -56,15 +56,22 @@
 
 @layer base {
   * {
-    /* @apply border-border; これがエラーの原因でした */
-    /* ↓ 標準CSSで直接変数を指定することで回避します */
+    /* Tailwindのborderクラスを使うため、デフォルトの線種と太さをリセット */
     border-color: hsl(var(--border));
     border-style: solid;
-    border-width: 0; /* デフォルトは0にしておき、必要な箇所でborderクラスを使う */
+    border-width: 0;
   }
   
   body {
-    @apply bg-tiffany-gradient text-foreground min-h-screen selection:bg-tiffany-200;
+    /* 修正箇所：@applyを使わず標準CSSでグラデーションを指定 */
+    @apply text-foreground min-h-screen;
+    background: linear-gradient(180deg, #E1F9F7 0%, #FFFFFF 100%);
+  }
+  
+  /* テキスト選択時の色 */
+  ::selection {
+    background-color: #C2F3EF;
+    color: #152B2A;
   }
   
   h1, h2, h3, h4, h5, h6 {
