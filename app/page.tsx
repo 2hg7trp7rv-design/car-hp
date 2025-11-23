@@ -1,132 +1,178 @@
 // app/page.tsx
 import Link from "next/link";
-import TopNewsTabs from "@/components/TopNewsTabs";
-import { getAllNewsCached } from "@/lib/news";
+import { getLatestNews } from "@/lib/news";
 
-// ニュースの更新頻度（秒） 10分ごとに再生成
 export const revalidate = 600;
 
-export default async function Home() {
-  const allNews = await getAllNewsCached();
-
-  const latestForTabs = allNews.slice(0, 3);
-  const featuredForTabs = allNews.slice(0, 3); // ひとまず同じ集合を使用
-
-  const latestNews = allNews.slice(0, 6);
+export default async function HomePage() {
+  const latestNews = await getLatestNews(3);
 
   return (
-    <main className="min-h-screen font-sans">
-      {/* ヒーローセクション（フルスクリーン画像） */}
-      <section
-        className="relative h-screen flex items-center justify-center bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/hero-sedan.jpg')" }}
-      >
-        {/* オーバーレイ */}
-        <div className="absolute inset-0 bg-slate-900/40 z-0" />
-
-        {/* ヘッダー */}
-        <header className="absolute top-0 w-full py-6 px-6 flex items-center justify-between z-20 border-b border-white/20">
-          <h1 className="text-2xl font-serif tracking-widest text-white font-bold">
-            CAR BOUTIQUE
-          </h1>
-        </header>
-
-        {/* テキストコンテンツ */}
-        <div className="relative z-10 text-center text-white px-6 max-w-4xl">
-          <h2 className="text-4xl md:text-6xl font-serif mb-6.drop-shadow-lg">
+    <main className="min-h-screen bg-neutral-950 text-neutral-50">
+      {/* Hero */}
+      <section className="mx-auto flex max-w-5xl flex-col gap-10 px-4 pb-16 pt-20 sm:flex-row sm:items-end sm:justify-between">
+        <div className="max-w-xl">
+          <p className="text-xs uppercase tracking-[0.3em] text-neutral-400">
+            Curated Automotive Journal
+          </p>
+          <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
             Driving Elegance.
-          </h2>
-          <p className="text-lg md:text-xl font-medium.leading-relaxed drop-shadow-md">
-            車のニュースと、その先にある物語を。<br />
+          </h1>
+          <p className="mt-4 text-sm leading-relaxed text-neutral-300">
+            車のニュースと、その先にある物語を。
             静かな時間の中で、愛車との未来を想うための場所です。
+          </p>
+          <p className="mt-3 text-xs text-neutral-400">
+            大手メディアの速報を選び取りつつ、
+            オーナーの視点から少し深く解説していく小さなブティックメディアです。
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-3 text-xs text-neutral-400">
+          <p className="uppercase tracking-[0.2em]">
+            Car Boutique
+          </p>
+          <p className="max-w-xs leading-relaxed">
+            ニュースは自動で集め、
+            本音のコラムとガイドは手で編んでいく。
+            その二つが混ざり合う場所を目指しています。
           </p>
         </div>
       </section>
 
-      {/* コンテンツエリア */}
-      <div className="bg-gradient-to-r from-[#D1F2EB] via-[#E8F8F5] to-white pt-10 pb-20">
-        <div className="max-w-4xl mx-auto px-4">
-          {/* ヒーロー直下のタブ付きニュース（最新3件/注目3件） */}
-          {allNews.length > 0 && (
-            <div className="mb-12">
-              <TopNewsTabs latest={latestForTabs} featured={featuredForTabs} />
-            </div>
-          )}
-
-          {/* セクションタイトル: Latest News */}
-          <div className="flex items-center mb-8">
-            <div className="h-px w-10 bg-[#0ABAB5] mr-4" />
-            <h3 className="text-xl font-serif tracking-wider text-slate-600">
-              LATEST NEWS
-            </h3>
-          </div>
-
-          {latestNews.length === 0 ? (
-            <p className="text-sm text-slate-500 font-serif">
-              まだニュースを取得できていません。
+      {/* ダッシュボード的な入口 */}
+      <section className="border-y border-neutral-900 bg-neutral-900/40">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 px-4 py-6 text-xs sm:grid-cols-4">
+          <Link
+            href="/news"
+            className="group rounded-2xl border border-neutral-800 bg-neutral-950/40 px-4 py-4 transition hover:border-neutral-500 hover:bg-neutral-900"
+          >
+            <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
+              News
             </p>
-          ) : (
-            <>
-              {/* ニュースリスト */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {latestNews.map((item, index) => (
-                  <article
-                    key={item.sourceUrl || item.id || index}
-                    className="group bg-white rounded-2xl p-8 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,186,181,0.2)] transition-all duration-300 border border-slate-50"
-                  >
-                    {/* メタ情報 */}
-                    <div className="flex items-center justify-between mb-4 text-sm text-slate-400">
-                      <span className="bg-[#E0F7FA] text-[#00796B] px-3 py-1 rounded-full text-xs font-medium tracking-wide">
-                        {item.sourceName || "Original"}
-                      </span>
-                      {item.publishedAt && (
-                        <time className="font-light">
-                          {new Date(item.publishedAt).toLocaleDateString(
-                            "ja-JP",
-                          )}
-                        </time>
-                      )}
-                    </div>
+            <p className="mt-2 text-sm font-medium tracking-tight">
+              最新ニュース
+            </p>
+            <p className="mt-1 text-[11px] leading-relaxed text-neutral-400">
+              国内外の主要メディアから集めたトピックを、
+              見出しと要約でさっと追えるように。
+            </p>
+          </Link>
 
-                    {/* タイトル */}
-                    <h4 className="text-lg font-bold text-slate-800 leading-8 mb-6 group-hover:text-[#0ABAB5] transition-colors line-clamp-3">
-                      <Link
-                        href={
-                          item.sourceUrl
-                            ? encodeURI(item.sourceUrl)
-                            : `/news/${item.id}`
-                        }
-                        target={item.sourceUrl ? "_blank" : "_self"}
-                        className="block"
-                      >
-                        {item.titleJa ?? item.title}
-                      </Link>
-                    </h4>
+          <Link
+            href="/column"
+            className="group rounded-2xl border border-neutral-800 bg-neutral-950/40 px-4 py-4 transition hover:border-neutral-500 hover:bg-neutral-900"
+          >
+            <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
+              Column
+            </p>
+            <p className="mt-2 text-sm font-medium tracking-tight">
+              コラムとストーリー
+            </p>
+            <p className="mt-1 text-[11px] leading-relaxed text-neutral-400">
+              オーナー目線の本音や、修理体験、技術の話をじっくり読むための場所。
+            </p>
+          </Link>
 
-                    {/* リンク矢印装飾 */}
-                    <div className="flex justify-end">
-                      <span className="flex items-center text-[#0ABAB5] text-sm font-medium opacity-0.group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">
-                        Read more
-                        <span className="ml-2 text-lg">→</span>
-                      </span>
-                    </div>
-                  </article>
-                ))}
-              </div>
+          <Link
+            href="/guide"
+            className="group rounded-2xl border border-neutral-800 bg-neutral-950/40 px-4 py-4 transition hover:border-neutral-500 hover:bg-neutral-900"
+          >
+            <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
+              Guide
+            </p>
+            <p className="mt-2 text-sm font-medium tracking-tight">
+              買い方と維持のガイド
+            </p>
+            <p className="mt-1 text-[11px] leading-relaxed text-neutral-400">
+              予算の組み方や維持費の感覚など、
+              お金まわりの悩みを整理するためのガイドライン。
+            </p>
+          </Link>
 
-              {/* VIEW ALL NEWS ボタン（通常の Link に戻す） */}
-              <div className="mt-12 flex justify-center">
-                <Link
-                  href="/news"
-                  className="inline-flex items-center justify-center min-w-[220px] min-h-[48px] rounded-full border border-[#0ABAB5] bg-white text-sm font-semibold tracking-[0.2em] text-[#0ABAB5] touch-manipulation shadow-[0_6px_20px_-8px_rgba(10,186,181,0.6)] hover:bg-[#0ABAB5] hover:text-white hover:shadow-[0_12px_35px_-12px_rgba(10,186,181,0.8)] transition-all.duration-300 uppercase"
-                >
-                  VIEW ALL NEWS
-                </Link>
-              </div>
-            </>
-          )}
+          <Link
+            href="/cars"
+            className="group rounded-2xl border border-neutral-800 bg-neutral-950/40 px-4 py-4 transition hover:border-neutral-500 hover:bg-neutral-900"
+          >
+            <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
+              Cars
+            </p>
+            <p className="mt-2 text-sm font-medium tracking-tight">
+              車種別ガレージ
+            </p>
+            <p className="mt-1 text-[11px] leading-relaxed text-neutral-400">
+              一台ごとの性格やトラブル傾向を、
+              ニュースやコラムとあわせて整理していく予定です。
+            </p>
+          </Link>
         </div>
-      </div>
+      </section>
+
+      {/* 最新ニュース3件のダイジェスト */}
+      <section className="mx-auto max-w-5xl px-4 py-12">
+        <header className="mb-6 flex items-baseline justify-between gap-4">
+          <div>
+            <p className="text-xs uppercase tracking-[0.25em] text-neutral-400">
+              Latest
+            </p>
+            <h2 className="mt-2 text-xl font-semibold tracking-tight">
+              最新ニュースのダイジェスト
+            </h2>
+          </div>
+          <Link
+            href="/news"
+            className="text-[11px] text-neutral-300 underline-offset-4 hover:underline"
+          >
+            すべてのニュースを見る
+          </Link>
+        </header>
+
+        <div className="space-y-4">
+          {latestNews.length === 0 && (
+            <p className="text-xs text-neutral-500">
+              ニュースの取得準備中です。
+            </p>
+          )}
+
+          {latestNews.map((item) => (
+            <article
+              key={item.id}
+              className="rounded-2xl border border-neutral-900 bg-neutral-900/40 px-4 py-4 transition hover:border-neutral-500 hover:bg-neutral-900"
+            >
+              <div className="flex flex-wrap items-center gap-2 text-[11px] text-neutral-500">
+                {item.maker && (
+                  <span className="rounded-full border border-neutral-700 px-2 py-0.5">
+                    {item.maker}
+                  </span>
+                )}
+                {item.category && (
+                  <span className="rounded-full border border-neutral-700 px-2 py-0.5">
+                    {item.category}
+                  </span>
+                )}
+                {item.publishedAt && (
+                  <span>{item.publishedAt}</span>
+                )}
+              </div>
+              <h3 className="mt-2 text-sm font-medium leading-snug tracking-tight">
+                <Link href={item.url} target="_blank" className="hover:underline">
+                  {item.title}
+                </Link>
+              </h3>
+              {item.summary && (
+                <p className="mt-2 text-[11px] leading-relaxed text-neutral-300">
+                  {item.summary}
+                </p>
+              )}
+              {item.source && (
+                <p className="mt-3 text-[11px] text-neutral-500">
+                  出典:{item.source}
+                </p>
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
