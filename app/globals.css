@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ベースのテーマ変数 */
+/* base theme tokens */
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -55,7 +55,7 @@
   }
 }
 
-/* ベーススタイルとフォント適用 */
+/* base styles + fonts */
 @layer base {
   * {
     @apply border-border;
