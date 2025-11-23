@@ -1,7 +1,6 @@
 // app/page.tsx
 import Link from "next/link";
 import TopNewsTabs from "@/components/TopNewsTabs";
-import TapLink from "@/components/TapLink";
 import { getAllNewsCached } from "@/lib/news";
 
 // ニュースの更新頻度（秒） 10分ごとに再生成
@@ -26,7 +25,7 @@ export default async function Home() {
         <div className="absolute inset-0 bg-slate-900/40 z-0" />
 
         {/* ヘッダー */}
-        <header className="absolute top-0 w-full py-6 px-6 flex.items-center justify-between z-20 border-b border-white/20">
+        <header className="absolute top-0 w-full py-6 px-6 flex items-center justify-between z-20 border-b border-white/20">
           <h1 className="text-2xl font-serif tracking-widest text-white font-bold">
             CAR BOUTIQUE
           </h1>
@@ -34,10 +33,10 @@ export default async function Home() {
 
         {/* テキストコンテンツ */}
         <div className="relative z-10 text-center text-white px-6 max-w-4xl">
-          <h2 className="text-4xl md:text-6xl font-serif mb-6 drop-shadow-lg">
+          <h2 className="text-4xl md:text-6xl font-serif mb-6.drop-shadow-lg">
             Driving Elegance.
           </h2>
-          <p className="text-lg md:text-xl font-medium leading-relaxed drop-shadow-md">
+          <p className="text-lg md:text-xl font-medium.leading-relaxed drop-shadow-md">
             車のニュースと、その先にある物語を。<br />
             静かな時間の中で、愛車との未来を想うための場所です。
           </p>
@@ -106,23 +105,23 @@ export default async function Home() {
 
                     {/* リンク矢印装飾 */}
                     <div className="flex justify-end">
-                      <span className="flex items-center text-[#0ABAB5] text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all.duration-300">
+                      <span className="flex items-center text-[#0ABAB5] text-sm font-medium opacity-0.group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">
                         Read more
-                        <span className="ml-2.text-lg">→</span>
+                        <span className="ml-2 text-lg">→</span>
                       </span>
                     </div>
                   </article>
                 ))}
               </div>
 
-              {/* VIEW ALL NEWS ボタン（TapLink版） */}
+              {/* VIEW ALL NEWS ボタン（通常の Link に戻す） */}
               <div className="mt-12 flex justify-center">
-                <TapLink
+                <Link
                   href="/news"
-                  className="inline-flex items-center justify-center min-w-[220px] min-h-[48px] rounded-full border border-[#0ABAB5] bg-white text-sm font-semibold tracking-[0.2em] text-[#0ABAB5] touch-manipulation shadow-[0_6px_20px_-8px_rgba(10,186,181,0.6)] hover:bg-[#0ABAB5] hover:text-white hover:shadow-[0_12px_35px_-12px_rgba(10,186,181,0.8)] transition-all duration-300 uppercase"
+                  className="inline-flex items-center justify-center min-w-[220px] min-h-[48px] rounded-full border border-[#0ABAB5] bg-white text-sm font-semibold tracking-[0.2em] text-[#0ABAB5] touch-manipulation shadow-[0_6px_20px_-8px_rgba(10,186,181,0.6)] hover:bg-[#0ABAB5] hover:text-white hover:shadow-[0_12px_35px_-12px_rgba(10,186,181,0.8)] transition-all.duration-300 uppercase"
                 >
                   VIEW ALL NEWS
-                </TapLink>
+                </Link>
               </div>
             </>
           )}
