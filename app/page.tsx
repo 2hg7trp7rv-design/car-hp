@@ -4,11 +4,11 @@ import { getLatestNews } from "@/lib/news";
 
 export const revalidate = 600;
 
-// NewsItem型がurlを持っていないため、ここで「このページで使う形」に型を合わせる
+// このページで使うニュースアイテムの形
 type LatestNewsItem = {
   id: string;
   title: string;
-  url: string;
+  url?: string; // NewsItemの型には無い可能性があるので任意扱いにする
 };
 
 export default async function HomePage() {
@@ -16,7 +16,7 @@ export default async function HomePage() {
 
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-50">
-      {/* Hero（Tiffanyブルー×白グラデーション＋フル幅写真的レイアウト） */}
+      {/* Hero（Tiffanyブルー×白グラデーション＋フル幅イメージ的レイアウト） */}
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0">
           {/* Tiffanyブルー×白のグラデーションベース */}
@@ -144,7 +144,11 @@ export default async function HomePage() {
               className="rounded-2xl border border-neutral-900 bg-neutral-900/40 px-4 py-4 transition hover:border-neutral-500 hover:bg-neutral-900"
             >
               <h3 className="text-sm font-medium leading-snug tracking-tight">
-                <Link href={item.url} target="_blank" className="hover:underline">
+                <Link
+                  href={item.url ?? "#"}
+                  target="_blank"
+                  className="hover:underline"
+                >
                   {item.title}
                 </Link>
               </h3>
