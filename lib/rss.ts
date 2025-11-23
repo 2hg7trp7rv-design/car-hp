@@ -17,37 +17,36 @@ type RssFeedConfig = {
   defaultCategory?: string;
 };
 
-// 情報源を追加（約5サイト分）
 const rssFeeds: RssFeedConfig[] = [
   {
-    // レスポンス
+    // レスポンス（自動車総合ニュース）
     url: "https://response.jp/rss/index.rdf",
     sourceName: "Response.jp",
     defaultCategory: "News",
   },
   {
-    // webCG
+    // Car Watch（インプレスの自動車ニュース）
+    url: "https://car.watch.impress.co.jp/data/rss/1.0/ipw/feed.rdf",
+    sourceName: "Car Watch",
+    defaultCategory: "News",
+  },
+  {
+    // webCG 自動車ニュース
     url: "https://www.webcg.net/list/feed/rss",
     sourceName: "webCG",
     defaultCategory: "News",
   },
   {
-    // TOYOTA グローバルニュース
+    // TOYOTA グローバルニュース（日本語含む全ニュース）
     url: "https://global.toyota/export/jp/allnews_rss.xml",
     sourceName: "TOYOTA Global News",
-    defaultCategory: "メーカー",
+    defaultCategory: "メーカー情報",
   },
   {
-    // AUTOCAR（英語）
-    url: "http://www.autocar.co.uk/rss",
-    sourceName: "AUTOCAR",
-    defaultCategory: "International",
-  },
-  {
-    // Honda 情報（企業ニュース系）
-    url: "https://www.honda.co.jp/rss/information.xml",
-    sourceName: "Honda Japan",
-    defaultCategory: "メーカー",
+    // Honda クルマ関連ニュース
+    url: "https://www.honda.co.jp/rss/auto.xml",
+    sourceName: "Honda クルマ",
+    defaultCategory: "メーカー情報",
   },
 ];
 
