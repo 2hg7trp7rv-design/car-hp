@@ -1,22 +1,24 @@
-import type { Metadata } from 'next';
-import { Inter, Noto_Sans_JP, Cinzel } from 'next/font/google';
+// app/layout.tsx
+import type { Metadata } from "next";
+import "./globals.css";
+import { Noto_Sans_JP, Cinzel } from "next/font/google";
 
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const notoSansJP = Noto_Sans_JP({ 
-  subsets: ['latin'], 
-  weight: ['300', '400', '500', '700'], 
-  variable: '--font-noto-sans-jp' 
+const notoSans = Noto_Sans_JP({
+  subsets: ["latin"],
+  variable: "--font-noto-sans-jp",
+  weight: ["300", "400", "500", "700"],
 });
-const cinzel = Cinzel({ 
-  subsets: ['latin'], 
-  weight: ['400', '700'], 
-  variable: '--font-cinzel' 
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  variable: "--font-cinzel",
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
-  title: 'CAR BOUTIQUE',
-  description: '車のある豊かなライフスタイルを提案する、新しい形のカーメディア。',
+  title: "CAR BOUTIQUE",
+  description:
+    "車のニュースと、その先にある物語を静かに味わうためのカーライフメディア。",
 };
 
 export default function RootLayout({
@@ -25,16 +27,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja" className={`${inter.variable} ${notoSansJP.variable} ${cinzel.variable}`}>
-      <body className="min-h-screen flex flex-col font-sans antialiased bg-tiffany-gradient">
-        <main className="flex-grow">
-          {children}
-        </main>
-        <footer className="py-8 text-center text-sm text-muted-foreground/60 bg-white/40 backdrop-blur-md">
-          <div className="container">
-            <p className="font-serif tracking-wider">© {new Date().getFullYear()} CAR BOUTIQUE. All Rights Reserved.</p>
-          </div>
-        </footer>
+    <html lang="ja" suppressHydrationWarning>
+      <body
+        className={`${notoSans.variable} ${cinzel.variable} bg-background text-foreground antialiased`}
+      >
+        {children}
       </body>
     </html>
   );
