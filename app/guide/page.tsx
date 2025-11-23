@@ -2,8 +2,9 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Guides | CAR BOUTIQUE",
-  description: "クルマの買い方、売り方、維持費や保険など、お金と暮らしに近いテーマをまとめたガイドページです。",
+  title: "Guide | CAR BOUTIQUE",
+  description:
+    "買い方・売り方・維持費・保険など、カーライフのお金と暮らしに近いテーマを扱う実用ガイド。",
 };
 
 type GuideCategory = {
@@ -14,75 +15,74 @@ type GuideCategory = {
 
 const guides: GuideCategory[] = [
   {
-    id: "buying",
-    label: "賢い買い方",
-    description: "新車と中古車、残クレやリースなど、自分に合った選び方の整理。",
+    id: "buy",
+    label: "買い方ガイド",
+    description:
+      "新車・中古車それぞれの選び方、グレードやオプションの考え方、値引き交渉のポイントなど。",
   },
   {
-    id: "selling",
-    label: "売却と乗り換え",
-    description: "下取りと買取の違い、タイミング、査定で損をしないためのポイント。",
+    id: "sell",
+    label: "売り方・乗り換え",
+    description:
+      "下取りか買取か、タイミングの決め方、査定で損をしないためのチェックポイント。",
   },
   {
     id: "cost",
     label: "維持費とお金の話",
-    description: "税金、保険、タイヤや車検など、数年スパンで見た時のリアルなコスト感。",
+    description:
+      "税金・保険・車検・タイヤなど、年間トータルでどれくらい掛かるのかを整理しておきます。",
   },
   {
     id: "insurance",
-    label: "保険と保証",
-    description: "任意保険や延長保証、ロードサービスの考え方を整理します。",
+    label: "保険とリスク管理",
+    description:
+      "任意保険の選び方や補償内容の考え方、万が一の事故時に備えて決めておきたいこと。",
   },
 ];
 
 export default function GuidePage() {
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-50">
-      <section className="mx-auto max-w-5xl px-4 py-16">
-        <header className="mb-10">
-          <p className="text-xs uppercase tracking-[0.25em] text-neutral-400">
-            Guide
+    <main className="min-h-screen bg-gradient-to-r from-[#D1F2EB] via-[#E8F8F5] to-white pb-20">
+      <section className="mx-auto max-w-5xl px-6 pt-16">
+        {/* ヘッダー */}
+        <header className="mb-12 space-y-4">
+          <p className="text-[11px] uppercase tracking-[0.25em] text-slate-500">
+            GUIDE
           </p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-            クルマとの付き合い方ガイド
+          <h1 className="serif-font text-3xl font-bold text-slate-900 md:text-4xl">
+            カーライフ実用ガイド
           </h1>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-neutral-300">
-            買う時、手放す時、そして日々の維持費。
-            スペック表には載らない「お金と暮らし」の部分を、
-            少し落ち着いた目線で整理していきます。
+          <p className="max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base">
+            買う前も、乗り始めてからも、「知らなかった」で損をしないために。
+            お金と時間の両方を守るための視点で、カーライフを整理していきます。
           </p>
         </header>
 
+        {/* ガイドカテゴリ */}
         <div className="grid gap-6 md:grid-cols-2">
           {guides.map((guide) => (
             <article
               key={guide.id}
-              className="group rounded-2xl border border-neutral-800 bg-neutral-900/40 px-5 py-6 backdrop-blur transition hover:border-neutral-500 hover:bg-neutral-900/70"
+              className="group rounded-2xl border border-slate-200 bg-white/90 px-6 py-7 shadow-sm backdrop-blur transition hover:border-tiffany-400 hover:shadow-soft"
             >
-              <h2 className="text-base font-medium tracking-tight">
+              <h2 className="serif-font text-base font-semibold text-slate-900">
                 {guide.label}
               </h2>
-              <p className="mt-2 text-xs leading-relaxed text-neutral-300">
+              <p className="mt-2 text-xs leading-relaxed text-slate-600 md:text-sm">
                 {guide.description}
               </p>
-              <p className="mt-4 text-[11px] text-neutral-500">
-                実際の数字や事例は、順番に記事として加えていきます。
+              <p className="mt-4 text-[11px] text-slate-400">
+                まずは概要と全体像から整理し、順次詳しい記事を追加していきます。
               </p>
             </article>
           ))}
         </div>
 
-        <div className="mt-12 text-xs text-neutral-400">
-          <p>
-            将来的には、ここから各車種ページやニュース解説、
-            比較機能へも自然につながる導線を追加していきます。
-          </p>
-        </div>
-
+        {/* トップへの戻りボタン */}
         <div className="mt-10 text-right text-xs">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-full border border-neutral-700 px-4 py-2 text-[11px] tracking-wide text-neutral-200 transition hover:border-neutral-400 hover:bg-neutral-900"
+            className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/80 px-4 py-2 text-[11px] tracking-wide text-slate-600 transition hover:border-tiffany-400 hover:text-tiffany-600"
           >
             トップページへ戻る
           </Link>
