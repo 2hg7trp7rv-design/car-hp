@@ -1,65 +1,42 @@
-// lib/cars.ts
+import carsRaw from "@/data/cars.json"; // cars.jsonの場所に合わせてパスを変えてください
 
+export type Difficulty = "basic" | "medium" | "advanced";
 export type MaintenanceCostLevel = "low" | "medium" | "high";
 
-export type Car = {
+export type CarItem = {
   id: string;
   name: string;
   slug: string;
   maker: string;
-  releaseYear: number | null;
-
-  // もともとの項目
-  difficulty: string | null;
-  summary: string | null;
-  specHighlights: string | null;
-  pros: string | null;
-  cons: string | null;
-  changeSummary: string | null;
-  referenceUrl: string | null;
-
-  // 追加項目(テンプレ完全版用)
-  bodyType: string | null;
-  segment: string | null;
-  grade: string | null;
-  summaryLong: string | null;
-
-  engine: string | null;
-  powerPs: number | null;
-  torqueNm: number | null;
-  transmission: string | null;
-  drive: string | null;
-  fuel: string | null;
-  fuelEconomy: string | null;
-
-  sizeMmLength: number | null;
-  sizeMmWidth: number | null;
-  sizeMmHeight: number | null;
-  wheelbaseMm: number | null;
-  weightKg: number | null;
-
-  troubleTrends: string | null;
-  maintenanceTips: string | null;
-
-  costNewPriceRange: string | null;
-  costUsedPriceRange: string | null;
-  maintenanceCostLevel: MaintenanceCostLevel | null;
-
-  recommendFor: string | null;
-  notFor: string | null;
+  releaseYear: number;
+  difficulty: Difficulty;
+  bodyType: string;
+  segment: string;
+  grade?: string;
+  summary: string;
+  summaryLong?: string;
+  engine?: string;
+  powerPs?: number | null;
+  torqueNm?: number | null;
+  transmission?: string;
+  drive?: string;
+  fuel?: string;
+  fuelEconomy?: string;
+  maintenanceCostLevel: MaintenanceCostLevel;
 };
 
-// JSONファイルから静的に読み込み
-import carsData from "../data/cars.json";
+const cars: CarItem[] = carsRaw as CarItem[];
 
-// 型アサーションでCar[]として扱う
-const CARS: Car[] = carsData as Car[];
-
-export async function getAllCars(): Promise<Car[]> {
-  return CARS;
+export function getAllCars(): CarItem[] {
+  return [...cars].sort((a, b) => {
+    if (a.maker === b.maker) {
+      return a.name.localeCompare(b.name, "ja");
+    }
+    return a.maker.localeCompare(b.maker, "ja");
+  });
 }
 
-export async function getCarBySlug(slug: string): Promise<Car | null> {
-  const car = CARS.find((c) => c.slug === slug);
+export function getCarBySlug(slug: string): CarItem | null {
+  const car = cars.find((c) => c.slug === slug);
   return car ?? null;
 }
