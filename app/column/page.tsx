@@ -66,13 +66,6 @@ export default async function ColumnPage() {
                       {item.title}
                     </h2>
 
-                    {/* 説明文 */}
-                    {item.excerpt && (
-                      <p className="text-xs leading-relaxed text-text-sub">
-                        {item.excerpt}
-                      </p>
-                    )}
-
                     {/* メタ情報（投稿日／読了時間） */}
                     <div className="mt-1 flex items-center justify-between text-[11px] text-text-sub">
                       <p>{item.date}</p>
