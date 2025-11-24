@@ -21,5 +21,5 @@ export function getCarBySlug(slug: string): CarItem | undefined {
   return allCars.find((car) => car.slug === slug);
 }
 
-// 型を他のファイルからも使えるように再エクスポート
+// 型をここからも使えるように再エクスポート
 export type { CarItem };
