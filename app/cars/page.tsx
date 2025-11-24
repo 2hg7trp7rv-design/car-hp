@@ -1,6 +1,11 @@
 // app/cars/page.tsx
 import Link from "next/link";
 import { getAllCars } from "@/lib/cars";
+import type { CarItem } from "@/lib/cars";
+
+// cars.json に合わせたローカル型定義
+type Difficulty = "basic" | "medium" | "advanced";
+type MaintenanceCostLevel = "low" | "medium" | "high";
 
 type Props = {
   searchParams?: {
