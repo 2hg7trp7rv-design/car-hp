@@ -1,15 +1,34 @@
 // lib/cars.ts
-import carsData from "@/data/cars.json";
+import type { CarItem } from "@/lib/types";
 
-// cars.jsonから型をそのまま推論して使う
-export type CarItem = (typeof carsData)[number];
+import cars0 from "@/data/cars.json";
+import cars1 from "@/data/cars2.json";
+import cars2 from "@/data/cars3.json";
+import cars3 from "@/data/cars4.json";
 
-export async function getAllCars(): Promise<CarItem[]> {
-  // 非同期っぽいインターフェースはそのまま維持
-  return carsData;
+const allCars: CarItem[] = [
+  ...(cars0 as CarItem[]),
+  ...(cars1 as CarItem[]),
+  ...(cars2 as CarItem[]),
+  ...(cars3 as CarItem[]),
+];
+
+export function getAllCars(): CarItem[] {
+  return allCars;
 }
 
-export async function getCarBySlug(slug: string): Promise<CarItem | null> {
-  const car = carsData.find((c) => c.slug === slug);
-  return car ?? null;
+export function getCarBySlug(slug: string): CarItem | undefined {
+  return allCars.find((car) => car.slug === slug);
+}
+
+export function getCarsByMaker(maker: string): CarItem[] {
+  return allCars.filter((car) => car.maker === maker);
+}
+
+export function getCarsByBodyType(bodyType: string): CarItem[] {
+  return allCars.filter((car) => car.bodyType === bodyType);
+}
+
+export function getCarsByTag(tag: string): CarItem[] {
+  return allCars.filter((car) => car.tags.includes(tag));
 }
