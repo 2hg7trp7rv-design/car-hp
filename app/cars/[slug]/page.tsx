@@ -1,196 +1,343 @@
 // app/cars/[slug]/page.tsx
 import Link from "next/link";
-import { getCarBySlug } from "@/lib/cars";
-import { getNewsByCar, type NewsItem } from "@/lib/news";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { getAllCars, getCarBySlug, type Car } from "@/lib/cars";
 
 type Props = {
   params: { slug: string };
 };
 
-// 10分ごとにキャッシュ更新
-export const revalidate = 600;
+export async function generateStaticParams() {
+  const cars = await getAllCars();
+  return cars.map((car) => ({ slug: car.slug }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const car = await getCarBySlug(params.slug);
+
+  if (!car) {
+    return {
+      title: "車種が見つかりません | CAR BOUTIQUE",
+      description: "指定された車種の情報が見つかりませんでした。",
+    };
+  }
+
+  const title = `${car.name}の詳細 | CAR BOUTIQUE`;
+  const description =
+    car.summaryLong ??
+    car.summary ??
+    "スペック、長所短所、トラブル傾向、維持費感をまとめた車種解説ページです。";
+
+  return {
+    title,
+    description,
+  };
+}
 
 export default async function CarDetailPage({ params }: Props) {
   const car = await getCarBySlug(params.slug);
 
   if (!car) {
-    return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <p className="text-slate-500">指定された車種が見つかりませんでした。</p>
-          <Link href="/cars" className="text-[#0ABAB5] hover:underline">
-            車種一覧に戻る
-          </Link>
-        </div>
-      </div>
-    );
+    notFound();
   }
 
-  // エラー原因だった箇所を修正：引数を1つ（車名）だけにしました
-  const allRelatedNews = await getNewsByCar(car.name ?? "");
-  const relatedNews = allRelatedNews.slice(0, 5); // ここで5件に絞る
+  const difficultyLabel =
+    car.difficulty === "advanced"
+      ? "マニアック寄り"
+      : car.difficulty === "basic"
+      ? "ライト向け"
+      : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#D1F2EB] via-[#E8F8F5] to-white font-sans pb-20">
-      
-      {/* ヘッダーエリア */}
-      <div className="bg-white/60 backdrop-blur-md border-b border-white/50 sticky top-0 z-10">
-        <div className="max-w-5xl mx-auto px-6 py-4">
-           <Link href="/cars" className="text-xs text-slate-400 hover:text-[#0ABAB5] transition-colors">
-             &larr; Back to List
-           </Link>
-        </div>
-      </div>
+    <main className="min-h-[calc(100vh-80px)] bg-[radial-gradient(circle_at_top_left,#0ABAB5_0%,#ffffff_45%,#ffffff_100%)] px-4 py-10 md:px-8">
+      <div className="mx-auto max-w-5xl space-y-8">
+        {/* パンくず */}
+        <nav className="text-xs text-slate-500">
+          <Link href="/" className="hover:text-slate-700">
+            HOME
+          </Link>
+          <span className="mx-1">/</span>
+          <Link href="/cars" className="hover:text-slate-700">
+            CARS
+          </Link>
+          <span className="mx-1">/</span>
+          <span className="text-slate-700">{car.name}</span>
+        </nav>
 
-      <div className="max-w-5xl mx-auto px-6 pt-8 space-y-10">
-        
-        {/* タイトルセクション */}
-        <header className="space-y-4">
-          <div className="flex items-center gap-3">
-            <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase">
-              {car.maker ?? "Unknown"}
-            </span>
-            {car.releaseYear && (
-               <span className="text-slate-400 text-xs font-serif">{car.releaseYear} Model</span>
-            )}
+        {/* ヘッダー */}
+        <section className="rounded-3xl bg-white/80 p-6 shadow-xl shadow-slate-200 backdrop-blur md:p-8">
+          <div className="mb-4 text-xs font-semibold tracking-[0.18em] text-slate-500">
+            CAR DETAIL
           </div>
-          
-          <h1 className="text-3xl md:text-4xl font-serif font-bold text-slate-800">
+          <h1 className="mb-2 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
             {car.name}
           </h1>
-
-          {car.difficulty === "advanced" && (
-            <p className="inline-flex items-center bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-[10px] font-semibold border border-purple-100">
-              ※ マニアックな解説を含みます
+          <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-slate-600">
+            <span>
+              {car.maker}
+              {car.releaseYear ? `・${car.releaseYear}年` : null}
+            </span>
+            {car.bodyType && (
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-700">
+                {car.bodyType}
+              </span>
+            )}
+            {car.segment && (
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-700">
+                {car.segment}
+              </span>
+            )}
+            {difficultyLabel && (
+              <span className="rounded-full bg-slate-900 px-3 py-1 text-xs font-medium text-white">
+                {difficultyLabel}の解説
+              </span>
+            )}
+          </div>
+          {car.summaryLong ? (
+            <p className="text-sm leading-relaxed text-slate-700 md:text-base">
+              {car.summaryLong}
             </p>
-          )}
-        </header>
+          ) : car.summary ? (
+            <p className="text-sm leading-relaxed text-slate-700 md:text-base">
+              {car.summary}
+            </p>
+          ) : null}
+        </section>
 
-        {/* メインコンテンツ：2カラムレイアウト */}
-        <div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
-          
-          {/* 左カラム：解説テキスト */}
-          <div className="space-y-8">
-            
-            {/* 概要 */}
-            <section className="bg-white rounded-2xl p-8 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.05)] border border-slate-100">
-              <h2 className="text-lg font-serif text-slate-700 mb-4 flex items-center">
-                <span className="w-1 h-4 bg-[#0ABAB5] mr-3 rounded-full"></span>
-                Overview & Character
-              </h2>
-              {car.summary ? (
-                <p className="text-slate-600 text-sm leading-relaxed whitespace-pre-line">
-                  {car.summary}
-                </p>
-              ) : (
-                <p className="text-slate-400 text-xs">概要のメモはまだありません。</p>
-              )}
-              
-              {car.changeSummary && (
-                <div className="mt-6 pt-6 border-t border-slate-50">
-                  <h3 className="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Changes</h3>
-                  <p className="text-slate-600 text-sm leading-relaxed whitespace-pre-line">
-                    {car.changeSummary}
-                  </p>
+        {/* スペック&サイズ */}
+        <section className="grid gap-6 md:grid-cols-2">
+          <div className="rounded-3xl bg-white/80 p-6 shadow-md shadow-slate-200 backdrop-blur">
+            <h2 className="mb-4 text-sm font-semibold tracking-[0.18em] text-slate-500">
+              MAIN SPEC
+            </h2>
+            <dl className="space-y-2 text-sm text-slate-700">
+              {car.engine && (
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 text-slate-500">エンジン</dt>
+                  <dd className="flex-1">{car.engine}</dd>
                 </div>
               )}
-            </section>
-
-            {/* 関連ニュース */}
-            <section>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-serif text-slate-700">Related News</h2>
-                <Link
-                  href={{
-                    pathname: "/news",
-                    query: { q: car.name ?? undefined },
-                  }}
-                  className="text-xs text-[#0ABAB5] hover:underline"
-                >
-                  もっと見る &rarr;
-                </Link>
-              </div>
-
-              {relatedNews.length === 0 ? (
-                <p className="text-xs text-slate-400 bg-white/50 p-4 rounded-xl">
-                  この車に関連するニュースはまだありません。
-                </p>
-              ) : (
-                <div className="space-y-3">
-                  {relatedNews.map((item) => (
-                    <Link
-                      key={item.id}
-                      href={item.sourceUrl ? encodeURI(item.sourceUrl) : `/news/${item.id}`}
-                      target={item.sourceUrl ? "_blank" : "_self"}
-                      className="block group bg-white hover:bg-[#F0FCFC] rounded-xl p-4 border border-slate-100 hover:border-[#0ABAB5]/30 transition-all duration-300"
-                    >
-                      <div className="flex justify-between items-start gap-2">
-                        <div>
-                          <span className="text-[10px] text-slate-400 block mb-1">
-                            {item.sourceName ?? "News"}
-                          </span>
-                          <h4 className="text-sm font-medium text-slate-700 group-hover:text-[#00897B] transition-colors leading-snug">
-                             {item.titleJa ?? item.title}
-                          </h4>
-                        </div>
-                        <span className="text-[#0ABAB5] opacity-0 group-hover:opacity-100 transition-opacity text-xs">
-                          &rarr;
-                        </span>
-                      </div>
-                    </Link>
-                  ))}
+              {(car.powerPs || car.torqueNm) && (
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 text-slate-500">出力</dt>
+                  <dd className="flex-1">
+                    {car.powerPs ? `${car.powerPs}ps` : ""}
+                    {car.powerPs && car.torqueNm ? " / " : ""}
+                    {car.torqueNm ? `${car.torqueNm}Nm` : ""}
+                  </dd>
                 </div>
               )}
-            </section>
-          </div>
-
-          {/* 右カラム：スペック・ポイント */}
-          <div className="space-y-6">
-            <section className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 sticky top-24">
-              <h2 className="text-base font-serif text-slate-700 mb-4">Highlights</h2>
-              
-              {car.specHighlights ? (
-                <p className="text-slate-600 text-xs leading-relaxed whitespace-pre-line mb-6">
+              {car.transmission && (
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 text-slate-500">
+                    トランスミッション
+                  </dt>
+                  <dd className="flex-1">{car.transmission}</dd>
+                </div>
+              )}
+              {car.drive && (
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 text-slate-500">駆動方式</dt>
+                  <dd className="flex-1">{car.drive}</dd>
+                </div>
+              )}
+              {car.fuel && (
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 text-slate-500">燃料</dt>
+                  <dd className="flex-1">{car.fuel}</dd>
+                </div>
+              )}
+              {car.fuelEconomy && (
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 text-slate-500">燃費目安</dt>
+                  <dd className="flex-1">{car.fuelEconomy}</dd>
+                </div>
+              )}
+              {car.specHighlights && (
+                <div className="mt-3 border-t border-slate-100 pt-3 text-xs text-slate-600">
                   {car.specHighlights}
+                </div>
+              )}
+            </dl>
+          </div>
+
+          <div className="rounded-3xl bg-white/80 p-6 shadow-md shadow-slate-200 backdrop-blur">
+            <h2 className="mb-4 text-sm font-semibold tracking-[0.18em] text-slate-500">
+              SIZE &amp; DIMENSION
+            </h2>
+            <dl className="space-y-2 text-sm text-slate-700">
+              {(car.sizeMmLength || car.sizeMmWidth || car.sizeMmHeight) && (
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 text-slate-500">
+                    全長×全幅×全高
+                  </dt>
+                  <dd className="flex-1">
+                    {car.sizeMmLength ?? "−"}×
+                    {car.sizeMmWidth ?? "−"}×
+                    {car.sizeMmHeight ?? "−"}mm
+                  </dd>
+                </div>
+              )}
+              {car.wheelbaseMm && (
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 text-slate-500">
+                    ホイールベース
+                  </dt>
+                  <dd className="flex-1">{car.wheelbaseMm}mm</dd>
+                </div>
+              )}
+              {car.weightKg && (
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 text-slate-500">車両重量</dt>
+                  <dd className="flex-1">{car.weightKg}kg</dd>
+                </div>
+              )}
+              {car.costNewPriceRange && (
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 text-slate-500">
+                    新車価格帯
+                  </dt>
+                  <dd className="flex-1">{car.costNewPriceRange}</dd>
+                </div>
+              )}
+              {car.costUsedPriceRange && (
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 text-slate-500">
+                    中古価格帯
+                  </dt>
+                  <dd className="flex-1">{car.costUsedPriceRange}</dd>
+                </div>
+              )}
+              {car.maintenanceCostLevel && (
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 text-slate-500">維持費感</dt>
+                  <dd className="flex-1">
+                    {car.maintenanceCostLevel === "low"
+                      ? "国産並み〜やや高め"
+                      : car.maintenanceCostLevel === "medium"
+                      ? "やや高め"
+                      : "高め(それなりの覚悟が必要)"}
+                  </dd>
+                </div>
+              )}
+            </dl>
+          </div>
+        </section>
+
+        {/* 好き/気になるポイント */}
+        <section className="grid gap-6 md:grid-cols-2">
+          <div className="rounded-3xl bg-white/80 p-6 shadow-md shadow-slate-200 backdrop-blur">
+            <h2 className="mb-3 text-sm font-semibold tracking-[0.18em] text-slate-500">
+              好きになれるポイント
+            </h2>
+            {car.pros ? (
+              <p className="whitespace-pre-wrap text-sm leading-relaxed text-slate-700">
+                {car.pros}
+              </p>
+            ) : (
+              <p className="text-sm text-slate-400">準備中です。</p>
+            )}
+          </div>
+          <div className="rounded-3xl bg-white/80 p-6 shadow-md shadow-slate-200 backdrop-blur">
+            <h2 className="mb-3 text-sm font-semibold tracking-[0.18em] text-slate-500">
+              気になるかもしれないポイント
+            </h2>
+            {car.cons ? (
+              <p className="whitespace-pre-wrap text-sm leading-relaxed text-slate-700">
+                {car.cons}
+              </p>
+            ) : (
+              <p className="text-sm text-slate-400">準備中です。</p>
+            )}
+          </div>
+        </section>
+
+        {/* トラブル&維持費 */}
+        <section className="grid gap-6 md:grid-cols-2">
+          <div className="rounded-3xl bg-white/80 p-6 shadow-md shadow-slate-200 backdrop-blur">
+            <h2 className="mb-3 text-sm font-semibold tracking-[0.18em] text-slate-500">
+              よくあるトラブル傾向
+            </h2>
+            {car.troubleTrends ? (
+              <p className="whitespace-pre-wrap text-sm leading-relaxed text-slate-700">
+                {car.troubleTrends}
+              </p>
+            ) : (
+              <p className="text-sm text-slate-400">準備中です。</p>
+            )}
+          </div>
+          <div className="rounded-3xl bg-white/80 p-6 shadow-md shadow-slate-200 backdrop-blur">
+            <h2 className="mb-3 text-sm font-semibold tracking-[0.18em] text-slate-500">
+              維持費と付き合い方のコツ
+            </h2>
+            {car.maintenanceTips ? (
+              <p className="whitespace-pre-wrap text-sm leading-relaxed text-slate-700">
+                {car.maintenanceTips}
+              </p>
+            ) : (
+              <p className="text-sm text-slate-400">準備中です。</p>
+            )}
+          </div>
+        </section>
+
+        {/* このクルマと合う/合わない */}
+        <section className="rounded-3xl bg-white/80 p-6 shadow-md shadow-slate-200 backdrop-blur">
+          <h2 className="mb-3 text-sm font-semibold tracking-[0.18em] text-slate-500">
+            このクルマと合う人・合わない人
+          </h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <h3 className="mb-2 text-xs font-semibold text-teal-700">
+                相性がいい人
+              </h3>
+              {car.recommendFor ? (
+                <p className="whitespace-pre-wrap text-sm leading-relaxed text-slate-700">
+                  {car.recommendFor}
                 </p>
               ) : (
-                 <p className="text-slate-400 text-xs mb-6">情報収集中...</p>
+                <p className="text-sm text-slate-400">準備中です。</p>
               )}
-
-              <div className="space-y-4">
-                <div className="bg-[#F0FCFC] rounded-lg p-4">
-                  <h3 className="text-[#00897B] text-xs font-bold mb-2 flex items-center">
-                    <span className="text-lg mr-2">✓</span> PROS
-                  </h3>
-                  <p className="text-slate-600 text-xs whitespace-pre-line">
-                    {car.pros ?? "なし"}
-                  </p>
-                </div>
-                
-                <div className="bg-slate-50 rounded-lg p-4">
-                  <h3 className="text-slate-500 text-xs font-bold mb-2 flex items-center">
-                     <span className="text-lg mr-2">−</span> CONS
-                  </h3>
-                  <p className="text-slate-500 text-xs whitespace-pre-line">
-                    {car.cons ?? "なし"}
-                  </p>
-                </div>
-              </div>
-
-              {car.referenceUrl && (
-                <a
-                  href={car.referenceUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-6 block w-full text-center border border-slate-200 text-slate-500 text-xs py-3 rounded-lg hover:bg-slate-50 hover:text-slate-800 transition-colors"
-                >
-                  公式サイトを見る &rarr;
-                </a>
+            </div>
+            <div>
+              <h3 className="mb-2 text-xs font-semibold text-slate-700">
+                他のクルマをおすすめしたい人
+              </h3>
+              {car.notFor ? (
+                <p className="whitespace-pre-wrap text-sm leading-relaxed text-slate-700">
+                  {car.notFor}
+                </p>
+              ) : (
+                <p className="text-sm text-slate-400">準備中です。</p>
               )}
-            </section>
+            </div>
           </div>
-        </div>
+
+          {car.changeSummary && (
+            <div className="mt-4 border-t border-slate-100 pt-3 text-xs text-slate-600">
+              <div className="mb-1 font-semibold text-slate-700">
+                モデルチェンジで変わったところ
+              </div>
+              <p className="whitespace-pre-wrap leading-relaxed">
+                {car.changeSummary}
+              </p>
+            </div>
+          )}
+
+          {car.referenceUrl && (
+            <div className="mt-4">
+              <a
+                href={car.referenceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-xs font-medium text-slate-600 underline underline-offset-4 hover:text-slate-900"
+              >
+                メーカー公式サイトを見る
+              </a>
+            </div>
+          )}
+        </section>
       </div>
-    </div>
+    </main>
   );
 }
