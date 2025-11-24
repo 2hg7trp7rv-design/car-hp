@@ -6,24 +6,60 @@ type Props = {
   searchParams?: {
     q?: string;
     maker?: string;
-    difficulty?: string;
+    bodyType?: string;
+    yearMin?: string;
+    yearMax?: string;
   };
 };
 
 export default async function CarsPage({ searchParams }: Props) {
   const q = (searchParams?.q ?? "").trim().toLowerCase();
   const makerFilter = searchParams?.maker ?? "";
-  const difficultyFilter = searchParams?.difficulty ?? "";
+  const bodyTypeFilter = searchParams?.bodyType ?? "";
 
   const cars = await getAllCars();
+
+  // 年式の最小・最大を算出
+  const years = cars
+    .map((c) => c.releaseYear)
+    .filter((y): y is number => typeof y === "number" && !Number.isNaN(y));
+
+  const defaultMinYear = years.length > 0 ? Math.min(...years) : 1990;
+  const defaultMaxYear =
+    years.length > 0 ? Math.max(...years) : new Date().getFullYear();
+
+  const yearMinRaw = Number(searchParams?.yearMin ?? "");
+  const yearMaxRaw = Number(searchParams?.yearMax ?? "");
+
+  const yearMin =
+    Number.isFinite(yearMinRaw) && years.length > 0
+      ? Math.max(defaultMinYear, Math.min(yearMinRaw, defaultMaxYear))
+      : defaultMinYear;
+
+  const yearMax =
+    Number.isFinite(yearMaxRaw) && years.length > 0
+      ? Math.min(defaultMaxYear, Math.max(yearMaxRaw, defaultMinYear))
+      : defaultMaxYear;
 
   const makers = Array.from(
     new Set(cars.map((c) => c.maker).filter(Boolean)),
   ) as string[];
 
+  const bodyTypes = Array.from(
+    new Set(
+      cars
+        .map((c) => c.bodyType?.trim())
+        .filter((v): v is string => Boolean(v)),
+    ),
+  );
+
   const filtered = cars.filter((car) => {
     if (makerFilter && car.maker !== makerFilter) return false;
-    if (difficultyFilter && car.difficulty !== difficultyFilter) return false;
+    if (bodyTypeFilter && car.bodyType !== bodyTypeFilter) return false;
+
+    if (years.length > 0 && car.releaseYear) {
+      if (car.releaseYear < yearMin || car.releaseYear > yearMax) return false;
+    }
 
     if (q) {
       const text = [
@@ -34,6 +70,7 @@ export default async function CarsPage({ searchParams }: Props) {
         car.engine,
         car.segment,
         car.grade,
+        car.bodyType,
       ]
         .filter(Boolean)
         .join(" ")
@@ -46,7 +83,7 @@ export default async function CarsPage({ searchParams }: Props) {
   });
 
   return (
-    <main className="min-h-[calc(100vh-80px)] bg-[radial-gradient(circle_at_top_left,#0ABAB5_0%,#ffffff_45%,#ffffff_100%)] px-4 py-10 md:px-8">
+    <main className="min-h-[calc(100vh-80px)] px-4 py-10 md:px-8">
       <div className="mx-auto max-w-5xl rounded-3xl bg-white/80 p-6 shadow-xl shadow-slate-200 backdrop-blur md:p-8">
         <div className="mb-6 text-sm font-semibold tracking-[0.18em] text-slate-500">
           CARS
@@ -55,11 +92,13 @@ export default async function CarsPage({ searchParams }: Props) {
           車種一覧
         </h1>
         <p className="mb-8 text-sm leading-relaxed text-slate-600 md:text-base">
-          新型車の概要と、過去モデルからの変更点・良くなった点／悪くなった点を整理していくページ。フィルターで気になる車だけ絞り込めます。
+          新型車の概要と、過去モデルからの変更点・良くなった点／悪くなった点を整理していくページ。
+          フィルターで気になる車だけ絞り込めます。
         </p>
 
         {/* フィルター */}
-        <form className="mb-8 grid gap-4 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_minmax(0,1fr)_auto] md:items-end">
+        <form className="mb-8 space-y-4">
+          {/* 1段目 キーワード */}
           <div>
             <label className="mb-1 block text-xs font-medium tracking-wide text-slate-500">
               キーワード
@@ -68,42 +107,89 @@ export default async function CarsPage({ searchParams }: Props) {
               type="text"
               name="q"
               defaultValue={q}
-              className="w-full rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-900 outline-none transition focus:border-teal-400 focus:ring-2 focus:ring-teal-100"
+              className="w-full rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-900 outline-none transition focus:border-[#0ABAB5] focus:ring-2 focus:ring-[#0ABAB5]/20"
               placeholder="車名・メーカー・キーワード"
             />
           </div>
-          <div>
-            <label className="mb-1 block text-xs font-medium tracking-wide text-slate-500">
-              メーカー
-            </label>
-            <select
-              name="maker"
-              defaultValue={makerFilter}
-              className="w-full rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-900 outline-none transition focus:border-teal-400 focus:ring-2 focus:ring-teal-100"
-            >
-              <option value="">すべて</option>
-              {makers.map((maker) => (
-                <option key={maker} value={maker}>
-                  {maker}
-                </option>
-              ))}
-            </select>
+
+          {/* 2段目 メーカー/ボディタイプ */}
+          <div className="grid gap-4 md:grid-cols-2">
+            <div>
+              <label className="mb-1 block text-xs font-medium tracking-wide text-slate-500">
+                メーカー
+              </label>
+              <select
+                name="maker"
+                defaultValue={makerFilter}
+                className="w-full rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-900 outline-none transition focus:border-[#0ABAB5] focus:ring-2 focus:ring-[#0ABAB5]/20"
+              >
+                <option value="">すべて</option>
+                {makers.map((maker) => (
+                  <option key={maker} value={maker}>
+                    {maker}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="mb-1 block text-xs font-medium tracking-wide text-slate-500">
+                ボディタイプ
+              </label>
+              <select
+                name="bodyType"
+                defaultValue={bodyTypeFilter}
+                className="w-full rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-900 outline-none transition focus:border-[#0ABAB5] focus:ring-2 focus:ring-[#0ABAB5]/20"
+              >
+                <option value="">すべて</option>
+                {bodyTypes.map((type) => (
+                  <option key={type} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-          <div>
-            <label className="mb-1 block text-xs font-medium tracking-wide text-slate-500">
-              解説の濃さ
-            </label>
-            <select
-              name="difficulty"
-              defaultValue={difficultyFilter}
-              className="w-full rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-900 outline-none transition focus:border-teal-400 focus:ring-2 focus:ring-teal-100"
-            >
-              <option value="">すべて</option>
-              <option value="basic">ライト向け</option>
-              <option value="advanced">マニアック寄り</option>
-            </select>
-          </div>
-          <div className="flex gap-2">
+
+          {/* 3段目 発売年スライダー */}
+          {years.length > 0 && (
+            <div>
+              <label className="mb-1 block text-xs font-medium tracking-wide text-slate-500">
+                発売年
+              </label>
+              <div className="flex items-baseline justify-between text-[11px] text-slate-500">
+                <span>{yearMin}年</span>
+                <span>{yearMax}年</span>
+              </div>
+              <div className="mt-2 space-y-2">
+                <div className="flex items-center gap-3">
+                  <span className="w-10 text-[11px] text-slate-500">最小</span>
+                  <input
+                    type="range"
+                    name="yearMin"
+                    min={defaultMinYear}
+                    max={defaultMaxYear}
+                    defaultValue={yearMin}
+                    className="h-1 w-full cursor-pointer rounded-full bg-slate-200 accent-[#0ABAB5]"
+                  />
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="w-10 text-[11px] text-slate-500">最大</span>
+                  <input
+                    type="range"
+                    name="yearMax"
+                    min={defaultMinYear}
+                    max={defaultMaxYear}
+                    defaultValue={yearMax}
+                    className="h-1 w-full cursor-pointer rounded-full bg-slate-200 accent-[#0ABAB5]"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ボタン */}
+          <div className="flex gap-2 pt-2">
             <button
               type="submit"
               className="inline-flex flex-1 items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-xs font-medium tracking-wide text-white transition hover:bg-slate-800"
@@ -130,11 +216,11 @@ export default async function CarsPage({ searchParams }: Props) {
               <li key={car.id}>
                 <Link
                   href={`/cars/${car.slug}`}
-                  className="block rounded-2xl border border-slate-100 bg-white/80 px-4 py-4 transition hover:border-teal-300 hover:bg-white hover:shadow-md"
+                  className="block rounded-2xl border border-slate-100 bg-white/85 px-4 py-4 transition hover:border-[#0ABAB5]/60 hover:bg-white hover:shadow-md"
                 >
                   <div className="mb-1 text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
-                    {car.maker}・
-                    {car.releaseYear ? `${car.releaseYear}年` : "年式不明"}
+                    {car.maker}
+                    {car.releaseYear ? `・${car.releaseYear}年` : null}
                   </div>
                   <div className="mb-1 text-base font-semibold tracking-tight text-slate-900 md:text-lg">
                     {car.name}
@@ -144,12 +230,17 @@ export default async function CarsPage({ searchParams }: Props) {
                       {car.summary}
                     </p>
                   )}
-                  <div className="text-xs font-medium text-teal-600">
-                    {car.difficulty === "advanced"
-                      ? "マニアック解説あり"
-                      : car.difficulty === "basic"
-                      ? "ライト向けの解説"
-                      : "解説準備中"}
+                  <div className="flex flex-wrap gap-2 text-[11px] text-slate-500">
+                    {car.bodyType && (
+                      <span className="rounded-full bg-slate-100 px-2 py-0.5">
+                        {car.bodyType}
+                      </span>
+                    )}
+                    {car.segment && (
+                      <span className="rounded-full bg-slate-100 px-2 py-0.5">
+                        {car.segment}
+                      </span>
+                    )}
                   </div>
                 </Link>
               </li>
