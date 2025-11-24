@@ -1,7 +1,7 @@
 [
   {
     "id": "toyota-supra-jza80",
-    "name": "Toyota Supra (JZA80)",
+    "name": "トヨタ スープラ (JZA80型)",
     "slug": "toyota-supra-jza80",
     "maker": "TOYOTA",
     "releaseYear": 1993,
@@ -38,7 +38,7 @@
   },
   {
     "id": "mitsuoka-orochi-msp1",
-    "name": "Mitsuoka Orochi (MSP1)",
+    "name": "光岡 オロチ (MSP1型)",
     "slug": "mitsuoka-orochi-msp1",
     "maker": "MITSUOKA",
     "releaseYear": 2006,
@@ -75,7 +75,7 @@
   },
   {
     "id": "toyota-alphard-30-late",
-    "name": "Toyota Alphard (30 Series Late)",
+    "name": "トヨタ アルファード (30系後期)",
     "slug": "toyota-alphard-30-late",
     "maker": "TOYOTA",
     "releaseYear": 2018,
@@ -110,9 +110,9 @@
     "changeSummary": "2018年MCでフロント刷新、安全装備の世代更新、V6とATを刷新。",
     "referenceUrl": "https://global.toyota/jp/newsroom/toyota/20433787.html"
   },
-   {
+  {
     "id": "toyota-harrier-80",
-    "name": "Toyota Harrier (80 Series)",
+    "name": "トヨタ ハリアー (80系)",
     "slug": "toyota-harrier-80",
     "maker": "TOYOTA",
     "releaseYear": 2020,
@@ -149,7 +149,7 @@
   },
   {
     "id": "toyota-landcruiser-prado-150",
-    "name": "Toyota Land Cruiser Prado (150 Series)",
+    "name": "トヨタ ランドクルーザー プラド (150系)",
     "slug": "toyota-landcruiser-prado-150",
     "maker": "TOYOTA",
     "releaseYear": 2009,
