@@ -160,3 +160,21 @@
   border: 2px solid #0abab5;
   box-shadow: 0 1px 4px rgba(15, 23, 42, 0.25);
 }
+
+　/* Tiffany系のメッシュ＋ラジアル背景 */
+.bg-site {
+  background:
+    radial-gradient(circle at 10% 20%, rgba(10, 186, 181, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(129, 216, 208, 0.14) 0%, transparent 45%),
+    #ffffff;
+}
+
+/* Glassカードのベースクラス（Tailwindと併用） */
+.glass-card {
+  background: rgba(255, 255, 255, 0.78);
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
