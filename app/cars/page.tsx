@@ -1,337 +1,172 @@
 // app/cars/page.tsx
+import { GlassCard } from "@/components/GlassCard";
 import Link from "next/link";
 import { getAllCars } from "@/lib/cars";
-import type { CarItem } from "@/lib/cars";
 
-// 日本語表示用メーカー名マップ
-const JAPANESE_MAKER_LABELS: Record<string, string> = {
-  TOYOTA: "トヨタ",
-  HONDA: "ホンダ",
-  NISSAN: "日産",
-  MITSUBISHI: "三菱",
-  MAZDA: "マツダ",
-  SUBARU: "スバル",
-  SUZUKI: "スズキ",
-  DAIHATSU: "ダイハツ",
-  LEXUS: "レクサス",
-  MITSUOKA: "光岡",
-
-  BMW: "BMW",
-  "MERCEDES-BENZ": "メルセデス・ベンツ",
-  AUDI: "アウディ",
-  VOLKSWAGEN: "フォルクスワーゲン",
-  PORSCHE: "ポルシェ",
-  FERRARI: "フェラーリ",
-  LAMBORGHINI: "ランボルギーニ",
-  "ALFA ROMEO": "アルファロメオ",
-  PEUGEOT: "プジョー",
-  RENAULT: "ルノー",
-  VOLVO: "ボルボ",
-  JAGUAR: "ジャガー",
-  "LAND ROVER": "ランドローバー",
-  MINI: "ミニ",
-  TESLA: "テスラ",
-
-  FIAT: "フィアット",
-  CITROEN: "シトロエン",
-  OPEL: "オペル",
-  DS: "DS",
-  ABARTH: "アバルト",
-
-  CHEVROLET: "シボレー",
-  CADILLAC: "キャデラック",
-  BUICK: "ビュイック",
-  GMC: "GMC",
-  CHRYSLER: "クライスラー",
-  DODGE: "ダッジ",
-  JEEP: "ジープ",
-  FORD: "フォード",
-  LINCOLN: "リンカーン",
-
-  HYUNDAI: "ヒョンデ",
-  GENESIS: "ジェネシス",
-  KIA: "キア",
-
-  LOTUS: "ロータス",
-  "ASTON MARTIN": "アストンマーティン",
-  BENTLEY: "ベントレー",
-  "ROLLS-ROYCE": "ロールス・ロイス",
-  MCLAREN: "マクラーレン",
-  MASERATI: "マセラティ",
-  BUGATTI: "ブガッティ",
-  SMART: "スマート",
-  INFINITI: "インフィニティ",
-  ACURA: "アキュラ",
+export const metadata = {
+  title: "車種データベース | CAR BOUTIQUE",
+  description:
+    "スペック、性格、維持費、トラブル傾向などを含めた車種データを丁寧に整理。高品質な車種カタログ。",
 };
 
-function displayMakerLabel(maker: string): string {
-  return JAPANESE_MAKER_LABELS[maker] ?? maker;
-}
-
-// cars.json に合わせたローカル型定義
-type Difficulty = "basic" | "medium" | "advanced";
-type MaintenanceCostLevel = "low" | "medium" | "high";
-
-type Props = {
+export default async function CarsPage({
+  searchParams,
+}: {
   searchParams?: {
     q?: string;
-    maker?: string;
     bodyType?: string;
-    yearMin?: string;
-    yearMax?: string;
+    segment?: string;
   };
-};
-
-export default async function CarsPage({ searchParams }: Props) {
-  const q = (searchParams?.q ?? "").trim().toLowerCase();
-  const makerFilter = searchParams?.maker ?? "";
-  const bodyTypeFilter = searchParams?.bodyType ?? "";
+}) {
+  const q = (searchParams?.q ?? "").toLowerCase();
+  const bodyFilter = searchParams?.bodyType ?? "";
+  const segmentFilter = searchParams?.segment ?? "";
 
   const cars = await getAllCars();
 
-  // 年式スライダーの固定レンジ
-  const sliderMinYear = 1990;
-  const sliderMaxYear = 2025;
+  const filtered = cars.filter((item) => {
+    const matchesQuery =
+      q === "" ||
+      item.name.toLowerCase().includes(q) ||
+      item.summary.toLowerCase().includes(q);
 
-  const parseYear = (value: string | undefined, fallback: number): number => {
-    if (!value) return fallback;
-    const n = Number(value);
-    return Number.isFinite(n) ? n : fallback;
-  };
+    const matchesBody =
+      bodyFilter === "" ||
+      item.bodyType?.toLowerCase() === bodyFilter.toLowerCase();
 
-  const clampYear = (value: number, min: number, max: number): number => {
-    return Math.min(max, Math.max(min, value));
-  };
+    const matchesSegment =
+      segmentFilter === "" ||
+      item.segment?.toLowerCase() === segmentFilter.toLowerCase();
 
-  const rawYearMin = parseYear(searchParams?.yearMin, sliderMinYear);
-  const rawYearMax = parseYear(searchParams?.yearMax, sliderMaxYear);
-
-  const yearMin = clampYear(rawYearMin, sliderMinYear, sliderMaxYear);
-  const yearMax = clampYear(rawYearMax, sliderMinYear, sliderMaxYear);
-
-  const selectedYearFrom = Math.min(yearMin, yearMax);
-  const selectedYearTo = Math.max(yearMin, yearMax);
-
-  const makers = Array.from(
-    new Set(cars.map((c) => c.maker).filter(Boolean)),
-  ) as string[];
-
-  const bodyTypes = Array.from(
-    new Set(
-      cars
-        .map((c) => c.bodyType?.trim())
-        .filter((v): v is string => Boolean(v)),
-    ),
-  );
-
-  const filtered = cars.filter((car) => {
-    if (makerFilter && car.maker !== makerFilter) return false;
-    if (bodyTypeFilter && car.bodyType !== bodyTypeFilter) return false;
-
-    if (q) {
-      const keyword = q.toLowerCase();
-      const haystack = [
-        car.name,
-        car.maker,
-        car.bodyType,
-        car.segment,
-        car.summary,
-        car.summaryLong,
-      ]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase();
-
-      if (!haystack.includes(keyword)) return false;
-    }
-
-    if (car.releaseYear) {
-      if (car.releaseYear < selectedYearFrom) return false;
-      if (car.releaseYear > selectedYearTo) return false;
-    }
-
-    return true;
+    return matchesQuery && matchesBody && matchesSegment;
   });
 
-  return (
-    <main className="mx-auto flex.max-w-5xl.flex-col.gap-6 px-4 pb-16 pt-8 sm:px-6 lg:px-8">
-      <header className="mb-2 space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
-          Cars
-        </p>
-        <h1 className="serif-font text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-          車種データベース(仮)
-        </h1>
-        <p className="max-w-2xl text-xs leading-relaxed text-slate-600 sm:text-sm">
-          気になるモデルをざっくり比較しやすくするための車種リストです。
-          まずは登録車種を少しずつ増やしながら、比較機能や条件検索を強化していきます。
-        </p>
-      </header>
+  const uniqueBodies = Array.from(new Set(cars.map((c) => c.bodyType).filter(Boolean)));
+  const uniqueSegments = Array.from(
+    new Set(cars.map((c) => c.segment).filter(Boolean))
+  );
 
-      {/* フィルタエリア */}
-      <div className="rounded-2xl border border-slate-100 bg-white/80 p-4 shadow-sm">
-        <form className="space-y-3" method="GET">
-          <div className="grid gap-3 sm:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+  return (
+    <main className="min-h-screen bg-site text-text-main">
+      <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
+        {/* 見出し */}
+        <header className="mb-10">
+          <p className="font-body-light text-[10px] tracking-[0.35em] text-text-sub">
+            DATABASE
+          </p>
+          <h1 className="font-display-serif mt-3 text-3xl font-semibold sm:text-4xl">
+            車種データベース
+          </h1>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-text-sub">
+            各車種の基本情報から、性格、維持のしやすさ、長所・短所、トラブル傾向まで。
+            スペック表だけでは分からない「実際どういう車なのか」を丁寧にまとめています。
+          </p>
+        </header>
+
+        {/* フィルタUI（GlassCard） */}
+        <GlassCard className="mb-10">
+          <form className="grid gap-4 sm:grid-cols-3 sm:gap-6">
             {/* キーワード */}
-            <div className="space-y-1">
-              <label
-                htmlFor="q"
-                className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500"
-              >
+            <div className="flex flex-col">
+              <label className="font-body-light text-[10px] tracking-[0.25em] text-text-sub mb-1">
                 キーワード
               </label>
               <input
-                id="q"
+                type="text"
                 name="q"
-                type="search"
+                placeholder="車名・特徴で検索"
                 defaultValue={q}
-                placeholder="車名やメーカー名、ボディタイプなど"
-                className="w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs leading-none text-slate-900 shadow-sm outline-none ring-0 transition focus:border-[#0ABAB5] focus:ring-1 focus:ring-[#0ABAB5]/60"
+                className="rounded-md border border-gray-200 px-3 py-2 text-sm outline-none focus:border-brand-tiffanySoft"
               />
             </div>
 
-            {/* メーカーとボディタイプ */}
-            <div className="grid gap-2 sm:grid-cols-2">
-              <div className="space-y-1">
-                <label
-                  htmlFor="maker"
-                  className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500"
-                >
-                  メーカー
-                </label>
-                <select
-                  id="maker"
-                  name="maker"
-                  defaultValue={makerFilter}
-                  className="w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs leading-none text-slate-900 shadow-sm outline-none ring-0 transition focus:border-[#0ABAB5] focus:ring-1 focus:ring-[#0ABAB5]/60"
-                >
-                  <option value="">指定なし</option>
-                  {makers.map((maker) => (
-                    <option key={maker} value={maker}>
-                      {displayMakerLabel(maker)}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="space-y-1">
-                <label
-                  htmlFor="bodyType"
-                  className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500"
-                >
-                  ボディタイプ
-                </label>
-                <select
-                  id="bodyType"
-                  name="bodyType"
-                  defaultValue={bodyTypeFilter}
-                  className="w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs leading-none text-slate-900 shadow-sm outline-none ring-0 transition focus:border-[#0ABAB5] focus:ring-1 focus:ring-[#0ABAB5]/60"
-                >
-                  <option value="">指定なし</option>
-                  {bodyTypes.map((body) => (
-                    <option key={body} value={body}>
-                      {body}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          </div>
-
-          {/* 年式スライダー */}
-          <div className="space-y-1">
-            <div className="flex items-center justify-between">
-              <label className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500">
-                年式レンジ
+            {/* ボディタイプ */}
+            <div className="flex flex-col">
+              <label className="font-body-light text-[10px] tracking-[0.25em] text-text-sub mb-1">
+                ボディタイプ
               </label>
-              <div className="text-[11px] text-slate-500">
-                {selectedYearFrom}年〜{selectedYearTo}年
-              </div>
+              <select
+                name="bodyType"
+                defaultValue={bodyFilter}
+                className="rounded-md border border-gray-200 px-3 py-2 text-sm outline-none focus:border-brand-tiffanySoft"
+              >
+                <option value="">すべて</option>
+                {uniqueBodies.map((b) => (
+                  <option key={b} value={b}>
+                    {b}
+                  </option>
+                ))}
+              </select>
             </div>
-            <div className="space-y-1">
-              <div className="flex items-center.gap-2">
-                <input
-                  type="range"
-                  name="yearMin"
-                  min={sliderMinYear}
-                  max={sliderMaxYear}
-                  defaultValue={selectedYearFrom}
-                  className="range-slider-input"
-                />
-                <input
-                  type="range"
-                  name="yearMax"
-                  min={sliderMinYear}
-                  max={sliderMaxYear}
-                  defaultValue={selectedYearTo}
-                  className="range-slider-input"
-                />
-              </div>
-              <div className="mt-1 flex justify-between text-[10px] text-slate-400">
-                <span>{sliderMinYear}年</span>
-                <span>{sliderMaxYear}年</span>
-              </div>
-            </div>
-          </div>
 
-          {/* ボタン */}
-          <div className="flex gap-2 pt-2">
-            <button
-              type="submit"
-              className="inline-flex flex-1 items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-xs font-medium tracking-wide text-white transition hover:bg-slate-800"
-            >
-              絞り込む
-            </button>
-            <Link
-              href="/cars"
-              className="inline-flex items-center justify-center rounded-full bg-white px-4 py-2 text-xs font-medium tracking-wide text-slate-700 ring-1 ring-slate-200 transition hover:bg-slate-50"
-            >
-              クリア
-            </Link>
-          </div>
-        </form>
+            {/* セグメント */}
+            <div className="flex flex-col">
+              <label className="font-body-light text-[10px] tracking-[0.25em] text-text-sub mb-1">
+                セグメント
+              </label>
+              <select
+                name="segment"
+                defaultValue={segmentFilter}
+                className="rounded-md border border-gray-200 px-3 py-2 text-sm outline-none focus:border-brand-tiffanySoft"
+              >
+                <option value="">すべて</option>
+                {uniqueSegments.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* 検索ボタン */}
+            <div className="sm:col-span-3 flex justify-end">
+              <button
+                type="submit"
+                className="mt-2 rounded-md bg-brand-tiffany px-5 py-2 text-xs font-semibold tracking-wider text-white transition hover:bg-brand-tiffanySoft"
+              >
+                SEARCH
+              </button>
+            </div>
+          </form>
+        </GlassCard>
 
         {/* 一覧 */}
-        {filtered.length === 0 ? (
-          <p className="text-sm text-slate-500">
-            条件に合う車種が見つかりませんでした。
-          </p>
-        ) : (
-          <ul className="space-y-4">
-            {filtered.map((car) => (
-              <li key={car.id ?? car.slug}>
-                <Link
-                  href={`/cars/${car.slug}`}
-                  className="block rounded-2xl border border-slate-100 bg-white/85 px-4 py-4 transition hover:border-[#0ABAB5]/60 hover:bg-white hover:shadow-md"
-                >
-                  <div className="mb-1 text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
-                    {displayMakerLabel(car.maker)}
-                    {car.releaseYear ? `・${car.releaseYear}年` : null}
-                  </div>
-                  <div className="mb-1 text-base font-semibold tracking-tight text-slate-900 md:text-lg">
+        <div className="space-y-4">
+          {filtered.map((car) => (
+            <GlassCard
+              key={car.id}
+              as="article"
+              className="transition hover:shadow-lg"
+            >
+              <Link href={`/cars/${car.slug}`} className="block">
+                <div className="flex flex-col gap-2">
+                  <p className="font-body-light text-[10px] tracking-[0.25em] text-brand-tiffanySoft">
+                    {car.maker ?? ""}
+                  </p>
+
+                  <h2 className="font-display-serif text-lg font-semibold leading-snug">
                     {car.name}
+                  </h2>
+
+                  <p className="text-xs leading-relaxed text-text-sub">
+                    {car.summary}
+                  </p>
+
+                  <div className="mt-1 flex items-center justify-between text-[11px] text-text-sub">
+                    <p>{car.releaseYear}年式</p>
+                    <p>{car.bodyType}</p>
                   </div>
-                  {car.summary && (
-                    <p className="mb-2 text-sm leading-relaxed text-slate-600">
-                      {car.summary}
-                    </p>
-                  )}
-                  <div className="flex flex-wrap gap-2 text-[11px] text-slate-500">
-                    {car.bodyType && (
-                      <span className="rounded-full bg-slate-100 px-2 py-0.5">
-                        {car.bodyType}
-                      </span>
-                    )}
-                    {car.segment && (
-                      <span className="rounded-full bg-slate-100 px-2 py-0.5">
-                        {car.segment}
-                      </span>
-                    )}
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
+                </div>
+              </Link>
+            </GlassCard>
+          ))}
+        </div>
+
+        {/* 該当なし */}
+        {filtered.length === 0 && (
+          <p className="mt-10 text-center text-sm text-text-sub">
+            条件に一致する車種がありません。
+          </p>
         )}
       </div>
     </main>
