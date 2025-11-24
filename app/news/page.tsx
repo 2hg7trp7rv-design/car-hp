@@ -13,37 +13,48 @@ type Props = {
   searchParams?: {
     q?: string;
     category?: string;
-    maker?: string;
     tag?: string;
   };
 };
 
+function formatDate(dateStr?: string) {
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  if (Number.isNaN(d.getTime())) return "";
+  return d.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+}
+
 export default async function NewsPage({ searchParams }: Props) {
   const q = (searchParams?.q ?? "").trim().toLowerCase();
   const categoryFilter = searchParams?.category ?? "";
-  const makerFilter = searchParams?.maker ?? "";
   const tagFilter = searchParams?.tag ?? "";
 
-  // 元データ取得
   const items = await getLatestNews(80);
 
-  // フィルタリング
   const filtered = items.filter((item) => {
+    const titleJa = (item.titleJa ?? "").toLowerCase();
+    const excerpt = (item.excerpt ?? "").toLowerCase();
+
     const matchesQuery =
       q === "" ||
       item.title.toLowerCase().includes(q) ||
-      (item.titleJa ?? "").toLowerCase().includes(q);
+      titleJa.includes(q) ||
+      excerpt.includes(q);
 
     const matchesCategory =
       categoryFilter === "" || item.category === categoryFilter;
 
-    const matchesMaker = makerFilter === "" || item.maker === makerFilter;
-
     const matchesTag =
       tagFilter === "" ||
-      item.tags.some((t: string) => t.toLowerCase() === tagFilter.toLowerCase());
+      (item.tags ?? []).some(
+        (t) => t.toLowerCase() === tagFilter.toLowerCase(),
+      );
 
-    return matchesQuery && matchesCategory && matchesMaker && matchesTag;
+    return matchesQuery && matchesCategory && matchesTag;
   });
 
   return (
@@ -67,6 +78,8 @@ export default async function NewsPage({ searchParams }: Props) {
         <div className="space-y-4">
           {filtered.map((item) => {
             const title = item.titleJa || item.title;
+            const sourceName = item.sourceName ?? "EXTERNAL";
+            const dateLabel = formatDate(item.publishedAt);
 
             return (
               <GlassCard
@@ -90,13 +103,9 @@ export default async function NewsPage({ searchParams }: Props) {
                       </p>
                     )}
 
-                    <div className="flex items-center justify-between pt-1">
-                      <p className="text-[11px] text-text-sub">
-                        {item.source ?? "Media"}
-                      </p>
-                      <p className="text-[11px] text-text-sub">
-                        {item.date ?? ""}
-                      </p>
+                    <div className="mt-1 flex items-center justify-between text-[11px] text-text-sub">
+                      <p>{sourceName}</p>
+                      <p>{dateLabel}</p>
                     </div>
                   </div>
                 </Link>
