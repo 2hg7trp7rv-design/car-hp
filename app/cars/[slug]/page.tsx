@@ -42,10 +42,16 @@ export default async function CarDetailPage({ params }: Props) {
     notFound();
   }
 
-  const recommendForLines = car.recommendFor
-    ? car.recommendFor.split("\n").filter(Boolean)
-    : [];
-  const notForLines = car.notFor ? car.notFor.split("\n").filter(Boolean) : [];
+  const normalizeLines = (value?: string | null): string[] => {
+    if (!value) return [];
+    return value
+      .split("\n")
+      .map((line) => line.replace(/^・\s*/, "").trim())
+      .filter(Boolean);
+  };
+
+  const recommendForLines = normalizeLines(car.recommendFor);
+  const notForLines = normalizeLines(car.notFor);
 
   return (
     <main className="min-h-screen px-4 pt-20 pb-24 md:px-8 md:pt-24">
@@ -65,7 +71,7 @@ export default async function CarDetailPage({ params }: Props) {
 
         {/* Car detail */}
         <section className="rounded-3xl bg-white/90 p-6 shadow-md shadow-slate-200 backdrop-blur md:p-8">
-          <p className="text-xs font-semibold tracking-[0.2em] text-slate-500">
+          <p className="text-[13px] font-semibold tracking-[0.2em] text-slate-500">
             CAR DETAIL
           </p>
           <h1 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
@@ -103,7 +109,7 @@ export default async function CarDetailPage({ params }: Props) {
 
         {/* 好きになれるポイント */}
         <section className="rounded-3xl bg-white/90 p-6 shadow-md shadow-slate-200 backdrop-blur">
-          <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
+          <h2 className="text-[0.9rem] font-semibold tracking-[0.18em] text-slate-500">
             好きになれるポイント
           </h2>
           {car.pros ? (
@@ -117,7 +123,7 @@ export default async function CarDetailPage({ params }: Props) {
 
         {/* 気になるかもしれないポイント */}
         <section className="rounded-3xl bg-white/90 p-6 shadow-md shadow-slate-200 backdrop-blur">
-          <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
+          <h2 className="text-[0.9rem] font-semibold tracking-[0.18em] text-slate-500">
             気になるかもしれないポイント
           </h2>
           {car.cons ? (
@@ -131,7 +137,7 @@ export default async function CarDetailPage({ params }: Props) {
 
         {/* この車の合う人・合わない人 */}
         <section className="rounded-3xl bg-white/90 p-6 shadow-md shadow-slate-200 backdrop-blur">
-          <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
+          <h2 className="text-[0.9rem] font-semibold tracking-[0.18em] text-slate-500">
             この車の合う人・合わない人
           </h2>
           <div className="mt-4 grid gap-6 md:grid-cols-2">
@@ -174,7 +180,7 @@ export default async function CarDetailPage({ params }: Props) {
 
         {/* よくあるトラブル傾向 */}
         <section className="rounded-3xl bg-white/90 p-6 shadow-md shadow-slate-200 backdrop-blur">
-          <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
+          <h2 className="text-[0.9rem] font-semibold tracking-[0.18em] text-slate-500">
             よくあるトラブル傾向
           </h2>
           {car.troubleTrends ? (
@@ -188,7 +194,7 @@ export default async function CarDetailPage({ params }: Props) {
 
         {/* 維持費と付き合い方のコツ */}
         <section className="rounded-3xl bg-white/90 p-6 shadow-md shadow-slate-200 backdrop-blur">
-          <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
+          <h2 className="text-[0.9rem] font-semibold tracking-[0.18em] text-slate-500">
             維持費と付き合い方のコツ
           </h2>
           {car.maintenanceTips ? (
@@ -202,7 +208,7 @@ export default async function CarDetailPage({ params }: Props) {
 
         {/* モデルチェンジで変わったところ */}
         <section className="rounded-3xl bg-white/90 p-6 shadow-md shadow-slate-200 backdrop-blur">
-          <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
+          <h2 className="text-[0.9rem] font-semibold tracking-[0.18em] text-slate-500">
             モデルチェンジで変わったところ
           </h2>
           {car.changeSummary ? (
@@ -216,7 +222,7 @@ export default async function CarDetailPage({ params }: Props) {
 
         {/* MAIN SPEC */}
         <section className="rounded-3xl bg-white/90 p-6 shadow-md shadow-slate-200 backdrop-blur">
-          <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
+          <h2 className="text-[0.9rem] font-semibold tracking-[0.18em] text-slate-500">
             MAIN SPEC
           </h2>
           <dl className="mt-3 space-y-2 text-sm text-slate-700">
@@ -285,7 +291,7 @@ export default async function CarDetailPage({ params }: Props) {
 
         {/* SIZE & DIMENSION */}
         <section className="rounded-3xl bg-white/90 p-6 shadow-md shadow-slate-200 backdrop-blur">
-          <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
+          <h2 className="text-[0.9rem] font-semibold tracking-[0.18em] text-slate-500">
             SIZE &amp; DIMENSION
           </h2>
           <dl className="mt-3 space-y-2 text-sm text-slate-700">
