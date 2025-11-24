@@ -19,27 +19,28 @@ export default async function CarsPage({ searchParams }: Props) {
 
   const cars = await getAllCars();
 
-  // 年式の最小・最大を算出
-  const years = cars
-    .map((c) => c.releaseYear)
-    .filter((y): y is number => typeof y === "number" && !Number.isNaN(y));
+  // 年式スライダーの固定レンジ
+  const sliderMinYear = 1990;
+  const sliderMaxYear = 2025;
 
-  const defaultMinYear = years.length > 0 ? Math.min(...years) : 1990;
-  const defaultMaxYear =
-    years.length > 0 ? Math.max(...years) : new Date().getFullYear();
+  const parseYear = (value: string | undefined, fallback: number): number => {
+    if (!value) return fallback;
+    const n = Number(value);
+    return Number.isFinite(n) ? n : fallback;
+  };
 
-  const yearMinRaw = Number(searchParams?.yearMin ?? "");
-  const yearMaxRaw = Number(searchParams?.yearMax ?? "");
+  const clampYear = (value: number, min: number, max: number): number => {
+    return Math.min(max, Math.max(min, value));
+  };
 
-  const yearMin =
-    Number.isFinite(yearMinRaw) && years.length > 0
-      ? Math.max(defaultMinYear, Math.min(yearMinRaw, defaultMaxYear))
-      : defaultMinYear;
+  const rawYearMin = parseYear(searchParams?.yearMin, sliderMinYear);
+  const rawYearMax = parseYear(searchParams?.yearMax, sliderMaxYear);
 
-  const yearMax =
-    Number.isFinite(yearMaxRaw) && years.length > 0
-      ? Math.min(defaultMaxYear, Math.max(yearMaxRaw, defaultMinYear))
-      : defaultMaxYear;
+  const yearMin = clampYear(rawYearMin, sliderMinYear, sliderMaxYear);
+  const yearMax = clampYear(rawYearMax, sliderMinYear, sliderMaxYear);
+
+  const selectedYearFrom = Math.min(yearMin, yearMax);
+  const selectedYearTo = Math.max(yearMin, yearMax);
 
   const makers = Array.from(
     new Set(cars.map((c) => c.maker).filter(Boolean)),
@@ -57,8 +58,13 @@ export default async function CarsPage({ searchParams }: Props) {
     if (makerFilter && car.maker !== makerFilter) return false;
     if (bodyTypeFilter && car.bodyType !== bodyTypeFilter) return false;
 
-    if (years.length > 0 && car.releaseYear) {
-      if (car.releaseYear < yearMin || car.releaseYear > yearMax) return false;
+    if (car.releaseYear) {
+      if (
+        car.releaseYear < selectedYearFrom ||
+        car.releaseYear > selectedYearTo
+      ) {
+        return false;
+      }
     }
 
     if (q) {
@@ -98,7 +104,7 @@ export default async function CarsPage({ searchParams }: Props) {
 
         {/* フィルター */}
         <form className="mb-8 space-y-4">
-          {/* 1段目 キーワード */}
+          {/* キーワード */}
           <div>
             <label className="mb-1 block text-xs font-medium tracking-wide text-slate-500">
               キーワード
@@ -112,7 +118,7 @@ export default async function CarsPage({ searchParams }: Props) {
             />
           </div>
 
-          {/* 2段目 メーカー/ボディタイプ */}
+          {/* メーカー / ボディタイプ */}
           <div className="grid gap-4 md:grid-cols-2">
             <div>
               <label className="mb-1 block text-xs font-medium tracking-wide text-slate-500">
@@ -151,42 +157,42 @@ export default async function CarsPage({ searchParams }: Props) {
             </div>
           </div>
 
-          {/* 3段目 発売年スライダー */}
-          {years.length > 0 && (
-            <div>
-              <label className="mb-1 block text-xs font-medium tracking-wide text-slate-500">
-                発売年
-              </label>
-              <div className="flex items-baseline justify-between text-[11px] text-slate-500">
-                <span>{yearMin}年</span>
-                <span>{yearMax}年</span>
+          {/* 発売年レンジスライダー */}
+          <div>
+            <label className="mb-1 block text-xs font-medium tracking-wide text-slate-500">
+              発売年
+            </label>
+            <div className="flex items-baseline justify-between text-[11px] text-slate-500">
+              <span>{selectedYearFrom}年</span>
+              <span>{selectedYearTo}年</span>
+            </div>
+
+            <div className="mt-2">
+              <div className="range-slider">
+                <div className="range-slider-track" />
+                <input
+                  type="range"
+                  name="yearMin"
+                  min={sliderMinYear}
+                  max={sliderMaxYear}
+                  defaultValue={selectedYearFrom}
+                  className="range-slider-input"
+                />
+                <input
+                  type="range"
+                  name="yearMax"
+                  min={sliderMinYear}
+                  max={sliderMaxYear}
+                  defaultValue={selectedYearTo}
+                  className="range-slider-input"
+                />
               </div>
-              <div className="mt-2 space-y-2">
-                <div className="flex items-center gap-3">
-                  <span className="w-10 text-[11px] text-slate-500">最小</span>
-                  <input
-                    type="range"
-                    name="yearMin"
-                    min={defaultMinYear}
-                    max={defaultMaxYear}
-                    defaultValue={yearMin}
-                    className="h-1 w-full cursor-pointer rounded-full bg-slate-200 accent-[#0ABAB5]"
-                  />
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="w-10 text-[11px] text-slate-500">最大</span>
-                  <input
-                    type="range"
-                    name="yearMax"
-                    min={defaultMinYear}
-                    max={defaultMaxYear}
-                    defaultValue={yearMax}
-                    className="h-1 w-full cursor-pointer rounded-full bg-slate-200 accent-[#0ABAB5]"
-                  />
-                </div>
+              <div className="mt-1 flex justify-between text-[10px] text-slate-400">
+                <span>{sliderMinYear}年</span>
+                <span>{sliderMaxYear}年</span>
               </div>
             </div>
-          )}
+          </div>
 
           {/* ボタン */}
           <div className="flex gap-2 pt-2">
