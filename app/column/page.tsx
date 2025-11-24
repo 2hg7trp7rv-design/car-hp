@@ -65,14 +65,6 @@ export default async function ColumnPage() {
                     <h2 className="font-display-serif text-lg font-semibold leading-snug">
                       {item.title}
                     </h2>
-
-                    {/* メタ情報（投稿日／読了時間） */}
-                    <div className="mt-1 flex items-center justify-between text-[11px] text-text-sub">
-                      <p>{item.date}</p>
-                      {item.readingTime && (
-                        <p>{`${item.readingTime} min read`}</p>
-                      )}
-                    </div>
                   </div>
                 </Link>
               </GlassCard>
