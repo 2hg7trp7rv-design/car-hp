@@ -25,10 +25,12 @@ export default async function CarsPage({
   const cars = await getAllCars();
 
   const filtered = cars.filter((item) => {
+    const summaryText = (item.summary ?? "").toLowerCase();
+
     const matchesQuery =
       q === "" ||
       item.name.toLowerCase().includes(q) ||
-      item.summary.toLowerCase().includes(q);
+      summaryText.includes(q);
 
     const matchesBody =
       bodyFilter === "" ||
@@ -41,9 +43,11 @@ export default async function CarsPage({
     return matchesQuery && matchesBody && matchesSegment;
   });
 
-  const uniqueBodies = Array.from(new Set(cars.map((c) => c.bodyType).filter(Boolean)));
+  const uniqueBodies = Array.from(
+    new Set(cars.map((c) => c.bodyType).filter(Boolean)),
+  );
   const uniqueSegments = Array.from(
-    new Set(cars.map((c) => c.segment).filter(Boolean))
+    new Set(cars.map((c) => c.segment).filter(Boolean)),
   );
 
   return (
@@ -148,9 +152,11 @@ export default async function CarsPage({
                     {car.name}
                   </h2>
 
-                  <p className="text-xs leading-relaxed text-text-sub">
-                    {car.summary}
-                  </p>
+                  {car.summary && (
+                    <p className="text-xs leading-relaxed text-text-sub">
+                      {car.summary}
+                    </p>
+                  )}
 
                   <div className="mt-1 flex items-center justify-between text-[11px] text-text-sub">
                     <p>{car.releaseYear}年式</p>
