@@ -1,10 +1,14 @@
-// lib/cars.ts
-import type { CarItem } from "@/lib/types";
+import cars1 from "@/data/cars1.json";
+import cars2 from "@/data/cars2.json";
+// import cars3 from "@/data/cars3.json";
+// import cars4 from "@/data/cars4.json";
 
-import cars0 from "@/data/cars.json";
-import cars1 from "@/data/cars2.json";
-import cars2 from "@/data/cars3.json";
-import cars3 from "@/data/cars4.json";
+const allCars = [
+  ...cars1,
+  ...cars2,
+  // ...cars3,
+  // ...cars4,
+];
 
 const allCars: CarItem[] = [
   ...(cars0 as CarItem[]),
