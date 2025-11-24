@@ -1,4 +1,5 @@
-{
+[
+  {
   "slug": "toyota-gr86-zn8",
   "maker": "トヨタ",
   "series": "GR86",
@@ -1301,3 +1302,4 @@
     "image": "/images/cars/honda-vezel-rv.jpg",
     "heroImage": "/images/cars/hero/honda-vezel-rv-hero.jpg"
   }
+]
