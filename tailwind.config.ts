@@ -1,3 +1,5 @@
+// tailwind.config.mts または tailwind.config.ts
+
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -18,11 +20,14 @@ const config: Config = {
     },
     extend: {
       colors: {
+        // shadcn系のトークン
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+
+        // Tiffany系パレット
         tiffany: {
           DEFAULT: "#81D8D0",
           light: "#AEEEEE",
@@ -38,6 +43,20 @@ const config: Config = {
           800: "#305653",
           900: "#152B2A",
         },
+
+        // design-v2用の「ブランド色」エイリアス
+        brand: {
+          tiffany: "#0ABAB5",
+          tiffanySoft: "#81D8D0",
+        },
+
+        // design-v2用の「テキスト色」エイリアス
+        text: {
+          main: "#1A1A1A",
+          sub: "#666666",
+        },
+
+        // shadcn系の色
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -67,11 +86,13 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -82,18 +103,23 @@ const config: Config = {
           to: { height: "0" },
         },
       },
+
       animation: {
-        "accordion-down": "accordion-down 0.2s.ease-out",
-        "accordion-up": "accordion-up 0.2s.ease-out",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
+
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         // 左40%が薄いティファニーブルー、右60%が白
         "tiffany-gradient":
           "linear-gradient(90deg, #E1F9F7 0%, #E1F9F7 40%, #FFFFFF 100%)",
       },
+
       boxShadow: {
         soft: "0 4px 20px -2px rgba(129, 216, 208, 0.2)",
+        // design-v2のGlassCard用
+        "soft-card": "0 18px 45px rgba(15, 23, 42, 0.08)",
       },
     },
   },
