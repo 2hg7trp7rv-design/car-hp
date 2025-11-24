@@ -64,7 +64,7 @@ export default async function CarDetailPage({ params }: Props) {
         </nav>
 
         {/* Car detail */}
-        <section className="rounded-3xl bg-white/90 p-6 shadow-[0_20px_55px_rgba(15,23,42,0.25)] backdrop-blur md:p-8">
+        <section className="rounded-3xl bg-white/90 p-6 shadow-md shadow-slate-200 backdrop-blur md:p-8">
           <p className="text-xs font-semibold tracking-[0.2em] text-slate-500">
             CAR DETAIL
           </p>
@@ -140,7 +140,7 @@ export default async function CarDetailPage({ params }: Props) {
                 相性がいい人
               </h3>
               {recommendForLines.length > 0 ? (
-                <ul className="mt-2 space-y-1.5 text-sm leading-relaxed text-slate-700">
+                <ul className="mt-2 space-y-1.5 list-none text-sm leading-relaxed text-slate-700">
                   {recommendForLines.map((line) => (
                     <li key={line} className="flex gap-2">
                       <span className="mt-[6px] h-[5px] w-[5px] rounded-full bg-[#0ABAB5]" />
@@ -157,7 +157,7 @@ export default async function CarDetailPage({ params }: Props) {
                 他の車をおすすめしたい人
               </h3>
               {notForLines.length > 0 ? (
-                <ul className="mt-2 space-y-1.5 text-sm leading-relaxed text-slate-700">
+                <ul className="mt-2 space-y-1.5 list-none text-sm leading-relaxed text-slate-700">
                   {notForLines.map((line) => (
                     <li key={line} className="flex gap-2">
                       <span className="mt-[6px] h-[5px] w-[5px] rounded-full bg-slate-400" />
@@ -187,7 +187,7 @@ export default async function CarDetailPage({ params }: Props) {
         </section>
 
         {/* 維持費と付き合い方のコツ */}
-        <section className="rounded-3xl bg白/90 p-6 shadow-md shadow-slate-200 backdrop-blur">
+        <section className="rounded-3xl bg-white/90 p-6 shadow-md shadow-slate-200 backdrop-blur">
           <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
             維持費と付き合い方のコツ
           </h2>
@@ -201,7 +201,7 @@ export default async function CarDetailPage({ params }: Props) {
         </section>
 
         {/* モデルチェンジで変わったところ */}
-        <section className="rounded-3xl bg白/90 p-6 shadow-md shadow-slate-200 backdrop-blur">
+        <section className="rounded-3xl bg-white/90 p-6 shadow-md shadow-slate-200 backdrop-blur">
           <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
             モデルチェンジで変わったところ
           </h2>
@@ -215,7 +215,7 @@ export default async function CarDetailPage({ params }: Props) {
         </section>
 
         {/* MAIN SPEC */}
-        <section className="rounded-3xl bg白/90 p-6 shadow-md shadow-slate-200 backdrop-blur">
+        <section className="rounded-3xl bg-white/90 p-6 shadow-md shadow-slate-200 backdrop-blur">
           <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
             MAIN SPEC
           </h2>
@@ -284,7 +284,7 @@ export default async function CarDetailPage({ params }: Props) {
         </section>
 
         {/* SIZE & DIMENSION */}
-        <section className="rounded-3xl bg白/90 p-6 shadow-md shadow-slate-200 backdrop-blur">
+        <section className="rounded-3xl bg-white/90 p-6 shadow-md shadow-slate-200 backdrop-blur">
           <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
             SIZE &amp; DIMENSION
           </h2>
