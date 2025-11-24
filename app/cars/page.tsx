@@ -234,7 +234,7 @@ export default async function CarsPage({ searchParams }: Props) {
         ) : (
           <ul className="space-y-4">
             {filtered.map((car) => (
-              <li key={car.id}>
+              <li key={car.id ?? car.slug}>
                 <Link
                   href={`/cars/${car.slug}`}
                   className="block rounded-2xl border border-slate-100 bg-white/85 px-4 py-4 transition hover:border-[#0ABAB5]/60 hover:bg-white hover:shadow-md"
