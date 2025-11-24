@@ -4,7 +4,7 @@ export type Difficulty = "basic" | "medium" | "advanced";
 export type MaintenanceCostLevel = "low" | "medium" | "high";
 
 export type CarItem = {
-  id: string;
+  id?: string;
   slug: string;
   name: string;
   maker: string;
