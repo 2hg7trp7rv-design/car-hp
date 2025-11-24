@@ -3,6 +3,71 @@ import Link from "next/link";
 import { getAllCars } from "@/lib/cars";
 import type { CarItem } from "@/lib/cars";
 
+// 日本語表示用メーカー名マップ
+const JAPANESE_MAKER_LABELS: Record<string, string> = {
+  TOYOTA: "トヨタ",
+  HONDA: "ホンダ",
+  NISSAN: "日産",
+  MITSUBISHI: "三菱",
+  MAZDA: "マツダ",
+  SUBARU: "スバル",
+  SUZUKI: "スズキ",
+  DAIHATSU: "ダイハツ",
+  LEXUS: "レクサス",
+  MITSUOKA: "光岡",
+
+  BMW: "BMW",
+  "MERCEDES-BENZ": "メルセデス・ベンツ",
+  AUDI: "アウディ",
+  VOLKSWAGEN: "フォルクスワーゲン",
+  PORSCHE: "ポルシェ",
+  FERRARI: "フェラーリ",
+  LAMBORGHINI: "ランボルギーニ",
+  "ALFA ROMEO": "アルファロメオ",
+  PEUGEOT: "プジョー",
+  RENAULT: "ルノー",
+  VOLVO: "ボルボ",
+  JAGUAR: "ジャガー",
+  "LAND ROVER": "ランドローバー",
+  MINI: "ミニ",
+  TESLA: "テスラ",
+
+  FIAT: "フィアット",
+  CITROEN: "シトロエン",
+  OPEL: "オペル",
+  DS: "DS",
+  ABARTH: "アバルト",
+
+  CHEVROLET: "シボレー",
+  CADILLAC: "キャデラック",
+  BUICK: "ビュイック",
+  GMC: "GMC",
+  CHRYSLER: "クライスラー",
+  DODGE: "ダッジ",
+  JEEP: "ジープ",
+  FORD: "フォード",
+  LINCOLN: "リンカーン",
+
+  HYUNDAI: "ヒョンデ",
+  GENESIS: "ジェネシス",
+  KIA: "キア",
+
+  LOTUS: "ロータス",
+  "ASTON MARTIN": "アストンマーティン",
+  BENTLEY: "ベントレー",
+  "ROLLS-ROYCE": "ロールス・ロイス",
+  MCLAREN: "マクラーレン",
+  MASERATI: "マセラティ",
+  BUGATTI: "ブガッティ",
+  SMART: "スマート",
+  INFINITI: "インフィニティ",
+  ACURA: "アキュラ",
+};
+
+function displayMakerLabel(maker: string): string {
+  return JAPANESE_MAKER_LABELS[maker] ?? maker;
+}
+
 // cars.json に合わせたローカル型定義
 type Difficulty = "basic" | "medium" | "advanced";
 type MaintenanceCostLevel = "low" | "medium" | "high";
@@ -143,7 +208,7 @@ export default async function CarsPage({ searchParams }: Props) {
                   <option value="">指定なし</option>
                   {makers.map((maker) => (
                     <option key={maker} value={maker}>
-                      {maker}
+                      {displayMakerLabel(maker)}
                     </option>
                   ))}
                 </select>
@@ -240,7 +305,7 @@ export default async function CarsPage({ searchParams }: Props) {
                   className="block rounded-2xl border border-slate-100 bg-white/85 px-4 py-4 transition hover:border-[#0ABAB5]/60 hover:bg-white hover:shadow-md"
                 >
                   <div className="mb-1 text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
-                    {car.maker}
+                    {displayMakerLabel(car.maker)}
                     {car.releaseYear ? `・${car.releaseYear}年` : null}
                   </div>
                   <div className="mb-1 text-base font-semibold tracking-tight text-slate-900 md:text-lg">
