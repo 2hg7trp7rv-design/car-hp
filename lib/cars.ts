@@ -3,20 +3,15 @@ import cars2 from "@/data/cars2.json";
 // import cars3 from "@/data/cars3.json";
 // import cars4 from "@/data/cars4.json";
 
-const allCars = [
-  ...cars1,
-  ...cars2,
-  // ...cars3,
-  // ...cars4,
-];
+
 
 const allCars: CarItem[] = [
   ...(cars0 as CarItem[]),
   ...(cars1 as CarItem[]),
   ...(cars2 as CarItem[]),
-  ...(cars3 as CarItem[]),
+  // ...(cars3 as CarItem[]),
+  // ...(cars4 as CarItem[]),
 ];
-
 export function getAllCars(): CarItem[] {
   return allCars;
 }
