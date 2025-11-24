@@ -1,108 +1,116 @@
 // app/news/page.tsx
 import Link from "next/link";
-import { getPaginatedNews } from "@/lib/news";
-import Pagination from "@/components/Pagination";
+import { getLatestNews } from "@/lib/news";
+import { GlassCard } from "@/components/GlassCard";
 
-// 1時間ごとに再検証（unstable_cache側でも制御していますが、念のため）
-export const revalidate = 3600;
+export const metadata = {
+  title: "ニュース一覧 | CAR BOUTIQUE",
+  description:
+    "主要メーカーや国内外メディアから厳選したニュースを、分かりやすく整理してお届けします。",
+};
 
 type Props = {
   searchParams?: {
-    page?: string;
+    q?: string;
+    category?: string;
+    maker?: string;
+    tag?: string;
   };
 };
 
-function formatDate(dateStr?: string) {
-  if (!dateStr) return "";
-  const d = new Date(dateStr);
-  if (Number.isNaN(d.getTime())) return "";
-  return d.toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  });
-}
-
 export default async function NewsPage({ searchParams }: Props) {
-  // ページ番号の取得（デフォルトは1）
-  const currentPage = Number(searchParams?.page) || 1;
-  
-  // ページネーションデータの取得
-  const { items, meta } = await getPaginatedNews(currentPage);
+  const q = (searchParams?.q ?? "").trim().toLowerCase();
+  const categoryFilter = searchParams?.category ?? "";
+  const makerFilter = searchParams?.maker ?? "";
+  const tagFilter = searchParams?.tag ?? "";
+
+  // 元データ取得
+  const items = await getLatestNews(80);
+
+  // フィルタリング
+  const filtered = items.filter((item) => {
+    const matchesQuery =
+      q === "" ||
+      item.title.toLowerCase().includes(q) ||
+      (item.titleJa ?? "").toLowerCase().includes(q);
+
+    const matchesCategory =
+      categoryFilter === "" || item.category === categoryFilter;
+
+    const matchesMaker = makerFilter === "" || item.maker === makerFilter;
+
+    const matchesTag =
+      tagFilter === "" ||
+      item.tags.some((t: string) => t.toLowerCase() === tagFilter.toLowerCase());
+
+    return matchesQuery && matchesCategory && matchesMaker && matchesTag;
+  });
 
   return (
-    <main className="min-h-screen bg-gradient-to-r from-[#D1F2EB] via-[#E8F8F5] to-white pb-20">
-      
-      {/* ヘッダーエリア */}
-      <div className="bg-white/60 backdrop-blur-md border-b border-white/50 sticky top-0 z-10">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-           <Link href="/" className="text-xs font-bold tracking-widest text-[#0ABAB5]">
-             CAR BOUTIQUE
-           </Link>
-           <span className="text-[10px] text-slate-400 uppercase tracking-widest">Journal</span>
-        </div>
-      </div>
-
-      <div className="max-w-5xl mx-auto px-6 pt-10 space-y-12">
-        
-        {/* ページタイトル */}
-        <header className="text-center space-y-4">
-          <h1 className="text-4xl md:text-5xl font-serif text-slate-800">
-            The Journal
+    <main className="min-h-screen bg-site text-text-main">
+      <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
+        {/* 見出し */}
+        <header className="mb-10">
+          <p className="font-body-light text-[10px] tracking-[0.35em] text-text-sub">
+            THE JOURNAL
+          </p>
+          <h1 className="font-display-serif mt-3 text-3xl font-semibold sm:text-4xl">
+            ニュース一覧
           </h1>
-          <p className="text-sm text-slate-500 max-w-lg mx-auto leading-relaxed font-serif">
-            日々のニュースから、時代を超えて愛される名車まで。<br/>
-            静かな時間の中で読み解く、車とライフスタイルの物語。
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-text-sub">
+            日々のニュースを、少しだけ丁寧に解説します。メーカー公式情報から独自ピックアップまで、
+            「何が起きているのか」の背景が分かる形でまとめています。
           </p>
         </header>
 
-        {/* ニュースリスト */}
-        <section>
-          {items.length === 0 ? (
-            <div className="text-center py-20 text-slate-500 font-serif">
-              記事が見つかりませんでした。
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {items.map((item) => (
-                <Link
-                  key={item.id}
-                  href={item.sourceUrl ? encodeURI(item.sourceUrl) : `/news/${item.id}`}
-                  target={item.sourceUrl ? "_blank" : "_self"}
-                  className="group bg-white rounded-xl p-6 shadow-[0_2px_10px_-2px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-5px_rgba(0,186,181,0.15)] transition-all duration-300 border border-slate-50 flex flex-col h-full"
-                >
-                  <div className="flex justify-between items-start mb-3">
-                     <span className="bg-[#E0F7FA] text-[#006064] px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase">
-                        {item.sourceName || 'ORIGINAL'}
-                     </span>
-                     <span className="text-[10px] text-slate-400 font-serif">
-                       {formatDate(item.publishedAt)}
-                     </span>
-                  </div>
+        {/* ニュースカード一覧 */}
+        <div className="space-y-4">
+          {filtered.map((item) => {
+            const title = item.titleJa || item.title;
 
-                  <h3 className="text-base font-medium text-slate-700 group-hover:text-[#0ABAB5] transition-colors mb-3 line-clamp-2 leading-relaxed font-serif">
-                    {item.titleJa ?? item.title}
-                  </h3>
-
-                  {item.excerpt && (
-                    <p className="text-xs text-slate-500 line-clamp-3 leading-relaxed mb-4 flex-grow">
-                      {item.excerpt}
+            return (
+              <GlassCard
+                key={item.id}
+                as="article"
+                className="transition hover:shadow-lg"
+              >
+                <Link href={`/news/${item.id}`} className="block">
+                  <div className="flex flex-col gap-2">
+                    <p className="font-body-light text-[10px] tracking-[0.25em] text-brand-tiffanySoft">
+                      {item.category || "NEWS"}
                     </p>
-                  )}
-                  
-                  <div className="flex justify-end mt-auto">
-                    <span className="text-[10px] font-bold text-[#0ABAB5] opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
-                      Read Story &rarr;
-                    </span>
+
+                    <h2 className="font-display-serif text-lg font-semibold leading-snug">
+                      {title}
+                    </h2>
+
+                    {item.excerpt && (
+                      <p className="text-xs leading-relaxed text-text-sub">
+                        {item.excerpt}
+                      </p>
+                    )}
+
+                    <div className="flex items-center justify-between pt-1">
+                      <p className="text-[11px] text-text-sub">
+                        {item.source ?? "Media"}
+                      </p>
+                      <p className="text-[11px] text-text-sub">
+                        {item.date ?? ""}
+                      </p>
+                    </div>
                   </div>
                 </Link>
-              ))}
-            </div>
-          )}
+              </GlassCard>
+            );
+          })}
+        </div>
 
-          {/* ページネーションコンポーネントの配置 */}
-          <Pagination meta={meta} baseUrl="/news" />
-        </section>
+        {/* 検索ヒットが0件のとき */}
+        {filtered.length === 0 && (
+          <p className="mt-10 text-center text-sm text-text-sub">
+            条件に一致するニュースがありません。
+          </p>
+        )}
       </div>
     </main>
   );
