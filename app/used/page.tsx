@@ -1,4 +1,4 @@
-// app/used/page.tsx
+//  app/used/page.tsx
 import { SectionCard } from "@/components/section-card";
 
 const usedBlocks = [
