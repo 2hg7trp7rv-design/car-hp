@@ -1,0 +1,377 @@
+// app/column/b48-vanos-longlife/page.tsx
+import type { Metadata } from "next";
+import Link from "next/link";
+import { getColumnBySlug } from "@/lib/columns";
+
+const SLUG = "b48-vanos-longlife";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const meta = getColumnBySlug(SLUG);
+
+  if (!meta) {
+    return {
+      title: "コラムが見つかりません | CAR BOUTIQUE",
+    };
+  }
+
+  return {
+    title: `${meta.title} | CAR BOUTIQUE COLUMN`,
+    description: meta.summary,
+  };
+}
+
+export default async function ColumnB48VanosPage() {
+  const meta = getColumnBySlug(SLUG);
+
+  return (
+    <main className="min-h-screen">
+      <article className="mx-auto max-w-4xl px-4 py-10 md:px-6 lg:px-8">
+        {/* パンくず */}
+        <nav className="mb-4 text-xs text-slate-500">
+          <Link href="/" className="hover:underline">
+            HOME
+          </Link>
+          <span className="mx-1">›</span>
+          <Link href="/column" className="hover:underline">
+            COLUMN
+          </Link>
+          <span className="mx-1">›</span>
+          <span>{meta?.title ?? "COLUMN"}</span>
+        </nav>
+
+        {/* タイトルブロック */}
+        <header className="rounded-3xl bg-white/85 p-6 shadow-[0_20px_55px_rgba(15,23,42,0.16)] backdrop-blur md:p-8">
+          <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
+            <span className="inline-flex items-center rounded-full bg-teal-50 px-3 py-1 font-semibold text-teal-800">
+              TECHNICAL COLUMN
+            </span>
+            <span>
+              BMW / B48 / VANOS
+            </span>
+            <span aria-hidden>・</span>
+            <span>{meta ? formatDate(meta.publishedAt) : ""}</span>
+            {meta && (
+              <>
+                <span aria-hidden>・</span>
+                <span>読了目安 約{meta.readingTimeMinutes}分</span>
+              </>
+            )}
+          </div>
+
+          <h1 className="mt-4 text-2xl font-semibold leading-snug text-slate-900 md:text-3xl">
+            BMW B48エンジン×VANOSと長く付き合うための基礎知識
+          </h1>
+          <p className="mt-2 text-sm font-medium text-slate-600 md:text-base">
+            530i G30オーナー視点で見る「強み」と「気をつけたいポイント」
+          </p>
+
+          <p className="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
+            BMW 530iや330iなどに搭載される2.0L直4ターボ「B48」は、
+            実用域のトルクと燃費、そしてBMWらしい気持ちの良さをうまく両立したエンジンです。
+            一方で、ネット上には「VANOSが壊れやすい」「タイミングチェーンが不安」など、
+            さまざまな情報が飛び交っています。
+            このコラムでは、可変バルブタイミング機構であるVANOSとB48エンジンの関係を整理しつつ、
+            オーナー目線で「どこに気をつけて付き合っていくと良いか」をまとめます。
+          </p>
+        </header>
+
+        {/* 本文 */}
+        <div className="mt-8 space-y-8">
+          {/* セクション1 */}
+          <section className="rounded-3xl bg-white/85 p-6 shadow-[0_16px_45px_rgba(15,23,42,0.12)]">
+            <h2 className="text-lg font-semibold text-slate-900 md:text-xl">
+              1 B48エンジンとVANOSの基本をざっくり整理する
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-slate-700 md:text-base">
+              まずは用語の整理から始めます。
+              B48はBMWがモジュラーコンセプトで開発した直列4気筒ターボエンジンで、
+              3気筒のB38や6気筒のB58と基本設計を共有しています。
+              排気量や気筒数は違っても、部品や構造の考え方が似ているため、
+              トラブル傾向やメンテナンスの考え方も共通する部分が多いのが特徴です。
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-slate-700 md:text-base">
+              一方のVANOSは、BMWが長年使っている可変バルブタイミング機構の総称で、
+              大まかに言うとエンジン回転数や負荷に応じて
+              吸排気バルブの開閉タイミングを油圧で連続的に変える仕組みです。
+              これにより
+              低回転でのトルク
+              中高回転での伸び
+              排出ガスと燃費
+              をバランス良く最適化しています。
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-slate-700 md:text-base">
+              B48世代では
+              カムスプロケット内部の可変機構
+              その油圧を制御するセンターバルブ
+              それらを電気的に制御するアクチュエーターやECU
+              といった複数の要素が組み合わさってVANOSシステムを構成しています。
+              どこに不具合が出るかによって
+              振動が出る
+              パワーが出ない
+              エラーコードだけが先に出る
+              など症状が変わるため、「VANOSの故障」と一言でまとめると実態が見えにくくなりがちです。
+            </p>
+          </section>
+
+          {/* セクション2 */}
+          <section className="rounded-3xl bg-white/85 p-6 shadow-[0_16px_45px_rgba(15,23,42,0.12)]">
+            <h2 className="text-lg font-semibold text-slate-900 md:text-xl">
+              2 B48×VANOSの「気持ちよさ」と「クセ」
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-slate-700 md:text-base">
+              530i G30などでB48を味わうと、まず感じるのは
+              「静かでスムーズ、なのに踏めばしっかり速い」
+              というバランスの良さです。
+              2.0L直4としてはパワーもトルクも十分で、
+              高速道路の合流や追い越しなどもストレスなくこなしてくれます。
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-slate-700 md:text-base">
+              その裏側でVANOSは
+              アイドリング〜低回転ではトルクを厚く
+              中回転ではレスポンス優先
+              高回転側ではパワーと排気の抜けを両立
+              という具合にカム位相をこまめに調整しています。
+              きちんと健康な個体であれば、
+              回転の上がり方は自然で、変速も滑らか、
+              街中でも高速でも「必要なだけ力を出してくれる」印象になります。
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-slate-700 md:text-base">
+              逆に、VANOSまわりや燃料・点火系が疲れてくると
+              アイドリングがわずかに波打つ
+              ラフロードや渋滞でのごく低速時にギクシャク感が出る
+              スポーツモードにすると症状が出にくくなる
+              といった「違和感」として現れることがあります。
+              これは駆動力の出方や点火・燃料の補正が
+              モードごとに変わることが影響しているケースもあり、
+              必ずしもVANOS単体の故障と決めつけることはできません。
+            </p>
+          </section>
+
+          {/* セクション3 */}
+          <section className="rounded-3xl bg-white/85 p-6 shadow-[0_16px_45px_rgba(15,23,42,0.12)]">
+            <h2 className="text-lg font-semibold text-slate-900 md:text-xl">
+              3 ネット上で語られやすい「不安」の正体
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-slate-700 md:text-base">
+              B48やVANOSについて検索すると
+              タイミングチェーンが伸びる
+              VANOSが壊れやすい
+              という強い言葉が目につきやすく、オーナーや購入希望者の不安材料になりがちです。
+              ここでは、その不安を少し分解して見てみます。
+            </p>
+            <h3 className="mt-4 text-base font-semibold text-slate-900">
+              3−1 タイミングチェーンの話
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-700 md:text-base">
+              タイミングチェーンについては、
+              過去世代のエンジンで実際にサービスキャンペーンが行われたこともあり、
+              「BMW＝チェーンが不安」というイメージが残りやすくなっています。
+              B48世代では設計や部品が見直されており、
+              正常なメンテナンス下でいきなりチェーンが飛ぶような事例は一般的ではありません。
+              ただし
+              オイル管理が極端に悪い
+              長期間の高負荷使用
+              などが重なると、テンショナーやガイドを含めたチェーンまわりに負荷がかかるのは事実です。
+            </p>
+            <h3 className="mt-4 text-base font-semibold text-slate-900">
+              3−2 VANOSそのものより「周辺要素」にも目を向ける
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-700 md:text-base">
+              VANOS関連では
+              アクチュエーター
+              センターバルブ
+              カムスプロケット内部の可変機構
+              そしてそれを制御する油圧・オイル経路
+              といった複数要素が絡みます。
+              どこか1カ所の不調でも「VANOS系のエラー」として検出されることが多く、
+              実際の交換作業では
+              どこまで事前に特定するか
+              どの部品まで予防的に替えてしまうか
+              によって見積金額が大きく変わってきます。
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-slate-700 md:text-base">
+              また、吸気系のブリーザーバルブやPCV系統の不調、
+              点火系やインジェクター由来の不調、
+              さらにはミッション側の制御との相性などが重なると、
+              オーナーから見れば「エンジンが息継ぎしている」ように感じられても、
+              根本原因は複合的というケースも少なくありません。
+            </p>
+          </section>
+
+          {/* セクション4 */}
+          <section className="rounded-3xl bg-white/85 p-6 shadow-[0_16px_45px_rgba(15,23,42,0.12)]">
+            <h2 className="text-lg font-semibold text-slate-900 md:text-xl">
+              4 現実的なトラブル優先順位のイメージ
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-slate-700 md:text-base">
+              ここでは、一般論としての「優先順位のイメージ」を整理しておきます。
+              実車の診断結果や走行状況によって変わるため、あくまで目安です。
+            </p>
+            <h3 className="mt-4 text-base font-semibold text-slate-900">
+              4−1 まずは消耗品と基本メンテを固める
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-700 md:text-base">
+              振動や息継ぎが気になる場合でも、
+              いきなりVANOSやチェーンに飛びつくのではなく
+              イグニッションコイル・プラグ
+              エンジンオイルとフィルター
+              エアフィルター・吸気系の汚れ
+              吸気漏れの有無
+              などの「基本項目」を確実に整えておくことが重要です。
+              ここが崩れていると、どれだけ上流の部品を替えても本来の性能が出ません。
+            </p>
+            <h3 className="mt-4 text-base font-semibold text-slate-900">
+              4−2 明確なエラーコードと症状が揃っているか
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-700 md:text-base">
+              次に見るべきは診断機上のエラーコードと実際の症状の一致度です。
+              VANOS系のエラーが頻発し、
+              アイドリング不良
+              回転の落ち込みやノッキングに近い違和感
+              出力低下
+              などがはっきり出ているなら、
+              VANOSまわりの部品交換を検討する意味は大きくなります。
+              一方で、エラーは出ているが症状がごく軽微な場合や、
+              再現性が低い場合は
+              経過観察
+              ソフトウエアのアップデート
+              使用環境の見直し
+              なども選択肢になります。
+            </p>
+            <h3 className="mt-4 text-base font-semibold text-slate-900">
+              4−3 タイミングチェーンやカムシャフトまで踏み込む判断
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-700 md:text-base">
+              タイミングチェーンまわりやカムシャフトの交換は、
+              作業工数も部品点数も多く、高額になりがちなメニューです。
+              明確な異音やチェーン伸びの指摘、
+              検査結果に基づいた診断
+              がセットで出ているなら積極的に検討する価値がありますが、
+              「念のため全部替えてしまう」アプローチは予算との相談が欠かせません。
+            </p>
+          </section>
+
+          {/* セクション5 */}
+          <section className="rounded-3xl bg-white/85 p-6 shadow-[0_16px_45px_rgba(15,23,42,0.12)]">
+            <h2 className="text-lg font-semibold text-slate-900 md:text-xl">
+              5 B48×VANOSと長く付き合うためのメンテ戦略
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-slate-700 md:text-base">
+              ここからは、B48×VANOSとできるだけ気持ちよく長く付き合うための、
+              現実的なメンテ戦略を整理します。
+            </p>
+            <h3 className="mt-4 text-base font-semibold text-slate-900">
+              5−1 オイル管理は「早め・きれいめ」を意識する
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-700 md:text-base">
+              VANOSはオイルの油圧と清浄度に強く依存する仕組みです。
+              メーカー純正のロングライフ指定をそのまま信じるよりは
+              走行環境にもよりますが、距離短めのサイクルで交換
+              信頼できる粘度と規格のオイルを選ぶ
+              ことを意識した方が、体感としても安心感が高くなります。
+            </p>
+            <h3 className="mt-4 text-base font-semibold text-slate-900">
+              5−2 「たまには回してあげる」こともコンディション維持に有効
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-700 md:text-base">
+              短距離の街乗りだけが続くと、
+              エンジン内部や排気系にカーボンが溜まりやすくなります。
+              法定速度の範囲内でも
+              きちんと暖機した上で適度に回転を上げる時間を作る
+              高速道路などで一定時間トルクをかけて走る
+              といった使い方を織り交ぜることで、
+              エンジン本来のフィーリングを維持しやすくなります。
+            </p>
+            <h3 className="mt-4 text-base font-semibold text-slate-900">
+              5−3 信頼できる工場との付き合い方
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-700 md:text-base">
+              ディーラー
+              輸入車専門の認証工場
+              得意分野がはっきりしているプロショップ
+              それぞれに得意不得意があります。
+              B48やVANOSまわりの診断と修理は、
+              設備と経験が揃っているかどうかで精度が大きく変わる部分です。
+              見積もりの内容や説明の仕方を比べながら、
+              「この店は何を優先順位として考えているか」
+              まで含めて相性の良い工場を探しておくと、
+              いざというときの判断が楽になります。
+            </p>
+          </section>
+
+          {/* セクション6 */}
+          <section className="rounded-3xl bg-white/85 p-6 shadow-[0_16px_45px_rgba(15,23,42,0.12)]">
+            <h2 className="text-lg font-semibold text-slate-900 md:text-xl">
+              6 購入検討時に押さえておきたいチェックポイント
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-slate-700 md:text-base">
+              これからB48搭載車を中古で検討している人向けに、
+              チェックしておきたいポイントも整理しておきます。
+            </p>
+            <ul className="mt-3 space-y-2 text-sm leading-relaxed text-slate-700 md:text-base">
+              <li>
+                1 オイル交換履歴がどの程度残っているか
+              </li>
+              <li>
+                2 診断機でのエラー履歴やサービスキャンペーンの対応状況
+              </li>
+              <li>
+                3 アイドリング時の振動や息継ぎの有無
+              </li>
+              <li>
+                4 冷間時と暖機後のフィーリングの差が極端でないか
+              </li>
+              <li>
+                5 試乗中の加速時に違和感や異音がないか
+              </li>
+            </ul>
+            <p className="mt-3 text-sm leading-relaxed text-slate-700 md:text-base">
+              これらはあくまで入口ですが、
+              事前にチェックしておくことで「明らかに地雷な個体」を避ける助けになります。
+              その上で、気になる点があれば購入前診断を依頼するなど、
+              プロの目線をうまく借りると良いでしょう。
+            </p>
+          </section>
+
+          {/* セクション7 まとめ */}
+          <section className="rounded-3xl bg-white/90 p-6 shadow-[0_18px_55px_rgba(15,23,42,0.18)]">
+            <h2 className="text-lg font-semibold text-slate-900 md:text-xl">
+              7 まとめ「B48×VANOSは、正しく理解して味方に付ける」
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-slate-700 md:text-base">
+              B48エンジンとVANOSは、
+              高効率と走りの楽しさを両立させるためにかなり複雑な制御を行っているユニットです。
+              その分だけ部品点数や制御項目が多くなり、
+              ネット上では不安な話題も目立ちがちですが、
+              実際には
+              基本メンテナンス
+              使用環境
+              信頼できる工場との付き合い方
+              を押さえれば、長く付き合えるポテンシャルを持ったエンジンでもあります。
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-slate-700 md:text-base">
+              「何となく怖いから敬遠する」のではなく、
+              どこが強みで、どこに注意が必要なのかを知ったうえで選ぶ。
+              それができれば、530i G30をはじめとするB48搭載車は、
+              日常からロングドライブまで心地よく付き合える相棒になってくれます。
+            </p>
+            <p className="mt-4 text-xs text-slate-500">
+              このコラムは一般的な技術情報とオーナー視点の整理であり、
+              特定車両の診断や修理方針を直接示すものではありません。
+              実際のトラブルや修理判断については、必ず専門工場やディーラーに相談してください。
+            </p>
+          </section>
+        </div>
+      </article>
+    </main>
+  );
+}
+
+function formatDate(iso: string): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  const yyyy = d.getFullYear();
+  const mm = `${d.getMonth() + 1}`.padStart(2, "0");
+  const dd = `${d.getDate()}`.padStart(2, "0");
+  return `${yyyy}/${mm}/${dd}`;
+}
