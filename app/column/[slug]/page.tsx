@@ -1,28 +1,12 @@
 // app/column/[slug]/page.tsx
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getColumnBySlug, type ColumnItem } from "@/lib/columns";
-
-// clientコンポーネントを同ファイル内に定義
+import { getColumnBySlug } from "@/lib/columns";
 import ColumnReaderShell from "./reader-shell";
 
 type Props = {
   params: { slug: string };
 };
-
-function mapCategoryLabel(category: ColumnItem["category"]): string {
-  switch (category) {
-    case "OWNER_STORY":
-      return "オーナーの本音ストーリー";
-    case "MAINTENANCE":
-      return "メンテナンスとトラブルの裏側";
-    case "TECHNICAL":
-      return "技術・歴史・ブランドの物語";
-    default:
-      return "コラム";
-  }
-}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = await getColumnBySlug(params.slug);
@@ -30,13 +14,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!item) {
     return {
       title: "コラムが見つかりません | CAR BOUTIQUE",
-      description: "指定されたコラムが見つかりませんでした。",
+      description: "指定されたコラム記事が見つかりませんでした。",
     };
   }
 
+  const title = `${item.title} | COLUMN | CAR BOUTIQUE`;
+  const description =
+    item.summary ||
+    "オーナー体験やメンテナンス、技術解説などのコラムを掲載しています。";
+
   return {
-    title: `${item.title} | CAR BOUTIQUE`,
-    description: item.summary,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      url: `https://car-hp.vercel.app/column/${encodeURIComponent(item.slug)}`,
+      images: item.heroImage ? [{ url: item.heroImage }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 
@@ -47,7 +48,5 @@ export default async function ColumnDetailPage({ params }: Props) {
     notFound();
   }
 
-  return (
-    <ColumnReaderShell item={item} />
-  );
+  return <ColumnReaderShell item={item} />;
 }
