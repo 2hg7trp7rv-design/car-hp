@@ -1,8 +1,11 @@
 // app/column/[slug]/page.tsx
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getColumnBySlug } from "@/lib/columns";
 import ColumnReaderShell from "./reader-shell";
+
+export const runtime = "edge";
 
 type Props = {
   params: { slug: string };
@@ -14,28 +17,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!item) {
     return {
       title: "コラムが見つかりません | CAR BOUTIQUE",
-      description: "指定されたコラム記事が見つかりませんでした。",
+      description: "指定されたコラムが見つかりませんでした。",
     };
   }
 
-  const title = `${item.title} | COLUMN | CAR BOUTIQUE`;
   const description =
     item.summary ||
-    "オーナー体験やメンテナンス、技術解説などのコラムを掲載しています。";
+    "オーナー体験記やトラブル・修理、技術解説など、クルマと暮らしの距離が少し近づく読み物です。";
 
   return {
-    title,
+    title: `${item.title} | CAR BOUTIQUE`,
     description,
     openGraph: {
-      title,
+      title: `${item.title} | CAR BOUTIQUE`,
       description,
       type: "article",
-      url: `https://car-hp.vercel.app/column/${encodeURIComponent(item.slug)}`,
-      images: item.heroImage ? [{ url: item.heroImage }] : undefined,
+      url: `https://car-hp.vercel.app/column/${encodeURIComponent(
+        params.slug,
+      )}`,
     },
     twitter: {
-      card: "summary_large_image",
-      title,
+      card: "summary",
+      title: `${item.title} | CAR BOUTIQUE`,
       description,
     },
   };
@@ -48,5 +51,20 @@ export default async function ColumnDetailPage({ params }: Props) {
     notFound();
   }
 
-  return <ColumnReaderShell item={item} />;
+  return (
+    <>
+      <ColumnReaderShell item={item!} />
+      {/* モバイル向けの戻る導線（本文下） */}
+      <div className="mx-auto max-w-6xl px-4 pb-10 pt-4 sm:px-6 lg:px-8 lg:hidden">
+        <div className="border-t border-slate-100 pt-4">
+          <Link
+            href="/column"
+            className="inline-flex items-center justify-center rounded-full border border-tiffany-400/70 bg-white/80 px-6 py-2 text-xs font-medium tracking-[0.18em] text-tiffany-700 shadow-soft hover:bg-white"
+          >
+            コラム一覧へ戻る
+          </Link>
+        </div>
+      </div>
+    </>
+  );
 }
