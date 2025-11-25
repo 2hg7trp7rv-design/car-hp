@@ -1,16 +1,12 @@
 // app/cars/[slug]/page.tsx
-export const runtime = "edge";
-
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import {
-  getCarBySlug,
-  getAllCars,
-  type CarItem,
-} from "@/lib/cars";
+import { getCarBySlug, type CarItem } from "@/lib/cars";
 import { GlassCard } from "@/components/GlassCard";
+import { Button } from "@/components/ui/button";
+
+export const runtime = "edge";
 
 type Props = {
   params: { slug: string };
@@ -19,56 +15,37 @@ type Props = {
 function difficultyLabel(difficulty?: CarItem["difficulty"]): string {
   switch (difficulty) {
     case "basic":
-      return "初めてでも扱いやすいバランス型";
+      return "初めての輸入車・ファミリーにも扱いやすいバランスタイプ";
     case "intermediate":
-      return "少しこだわりたい人向け";
+      return "走りや質感にも少しこだわりたい人向けの中級者モデル";
     case "advanced":
-      return "クルマ好き・玄人向け";
+      return "クルマ好き・玄人向けの上級者モデル";
     default:
-      return "バランスタイプ";
+      return "扱いやすさと楽しさのバランス型";
   }
 }
 
-function difficultyBadgeColor(
-  difficulty?: CarItem["difficulty"],
-): string {
-  switch (difficulty) {
-    case "basic":
-      return "bg-emerald-50 text-emerald-700";
-    case "intermediate":
-      return "bg-sky-50 text-sky-700";
-    case "advanced":
-      return "bg-slate-900 text-white";
-    default:
-      return "bg-slate-100 text-slate-700";
-  }
+function makerLabel(maker: string): string {
+  if (!maker) return "OTHER";
+  return maker.toUpperCase();
 }
 
-export async function generateStaticParams() {
-  const cars = await getAllCars();
-  return cars.map((car) => ({ slug: car.slug }));
-}
-
-export async function generateMetadata(
-  { params }: Props,
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const car = await getCarBySlug(params.slug);
 
   if (!car) {
     return {
       title: "車種が見つかりません | CAR BOUTIQUE",
       description:
-        "指定された車種ページが見つかりませんでした。",
+        "指定された車種ページが見つかりませんでした。CARS一覧から改めてお探しください。",
     };
   }
 
-  const title = `${car.name} | CARS | CAR BOUTIQUE`;
+  const title = `${car.name} | CARSデータベース | CAR BOUTIQUE`;
   const description =
     car.summaryLong ??
     car.summary ??
-    "CARSページでは、スペックや長所短所、維持費感などを整理していきます。";
-
-  const ogImage = car.heroImage ?? car.mainImage ?? undefined;
+    "CAR BOUTIQUEの車種データベースページです。";
 
   return {
     title,
@@ -76,19 +53,14 @@ export async function generateMetadata(
     openGraph: {
       title,
       description,
-      ...(ogImage
-        ? {
-            images: [
-              {
-                url: ogImage,
-                alt: car.name,
-              },
-            ],
-          }
-        : {}),
+      type: "article",
+      url: `https://car-hp.vercel.app/cars/${car.slug}`,
+      images: car.heroImage
+        ? [{ url: car.heroImage, alt: car.name }]
+        : undefined,
     },
     twitter: {
-      card: ogImage ? "summary_large_image" : "summary",
+      card: "summary_large_image",
       title,
       description,
     },
@@ -99,297 +71,299 @@ export default async function CarDetailPage({ params }: Props) {
   const car = await getCarBySlug(params.slug);
 
   if (!car) {
-    notFound();
+    return (
+      <main className="mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center px-4 pb-16 pt-24 sm:px-6 lg:px-8">
+        <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
+          CARS
+        </p>
+        <h1 className="mt-4 text-lg font-semibold tracking-tight text-slate-900 sm:text-xl">
+          指定された車種が見つかりませんでした。
+        </h1>
+        <p className="mt-3 text-sm leading-relaxed text-text-sub">
+          URLが古い、または車種データがまだ整備されていない可能性があります。
+        </p>
+        <div className="mt-6">
+          <Link href="/cars">
+            <Button variant="outline" size="lg">
+              CARS一覧へ戻る
+            </Button>
+          </Link>
+        </div>
+      </main>
+    );
   }
 
-  const difficultyText = difficultyLabel(car.difficulty);
-  const difficultyClass = difficultyBadgeColor(car.difficulty);
+  const maker = makerLabel(car.maker);
+  const hasSpecBlock =
+    car.engine ||
+    car.powerPs ||
+    car.torqueNm ||
+    car.transmission ||
+    car.drive ||
+    car.fuel ||
+    car.fuelEconomy ||
+    car.priceNew ||
+    car.priceUsed;
+
+  const relatedNewsHref =
+    car.maker && car.maker !== "OTHER"
+      ? `/news?maker=${encodeURIComponent(car.maker)}`
+      : "/news";
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50/80 via-slate-50 to-white">
-      <div className="mx-auto max-w-6xl px-4 pb-16 pt-20 sm:px-6 sm:pt-24 lg:px-8">
-        {/* パンくず */}
-        <nav className="mb-4 text-[11px] text-text-sub">
-          <Link
-            href="/"
-            className="hover:underline"
-          >
-            HOME
-          </Link>
-          <span className="mx-1">/</span>
-          <Link
-            href="/cars"
-            className="hover:underline"
-          >
-            CARS
-          </Link>
-          <span className="mx-1">/</span>
-          <span className="text-slate-700">
-            {car.name}
-          </span>
-        </nav>
-
-        {/* ヘッダー＋ヒーロー */}
-        <section className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-center">
-          <div>
-            <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
-              CARS
-            </p>
-            <h1 className="mt-2 text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl md:text-3xl">
-              {car.name}
-            </h1>
-
-            <div className="mt-3 flex flex-wrap items-center gap-2 text-[11px] text-text-sub">
-              <span className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-3 py-1 text-[10px] font-medium tracking-[0.18em] text-white">
-                <span className="h-1.5 w-1.5 rounded-full bg-tiffany-300" />
-                {car.maker}
-              </span>
-              {car.releaseYear && (
-                <span className="rounded-full bg-white/70 px-3 py-1">
-                  {car.releaseYear}年頃登場
-                </span>
-              )}
-              <span
-                className={[
-                  "rounded-full px-3 py-1 text-[10px] font-medium tracking-[0.12em]",
-                  difficultyClass,
-                ].join(" ")}
-              >
-                {difficultyText}
-              </span>
-            </div>
-
-            {car.summary && (
-              <p className="mt-4 max-w-xl text-sm leading-relaxed text-text-sub sm:text-[15px]">
-                {car.summary}
-              </p>
-            )}
-
-            {car.summaryLong && (
-              <p className="mt-3 max-w-xl text-xs leading-relaxed text-text-sub sm:text-[13px]">
-                {car.summaryLong}
-              </p>
-            )}
-
-            {/* ハイライトスペック */}
-            <div className="mt-6 grid gap-3 text-[11px] text-text-sub sm:grid-cols-3">
-              {car.engine && (
-                <div>
-                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
-                    POWERTRAIN
-                  </p>
-                  <p className="mt-1 text-xs text-slate-800">
-                    {car.engine}
-                  </p>
-                </div>
-              )}
-              {(car.powerPs || car.torqueNm) && (
-                <div>
-                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
-                    OUTPUT
-                  </p>
-                  <p className="mt-1 text-xs text-slate-800">
-                    {car.powerPs && `${car.powerPs}ps`}
-                    {car.powerPs && car.torqueNm && " / "}
-                    {car.torqueNm && `${car.torqueNm}Nm`}
-                  </p>
-                </div>
-              )}
-              {(car.drive || car.transmission) && (
-                <div>
-                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
-                    DRIVE
-                  </p>
-                  <p className="mt-1 text-xs text-slate-800">
-                    {[car.drive, car.transmission]
-                      .filter(Boolean)
-                      .join(" × ")}
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* 画像側 */}
+      {/* ヒーローエリア */}
+      <section className="mx-auto max-w-6xl px-4 pb-10 pt-20 sm:px-6 sm:pt-24 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-center">
+          {/* 左: 画像ヒーロー */}
           <div className="relative">
-            <GlassCard padding="none" className="overflow-hidden rounded-3xl">
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-tiffany-50 via-white to-slate-50 shadow-soft-card">
               <div className="relative aspect-[4/3] w-full">
-                {car.heroImage || car.mainImage ? (
+                {car.heroImage ? (
                   <Image
-                    src={car.heroImage ?? car.mainImage ?? ""}
+                    src={car.heroImage}
                     alt={car.name}
                     fill
                     className="object-cover"
                     priority
                   />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700">
-                    <p className="text-xs font-medium tracking-[0.18em] text-white/70">
-                      PHOTO COMING SOON
-                    </p>
+                  <div className="flex h-full w-full items-center justify-center bg-slate-100 text-xs text-text-sub">
+                    画像は順次追加予定です
                   </div>
                 )}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/45 via-slate-900/10 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-100">
-                  <span className="rounded-full bg-black/30 px-3 py-1 backdrop-blur-sm">
-                    {car.bodyType ?? "BODY TYPE準備中"}
-                  </span>
-                  {car.segment && (
-                    <span className="rounded-full bg-black/30 px-3 py-1 backdrop-blur-sm">
-                      {car.segment}
-                    </span>
-                  )}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/40 via-slate-900/10 to-transparent" />
+              </div>
+
+              <div className="absolute inset-x-0 bottom-0 z-[1] p-4 sm:p-5">
+                <div className="flex flex-wrap items-center justify-between gap-3 text-[11px] text-slate-50">
+                  <div>
+                    <p className="text-[10px] tracking-[0.3em] text-slate-200">
+                      {maker}
+                    </p>
+                    <h1 className="mt-1 text-base font-semibold tracking-tight text-white sm:text-lg md:text-xl">
+                      {car.name}
+                    </h1>
+                    {car.grade && (
+                      <p className="mt-1 text-[11px] text-slate-100">
+                        グレード {car.grade}
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex flex-col items-end gap-1 text-[11px]">
+                    {car.releaseYear && (
+                      <span className="rounded-full bg-white/15 px-3 py-1">
+                        {car.releaseYear}年頃デビュー
+                      </span>
+                    )}
+                    {car.bodyType && (
+                      <span className="rounded-full bg-white/15 px-3 py-1">
+                        {car.bodyType}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
-            </GlassCard>
+            </div>
           </div>
-        </section>
 
-        {/* メイン情報ブロック */}
-        <section className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-          {/* 左カラム: 詳細テキスト / コメント用エリア */}
-          <div className="space-y-6">
-            <GlassCard as="section">
-              <p className="text-[10px] font-semibold tracking-[0.3em] text-text-sub">
+          {/* 右: 概要カード */}
+          <div className="space-y-4">
+            <GlassCard padding="lg" className="h-full">
+              <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
                 OVERVIEW
               </p>
               <p className="mt-3 text-xs leading-relaxed text-text-sub sm:text-[13px]">
-                このページでは、スペック表だけでは見えにくい
-                「使い勝手」「維持費感」「トラブル傾向」なども、
-                今後少しずつ追記していきます。
+                {car.summaryLong ?? car.summary}
               </p>
-              {car.tags && car.tags.length > 0 && (
-                <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-text-sub">
-                  {car.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full bg-slate-100 px-3 py-1"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </GlassCard>
 
-            {/* 将来の長所・短所・トラブルノート用の枠 */}
-            <div className="grid gap-4 md:grid-cols-2">
-              <GlassCard as="section" className="h-full">
-                <p className="text-[10px] font-semibold tracking-[0.3em] text-emerald-700">
-                  GOOD POINTS
+              <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-text-sub">
+                <span className="rounded-full bg-slate-900 px-3 py-1 text-[10px] font-medium tracking-[0.18em] text-white">
+                  {difficultyLabel(car.difficulty)}
+                </span>
+                {car.tags?.slice(0, 3).map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-slate-100 px-3 py-1"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-3 text-[11px] text-text-sub">
+                <Link href="/cars">
+                  <Button variant="secondary" size="sm">
+                    CARS一覧へ戻る
+                  </Button>
+                </Link>
+                <Link href={relatedNewsHref}>
+                  <Button variant="outline" size="sm">
+                    関連ニュースをNEWSで見る
+                  </Button>
+                </Link>
+              </div>
+            </GlassCard>
+          </div>
+        </div>
+      </section>
+
+      {/* 下段: スペック＋読み物エリア */}
+      <section className="mx-auto max-w-6xl px-4 pb-20 sm:px-6 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
+          {/* 左カラム: 性格・乗り味の説明エリア（テキストは今はサマリー中心） */}
+          <div>
+            <h2 className="text-sm font-semibold tracking-[0.18em] text-text-sub">
+              CHARACTER
+            </h2>
+            <p className="mt-2 text-base font-semibold tracking-tight text-slate-900 sm:text-lg">
+              このクルマの性格と、ざっくりイメージ。
+            </p>
+
+            <div className="mt-4 space-y-4 text-sm leading-relaxed text-text-sub sm:text-[15px]">
+              <p>
+                {car.summaryLong ??
+                  car.summary ??
+                  "この車種の詳しいレビューやオーナーの本音は、順次コラムとして追加していく予定です。"}
+              </p>
+              <p className="text-xs text-slate-500">
+                具体的なオーナー体験談やトラブル事例、維持費のリアルなどは、
+                COLUMNやGUIDEコンテンツとして別途整理していきます。
+              </p>
+            </div>
+
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              <GlassCard padding="md">
+                <p className="text-[10px] font-semibold tracking-[0.3em] text-text-sub">
+                  おすすめしたい人のイメージ
                 </p>
-                <p className="mt-2 text-[11px] leading-relaxed text-text-sub">
-                  長所や「ここが好き」と感じるポイントを、
-                  実際のオーナー体験ベースで少しずつ追記していく予定です。
+                <p className="mt-3 text-xs leading-relaxed text-text-sub sm:text-[13px]">
+                  {difficultyLabel(car.difficulty)}
                 </p>
               </GlassCard>
-              <GlassCard as="section" className="h-full">
-                <p className="text-[10px] font-semibold tracking-[0.3em] text-rose-700">
-                  CARE POINTS
+
+              <GlassCard padding="md">
+                <p className="text-[10px] font-semibold tracking-[0.3em] text-text-sub">
+                  これから追加していくコンテンツ
                 </p>
-                <p className="mt-2 text-[11px] leading-relaxed text-text-sub">
-                  持病になりやすい部分や、維持で気をつけたいポイントなども、
-                  データと経験談をもとに整理していきます。
-                </p>
+                <ul className="mt-3 space-y-1 text-xs leading-relaxed text-text-sub sm:text-[13px]">
+                  <li>• オーナー目線の「ここが好き／ここは注意」</li>
+                  <li>• 代表的なトラブル傾向と対策メモ</li>
+                  <li>• 年式や走行距離ごとの相場感</li>
+                  <li>• 同じクラスのクルマとの比較</li>
+                </ul>
               </GlassCard>
             </div>
           </div>
 
-          {/* 右カラム: スペック / お金周り */}
+          {/* 右カラム: スペック・価格カード */}
           <div className="space-y-4">
-            <GlassCard as="section" padding="md">
-              <p className="text-[10px] font-semibold tracking-[0.3em] text-text-sub">
-                SPEC SHEET
-              </p>
-              <dl className="mt-3 space-y-2 text-[11px] text-text-sub">
-                <SpecRow label="ボディタイプ" value={car.bodyType} />
-                <SpecRow label="セグメント" value={car.segment} />
-                <SpecRow label="グレード" value={car.grade} />
-                <SpecRow
-                  label="駆動方式 × ミッション"
-                  value={
-                    car.drive || car.transmission
-                      ? [car.drive, car.transmission]
-                          .filter(Boolean)
-                          .join(" × ")
-                      : undefined
-                  }
-                />
-                <SpecRow label="エンジン" value={car.engine} />
-                <SpecRow
-                  label="最高出力"
-                  value={car.powerPs ? `${car.powerPs}ps` : undefined}
-                />
-                <SpecRow
-                  label="最大トルク"
-                  value={car.torqueNm ? `${car.torqueNm}Nm` : undefined}
-                />
-                <SpecRow label="燃料" value={car.fuel} />
-                <SpecRow label="実用燃費目安" value={car.fuelEconomy} />
-              </dl>
-            </GlassCard>
+            {hasSpecBlock && (
+              <GlassCard padding="lg">
+                <p className="text-[10px] font-semibold tracking-[0.3em] text-text-sub">
+                  SPEC
+                </p>
 
-            <GlassCard as="section" padding="md">
-              <p className="text-[10px] font-semibold tracking-[0.3em] text-text-sub">
-                PRICE / RUNNING COST
-              </p>
-              <dl className="mt-3 space-y-2 text-[11px] text-text-sub">
-                <SpecRow label="新車時価格帯" value={car.priceNew} />
-                <SpecRow label="中古車相場目安" value={car.priceUsed} />
-              </dl>
-              <p className="mt-3 text-[10px] leading-relaxed text-slate-400">
-                価格や相場は、年式や走行距離、市場環境によって大きく変動します。
-                あくまで「目安」としてご覧ください。
-              </p>
-            </GlassCard>
+                <dl className="mt-3 space-y-2 text-xs text-text-sub sm:text-[13px]">
+                  {car.engine && (
+                    <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
+                      <dt className="text-slate-500">エンジン</dt>
+                      <dd className="text-right text-slate-800">
+                        {car.engine}
+                      </dd>
+                    </div>
+                  )}
+                  {(car.powerPs || car.torqueNm) && (
+                    <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
+                      <dt className="text-slate-500">出力・トルク（参考値）</dt>
+                      <dd className="text-right text-slate-800">
+                        {car.powerPs && `${car.powerPs}ps`}
+                        {car.powerPs && car.torqueNm && " / "}
+                        {car.torqueNm && `${car.torqueNm}Nm`}
+                      </dd>
+                    </div>
+                  )}
+                  {car.transmission && (
+                    <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
+                      <dt className="text-slate-500">トランスミッション</dt>
+                      <dd className="text-right text-slate-800">
+                        {car.transmission}
+                      </dd>
+                    </div>
+                  )}
+                  {car.drive && (
+                    <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
+                      <dt className="text-slate-500">駆動方式</dt>
+                      <dd className="text-right text-slate-800">
+                        {car.drive}
+                      </dd>
+                    </div>
+                  )}
+                  {car.fuel && (
+                    <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
+                      <dt className="text-slate-500">推奨燃料</dt>
+                      <dd className="text-right text-slate-800">
+                        {car.fuel}
+                      </dd>
+                    </div>
+                  )}
+                  {car.fuelEconomy && (
+                    <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
+                      <dt className="text-slate-500">実用燃費の目安</dt>
+                      <dd className="text-right text-slate-800">
+                        {car.fuelEconomy}
+                      </dd>
+                    </div>
+                  )}
+                  {(car.priceNew || car.priceUsed) && (
+                    <div className="flex flex-col gap-2 pt-1">
+                      {car.priceNew && (
+                        <div className="flex justify-between gap-4">
+                          <dt className="text-slate-500">新車時の価格帯</dt>
+                          <dd className="text-right text-slate-800">
+                            {car.priceNew}
+                          </dd>
+                        </div>
+                      )}
+                      {car.priceUsed && (
+                        <div className="flex justify-between gap-4">
+                          <dt className="text-slate-500">現在の中古車相場感</dt>
+                          <dd className="text-right text-slate-800">
+                            {car.priceUsed}
+                          </dd>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </dl>
+              </GlassCard>
+            )}
 
-            <GlassCard as="section" padding="md">
+            <GlassCard padding="md">
               <p className="text-[10px] font-semibold tracking-[0.3em] text-text-sub">
-                NAVIGATION
+                NEXT STEP
               </p>
-              <div className="mt-3 flex flex-wrap gap-2 text-[11px]">
-                <Link
-                  href="/cars"
-                  className="rounded-full border border-tiffany-400/70 bg-white/80 px-4 py-1.5 font-medium text-tiffany-700 hover:bg-white"
-                >
-                  CARS一覧へ戻る
+              <p className="mt-3 text-xs leading-relaxed text-text-sub sm:text-[13px]">
+                他の車種と比較して検討したい場合は、
+                まずはCARS一覧から気になるモデルをピックアップして、
+                将来的に追加予定の比較機能と組み合わせて見ていくイメージです。
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2 text-[11px]">
+                <Link href="/cars">
+                  <Button size="sm" variant="secondary">
+                    他の車種も見る
+                  </Button>
                 </Link>
-                <Link
-                  href="/news"
-                  className="rounded-full border border-slate-200 bg-white/60 px-4 py-1.5 text-slate-700 hover:bg-white"
-                >
-                  関連しそうなニュースを見る
-                </Link>
-                <Link
-                  href="/column"
-                  className="rounded-full border border-slate-200 bg-white/60 px-4 py-1.5 text-slate-700 hover:bg-white"
-                >
-                  オーナー本音コラムを読む
+                <Link href={relatedNewsHref}>
+                  <Button size="sm" variant="outline">
+                    メーカー別ニュースへ
+                  </Button>
                 </Link>
               </div>
             </GlassCard>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
-  );
-}
-
-type SpecRowProps = {
-  label: string;
-  value?: string;
-};
-
-function SpecRow({ label, value }: SpecRowProps) {
-  if (!value) return null;
-  return (
-    <div className="flex items-start gap-2">
-      <dt className="w-[40%] shrink-0 text-[10px] font-semibold text-slate-500">
-        {label}
-      </dt>
-      <dd className="flex-1 text-[11px] text-slate-800">
-        {value}
-      </dd>
-    </div>
   );
 }
