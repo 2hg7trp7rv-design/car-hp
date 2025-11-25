@@ -1,5 +1,4 @@
 // app/page.tsx
-import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroSection } from "@/components/home/HeroSection";
 import { GlassCard } from "@/components/GlassCard";
@@ -7,25 +6,9 @@ import { getLatestNews } from "@/lib/news";
 import { getAllColumns } from "@/lib/columns";
 import { getAllCars } from "@/lib/cars";
 
-export const metadata: Metadata = {
-  title: "CAR BOUTIQUE | クルマのニュースとストーリー",
-  description:
-    "ニュースとコラム、そして車種データベースをラグジュアリーなUIで楽しめるCAR BOUTIQUE。",
-};
-
-function formatDate(value?: string) {
-  if (!value) return "";
-  const d = new Date(value);
-  if (Number.isNaN(d.getTime())) return value;
-  const y = d.getFullYear();
-  const m = `${d.getMonth() + 1}`.padStart(2, "0");
-  const day = `${d.getDate()}`.padStart(2, "0");
-  return `${y}/${m}/${day}`;
-}
-
 export default async function HomePage() {
   const [news, columns, cars] = await Promise.all([
-    getLatestNews(8),
+    getLatestNews(12),
     getAllColumns(),
     getAllCars(),
   ]);
@@ -35,210 +18,357 @@ export default async function HomePage() {
   const featuredCars = cars.slice(0, 3);
 
   return (
-    <main className="mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-6 sm:pt-14 lg:px-8">
+    <main className="bg-site min-h-screen pb-20">
       {/* ヒーロー */}
-      <HeroSection />
+      <div className="pt-10 pb-16 sm:pb-20">
+        <HeroSection />
+      </div>
 
-      {/* ダッシュボード的入口 */}
-      <section className="mt-16 space-y-6">
-        <div className="flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
-              DASHBOARD
-            </p>
-            <h2 className="mt-2 text-base font-semibold tracking-tight text-slate-900 sm:text-lg">
-              いまサイトでできること
+      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 sm:px-6 lg:px-8">
+        {/* ダッシュボード的入口エリア */}
+        <section className="grid gap-4 md:grid-cols-3">
+          {/* NEWSカード */}
+          <GlassCard
+            as="article"
+            interactive
+            className="flex h-full flex-col"
+          >
+            <div className="flex items-center justify-between text-[10px] text-text-sub">
+              <p className="font-semibold tracking-[0.32em] text-text-sub">
+                NEWS
+              </p>
+              {news.length > 0 && (
+                <p className="text-[10px]">
+                  {news.length}件のニュース
+                </p>
+              )}
+            </div>
+            <h2 className="mt-3 text-sm font-semibold text-slate-900 sm:text-[15px]">
+              いま押さえておきたいクルマのニュースを編集して整理。
             </h2>
-            <p className="mt-1 max-w-xl text-[11px] leading-relaxed text-text-sub sm:text-xs">
-              NEWSで最新動向を押さえ、COLUMNで一歩踏み込んだ読み物を、
-              CARSで気になる車種のスペックとストーリーをざっと眺められます。
+            <p className="mt-2 text-xs leading-relaxed text-text-sub">
+              国内メーカー公式発表や専門メディアの記事を、
+              タイトルと要約付きで一覧にしています。
+              気になる記事は元サイトでじっくりチェックできます。
             </p>
-          </div>
-          <div className="flex flex-wrap gap-2 text-[10px] text-text-sub">
-            <span className="rounded-full bg-white/70 px-3 py-1 shadow-soft">
-              NEWS {news.length}件
-            </span>
-            <span className="rounded-full bg-white/70 px-3 py-1 shadow-soft">
-              COLUMN {columns.length}本
-            </span>
-            <span className="rounded-full bg-white/70 px-3 py-1 shadow-soft">
-              CARS {cars.length}台
-            </span>
-          </div>
-        </div>
+            <div className="mt-4 flex flex-wrap gap-2 text-[10px]">
+              <span className="rounded-full bg-slate-900 px-3 py-1 font-medium tracking-[0.18em] text-white">
+                RSSダイジェスト
+              </span>
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-text-sub">
+                メーカー別
+              </span>
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-text-sub">
+                カテゴリ別
+              </span>
+            </div>
+            <div className="mt-5 pt-3">
+              <Link
+                href="/news"
+                className="inline-flex items-center justify-center rounded-full bg-tiffany-500 px-5 py-2 text-[11px] font-semibold tracking-[0.18em] text-white shadow-soft-strong hover:bg-tiffany-600 hover:shadow-soft-stronger"
+              >
+                NEWS一覧を開く
+              </Link>
+            </div>
+          </GlassCard>
 
-        <div className="grid gap-4 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-          {/* 左カラム: NEWS＋COLUMN */}
-          <div className="space-y-4">
-            {/* NEWS ブロック */}
-            <GlassCard padding="sm" className="h-full">
-              <div className="flex items-center justify-between gap-2">
-                <div>
-                  <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
-                    NEWS
-                  </p>
-                  <h3 className="mt-1 text-sm font-semibold text-slate-900">
-                    最新ニュースダイジェスト
-                  </h3>
-                  <p className="mt-1 text-[11px] text-text-sub">
-                    直近のニュースから、雰囲気をつかむための数本をピックアップ。
-                  </p>
-                </div>
-                <Link
-                  href="/news"
-                  className="text-[10px] font-medium tracking-[0.18em] text-tiffany-700 underline-offset-4 hover:underline"
+          {/* COLUMNカード */}
+          <GlassCard
+            as="article"
+            interactive
+            className="flex h-full flex-col"
+          >
+            <div className="flex items-center justify-between text-[10px] text-text-sub">
+              <p className="font-semibold tracking-[0.32em] text-text-sub">
+                COLUMN
+              </p>
+              {columns.length > 0 && (
+                <p className="text-[10px]">
+                  {columns.length}本のコラム
+                </p>
+              )}
+            </div>
+            <h2 className="mt-3 text-sm font-semibold text-slate-900 sm:text-[15px]">
+              オーナーの本音やトラブル、技術の背景まで「ニュースの先」を読む。
+            </h2>
+            <p className="mt-2 text-xs leading-relaxed text-text-sub">
+              実際のオーナー目線のストーリーや、
+              故障・修理のリアル、ブランドや技術の背景など、
+              腹落ちする読み物を少しずつ増やしていきます。
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2 text-[10px]">
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-text-sub">
+                オーナーストーリー
+              </span>
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-text-sub">
+                メンテナンス
+              </span>
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-text-sub">
+                技術・歴史
+              </span>
+            </div>
+            <div className="mt-5 pt-3">
+              <Link
+                href="/column"
+                className="inline-flex items-center justify-center rounded-full border border-tiffany-400 bg-white/80 px-5 py-2 text-[11px] font-semibold tracking-[0.18em] text-tiffany-700 shadow-soft-card hover:bg-white"
+              >
+                コラム一覧を開く
+              </Link>
+            </div>
+          </GlassCard>
+
+          {/* CARSカード */}
+          <GlassCard
+            as="article"
+            interactive
+            className="flex h-full flex-col"
+          >
+            <div className="flex items-center justify-between text-[10px] text-text-sub">
+              <p className="font-semibold tracking-[0.32em] text-text-sub">
+                CARS
+              </p>
+              {cars.length > 0 && (
+                <p className="text-[10px]">
+                  {cars.length}車種掲載
+                </p>
+              )}
+            </div>
+            <h2 className="mt-3 text-sm font-semibold text-slate-900 sm:text-[15px]">
+              スペックとストーリーを同じフォーマットで追える車種データベース。
+            </h2>
+            <p className="mt-2 text-xs leading-relaxed text-text-sub">
+              ボディタイプやセグメント、エンジン、維持費の目安などを
+              共通レイアウトで整理。
+              将来の比較機能や検索機能の土台になるエリアです。
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2 text-[10px]">
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-text-sub">
+                セダン
+              </span>
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-text-sub">
+                SUV
+              </span>
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-text-sub">
+                スポーツ
+              </span>
+            </div>
+            <div className="mt-5 pt-3">
+              <Link
+                href="/cars"
+                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/90 px-5 py-2 text-[11px] font-semibold tracking-[0.18em] text-slate-800 hover:bg-white"
+              >
+                CARS一覧を開く
+              </Link>
+            </div>
+          </GlassCard>
+        </section>
+
+        {/* 最新ニュースダイジェスト */}
+        <section className="space-y-4">
+          <div className="flex items-baseline justify-between gap-3">
+            <div>
+              <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
+                LATEST NEWS
+              </p>
+              <h2 className="mt-2 text-sm font-semibold tracking-tight text-slate-900 sm:text-base">
+                いま押さえておきたいニュース
+              </h2>
+            </div>
+            <Link
+              href="/news"
+              className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+            >
+              すべてのニュースを見る
+            </Link>
+          </div>
+
+          <div className="grid gap-3 md:grid-cols-2">
+            {latestNews.map((item) => {
+              const title = item.titleJa || item.title;
+              return (
+                <GlassCard
+                  key={item.id}
+                  as="article"
+                  interactive
+                  padding="sm"
+                  className="h-full"
                 >
-                  すべて見る
-                </Link>
-              </div>
-
-              <div className="mt-4 space-y-3">
-                {latestNews.length === 0 && (
-                  <p className="text-[11px] text-text-sub">
-                    まだニュースデータがありません。news-latest.jsonを整備すると表示されます。
-                  </p>
-                )}
-
-                {latestNews.map((item) => (
-                  <Link
-                    key={item.id}
-                    href={`/news/${encodeURIComponent(item.id)}`}
-                    className="block rounded-xl bg-white/60 px-3 py-2.5 text-left text-[11px] text-slate-800 transition hover:bg-white"
-                  >
-                    <p className="font-body-light text-[10px] uppercase tracking-[0.22em] text-brand-tiffanySoft">
+                  <Link href={`/news/${item.id}`} className="block">
+                    <p className="font-body-light text-[10px] tracking-[0.24em] text-brand-tiffanySoft">
                       {item.category || "NEWS"}
                     </p>
-                    <p className="mt-0.5 line-clamp-2 font-medium text-slate-900">
-                      {item.titleJa || item.title}
-                    </p>
+                    <h3 className="mt-2 text-sm font-semibold leading-snug text-slate-900">
+                      {title}
+                    </h3>
                     {item.excerpt && (
-                      <p className="mt-1 line-clamp-2 text-[11px] text-text-sub">
+                      <p className="mt-1 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
                         {item.excerpt}
                       </p>
                     )}
-                    <div className="mt-1 flex items-center justify-between text-[10px] text-text-sub">
+                    <div className="mt-2 flex items-center justify-between text-[10px] text-text-sub">
                       <span>{item.sourceName ?? "EXTERNAL"}</span>
-                      <span>{formatDate(item.publishedAt)}</span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </GlassCard>
-
-            {/* COLUMN ブロック */}
-            <GlassCard padding="sm">
-              <div className="flex items-center justify-between gap-2">
-                <div>
-                  <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
-                    COLUMN
-                  </p>
-                  <h3 className="mt-1 text-sm font-semibold text-slate-900">
-                    コラムとストーリー
-                  </h3>
-                  <p className="mt-1 text-[11px] text-text-sub">
-                    オーナー体験やトラブル、技術解説など、
-                    「ニュースのもう一歩先」を読むエリア。
-                  </p>
-                </div>
-                <Link
-                  href="/column"
-                  className="text-[10px] font-medium tracking-[0.18em] text-tiffany-700 underline-offset-4 hover:underline"
-                >
-                  一覧を見る
-                </Link>
-              </div>
-
-              <div className="mt-4 space-y-2.5">
-                {latestColumns.length === 0 && (
-                  <p className="text-[11px] text-text-sub">
-                    まだコラムがありません。columns.jsonを整備するとここに表示されます。
-                  </p>
-                )}
-
-                {latestColumns.map((c) => (
-                  <Link
-                    key={c.id}
-                    href={`/column/${c.slug}`}
-                    className="block rounded-xl bg-white/60 px-3 py-2 text-left text-[11px] text-slate-800 transition hover:bg-white"
-                  >
-                    <p className="line-clamp-1 font-medium text-slate-900">
-                      {c.title}
-                    </p>
-                    <p className="mt-0.5 line-clamp-2 text-[11px] text-text-sub">
-                      {c.summary}
-                    </p>
-                  </Link>
-                ))}
-              </div>
-            </GlassCard>
-          </div>
-
-          {/* 右カラム: CARS ブロック */}
-          <div className="space-y-4">
-            <GlassCard padding="sm" className="h-full">
-              <div className="flex items-center justify-between gap-2">
-                <div>
-                  <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
-                    CARS
-                  </p>
-                  <h3 className="mt-1 text-sm font-semibold text-slate-900">
-                    車種データベースの入り口
-                  </h3>
-                  <p className="mt-1 text-[11px] text-text-sub">
-                    まずは少数精鋭から、スペックと性格が分かる車種ページを整えていきます。
-                  </p>
-                </div>
-                <Link
-                  href="/cars"
-                  className="text-[10px] font-medium tracking-[0.18em] text-tiffany-700 underline-offset-4 hover:underline"
-                >
-                  一覧へ
-                </Link>
-              </div>
-
-              <div className="mt-4 space-y-2.5">
-                {featuredCars.length === 0 && (
-                  <p className="text-[11px] text-text-sub">
-                    まだ車種データがありません。cars.jsonを整備するとここに表示されます。
-                  </p>
-                )}
-
-                {featuredCars.map((car) => (
-                  <Link
-                    key={car.id}
-                    href={`/cars/${car.slug}`}
-                    className="flex items-center justify-between rounded-xl bg-white/60 px-3 py-2 text-[11px] text-slate-800 transition hover:bg-white"
-                  >
-                    <div className="min-w-0">
-                      <p className="text-[10px] uppercase tracking-[0.22em] text-text-sub">
-                        {car.maker}
-                      </p>
-                      <p className="mt-0.5 line-clamp-1 font-medium text-slate-900">
-                        {car.name}
-                      </p>
-                      {car.summary && (
-                        <p className="mt-0.5 line-clamp-2 text-[11px] text-text-sub">
-                          {car.summary}
-                        </p>
+                      {item.publishedAt && (
+                        <span>
+                          {new Date(item.publishedAt).toLocaleDateString(
+                            "ja-JP",
+                            {
+                              month: "2-digit",
+                              day: "2-digit",
+                            },
+                          )}
+                        </span>
                       )}
                     </div>
-                    <div className="ml-3 flex flex-col items-end text-right text-[10px] text-text-sub">
-                      {car.bodyType && <span>{car.bodyType}</span>}
-                      {car.segment && <span>{car.segment}</span>}
-                      {car.releaseYear && <span>{car.releaseYear}年頃</span>}
+                  </Link>
+                </GlassCard>
+              );
+            })}
+            {latestNews.length === 0 && (
+              <p className="text-xs text-text-sub">
+                まだニュースがありません。RSS連携の準備ができ次第、ここに最新ニュースを表示します。
+              </p>
+            )}
+          </div>
+        </section>
+
+        {/* 新着コラムと注目CARSを横並びに */}
+        <section className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+          {/* コラム側 */}
+          <div className="space-y-3">
+            <div className="flex items-baseline justify-between gap-3">
+              <div>
+                <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
+                  LATEST COLUMN
+                </p>
+                <h2 className="mt-2 text-sm font-semibold tracking-tight text-slate-900 sm:text-base">
+                  最近追加したコラム
+                </h2>
+              </div>
+              <Link
+                href="/column"
+                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+              >
+                コラム一覧へ
+              </Link>
+            </div>
+
+            <div className="space-y-3">
+              {latestColumns.map((column) => (
+                <GlassCard
+                  key={column.id}
+                  as="article"
+                  interactive
+                  padding="sm"
+                >
+                  <Link
+                    href={`/column/${column.slug}`}
+                    className="block space-y-1"
+                  >
+                    <p className="text-[10px] font-semibold tracking-[0.26em] text-text-sub">
+                      COLUMN
+                    </p>
+                    <h3 className="text-sm font-semibold leading-snug text-slate-900">
+                      {column.title}
+                    </h3>
+                    <p className="text-[11px] leading-relaxed text-text-sub">
+                      {column.summary}
+                    </p>
+                    <div className="mt-1 flex flex-wrap items-center gap-2 text-[10px] text-text-sub">
+                      {column.readMinutes && (
+                        <span>
+                          約{column.readMinutes}
+                          分で読めます
+                        </span>
+                      )}
+                      {column.publishedAt && (
+                        <span>
+                          {new Date(column.publishedAt).toLocaleDateString(
+                            "ja-JP",
+                            {
+                              year: "numeric",
+                              month: "2-digit",
+                              day: "2-digit",
+                            },
+                          )}
+                        </span>
+                      )}
                     </div>
                   </Link>
-                ))}
-              </div>
-
-              <div className="mt-4 rounded-2xl bg-gradient-to-r from-tiffany-50/90 to-white/90 px-3 py-2 text-[10px] text-text-sub">
-                まずはBMW 530i G30など、オーナー体験と紐づけて深掘りしたい車種から
-                少しずつ増やしていく想定です。
-              </div>
-            </GlassCard>
+                </GlassCard>
+              ))}
+              {latestColumns.length === 0 && (
+                <p className="text-xs text-text-sub">
+                  まだコラムがありません。まずはBMW 530iや身の回りの出来事から、
+                  オーナー目線の読み物を増やしていく予定です。
+                </p>
+              )}
+            </div>
           </div>
-        </div>
-      </section>
+
+          {/* CARS側 */}
+          <div className="space-y-3">
+            <div className="flex items-baseline justify-between gap-3">
+              <div>
+                <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
+                  CARS PICKUP
+                </p>
+                <h2 className="mt-2 text-sm font-semibold tracking-tight text-slate-900 sm:text-base">
+                  まずはこの3台から
+                </h2>
+              </div>
+              <Link
+                href="/cars"
+                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+              >
+                CARS一覧へ
+              </Link>
+            </div>
+
+            <div className="space-y-3">
+              {featuredCars.map((car) => (
+                <GlassCard
+                  key={car.id}
+                  as="article"
+                  interactive
+                  padding="sm"
+                  className="flex items-center gap-3"
+                >
+                  <div className="flex-1">
+                    <p className="text-[10px] font-semibold tracking-[0.26em] text-text-sub">
+                      {car.maker}
+                    </p>
+                    <Link
+                      href={`/cars/${car.slug}`}
+                      className="block"
+                    >
+                      <h3 className="mt-1 text-sm font-semibold leading-snug text-slate-900">
+                        {car.name}
+                      </h3>
+                      <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
+                        {car.summary}
+                      </p>
+                      <div className="mt-1 flex flex-wrap items-center gap-2 text-[10px] text-text-sub">
+                        {car.bodyType && <span>{car.bodyType}</span>}
+                        {car.segment && <span>{car.segment}</span>}
+                        {car.releaseYear && (
+                          <span>{car.releaseYear}年頃デビュー</span>
+                        )}
+                      </div>
+                    </Link>
+                  </div>
+                </GlassCard>
+              ))}
+              {featuredCars.length === 0 && (
+                <p className="text-xs text-text-sub">
+                  車種データはこれから増やしていきます。
+                  まずはBMW 5シリーズやハリアー、GT-Rなど、
+                  代表的な数台から整理していく予定です。
+                </p>
+              )}
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
   );
 }
