@@ -1,11 +1,12 @@
 // app/news/page.tsx
 import Link from "next/link";
+import type { Metadata } from "next";
 import { getLatestNews } from "@/lib/news";
 import { GlassCard } from "@/components/GlassCard";
 
 export const runtime = "edge";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "ニュース一覧 | CAR BOUTIQUE",
   description:
     "主要メーカーや国内外メディアから厳選したニュースを、分かりやすく整理してお届けします。",
@@ -67,75 +68,78 @@ export default async function NewsPage({ searchParams }: Props) {
     return matchQuery && matchCategory && matchMaker && matchTag;
   });
 
+  const totalCount = items.length;
+  const filteredCount = filtered.length;
+
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 pb-16 pt-20 sm:px-6 sm:pt-24 lg:px-8">
-      {/* ヘッダー */}
-      <header className="mb-6 space-y-2 sm:mb-8">
-        <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
-          NEWS
-        </p>
-        <h1 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
-          ニュース一覧
-        </h1>
-        <p className="max-w-2xl text-xs leading-relaxed text-text-sub sm:text-[13px]">
-          国内メーカー発表から専門メディアの記事まで、
-          RSSで取得したニュースを要約付きで整理していきます。
-          気になるトピックはカテゴリやメーカー、キーワードで絞り込めます。
-        </p>
-        <p className="text-[11px] text-text-sub">
-          全{items.length}件中{" "}
-          <span className="font-semibold text-slate-900">
-            {filtered.length}件
-          </span>
-          を表示しています。
-        </p>
-      </header>
+      {/* ヘッダー＋検索ボックス */}
+      <header className="mb-6 space-y-4 sm:mb-8">
+        <div>
+          <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
+            NEWS
+          </p>
+          <h1 className="mt-2 text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
+            ニュース一覧
+          </h1>
+          <p className="mt-2 max-w-2xl text-xs leading-relaxed text-text-sub sm:text-[13px]">
+            国内メーカー発表から海外メディアの記事まで、RSSで取得したニュースを
+            「タイトル＋要約＋出典」付きで整理していきます。
+          </p>
+        </div>
 
-      {/* 検索＋フィルター */}
-      <section className="mb-6 space-y-3 rounded-2xl border border-white/70 bg-white/75 p-3 text-[11px] text-text-sub backdrop-blur-md sm:p-4">
-        {/* キーワード検索 */}
-        <form
-          action="/news"
-          method="get"
-          className="flex flex-col gap-2 sm:flex-row sm:items-center"
-        >
-          <div className="flex-1">
-            <label className="block text-[10px] font-semibold tracking-[0.22em] text-slate-600">
-              キーワード検索
-            </label>
+        {/* 検索フォーム＋件数表示 */}
+        <GlassCard padding="sm" className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <form
+            action="/news"
+            method="get"
+            className="flex flex-1 items-center gap-2 rounded-full border border-slate-100 bg-white/70 px-3 py-1.5 text-[11px] shadow-soft"
+          >
             <input
               type="text"
               name="q"
               defaultValue={searchParams?.q ?? ""}
-              placeholder="車名・メーカー・キーワードで検索"
-              className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-3 py-2 text-xs text-slate-800 outline-none ring-0 placeholder:text-slate-400 focus:border-tiffany-400 focus:bg-white focus:ring-2 focus:ring-tiffany-100"
+              placeholder="キーワードで絞り込み（車名・メーカー・トピックなど）"
+              className="h-7 flex-1 bg-transparent text-[11px] text-slate-800 outline-none placeholder:text-slate-400"
             />
-          </div>
-          <div className="flex gap-2 pt-1 sm:pt-5">
+            {categoryFilter && (
+              <input type="hidden" name="category" value={categoryFilter} />
+            )}
+            {makerFilter && (
+              <input type="hidden" name="maker" value={makerFilter} />
+            )}
+            {tagFilter && (
+              <input type="hidden" name="tag" value={tagFilter} />
+            )}
             <button
               type="submit"
-              className="inline-flex items-center justify-center rounded-full bg-tiffany-500 px-4 py-2 text-[11px] font-semibold tracking-[0.18em] text-white shadow-soft hover:bg-tiffany-600"
+              className="rounded-full bg-slate-900 px-3 py-1 text-[10px] font-semibold tracking-[0.16em] text-white"
             >
-              絞り込む
+              検索
             </button>
-            <Link
-              href="/news"
-              className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-[11px] font-medium tracking-[0.18em] text-slate-700 hover:bg-white"
-            >
-              条件リセット
-            </Link>
-          </div>
-        </form>
+          </form>
 
-        {/* カテゴリフィルター */}
-        <div className="flex flex-wrap gap-2 pt-1">
+          <div className="text-[11px] text-text-sub">
+            <span className="font-semibold text-slate-800">
+              {filteredCount}
+            </span>
+            <span className="ml-1">件表示中</span>
+            {q && (
+              <span className="ml-2 text-slate-400">
+                全{totalCount}件中
+              </span>
+            )}
+          </div>
+        </GlassCard>
+      </header>
+
+      {/* フィルター */}
+      <section className="mb-6 space-y-3 rounded-2xl border border-white/70 bg-white/70 p-3 text-[11px] text-text-sub backdrop-blur-md sm:p-4">
+        <div className="flex flex-wrap gap-2">
           <span className="font-medium text-slate-700">カテゴリ</span>
           <div className="flex flex-wrap gap-1">
             <Link
-              href={{
-                pathname: "/news",
-                query: { ...(q && { q }), ...(makerFilter && { maker: makerFilter }), ...(tagFilter && { tag: tagFilter }) },
-              }}
+              href="/news"
               className={[
                 "rounded-full px-3 py-1",
                 !categoryFilter
@@ -148,15 +152,7 @@ export default async function NewsPage({ searchParams }: Props) {
             {categories.map((c) => (
               <Link
                 key={c}
-                href={{
-                  pathname: "/news",
-                  query: {
-                    ...(q && { q }),
-                    category: c,
-                    ...(makerFilter && { maker: makerFilter }),
-                    ...(tagFilter && { tag: tagFilter }),
-                  },
-                }}
+                href={`/news?category=${encodeURIComponent(c)}`}
                 className={[
                   "rounded-full px-3 py-1",
                   categoryFilter === c
@@ -170,20 +166,12 @@ export default async function NewsPage({ searchParams }: Props) {
           </div>
         </div>
 
-        {/* メーカーフィルター */}
         {makers.length > 0 && (
           <div className="flex flex-wrap gap-2">
             <span className="font-medium text-slate-700">メーカー</span>
             <div className="flex flex-wrap gap-1">
               <Link
-                href={{
-                  pathname: "/news",
-                  query: {
-                    ...(q && { q }),
-                    ...(categoryFilter && { category: categoryFilter }),
-                    ...(tagFilter && { tag: tagFilter }),
-                  },
-                }}
+                href="/news"
                 className={[
                   "rounded-full px-3 py-1",
                   !makerFilter
@@ -196,15 +184,7 @@ export default async function NewsPage({ searchParams }: Props) {
               {makers.map((m) => (
                 <Link
                   key={m}
-                  href={{
-                    pathname: "/news",
-                    query: {
-                      ...(q && { q }),
-                      ...(categoryFilter && { category: categoryFilter }),
-                      maker: m,
-                      ...(tagFilter && { tag: tagFilter }),
-                    },
-                  }}
+                  href={`/news?maker=${encodeURIComponent(m)}`}
                   className={[
                     "rounded-full px-3 py-1",
                     makerFilter === m
@@ -219,20 +199,12 @@ export default async function NewsPage({ searchParams }: Props) {
           </div>
         )}
 
-        {/* タグフィルター */}
         {tags.length > 0 && (
           <div className="flex flex-wrap gap-2">
             <span className="font-medium text-slate-700">タグ</span>
             <div className="flex flex-wrap gap-1">
               <Link
-                href={{
-                  pathname: "/news",
-                  query: {
-                    ...(q && { q }),
-                    ...(categoryFilter && { category: categoryFilter }),
-                    ...(makerFilter && { maker: makerFilter }),
-                  },
-                }}
+                href="/news"
                 className={[
                   "rounded-full px-3 py-1",
                   !tagFilter
@@ -245,15 +217,7 @@ export default async function NewsPage({ searchParams }: Props) {
               {tags.map((t) => (
                 <Link
                   key={t}
-                  href={{
-                    pathname: "/news",
-                    query: {
-                      ...(q && { q }),
-                      ...(categoryFilter && { category: categoryFilter }),
-                      ...(makerFilter && { maker: makerFilter }),
-                      tag: t,
-                    },
-                  }}
+                  href={`/news?tag=${encodeURIComponent(t)}`}
                   className={[
                     "rounded-full px-3 py-1",
                     tagFilter === t
@@ -284,39 +248,31 @@ export default async function NewsPage({ searchParams }: Props) {
               interactive
             >
               <Link href={`/news/${item.id}`} className="block">
-                <div className="flex flex-col gap-2">
-                  <div className="flex items-center justify-between gap-3">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-4">
+                  {/* 左: メタ情報＋タイトル */}
+                  <div className="flex-1 space-y-1">
                     <p className="font-body-light text-[10px] tracking-[0.25em] text-brand-tiffanySoft">
                       {item.category || "NEWS"}
                     </p>
-                    <p className="text-[10px] text-text-sub">
-                      {sourceName}
-                      {dateLabel && ` ｜ ${dateLabel}`}
-                    </p>
+
+                    <h2 className="text-sm font-semibold leading-snug text-slate-900 sm:text-[15px] md:text-[17px]">
+                      {title}
+                    </h2>
+
+                    {item.excerpt && (
+                      <p className="mt-1 text-xs leading-relaxed text-text-sub line-clamp-3">
+                        {item.excerpt}
+                      </p>
+                    )}
                   </div>
 
-                  <h2 className="text-base font-semibold leading-snug text-slate-900 sm:text-[17px]">
-                    {title}
-                  </h2>
-
-                  {item.excerpt && (
-                    <p className="text-xs leading-relaxed text-text-sub">
-                      {item.excerpt}
-                    </p>
-                  )}
-
-                  {item.tags && item.tags.length > 0 && (
-                    <div className="mt-1 flex flex-wrap gap-1 text-[10px] text-text-sub">
-                      {item.tags.slice(0, 4).map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full bg-slate-100 px-2 py-1"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                  {/* 右: 出典＋日付 */}
+                  <div className="flex min-w-[140px] flex-col items-start justify-between gap-1 text-[11px] text-text-sub sm:items-end sm:text-right">
+                    <div className="rounded-full bg-slate-900 px-3 py-1 text-[10px] font-medium tracking-[0.18em] text-white">
+                      {sourceName}
                     </div>
-                  )}
+                    <p className="text-[11px] text-slate-500">{dateLabel}</p>
+                  </div>
                 </div>
               </Link>
             </GlassCard>
@@ -326,7 +282,6 @@ export default async function NewsPage({ searchParams }: Props) {
         {filtered.length === 0 && (
           <p className="mt-10 text-center text-sm text-text-sub">
             条件に一致するニュースがありません。
-            検索キーワードやカテゴリ・メーカーの条件を少し緩めてみてください。
           </p>
         )}
       </section>
