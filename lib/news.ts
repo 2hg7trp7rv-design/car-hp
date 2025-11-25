@@ -16,6 +16,7 @@ export type NewsItem = {
   type: "original" | "external";
   content?: string;
   tags?: string[];
+  // トップページなどで特集扱いするかどうかのフラグ（今は未使用でもOK）
   isFeatured?: boolean;
 };
 
@@ -42,6 +43,7 @@ export const getAllNewsCached = unstable_cache(
         type: "external",
         content: "",
         tags: [],
+        isFeatured: false,
       }));
 
       // 日付降順
