@@ -2,271 +2,381 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { GlassCard } from "@/components/GlassCard";
+
 import { getAllCars, getCarBySlug } from "@/lib/cars";
+import type { CarItem } from "@/lib/types";
+import { GlassCard } from "@/components/GlassCard";
 
-type Props = { params: { slug: string } };
+type Props = {
+  params: { slug: string };
+};
 
+// 静的生成用パラメータ
 export async function generateStaticParams() {
   const cars = await getAllCars();
   return cars.map((car) => ({ slug: car.slug }));
 }
 
+// SEOメタデータ
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const car = await getCarBySlug(params.slug);
-  if (!car)
+
+  if (!car) {
     return {
-      title: "車種が見つかりません | CAR BOUTIQUE",
-      description: "指定された車種は見つかりませんでした。",
+      title: "クルマ情報が見つかりません | CAR BOUTIQUE",
+      description: "お探しのクルマ情報は見つかりませんでした。",
     };
+  }
+
+  const title = `${car.name} | クルマ詳細データ`;
+  const description =
+    car.summaryLong ??
+    car.summary ??
+    "スペック・長所短所・トラブル傾向・維持費感までまとめたクルマ詳細ページ。";
 
   return {
-    title: `${car.name} | CAR DETAIL | CAR BOUTIQUE`,
-    description:
-      car.summaryLong ??
-      car.summary ??
-      "性格や維持費のイメージまで含めて整理した車種詳細ページです。",
+    title: `${title} | CAR BOUTIQUE`,
+    description,
+    openGraph: {
+      title: `${title} | CAR BOUTIQUE`,
+      description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | CAR BOUTIQUE`,
+      description,
+    },
   };
+}
+
+function formatMaintenanceLevel(level: CarItem["maintenanceCostLevel"] | undefined) {
+  if (!level) return "不明";
+  switch (level) {
+    case "low":
+      return "維持費レベル: 低め（国産コンパクト〜軽クラス）";
+    case "medium":
+      return "維持費レベル: 中くらい（一般的なファミリーカー〜ミニバン）";
+    case "high":
+      return "維持費レベル: 高め（プレミアムカー・スポーツカー相当）";
+    default:
+      return "維持費レベル: 不明";
+  }
 }
 
 export default async function CarDetailPage({ params }: Props) {
   const car = await getCarBySlug(params.slug);
-  if (!car) notFound();
+
+  if (!car) {
+    notFound();
+  }
+
+  const accentColor = car.accentColor ?? "#0fb8b3";
 
   return (
-    <main className="min-h-screen bg-site text-text-main">
-      <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-12">
-        {/* パンくず */}
-        <nav className="mb-6 text-[11px] text-text-sub">
-          <Link href="/" className="hover:underline hover:text-text-main">
-            HOME
-          </Link>
-          <span className="mx-1">/</span>
-          <Link href="/cars" className="hover:underline hover:text-text-main">
-            CARS
-          </Link>
-          <span className="mx-1">/</span>
-          <span>{car.name}</span>
-        </nav>
+    <main className="min-h-screen bg-gradient-to-br from-[#f5fbfb] to-white pb-16">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 pt-10 md:flex-row md:pt-14 lg:px-6">
+        {/* 左側 カルーセル / ヒーロー情報 */}
+        <section className="w-full md:w-7/12 md:pr-4 lg:pr-8">
+          <div className="mb-4 flex items-center gap-2 text-xs text-muted-foreground">
+            <Link href="/cars" className="underline-offset-2 hover:underline">
+              CARS
+            </Link>
+            <span>/</span>
+            <span>{car.maker}</span>
+            <span>/</span>
+            <span className="truncate">{car.name}</span>
+          </div>
 
-        {/* 車タイトル */}
-        <header className="mb-8">
-          <p className="font-body-light text-[10px] tracking-[0.35em] text-text-sub">
-            CAR DETAIL
-          </p>
-          <h1 className="font-display-serif mt-2 text-2xl font-semibold sm:text-3xl">
-            {car.maker && `${car.maker} `}
-            {car.name}
-          </h1>
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-text-sub">
-            {car.summaryLong ?? car.summary}
-          </p>
-        </header>
-
-        {/* 情報カード群 */}
-        <div className="flex flex-col gap-5 sm:gap-6">
-          {/* メイン概要 */}
-          <GlassCard className="p-6 sm:p-8">
-            <div className="flex flex-wrap gap-2 mb-3 text-[11px] text-text-sub">
-              {car.releaseYear && (
-                <span className="rounded-full bg-white/70 px-3 py-1">
-                  {car.releaseYear}年式
+          <GlassCard className="relative overflow-hidden border border-white/60 bg-white/60 p-6 shadow-[0_18px_60px_rgba(15,184,179,0.12)] backdrop-blur-xl md:p-8">
+            <div
+              className="absolute inset-x-0 top-0 h-1"
+              style={{ background: `linear-gradient(90deg, ${accentColor}, transparent)` }}
+            />
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">
+                {car.name}
+              </h1>
+              {car.grade && (
+                <span className="rounded-full border border-black/5 bg-black/5 px-3 py-0.5 text-xs font-medium tracking-wide">
+                  {car.grade}
                 </span>
               )}
-              {car.segment && (
-                <span className="rounded-full bg-white/70 px-3 py-1">
-                  {car.segment}
-                </span>
-              )}
+            </div>
+
+            <div className="mt-3 flex flex-wrap items-center gap-2 text-xs md:text-[13px]">
+              <span className="rounded-full bg-black/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white">
+                {car.maker}
+              </span>
               {car.bodyType && (
-                <span className="rounded-full bg-white/70 px-3 py-1">
+                <span className="rounded-full bg-black/5 px-3 py-1 text-[11px] font-medium">
                   {car.bodyType}
                 </span>
               )}
+              {car.segment && (
+                <span className="rounded-full bg-black/5 px-3 py-1 text-[11px] font-medium">
+                  {car.segment}
+                </span>
+              )}
+              {car.releaseYear && (
+                <span className="rounded-full bg-black/5 px-3 py-1 text-[11px] font-medium">
+                  {car.releaseYear}年デビュー
+                </span>
+              )}
+              {car.difficulty && (
+                <span className="rounded-full border border-black/10 px-3 py-1 text-[11px] font-medium">
+                  購入・維持難易度: {car.difficulty}
+                </span>
+              )}
             </div>
-            <p className="text-sm leading-relaxed">{car.summaryLong}</p>
+
+            {car.summary && (
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-[15px]">
+                {car.summary}
+              </p>
+            )}
+
+            {/* 主要スペックサマリー */}
+            <div className="mt-6 grid grid-cols-2 gap-3 border-t border-dashed border-black/10 pt-4 text-[11px] md:grid-cols-3 md:text-xs">
+              {car.engine && (
+                <SpecItem label="エンジン" value={car.engine} />
+              )}
+              {car.powerPs != null && (
+                <SpecItem label="最高出力" value={`${car.powerPs}ps`} />
+              )}
+              {car.torqueNm != null && (
+                <SpecItem label="最大トルク" value={`${car.torqueNm}Nm`} />
+              )}
+              {car.drive && (
+                <SpecItem label="駆動方式" value={car.drive} />
+              )}
+              {car.transmission && (
+                <SpecItem label="トランスミッション" value={car.transmission} />
+              )}
+              {car.fuelEconomy && (
+                <SpecItem label="燃費(目安)" value={car.fuelEconomy} />
+              )}
+            </div>
           </GlassCard>
+        </section>
 
-          {/* ① 好きになれるポイント */}
-          {car.positivePoints && (
-            <GlassCard className="p-6 sm:p-8">
-              <h2 className="font-display-serif text-lg font-semibold mb-3">
-                好きになれるポイント
-              </h2>
-              <ul className="list-disc pl-5 space-y-2 text-sm leading-relaxed text-text-sub">
-                {car.positivePoints.map((p: string, i: number) => (
-                  <li key={i}>{p}</li>
-                ))}
-              </ul>
+        {/* 右側 概要・スペックブロック */}
+        <section className="w-full md:w-5/12 md:pl-1">
+          <div className="flex flex-col gap-4">
+            <GlassCard className="border border-white/70 bg-white/70 p-5 backdrop-blur-xl">
+              <SectionTitle label="このクルマの性格" />
+              {car.summaryLong ? (
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-[15px]">
+                  {car.summaryLong}
+                </p>
+              ) : (
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  詳細なキャラクター情報は追って追加予定です。
+                </p>
+              )}
+              {car.specHighlights && (
+                <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+                  <span className="font-semibold text-foreground">ハイライト: </span>
+                  {car.specHighlights}
+                </p>
+              )}
             </GlassCard>
-          )}
 
-          {/* ② 気になるかもしれないポイント */}
-          {car.negativePoints && (
-            <GlassCard className="p-6 sm:p-8">
-              <h2 className="font-display-serif text-lg font-semibold mb-3">
-                気になるかもしれないポイント
-              </h2>
-              <ul className="list-disc pl-5 space-y-2 text-sm leading-relaxed text-text-sub">
-                {car.negativePoints.map((p: string, i: number) => (
-                  <li key={i}>{p}</li>
-                ))}
-              </ul>
-            </GlassCard>
-          )}
-
-          {/* ③ 合う人・合わない人 */}
-          {car.matching && (
-            <GlassCard className="p-6 sm:p-8">
-              <h2 className="font-display-serif text-lg font-semibold mb-3">
-                この車の合う人・合わない人
-              </h2>
-              <div className="grid gap-3 sm:grid-cols-2">
-                <div>
-                  <p className="font-semibold text-sm mb-1">向いている人</p>
-                  <ul className="list-disc pl-5 space-y-2 text-sm text-text-sub">
-                    {car.matching.good.map((p: string, i: number) => (
-                      <li key={i}>{p}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <p className="font-semibold text-sm mb-1">向かない人</p>
-                  <ul className="list-disc pl-5 space-y-2 text-sm text-text-sub">
-                    {car.matching.bad.map((p: string, i: number) => (
-                      <li key={i}>{p}</li>
-                    ))}
-                  </ul>
-                </div>
+            <GlassCard className="border border-white/70 bg-white/70 p-5 backdrop-blur-xl">
+              <SectionTitle label="ボディサイズ・スペック" />
+              <div className="mt-3 grid grid-cols-2 gap-3 text-[11px] md:text-xs">
+                {car.sizeMmLength && (
+                  <SpecItem label="全長" value={`${car.sizeMmLength.toLocaleString()}mm`} />
+                )}
+                {car.sizeMmWidth && (
+                  <SpecItem label="全幅" value={`${car.sizeMmWidth.toLocaleString()}mm`} />
+                )}
+                {car.sizeMmHeight && (
+                  <SpecItem label="全高" value={`${car.sizeMmHeight.toLocaleString()}mm`} />
+                )}
+                {car.wheelbaseMm && (
+                  <SpecItem
+                    label="ホイールベース"
+                    value={`${car.wheelbaseMm.toLocaleString()}mm`}
+                  />
+                )}
+                {car.weightKg && (
+                  <SpecItem label="車重(目安)" value={`${car.weightKg.toLocaleString()}kg`} />
+                )}
               </div>
             </GlassCard>
-          )}
 
-          {/* ④ よくあるトラブル傾向 */}
-          {car.troublePoints && (
-            <GlassCard className="p-6 sm:p-8">
-              <h2 className="font-display-serif text-lg font-semibold mb-3">
-                よくあるトラブル傾向
-              </h2>
-              <ul className="list-disc pl-5 space-y-2 text-sm text-text-sub">
-                {car.troublePoints.map((p: string, i: number) => (
-                  <li key={i}>{p}</li>
-                ))}
-              </ul>
+            <GlassCard className="border border-white/70 bg-white/70 p-5 backdrop-blur-xl">
+              <SectionTitle label="価格・維持費感" />
+              <div className="mt-3 space-y-2 text-[12px] leading-relaxed text-muted-foreground">
+                {car.costNewPriceRange && (
+                  <p>
+                    <span className="font-semibold text-foreground">新車価格帯: </span>
+                    {car.costNewPriceRange}
+                  </p>
+                )}
+                {car.costUsedPriceRange && (
+                  <p>
+                    <span className="font-semibold text-foreground">中古車相場感: </span>
+                    {car.costUsedPriceRange}
+                  </p>
+                )}
+                <p className="mt-1">{formatMaintenanceLevel(car.maintenanceCostLevel)}</p>
+              </div>
             </GlassCard>
-          )}
+          </div>
+        </section>
+      </div>
 
-          {/* ⑤ 維持費と付き合い方のコツ */}
-          {car.maintenanceTips && (
-            <GlassCard className="p-6 sm:p-8">
-              <h2 className="font-display-serif text-lg font-semibold mb-3">
-                維持費と付き合い方のコツ
-              </h2>
-              <ul className="list-disc pl-5 space-y-2 text-sm text-text-sub">
-                {car.maintenanceTips.map((p: string, i: number) => (
-                  <li key={i}>{p}</li>
-                ))}
-              </ul>
-            </GlassCard>
-          )}
+      {/* 下段 セクション 3カラム構成 */}
+      <div className="mx-auto mt-4 max-w-6xl px-4 lg:px-6">
+        <div className="grid gap-5 lg:grid-cols-3">
+          {/* 長所・短所 */}
+          <GlassCard className="border border-white/70 bg-white/80 p-5 backdrop-blur-xl">
+            <SectionTitle label="長所と短所" />
 
-          {/* ⑥ モデルチェンジで変わったところ */}
-          {car.modelChange && (
-            <GlassCard className="p-6 sm:p-8">
-              <h2 className="font-display-serif text-lg font-semibold mb-3">
-                モデルチェンジで変わったところ
-              </h2>
-              <ul className="list-disc pl-5 space-y-2 text-sm text-text-sub">
-                {car.modelChange.map((p: string, i: number) => (
-                  <li key={i}>{p}</li>
-                ))}
-              </ul>
-            </GlassCard>
-          )}
-
-          {/* MAIN SPEC */}
-          <GlassCard className="p-4 sm:p-5">
-            <h2 className="font-display-serif text-sm font-semibold tracking-[0.18em] text-text-sub">
-              MAIN SPEC
-            </h2>
-            <div className="mt-3 grid gap-4 text-xs sm:grid-cols-2 sm:text-sm">
-              <SpecRow label="ボディタイプ" value={car.bodyType} />
-              <SpecRow label="エンジン" value={car.engine} />
-              <SpecRow
-                label="最高出力"
-                value={
-                  car.powerPs ? `${car.powerPs.toLocaleString()}ps` : undefined
-                }
-              />
-              <SpecRow label="トランスミッション" value={car.transmission} />
-              <SpecRow label="駆動方式" value={car.drive} />
-              <SpecRow label="燃料" value={car.fuel} />
-              <SpecRow
-                label="実燃費目安"
-                value={
-                  car.fuelEconomy ? `${car.fuelEconomy}km/L前後` : undefined
-                }
-              />
+            <div className="mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground md:text-[15px]">
+              <div>
+                <p className="text-xs font-semibold tracking-[0.12em] text-foreground/70">
+                  GOOD
+                </p>
+                {car.pros ? (
+                  <p className="mt-1 whitespace-pre-line">{car.pros}</p>
+                ) : (
+                  <p className="mt-1">長所の詳細は順次追加予定です。</p>
+                )}
+              </div>
+              <div className="border-t border-dashed border-black/10 pt-3">
+                <p className="text-xs font-semibold tracking-[0.12em] text-foreground/70">
+                  NOTE
+                </p>
+                {car.cons ? (
+                  <p className="mt-1 whitespace-pre-line">{car.cons}</p>
+                ) : (
+                  <p className="mt-1">気になるポイントの詳細は順次追加予定です。</p>
+                )}
+              </div>
             </div>
           </GlassCard>
 
-          {/* SIZE & DIMENSION */}
-          <GlassCard className="p-4 sm:p-5">
-            <h2 className="font-display-serif text-sm font-semibold tracking-[0.18em] text-text-sub">
-              SIZE & DIMENSION
-            </h2>
-            <div className="mt-3 grid gap-4 text-xs sm:grid-cols-2 sm:text-sm">
-              <SpecRow
-                label="全長×全幅×全高"
-                value={
-                  car.sizeMmLength &&
-                  car.sizeMmWidth &&
-                  car.sizeMmHeight
-                    ? `${car.sizeMmLength} × ${car.sizeMmWidth} × ${car.sizeMmHeight}mm`
-                    : undefined
-                }
-              />
-              <SpecRow
-                label="ホイールベース"
-                value={
-                  car.wheelbaseMm
-                    ? `${car.wheelbaseMm.toLocaleString()}mm`
-                    : undefined
-                }
-              />
-              <SpecRow
-                label="車両重量"
-                value={
-                  car.weightKg ? `${car.weightKg.toLocaleString()}kg` : undefined
-                }
-              />
+          {/* トラブル・メンテナンス */}
+          <GlassCard className="border border-white/70 bg-white/80 p-5 backdrop-blur-xl">
+            <SectionTitle label="トラブル傾向とメンテナンス" />
+
+            <div className="mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground md:text-[15px]">
+              <div>
+                <p className="text-xs font-semibold tracking-[0.12em] text-foreground/70">
+                  TROUBLE TRENDS
+                </p>
+                {car.troubleTrends ? (
+                  <p className="mt-1 whitespace-pre-line">{car.troubleTrends}</p>
+                ) : (
+                  <p className="mt-1">
+                    代表的なトラブルや故障傾向は、今後実オーナーの声や事例を元にアップデートしていきます。
+                  </p>
+                )}
+              </div>
+              <div className="border-t border-dashed border-black/10 pt-3">
+                <p className="text-xs font-semibold tracking-[0.12em] text-foreground/70">
+                  MAINTENANCE
+                </p>
+                {Array.isArray(car.maintenanceTips) ? (
+                  <ul className="mt-1 list-disc space-y-1 pl-5 text-[13px]">
+                    {car.maintenanceTips.map((tip, idx) => (
+                      <li key={idx}>{tip}</li>
+                    ))}
+                  </ul>
+                ) : car.maintenanceTips ? (
+                  <p className="mt-1 whitespace-pre-line">{car.maintenanceTips as string}</p>
+                ) : (
+                  <p className="mt-1">
+                    メンテナンスのコツや注意点は、実際の整備事例をもとに追記予定です。
+                  </p>
+                )}
+              </div>
             </div>
           </GlassCard>
 
-          {/* 戻るリンク */}
-          <div className="text-right">
+          {/* 向いている人／向かない人・モデル変遷 */}
+          <GlassCard className="border border-white/70 bg-white/80 p-5 backdrop-blur-xl">
+            <SectionTitle label="どんな人に向いているか" />
+
+            <div className="mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground md:text-[15px]">
+              <div>
+                <p className="text-xs font-semibold tracking-[0.12em] text-foreground/70">
+                  RECOMMENDED
+                </p>
+                {car.recommendFor ? (
+                  <p className="mt-1 whitespace-pre-line">{car.recommendFor}</p>
+                ) : (
+                  <p className="mt-1">おすすめのユーザー像は順次追加予定です。</p>
+                )}
+              </div>
+              <div className="border-t border-dashed border-black/10 pt-3">
+                <p className="text-xs font-semibold tracking-[0.12em] text-foreground/70">
+                  NOT RECOMMENDED
+                </p>
+                {car.notFor ? (
+                  <p className="mt-1 whitespace-pre-line">{car.notFor}</p>
+                ) : (
+                  <p className="mt-1">あまり相性が良くない使い方の例も、今後追記していきます。</p>
+                )}
+              </div>
+              {car.changeSummary && (
+                <div className="border-t border-dashed border-black/10 pt-3">
+                  <p className="text-xs font-semibold tracking-[0.12em] text-foreground/70">
+                    MODEL CHANGES
+                  </p>
+                  <p className="mt-1 whitespace-pre-line">{car.changeSummary}</p>
+                </div>
+              )}
+            </div>
+          </GlassCard>
+        </div>
+
+        {/* 参考リンク */}
+        {car.referenceUrl && (
+          <div className="mt-6 text-right text-[11px] text-muted-foreground">
+            公式情報:
+            {" "}
             <Link
-              href="/cars"
-              className="text-[11px] text-text-sub underline-offset-4 hover:text-text-main hover:underline"
+              href={car.referenceUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="underline underline-offset-2"
             >
-              車種一覧へ戻る
+              メーカー公式サイトを見る
             </Link>
           </div>
-        </div>
+        )}
       </div>
     </main>
   );
 }
 
-type SpecRowProps = { label: string; value?: string | null };
-function SpecRow({ label, value }: SpecRowProps) {
-  if (!value) return null;
+type SpecItemProps = {
+  label: string;
+  value: string;
+};
+
+function SpecItem({ label, value }: SpecItemProps) {
   return (
     <div>
-      <p className="text-[11px] uppercase tracking-[0.18em] text-text-sub">
+      <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
         {label}
       </p>
-      <p className="mt-1 text-sm">{value}</p>
+      <p className="mt-0.5 text-[12px] font-medium text-foreground">{value}</p>
     </div>
+  );
+}
+
+type SectionTitleProps = {
+  label: string;
+};
+
+function SectionTitle({ label }: SectionTitleProps) {
+  return (
+    <h2 className="text-xs font-semibold tracking-[0.2em] text-muted-foreground">
+      {label.toUpperCase()}
+    </h2>
   );
 }
