@@ -1,79 +1,50 @@
 // lib/cars.ts
-import type { Difficulty, MaintenanceCostLevel } from "@/lib/types";
-export type { CarItem } from "@/lib/types";
-import type { CarItem as BaseCarItem } from "@/lib/types";
+
+import type { Difficulty, MaintenanceCostLevel, CarItem as BaseCarItem } from "@/lib/types";
 
 import cars1 from "@/data/cars1.json";
 import cars2 from "@/data/cars2.json";
 import cars3 from "@/data/cars3.json";
+// import cars4 from "@/data/cars4.json";
 
-function ensureArray<T>(value: T | T[] | null | undefined): T[] {
-  if (value == null) return [];
-  return Array.isArray(value) ? value : [value];
-}
-
-type CarItemInternal = BaseCarItem & {
+// 内部型：JSON と CarItem をそのまま統合して扱う
+export type CarItemInternal = BaseCarItem & {
   difficulty?: Difficulty;
   maintenanceCostLevel?: MaintenanceCostLevel;
 
-  positivePoints?: string[];
-  negativePoints?: string[];
-  matching?: {
-    good: string[];
-    bad: string[];
-  };
-  troublePoints?: string[];
-  maintenanceTips?: string[];
-  modelChange?: string[];
+  // ここにも追加
+  accentColor?: string | null;
 };
 
-function normalizeCar(raw: any): CarItemInternal {
-  return {
-    ...raw,
-    positivePoints: ensureArray(raw.positivePoints),
-    negativePoints: ensureArray(raw.negativePoints),
-    matching: raw.matching
-      ? {
-          good: ensureArray(raw.matching.good),
-          bad: ensureArray(raw.matching.bad),
-        }
-      : undefined,
-    troublePoints: ensureArray(raw.troublePoints),
-    maintenanceTips: ensureArray(raw.maintenanceTips),
-    modelChange: ensureArray(raw.modelChange),
-  };
-}
-
+// 全 JSON の統合
 const allCars: CarItemInternal[] = [
-  ...cars1.map(normalizeCar),
-  ...cars2.map(normalizeCar),
-  ...cars3.map(normalizeCar),
+  ...(cars1 as CarItemInternal[]),
+  ...(cars2 as CarItemInternal[]),
+  ...(cars3 as CarItemInternal[]),
+  // ...(cars4 as CarItemInternal[]),
 ];
 
+// 全車
 export async function getAllCars(): Promise<CarItemInternal[]> {
   const sorted = [...allCars].sort((a, b) => {
-    const aYear = a.releaseYear ?? 0;
-    const bYear = b.releaseYear ?? 0;
-    if (aYear !== bYear) return bYear - aYear;
+    const ay = a.releaseYear ?? 0;
+    const by = b.releaseYear ?? 0;
+    if (ay !== by) return by - ay;
     return a.slug.localeCompare(b.slug, "ja");
   });
-
   return sorted;
 }
 
-export async function getCarBySlug(
-  slug: string,
-): Promise<CarItemInternal | null> {
+// 1車種
+export async function getCarBySlug(slug: string): Promise<CarItemInternal | null> {
   const cars = await getAllCars();
-  return cars.find((car) => car.slug === slug) ?? null;
+  return cars.find((c) => c.slug === slug) ?? null;
 }
 
-export async function getCarsByMaker(
-  maker: string,
-  limit?: number,
-): Promise<CarItemInternal[]> {
+// メーカー別
+export async function getCarsByMaker(maker: string, limit?: number): Promise<CarItemInternal[]> {
   const cars = await getAllCars();
-  const filtered = cars.filter((car) => car.maker === maker);
+  const filtered = cars.filter((c) => c.maker === maker);
   if (!limit || filtered.length <= limit) return filtered;
   return filtered.slice(0, limit);
 }
