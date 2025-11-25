@@ -1,109 +1,168 @@
 // app/heritage/page.tsx
+export const runtime = "edge";
+
 import type { Metadata } from "next";
 import Link from "next/link";
 import { GlassCard } from "@/components/GlassCard";
 
 export const metadata: Metadata = {
-  title: "HERITAGE | 物語と系譜 | CAR BOUTIQUE",
+  title: "HERITAGE | ブランドとモデルの系譜 | CAR BOUTIQUE",
   description:
-    "ブランドやモデルの歴史、世代ごとの変遷などをゆっくり眺めるためのHERITAGEエリアです。",
+    "名車やブランドの背景、モデルの系譜を静かに眺めるためのHERITAGEエリアです。BMW 5シリーズやGT-Rなど、少しずつ車種を増やしていきます。",
 };
 
-const heritageItems = [
+type HeritageTimelineItem = {
+  id: string;
+  era: string;
+  title: string;
+  summary: string;
+  highlight?: string;
+  linkHref?: string;
+  linkLabel?: string;
+};
+
+const timelines: HeritageTimelineItem[] = [
   {
-    id: "bmw-5-series-history",
-    label: "BMW",
-    title: "5シリーズの系譜と、G30の立ち位置",
+    id: "bmw-5series",
+    era: "1972 →",
+    title: "BMW 5シリーズの系譜",
     summary:
-      "E39からG30まで。ビジネスセダンとしての役割と、世代ごとのキャラクターの変化をざっくり振り返ります。",
-    href: "#",
-    pill: "セダンの王道",
+      "初代E12から現行型に至るまで、『ビジネスセダン』と『ドライバーズカー』のバランスを追い続けてきた5シリーズ。G30は、その中でも静粛性とスポーティさのバランスが洗練された世代です。",
+    highlight: "E39・E60・F10・G30の4世代比較なども、将来的に整理予定。",
+    linkHref: "/cars/bmw-530i-g30",
+    linkLabel: "BMW 530i G30の詳細を見る",
   },
   {
-    id: "jdm-heritage-gtr",
-    label: "NISSAN",
-    title: "スカイラインGT-Rが残したもの",
+    id: "japan-gt-r",
+    era: "1969 →",
+    title: "SKYLINE GT-Rと『GT-R』バッジの物語",
     summary:
-      "BNR32・BCNR33・BNR34と続くGT-Rの歴史を、モータースポーツとの関係とともに整理していきます。",
-    href: "#",
-    pill: "JDMスポーツ",
+      "初代ハコスカからR32・R33・R34、そしてR35へ。レースで勝つために生まれたホモロゲーションモデルが、いつしか日本を代表する夢のスポーツカーになっていくプロセスをたどります。",
+    highlight: "まずはBNR32のページから、少しずつストーリーを追加予定。",
+    linkHref: "/cars/nissan-skyline-gt-r-bnr32",
+    linkLabel: "BNR32の詳細を見る",
   },
   {
-    id: "suv-luxury-lineage",
-    label: "SUV",
-    title: "ラグジュアリーSUVというジャンルの誕生",
+    id: "urban-suv",
+    era: "2000s →",
+    title: "都市型SUVというジャンルの成長",
     summary:
-      "ハリアーやX5といった初期のモデルから、今のラグジュアリーSUV群に至るまでの流れを俯瞰します。",
-    href: "#",
-    pill: "ラグジュアリーSUV",
+      "『背の高いセダン』のような存在だった初期のクロスオーバーから、ライフスタイルを映し出すプロダクトへ。トヨタ ハリアーは、その流れを日本で象徴するモデルのひとつです。",
+    highlight: "80系ハリアーを軸に、デザインと快適性の変遷を整理していきます。",
+    linkHref: "/cars/toyota-harrier-80",
+    linkLabel: "80系ハリアーの詳細を見る",
   },
 ];
 
 export default function HeritagePage() {
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 pb-16 pt-20 sm:px-6 sm:pt-24 lg:px-8">
+      {/* ヘッダー */}
       <header className="mb-8 space-y-2">
         <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
           HERITAGE
         </p>
         <h1 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
-          物語と系譜
+          ブランドとモデルの系譜
         </h1>
         <p className="max-w-2xl text-xs leading-relaxed text-text-sub sm:text-[13px]">
-          クルマやブランドの背景にあるストーリーを、
-          世代ごとの変遷や時代の空気と一緒に振り返るエリアです。
-          スペックや価格だけでなく、「なぜこのクルマが愛されてきたのか」をゆっくり眺めていきます。
+          カタログスペックや最新ニュースから少し離れて、
+          「このモデルにはどういう背景があるのか」
+          「このブランドは何を大切にしてきたのか」
+          を静かに眺めるためのエリアです。
         </p>
       </header>
 
-      <section className="grid gap-4 md:grid-cols-2">
-        {heritageItems.map((item) => (
+      {/* 概要カード */}
+      <section className="mb-8">
+        <GlassCard className="grid gap-4 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
+          <div>
+            <p className="text-[10px] font-semibold tracking-[0.3em] text-text-sub">
+              CONCEPT
+            </p>
+            <p className="mt-3 text-xs leading-relaxed text-text-sub sm:text-[13px]">
+              HERITAGEでは、年表のような「事実の羅列」だけでなく、
+              その時代の空気感やオーナーの視点も含めて、
+              少し長いスパンでクルマを眺めていくことを目指します。
+            </p>
+            <p className="mt-3 text-[11px] leading-relaxed text-text-sub">
+              まずはBMW 5シリーズ、GT-R、都市型SUVなど、
+              いくつかの軸からゆっくりと範囲を広げていきます。
+            </p>
+          </div>
+          <div className="space-y-2 text-[11px] text-text-sub">
+            <p className="font-semibold text-slate-700">
+              このエリアで今後やりたいこと
+            </p>
+            <ul className="space-y-1">
+              <li>・世代ごとの「キャラクターの違い」の整理</li>
+              <li>・主要トピックごとの簡易年表</li>
+              <li>・CARS・COLUMN・NEWSとの横断リンク</li>
+            </ul>
+          </div>
+        </GlassCard>
+      </section>
+
+      {/* タイムライン的カード群 */}
+      <section className="space-y-4">
+        {timelines.map((item) => (
           <GlassCard
             key={item.id}
             as="article"
             interactive
-            className="flex h-full flex-col p-4 sm:p-5"
+            className="flex flex-col gap-3 p-4 sm:p-5"
           >
-            <div className="flex h-full flex-col">
-              <div className="flex items-center justify-between gap-3 text-[11px] text-text-sub">
-                <span className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-3 py-1 text-[10px] font-medium tracking-[0.18em] text-white">
-                  <span className="h-1.5 w-1.5 rounded-full bg-tiffany-300" />
-                  {item.label}
-                </span>
-                <span className="rounded-full bg-white/80 px-3 py-1">
-                  {item.pill}
-                </span>
-              </div>
+            <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-sub">
+              <span className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-3 py-1 text-[10px] font-medium tracking-[0.2em] text-white">
+                <span className="h-1.5 w-1.5 rounded-full bg-tiffany-300" />
+                HERITAGE LINE
+              </span>
+              <span className="rounded-full bg-white/80 px-3 py-1 text-[10px]">
+                {item.era}
+              </span>
+            </div>
 
-              <h2 className="mt-3 text-base font-semibold leading-snug text-slate-900 sm:text-[17px]">
-                {item.title}
-              </h2>
+            <h2 className="text-base font-semibold leading-snug text-slate-900 sm:text-[17px]">
+              {item.title}
+            </h2>
 
-              <p className="mt-2 flex-1 text-xs leading-relaxed text-text-sub">
-                {item.summary}
+            <p className="text-xs leading-relaxed text-text-sub sm:text-[13px]">
+              {item.summary}
+            </p>
+
+            {item.highlight && (
+              <p className="mt-1 text-[11px] leading-relaxed text-slate-500">
+                {item.highlight}
               </p>
+            )}
 
-              <div className="mt-4">
+            <div className="mt-3 flex flex-wrap gap-2 text-[11px]">
+              {item.linkHref && item.linkLabel && (
                 <Link
-                  href={item.href}
-                  className="text-[11px] font-medium text-tiffany-700 underline-offset-4 hover:underline"
+                  href={item.linkHref}
+                  className="rounded-full border border-tiffany-400/70 bg-white/80 px-4 py-1.5 font-medium text-tiffany-700 hover:bg-white"
                 >
-                  詳細コンテンツは順次公開予定です
+                  {item.linkLabel}
                 </Link>
-              </div>
+              )}
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-600">
+                CARS / COLUMN / NEWS と連携予定
+              </span>
             </div>
           </GlassCard>
         ))}
       </section>
 
+      {/* フッターノート */}
       <section className="mt-10">
         <GlassCard className="p-4 sm:p-5">
           <p className="text-[10px] font-semibold tracking-[0.3em] text-text-sub">
             NOTE
           </p>
           <p className="mt-2 text-xs leading-relaxed text-text-sub sm:text-[13px]">
-            HERITAGEの内容は、CARSページやCOLUMN、GUIDEと相互リンクしながら、
-            「1台のクルマを色々な角度から眺められる」形に少しずつ整えていきます。
+            HERITAGEのコンテンツは、CARSページやコラム、ニュースとリンクしながら、
+            長い時間軸で少しずつ厚みを増やしていく予定です。
+            まずは今登録している車種の系譜から、静かに整えていきます。
           </p>
         </GlassCard>
       </section>
