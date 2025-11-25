@@ -1,0 +1,15 @@
+[
+  {
+    "id": "rss-https%3A%2F%2Fexample.com%2Fnews%2Fsample",
+    "url": "https://example.com/news/sample",
+    "title": "サンプルニュースタイトル",
+    "titleJa": "サンプルニュースタイトル",
+    "excerpt": "これはニュースデータ構造を示すためのサンプルです。実際の運用ではRSSから生成したデータをここに入れます。",
+    "category": "サンプル",
+    "maker": "OTHER",
+    "tags": ["サンプル", "ニュース"],
+    "sourceName": "Sample Media",
+    "publishedAt": "2025-01-01T00:00:00+09:00",
+    "createdAt": "2025-01-01T00:00:00+09:00"
+  }
+]
