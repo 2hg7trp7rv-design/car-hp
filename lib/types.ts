@@ -3,29 +3,22 @@
 export type Difficulty = "basic" | "medium" | "advanced";
 export type MaintenanceCostLevel = "low" | "medium" | "high";
 
+// ここが全車種 JSON の「正規型」
 export type CarItem = {
-  id?: string;
-  slug: string;
+  id: string;
   name: string;
+  slug: string;
   maker: string;
 
-  makerKana?: string;
-  bodyType?: string;
-  segment?: string;
-  grade?: string | null;
   releaseYear?: number | null;
+  difficulty?: Difficulty;
+
+  bodyType?: string | null;
+  segment?: string | null;
+  grade?: string | null;
 
   summary?: string | null;
   summaryLong?: string | null;
-
-  pros?: string | null;
-  cons?: string | null;
-  recommendFor?: string | null;
-  notFor?: string | null;
-
-  troubleTrends?: string | null;
-  maintenanceTips?: string | null;
-  changeSummary?: string | null;
 
   engine?: string | null;
   powerPs?: number | null;
@@ -35,18 +28,31 @@ export type CarItem = {
   fuel?: string | null;
   fuelEconomy?: string | null;
 
-  costNewPriceRange?: string | null;
-  costUsedPriceRange?: string | null;
-
   sizeMmLength?: number | null;
   sizeMmWidth?: number | null;
   sizeMmHeight?: number | null;
   wheelbaseMm?: number | null;
   weightKg?: number | null;
 
-  difficulty?: Difficulty;
+  specHighlights?: string | null;
+  pros?: string | null;
+  cons?: string | null;
+
+  troubleTrends?: string | null;
+  maintenanceTips?: string | null;
+
+  costNewPriceRange?: string | null;
+  costUsedPriceRange?: string | null;
+
   maintenanceCostLevel?: MaintenanceCostLevel;
 
-  tags?: string[];
+  // 今回追加
+  accentColor?: string | null;
+
+  recommendFor?: string | null;
+  notFor?: string | null;
+  changeSummary?: string | null;
+
   referenceUrl?: string | null;
+  tags?: string[];
 };
