@@ -1,180 +1,151 @@
 // app/cars/page.tsx
-import { GlassCard } from "@/components/GlassCard";
 import Link from "next/link";
 import { getAllCars } from "@/lib/cars";
-
-export const metadata = {
-  title: "車種データベース | CAR BOUTIQUE",
-  description:
-    "スペック、性格、維持費、トラブル傾向などを含めた車種データを丁寧に整理。高品質な車種カタログ。",
-};
 
 export default async function CarsPage({
   searchParams,
 }: {
   searchParams?: {
-    q?: string;
-    bodyType?: string;
+    maker?: string;
+    body?: string;
     segment?: string;
   };
 }) {
-  const q = (searchParams?.q ?? "").toLowerCase();
-  const bodyFilter = searchParams?.bodyType ?? "";
+  const makerFilter = searchParams?.maker ?? "";
+  const bodyFilter = searchParams?.body ?? "";
   const segmentFilter = searchParams?.segment ?? "";
 
   const cars = await getAllCars();
 
-  const filtered = cars.filter((item) => {
-    const summaryText = (item.summary ?? "").toLowerCase();
-
-    const matchesQuery =
-      q === "" ||
-      item.name.toLowerCase().includes(q) ||
-      summaryText.includes(q);
-
-    const matchesBody =
-      bodyFilter === "" ||
-      item.bodyType?.toLowerCase() === bodyFilter.toLowerCase();
-
-    const matchesSegment =
-      segmentFilter === "" ||
-      item.segment?.toLowerCase() === segmentFilter.toLowerCase();
-
-    return matchesQuery && matchesBody && matchesSegment;
-  });
+  // null や undefined を除去して純粋な string[] だけに整形
+  const uniqueMakers = Array.from(
+    new Set(
+      cars
+        .map((c) => c.maker)
+        .filter((v): v is string => typeof v === "string" && v.length > 0),
+    ),
+  );
 
   const uniqueBodies = Array.from(
-    new Set(cars.map((c) => c.bodyType).filter(Boolean)),
+    new Set(
+      cars
+        .map((c) => c.bodyType)
+        .filter((v): v is string => typeof v === "string" && v.length > 0),
+    ),
   );
+
   const uniqueSegments = Array.from(
-    new Set(cars.map((c) => c.segment).filter(Boolean)),
+    new Set(
+      cars
+        .map((c) => c.segment)
+        .filter((v): v is string => typeof v === "string" && v.length > 0),
+    ),
   );
+
+  // フィルタリング
+  const filtered = cars.filter((c) => {
+    if (makerFilter && c.maker !== makerFilter) return false;
+    if (bodyFilter && c.bodyType !== bodyFilter) return false;
+    if (segmentFilter && c.segment !== segmentFilter) return false;
+    return true;
+  });
 
   return (
-    <main className="min-h-screen bg-site text-text-main">
-      <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
-        {/* 見出し */}
-        <header className="mb-10">
-          <p className="font-body-light text-[10px] tracking-[0.35em] text-text-sub">
-            DATABASE
-          </p>
-          <h1 className="font-display-serif mt-3 text-3xl font-semibold sm:text-4xl">
-            車種データベース
-          </h1>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-text-sub">
-            各車種の基本情報から、性格、維持のしやすさ、長所・短所、トラブル傾向まで。
-            スペック表だけでは分からない「実際どういう車なのか」を丁寧にまとめています。
-          </p>
-        </header>
+    <main className="min-h-screen bg-white px-4 py-8">
+      <h1 className="text-3xl font-display-serif mb-6">車種一覧</h1>
 
-        {/* フィルタUI（GlassCard） */}
-        <GlassCard className="mb-10">
-          <form className="grid gap-4 sm:grid-cols-3 sm:gap-6">
-            {/* キーワード */}
-            <div className="flex flex-col">
-              <label className="font-body-light text-[10px] tracking-[0.25em] text-text-sub mb-1">
-                キーワード
-              </label>
-              <input
-                type="text"
-                name="q"
-                placeholder="車名・特徴で検索"
-                defaultValue={q}
-                className="rounded-md border border-gray-200 px-3 py-2 text-sm outline-none focus:border-brand-tiffanySoft"
-              />
-            </div>
-
-            {/* ボディタイプ */}
-            <div className="flex flex-col">
-              <label className="font-body-light text-[10px] tracking-[0.25em] text-text-sub mb-1">
-                ボディタイプ
-              </label>
-              <select
-                name="bodyType"
-                defaultValue={bodyFilter}
-                className="rounded-md border border-gray-200 px-3 py-2 text-sm outline-none focus:border-brand-tiffanySoft"
-              >
-                <option value="">すべて</option>
-                {uniqueBodies.map((b) => (
-                  <option key={b} value={b}>
-                    {b}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* セグメント */}
-            <div className="flex flex-col">
-              <label className="font-body-light text-[10px] tracking-[0.25em] text-text-sub mb-1">
-                セグメント
-              </label>
-              <select
-                name="segment"
-                defaultValue={segmentFilter}
-                className="rounded-md border border-gray-200 px-3 py-2 text-sm outline-none focus:border-brand-tiffanySoft"
-              >
-                <option value="">すべて</option>
-                {uniqueSegments.map((s) => (
-                  <option key={s} value={s}>
-                    {s}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* 検索ボタン */}
-            <div className="sm:col-span-3 flex justify-end">
-              <button
-                type="submit"
-                className="mt-2 rounded-md bg-brand-tiffany px-5 py-2 text-xs font-semibold tracking-wider text-white transition hover:bg-brand-tiffanySoft"
-              >
-                SEARCH
-              </button>
-            </div>
-          </form>
-        </GlassCard>
-
-        {/* 一覧 */}
-        <div className="space-y-4">
-          {filtered.map((car) => (
-            <GlassCard
-              key={car.id}
-              as="article"
-              className="transition hover:shadow-lg"
-            >
-              <Link href={`/cars/${car.slug}`} className="block">
-                <div className="flex flex-col gap-2">
-                  <p className="font-body-light text-[10px] tracking-[0.25em] text-brand-tiffanySoft">
-                    {car.maker ?? ""}
-                  </p>
-
-                  <h2 className="font-display-serif text-lg font-semibold leading-snug">
-                    {car.name}
-                  </h2>
-
-                  {car.summary && (
-                    <p className="text-xs leading-relaxed text-text-sub">
-                      {car.summary}
-                    </p>
-                  )}
-
-                  <div className="mt-1 flex items-center justify-between text-[11px] text-text-sub">
-                    <p>{car.releaseYear}年式</p>
-                    <p>{car.bodyType}</p>
-                  </div>
-                </div>
-              </Link>
-            </GlassCard>
+      {/* フィルタ UI */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+        {/* メーカー */}
+        <select
+          className="border rounded-md px-3 py-2"
+          value={makerFilter}
+          onChange={(e) => {
+            const v = e.target.value;
+            const params = new URLSearchParams(searchParams as any);
+            if (v) params.set("maker", v);
+            else params.delete("maker");
+            window.location.search = params.toString();
+          }}
+        >
+          <option value="">すべて</option>
+          {uniqueMakers.map((m) => (
+            <option key={m} value={m}>
+              {m}
+            </option>
           ))}
-        </div>
+        </select>
 
-        {/* 該当なし */}
-        {filtered.length === 0 && (
-          <p className="mt-10 text-center text-sm text-text-sub">
-            条件に一致する車種がありません。
-          </p>
-        )}
+        {/* ボディタイプ */}
+        <select
+          className="border rounded-md px-3 py-2"
+          value={bodyFilter}
+          onChange={(e) => {
+            const v = e.target.value;
+            const params = new URLSearchParams(searchParams as any);
+            if (v) params.set("body", v);
+            else params.delete("body");
+            window.location.search = params.toString();
+          }}
+        >
+          <option value="">すべて</option>
+          {uniqueBodies.map((b) => (
+            <option key={b} value={b}>
+              {b}
+            </option>
+          ))}
+        </select>
+
+        {/* セグメント */}
+        <select
+          className="border rounded-md px-3 py-2"
+          value={segmentFilter}
+          onChange={(e) => {
+            const v = e.target.value;
+            const params = new URLSearchParams(searchParams as any);
+            if (v) params.set("segment", v);
+            else params.delete("segment");
+            window.location.search = params.toString();
+          }}
+        >
+          <option value="">すべて</option>
+          {uniqueSegments.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
       </div>
+
+      {/* 一覧表示 */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {filtered.map((car) => (
+          <Link
+            key={car.id}
+            href={`/cars/${car.slug}`}
+            className="block border rounded-xl p-5 shadow-sm hover:shadow-md transition"
+          >
+            <h2 className="text-xl font-semibold mb-2">{car.name}</h2>
+
+            <div className="text-sm text-gray-600 mb-1">
+              {car.maker} / {car.bodyType}
+            </div>
+            <div className="text-sm text-gray-600 mb-1">
+              {car.segment} / {car.releaseYear}
+            </div>
+
+            <p className="text-gray-700 text-sm line-clamp-2 mt-3">
+              {car.summary}
+            </p>
+          </Link>
+        ))}
+      </div>
+
+      {filtered.length === 0 && (
+        <p className="text-center mt-10 text-gray-500">
+          条件に合う車種がありません
+        </p>
+      )}
     </main>
   );
 }
