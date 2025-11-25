@@ -16,6 +16,7 @@ export type NewsItem = {
   type: "original" | "external";
   content?: string;
   tags?: string[];
+  isFeatured?: boolean;
 };
 
 /**
