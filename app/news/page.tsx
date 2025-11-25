@@ -3,6 +3,8 @@ import Link from "next/link";
 import { getLatestNews } from "@/lib/news";
 import { GlassCard } from "@/components/GlassCard";
 
+export const runtime = "edge";
+
 export const metadata = {
   title: "ニュース一覧 | CAR BOUTIQUE",
   description:
