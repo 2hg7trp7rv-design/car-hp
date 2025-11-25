@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { GlassCard } from "@/components/GlassCard";
 import { getAllColumns, type ColumnItem } from "@/lib/columns";
 
+export const runtime = "edge";
+
 export const metadata: Metadata = {
   title: "コラムとストーリー | CAR BOUTIQUE",
   description:
@@ -35,14 +37,11 @@ function formatDate(value?: string) {
 
 export default async function ColumnIndexPage() {
   const columns = await getAllColumns();
-  const [featured, ...rest] = columns;
-
-  const list = featured ? rest : columns;
 
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 pb-16 pt-20 sm:px-6 sm:pt-24 lg:px-8">
       {/* ヘッダー */}
-      <header className="mb-6 space-y-2 sm:mb-8">
+      <header className="mb-8 space-y-2">
         <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
           COLUMN
         </p>
@@ -53,87 +52,18 @@ export default async function ColumnIndexPage() {
           オーナー体験、メンテナンスやトラブル、技術や歴史の解説など、
           「ニュースのもう一歩先」をじっくり読めるコラムを集めています。
         </p>
+        <p className="text-[11px] text-text-sub">
+          現在
+          <span className="mx-1 font-semibold text-slate-900">
+            {columns.length}本
+          </span>
+          のコラムが公開されています。
+        </p>
       </header>
 
-      {/* PICKUP＋サイドノート */}
-      {featured && (
-        <section className="mb-8 grid gap-4 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:items-stretch">
-          {/* PICKUPコラム */}
-          <GlassCard
-            as="article"
-            interactive
-            padding="lg"
-            className="flex h-full flex-col"
-          >
-            <Link href={`/column/${featured.slug}`} className="block h-full">
-              <div className="flex h-full flex-col">
-                <div className="flex items-center justify-between gap-3 text-[11px] text-text-sub">
-                  <span className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-3 py-1 text-[10px] font-medium tracking-[0.18em] text-white">
-                    <span className="h-1.5 w-1.5 rounded-full bg-tiffany-300" />
-                    PICKUP COLUMN
-                  </span>
-                  <span>{formatDate(featured.publishedAt)}</span>
-                </div>
-
-                <h2 className="mt-4 text-[17px] font-semibold leading-snug text-slate-900 sm:text-lg">
-                  {featured.title}
-                </h2>
-
-                <p className="mt-3 line-clamp-3 text-xs leading-relaxed text-text-sub sm:text-[13px]">
-                  {featured.summary}
-                </p>
-
-                <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-sub">
-                  <div className="flex flex-wrap gap-1">
-                    <span className="rounded-full bg-slate-100 px-2 py-1">
-                      {mapCategoryLabel(featured.category)}
-                    </span>
-                    {featured.tags?.slice(0, 2).map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-slate-100 px-2 py-1"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  {featured.readMinutes && (
-                    <span className="rounded-full bg-white/80 px-3 py-1">
-                      約{featured.readMinutes}分で読めます
-                    </span>
-                  )}
-                </div>
-              </div>
-            </Link>
-          </GlassCard>
-
-          {/* サイドノート */}
-          <div className="hidden text-[11px] text-text-sub lg:block">
-            <GlassCard padding="lg" className="h-full">
-              <p className="text-[10px] font-semibold tracking-[0.3em] text-text-sub">
-                HOW TO READ
-              </p>
-              <p className="mt-2 leading-relaxed">
-                COLUMNでは、ニュースで流れてしまう話題を、
-                少し立ち止まって「背景」や「オーナーの本音」まで掘り下げます。
-              </p>
-              <ul className="mt-3 space-y-1.5 leading-relaxed">
-                <li>•OWNER_STORYは、実際のオーナー視点のストーリー。</li>
-                <li>•MAINTENANCEは、修理やトラブルの裏側をフラットに。</li>
-                <li>•TECHNICALは、技術や歴史・ブランドの物語を中心に。</li>
-              </ul>
-              <p className="mt-3 leading-relaxed">
-                まずはPICKUPコラムから読み始めて、
-                気になったタグやカテゴリーで他のコラムへ巡っていく読み方を想定しています。
-              </p>
-            </GlassCard>
-          </div>
-        </section>
-      )}
-
-      {/* 一覧グリッド */}
+      {/* コラム一覧 */}
       <section className="grid gap-4 md:grid-cols-2">
-        {list.map((column) => (
+        {columns.map((column) => (
           <GlassCard
             key={column.id}
             as="article"
@@ -142,25 +72,40 @@ export default async function ColumnIndexPage() {
           >
             <Link href={`/column/${column.slug}`} className="block h-full">
               <div className="flex h-full flex-col">
+                {/* メタ情報行 */}
                 <div className="flex items-center justify-between gap-3 text-[11px] text-text-sub">
                   <span className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-3 py-1 text-[10px] font-medium tracking-[0.18em] text-white">
                     <span className="h-1.5 w-1.5 rounded-full bg-tiffany-300" />
                     {mapCategoryLabel(column.category)}
                   </span>
-                  <span>{formatDate(column.publishedAt)}</span>
+                  <div className="flex items-center gap-2">
+                    {column.readMinutes && (
+                      <span className="rounded-full bg-white/80 px-3 py-1">
+                        約{column.readMinutes}分で読めます
+                      </span>
+                    )}
+                    {column.publishedAt && (
+                      <span className="text-[11px] text-text-sub">
+                        {formatDate(column.publishedAt)}
+                      </span>
+                    )}
+                  </div>
                 </div>
 
+                {/* タイトル */}
                 <h2 className="mt-3 text-base font-semibold leading-snug text-slate-900 sm:text-[17px]">
                   {column.title}
                 </h2>
 
+                {/* サマリー */}
                 <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-text-sub">
                   {column.summary}
                 </p>
 
+                {/* タグ行 */}
                 <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-sub">
                   <div className="flex flex-wrap gap-1">
-                    {column.tags?.slice(0, 3).map((tag) => (
+                    {column.tags?.slice(0, 4).map((tag) => (
                       <span
                         key={tag}
                         className="rounded-full bg-slate-100 px-2 py-1"
@@ -169,9 +114,9 @@ export default async function ColumnIndexPage() {
                       </span>
                     ))}
                   </div>
-                  {column.readMinutes && (
-                    <span className="rounded-full bg-white/80 px-2 py-1">
-                      約{column.readMinutes}分で読めます
+                  {column.tags && column.tags.length > 4 && (
+                    <span className="text-[10px] text-slate-400">
+                      ほか{column.tags.length - 4}件のタグ
                     </span>
                   )}
                 </div>
