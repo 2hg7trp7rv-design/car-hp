@@ -9,16 +9,57 @@ import cars3 from "@/data/cars3.json";
 // 将来的にcars4.jsonを追加する場合は下のコメントアウトを外す
 // import cars4 from "@/data/cars4.json";
 
-type CarItemInternal = BaseCarItem & {
+/**
+ * サイト内部で使うCarItem
+ * 既存のBaseCarItemに、評価系のフィールドを追加
+ *
+ * 文字列1本だけで持っている既存データとの互換性を保つために
+ * string | string[] としておく
+ */
+export type CarItemInternal = BaseCarItem & {
   difficulty?: Difficulty;
   maintenanceCostLevel?: MaintenanceCostLevel;
+
+  // ① 好きになれるポイント
+  positivePoints?: string | string[];
+  // 既存データ互換用
+  favoritePoints?: string | string[];
+
+  // ② 気になるかもしれないポイント
+  negativePoints?: string | string[];
+  // 既存データ互換用
+  cautionPoints?: string | string[];
+
+  // ③ この車の合う人・合わない人
+  matching?: {
+    good?: string | string[];
+    bad?: string | string[];
+  };
+  // 既存データ互換用
+  matchingGood?: string | string[];
+  matchingBad?: string | string[];
+  suitableFor?: string | string[];
+  notFor?: string | string[];
+
+  // ④ よくあるトラブル傾向
+  troublePoints?: string | string[];
+  troubleFaq?: string | string[];
+
+  // ⑤ 維持費と付き合い方のコツ
+  maintenanceTips?: string | string[];
+  ownershipTips?: string | string[];
+
+  // ⑥ モデルチェンジで変わったところ
+  modelChange?: string | string[];
+  modelChangePoints?: string | string[];
 };
 
+// 全データ統合
 const allCars: CarItemInternal[] = [
-  ...(cars1 as CarItemInternal[]),
-  ...(cars2 as CarItemInternal[]),
-  ...(cars3 as CarItemInternal[]),
-  // ...(cars4 as CarItemInternal[]),
+  ...(cars1 as unknown as CarItemInternal[]),
+  ...(cars2 as unknown as CarItemInternal[]),
+  ...(cars3 as unknown as CarItemInternal[]),
+  // ...(cars4 as unknown as CarItemInternal[]),
 ];
 
 export async function getAllCars(): Promise<CarItemInternal[]> {
