@@ -36,7 +36,7 @@ export default async function HomePage() {
           {/* 最新ニュースタブ */}
           {/* latest=新着, featured=注目ニュース */}
           {/* TopNewsTabs コンポーネントは既存のものを利用 */}
-          {/* @ts-expect-error Async Server Component 内での使用を許容 */}
+         
           <TopNewsTabsWrapper latest={latest} featured={featured} />
         </div>
 
