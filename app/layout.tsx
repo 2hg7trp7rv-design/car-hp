@@ -1,38 +1,38 @@
 // app/layout.tsx
-import type { Metadata } from "next";
 import "./globals.css";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+import type { Metadata } from "next";
+import { ReactNode } from "react";
+import { cn } from "@/lib/utils";
+import { inter } from "@/lib/fonts";
+import { SiteHeader } from "@/components/site-header";
+import { BottomNav } from "@/components/layout/BottomNav";
 
 export const metadata: Metadata = {
-  title: "CAR BOUTIQUE | クルマのニュースとストーリー",
+  title: "CAR BOUTIQUE",
   description:
-    "ニュースとコラム、そして車種データベースをラグジュアリーなUIで楽しめるCAR BOUTIQUE。",
+    "車のニュース、オーナーコラム、買い方ガイド、車種データベースを揃えた大人のクルマメディア「CAR BOUTIQUE」。",
 };
 
 type RootLayoutProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ja">
-      <body className="min-h-screen bg-site text-slate-900 antialiased">
-        <div className="relative flex min-h-screen flex-col">
-          <SiteHeader />
-          <main className="flex-1">
-            {children}
-          </main>
-          <footer className="border-t border-slate-100/60 bg-white/70 backdrop-blur-sm">
-            <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-5 text-[11px] text-slate-500 sm:px-6 lg:px-8">
-              <p className="font-body-light tracking-[0.18em]">
-                CAR BOUTIQUE
-              </p>
-              <p className="text-[10px]">
-                © {new Date().getFullYear()} CAR BOUTIQUE
-              </p>
-            </div>
-          </footer>
-        </div>
+      <body
+        className={cn(
+          "min-h-screen bg-body font-sans antialiased",
+          inter.className,
+        )}
+      >
+        <SiteHeader />
+
+        {/* ボトムナビ分の余白を確保するためにmainにpb-20を付与 */}
+        <main className="pb-20">{children}</main>
+
+        {/* スマホ専用ボトムナビ（lg以上ではBottomNav側のクラスで非表示） */}
+        <BottomNav />
       </body>
     </html>
   );
