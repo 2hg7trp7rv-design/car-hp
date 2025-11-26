@@ -73,21 +73,34 @@ export default async function NewsDetailPage({ params }: Props) {
   const title = item.titleJa || item.title;
   const formattedDate = formatDate(item.publishedAt);
 
-  // 関連ニュース取得（同じメーカー・カテゴリ・タグから最大3件）
-  const all = await getLatestNews(50);
-  const related = all
-    .filter((n) => n.id !== item.id)
-    .filter((n) => {
-      const sameMaker = item.maker && n.maker === item.maker;
-      const sameCategory = item.category && n.category === item.category;
-      const sharedTag =
-        item.tags &&
-        item.tags.length > 0 &&
-        n.tags &&
-        n.tags.some((t) => item.tags!.includes(t));
-      return sameMaker || sameCategory || sharedTag;
-    })
-    .slice(0, 3);
+  // 関連ニュース用データ
+  const latest = await getLatestNews(80);
+
+  const relatedByMaker = item.maker
+    ? latest
+        .filter(
+          (n) =>
+            n.id !== item.id &&
+            n.maker === item.maker &&
+            n.id !== item.id,
+        )
+        .slice(0, 4)
+    : [];
+
+  const relatedByCategory = item.category
+    ? latest
+        .filter(
+          (n) =>
+            n.id !== item.id &&
+            n.category === item.category &&
+            // メーカー重複を少し避ける（あれば）
+            (!item.maker || n.maker !== item.maker),
+        )
+        .slice(0, 4)
+    : [];
+
+  const hasRelated =
+    relatedByMaker.length > 0 || relatedByCategory.length > 0;
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 text-slate-900">
@@ -240,72 +253,79 @@ export default async function NewsDetailPage({ params }: Props) {
           </aside>
         </div>
 
-        {/* 関連ニュース */}
-        {related.length > 0 && (
+        {/* 関連ニュースブロック */}
+        {hasRelated && (
           <section className="mb-12 space-y-4">
-            <div className="flex items-baseline justify-between gap-2">
-              <div>
-                <p className="text-[10px] font-semibold tracking-[0.28em] text-text-sub">
-                  RELATED NEWS
-                </p>
-                <h2 className="mt-1 text-sm font-semibold tracking-tight text-text-main sm:text-[15px]">
-                  同じメーカーやテーマのニュース
-                </h2>
-              </div>
+            <div className="flex items-baseline justify-between gap-3">
+              <h2 className="text-xs font-semibold tracking-[0.18em] text-slate-700 sm:text-sm">
+                関連ニュース
+              </h2>
               <Link
                 href="/news"
-                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+                className="text-[11px] tracking-[0.16em] text-text-sub underline-offset-4 hover:underline sm:text-xs"
               >
-                NEWS一覧へ
+                NEWS一覧へ戻る
               </Link>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-3">
-              {related.map((r) => {
-                const rTitle = r.titleJa || r.title;
-                const rDate = formatDate(r.publishedAt);
+            <div className="grid gap-4 md:grid-cols-2">
+              {relatedByMaker.length > 0 && (
+                <GlassCard padding="lg" className="h-full">
+                  <p className="text-[10px] font-semibold tracking-[0.26em] text-text-sub">
+                    同じメーカーのニュース
+                  </p>
+                  <ul className="mt-3 space-y-2 text-[11px] text-text-sub">
+                    {relatedByMaker.map((n) => (
+                      <li key={n.id}>
+                        <Link
+                          href={`/news/${n.id}`}
+                          className="group block"
+                        >
+                          <p className="line-clamp-2 font-semibold text-slate-900 group-hover:underline">
+                            {n.titleJa || n.title}
+                          </p>
+                          <p className="mt-0.5 line-clamp-2 text-[10px] text-slate-500">
+                            {n.excerpt ??
+                              "詳細は記事ページと元記事にてご確認ください。"}
+                          </p>
+                          <p className="mt-0.5 text-[10px] text-slate-400">
+                            {formatDate(n.publishedAt)}
+                          </p>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </GlassCard>
+              )}
 
-                return (
-                  <GlassCard
-                    key={r.id}
-                    as="article"
-                    interactive
-                    className="flex h-full flex-col p-4 sm:p-5"
-                  >
-                    <Link href={`/news/${r.id}`} className="block h-full">
-                      <div className="flex h-full flex-col gap-2">
-                        <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
-                          {r.category && (
-                            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-                              {r.category}
-                            </span>
-                          )}
-                          {r.maker && (
-                            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-                              {r.maker}
-                            </span>
-                          )}
-                          {r.sourceName && (
-                            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-                              {r.sourceName}
-                            </span>
-                          )}
-                        </div>
-                        <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
-                          {rTitle}
-                        </h3>
-                        <p className="line-clamp-3 text-[11px] leading-relaxed text-text-sub">
-                          {r.excerpt ??
-                            "詳細は記事ページと元記事にてご確認ください。"}
-                        </p>
-                        <div className="mt-auto text-[10px] text-slate-400">
-                          {rDate}
-                        </div>
-                      </div>
-                    </Link>
-                  </GlassCard>
-                );
-              })}
+              {relatedByCategory.length > 0 && (
+                <GlassCard padding="lg" className="h-full">
+                  <p className="text-[10px] font-semibold tracking-[0.26em] text-text-sub">
+                    同じカテゴリのニュース
+                  </p>
+                  <ul className="mt-3 space-y-2 text-[11px] text-text-sub">
+                    {relatedByCategory.map((n) => (
+                      <li key={n.id}>
+                        <Link
+                          href={`/news/${n.id}`}
+                          className="group block"
+                        >
+                          <p className="line-clamp-2 font-semibold text-slate-900 group-hover:underline">
+                            {n.titleJa || n.title}
+                          </p>
+                          <p className="mt-0.5 line-clamp-2 text-[10px] text-slate-500">
+                            {n.excerpt ??
+                              "詳細は記事ページと元記事にてご確認ください。"}
+                          </p>
+                          <p className="mt-0.5 text-[10px] text-slate-400">
+                            {formatDate(n.publishedAt)}
+                          </p>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </GlassCard>
+              )}
             </div>
           </section>
         )}
