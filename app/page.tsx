@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroSection } from "@/components/home/HeroSection";
 import { GlassCard } from "@/components/GlassCard";
-import { getAllCars } from "@/lib/cars";
-import { getAllColumns } from "@/lib/columns";
+import { getAllCars, type CarItem } from "@/lib/cars";
+import { getAllColumns, type ColumnItem } from "@/lib/columns";
 import { getLatestNews, type NewsItem } from "@/lib/news";
 
 export const metadata: Metadata = {
@@ -44,6 +44,18 @@ export default async function HomePage() {
       .reverse()[0] ?? "";
 
   const latestNewsDateLabel = formatDate(latestNewsDateRaw);
+
+  // 追加1 新着コラムと注目CARS用の配列
+  const latestColumns: ColumnItem[] = [...columns]
+    .sort((a, b) => {
+      if (!a.publishedAt && !b.publishedAt) return 0;
+      if (!a.publishedAt) return 1;
+      if (!b.publishedAt) return -1;
+      return a.publishedAt < b.publishedAt ? 1 : -1;
+    })
+    .slice(0, 4);
+
+  const featuredCars: CarItem[] = cars.slice(0, 4);
 
   return (
     <main className="mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-12 lg:px-8">
@@ -250,7 +262,6 @@ export default async function HomePage() {
                 >
                   <Link href={`/news/${item.id}`} className="block h-full">
                     <div className="flex h-full flex-col gap-2">
-                      {/* カテゴリ＋メーカーの小さなチップ行 */}
                       <div className="flex flex-wrap items-center gap-2 text-[10px] text-text-sub">
                         <span className="inline-flex items-center gap-1 rounded-full bg-slate-900/90 px-3 py-1 text-[10px] font-medium tracking-[0.22em] text-white">
                           <span className="h-1.5 w-1.5 rounded-full bg-tiffany-300" />
@@ -263,19 +274,16 @@ export default async function HomePage() {
                         )}
                       </div>
 
-                      {/* タイトル */}
                       <h3 className="text-sm font-semibold leading-snug text-slate-900 sm:text-[15px]">
                         {title}
                       </h3>
 
-                      {/* 要約 */}
                       {item.excerpt && (
                         <p className="line-clamp-3 text-xs leading-relaxed text-text-sub">
                           {item.excerpt}
                         </p>
                       )}
 
-                      {/* 出典＋日付 */}
                       <div className="mt-auto flex items-center justify-between text-[11px] text-text-sub">
                         <span>{sourceName}</span>
                         <span>{dateLabel}</span>
@@ -288,6 +296,134 @@ export default async function HomePage() {
           </div>
         )}
       </section>
+
+      {/* 新着コラム＋注目CARSダイジェスト 追加2 */}
+      <section className="mt-16 grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+        {/* 新着コラム */}
+        <div className="space-y-4">
+          <header className="flex items-baseline justify-between gap-2">
+            <div>
+              <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
+                NEW COLUMNS
+              </p>
+              <h2 className="mt-1 text-base font-semibold tracking-tight text-slate-900 sm:text-lg">
+                最近追加されたコラム
+              </h2>
+            </div>
+            <Link
+              href="/column"
+              className="text-[11px] font-medium text-slate-700 underline-offset-4 hover:underline"
+            >
+              コラム一覧へ
+            </Link>
+          </header>
+
+          {latestColumns.length === 0 ? (
+            <p className="text-sm text-text-sub">
+              まだコラムがありません。追加され次第ここに表示されます。
+            </p>
+          ) : (
+            <div className="space-y-3">
+              {latestColumns.map((column) => (
+                <ColumnDigestCard key={column.id} column={column} />
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* 注目CARS */}
+        <div className="space-y-4">
+          <header className="flex items-baseline justify-between gap-2">
+            <div>
+              <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
+                FEATURED CARS
+              </p>
+              <h2 className="mt-1 text-base font-semibold tracking-tight text-slate-900 sm:text-lg">
+                まずチェックしておきたい車種
+              </h2>
+            </div>
+            <Link
+              href="/cars"
+              className="text-[11px] font-medium text-slate-700 underline-offset-4 hover:underline"
+            >
+              CARS一覧へ
+            </Link>
+          </header>
+
+          {featuredCars.length === 0 ? (
+            <p className="text-sm text-text-sub">
+              まだ車種データがありません。順次追加していきます。
+            </p>
+          ) : (
+            <div className="space-y-3">
+              {featuredCars.map((car) => (
+                <CarDigestCard key={car.id} car={car} />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
     </main>
+  );
+}
+
+// 追加3 コラムとCARSのダイジェストカード
+
+type ColumnDigestProps = {
+  column: ColumnItem;
+};
+
+function ColumnDigestCard({ column }: ColumnDigestProps) {
+  return (
+    <Link href={`/column/${column.slug}`}>
+      <article className="group rounded-3xl border border-white/80 bg-white/90 p-4 text-xs shadow-sm transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
+        <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+          COLUMN
+        </p>
+        <h3 className="mt-2 line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
+          {column.title}
+        </h3>
+        <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
+          {column.summary}
+        </p>
+      </article>
+    </Link>
+  );
+}
+
+type CarDigestProps = {
+  car: CarItem;
+};
+
+function CarDigestCard({ car }: CarDigestProps) {
+  return (
+    <Link href={`/cars/${car.slug}`}>
+      <article className="group rounded-3xl border border-white/80 bg-white/90 p-4 text-xs shadow-sm transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
+        <div className="mb-1 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+          {car.maker && (
+            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+              {car.maker}
+            </span>
+          )}
+          {car.bodyType && (
+            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+              {car.bodyType}
+            </span>
+          )}
+          {car.releaseYear && (
+            <span className="ml-auto text-[10px] text-slate-400">
+              {car.releaseYear}年頃
+            </span>
+          )}
+        </div>
+        <h3 className="text-[13px] font-semibold leading-relaxed text-slate-900">
+          {car.name}
+        </h3>
+        <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
+          {car.summary ??
+            "この車種の詳しいレビューや維持費のリアルは、順次CARSページに追加していきます。"}
+        </p>
+      </article>
+    </Link>
   );
 }
