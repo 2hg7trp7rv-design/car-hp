@@ -1,14 +1,14 @@
 // app/news/page.tsx
 import Link from "next/link";
-import { getLatestNews } from "@/lib/news";
-import { GlassCard } from "@/components/GlassCard";
+import type { Metadata } from "next";
+import { getLatestNews, type NewsItem } from "@/lib/news";
 
 export const runtime = "edge";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "ニュース一覧 | CAR BOUTIQUE",
   description:
-    "主要メーカーや国内外メディアから厳選したニュースを、分かりやすく整理してお届けします。",
+    "クルマの最新ニュースを、要約とCAR BOUTIQUE目線のコメント付きでピックアップ。気になるメーカーやカテゴリからも絞り込めます。",
 };
 
 type Props = {
@@ -20,22 +20,26 @@ type Props = {
   };
 };
 
-function formatDate(value?: string) {
-  if (!value) return "";
-  const d = new Date(value);
-  if (Number.isNaN(d.getTime())) return value;
-  const y = d.getFullYear();
-  const m = `${d.getMonth() + 1}`.padStart(2, "0");
-  const day = `${d.getDate()}`.padStart(2, "0");
-  return `${y}/${m}/${day}`;
+function formatDate(iso?: string | null): string {
+  if (!iso) return "";
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
+function normalizeText(value: string | undefined | null): string {
+  return (value ?? "").trim().toLowerCase();
 }
 
 export default async function NewsPage({ searchParams }: Props) {
-  const rawQ = searchParams?.q ?? "";
-  const q = rawQ.trim().toLowerCase();
-  const categoryFilter = searchParams?.category ?? "";
-  const makerFilter = searchParams?.maker ?? "";
-  const tagFilter = searchParams?.tag ?? "";
+  const q = normalizeText(searchParams?.q);
+  const categoryFilter = (searchParams?.category ?? "").trim();
+  const makerFilter = (searchParams?.maker ?? "").trim();
+  const tagFilter = (searchParams?.tag ?? "").trim();
 
   const items = await getLatestNews(80);
 
@@ -52,314 +56,263 @@ export default async function NewsPage({ searchParams }: Props) {
   ) as string[];
 
   const filtered = items.filter((item) => {
-    const title = (item.titleJa ?? item.title ?? "").toLowerCase();
-    const excerpt = (item.excerpt ?? "").toLowerCase();
-    const haystack = `${title} ${excerpt}`;
-
-    const matchQuery = q ? haystack.includes(q) : true;
-    const matchCategory = categoryFilter
-      ? item.category === categoryFilter
-      : true;
-    const matchMaker = makerFilter ? item.maker === makerFilter : true;
-    const matchTag = tagFilter
-      ? item.tags?.some((t) => t === tagFilter)
-      : true;
-
-    return matchQuery && matchCategory && matchMaker && matchTag;
+    if (q) {
+      const haystack =
+        `${item.title} ${item.titleJa ?? ""} ${item.excerpt ?? ""} ${item.maker ?? ""} ${item.category ?? ""} ${(item.tags ?? []).join(" ")}`.toLowerCase();
+      if (!haystack.includes(q)) return false;
+    }
+    if (categoryFilter && item.category !== categoryFilter) return false;
+    if (makerFilter && item.maker !== makerFilter) return false;
+    if (tagFilter && !(item.tags ?? []).includes(tagFilter)) return false;
+    return true;
   });
 
-  const totalCount = items.length;
-
-  const latestDateRaw =
-    items
-      .map((i) => i.publishedAt ?? i.createdAt)
-      .filter((v): v is string => Boolean(v))
-      .sort()
-      .reverse()[0] ?? "";
-
-  const latestDateLabel = formatDate(latestDateRaw);
-
-  const activeFilters: string[] = [];
-  if (rawQ.trim()) {
-    activeFilters.push(`キーワード「${rawQ.trim()}」`);
-  }
-  if (categoryFilter) {
-    activeFilters.push(`カテゴリ「${categoryFilter}」`);
-  }
-  if (makerFilter) {
-    activeFilters.push(`メーカー「${makerFilter}」`);
-  }
-  if (tagFilter) {
-    activeFilters.push(`タグ「${tagFilter}」`);
-  }
-
-  const hasAnyFilter =
-    !!rawQ.trim() || !!categoryFilter || !!makerFilter || !!tagFilter;
-
   return (
-    <main className="mx-auto min-h-screen max-w-6xl px-4 pb-16 pt-20 sm:px-6 sm:pt-24 lg:px-8">
-      {/* ヘッダー */}
-      <header className="mb-6 space-y-2 sm:mb-8">
-        <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
-          NEWS
-        </p>
-        <h1 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
-          ニュース一覧
-        </h1>
-        <p className="max-w-2xl text-xs leading-relaxed text-text-sub sm:text-[13px]">
-          国内メーカー発表から海外メディアの記事まで、RSSで取得したニュースを要約付きで整理していきます。
-        </p>
-      </header>
+    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 text-slate-900">
+      <div className="mx-auto max-w-6xl px-4 pb-24 pt-24">
+        {/* パンくず */}
+        <nav className="mb-6 text-xs text-slate-500">
+          <Link href="/" className="hover:text-slate-800">
+            HOME
+          </Link>
+          <span className="mx-2">/</span>
+          <span className="text-slate-400">NEWS</span>
+        </nav>
 
-      {/* サマリーブロック */}
-      <section className="mb-6 grid gap-3 text-[11px] text-text-sub sm:grid-cols-3">
-        <GlassCard padding="sm" className="flex items-center justify-between">
-          <div>
-            <p className="text-[10px] font-semibold tracking-[0.25em] text-slate-500">
-              TOTAL
-            </p>
-            <p className="mt-1 text-xs text-slate-700">
-              登録済みニュース件数
-            </p>
-          </div>
-          <p className="text-xl font-semibold text-slate-900">
-            {totalCount}
+        {/* ヘッダー */}
+        <header className="mb-10 space-y-3">
+          <p className="text-[10px] tracking-[0.32em] text-text-sub">
+            CURATED CAR NEWS
           </p>
-        </GlassCard>
-
-        <GlassCard padding="sm" className="flex items-center justify-between">
-          <div>
-            <p className="text-[10px] font-semibold tracking-[0.25em] text-slate-500">
-              CATEGORY
-            </p>
-            <p className="mt-1 text-xs text-slate-700">
-              種類ごとにニュースを絞り込み
-            </p>
-          </div>
-          <p className="text-xl font-semibold text-slate-900">
-            {categories.length}
-          </p>
-        </GlassCard>
-
-        <GlassCard padding="sm" className="flex items-center justify-between">
-          <div>
-            <p className="text-[10px] font-semibold tracking-[0.25em] text-slate-500">
-              LAST UPDATE
-            </p>
-            <p className="mt-1 text-xs text-slate-700">
-              最新ニュースの日付
-            </p>
-          </div>
-          <p className="text-xs font-semibold text-slate-900">
-            {latestDateLabel || "-"}
-          </p>
-        </GlassCard>
-      </section>
-
-      {/* フィルター＋検索 */}
-      <section className="mb-4 space-y-3 rounded-2xl border border-white/70 bg-white/70 p-3 text-[11px] text-text-sub backdrop-blur-md sm:p-4">
-        {/* キーワード検索行 */}
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-col gap-1">
-            <span className="font-medium text-slate-700">
-              キーワード検索
+          <h1 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
+            クルマのニュースを
+            <span className="inline-block bg-gradient-to-r from-tiffany-500 to-tiffany-700 bg-clip-text text-transparent">
+              編集目線
             </span>
-            <span className="text-[10px] text-slate-500">
-              タイトルと要約の中から、気になるワードで絞り込みできます。
-            </span>
+            でピックアップ。
+          </h1>
+          <p className="max-w-2xl text-sm leading-relaxed text-text-sub">
+            国内外のニュースから、クルマ好きが押さえておきたいトピックを中心に、
+            要約とCAR BOUTIQUEとしてのひと言コメント付きで集めていく予定です。
+          </p>
+        </header>
+
+        {/* フィルターバー */}
+        <section className="mb-8 rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-sm backdrop-blur">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            {/* キーワード検索 */}
+            <form className="w-full md:w-2/5">
+              <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                KEYWORD
+              </label>
+              <input
+                name="q"
+                defaultValue={searchParams?.q ?? ""}
+                placeholder="車名・メーカー・キーワードで探す"
+                className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-4 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+              />
+            </form>
+
+            {/* セレクト群 */}
+            <div className="flex w-full flex-col gap-3 md:w-3/5 md:flex-row">
+              <div className="w-full md:w-1/3">
+                <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                  CATEGORY
+                </label>
+                <select
+                  name="category"
+                  defaultValue={categoryFilter}
+                  className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-4 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                >
+                  <option value="">すべて</option>
+                  {categories.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="w-full md:w-1/3">
+                <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                  MAKER
+                </label>
+                <select
+                  name="maker"
+                  defaultValue={makerFilter}
+                  className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-4 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                >
+                  <option value="">すべて</option>
+                  {makers.map((m) => (
+                    <option key={m} value={m}>
+                      {m}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="w-full md:w-1/3">
+                <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                  TAG
+                </label>
+                <select
+                  name="tag"
+                  defaultValue={tagFilter}
+                  className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-4 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                >
+                  <option value="">すべて</option>
+                  {tags.map((t) => (
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
           </div>
-          <form
-            method="GET"
-            action="/news"
-            className="mt-1 flex w-full max-w-xs items-center gap-2 sm:mt-0"
-          >
-            <input
-              type="search"
-              name="q"
-              defaultValue={rawQ}
-              placeholder="例 BMW 5シリーズ / EV / 新型"
-              className="h-8 w-full rounded-full border border-slate-200 bg-white/90 px-3 text-[11px] text-slate-800 shadow-soft focus:outline-none focus:ring-2 focus:ring-tiffany-400 focus:ring-offset-1"
-            />
+
+          {/* フィルター適用ボタン */}
+          <div className="mt-4 flex justify-end">
             <button
               type="submit"
-              className="h-8 rounded-full bg-slate-900 px-3 text-[10px] font-medium tracking-[0.18em] text-white hover:bg-slate-800"
+              className="inline-flex items-center rounded-full bg-slate-900 px-5 py-2 text-[11px] font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
+              formAction="/news"
+              formMethod="get"
             >
-              検索
+              絞り込み
             </button>
-          </form>
-        </div>
-
-        {/* カテゴリフィルタ */}
-        <div className="flex flex-wrap gap-2">
-          <span className="font-medium text-slate-700">カテゴリ</span>
-          <div className="flex flex-wrap gap-1">
-            <Link
-              href="/news"
-              className={[
-                "rounded-full px-3 py-1",
-                !categoryFilter
-                  ? "bg-slate-900 text-white"
-                  : "bg-slate-100 text-slate-700 hover:bg-slate-200",
-              ].join(" ")}
-            >
-              すべて
-            </Link>
-            {categories.map((c) => (
-              <Link
-                key={c}
-                href={`/news?category=${encodeURIComponent(c)}`}
-                className={[
-                  "rounded-full px-3 py-1",
-                  categoryFilter === c
-                    ? "bg-slate-900 text-white"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200",
-                ].join(" ")}
-              >
-                {c}
-              </Link>
-            ))}
           </div>
-        </div>
-
-        {/* メーカーフィルタ */}
-        {makers.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            <span className="font-medium text-slate-700">メーカー</span>
-            <div className="flex flex-wrap gap-1">
-              <Link
-                href="/news"
-                className={[
-                  "rounded-full px-3 py-1",
-                  !makerFilter
-                    ? "bg-slate-900 text-white"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200",
-                ].join(" ")}
-              >
-                すべて
-              </Link>
-              {makers.map((m) => (
-                <Link
-                  key={m}
-                  href={`/news?maker=${encodeURIComponent(m)}`}
-                  className={[
-                    "rounded-full px-3 py-1",
-                    makerFilter === m
-                      ? "bg-slate-900 text-white"
-                      : "bg-slate-100 text-slate-700 hover:bg-slate-200",
-                  ].join(" ")}
-                >
-                  {m}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* タグフィルタ */}
-        {tags.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            <span className="font-medium text-slate-700">タグ</span>
-            <div className="flex flex-wrap gap-1">
-              <Link
-                href="/news"
-                className={[
-                  "rounded-full px-3 py-1",
-                  !tagFilter
-                    ? "bg-slate-900 text-white"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200",
-                ].join(" ")}
-              >
-                すべて
-              </Link>
-              {tags.map((t) => (
-                <Link
-                  key={t}
-                  href={`/news?tag=${encodeURIComponent(t)}`}
-                  className={[
-                    "rounded-full px-3 py-1",
-                    tagFilter === t
-                      ? "bg-slate-900 text-white"
-                      : "bg-slate-100 text-slate-700 hover:bg-slate-200",
-                  ].join(" ")}
-                >
-                  {t}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-      </section>
-
-      {/* 結果サマリー */}
-      <section className="mb-4 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-sub">
-        <p>
-          絞り込み結果
-          <span className="mx-1 font-semibold text-slate-900">
-            {filtered.length}件
-          </span>
-          を表示中
-        </p>
-        {hasAnyFilter && (
-          <p className="text-[10px] text-slate-500">
-            条件
-            {activeFilters.length > 0
-              ? `: ${activeFilters.join(" / ")}`
-              : ""}
-          </p>
-        )}
-      </section>
-
-      {/* ニュースカード一覧 */}
-      {filtered.length === 0 ? (
-        <div className="mt-10 rounded-2xl border border-slate-100 bg-white/80 p-6 text-center text-sm text-text-sub">
-          <p>条件に一致するニュースがありませんでした。</p>
-          {hasAnyFilter && (
-            <p className="mt-2 text-[11px] text-slate-500">
-              検索条件を少しゆるくするか、「すべて」を選び直してみてください。
-            </p>
-          )}
-        </div>
-      ) : (
-        <section className="grid gap-4 md:grid-cols-2">
-          {filtered.map((item) => {
-            const title = item.titleJa || item.title;
-            const sourceName = item.sourceName ?? "EXTERNAL";
-            const dateLabel = formatDate(item.publishedAt);
-
-            return (
-              <GlassCard
-                key={item.id}
-                as="article"
-                className="transition hover:shadow-soft-strong"
-                interactive
-              >
-                <Link href={`/news/${item.id}`} className="block">
-                  <div className="flex flex-col gap-2">
-                    <p className="font-body-light text-[10px] tracking-[0.25em] text-brand-tiffanySoft">
-                      {item.category || "NEWS"}
-                    </p>
-
-                    <h2 className="text-base font-semibold leading-snug text-slate-900 sm:text-[17px]">
-                      {title}
-                    </h2>
-
-                    {item.excerpt && (
-                      <p className="text-xs leading-relaxed text-text-sub">
-                        {item.excerpt}
-                      </p>
-                    )}
-
-                    <div className="mt-1 flex items-center justify-between text-[11px] text-text-sub">
-                      <p>{sourceName}</p>
-                      <p>{dateLabel}</p>
-                    </div>
-                  </div>
-                </Link>
-              </GlassCard>
-            );
-          })}
         </section>
-      )}
+
+        {/* NEWSリスト */}
+        <section className="space-y-4">
+          <div className="flex items-baseline justify-between">
+            <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
+              LATEST NEWS
+            </h2>
+            <p className="text-[11px] text-slate-400">
+              {filtered.length}件表示中
+            </p>
+          </div>
+
+          {filtered.length === 0 ? (
+            <p className="rounded-2xl border border-dashed border-slate-200 bg-white/70 p-6 text-center text-xs text-slate-500">
+              条件に合致するニュースが見つかりませんでした。
+              絞り込み条件を緩めて再度お試しください。
+            </p>
+          ) : (
+            <div className="space-y-3">
+              {filtered.map((item) => (
+                <NewsListItem key={item.id} item={item} />
+              ))}
+            </div>
+          )}
+        </section>
+
+        {/* NEWSから他セクションへの回遊導線 */}
+        <section className="mt-12 grid gap-4 md:grid-cols-2">
+          <Link href="/cars">
+            <div className="group h-full rounded-3xl border border-tiffany-100 bg-gradient-to-br from-white via-sky-50/40 to-white p-5 text-xs shadow-sm transition hover:-translate-y-[2px] hover:shadow-soft-card">
+              <p className="text-[10px] font-semibold tracking-[0.28em] text-tiffany-700">
+                CARS
+              </p>
+              <h3 className="mt-2 text-sm font-semibold text-slate-900">
+                ニュースで気になった車種は、スペックや弱点までチェック。
+              </h3>
+              <p className="mt-2 text-[11px] leading-relaxed text-text-sub">
+                車種ごとに「長所・短所」「トラブル傾向」「維持費感」などを
+                まとめたCARSページを整備中です。ニュースから一歩踏み込んだ
+                車選びの判断材料として使っていけるようにしていきます。
+              </p>
+              <span className="mt-3 inline-flex items-center text-[11px] font-medium tracking-[0.2em] text-tiffany-700">
+                CARSページへ
+                <span className="ml-1 text-[10px]">→</span>
+              </span>
+            </div>
+          </Link>
+
+          <Link href="/column">
+            <div className="group h-full rounded-3xl border border-slate-200 bg-white/80 p-5 text-xs shadow-sm transition hover:-translate-y-[2px] hover:shadow-soft-card">
+              <p className="text-[10px] font-semibold tracking-[0.28em] text-slate-600">
+                COLUMN
+              </p>
+              <h3 className="mt-2 text-sm font-semibold text-slate-900">
+                ニュースの裏側や、オーナーの本音はコラムでじっくり。
+              </h3>
+              <p className="mt-2 text-[11px] leading-relaxed text-text-sub">
+                試乗記や技術解説だけでなく、「買ってからどうだったか」
+                「壊れたときいくらかかったか」といったリアルな話は、
+                COLUMNセクションで深掘りしていきます。
+              </p>
+              <span className="mt-3 inline-flex items-center text-[11px] font-medium tracking-[0.2em] text-slate-700">
+                コラム一覧へ
+                <span className="ml-1 text-[10px]">→</span>
+              </span>
+            </div>
+          </Link>
+        </section>
+      </div>
     </main>
+  );
+}
+
+type ItemProps = {
+  item: NewsItem;
+};
+
+function NewsListItem({ item }: ItemProps) {
+  const title = item.titleJa || item.title;
+  const date = formatDate(item.publishedAt);
+
+  return (
+    <Link href={`/news/${item.id}`}>
+      <article className="group rounded-3xl border border-white/80 bg-white/90 p-4 text-xs shadow-sm transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
+        <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+          {item.category && (
+            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+              {item.category}
+            </span>
+          )}
+          {item.maker && (
+            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+              {item.maker}
+            </span>
+          )}
+          {item.sourceName && (
+            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+              {item.sourceName}
+            </span>
+          )}
+          <span className="ml-auto text-[10px] text-slate-400">{date}</span>
+        </div>
+
+        <h2 className="mt-2 line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
+          {title}
+        </h2>
+
+        <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
+          {item.excerpt ??
+            "詳細は記事ページと元記事にてご確認ください。CAR BOUTIQUEとしてのコメントも順次追加していきます。"}
+        </p>
+
+        {item.tags && item.tags.length > 0 && (
+          <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-slate-500">
+            {item.tags.slice(0, 4).map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full bg-slate-50 px-2 py-1 group-hover:bg-slate-900 group-hover:text-white"
+              >
+                {tag}
+              </span>
+            ))}
+            {item.tags.length > 4 && (
+              <span className="rounded-full bg-slate-50 px-2 py-1">
+                +{item.tags.length - 4}
+              </span>
+            )}
+          </div>
+        )}
+      </article>
+    </Link>
   );
 }
