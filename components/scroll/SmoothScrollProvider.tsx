@@ -11,8 +11,7 @@ type SmoothScrollProviderProps = {
 
 /**
  * サイト全体にLenisのスムーススクロールを適用するラッパー
- * ・requestAnimationFrameループでLenisを回す
- * ・アンマウント時にはdestroy
+ * requestAnimationFrameでLenisを回し、アンマウント時にdestroyする
  */
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   useEffect(() => {
