@@ -21,15 +21,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="ja">
       <body className="min-h-screen bg-site text-text-main antialiased">
         <SmoothScrollProvider>
-         <div className="flex min-h-screen flex-col">
-          <SiteHeader />
-          <main className="flex-1 pb-16 pt-4 sm:pt-8 lg:pt-10">
-            {children}
-          </main>
-          <SiteFooter />
-          <BottomNav />
-         </div>
-        <SmoothScrollProvider>
+          <div className="flex min-h-screen flex-col">
+            <SiteHeader />
+            <main className="flex-1 pb-16 pt-4 sm:pt-8 lg:pt-10">
+              {children}
+            </main>
+            <SiteFooter />
+            <BottomNav />
+          </div>
+        </SmoothScrollProvider>
       </body>
     </html>
   );
@@ -78,7 +78,6 @@ type NavLinkProps = {
 };
 
 function NavLink({ href, label }: NavLinkProps) {
-  // PCではシンプルなリンクのみ。アクティブ判定は後で拡張しても良い
   return (
     <Link
       href={href}
