@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getCarBySlug, type CarItem } from "@/lib/cars";
+import { getCarBySlug, getAllCars, type CarItem } from "@/lib/cars";
 import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
 
@@ -94,6 +94,7 @@ export default async function CarDetailPage({ params }: Props) {
   }
 
   const maker = makerLabel(car.maker);
+
   const hasSpecBlock =
     car.engine ||
     car.powerPs ||
@@ -109,6 +110,22 @@ export default async function CarDetailPage({ params }: Props) {
     car.maker && car.maker !== "OTHER"
       ? `/news?maker=${encodeURIComponent(car.maker)}`
       : "/news";
+
+  // 類似度スコアで関連記事をピックアップ
+  const allCars = await getAllCars();
+  const relatedCars = allCars
+    .filter((c) => c.slug !== car.slug && c.maker === car.maker)
+    .map((c) => {
+      let score = 0;
+      if (car.bodyType && c.bodyType === car.bodyType) score += 3;
+      if (car.segment && c.segment === car.segment) score += 2;
+      if (car.difficulty && c.difficulty === car.difficulty) score += 1;
+      return { car: c, score };
+    })
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 4)
+    .map((entry) => entry.car);
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50/80 via-slate-50 to-white">
@@ -247,16 +264,16 @@ export default async function CarDetailPage({ params }: Props) {
                   これから追加していくコンテンツ
                 </p>
                 <ul className="mt-3 space-y-1 text-xs leading-relaxed text-text-sub sm:text-[13px]">
-                  <li>•オーナー目線の「ここが好き／ここは注意」</li>
-                  <li>•代表的なトラブル傾向と対策メモ</li>
-                  <li>•年式や走行距離ごとの相場感</li>
-                  <li>•同じクラスのクルマとの比較</li>
+                  <li>オーナー目線の「ここが好き／ここは注意」</li>
+                  <li>代表的なトラブル傾向と対策メモ</li>
+                  <li>年式や走行距離ごとの相場感</li>
+                  <li>同じクラスのクルマとの比較</li>
                 </ul>
               </GlassCard>
             </div>
           </div>
 
-          {/* 右カラム: スペック・価格カード */}
+          {/* 右カラム: スペック・価格・関連車種カード */}
           <div className="space-y-4">
             {hasSpecBlock && (
               <GlassCard padding="lg">
@@ -361,60 +378,47 @@ export default async function CarDetailPage({ params }: Props) {
                 </Link>
               </div>
             </GlassCard>
+
+            {relatedCars.length > 0 && (
+              <GlassCard padding="lg">
+                <p className="text-[10px] font-semibold tracking-[0.3em] text-text-sub">
+                  RELATED CARS
+                </p>
+                <p className="mt-2 text-xs text-text-sub">
+                  同じメーカーの中から、ボディタイプ・セグメント・難易度が近い車種をピックアップしました。
+                </p>
+
+                <div className="mt-4 space-y-3">
+                  {relatedCars.map((rc) => (
+                    <Link
+                      key={rc.id}
+                      href={`/cars/${rc.slug}`}
+                      className="group flex items-center justify-between gap-3 rounded-2xl border border-slate-100 px-3 py-2 text-xs transition-colors hover:border-slate-200 hover:bg-slate-50"
+                    >
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-[11px] font-semibold text-slate-900">
+                          {rc.name}
+                        </p>
+                        <div className="mt-1 flex flex-wrap items-center gap-2 text-[10px] text-text-sub">
+                          {rc.grade && <span>{rc.grade}</span>}
+                          {rc.releaseYear && (
+                            <span className="text-slate-500">
+                              {rc.releaseYear}年頃
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      {rc.bodyType && (
+                        <span className="shrink-0 rounded-full bg-slate-900 px-3 py-1 text-[9px] font-medium tracking-[0.18em] text-white group-hover:bg-slate-800">
+                          {rc.bodyType}
+                        </span>
+                      )}
+                    </Link>
+                  ))}
+                </div>
+              </GlassCard>
+            )}
           </div>
-        </div>
-
-        {/* トラブル傾向・維持費メモ＋RELATED CONTENTSエリア */}
-        <div className="mt-12 grid gap-6 lg:grid-cols-2">
-          <GlassCard padding="lg">
-            <p className="text-[10px] font-semibold tracking-[0.3em] text-text-sub">
-              TROUBLE & COST
-            </p>
-            <p className="mt-3 text-xs leading-relaxed text-text-sub sm:text-[13px]">
-              この車種ならではのトラブル傾向や、維持費のざっくりしたイメージを
-              まとめていく予定のエリアです。実際のオーナー体験や整備事例を集めながら、
-              「どこを気にしておくと安心か」を少しずつ言語化していきます。
-            </p>
-            <ul className="mt-4 space-y-1 text-xs leading-relaxed text-text-sub sm:text-[13px]">
-              <li>•よく話題になる持病や経年劣化ポイント</li>
-              <li>•車検ごとに掛かりやすい整備メニューの目安</li>
-              <li>•タイヤやブレーキなど消耗品の負担感</li>
-              <li>•任意保険や税金を含めたざっくり維持費感</li>
-            </ul>
-          </GlassCard>
-
-          <GlassCard padding="lg">
-            <p className="text-[10px] font-semibold tracking-[0.3em] text-text-sub">
-              RELATED CONTENTS
-            </p>
-            <p className="mt-3 text-xs leading-relaxed text-text-sub sm:text-[13px]">
-              {car.name}に関するニュースやコラム、購入・売却ガイドなど、
-              周辺コンテンツへの入り口として使っていく予定のエリアです。
-            </p>
-            <ul className="mt-4 space-y-1 text-xs leading-relaxed text-text-sub sm:text-[13px]">
-              <li>•{maker}の最新ニュース記事</li>
-              <li>•このクルマを取り上げたオーナーコラム</li>
-              <li>•同クラスのライバル車との比較記事</li>
-              <li>•中古で狙うときのチェックポイント解説</li>
-            </ul>
-            <div className="mt-5 flex flex-wrap gap-2 text-[11px]">
-              <Link href={relatedNewsHref}>
-                <Button size="sm" variant="outline">
-                  メーカーNEWS一覧を見る
-                </Button>
-              </Link>
-              <Link href="/column">
-                <Button size="sm" variant="outline">
-                  コラム一覧へ
-                </Button>
-              </Link>
-              <Link href="/guide">
-                <Button size="sm" variant="outline">
-                  GUIDEコンテンツへ
-                </Button>
-              </Link>
-            </div>
-          </GlassCard>
         </div>
       </section>
     </main>
