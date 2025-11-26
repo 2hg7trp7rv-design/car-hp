@@ -31,7 +31,8 @@ function formatDate(value?: string) {
 }
 
 export default async function NewsPage({ searchParams }: Props) {
-  const q = (searchParams?.q ?? "").trim().toLowerCase();
+  const rawQ = searchParams?.q ?? "";
+  const q = rawQ.trim().toLowerCase();
   const categoryFilter = searchParams?.category ?? "";
   const makerFilter = searchParams?.maker ?? "";
   const tagFilter = searchParams?.tag ?? "";
@@ -80,6 +81,7 @@ export default async function NewsPage({ searchParams }: Props) {
 
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 pb-16 pt-20 sm:px-6 sm:pt-24 lg:px-8">
+      {/* ヘッダー */}
       <header className="mb-6 space-y-2 sm:mb-8">
         <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
           NEWS
@@ -137,8 +139,40 @@ export default async function NewsPage({ searchParams }: Props) {
         </GlassCard>
       </section>
 
-      {/* フィルター */}
+      {/* フィルター＋検索 */}
       <section className="mb-6 space-y-3 rounded-2xl border border-white/70 bg-white/70 p-3 text-[11px] text-text-sub backdrop-blur-md sm:p-4">
+        {/* キーワード検索行 */}
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-1">
+            <span className="font-medium text-slate-700">
+              キーワード検索
+            </span>
+            <span className="text-[10px] text-slate-500">
+              タイトルと要約の中から、気になるワードで絞り込みできます。
+            </span>
+          </div>
+          <form
+            method="GET"
+            action="/news"
+            className="mt-1 flex w-full max-w-xs items-center gap-2 sm:mt-0"
+          >
+            <input
+              type="search"
+              name="q"
+              defaultValue={rawQ}
+              placeholder="例 BMW 5シリーズ / EV / 新型"
+              className="h-8 w-full rounded-full border border-slate-200 bg-white/90 px-3 text-[11px] text-slate-800 shadow-soft focus:outline-none focus:ring-2 focus:ring-tiffany-400 focus:ring-offset-1"
+            />
+            <button
+              type="submit"
+              className="h-8 rounded-full bg-slate-900 px-3 text-[10px] font-medium tracking-[0.18em] text-white hover:bg-slate-800"
+            >
+              検索
+            </button>
+          </form>
+        </div>
+
+        {/* カテゴリフィルタ */}
         <div className="flex flex-wrap gap-2">
           <span className="font-medium text-slate-700">カテゴリ</span>
           <div className="flex flex-wrap gap-1">
@@ -170,6 +204,7 @@ export default async function NewsPage({ searchParams }: Props) {
           </div>
         </div>
 
+        {/* メーカーフィルタ */}
         {makers.length > 0 && (
           <div className="flex flex-wrap gap-2">
             <span className="font-medium text-slate-700">メーカー</span>
@@ -203,6 +238,7 @@ export default async function NewsPage({ searchParams }: Props) {
           </div>
         )}
 
+        {/* タグフィルタ */}
         {tags.length > 0 && (
           <div className="flex flex-wrap gap-2">
             <span className="font-medium text-slate-700">タグ</span>
