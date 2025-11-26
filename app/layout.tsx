@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { MobileMenu } from "@/components/layout/MobileMenu";
+import { SmoothScrollProvider } from "@/components/scroll/SmoothScrollProvider";
 
 export const metadata: Metadata = {
   title: "CAR BOUTIQUE | クルマのニュースとストーリー",
@@ -19,14 +20,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ja">
       <body className="min-h-screen bg-site text-text-main antialiased">
-        <div className="flex min-h-screen flex-col">
+        <SmoothScrollProvider>
+         <div className="flex min-h-screen flex-col">
           <SiteHeader />
           <main className="flex-1 pb-16 pt-4 sm:pt-8 lg:pt-10">
             {children}
           </main>
           <SiteFooter />
           <BottomNav />
-        </div>
+         </div>
+        <SmoothScrollProvider>
       </body>
     </html>
   );
