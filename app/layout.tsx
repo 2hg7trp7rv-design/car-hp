@@ -1,28 +1,37 @@
-// app/layout.tsx
 import "./globals.css";
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
-import Link from "next/link";
+import { Bodoni_Moda, Manrope } from "next/font/google"; // [5, 6]
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { SmoothScrollProvider } from "@/components/scroll/SmoothScrollProvider";
 
+// Variable Fontの設定
+const bodoni = Bodoni_Moda({
+  subsets: ["latin"],
+  variable: "--font-bodoni",
+  display: "swap",
+  // オプティカルサイジング（文字サイズに応じた太さ調整）を有効化
+  axes: ["opsz"], 
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "CAR BOUTIQUE | クルマのニュースとストーリー",
-  description:
-    "ニュースとコラム、そして車種データベースをラグジュアリーなUIで楽しめるCAR BOUTIQUE。",
+  description: "ニュースとコラム、そして車種データベースをラグジュアリーなUIで楽しめるCAR BOUTIQUE。",
 };
 
-type RootLayoutProps = {
-  children: ReactNode;
-};
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ja">
-      <body className="min-h-screen bg-site text-text-main antialiased">
+    <html lang="ja" className={`${bodoni.variable} ${manrope.variable}`}>
+      <body className="min-h-screen bg-site text-obsidian antialiased selection:bg-tiffany-100 selection:text-tiffany-700">
         <SmoothScrollProvider>
           <div className="flex min-h-screen flex-col">
-            <SiteHeader />
+            {/* ヘッダー等は既存のコンポーネントを使用 */}
+            <SiteHeader /> 
             <main className="flex-1 pb-16 pt-4 sm:pt-8 lg:pt-10">
               {children}
             </main>
@@ -34,6 +43,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     </html>
   );
 }
+
 
 function SiteHeader() {
   return (
