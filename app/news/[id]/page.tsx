@@ -2,7 +2,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getNewsById, getLatestNews, type NewsItem } from "@/lib/news";
+import { getNewsById, type NewsItem } from "@/lib/news";
+import { Button } from "@/components/ui/button";
 
 export const runtime = "edge";
 
@@ -62,10 +63,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function NewsDetailPage({ params }: Props) {
-  const [item, latest] = await Promise.all([
-    getNewsById(params.id),
-    getLatestNews(80),
-  ]);
+  const item = await getNewsById(params.id);
 
   if (!item) {
     notFound();
@@ -73,15 +71,6 @@ export default async function NewsDetailPage({ params }: Props) {
 
   const title = item.titleJa || item.title;
   const formattedDate = formatDate(item.publishedAt);
-
-  const related = latest
-    .filter((n) => n.id !== item.id)
-    .filter((n) => {
-      if (item.maker && n.maker === item.maker) return true;
-      if (item.category && n.category === item.category) return true;
-      return false;
-    })
-    .slice(0, 3);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 text-slate-900">
@@ -102,17 +91,17 @@ export default async function NewsDetailPage({ params }: Props) {
         {/* タグ・メタ情報行 */}
         <div className="mb-4 flex flex-wrap items-center gap-2 text-[11px] tracking-[0.16em] uppercase text-slate-500">
           {item.category && (
-            <span className="rounded-full border border-slate-200 bg-white/70 px-3 py-1">
+            <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1">
               {item.category}
             </span>
           )}
           {item.maker && (
-            <span className="rounded-full border border-slate-200 bg-white/70 px-3 py-1">
+            <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1">
               {item.maker}
             </span>
           )}
           {item.sourceName && (
-            <span className="rounded-full border border-slate-200 bg-white/70 px-3 py-1">
+            <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1">
               {item.sourceName}
             </span>
           )}
@@ -123,7 +112,7 @@ export default async function NewsDetailPage({ params }: Props) {
           )}
         </div>
 
-        {/* タイトル */}
+        {/* タイトル＋原題 */}
         <header className="mb-10 space-y-4">
           <h1 className="text-balance text-2xl font-semibold leading-relaxed tracking-[0.08em] md:text-3xl">
             {title}
@@ -138,34 +127,31 @@ export default async function NewsDetailPage({ params }: Props) {
           )}
         </header>
 
-        {/* 本文ラッパ（要約＋コメント＋情報カード） */}
+        {/* 本文ラッパ（要約＋情報カード） */}
         <div className="mb-10 grid gap-8 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
           {/* 要約・コメントエリア */}
-          <section className="space-y-4">
-            {/* SUMMARYカード */}
-            <div className="rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-sm backdrop-blur">
-              <h2 className="mb-4 text-xs font-medium tracking-[0.18em] text-slate-500">
-                SUMMARY
-              </h2>
-              <p className="text-sm leading-relaxed text-slate-800">
-                {item.excerpt ??
-                  "このニュースは、外部メディアの記事をもとに CAR BOUTIQUE 編集部がピックアップしたものです。詳細は元記事をご覧ください。"}
-              </p>
-            </div>
+          <section className="rounded-3xl border border-slate-200/70 bg-white/90 p-6 shadow-sm backdrop-blur">
+            <h2 className="mb-3 text-xs font-medium tracking-[0.18em] text-slate-500">
+              SUMMARY
+            </h2>
+            <p className="text-sm leading-relaxed text-slate-800">
+              {item.excerpt ??
+                "このニュースは、外部メディアの記事をもとに CAR BOUTIQUE 編集部がピックアップしたものです。詳細は元記事をご覧ください。"}
+            </p>
 
-            {/* CAR BOUTIQUEのひと言コメント */}
-            <div className="rounded-3xl border border-tiffany-100 bg-gradient-to-br from-white via-sky-50/50 to-white p-6 shadow-sm">
-              <h2 className="mb-3 text-xs font-medium tracking-[0.2em] text-slate-500">
-                CAR BOUTIQUEのひと言
-              </h2>
-              <p className="text-sm leading-relaxed text-slate-800">
-                {item.editorNote ??
-                  "このニュースに対するCAR BOUTIQUEとしての視点や、一歩踏み込んだコメントは順次追加していきます。とりあえず今は、元記事の内容とご自身の興味を重ね合わせながら読んでみてください。"}
+            <div className="mt-6 rounded-2xl bg-slate-50/80 p-4 text-xs text-slate-600">
+              <p className="text-[11px] font-medium tracking-[0.18em] text-slate-500">
+                CAR BOUTIQUE VIEW
+              </p>
+              <p className="mt-2 leading-relaxed">
+                将来的には、ここに「なぜこの記事をピックアップしたのか」
+                「オーナー目線でどう感じるか」といった一言コメントや
+                コラムへのリンクを追加していく想定です。
               </p>
             </div>
           </section>
 
-          {/* 情報カード */}
+          {/* 情報カード＋元記事リンク */}
           <aside className="space-y-4">
             <div className="rounded-3xl border border-tiffany-100 bg-gradient-to-br from-white via-sky-50/40 to-white p-5 shadow-sm">
               <h2 className="mb-3 text-xs font-medium tracking-[0.2em] text-slate-500">
@@ -182,6 +168,18 @@ export default async function NewsDetailPage({ params }: Props) {
                   <div className="flex">
                     <dt className="w-20 shrink-0 text-slate-400">配信日</dt>
                     <dd>{formattedDate}</dd>
+                  </div>
+                )}
+                {item.category && (
+                  <div className="flex">
+                    <dt className="w-20 shrink-0 text-slate-400">カテゴリ</dt>
+                    <dd>{item.category}</dd>
+                  </div>
+                )}
+                {item.maker && (
+                  <div className="flex">
+                    <dt className="w-20 shrink-0 text-slate-400">メーカー</dt>
+                    <dd>{item.maker}</dd>
                   </div>
                 )}
                 {item.tags && item.tags.length > 0 && (
@@ -204,13 +202,13 @@ export default async function NewsDetailPage({ params }: Props) {
 
             {/* 元記事へのリンク */}
             {item.url && (
-              <div className="rounded-3xl border border-slate-200 bg-white/80 p-5 text-xs text-slate-700 shadow-sm">
+              <div className="rounded-3xl border border-slate-200 bg-white/90 p-5 text-xs text-slate-700 shadow-sm">
                 <p className="mb-3 text-[11px] tracking-[0.18em] text-slate-500">
                   ORIGINAL ARTICLE
                 </p>
-                <p className="mb-4">
+                <p className="mb-4 leading-relaxed">
                   記事の全文は、配信元メディアでご確認いただけます。
-                  CAR BOUTIQUE では、要約と独自の視点を添えてご紹介しています。
+                  CAR BOUTIQUEでは、要約と独自の視点を添えてご紹介しています。
                 </p>
                 <a
                   href={item.url}
@@ -225,41 +223,58 @@ export default async function NewsDetailPage({ params }: Props) {
           </aside>
         </div>
 
-        {/* 関連ニュース */}
-        {related.length > 0 && (
-          <section className="mb-12 space-y-4">
-            <h2 className="text-xs font-semibold tracking-[0.18em] text-slate-700">
-              RELATED NEWS
+        {/* 回遊導線: CARS / COLUMN へ */}
+        <section className="mb-12 grid gap-4 md:grid-cols-2">
+          <div className="rounded-3xl border border-tiffany-100 bg-gradient-to-br from-white via-sky-50/40 to-white p-5 text-xs shadow-sm">
+            <p className="text-[10px] font-semibold tracking-[0.28em] text-tiffany-700">
+              CARS
+            </p>
+            <h2 className="mt-2 text-sm font-semibold text-slate-900">
+              記事で気になった車種は、CARSページでスペックと性格をチェック。
             </h2>
-            <div className="grid gap-3 md:grid-cols-3">
-              {related.map((n) => (
-                <Link key={n.id} href={`/news/${n.id}`}>
-                  <div className="rounded-2xl border border-white/80 bg-white/80 p-4 text-xs text-slate-800 shadow-sm transition hover:-translate-y-[2px] hover:shadow-soft-card">
-                    <p className="text-[10px] font-medium tracking-[0.22em] text-brand-tiffanySoft">
-                      {n.category || "NEWS"}
-                    </p>
-                    <p className="mt-2 line-clamp-3 text-[11px] leading-relaxed">
-                      {n.titleJa || n.title}
-                    </p>
-                    <div className="mt-3 flex items-center justify-between text-[10px] text-slate-500">
-                      <span>{n.sourceName ?? "EXTERNAL"}</span>
-                      <span>{formatDate(n.publishedAt)}</span>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+            <p className="mt-2 leading-relaxed text-text-sub">
+              メーカー別にニュースを追いながら、実際の車種ページで
+              維持費感やトラブル傾向も併せて見ていくイメージです。
+              まずは気になるブランドから、いくつか車種をピックアップしてみてください。
+            </p>
+            <div className="mt-3">
+              <Link href="/cars">
+                <Button size="sm" variant="secondary">
+                  CARS一覧へ
+                </Button>
+              </Link>
             </div>
-          </section>
-        )}
+          </div>
+
+          <div className="rounded-3xl border border-slate-200 bg-white/90 p-5 text-xs shadow-sm">
+            <p className="text-[10px] font-semibold tracking-[0.28em] text-slate-600">
+              COLUMN
+            </p>
+            <h2 className="mt-2 text-sm font-semibold text-slate-900">
+              ニュースの背景や、オーナーの本音はコラムでじっくり。
+            </h2>
+            <p className="mt-2 leading-relaxed text-text-sub">
+              技術解説やブランドの歴史、実際に乗ってみてどうだったかといった
+              一歩踏み込んだ話は、COLUMNセクションで少しずつ増やしていきます。
+            </p>
+            <div className="mt-3">
+              <Link href="/column">
+                <Button size="sm" variant="outline">
+                  コラム一覧へ
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
 
         {/* 戻るリンク */}
-        <div className="mt-12 flex justify-between border-t border-slate-200 pt-6 text-xs">
+        <div className="mt-6 flex justify-between border-t border-slate-200 pt-6 text-xs">
           <Link
             href="/news"
             className="inline-flex items-center gap-2 text-slate-500 transition hover:text-slate-900"
           >
             <span className="text-[10px]">←</span>
-            <span className="tracking-[0.18em]">NEWS 一覧に戻る</span>
+            <span className="tracking-[0.18em]">NEWS一覧に戻る</span>
           </Link>
         </div>
       </div>
