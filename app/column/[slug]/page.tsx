@@ -5,11 +5,11 @@ import { notFound } from "next/navigation";
 import { getColumnBySlug } from "@/lib/columns";
 import ColumnReaderShell from "./reader-shell";
 
-export const runtime = "edge";
-
 type Props = {
   params: { slug: string };
 };
+
+export const runtime = "edge";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = await getColumnBySlug(params.slug);
