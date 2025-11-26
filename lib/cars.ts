@@ -1,73 +1,87 @@
 // lib/cars.ts
 
-import type cars1 from "@/data/cars/cars1.json";
-import type cars2 from "@/data/cars/cars2.json";
-import type cars3 from "@/data/cars/cars3.json";
-import carsData1 from "@/data/cars/cars1.json";
-import carsData2 from "@/data/cars/cars2.json";
-import carsData3 from "@/data/cars/cars3.json";
+import carsData from "@/data/cars.json";
 
 export type CarDifficulty = "basic" | "intermediate" | "advanced";
 
 export type CarItem = {
-  id: string;
-  name: string;
-  slug: string;
-  maker: string;
-  releaseYear?: number;
-  difficulty?: CarDifficulty;
-  bodyType?: string;
-  segment?: string;
-  grade?: string;
-  summary: string;
-  summaryLong?: string;
-  engine?: string;
-  powerPs?: number;
-  torqueNm?: number;
-  transmission?: string;
-  drive?: string;
-  fuel?: string;
-  fuelEconomy?: string;
-  priceNew?: string;
-  priceUsed?: string;
-  tags?: string[];
-  heroImage?: string;
+  id:string;
+  name:string;
+  slug:string;
+  maker:string;
+  releaseYear?:number;
+  difficulty?:CarDifficulty;
+  bodyType?:string;
+  segment?:string;
+  grade?:string;
+  summary:string;
+  summaryLong?:string;
+  engine?:string;
+  powerPs?:number;
+  torqueNm?:number;
+  transmission?:string;
+  drive?:string;
+  fuel?:string;
+  fuelEconomy?:string;
+  priceNew?:string;
+  priceUsed?:string;
+  tags?:string[];
+  heroImage?:string;
+  mainImage?:string;
+  lengthMm?:number;
+  widthMm?:number;
+  heightMm?:number;
+  wheelbaseMm?:number;
+  weightKg?:number;
+  tiresFront?:string;
+  tiresRear?:string;
 };
 
-// JSONモジュールの型をCarItem配列として扱うための補助型
-type CarsJsonModule = typeof cars1 | typeof cars2 | typeof cars3;
+type RawCar = (typeof carsData)[number];
 
-function normalizeMaker(rawMaker: string | undefined): string {
+function normalizeMaker(rawMaker:string | undefined):string {
   if (!rawMaker) return "OTHER";
   return rawMaker.toUpperCase();
 }
 
-function normalizeSlug(item: Partial<CarItem>): string {
+function normalizeDifficulty(raw:string | undefined):CarDifficulty | undefined {
+  if (!raw) return undefined;
+  const value = raw.toLowerCase();
+  if (value === "basic" || value === "intermediate" || value === "advanced") {
+    return value;
+  }
+  return undefined;
+}
+
+function normalizeSlug(item:Partial<RawCar>):string {
   if (item.slug && item.slug.length > 0) return item.slug;
   if (item.id && item.id.length > 0) return item.id;
   return "";
 }
 
-function normalizeCar(item: any): CarItem | null {
+function normalizeCar(item:RawCar):CarItem | null {
   const slug = normalizeSlug(item);
+  if (!slug) return null;
 
-  if (!slug) {
+  const maker = normalizeMaker(item.maker);
+  const summary = item.summary ?? "";
+
+  // nameやsummaryが無いデータは弾いておく
+  if (!item.name || summary.length === 0) {
     return null;
   }
 
-  const maker = normalizeMaker(item.maker);
-
-  const normalized: CarItem = {
-    id: item.id ?? slug,
-    name: item.name ?? "",
+  const normalized:CarItem = {
+    id: item.id,
+    name: item.name,
     slug,
     maker,
     releaseYear: item.releaseYear,
-    difficulty: item.difficulty,
+    difficulty: normalizeDifficulty(item.difficulty),
     bodyType: item.bodyType,
     segment: item.segment,
     grade: item.grade,
-    summary: item.summary ?? "",
+    summary,
     summaryLong: item.summaryLong,
     engine: item.engine,
     powerPs: item.powerPs,
@@ -80,45 +94,34 @@ function normalizeCar(item: any): CarItem | null {
     priceUsed: item.priceUsed,
     tags: item.tags,
     heroImage: item.heroImage,
+    mainImage: (item as any).mainImage,
+    lengthMm: (item as any).lengthMm,
+    widthMm: (item as any).widthMm,
+    heightMm: (item as any).heightMm,
+    wheelbaseMm: (item as any).wheelbaseMm,
+    weightKg: (item as any).weightKg,
+    tiresFront: (item as any).tiresFront,
+    tiresRear: (item as any).tiresRear,
   };
-
-  // nameやsummaryが欠けているものは弾いておく
-  if (!normalized.name || !normalized.summary) {
-    return null;
-  }
 
   return normalized;
 }
 
-function buildAllCars(): CarItem[] {
-  const rawModules: CarsJsonModule[] = [carsData1, carsData2, carsData3];
+function buildAllCars():CarItem[] {
+  const seen = new Map<string, CarItem>();
 
-  const mergedRaw = rawModules.flat() as any[];
-
-  const seenSlugs = new Set<string>();
-  const result: CarItem[] = [];
-
-  for (const raw of mergedRaw) {
+  for (const raw of carsData) {
     const normalized = normalizeCar(raw);
     if (!normalized) continue;
 
-    if (seenSlugs.has(normalized.slug)) {
-      continue;
-    }
-
-    seenSlugs.add(normalized.slug);
-    result.push(normalized);
+    if (seen.has(normalized.slug)) continue;
+    seen.set(normalized.slug, normalized);
   }
 
+  const result = Array.from(seen.values());
+
+  // 年代の新しい順、その中では車名の五十音順に近い並び
   result.sort((a, b) => {
-    const makerA = a.maker ?? "";
-    const makerB = b.maker ?? "";
-    const makerCompare = makerA.localeCompare(makerB, "ja");
-
-    if (makerCompare !== 0) {
-      return makerCompare;
-    }
-
     const yearA = a.releaseYear ?? 0;
     const yearB = b.releaseYear ?? 0;
 
@@ -134,12 +137,12 @@ function buildAllCars(): CarItem[] {
   return result;
 }
 
-const ALL_CARS: CarItem[] = buildAllCars();
+const ALL_CARS:CarItem[] = buildAllCars();
 
-export async function getAllCars(): Promise<CarItem[]> {
+export async function getAllCars():Promise<CarItem[]> {
   return ALL_CARS;
 }
 
-export async function getCarBySlug(slug: string): Promise<CarItem | undefined> {
+export async function getCarBySlug(slug:string):Promise<CarItem | undefined> {
   return ALL_CARS.find((car) => car.slug === slug);
 }
