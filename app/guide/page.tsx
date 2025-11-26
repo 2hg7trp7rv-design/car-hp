@@ -1,9 +1,9 @@
 // app/guide/page.tsx
-export const runtime = "edge";
-
 import type { Metadata } from "next";
 import Link from "next/link";
 import { GlassCard } from "@/components/GlassCard";
+
+export const runtime = "edge";
 
 export const metadata: Metadata = {
   title: "ガイド | CAR BOUTIQUE",
