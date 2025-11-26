@@ -16,6 +16,7 @@ type GlassCardProps = GlassCardBaseProps & HTMLAttributes<HTMLElement>;
  * 背景 半透明ホワイト＋うっすらグラデ
  * 枠 白系
  * 影 柔らかく広め
+ * interactive=true のときはホバー/タップでふわっと浮かせる
  */
 export function GlassCard(props: GlassCardProps) {
   const {
@@ -39,13 +40,24 @@ export function GlassCard(props: GlassCardProps) {
           : "p-4 sm:p-5";
 
   const classes = [
+    // ベース形状
     "relative overflow-hidden rounded-2xl border border-white/70",
+    // ガラス感
     "bg-white/80 backdrop-blur-xl",
+    // 影
     "shadow-soft-card",
-    "transition-transform transition-shadow duration-200",
+    // アニメーション基礎
+    "transform-gpu transition-all duration-200 ease-out",
+    "motion-reduce:transform-none motion-reduce:transition-none",
     paddingClass,
+    // インタラクション時のふわっと浮く/押し込まれる動き
     interactive &&
-      "hover:-translate-y-[2px] hover:shadow-soft-strong focus-visible:-translate-y-[2px]",
+      [
+        "hover:-translate-y-[3px] hover:scale-[1.01] hover:shadow-soft-strong",
+        "focus-visible:-translate-y-[3px] focus-visible:scale-[1.01]",
+        "active:translate-y-[0px] active:scale-[0.99]",
+      ].join(" "),
+    // フォーカスリング
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-tiffany-400",
     className ?? "",
   ]
@@ -54,7 +66,9 @@ export function GlassCard(props: GlassCardProps) {
 
   return (
     <Component className={classes} {...rest}>
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/60 via-white/40 to-tiffany-50/50 opacity-80" />
+      {/* ガラス面の微妙なグラデーションレイヤー */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/65 via-white/40 to-tiffany-50/45 opacity-90" />
+      {/* コンテンツ */}
       <div className="relative z-[1]">{children}</div>
     </Component>
   );
