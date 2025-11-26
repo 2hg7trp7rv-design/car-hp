@@ -1,21 +1,29 @@
-// components/animation/Reveal.tsx
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 
 type RevealProps = {
   children: ReactNode;
+  /** アニメーション開始までの遅延時間（ms）。スタッガー効果に使用 */
   delay?: number;
   className?: string;
+  /** IntersectionObserverの閾値 (0.0 ~ 1.0) */
+  threshold?: number;
+  /** 出現方向: 'up'（下から） | 'fade'（その場） */
+  direction?: "up" | "fade";
 };
 
 /**
- * スクロールイン時にふわっと表示させる共通コンポーネント
- * ・IntersectionObserverで一度だけ表示状態にする
- * ・モバイルでも負担が大きくならないように、処理は最小限
+ * Phase 3 Reveal Component
+ * 物理的な質量を感じさせるイージングと、Bento Grid用の遅延表示をサポート
  */
-export function Reveal({ children, delay = 0, className = "" }: RevealProps) {
+export function Reveal({ 
+  children, 
+  delay = 0, 
+  className = "",
+  threshold = 0.15,
+  direction = "up"
+}: RevealProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
 
@@ -37,34 +45,30 @@ export function Reveal({ children, delay = 0, className = "" }: RevealProps) {
           }
         });
       },
-      {
-        root: null,
-        rootMargin: "0px 0px -10% 0px",
-        threshold: 0.15,
-      },
+      { rootMargin: "0px 0px -50px 0px", threshold }
     );
 
     observer.observe(node);
+    return () => observer.disconnect();
+  }, [threshold]);
 
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+  // 重厚感のあるカスタムイージング (cubic-bezier)
+  const baseClass = "transform-gpu transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform";
+  
+  let stateClass = "";
+  if (direction === "up") {
+    stateClass = visible 
+     ? "opacity-100 translate-y-0" 
+      : "opacity-0 translate-y-8"; 
+  } else {
+    stateClass = visible? "opacity-100" : "opacity-0";
+  }
 
-  const baseClass =
-    "transform-gpu transition-all duration-700 ease-out will-change-transform";
-  const stateClass = visible
-    ? "opacity-100 translate-y-0"
-    : "opacity-0 translate-y-3";
-
-  const mergedClassName = [baseClass, stateClass, className]
-    .filter(Boolean)
-    .join(" ");
-
-  const style = delay ? { transitionDelay: `${delay}ms` } : undefined;
+  // style属性でdelayを直接制御
+  const style: CSSProperties = { transitionDelay: `${delay}ms` };
 
   return (
-    <div ref={ref} className={mergedClassName} style={style}>
+    <div ref={ref} className={[baseClass, stateClass, className].join(" ")} style={style}>
       {children}
     </div>
   );
