@@ -150,7 +150,7 @@ export default async function HomePage() {
           >
             <div>
               <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
-              GUIDE
+                GUIDE
               </p>
               <h3 className="mt-2 text-sm font-semibold text-slate-900 sm:text-[15px]">
                 買い方と維持費、家計とのバランスを整える
@@ -216,6 +216,9 @@ export default async function HomePage() {
             <h2 className="mt-1 text-base font-semibold tracking-tight text-slate-900 sm:text-lg">
               いま押さえておきたいニュース
             </h2>
+            <p className="mt-1 text-[11px] text-text-sub">
+              詳しくはNEWSページで、カテゴリやメーカー別にも絞り込めます。
+            </p>
           </div>
           <Link
             href="/news"
@@ -235,6 +238,8 @@ export default async function HomePage() {
               const title = item.titleJa || item.title;
               const sourceName = item.sourceName ?? "EXTERNAL";
               const dateLabel = formatDate(item.publishedAt);
+              const categoryLabel = item.category || "NEWS";
+              const makerLabel = item.maker || "";
 
               return (
                 <GlassCard
@@ -245,17 +250,32 @@ export default async function HomePage() {
                 >
                   <Link href={`/news/${item.id}`} className="block h-full">
                     <div className="flex h-full flex-col gap-2">
-                      <p className="font-body-light text-[10px] tracking-[0.25em] text-brand-tiffanySoft">
-                        {item.category || "NEWS"}
-                      </p>
+                      {/* カテゴリ＋メーカーの小さなチップ行 */}
+                      <div className="flex flex-wrap items-center gap-2 text-[10px] text-text-sub">
+                        <span className="inline-flex items-center gap-1 rounded-full bg-slate-900/90 px-3 py-1 text-[10px] font-medium tracking-[0.22em] text-white">
+                          <span className="h-1.5 w-1.5 rounded-full bg-tiffany-300" />
+                          {categoryLabel}
+                        </span>
+                        {makerLabel && (
+                          <span className="rounded-full bg-white/80 px-3 py-1">
+                            {makerLabel}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* タイトル */}
                       <h3 className="text-sm font-semibold leading-snug text-slate-900 sm:text-[15px]">
                         {title}
                       </h3>
+
+                      {/* 要約 */}
                       {item.excerpt && (
                         <p className="line-clamp-3 text-xs leading-relaxed text-text-sub">
                           {item.excerpt}
                         </p>
                       )}
+
+                      {/* 出典＋日付 */}
                       <div className="mt-auto flex items-center justify-between text-[11px] text-text-sub">
                         <span>{sourceName}</span>
                         <span>{dateLabel}</span>
