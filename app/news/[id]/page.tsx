@@ -1,300 +1,217 @@
 // app/news/[id]/page.tsx
-export const runtime = "edge";
-
 import Link from "next/link";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { getNewsById, type NewsItem } from "@/lib/news";
+
+export const runtime = "edge";
 
 type Props = {
   params: { id: string };
 };
 
-type FetchedNews = {
-  url: string;
-  title: string;
-  description: string;
-  sourceName: string;
-};
-
-// 安全にdecodeするヘルパー
-function safeDecode(value: string): string {
-  try {
-    return decodeURIComponent(value);
-  } catch {
-    return value;
-  }
-}
-
-// ID→URLの解読ロジック
-function decodeIdToUrl(rawId: string): string | null {
-  let v = rawId;
-
-  // 何重かエンコードされていることを想定して数回decode
-  for (let i = 0; i < 4; i++) {
-    const decoded = safeDecode(v);
-    if (decoded === v) break;
-    v = decoded;
-  }
-
-  // rss-プレフィックスを外す
-  if (v.startsWith("rss-")) {
-    v = v.slice(4);
-  }
-
-  // 先頭の http/https を探す
-  const idx = v.indexOf("http");
-  if (idx === -1) return null;
-
-  const urlCandidate = v.slice(idx);
-
-  // 単純に「://」が含まれていればURLとして扱う
-  if (!urlCandidate.includes("://")) return null;
-
-  return urlCandidate;
-}
-
-// hostname→媒体名
-function getSourceNameFromHost(host: string): string {
-  const map: Record<string, string> = {
-    "response.jp": "Response",
-    "www.honda.co.jp": "Honda",
-    "global.honda": "Honda Global",
-    "www.toyota.co.jp": "Toyota",
-    "global.toyota": "Toyota Global",
-    "www.nissan.co.jp": "Nissan",
-    "newsroom.nissan-global.com": "Nissan Global",
-    "www.bmw.co.jp": "BMW Japan",
-    "www.mercedes-benz.jp": "Mercedes-Benz Japan",
-    "www.subaru.jp": "SUBARU",
-    "www.mazda.co.jp": "Mazda",
-    "www.mitsubishi-motors.co.jp": "Mitsubishi Motors",
-    "www.lexus.jp": "LEXUS",
-    "www.audi.co.jp": "Audi Japan",
-    "www.vw.co.jp": "Volkswagen Japan",
-    "www.porsche.com": "Porsche",
-    "car.watch.impress.co.jp": "Car Watch",
-    "www.webcg.net": "webCG",
-    "www.motor1.com": "Motor1.com",
-    "insideevs.com": "InsideEVs",
-  };
-
-  const lower = host.toLowerCase();
-  if (map[lower]) return map[lower];
-
-  return host;
-}
-
-// HTMLから<meta>や<title>を抜き出す簡易関数
-function extractBetween(html: string, regex: RegExp): string | null {
-  const m = html.match(regex);
-  if (!m) return null;
-  return m[1]?.trim() || null;
-}
-
-async function fetchNewsFromUrl(url: string): Promise<FetchedNews | null> {
-  const res = await fetch(url, {
-    // 元記事サイトへのアクセス頻度を抑えるためにキャッシュ
-    next: { revalidate: 600 },
+function formatDate(iso?: string | null): string {
+  if (!iso) return "";
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
   });
+}
 
-  if (!res.ok) {
-    return null;
+function buildTitle(item: NewsItem): string {
+  const base = item.titleJa || item.title;
+  if (item.sourceName) {
+    return `${base} | ${item.sourceName}`;
   }
-
-  const html = await res.text();
-
-  const ogTitle =
-    extractBetween(
-      html,
-      /<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["'][^>]*>/i,
-    ) ??
-    extractBetween(
-      html,
-      /<meta[^>]+name=["']twitter:title["'][^>]+content=["']([^"']+)["'][^>]*>/i,
-    );
-
-  const titleTag = extractBetween(html, /<title[^>]*>([^<]+)<\/title>/i);
-
-  const title = ogTitle ?? titleTag ?? url;
-
-  const ogDesc =
-    extractBetween(
-      html,
-      /<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']+)["'][^>]*>/i,
-    ) ??
-    extractBetween(
-      html,
-      /<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["'][^>]*>/i,
-    ) ??
-    extractBetween(
-      html,
-      /<meta[^>]+name=["']twitter:description["'][^>]+content=["']([^"']+)["'][^>]*>/i,
-    );
-
-  const description =
-    ogDesc ??
-    "元記事の概要を表示できませんでしたが、以下のボタンから記事全体を確認できます。";
-
-  const host = new URL(url).host;
-  const sourceName = getSourceNameFromHost(host);
-
-  return {
-    url,
-    title,
-    description,
-    sourceName,
-  };
+  return base;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const url = decodeIdToUrl(params.id);
-
-  if (!url) {
-    return {
-      title: "記事が見つかりません | CAR BOUTIQUE",
-      description: "指定されたニュースが見つかりませんでした。",
-    };
-  }
-
-  const item = await fetchNewsFromUrl(url);
+  const item = await getNewsById(params.id);
 
   if (!item) {
     return {
-      title: "元記事を取得できません | CAR BOUTIQUE",
-      description: "元記事を取得できませんでした。",
+      title: "記事が見つかりません | CAR BOUTIQUE",
+      description: "指定されたニュース記事は見つかりませんでした。",
     };
   }
 
+  const title = buildTitle(item);
+  const description =
+    item.excerpt ??
+    "車のニュースと、その先にある物語を届ける CAR BOUTIQUE のニュース詳細ページです。";
+
   return {
-    title: `${item.title} | CAR BOUTIQUE`,
-    description: item.description,
+    title: `${title} | CAR BOUTIQUE`,
+    description,
     openGraph: {
-      title: `${item.title} | CAR BOUTIQUE`,
-      description: item.description,
+      title: `${title} | CAR BOUTIQUE`,
+      description,
+      url: `https://car-hp.vercel.app/news/${item.id}`,
       type: "article",
-      url: `https://car-hp.vercel.app/news/${encodeURIComponent(params.id)}`,
     },
     twitter: {
-      card: "summary",
-      title: `${item.title} | CAR BOUTIQUE`,
-      description: item.description,
+      card: "summary_large_image",
+      title: `${title} | CAR BOUTIQUE`,
+      description,
     },
   };
 }
 
-// 「ニュースが見つからない」デザイン
-function NotFoundView() {
+export default async function NewsDetailPage({ params }: Props) {
+  const item = await getNewsById(params.id);
+
+  if (!item) {
+    notFound();
+  }
+
+  const title = item.titleJa || item.title;
+  const formattedDate = formatDate(item.publishedAt);
+
   return (
-    <main className="bg-site min-h-screen px-4 pb-16 pt-20 md:px-8 md:pt-24">
-      <div className="mx-auto max-w-2xl rounded-3xl border border-white/80 bg-white/90 p-6 text-center shadow-soft-card backdrop-blur-md md:p-8">
-        <p className="text-[10px] font-semibold tracking-[0.3em] text-text-sub">
-          NEWS
-        </p>
-        <h1 className="mt-4 text-lg font-semibold leading-relaxed text-slate-800 md:text-xl">
-          指定されたニュースが見つかりませんでした。
-        </h1>
-        <p className="mt-3 text-xs leading-relaxed text-text-sub md:text-sm">
-          URLが古くなっているか、RSS経由で取得した元記事がすでに削除されている可能性があります。
-        </p>
-        <div className="mt-8">
+    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 text-slate-900">
+      <div className="mx-auto max-w-5xl px-4 pb-24 pt-24">
+        {/* パンくず */}
+        <nav className="mb-6 text-xs text-slate-500">
+          <Link href="/" className="hover:text-slate-800">
+            HOME
+          </Link>
+          <span className="mx-2">/</span>
+          <Link href="/news" className="hover:text-slate-800">
+            NEWS
+          </Link>
+          <span className="mx-2">/</span>
+          <span className="text-slate-400">DETAIL</span>
+        </nav>
+
+        {/* タグ・メタ情報行 */}
+        <div className="mb-4 flex flex-wrap items-center gap-2 text-[11px] tracking-[0.16em] uppercase text-slate-500">
+          {item.category && (
+            <span className="rounded-full border border-slate-200 bg-white/70 px-3 py-1">
+              {item.category}
+            </span>
+          )}
+          {item.maker && (
+            <span className="rounded-full border border-slate-200 bg-white/70 px-3 py-1">
+              {item.maker}
+            </span>
+          )}
+          {item.sourceName && (
+            <span className="rounded-full border border-slate-200 bg-white/70 px-3 py-1">
+              {item.sourceName}
+            </span>
+          )}
+          {formattedDate && (
+            <span className="ml-auto text-[10px] tracking-[0.2em] text-slate-400">
+              {formattedDate}
+            </span>
+          )}
+        </div>
+
+        {/* タイトル */}
+        <header className="mb-10 space-y-4">
+          <h1 className="text-balance text-2xl font-semibold leading-relaxed tracking-[0.08em] md:text-3xl">
+            {title}
+          </h1>
+          {item.titleJa && (
+            <p className="text-xs text-slate-500">
+              原題
+              <span className="ml-2 text-[11px] tracking-[0.12em]">
+                {item.title}
+              </span>
+            </p>
+          )}
+        </header>
+
+        {/* 本文ラッパ（要約＋コメント用） */}
+        <div className="mb-10 grid gap-8 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+          {/* 要約・本文エリア */}
+          <section className="rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-sm backdrop-blur">
+            <h2 className="mb-4 text-xs font-medium tracking-[0.18em] text-slate-500">
+              SUMMARY
+            </h2>
+            <p className="text-sm leading-relaxed text-slate-800">
+              {item.excerpt ??
+                "このニュースは、外部メディアの記事をもとに CAR BOUTIQUE 編集部がピックアップしたものです。詳細は元記事をご覧ください。"}
+            </p>
+
+            {/* ここに将来的に「CAR BOUTIQUEのひと言コメント」などを追加できる */}
+          </section>
+
+          {/* 情報カード */}
+          <aside className="space-y-4">
+            <div className="rounded-3xl border border-tiffany-100 bg-gradient-to-br from-white via-sky-50/40 to-white p-5 shadow-sm">
+              <h2 className="mb-3 text-xs font-medium tracking-[0.2em] text-slate-500">
+                ARTICLE INFO
+              </h2>
+              <dl className="space-y-2 text-xs text-slate-700">
+                {item.sourceName && (
+                  <div className="flex">
+                    <dt className="w-20 shrink-0 text-slate-400">出典</dt>
+                    <dd>{item.sourceName}</dd>
+                  </div>
+                )}
+                {formattedDate && (
+                  <div className="flex">
+                    <dt className="w-20 shrink-0 text-slate-400">配信日</dt>
+                    <dd>{formattedDate}</dd>
+                  </div>
+                )}
+                {item.tags && item.tags.length > 0 && (
+                  <div>
+                    <dt className="mb-1 text-slate-400">タグ</dt>
+                    <dd className="flex flex-wrap gap-2">
+                      {item.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-[11px]"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </dd>
+                  </div>
+                )}
+              </dl>
+            </div>
+
+            {/* 元記事へのリンク */}
+            {item.url && (
+              <div className="rounded-3xl border border-slate-200 bg-white/80 p-5 text-xs text-slate-700 shadow-sm">
+                <p className="mb-3 text-[11px] tracking-[0.18em] text-slate-500">
+                  ORIGINAL ARTICLE
+                </p>
+                <p className="mb-4">
+                  記事の全文は、配信元メディアでご確認いただけます。
+                  CAR BOUTIQUE では、要約と独自の視点を添えてご紹介しています。
+                </p>
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-[11px] font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
+                >
+                  元記事を読む
+                </a>
+              </div>
+            )}
+          </aside>
+        </div>
+
+        {/* 戻るリンク */}
+        <div className="mt-12 flex justify-between border-t border-slate-200 pt-6 text-xs">
           <Link
             href="/news"
-            className="inline-flex items-center justify-center rounded-full border border-[#0ABAB5]/50 bg-white/80 px-6 py-2 text-xs font-medium tracking-[0.18em] text-[#0ABAB5] shadow-[0_0_0_1px_rgba(255,255,255,0.7)] hover:bg-white"
+            className="inline-flex items-center gap-2 text-slate-500 transition hover:text-slate-900"
           >
-            ニュース一覧へ戻る
+            <span className="text-[10px]">←</span>
+            <span className="tracking-[0.18em]">NEWS 一覧に戻る</span>
           </Link>
         </div>
       </div>
-    </main>
-  );
-}
-
-// 本文
-export default async function NewsDetailPage({ params }: Props) {
-  const url = decodeIdToUrl(params.id);
-
-  if (!url) {
-    return <NotFoundView />;
-  }
-
-  const item = await fetchNewsFromUrl(url);
-
-  if (!item) {
-    // URLは解読できたが、記事取得に失敗したケース
-    return (
-      <main className="bg-site min-h-screen px-4 pb-16 pt-20 md:px-8 md:pt-24">
-        <article className="mx-auto max-w-3xl rounded-3xl border border-white/80 bg-white/90 p-6 shadow-soft-card backdrop-blur-md md:p-8">
-          <p className="text-[10px] font-semibold tracking-[0.3em] text-text-sub">
-            NEWS
-          </p>
-          <h1 className="mt-4 text-lg font-semibold leading-relaxed text-slate-900 md:text-xl">
-            元記事を取得できませんでした。
-          </h1>
-          <p className="mt-4 text-xs leading-relaxed text-text-sub md:text-sm">
-            RSSで取得したURLにアクセスしましたが、現在ページが存在しないか、一時的に取得できない状態になっている可能性があります。
-          </p>
-          <div className="mt-8">
-            <Link
-              href="/news"
-              className="inline-flex items-center justify-center rounded-full border border-[#0ABAB5]/50 bg-white/80 px-6 py-2 text-xs font-medium tracking-[0.18em] text-[#0ABAB5] shadow-[0_0_0_1px_rgba(255,255,255,0.7)] hover:bg-white"
-            >
-              ニュース一覧へ戻る
-            </Link>
-          </div>
-        </article>
-      </main>
-    );
-  }
-
-  return (
-    <main className="bg-site min-h-screen px-4 pb-16 pt-20 md:px-8 md:pt-24">
-      <article className="mx-auto max-w-3xl rounded-3xl border border-white/80 bg-white/95 p-6 shadow-[0_18px_60px_rgba(15,23,42,0.16)] backdrop-blur-xl md:p-8">
-        <div className="flex items-center justify-between gap-3 text-[10px] text-text-sub">
-          <p className="font-semibold tracking-[0.3em] text-text-sub">
-            NEWS
-          </p>
-          <p className="text-[10px] text-slate-400">
-            {item.sourceName}
-          </p>
-        </div>
-
-        <h1 className="mt-4 text-xl font-semibold leading-relaxed text-slate-900 md:text-2xl">
-          {item.title}
-        </h1>
-
-        <p className="mt-5 text-sm leading-relaxed text-text-sub md:text-[15px]">
-          {item.description}
-        </p>
-
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-5 text-[11px] text-text-sub">
-          <p className="max-w-md">
-            元記事の内容は、リンク先の媒体側で最新情報に更新される場合があります。
-            CAR BOUTIQUEでは見出しと概要のみを表示し、本文は元サイトでご確認いただきます。
-          </p>
-          <Link
-            href={item.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-full bg-[#0ABAB5] px-5 py-2 text-[11px] font-semibold tracking-[0.18em] text-white shadow-[0_12px_30px_rgba(10,186,181,0.45)] hover:bg-[#089D99]"
-          >
-            元記事を読む
-          </Link>
-        </div>
-
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-5">
-          <Link
-            href="/news"
-            className="inline-flex items-center justify-center rounded-full border border-[#0ABAB5]/40 bg-white/80 px-6 py-2 text-[11px] font-medium tracking-[0.18em] text-[#0ABAB5] shadow-[0_0_0_1px_rgba(255,255,255,0.7)] hover:bg-white"
-          >
-            ニュース一覧へ戻る
-          </Link>
-          <Link
-            href="/"
-            className="text-[11px] text-text-sub underline-offset-4 hover:text-text-main hover:underline"
-          >
-            トップページへ
-          </Link>
-        </div>
-      </article>
     </main>
   );
 }
