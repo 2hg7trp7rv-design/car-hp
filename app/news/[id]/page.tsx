@@ -2,8 +2,9 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getNewsById, type NewsItem } from "@/lib/news";
+import { getNewsById, getLatestNews, type NewsItem } from "@/lib/news";
 import { Button } from "@/components/ui/button";
+import { GlassCard } from "@/components/GlassCard";
 
 export const runtime = "edge";
 
@@ -71,6 +72,22 @@ export default async function NewsDetailPage({ params }: Props) {
 
   const title = item.titleJa || item.title;
   const formattedDate = formatDate(item.publishedAt);
+
+  // 関連ニュース取得（同じメーカー・カテゴリ・タグから最大3件）
+  const all = await getLatestNews(50);
+  const related = all
+    .filter((n) => n.id !== item.id)
+    .filter((n) => {
+      const sameMaker = item.maker && n.maker === item.maker;
+      const sameCategory = item.category && n.category === item.category;
+      const sharedTag =
+        item.tags &&
+        item.tags.length > 0 &&
+        n.tags &&
+        n.tags.some((t) => item.tags!.includes(t));
+      return sameMaker || sameCategory || sharedTag;
+    })
+    .slice(0, 3);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 text-slate-900">
@@ -187,13 +204,12 @@ export default async function NewsDetailPage({ params }: Props) {
                     <dt className="mb-1 text-slate-400">タグ</dt>
                     <dd className="flex flex-wrap gap-2">
                       {item.tags.map((tag) => (
-                        <Link
+                        <span
                           key={tag}
-                          href={`/news?tag=${encodeURIComponent(tag)}`}
-                          className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-[11px] hover:bg-slate-900 hover:text-white"
+                          className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-[11px]"
                         >
                           {tag}
-                        </Link>
+                        </span>
                       ))}
                     </dd>
                   </div>
@@ -202,7 +218,7 @@ export default async function NewsDetailPage({ params }: Props) {
             </div>
 
             {/* 元記事へのリンク */}
-            {item.sourceUrl && (
+            {item.url && (
               <div className="rounded-3xl border border-slate-200 bg-white/90 p-5 text-xs text-slate-700 shadow-sm">
                 <p className="mb-3 text-[11px] tracking-[0.18em] text-slate-500">
                   ORIGINAL ARTICLE
@@ -212,7 +228,7 @@ export default async function NewsDetailPage({ params }: Props) {
                   CAR BOUTIQUEでは、要約と独自の視点を添えてご紹介しています。
                 </p>
                 <a
-                  href={item.sourceUrl}
+                  href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-[11px] font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
@@ -223,6 +239,76 @@ export default async function NewsDetailPage({ params }: Props) {
             )}
           </aside>
         </div>
+
+        {/* 関連ニュース */}
+        {related.length > 0 && (
+          <section className="mb-12 space-y-4">
+            <div className="flex items-baseline justify-between gap-2">
+              <div>
+                <p className="text-[10px] font-semibold tracking-[0.28em] text-text-sub">
+                  RELATED NEWS
+                </p>
+                <h2 className="mt-1 text-sm font-semibold tracking-tight text-text-main sm:text-[15px]">
+                  同じメーカーやテーマのニュース
+                </h2>
+              </div>
+              <Link
+                href="/news"
+                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+              >
+                NEWS一覧へ
+              </Link>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-3">
+              {related.map((r) => {
+                const rTitle = r.titleJa || r.title;
+                const rDate = formatDate(r.publishedAt);
+
+                return (
+                  <GlassCard
+                    key={r.id}
+                    as="article"
+                    interactive
+                    className="flex h-full flex-col p-4 sm:p-5"
+                  >
+                    <Link href={`/news/${r.id}`} className="block h-full">
+                      <div className="flex h-full flex-col gap-2">
+                        <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                          {r.category && (
+                            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                              {r.category}
+                            </span>
+                          )}
+                          {r.maker && (
+                            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                              {r.maker}
+                            </span>
+                          )}
+                          {r.sourceName && (
+                            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                              {r.sourceName}
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
+                          {rTitle}
+                        </h3>
+                        <p className="line-clamp-3 text-[11px] leading-relaxed text-text-sub">
+                          {r.excerpt ??
+                            "詳細は記事ページと元記事にてご確認ください。"}
+                        </p>
+                        <div className="mt-auto text-[10px] text-slate-400">
+                          {rDate}
+                        </div>
+                      </div>
+                    </Link>
+                  </GlassCard>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
         {/* 回遊導線: CARS / COLUMN へ */}
         <section className="mb-12 grid gap-4 md:grid-cols-2">
