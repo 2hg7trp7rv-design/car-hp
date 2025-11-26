@@ -97,91 +97,95 @@ export default async function NewsPage({ searchParams }: Props) {
           </p>
         </header>
 
-        {/* フィルターバー */}
+        {/* フィルターバー（検索＋カテゴリ＋メーカー＋タグ） */}
         <section className="mb-8 rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-sm backdrop-blur">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            {/* キーワード検索 */}
-            <form className="w-full md:w-2/5">
-              <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                KEYWORD
-              </label>
-              <input
-                name="q"
-                defaultValue={searchParams?.q ?? ""}
-                placeholder="車名・メーカー・キーワードで探す"
-                className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-4 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
-              />
-            </form>
-
-            {/* セレクト群 */}
-            <div className="flex w-full flex-col gap-3 md:w-3/5 md:flex-row">
-              <div className="w-full md:w-1/3">
+          <form
+            action="/news"
+            method="get"
+            className="space-y-4"
+          >
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              {/* キーワード検索 */}
+              <div className="w-full md:w-2/5">
                 <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                  CATEGORY
+                  KEYWORD
                 </label>
-                <select
-                  name="category"
-                  defaultValue={categoryFilter}
+                <input
+                  name="q"
+                  defaultValue={searchParams?.q ?? ""}
+                  placeholder="車名・メーカー・キーワードで探す"
                   className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-4 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
-                >
-                  <option value="">すべて</option>
-                  {categories.map((c) => (
-                    <option key={c} value={c}>
-                      {c}
-                    </option>
-                  ))}
-                </select>
+                />
               </div>
 
-              <div className="w-full md:w-1/3">
-                <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                  MAKER
-                </label>
-                <select
-                  name="maker"
-                  defaultValue={makerFilter}
-                  className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-4 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
-                >
-                  <option value="">すべて</option>
-                  {makers.map((m) => (
-                    <option key={m} value={m}>
-                      {m}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              {/* セレクト群 */}
+              <div className="flex w-full flex-col gap-3 md:w-3/5 md:flex-row">
+                <div className="w-full md:w-1/3">
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    CATEGORY
+                  </label>
+                  <select
+                    name="category"
+                    defaultValue={categoryFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-4 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">すべて</option>
+                    {categories.map((c) => (
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-              <div className="w-full md:w-1/3">
-                <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                  TAG
-                </label>
-                <select
-                  name="tag"
-                  defaultValue={tagFilter}
-                  className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-4 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
-                >
-                  <option value="">すべて</option>
-                  {tags.map((t) => (
-                    <option key={t} value={t}>
-                      {t}
-                    </option>
-                  ))}
-                </select>
+                <div className="w-full md:w-1/3">
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    MAKER
+                  </label>
+                  <select
+                    name="maker"
+                    defaultValue={makerFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-4 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">すべて</option>
+                    {makers.map((m) => (
+                      <option key={m} value={m}>
+                        {m}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="w-full md:w-1/3">
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    TAG
+                  </label>
+                  <select
+                    name="tag"
+                    defaultValue={tagFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-4 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">すべて</option>
+                    {tags.map((t) => (
+                      <option key={t} value={t}>
+                        {t}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* フィルター適用ボタン */}
-          <div className="mt-4 flex justify-end">
-            <button
-              type="submit"
-              className="inline-flex items-center rounded-full bg-slate-900 px-5 py-2 text-[11px] font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
-              formAction="/news"
-              formMethod="get"
-            >
-              絞り込み
-            </button>
-          </div>
+            {/* フィルター適用ボタン */}
+            <div className="mt-2 flex justify-end">
+              <button
+                type="submit"
+                className="inline-flex items-center rounded-full bg-slate-900 px-5 py-2 text-[11px] font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
+              >
+                絞り込み
+              </button>
+            </div>
+          </form>
         </section>
 
         {/* NEWSリスト */}
