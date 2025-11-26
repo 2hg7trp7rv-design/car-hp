@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { MobileMenu } from "@/components/layout/MobileMenu";
 
 export const metadata: Metadata = {
   title: "CAR BOUTIQUE | クルマのニュースとストーリー",
@@ -17,10 +18,12 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ja">
-      <body className="min-h-screen bg-slate-50 text-text-main antialiased">
+      <body className="min-h-screen bg-site text-text-main antialiased">
         <div className="flex min-h-screen flex-col">
           <SiteHeader />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 pb-16 pt-4 sm:pt-8 lg:pt-10">
+            {children}
+          </main>
           <SiteFooter />
           <BottomNav />
         </div>
@@ -35,7 +38,7 @@ function SiteHeader() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 text-[11px] text-text-sub sm:px-6 lg:px-8">
         {/* 左: ロゴテキスト */}
         <Link href="/" className="flex items-center gap-2">
-          <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-900 text-[10px] font-semibold tracking-[0.18em] text-white">
+          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-tiffany-300 to-tiffany-500 text-[10px] font-semibold tracking-[0.18em] text-white shadow-[0_14px_30px_rgba(15,23,42,0.45)]">
             CB
           </span>
           <div className="flex flex-col leading-tight">
@@ -48,7 +51,7 @@ function SiteHeader() {
           </div>
         </Link>
 
-        {/* 右: グローバルナビ（モバイルでは非表示） */}
+        {/* 右: PCナビ */}
         <nav className="hidden items-center gap-5 text-[11px] font-medium tracking-[0.18em] text-slate-700 sm:flex">
           <NavLink href="/news" label="NEWS" />
           <NavLink href="/cars" label="CARS" />
@@ -56,6 +59,11 @@ function SiteHeader() {
           <NavLink href="/guide" label="GUIDE" />
           <NavLink href="/heritage" label="HERITAGE" />
         </nav>
+
+        {/* 右: モバイルのマグネティックボタン */}
+        <div className="flex items-center sm:hidden">
+          <MobileMenu />
+        </div>
       </div>
     </header>
   );
@@ -67,36 +75,40 @@ type NavLinkProps = {
 };
 
 function NavLink({ href, label }: NavLinkProps) {
+  // PCではシンプルなリンクのみ。アクティブ判定は後で拡張しても良い
   return (
     <Link
       href={href}
-      className="relative inline-flex items-center px-1 py-1 transition hover:text-slate-900"
+      className="relative px-1 py-0.5 text-[11px] tracking-[0.18em] text-slate-600 transition hover:text-slate-900"
     >
-      <span>{label}</span>
-      <span className="absolute inset-x-0 -bottom-0.5 h-[1px] scale-x-0 bg-slate-900 transition group-hover:scale-x-100" />
+      {label}
     </Link>
   );
 }
 
 function SiteFooter() {
   return (
-    <footer className="border-t border-slate-200/70 bg-white/80 text-[11px] text-text-sub">
-      <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-        <p className="tracking-[0.16em] text-slate-500">
+    <footer className="border-t border-slate-200/60 bg-white/80 py-6 text-[10px] text-slate-500">
+      <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+        <p className="tracking-[0.16em]">
           © {new Date().getFullYear()} CAR BOUTIQUE
         </p>
-        <p className="text-[10px] leading-relaxed text-slate-500">
-          ニュースの先にあるオーナーの物語と、クルマとの現実的な付き合い方を
-          そっと整理していく個人プロジェクトです。
+        <p className="max-w-md leading-relaxed tracking-[0.03em]">
+          派手さよりも、静かで上質なクルマ時間を大切にするための小さなデジタルブティックです。
         </p>
       </div>
     </footer>
   );
 }
 
+type BottomNavLinkProps = {
+  href: string;
+  label: string;
+};
+
 function BottomNav() {
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 px-4 py-1.5 text-[10px] text-slate-700 shadow-soft-card backdrop-blur sm:hidden">
+    <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200/70 bg-white/90 px-3 py-2 text-[10px] text-slate-700 shadow-[0_-10px_30px_rgba(15,23,42,0.12)] backdrop-blur sm:hidden">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-1">
         <BottomNavLink href="/" label="HOME" />
         <BottomNavLink href="/news" label="NEWS" />
@@ -108,11 +120,6 @@ function BottomNav() {
   );
 }
 
-type BottomNavLinkProps = {
-  href: string;
-  label: string;
-};
-
 function BottomNavLink({ href, label }: BottomNavLinkProps) {
   return (
     <Link
@@ -120,7 +127,9 @@ function BottomNavLink({ href, label }: BottomNavLinkProps) {
       className="flex flex-1 flex-col items-center justify-center gap-0.5 rounded-full px-1 py-1 transition active:bg-slate-100/80"
     >
       <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />
-      <span className="text-[9px] tracking-[0.16em] text-slate-700">{label}</span>
+      <span className="text-[9px] tracking-[0.16em] text-slate-700">
+        {label}
+      </span>
     </Link>
   );
 }
