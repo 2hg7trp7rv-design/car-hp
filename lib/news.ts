@@ -13,6 +13,7 @@ export type NewsItem = {
   sourceName?: string;
   publishedAt?: string; // ISO文字列
   createdAt?: string;   // 生成日時など
+  editorNote?: string;  // CAR BOUTIQUEのひと言コメント（任意）
 };
 
 /**
@@ -39,6 +40,7 @@ function normalizeNewsItem(raw: any): NewsItem {
     sourceName: raw.sourceName ?? raw.source ?? undefined,
     publishedAt: raw.publishedAt ?? raw.pubDate ?? undefined,
     createdAt: raw.createdAt ?? undefined,
+    editorNote: raw.editorNote ?? undefined,
   };
 }
 
@@ -64,7 +66,6 @@ export async function getLatestNews(limit = 80): Promise<NewsItem[]> {
 
 /**
  * IDからニュースを1件取得
- * （今の実装では/news/[id]ページでは使っていないが、他から呼ばれてもエラーにならないように保持）
  */
 export async function getNewsById(id: string): Promise<NewsItem | null> {
   if (!id) return null;
