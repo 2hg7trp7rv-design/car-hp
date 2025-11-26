@@ -2,6 +2,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getLatestNews, type NewsItem } from "@/lib/news";
+import { Reveal } from "@/components/animation/Reveal";
 
 export const runtime = "edge";
 
@@ -19,17 +20,6 @@ type Props = {
     tag?: string;
   };
 };
-
-function formatDate(iso?: string | null): string {
-  if (!iso) return "";
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return "";
-  return date.toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
 
 function normalizeText(value: string | undefined | null): string {
   return (value ?? "").trim().toLowerCase();
@@ -81,154 +71,164 @@ export default async function NewsPage({ searchParams }: Props) {
 
         {/* ヘッダー */}
         <header className="mb-10 space-y-3">
-          <p className="text-[10px] tracking-[0.32em] text-text-sub">
-            CURATED CAR NEWS
-          </p>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
-            クルマのニュースを
-            <span className="inline-block bg-gradient-to-r from-tiffany-500 to-tiffany-700 bg-clip-text text-transparent">
-              編集目線
-            </span>
-            でピックアップ。
-          </h1>
-          <p className="max-w-2xl text-sm leading-relaxed text-text-sub">
-            国内外のニュースから、クルマ好きが押さえておきたいトピックを中心に、
-            要約とCAR BOUTIQUEとしてのひと言コメント付きで集めていく予定です。
-          </p>
+          <Reveal>
+            <p className="text-[10px] tracking-[0.32em] text-text-sub">
+              CURATED CAR NEWS
+            </p>
+          </Reveal>
+          <Reveal delay={80}>
+            <h1 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
+              クルマのニュースを
+              <span className="inline-block bg-gradient-to-r from-tiffany-500 to-tiffany-700 bg-clip-text text-transparent">
+                編集目線
+              </span>
+              でピックアップ。
+            </h1>
+          </Reveal>
+          <Reveal delay={150}>
+            <p className="max-w-2xl text-sm leading-relaxed text-text-sub">
+              国内外のニュースから、クルマ好きが押さえておきたいトピックを中心に、
+              要約とCAR BOUTIQUEとしてのひと言コメント付きで集めていく予定です。
+            </p>
+          </Reveal>
         </header>
 
         {/* フィルターバー（検索＋カテゴリ＋メーカー＋タグ） */}
-        <section className="mb-8 rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-sm backdrop-blur">
-          <form
-            action="/news"
-            method="get"
-            className="space-y-4"
-          >
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              {/* キーワード検索 */}
-              <div className="w-full md:w-2/5">
-                <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                  KEYWORD
-                </label>
-                <input
-                  name="q"
-                  defaultValue={searchParams?.q ?? ""}
-                  placeholder="車名・メーカー・キーワードで探す"
-                  className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-4 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
-                />
+        <Reveal delay={200}>
+          <section className="mb-8 rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-sm backdrop-blur">
+            <form
+              action="/news"
+              method="get"
+              className="space-y-4"
+            >
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                {/* キーワード検索 */}
+                <div className="w-full md:w-2/5">
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    KEYWORD
+                  </label>
+                  <input
+                    name="q"
+                    defaultValue={searchParams?.q ?? ""}
+                    placeholder="車名・メーカー・キーワードで探す"
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  />
+                </div>
+
+                {/* セレクト群 */}
+                <div className="flex w-full flex-col gap-3 md:w-3/5 md:flex-row">
+                  <div className="w-full md:w-1/3">
+                    <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                      CATEGORY
+                    </label>
+                    <select
+                      name="category"
+                      defaultValue={categoryFilter}
+                      className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                    >
+                      <option value="">すべて</option>
+                      {categories.map((c) => (
+                        <option key={c} value={c}>
+                          {c}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="w-full md:w-1/3">
+                    <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                      MAKER
+                    </label>
+                    <select
+                      name="maker"
+                      defaultValue={makerFilter}
+                      className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                    >
+                      <option value="">すべて</option>
+                      {makers.map((m) => (
+                        <option key={m} value={m}>
+                          {m}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="w-full md:w-1/3">
+                    <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                      TAG
+                    </label>
+                    <select
+                      name="tag"
+                      defaultValue={tagFilter}
+                      className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                    >
+                      <option value="">すべて</option>
+                      {tags.map((t) => (
+                        <option key={t} value={t}>
+                          {t}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
               </div>
 
-              {/* セレクト群 */}
-              <div className="flex w-full flex-col gap-3 md:w-3/5 md:flex-row">
-                <div className="w-full md:w-1/3">
-                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                    CATEGORY
-                  </label>
-                  <select
-                    name="category"
-                    defaultValue={categoryFilter}
-                    className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-4 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
-                  >
-                    <option value="">すべて</option>
-                    {categories.map((c) => (
-                      <option key={c} value={c}>
-                        {c}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="w-full md:w-1/3">
-                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                    MAKER
-                  </label>
-                  <select
-                    name="maker"
-                    defaultValue={makerFilter}
-                    className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-4 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
-                  >
-                    <option value="">すべて</option>
-                    {makers.map((m) => (
-                      <option key={m} value={m}>
-                        {m}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="w-full md:w-1/3">
-                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                    TAG
-                  </label>
-                  <select
-                    name="tag"
-                    defaultValue={tagFilter}
-                    className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-4 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
-                  >
-                    <option value="">すべて</option>
-                    {tags.map((t) => (
-                      <option key={t} value={t}>
-                        {t}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+              {/* フィルター適用ボタン */}
+              <div className="mt-2 flex justify-end">
+                <button
+                  type="submit"
+                  className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-[11px] font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
+                >
+                  絞り込み
+                </button>
               </div>
-            </div>
-
-            {/* フィルター適用ボタン */}
-            <div className="mt-2 flex justify-end">
-              <button
-                type="submit"
-                className="inline-flex items-center rounded-full bg-slate-900 px-5 py-2 text-[11px] font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
-              >
-                絞り込み
-              </button>
-            </div>
-          </form>
-        </section>
+            </form>
+          </section>
+        </Reveal>
 
         {/* NEWSリスト */}
-        <section className="space-y-4">
-          <div className="flex items-baseline justify-between">
-            <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
-              LATEST NEWS
-            </h2>
-            <p className="text-[11px] text-slate-400">
-              {filtered.length}件表示中
-            </p>
-          </div>
-
-          {filtered.length === 0 ? (
-            <p className="rounded-2xl border border-dashed border-slate-200 bg-white/70 p-6 text-center text-xs text-slate-500">
-              条件に合致するニュースが見つかりませんでした。
-              絞り込み条件を緩めて再度お試しください。
-            </p>
-          ) : (
-            <div className="space-y-3">
-              {filtered.map((item) => (
-                <NewsListItem key={item.id} item={item} />
-              ))}
+        <Reveal delay={260}>
+          <section className="space-y-4">
+            <div className="flex items-baseline justify-between">
+              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
+                LATEST NEWS
+              </h2>
+              <p className="text-[11px] text-slate-400">
+                {filtered.length}件表示中
+              </p>
             </div>
-          )}
-        </section>
+
+            {filtered.length === 0 ? (
+              <p className="rounded-2xl border border-dashed border-slate-200 bg-white/70 p-6 text-center text-xs text-slate-500">
+                条件に合致するニュースが見つかりませんでした。
+                絞り込み条件を緩めて再度お試しください。
+              </p>
+            ) : (
+              <div className="space-y-3">
+                {filtered.map((item) => (
+                  <NewsListItem key={item.id} item={item} />
+                ))}
+              </div>
+            )}
+          </section>
+        </Reveal>
 
         {/* NEWSから他セクションへの回遊導線 */}
         <section className="mt-12 grid gap-4 md:grid-cols-2">
           <Link href="/cars">
-            <div className="group h-full rounded-3xl border border-tiffany-100 bg-gradient-to-br from-white via-sky-50/40 to-white p-5 text-xs shadow-sm transition hover:-translate-y-[2px] hover:shadow-soft-card">
-              <p className="text-[10px] font-semibold tracking-[0.28em] text-tiffany-700">
+            <div className="group h-full rounded-3xl border border-slate-200 bg-white/80 p-4 text-left shadow-sm transition hover:-translate-y-[2px] hover:shadow-soft-card">
+              <p className="text-[10px] font-semibold tracking-[0.28em] text-slate-600">
                 CARS
               </p>
               <h3 className="mt-2 text-sm font-semibold text-slate-900">
-                ニュースで気になった車種は、スペックや弱点までチェック。
+                ニュースで気になったクルマは、スペックと「性格」もまとめて確認。
               </h3>
               <p className="mt-2 text-[11px] leading-relaxed text-text-sub">
-                車種ごとに「長所・短所」「トラブル傾向」「維持費感」などを
-                まとめたCARSページを整備中です。ニュースから一歩踏み込んだ
-                車選びの判断材料として使っていけるようにしていきます。
+                パワートレーンやボディサイズといった数字だけでなく、
+                そのクルマが得意なシーンや維持費感、トラブル傾向なども
+                少しずつ整理していきます。
               </p>
-              <span className="mt-3 inline-flex items-center text-[11px] font-medium tracking-[0.2em] text-tiffany-700">
+              <span className="mt-3 inline-flex items-center text-[11px] font-medium tracking-[0.2em] text-slate-700">
                 CARSページへ
                 <span className="ml-1 text-[10px]">→</span>
               </span>
@@ -236,7 +236,7 @@ export default async function NewsPage({ searchParams }: Props) {
           </Link>
 
           <Link href="/column">
-            <div className="group h-full rounded-3xl border border-slate-200 bg-white/80 p-5 text-xs shadow-sm transition hover:-translate-y-[2px] hover:shadow-soft-card">
+            <div className="group h-full rounded-3xl border border-slate-200 bg-white/80 p-4 text-left shadow-sm transition hover:-translate-y-[2px] hover:shadow-soft-card">
               <p className="text-[10px] font-semibold tracking-[0.28em] text-slate-600">
                 COLUMN
               </p>
@@ -260,42 +260,68 @@ export default async function NewsPage({ searchParams }: Props) {
   );
 }
 
-type ItemProps = {
+type NewsListItemProps = {
   item: NewsItem;
 };
 
-function NewsListItem({ item }: ItemProps) {
-  const title = item.titleJa || item.title;
-  const date = formatDate(item.publishedAt);
+function NewsListItem({ item }: NewsListItemProps) {
+  const title = item.titleJa ?? item.title;
 
   return (
-    <Link href={`/news/${item.id}`}>
-      <article className="group rounded-3xl border border-white/80 bg-white/90 p-4 text-xs shadow-sm transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
-        <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
-          {item.category && (
-            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-              {item.category}
-            </span>
-          )}
-          {item.maker && (
-            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-              {item.maker}
-            </span>
-          )}
-          {item.sourceName && (
-            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-              {item.sourceName}
-            </span>
-          )}
-          <span className="ml-auto text-[10px] text-slate-400">{date}</span>
+    <Link href={`/news/${encodeURIComponent(item.id)}`}>
+      <article className="group rounded-3xl border border-slate-200 bg-white/90 p-4 shadow-[0_16px_40px_rgba(15,23,42,0.04)] transition hover:-translate-y-[2px] hover:border-slate-300 hover:shadow-soft-card">
+        <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+          <div className="flex-1 space-y-2">
+            <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+              {item.maker && (
+                <span className="rounded-full bg-slate-100 px-2 py-1">
+                  {item.maker}
+                </span>
+              )}
+              {item.category && (
+                <span className="rounded-full bg-slate-100 px-2 py-1">
+                  {item.category}
+                </span>
+              )}
+              {item.tags &&
+                item.tags.slice(0, 2).map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-slate-50 px-2 py-1 group-hover:bg-slate-900 group-hover:text-white"
+                  >
+                    #{tag}
+                  </span>
+                ))}
+            </div>
+
+            <h2 className="text-sm font-semibold leading-relaxed text-slate-900">
+              {title}
+            </h2>
+
+            {item.excerpt && (
+              <p className="text-[11px] leading-relaxed text-text-sub line-clamp-2">
+                {item.excerpt}
+              </p>
+            )}
+          </div>
+
+          <div className="mt-2 flex flex-col items-end gap-1 text-right text-[10px] text-slate-400 md:mt-0 md:w-36">
+            {item.publishedAtJa && (
+              <p className="font-medium tracking-[0.16em]">
+                {item.publishedAtJa}
+              </p>
+            )}
+            <p className="text-[10px]">
+              出典:
+              <span className="ml-1 underline decoration-slate-300 underline-offset-2 group-hover:decoration-slate-500">
+                {item.sourceName ?? "外部サイト"}
+              </span>
+            </p>
+          </div>
         </div>
 
-        <h2 className="mt-2 line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
-          {title}
-        </h2>
-
-        <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
-          {item.excerpt ??
+        <p className="mt-3 text-[10px] leading-relaxed text-slate-500">
+          {item.commentJa ||
             "詳細は記事ページと元記事にてご確認ください。CAR BOUTIQUEとしてのコメントも順次追加していきます。"}
         </p>
 
