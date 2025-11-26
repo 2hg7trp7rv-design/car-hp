@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllCars, type CarItem } from "@/lib/cars";
+import { Reveal } from "@/components/animation/Reveal";
 
 export const runtime = "edge";
 
@@ -85,29 +86,36 @@ export default async function CarsPage({ searchParams }: Props) {
           <span className="text-slate-400">CARS</span>
         </nav>
 
-        {/* ヘッダー */}
+                {/* ヘッダー */}
         <header className="mb-10 space-y-3">
-          <p className="text-[10px] tracking-[0.32em] text-text-sub">
-            CURATED CAR CATALOG
-          </p>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
-            一台ずつ、
-            <span className="inline-block bg-gradient-to-r from-tiffany-500 to-tiffany-700 bg-clip-text text-transparent">
-              性格
-            </span>
-            まで分かるカタログへ。
-          </h1>
-          <p className="max-w-2xl text-sm leading-relaxed text-text-sub">
-            ただのスペック表ではなく、「どんな性格のクルマか」「維持していくとどうか」
-            までイメージできるCARSページを少しずつ増やしていきます。
-            まずは気になるメーカーやボディタイプから絞り込んでみてください。
-          </p>
+          <Reveal>
+            <p className="text-[10px] tracking-[0.32em] text-text-sub">
+              CURATED CAR CATALOG
+            </p>
+          </Reveal>
+          <Reveal delay={80}>
+            <h1 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
+              一台ずつ、
+              <span className="inline-block bg-gradient-to-r from-tiffany-500 to-tiffany-700 bg-clip-text text-transparent">
+                性格
+              </span>
+              まで分かるカタログへ。
+            </h1>
+          </Reveal>
+          <Reveal delay={150}>
+            <p className="max-w-2xl text-sm leading-relaxed text-text-sub">
+              ただのスペック表ではなく、「どんな性格のクルマか」「維持していくとどうか」
+              までイメージできるCARSページを少しずつ増やしていきます。
+              まずは気になるメーカーやボディタイプから絞り込んでみてください。
+            </p>
+          </Reveal>
         </header>
 
         {/* フィルターバー */}
-        <section className="mb-8 rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-sm backdrop-blur">
-          <form action="/cars" method="get" className="space-y-4">
-            {/* 上段 キーワード＋難易度 */}
+         <Reveal delay={200}>
+          <section className="mb-8 rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-sm backdrop-blur">
+           <form action="/cars" method="get" className="space-y-4">
+             {/* 上段 キーワード＋難易度 */}
             <div className="flex flex-col gap-4 md:flex-row md:items-center">
               <div className="w-full md:w-2/3">
                 <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
@@ -208,6 +216,7 @@ export default async function CarsPage({ searchParams }: Props) {
         </section>
 
         {/* 一覧 */}
+       <Reveal delay={260}>
         <section className="space-y-4">
           <div className="flex items-baseline justify-between">
             <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
