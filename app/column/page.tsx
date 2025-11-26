@@ -1,15 +1,16 @@
 // app/column/page.tsx
 import Link from "next/link";
 import type { Metadata } from "next";
-import { GlassCard } from "@/components/GlassCard";
 import { getAllColumns, type ColumnItem } from "@/lib/columns";
+import { Reveal } from "@/components/animation/Reveal";
+import { GlassCard } from "@/components/GlassCard";
 
 export const runtime = "edge";
 
 export const metadata: Metadata = {
-  title: "コラムとストーリー一覧 | CAR BOUTIQUE",
+  title: "コラムとストーリー | CAR BOUTIQUE",
   description:
-    "オーナー体験記やトラブル・修理、技術解説など、クルマと暮らしの距離が少し近づく読み物をまとめたコラム一覧ページです。",
+    "オーナー体験記やトラブル・修理、技術解説など、クルマと暮らしの距離が少し近づく読み物を集めました。",
 };
 
 type Props = {
@@ -19,18 +20,8 @@ type Props = {
   };
 };
 
-function normalize(value: string | undefined | null): string {
+function normalizeText(value: string | undefined | null): string {
   return (value ?? "").trim().toLowerCase();
-}
-
-function formatDate(value?: string | null) {
-  if (!value) return "";
-  const d = new Date(value);
-  if (Number.isNaN(d.getTime())) return value;
-  const y = d.getFullYear();
-  const m = `${d.getMonth() + 1}`.padStart(2, "0");
-  const day = `${d.getDate()}`.padStart(2, "0");
-  return `${y}/${m}/${day}`;
 }
 
 function mapCategoryLabel(category: ColumnItem["category"]): string {
@@ -47,37 +38,23 @@ function mapCategoryLabel(category: ColumnItem["category"]): string {
 }
 
 export default async function ColumnPage({ searchParams }: Props) {
-  const q = normalize(searchParams?.q);
+  const q = normalizeText(searchParams?.q);
   const categoryFilter = (searchParams?.category ?? "").trim();
 
-  const all = await getAllColumns();
-
-  // 公開日が新しい順にソート（なければそのまま）
-  const sorted = [...all].sort((a, b) => {
-    if (!a.publishedAt && !b.publishedAt) return 0;
-    if (!a.publishedAt) return 1;
-    if (!b.publishedAt) return -1;
-    return a.publishedAt < b.publishedAt ? 1 : -1;
-  });
+  const items = await getAllColumns();
 
   const categories = Array.from(
-    new Set(sorted.map((c) => c.category).filter(Boolean)),
+    new Set(items.map((i) => i.category).filter(Boolean)),
   ) as ColumnItem["category"][];
 
-  const items = sorted.filter((column) => {
+  const filtered = items.filter((item) => {
     if (q) {
-      const haystack = [
-        column.title,
-        column.summary,
-        mapCategoryLabel(column.category),
-        ...(column.tags ?? []),
-      ]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase();
+      const haystack = `${item.title ?? ""} ${item.excerpt ?? ""} ${
+        mapCategoryLabel(item.category)
+      } ${(item.tags ?? []).join(" ")}`.toLowerCase();
       if (!haystack.includes(q)) return false;
     }
-    if (categoryFilter && column.category !== categoryFilter) return false;
+    if (categoryFilter && item.category !== categoryFilter) return false;
     return true;
   });
 
@@ -95,178 +72,202 @@ export default async function ColumnPage({ searchParams }: Props) {
 
         {/* ヘッダー */}
         <header className="mb-10 space-y-3">
-          <p className="text-[10px] tracking-[0.32em] text-text-sub">
-            COLUMN & STORIES
-          </p>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
-            スペックの外側にある
-            <span className="inline-block bg-gradient-to-r from-tiffany-500 to-tiffany-700 bg-clip-text text-transparent">
-              物語
-            </span>
-            を集めたコラム集。
-          </h1>
-          <p className="max-w-2xl text-sm leading-relaxed text-text-sub">
-            オーナーの本音ストーリーや、トラブル・修理・維持費のリアル、
-            そして技術や歴史の背景など、「ニュースの一歩先」をじっくり読める
-            読み物を少しずつ増やしていきます。
-          </p>
-          <p className="text-[11px] text-text-sub">
-            現在
-            <span className="mx-1 font-semibold text-slate-900">
-              {all.length}本
-            </span>
-            のコラムが公開されています。
-          </p>
+          <Reveal>
+            <p className="text-[10px] tracking-[0.32em] text-text-sub">
+              OWNER STORIES / TECH NOTES
+            </p>
+          </Reveal>
+          <Reveal delay={80}>
+            <h1 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
+              オーナーの本音と、技術や歴史の
+              <span className="inline-block bg-gradient-to-r from-tiffany-500 to-tiffany-700 bg-clip-text text-transparent">
+                物語
+              </span>
+              を少しずつ。
+            </h1>
+          </Reveal>
+          <Reveal delay={150}>
+            <p className="max-w-2xl text-sm leading-relaxed text-text-sub">
+              「買ってどうだったか」「壊れたときいくらかかったか」といったリアルな声から、
+              エンジンやブランドの背景にあるストーリーまで、読み物として楽しめるコラムを集めていきます。
+            </p>
+          </Reveal>
         </header>
 
-        {/* フィルターバー */}
-        <section className="mb-8 rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-sm backdrop-blur">
-          <form action="/column" method="get" className="space-y-4">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              {/* キーワード検索 */}
-              <div className="w-full md:w-2/3">
-                <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                  KEYWORD
-                </label>
-                <input
-                  name="q"
-                  defaultValue={searchParams?.q ?? ""}
-                  placeholder="車名・テーマ・キーワードで探す"
-                  className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-4 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
-                />
+        {/* フィルターバー（キーワード＋カテゴリ） */}
+        <Reveal delay={200}>
+          <section className="mb-8 rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-sm backdrop-blur">
+            <form action="/column" method="get" className="space-y-4">
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                {/* キーワード検索 */}
+                <div className="w-full md:w-2/3">
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    KEYWORD
+                  </label>
+                  <input
+                    name="q"
+                    defaultValue={searchParams?.q ?? ""}
+                    placeholder="車名・出来事・キーワードで探す"
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  />
+                </div>
+
+                {/* カテゴリ */}
+                <div className="w-full md:w-1/3">
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    CATEGORY
+                  </label>
+                  <select
+                    name="category"
+                    defaultValue={categoryFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">すべて</option>
+                    {categories.map((c) => (
+                      <option key={c} value={c}>
+                        {mapCategoryLabel(c)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
-              {/* カテゴリ */}
-              <div className="w-full md:w-1/3">
-                <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                  CATEGORY
-                </label>
-                <select
-                  name="category"
-                  defaultValue={categoryFilter}
-                  className="mt-1 w-full rounded-full border border-slate-200 bg-slate-50/60 px-4 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+              {/* フィルター適用ボタン */}
+              <div className="mt-2 flex justify-end">
+                <button
+                  type="submit"
+                  className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-[11px] font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
                 >
-                  <option value="">すべて</option>
-                  {categories.map((c) => (
-                    <option key={c} value={c ?? ""}>
-                      {c ? mapCategoryLabel(c) : "コラム"}
-                    </option>
-                  ))}
-                </select>
+                  絞り込み
+                </button>
               </div>
-            </div>
-
-            <div className="mt-2 flex justify-end gap-3">
-              <Link
-                href="/column"
-                className="text-[11px] font-medium text-slate-600 underline-offset-4 hover:underline"
-              >
-                条件をクリア
-              </Link>
-              <button
-                type="submit"
-                className="inline-flex items-center rounded-full bg-slate-900 px-5 py-2 text-[11px] font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
-              >
-                絞り込み
-              </button>
-            </div>
-          </form>
-        </section>
+            </form>
+          </section>
+        </Reveal>
 
         {/* コラム一覧 */}
-        <section className="space-y-4">
-          <div className="flex items-baseline justify-between">
-            <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
-              COLUMN LIST
-            </h2>
-            <p className="text-[11px] text-slate-400">
-              {items.length}本表示中
-            </p>
-          </div>
-
-          {items.length === 0 ? (
-            <p className="rounded-2xl border border-dashed border-slate-200 bg-white/70 p-6 text-center text-xs text-slate-500">
-              条件に合致するコラムが見つかりませんでした。
-              絞り込み条件を緩めて再度お試しください。
-            </p>
-          ) : (
-            <div className="grid gap-4 md:grid-cols-2">
-              {items.map((column) => (
-                <ColumnCard key={column.id} column={column} />
-              ))}
+        <Reveal delay={260}>
+          <section className="space-y-4">
+            <div className="flex items-baseline justify-between">
+              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
+                COLUMN LIST
+              </h2>
+              <p className="text-[11px] text-slate-400">
+                {filtered.length}件表示中
+              </p>
             </div>
-          )}
+
+            {filtered.length === 0 ? (
+              <p className="rounded-2xl border border-dashed border-slate-200 bg-white/70 p-6 text-center text-xs text-slate-500">
+                条件に合致するコラムが見つかりませんでした。
+                絞り込み条件を緩めて再度お試しください。
+              </p>
+            ) : (
+              <div className="grid gap-4 md:grid-cols-2">
+                {filtered.map((item) => (
+                  <ColumnListItem key={item.slug} item={item} />
+                ))}
+              </div>
+            )}
+          </section>
+        </Reveal>
+
+        {/* 回遊導線: GUIDE / NEWS */}
+        <section className="mt-12 grid gap-4 md:grid-cols-2">
+          <Link href="/guide">
+            <div className="group h-full rounded-3xl border border-slate-200 bg-white/80 p-4 text-left shadow-sm transition hover:-translate-y-[2px] hover:shadow-soft-card">
+              <p className="text-[10px] font-semibold tracking-[0.28em] text-slate-600">
+                GUIDE
+              </p>
+              <h3 className="mt-2 text-sm font-semibold text-slate-900">
+                お金や維持費の話は、ガイドで整理。
+              </h3>
+              <p className="mt-2 text-[11px] leading-relaxed text-text-sub">
+                保険や税金、車検、ローンなど、暮らし寄りの実用情報はGUIDEセクションで
+                少しずつ増やしていきます。
+              </p>
+              <span className="mt-3 inline-flex items-center text-[11px] font-medium tracking-[0.2em] text-slate-700">
+                ガイド一覧へ
+                <span className="ml-1 text-[10px]">→</span>
+              </span>
+            </div>
+          </Link>
+
+          <Link href="/news">
+            <div className="group h-full rounded-3xl border border-slate-200 bg-white/80 p-4 text-left shadow-sm transition hover:-translate-y-[2px] hover:shadow-soft-card">
+              <p className="text-[10px] font-semibold tracking-[0.28em] text-slate-600">
+                NEWS
+              </p>
+              <h3 className="mt-2 text-sm font-semibold text-slate-900">
+                コラムで気になったトピックの最新動向はニュースで。
+              </h3>
+              <p className="mt-2 text-[11px] leading-relaxed text-text-sub">
+                メーカー発表や業界ニュースなど、背景となる動きはNEWSセクションから辿れるようにしていきます。
+              </p>
+              <span className="mt-3 inline-flex items-center text-[11px] font-medium tracking-[0.2em] text-slate-700">
+                ニュース一覧へ
+                <span className="ml-1 text-[10px]">→</span>
+              </span>
+            </div>
+          </Link>
         </section>
       </div>
     </main>
   );
 }
 
-type CardProps = {
-  column: ColumnItem;
+type ColumnListItemProps = {
+  item: ColumnItem;
 };
 
-function ColumnCard({ column }: CardProps) {
-  const categoryLabel = mapCategoryLabel(column.category);
-  const dateLabel = formatDate(column.publishedAt);
-  const href = `/column/${column.slug}`;
-
+function ColumnListItem({ item }: ColumnListItemProps) {
   return (
-    <GlassCard
-      as="article"
-      interactive
-      className="flex h-full flex-col p-4 sm:p-5"
-    >
-      <Link href={href} className="block h-full">
-        <div className="flex h-full flex-col">
-          {/* メタ情報行 */}
-          <div className="flex items-center justify-between gap-3 text-[11px] text-text-sub">
-            <span className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-3 py-1 text-[10px] font-medium tracking-[0.18em] text-white">
-              <span className="h-1.5 w-1.5 rounded-full bg-tiffany-300" />
-              {categoryLabel}
+    <Link href={`/column/${encodeURIComponent(item.slug)}`}>
+      <GlassCard
+        as="article"
+        padding="md"
+        interactive
+        className="h-full border border-slate-200/80 bg-white/90"
+      >
+        <div className="flex h-full flex-col gap-3">
+          <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+            <span className="rounded-full bg-slate-100 px-2 py-1">
+              {mapCategoryLabel(item.category)}
             </span>
-            <div className="flex items-center gap-2">
-              {column.readMinutes && (
-                <span className="rounded-full bg-white/80 px-3 py-1">
-                  約{column.readMinutes}分で読めます
-                </span>
-              )}
-              {dateLabel && (
-                <span className="text-[11px] text-text-sub">{dateLabel}</span>
-              )}
-            </div>
-          </div>
-
-          {/* タイトル */}
-          <h2 className="mt-3 text-base font-semibold leading-snug text-slate-900 sm:text-[17px]">
-            {column.title}
-          </h2>
-
-          {/* サマリー */}
-          <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-text-sub">
-            {column.summary}
-          </p>
-
-          {/* タグ行 */}
-          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-sub">
-            <div className="flex flex-wrap gap-1">
-              {column.tags?.slice(0, 4).map((tag) => (
+            {item.tags &&
+              item.tags.slice(0, 2).map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full bg-slate-100 px-2 py-1"
+                  className="rounded-full bg-slate-50 px-2 py-1"
                 >
-                  {tag}
+                  #{tag}
                 </span>
               ))}
-            </div>
-            {column.tags && column.tags.length > 4 && (
-              <span className="text-[10px] text-slate-400">
-                ほか{column.tags.length - 4}件のタグ
+          </div>
+
+          <div className="space-y-2">
+            <h2 className="text-sm font-semibold leading-relaxed text-slate-900">
+              {item.title}
+            </h2>
+            {item.excerpt && (
+              <p className="text-[11px] leading-relaxed text-text-sub line-clamp-3">
+                {item.excerpt}
+              </p>
+            )}
+          </div>
+
+          <div className="mt-auto flex items-center justify-between text-[10px] text-slate-400">
+            {item.publishedAt && (
+              <span className="tracking-[0.14em]">{item.publishedAt}</span>
+            )}
+            {item.readingTime && (
+              <span className="rounded-full bg-slate-100 px-2 py-1">
+                {item.readingTime}
               </span>
             )}
           </div>
         </div>
-      </Link>
-    </GlassCard>
+      </GlassCard>
+    </Link>
   );
 }
