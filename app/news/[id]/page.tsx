@@ -73,7 +73,7 @@ export default async function NewsDetailPage({ params }: Props) {
   const title = item.titleJa || item.title;
   const formattedDate = formatDate(item.publishedAt);
 
-  // 関連ニュース用データ
+  // 関連ニュース用データ（件数は少し余裕を持たせる）
   const latest = await getLatestNews(80);
 
   const relatedByMaker = item.maker
@@ -81,8 +81,7 @@ export default async function NewsDetailPage({ params }: Props) {
         .filter(
           (n) =>
             n.id !== item.id &&
-            n.maker === item.maker &&
-            n.id !== item.id,
+            n.maker === item.maker,
         )
         .slice(0, 4)
     : [];
@@ -258,7 +257,7 @@ export default async function NewsDetailPage({ params }: Props) {
           <section className="mb-12 space-y-4">
             <div className="flex items-baseline justify-between gap-3">
               <h2 className="text-xs font-semibold tracking-[0.18em] text-slate-700 sm:text-sm">
-                関連ニュース
+                RELATED NEWS
               </h2>
               <Link
                 href="/news"
@@ -277,10 +276,7 @@ export default async function NewsDetailPage({ params }: Props) {
                   <ul className="mt-3 space-y-2 text-[11px] text-text-sub">
                     {relatedByMaker.map((n) => (
                       <li key={n.id}>
-                        <Link
-                          href={`/news/${n.id}`}
-                          className="group block"
-                        >
+                        <Link href={`/news/${n.id}`} className="group block">
                           <p className="line-clamp-2 font-semibold text-slate-900 group-hover:underline">
                             {n.titleJa || n.title}
                           </p>
@@ -306,10 +302,7 @@ export default async function NewsDetailPage({ params }: Props) {
                   <ul className="mt-3 space-y-2 text-[11px] text-text-sub">
                     {relatedByCategory.map((n) => (
                       <li key={n.id}>
-                        <Link
-                          href={`/news/${n.id}`}
-                          className="group block"
-                        >
+                        <Link href={`/news/${n.id}`} className="group block">
                           <p className="line-clamp-2 font-semibold text-slate-900 group-hover:underline">
                             {n.titleJa || n.title}
                           </p>
