@@ -5,143 +5,60 @@ import { notFound } from "next/navigation";
 import { getCarBySlug, getAllCars, type CarItem } from "@/lib/cars";
 import { getLatestNews, type NewsItem } from "@/lib/news";
 import { GlassCard } from "@/components/GlassCard";
-import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/animation/Reveal";
 
 export const runtime = "edge";
 
-type Props = {
-  params: { slug: string };
+type PageProps = {
+  params: {
+    slug: string;
+  };
 };
 
-function formatDateYear(year?: number | null) {
-  if (!year) return "";
-  if (Number.isNaN(year)) return "";
-  return `${year}年ごろ`;
-}
-
-function formatDate(iso?: string | null): string {
-  if (!iso) return "";
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return "";
-  return date.toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
-
-function buildTitle(car: CarItem): string {
-  const base = car.name;
-  if (car.grade) {
-    return `${base} ${car.grade}`;
-  }
-  return base;
-}
-
-function buildDescription(car: CarItem): string {
-  if (car.summaryLong) return car.summaryLong;
-  if (car.summary) return car.summary;
-  return `${car.name}の特徴やスペック、維持費感、長所短所をオーナー目線で整理しました。`;
-}
-
-function buildOgImageUrl(car: CarItem): string {
-  if (car.heroImage) return car.heroImage;
-  if (car.mainImage) return car.mainImage;
-  return "/images/og-default-cars.jpg";
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const car = await getCarBySlug(params.slug);
 
   if (!car) {
     return {
       title: "車種が見つかりません | CAR BOUTIQUE",
-      description: "お探しのCARSページは見つかりませんでした。",
+      description: "指定された車種は見つかりませんでした。",
     };
   }
 
-  const title = buildTitle(car);
-  const description = buildDescription(car);
-  const imageUrl = buildOgImageUrl(car);
+  const title = car.name ?? "CARS DETAIL";
+  const description =
+    car.summary ??
+    "スペックだけでなく、そのクルマの性格や付き合い方まで含めて整理するCAR BOUTIQUEのCARSページ。";
 
   return {
     title: `${title} | CAR BOUTIQUE`,
     description,
-    openGraph: {
-      title: `${title} | CAR BOUTIQUE`,
-      description,
-      images: [
-        {
-          url: imageUrl,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
-      type: "article",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${title} | CAR BOUTIQUE`,
-      description,
-    },
   };
 }
 
-function formatNumber(value?: number | null, unit?: string) {
-  if (value === undefined || value === null) return "";
-  const v = value.toLocaleString("ja-JP");
-  return unit ? `${v}${unit}` : v;
-}
-
-export default async function CarDetailPage({ params }: Props) {
+export default async function CarDetailPage({ params }: PageProps) {
   const car = await getCarBySlug(params.slug);
 
   if (!car) {
     notFound();
   }
 
-  const title = buildTitle(car);
-  const yearLabel = formatDateYear(car.releaseYear);
-
   const allCars = await getAllCars();
-  const relatedCars = allCars
-    .filter((c) => c.slug !== car.slug && c.maker === car.maker)
-    .slice(0, 4);
+  const latestNews = await getLatestNews(40);
 
-  const relatedNews = await getLatestNews(40);
-  const filteredNews = relatedNews
-    .filter((n) => {
-      if (!n.maker) return false;
-      const makerUpper = n.maker.toUpperCase();
-      const carMakerUpper = car.maker.toUpperCase();
-      if (makerUpper === carMakerUpper) return true;
-      if (carMakerUpper === "BMW" && makerUpper === "ALPINA") return true;
-      if (carMakerUpper === "TOYOTA" && makerUpper === "LEXUS") return true;
-      if (carMakerUpper === "HONDA" && makerUpper === "ACURA") return true;
-      return false;
-    })
-    .slice(0, 6);
+  const title = car.name ?? car.slug;
+  const yearLabel = car.releaseYear ? `${car.releaseYear}年頃` : null;
 
-  const otherCars = allCars.filter((c) => c.slug !== car.slug).slice(0, 6);
-
-  const heritageLinks = [
-    {
-      href: "/heritage",
-      label: "ブランドの物語を読む",
-      description: "BMWやメルセデスなど、ブランドの歴史と哲学をまとめたHERITAGEへ。",
-    },
-    {
-      href: "/guide",
-      label: "買い方・維持費ガイドへ",
-      description: "輸入車との付き合い方や維持費感をまとめたGUIDEへ。",
-    },
-  ];
+  const relatedCars = buildRelatedCars(car, allCars);
+  const filteredNews = buildRelatedNews(car, latestNews);
 
   return (
-    <main className="min-h-screen bg-gradient-to-r from-[#d2f0f0] via-white to-white px-4 py-10 text-slate-900 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-5xl">
-        <nav className="mb-6 text-[11px] text-slate-500">
+    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 text-slate-900">
+      <div className="mx-auto max-w-6xl px-4 pb-24 pt-24">
+        {/* パンくず */}
+        <nav className="mb-6 text-xs text-slate-500">
           <Link href="/" className="hover:text-slate-800">
             HOME
           </Link>
@@ -150,407 +67,350 @@ export default async function CarDetailPage({ params }: Props) {
             CARS
           </Link>
           <span className="mx-2">/</span>
-          <span className="text-slate-400">DETAIL</span>
+          <span className="text-slate-400">{title}</span>
         </nav>
 
+        {/* ヘッダー */}
         <header className="mb-10 space-y-4">
-          <div className="flex flex-wrap items-center gap-2 text-[11px] text-slate-500">
-            {car.maker && (
-              <span className="rounded-full bg-white/70 px-3 py-1 tracking-[0.08em] text-slate-700">
-                {car.maker}
-              </span>
-            )}
-            {yearLabel && (
-              <span className="rounded-full bg-white/60 px-3 py-1 tracking-[0.08em] text-slate-600">
-                登場は{yearLabel}
-              </span>
-            )}
-            {car.bodyType && (
-              <span className="rounded-full bg-white/50 px-3 py-1 tracking-[0.08em] text-slate-600">
-                {car.bodyType}
-              </span>
-            )}
-            {car.segment && (
-              <span className="rounded-full bg-white/40 px-3 py-1 tracking-[0.08em] text-slate-600">
-                {car.segment}
-              </span>
-            )}
-          </div>
+          <Reveal>
+            <div className="flex flex-wrap items-center gap-2 text-[11px] text-slate-500">
+              {car.maker && (
+                <span className="rounded-full bg-white/70 px-3 py-1 tracking-[0.08em] text-slate-700">
+                  {car.maker}
+                </span>
+              )}
+              {yearLabel && (
+                <span className="rounded-full bg-white/60 px-3 py-1 tracking-[0.08em] text-slate-600">
+                  登場は{yearLabel}
+                </span>
+              )}
+              {car.bodyType && (
+                <span className="rounded-full bg-white/50 px-3 py-1 tracking-[0.08em] text-slate-600">
+                  {car.bodyType}
+                </span>
+              )}
+              {car.segment && (
+                <span className="rounded-full bg-white/40 px-3 py-1 tracking-[0.08em] text-slate-600">
+                  {car.segment}
+                </span>
+              )}
+            </div>
+          </Reveal>
 
-          <div className="space-y-3">
-            <p className="text-xs uppercase tracking-[0.25em] text-slate-500">
-              CAR BOUTIQUE CARS DETAIL
-            </p>
-            <h1 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-              {title}
-            </h1>
-            {car.summary && (
-              <p className="max-w-3xl text-sm leading-relaxed text-slate-700 sm:text-base">
-                {car.summary}
+          <Reveal delay={80}>
+            <div className="space-y-3">
+              <p className="text-xs uppercase tracking-[0.25em] text-slate-500">
+                CAR BOUTIQUE CARS DETAIL
               </p>
-            )}
-          </div>
+              <h1 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+                {title}
+              </h1>
+              {car.summary && (
+                <p className="max-w-3xl text-sm leading-relaxed text-slate-700 sm:text-base">
+                  {car.summary}
+                </p>
+              )}
+            </div>
+          </Reveal>
         </header>
 
-        <section className="mb-12 grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-          <div className="space-y-6">
-            {car.summaryLong && (
-              <GlassCard className="border border-white/60 bg-white/70 p-5 backdrop-blur">
-                <h2 className="mb-3 text-sm font-semibold tracking-[0.18em] text-slate-500">
-                  このクルマの性格と立ち位置
-                </h2>
-                <p className="whitespace-pre-line text-sm leading-relaxed text-slate-800">
-                  {car.summaryLong}
-                </p>
-              </GlassCard>
-            )}
+        {/* メイン: 性格＋スペック */}
+        <Reveal delay={140}>
+          <section className="mb-12 grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
+            {/* 左: 性格・長文・関連ニュース */}
+            <div className="space-y-6">
+              {car.summaryLong && (
+                <GlassCard padding="lg" className="bg-white/95">
+                  <div className="space-y-3">
+                    <p className="text-[11px] font-semibold tracking-[0.22em] text-slate-500">
+                      CHARACTER
+                    </p>
+                    <p className="text-sm leading-relaxed text-slate-800 sm:text-[15px]">
+                      {car.summaryLong}
+                    </p>
+                  </div>
+                </GlassCard>
+              )}
 
-            {filteredNews.length > 0 && (
-              <GlassCard className="border border-white/50 bg-white/70 p-5 backdrop-blur">
-                <div className="mb-3 flex items-baseline justify-between gap-4">
-                  <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-500">
-                    関連ニュースから読み解く「いま」
-                  </h2>
-                  <span className="text-[11px] text-slate-400">
-                    最新の動きやキャンペーンをピックアップ
-                  </span>
-                </div>
-
-                <ul className="space-y-3">
-                  {filteredNews.map((n: NewsItem) => (
-                    <li key={n.id}>
-                      <Link
-                        href={`/news/${n.id}`}
-                        className="group block rounded-md border border-white/70 bg-white/80 px-3 py-2 text-xs leading-snug text-slate-800 shadow-sm transition hover:border-slate-200 hover:bg-white hover:shadow"
-                      >
-                        <p className="line-clamp-2 font-medium text-slate-900 group-hover:text-slate-950">
-                          {n.titleJa ?? n.title}
-                        </p>
-                        {n.sourceName && (
-                          <p className="mt-1 text-[11px] text-slate-500">
-                            {n.sourceName}
+              {filteredNews.length > 0 && (
+                <GlassCard padding="md" className="bg-slate-950 text-slate-50">
+                  <div className="mb-3 flex items-baseline justify-between gap-3">
+                    <p className="text-[10px] font-semibold tracking-[0.26em] text-slate-200/90">
+                      RELATED NEWS
+                    </p>
+                    <span className="text-[10px] text-slate-300/90">
+                      このクルマに関連する最近のニュース
+                    </span>
+                  </div>
+                  <ul className="space-y-2">
+                    {filteredNews.map((item) => (
+                      <li key={item.id}>
+                        <Link
+                          href={`/news/${encodeURIComponent(item.id)}`}
+                          className="group flex flex-col gap-1 rounded-xl bg-slate-900/50 px-3 py-2 transition hover:bg-slate-900/80"
+                        >
+                          <p className="text-[11px] font-semibold leading-relaxed text-slate-50">
+                            {item.titleJa ?? item.title}
                           </p>
-                        )}
-                        <p className="mt-0.5 text-[10px] text-slate-400">
-                          {formatDate(n.publishedAt)}
-                        </p>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </GlassCard>
-            )}
-          </div>
-
-          <aside className="space-y-4">
-            <GlassCard className="border border-white/70 bg-white/80 p-4 text-xs text-slate-800 shadow-sm backdrop-blur">
-              <h2 className="mb-3 text-[11px] font-semibold tracking-[0.18em] text-slate-500">
-                基本スペック
-              </h2>
-              <dl className="grid grid-cols-2 gap-x-4 gap-y-2">
-                {car.engine && (
-                  <>
-                    <dt className="text-[11px] text-slate-500">エンジン</dt>
-                    <dd className="text-[13px] text-slate-900">
-                      {car.engine}
-                    </dd>
-                  </>
-                )}
-                {car.powerPs !== undefined && (
-                  <>
-                    <dt className="text-[11px] text-slate-500">最高出力</dt>
-                    <dd className="text-[13px] text-slate-900">
-                      {formatNumber(car.powerPs, "ps")}
-                    </dd>
-                  </>
-                )}
-                {car.torqueNm !== undefined && (
-                  <>
-                    <dt className="text-[11px] text-slate-500">最大トルク</dt>
-                    <dd className="text-[13px] text-slate-900">
-                      {formatNumber(car.torqueNm, "Nm")}
-                    </dd>
-                  </>
-                )}
-                {car.transmission && (
-                  <>
-                    <dt className="text-[11px] text-slate-500">トランスミッション</dt>
-                    <dd className="text-[13px] text-slate-900">
-                      {car.transmission}
-                    </dd>
-                  </>
-                )}
-                {car.drive && (
-                  <>
-                    <dt className="text-[11px] text-slate-500">駆動方式</dt>
-                    <dd className="text-[13px] text-slate-900">{car.drive}</dd>
-                  </>
-                )}
-                {car.fuel && (
-                  <>
-                    <dt className="text-[11px] text-slate-500">燃料種別</dt>
-                    <dd className="text-[13px] text-slate-900">{car.fuel}</dd>
-                  </>
-                )}
-                {car.fuelEconomy && (
-                  <>
-                    <dt className="text-[11px] text-slate-500">カタログ燃費</dt>
-                    <dd className="text-[13px] text-slate-900">
-                      {car.fuelEconomy}
-                    </dd>
-                  </>
-                )}
-                {car.lengthMm !== undefined && (
-                  <>
-                    <dt className="text-[11px] text-slate-500">全長</dt>
-                    <dd className="text-[13px] text-slate-900">
-                      {formatNumber(car.lengthMm, "mm")}
-                    </dd>
-                  </>
-                )}
-                {car.widthMm !== undefined && (
-                  <>
-                    <dt className="text-[11px] text-slate-500">全幅</dt>
-                    <dd className="text-[13px] text-slate-900">
-                      {formatNumber(car.widthMm, "mm")}
-                    </dd>
-                  </>
-                )}
-                {car.heightMm !== undefined && (
-                  <>
-                    <dt className="text-[11px] text-slate-500">全高</dt>
-                    <dd className="text-[13px] text-slate-900">
-                      {formatNumber(car.heightMm, "mm")}
-                    </dd>
-                  </>
-                )}
-                {car.wheelbaseMm !== undefined && (
-                  <>
-                    <dt className="text-[11px] text-slate-500">ホイールベース</dt>
-                    <dd className="text-[13px] text-slate-900">
-                      {formatNumber(car.wheelbaseMm, "mm")}
-                    </dd>
-                  </>
-                )}
-                {car.weightKg !== undefined && (
-                  <>
-                    <dt className="text-[11px] text-slate-500">車両重量</dt>
-                    <dd className="text-[13px] text-slate-900">
-                      {formatNumber(car.weightKg, "kg")}
-                    </dd>
-                  </>
-                )}
-                {car.tiresFront && (
-                  <>
-                    <dt className="text-[11px] text-slate-500">タイヤサイズ前</dt>
-                    <dd className="text-[13px] text-slate-900">
-                      {car.tiresFront}
-                    </dd>
-                  </>
-                )}
-                {car.tiresRear && (
-                  <>
-                    <dt className="text-[11px] text-slate-500">タイヤサイズ後</dt>
-                    <dd className="text-[13px] text-slate-900">
-                      {car.tiresRear}
-                    </dd>
-                  </>
-                )}
-              </dl>
-            </GlassCard>
-
-            <GlassCard className="border border-white/70 bg-white/70 p-4 text-xs text-slate-800 backdrop-blur">
-              <h2 className="mb-3 text-[11px] font-semibold tracking-[0.18em] text-slate-500">
-                このクルマを選ぶなら
-              </h2>
-              <p className="mb-3 text-[13px] leading-relaxed text-slate-800">
-                CARSページは、あくまで編集部の目線でまとめた「性格診断書」のようなものです。
-                実際の個体差や整備状況によって印象は変わるので、
-                最後はかならず現車確認と試乗をしたうえで判断してください。
-              </p>
-              <Button
-                asChild
-                variant="outline"
-                className="w-full justify-center border-slate-300 bg-white/80 text-[12px] text-slate-800 hover:border-slate-400 hover:bg-white"
-              >
-                <a
-                  href="/guide"
-                  aria-label="GUIDEページへ"
-                >
-                  維持費や買い方のGUIDEへ
-                </a>
-              </Button>
-            </GlassCard>
-          </aside>
-        </section>
-
-        {filteredNews.length > 0 && (
-          <section className="mb-12">
-            <div className="mb-4 flex items-baseline justify-between gap-4">
-              <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-600">
-                RELATED NEWS
-              </h2>
-              <span className="text-[11px] text-slate-400">
-                同じメーカーのニュースから、いまの空気感をつかむ
-              </span>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              {filteredNews.map((n: NewsItem) => (
-                <GlassCard
-                  key={n.id}
-                  className="flex flex-col justify-between border border-white/70 bg-white/80 p-4 text-xs text-slate-800 shadow-sm backdrop-blur transition hover:border-slate-200 hover:bg-white hover:shadow-md"
-                >
-                  <div>
-                    <p className="mb-1 text-[11px] uppercase tracking-[0.2em] text-slate-500">
-                      {n.category || "LATEST"}
-                    </p>
-                    <Link
-                      href={`/news/${n.id}`}
-                      className="mb-1 block text-sm font-medium leading-snug text-slate-900 hover:text-slate-950"
-                    >
-                      {n.titleJa ?? n.title}
-                    </Link>
-                    {n.editorNote && (
-                      <p className="mt-1 text-[11px] text-slate-500">
-                        編集部メモ
-                        {n.editorNote}
-                      </p>
-                    )}
-                  </div>
-                  <div className="mt-2 flex items-center justify-between text-[11px] text-slate-400">
-                    <span>{n.sourceName}</span>
-                    <span>{formatDate(n.publishedAt)}</span>
-                  </div>
+                          <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-300/90">
+                            {item.maker && (
+                              <span className="rounded-full bg-slate-100/10 px-2 py-1">
+                                {item.maker}
+                              </span>
+                            )}
+                            {item.publishedAtJa && (
+                              <span className="rounded-full bg-slate-100/5 px-2 py-1">
+                                {item.publishedAtJa}
+                              </span>
+                            )}
+                            {item.sourceName && (
+                              <span className="underline decoration-slate-400/60 underline-offset-2">
+                                {item.sourceName}
+                              </span>
+                            )}
+                          </div>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </GlassCard>
-              ))}
+              )}
             </div>
-          </section>
-        )}
 
-        {relatedCars.length > 0 && (
-          <section className="mb-12">
-            <div className="mb-4 flex items-baseline justify-between gap-4">
-              <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-600">
-                RELATED CARS
-              </h2>
-              <span className="text-[11px] text-slate-400">
-                同じメーカーやキャラクターのクルマを、もう少しだけ覗いてみる
-              </span>
-            </div>
-            <div className="grid gap-4 md:grid-cols-3">
-              {relatedCars.map((c) => (
-                <GlassCard
-                  key={c.id}
-                  className="flex flex-col justify-between border border-white/70 bg-white/80 p-4 text-xs text-slate-800 shadow-sm backdrop-blur transition hover:border-slate-200 hover:bg-white hover:shadow-md"
-                >
-                  <div>
-                    <p className="mb-1 text-[11px] uppercase tracking-[0.2em] text-slate-500">
-                      {c.maker}
-                    </p>
-                    <Link
-                      href={`/cars/${c.slug}`}
-                      className="mb-1 block text-sm font-medium leading-snug text-slate-900 hover:text-slate-950"
-                    >
-                      {buildTitle(c)}
-                    </Link>
-                    {c.summary && (
-                      <p className="mt-1 line-clamp-2 text-[12px] text-slate-600">
-                        {c.summary}
-                      </p>
-                    )}
-                  </div>
-                  <div className="mt-2 text-[11px] text-slate-400">
-                    {c.bodyType && <span>{c.bodyType}</span>}
-                    {c.segment && <span className="ml-2">{c.segment}</span>}
-                  </div>
-                </GlassCard>
-              ))}
-            </div>
-          </section>
-        )}
-
-        <section className="mb-10">
-          <div className="mb-4 flex items-baseline justify-between gap-4">
-            <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-600">
-              OTHER CARS
-            </h2>
-            <span className="text-[11px] text-slate-400">
-              まったく別ジャンルのクルマを、ブティックを覗くように眺めてみる
-            </span>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {otherCars.map((c) => (
-              <GlassCard
-                key={c.id}
-                className="flex flex-col justify-between border border-white/70 bg-white/80 p-4 text-xs text-slate-800 shadow-sm backdrop-blur transition hover:border-slate-200 hover:bg-white hover:shadow-md"
-              >
-                <div>
-                  <p className="mb-1 text-[11px] uppercase tracking-[0.2em] text-slate-500">
-                    {c.maker}
+            {/* 右: スペック・所有難易度など */}
+            <div className="space-y-4">
+              <GlassCard padding="md" className="bg-white/95">
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <p className="text-[10px] font-semibold tracking-[0.26em] text-slate-500">
+                    SPECIFICATION
                   </p>
-                  <Link
-                    href={`/cars/${c.slug}`}
-                    className="mb-1 block text-sm font-medium leading-snug text-slate-900 hover:text-slate-950"
-                  >
-                    {buildTitle(c)}
-                  </Link>
-                  {c.summary && (
-                    <p className="mt-1 line-clamp-2 text-[12px] text-slate-600">
-                      {c.summary}
-                    </p>
+                  {car.grade && (
+                    <span className="rounded-full bg-slate-900/90 px-3 py-1 text-[10px] font-medium tracking-[0.16em] text-slate-50">
+                      {car.grade}
+                    </span>
                   )}
                 </div>
-                <div className="mt-2 text-[11px] text-slate-400">
-                  {c.bodyType && <span>{c.bodyType}</span>}
-                  {c.segment && <span className="ml-2">{c.segment}</span>}
-                </div>
+                <dl className="grid grid-cols-1 gap-x-4 gap-y-2 text-[11px] text-slate-700 sm:grid-cols-2">
+                  {car.engine && (
+                    <SpecRow label="エンジン" value={car.engine} />
+                  )}
+                  {car.powerPs && (
+                    <SpecRow label="最高出力" value={`${car.powerPs}ps前後`} />
+                  )}
+                  {car.torqueNm && (
+                    <SpecRow label="最大トルク" value={`${car.torqueNm}Nm前後`} />
+                  )}
+                  {car.transmission && (
+                    <SpecRow label="トランスミッション" value={car.transmission} />
+                  )}
+                  {car.drive && (
+                    <SpecRow label="駆動方式" value={car.drive} />
+                  )}
+                  {car.fuel && <SpecRow label="燃料" value={car.fuel} />}
+                </dl>
               </GlassCard>
-            ))}
-          </div>
-        </section>
 
-        <section className="mb-10">
-          <div className="grid gap-4 md:grid-cols-2">
-            {heritageLinks.map((link) => (
-              <GlassCard
-                key={link.href}
-                className="flex flex-col justify-between border border-white/70 bg-white/80 p-4 text-xs text-slate-800 shadow-sm backdrop-blur transition hover:border-slate-200 hover:bg-white hover:shadow-md"
-              >
-                <div>
-                  <p className="mb-1 text-[11px] uppercase tracking-[0.2em] text-slate-500">
-                    NEXT STORY
-                  </p>
-                  <h3 className="mb-1 text-sm font-medium text-slate-900">
-                    {link.label}
-                  </h3>
-                  <p className="text-[12px] text-slate-600">
-                    {link.description}
+              <GlassCard padding="md" className="bg-white/95">
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <p className="text-[10px] font-semibold tracking-[0.26em] text-slate-500">
+                    POSITION &amp; OWNERSHIP
                   </p>
                 </div>
-                <div className="mt-3">
+                <dl className="space-y-2 text-[11px] text-slate-700">
+                  {car.segment && (
+                    <SpecRow label="ポジション" value={car.segment} />
+                  )}
+                  {car.difficulty && (
+                    <SpecRow
+                      label="所有の難易度"
+                      value={formatDifficulty(car.difficulty)}
+                    />
+                  )}
+                  {car.bodyType && (
+                    <SpecRow label="ボディタイプ" value={car.bodyType} />
+                  )}
+                </dl>
+                {car.tags && car.tags.length > 0 && (
+                  <div className="mt-3 flex flex-wrap gap-1 text-[10px] text-slate-500">
+                    {car.tags.slice(0, 6).map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full bg-slate-100 px-2 py-1"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </GlassCard>
+            </div>
+          </section>
+        </Reveal>
+
+        {/* 関連CARS */}
+        {relatedCars.length > 0 && (
+          <Reveal delay={220}>
+            <section className="mb-12">
+              <div className="mb-4 flex items-baseline justify-between gap-4">
+                <h2 className="text-sm font-semibold tracking-[0.18em] text-slate-600">
+                  RELATED CARS
+                </h2>
+                <span className="text-[11px] text-slate-400">
+                  同じメーカーやキャラクターのクルマを、もう少しだけ覗いてみる
+                </span>
+              </div>
+              <div className="grid gap-4 md:grid-cols-3">
+                {relatedCars.map((c) => (
                   <Link
-                    href={link.href}
-                    className="inline-flex items-center text-[12px] font-medium text-slate-900 underline-offset-4 hover:underline"
+                    key={c.slug}
+                    href={`/cars/${encodeURIComponent(c.slug)}`}
                   >
-                    この記事へ進む
-                    <span className="ml-1 text-[11px]">→</span>
+                    <GlassCard
+                      as="article"
+                      padding="sm"
+                      interactive
+                      className="h-full bg-white/95"
+                    >
+                      <div className="flex h-full flex-col gap-2 text-[11px] text-slate-700">
+                        <p className="text-[10px] font-semibold tracking-[0.18em] text-slate-500">
+                          {c.maker}
+                        </p>
+                        <p className="text-sm font-semibold text-slate-900">
+                          {c.name}
+                        </p>
+                        {c.summary && (
+                          <p className="line-clamp-2 text-[11px] leading-relaxed text-slate-600">
+                            {c.summary}
+                          </p>
+                        )}
+                        <div className="mt-auto flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                          {c.segment && (
+                            <span className="rounded-full bg-slate-100 px-2 py-1">
+                              {c.segment}
+                            </span>
+                          )}
+                          {c.bodyType && (
+                            <span className="rounded-full bg-slate-100 px-2 py-1">
+                              {c.bodyType}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </GlassCard>
                   </Link>
-                </div>
-              </GlassCard>
-            ))}
-          </div>
-        </section>
+                ))}
+              </div>
+            </section>
+          </Reveal>
+        )}
 
-        <div className="mt-8 text-center">
-          <Link
-            href="/cars"
-            className="inline-flex items-center text-xs font-medium text-slate-600 underline-offset-4 hover:text-slate-900 hover:underline"
-          >
-            <span className="mr-1">←</span>
-            CARS一覧へ戻る
+        {/* 回遊導線 */}
+        <section className="mt-10 grid gap-4 md:grid-cols-2">
+          <Link href="/news">
+            <div className="group h-full rounded-3xl border border-slate-200 bg-white/80 p-4 text-left shadow-sm transition hover:-translate-y-[2px] hover:shadow-soft-card">
+              <p className="text-[10px] font-semibold tracking-[0.28em] text-slate-600">
+                NEWS
+              </p>
+              <h3 className="mt-2 text-sm font-semibold text-slate-900">
+                このクルマに関する最新ニュースをNEWSから辿る。
+              </h3>
+              <p className="mt-2 text-[11px] leading-relaxed text-slate-600">
+                マイナーチェンジや特別仕様車、後継モデルの登場など、
+                動きがあればNEWSセクションで追っていく予定です。
+              </p>
+              <span className="mt-3 inline-flex items-center text-[11px] font-medium tracking-[0.2em] text-slate-700">
+                ニュース一覧へ
+                <span className="ml-1 text-[10px]">→</span>
+              </span>
+            </div>
           </Link>
-        </div>
+
+          <Link href="/column">
+            <div className="group h-full rounded-3xl border border-slate-200 bg-white/80 p-4 text-left shadow-sm transition hover:-translate-y-[2px] hover:shadow-soft-card">
+              <p className="text-[10px] font-semibold tracking-[0.28em] text-slate-600">
+                COLUMN
+              </p>
+              <h3 className="mt-2 text-sm font-semibold text-slate-900">
+                実際のオーナー体験やトラブルの話はCOLUMNで。
+              </h3>
+              <p className="mt-2 text-[11px] leading-relaxed text-slate-600">
+                このクルマにまつわるリアルな話や、似たキャラクターのクルマとの比較などは、
+                COLUMNセクションで少しずつ増やしていきます。
+              </p>
+              <span className="mt-3 inline-flex items-center text-[11px] font-medium tracking-[0.2em] text-slate-700">
+                コラム一覧へ
+                <span className="ml-1 text-[10px]">→</span>
+              </span>
+            </div>
+          </Link>
+        </section>
       </div>
     </main>
   );
+}
+
+/* 補助関数・コンポーネント */
+
+function buildRelatedCars(current: CarItem, all: CarItem[]): CarItem[] {
+  return all
+    .filter((c) => c.slug !== current.slug)
+    .filter((c) => {
+      if (current.maker && c.maker === current.maker) return true;
+      if (current.segment && c.segment === current.segment) return true;
+      return false;
+    })
+    .slice(0, 3);
+}
+
+function buildRelatedNews(
+  car: CarItem,
+  items: NewsItem[],
+): NewsItem[] {
+  const name = car.name ?? "";
+  const maker = car.maker ?? "";
+
+  return items
+    .filter((item) => {
+      if (!maker && !name) return false;
+      if (maker && item.maker === maker) return true;
+
+      const haystack = `${item.title} ${item.titleJa ?? ""}`.toLowerCase();
+      if (name && haystack.includes(name.toLowerCase())) return true;
+
+      return false;
+    })
+    .slice(0, 3);
+}
+
+type SpecRowProps = {
+  label: string;
+  value: string;
+};
+
+function SpecRow({ label, value }: SpecRowProps) {
+  return (
+    <div className="flex gap-2">
+      <dt className="w-24 flex-shrink-0 text-[10px] font-medium tracking-[0.14em] text-slate-500">
+        {label}
+      </dt>
+      <dd className="flex-1 text-[11px] leading-relaxed text-slate-800">
+        {value}
+      </dd>
+    </div>
+  );
+}
+
+function formatDifficulty(
+  difficulty: CarItem["difficulty"],
+): string {
+  switch (difficulty) {
+    case "basic":
+      return "エントリー(初めてでも付き合いやすい)";
+    case "standard":
+      return "標準(維持しやすいバランス型)";
+    case "advanced":
+      return "上級(多少の理解と覚悟があると安心)";
+    default:
+      return "不明";
+  }
 }
