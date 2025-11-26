@@ -73,7 +73,7 @@ export default async function NewsDetailPage({ params }: Props) {
   const title = item.titleJa || item.title;
   const formattedDate = formatDate(item.publishedAt);
 
-  // 関連ニュース用データ（件数は少し余裕を持たせる）
+  // 関連ニュース用データ
   const latest = await getLatestNews(80);
 
   const relatedByMaker = item.maker
@@ -92,7 +92,6 @@ export default async function NewsDetailPage({ params }: Props) {
           (n) =>
             n.id !== item.id &&
             n.category === item.category &&
-            // メーカー重複を少し避ける（あれば）
             (!item.maker || n.maker !== item.maker),
         )
         .slice(0, 4)
@@ -120,14 +119,20 @@ export default async function NewsDetailPage({ params }: Props) {
         {/* タグ・メタ情報行 */}
         <div className="mb-4 flex flex-wrap items-center gap-2 text-[11px] tracking-[0.16em] uppercase text-slate-500">
           {item.category && (
-            <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1">
+            <Link
+              href={`/news?category=${encodeURIComponent(item.category)}`}
+              className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 transition hover:border-slate-300 hover:bg-slate-50"
+            >
               {item.category}
-            </span>
+            </Link>
           )}
           {item.maker && (
-            <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1">
+            <Link
+              href={`/news?maker=${encodeURIComponent(item.maker)}`}
+              className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 transition hover:border-slate-300 hover:bg-slate-50"
+            >
               {item.maker}
-            </span>
+            </Link>
           )}
           {item.sourceName && (
             <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1">
@@ -202,13 +207,27 @@ export default async function NewsDetailPage({ params }: Props) {
                 {item.category && (
                   <div className="flex">
                     <dt className="w-20 shrink-0 text-slate-400">カテゴリ</dt>
-                    <dd>{item.category}</dd>
+                    <dd>
+                      <Link
+                        href={`/news?category=${encodeURIComponent(item.category)}`}
+                        className="underline-offset-4 hover:underline"
+                      >
+                        {item.category}
+                      </Link>
+                    </dd>
                   </div>
                 )}
                 {item.maker && (
                   <div className="flex">
                     <dt className="w-20 shrink-0 text-slate-400">メーカー</dt>
-                    <dd>{item.maker}</dd>
+                    <dd>
+                      <Link
+                        href={`/news?maker=${encodeURIComponent(item.maker)}`}
+                        className="underline-offset-4 hover:underline"
+                      >
+                        {item.maker}
+                      </Link>
+                    </dd>
                   </div>
                 )}
                 {item.tags && item.tags.length > 0 && (
@@ -216,12 +235,13 @@ export default async function NewsDetailPage({ params }: Props) {
                     <dt className="mb-1 text-slate-400">タグ</dt>
                     <dd className="flex flex-wrap gap-2">
                       {item.tags.map((tag) => (
-                        <span
+                        <Link
                           key={tag}
-                          className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-[11px]"
+                          href={`/news?tag=${encodeURIComponent(tag)}`}
+                          className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-[11px] transition hover:border-slate-300 hover:bg-slate-50"
                         >
                           {tag}
-                        </span>
+                        </Link>
                       ))}
                     </dd>
                   </div>
