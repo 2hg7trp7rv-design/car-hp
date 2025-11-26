@@ -79,6 +79,23 @@ export default async function NewsPage({ searchParams }: Props) {
 
   const latestDateLabel = formatDate(latestDateRaw);
 
+  const activeFilters: string[] = [];
+  if (rawQ.trim()) {
+    activeFilters.push(`キーワード「${rawQ.trim()}」`);
+  }
+  if (categoryFilter) {
+    activeFilters.push(`カテゴリ「${categoryFilter}」`);
+  }
+  if (makerFilter) {
+    activeFilters.push(`メーカー「${makerFilter}」`);
+  }
+  if (tagFilter) {
+    activeFilters.push(`タグ「${tagFilter}」`);
+  }
+
+  const hasAnyFilter =
+    !!rawQ.trim() || !!categoryFilter || !!makerFilter || !!tagFilter;
+
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 pb-16 pt-20 sm:px-6 sm:pt-24 lg:px-8">
       {/* ヘッダー */}
@@ -140,7 +157,7 @@ export default async function NewsPage({ searchParams }: Props) {
       </section>
 
       {/* フィルター＋検索 */}
-      <section className="mb-6 space-y-3 rounded-2xl border border-white/70 bg-white/70 p-3 text-[11px] text-text-sub backdrop-blur-md sm:p-4">
+      <section className="mb-4 space-y-3 rounded-2xl border border-white/70 bg-white/70 p-3 text-[11px] text-text-sub backdrop-blur-md sm:p-4">
         {/* キーワード検索行 */}
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col gap-1">
@@ -273,11 +290,35 @@ export default async function NewsPage({ searchParams }: Props) {
         )}
       </section>
 
+      {/* 結果サマリー */}
+      <section className="mb-4 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-sub">
+        <p>
+          絞り込み結果
+          <span className="mx-1 font-semibold text-slate-900">
+            {filtered.length}件
+          </span>
+          を表示中
+        </p>
+        {hasAnyFilter && (
+          <p className="text-[10px] text-slate-500">
+            条件
+            {activeFilters.length > 0
+              ? `: ${activeFilters.join(" / ")}`
+              : ""}
+          </p>
+        )}
+      </section>
+
       {/* ニュースカード一覧 */}
       {filtered.length === 0 ? (
-        <p className="mt-10 text-center text-sm text-text-sub">
-          条件に一致するニュースがありません。
-        </p>
+        <div className="mt-10 rounded-2xl border border-slate-100 bg-white/80 p-6 text-center text-sm text-text-sub">
+          <p>条件に一致するニュースがありませんでした。</p>
+          {hasAnyFilter && (
+            <p className="mt-2 text-[11px] text-slate-500">
+              検索条件を少しゆるくするか、「すべて」を選び直してみてください。
+            </p>
+          )}
+        </div>
       ) : (
         <section className="grid gap-4 md:grid-cols-2">
           {filtered.map((item) => {
