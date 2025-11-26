@@ -2,36 +2,23 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getNewsById, getLatestNews, type NewsItem } from "@/lib/news";
-import { Button } from "@/components/ui/button";
+import {
+  getNewsById,
+  getLatestNews,
+  type NewsItem,
+} from "@/lib/news";
 import { GlassCard } from "@/components/GlassCard";
+import { Reveal } from "@/components/animation/Reveal";
 
 export const runtime = "edge";
 
-type Props = {
+type PageProps = {
   params: { id: string };
 };
 
-function formatDate(iso?: string | null): string {
-  if (!iso) return "";
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return "";
-  return date.toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
-
-function buildTitle(item: NewsItem): string {
-  const base = item.titleJa || item.title;
-  if (item.sourceName) {
-    return `${base} | ${item.sourceName}`;
-  }
-  return base;
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const item = await getNewsById(params.id);
 
   if (!item) {
@@ -41,64 +28,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const title = buildTitle(item);
+  const title = item.titleJa ?? item.title;
   const description =
     item.excerpt ??
-    "車のニュースと、その先にある物語を届ける CAR BOUTIQUE のニュース詳細ページです。";
+    "クルマのニュースを、要約とCAR BOUTIQUE目線のコメント付きでお届けします。";
 
   return {
     title: `${title} | CAR BOUTIQUE`,
     description,
-    openGraph: {
-      title: `${title} | CAR BOUTIQUE`,
-      description,
-      url: `https://car-hp.vercel.app/news/${item.id}`,
-      type: "article",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${title} | CAR BOUTIQUE`,
-      description,
-    },
   };
 }
 
-export default async function NewsDetailPage({ params }: Props) {
+export default async function NewsDetailPage({ params }: PageProps) {
   const item = await getNewsById(params.id);
 
   if (!item) {
     notFound();
   }
 
-  const title = item.titleJa || item.title;
-  const formattedDate = formatDate(item.publishedAt);
+  const latest = await getLatestNews(24);
+  const related = buildRelatedNews(item, latest);
 
-  // 関連ニュース用データ
-  const latest = await getLatestNews(80);
-
-  const relatedByMaker = item.maker
-    ? latest
-        .filter(
-          (n) =>
-            n.id !== item.id &&
-            n.maker === item.maker,
-        )
-        .slice(0, 4)
-    : [];
-
-  const relatedByCategory = item.category
-    ? latest
-        .filter(
-          (n) =>
-            n.id !== item.id &&
-            n.category === item.category &&
-            (!item.maker || n.maker !== item.maker),
-        )
-        .slice(0, 4)
-    : [];
-
-  const hasRelated =
-    relatedByMaker.length > 0 || relatedByCategory.length > 0;
+  const title = item.titleJa ?? item.title;
+  const published = item.publishedAtJa ?? "";
+  const maker = item.maker ?? "";
+  const category = item.category ?? "";
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 text-slate-900">
@@ -113,291 +67,227 @@ export default async function NewsDetailPage({ params }: Props) {
             NEWS
           </Link>
           <span className="mx-2">/</span>
-          <span className="text-slate-400">DETAIL</span>
+          <span className="text-slate-400 line-clamp-1">{title}</span>
         </nav>
 
-        {/* タグ・メタ情報行 */}
-        <div className="mb-4 flex flex-wrap items-center gap-2 text-[11px] tracking-[0.16em] uppercase text-slate-500">
-          {item.category && (
-            <Link
-              href={`/news?category=${encodeURIComponent(item.category)}`}
-              className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 transition hover:border-slate-300 hover:bg-slate-50"
-            >
-              {item.category}
-            </Link>
-          )}
-          {item.maker && (
-            <Link
-              href={`/news?maker=${encodeURIComponent(item.maker)}`}
-              className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 transition hover:border-slate-300 hover:bg-slate-50"
-            >
-              {item.maker}
-            </Link>
-          )}
-          {item.sourceName && (
-            <span className="rounded-full border border-slate-200 bg-white/80 px-3 py-1">
-              {item.sourceName}
-            </span>
-          )}
-          {formattedDate && (
-            <span className="ml-auto text-[10px] tracking-[0.2em] text-slate-400">
-              {formattedDate}
-            </span>
-          )}
-        </div>
+        {/* ヘッダー */}
+        <header className="mb-8 space-y-4">
+          <Reveal>
+            <div className="flex flex-wrap items-center gap-2 text-[11px] text-slate-500">
+              {maker && (
+                <span className="rounded-full bg-white/80 px-3 py-1 tracking-[0.08em] text-slate-700">
+                  {maker}
+                </span>
+              )}
+              {category && (
+                <span className="rounded-full bg-white/70 px-3 py-1 tracking-[0.08em] text-slate-600">
+                  {category}
+                </span>
+              )}
+              {item.tags &&
+                item.tags.slice(0, 3).map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-white/60 px-2 py-1 text-[10px] text-slate-600"
+                  >
+                    #{tag}
+                  </span>
+                ))}
+            </div>
+          </Reveal>
 
-        {/* タイトル＋原題 */}
-        <header className="mb-10 space-y-4">
-          <h1 className="text-balance text-2xl font-semibold leading-relaxed tracking-[0.08em] md:text-3xl">
-            {title}
-          </h1>
-          {item.titleJa && (
-            <p className="text-xs text-slate-500">
-              原題
-              <span className="ml-2 text-[11px] tracking-[0.12em]">
-                {item.title}
-              </span>
-            </p>
-          )}
+          <Reveal delay={80}>
+            <div className="space-y-3">
+              <p className="text-[11px] uppercase tracking-[0.26em] text-slate-500">
+                CAR BOUTIQUE NEWS DETAIL
+              </p>
+              <h1 className="text-xl font-semibold leading-relaxed tracking-tight text-slate-900 sm:text-2xl">
+                {title}
+              </h1>
+            </div>
+          </Reveal>
+
+          <Reveal delay={150}>
+            <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-500">
+              {published && (
+                <span className="rounded-full bg-white/80 px-3 py-1 tracking-[0.16em] text-slate-700">
+                  {published}
+                </span>
+              )}
+              {item.sourceName && (
+                <span className="rounded-full bg-white/70 px-3 py-1">
+                  出典 {item.sourceName}
+                </span>
+              )}
+            </div>
+          </Reveal>
         </header>
 
-        {/* 本文ラッパ（要約＋情報カード） */}
-        <div className="mb-10 grid gap-8 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
-          {/* 要約・コメントエリア */}
-          <section className="rounded-3xl border border-slate-200/70 bg-white/90 p-6 shadow-sm backdrop-blur">
-            <h2 className="mb-3 text-xs font-medium tracking-[0.18em] text-slate-500">
-              SUMMARY
-            </h2>
-            <p className="text-sm leading-relaxed text-slate-800">
-              {item.excerpt ??
-                "このニュースは、外部メディアの記事をもとに CAR BOUTIQUE 編集部がピックアップしたものです。詳細は元記事をご覧ください。"}
-            </p>
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,0.9fr)]">
+          {/* 左カラム: 本文・コメント */}
+          <div className="space-y-6">
+            <Reveal delay={200}>
+              <GlassCard padding="lg" className="bg-white/95">
+                <article className="space-y-4 text-[13px] leading-relaxed text-slate-800">
+                  {item.excerpt && (
+                    <p className="text-sm leading-relaxed text-slate-800">
+                      {item.excerpt}
+                    </p>
+                  )}
 
-            <div className="mt-6 rounded-2xl bg-slate-50/80 p-4 text-xs text-slate-600">
-              <p className="text-[11px] font-medium tracking-[0.18em] text-slate-500">
-                CAR BOUTIQUE VIEW
-              </p>
-              <p className="mt-2 leading-relaxed">
-                将来的には、ここに「なぜこの記事をピックアップしたのか」
-                「オーナー目線でどう感じるか」といった一言コメントや
-                コラムへのリンクを追加していく想定です。
-              </p>
-            </div>
-          </section>
+                  {item.commentJa && (
+                    <section className="mt-4 space-y-2">
+                      <p className="text-[11px] font-semibold tracking-[0.22em] text-slate-500">
+                        CAR BOUTIQUE COMMENT
+                      </p>
+                      <p className="whitespace-pre-wrap text-[13px] leading-relaxed text-slate-800">
+                        {item.commentJa}
+                      </p>
+                    </section>
+                  )}
 
-          {/* 情報カード＋元記事リンク */}
-          <aside className="space-y-4">
-            <div className="rounded-3xl border border-tiffany-100 bg-gradient-to-br from-white via-sky-50/40 to-white p-5 shadow-sm">
-              <h2 className="mb-3 text-xs font-medium tracking-[0.2em] text-slate-500">
-                ARTICLE INFO
-              </h2>
-              <dl className="space-y-2 text-xs text-slate-700">
-                {item.sourceName && (
-                  <div className="flex">
-                    <dt className="w-20 shrink-0 text-slate-400">出典</dt>
-                    <dd>{item.sourceName}</dd>
-                  </div>
-                )}
-                {formattedDate && (
-                  <div className="flex">
-                    <dt className="w-20 shrink-0 text-slate-400">配信日</dt>
-                    <dd>{formattedDate}</dd>
-                  </div>
-                )}
-                {item.category && (
-                  <div className="flex">
-                    <dt className="w-20 shrink-0 text-slate-400">カテゴリ</dt>
-                    <dd>
-                      <Link
-                        href={`/news?category=${encodeURIComponent(item.category)}`}
-                        className="underline-offset-4 hover:underline"
-                      >
-                        {item.category}
-                      </Link>
-                    </dd>
-                  </div>
-                )}
-                {item.maker && (
-                  <div className="flex">
-                    <dt className="w-20 shrink-0 text-slate-400">メーカー</dt>
-                    <dd>
-                      <Link
-                        href={`/news?maker=${encodeURIComponent(item.maker)}`}
-                        className="underline-offset-4 hover:underline"
-                      >
-                        {item.maker}
-                      </Link>
-                    </dd>
-                  </div>
-                )}
-                {item.tags && item.tags.length > 0 && (
-                  <div>
-                    <dt className="mb-1 text-slate-400">タグ</dt>
-                    <dd className="flex flex-wrap gap-2">
-                      {item.tags.map((tag) => (
-                        <Link
-                          key={tag}
-                          href={`/news?tag=${encodeURIComponent(tag)}`}
-                          className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-[11px] transition hover:border-slate-300 hover:bg-slate-50"
-                        >
-                          {tag}
-                        </Link>
-                      ))}
-                    </dd>
-                  </div>
-                )}
-              </dl>
-            </div>
+                  {!item.commentJa && (
+                    <p className="mt-4 text-[11px] text-slate-500">
+                      このニュースに対するCAR BOUTIQUEとしてのコメントは、順次追加していきます。
+                    </p>
+                  )}
+                </article>
+              </GlassCard>
+            </Reveal>
 
-            {/* 元記事へのリンク */}
-            {item.url && (
-              <div className="rounded-3xl border border-slate-200 bg-white/90 p-5 text-xs text-slate-700 shadow-sm">
-                <p className="mb-3 text-[11px] tracking-[0.18em] text-slate-500">
-                  ORIGINAL ARTICLE
-                </p>
-                <p className="mb-4 leading-relaxed">
-                  記事の全文は、配信元メディアでご確認いただけます。
-                  CAR BOUTIQUEでは、要約と独自の視点を添えてご紹介しています。
-                </p>
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-[11px] font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
-                >
-                  元記事を読む
-                </a>
-              </div>
+            {item.link && (
+              <Reveal delay={260}>
+                <GlassCard padding="md" className="bg-slate-950 text-slate-50">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="space-y-1">
+                      <p className="text-[10px] font-semibold tracking-[0.26em] text-slate-200/90">
+                        ORIGINAL ARTICLE
+                      </p>
+                      <p className="text-[11px] text-slate-100/90">
+                        詳細な内容は、元記事で必ずご確認ください。
+                      </p>
+                    </div>
+                    <Link
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center rounded-full bg-slate-100 px-4 py-2 text-[11px] font-semibold tracking-[0.2em] text-slate-900 transition hover:bg-white"
+                    >
+                      元記事を開く
+                      <span className="ml-1 text-[10px]">↗</span>
+                    </Link>
+                  </div>
+                </GlassCard>
+              </Reveal>
             )}
-          </aside>
-        </div>
+          </div>
 
-        {/* 関連ニュースブロック */}
-        {hasRelated && (
-          <section className="mb-12 space-y-4">
-            <div className="flex items-baseline justify-between gap-3">
-              <h2 className="text-xs font-semibold tracking-[0.18em] text-slate-700 sm:text-sm">
-                RELATED NEWS
-              </h2>
-              <Link
-                href="/news"
-                className="text-[11px] tracking-[0.16em] text-text-sub underline-offset-4 hover:underline sm:text-xs"
-              >
-                NEWS一覧へ戻る
-              </Link>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-2">
-              {relatedByMaker.length > 0 && (
-                <GlassCard padding="lg" className="h-full">
-                  <p className="text-[10px] font-semibold tracking-[0.26em] text-text-sub">
-                    同じメーカーのニュース
+          {/* 右カラム: 関連ニュース・回遊 */}
+          <div className="space-y-6">
+            <Reveal delay={260}>
+              <GlassCard padding="md" className="bg-white/95">
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <p className="text-[10px] font-semibold tracking-[0.26em] text-slate-500">
+                    RELATED NEWS
                   </p>
-                  <ul className="mt-3 space-y-2 text-[11px] text-text-sub">
-                    {relatedByMaker.map((n) => (
-                      <li key={n.id}>
-                        <Link href={`/news/${n.id}`} className="group block">
-                          <p className="line-clamp-2 font-semibold text-slate-900 group-hover:underline">
-                            {n.titleJa || n.title}
+                  <span className="text-[10px] text-slate-400">
+                    近いトピックのニュース
+                  </span>
+                </div>
+
+                {related.length === 0 && (
+                  <p className="text-[11px] leading-relaxed text-slate-500">
+                    関連ニュースはまだ多くありません。
+                    NEWS一覧から、同じメーカーやカテゴリのニュースも探してみてください。
+                  </p>
+                )}
+
+                {related.length > 0 && (
+                  <ul className="space-y-2">
+                    {related.map((news) => (
+                      <li key={news.id}>
+                        <Link
+                          href={`/news/${encodeURIComponent(news.id)}`}
+                          className="group flex flex-col gap-1 rounded-xl bg-slate-50 px-3 py-2 text-left transition hover:bg-slate-900 hover:text-slate-50"
+                        >
+                          <p className="text-[11px] font-semibold leading-relaxed">
+                            {news.titleJa ?? news.title}
                           </p>
-                          <p className="mt-0.5 line-clamp-2 text-[10px] text-slate-500">
-                            {n.excerpt ??
-                              "詳細は記事ページと元記事にてご確認ください。"}
-                          </p>
-                          <p className="mt-0.5 text-[10px] text-slate-400">
-                            {formatDate(n.publishedAt)}
-                          </p>
+                          <div className="flex flex-wrap items-center gap-2 text-[10px]">
+                            {news.maker && (
+                              <span className="rounded-full bg-white/70 px-2 py-1 group-hover:bg-slate-800/80">
+                                {news.maker}
+                              </span>
+                            )}
+                            {news.publishedAtJa && (
+                              <span className="rounded-full bg-white/60 px-2 py-1 group-hover:bg-slate-800/60">
+                                {news.publishedAtJa}
+                              </span>
+                            )}
+                          </div>
                         </Link>
                       </li>
                     ))}
                   </ul>
-                </GlassCard>
-              )}
+                )}
+              </GlassCard>
+            </Reveal>
 
-              {relatedByCategory.length > 0 && (
-                <GlassCard padding="lg" className="h-full">
-                  <p className="text-[10px] font-semibold tracking-[0.26em] text-text-sub">
-                    同じカテゴリのニュース
+            <Reveal delay={300}>
+              <GlassCard padding="md" className="bg-white/95">
+                <p className="text-[10px] font-semibold tracking-[0.26em] text-slate-500">
+                  NEXT STEP
+                </p>
+                <div className="mt-3 space-y-3 text-[11px] leading-relaxed text-slate-700">
+                  <p>
+                    このニュースで気になったクルマがあれば、CARSページで
+                    スペックや「性格」、維持していくイメージも合わせて確認できます。
                   </p>
-                  <ul className="mt-3 space-y-2 text-[11px] text-text-sub">
-                    {relatedByCategory.map((n) => (
-                      <li key={n.id}>
-                        <Link href={`/news/${n.id}`} className="group block">
-                          <p className="line-clamp-2 font-semibold text-slate-900 group-hover:underline">
-                            {n.titleJa || n.title}
-                          </p>
-                          <p className="mt-0.5 line-clamp-2 text-[10px] text-slate-500">
-                            {n.excerpt ??
-                              "詳細は記事ページと元記事にてご確認ください。"}
-                          </p>
-                          <p className="mt-0.5 text-[10px] text-slate-400">
-                            {formatDate(n.publishedAt)}
-                          </p>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </GlassCard>
-              )}
-            </div>
-          </section>
-        )}
-
-        {/* 回遊導線: CARS / COLUMN へ */}
-        <section className="mb-12 grid gap-4 md:grid-cols-2">
-          <div className="rounded-3xl border border-tiffany-100 bg-gradient-to-br from-white via-sky-50/40 to-white p-5 text-xs shadow-sm">
-            <p className="text-[10px] font-semibold tracking-[0.28em] text-tiffany-700">
-              CARS
-            </p>
-            <h2 className="mt-2 text-sm font-semibold text-slate-900">
-              記事で気になった車種は、CARSページでスペックと性格をチェック。
-            </h2>
-            <p className="mt-2 leading-relaxed text-text-sub">
-              メーカー別にニュースを追いながら、実際の車種ページで
-              維持費感やトラブル傾向も併せて見ていくイメージです。
-              まずは気になるブランドから、いくつか車種をピックアップしてみてください。
-            </p>
-            <div className="mt-3">
-              <Link href="/cars">
-                <Button size="sm" variant="secondary">
-                  CARS一覧へ
-                </Button>
-              </Link>
-            </div>
+                  <div className="flex flex-wrap gap-2">
+                    <Link
+                      href="/cars"
+                      className="inline-flex flex-1 items-center justify-center rounded-full bg-slate-900 px-3 py-2 text-[11px] font-semibold tracking-[0.2em] text-slate-50 transition hover:bg-slate-700"
+                    >
+                      CARSページを見る
+                    </Link>
+                    <Link
+                      href="/column"
+                      className="inline-flex flex-1 items-center justify-center rounded-full border border-slate-900/15 bg-white px-3 py-2 text-[11px] font-medium tracking-[0.18em] text-slate-900 transition hover:border-slate-900/30 hover:bg-white"
+                    >
+                      コラムを読む
+                    </Link>
+                  </div>
+                </div>
+              </GlassCard>
+            </Reveal>
           </div>
-
-          <div className="rounded-3xl border border-slate-200 bg-white/90 p-5 text-xs shadow-sm">
-            <p className="text-[10px] font-semibold tracking-[0.28em] text-slate-600">
-              COLUMN
-            </p>
-            <h2 className="mt-2 text-sm font-semibold text-slate-900">
-              ニュースの背景や、オーナーの本音はコラムでじっくり。
-            </h2>
-            <p className="mt-2 leading-relaxed text-text-sub">
-              技術解説やブランドの歴史、実際に乗ってみてどうだったかといった
-              一歩踏み込んだ話は、COLUMNセクションで少しずつ増やしていきます。
-            </p>
-            <div className="mt-3">
-              <Link href="/column">
-                <Button size="sm" variant="outline">
-                  コラム一覧へ
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* 戻るリンク */}
-        <div className="mt-6 flex justify-between border-t border-slate-200 pt-6 text-xs">
-          <Link
-            href="/news"
-            className="inline-flex items-center gap-2 text-slate-500 transition hover:text-slate-900"
-          >
-            <span className="text-[10px]">←</span>
-            <span className="tracking-[0.18em]">NEWS一覧に戻る</span>
-          </Link>
         </div>
       </div>
     </main>
   );
+}
+
+/* 関連ニュース抽出ロジック */
+
+function buildRelatedNews(
+  current: NewsItem,
+  items: NewsItem[],
+): NewsItem[] {
+  const maker = current.maker ?? "";
+  const category = current.category ?? "";
+  const id = current.id;
+
+  return items
+    .filter((item) => item.id !== id)
+    .filter((item) => {
+      if (maker && item.maker === maker) return true;
+      if (category && item.category === category) return true;
+      if (current.tags && current.tags.length > 0) {
+        const set = new Set(current.tags);
+        const tags = item.tags ?? [];
+        if (tags.some((t) => set.has(t))) return true;
+      }
+      return false;
+    })
+    .slice(0, 5);
 }
