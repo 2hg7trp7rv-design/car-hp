@@ -2,7 +2,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getNewsById, type NewsItem } from "@/lib/news";
+import { getNewsById, getLatestNews, type NewsItem } from "@/lib/news";
 
 export const runtime = "edge";
 
@@ -62,7 +62,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function NewsDetailPage({ params }: Props) {
-  const item = await getNewsById(params.id);
+  const [item, latest] = await Promise.all([
+    getNewsById(params.id),
+    getLatestNews(80),
+  ]);
 
   if (!item) {
     notFound();
@@ -70,6 +73,15 @@ export default async function NewsDetailPage({ params }: Props) {
 
   const title = item.titleJa || item.title;
   const formattedDate = formatDate(item.publishedAt);
+
+  const related = latest
+    .filter((n) => n.id !== item.id)
+    .filter((n) => {
+      if (item.maker && n.maker === item.maker) return true;
+      if (item.category && n.category === item.category) return true;
+      return false;
+    })
+    .slice(0, 3);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 text-slate-900">
@@ -126,19 +138,31 @@ export default async function NewsDetailPage({ params }: Props) {
           )}
         </header>
 
-        {/* 本文ラッパ（要約＋コメント用） */}
+        {/* 本文ラッパ（要約＋コメント＋情報カード） */}
         <div className="mb-10 grid gap-8 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
-          {/* 要約・本文エリア */}
-          <section className="rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-sm backdrop-blur">
-            <h2 className="mb-4 text-xs font-medium tracking-[0.18em] text-slate-500">
-              SUMMARY
-            </h2>
-            <p className="text-sm leading-relaxed text-slate-800">
-              {item.excerpt ??
-                "このニュースは、外部メディアの記事をもとに CAR BOUTIQUE 編集部がピックアップしたものです。詳細は元記事をご覧ください。"}
-            </p>
+          {/* 要約・コメントエリア */}
+          <section className="space-y-4">
+            {/* SUMMARYカード */}
+            <div className="rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-sm backdrop-blur">
+              <h2 className="mb-4 text-xs font-medium tracking-[0.18em] text-slate-500">
+                SUMMARY
+              </h2>
+              <p className="text-sm leading-relaxed text-slate-800">
+                {item.excerpt ??
+                  "このニュースは、外部メディアの記事をもとに CAR BOUTIQUE 編集部がピックアップしたものです。詳細は元記事をご覧ください。"}
+              </p>
+            </div>
 
-            {/* ここに将来的に「CAR BOUTIQUEのひと言コメント」などを追加できる */}
+            {/* CAR BOUTIQUEのひと言コメント */}
+            <div className="rounded-3xl border border-tiffany-100 bg-gradient-to-br from-white via-sky-50/50 to-white p-6 shadow-sm">
+              <h2 className="mb-3 text-xs font-medium tracking-[0.2em] text-slate-500">
+                CAR BOUTIQUEのひと言
+              </h2>
+              <p className="text-sm leading-relaxed text-slate-800">
+                {item.editorNote ??
+                  "このニュースに対するCAR BOUTIQUEとしての視点や、一歩踏み込んだコメントは順次追加していきます。とりあえず今は、元記事の内容とご自身の興味を重ね合わせながら読んでみてください。"}
+              </p>
+            </div>
           </section>
 
           {/* 情報カード */}
@@ -200,6 +224,33 @@ export default async function NewsDetailPage({ params }: Props) {
             )}
           </aside>
         </div>
+
+        {/* 関連ニュース */}
+        {related.length > 0 && (
+          <section className="mb-12 space-y-4">
+            <h2 className="text-xs font-semibold tracking-[0.18em] text-slate-700">
+              RELATED NEWS
+            </h2>
+            <div className="grid gap-3 md:grid-cols-3">
+              {related.map((n) => (
+                <Link key={n.id} href={`/news/${n.id}`}>
+                  <div className="rounded-2xl border border-white/80 bg-white/80 p-4 text-xs text-slate-800 shadow-sm transition hover:-translate-y-[2px] hover:shadow-soft-card">
+                    <p className="text-[10px] font-medium tracking-[0.22em] text-brand-tiffanySoft">
+                      {n.category || "NEWS"}
+                    </p>
+                    <p className="mt-2 line-clamp-3 text-[11px] leading-relaxed">
+                      {n.titleJa || n.title}
+                    </p>
+                    <div className="mt-3 flex items-center justify-between text-[10px] text-slate-500">
+                      <span>{n.sourceName ?? "EXTERNAL"}</span>
+                      <span>{formatDate(n.publishedAt)}</span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* 戻るリンク */}
         <div className="mt-12 flex justify-between border-t border-slate-200 pt-6 text-xs">
