@@ -1,267 +1,141 @@
-// app/column/[slug]/reader-shell.tsx
 "use client";
 
 import { useEffect, useState } from "react";
 import type { ColumnItem } from "@/lib/columns";
 import Link from "next/link";
+import { Reveal } from "@/components/animation/Reveal";
 
-type Props = {
-  item: ColumnItem;
-};
+type Props = { item: ColumnItem; };
+type Heading = { id: string; text: string; level: 2 | 3; };
 
-type Heading = {
-  id: string;
-  text: string;
-  level: 2 | 3;
-};
-
-function parseBodyToBlocks(body: string): { blocks: (string | Heading)[] } {
+function parseBodyToBlocks(body: string) {
   const lines = body.split(/\r?\n/);
-  const blocks: (string | Heading)[] = [];
-
-  let currentParagraph: string[] = [];
+  const blocks: (string | Heading) =;
+  let currentParagraph: string =;
 
   const flushParagraph = () => {
     if (currentParagraph.length > 0) {
       blocks.push(currentParagraph.join(" "));
-      currentParagraph = [];
+      currentParagraph =;
     }
   };
 
   lines.forEach((line) => {
     const trimmed = line.trim();
-    if (!trimmed) {
-      flushParagraph();
-      return;
-    }
-
+    if (!trimmed) { flushParagraph(); return; }
     if (trimmed.startsWith("### ")) {
       flushParagraph();
-      const text = trimmed.slice(4).trim();
-      blocks.push({
-        id: `h3-${blocks.length}`,
-        text,
-        level: 3,
-      });
+      blocks.push({ id: `h3-${blocks.length}`, text: trimmed.slice(4).trim(), level: 3 });
       return;
     }
-
     if (trimmed.startsWith("## ")) {
       flushParagraph();
-      const text = trimmed.slice(3).trim();
-      blocks.push({
-        id: `h2-${blocks.length}`,
-        text,
-        level: 2,
-      });
+      blocks.push({ id: `h2-${blocks.length}`, text: trimmed.slice(3).trim(), level: 2 });
       return;
     }
-
     currentParagraph.push(trimmed);
   });
-
   flushParagraph();
-
   return { blocks };
 }
 
 function useReadingProgress() {
   const [progress, setProgress] = useState(0);
-
   useEffect(() => {
     const handler = () => {
-      const scrollTop = window.scrollY ?? window.pageYOffset;
-      const docHeight =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
+      const scrollTop = window.scrollY |
 
-      if (docHeight <= 0) {
-        setProgress(0);
-        return;
-      }
-      const value = Math.min(1, Math.max(0, scrollTop / docHeight));
-      setProgress(value);
+| window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      if (docHeight <= 0) { setProgress(0); return; }
+      setProgress(Math.min(1, Math.max(0, scrollTop / docHeight)));
     };
-
     handler();
     window.addEventListener("scroll", handler, { passive: true });
-    window.addEventListener("resize", handler);
-
-    return () => {
-      window.removeEventListener("scroll", handler);
-      window.removeEventListener("resize", handler);
-    };
-  }, []);
-
+    return () => window.removeEventListener("scroll", handler);
+  },);
   return progress;
 }
 
 export default function ColumnReaderShell({ item }: Props) {
   const { blocks } = parseBodyToBlocks(item.body);
-  const headings = blocks.filter(
-    (b): b is Heading => typeof b !== "string",
-  );
-
+  const headings = blocks.filter((b): b is Heading => typeof b!== "string");
   const progress = useReadingProgress();
 
-  const dateLabel = item.publishedAt
-    ? new Date(item.publishedAt).toLocaleDateString("ja-JP", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      })
-    : "";
-
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-50/80 via-slate-50 to-white">
-      {/* 読了バー */}
-      <div className="fixed inset-x-0 top-0 z-30 h-[3px] bg-slate-200/60">
-        <div
-          className="h-full bg-tiffany-500 transition-[width] duration-150"
-          style={{ width: `${progress * 100}%` }}
-        />
+    <main className="min-h-screen bg-gradient-to-b from-slate-50/80 via-white to-white">
+      {/* 読了プログレスバー */}
+      <div className="fixed inset-x-0 top-0 z-50 h-[3px] bg-slate-100">
+        <div className="h-full bg-gradient-to-r from-tiffany-300 to-tiffany-500 transition-[width] duration-100 ease-out" style={{ width: `${progress * 100}%` }} />
       </div>
 
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 pb-16 pt-20 sm:px-6 sm:pt-24 lg:flex-row lg:px-8">
-        {/* 本文エリア */}
-        <article className="w-full lg:w-[70%]">
-          <p className="text-[10px] font-semibold tracking-[0.32em] text-text-sub">
-            COLUMN
-          </p>
-          <h1 className="mt-3 text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
-            {item.title}
-          </h1>
+      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-20 pt-24 sm:px-6 lg:flex-row lg:gap-16 lg:px-8">
+        <article className="w-full lg:w-[68%]">
+          <Reveal>
+            <div className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.32em] text-tiffany-600">
+              <span className="h-[1px] w-6 bg-tiffany-300" />COLUMN
+            </div>
+            <h1 className="mt-4 font-serif text-2xl font-semibold leading-relaxed tracking-tight text-slate-900 sm:text-3xl lg:text-[2.5rem]">
+              {item.title}
+            </h1>
+          </Reveal>
 
-          <div className="mt-3 flex flex-wrap items-center gap-3 text-[11px] text-text-sub">
-            {dateLabel && <span>{dateLabel}</span>}
-            {item.readMinutes && (
-              <span>約{item.readMinutes}分で読めます</span>
-            )}
-            <span className="rounded-full bg-slate-900 px-3 py-1 text-[10px] font-medium tracking-[0.18em] text-white">
-              {mapCategoryLabel(item.category)}
-            </span>
-          </div>
-
-          {/* ドロップキャップ風の一段落 */}
-          <div className="mt-6 text-sm leading-relaxed text-text-sub sm:text-[15px]">
+          <div className="mt-8">
             {blocks.map((block, index) => {
-              if (typeof block !== "string") {
-                if (block.level === 2) {
-                  return (
-                    <h2
-                      key={block.id}
-                      id={block.id}
-                      className="mt-8 text-base font-semibold text-slate-900 sm:text-lg"
-                    >
-                      {block.text}
-                    </h2>
-                  );
-                }
-                return (
-                  <h3
-                    key={block.id}
-                    id={block.id}
-                    className="mt-6 text-sm font-semibold text-slate-900"
-                  >
-                    {block.text}
-                  </h3>
-                );
+              if (typeof block!== "string") {
+                const Tag = block.level === 2? "h2" : "h3";
+                const styleClass = block.level === 2 
+                 ? "mt-12 mb-6 font-serif text-xl font-medium text-slate-900 sm:text-2xl"
+                  : "mt-8 mb-4 text-base font-semibold tracking-wide text-slate-800";
+                return <Reveal key={block.id} delay={100}><Tag id={block.id} className={styleClass}>{block.text}</Tag></Reveal>;
               }
 
-              const text = block;
-              if (index === 0 && text.length > 0) {
-                const firstChar = text[0];
-                const rest = text.slice(1);
+              // ドロップキャップ：最初の段落の1文字目
+              if (index === 0 && block.length > 0) {
+                const firstChar = block;
+                const rest = block.slice(1);
                 return (
-                  <p
-                    key={`p-${index}`}
-                    className="first-letter-float mt-4 text-sm leading-relaxed text-text-sub sm:text-[15px]"
-                  >
-                    <span className="first-letter-span">{firstChar}</span>
-                    {rest}
-                  </p>
+                  <Reveal key={index} delay={200}>
+                    <p className="first-letter-float mt-4 text-sm leading-8 text-slate-600 sm:text-[16px] sm:leading-[2rem]">
+                      <span className="first-letter-span">{firstChar}</span>{rest}
+                    </p>
+                  </Reveal>
                 );
               }
-
-              return (
-                <p
-                  key={`p-${index}`}
-                  className="mt-4 text-sm leading-relaxed text-text-sub sm:text-[15px]"
-                >
-                  {text}
-                </p>
-              );
+              return <p key={index} className="mt-6 text-sm leading-8 text-slate-600 sm:text-[16px] sm:leading-[2rem]">{block}</p>;
             })}
           </div>
 
-          <div className="mt-10 border-t border-slate-100 pt-6">
-            <Link
-              href="/column"
-              className="inline-flex items-center justify-center rounded-full border border-tiffany-400/70 bg-white/80 px-6 py-2 text-xs font-medium tracking-[0.18em] text-tiffany-700 shadow-soft hover:bg-white"
-            >
-              コラム一覧へ戻る
+          <div className="mt-16 border-t border-slate-100 pt-10">
+            <Link href="/column" className="group inline-flex items-center gap-2 text-xs font-medium tracking-[0.2em] text-slate-500 hover:text-tiffany-600">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 transition group-hover:border-tiffany-400">←</span> BACK TO COLUMNS
             </Link>
           </div>
         </article>
 
-        {/* TOCエリア（PCで右カラム） */}
-        <aside className="hidden w-[30%] lg:block">
-          <div className="sticky top-24 rounded-2xl border border-white/80 bg-white/90 p-4 text-[11px] text-text-sub shadow-soft-card backdrop-blur-md">
-            <p className="text-[10px] font-semibold tracking-[0.3em] text-text-sub">
-              CONTENTS
-            </p>
-            {headings.length === 0 ? (
-              <p className="mt-3 text-[11px] text-text-sub">
-                見出し情報は順次整備していきます。
-              </p>
-            ) : (
-              <ul className="mt-3 space-y-2">
-                {headings.map((h) => (
-                  <li key={h.id}>
-                    <a
-                      href={`#${h.id}`}
-                      className={[
-                        "block leading-snug hover:text-tiffany-600",
-                        h.level === 2 ? "font-medium" : "pl-3 text-[10px]",
-                      ].join(" ")}
-                    >
-                      {h.text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
+        {/* 目次（PCのみ） */}
+        <aside className="hidden w-[28%] lg:block">
+          <div className="sticky top-32 rounded-2xl border border-white/60 bg-white/80 p-6 shadow-sm backdrop-blur-md">
+            <p className="mb-4 text-[10px] font-bold tracking-[0.25em] text-slate-400">CONTENTS</p>
+            <ul className="space-y-3">
+              {headings.map((h) => (
+                <li key={h.id}>
+                  <a href={`#${h.id}`} className={`block text-[11px] transition-colors hover:text-tiffany-600 ${h.level === 2? "font-medium text-slate-700" : "pl-3 text-slate-500"}`}>{h.text}</a>
+                </li>
+              ))}
+            </ul>
           </div>
         </aside>
       </div>
 
       <style jsx global>{`
-        .first-letter-float {
-          text-indent: 0;
-        }
-        .first-letter-span {
-          float: left;
-          margin-right: 6px;
-          font-family: var(--font-serif);
-          font-size: 2.4em;
-          line-height: 0.9;
-          font-weight: 600;
-          color: #0f172a;
+       .first-letter-float { text-indent: 0; }
+       .first-letter-span {
+          float: left; margin-right: 12px; margin-top: -6px; margin-bottom: -2px;
+          font-family: var(--font-serif), serif; font-size: 3.8em; line-height: 0.85;
+          font-weight: 500; color: #0ABAB5;
         }
       `}</style>
     </main>
   );
-}
-
-function mapCategoryLabel(category: ColumnItem["category"]): string {
-  switch (category) {
-    case "OWNER_STORY":
-      return "オーナーの本音ストーリー";
-    case "MAINTENANCE":
-      return "メンテナンスとトラブルの裏側";
-    case "TECHNICAL":
-      return "技術・歴史・ブランドの物語";
-    default:
-      return "コラム";
-  }
 }
