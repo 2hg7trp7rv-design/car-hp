@@ -10,9 +10,13 @@ const config: Config = {
     extend: {
       colors: {
         background: "#F8FAFC",
-        // ラグジュアリー・パレット定義 [1, 1]
+        // テキスト色：純粋な黒ではなく、わずかに青みを含ませて馴染ませる
+        "text-main": "#0F172A",
+        "text-sub": "#6B7280",
+        
+        // 既存のTiffany系（アクセント用）
         tiffany: {
-          DEFAULT: "#0ABAB5", // ブランドカラー
+          DEFAULT: "#0ABAB5",
           50: "#E5FAF8",
           100: "#C9F3EF",
           200: "#9FE6DF",
@@ -21,28 +25,63 @@ const config: Config = {
           500: "#0ABAB5",
           600: "#089D99",
           700: "#077F7B",
-          dim: "rgba(10, 186, 181, 0.15)", // 環境光用
         },
-        // 空間色
-        vapor: "#F0FBFB", // Ice Vapor: 白と青の中間
+        
+        // 【新規】空間色と素材色
+        vapor: "#F0FBFB",    // Ice Vapor: 白と青の中間にある空気色
         obsidian: "#1A1A1A", // Obsidian: 柔らかい黒
         porcelain: "#FFFFFF", // Porcelain: 陶器のような白
+
+        // 【新規】Phase 2: Glassmorphism用 Dimパレット
+        // 彩度を抑え、ガラスの質感や深みを表現するためのスケール
+        "tiffany-dim": {
+          50: "#F2FAFA",
+          100: "#E6F4F4",
+          200: "#CFE8E8",
+          300: "#A8D1D1",
+          400: "#82B8B8",
+          500: "#5C9E9E",
+          600: "#458282",
+          700: "#2F6666",
+          800: "#1A4242",
+          900: "#0D2626",
+        },
       },
       boxShadow: {
+        // 既存の影
         soft: "0 8px 30px rgba(0, 0, 0, 0.04)",
-        "soft-card": "0 20px 40px -10px rgba(10, 186, 181, 0.1)", // 青みがかった影
+        "soft-card": "0 20px 40px -10px rgba(10, 186, 181, 0.1)",
         "soft-strong": "0 20px 50px -12px rgba(10, 186, 181, 0.25)",
-        glow: "0 0 20px rgba(10, 186, 181, 0.3)", // 発光表現
+        glow: "0 0 20px rgba(10, 186, 181, 0.3)",
+
+        // 【新規】ガラスの厚みと内部反射を表現する特殊な影
+        // 上部の白いハイライト（Specular）と下部の暗い影で立体感を出す
+        "glass-edge": "inset 0 1px 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 2px 0 rgba(10, 186, 181, 0.1)",
+        "glass-deep": "0 12px 40px -4px rgba(13, 38, 38, 0.15), inset 0 0 0 1px rgba(255,255,255,0.1)",
+      },
+      borderRadius: {
+        "2xl": "1.25rem",
+        "3xl": "1.75rem",
       },
       fontFamily: {
-        // app/layout.tsx で定義するCSS変数と紐付け [1, 2]
+        // app/layout.tsx で定義するCSS変数と紐付け
         sans: ["var(--font-manrope)", "sans-serif"],
         serif: ["var(--font-bodoni)", "serif"],
       },
-      // 物理的な奥行きを作るためのカスタムイージング
+      // 【新規】物理的な質感を出すためのイージングとアニメーション
       transitionTimingFunction: {
         'magnetic': 'cubic-bezier(0.35, 0, 0.65, 1)',
-      }
+        'liquid': 'cubic-bezier(0.23, 1, 0.32, 1)',
+      },
+      animation: {
+        "liquid-expand": "liquidExpand 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards",
+      },
+      keyframes: {
+        liquidExpand: {
+          "0%": { transform: "translateY(100%) scale(2)", opacity: "0" },
+          "100%": { transform: "translateY(0%) scale(2)", opacity: "1" },
+        },
+      },
     },
   },
   plugins:,
