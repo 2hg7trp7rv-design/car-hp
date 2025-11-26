@@ -187,12 +187,13 @@ export default async function NewsDetailPage({ params }: Props) {
                     <dt className="mb-1 text-slate-400">タグ</dt>
                     <dd className="flex flex-wrap gap-2">
                       {item.tags.map((tag) => (
-                        <span
+                        <Link
                           key={tag}
-                          className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-[11px]"
+                          href={`/news?tag=${encodeURIComponent(tag)}`}
+                          className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-[11px] hover:bg-slate-900 hover:text-white"
                         >
                           {tag}
-                        </span>
+                        </Link>
                       ))}
                     </dd>
                   </div>
@@ -201,7 +202,7 @@ export default async function NewsDetailPage({ params }: Props) {
             </div>
 
             {/* 元記事へのリンク */}
-            {item.url && (
+            {item.sourceUrl && (
               <div className="rounded-3xl border border-slate-200 bg-white/90 p-5 text-xs text-slate-700 shadow-sm">
                 <p className="mb-3 text-[11px] tracking-[0.18em] text-slate-500">
                   ORIGINAL ARTICLE
@@ -211,7 +212,7 @@ export default async function NewsDetailPage({ params }: Props) {
                   CAR BOUTIQUEでは、要約と独自の視点を添えてご紹介しています。
                 </p>
                 <a
-                  href={item.url}
+                  href={item.sourceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-[11px] font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
