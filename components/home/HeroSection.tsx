@@ -29,9 +29,12 @@ export function HeroSection() {
           <div className="mt-6 flex flex-wrap gap-3">
             <Button
               size="lg"
+              asChild
               className="font-medium tracking-[0.18em]"
             >
-              最新ニュースを見る
+              <Link href="/news">
+                最新ニュースを見る
+              </Link>
             </Button>
             <Link
               href="/cars/bmw-530i-g30"
