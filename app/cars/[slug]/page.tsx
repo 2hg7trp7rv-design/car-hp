@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { GlassCard } from "@/components/GlassCard";
 import { Reveal } from "@/components/animation/Reveal";
 import { CarRotator } from "@/components/car/CarRotator";
-import { CompareSlider } from "@/components/car/CompareSlider";
+import CompareSlider from "@/components/car/CompareSlider";
 import {
   getAllCars,
   getCarBySlug,
@@ -69,7 +69,6 @@ function formatNumber(value?: number | null) {
 }
 
 function buildKeywords(car: CarItem): string[] {
-  // ★ ビルドエラーになっていた行を安全に書き直し
   const tags = car.tags ?? [];
   const nameParts = car.name.split(/\s+/);
   return [car.maker, ...nameParts, ...tags].filter(Boolean);
@@ -78,7 +77,6 @@ function buildKeywords(car: CarItem): string[] {
 async function getRelatedCars(current: CarItem): Promise<CarItem[]> {
   const allCars = await getAllCars();
 
-  // ★ `|` で壊れていた filter 条件を修正（|| に）
   const relatedCars = allCars
     .filter(
       (c) =>
@@ -99,25 +97,34 @@ async function getRelatedNewsAndColumns(car: CarItem) {
 
   const keywords = new Set(buildKeywords(car));
 
-  const relatedNews: NewsItem[] = news.filter((item) => {
-    if (item.maker && item.maker === car.maker) return true;
-    const tags = item.tags ?? [];
-    if (tags.some((tag) => keywords.has(tag))) return true;
-    const title = `${item.titleJa ?? ""} ${item.title}`.toUpperCase();
-    return Array.from(keywords).some((kw) =>
-      kw && title.includes(String(kw).toUpperCase()),
-    );
-  }).slice(0, 5);
+  const relatedNews: NewsItem[] = news
+    .filter((item) => {
+      if (item.maker && item.maker === car.maker) return true;
+      const tags = item.tags ?? [];
+      if (tags.some((tag) => keywords.has(tag))) return true;
+      const title = `${item.titleJa ?? ""} ${item.title}`.toUpperCase();
+      return Array.from(keywords).some(
+        (kw) => kw && title.includes(String(kw).toUpperCase()),
+      );
+    })
+    .slice(0, 5);
 
-  const relatedColumns: ColumnItem[] = columns.filter((c) => {
-    if (c.relatedCarSlugs && c.relatedCarSlugs.includes(car.slug)) {
-      return true;
-    }
-    const title = `${c.title} ${c.summary}`.toUpperCase();
-    return Array.from(keywords).some((kw) =>
-      kw && title.includes(String(kw).toUpperCase()),
-    );
-  }).slice(0, 5);
+  const relatedColumns: ColumnItem[] = columns
+    .filter((c) => {
+      const relatedCarSlugs = (c as any).relatedCarSlugs as
+        | string[]
+        | undefined;
+
+      if (relatedCarSlugs && relatedCarSlugs.includes(car.slug)) {
+        return true;
+      }
+
+      const title = `${c.title} ${c.summary}`.toUpperCase();
+      return Array.from(keywords).some(
+        (kw) => kw && title.includes(String(kw).toUpperCase()),
+      );
+    })
+    .slice(0, 5);
 
   return { relatedNews, relatedColumns };
 }
@@ -128,6 +135,11 @@ export default async function CarDetailPage({ params }: PageProps) {
   if (!car) {
     notFound();
   }
+
+  // CarItem にはまだ入れてない拡張フィールドは any 経由で読む
+  const strengths = (car as any).strengths as string[] | undefined;
+  const weaknesses = (car as any).weaknesses as string[] | undefined;
+  const troubleTrends = (car as any).troubleTrends as string[] | undefined;
 
   const [relatedCars, { relatedNews, relatedColumns }] = await Promise.all([
     getRelatedCars(car),
@@ -177,7 +189,6 @@ export default async function CarDetailPage({ params }: PageProps) {
               {car.heroImage || (car as any).mainImage ? (
                 <CarRotator
                   imageUrl={(car as any).mainImage ?? car.heroImage ?? ""}
-                  alt={car.name}
                 />
               ) : (
                 <div className="flex h-full items-center justify-center bg-slate-200/60">
@@ -241,9 +252,9 @@ export default async function CarDetailPage({ params }: PageProps) {
         </section>
 
         {/* 長所 / 短所・トラブル傾向 */}
-        {(car.strengths || car.weaknesses || car.troubleTrends) && (
+        {(strengths || weaknesses || troubleTrends) && (
           <section className="grid gap-6 md:grid-cols-3">
-            {car.strengths && car.strengths.length > 0 && (
+            {strengths && strengths.length > 0 && (
               <Reveal>
                 <GlassCard
                   as="section"
@@ -254,7 +265,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                     STRENGTHS
                   </h2>
                   <ul className="mt-3 space-y-2 text-[12px] leading-relaxed text-slate-700">
-                    {car.strengths.map((item) => (
+                    {strengths.map((item) => (
                       <li key={item} className="flex gap-2">
                         <span className="mt-[5px] h-1 w-3 rounded-full bg-emerald-400" />
                         <span>{item}</span>
@@ -265,7 +276,7 @@ export default async function CarDetailPage({ params }: PageProps) {
               </Reveal>
             )}
 
-            {car.weaknesses && car.weaknesses.length > 0 && (
+            {weaknesses && weaknesses.length > 0 && (
               <Reveal>
                 <GlassCard
                   as="section"
@@ -276,7 +287,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                     WEAK POINTS
                   </h2>
                   <ul className="mt-3 space-y-2 text-[12px] leading-relaxed text-slate-700">
-                    {car.weaknesses.map((item) => (
+                    {weaknesses.map((item) => (
                       <li key={item} className="flex gap-2">
                         <span className="mt-[5px] h-1 w-3 rounded-full bg-amber-400" />
                         <span>{item}</span>
@@ -287,7 +298,7 @@ export default async function CarDetailPage({ params }: PageProps) {
               </Reveal>
             )}
 
-            {car.troubleTrends && car.troubleTrends.length > 0 && (
+            {troubleTrends && troubleTrends.length > 0 && (
               <Reveal>
                 <GlassCard
                   as="section"
@@ -298,7 +309,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                     TROUBLE TRENDS
                   </h2>
                   <ul className="mt-3 space-y-2 text-[12px] leading-relaxed text-slate-700">
-                    {car.troubleTrends.map((item) => (
+                    {troubleTrends.map((item) => (
                       <li key={item} className="flex gap-2">
                         <span className="mt-[5px] h-1 w-3 rounded-full bg-rose-400" />
                         <span>{item}</span>
@@ -332,9 +343,14 @@ export default async function CarDetailPage({ params }: PageProps) {
                 </div>
                 <div className="flex-1">
                   <CompareSlider
-                    leftImage={(car as any).mainImage ?? car.heroImage ?? ""}
-                    rightImage={(car as any).mainImage ?? car.heroImage ?? ""}
-                    alt={car.name}
+                    beforeImage={
+                      (car as any).mainImage ?? car.heroImage ?? ""
+                    }
+                    afterImage={
+                      (car as any).mainImage ?? car.heroImage ?? ""
+                    }
+                    beforeAlt={`${car.name} (before)`}
+                    afterAlt={`${car.name} (after)`}
                   />
                 </div>
               </div>
