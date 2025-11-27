@@ -1,141 +1,152 @@
 // app/heritage/page.tsx
 import type { Metadata } from "next";
-// import Image from "next/image"; // 画像アセットがある場合に有効化
-import { Reveal } from "@/components/animation/Reveal";
 import { GlassCard } from "@/components/GlassCard";
+import { Reveal } from "@/components/animation/Reveal";
+
+export const runtime = "edge";
 
 export const metadata: Metadata = {
-  title: "HERITAGE | The Timeline",
-  description: "名車たちが紡いできた歴史の系譜。技術と哲学の進化を辿る旅。",
+  title: "HERITAGE | CAR BOUTIQUE",
+  description:
+    "ブランドの系譜や名車のストーリーを静かに味わうためのヘリテージ・アーカイブ。",
 };
 
-// タイムラインデータの型定義
 type TimelineEvent = {
   year: string;
   title: string;
   description: string;
   image?: string;
-  tags: string;
+  tags?: string[];
 };
 
-// モックデータ: 将来的にはCMSまたはJSONから取得
-const TIMELINE_DATA: TimelineEvent =,
+// ★ ここが `TimelineEvent =,` になっていてビルドエラーだったので修正
+const TIMELINE_DATA: TimelineEvent[] = [
+  {
+    year: "1970s",
+    title: "欧州セダンが「長距離移動の道具」から「ラグジュアリー」へ",
+    description:
+      "高速道路網の整備とともに、欧州セダンは単なる移動手段から、移動時間そのものを楽しむための「サロン」へ変化していきました。",
     // image: "/images/heritage/e12.jpg"
+    tags: ["EUROPE", "SEDAN"],
   },
   {
-    year: "1989",
-    title: "Godzilla Awakens (BNR32)",
-    description: "16年の沈黙を破り、GT-Rのバッジが復活。R32型スカイラインGT-RはグループAレースで無敗の記録を打ち立て、世界にその名を轟かせた。",
-    tags:,
-    // image: "/images/heritage/r32.jpg"
+    year: "1990s",
+    title: "電子制御と安全技術の進化",
+    description:
+      "ABS、エアバッグ、トラクションコントロールなど、今では当たり前の安全装備が高級車から普及し始めた時代。",
+    tags: ["TECHNOLOGY", "SAFETY"],
   },
   {
-    year: "1997",
-    title: "Hybrid Revolution (Prius)",
-    description: "トヨタが世界初の量産ハイブリッド乗用車「プリウス」を発売。「21世紀に間に合いました」というキャッチコピーと共に、パワートレーンの歴史を変えた。",
-    tags:,
+    year: "2010s",
+    title: "ダウンサイジングターボと電動化のはじまり",
+    description:
+      "排気量を抑えつつもトルクフルな走りを実現するダウンサイジングターボと、マイルドハイブリッド／EVが同時に進行。",
+    tags: ["POWERTRAIN", "ECO"],
   },
   {
-    year: "2017",
-    title: "Digital Maturity (G30)",
-    description: "第7世代5シリーズが登場。高度な運転支援システムと軽量化技術を融合させ、走りの楽しさと快適性をかつてない次元で両立させた。",
-    tags:,
-    // image: "/images/heritage/g30.jpg"
-  }
+    year: "2020s",
+    title: "デジタル体験としてのクルマ",
+    description:
+      "コネクテッドサービスやOTAアップデートにより、購入後も進化し続ける「デジタルプロダクト」としての性格が強まりつつあります。",
+    tags: ["DIGITAL", "FUTURE"],
+  },
 ];
 
 export default function HeritagePage() {
   return (
-    <main className="min-h-screen bg-site pb-24 pt-24">
-      {/* イントロダクション */}
-      <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-site pb-20 pt-10 sm:pb-28 sm:pt-12">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        {/* ヒーロー */}
         <Reveal>
-          <h1 className="serif-heading mb-4 text-4xl text-slate-900 md:text-5xl">
-            Lineage & <span className="italic text-tiffany-500">Legacy</span>
-          </h1>
-          <p className="mx-auto max-w-2xl text-sm leading-relaxed text-slate-600">
-            現代のクルマを知ることは、その祖先を知ること。
-            エンジニアたちの情熱と技術革新が織りなす、終わりのない進化の物語。
-          </p>
+          <header className="space-y-4 border-b border-slate-200/70 pb-8">
+            <p className="text-[10px] font-semibold tracking-[0.32em] text-tiffany-700">
+              HERITAGE
+            </p>
+            <div className="space-y-2">
+              <h1 className="font-serif text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
+                静かな熱量を受け継ぐ、名車たちの系譜。
+              </h1>
+              <p className="max-w-3xl text-[12px] leading-relaxed text-slate-600">
+                ここでは、スペックの大小では測れない「空気感」や「哲学」に焦点を当てて、
+                クルマの歴史をゆっくりたどっていきます。
+              </p>
+            </div>
+          </header>
         </Reveal>
-      </div>
 
-      {/* タイムラインコンテナ */}
-      <div className="relative mx-auto mt-20 max-w-5xl px-4 sm:px-6">
-        
-        {/* 中央線 - Tiffany Blueのグラデーション */}
-        <div className="absolute left-4 top-0 h-full w-0.5 bg-gradient-to-b from-transparent via-tiffany-300 to-transparent md:left-1/2 md:-translate-x-1/2" />
+        {/* タイムライン */}
+        <section className="mt-12 space-y-6">
+          <Reveal>
+            <h2 className="text-xs font-semibold tracking-[0.2em] text-slate-500">
+              TIMELINE
+            </h2>
+          </Reveal>
 
-        <div className="space-y-24">
-          {TIMELINE_DATA.map((item, index) => {
-            // 偶数・奇数でレイアウトを左右反転させる
-            const isEven = index % 2 === 0;
-            return (
-              <Reveal key={index} className="relative">
-                <div className={`flex flex-col md:flex-row md:items-center ${isEven? 'md:flex-row-reverse' : ''}`}>
-                  
-                  {/* デスクトップレイアウトのバランス用スペーサー */}
-                  <div className="hidden md:block md:w-1/2" />
+          <div className="relative">
+            <div className="absolute left-4 top-0 bottom-0 hidden w-px bg-slate-200 sm:block" />
 
-                  {/* タイムラインノード (点) */}
-                  <div className="absolute left-4 top-0 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full border-4 border-white bg-tiffany-500 shadow-soft md:left-1/2 md:top-1/2 md:-translate-y-1/2">
-                     <div className="h-2 w-2 rounded-full bg-white" />
-                  </div>
-
-                  {/* コンテンツカード */}
-                  <div className={`pl-12 md:w-1/2 md:pl-0 ${isEven? 'md:pr-16' : 'md:pl-16'}`}>
-                    <GlassCard className="group relative overflow-hidden transition-colors hover:bg-white">
-                      
-                      {/* 年号バッジ */}
-                      <span className="mb-2 inline-block rounded-md bg-slate-100 px-2 py-1 text-[10px] font-bold tracking-widest text-slate-600">
-                        {item.year}
-                      </span>
-
-                      {/* 画像エリア (アセットがあれば表示) */}
-                      {item.image && (
-                         <div className="relative mb-4 h-48 w-full overflow-hidden rounded-lg bg-slate-200">
-                           {/* プレースホルダー表示 */}
-                           <div className="absolute inset-0 flex items-center justify-center text-slate-400">
-                             <span className="text-xs tracking-widest">ARCHIVE PHOTO</span>
-                           </div>
-                           {/* 
-                           <Image src={item.image} alt={item.title} fill className="object-cover transition duration-700 group-hover:scale-105" />
-                           */}
-                         </div>
-                      )}
-
-                      <h3 className="serif-heading mb-2 text-xl text-slate-900">
-                        {item.title}
-                      </h3>
-                      <p className="mb-4 text-xs leading-relaxed text-slate-600">
-                        {item.description}
-                      </p>
-
-                      <div className="flex gap-2">
-                        {item.tags.map(tag => (
-                          <span key={tag} className="text-[9px] font-medium uppercase tracking-wider text-tiffany-600">
-                            #{tag}
-                          </span>
-                        ))}
+            <div className="space-y-6">
+              {TIMELINE_DATA.map((event, index) => (
+                <Reveal key={`${event.year}-${event.title}`} delay={index * 0.05}>
+                  <GlassCard
+                    as="article"
+                    padding="lg"
+                    className="relative border border-slate-200/80 bg-white/92 sm:ml-6"
+                  >
+                    <div className="absolute -left-[9px] top-5 hidden h-4 w-4 rounded-full border border-slate-300 bg-white sm:block" />
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
+                      <div className="sm:w-32">
+                        <p className="text-[11px] font-semibold tracking-[0.24em] text-slate-500">
+                          {event.year}
+                        </p>
                       </div>
+                      <div className="flex-1 space-y-2">
+                        <h3 className="font-serif text-lg font-medium tracking-tight text-slate-900">
+                          {event.title}
+                        </h3>
+                        <p className="text-[12px] leading-relaxed text-slate-600">
+                          {event.description}
+                        </p>
+                        {event.tags && event.tags.length > 0 && (
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {event.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[10px] tracking-[0.16em] text-slate-500"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </GlassCard>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
 
-                    </GlassCard>
-                  </div>
-
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
-
-        {/* タイムライン終端 */}
-        <div className="mt-24 text-center">
-           <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-slate-50 text-slate-300">
-             <span className="text-xl">↓</span>
-           </div>
-           <p className="mt-4 text-[10px] tracking-widest text-slate-400">HISTORY CONTINUES</p>
-        </div>
-
+        {/* クロージングメッセージ */}
+        <section className="mt-16">
+          <Reveal>
+            <GlassCard
+              padding="lg"
+              className="border border-slate-200/80 bg-white/95"
+            >
+              <p className="text-[12px] leading-relaxed text-slate-600">
+                HERITAGE セクションでは、今後ブランド別の系譜や、
+                1台のクルマを深掘りするロングインタビュー、
+                オーナーの記憶に残るエピソードなどを少しずつアーカイブしていきます。
+              </p>
+              <p className="mt-3 text-[11px] text-slate-400">
+                「このモデルの系譜をまとめてほしい」といったリクエストがあれば、
+                COLUMN や CARS と連動した特集として企画していきます。
+              </p>
+            </GlassCard>
+          </Reveal>
+        </section>
       </div>
     </main>
   );
