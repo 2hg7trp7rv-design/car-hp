@@ -69,10 +69,25 @@ export default async function NewsDetailPage({ params }: PageProps) {
     item.publishedAtJa ??
     formatDate(item.publishedAt ?? item.createdAt);
 
+  const sourceDomain = item.url
+    ? (() => {
+        try {
+          const u = new URL(item.url);
+          return u.hostname.replace(/^www\./, "");
+        } catch {
+          return "";
+        }
+      })()
+    : "";
+
   return (
-    <div className="mx-auto max-w-4xl px-4 pb-16 pt-6 sm:px-6 lg:px-8">
+    <main className="mx-auto max-w-4xl px-4 pb-16 pt-6 sm:px-6 lg:px-8">
+      {/* パンくず */}
       <Reveal>
-        <div className="mb-6 text-[10px] text-slate-400">
+        <nav
+          aria-label="パンくずリスト"
+          className="mb-6 text-[10px] text-slate-400"
+        >
           <Link
             href="/news"
             className="tracking-[0.22em] text-slate-400 transition hover:text-slate-700"
@@ -83,12 +98,13 @@ export default async function NewsDetailPage({ params }: PageProps) {
           <span className="tracking-[0.22em] text-slate-500">
             DETAIL
           </span>
-        </div>
+        </nav>
       </Reveal>
 
+      {/* 本文カード */}
       <Reveal>
         <GlassCard className="mb-8 border border-slate-200/70 bg-white/80 px-4 py-4 shadow-sm sm:px-6 sm:py-6">
-          <header className="mb-4 space-y-2">
+          <header className="mb-5 space-y-2">
             <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-400">
               {item.sourceName && (
                 <span className="tracking-[0.18em]">
@@ -120,7 +136,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
                 </>
               )}
             </div>
-            <h1 className="text-xl font-semibold tracking-[0.08em] text-slate-900 sm:text-2xl">
+            <h1 className="font-serif text-xl font-medium tracking-tight text-slate-900 sm:text-2xl">
               {title}
             </h1>
             {item.title !== title && (
@@ -130,22 +146,28 @@ export default async function NewsDetailPage({ params }: PageProps) {
             )}
           </header>
 
+          {/* 要約 */}
           {item.excerpt && (
-            <p className="mb-4 text-[12px] leading-relaxed text-slate-600">
-              {item.excerpt}
-            </p>
+            <section className="mb-5 border-l border-tiffany-100 bg-slate-50/80 px-4 py-3 text-[12px] leading-relaxed text-slate-700">
+              <h2 className="mb-1 text-[10px] font-semibold tracking-[0.18em] text-tiffany-700">
+                SUMMARY
+              </h2>
+              <p>{item.excerpt}</p>
+            </section>
           )}
 
+          {/* CAR BOUTIQUE の視点 */}
           {item.commentJa && (
-            <section className="mb-4 rounded-2xl bg-slate-50/80 px-4 py-3 text-[11px] leading-relaxed text-slate-700">
-              <h2 className="mb-1 text-[10px] font-semibold tracking-[0.18em] text-slate-400">
+            <section className="mb-5 rounded-2xl bg-slate-900/90 px-4 py-3 text-[11px] leading-relaxed text-slate-100">
+              <h2 className="mb-1 text-[10px] font-semibold tracking-[0.18em] text-tiffany-200">
                 CAR BOUTIQUE&apos;S NOTE
               </h2>
               <p>{item.commentJa}</p>
             </section>
           )}
 
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-[11px]">
+          {/* タグ + 出典リンク */}
+          <div className="mt-4 flex flex-col gap-3 text-[11px] sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-wrap gap-1.5">
               {item.tags &&
                 item.tags.map((tag) => (
@@ -157,7 +179,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
                   </span>
                 ))}
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               {item.url && item.url !== "#" && (
                 <Link
                   href={item.url}
@@ -166,9 +188,12 @@ export default async function NewsDetailPage({ params }: PageProps) {
                   className="inline-flex items-center gap-1 rounded-full border border-slate-800 bg-slate-900 px-3 py-1.5 text-[10px] font-semibold tracking-[0.18em] text-white transition hover:bg-slate-800"
                 >
                   元記事を読む
-                  <span className="text-[9px] text-slate-200">
-                    ↗
-                  </span>
+                  {sourceDomain && (
+                    <span className="text-[9px] text-slate-300">
+                      ({sourceDomain})
+                    </span>
+                  )}
+                  <span className="text-[9px] text-slate-200">↗</span>
                 </Link>
               )}
             </div>
@@ -210,14 +235,22 @@ export default async function NewsDetailPage({ params }: PageProps) {
                             </span>
                           </>
                         )}
-                        {r.publishedAtJa && (
-                          <>
-                            <span className="h-[1px] w-4 bg-slate-200" />
-                            <span className="tracking-[0.16em]">
-                              {r.publishedAtJa}
-                            </span>
-                          </>
-                        )}
+                        {(() => {
+                          const relatedDate =
+                            r.publishedAtJa ??
+                            formatDate(
+                              r.publishedAt ?? r.createdAt,
+                            );
+                          if (!relatedDate) return null;
+                          return (
+                            <>
+                              <span className="h-[1px] w-4 bg-slate-200" />
+                              <span className="tracking-[0.16em]">
+                                {relatedDate}
+                              </span>
+                            </>
+                          );
+                        })()}
                       </div>
                     </div>
                     <div className="hidden pl-3 text-[9px] font-semibold tracking-[0.24em] text-slate-300 transition group-hover:text-tiffany-500 sm:block">
@@ -230,7 +263,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
           </div>
         </section>
       )}
-    </div>
+    </main>
   );
 }
 
