@@ -1,252 +1,468 @@
 // app/cars/[slug]/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getCarBySlug, getAllCars } from "@/lib/cars";
-import { getLatestNews } from "@/lib/news";
-import { getAllColumns } from "@/lib/columns";
+
 import { GlassCard } from "@/components/GlassCard";
 import { Reveal } from "@/components/animation/Reveal";
-import { CompareSlider } from "@/components/car/CompareSlider"; 
+import { CarRotator } from "@/components/car/CarRotator";
+import { CompareSlider } from "@/components/car/CompareSlider";
+import {
+  getAllCars,
+  getCarBySlug,
+  type CarItem,
+} from "@/lib/cars";
+import { getLatestNews, type NewsItem } from "@/lib/news";
+import { getAllColumns, type ColumnItem } from "@/lib/columns";
 
 export const runtime = "edge";
 
 type PageProps = {
-  params: {
-    slug: string;
-  };
+  params: { slug: string };
 };
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateStaticParams() {
+  const cars = await getAllCars();
+  return cars.map((car) => ({ slug: car.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const car = await getCarBySlug(params.slug);
-  if (!car) return { title: "Not Found | CAR BOUTIQUE" };
+
+  if (!car) {
+    return {
+      title: "車種が見つかりません | CAR BOUTIQUE",
+      description: "指定された車種が見つかりませんでした。",
+    };
+  }
+
+  const title = `${car.name} | CAR BOUTIQUE`;
+  const description =
+    car.summaryLong ??
+    car.summary ??
+    "スペック、長所・短所、トラブル傾向、関連ニュースやコラムをまとめた車種ページです。";
+
   return {
-    title: `${car.name} | Specifications & Story`,
-    description: car.summary,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      url: `https://car-hp.vercel.app/cars/${encodeURIComponent(
+        car.slug,
+      )}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
+}
+
+function formatNumber(value?: number | null) {
+  if (value == null) return "";
+  return value.toLocaleString("ja-JP");
+}
+
+function buildKeywords(car: CarItem): string[] {
+  // ★ ビルドエラーになっていた行を安全に書き直し
+  const tags = car.tags ?? [];
+  const nameParts = car.name.split(/\s+/);
+  return [car.maker, ...nameParts, ...tags].filter(Boolean);
+}
+
+async function getRelatedCars(current: CarItem): Promise<CarItem[]> {
+  const allCars = await getAllCars();
+
+  // ★ `|` で壊れていた filter 条件を修正（|| に）
+  const relatedCars = allCars
+    .filter(
+      (c) =>
+        c.slug !== current.slug &&
+        (c.maker === current.maker ||
+          (c.segment && c.segment === current.segment)),
+    )
+    .slice(0, 3);
+
+  return relatedCars;
+}
+
+async function getRelatedNewsAndColumns(car: CarItem) {
+  const [news, columns] = await Promise.all([
+    getLatestNews(80),
+    getAllColumns(),
+  ]);
+
+  const keywords = new Set(buildKeywords(car));
+
+  const relatedNews: NewsItem[] = news.filter((item) => {
+    if (item.maker && item.maker === car.maker) return true;
+    const tags = item.tags ?? [];
+    if (tags.some((tag) => keywords.has(tag))) return true;
+    const title = `${item.titleJa ?? ""} ${item.title}`.toUpperCase();
+    return Array.from(keywords).some((kw) =>
+      kw && title.includes(String(kw).toUpperCase()),
+    );
+  }).slice(0, 5);
+
+  const relatedColumns: ColumnItem[] = columns.filter((c) => {
+    if (c.relatedCarSlugs && c.relatedCarSlugs.includes(car.slug)) {
+      return true;
+    }
+    const title = `${c.title} ${c.summary}`.toUpperCase();
+    return Array.from(keywords).some((kw) =>
+      kw && title.includes(String(kw).toUpperCase()),
+    );
+  }).slice(0, 5);
+
+  return { relatedNews, relatedColumns };
 }
 
 export default async function CarDetailPage({ params }: PageProps) {
   const car = await getCarBySlug(params.slug);
-  if (!car) notFound();
 
-  // 関連データの並列取得
-  const [allCars, latestNews, allColumns] = await Promise.all([
-    getAllCars(),
-    getLatestNews(50),
-    getAllColumns()
+  if (!car) {
+    notFound();
+  }
+
+  const [relatedCars, { relatedNews, relatedColumns }] = await Promise.all([
+    getRelatedCars(car),
+    getRelatedNewsAndColumns(car),
   ]);
 
-  // 関連車種の抽出（同じメーカーまたは同じセグメント）
-  const relatedCars = allCars
-   .filter(c => c.slug!== car.slug && (c.maker === car.maker |
-
-| c.segment === car.segment))
-   .slice(0, 3);
-
-  // 関連コンテンツのマッチング（メーカー名やタグをキーワードとして使用）
-  const keywords = [car.maker, car.name.split(' '),...(car.tags ||)];
-  
-  const relatedNews = latestNews.filter(n => 
-    keywords.some(k => (n.title + (n.titleJa||"")).toLowerCase().includes(k.toLowerCase()))
-  ).slice(0, 3);
-
-  const relatedColumns = allColumns.filter(c =>
-    keywords.some(k => (c.title + c.summary).toLowerCase().includes(k.toLowerCase()))
-  ).slice(0, 2);
-
   return (
-    <main className="min-h-screen bg-site text-slate-900 pb-20">
-      
-      {/* 1. ヒーローセクション: 没入型フルワイド画像 */}
-      <section className="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src={car.heroImage |
-
-| car.mainImage |
-| "/images/placeholder-car.jpg"}
-            alt={car.name}
-            fill
-            className="object-cover"
-            priority
-          />
-          {/* 画像上のテキスト可読性を確保するグラデーションオーバーレイ */}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-white/20 to-slate-900/30" />
-        </div>
-
-        <div className="absolute bottom-0 left-0 w-full p-6 sm:p-12">
-          <Reveal>
-            <div className="mx-auto max-w-7xl">
-              <span className="mb-4 inline-block rounded-full bg-slate-900/80 px-3 py-1 text-[10px] font-bold tracking-widest text-white backdrop-blur-md">
-                {car.maker} / {car.releaseYear}
-              </span>
-              <h1 className="serif-heading text-4xl text-slate-900 drop-shadow-sm sm:text-5xl md:text-6xl">
+    <main className="min-h-screen bg-site pb-20 pt-10 sm:pb-28 sm:pt-12">
+      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 sm:px-6 lg:px-8">
+        {/* ヘッダー */}
+        <Reveal>
+          <header className="flex flex-col gap-3 border-b border-slate-200/70 pb-6">
+            <p className="text-[10px] font-semibold tracking-[0.32em] text-tiffany-700">
+              CARS
+            </p>
+            <div className="space-y-1">
+              <h1 className="font-serif text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl">
                 {car.name}
               </h1>
-              {car.grade && (
-                <p className="mt-2 text-lg font-light tracking-wide text-slate-700">
-                  {car.grade}
-                </p>
-              )}
+              <p className="text-[11px] uppercase tracking-[0.24em] text-slate-500">
+                {car.maker}
+                {car.releaseYear && <> / {car.releaseYear}</>}
+              </p>
             </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <div className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1fr_360px]">
-          
-          {/* 左カラム: メインコンテンツ */}
-          <div className="space-y-16">
-            
-            {/* ストーリー & 性格解説 */}
-            <Reveal delay={100}>
-               <h2 className="mb-6 text-xs font-bold tracking-[0.25em] text-slate-400">CHARACTER</h2>
-               <p className="text-lg font-light leading-relaxed text-slate-800 sm:text-xl">
-                 {car.summaryLong |
-
-| car.summary}
-               </p>
-            </Reveal>
-
-            {/* インタラクティブ比較スライダー */}
-            <Reveal delay={200}>
-              <div className="space-y-4">
-                <div className="flex items-baseline justify-between">
-                   <h2 className="text-xs font-bold tracking-[0.25em] text-slate-400">VISUAL ANALYSIS</h2>
-                   <p className="text-[10px] text-tiffany-600">DRAG TO COMPARE</p>
-                </div>
-                {/* 
-                  注: 実際の運用ではJSONに `imageExterior` `imageInterior` などのフィールドを追加し、
-                  ここで出し分けることが望ましい。現状は同じ画像をプレースホルダーとして使用し、
-                  スライダーの動作確認を行う構成としている。
-                */}
-                <CompareSlider 
-                  beforeImage={car.heroImage |
-
-| ""} 
-                  beforeLabel="EXTERIOR / FORM"
-                  afterImage={car.mainImage |
-
-| car.heroImage |
-| ""} 
-                  afterLabel="CONTEXT / DETAIL"
-                  className="aspect-[16/9]"
-                />
-                <p className="text-[11px] italic text-slate-500">
-                  * スライダーを操作して、デザインの細部や新旧の違いを確認できます。
-                </p>
-              </div>
-            </Reveal>
-
-            {/* スペック詳細グリッド */}
-            <Reveal delay={300}>
-              <h2 className="mb-6 text-xs font-bold tracking-[0.25em] text-slate-400">TECHNICAL DATA</h2>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <GlassCard className="space-y-4">
-                   <h3 className="border-b border-slate-100 pb-2 text-[10px] font-bold tracking-widest text-tiffany-600">POWERTRAIN</h3>
-                   <dl className="space-y-3 text-xs">
-                     <SpecItem label="Engine" value={car.engine} />
-                     <SpecItem label="Power" value={car.powerPs? `${car.powerPs} PS` : undefined} />
-                     <SpecItem label="Torque" value={car.torqueNm? `${car.torqueNm} Nm` : undefined} />
-                     <SpecItem label="Transmission" value={car.transmission} />
-                     <SpecItem label="Drive" value={car.drive} />
-                   </dl>
-                </GlassCard>
-
-                <GlassCard className="space-y-4">
-                   <h3 className="border-b border-slate-100 pb-2 text-[10px] font-bold tracking-widest text-tiffany-600">DIMENSIONS & RUNNING</h3>
-                   <dl className="space-y-3 text-xs">
-                     <SpecItem label="Length" value={car.lengthMm? `${car.lengthMm} mm` : undefined} />
-                     <SpecItem label="Width" value={car.widthMm? `${car.widthMm} mm` : undefined} />
-                     <SpecItem label="Weight" value={car.weightKg? `${car.weightKg} kg` : undefined} />
-                     <SpecItem label="Fuel Economy" value={car.fuelEconomy} />
-                     <SpecItem label="New Price" value={car.priceNew} />
-                   </dl>
-                </GlassCard>
-              </div>
-            </Reveal>
-
-            {/* 関連コラム (リッチコンテンツ統合) */}
-            {relatedColumns.length > 0 && (
-              <Reveal delay={400}>
-                 <h2 className="mb-6 text-xs font-bold tracking-[0.25em] text-slate-400">OWNERSHIP STORIES</h2>
-                 <div className="grid gap-4 sm:grid-cols-2">
-                    {relatedColumns.map(col => (
-                      <Link key={col.id} href={`/column/${col.slug}`} className="group">
-                        <article className="h-full rounded-2xl border border-slate-200 bg-white p-5 transition hover:shadow-soft-card">
-                           <span className="mb-2 block text-[9px] font-bold tracking-widest text-tiffany-500">{col.category}</span>
-                           <h3 className="font-serif mb-2 text-lg leading-tight text-slate-900 transition-colors group-hover:text-tiffany-600">{col.title}</h3>
-                           <p className="line-clamp-3 text-xs text-slate-500">{col.summary}</p>
-                        </article>
-                      </Link>
-                    ))}
-                 </div>
-              </Reveal>
+            {car.summaryLong && (
+              <p className="max-w-3xl text-[12px] leading-relaxed text-slate-600">
+                {car.summaryLong}
+              </p>
             )}
-          </div>
+            {!car.summaryLong && car.summary && (
+              <p className="max-w-3xl text-[12px] leading-relaxed text-slate-600">
+                {car.summary}
+              </p>
+            )}
+          </header>
+        </Reveal>
 
-          {/* 右カラム: サイドバー / Sticky */}
-          <aside className="space-y-8">
-            {/* サマリー & アクションカード */}
-            <div className="sticky top-24 space-y-6">
-              <GlassCard padding="lg" className="border-t-4 border-t-tiffany-400 bg-white/90">
-                 <h3 className="mb-1 text-xs font-bold tracking-widest text-slate-400">VERDICT</h3>
-                 <div className="serif-heading mb-4 text-3xl font-medium text-slate-900">
-                   {car.difficulty === 'basic'? 'Beginner Friendly' : 
-                    car.difficulty === 'advanced'? 'Enthusiast Only' : 'Standard Choice'}
-                 </div>
-                 <p className="mb-6 text-xs leading-relaxed text-slate-600">
-                   維持費の目安、信頼性データ、運転の難易度に基づいた判定です。
-                 </p>
-                 <div className="flex flex-col gap-2">
-                   <button className="flex w-full items-center justify-center rounded-full bg-slate-900 py-3 text-[10px] font-bold tracking-[0.2em] text-white transition hover:bg-tiffany-600">
-                     市場価格を調べる
-                   </button>
-                   <Link href="/guide" className="flex w-full items-center justify-center rounded-full border border-slate-200 bg-transparent py-3 text-[10px] font-bold tracking-[0.2em] text-slate-600 transition hover:bg-slate-50">
-                     購入ガイドを見る
-                   </Link>
-                 </div>
-              </GlassCard>
+        {/* メインビジュアル + 基本スペック */}
+        <section className="grid gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+          <Reveal className="h-full">
+            <GlassCard
+              padding="none"
+              variant="dim"
+              interactive
+              className="relative h-full min-h-[260px] overflow-hidden"
+            >
+              {car.heroImage || (car as any).mainImage ? (
+                <CarRotator
+                  imageUrl={(car as any).mainImage ?? car.heroImage ?? ""}
+                  alt={car.name}
+                />
+              ) : (
+                <div className="flex h-full items-center justify-center bg-slate-200/60">
+                  <span className="text-xs tracking-[0.18em] text-slate-500">
+                    IMAGE COMING SOON
+                  </span>
+                </div>
+              )}
+            </GlassCard>
+          </Reveal>
 
-              {/* 関連ニュースウィジェット */}
-              {relatedNews.length > 0 && (
-                <div className="rounded-2xl border border-slate-200 bg-slate-50/50 p-5">
-                  <h3 className="mb-4 text-[10px] font-bold tracking-widest text-slate-400">LATEST NEWS</h3>
-                  <ul className="space-y-4">
-                    {relatedNews.map(news => (
-                      <li key={news.id}>
-                        <Link href={`/news/${news.id}`} className="group block">
-                          <span className="text-[9px] text-slate-400">{news.publishedAt?.split('T')}</span>
-                          <h4 className="mt-0.5 text-xs font-medium text-slate-800 transition-colors group-hover:text-tiffany-600">
-                            {news.titleJa |
+          <Reveal className="h-full">
+            <GlassCard
+              as="section"
+              padding="md"
+              className="h-full border border-slate-200/80 bg-white/90"
+            >
+              <h2 className="text-xs font-semibold tracking-[0.2em] text-slate-500">
+                BASIC SPEC
+              </h2>
+              <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-[11px] text-slate-700">
+                {car.engine && (
+                  <>
+                    <dt className="text-slate-400">エンジン</dt>
+                    <dd>{car.engine}</dd>
+                  </>
+                )}
+                {car.powerPs && (
+                  <>
+                    <dt className="text-slate-400">最高出力</dt>
+                    <dd>{formatNumber(car.powerPs)} ps</dd>
+                  </>
+                )}
+                {car.torqueNm && (
+                  <>
+                    <dt className="text-slate-400">最大トルク</dt>
+                    <dd>{formatNumber(car.torqueNm)} Nm</dd>
+                  </>
+                )}
+                {car.transmission && (
+                  <>
+                    <dt className="text-slate-400">トランスミッション</dt>
+                    <dd>{car.transmission}</dd>
+                  </>
+                )}
+                {car.drive && (
+                  <>
+                    <dt className="text-slate-400">駆動方式</dt>
+                    <dd>{car.drive}</dd>
+                  </>
+                )}
+                {car.fuel && (
+                  <>
+                    <dt className="text-slate-400">燃料</dt>
+                    <dd>{car.fuel}</dd>
+                  </>
+                )}
+              </dl>
+            </GlassCard>
+          </Reveal>
+        </section>
 
-| news.title}
-                          </h4>
-                        </Link>
+        {/* 長所 / 短所・トラブル傾向 */}
+        {(car.strengths || car.weaknesses || car.troubleTrends) && (
+          <section className="grid gap-6 md:grid-cols-3">
+            {car.strengths && car.strengths.length > 0 && (
+              <Reveal>
+                <GlassCard
+                  as="section"
+                  padding="lg"
+                  className="h-full border border-emerald-100/80 bg-white/90"
+                >
+                  <h2 className="text-xs font-semibold tracking-[0.2em] text-emerald-700">
+                    STRENGTHS
+                  </h2>
+                  <ul className="mt-3 space-y-2 text-[12px] leading-relaxed text-slate-700">
+                    {car.strengths.map((item) => (
+                      <li key={item} className="flex gap-2">
+                        <span className="mt-[5px] h-1 w-3 rounded-full bg-emerald-400" />
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
-                </div>
-              )}
-            </div>
-          </aside>
+                </GlassCard>
+              </Reveal>
+            )}
 
-        </div>
+            {car.weaknesses && car.weaknesses.length > 0 && (
+              <Reveal>
+                <GlassCard
+                  as="section"
+                  padding="lg"
+                  className="h-full border border-amber-100/80 bg-white/90"
+                >
+                  <h2 className="text-xs font-semibold tracking-[0.2em] text-amber-700">
+                    WEAK POINTS
+                  </h2>
+                  <ul className="mt-3 space-y-2 text-[12px] leading-relaxed text-slate-700">
+                    {car.weaknesses.map((item) => (
+                      <li key={item} className="flex gap-2">
+                        <span className="mt-[5px] h-1 w-3 rounded-full bg-amber-400" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </GlassCard>
+              </Reveal>
+            )}
+
+            {car.troubleTrends && car.troubleTrends.length > 0 && (
+              <Reveal>
+                <GlassCard
+                  as="section"
+                  padding="lg"
+                  className="h-full border border-rose-100/80 bg-white/90"
+                >
+                  <h2 className="text-xs font-semibold tracking-[0.2em] text-rose-700">
+                    TROUBLE TRENDS
+                  </h2>
+                  <ul className="mt-3 space-y-2 text-[12px] leading-relaxed text-slate-700">
+                    {car.troubleTrends.map((item) => (
+                      <li key={item} className="flex gap-2">
+                        <span className="mt-[5px] h-1 w-3 rounded-full bg-rose-400" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </GlassCard>
+              </Reveal>
+            )}
+          </section>
+        )}
+
+        {/* 比較スライダー（ダミー） */}
+        <section>
+          <Reveal>
+            <GlassCard
+              as="section"
+              padding="lg"
+              className="border border-slate-200/80 bg-white/90"
+            >
+              <div className="flex flex-col gap-4 md:flex-row md:items-center">
+                <div className="flex-1 space-y-2">
+                  <h2 className="text-xs font-semibold tracking-[0.2em] text-slate-500">
+                    VISUAL COMPARISON
+                  </h2>
+                  <p className="text-[12px] leading-relaxed text-slate-600">
+                    新旧モデルや他グレードとの違いを視覚的に比べられるようにするための
+                    比較スライダーのプレースホルダーです。
+                    実画像が揃い次第、ここに本番用の比較写真を配置します。
+                  </p>
+                </div>
+                <div className="flex-1">
+                  <CompareSlider
+                    leftImage={(car as any).mainImage ?? car.heroImage ?? ""}
+                    rightImage={(car as any).mainImage ?? car.heroImage ?? ""}
+                    alt={car.name}
+                  />
+                </div>
+              </div>
+            </GlassCard>
+          </Reveal>
+        </section>
+
+        {/* 関連CARS / NEWS / COLUMN */}
+        <section className="grid gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+          {/* 関連CARS */}
+          <div className="space-y-3">
+            <Reveal>
+              <h2 className="text-xs font-semibold tracking-[0.2em] text-slate-500">
+                RELATED CARS
+              </h2>
+            </Reveal>
+            <div className="space-y-3">
+              {relatedCars.length === 0 && (
+                <p className="text-[11px] text-slate-400">
+                  関連する車種はまだ登録されていません。
+                </p>
+              )}
+              {relatedCars.map((rc) => (
+                <Reveal key={rc.slug}>
+                  <Link href={`/cars/${encodeURIComponent(rc.slug)}`}>
+                    <GlassCard
+                      as="article"
+                      padding="md"
+                      interactive
+                      className="border border-slate-200/80 bg-white/90"
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <div>
+                          <p className="text-[10px] tracking-[0.22em] text-slate-400">
+                            {rc.maker}
+                          </p>
+                          <h3 className="text-[12px] font-semibold text-slate-900">
+                            {rc.name}
+                          </h3>
+                          <p className="mt-1 text-[11px] text-slate-500 line-clamp-2">
+                            {rc.summary}
+                          </p>
+                        </div>
+                      </div>
+                    </GlassCard>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          {/* 関連 NEWS / COLUMN */}
+          <div className="space-y-8">
+            {/* NEWS */}
+            <div className="space-y-3">
+              <Reveal>
+                <h2 className="text-xs font-semibold tracking-[0.2em] text-slate-500">
+                  RELATED NEWS
+                </h2>
+              </Reveal>
+              <div className="space-y-2">
+                {relatedNews.length === 0 && (
+                  <p className="text-[11px] text-slate-400">
+                    この車種に紐づくニュースはまだ登録されていません。
+                  </p>
+                )}
+                {relatedNews.map((item) => (
+                  <Reveal key={item.id}>
+                    <Link
+                      href={`/news/${encodeURIComponent(item.id)}`}
+                      className="block"
+                    >
+                      <article className="group rounded-xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-[11px] shadow-sm transition hover:-translate-y-[1px] hover:shadow-md">
+                        <p className="line-clamp-2 font-medium tracking-[0.06em] text-slate-900">
+                          {item.titleJa ?? item.title}
+                        </p>
+                        <div className="mt-1 flex flex-wrap items-center gap-2 text-[10px] text-slate-400">
+                          {item.sourceName && (
+                            <span className="tracking-[0.16em]">
+                              {item.sourceName}
+                            </span>
+                          )}
+                          {item.publishedAtJa && (
+                            <span>{item.publishedAtJa}</span>
+                          )}
+                        </div>
+                      </article>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+
+            {/* COLUMN */}
+            <div className="space-y-3">
+              <Reveal>
+                <h2 className="text-xs font-semibold tracking-[0.2em] text-slate-500">
+                  RELATED COLUMNS
+                </h2>
+              </Reveal>
+              <div className="space-y-2">
+                {relatedColumns.length === 0 && (
+                  <p className="text-[11px] text-slate-400">
+                    この車種に紐づくコラムはまだ登録されていません。
+                  </p>
+                )}
+                {relatedColumns.map((col) => (
+                  <Reveal key={col.slug}>
+                    <Link
+                      href={`/column/${encodeURIComponent(col.slug)}`}
+                      className="block"
+                    >
+                      <article className="rounded-xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-[11px] shadow-sm transition hover:-translate-y-[1px] hover:shadow-md">
+                        <p className="font-semibold tracking-[0.06em] text-slate-900">
+                          {col.title}
+                        </p>
+                        <p className="mt-1 line-clamp-2 text-[11px] text-slate-500">
+                          {col.summary}
+                        </p>
+                      </article>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
-  );
-}
-
-// スペック表示用ヘルパー
-function SpecItem({ label, value }: { label: string; value?: string | number }) {
-  if (!value) return null;
-  return (
-    <div className="flex justify-between border-b border-dashed border-slate-100 pb-1 last:border-0">
-      <dt className="text-slate-500">{label}</dt>
-      <dd className="text-right font-medium text-slate-900">{value}</dd>
-    </div>
   );
 }
