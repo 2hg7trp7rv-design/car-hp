@@ -11,7 +11,7 @@ export const runtime = "edge";
 export const metadata: Metadata = {
   title: "コラムとストーリー | CAR BOUTIQUE",
   description:
-    "オーナー体験記やトラブル・修理、技術解説など、クルマと暮らしの距離が少し近づく読み物を集めました。",
+    "トラブルや修理の実例、ブランドの歴史や技術解説など、クルマに関する情報を整理して読めるコラム集です。",
 };
 
 type SearchParams = {
@@ -30,28 +30,14 @@ function normalize(value: string | undefined | null): string {
 
 function mapCategoryLabel(category: ColumnItem["category"]): string {
   switch (category) {
-    case "OWNER_STORY":
-      return "オーナーの本音ストーリー";
     case "MAINTENANCE":
-      return "メンテナンスとトラブルの裏側";
+      return "メンテナンス・トラブル";
     case "TECHNICAL":
-      return "技術・歴史・ブランドの物語";
-    case "LIFESTYLE":
-      return "カーライフと日常のこと";
+      return "ブランド・技術・歴史";
+    case "OWNER_STORY":
     default:
-      return "その他のストーリー";
+      return "コラム";
   }
-}
-
-function formatDate(iso?: string | null): string {
-  if (!iso) return "";
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return "";
-  return date.toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
 }
 
 export default async function ColumnPage({ searchParams }: PageProps) {
@@ -111,20 +97,18 @@ export default async function ColumnPage({ searchParams }: PageProps) {
         <header className="mb-10 space-y-4">
           <Reveal>
             <p className="text-[10px] font-bold tracking-[0.32em] text-tiffany-600">
-              STORIES &amp; COLUMN
+              TECH &amp; MAINTENANCE COLUMN
             </p>
           </Reveal>
           <Reveal delay={80}>
             <h1 className="serif-heading text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
-              クルマのある暮らしを、
-              <br className="hidden sm:block" />
-              少しだけ深く味わうための読み物。
+              トラブル・修理と、ブランドや技術のコラム集
             </h1>
           </Reveal>
           <Reveal delay={160}>
             <p className="max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
-              オーナーの本音ストーリー、トラブルや修理の裏側、ブランドの歴史や技術の話。
-              スペック表には載らない「距離感」や「温度感」を、静かに掘り下げていくコーナーです。
+              メンテナンスやトラブルの実例、ブランドの歴史、技術的な背景などをまとめた読み物です。
+              車種選びや維持の判断材料として、必要な情報だけを落ち着いて確認できることを目指しています。
             </p>
           </Reveal>
         </header>
@@ -270,58 +254,46 @@ export default async function ColumnPage({ searchParams }: PageProps) {
               </p>
             ) : (
               <div className="grid gap-4 md:grid-cols-2">
-                {filtered.map((item) => {
-                  const dateLabel = item.publishedAt
-                    ? formatDate(item.publishedAt)
-                    : "";
-                  return (
-                    <Link
-                      key={item.slug}
-                      href={`/column/${encodeURIComponent(item.slug)}`}
+                {filtered.map((item) => (
+                  <Link
+                    key={item.slug}
+                    href={`/column/${encodeURIComponent(item.slug)}`}
+                  >
+                    <GlassCard
+                      as="article"
+                      padding="md"
+                      interactive
+                      className="h-full bg-white/90"
                     >
-                      <GlassCard
-                        as="article"
-                        padding="md"
-                        interactive
-                        className="h-full bg-white/90"
-                      >
-                        <div className="flex h-full flex-col gap-3">
-                          <div className="space-y-1">
-                            <p className="text-[10px] font-semibold tracking-[0.24em] text-tiffany-600">
-                              {mapCategoryLabel(item.category)}
+                      <div className="flex h-full flex-col gap-3">
+                        <div className="space-y-1">
+                          <p className="text-[10px] font-semibold tracking-[0.24em] text-tiffany-600">
+                            {mapCategoryLabel(item.category)}
+                          </p>
+                          <h3 className="text-sm font-semibold leading-relaxed text-slate-900">
+                            {item.title}
+                          </h3>
+                          {item.summary && (
+                            <p className="text-[11px] leading-relaxed text-text-sub line-clamp-3">
+                              {item.summary}
                             </p>
-                            <h3 className="text-sm font-semibold leading-relaxed text-slate-900">
-                              {item.title}
-                            </h3>
-                            {item.summary && (
-                              <p className="text-[11px] leading-relaxed text-text-sub line-clamp-3">
-                                {item.summary}
-                              </p>
-                            )}
-                          </div>
-
-                          <div className="mt-auto flex flex-wrap items-center justify-between gap-2 text-[10px] text-slate-500">
-                            <div className="flex flex-wrap gap-1.5">
-                              {(item.tags ?? []).map((tag) => (
-                                <span
-                                  key={tag}
-                                  className="rounded-full bg-slate-50 px-2 py-1"
-                                >
-                                  #{tag}
-                                </span>
-                              ))}
-                            </div>
-                            {dateLabel && (
-                              <span className="text-[10px] tracking-[0.12em] text-slate-400">
-                                {dateLabel}
-                              </span>
-                            )}
-                          </div>
+                          )}
                         </div>
-                      </GlassCard>
-                    </Link>
-                  );
-                })}
+
+                        <div className="mt-auto flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                          {(item.tags ?? []).map((tag) => (
+                            <span
+                              key={tag}
+                              className="rounded-full bg-slate-50 px-2 py-1"
+                            >
+                              #{tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </GlassCard>
+                  </Link>
+                ))}
               </div>
             )}
           </section>
