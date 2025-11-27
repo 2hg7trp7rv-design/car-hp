@@ -343,14 +343,14 @@ export default async function CarDetailPage({ params }: PageProps) {
                 </div>
                 <div className="flex-1">
                   <CompareSlider
-                    beforeImage={
+                    leftImage={
                       (car as any).mainImage ?? car.heroImage ?? ""
                     }
-                    afterImage={
+                    rightImage={
                       (car as any).mainImage ?? car.heroImage ?? ""
                     }
-                    beforeAlt={`${car.name} (before)`}
-                    afterAlt={`${car.name} (after)`}
+                    leftAlt={`${car.name} (before)`}
+                    rightAlt={`${car.name} (after)`}
                   />
                 </div>
               </div>
