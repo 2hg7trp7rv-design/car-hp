@@ -8,6 +8,17 @@ const config: Config = {
   ],
   theme: {
     extend: {
+　　　　// 追記推奨の設定例
+      boxShadow: {
+    // Glassmorphism用の内側発光
+    'glass-inner': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.4)',
+    // 浮遊感の強調
+    'soft-glow': '0 0 40px -10px rgba(10, 186, 181, 0.15)',
+                }
+　　　　　　　　}
+
+
+      
       colors: {
         background: "#F8FAFC",
         // テキスト色：純粋な黒ではなく、わずかに青みを含ませて馴染ませる
