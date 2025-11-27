@@ -31,17 +31,128 @@ export default async function HomePage() {
     getLatestNews(6),
   ]);
 
-  const featuredColumn: ColumnItem | null =
-    columns[0] ?? null;
+  const featuredColumn: ColumnItem | null = columns[0] ?? null;
   const subColumn: ColumnItem | null = columns[1] ?? null;
   const featuredCar = cars[0] ?? null;
   const latestNewsItems: NewsItem[] = news.slice(0, 5);
+
+  const newsCount = news.length;
+  const columnCount = columns.length;
+  const carCount = cars.length;
 
   return (
     <main className="min-h-screen bg-site pb-20 pt-10 sm:pb-28 sm:pt-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* 1. HERO */}
         <HeroSection />
+
+        {/* 1.5 DASHBOARD SNAPSHOT */}
+        <section className="mt-12">
+          <Reveal>
+            <div className="mb-4 flex items-end justify-between px-1 sm:px-2">
+              <div>
+                <p className="text-[10px] font-semibold tracking-[0.32em] text-slate-500">
+                  TODAY&apos;S SELECTION
+                </p>
+                <h2 className="mt-1 font-serif text-xl font-medium tracking-tight text-slate-900 sm:text-2xl">
+                  いま、このブティックで出会えるもの。
+                </h2>
+              </div>
+              <span className="hidden text-[10px] tracking-[0.16em] text-slate-400 sm:inline">
+                静かに選ぶためのダッシュボード
+              </span>
+            </div>
+          </Reveal>
+
+          <div className="grid gap-3 sm:grid-cols-3">
+            <Reveal delay={40}>
+              <GlassCard className="flex h-full flex-col justify-between bg-white/80">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.28em] text-tiffany-700">
+                    NEWS
+                  </p>
+                  <h3 className="mt-2 font-serif text-lg font-medium text-slate-900">
+                    業界とメーカーの「いま」を知る。
+                  </h3>
+                  <p className="mt-2 text-[11px] leading-relaxed text-text-sub">
+                    発表会やモデルチェンジ、EVシフトの動きなど、
+                    気になるトピックを要約してお届けします。
+                  </p>
+                </div>
+                <div className="mt-3 flex items-center justify-between text-[11px] text-slate-500">
+                  <span className="font-semibold tracking-[0.2em]">
+                    {newsCount} ARTICLES
+                  </span>
+                  <Link
+                    href="/news"
+                    className="inline-flex items-center gap-1 font-semibold tracking-[0.18em] text-tiffany-700"
+                  >
+                    一覧を見る
+                    <span className="text-[10px]">→</span>
+                  </Link>
+                </div>
+              </GlassCard>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <GlassCard className="flex h-full flex-col justify-between bg-white/80">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.28em] text-tiffany-700">
+                    COLUMN
+                  </p>
+                  <h3 className="mt-2 font-serif text-lg font-medium text-slate-900">
+                    オーナーの本音や、物語としてのクルマ。
+                  </h3>
+                  <p className="mt-2 text-[11px] leading-relaxed text-text-sub">
+                    試乗記やロングオーナーインプレッション、ブランドの背景など、
+                    少し長く味わえる読み物を集めています。
+                  </p>
+                </div>
+                <div className="mt-3 flex items-center justify-between text-[11px] text-slate-500">
+                  <span className="font-semibold tracking-[0.2em]">
+                    {columnCount} STORIES
+                  </span>
+                  <Link
+                    href="/column"
+                    className="inline-flex items-center gap-1 font-semibold tracking-[0.18em] text-tiffany-700"
+                  >
+                    コラムへ
+                    <span className="text-[10px]">→</span>
+                  </Link>
+                </div>
+              </GlassCard>
+            </Reveal>
+
+            <Reveal delay={120}>
+              <GlassCard className="flex h-full flex-col justify-between bg-white/80">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.28em] text-tiffany-700">
+                    CARS DATABASE
+                  </p>
+                  <h3 className="mt-2 font-serif text-lg font-medium text-slate-900">
+                    気になる一台の「素性」を、静かに確認。
+                  </h3>
+                  <p className="mt-2 text-[11px] leading-relaxed text-text-sub">
+                    グレードやスペックだけでなく、
+                    長所・短所、維持のリアルまで含めて整理していく予定です。
+                  </p>
+                </div>
+                <div className="mt-3 flex items-center justify-between text-[11px] text-slate-500">
+                  <span className="font-semibold tracking-[0.2em]">
+                    {carCount} MODELS
+                  </span>
+                  <Link
+                    href="/cars"
+                    className="inline-flex items-center gap-1 font-semibold tracking-[0.18em] text-tiffany-700"
+                  >
+                    車種一覧へ
+                    <span className="text-[10px]">→</span>
+                  </Link>
+                </div>
+              </GlassCard>
+            </Reveal>
+          </div>
+        </section>
 
         {/* 2. CURATED FEED / BENTO GRID */}
         <section className="mt-24">
@@ -54,6 +165,10 @@ export default async function HomePage() {
                 <h2 className="mt-2 font-serif text-3xl font-medium tracking-tight text-slate-900">
                   Latest Stories
                 </h2>
+                <p className="mt-2 text-[11px] leading-relaxed text-text-sub">
+                  ニュース・コラム・車種データベースから、
+                  いま触れておきたいピースをいくつか選んで並べています。
+                </p>
               </div>
               <Link
                 href="/news"
