@@ -114,15 +114,19 @@ export default async function NewsPage({ searchParams }: Props) {
     tag,
   });
 
+  const hasFilter = Boolean(
+    (q && q.trim().length > 0) || category || maker || tag,
+  );
+
   return (
-    <div className="mx-auto max-w-6xl px-4 pb-16 pt-6 sm:px-6 lg:px-8">
+    <main className="mx-auto max-w-6xl px-4 pb-16 pt-6 sm:px-6 lg:px-8">
       <Reveal>
-        <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
+        <header className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
               CURATED NEWS
             </p>
-            <h1 className="mt-1 text-2xl font-semibold tracking-[0.08em] text-slate-900 sm:text-3xl">
+            <h1 className="mt-1 font-serif text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl">
               今日チェックしておきたいクルマのニュース
             </h1>
             <p className="mt-2 max-w-2xl text-xs leading-relaxed text-slate-500">
@@ -130,7 +134,7 @@ export default async function NewsPage({ searchParams }: Props) {
               編集部が日本語で追いやすい形に整えたニュースダイジェストです。
             </p>
           </div>
-          <div className="flex flex-col gap-2 text-[10px] text-slate-500">
+          <div className="flex flex-col items-start gap-1 text-[10px] text-slate-500 sm:items-end">
             <p className="tracking-[0.18em]">
               TOTAL{" "}
               <span className="font-semibold text-slate-900">
@@ -147,48 +151,98 @@ export default async function NewsPage({ searchParams }: Props) {
               </p>
             )}
           </div>
-        </div>
+        </header>
       </Reveal>
 
       {/* フィルターエリア */}
       <Reveal>
-        <GlassCard className="mb-6 flex flex-col gap-4 border border-slate-200/70 bg-white/80 px-4 py-3 text-[11px] shadow-sm sm:flex-row sm:items-center sm:justify-between sm:px-5 sm:py-3.5">
-          <div className="flex-1">
-            <form className="flex items-center gap-2">
-              <input
-                type="text"
-                name="q"
-                defaultValue={q}
-                placeholder="キーワード検索（車名・媒体名など）"
-                className="w-full rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-[11px] tracking-[0.05em] text-slate-800 placeholder:text-slate-300 focus:border-tiffany-400 focus:outline-none focus:ring-1 focus:ring-tiffany-300"
+        <GlassCard className="mb-6 border border-slate-200/70 bg-white/80 px-4 py-3 text-[11px] shadow-sm sm:px-5 sm:py-3.5">
+          <form className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex-1">
+              <label className="flex flex-col gap-1">
+                <span className="text-[9px] font-semibold tracking-[0.18em] text-slate-400">
+                  KEYWORD
+                </span>
+                <input
+                  type="text"
+                  name="q"
+                  defaultValue={q}
+                  placeholder="キーワード検索（車名・媒体名など）"
+                  className="w-full rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-[11px] tracking-[0.05em] text-slate-800 placeholder:text-slate-300 focus:border-tiffany-400 focus:outline-none focus:ring-1 focus:ring-tiffany-300"
+                />
+              </label>
+            </div>
+            <div className="flex flex-wrap items-center gap-2 sm:justify-end">
+              <FilterSelect
+                name="category"
+                label="CATEGORY"
+                value={category}
+                options={categories}
               />
-            </form>
-          </div>
-          <div className="flex flex-wrap gap-2 sm:justify-end">
-            <FilterSelect
-              name="category"
-              label="CATEGORY"
-              value={category}
-              options={categories}
-            />
-            <FilterSelect
-              name="maker"
-              label="MAKER"
-              value={maker}
-              options={makers}
-            />
-            <FilterSelect
-              name="tag"
-              label="TAG"
-              value={tag}
-              options={tags}
-            />
-          </div>
+              <FilterSelect
+                name="maker"
+                label="MAKER"
+                value={maker}
+                options={makers}
+              />
+              <FilterSelect
+                name="tag"
+                label="TAG"
+                value={tag}
+                options={tags}
+              />
+              <button
+                type="submit"
+                className="rounded-full border border-slate-200 bg-slate-900 px-3 py-1.5 text-[10px] font-semibold tracking-[0.2em] text-white transition hover:bg-slate-800"
+              >
+                APPLY
+              </button>
+              {hasFilter && (
+                <Link
+                  href="/news"
+                  className="text-[10px] tracking-[0.16em] text-slate-400 hover:text-slate-700"
+                >
+                  CLEAR
+                </Link>
+              )}
+            </div>
+          </form>
         </GlassCard>
       </Reveal>
 
+      {/* アクティブフィルター表示 */}
+      {hasFilter && (
+        <Reveal>
+          <div className="mb-4 flex flex-wrap items-center gap-2 text-[10px]">
+            <span className="rounded-full bg-slate-50 px-2 py-0.5 text-slate-400">
+              ACTIVE FILTERS
+            </span>
+            {q && q.trim().length > 0 && (
+              <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                keyword: <span className="font-semibold">“{q}”</span>
+              </span>
+            )}
+            {category && (
+              <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                category: <span className="font-semibold">{category}</span>
+              </span>
+            )}
+            {maker && (
+              <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                maker: <span className="font-semibold">{maker}</span>
+              </span>
+            )}
+            {tag && (
+              <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                tag: <span className="font-semibold">{tag}</span>
+              </span>
+            )}
+          </div>
+        </Reveal>
+      )}
+
       {/* ニュース一覧 */}
-      <div className="space-y-3">
+      <section aria-label="ニュース一覧" className="space-y-3">
         {filtered.map((item) => (
           <Reveal key={item.id}>
             <NewsListItem item={item} />
@@ -203,8 +257,8 @@ export default async function NewsPage({ searchParams }: Props) {
             </GlassCard>
           </Reveal>
         )}
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
 
@@ -260,7 +314,7 @@ function NewsListItem({ item }: NewsListItemProps) {
     >
       <article className="group flex items-stretch gap-3 rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-3 text-[11px] shadow-sm transition hover:-translate-y-[1px] hover:shadow-md sm:px-5 sm:py-3.5">
         <div className="flex flex-1 flex-col gap-1">
-          <div className="flex items-center gap-2 text-[10px] text-slate-400">
+          <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-400">
             {item.sourceName && (
               <span className="tracking-[0.18em]">
                 {item.sourceName}
