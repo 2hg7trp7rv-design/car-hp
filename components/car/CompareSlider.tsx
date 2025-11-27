@@ -1,7 +1,14 @@
 // components/car/CompareSlider.tsx
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, {
+  useState,
+  useRef,
+  useCallback,
+  type MouseEvent,
+  type TouchEvent,
+  type KeyboardEvent,
+} from "react";
 import Image from "next/image";
 
 type CompareSliderProps = {
@@ -36,7 +43,7 @@ type CompareSliderProps = {
 
 /**
  * CompareSlider Component
- * 
+ *
  * 2枚の画像を重ね合わせ、スライダーによって表示領域を制御することで
  * 視覚的な比較体験を提供するインタラクティブコンポーネント。
  * ラグジュアリーな操作感を実現するため、スムーズなドラッグ追従と
@@ -53,31 +60,28 @@ export function CompareSlider({
   className = "",
 }: CompareSliderProps) {
   // スライダー位置の状態管理（0〜100%）
-  const = useState(initialPosition);
-  const = useState(false);
+  const [sliderPosition, setSliderPosition] = useState(initialPosition);
+  const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   /**
    * 入力座標に基づいてスライダー位置を計算・更新する関数。
    * マウスイベントとタッチイベントの両方から呼び出される。
    */
-  const handleMove = useCallback(
-    (clientX: number) => {
-      if (!containerRef.current) return;
-      
-      const rect = containerRef.current.getBoundingClientRect();
-      const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
-      const percent = Math.max(0, Math.min((x / rect.width) * 100, 100));
-      
-      setSliderPosition(percent);
-    },
-   
-  );
+  const handleMove = useCallback((clientX: number) => {
+    if (!containerRef.current) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+    const percent = Math.max(0, Math.min((x / rect.width) * 100, 100));
+
+    setSliderPosition(percent);
+  }, []);
 
   // --- マウスイベントハンドラ ---
   const onMouseDown = () => setIsDragging(true);
   const onMouseUp = () => setIsDragging(false);
-  const onMouseMove = (e: React.MouseEvent) => {
+  const onMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!isDragging) return;
     handleMove(e.clientX);
   };
@@ -85,15 +89,15 @@ export function CompareSlider({
   // --- タッチイベントハンドラ（モバイル対応） ---
   const onTouchStart = () => setIsDragging(true);
   const onTouchEnd = () => setIsDragging(false);
-  const onTouchMove = (e: React.TouchEvent) => {
+  const onTouchMove = (e: TouchEvent<HTMLDivElement>) => {
     if (!isDragging) return;
-    // タッチ操作時の画面スクロールを防ぐため、必要に応じて preventDefault を検討するが、
-    // ここではReact合成イベントのためCSSの touch-action: none で対応することを推奨。
-    handleMove(e.touches.clientX);
+    if (e.touches.length === 0) return;
+    // CSS の touch-action: none とセットで使う想定
+    handleMove(e.touches[0].clientX);
   };
 
   // --- キーボードアクセシビリティ ---
-  const onKeyDown = (e: React.KeyboardEvent) => {
+  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "ArrowLeft") {
       setSliderPosition((prev) => Math.max(0, prev - 5));
     } else if (e.key === "ArrowRight") {
@@ -103,7 +107,7 @@ export function CompareSlider({
 
   return (
     <div
-      className={`group relative w-full overflow-hidden select-none rounded-3xl shadow-soft-card touch-none ${className}`}
+      className={`group relative w-full select-none overflow-hidden rounded-3xl shadow-soft-card touch-none ${className}`}
       ref={containerRef}
       role="slider"
       aria-valuenow={sliderPosition}
@@ -123,7 +127,6 @@ export function CompareSlider({
         デフォルトでは画像のサイズに依存しないよう、fill layoutを使用。
       */}
       <div className="relative h-full w-full">
-        
         {/* 背景画像 (Right / After) */}
         <div className="absolute inset-0 h-full w-full">
           <Image
@@ -149,9 +152,13 @@ export function CompareSlider({
             重要: 画像が歪まないよう、親コンテナと同じ幅を持つラッパーを配置し、
             その中で画像をフル表示する「逆補正」のテクニックを使用。
           */}
-          <div 
-             className="absolute inset-0 h-full"
-             style={{ width: containerRef.current? `${containerRef.current.clientWidth}px` : '100%' }}
+          <div
+            className="absolute inset-0 h-full"
+            style={{
+              width: containerRef.current
+                ? `${containerRef.current.clientWidth}px`
+                : "100%",
+            }}
           >
             <Image
               src={beforeImage}
@@ -161,7 +168,7 @@ export function CompareSlider({
               priority
             />
           </div>
-          
+
           {beforeLabel && (
             <div className="absolute bottom-4 left-4 z-10 rounded-full bg-tiffany-600/90 px-4 py-1.5 text-[10px] font-bold tracking-[0.16em] text-white backdrop-blur-md transition-opacity group-hover:opacity-100 sm:opacity-80">
               {beforeLabel}
@@ -177,27 +184,30 @@ export function CompareSlider({
           onTouchStart={onTouchStart}
         >
           {/* 垂直分割線 */}
-          <div className="h-full w-[2px] -translate-x-1/2 bg-white shadow-[0_0_15px_rgba(0,0,0,0.2)]"></div>
+          <div className="h-full w-[2px] -translate-x-1/2 bg-white shadow-[0_0_15px_rgba(0,0,0,0.2)]" />
 
           {/* 中央ハンドルボタン */}
           <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2">
-             <div className="flex h-12 w-12 items-center justify-center rounded-full border-[3px] border-white bg-tiffany-500 shadow-[0_4px_20px_rgba(10,186,181,0.4)] transition-transform hover:scale-110 active:scale-95">
-                {/* 左右矢印アイコン */}
-                <svg 
-                  width="20" 
-                  height="20" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2.5" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  className="text-white drop-shadow-sm"
-                >
-                  <path d="M15 18l-6-6 6-6" />
-                  <polyline points="9 18 15 12 9 6" transform="rotate(180 12 12)"></polyline>
-                </svg>
-             </div>
+            <div className="flex h-12 w-12 items-center justify-center rounded-full border-[3px] border-white bg-tiffany-500 shadow-[0_4px_20px_rgba(10,186,181,0.4)] transition-transform hover:scale-110 active:scale-95">
+              {/* 左右矢印アイコン */}
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-white drop-shadow-sm"
+              >
+                <path d="M15 18l-6-6 6-6" />
+                <polyline
+                  points="9 18 15 12 9 6"
+                  transform="rotate(180 12 12)"
+                ></polyline>
+              </svg>
+            </div>
           </div>
         </div>
 
@@ -209,9 +219,11 @@ export function CompareSlider({
           value={sliderPosition}
           onChange={(e) => setSliderPosition(Number(e.target.value))}
           className="absolute inset-0 z-30 h-full w-full cursor-ew-resize opacity-0"
-          aria-hidden="true" 
+          aria-hidden="true"
         />
       </div>
     </div>
   );
 }
+
+export default CompareSlider;
