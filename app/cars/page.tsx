@@ -1,265 +1,324 @@
 // app/cars/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { getAllCars } from "@/lib/cars";
 import { Reveal } from "@/components/animation/Reveal";
 import { GlassCard } from "@/components/GlassCard";
+import { getAllCars, type CarItem } from "@/lib/cars";
 
 export const runtime = "edge";
 
 export const metadata: Metadata = {
   title: "CARS | CURATED SHOWROOM",
   description:
-    "CAR BOUTIQUEが厳選した車種データベース。スペックだけでなく、そのクルマが持つ物語と性格を整理したデジタル・ショールーム。",
+    "オーナー視点で選んだクルマたちのデータベース。維持の難易度やボディタイプから、静かに自分の一台を探すためのショールーム。",
 };
 
-type Props = {
-  searchParams?: {
-    q?: string;
-    maker?: string;
-    bodyType?: string;
-    difficulty?: string;
-    segment?: string;
-  };
+type SearchParams = {
+  q?: string;
+  maker?: string;
+  difficulty?: string;
+  bodyType?: string;
+  segment?: string;
 };
 
-/**
- * 検索クエリの正規化ヘルパー
- */
+type PageProps = {
+  searchParams?: SearchParams;
+};
+
 function normalize(value: string | undefined | null): string {
-  return (value?? "").trim().toLowerCase();
+  return (value ?? "").trim().toLowerCase();
 }
 
-/**
- * Bento Grid用クラス生成ヘルパー
- * インデックスに応じてグリッドの占有サイズを変化させ、視覚的リズムを作る。
- * パターン: [小, 小, 大(横長), 小, 小, 大(横長)...]
- */
-function getGridSpanClass(index: number): string {
-  const pattern = index % 3;
-  // 3番目の要素（index 2, 5, 8...）を横長に強調表示
-  if (pattern === 2) {
-    return "md:col-span-2 md:row-span-1"; 
+function mapDifficultyLabel(
+  difficulty: CarItem["difficulty"] | undefined,
+): string {
+  switch (difficulty) {
+    case "easy":
+      return "やさしい";
+    case "normal":
+      return "標準的";
+    case "advanced":
+      return "気を使う";
+    default:
+      return "未設定";
   }
-  return "md:col-span-1 md:row-span-1";
 }
 
-export default async function CarsPage({ searchParams }: Props) {
+export default async function CarsPage({ searchParams }: PageProps) {
   const all = await getAllCars();
 
-  // --- フィルタリングロジック ---
   const q = normalize(searchParams?.q);
-  const makerFilter = (searchParams?.maker?? "").trim();
-  const bodyTypeFilter = (searchParams?.bodyType?? "").trim();
-  const difficultyFilter = (searchParams?.difficulty?? "").trim();
-  const segmentFilter = (searchParams?.segment?? "").trim();
+  const makerFilter = (searchParams?.maker ?? "").trim();
+  const difficultyFilter = (searchParams?.difficulty ?? "").trim();
+  const bodyTypeFilter = (searchParams?.bodyType ?? "").trim();
+  const segmentFilter = (searchParams?.segment ?? "").trim();
 
-  // フィルタ用の一意な値リストを抽出
-  const makers = Array.from(new Set(all.map((c) => c.maker).filter(Boolean))) as string;
-  const bodyTypes = Array.from(new Set(all.map((c) => c.bodyType).filter(Boolean))) as string;
-  const difficulties = Array.from(new Set(all.map((c) => c.difficulty).filter(Boolean))) as string;
-  const segments = Array.from(new Set(all.map((c) => c.segment).filter(Boolean))) as string;
+  const makers = Array.from(
+    new Set(all.map((c) => c.maker).filter(Boolean)),
+  ).sort();
+  const difficulties = Array.from(
+    new Set(all.map((c) => c.difficulty).filter(Boolean)),
+  ).sort();
+  const bodyTypes = Array.from(
+    new Set(all.map((c) => c.bodyType).filter(Boolean)),
+  ).sort();
+  const segments = Array.from(
+    new Set(all.map((c) => c.segment).filter(Boolean)),
+  ).sort();
 
-  // 条件に合致する車種を抽出
-  const cars = all.filter((car) => {
+  const filtered = all.filter((car) => {
     if (q) {
-      const haystack =.filter(Boolean).join(" ").toLowerCase();
+      const haystack = [
+        car.name ?? "",
+        car.maker ?? "",
+        car.segment ?? "",
+        car.bodyType ?? "",
+        car.summary ?? "",
+      ]
+        .join(" ")
+        .toLowerCase();
       if (!haystack.includes(q)) return false;
     }
-    if (makerFilter && car.maker!== makerFilter) return false;
-    if (bodyTypeFilter && car.bodyType!== bodyTypeFilter) return false;
-    if (difficultyFilter && car.difficulty!== difficultyFilter) return false;
-    if (segmentFilter && car.segment!== segmentFilter) return false;
+
+    if (makerFilter && car.maker !== makerFilter) return false;
+    if (difficultyFilter && car.difficulty !== difficultyFilter)
+      return false;
+    if (bodyTypeFilter && car.bodyType !== bodyTypeFilter) return false;
+    if (segmentFilter && car.segment !== segmentFilter) return false;
+
     return true;
   });
 
   return (
-    <main className="min-h-screen bg-site text-slate-900">
+    <main className="min-h-screen bg-site text-text-main">
       <div className="mx-auto max-w-7xl px-4 pb-24 pt-24 sm:px-6 lg:px-8">
-        
-        {/* ヘッダーセクション */}
-        <header className="mb-12 space-y-4 text-center sm:text-left">
+        {/* パンくず */}
+        <nav className="mb-6 text-xs text-slate-500">
+          <Link href="/" className="hover:text-slate-800">
+            HOME
+          </Link>
+          <span className="mx-2">/</span>
+          <span className="text-slate-400">CARS</span>
+        </nav>
+
+        {/* ヘッダー */}
+        <header className="mb-10 space-y-4">
           <Reveal>
-            <p className="text-[10px] uppercase tracking-[0.32em] text-tiffany-600">
-              The Collection
+            <p className="text-[10px] font-bold tracking-[0.32em] text-tiffany-600">
+              CURATED SHOWROOM
             </p>
           </Reveal>
           <Reveal delay={80}>
-            <h1 className="serif-heading text-3xl font-medium text-slate-900 sm:text-4xl md:text-5xl">
-              Curated <span className="italic text-tiffany-500">Inventory</span>
+            <h1 className="serif-heading text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
+              静かに選ぶ、オーナーのためのショールーム。
             </h1>
           </Reveal>
-          <Reveal delay={150}>
-            <p className="max-w-xl text-xs leading-relaxed text-text-sub sm:text-sm">
-              単なるスペックの羅列ではなく、一台一台の「性格」や「付き合い方」まで含めて
-              セレクトされたコレクション。気になる条件で絞り込み、あなたに合う物語を探してください。
+          <Reveal delay={160}>
+            <p className="max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
+              「速さ」よりも「付き合いやすさ」を重視したカーリスト。
+              維持の難易度やボディタイプから、いまの暮らしに合う一台をゆっくり探せるページです。
             </p>
           </Reveal>
         </header>
 
-        {/* フィルターバー (Glassmorphism + Sticky) */}
-        <Reveal delay={200}>
-          <section className="sticky top-20 z-20 mb-10 rounded-3xl border border-white/60 bg-white/80 p-5 shadow-soft backdrop-blur-md transition-all">
-            <form action="/cars" method="get" className="space-y-5">
-              <div className="flex flex-col gap-4 lg:flex-row lg:items-end">
-                
-                {/* キーワード検索 */}
-                <div className="flex-1">
-                  <label className="mb-1.5 block text-[10px] font-bold tracking-[0.2em] text-slate-400">
-                    KEYWORDS
+        {/* フィルターエリア */}
+        <Reveal delay={220}>
+          <section className="mb-10 rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-soft">
+            <form className="space-y-4 text-xs sm:text-[11px]">
+              <div className="grid gap-3 md:grid-cols-4">
+                {/* キーワード */}
+                <div>
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    KEYWORD
                   </label>
-                  <div className="relative">
-                    <input
-                      name="q"
-                      defaultValue={searchParams?.q?? ""}
-                      placeholder="車名、型式、キーワードで検索..."
-                      className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-xs text-slate-800 outline-none transition focus:border-tiffany-400 focus:bg-white focus:ring-1 focus:ring-tiffany-200"
-                    />
-                  </div>
+                  <input
+                    type="search"
+                    name="q"
+                    defaultValue={searchParams?.q ?? ""}
+                    placeholder="モデル名やキーワードで検索"
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  />
                 </div>
 
-                {/* セレクトボックス群 */}
-                <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-4 lg:w-auto">
-                  <FilterSelect label="MAKER" name="maker" options={makers} current={makerFilter} />
-                  <FilterSelect label="BODY" name="bodyType" options={bodyTypes} current={bodyTypeFilter} />
-                  <FilterSelect label="LEVEL" name="difficulty" options={difficulties} current={difficultyFilter} />
-                  <FilterSelect label="SEGMENT" name="segment" options={segments} current={segmentFilter} />
+                {/* メーカー */}
+                <div>
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    MAKER
+                  </label>
+                  <select
+                    name="maker"
+                    defaultValue={makerFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">すべて</option>
+                    {makers.map((m) => (
+                      <option key={m} value={m}>
+                        {m}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
-                {/* 絞り込みボタン */}
+                {/* 難易度 */}
+                <div>
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    DIFFICULTY
+                  </label>
+                  <select
+                    name="difficulty"
+                    defaultValue={difficultyFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">すべて</option>
+                    {difficulties.map((d) => (
+                      <option key={d} value={d}>
+                        {mapDifficultyLabel(d as CarItem["difficulty"])}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* ボディタイプ */}
+                <div>
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    BODY TYPE
+                  </label>
+                  <select
+                    name="bodyType"
+                    defaultValue={bodyTypeFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">すべて</option>
+                    {bodyTypes.map((b) => (
+                      <option key={b} value={b}>
+                        {b}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* セグメント */}
+              <div className="grid gap-3 md:grid-cols-4">
+                <div className="md:col-span-2">
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    SEGMENT
+                  </label>
+                  <select
+                    name="segment"
+                    defaultValue={segmentFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">すべて</option>
+                    {segments.map((s) => (
+                      <option key={s} value={s}>
+                        {s}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* ボタン */}
+              <div className="mt-2 flex justify-end">
                 <button
                   type="submit"
-                  className="h-[42px] min-w-[100px] rounded-xl bg-slate-900 px-6 text-[10px] font-bold tracking-[0.2em] text-white transition hover:bg-tiffany-600 hover:shadow-soft-strong active:scale-95 lg:w-auto"
+                  className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-[11px] font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
                 >
-                  FILTER
+                  絞り込み
                 </button>
               </div>
             </form>
           </section>
         </Reveal>
 
-        {/* Bento Grid 本体 */}
-        <section>
-           <div className="mb-6 flex items-baseline justify-between border-b border-slate-200/60 pb-2">
-            <h2 className="text-xs font-bold tracking-[0.2em] text-slate-500">
-              AVAILABLE MODELS
-            </h2>
-            <span className="text-[10px] font-medium text-tiffany-600">
-              {cars.length} VEHICLES FOUND
-            </span>
-          </div>
-
-          {cars.length === 0? (
-            <div className="flex h-64 flex-col items-center justify-center rounded-3xl border border-dashed border-slate-300 bg-slate-50/50">
-              <p className="text-sm text-slate-500">条件に一致する車種が見つかりませんでした。</p>
-              <Link href="/cars" className="mt-4 text-xs font-bold text-tiffany-600 underline underline-offset-4">
-                条件をクリアして全件表示
-              </Link>
+        {/* 一覧 */}
+        <Reveal delay={260}>
+          <section className="space-y-4">
+            <div className="flex items-baseline justify-between">
+              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
+                CAR LIST
+              </h2>
+              <p className="text-[11px] text-slate-400">
+                {filtered.length} 台表示中
+              </p>
             </div>
-          ) : (
-            <div className="grid auto-rows-[minmax(320px,auto)] grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {cars.map((car, index) => (
-                <Reveal key={car.id} delay={index * 50} className={`h-full ${getGridSpanClass(index)}`}>
-                  <Link href={`/cars/${car.slug}`} className="group block h-full">
-                    <GlassCard 
-                      as="article" 
-                      padding="none" 
-                      interactive 
-                      className="flex h-full flex-col justify-between overflow-hidden bg-white"
+
+            {filtered.length === 0 ? (
+              <p className="rounded-2xl border border-dashed border-slate-200 bg-white/70 p-6 text-center text-xs text-slate-500">
+                条件に合致するクルマが見つかりませんでした。
+                絞り込み条件を緩めて再度お試しください。
+              </p>
+            ) : (
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {filtered.map((car) => (
+                  <Link
+                    key={car.id}
+                    href={`/cars/${encodeURIComponent(car.slug)}`}
+                  >
+                    <GlassCard
+                      as="article"
+                      padding="md"
+                      interactive
+                      className="h-full bg-white/90"
                     >
-                      {/* 画像エリア */}
-                      <div className="relative h-48 w-full overflow-hidden sm:h-56 md:flex-1">
-                        {/* ホバー時のオーバーレイ効果 */}
-                        <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-40" />
-                        
-                        {car.heroImage |
-
-| car.mainImage? (
-                          <Image
-                            src={car.heroImage |
-
-| car.mainImage |
-| ""}
-                            alt={car.name}
-                            fill
-                            className="object-cover transition-transform duration-700 will-change-transform group-hover:scale-105"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          />
-                        ) : (
-                          <div className="flex h-full w-full items-center justify-center bg-slate-100 text-slate-400">
-                            <span className="text-[10px] tracking-widest">NO IMAGE</span>
+                      <div className="flex h-full flex-col gap-3">
+                        {/* サムネイル */}
+                        {(car.heroImage || car.mainImage) && (
+                          <div className="overflow-hidden rounded-2xl border border-slate-100">
+                            <img
+                              src={
+                                car.heroImage ||
+                                car.mainImage ||
+                                ""
+                              }
+                              alt={car.name}
+                              className="h-40 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
                           </div>
                         )}
 
-                        {/* フローティングバッジ */}
-                        <div className="absolute top-3 right-3 z-20 flex gap-1">
+                        <div className="space-y-1">
+                          <p className="text-[10px] font-semibold tracking-[0.24em] text-tiffany-600">
+                            {car.maker}
+                          </p>
+                          <h3 className="text-sm font-semibold leading-relaxed text-slate-900">
+                            {car.name}
+                          </h3>
+                          {car.summary && (
+                            <p className="text-[11px] leading-relaxed text-text-sub line-clamp-3">
+                              {car.summary}
+                            </p>
+                          )}
+                        </div>
+
+                        <div className="mt-auto flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                          {car.segment && (
+                            <span className="rounded-full bg-slate-50 px-2 py-1">
+                              {car.segment}
+                            </span>
+                          )}
+                          {car.bodyType && (
+                            <span className="rounded-full bg-slate-50 px-2 py-1">
+                              {car.bodyType}
+                            </span>
+                          )}
                           {car.difficulty && (
-                            <span className={`rounded-full px-2 py-1 text-[9px] font-bold tracking-wider text-white backdrop-blur-md ${
-                              car.difficulty === 'advanced'? 'bg-rose-500/80' : 'bg-slate-900/50'
-                            }`}>
-                              {car.difficulty.toUpperCase()}
+                            <span className="rounded-full bg-slate-50 px-2 py-1">
+                              維持難易度:{" "}
+                              {mapDifficultyLabel(car.difficulty)}
                             </span>
                           )}
                         </div>
                       </div>
-
-                      {/* コンテンツエリア */}
-                      <div className="flex flex-col p-5">
-                        <div className="mb-2 flex items-center gap-2 text-[10px] font-bold tracking-widest text-tiffany-600">
-                          <span>{car.maker}</span>
-                          <span className="h-0.5 w-0.5 rounded-full bg-slate-300" />
-                          <span>{car.releaseYear}</span>
-                        </div>
-                        
-                        <h3 className="serif-heading mb-2 text-lg font-medium text-slate-900 transition-colors group-hover:text-tiffany-600">
-                          {car.name}
-                        </h3>
-                        
-                        <p className="line-clamp-2 text-xs leading-relaxed text-slate-500">
-                          {car.summary}
-                        </p>
-
-                        <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
-                          <div className="flex gap-2">
-                             {car.tags?.slice(0, 2).map(tag => (
-                               <span key={tag} className="text-[9px] text-slate-400">#{tag}</span>
-                             ))}
-                          </div>
-                          <span className="flex items-center text-[10px] font-bold tracking-widest text-slate-900 transition-transform group-hover:translate-x-1">
-                            VIEW DETAILS →
-                          </span>
-                        </div>
-                      </div>
                     </GlassCard>
                   </Link>
-                </Reveal>
-              ))}
-            </div>
-          )}
-        </section>
+                ))}
+              </div>
+            )}
+          </section>
+        </Reveal>
       </div>
     </main>
-  );
-}
-
-// フィルター用セレクトボックスコンポーネント
-function FilterSelect({ label, name, options, current }: { label: string, name: string, options: string, current: string }) {
-  return (
-    <div>
-      <label className="mb-1 block text-[9px] font-bold tracking-[0.2em] text-slate-400">
-        {label}
-      </label>
-      <select
-        name={name}
-        defaultValue={current}
-        className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-2 py-2.5 text-xs text-slate-800 outline-none transition focus:border-tiffany-400 focus:bg-white"
-      >
-        <option value="">ALL</option>
-        {options.map((opt) => (
-          <option key={opt} value={opt}>{opt}</option>
-        ))}
-      </select>
-    </div>
   );
 }
