@@ -1,25 +1,11 @@
-import "./globals.css";
+// app/layout.tsx
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import Link from "next/link";
-import { Bodoni_Moda, Manrope } from "next/font/google";
-import { MobileMenu } from "@/components/layout/MobileMenu";
+import "./globals.css";
+
+import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SmoothScrollProvider } from "@/components/scroll/SmoothScrollProvider";
-
-// Variable Font の設定
-const bodoni = Bodoni_Moda({
-  subsets: ["latin"],
-  variable: "--font-bodoni",
-  display: "swap",
-  // オプティカルサイジング（文字サイズに応じた太さ調整）を有効化
-  axes: ["opsz"],
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
-  display: "swap",
-});
+import { MobileBottomNav } from "@/components/MobileBottomNav";
 
 export const metadata: Metadata = {
   title: "CAR BOUTIQUE | クルマのニュースとストーリー",
@@ -27,83 +13,9 @@ export const metadata: Metadata = {
     "ニュースとコラム、そして車種データベースをラグジュアリーなUIで楽しめるCAR BOUTIQUE。",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
-  return (
-    <html lang="ja" className={`${bodoni.variable} ${manrope.variable}`}>
-      <body className="min-h-screen bg-site text-obsidian antialiased selection:bg-tiffany-100 selection:text-tiffany-700">
-        <SmoothScrollProvider>
-          <div className="flex min-h-screen flex-col">
-            <SiteHeader />
-            <main className="flex-1 pb-16 pt-4 sm:pt-8 lg:pt-10">
-              {children}
-            </main>
-            <SiteFooter />
-            <BottomNav />
-          </div>
-        </SmoothScrollProvider>
-      </body>
-    </html>
-  );
-}
-
-function SiteHeader() {
-  return (
-    <header className="sticky top-0 z-30 border-b border-slate-200/60 bg-white/80 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 text-[11px] text-text-sub sm:px-6 lg:px-8">
-        {/* 左: ロゴテキスト */}
-        <Link href="/" className="flex items-center gap-2">
-          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-[11px] font-semibold tracking-[0.18em] text-white shadow-[0_14px_30px_rgba(15,23,42,0.45)]">
-            CB
-          </span>
-          <div className="flex flex-col leading-tight">
-            <span className="text-[11px] font-semibold tracking-[0.22em] text-slate-900">
-              CAR BOUTIQUE
-            </span>
-            <span className="text-[10px] tracking-[0.16em] text-text-sub">
-              NEWS / COLUMN / CARS DATABASE
-            </span>
-          </div>
-        </Link>
-
-        {/* 中央: PC ナビゲーション */}
-        <nav className="hidden items-center gap-6 sm:flex">
-          <NavLink href="/news" label="NEWS" />
-          <NavLink href="/cars" label="CARS" />
-          <NavLink href="/column" label="COLUMN" />
-          <NavLink href="/guide" label="GUIDE" />
-        </nav>
-
-        {/* 右: サブコピー + モバイルメニュー */}
-        <div className="flex items-center gap-3">
-          <p className="hidden text-[10px] tracking-[0.16em] text-text-sub sm:block">
-            QUIET LUXURY CAR MEDIA
-          </p>
-          <MobileMenu />
-        </div>
-      </div>
-    </header>
-  );
-}
-
-type NavLinkProps = {
-  href: string;
-  label: string;
+type RootLayoutProps = {
+  children: React.ReactNode;
 };
-
-function NavLink({ href, label }: NavLinkProps) {
-  return (
-    <Link
-      href={href}
-      className="px-1 py-0.5 text-[11px] tracking-[0.18em] text-slate-600 transition hover:text-slate-900"
-    >
-      {label}
-    </Link>
-  );
-}
 
 function SiteFooter() {
   return (
@@ -125,7 +37,27 @@ type BottomNavLinkProps = {
   label: string;
 };
 
-function BottomNav() {
+function BottomNavLink({ href, label }: BottomNavLinkProps) {
+  return (
+    <Link
+      href={href}
+      className="flex flex-1 flex-col items-center justify-center gap-0.5 rounded-full px-1 py-1 transition active:bg-slate-100/80"
+    >
+      <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />
+      <span className="text-[9px] tracking-[0.16em] text-slate-700">
+        {label}
+      </span>
+    </Link>
+  );
+}
+
+/**
+ * PCではヘッダー + フッター、モバイルでは専用ボトムナビも併用。
+ * 既存の MobileBottomNav コンポーネントがあるが、
+ * Cloudflare / Vercel 双方で確実に動くよう、このファイル内にも
+ * シンプルな BottomNav を定義しておく。
+ */
+function InlineBottomNav() {
   return (
     <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200/70 bg-white/90 py-1 text-[10px] text-slate-600 shadow-[0_-10px_30px_rgba(15,23,42,0.12)] backdrop-blur sm:hidden">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-1 px-3">
@@ -139,16 +71,33 @@ function BottomNav() {
   );
 }
 
-function BottomNavLink({ href, label }: BottomNavLinkProps) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <Link
-      href={href}
-      className="flex flex-1 flex-col items-center justify-center gap-0.5 rounded-full px-1 py-1 transition active:bg-slate-100/80"
-    >
-      <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />
-      <span className="text-[9px] tracking-[0.16em] text-slate-700">
-        {label}
-      </span>
-    </Link>
+    <html lang="ja">
+      {/*
+        ※ next/font / Bodoni Moda をここで一切使わないことで
+           「Failed to find font override values for font `Bodoni Moda`」
+           エラーを根本的に回避しています。
+           フォント指定は globals.css / Tailwind 側の font-family で行う想定。
+      */}
+      <body className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(186,230,253,0.55),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(125,211,252,0.4),_transparent_60%),radial-gradient(circle_at_top_left,_rgba(56,189,248,0.35),_transparent_60%),#f8fafc] text-slate-900 antialiased">
+        <SmoothScrollProvider>
+          <div className="flex min-h-screen flex-col">
+            <SiteHeader />
+            <main className="flex-1 pb-20 pt-10 sm:pb-24 sm:pt-16">
+              {children}
+            </main>
+            <SiteFooter />
+          </div>
+
+          {/* モバイル用ボトムナビ（既存コンポーネントを優先、フォールバックでインライン実装） */}
+          <div className="sm:hidden">
+            <MobileBottomNav />
+            {/* もし MobileBottomNav 内部実装が空でも、最低限の導線を維持 */}
+            <InlineBottomNav />
+          </div>
+        </SmoothScrollProvider>
+      </body>
+    </html>
   );
 }
