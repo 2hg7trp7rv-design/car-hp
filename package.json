@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "pages:build": "next-on-pages"
   },
   "dependencies": {
     "next": "14.2.3",
@@ -16,6 +17,7 @@
     "@studio-freight/lenis": "1.0.0"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "1.13.16",
     "@types/node": "20.16.5",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.1",
