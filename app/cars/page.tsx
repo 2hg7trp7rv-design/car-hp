@@ -29,13 +29,14 @@ function normalize(value: string | undefined | null): string {
   return (value ?? "").trim().toLowerCase();
 }
 
+// ★ CarDifficulty = "basic" | "intermediate" | "advanced" に合わせる
 function mapDifficultyLabel(
   difficulty: CarItem["difficulty"] | undefined,
 ): string {
   switch (difficulty) {
-    case "easy":
+    case "basic":
       return "やさしい";
-    case "normal":
+    case "intermediate":
       return "標準的";
     case "advanced":
       return "気を使う";
@@ -56,12 +57,17 @@ export default async function CarsPage({ searchParams }: PageProps) {
   const makers = Array.from(
     new Set(all.map((c) => c.maker).filter(Boolean)),
   ).sort();
+
   const difficulties = Array.from(
-    new Set(all.map((c) => c.difficulty).filter(Boolean)),
-  ).sort();
+    new Set(
+      all.map((c) => c.difficulty).filter(Boolean),
+    ),
+  ) as CarItem["difficulty"][];
+
   const bodyTypes = Array.from(
     new Set(all.map((c) => c.bodyType).filter(Boolean)),
   ).sort();
+
   const segments = Array.from(
     new Set(all.map((c) => c.segment).filter(Boolean)),
   ).sort();
@@ -81,8 +87,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
     }
 
     if (makerFilter && car.maker !== makerFilter) return false;
-    if (difficultyFilter && car.difficulty !== difficultyFilter)
-      return false;
+    if (difficultyFilter && car.difficulty !== difficultyFilter) return false;
     if (bodyTypeFilter && car.bodyType !== bodyTypeFilter) return false;
     if (segmentFilter && car.segment !== segmentFilter) return false;
 
@@ -171,8 +176,8 @@ export default async function CarsPage({ searchParams }: PageProps) {
                   >
                     <option value="">すべて</option>
                     {difficulties.map((d) => (
-                      <option key={d} value={d}>
-                        {mapDifficultyLabel(d as CarItem["difficulty"])}
+                      <option key={d} value={d ?? ""}>
+                        {mapDifficultyLabel(d)}
                       </option>
                     ))}
                   </select>
@@ -264,12 +269,12 @@ export default async function CarsPage({ searchParams }: PageProps) {
                     >
                       <div className="flex h-full flex-col gap-3">
                         {/* サムネイル */}
-                        {(car.heroImage || car.mainImage) && (
+                        {(car.heroImage || (car as any).mainImage) && (
                           <div className="overflow-hidden rounded-2xl border border-slate-100">
                             <img
                               src={
                                 car.heroImage ||
-                                car.mainImage ||
+                                (car as any).mainImage ||
                                 ""
                               }
                               alt={car.name}
@@ -303,12 +308,9 @@ export default async function CarsPage({ searchParams }: PageProps) {
                               {car.bodyType}
                             </span>
                           )}
-                          {car.difficulty && (
-                            <span className="rounded-full bg-slate-50 px-2 py-1">
-                              維持難易度:{" "}
-                              {mapDifficultyLabel(car.difficulty)}
-                            </span>
-                          )}
+                          <span className="rounded-full bg-slate-50 px-2 py-1">
+                            維持難易度: {mapDifficultyLabel(car.difficulty)}
+                          </span>
                         </div>
                       </div>
                     </GlassCard>
