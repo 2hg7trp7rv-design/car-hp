@@ -7,6 +7,8 @@ import {
   getAllColumns,
   type ColumnItem,
 } from "@/lib/columns";
+import { GlassCard } from "@/components/GlassCard";
+import { Reveal } from "@/components/animation/Reveal";
 import ColumnReaderShell from "./reader-shell";
 
 export const runtime = "edge";
@@ -15,7 +17,9 @@ type Props = {
   params: { slug: string };
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: Props): Promise<Metadata> {
   const item = await getColumnBySlug(params.slug);
 
   if (!item) {
@@ -66,6 +70,8 @@ function mapCategoryLabel(category: ColumnItem["category"]): string {
       return "メンテナンスとトラブルの裏側";
     case "TECHNICAL":
       return "技術・歴史・ブランドの物語";
+    case "LIFESTYLE":
+      return "カーライフと日常のこと";
     default:
       return "コラム";
   }
@@ -105,69 +111,83 @@ export default async function ColumnDetailPage({ params }: Props) {
 
   return (
     <>
+      {/* 本文は専用のリーダーシェルに委譲 */}
       <ColumnReaderShell item={item} />
 
+      {/* RELATED COLUMN */}
       {related.length > 0 && (
         <section className="mx-auto max-w-6xl px-4 pb-8 pt-4 sm:px-6 lg:px-8">
-          <div className="mb-3 flex items-baseline justify-between gap-2">
-            <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
-              RELATED COLUMN
-            </h2>
-            <Link
-              href="/column"
-              className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
-            >
-              すべてのコラム一覧へ
-            </Link>
-          </div>
+          <Reveal>
+            <div className="mb-3 flex items-baseline justify-between gap-2">
+              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
+                RELATED COLUMN
+              </h2>
+              <Link
+                href="/column"
+                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+              >
+                すべてのコラム一覧へ
+              </Link>
+            </div>
+          </Reveal>
 
           <div className="grid gap-4 md:grid-cols-2">
             {related.map((col) => (
-              <Link key={col.id} href={`/column/${col.slug}`}>
-                <article className="rounded-3xl border border-white/80 bg-white/90 p-4 text-xs shadow-sm transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
-                  <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
-                    <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-                      {mapCategoryLabel(col.category)}
-                    </span>
-                    {col.readMinutes && (
+              <Reveal key={col.id}>
+                <Link
+                  href={`/column/${encodeURIComponent(col.slug)}`}
+                  className="block h-full"
+                >
+                  <GlassCard
+                    as="article"
+                    padding="md"
+                    interactive
+                    className="h-full bg-white/90"
+                  >
+                    <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
                       <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-                        約{col.readMinutes}分
+                        {mapCategoryLabel(col.category)}
                       </span>
-                    )}
-                    {col.publishedAt && (
-                      <span className="ml-auto text-[10px] text-slate-400">
-                        {formatDate(col.publishedAt)}
-                      </span>
-                    )}
-                  </div>
-
-                  <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
-                    {col.title}
-                  </h3>
-
-                  <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
-                    {col.summary}
-                  </p>
-
-                  {col.tags && col.tags.length > 0 && (
-                    <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-slate-500">
-                      {col.tags.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full bg-slate-50 px-2 py-1"
-                        >
-                          {tag}
+                      {col.readMinutes && (
+                        <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                          約{col.readMinutes}分
                         </span>
-                      ))}
-                      {col.tags.length > 3 && (
-                        <span className="rounded-full bg-slate-50 px-2 py-1">
-                          +{col.tags.length - 3}
+                      )}
+                      {col.publishedAt && (
+                        <span className="ml-auto text-[10px] text-slate-400">
+                          {formatDate(col.publishedAt)}
                         </span>
                       )}
                     </div>
-                  )}
-                </article>
-              </Link>
+
+                    <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
+                      {col.title}
+                    </h3>
+
+                    <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
+                      {col.summary}
+                    </p>
+
+                    {col.tags && col.tags.length > 0 && (
+                      <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-slate-500">
+                        {col.tags.slice(0, 3).map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-full bg-slate-50 px-2 py-1"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                        {col.tags.length > 3 && (
+                          <span className="rounded-full bg-slate-50 px-2 py-1">
+                            +{col.tags.length - 3}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </GlassCard>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </section>
