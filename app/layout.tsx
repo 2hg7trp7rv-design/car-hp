@@ -1,20 +1,53 @@
 // app/layout.tsx
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import "./globals.css";
+
+import { Manrope, Bodoni_Moda } from "next/font/google";
 
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SmoothScrollProvider } from "@/components/scroll/SmoothScrollProvider";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 
+// ---- フォント設定（next/font） ----
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap",
+});
+
+const bodoni = Bodoni_Moda({
+  subsets: ["latin"],
+  variable: "--font-bodoni",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "CAR BOUTIQUE | クルマのニュースとストーリー",
+  title: {
+    default: "CAR BOUTIQUE | クルマのニュースとストーリー",
+    template: "%s | CAR BOUTIQUE",
+  },
   description:
     "ニュースとコラム、そして車種データベースをラグジュアリーなUIで楽しめるCAR BOUTIQUE。",
+  metadataBase: new URL("https://car-hp.vercel.app"),
+  openGraph: {
+    title: "CAR BOUTIQUE | クルマのニュースとストーリー",
+    description:
+      "ニュースとコラム、そして車種データベースをラグジュアリーなUIで楽しめるCAR BOUTIQUE。",
+    type: "website",
+    url: "https://car-hp.vercel.app",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CAR BOUTIQUE | クルマのニュースとストーリー",
+    description:
+      "ニュースとコラム、そして車種データベースをラグジュアリーなUIで楽しめるCAR BOUTIQUE。",
+  },
 };
 
 type RootLayoutProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 function SiteFooter() {
@@ -54,8 +87,7 @@ function BottomNavLink({ href, label }: BottomNavLinkProps) {
 /**
  * PCではヘッダー + フッター、モバイルでは専用ボトムナビも併用。
  * 既存の MobileBottomNav コンポーネントがあるが、
- * Cloudflare / Vercel 双方で確実に動くよう、このファイル内にも
- * シンプルな BottomNav を定義しておく。
+ * 万一中身が空でも最低限の導線を維持するためのフォールバックナビ。
  */
 function InlineBottomNav() {
   return (
@@ -73,12 +105,14 @@ function InlineBottomNav() {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="ja">
-      {/*
-        ※ next/font / Bodoni Moda をここで一切使わないことで
-           「Failed to find font override values for font `Bodoni Moda`」
-           エラーを根本的に回避しています。
-           フォント指定は globals.css / Tailwind 側の font-family で行う想定。
+    <html
+      lang="ja"
+      className={`${manrope.variable} ${bodoni.variable}`}
+    >
+      {/* 
+        Manrope / Bodoni Moda を CSS 変数として付与。
+        Tailwind 側で var(--font-manrope), var(--font-bodoni) を
+        font-family にマップして使う前提。
       */}
       <body className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(186,230,253,0.55),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(125,211,252,0.4),_transparent_60%),radial-gradient(circle_at_top_left,_rgba(56,189,248,0.35),_transparent_60%),#f8fafc] text-slate-900 antialiased">
         <SmoothScrollProvider>
@@ -90,10 +124,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <SiteFooter />
           </div>
 
-          {/* モバイル用ボトムナビ（既存コンポーネントを優先、フォールバックでインライン実装） */}
+          {/* モバイル用ボトムナビ（既存 + フォールバック） */}
           <div className="sm:hidden">
             <MobileBottomNav />
-            {/* もし MobileBottomNav 内部実装が空でも、最低限の導線を維持 */}
             <InlineBottomNav />
           </div>
         </SmoothScrollProvider>
