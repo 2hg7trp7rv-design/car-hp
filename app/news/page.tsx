@@ -8,8 +8,9 @@ import { GlassCard } from "@/components/GlassCard";
 export const runtime = "edge";
 
 export const metadata: Metadata = {
-  title: "NEWS | Automotive Journal",
-  description: "編集部が厳選した自動車ニュースのキュレーション。要約と視点を添えて。",
+  title: "NEWS | CAR BOUTIQUE",
+  description:
+    "編集部が厳選した自動車ニュースのキュレーション。要約と視点を添えてお届けします。",
 };
 
 type Props = {
@@ -17,166 +18,295 @@ type Props = {
     q?: string;
     category?: string;
     maker?: string;
+    tag?: string;
   };
 };
 
-function normalizeText(value: string | undefined | null): string {
-  return (value?? "").trim().toLowerCase();
+function formatDate(iso?: string | null): string {
+  if (!iso) return "";
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
+function filterNews(
+  items: NewsItem[],
+  {
+    q,
+    category,
+    maker,
+    tag,
+  }: {
+    q?: string;
+    category?: string;
+    maker?: string;
+    tag?: string;
+  },
+): NewsItem[] {
+  const keyword = (q ?? "").trim().toLowerCase();
+  const categoryFilter = (category ?? "").trim();
+  const makerFilter = (maker ?? "").trim();
+  const tagFilter = (tag ?? "").trim();
+
+  return items.filter((item) => {
+    if (keyword) {
+      const haystack = [
+        item.title,
+        item.titleJa,
+        item.excerpt,
+        item.sourceName,
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      if (!haystack.includes(keyword)) return false;
+    }
+
+    if (categoryFilter && item.category !== categoryFilter) {
+      return false;
+    }
+
+    if (makerFilter && item.maker !== makerFilter) {
+      return false;
+    }
+
+    if (tagFilter) {
+      const tags = item.tags ?? [];
+      if (!tags.includes(tagFilter)) {
+        return false;
+      }
+    }
+
+    return true;
+  });
 }
 
 export default async function NewsPage({ searchParams }: Props) {
-  const q = normalizeText(searchParams?.q);
-  const categoryFilter = (searchParams?.category?? "").trim();
-  const makerFilter = (searchParams?.maker?? "").trim();
+  const q = searchParams?.q ?? "";
+  const category = searchParams?.category ?? "";
+  const maker = searchParams?.maker ?? "";
+  const tag = searchParams?.tag ?? "";
 
-  // ニュースデータの取得（件数は多めに取得してフィルタリング）
   const items = await getLatestNews(80);
 
-  // フィルタリングロジック
-  const filtered = items.filter((item) => {
-    if (q) {
-      const haystack = `${item.title} ${item.titleJa?? ""} ${item.excerpt?? ""} ${item.maker?? ""}`.toLowerCase();
-      if (!haystack.includes(q)) return false;
-    }
-    if (categoryFilter && item.category!== categoryFilter) return false;
-    if (makerFilter && item.maker!== makerFilter) return false;
-    return true;
+  const categories = Array.from(
+    new Set(items.map((i) => i.category).filter(Boolean)),
+  ) as string[];
+
+  const makers = Array.from(
+    new Set(items.map((i) => i.maker).filter(Boolean)),
+  ) as string[];
+
+  const tags = Array.from(
+    new Set(
+      items.flatMap((i) => (i.tags && i.tags.length > 0 ? i.tags : [])),
+    ),
+  );
+
+  const filtered = filterNews(items, {
+    q,
+    category,
+    maker,
+    tag,
   });
 
-  // フィルター用の一意な値リスト抽出
-  const categories = Array.from(new Set(items.map((i) => i.category).filter(Boolean))) as string;
-  const makers = Array.from(new Set(items.map((i) => i.maker).filter(Boolean))) as string;
-
-  // 最初の1件をHero、残りをリスト表示用に分割
-  const heroNews = filtered;
-  const feedNews = filtered.slice(1);
-
   return (
-    <main className="min-h-screen bg-site text-slate-900 pb-24 pt-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        
-        {/* ヘッダー & フィルターエリア */}
-        <header className="mb-12 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <div className="space-y-4">
-             <Reveal>
-               <p className="text-[10px] uppercase tracking-[0.32em] text-tiffany-600">
-                 The Journal
-               </p>
-             </Reveal>
-             <Reveal delay={80}>
-               <h1 className="serif-heading text-4xl text-slate-900 md:text-5xl">
-                 Latest <span className="italic text-slate-400">Dispatch</span>
-               </h1>
-             </Reveal>
+    <div className="mx-auto max-w-6xl px-4 pb-16 pt-6 sm:px-6 lg:px-8">
+      <Reveal>
+        <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+              CURATED NEWS
+            </p>
+            <h1 className="mt-1 text-2xl font-semibold tracking-[0.08em] text-slate-900 sm:text-3xl">
+              今日チェックしておきたいクルマのニュース
+            </h1>
+            <p className="mt-2 max-w-2xl text-xs leading-relaxed text-slate-500">
+              OEMのリリース情報から業界動向、EVやスポーツモデルのトピックまで、
+              編集部が日本語で追いやすい形に整えたニュースダイジェストです。
+            </p>
           </div>
+          <div className="flex flex-col gap-2 text-[10px] text-slate-500">
+            <p className="tracking-[0.18em]">
+              TOTAL{" "}
+              <span className="font-semibold text-slate-900">
+                {items.length}
+              </span>{" "}
+              ARTICLES
+            </p>
+            {filtered.length !== items.length && (
+              <p className="tracking-[0.18em]">
+                FILTERED{" "}
+                <span className="font-semibold text-tiffany-600">
+                  {filtered.length}
+                </span>
+              </p>
+            )}
+          </div>
+        </div>
+      </Reveal>
 
-          <Reveal delay={150} className="w-full lg:w-auto">
-             <form className="flex flex-col gap-2 sm:flex-row">
-                {/* 検索入力 */}
-                <input 
-                  name="q" 
-                  placeholder="見出しを検索..." 
-                  defaultValue={searchParams?.q}
-                  className="rounded-full border border-slate-200 bg-white/60 px-4 py-2 text-xs outline-none focus:border-tiffany-400 focus:bg-white"
-                />
-                {/* カテゴリ選択 */}
-                <select name="category" defaultValue={categoryFilter} className="rounded-full border border-slate-200 bg-white/60 px-4 py-2 text-xs outline-none">
-                   <option value="">全てのカテゴリ</option>
-                   {categories.map(c => <option key={c} value={c}>{c}</option>)}
-                </select>
-                {/* 送信ボタン */}
-                <button type="submit" className="rounded-full bg-slate-900 px-6 py-2 text-[10px] font-bold tracking-widest text-white transition-colors hover:bg-tiffany-600">
-                  FILTER
-                </button>
-             </form>
+      {/* フィルターエリア */}
+      <Reveal>
+        <GlassCard className="mb-6 flex flex-col gap-4 border border-slate-200/70 bg-white/80 px-4 py-3 text-[11px] shadow-sm sm:flex-row sm:items-center sm:justify-between sm:px-5 sm:py-3.5">
+          <div className="flex-1">
+            <form className="flex items-center gap-2">
+              <input
+                type="text"
+                name="q"
+                defaultValue={q}
+                placeholder="キーワード検索（車名・媒体名など）"
+                className="w-full rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-[11px] tracking-[0.05em] text-slate-800 placeholder:text-slate-300 focus:border-tiffany-400 focus:outline-none focus:ring-1 focus:ring-tiffany-300"
+              />
+            </form>
+          </div>
+          <div className="flex flex-wrap gap-2 sm:justify-end">
+            <FilterSelect
+              name="category"
+              label="CATEGORY"
+              value={category}
+              options={categories}
+            />
+            <FilterSelect
+              name="maker"
+              label="MAKER"
+              value={maker}
+              options={makers}
+            />
+            <FilterSelect
+              name="tag"
+              label="TAG"
+              value={tag}
+              options={tags}
+            />
+          </div>
+        </GlassCard>
+      </Reveal>
+
+      {/* ニュース一覧 */}
+      <div className="space-y-3">
+        {filtered.map((item) => (
+          <Reveal key={item.id}>
+            <NewsListItem item={item} />
           </Reveal>
-        </header>
+        ))}
 
-        {filtered.length === 0? (
-           <div className="py-20 text-center text-sm text-slate-500">記事が見つかりませんでした。</div>
-        ) : (
-          <>
-            {/* HERO NEWS ITEM (1件目) */}
-            <Reveal className="mb-12">
-               <Link href={`/news/${encodeURIComponent(heroNews.id)}`}>
-                 <GlassCard padding="lg" interactive className="group relative overflow-hidden bg-white">
-                    {/* 背景装飾 */}
-                    <div className="absolute right-0 top-0 p-6 opacity-10">
-                       <span className="serif-heading text-9xl text-slate-900">01</span>
-                    </div>
-                    
-                    <div className="relative z-10 flex flex-col gap-6 md:flex-row">
-                       <div className="space-y-4 md:w-3/4">
-                          <div className="flex items-center gap-3">
-                             <span className="rounded-full bg-tiffany-50 px-2 py-1 text-[9px] font-bold tracking-widest text-tiffany-600">
-                               {heroNews.category |
-
-| "HEADLINE"}
-                             </span>
-                             <span className="text-[10px] text-slate-400">{heroNews.publishedAt?.split('T')}</span>
-                          </div>
-                          
-                          <h2 className="serif-heading text-2xl text-slate-900 transition-colors group-hover:text-tiffany-600 md:text-3xl">
-                             {heroNews.titleJa |
-
-| heroNews.title}
-                          </h2>
-                          
-                          <p className="max-w-2xl text-sm leading-relaxed text-slate-600">
-                             {heroNews.excerpt |
-
-| "記事の詳細を読むにはクリックしてください。"}
-                          </p>
-                          
-                          <div className="flex items-center gap-2 text-[10px] font-bold tracking-widest text-slate-900 transition-transform group-hover:translate-x-2">
-                             READ ARTICLE →
-                          </div>
-                       </div>
-                    </div>
-                 </GlassCard>
-               </Link>
-            </Reveal>
-
-            {/* FEED LIST (Staggered Animation - 2件目以降) */}
-            <div className="space-y-4">
-               {feedNews.map((item, index) => (
-                 <Reveal key={item.id} delay={index * 50}>
-                   <NewsListItem item={item} />
-                 </Reveal>
-               ))}
-            </div>
-          </>
+        {filtered.length === 0 && (
+          <Reveal>
+            <GlassCard className="mt-8 border border-dashed border-slate-300 bg-white/70 px-4 py-6 text-center text-xs text-slate-500">
+              条件に一致するニュースが見つかりませんでした。
+              フィルター条件を変更して再度お試しください。
+            </GlassCard>
+          </Reveal>
         )}
       </div>
-    </main>
+    </div>
   );
 }
 
-// リストアイテム用サブコンポーネント
-function NewsListItem({ item }: { item: NewsItem }) {
-  return (
-    <Link href={`/news/${encodeURIComponent(item.id)}`}>
-      <article className="group flex items-center justify-between rounded-xl border border-transparent bg-white/60 p-5 transition hover:border-slate-200 hover:bg-white hover:shadow-soft-card">
-         <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2 text-[9px] font-bold tracking-widest text-slate-400">
-               {item.maker && <span className="text-tiffany-600">{item.maker}</span>}
-               <span>/</span>
-               <span>{item.publishedAt?.split('T')}</span>
-            </div>
-            <h3 className="font-serif text-lg text-slate-800 transition-colors group-hover:text-tiffany-600">
-               {item.titleJa |
+type FilterSelectProps = {
+  name: string;
+  label: string;
+  value: string;
+  options: string[];
+};
 
-| item.title}
-            </h3>
-            {item.excerpt && (
-               <p className="line-clamp-1 text-xs text-slate-500 md:hidden">
-                  {item.excerpt}
-               </p>
+function FilterSelect({
+  name,
+  label,
+  value,
+  options,
+}: FilterSelectProps) {
+  if (options.length === 0) return null;
+
+  return (
+    <label className="flex items-center gap-1 rounded-full bg-slate-50 px-3 py-1">
+      <span className="text-[9px] font-semibold tracking-[0.18em] text-slate-400">
+        {label}
+      </span>
+      <select
+        name={name}
+        defaultValue={value}
+        className="bg-transparent text-[10px] tracking-[0.08em] text-slate-800 focus:outline-none"
+      >
+        <option value="">ALL</option>
+        {options.map((opt) => (
+          <option key={opt} value={opt}>
+            {opt}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
+type NewsListItemProps = {
+  item: NewsItem;
+};
+
+function NewsListItem({ item }: NewsListItemProps) {
+  const title = item.titleJa ?? item.title;
+  const dateLabel =
+    item.publishedAtJa ?? formatDate(item.publishedAt ?? item.createdAt);
+
+  return (
+    <Link
+      href={`/news/${encodeURIComponent(item.id)}`}
+      className="block"
+    >
+      <article className="group flex items-stretch gap-3 rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-3 text-[11px] shadow-sm transition hover:-translate-y-[1px] hover:shadow-md sm:px-5 sm:py-3.5">
+        <div className="flex flex-1 flex-col gap-1">
+          <div className="flex items-center gap-2 text-[10px] text-slate-400">
+            {item.sourceName && (
+              <span className="tracking-[0.18em]">
+                {item.sourceName}
+              </span>
             )}
-         </div>
-         <div className="hidden pl-8 text-[10px] font-bold tracking-widest text-slate-300 md:block group-hover:text-tiffany-400">
-            READ
-         </div>
+            {item.maker && (
+              <>
+                <span className="h-[1px] w-4 bg-slate-200" />
+                <span className="tracking-[0.18em]">
+                  {item.maker}
+                </span>
+              </>
+            )}
+            {dateLabel && (
+              <>
+                <span className="h-[1px] w-4 bg-slate-200" />
+                <span className="tracking-[0.16em]">
+                  {dateLabel}
+                </span>
+              </>
+            )}
+          </div>
+          <h2 className="line-clamp-2 text-[13px] font-semibold leading-relaxed tracking-[0.06em] text-slate-900">
+            {title}
+          </h2>
+          {item.excerpt && (
+            <p className="mt-0.5 line-clamp-2 text-[11px] leading-snug text-slate-500">
+              {item.excerpt}
+            </p>
+          )}
+          {item.tags && item.tags.length > 0 && (
+            <div className="mt-1 flex flex-wrap gap-1.5">
+              {item.tags.slice(0, 4).map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[9px] tracking-[0.14em] text-slate-500"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className="hidden items-center pl-4 text-[9px] font-semibold tracking-[0.24em] text-slate-300 transition group-hover:text-tiffany-500 sm:flex">
+          READ
+        </div>
       </article>
     </Link>
   );
