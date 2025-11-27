@@ -1,7 +1,11 @@
 // lib/columns.ts
 import columnsRaw from "@/data/columns.json";
 
-export type ColumnCategory = "OWNER_STORY" | "MAINTENANCE" | "TECHNICAL";
+export type ColumnCategory =
+  | "OWNER_STORY"
+  | "MAINTENANCE"
+  | "TECHNICAL"
+  | "LIFESTYLE";
 
 export type ColumnItem = {
   id: string;
