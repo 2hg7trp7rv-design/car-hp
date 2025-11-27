@@ -21,6 +21,19 @@ type PageProps = {
   params: { slug: string };
 };
 
+/**
+ * CarItem を 04_data-models-types の指針に沿って拡張したローカル型。
+ * lib/cars.ts の実装と段階的に寄せていく前提で、ここでは intersection で扱う。
+ */
+type ExtendedCarItem = CarItem & {
+  mainImage?: string;
+  heroImage?: string;
+  strengths?: string[];
+  weaknesses?: string[];
+  troubleTrends?: string[];
+  costImpression?: string;
+};
+
 export async function generateStaticParams() {
   const cars = await getAllCars();
   return cars.map((car) => ({ slug: car.slug }));
@@ -29,7 +42,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const car = await getCarBySlug(params.slug);
+  const car = (await getCarBySlug(params.slug)) as ExtendedCarItem | null;
 
   if (!car) {
     return {
@@ -68,13 +81,26 @@ function formatNumber(value?: number | null) {
   return value.toLocaleString("ja-JP");
 }
 
-function buildKeywords(car: CarItem): string[] {
-  const tags = car.tags ?? [];
+function formatDate(iso?: string | null): string {
+  if (!iso) return "";
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
+function buildKeywords(car: ExtendedCarItem): string[] {
+  const tags = (car as CarItem & { tags?: string[] }).tags ?? [];
   const nameParts = car.name.split(/\s+/);
   return [car.maker, ...nameParts, ...tags].filter(Boolean);
 }
 
-async function getRelatedCars(current: CarItem): Promise<CarItem[]> {
+async function getRelatedCars(
+  current: ExtendedCarItem,
+): Promise<CarItem[]> {
   const allCars = await getAllCars();
 
   const relatedCars = allCars
@@ -89,7 +115,7 @@ async function getRelatedCars(current: CarItem): Promise<CarItem[]> {
   return relatedCars;
 }
 
-async function getRelatedNewsAndColumns(car: CarItem) {
+async function getRelatedNewsAndColumns(car: ExtendedCarItem) {
   const [news, columns] = await Promise.all([
     getLatestNews(80),
     getAllColumns(),
@@ -111,11 +137,9 @@ async function getRelatedNewsAndColumns(car: CarItem) {
 
   const relatedColumns: ColumnItem[] = columns
     .filter((c) => {
-      const relatedCarSlugs = (c as any).relatedCarSlugs as
-        | string[]
-        | undefined;
-
-      if (relatedCarSlugs && relatedCarSlugs.includes(car.slug)) {
+      // ColumnItem 側の relatedCarSlugs を優先的に利用
+      const relatedCarSlugs = c.relatedCarSlugs ?? [];
+      if (relatedCarSlugs.includes(car.slug)) {
         return true;
       }
 
@@ -130,21 +154,23 @@ async function getRelatedNewsAndColumns(car: CarItem) {
 }
 
 export default async function CarDetailPage({ params }: PageProps) {
-  const car = await getCarBySlug(params.slug);
+  const car = (await getCarBySlug(params.slug)) as ExtendedCarItem | null;
 
   if (!car) {
     notFound();
   }
 
-  // CarItem にはまだ入れてない拡張フィールドは any 経由で読む
-  const strengths = (car as any).strengths as string[] | undefined;
-  const weaknesses = (car as any).weaknesses as string[] | undefined;
-  const troubleTrends = (car as any).troubleTrends as string[] | undefined;
+  const strengths = car.strengths ?? [];
+  const weaknesses = car.weaknesses ?? [];
+  const troubleTrends = car.troubleTrends ?? [];
 
   const [relatedCars, { relatedNews, relatedColumns }] = await Promise.all([
     getRelatedCars(car),
     getRelatedNewsAndColumns(car),
   ]);
+
+  const mainImage =
+    car.mainImage ?? car.heroImage ?? (car as CarItem & { imageUrl?: string }).imageUrl ?? "";
 
   return (
     <main className="min-h-screen bg-site pb-20 pt-10 sm:pb-28 sm:pt-12">
@@ -186,10 +212,8 @@ export default async function CarDetailPage({ params }: PageProps) {
               interactive
               className="relative h-full min-h-[260px] overflow-hidden"
             >
-              {car.heroImage || (car as any).mainImage ? (
-                <CarRotator
-                  imageUrl={(car as any).mainImage ?? car.heroImage ?? ""}
-                />
+              {mainImage ? (
+                <CarRotator imageUrl={mainImage} />
               ) : (
                 <div className="flex h-full items-center justify-center bg-slate-200/60">
                   <span className="text-xs tracking-[0.18em] text-slate-500">
@@ -252,9 +276,11 @@ export default async function CarDetailPage({ params }: PageProps) {
         </section>
 
         {/* 長所 / 短所・トラブル傾向 */}
-        {(strengths || weaknesses || troubleTrends) && (
+        {(strengths.length > 0 ||
+          weaknesses.length > 0 ||
+          troubleTrends.length > 0) && (
           <section className="grid gap-6 md:grid-cols-3">
-            {strengths && strengths.length > 0 && (
+            {strengths.length > 0 && (
               <Reveal>
                 <GlassCard
                   as="section"
@@ -276,7 +302,7 @@ export default async function CarDetailPage({ params }: PageProps) {
               </Reveal>
             )}
 
-            {weaknesses && weaknesses.length > 0 && (
+            {weaknesses.length > 0 && (
               <Reveal>
                 <GlassCard
                   as="section"
@@ -298,7 +324,7 @@ export default async function CarDetailPage({ params }: PageProps) {
               </Reveal>
             )}
 
-            {troubleTrends && troubleTrends.length > 0 && (
+            {troubleTrends.length > 0 && (
               <Reveal>
                 <GlassCard
                   as="section"
@@ -322,7 +348,7 @@ export default async function CarDetailPage({ params }: PageProps) {
           </section>
         )}
 
-        {/* 比較スライダー（ダミー） */}
+        {/* 比較スライダー（プレースホルダー） */}
         <section>
           <Reveal>
             <GlassCard
@@ -343,12 +369,8 @@ export default async function CarDetailPage({ params }: PageProps) {
                 </div>
                 <div className="flex-1">
                   <CompareSlider
-                    leftImage={
-                      (car as any).mainImage ?? car.heroImage ?? ""
-                    }
-                    rightImage={
-                      (car as any).mainImage ?? car.heroImage ?? ""
-                    }
+                    leftImage={mainImage}
+                    rightImage={mainImage}
                     leftAlt={`${car.name} (before)`}
                     rightAlt={`${car.name} (after)`}
                   />
@@ -390,7 +412,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                           <h3 className="text-[12px] font-semibold text-slate-900">
                             {rc.name}
                           </h3>
-                          <p className="mt-1 text-[11px] text-slate-500 line-clamp-2">
+                          <p className="mt-1 line-clamp-2 text-[11px] text-slate-500">
                             {rc.summary}
                           </p>
                         </div>
@@ -417,30 +439,37 @@ export default async function CarDetailPage({ params }: PageProps) {
                     この車種に紐づくニュースはまだ登録されていません。
                   </p>
                 )}
-                {relatedNews.map((item) => (
-                  <Reveal key={item.id}>
-                    <Link
-                      href={`/news/${encodeURIComponent(item.id)}`}
-                      className="block"
-                    >
-                      <article className="group rounded-xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-[11px] shadow-sm transition hover:-translate-y-[1px] hover:shadow-md">
-                        <p className="line-clamp-2 font-medium tracking-[0.06em] text-slate-900">
-                          {item.titleJa ?? item.title}
-                        </p>
-                        <div className="mt-1 flex flex-wrap items-center gap-2 text-[10px] text-slate-400">
-                          {item.sourceName && (
-                            <span className="tracking-[0.16em]">
-                              {item.sourceName}
-                            </span>
-                          )}
-                          {item.publishedAtJa && (
-                            <span>{item.publishedAtJa}</span>
-                          )}
-                        </div>
-                      </article>
-                    </Link>
-                  </Reveal>
-                ))}
+                {relatedNews.map((item) => {
+                  const dateLabel =
+                    item.publishedAtJa ??
+                    formatDate(item.publishedAt ?? item.createdAt);
+                  return (
+                    <Reveal key={item.id}>
+                      <Link
+                        href={`/news/${encodeURIComponent(item.id)}`}
+                        className="block"
+                      >
+                        <article className="group rounded-xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-[11px] shadow-sm transition hover:-translate-y-[1px] hover:shadow-md">
+                          <p className="line-clamp-2 font-medium tracking-[0.06em] text-slate-900">
+                            {item.titleJa ?? item.title}
+                          </p>
+                          <div className="mt-1 flex flex-wrap items-center gap-2 text-[10px] text-slate-400">
+                            {item.sourceName && (
+                              <span className="tracking-[0.16em]">
+                                {item.sourceName}
+                              </span>
+                            )}
+                            {dateLabel && (
+                              <span className="tracking-[0.16em]">
+                                {dateLabel}
+                              </span>
+                            )}
+                          </div>
+                        </article>
+                      </Link>
+                    </Reveal>
+                  );
+                })}
               </div>
             </div>
 
