@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import MobileMenu from "./MobileMenu";
+import { MobileMenu } from "./MobileMenu";
 
 type NavLinkProps = {
   href: string;
@@ -20,7 +20,7 @@ function NavLink({ href, label, current }: NavLinkProps) {
     <Link
       href={href}
       className={`
-        relative rounded-full px-5 py-2 text-[10px] font-bold tracking-[0.16em] transition-all duration-300
+        group relative rounded-full px-5 py-2 text-[10px] font-bold tracking-[0.16em] transition-all duration-300
         ${
           isActive
             ? "text-slate-900"
@@ -43,7 +43,7 @@ function NavLink({ href, label, current }: NavLinkProps) {
   );
 }
 
-export default function SiteHeader() {
+export function SiteHeader() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -151,3 +151,5 @@ export default function SiteHeader() {
     </header>
   );
 }
+
+export default SiteHeader;
