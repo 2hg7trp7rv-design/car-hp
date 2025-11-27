@@ -21,6 +21,7 @@ const bodoni = Bodoni_Moda({
   subsets: ["latin"],
   variable: "--font-bodoni",
   display: "swap",
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
