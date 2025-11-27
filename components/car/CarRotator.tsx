@@ -16,6 +16,8 @@ type CarRotatorProps = {
   images?: string[];
   /** 単一画像のみの利用時（互換用） */
   imageUrl?: string;
+  /** 代替テキスト（なければデフォルト文言を生成） */
+  alt?: string;
   /** Tailwindのアスペクト比クラス (default: aspect-[16/9]) */
   aspectRatio?: string;
   className?: string;
@@ -33,12 +35,14 @@ type CarRotatorProps = {
 export function CarRotator({
   images,
   imageUrl,
+  alt,
   aspectRatio = "aspect-[16/9]",
   className = "",
   autoRotate = false,
 }: CarRotatorProps) {
   // 実際に使うフレーム配列（images 優先・なければ imageUrl 1枚）
-  const frames = images && images.length > 0 ? images : imageUrl ? [imageUrl] : [];
+  const frames =
+    images && images.length > 0 ? images : imageUrl ? [imageUrl] : [];
   const totalFrames = frames.length;
 
   // State Management
@@ -55,6 +59,8 @@ export function CarRotator({
   const isAllLoaded = loadedCount >= totalFrames && totalFrames > 0;
   const progress =
     totalFrames > 0 ? Math.round((loadedCount / totalFrames) * 100) : 0;
+
+  const altBase = alt ?? "Vehicle Angle";
 
   // 画像プリロード処理
   useEffect(() => {
@@ -89,7 +95,8 @@ export function CarRotator({
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % totalFrames);
-    }, 100); // 100msごとにフレーム送り
+      // 100msごとにフレーム送り
+    }, 100);
 
     return () => clearInterval(interval);
   }, [autoRotate, hasInteracted, isAllLoaded, isDragging, totalFrames]);
@@ -259,9 +266,11 @@ export function CarRotator({
       <div className="relative h-full w-full">
         {frames.map((src, index) => (
           <Image
-            key={src}
+            key={`${src}-${index}`}
             src={src}
-            alt={`Vehicle Angle ${index}`}
+            alt={
+              index === 0 ? altBase : `${altBase} ${index + 1}`
+            }
             fill
             sizes="(min-width: 1024px) 800px, 100vw"
             className={`object-cover transition-opacity duration-100 ${
