@@ -1,11 +1,7 @@
 // lib/columns.ts
 import columnsRaw from "@/data/columns.json";
 
-export type ColumnCategory =
-  | "OWNER_STORY"
-  | "MAINTENANCE"
-  | "TECHNICAL"
-  | "LIFESTYLE";
+export type ColumnCategory = "OWNER_STORY" | "MAINTENANCE" | "TECHNICAL";
 
 export type ColumnItem = {
   id: string;
@@ -31,12 +27,18 @@ function normalizeColumnItem(raw: any): ColumnItem {
   const slug: string = raw.slug ?? raw.id ?? "";
   const id: string = raw.id ?? slug;
 
+  const rawCategory = typeof raw.category === "string" ? raw.category : "";
+  const category: ColumnCategory =
+    rawCategory === "MAINTENANCE" || rawCategory === "TECHNICAL"
+      ? (rawCategory as ColumnCategory)
+      : "TECHNICAL";
+
   return {
     id,
     slug,
     title: raw.title ?? "(タイトル未設定)",
     summary: raw.summary ?? "",
-    category: (raw.category as ColumnCategory) ?? "OWNER_STORY",
+    category,
     tags: Array.isArray(raw.tags) ? raw.tags : [],
     publishedAt: raw.publishedAt ?? undefined,
     readMinutes:
@@ -49,15 +51,23 @@ function normalizeColumnItem(raw: any): ColumnItem {
   };
 }
 
-const allColumns: ColumnItem[] = Array.isArray(columnsRaw)
-  ? (columnsRaw as any[])
-      .map(normalizeColumnItem)
-      .sort((a, b) => {
-        const aDate = a.publishedAt ?? "";
-        const bDate = b.publishedAt ?? "";
-        return aDate < bDate ? 1 : aDate > bDate ? -1 : 0;
-      })
+// OWNER_STORY カテゴリの記事はここで除外する
+const filteredRaw: any[] = Array.isArray(columnsRaw)
+  ? (columnsRaw as any[]).filter((raw) => {
+      const cat = typeof raw?.category === "string" ? raw.category : "";
+      // MAINTENANCE / TECHNICAL 以外は原則除外（カテゴリ未設定は許容）
+      if (!cat) return true;
+      return cat !== "OWNER_STORY";
+    })
   : [];
+
+const allColumns: ColumnItem[] = filteredRaw
+  .map(normalizeColumnItem)
+  .sort((a, b) => {
+    const aDate = a.publishedAt ?? "";
+    const bDate = b.publishedAt ?? "";
+    return aDate < bDate ? 1 : aDate > bDate ? -1 : 0;
+  });
 
 export async function getAllColumns(): Promise<ColumnItem[]> {
   return allColumns;
