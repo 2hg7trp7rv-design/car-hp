@@ -10,10 +10,17 @@ export type ColumnItem = {
   summary: string;
   category: ColumnCategory;
   tags?: string[];
-  publishedAt?: string;  // ISO文字列
-  readMinutes?: number;  // 読了目安
+  publishedAt?: string; // ISO文字列
+  readMinutes?: number; // 読了目安
   heroImage?: string;
-  body: string;          // Markdownライクなテキスト
+  body: string; // Markdownライクなテキスト
+
+  /**
+   * このコラムが特に関連する車種の slug 一覧。
+   * 例: ["bmw-530i-g30", "toyota-harrier-80"]
+   * app/cars/[slug]/page.tsx から利用される想定。
+   */
+  relatedCarSlugs?: string[];
 };
 
 function normalizeColumnItem(raw: any): ColumnItem {
@@ -32,6 +39,9 @@ function normalizeColumnItem(raw: any): ColumnItem {
       typeof raw.readMinutes === "number" ? raw.readMinutes : undefined,
     heroImage: raw.heroImage ?? undefined,
     body: raw.body ?? "",
+    relatedCarSlugs: Array.isArray(raw.relatedCarSlugs)
+      ? raw.relatedCarSlugs
+      : undefined,
   };
 }
 
