@@ -30,7 +30,7 @@ type GuideSection = {
   topics: GuideTopic[];
 };
 
-// 既にファイル内に見えていたセクション情報だけを使用（推測追加なし）
+// 既存セクションをベースに、実ガイド記事へのリンクだけ付与
 const guideSections: GuideSection[] = [
   {
     id: "money",
@@ -43,16 +43,18 @@ const guideSections: GuideSection[] = [
     gridArea: "md:col-span-7 lg:col-span-7 lg:row-span-2",
     topics: [
       {
-        id: "loan-plan",
+        id: "loan-or-lump-sum",
         title: "ローン or 一括、どちらが良い？",
         description:
-          "金利だけでなく、出口戦略まで含めて考えるためのチェックポイント。",
+          "金利だけでなく、出口戦略まで含めて考えるためのチェックポイントを静かに整理します。",
+        link: "/guide/loan-or-lump-sum",
       },
       {
-        id: "maint-cost",
+        id: "maintenance-cost-simulation",
         title: "維持費シミュレーションの基本",
         description:
-          "税金・保険・車検・タイヤ…ざっくり『月いくら』で把握するシンプルな考え方。",
+          "税金・保険・車検・タイヤ…ざっくり『月いくら』で把握するためのシンプルな考え方。",
+        link: "/guide/maintenance-cost-simulation",
       },
     ],
   },
@@ -65,7 +67,15 @@ const guideSections: GuideSection[] = [
       "乗り換えや売却のときに慌てないために。査定・買取・下取りの違いを静かに整理します。",
     accent: "obsidian",
     gridArea: "md:col-span-5 lg:col-span-5 lg:row-span-2",
-    topics: [],
+    topics: [
+      {
+        id: "selling-without-rush",
+        title: "『急いで売らない』ための段取り術",
+        description:
+          "下取り・買取・個人売買。それぞれの特徴を踏まえつつ、心とスケジュールに余白をつくる手順。",
+        link: "/guide/selling-without-rush",
+      },
+    ],
   },
 ];
 
@@ -197,22 +207,49 @@ export default function GuidePage() {
 
                       {section.topics.length > 0 && (
                         <ul className="mt-4 space-y-2 text-[11px] text-slate-600">
-                          {section.topics.map((topic) => (
-                            <li
-                              key={topic.id}
-                              className="flex items-start gap-2"
-                            >
-                              <span className="mt-[6px] h-[3px] w-8 rounded-full bg-tiffany-300" />
-                              <div>
+                          {section.topics.map((topic) => {
+                            const content = (
+                              <>
                                 <p className="font-semibold text-slate-800">
                                   {topic.title}
                                 </p>
                                 <p className="text-[11px] leading-relaxed text-text-sub">
                                   {topic.description}
                                 </p>
-                              </div>
-                            </li>
-                          ))}
+                              </>
+                            );
+
+                            return (
+                              <li
+                                key={topic.id}
+                                className="flex items-start gap-2"
+                              >
+                                <span className="mt-[6px] h-[3px] w-8 rounded-full bg-tiffany-300" />
+                                <div>
+                                  {topic.link ? (
+                                    <Link
+                                      href={topic.link}
+                                      className="group/link inline-block"
+                                    >
+                                      <div className="inline-flex items-center gap-1">
+                                        <span className="relative">
+                                          <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-tiffany-400 transition-transform duration-300 group-hover/link:scale-x-100" />
+                                          <span className="relative">
+                                            {content}
+                                          </span>
+                                        </span>
+                                        <span className="mt-3 text-[9px] text-tiffany-500">
+                                          → READ GUIDE
+                                        </span>
+                                      </div>
+                                    </Link>
+                                  ) : (
+                                    content
+                                  )}
+                                </div>
+                              </li>
+                            );
+                          })}
                         </ul>
                       )}
                     </div>
@@ -241,7 +278,7 @@ export default function GuidePage() {
                   各ガイドの詳細は、コラムセクションの記事と連動して随時アップデートされます。
                   特定の車種に関する維持費情報は CARS ページをご覧ください。
                 </p>
-                <div className="flex flex-wrap justify-center gap-4">
+                <div className="flex flex-wrap justify中心 gap-4">
                   <Link
                     href="/column"
                     className="inline-flex min-w-[160px] items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-bold tracking-[0.16em] text-slate-900 transition-transform hover:scale-105 active:scale-95"
