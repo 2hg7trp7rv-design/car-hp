@@ -5,46 +5,52 @@ import carsData from "@/data/cars.json";
 export type CarDifficulty = "basic" | "intermediate" | "advanced";
 
 export type CarItem = {
-  id:string;
-  name:string;
-  slug:string;
-  maker:string;
-  releaseYear?:number;
-  difficulty?:CarDifficulty;
-  bodyType?:string;
-  segment?:string;
-  grade?:string;
-  summary:string;
-  summaryLong?:string;
-  engine?:string;
-  powerPs?:number;
-  torqueNm?:number;
-  transmission?:string;
-  drive?:string;
-  fuel?:string;
-  fuelEconomy?:string;
-  priceNew?:string;
-  priceUsed?:string;
-  tags?:string[];
-  heroImage?:string;
-  mainImage?:string;
-  lengthMm?:number;
-  widthMm?:number;
-  heightMm?:number;
-  wheelbaseMm?:number;
-  weightKg?:number;
-  tiresFront?:string;
-  tiresRear?:string;
+  id: string;
+  name: string;
+  slug: string;
+  maker: string;
+  releaseYear?: number;
+  difficulty?: CarDifficulty;
+  bodyType?: string;
+  segment?: string;
+  grade?: string;
+  summary: string;
+  summaryLong?: string;
+  engine?: string;
+  powerPs?: number;
+  torqueNm?: number;
+  transmission?: string;
+  drive?: string;
+  fuel?: string;
+  fuelEconomy?: string;
+  priceNew?: string;
+  priceUsed?: string;
+  tags?: string[];
+  heroImage?: string;
+  mainImage?: string;
+  lengthMm?: number;
+  widthMm?: number;
+  heightMm?: number;
+  wheelbaseMm?: number;
+  weightKg?: number;
+  tiresFront?: string;
+  tiresRear?: string;
+
+  /** ←← ここから追加（必須） */
+  strengths?: string[];       // 長所
+  weaknesses?: string[];      // 短所
+  troubleTrends?: string[];   // トラブル傾向
+  /** ←← ここまで追加 */
 };
 
 type RawCar = (typeof carsData)[number];
 
-function normalizeMaker(rawMaker:string | undefined):string {
+function normalizeMaker(rawMaker: string | undefined): string {
   if (!rawMaker) return "OTHER";
   return rawMaker.toUpperCase();
 }
 
-function normalizeDifficulty(raw:string | undefined):CarDifficulty | undefined {
+function normalizeDifficulty(raw: string | undefined): CarDifficulty | undefined {
   if (!raw) return undefined;
   const value = raw.toLowerCase();
   if (value === "basic" || value === "intermediate" || value === "advanced") {
@@ -53,25 +59,24 @@ function normalizeDifficulty(raw:string | undefined):CarDifficulty | undefined {
   return undefined;
 }
 
-function normalizeSlug(item:Partial<RawCar>):string {
+function normalizeSlug(item: Partial<RawCar>): string {
   if (item.slug && item.slug.length > 0) return item.slug;
   if (item.id && item.id.length > 0) return item.id;
   return "";
 }
 
-function normalizeCar(item:RawCar):CarItem | null {
+function normalizeCar(item: RawCar): CarItem | null {
   const slug = normalizeSlug(item);
   if (!slug) return null;
 
   const maker = normalizeMaker(item.maker);
   const summary = item.summary ?? "";
 
-  // nameやsummaryが無いデータは弾いておく
   if (!item.name || summary.length === 0) {
     return null;
   }
 
-  const normalized:CarItem = {
+  const normalized: CarItem = {
     id: item.id,
     name: item.name,
     slug,
@@ -102,12 +107,17 @@ function normalizeCar(item:RawCar):CarItem | null {
     weightKg: (item as any).weightKg,
     tiresFront: (item as any).tiresFront,
     tiresRear: (item as any).tiresRear,
+
+    /** ←← ここも追加（データ側にあれば反映される） */
+    strengths: (item as any).strengths,
+    weaknesses: (item as any).weaknesses,
+    troubleTrends: (item as any).troubleTrends,
   };
 
   return normalized;
 }
 
-function buildAllCars():CarItem[] {
+function buildAllCars(): CarItem[] {
   const seen = new Map<string, CarItem>();
 
   for (const raw of carsData) {
@@ -120,14 +130,11 @@ function buildAllCars():CarItem[] {
 
   const result = Array.from(seen.values());
 
-  // 年代の新しい順、その中では車名の五十音順に近い並び
   result.sort((a, b) => {
     const yearA = a.releaseYear ?? 0;
     const yearB = b.releaseYear ?? 0;
 
-    if (yearA !== yearB) {
-      return yearB - yearA;
-    }
+    if (yearA !== yearB) return yearB - yearA;
 
     const nameA = a.name ?? "";
     const nameB = b.name ?? "";
@@ -137,12 +144,12 @@ function buildAllCars():CarItem[] {
   return result;
 }
 
-const ALL_CARS:CarItem[] = buildAllCars();
+const ALL_CARS: CarItem[] = buildAllCars();
 
-export async function getAllCars():Promise<CarItem[]> {
+export async function getAllCars(): Promise<CarItem[]> {
   return ALL_CARS;
 }
 
-export async function getCarBySlug(slug:string):Promise<CarItem | undefined> {
+export async function getCarBySlug(slug: string): Promise<CarItem | undefined> {
   return ALL_CARS.find((car) => car.slug === slug);
 }
