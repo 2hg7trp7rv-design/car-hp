@@ -21,6 +21,7 @@ type SearchParams = {
   difficulty?: string;
   bodyType?: string;
   segment?: string;
+  sort?: string;
 };
 
 type PageProps = {
@@ -47,6 +48,7 @@ function mapDifficultyLabel(
   }
 }
 
+// バッジ用の色
 function difficultyBadgeClass(
   difficulty: CarItem["difficulty"] | undefined,
 ): string {
@@ -62,6 +64,36 @@ function difficultyBadgeClass(
   }
 }
 
+// ソートラベル
+function mapSortLabel(key: string): string {
+  switch (key) {
+    case "name":
+      return "車名順";
+    case "maker":
+      return "メーカー順";
+    case "difficulty":
+      return "維持難易度（やさしい→気を使う）";
+    default:
+      return "登録順";
+  }
+}
+
+// 難易度を数値化してソートに利用
+function difficultyWeight(
+  difficulty: CarItem["difficulty"] | undefined,
+): number {
+  switch (difficulty) {
+    case "basic":
+      return 1;
+    case "intermediate":
+      return 2;
+    case "advanced":
+      return 3;
+    default:
+      return 99;
+  }
+}
+
 export default async function CarsPage({ searchParams }: PageProps) {
   const all = await getAllCars();
 
@@ -71,6 +103,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
   const difficultyFilter = (searchParams?.difficulty ?? "").trim();
   const bodyTypeFilter = (searchParams?.bodyType ?? "").trim();
   const segmentFilter = (searchParams?.segment ?? "").trim();
+  const sortKey = (searchParams?.sort ?? "").trim();
 
   const makers = Array.from(
     new Set(all.map((c) => c.maker).filter(Boolean)),
@@ -110,12 +143,32 @@ export default async function CarsPage({ searchParams }: PageProps) {
     return true;
   });
 
+  // ソート適用
+  const sorted = [...filtered];
+  if (sortKey === "name") {
+    sorted.sort((a, b) => (a.name ?? "").localeCompare(b.name ?? ""));
+  } else if (sortKey === "maker") {
+    sorted.sort((a, b) => {
+      const makerDiff = (a.maker ?? "").localeCompare(b.maker ?? "");
+      if (makerDiff !== 0) return makerDiff;
+      return (a.name ?? "").localeCompare(b.name ?? "");
+    });
+  } else if (sortKey === "difficulty") {
+    sorted.sort((a, b) => {
+      const diff = difficultyWeight(a.difficulty) - difficultyWeight(b.difficulty);
+      if (diff !== 0) return diff;
+      return (a.name ?? "").localeCompare(b.name ?? "");
+    });
+  }
+  // sortKey が空のときは登録順（all の順）を維持
+
   const hasFilter =
     Boolean(q) ||
     Boolean(makerFilter) ||
     Boolean(difficultyFilter) ||
     Boolean(bodyTypeFilter) ||
-    Boolean(segmentFilter);
+    Boolean(segmentFilter) ||
+    Boolean(sortKey);
 
   // ----- インデックス用の簡易統計 -----
   const totalModels = all.length;
@@ -130,7 +183,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
 
   return (
     <main className="min-h-screen bg-site text-text-main">
-      <div className="mx-auto max-w-7xl px-4 pb-28 pt-24 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 pb-32 pt-28 sm:px-6 lg:px-8">
         {/* パンくず */}
         <nav
           className="mb-6 text-xs text-slate-500"
@@ -144,29 +197,43 @@ export default async function CarsPage({ searchParams }: PageProps) {
         </nav>
 
         {/* ヘッダー */}
-        <header className="mb-10 space-y-4">
+        <header className="mb-10 space-y-5">
           <Reveal>
             <p className="text-[10px] font-bold tracking-[0.32em] text-tiffany-600">
               CAR DATABASE
             </p>
           </Reveal>
           <Reveal delay={80}>
-            <h1 className="serif-heading text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
-              条件で絞り込める車種一覧
-            </h1>
-          </Reveal>
-          <Reveal delay={160}>
-            <p className="max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
-              メーカー、ボディタイプ、セグメント、維持の難易度などで絞り込みながら、
-              気になる車種の概要を一覧で確認できるページです。詳細ページでは、関連ニュースや
-              コラムもあわせて参照できます。
-            </p>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <h1 className="serif-heading text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
+                  条件で絞り込める車種一覧
+                </h1>
+                <p className="mt-3 max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
+                  メーカー、ボディタイプ、セグメント、維持の難易度などで絞り込みながら、
+                  気になる車種の概要を一覧で確認できるページです。詳細ページでは、関連ニュースや
+                  コラムもあわせて参照できます。
+                </p>
+              </div>
+              <div className="hidden text-[10px] text-slate-500 sm:block">
+                <div className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 shadow-soft-glow backdrop-blur">
+                  <span className="h-1.5 w-1.5 rounded-full bg-tiffany-500" />
+                  <span className="tracking-[0.18em]">
+                    IMPORT / PREMIUM ORIENTED
+                  </span>
+                </div>
+                <p className="mt-2 max-w-xs leading-relaxed tracking-[0.03em]">
+                  家族の一台というよりも、「少しこだわったクルマ時間」を前提にした
+                  車種を中心に集めています。
+                </p>
+              </div>
+            </div>
           </Reveal>
         </header>
 
         {/* インデックスパネル（ブランド感のある overview） */}
-        <Reveal delay={200}>
-          <section className="mb-6">
+        <Reveal delay={160}>
+          <section className="mb-8">
             <GlassCard
               padding="md"
               className="relative overflow-hidden border border-white/80 bg-gradient-to-r from-white/95 via-white/85 to-vapor/95 shadow-soft"
@@ -214,6 +281,9 @@ export default async function CarsPage({ searchParams }: PageProps) {
                         {advancedCount}
                       </span>
                     </p>
+                    <p className="mt-0.5 text-[9px] text-slate-400">
+                      * 左ほど扱いやすい目安です
+                    </p>
                   </div>
                   <div>
                     <p className="text-[9px] tracking-[0.2em] text-slate-400">
@@ -247,12 +317,12 @@ export default async function CarsPage({ searchParams }: PageProps) {
         </Reveal>
 
         {/* フィルターエリア */}
-        <Reveal delay={240}>
+        <Reveal delay={220}>
           <section className="mb-6 rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-soft">
             <form className="space-y-4 text-xs sm:text-[11px]">
-              <div className="grid gap-3 md:grid-cols-4">
+              <div className="grid gap-3 md:grid-cols-5">
                 {/* キーワード */}
-                <div>
+                <div className="md:col-span-2">
                   <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
                     KEYWORD
                   </label>
@@ -303,22 +373,22 @@ export default async function CarsPage({ searchParams }: PageProps) {
                   </select>
                 </div>
 
-                {/* ボディタイプ */}
+                {/* ソート */}
                 <div>
                   <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                    BODY TYPE
+                    SORT
                   </label>
                   <select
-                    name="bodyType"
-                    defaultValue={bodyTypeFilter}
+                    name="sort"
+                    defaultValue={sortKey}
                     className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
                   >
-                    <option value="">すべて</option>
-                    {bodyTypes.map((b) => (
-                      <option key={b} value={b}>
-                        {b}
-                      </option>
-                    ))}
+                    <option value="">登録順</option>
+                    <option value="name">車名順</option>
+                    <option value="maker">メーカー順</option>
+                    <option value="difficulty">
+                      維持難易度（やさしい→気を使う）
+                    </option>
                   </select>
                 </div>
               </div>
@@ -350,25 +420,47 @@ export default async function CarsPage({ searchParams }: PageProps) {
                   </p>
                   <div className="mt-2 flex flex-wrap gap-2 text-[10px]">
                     <Link
-                      href="/cars?difficulty=basic"
+                      href="/cars?difficulty=basic&sort=difficulty"
                       className="rounded-full border border-emerald-100 bg-emerald-50/90 px-3 py-1 tracking-[0.16em] text-emerald-800 transition hover:border-emerald-300 hover:bg-emerald-50"
                     >
                       初めての輸入車向き
                     </Link>
                     <Link
-                      href="/cars?bodyType=セダン"
+                      href="/cars?bodyType=セダン&sort=name"
                       className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 tracking-[0.16em] hover:border-tiffany-300 hover:bg-white"
                     >
                       しっとり系セダン
                     </Link>
                     <Link
-                      href="/cars?bodyType=SUV&difficulty=advanced"
+                      href="/cars?bodyType=SUV&difficulty=advanced&sort=difficulty"
                       className="rounded-full border border-rose-100 bg-rose-50/90 px-3 py-1 tracking-[0.16em] text-rose-800 transition hover:border-rose-300 hover:bg-rose-50"
                     >
                       手のかかるSUV
                     </Link>
                   </div>
                 </div>
+              </div>
+
+              {/* 難易度レジェンド */}
+              <div className="mt-1 flex flex-wrap items-center gap-2 text-[9px] text-slate-400">
+                <span className="rounded-full bg-slate-50 px-2 py-0.5">
+                  LEGEND
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50/80 px-2 py-0.5 text-emerald-800">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                  やさしい
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-full bg-amber-50/80 px-2 py-0.5 text-amber-800">
+                  <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+                  標準的
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-full bg-rose-50/80 px-2 py-0.5 text-rose-800">
+                  <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
+                  気を使う
+                </span>
+                <span className="ml-auto text-[9px] text-slate-400">
+                  * 条件は自由に組み合わせて使えます
+                </span>
               </div>
 
               {/* ボタン */}
@@ -433,6 +525,14 @@ export default async function CarsPage({ searchParams }: PageProps) {
                   <span className="font-semibold">{segmentFilter}</span>
                 </span>
               )}
+              {sortKey && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  sort:{" "}
+                  <span className="font-semibold">
+                    {mapSortLabel(sortKey)}
+                  </span>
+                </span>
+              )}
             </div>
           </Reveal>
         )}
@@ -452,25 +552,25 @@ export default async function CarsPage({ searchParams }: PageProps) {
                   </span>{" "}
                   MODELS
                 </span>
-                {filtered.length !== all.length && (
+                {sorted.length !== all.length && (
                   <span>
                     FILTERED{" "}
                     <span className="font-semibold text-tiffany-600">
-                      {filtered.length}
+                      {sorted.length}
                     </span>
                   </span>
                 )}
               </div>
             </div>
 
-            {filtered.length === 0 ? (
+            {sorted.length === 0 ? (
               <p className="rounded-2xl border border-dashed border-slate-200 bg-white/70 p-6 text-center text-xs text-slate-500">
                 条件に合致するクルマが見つかりませんでした。
                 絞り込み条件を緩めて再度お試しください。
               </p>
             ) : (
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {filtered.map((car) => (
+                {sorted.map((car) => (
                   <Link
                     key={car.id}
                     href={`/cars/${encodeURIComponent(car.slug)}`}
@@ -479,7 +579,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                       as="article"
                       padding="md"
                       interactive
-                      className="group relative h-full overflow-hidden border border-slate-200/80 bg-white/95"
+                      className="group relative h-full overflow-hidden border border-slate-200/80 bg-white/95 transition-transform duration-500 hover:-translate-y-[3px] hover:shadow-soft-card"
                     >
                       {/* カード内の光 */}
                       <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
