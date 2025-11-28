@@ -1,197 +1,142 @@
+// components/ui/button.tsx
 "use client";
 
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
-
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { MagneticArea } from "@/components/ui/magnetic-area";
 
-export type ButtonVariant =
-  | "primary"
-  | "secondary"
-  | "outline"
-  | "ghost"
-  | "subtle"
-  | "glass";
-
-export type ButtonSize = "xs" | "sm" | "md" | "lg" | "icon";
+const buttonVariants = cva(
+  [
+    "relative inline-flex items-center justify-center gap-2 overflow-hidden",
+    "rounded-full border text-[11px] font-semibold uppercase tracking-[0.18em]",
+    "transition-all duration-300 ease-magnetic",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tiffany-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
+    "disabled:pointer-events-none disabled:opacity-60",
+    "select-none",
+  ].join(" "),
+  {
+    variants: {
+      variant: {
+        // メインCTA：Obsidianベース + Tiffanyの“光”
+        primary: [
+          "border-transparent bg-obsidian text-white shadow-soft-card",
+          "hover:-translate-y-[1px] hover:shadow-soft-strong active:translate-y-[0px] active:scale-[0.98]",
+          // 内部からゆっくり広がる光（擬似要素）
+          "before:pointer-events-none before:absolute before:inset-0 before:translate-y-[120%] before:rounded-full",
+          "before:bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.34),_transparent_60%)]",
+          "before:opacity-0 before:transition-transform before:duration-500 before:ease-liquid",
+          "hover:before:translate-y-[0%] hover:before:opacity-100",
+        ].join(" "),
+        // 枠線あり、薄い背景：フィルターやサブCTAに
+        outline: [
+          "border-slate-300 bg-white/80 text-slate-900 shadow-soft",
+          "hover:border-tiffany-300 hover:bg-white hover:shadow-soft-card",
+          "active:translate-y-[0px] active:scale-[0.98]",
+        ].join(" "),
+        // ほぼ背景になじむ、控えめなボタン
+        subtle: [
+          "border-transparent bg-slate-100/80 text-slate-800 shadow-none",
+          "hover:bg-slate-50 hover:shadow-soft",
+          "active:bg-slate-200/80",
+        ].join(" "),
+        // 背景ガラス：Heroやダーク背景上のCTA用
+        glass: [
+          "border-white/50 bg-white/10 text-white shadow-soft-glow backdrop-blur-md",
+          "hover:bg-white/16 hover:shadow-soft-strong",
+          "active:bg-white/20",
+        ].join(" "),
+        // 背景色なし、テキストリンク風
+        ghost: [
+          "border-transparent bg-transparent text-slate-700",
+          "hover:bg-slate-100/70 hover:text-slate-900",
+        ].join(" "),
+        link: [
+          "border-transparent bg-transparent px-0 py-0 text-[11px] font-semibold tracking-[0.18em]",
+          "text-tiffany-700 underline-offset-4 hover:underline",
+          "shadow-none",
+        ].join(" "),
+      },
+      size: {
+        xs: "h-7 px-3 text-[10px]",
+        sm: "h-8 px-3.5 text-[10px]",
+        md: "h-9 px-4 text-[11px]",
+        lg: "h-10 px-5 text-[11px] sm:h-11 sm:px-6",
+        icon: "h-9 w-9 p-0",
+      },
+      // 反転配色などを今後足したくなったとき用
+      tone: {
+        default: "",
+        inverted: "bg-white text-obsidian",
+      },
+      fullWidth: {
+        true: "w-full",
+        false: "",
+      },
+    },
+    defaultVariants: {
+      variant: "primary",
+      size: "md",
+      tone: "default",
+      fullWidth: false,
+    },
+  },
+);
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   /**
-   * ブランド用ボタンバリアント
-   * - primary: Tiffany アクセント
-   * - secondary: Obsidian ダーク
-   * - outline: 白ベースの枠線ボタン
-   * - ghost: ほぼ背景と同化する幽霊ボタン
-   * - subtle: ごく淡いハイライト
-   * - glass: ガラスっぽい透過ボタン
-   */
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-  /**
-   * カーソルに軽く吸い付くマグネット挙動
+   * MagenticArea で包むかどうか。
+   * true の場合、hover中にカーソル方向へごく控えめに吸い付く。
    */
   magnetic?: boolean;
-}
-
-const baseClassName =
-  [
-    "inline-flex items-center justify-center gap-2",
-    "rounded-full",
-    "font-medium",
-    "uppercase",
-    "tracking-[0.18em]",
-    "whitespace-nowrap",
-    "transition-all duration-normal ease-magnetic",
-    "focus-visible:outline-none",
-    "focus-visible:ring-2 focus-visible:ring-tiffany-400",
-    "focus-visible:ring-offset-2 focus-visible:ring-offset-porcelain",
-    "disabled:cursor-not-allowed disabled:opacity-60",
-    "select-none",
-  ].join(" ");
-
-const variantClassName: Record<ButtonVariant, string> = {
-  primary: [
-    "bg-tiffany-500 text-white",
-    "shadow-soft-strong",
-    "hover:bg-tiffany-400 hover:shadow-glow",
-    "active:scale-[0.97]",
-  ].join(" "),
-  secondary: [
-    "bg-slate-900 text-white",
-    "shadow-soft",
-    "hover:bg-slate-800",
-    "active:scale-[0.97]",
-  ].join(" "),
-  outline: [
-    "border border-slate-300",
-    "bg-white/80 text-slate-900",
-    "hover:border-tiffany-400 hover:bg-white",
-    "active:scale-[0.97]",
-  ].join(" "),
-  ghost: [
-    "bg-transparent text-slate-900",
-    "hover:bg-slate-100/70",
-    "active:bg-slate-200/70",
-  ].join(" "),
-  subtle: [
-    "border border-tiffany-dim-100",
-    "bg-tiffany-dim-50/90 text-slate-900",
-    "hover:bg-tiffany-dim-100/90 hover:border-tiffany-200",
-    "shadow-soft-card",
-  ].join(" "),
-  glass: [
-    "border border-white/60",
-    "bg-white/15 text-slate-900",
-    "backdrop-blur-md",
-    "shadow-glass-deep",
-    "hover:bg-white/25 hover:border-tiffany-200",
-  ].join(" "),
-};
-
-const sizeClassName: Record<ButtonSize, string> = {
-  xs: "h-8 px-4 text-[9px]",
-  sm: "h-9 px-5 text-[10px]",
-  md: "h-10 px-6 text-[10px]",
-  lg: "h-11 px-7 text-[11px]",
-  icon: "h-10 w-10 p-0 text-[10px]",
-};
-
-/**
- * マグネット用のラッパー。
- * Button 本体ではなくラッパー要素を軽く動かして、スケール系の transform と干渉しないようにしている。
- */
-function MagneticWrapper({
-  enabled,
-  children,
-}: {
-  enabled: boolean;
-  children: React.ReactNode;
-}) {
-  const ref = React.useRef<HTMLSpanElement | null>(null);
-  const [style, setStyle] = React.useState<React.CSSProperties | undefined>();
-
-  const handleMouseMove = (event: React.MouseEvent<HTMLSpanElement>) => {
-    if (!enabled) return;
-    const el = ref.current;
-    if (!el) return;
-
-    const rect = el.getBoundingClientRect();
-    const relX = event.clientX - (rect.left + rect.width / 2);
-    const relY = event.clientY - (rect.top + rect.height / 2);
-
-    const strength = 0.18; // 吸い付く強さ（0.1〜0.25くらいで調整）
-    const translateX = (relX / rect.width) * 12 * strength;
-    const translateY = (relY / rect.height) * 12 * strength;
-
-    setStyle({
-      transform: `translate3d(${translateX}px, ${translateY}px, 0)`,
-      transition: "transform 120ms cubic-bezier(0.35, 0, 0.65, 1)",
-    });
-  };
-
-  const handleMouseLeave = () => {
-    if (!enabled) return;
-    setStyle({
-      transform: "translate3d(0, 0, 0)",
-      transition: "transform 200ms cubic-bezier(0.35, 0, 0.65, 1)",
-    });
-  };
-
-  if (!enabled) {
-    return <>{children}</>;
-  }
-
-  return (
-    <span
-      ref={ref}
-      style={style}
-      className="inline-flex"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
-      {children}
-    </span>
-  );
+  /**
+   * アイコンのみボタンなどで使う場合に true を指定。
+   * （見た目は size="icon" + 適宜children で十分なことが多いので任意）
+   */
+  iconOnly?: boolean;
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       className,
-      variant = "primary",
-      size = "md",
+      variant,
+      size,
+      tone,
+      fullWidth,
       asChild = false,
       magnetic = false,
-      disabled,
+      iconOnly,
+      children,
       ...props
     },
     ref,
   ) => {
     const Comp = asChild ? Slot : "button";
 
-    const composedClassName = cn(
-      baseClassName,
-      variantClassName[variant],
-      sizeClassName[size],
-      className,
-    );
-
-    const isMagneticEnabled = magnetic && !disabled;
-
-    const button = (
+    const buttonNode = (
       <Comp
-        className={composedClassName}
+        className={cn(
+          buttonVariants({ variant, size, tone, fullWidth }),
+          iconOnly && "px-0",
+          className,
+        )}
         ref={ref}
-        disabled={disabled}
         {...props}
-      />
+      >
+        {children}
+      </Comp>
     );
 
-    return (
-      <MagneticWrapper enabled={isMagneticEnabled}>{button}</MagneticWrapper>
-    );
+    // magnetic=false の既存ボタンはそのまま
+    if (!magnetic) return buttonNode;
+
+    // magnetic=true のときは MagneticArea でラップ
+    return <MagneticArea>{buttonNode}</MagneticArea>;
   },
 );
 
