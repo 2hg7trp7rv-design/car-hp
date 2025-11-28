@@ -109,9 +109,10 @@ export default async function CarsPage({ searchParams }: PageProps) {
     new Set(all.map((c) => c.maker).filter(Boolean)),
   ).sort();
 
-  const difficulties = Array.from(
-    new Set(all.map((c) => c.difficulty).filter(Boolean)),
-  ) as CarItem["difficulty"][];
+  // 並び順を固定しつつ、実際に存在するものだけを採用
+  const difficultyOptions: CarItem["difficulty"][] = (
+    ["basic", "intermediate", "advanced"] as CarItem["difficulty"][]
+  ).filter((d) => all.some((c) => c.difficulty === d));
 
   const bodyTypes = Array.from(
     new Set(all.map((c) => c.bodyType).filter(Boolean)),
@@ -155,7 +156,8 @@ export default async function CarsPage({ searchParams }: PageProps) {
     });
   } else if (sortKey === "difficulty") {
     sorted.sort((a, b) => {
-      const diff = difficultyWeight(a.difficulty) - difficultyWeight(b.difficulty);
+      const diff =
+        difficultyWeight(a.difficulty) - difficultyWeight(b.difficulty);
       if (diff !== 0) return diff;
       return (a.name ?? "").localeCompare(b.name ?? "");
     });
@@ -231,7 +233,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
           </Reveal>
         </header>
 
-        {/* インデックスパネル（ブランド感のある overview） */}
+        {/* インデックスパネル（overview） */}
         <Reveal delay={160}>
           <section className="mb-8">
             <GlassCard
@@ -365,7 +367,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                     className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
                   >
                     <option value="">すべて</option>
-                    {difficulties.map((d) => (
+                    {difficultyOptions.map((d) => (
                       <option key={d} value={d ?? ""}>
                         {mapDifficultyLabel(d)}
                       </option>
@@ -393,8 +395,9 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 </div>
               </div>
 
-              {/* セグメント + クイックプリセット */}
-              <div className="grid gap-3 md:grid-cols-4">
+              {/* セグメント + BODY TYPE + クイックプリセット */}
+              <div className="grid gap-3 md:grid-cols-5">
+                {/* セグメント */}
                 <div className="md:col-span-2">
                   <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
                     SEGMENT
@@ -408,6 +411,25 @@ export default async function CarsPage({ searchParams }: PageProps) {
                     {segments.map((s) => (
                       <option key={s} value={s}>
                         {s}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* ボディタイプ（仕様の「ボディタイプで絞り込み」用） */}
+                <div>
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    BODY TYPE
+                  </label>
+                  <select
+                    name="bodyType"
+                    defaultValue={bodyTypeFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">すべて</option>
+                    {bodyTypes.map((bt) => (
+                      <option key={bt} value={bt}>
+                        {bt}
                       </option>
                     ))}
                   </select>
@@ -516,7 +538,8 @@ export default async function CarsPage({ searchParams }: PageProps) {
               )}
               {bodyTypeFilter && (
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                  body: <span className="font-semibold">{bodyTypeFilter}</span>
+                  body:{" "}
+                  <span className="font-semibold">{bodyTypeFilter}</span>
                 </span>
               )}
               {segmentFilter && (
