@@ -28,6 +28,10 @@ type PageProps = {
   searchParams?: SearchParams;
 };
 
+// ----------------------------------------
+// ユーティリティ
+// ----------------------------------------
+
 function normalize(value: string | undefined | null): string {
   return (value ?? "").trim().toLowerCase();
 }
@@ -61,6 +65,11 @@ function isRecent(item: NewsItem, days = 7): boolean {
   const diffMs = Date.now() - d.getTime();
   const diffDays = diffMs / (1000 * 60 * 60 * 24);
   return diffDays <= days;
+}
+
+// string | null | undefined を「中身ありの string」に絞る型ガード
+function isNonEmptyString(value: string | null | undefined): value is string {
+  return typeof value === "string" && value.trim().length > 0;
 }
 
 function filterNews(items: NewsItem[], filters: SearchParams): NewsItem[] {
@@ -232,6 +241,10 @@ function buildMonthLabel(item: NewsItem): string {
   return `${y}年${m}月`;
 }
 
+// ----------------------------------------
+// メインページ
+// ----------------------------------------
+
 export default async function NewsPage({ searchParams }: PageProps) {
   const news = await getLatestNews(80);
 
@@ -243,19 +256,20 @@ export default async function NewsPage({ searchParams }: PageProps) {
   const sourceFilter = (searchParams?.source ?? "").trim();
   const periodFilter = (searchParams?.period ?? "").trim();
 
-  const makers = Array.from(
-    new Set(news.map((n) => n.maker).filter(Boolean)),
+  // ★ 型ガードで string[] に確定させる（ここが今回の修正ポイント）
+  const makers: string[] = Array.from(
+    new Set(news.map((n) => n.maker).filter(isNonEmptyString)),
   ).sort();
 
-  const categories = Array.from(
-    new Set(news.map((n) => n.category).filter(Boolean)),
+  const categories: string[] = Array.from(
+    new Set(news.map((n) => n.category).filter(isNonEmptyString)),
   ).sort();
 
-  const tags = Array.from(
+  const tags: string[] = Array.from(
     new Set(news.flatMap((n) => buildTagList(n))),
   ).sort();
 
-  const sources = Array.from(
+  const sources: string[] = Array.from(
     new Set(news.map((n) => buildSourceLabel(n)).filter(Boolean)),
   ).sort();
 
