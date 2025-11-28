@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { Reveal } from "@/components/animation/Reveal";
 import { GlassCard } from "@/components/GlassCard";
-import { HeroSection } from "@/components/hero/HeroSection";
+import { HeroSection } from "@/components/home/HeroSection";
 import { Button } from "@/components/ui/button";
 
 import { getLatestNews, type NewsItem } from "@/lib/news";
