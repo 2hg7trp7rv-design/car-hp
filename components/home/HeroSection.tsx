@@ -1,3 +1,4 @@
+// components/home/HeroSection.tsx
 import Link from "next/link";
 import { Reveal } from "@/components/animation/Reveal";
 import { Button } from "@/components/ui/button";
@@ -14,13 +15,13 @@ export function HeroSection() {
           playsInline
           className="h-full w-full object-cover opacity-60"
           // 動画がない場合はポスター画像が表示されます
-          poster="/images/hero-sedan.jpg" 
+          poster="/images/hero-sedan.jpg"
         >
-          {/* iPhoneで撮影した動画などをここに配置 */}
+          {/* 実際の動画ファイルを配置する */}
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
-        
-        {/* グラデーションオーバーレイ（文字の可読性確保 + 演出） */}
+
+        {/* グラデーションオーバーレイ（文字の可読性確保） */}
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
       </div>
@@ -30,26 +31,24 @@ export function HeroSection() {
         <div className="max-w-3xl">
           <Reveal delay={0}>
             <p className="mb-4 flex items-center gap-3 text-[10px] font-bold tracking-[0.4em] text-tiffany-400">
-              <span className="h-[1px] w-8 bg-tiffany-400"></span>
-              EST. 2025
+              <span className="h-[1px] w-8 bg-tiffany-400" />
+              CAR BOUTIQUE
             </p>
           </Reveal>
 
           <Reveal delay={200}>
             <h1 className="font-serif text-4xl font-medium leading-tight text-white sm:text-5xl lg:text-7xl">
-              Drive in <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-tiffany-100 to-tiffany-300">
-                Minimalist Grandeur.
-              </span>
+              クルマのニュースと
+              <br />
+              データベースを、一つの画面で。
             </h1>
           </Reveal>
 
           <Reveal delay={400}>
             <p className="mt-6 max-w-lg text-sm leading-relaxed text-slate-300 sm:text-base">
-              スペックの先にある、豊かな移動体験を。
+              主要モデルのスペック、関連ニュース、解説コラムをまとめて確認できる小さな車メディアです。
               <br className="hidden sm:block" />
-              ニュース、ストーリー、そして厳選された一台との出会いを、
-              静謐なデジタル・ブティックでお届けします。
+              気になる車種やトピックを、必要な情報だけ落ち着いて追えることを目指しています。
             </p>
           </Reveal>
 
@@ -57,12 +56,16 @@ export function HeroSection() {
             <div className="mt-10 flex flex-wrap gap-4">
               <Link href="/cars">
                 <Button variant="primary" size="lg" magnetic>
-                  EXPLORE CARS
+                  VIEW CAR DATABASE
                 </Button>
               </Link>
-              <Link href="/column">
-                <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 hover:border-white">
-                  READ STORIES
+              <Link href="/guide">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-white/30 text-white hover:border-white hover:bg-white/10"
+                >
+                  VIEW GUIDES
                 </Button>
               </Link>
             </div>
