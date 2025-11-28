@@ -27,6 +27,7 @@ body {
    ※ Tailwindの `bg-site` クラスと連動
 ----------------------------------------- */
 
+/* メインのサイト背景（ページ全体に使用） */
 .bg-site {
   background-color: #ffffff;
   background-image:
@@ -49,6 +50,22 @@ body {
       #ffffff 100%
     );
   background-attachment: fixed; /* スクロールしても背景を固定し、奥行きを出す */
+}
+
+/* セクション単体で使う空間用背景（実装指針の .bg-atmosphere） */
+.bg-atmosphere {
+  background:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(10, 186, 181, 0.15) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(10, 186, 181, 0.1) 0%,
+      transparent 40%
+    ),
+    #ffffff;
 }
 
 /* ----------------------------------------
@@ -121,11 +138,40 @@ li,
   letter-spacing: 0.08em;
 }
 
+/* HERITAGE 用の本文（必要になったら使う想定） */
+.article-body-heritage p {
+  margin-top: 1.4rem;
+}
+
+.article-body-heritage p:first-of-type {
+  margin-top: 0.75rem;
+}
+
+.article-body-heritage h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-bodoni), ui-serif, serif;
+  font-size: 1.25rem;
+  letter-spacing: 0;
+  line-height: 1.3;
+}
+
+.article-body-heritage h3 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
 /* ----------------------------------------
-   Drop caps（先頭ジャンボ1文字：COLUMN / GUIDE）
-   - ColumnReaderShell / GuideDetail から利用予定
+   Drop caps（先頭ジャンボ1文字）
+   - COLUMN / GUIDE: span 構造で使用
+   - HERITAGE: ::first-letter で簡略マークアップ
 ----------------------------------------- */
 
+/* COLUMN / GUIDE 用（ColumnReaderShell / GuideDetail） */
 .first-letter-float {
   text-indent: 0;
 }
@@ -144,6 +190,32 @@ li,
 
 @media (min-width: 640px) {
   .first-letter-span {
+    font-size: 3.8rem;
+  }
+}
+
+/* HERITAGE 詳細ページ用のドロップキャップ
+   - 旧 styled-jsx (.first-letter-float + .first-letter-span) を
+     ::first-letter でほぼ等価にグローバル化
+*/
+.heritage-dropcap {
+  text-indent: 0;
+}
+
+.heritage-dropcap::first-letter {
+  float: left;
+  margin-right: 12px;
+  margin-top: -6px;
+  margin-bottom: -2px;
+  font-family: var(--font-bodoni), ui-serif, serif;
+  font-size: 3.4rem;
+  line-height: 0.85;
+  font-weight: 500;
+  color: #0abab5; /* Tiffany */
+}
+
+@media (min-width: 640px) {
+  .heritage-dropcap::first-letter {
     font-size: 3.8rem;
   }
 }
