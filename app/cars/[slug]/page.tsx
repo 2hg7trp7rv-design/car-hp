@@ -209,6 +209,10 @@ export default async function CarDetailPage({ params }: PageProps) {
     (car as CarItem & { imageUrl?: string }).imageUrl ??
     "";
 
+  const relatedNewsCount = relatedNews.length;
+  const relatedColumnsCount = relatedColumns.length;
+  const relatedCarsCount = relatedCars.length;
+
   return (
     <main className="min-h-screen bg-site text-text-main">
       <div className="mx-auto max-w-6xl px-4 pb-28 pt-24 sm:px-6 lg:px-8">
@@ -255,7 +259,7 @@ export default async function CarDetailPage({ params }: PageProps) {
               </div>
 
               {/* インデックスチップ群 */}
-              <div className="grid grid-cols-2 gap-2 text-[10px] text-slate-700 sm:grid-cols-3 lg:w-[320px]">
+              <div className="grid grid-cols-2 gap-2 text-[10px] text-slate-700 sm:grid-cols-3 lg:w-[340px]">
                 <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-3 py-2">
                   <p className="text-[9px] tracking-[0.2em] text-slate-400">
                     維持の難易度
@@ -269,6 +273,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                     {mapDifficultyLabel(car.difficulty)}
                   </p>
                 </div>
+
                 {car.bodyType && (
                   <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-3 py-2">
                     <p className="text-[9px] tracking-[0.2em] text-slate-400">
@@ -279,6 +284,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                     </p>
                   </div>
                 )}
+
                 {costImpression && (
                   <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-3 py-2">
                     <p className="text-[9px] tracking-[0.2em] text-slate-400">
@@ -290,6 +296,40 @@ export default async function CarDetailPage({ params }: PageProps) {
                   </div>
                 )}
               </div>
+            </div>
+
+            {/* CAR BRIEFING（関連数などの“ひと目サマリー”） */}
+            <div className="mt-4 flex flex-wrap items-center gap-2 rounded-2xl bg-slate-50/80 px-3 py-2 text-[10px] text-slate-500">
+              <span className="rounded-full bg-white px-2 py-0.5 text-[9px] tracking-[0.18em] text-slate-400">
+                CAR BRIEFING
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="h-1 w-1 rounded-full bg-emerald-400" />
+                <span className="tracking-[0.12em]">
+                  関連 CARS{" "}
+                  <span className="font-semibold text-slate-700">
+                    {relatedCarsCount}
+                  </span>
+                </span>
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="h-1 w-1 rounded-full bg-tiffany-400" />
+                <span className="tracking-[0.12em]">
+                  NEWS{" "}
+                  <span className="font-semibold text-slate-700">
+                    {relatedNewsCount}
+                  </span>
+                </span>
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="h-1 w-1 rounded-full bg-slate-500" />
+                <span className="tracking-[0.12em]">
+                  COLUMNS{" "}
+                  <span className="font-semibold text-slate-700">
+                    {relatedColumnsCount}
+                  </span>
+                </span>
+              </span>
             </div>
 
             {/* ページ内ナビ */}
@@ -439,6 +479,42 @@ export default async function CarDetailPage({ params }: PageProps) {
                   )}
                 </dl>
 
+                {/* 軽い“スペックメーター風”視覚情報（数値があるときだけ） */}
+                {(car.powerPs || car.torqueNm) && (
+                  <div className="mt-4 space-y-2 text-[10px] text-slate-500">
+                    {car.powerPs && (
+                      <div>
+                        <div className="mb-1 flex items-center justify-between">
+                          <span className="tracking-[0.16em]">
+                            POWER BALANCE
+                          </span>
+                          <span className="text-[9px] text-slate-400">
+                            {formatNumber(car.powerPs)} ps
+                          </span>
+                        </div>
+                        <div className="h-1.5 overflow-hidden rounded-full bg-slate-100">
+                          <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-tiffany-300 via-tiffany-400 to-slate-500" />
+                        </div>
+                      </div>
+                    )}
+                    {car.torqueNm && (
+                      <div>
+                        <div className="mb-1 flex items-center justify-between">
+                          <span className="tracking-[0.16em]">
+                            TORQUE FEEL
+                          </span>
+                          <span className="text-[9px] text-slate-400">
+                            {formatNumber(car.torqueNm)} Nm
+                          </span>
+                        </div>
+                        <div className="h-1.5 overflow-hidden rounded-full bg-slate-100">
+                          <div className="h-full w-2/3 rounded-full bg-gradient-to-r from-slate-400 via-tiffany-400 to-tiffany-200" />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 {/* ちいさな注意書き */}
                 <p className="mt-4 text-[10px] leading-relaxed text-slate-400">
                   数値は代表グレード相当の目安値です。実際の購入時は、年式・仕様・グレードごとの
@@ -460,7 +536,8 @@ export default async function CarDetailPage({ params }: PageProps) {
                   OWNERSHIP NOTES
                 </h2>
                 <p className="text-[11px] text-slate-400">
-                  「付き合いやすさ」や注意しておきたいポイントを、ざっくり3つの箱で整理しています。
+                  カタログスペックでは分かりにくい「付き合い方」のイメージを、
+                  ポジティブ・ネガティブ・注意したい傾向の三つに分けて整理しています。
                 </p>
               </div>
             </Reveal>
@@ -576,7 +653,10 @@ export default async function CarDetailPage({ params }: PageProps) {
         </section>
 
         {/* RELATED CARS / NEWS / COLUMN */}
-        <section id="related-section" className="grid gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+        <section
+          id="related-section"
+          className="grid gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]"
+        >
           {/* 関連CARS */}
           <div className="space-y-3">
             <Reveal>
