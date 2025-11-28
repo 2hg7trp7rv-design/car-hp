@@ -20,6 +20,12 @@ type Props = {
   params: { slug: string };
 };
 
+// SSG 用パス
+export async function generateStaticParams() {
+  const items = await getAllColumns();
+  return items.map((item) => ({ slug: item.slug }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = await getColumnBySlug(params.slug);
 
@@ -34,20 +40,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     item.summary ||
     "トラブル・修理の実例や、ブランドの歴史・技術解説などを整理したコラムです。";
 
+  const title = `${item.title} | CAR BOUTIQUE`;
+  const url = `https://car-hp.vercel.app/column/${encodeURIComponent(
+    params.slug,
+  )}`;
+
   return {
-    title: `${item.title} | CAR BOUTIQUE`,
+    title,
     description,
     openGraph: {
-      title: `${item.title} | CAR BOUTIQUE`,
+      title,
       description,
       type: "article",
-      url: `https://car-hp.vercel.app/column/${encodeURIComponent(
-        params.slug,
-      )}`,
+      url,
     },
     twitter: {
-      card: "summary",
-      title: `${item.title} | CAR BOUTIQUE`,
+      card: "summary_large_image",
+      title,
       description,
     },
   };
@@ -113,7 +122,7 @@ export default async function ColumnDetailPage({ params }: Props) {
       {/* 読書体験本体（没入レイアウトやProgress barは ColumnReaderShell 側で） */}
       <ColumnReaderShell item={item} />
 
-      {/* RELATED COLUMN セクション：雑誌の巻末みたいな雰囲気で */}
+      {/* RELATED COLUMN セクション */}
       {related.length > 0 && (
         <section className="mx-auto max-w-6xl px-4 pb-10 pt-6 sm:px-6 lg:px-8">
           <Reveal>
@@ -203,7 +212,7 @@ export default async function ColumnDetailPage({ params }: Props) {
         </section>
       )}
 
-      {/* モバイル向けの戻る導線：ブランドボタン版 */}
+      {/* モバイル向けの戻る導線 */}
       <div className="mx-auto max-w-6xl px-4 pb-10 pt-4 sm:px-6 lg:px-8 lg:hidden">
         <div className="border-t border-slate-100 pt-4">
           <Reveal>
