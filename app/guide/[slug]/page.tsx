@@ -472,7 +472,10 @@ export default async function GuideDetailPage({ params }: PageProps) {
 
             <div className="grid gap-4 md:grid-cols-2">
               {relatedColumns.map((col) => (
-                <Link key={col.id} href={`/column/${col.slug}`}>
+                <Link
+                  key={col.id}
+                  href={`/column/${encodeURIComponent(col.slug)}`}
+                >
                   <GlassCard className="h-full bg-white/90 p-4 text-xs shadow-sm transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
                     <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
                       <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
