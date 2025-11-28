@@ -4,200 +4,232 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
-const NAV_ITEMS = [
-  { href: "/news", label: "NEWS" },
-  { href: "/cars", label: "CARS" },
-  { href: "/column", label: "COLUMN" },
-  { href: "/guide", label: "GUIDE" },
+type NavItem = {
+  href: string;
+  label: string;
+  subLabel?: string;
+};
+
+const NAV_ITEMS: NavItem[] = [
+  { href: "/news", label: "NEWS", subLabel: "アップデート" },
+  { href: "/cars", label: "CARS", subLabel: "車種データベース" },
+  { href: "/column", label: "COLUMN", subLabel: "技術・メンテナンス" },
+  { href: "/guide", label: "GUIDE", subLabel: "お金と手放し方" },
 ];
+
+function isActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handler = () => {
-      setIsScrolled(window.scrollY > 10);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 12);
     };
-    handler();
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    // ルートが変わったらモバイルメニューを閉じる
+    // ルート切り替えでモバイルメニューを閉じる
     setOpen(false);
   }, [pathname]);
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-40 flex justify-center",
-        "pointer-events-none",
-      )}
-    >
-      <div className="pointer-events-auto mt-3 w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div
-          className={cn(
-            "relative flex items-center justify-between gap-4 rounded-full border bg-white/65 px-4 py-2.5 text-[11px] shadow-glass-edge backdrop-blur-xl transition-all duration-300",
-            isScrolled
-              ? "border-white/60 shadow-soft-glow"
-              : "border-white/40 shadow-soft",
-          )}
-        >
-          {/* 左：ロゴ / サイト名 */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-xs font-semibold tracking-[0.28em] text-slate-700"
-          >
-            <span className="flex h-7 w-7 items-center justify-center rounded-2xl bg-tiffany-50 text-[11px] font-bold text-tiffany-600 shadow-glass-inner">
-              CB
-            </span>
-            <span className="hidden sm:inline">
-              CAR&nbsp;BOUTIQUE
-            </span>
-          </Link>
+    <header className="fixed inset-x-0 top-0 z-40">
+      {/* 背景の“光”レイヤー：ヘッダー専用 */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute -left-16 top-0 h-32 w-32 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.28),_transparent_70%)] blur-3xl" />
+        <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-[radial-gradient(circle_at_center,_rgba(148,163,184,0.32),_transparent_72%)] blur-3xl" />
+      </div>
 
-          {/* 中央：ナビ（PC） */}
-          <nav className="hidden items-center gap-5 md:flex">
-            {NAV_ITEMS.map((item) => {
-              const active =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "relative text-[10px] font-semibold uppercase tracking-[0.22em] transition-colors",
-                    active
-                      ? "text-slate-900"
-                      : "text-slate-400 hover:text-slate-800",
-                  )}
-                >
+      {/* メインバー */}
+      <div
+        className={[
+          "mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 transition-all duration-300 sm:px-6 lg:px-8",
+          scrolled ? "py-2" : "py-3",
+        ].join(" ")}
+      >
+        {/* ブランドロゴ */}
+        <Link
+          href="/"
+          className="group relative flex items-center gap-2 rounded-full"
+        >
+          {/* 小さな Tiffany の光点 */}
+          <span className="relative flex h-7 w-7 items-center justify-center">
+            <span className="absolute h-7 w-7 rounded-full bg-white/40 shadow-glass-inner" />
+            <span className="relative h-2 w-2 rounded-full bg-gradient-to-br from-tiffany-300 via-tiffany-500 to-tiffany-600 shadow-glow" />
+          </span>
+
+          <div className="flex flex-col leading-none">
+            <span className="serif-heading text-[15px] tracking-[0.26em] text-slate-900">
+              CAR BOUTIQUE
+            </span>
+            <span className="mt-[2px] text-[9px] font-medium uppercase tracking-[0.22em] text-slate-500">
+              News · Columns · Database
+            </span>
+          </div>
+        </Link>
+
+        {/* PCナビゲーション */}
+        <nav className="hidden items-center gap-4 text-[10px] font-semibold tracking-[0.22em] text-slate-600 sm:flex">
+          {NAV_ITEMS.map((item) => {
+            const active = isActive(pathname ?? "", item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={[
+                  "group relative inline-flex flex-col items-start rounded-full px-3 py-1.5 transition-colors",
+                  active
+                    ? "text-slate-900"
+                    : "text-slate-500 hover:text-slate-900",
+                ].join(" ")}
+              >
+                <span className="flex items-center gap-1">
                   <span>{item.label}</span>
                   <span
-                    className={cn(
-                      "absolute -bottom-1 left-1/2 h-[2px] w-4 -translate-x-1/2 rounded-full bg-tiffany-400/90 transition-all duration-300",
-                      active ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0",
-                    )}
+                    className={[
+                      "h-[1px] w-4 origin-left rounded-full bg-slate-300 transition-transform duration-300",
+                      active ? "scale-x-100 bg-tiffany-400" : "scale-x-0 group-hover:scale-x-100",
+                    ].join(" ")}
                   />
-                </Link>
-              );
-            })}
-          </nav>
+                </span>
+                {item.subLabel && (
+                  <span className="mt-1 text-[9px] font-normal tracking-[0.05em] text-slate-400">
+                    {item.subLabel}
+                  </span>
+                )}
+              </Link>
+            );
+          })}
 
-          {/* 右：CTA + メニュー */}
-          <div className="flex items-center gap-1 sm:gap-2">
-            {/* PC: CTA */}
-            <div className="hidden items-center gap-2 md:flex">
-              <Button
-                asChild
-                variant="glass"
-                size="sm"
-                magnetic
-                className="px-4"
-              >
-                <Link href="/cars">OPEN CARS DB</Link>
-              </Button>
-              <Button
-                asChild
-                variant="subtle"
-                size="sm"
-                className="px-4"
-              >
-                <Link href="/column">COLUMN &amp; GUIDE</Link>
-              </Button>
-            </div>
-
-            {/* モバイル: メニューアイコン */}
-            <button
-              type="button"
-              aria-label="メニュー"
-              onClick={() => setOpen((v) => !v)}
-              className={cn(
-                "relative flex h-9 w-9 items-center justify-center rounded-full border border-slate-200/80 bg-white/80 text-slate-700 shadow-soft transition hover:border-tiffany-300 hover:text-tiffany-600 md:hidden",
-              )}
+          {/* ショートカットボタン：CARSへ */}
+          <Link href="/cars">
+            <Button
+              variant="glass"
+              size="sm"
+              magnetic
+              className="hidden border-tiffany-500/40 bg-white/40 text-[10px] font-semibold tracking-[0.18em] text-slate-900 shadow-soft-glow backdrop-blur-lg hover:bg-white/70 lg:inline-flex"
             >
-              <span
-                className={cn(
-                  "block h-[1px] w-4 origin-center transform bg-current transition-all duration-200",
-                  open ? "translate-y-[3px] rotate-45" : "-translate-y-[3px]",
-                )}
-              />
-              <span
-                className={cn(
-                  "block h-[1px] w-4 bg-current transition-all duration-200",
-                  open ? "scale-x-0 opacity-0" : "scale-x-100 opacity-70",
-                )}
-              />
-              <span
-                className={cn(
-                  "block h-[1px] w-4 origin-center transform bg-current transition-all duration-200",
-                  open ? "-translate-y-[3px] -rotate-45" : "translate-y-[3px]",
-                )}
-              />
-            </button>
-          </div>
+              OPEN CAR LIST
+            </Button>
+          </Link>
+        </nav>
 
-          {/* モバイル：ドロップダウンメニュー */}
-          <div
-            className={cn(
-              "absolute left-0 right-0 top-full mt-2 origin-top rounded-3xl border border-slate-200/80 bg-white/95 p-3 text-[11px] text-slate-700 shadow-soft-card backdrop-blur-xl transition-all duration-200 md:hidden",
-              open
-                ? "pointer-events-auto scale-100 opacity-100"
-                : "pointer-events-none scale-95 opacity-0",
-            )}
-          >
-            <nav className="flex flex-col gap-1.5">
+        {/* モバイルハンバーガー */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          className={[
+            "relative flex h-9 w-9 items-center justify-center rounded-full border border-white/60 bg-white/70 text-slate-800 shadow-soft backdrop-blur sm:hidden",
+            open ? "shadow-soft-strong" : "",
+          ].join(" ")}
+          aria-label="メニューを開く"
+        >
+          <span className="sr-only">Toggle navigation</span>
+          <span
+            className={[
+              "block h-[1px] w-4 transform rounded-full bg-slate-700 transition-transform duration-200",
+              open ? "translate-y-[3px] rotate-45" : "-translate-y-[3px]",
+            ].join(" ")}
+          />
+          <span
+            className={[
+              "absolute block h-[1px] w-4 rounded-full bg-slate-700 transition-all duration-200",
+              open ? "opacity-0" : "opacity-100",
+            ].join(" ")}
+          />
+          <span
+            className={[
+              "block h-[1px] w-4 transform rounded-full bg-slate-700 transition-transform duration-200",
+              open ? "-translate-y-[3px] -rotate-45" : "translate-y-[3px]",
+            ].join(" ")}
+          />
+        </button>
+      </div>
+
+      {/* ガラスの下地：スクロール時に少し濃くなる */}
+      <div
+        className={[
+          "pointer-events-none absolute inset-x-0 top-0 -z-20 h-[68px] bg-gradient-to-b from-white/70 via-white/40 to-transparent backdrop-blur-xl transition-all duration-300 sm:h-[76px]",
+          scrolled ? "from-white/85 via-white/70" : "",
+        ].join(" ")}
+      />
+
+      {/* モバイルメニュー */}
+      <div
+        className={[
+          "sm:hidden",
+          open ? "pointer-events-auto" : "pointer-events-none",
+        ].join(" ")}
+      >
+        <div
+          className={[
+            "mx-auto mt-1 w-full max-w-6xl px-4 transition-transform duration-300 sm:px-6 lg:px-8",
+            open ? "translate-y-0" : "-translate-y-2",
+          ].join(" ")}
+        >
+          <div className="rounded-3xl border border-white/70 bg-white/90 p-3 text-[11px] text-slate-700 shadow-soft-glow backdrop-blur-xl">
+            <nav className="space-y-1.5">
               {NAV_ITEMS.map((item) => {
-                const active =
-                  item.href === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(item.href);
+                const active = isActive(pathname ?? "", item.href);
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={cn(
-                      "flex items-center justify-between rounded-2xl px-3 py-2 transition",
+                    className={[
+                      "flex items-center justify-between rounded-2xl px-3 py-2 transition-colors",
                       active
-                        ? "bg-slate-900 text-white"
-                        : "hover:bg-slate-100",
-                    )}
+                        ? "bg-tiffany-50/80 text-slate-900"
+                        : "hover:bg-slate-50",
+                    ].join(" ")}
                   >
-                    <span className="font-semibold tracking-[0.2em]">
-                      {item.label}
-                    </span>
-                    <span className="text-[9px] text-slate-400">
-                      {active ? "CURRENT" : "OPEN"}
+                    <div className="flex flex-col">
+                      <span className="text-[11px] font-semibold tracking-[0.18em]">
+                        {item.label}
+                      </span>
+                      {item.subLabel && (
+                        <span className="text-[10px] text-slate-400">
+                          {item.subLabel}
+                        </span>
+                      )}
+                    </div>
+                    <span className="text-[10px] text-slate-400">
+                      →
                     </span>
                   </Link>
                 );
               })}
-              <div className="mt-2 flex gap-2">
+            </nav>
+
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Link href="/cars" className="flex-1">
                 <Button
-                  asChild
                   variant="primary"
                   size="sm"
-                  className="flex-1"
+                  className="w-full text-[10px] tracking-[0.16em]"
                 >
-                  <Link href="/cars">CARS DB</Link>
+                  車種一覧を開く
                 </Button>
+              </Link>
+              <Link href="/guide" className="flex-[0.9]">
                 <Button
-                  asChild
                   variant="outline"
                   size="sm"
-                  className="flex-1"
+                  className="w-full border-slate-200/80 bg-white text-[10px] tracking-[0.16em]"
                 >
-                  <Link href="/guide">GUIDE</Link>
+                  GUIDE を読む
                 </Button>
-              </div>
-            </nav>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
