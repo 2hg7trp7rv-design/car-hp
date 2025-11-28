@@ -9,7 +9,79 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // --------------------------------
+      // カラー / 質感
+      // --------------------------------
+      colors: {
+        background: "#F8FAFC",
+        // テキスト色：純粋な黒ではなく、わずかに青みを含ませて馴染ませる
+        "text-main": "#0F172A",
+        "text-sub": "#6B7280",
+
+        // Tiffany系（アクセント）
+        tiffany: {
+          DEFAULT: "#0ABAB5",
+          50: "#E5FAF8",
+          100: "#C9F3EF",
+          200: "#9FE6DF",
+          300: "#6FD7CF",
+          400: "#37C8C0",
+          500: "#0ABAB5",
+          600: "#089D99",
+          700: "#077F7B",
+        },
+
+        // 空気色・素材色
+        vapor: "#F0FBFB", // Ice Vapor: 白と青の中間にある空気色
+        obsidian: "#1A1A1A", // 柔らかい黒
+        porcelain: "#FFFFFF", // 陶器のような白
+
+        // Dim パレット（ガラスUIの背景など）
+        "tiffany-dim": {
+          50: "#F2FAFA",
+          100: "#E6F4F4",
+          200: "#CFE8E8",
+          300: "#A8D1D1",
+          400: "#82B8B8",
+          500: "#5C9E9E",
+          600: "#458282",
+          700: "#2F6666",
+          800: "#1A4242",
+          900: "#0D2626",
+        },
+      },
+
+      // --------------------------------
+      // グラデーション / 背景（仕様書: メッシュ系）
+      // --------------------------------
+      backgroundImage: {
+        // サイト共通の大気グラデーション（.bg-site とほぼ同等）
+        "site-mesh":
+          "radial-gradient(circle at 10% 20%, rgba(10, 186, 181, 0.08) 0%, transparent 45%)," +
+          "radial-gradient(circle at 90% 80%, rgba(10, 186, 181, 0.05) 0%, transparent 40%)," +
+          "linear-gradient(180deg, rgba(255,255,255,0) 0%, #FFFFFF 100%)",
+
+        // Hero 用のスポットライト
+        "hero-spot":
+          "radial-gradient(circle at 10% 0%, rgba(148, 239, 255, 0.35), transparent 60%)," +
+          "radial-gradient(circle at 100% 60%, rgba(10, 186, 181, 0.27), transparent 55%)," +
+          "linear-gradient(135deg, #020617, #020617)",
+
+        // 暗いセクション用（Obsidian 上にTiffanyがにじむ）
+        "obsidian-mesh":
+          "radial-gradient(circle at 0% 0%, rgba(56,189,248,0.28), transparent 55%)," +
+          "radial-gradient(circle at 100% 100%, rgba(8,145,178,0.3), transparent 55%)," +
+          "linear-gradient(145deg, #020617, #020617)",
+
+        // カード背景用の淡いスポット
+        "card-spot":
+          "radial-gradient(circle at 0% 0%, rgba(148, 239, 255, 0.6), transparent 55%)," +
+          "linear-gradient(135deg, rgba(255,255,255,0.96), rgba(240,251,251,0.94))",
+      },
+
+      // --------------------------------
       // シャドウ（Glass / Boutique 用）
+      // --------------------------------
       boxShadow: {
         // Glassmorphism用の内側発光
         "glass-inner": "inset 0 1px 0 0 rgba(255, 255, 255, 0.4)",
@@ -29,46 +101,37 @@ const config: Config = {
           "0 12px 40px -4px rgba(13, 38, 38, 0.15), inset 0 0 0 1px rgba(255,255,255,0.1)",
       },
 
-      colors: {
-        // サイト全体のベース背景
-        site: "#F8FAFC",
-        background: "#F8FAFC",
+      // --------------------------------
+      // タイポグラフィ（フォントは next/font 経由で）
+      // --------------------------------
+      fontFamily: {
+        sans: ["var(--font-manrope)", "system-ui", "sans-serif"],
+        serif: ["var(--font-bodoni)", "ui-serif", "serif"],
+      },
 
-        // テキスト色：純粋な黒ではなく、わずかに青みを含ませて馴染ませる
-        "text-main": "#0F172A",
-        "text-sub": "#6B7280",
+      fontSize: {
+        // 見出し系
+        "display-1": ["3.25rem", { lineHeight: "1.05", letterSpacing: "-0.04em" }],
+        "display-2": ["2.75rem", { lineHeight: "1.08", letterSpacing: "-0.03em" }],
+        "title-1": ["2.125rem", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
+        "title-2": ["1.5rem", { lineHeight: "1.18", letterSpacing: "-0.01em" }],
+      },
 
-        // 既存のTiffany系（アクセント用）
-        tiffany: {
-          DEFAULT: "#0ABAB5",
-          50: "#E5FAF8",
-          100: "#C9F3EF",
-          200: "#9FE6DF",
-          300: "#6FD7CF",
-          400: "#37C8C0",
-          500: "#0ABAB5",
-          600: "#089D99",
-          700: "#077F7B",
-        },
+      letterSpacing: {
+        wide: "0.08em",
+        wider: "0.16em",
+        widest: "0.32em", // セクションラベル用
+      },
 
-        // 空間色と素材色
-        vapor: "#F0FBFB", // Ice Vapor: 白と青の中間にある空気色
-        obsidian: "#1A1A1A", // 柔らかい黒
-        porcelain: "#FFFFFF", // 陶器のような白
-
-        // Glassmorphism 用 Dim パレット
-        "tiffany-dim": {
-          50: "#F2FAFA",
-          100: "#E6F4F4",
-          200: "#CFE8E8",
-          300: "#A8D1D1",
-          400: "#82B8B8",
-          500: "#5C9E9E",
-          600: "#458282",
-          700: "#2F6666",
-          800: "#1A4242",
-          900: "#0D2626",
-        },
+      // --------------------------------
+      // 余白スケール（セクション間のマクロスペース）
+      // --------------------------------
+      spacing: {
+        // セクション縦方向の標準値（仕様書: 120–200px）
+        "section-sm": "3.5rem", // ~56px
+        "section": "5rem", // ~80px
+        "section-lg": "7.5rem", // ~120px
+        "section-xl": "9.5rem", // ~152px
       },
 
       borderRadius: {
@@ -77,20 +140,23 @@ const config: Config = {
         "4xl": "2.25rem",
       },
 
-      fontFamily: {
-        // app/layout.tsx で定義するCSS変数と紐付け
-        sans: ["var(--font-manrope)", "system-ui", "sans-serif"],
-        serif: ["var(--font-bodoni)", "ui-serif", "serif"],
-      },
-
-      // 物理感のあるイージング / アニメーション
+      // --------------------------------
+      // モーション / トランジション
+      // --------------------------------
       transitionTimingFunction: {
         magnetic: "cubic-bezier(0.35, 0, 0.65, 1)",
         liquid: "cubic-bezier(0.23, 1, 0.32, 1)",
       },
+      transitionDuration: {
+        fast: "150ms",
+        normal: "250ms",
+        slow: "400ms",
+      },
       animation: {
         "liquid-expand":
           "liquidExpand 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards",
+        "fade-up-soft": "fadeUpSoft 0.6s ease-out forwards",
+        "float-soft": "floatSoft 4s ease-in-out infinite",
       },
       keyframes: {
         liquidExpand: {
@@ -103,13 +169,45 @@ const config: Config = {
             opacity: "1",
           },
         },
+        fadeUpSoft: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(10px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+        floatSoft: {
+          "0%, 100%": {
+            transform: "translate3d(0, 0, 0)",
+          },
+          "50%": {
+            transform: "translate3d(0, -6px, 0)",
+          },
+        },
       },
 
-      // 広めのセクション余白（仕様書に合わせたスケール）
-      spacing: {
-        30: "7.5rem", // 120px
-        40: "10rem", // 160px
-        50: "12.5rem", // 200px
+      // --------------------------------
+      // コンテナ（センタリング）
+      // --------------------------------
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: "1rem",
+          sm: "1.5rem",
+          lg: "2rem",
+          xl: "2rem",
+          "2xl": "2.5rem",
+        },
+        screens: {
+          sm: "640px",
+          md: "768px",
+          lg: "1024px",
+          xl: "1280px",
+          "2xl": "1400px",
+        },
       },
     },
   },
