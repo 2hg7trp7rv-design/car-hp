@@ -21,6 +21,18 @@ type GuideSection = {
   bullets?: string[];
 };
 
+type RelatedColumnLink = {
+  slug: string;
+  label: string;
+  description: string;
+};
+
+type RelatedCarLink = {
+  href: string;
+  label: string;
+  description: string;
+};
+
 type GuideContent = {
   slug: GuideSlug;
   title: string;
@@ -29,6 +41,8 @@ type GuideContent = {
   updatedAt?: string;
   readingTimeMinutes: number;
   sections: GuideSection[];
+  relatedColumns?: RelatedColumnLink[];
+  relatedCarLinks?: RelatedCarLink[];
 };
 
 // ---- ガイド本文データ --------------------------------------------------
@@ -62,7 +76,8 @@ const guides: Record<GuideSlug, GuideContent> = {
       {
         id: "check-cash",
         label: "一括を検討するときのチェックポイント",
-        summary: "「現金があるかどうか」ではなく、「残しておくべき額はいくらか」を基準に考えます。",
+        summary:
+          "「現金があるかどうか」ではなく、「残しておくべき額はいくらか」を基準に考えます。",
         paragraphs: [
           "一括購入を検討するときは、「今いくら持っているか」ではなく、「購入後にいくら残るか」を見ることが大切です。特に、生活防衛資金（数か月〜半年分の生活費）と、近い将来に予定されている大きな出費（教育費、引っ越し、住宅関連など）は優先して確保しておく必要があります。",
           "クルマは基本的に価値が減っていく資産です。現金をほぼすべてクルマに変えてしまうと、売却しない限り現金化できない状態になり、急な支出に対応しづらくなります。"
@@ -76,7 +91,8 @@ const guides: Record<GuideSlug, GuideContent> = {
       {
         id: "loan-points",
         label: "ローンを使う場合に押さえておきたいこと",
-        summary: "金利だけでなく、期間・残価設定・繰上げ返済のしやすさを確認します。",
+        summary:
+          "金利だけでなく、期間・残価設定・繰上げ返済のしやすさを確認します。",
         paragraphs: [
           "ローンを選ぶ場合、「金利 ○%」という表記だけで判断するのは危険です。支払総額に影響するのは、金利・借入期間・残価設定の有無など複数の要素です。",
           "残価設定ローンは、月々の支払いを抑えられる代わりに、最終回支払い時に「乗り換える／買い取る／返却する」のいずれかを選ぶ必要があります。数年後の自分の生活や、クルマの使い方の変化も踏まえて、どの選択肢を取りやすいかを想像しておくと安心です。",
@@ -91,7 +107,8 @@ const guides: Record<GuideSlug, GuideContent> = {
       {
         id: "exit-strategy",
         label: "出口戦略を決めてから支払い方法を選ぶ",
-        summary: "「何年乗るつもりか」「途中で手放したくなったときにどうするか」を先に決めておきます。",
+        summary:
+          "「何年乗るつもりか」「途中で手放したくなったときにどうするか」を先に決めておきます。",
         paragraphs: [
           "支払い方法は、クルマとの付き合い方とセットで考えると整理しやすくなります。例えば「3〜5年で乗り換える可能性が高い」のか、「故障やライフステージの変化がない限り、長く乗るつもり」なのかによって、最適なプランは変わります。",
           "短期間で乗り換える前提なら、残価設定ローンやリースのような「出口が最初から決まっている」プランがフィットするケースもあります。逆に、長く乗るつもりなら、シンプルな元利均等ローンや、余裕があれば一括に近づける形での繰上げ返済が候補になります。",
@@ -102,6 +119,34 @@ const guides: Record<GuideSlug, GuideContent> = {
           "途中売却時にローン残債がいくら残りそうか、販売店に相談しておく",
           "「乗り換え前提」か「乗りつぶし前提」かで、最適なプランが変わる"
         ]
+      }
+    ],
+    relatedColumns: [
+      {
+        slug: "maintenance-used-suv-cost",
+        label: "中古輸入SUVの維持費を、ざっくり3つのパターンで考える。",
+        description:
+          "維持費のパターンを3つに分解して整理するコラム。支払い方法の検討とあわせて読むと、総費用のイメージが掴みやすくなります。"
+      },
+      {
+        slug: "maintenance-tire-alignment-import",
+        label: "輸入セダンのタイヤとアライメントを、ケチらず整える理由。",
+        description:
+          "ローンを組んで購入する場合でも、足回りへの投資は避けづらい項目です。どこにコストをかけるべきかの参考になります。"
+      }
+    ],
+    relatedCarLinks: [
+      {
+        href: "/cars?difficulty=basic",
+        label: "維持しやすいモデルから候補を探す",
+        description:
+          "維持難易度「やさしい」に近いクルマを中心に一覧表示。支払方法とあわせて、家計への負担を抑えたいときの入口として。"
+      },
+      {
+        href: "/cars?difficulty=advanced",
+        label: "維持コストが重くなりやすいモデルを確認する",
+        description:
+          "維持難易度「気を使う」寄りのモデルを確認し、ローン期間や予備資金の設定に反映させたいときに使えるフィルターです。"
       }
     ]
   },
@@ -173,6 +218,40 @@ const guides: Record<GuideSlug, GuideContent> = {
           "実際の支出と年1回程度比較して、モデルを調整する",
           "この数字が、今後数年のライフプランと両立できるかを確認する"
         ]
+      }
+    ],
+    relatedColumns: [
+      {
+        slug: "maintenance-used-suv-cost",
+        label: "中古輸入SUVの維持費を、ざっくり3つのパターンで考える。",
+        description:
+          "具体的な金額イメージを持ちたいときに役立つコラム。維持費モデルを作る際の参考として読み合わせできます。"
+      },
+      {
+        slug: "maintenance-tire-alignment-import",
+        label: "輸入セダンのタイヤとアライメントを、ケチらず整える理由。",
+        description:
+          "維持費の中でも、走行フィールと安全性に直結する部分への投資について整理した記事です。"
+      },
+      {
+        slug: "technical-sedan-vs-suv-ride",
+        label: "セダンとSUV、乗り味の違いを足回りの設計から眺めてみる。",
+        description:
+          "同じクルマでも、ボディタイプによって「どこにコストがかかりやすいか」を考えるきっかけになる技術系コラムです。"
+      }
+    ],
+    relatedCarLinks: [
+      {
+        href: "/cars?bodyType=SUV",
+        label: "SUVの候補だけを絞り込んで維持費イメージを見る",
+        description:
+          "SUVに関心がある場合の入口として。ボディタイプを絞ったうえで、維持難易度やセグメントを組み合わせて検討できます。"
+      },
+      {
+        href: "/cars?difficulty=advanced",
+        label: "維持に気を使うモデルを前提に、月額予算を検討する",
+        description:
+          "故障リスクや部品代が高めになりやすいモデルを想定しながら、予備費込みの維持費モデルを組み立てたいときに。"
       }
     ]
   },
@@ -247,6 +326,34 @@ const guides: Record<GuideSlug, GuideContent> = {
           "「いつまでに決めなければならないか」の期限を自分で把握しておく"
         ]
       }
+    ],
+    relatedColumns: [
+      {
+        slug: "maintenance-used-suv-cost",
+        label: "中古輸入SUVの維持費を、ざっくり3つのパターンで考える。",
+        description:
+          "乗り換え前に、次の候補の維持費イメージを掴んでおきたいときに役立つコラムです。"
+      },
+      {
+        slug: "technical-why-we-loved-v8",
+        label: "なぜV8は、こんなにも愛されてきたのか。",
+        description:
+          "売却を考えるときに、「手放したあとに後悔しないか」を整理するための視点として参考になる技術・文化寄りのコラムです。"
+      }
+    ],
+    relatedCarLinks: [
+      {
+        href: "/cars",
+        label: "次の一台の候補を一覧から見直す",
+        description:
+          "メーカー・難易度・ボディタイプなどでフィルタしながら、次に乗りたいクルマの候補を整理できます。"
+      },
+      {
+        href: "/cars?difficulty=basic",
+        label: "日常使いしやすいモデルを中心に候補を絞る",
+        description:
+          "乗り換え後の維持やトラブルリスクを抑えたいときに、維持難易度の低めなクルマを優先的に検討するための入口として。"
+      }
     ]
   }
 };
@@ -298,6 +405,9 @@ export default async function GuideDetailPage({ params }: PageProps) {
   if (!guide) {
     notFound();
   }
+
+  const hasRelatedColumns = (guide.relatedColumns ?? []).length > 0;
+  const hasRelatedCars = (guide.relatedCarLinks ?? []).length > 0;
 
   return (
     <main className="min-h-screen bg-site text-text-main">
@@ -387,11 +497,73 @@ export default async function GuideDetailPage({ params }: PageProps) {
             ))}
           </div>
 
+          {/* モバイル向け 関連リンク */}
+          {(hasRelatedColumns || hasRelatedCars) && (
+            <section className="mt-14 space-y-4 lg:hidden">
+              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
+                関連リンク
+              </h2>
+              <GlassCard className="border border-slate-200/70 bg-white/90 p-4 text-[11px]">
+                <div className="space-y-4">
+                  {hasRelatedColumns && (
+                    <div>
+                      <p className="mb-2 text-[10px] font-semibold tracking-[0.2em] text-slate-400">
+                        COLUMN
+                      </p>
+                      <ul className="space-y-2">
+                        {guide.relatedColumns!.map((c) => (
+                          <li key={c.slug}>
+                            <Link
+                              href={`/column/${encodeURIComponent(c.slug)}`}
+                              className="block"
+                            >
+                              <p className="font-semibold text-slate-800 underline-offset-4 hover:underline">
+                                {c.label}
+                              </p>
+                              <p className="text-[11px] leading-relaxed text-slate-500">
+                                {c.description}
+                              </p>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {hasRelatedCars && (
+                    <div>
+                      <p className="mb-2 text-[10px] font-semibold tracking-[0.2em] text-slate-400">
+                        CARS
+                      </p>
+                      <ul className="space-y-2">
+                        {guide.relatedCarLinks!.map((c) => (
+                          <li key={c.href}>
+                            <Link
+                              href={c.href}
+                              className="block"
+                            >
+                              <p className="font-semibold text-slate-800 underline-offset-4 hover:underline">
+                                {c.label}
+                              </p>
+                              <p className="text-[11px] leading-relaxed text-slate-500">
+                                {c.description}
+                              </p>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </GlassCard>
+            </section>
+          )}
+
           {/* 戻る */}
           <div className="mt-16 border-t border-slate-100 pt-8">
             <Link
               href="/guide"
-              className="group inline-flex items-center gap-2 text-xs font-medium tracking-[0.18em] text-slate-500 hover:text-tiffany-600"
+              className="group inline-flex items-center gap-2 text-xs/font-medium tracking-[0.18em] text-slate-500 hover:text-tiffany-600"
             >
               <span className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 transition group-hover:border-tiffany-400">
                 ←
@@ -401,9 +573,10 @@ export default async function GuideDetailPage({ params }: PageProps) {
           </div>
         </article>
 
-        {/* 目次エリア（PC） */}
+        {/* サイドバー（PC） */}
         <aside className="hidden w-full max-w-xs lg:block">
           <div className="sticky top-24 space-y-4">
+            {/* 目次 */}
             <GlassCard className="border border-slate-200/70 bg-white/90 p-5 text-[11px]">
               <p className="mb-3 text-[10px] font-semibold tracking-[0.24em] text-slate-400">
                 CONTENTS
@@ -422,10 +595,69 @@ export default async function GuideDetailPage({ params }: PageProps) {
               </ul>
             </GlassCard>
 
+            {/* 関連リンク */}
+            {(hasRelatedColumns || hasRelatedCars) && (
+              <GlassCard className="border border-slate-200/70 bg-white/90 p-5 text-[11px]">
+                <p className="mb-3 text-[10px] font-semibold tracking-[0.24em] text-slate-400">
+                  RELATED LINKS
+                </p>
+
+                <div className="space-y-4">
+                  {hasRelatedColumns && (
+                    <div>
+                      <p className="mb-2 text-[10px] font-semibold tracking-[0.2em] text-slate-500">
+                        COLUMN
+                      </p>
+                      <ul className="space-y-2">
+                        {guide.relatedColumns!.map((c) => (
+                          <li key={c.slug}>
+                            <Link
+                              href={`/column/${encodeURIComponent(c.slug)}`}
+                              className="block"
+                            >
+                              <p className="font-semibold text-slate-800 underline-offset-4 hover:underline">
+                                {c.label}
+                              </p>
+                              <p className="text-[11px] leading-relaxed text-slate-500">
+                                {c.description}
+                              </p>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {hasRelatedCars && (
+                    <div>
+                      <p className="mb-2 text-[10px] font-semibold tracking-[0.2em] text-slate-500">
+                        CARS
+                      </p>
+                      <ul className="space-y-2">
+                        {guide.relatedCarLinks!.map((c) => (
+                          <li key={c.href}>
+                            <Link
+                              href={c.href}
+                              className="block"
+                            >
+                              <p className="font-semibold text-slate-800 underline-offset-4 hover:underline">
+                                {c.label}
+                              </p>
+                              <p className="text-[11px] leading-relaxed text-slate-500">
+                                {c.description}
+                              </p>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </GlassCard>
+            )}
+
+            {/* 汎用の導線（保険的に残しておく） */}
             <GlassCard className="border border-slate-200/70 bg-white/90 p-5 text-[11px]">
-              <p className="mb-3 text-[10px] font-semibold tracking-[0.24em] text-slate-400">
-                RELATED LINKS
-              </p>
               <ul className="space-y-1.5">
                 <li>
                   <Link
