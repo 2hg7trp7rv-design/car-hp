@@ -7,8 +7,6 @@ import {
   getAllColumns,
   type ColumnItem,
 } from "@/lib/columns";
-import { GlassCard } from "@/components/GlassCard";
-import { Reveal } from "@/components/animation/Reveal";
 import ColumnReaderShell from "./reader-shell";
 
 export const runtime = "edge";
@@ -17,9 +15,7 @@ type Props = {
   params: { slug: string };
 };
 
-export async function generateMetadata({
-  params,
-}: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = await getColumnBySlug(params.slug);
 
   if (!item) {
@@ -31,7 +27,7 @@ export async function generateMetadata({
 
   const description =
     item.summary ||
-    "トラブルや修理の実例、ブランドの歴史や技術解説など、クルマに関する情報を整理したコラムです。";
+    "トラブル・修理の実例や、ブランドの歴史・技術解説などを整理したコラムです。";
 
   return {
     title: `${item.title} | CAR BOUTIQUE`,
@@ -62,13 +58,15 @@ function formatDate(value?: string | null) {
   return `${y}/${m}/${day}`;
 }
 
-function mapCategoryLabel(category: ColumnItem["category"]: string {
+// OWNER_STORY は扱わず、実質残すのは
+// ・メンテナンス／トラブル
+// ・技術・歴史・ブランド
+function mapCategoryLabel(category: ColumnItem["category"]): string {
   switch (category) {
     case "MAINTENANCE":
       return "メンテナンス・トラブル";
     case "TECHNICAL":
-      return "ブランド・技術・歴史";
-    case "OWNER_STORY":
+      return "技術・歴史・ブランド";
     default:
       return "コラム";
   }
@@ -83,7 +81,6 @@ export default async function ColumnDetailPage({ params }: Props) {
 
   // 関連コラム: カテゴリ一致＋タグ重なりをスコア化
   const all = await getAllColumns();
-
   const relatedCandidates = all.filter((c) => c.id !== item.id);
 
   const relatedScored = relatedCandidates
@@ -120,7 +117,7 @@ export default async function ColumnDetailPage({ params }: Props) {
               href="/column"
               className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
             >
-              すべてのコラム一覧へ
+              一覧に戻る
             </Link>
           </div>
 
