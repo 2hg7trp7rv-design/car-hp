@@ -1,8 +1,10 @@
 // app/cars/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
+
 import { Reveal } from "@/components/animation/Reveal";
 import { GlassCard } from "@/components/GlassCard";
+import { Button } from "@/components/ui/button";
 import { getAllCars, type CarItem } from "@/lib/cars";
 
 export const runtime = "edge";
@@ -45,19 +47,18 @@ function mapDifficultyLabel(
   }
 }
 
-// 一覧ページ用の短い説明テキスト
-function mapDifficultyShortDescription(
-  difficulty: CarItem["difficulty"],
+function difficultyBadgeClass(
+  difficulty: CarItem["difficulty"] | undefined,
 ): string {
   switch (difficulty) {
     case "basic":
-      return "定期点検と消耗品交換が中心の、扱いやすいクラス。";
+      return "border-emerald-100 bg-emerald-50/80 text-emerald-800";
     case "intermediate":
-      return "一般的な維持に加えて、ときどき予防整備を意識したいクラス。";
+      return "border-amber-100 bg-amber-50/80 text-amber-800";
     case "advanced":
-      return "専門店での点検や、故障時の出費に余裕を見ておきたいクラス。";
+      return "border-rose-100 bg-rose-50/80 text-rose-800";
     default:
-      return "";
+      return "border-slate-200 bg-slate-50/80 text-slate-600";
   }
 }
 
@@ -116,16 +117,20 @@ export default async function CarsPage({ searchParams }: PageProps) {
     Boolean(bodyTypeFilter) ||
     Boolean(segmentFilter);
 
-  // 難易度レジェンド用のプリセット
-  const difficultyPresets: { value: CarItem["difficulty"]; label: string }[] = [
-    { value: "basic", label: mapDifficultyLabel("basic") },
-    { value: "intermediate", label: mapDifficultyLabel("intermediate") },
-    { value: "advanced", label: mapDifficultyLabel("advanced") },
-  ];
+  // ----- インデックス用の簡易統計 -----
+  const totalModels = all.length;
+  const basicCount = all.filter((c) => c.difficulty === "basic").length;
+  const intermediateCount = all.filter(
+    (c) => c.difficulty === "intermediate",
+  ).length;
+  const advancedCount = all.filter((c) => c.difficulty === "advanced").length;
+
+  const sedanCount = all.filter((c) => c.bodyType === "セダン").length;
+  const suvCount = all.filter((c) => c.bodyType === "SUV").length;
 
   return (
     <main className="min-h-screen bg-site text-text-main">
-      <div className="mx-auto max-w-7xl px-4 pb-24 pt-24 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 pb-28 pt-24 sm:px-6 lg:px-8">
         {/* パンくず */}
         <nav
           className="mb-6 text-xs text-slate-500"
@@ -159,8 +164,90 @@ export default async function CarsPage({ searchParams }: PageProps) {
           </Reveal>
         </header>
 
+        {/* インデックスパネル（ブランド感のある overview） */}
+        <Reveal delay={200}>
+          <section className="mb-6">
+            <GlassCard
+              padding="md"
+              className="relative overflow-hidden border border-white/80 bg-gradient-to-r from-white/95 via-white/85 to-vapor/95 shadow-soft"
+            >
+              {/* 光のレイヤー */}
+              <div className="pointer-events-none absolute inset-0">
+                <div className="absolute -left-16 top-[-30%] h-40 w-40 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.18),_transparent_70%)] blur-3xl" />
+                <div className="absolute -right-24 bottom-[-40%] h-64 w-64 rounded-full bg-[radial-gradient(circle_at_center,_rgba(148,163,184,0.25),_transparent_72%)] blur-3xl" />
+              </div>
+
+              <div className="relative z-10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                    CURRENT INDEX
+                  </p>
+                  <p className="mt-1 text-[11px] leading-relaxed text-text-sub sm:text-xs">
+                    登録済みの車種数と、維持の難易度・ボディタイプのざっくりした分布です。
+                    データは、今後も少しずつ追加・更新されていく前提の「小さな図鑑」です。
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-x-6 gap-y-3 text-[10px] text-slate-700 sm:grid-cols-4">
+                  <div>
+                    <p className="text-[9px] tracking-[0.2em] text-slate-400">
+                      TOTAL MODELS
+                    </p>
+                    <p className="mt-1 text-base font-semibold tracking-wide text-slate-900">
+                      {totalModels}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[9px] tracking-[0.2em] text-slate-400">
+                      BASIC / STD / CARE
+                    </p>
+                    <p className="mt-1 text-xs">
+                      <span className="font-semibold text-emerald-700">
+                        {basicCount}
+                      </span>
+                      <span className="mx-1 text-slate-400">/</span>
+                      <span className="font-semibold text-amber-700">
+                        {intermediateCount}
+                      </span>
+                      <span className="mx-1 text-slate-400">/</span>
+                      <span className="font-semibold text-rose-700">
+                        {advancedCount}
+                      </span>
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[9px] tracking-[0.2em] text-slate-400">
+                      SEDAN / SUV
+                    </p>
+                    <p className="mt-1 text-xs">
+                      <span className="font-semibold text-slate-900">
+                        {sedanCount}
+                      </span>
+                      <span className="mx-1 text-slate-400">/</span>
+                      <span className="font-semibold text-slate-900">
+                        {suvCount}
+                      </span>
+                    </p>
+                  </div>
+                  <div className="flex items-end justify-end">
+                    <Link href="/guide?category=MONEY">
+                      <Button
+                        variant="subtle"
+                        size="xs"
+                        className="rounded-full px-3 py-1 text-[9px] tracking-[0.18em]"
+                      >
+                        維持費の考え方を見る
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </GlassCard>
+          </section>
+        </Reveal>
+
         {/* フィルターエリア */}
-        <Reveal delay={220}>
+        <Reveal delay={240}>
           <section className="mb-6 rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-soft">
             <form className="space-y-4 text-xs sm:text-[11px]">
               <div className="grid gap-3 md:grid-cols-4">
@@ -236,7 +323,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 </div>
               </div>
 
-              {/* セグメント */}
+              {/* セグメント + クイックプリセット */}
               <div className="grid gap-3 md:grid-cols-4">
                 <div className="md:col-span-2">
                   <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
@@ -255,10 +342,37 @@ export default async function CarsPage({ searchParams }: PageProps) {
                     ))}
                   </select>
                 </div>
+
+                {/* クイックプリセット（フォーム外の補助） */}
+                <div className="md:col-span-2">
+                  <p className="text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    QUICK PRESET
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-2 text-[10px]">
+                    <Link
+                      href="/cars?difficulty=basic"
+                      className="rounded-full border border-emerald-100 bg-emerald-50/90 px-3 py-1 tracking-[0.16em] text-emerald-800 transition hover:border-emerald-300 hover:bg-emerald-50"
+                    >
+                      初めての輸入車向き
+                    </Link>
+                    <Link
+                      href="/cars?bodyType=セダン"
+                      className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 tracking-[0.16em] hover:border-tiffany-300 hover:bg-white"
+                    >
+                      しっとり系セダン
+                    </Link>
+                    <Link
+                      href="/cars?bodyType=SUV&difficulty=advanced"
+                      className="rounded-full border border-rose-100 bg-rose-50/90 px-3 py-1 tracking-[0.16em] text-rose-800 transition hover:border-rose-300 hover:bg-rose-50"
+                    >
+                      手のかかるSUV
+                    </Link>
+                  </div>
+                </div>
               </div>
 
               {/* ボタン */}
-              <div className="mt-2 flex items-center justify-end gap-3">
+              <div className="mt-3 flex items-center justify-end gap-3">
                 {hasFilter && (
                   <Link
                     href="/cars"
@@ -267,48 +381,24 @@ export default async function CarsPage({ searchParams }: PageProps) {
                     CLEAR
                   </Link>
                 )}
-                <button
+                <Button
                   type="submit"
-                  className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-[11px] font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
+                  size="sm"
+                  variant="primary"
+                  className="rounded-full px-5 py-2 text-[11px] tracking-[0.2em]"
+                  magnetic
                 >
                   絞り込み
-                </button>
+                </Button>
               </div>
             </form>
-
-            {/* 維持難易度の凡例＋ワンクリックフィルター */}
-            <div className="mt-4 rounded-2xl bg-slate-50/80 px-3 py-3 text-[10px] text-slate-600">
-              <p className="mb-2 font-semibold tracking-[0.18em] text-slate-500">
-                DIFFICULTY GUIDE
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {difficultyPresets.map(({ value, label }) => (
-                  <Link
-                    key={value}
-                    href={`/cars?difficulty=${value ?? ""}`}
-                    className="group flex min-w-[140px] flex-1 items-start gap-2 rounded-2xl border border-slate-200 bg-white/80 px-3 py-2 text-left shadow-[0_0_0_1px_rgba(148,163,184,0.25)] transition hover:border-tiffany-300 hover:shadow-soft"
-                    aria-label={`維持難易度「${label}」の車種で絞り込み`}
-                  >
-                    <span className="mt-[4px] h-[6px] w-[6px] rounded-full bg-tiffany-400" />
-                    <span className="space-y-0.5">
-                      <span className="block text-[10px] font-semibold text-slate-800">
-                        {label}
-                      </span>
-                      <span className="block text-[10px] text-slate-500">
-                        {value ? mapDifficultyShortDescription(value) : ""}
-                      </span>
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
           </section>
         </Reveal>
 
         {/* アクティブフィルター表示 */}
         {hasFilter && (
-          <Reveal delay={240}>
-            <div className="mb-4 flex flex-wrap items-center gap-2 text-[10px]">
+          <Reveal delay={260}>
+            <div className="mb-5 flex flex-wrap items-center gap-2 text-[10px]">
               <span className="rounded-full bg-slate-50 px-2 py-0.5 text-slate-400">
                 ACTIVE FILTERS
               </span>
@@ -348,7 +438,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
         )}
 
         {/* 一覧 */}
-        <Reveal delay={260}>
+        <Reveal delay={280}>
           <section className="space-y-4" aria-label="車種一覧">
             <div className="flex items-baseline justify-between">
               <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
@@ -389,9 +479,14 @@ export default async function CarsPage({ searchParams }: PageProps) {
                       as="article"
                       padding="md"
                       interactive
-                      className="group h-full bg-white/90"
+                      className="group relative h-full overflow-hidden border border-slate-200/80 bg-white/95"
                     >
-                      <div className="flex h-full flex-col gap-3">
+                      {/* カード内の光 */}
+                      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                        <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.18),_transparent_70%)] blur-2xl" />
+                      </div>
+
+                      <div className="relative z-10 flex h-full flex-col gap-3">
                         {/* サムネイル */}
                         {(car.heroImage || (car as any).mainImage) && (
                           <div className="overflow-hidden rounded-2xl border border-slate-100">
@@ -432,7 +527,12 @@ export default async function CarsPage({ searchParams }: PageProps) {
                               {car.bodyType}
                             </span>
                           )}
-                          <span className="rounded-full bg-slate-50 px-2 py-1">
+                          <span
+                            className={[
+                              "rounded-full border px-2 py-1",
+                              difficultyBadgeClass(car.difficulty),
+                            ].join(" ")}
+                          >
                             維持難易度: {mapDifficultyLabel(car.difficulty)}
                           </span>
                         </div>
