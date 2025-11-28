@@ -9,7 +9,7 @@ export const runtime = "edge";
 export const metadata: Metadata = {
   title: "GUIDE | CAR BOUTIQUE",
   description:
-    "買い方・売り方・維持費・保険・お金の話など、クルマとの暮らしを少し楽にする実用ガイドコレクション。",
+    "買い方・売り方・維持費・保険・税金など、クルマとの付き合い方を整理するための実用ガイド集です。",
 };
 
 type GuideTopic = {
@@ -30,7 +30,7 @@ type GuideSection = {
   topics: GuideTopic[];
 };
 
-// 既存セクションをベースに、実ガイド記事へのリンクだけ付与
+// 実ガイド記事へのリンク付きセクション（実用トーンに調整）
 const guideSections: GuideSection[] = [
   {
     id: "money",
@@ -38,7 +38,7 @@ const guideSections: GuideSection[] = [
     label: "お金と維持費のこと",
     subLabel: "FINANCE & COST",
     description:
-      "ローン・残クレ・保険・税金。『総額いくらかかる？』を落ち着いて整理するための実用ノート。",
+      "ローン、残価設定ローン、保険、税金など、クルマにかかる費用の全体像を整理するためのガイドです。",
     accent: "tiffany",
     gridArea: "md:col-span-7 lg:col-span-7 lg:row-span-2",
     topics: [
@@ -46,14 +46,14 @@ const guideSections: GuideSection[] = [
         id: "loan-or-lump-sum",
         title: "ローン or 一括、どちらが良い？",
         description:
-          "金利だけでなく、出口戦略まで含めて考えるためのチェックポイントを静かに整理します。",
+          "金利・返済期間・売却タイミングなどを比較しながら検討するための基本的なチェックポイント。",
         link: "/guide/loan-or-lump-sum",
       },
       {
         id: "maintenance-cost-simulation",
         title: "維持費シミュレーションの基本",
         description:
-          "税金・保険・車検・タイヤ…ざっくり『月いくら』で把握するためのシンプルな考え方。",
+          "税金、保険、車検、タイヤなどを「月いくら」の目安で把握するためのシンプルな考え方。",
         link: "/guide/maintenance-cost-simulation",
       },
     ],
@@ -61,18 +61,18 @@ const guideSections: GuideSection[] = [
   {
     id: "sell",
     icon: "↔",
-    label: "手放すときの心得",
+    label: "手放すときのポイント",
     subLabel: "SELLING",
     description:
-      "乗り換えや売却のときに慌てないために。査定・買取・下取りの違いを静かに整理します。",
+      "乗り換えや売却を検討するときに確認しておきたい、査定・買取・下取りの違いや注意点をまとめます。",
     accent: "obsidian",
     gridArea: "md:col-span-5 lg:col-span-5 lg:row-span-2",
     topics: [
       {
         id: "selling-without-rush",
-        title: "『急いで売らない』ための段取り術",
+        title: "『急いで売らない』ための段取り",
         description:
-          "下取り・買取・個人売買。それぞれの特徴を踏まえつつ、心とスケジュールに余白をつくる手順。",
+          "下取り、買取、個人売買の特徴とメリット・デメリットを整理し、スケジュールに余裕を持たせるための基本的な手順。",
         link: "/guide/selling-without-rush",
       },
     ],
@@ -84,8 +84,8 @@ export default function GuidePage() {
     <main className="min-h-screen bg-site text-text-main">
       {/* 背景装飾レイヤー: メッシュグラデーション */}
       <div className="pointer-events-none fixed inset-0 z-0">
-        <div className="absolute top-0 left-0 h-[50vh] w-full bg-gradient-to-b from-white/80 via-white/40 to-transparent" />
-        <div className="absolute -top-[10%] -right-[10%] h-[60vw] w-[60vw] rounded-full bg-tiffany-100/30 blur-[100px]" />
+        <div className="absolute left-0 top-0 h-[50vh] w-full bg-gradient-to-b from-white/80 via-white/40 to-transparent" />
+        <div className="absolute -right-[10%] -top-[10%] h-[60vw] w-[60vw] rounded-full bg-tiffany-100/30 blur-[100px]" />
         <div className="absolute bottom-[10%] -left-[10%] h-[40vw] w-[40vw] rounded-full bg-slate-200/40 blur-[80px]" />
       </div>
 
@@ -96,27 +96,24 @@ export default function GuidePage() {
             <div className="flex items-center gap-3">
               <span className="h-[1px] w-8 bg-tiffany-400" />
               <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-tiffany-600">
-                Car Boutique Guide
+                CAR BOUTIQUE GUIDE
               </p>
             </div>
           </Reveal>
 
           <Reveal delay={100}>
             <h1 className="serif-heading text-4xl font-medium leading-[1.1] text-slate-900 sm:text-5xl lg:text-6xl">
-              Knowledge as{" "}
+              買い方・維持費・売却を
               <br className="hidden sm:block" />
-              <span className="bg-gradient-to-r from-tiffany-500 via-tiffany-600 to-slate-800 bg-clip-text text-transparent">
-                Luxury
-              </span>
+              まとめて確認できるガイド
             </h1>
           </Reveal>
 
           <Reveal delay={200}>
             <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
               <p className="max-w-xl text-xs font-medium leading-loose text-text-sub sm:text-sm">
-                所有の喜びは、知ることから深まります。選び方から維持、そして手放す瞬間まで。
-                <br />
-                賢く美しいカーライフのための、実用的な知恵をアンソロジー形式で。
+                クルマを「買う・維持する・手放す」ときに必要になる、お金や手続きまわりの情報を整理したページです。
+                具体的な金額の目安や、考える順番を確認したいときに使えることを目指しています。
               </p>
 
               {/* 関連リンクへの誘導 */}
@@ -124,7 +121,7 @@ export default function GuidePage() {
                 href="/column"
                 className="group flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] text-slate-800 transition-colors hover:text-tiffany-600"
               >
-                <span>READ COLUMNS</span>
+                <span>VIEW COLUMNS</span>
                 <span className="block h-[1px] w-8 bg-slate-300 transition-all group-hover:w-12 group-hover:bg-tiffany-400" />
               </Link>
             </div>
@@ -269,16 +266,16 @@ export default function GuidePage() {
 
               <div className="relative z-10 flex flex-col items-center">
                 <span className="mb-4 inline-block rounded-full bg-white/10 px-4 py-1.5 text-[10px] font-bold tracking-[0.2em] text-tiffany-300 backdrop-blur-sm">
-                  NEXT STEP
+                  INFORMATION
                 </span>
                 <h3 className="serif-heading mb-6 text-2xl text-white sm:text-3xl">
-                  Curated for Owners
+                  ガイドと関連コンテンツ
                 </h3>
                 <p className="mx-auto mb-8 max-w-lg text-xs leading-relaxed text-slate-400 sm:text-sm">
-                  各ガイドの詳細は、コラムセクションの記事と連動して随時アップデートされます。
-                  特定の車種に関する維持費情報は CARS ページをご覧ください。
+                  ガイドの内容は、今後のアップデートで順次追加・更新していきます。
+                  特定の車種に関する維持費やトラブル事例は CARS ページと COLUMN セクションで取り上げていく予定です。
                 </p>
-                <div className="flex flex-wrap justify中心 gap-4">
+                <div className="flex flex-wrap justify-center gap-4">
                   <Link
                     href="/column"
                     className="inline-flex min-w-[160px] items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-bold tracking-[0.16em] text-slate-900 transition-transform hover:scale-105 active:scale-95"
