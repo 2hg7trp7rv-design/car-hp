@@ -29,6 +29,10 @@ function normalize(value: string | undefined | null): string {
   return (value ?? "").trim().toLowerCase();
 }
 
+function isNonEmptyString(value: string | null | undefined): value is string {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
 function mapCategoryLabel(category: ColumnItem["category"]): string {
   switch (category) {
     case "MAINTENANCE":
@@ -58,23 +62,28 @@ export default async function ColumnPage({ searchParams }: PageProps) {
   const categoryFilter = (searchParams?.category ?? "").trim();
   const tagFilter = (searchParams?.tag ?? "").trim();
 
-  const categories = Array.from(
-    new Set(items.map((i) => i.category).filter(Boolean)),
+  const categories: string[] = Array.from(
+    new Set(items.map((i) => i.category).filter(isNonEmptyString)),
   ).sort();
 
-  const tags = Array.from(
+  const tags: string[] = Array.from(
     new Set(
       items
         .flatMap((i) => i.tags ?? [])
-        .filter((t): t is string => Boolean(t)),
+        .filter(isNonEmptyString),
     ),
   ).sort();
 
   const filtered = items.filter((item) => {
     if (q) {
-      const haystack = `${item.title ?? ""} ${item.summary ?? ""} ${mapCategoryLabel(
-        item.category,
-      )} ${(item.tags ?? []).join(" ")}`.toLowerCase();
+      const haystack = [
+        item.title ?? "",
+        item.summary ?? "",
+        mapCategoryLabel(item.category),
+        ...(item.tags ?? []),
+      ]
+        .join(" ")
+        .toLowerCase();
 
       if (!haystack.includes(q)) return false;
     }
@@ -88,7 +97,7 @@ export default async function ColumnPage({ searchParams }: PageProps) {
 
   const hasFilter = Boolean(q || categoryFilter || tagFilter);
 
-  // ── 簡易インデックス（雑誌の目次的な雰囲気で） ──────────────────
+  // ── 簡易インデックス ──
   const totalArticles = items.length;
   const maintenanceCount = items.filter(
     (i) => i.category === "MAINTENANCE",
@@ -148,14 +157,14 @@ export default async function ColumnPage({ searchParams }: PageProps) {
           </Reveal>
         </header>
 
-        {/* インデックスパネル：雑誌の「この号の特集」的な overview */}
+        {/* インデックスパネル */}
         <Reveal delay={190}>
           <section className="mb-6">
             <GlassCard
               padding="md"
               className="relative overflow-hidden border border-white/80 bg-gradient-to-r from-white/96 via-white/88 to-vapor/95 shadow-soft"
             >
-              {/* Tiffany の光レイヤー */}
+              {/* 光レイヤー */}
               <div className="pointer-events-none absolute inset-0">
                 <div className="absolute -left-20 -top-20 h-44 w-44 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.18),_transparent_70%)] blur-3xl" />
                 <div className="absolute -right-24 bottom-[-40%] h-64 w-64 rounded-full bg-[radial-gradient(circle_at_center,_rgba(148,163,184,0.22),_transparent_72%)] blur-3xl" />
@@ -168,8 +177,7 @@ export default async function ColumnPage({ searchParams }: PageProps) {
                   </p>
                   <p className="mt-1 text-[11px] leading-relaxed text-text-sub sm:text-xs">
                     現在登録されているコラム数と、メンテナンス系 / 技術・ブランド系の
-                    おおまかなバランスです。知りたい内容に合わせて、ゆっくり読み進められる
-                    小さな雑誌のようなイメージで整えています。
+                    おおまかなバランスです。
                   </p>
                 </div>
 
@@ -350,7 +358,9 @@ export default async function ColumnPage({ searchParams }: PageProps) {
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
                   category:{" "}
                   <span className="font-semibold">
-                    {mapCategoryLabel(categoryFilter as ColumnItem["category"])}
+                    {mapCategoryLabel(
+                      categoryFilter as ColumnItem["category"],
+                    )}
                   </span>
                 </span>
               )}
