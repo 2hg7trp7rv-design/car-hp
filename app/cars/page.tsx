@@ -8,9 +8,9 @@ import { getAllCars, type CarItem } from "@/lib/cars";
 export const runtime = "edge";
 
 export const metadata: Metadata = {
-  title: "CARS | CURATED SHOWROOM",
+  title: "CARS | CAR DATABASE",
   description:
-    "オーナー視点で選んだクルマたちのデータベース。維持の難易度やボディタイプから、静かに自分の一台を探すためのショールーム。",
+    "主要な車種について、維持の難易度・ボディタイプ・セグメントなどの条件で絞り込んで確認できる車種データベースです。",
 };
 
 type SearchParams = {
@@ -29,7 +29,7 @@ function normalize(value: string | undefined | null): string {
   return (value ?? "").trim().toLowerCase();
 }
 
-// ★ CarDifficulty = "basic" | "intermediate" | "advanced" に合わせる
+// CarDifficulty = "basic" | "intermediate" | "advanced" に合わせる
 function mapDifficultyLabel(
   difficulty: CarItem["difficulty"] | undefined,
 ): string {
@@ -48,7 +48,8 @@ function mapDifficultyLabel(
 export default async function CarsPage({ searchParams }: PageProps) {
   const all = await getAllCars();
 
-  const q = normalize(searchParams?.q);
+  const rawQ = searchParams?.q ?? "";
+  const q = normalize(rawQ);
   const makerFilter = (searchParams?.maker ?? "").trim();
   const difficultyFilter = (searchParams?.difficulty ?? "").trim();
   const bodyTypeFilter = (searchParams?.bodyType ?? "").trim();
@@ -59,9 +60,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
   ).sort();
 
   const difficulties = Array.from(
-    new Set(
-      all.map((c) => c.difficulty).filter(Boolean),
-    ),
+    new Set(all.map((c) => c.difficulty).filter(Boolean)),
   ) as CarItem["difficulty"][];
 
   const bodyTypes = Array.from(
@@ -94,11 +93,21 @@ export default async function CarsPage({ searchParams }: PageProps) {
     return true;
   });
 
+  const hasFilter =
+    Boolean(q) ||
+    Boolean(makerFilter) ||
+    Boolean(difficultyFilter) ||
+    Boolean(bodyTypeFilter) ||
+    Boolean(segmentFilter);
+
   return (
     <main className="min-h-screen bg-site text-text-main">
       <div className="mx-auto max-w-7xl px-4 pb-24 pt-24 sm:px-6 lg:px-8">
         {/* パンくず */}
-        <nav className="mb-6 text-xs text-slate-500">
+        <nav
+          className="mb-6 text-xs text-slate-500"
+          aria-label="パンくずリスト"
+        >
           <Link href="/" className="hover:text-slate-800">
             HOME
           </Link>
@@ -110,25 +119,26 @@ export default async function CarsPage({ searchParams }: PageProps) {
         <header className="mb-10 space-y-4">
           <Reveal>
             <p className="text-[10px] font-bold tracking-[0.32em] text-tiffany-600">
-              CURATED SHOWROOM
+              CAR DATABASE
             </p>
           </Reveal>
           <Reveal delay={80}>
             <h1 className="serif-heading text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
-              静かに選ぶ、オーナーのためのショールーム。
+              条件で絞り込める車種一覧
             </h1>
           </Reveal>
           <Reveal delay={160}>
             <p className="max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
-              「速さ」よりも「付き合いやすさ」を重視したカーリスト。
-              維持の難易度やボディタイプから、いまの暮らしに合う一台をゆっくり探せるページです。
+              メーカー、ボディタイプ、セグメント、維持の難易度などで絞り込みながら、
+              気になる車種の概要を一覧で確認できるページです。詳細ページでは、関連ニュースや
+              コラムもあわせて参照できます。
             </p>
           </Reveal>
         </header>
 
         {/* フィルターエリア */}
         <Reveal delay={220}>
-          <section className="mb-10 rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-soft">
+          <section className="mb-6 rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-soft">
             <form className="space-y-4 text-xs sm:text-[11px]">
               <div className="grid gap-3 md:grid-cols-4">
                 {/* キーワード */}
@@ -139,7 +149,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                   <input
                     type="search"
                     name="q"
-                    defaultValue={searchParams?.q ?? ""}
+                    defaultValue={rawQ}
                     placeholder="モデル名やキーワードで検索"
                     className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
                   />
@@ -225,7 +235,15 @@ export default async function CarsPage({ searchParams }: PageProps) {
               </div>
 
               {/* ボタン */}
-              <div className="mt-2 flex justify-end">
+              <div className="mt-2 flex items-center justify-end gap-3">
+                {hasFilter && (
+                  <Link
+                    href="/cars"
+                    className="text-[10px] tracking-[0.16em] text-slate-400 hover:text-slate-700"
+                  >
+                    CLEAR
+                  </Link>
+                )}
                 <button
                   type="submit"
                   className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-[11px] font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
@@ -237,16 +255,72 @@ export default async function CarsPage({ searchParams }: PageProps) {
           </section>
         </Reveal>
 
+        {/* アクティブフィルター表示 */}
+        {hasFilter && (
+          <Reveal delay={240}>
+            <div className="mb-4 flex flex-wrap items-center gap-2 text-[10px]">
+              <span className="rounded-full bg-slate-50 px-2 py-0.5 text-slate-400">
+                ACTIVE FILTERS
+              </span>
+              {q && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  keyword: <span className="font-semibold">“{rawQ}”</span>
+                </span>
+              )}
+              {makerFilter && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  maker: <span className="font-semibold">{makerFilter}</span>
+                </span>
+              )}
+              {difficultyFilter && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  difficulty:{" "}
+                  <span className="font-semibold">
+                    {mapDifficultyLabel(
+                      difficultyFilter as CarItem["difficulty"],
+                    )}
+                  </span>
+                </span>
+              )}
+              {bodyTypeFilter && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  body: <span className="font-semibold">{bodyTypeFilter}</span>
+                </span>
+              )}
+              {segmentFilter && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  segment:{" "}
+                  <span className="font-semibold">{segmentFilter}</span>
+                </span>
+              )}
+            </div>
+          </Reveal>
+        )}
+
         {/* 一覧 */}
         <Reveal delay={260}>
-          <section className="space-y-4">
+          <section className="space-y-4" aria-label="車種一覧">
             <div className="flex items-baseline justify-between">
               <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
                 CAR LIST
               </h2>
-              <p className="text-[11px] text-slate-400">
-                {filtered.length} 台表示中
-              </p>
+              <div className="flex flex-col items-end text-[10px] text-slate-400">
+                <span>
+                  TOTAL{" "}
+                  <span className="font-semibold text-slate-800">
+                    {all.length}
+                  </span>{" "}
+                  MODELS
+                </span>
+                {filtered.length !== all.length && (
+                  <span>
+                    FILTERED{" "}
+                    <span className="font-semibold text-tiffany-600">
+                      {filtered.length}
+                    </span>
+                  </span>
+                )}
+              </div>
             </div>
 
             {filtered.length === 0 ? (
@@ -265,7 +339,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                       as="article"
                       padding="md"
                       interactive
-                      className="h-full bg-white/90"
+                      className="group h-full bg-white/90"
                     >
                       <div className="flex h-full flex-col gap-3">
                         {/* サムネイル */}
