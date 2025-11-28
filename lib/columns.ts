@@ -1,7 +1,8 @@
 // lib/columns.ts
 import columnsRaw from "@/data/columns.json";
 
-export type ColumnCategory = "OWNER_STORY" | "MAINTENANCE" | "TECHNICAL";
+// もう OWNER_STORY は扱わないので型からも削除
+export type ColumnCategory = "MAINTENANCE" | "TECHNICAL";
 
 export type ColumnItem = {
   id: string;
@@ -27,11 +28,12 @@ function normalizeColumnItem(raw: any): ColumnItem {
   const slug: string = raw.slug ?? raw.id ?? "";
   const id: string = raw.id ?? slug;
 
-  const rawCategory = typeof raw.category === "string" ? raw.category : "";
+  const rawCategory =
+    typeof raw.category === "string" ? raw.category.toUpperCase() : "";
+
+  // MAINTENANCE / TECHNICAL 以外は一旦 TECHNICAL に寄せる
   const category: ColumnCategory =
-    rawCategory === "MAINTENANCE" || rawCategory === "TECHNICAL"
-      ? (rawCategory as ColumnCategory)
-      : "TECHNICAL";
+    rawCategory === "MAINTENANCE" ? "MAINTENANCE" : "TECHNICAL";
 
   return {
     id,
@@ -52,22 +54,24 @@ function normalizeColumnItem(raw: any): ColumnItem {
 }
 
 // OWNER_STORY カテゴリの記事はここで除外する
-const filteredRaw: any[] = Array.isArray(columnsRaw)
-  ? (columnsRaw as any[]).filter((raw) => {
-      const cat = typeof raw?.category === "string" ? raw.category : "";
-      // MAINTENANCE / TECHNICAL 以外は原則除外（カテゴリ未設定は許容）
-      if (!cat) return true;
-      return cat !== "OWNER_STORY";
-    })
+const allColumns: ColumnItem[] = Array.isArray(columnsRaw)
+  ? (columnsRaw as any[])
+      .filter((raw) => {
+        const cat =
+          typeof raw?.category === "string"
+            ? raw.category.toUpperCase()
+            : "";
+        // カテゴリ未設定は許容、OWNER_STORY だけ除外
+        if (!cat) return true;
+        return cat !== "OWNER_STORY";
+      })
+      .map(normalizeColumnItem)
+      .sort((a, b) => {
+        const aDate = a.publishedAt ?? "";
+        const bDate = b.publishedAt ?? "";
+        return aDate < bDate ? 1 : aDate > bDate ? -1 : 0;
+      })
   : [];
-
-const allColumns: ColumnItem[] = filteredRaw
-  .map(normalizeColumnItem)
-  .sort((a, b) => {
-    const aDate = a.publishedAt ?? "";
-    const bDate = b.publishedAt ?? "";
-    return aDate < bDate ? 1 : aDate > bDate ? -1 : 0;
-  });
 
 export async function getAllColumns(): Promise<ColumnItem[]> {
   return allColumns;
