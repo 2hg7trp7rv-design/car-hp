@@ -10,9 +10,15 @@
     "segment": "Eセグメントセダン",
     "grade": "M Sport",
     "summary": "高速クルーズから街乗りまで、静粛性とスポーティさを両立した5シリーズの主力グレード。",
-    "summaryLong": "G30型5シリーズの中でも、2.0L直4ターボの530iは日常域の扱いやすさと高速域の余裕をバランスよく持った一台。M Sportのしっかりした足回りと相まって、『静かなのにきちんと楽しい』という絶妙な立ち位置にいるモデルです。",
+    "summaryLong": "G30型5シリーズの中でも、2.0L直4ターボの530iは日常域の扱いやすさと高速域の余裕をバランスよく持った一台。M Sportのしっかりした足回りと相まって、「静かなのにきちんと楽しい」という絶妙な立ち位置にいるモデルです。長距離移動ではしっとりとした乗り味と優れた静粛性が光り、ワインディングではフロントの入りの良さとリアの安定感で「大きいのに軽やか」な印象を与えてくれます。",
     "heroImage": "/images/cars/bmw-530i-g30-hero.jpg",
     "mainImage": "/images/cars/bmw-530i-g30-hero.jpg",
+    "imageUrl": "/images/cars/bmw-530i-g30-hero.jpg",
+    "gallery": [
+      "/images/cars/bmw-530i-g30-front.jpg",
+      "/images/cars/bmw-530i-g30-rear.jpg",
+      "/images/cars/bmw-530i-g30-interior.jpg"
+    ],
     "engine": "2.0L 直4ターボ (B48)",
     "powerPs": 252,
     "torqueNm": 350,
@@ -22,6 +28,26 @@
     "fuelEconomy": "約12〜14km/L（実用域目安）",
     "priceNew": "約750〜850万円（当時の新車価格帯）",
     "priceUsed": "約200〜450万円（年式・走行距離による目安）",
+    "strengths": [
+      "高速巡航時の静粛性と直進安定性が非常に高く、長距離移動が圧倒的に快適",
+      "M Sportサスと可変ステアリングにより、ボディサイズを感じさせない軽快なハンドリング",
+      "最新世代のiDriveとHUD、アシスト系が充実しており、運転負荷が少ない",
+      "2.0Lターボでもトルクが分厚く、街乗りから高速まで「必要十分以上」の加速感"
+    ],
+    "weaknesses": [
+      "ランフラットタイヤ＋M Sportサスの組み合わせで、街中の段差では多少硬さを感じる",
+      "オプション込みで新車価格が上がりやすく、装備次第で予算オーバーになりがち",
+      "サイズ感が大きいため、都心の立体駐車場や狭いコインパーキングでは取り回しに気を使う",
+      "輸入車ゆえの整備工賃・純正部品代は国産セダンより高め"
+    ],
+    "troubleTrends": [
+      "走行距離が伸びてくるとセンサー類や電子制御系の警告灯が点きやすい傾向",
+      "ドアハンドルやウインドウレギュレータなど可動部品の経年劣化",
+      "ランフラットタイヤの摩耗が早く、タイヤ交換コストが比較的高い"
+    ],
+    "costImpression": "車格とパフォーマンスを考えると決して割高ではないが、タイヤ・ブレーキ・オイル等の消耗品は国産Dセグより一段高い。きちんとディーラーまたは専門ショップで面倒を見てもらう前提で、年間の維持費は「やや高め〜高め」を想定しておくと安心。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
     "tags": ["BMW", "5シリーズ", "G30", "セダン"]
   },
   {
@@ -35,9 +61,15 @@
     "segment": "DセグメントSUV",
     "grade": "Z Leather Package",
     "summary": "流麗なクーペフォルムと高級感を両立した都市型SUVの代表。",
-    "summaryLong": "クーペライクなシルエットと上質なインテリアで、都市部のライフスタイルに馴染むSUV。TNGAプラットフォーム採用により剛性と乗り心地のバランスが向上し、静粛性も高水準です。",
+    "summaryLong": "クーペライクなシルエットと上質なインテリアで、都市部のライフスタイルに馴染むSUV。TNGAプラットフォーム採用により剛性と乗り心地のバランスが向上し、静粛性も高水準。ハイブリッドの80系ハリアーは、通勤・買い物からロングドライブまで「とにかくストレスなく乗れる」ことが魅力で、運転に自信がない人でも扱いやすいパッケージです。",
     "heroImage": "/images/cars/toyota-harrier-80-hero.jpg",
     "mainImage": "/images/cars/toyota-harrier-80-hero.jpg",
+    "imageUrl": "/images/cars/toyota-harrier-80-hero.jpg",
+    "gallery": [
+      "/images/cars/toyota-harrier-80-side.jpg",
+      "/images/cars/toyota-harrier-80-rear.jpg",
+      "/images/cars/toyota-harrier-80-interior.jpg"
+    ],
     "engine": "2.5L 直4ハイブリッド (A25A-FXS)",
     "powerPs": 222,
     "torqueNm": 221,
@@ -47,6 +79,26 @@
     "fuelEconomy": "約17〜20km/L（実用域目安）",
     "priceNew": "約400〜550万円（新車時価格帯）",
     "priceUsed": "約250〜450万円（年式・走行距離による目安）",
+    "strengths": [
+      "静粛性が高く、街中や高速道路での移動が非常に快適",
+      "室内・ラゲッジともに使い勝手がよく、ファミリーカーとしても優秀",
+      "ハイブリッドの燃費性能が高く、ガソリンスタンドに行く頻度が少ない",
+      "国産SUVの中でも内装の質感が高く、所有欲を満たしやすい"
+    ],
+    "weaknesses": [
+      "人気車種ゆえに中古市場でも値落ちが緩やかで、割安感はそこまで強くない",
+      "スポーツ走行を求めると、ステアリングフィールやブレーキタッチは「おとなしめ」",
+      "ボディサイズがそこそこ大きく、細い道や立体駐車場では慣れが必要",
+      "静粛性が高いぶん、荒れた路面ではタイヤノイズが目立つ場面もある"
+    ],
+    "troubleTrends": [
+      "電動パーキングブレーキやセンサー類の不具合報告がごく少数ながら存在",
+      "内装のピラー付近からの細かなきしみ音が出る個体もある",
+      "ハイブリッドシステム自体は信頼性が高いが、万一の修理時は高額になりやすい"
+    ],
+    "costImpression": "レギュラー仕様＋優秀な燃費性能で、燃料コストはかなり優秀。定期点検・消耗品交換をディーラーに任せても、同クラス輸入SUVと比べると維持費は「かなり良心的」。家計とのバランスを取りやすい、現実的なラグジュアリーSUV。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
     "tags": ["TOYOTA", "ハリアー", "SUV"]
   },
   {
@@ -60,9 +112,15 @@
     "segment": "スポーツカー",
     "grade": "GT-R",
     "summary": "グループAレースを席巻し、伝説となった平成初期のGT-R。",
-    "summaryLong": "16年ぶりにGT-Rのバッジを復活させ、日本のレースシーンを塗り替えたBNR32。RB26DETTとアテーサE-TSを組み合わせたパッケージは、現代でも色あせない魅力を持ち続けています。",
+    "summaryLong": "16年ぶりにGT-Rのバッジを復活させ、日本のレースシーンを塗り替えたBNR32。RB26DETTとアテーサE-TSを組み合わせたパッケージは、現代でも色あせない魅力を持ち続けています。一方で、すでに30年以上が経過した個体が大半であり、「憧れの名車」から「半分クラシックカー」に足を踏み入れつつある存在でもあります。きちんと手をかけられた個体を選べば、今なお鋭いレスポンスと独特のターボサウンドを楽しめる一台です。",
     "heroImage": "/images/cars/nissan-skyline-gt-r-bnr32-hero.jpg",
     "mainImage": "/images/cars/nissan-skyline-gt-r-bnr32-hero.jpg",
+    "imageUrl": "/images/cars/nissan-skyline-gt-r-bnr32-hero.jpg",
+    "gallery": [
+      "/images/cars/nissan-skyline-gt-r-bnr32-front.jpg",
+      "/images/cars/nissan-skyline-gt-r-bnr32-rear.jpg",
+      "/images/cars/nissan-skyline-gt-r-bnr32-engine.jpg"
+    ],
     "engine": "2.6L 直6ツインターボ (RB26DETT)",
     "powerPs": 280,
     "torqueNm": 353,
@@ -71,7 +129,487 @@
     "fuel": "ハイオク",
     "fuelEconomy": "約6〜8km/L（実用域目安）",
     "priceNew": "約440万円（発売当時）",
-    "priceUsed": "状態により大きく変動",
+    "priceUsed": "状態により大きく変動（国内外相場ともに高騰傾向）",
+    "strengths": [
+      "ブーストが立ち上がった瞬間のターボらしいパンチのある加速感",
+      "4WDシステムによる高いトラクションと、雨天時でも安心感のあるグリップ",
+      "シンプルでドライなステアリングフィールと視界の良さで、現代車にはない「素」に近い運転感覚",
+      "モータースポーツ史に名を残したモデルならではのストーリー性と、コレクタブルな価値"
+    ],
+    "weaknesses": [
+      "車齢30年以上が当たり前のため、整備履歴が不明瞭な個体はリスクが高い",
+      "ボディや下回りの錆、補修歴の有無でコンディションが大きく変わる",
+      "純正パーツが入手困難または高額なものも増えており、維持には覚悟と予算が必要",
+      "盗難リスクが高く、保管環境やセキュリティ対策は必須"
+    ],
+    "troubleTrends": [
+      "RB26特有のオイル漏れ・水回りトラブル（ホース類やラジエーターの劣化）",
+      "ハブベアリング・ドラシャブーツなど駆動系消耗部品の摩耗",
+      "エアコンやオーディオなど、電装系の経年劣化",
+      "チューニング履歴が不明な個体ではエンジン内部のダメージが潜んでいる可能性"
+    ],
+    "costImpression": "購入価格はすでに「趣味の世界」のレンジに達しており、維持費も国産スポーツカーというよりクラシックカーに近い。信頼できるショップと長く付き合う前提で、予防整備を含めた年間予算をしっかり確保できる人向けの一台。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
     "tags": ["NISSAN", "GT-R", "BNR32", "スポーツカー"]
+  },
+  {
+    "id": "lexus-ls500h-xf50",
+    "slug": "lexus-ls500h-xf50",
+    "name": "Lexus LS500h (XF50)",
+    "maker": "LEXUS",
+    "releaseYear": 2017,
+    "difficulty": "intermediate",
+    "bodyType": "セダン",
+    "segment": "Fセグメントラグジュアリーセダン",
+    "grade": "EXECUTIVE / version L など",
+    "summary": "「和のラグジュアリー」をテーマにした、レクサスのフラッグシップサルーン。",
+    "summaryLong": "先代までの「ショーファーカー」的キャラクターから一歩踏み出し、デザイン・走りともに攻めた方向性を打ち出したXF50型LS。500hは3.5L V6ハイブリッド＋マルチステージハイブリッドシステムにより、高速巡航時の静粛性とスムーズな加速、そしてそこそこの燃費を両立しています。室内は旅館のような間接照明と繊細な素材使いで、ドイツ勢とは異なる「和の重厚感」を味わえる一台です。",
+    "heroImage": "/images/cars/lexus-ls500h-xf50-hero.jpg",
+    "mainImage": "/images/cars/lexus-ls500h-xf50-hero.jpg",
+    "imageUrl": "/images/cars/lexus-ls500h-xf50-hero.jpg",
+    "gallery": [
+      "/images/cars/lexus-ls500h-xf50-front.jpg",
+      "/images/cars/lexus-ls500h-xf50-rear.jpg",
+      "/images/cars/lexus-ls500h-xf50-interior.jpg"
+    ],
+    "engine": "3.5L V6ハイブリッド",
+    "powerPs": 359,
+    "torqueNm": 350,
+    "transmission": "マルチステージハイブリッド（CVT＋4速AT）",
+    "drive": "FR / AWD",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約11〜13km/L（高速中心の実用域目安）",
+    "priceNew": "約1,100〜1,700万円（新車時価格帯）",
+    "priceUsed": "約400〜1,000万円（年式・仕様により大きく変動）",
+    "strengths": [
+      "静粛性と乗り心地のレベルが非常に高く、長距離移動時の疲労が少ない",
+      "内装の素材・造形が芸術的で、特に上位グレードの内装は「ラウンジそのもの」",
+      "ハイブリッドにより街乗り燃費もフルサイズセダンとしては優秀",
+      "レクサスならではのディーラー体験とアフターサービスの安心感"
+    ],
+    "weaknesses": [
+      "ボディサイズが非常に大きく、都市部での取り回しや駐車はそれなりの慣れが必要",
+      "サスペンションやランフラットタイヤの仕様によっては、低速域で少し硬さを感じることも",
+      "維持費（タイヤ・ブレーキ・保険）は当然ながら高級車水準",
+      "インフォテインメントのUIは最新欧州勢と比べると少し古さを感じる場面がある"
+    ],
+    "troubleTrends": [
+      "エアサスペンション装着車では、年数が経つとコンプレッサーやエアバッグのトラブルリスク",
+      "室内の電子制御機器が多く、稀にセンサー系のエラー報告",
+      "大径タイヤの偏摩耗やロードノイズの増加"
+    ],
+    "costImpression": "新車時は完全に「フラッグシップ価格」だが、中古になると状態の良い個体が比較的リーズナブルに手に入るケースも。とはいえタイヤ・ブレーキ・保険・自動車税など維持コストはしっかりフルサイズセダンなので、ランニングの予算感は余裕を持って見ておきたい。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["LEXUS", "LS", "フラッグシップ", "セダン"]
+  },
+  {
+    "id": "mazda-roadster-nd",
+    "slug": "mazda-roadster-nd",
+    "name": "Mazda Roadster (ND)",
+    "maker": "MAZDA",
+    "releaseYear": 2015,
+    "difficulty": "basic",
+    "bodyType": "オープン/ロードスター",
+    "segment": "ライトウェイトスポーツ",
+    "grade": "S / NR-A / RS など",
+    "summary": "「人馬一体」を体現する、現代でもっとも気軽なライトウェイトオープン。",
+    "summaryLong": "初代NAロードスターの文法を現代的に解釈し直したND。1トン前後の軽い車重と1.5L自然吸気エンジンの組み合わせで、絶対的な速さよりも「走らせて気持ちいい領域」を徹底的に磨きこんだ一台です。オープンにして夕暮れの海沿いを流すも良し、ワインディングで2〜3速を行き来しながらエンジンを回して楽しむも良し。「クルマが趣味」と言えるエントリーとして、これ以上分かりやすい存在はなかなかありません。",
+    "heroImage": "/images/cars/mazda-roadster-nd-hero.jpg",
+    "mainImage": "/images/cars/mazda-roadster-nd-hero.jpg",
+    "imageUrl": "/images/cars/mazda-roadster-nd-hero.jpg",
+    "gallery": [
+      "/images/cars/mazda-roadster-nd-front.jpg",
+      "/images/cars/mazda-roadster-nd-rear.jpg",
+      "/images/cars/mazda-roadster-nd-topdown.jpg"
+    ],
+    "engine": "1.5L 直4 NA",
+    "powerPs": 132,
+    "torqueNm": 152,
+    "transmission": "6速MT / 6速AT",
+    "drive": "FR",
+    "fuel": "レギュラー",
+    "fuelEconomy": "約14〜18km/L（実用域目安）",
+    "priceNew": "約260〜400万円（グレード・特別仕様により）",
+    "priceUsed": "約150〜350万円（年式・仕様による）",
+    "strengths": [
+      "コンパクトなボディと軽い車重で、とにかく扱いやすく気持ちよく走れる",
+      "視界が良く、車両感覚もつかみやすいため、スポーツカー初心者にも優しい",
+      "維持費が比較的安く、タイヤやブレーキもコンパクトカー並みのサイズ",
+      "純正・社外ともにカスタムパーツが豊富で、自分好みの一台に仕上げやすい"
+    ],
+    "weaknesses": [
+      "オープンボディゆえに荷室スペースは最小限で、2人＋小さな荷物が基本",
+      "静粛性や乗り心地はあくまでスポーツカー基準で、長距離高速移動は少し疲れやすい",
+      "冬場のオープンドライブは装備に気を使う必要がある",
+      "MT車は渋滞の多いエリアだと少し根気が必要"
+    ],
+    "troubleTrends": [
+      "幌車では保管環境によって幌の色あせ・劣化が出やすい",
+      "足回りブッシュやダンパーのヘタリによる乗り味の変化",
+      "サーキット走行歴のある個体はブレーキ・クラッチなどの消耗を要チェック"
+    ],
+    "costImpression": "燃料・税金・保険・消耗品のどれをとっても「スポーツカーとしては破格に維持しやすい」部類。セカンドカーとしても現実的で、「楽しさ優先」の1台を所有したい人にとっては理想的な選択肢。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["MAZDA", "ロードスター", "オープン", "ライトウェイト"]
+  },
+  {
+    "id": "honda-s660-jw5",
+    "slug": "honda-s660-jw5",
+    "name": "Honda S660 (JW5)",
+    "maker": "HONDA",
+    "releaseYear": 2015,
+    "difficulty": "intermediate",
+    "bodyType": "軽スポーツ",
+    "segment": "軽自動車スポーツ",
+    "grade": "α / β / Modulo X など",
+    "summary": "ミッドシップ×軽ターボという、現代では貴重すぎる小さなスポーツ。",
+    "summaryLong": "660ccターボ＋6MT（またはCVT）をミッドシップレイアウトで搭載したS660。スペックだけ見ると「軽自動車」ですが、ステアリングの応答性やブレーキフィールはれっきとしたスポーツカーそのもの。コンパクトなボディサイズと軽さを武器に、狭い峠道でもライン取りの自由度が高く、「速度ではなくGで楽しむ」タイプの一台です。一方で収納や乗り心地はかなり割り切られており、日常使いにはそれなりの「覚悟と工夫」が必要になります。",
+    "heroImage": "/images/cars/honda-s660-jw5-hero.jpg",
+    "mainImage": "/images/cars/honda-s660-jw5-hero.jpg",
+    "imageUrl": "/images/cars/honda-s660-jw5-hero.jpg",
+    "gallery": [
+      "/images/cars/honda-s660-jw5-front.jpg",
+      "/images/cars/honda-s660-jw5-rear.jpg",
+      "/images/cars/honda-s660-jw5-top.jpg"
+    ],
+    "engine": "0.66L 直3ターボ",
+    "powerPs": 64,
+    "torqueNm": 104,
+    "transmission": "6速MT / CVT",
+    "drive": "MR",
+    "fuel": "レギュラー",
+    "fuelEconomy": "約16〜20km/L（実用域目安）",
+    "priceNew": "約200〜300万円（新車時価格帯）",
+    "priceUsed": "約220〜450万円（生産終了後は高値安定傾向）",
+    "strengths": [
+      "軽自動車とは思えないシャープなハンドリングとミッドシップならではの回頭性",
+      "走らせるステージを選べば、法定速度内でも十分に楽しい",
+      "税金・燃費は軽自動車枠で、固定費が非常にリーズナブル",
+      "生産終了モデルであり、今後の希少性・コレクション性も期待できる"
+    ],
+    "weaknesses": [
+      "荷物スペースが極小で、日常使いでは工夫が必須",
+      "乗り心地は硬めで、悪路や長距離では疲れやすい",
+      "乗り降りの姿勢が低く、体力や服装によっては少し大変",
+      "ミッドシップレイアウトに慣れていないと、濡れた路面などで挙動に気を使う"
+    ],
+    "troubleTrends": [
+      "軽ターボゆえにオイル管理を含めた定期メンテナンスは重要",
+      "ローダウンやホイール変更などカスタム内容によっては乗り心地悪化や下回り干渉のリスク",
+      "幌やウェザーストリップの劣化による風切り音の増加"
+    ],
+    "costImpression": "固定費は軽自動車枠で非常に優秀だが、タイヤや足回りをちゃんとした銘柄で維持しようとするとそれなりにかかる。「燃費がいい楽しいおもちゃ」ではなく、「軽規格の本格スポーツカー」として愛情と予算をかけられる人向け。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["HONDA", "S660", "軽スポーツ", "ミッドシップ"]
+  },
+  {
+    "id": "porsche-911-carrera-992",
+    "slug": "porsche-911-carrera-992",
+    "name": "Porsche 911 Carrera (992)",
+    "maker": "PORSCHE",
+    "releaseYear": 2019,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "プレミアムスポーツ",
+    "grade": "Carrera / Carrera S",
+    "summary": "日常性とサーキット性能を両立した、現代スポーツカーのベンチマーク。",
+    "summaryLong": "RRレイアウトを守りながら進化し続ける911の現行系統が992。3.0Lフラット6ターボと8速PDKの組み合わせは、街乗りでは滑らかで扱いやすく、高速道路やサーキットでは一気に牙を剥きます。「非日常の速さ」と「日常の乗りやすさ」が高い次元で同居しており、週末のワインディングから通勤、旅行まで1台でこなせるのが911の最大の魅力です。",
+    "heroImage": "/images/cars/porsche-911-carrera-992-hero.jpg",
+    "mainImage": "/images/cars/porsche-911-carrera-992-hero.jpg",
+    "imageUrl": "/images/cars/porsche-911-carrera-992-hero.jpg",
+    "gallery": [
+      "/images/cars/porsche-911-carrera-992-front.jpg",
+      "/images/cars/porsche-911-carrera-992-rear.jpg",
+      "/images/cars/porsche-911-carrera-992-interior.jpg"
+    ],
+    "engine": "3.0L 水平対向6気筒ツインターボ",
+    "powerPs": 385,
+    "torqueNm": 450,
+    "transmission": "8速PDK",
+    "drive": "RR / AWD",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約8〜11km/L（実用域目安）",
+    "priceNew": "約1,400〜2,000万円（オプションにより大きく変動）",
+    "priceUsed": "約1,200〜2,000万円（仕様・走行距離による）",
+    "strengths": [
+      "ステアリングフィール・ブレーキ・シャシー剛性の全てが高水準で、誰が乗っても分かる完成度",
+      "PDKの変速が非常に素早く滑らかで、街乗りでは高級セダン並みに扱いやすい",
+      "フロントトランク＋リアシートにより、2人旅なら十分な積載性を確保",
+      "ブランドのステイタスとリセールバリューが高く、長期保有前提でも価値が残りやすい"
+    ],
+    "weaknesses": [
+      "オプションを積み上げると新車価格が容易に2,000万円を超える",
+      "車幅が広く、都心の立体駐車場や狭い道では緊張を強いられる場面も",
+      "タイヤ・ブレーキ・オイルなど消耗品の単価は非常に高い",
+      "スポーツエキゾースト仕様では、住宅街での早朝・深夜の出入りに気を使う"
+    ],
+    "troubleTrends": [
+      "大きな致命的トラブルは少ないが、最新電子制御車らしくセンサー類の不具合事例は散見される",
+      "サーキット走行を繰り返している個体は、ブレーキ・足回りの消耗が早い",
+      "純正以外のチューニング・コーディングの有無は事前に要チェック"
+    ],
+    "costImpression": "購入価格よりも、タイヤ・ブレーキ・保険・税金を含めた「年あたりの総コスト」をどう捉えるかがポイント。年間走行距離が多いほどランニングコストはそれなりに嵩むが、得られる体験とステイタスを考えると納得感を覚える人も多い。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["PORSCHE", "911", "スポーツカー", "クーペ"]
+  },
+  {
+    "id": "tesla-model-3",
+    "slug": "tesla-model-3",
+    "name": "Tesla Model 3",
+    "maker": "TESLA",
+    "releaseYear": 2019,
+    "difficulty": "intermediate",
+    "bodyType": "セダン",
+    "segment": "ミドルサイズEVセダン",
+    "grade": "RWD / Long Range / Performance",
+    "summary": "EVを「家電」ではなく「毎日の相棒」にした、テスラのベストセラー。",
+    "summaryLong": "シンプルなインテリアと巨大なセンターディスプレイ、滑らかな加速感で一躍EVのスタンダードになったModel 3。RWDは日常使いにちょうど良いバランス、Long RangeやPerformanceは高速道路や合流で「EVならではの瞬発力」を体感できます。自宅や職場に充電環境が用意できるかどうかで体験が大きく変わる一台です。",
+    "heroImage": "/images/cars/tesla-model-3-hero.jpg",
+    "mainImage": "/images/cars/tesla-model-3-hero.jpg",
+    "imageUrl": "/images/cars/tesla-model-3-hero.jpg",
+    "gallery": [
+      "/images/cars/tesla-model-3-front.jpg",
+      "/images/cars/tesla-model-3-rear.jpg",
+      "/images/cars/tesla-model-3-interior.jpg"
+    ],
+    "engine": "電気モーター（シングル／デュアル）",
+    "powerPs": 280,
+    "torqueNm": 450,
+    "transmission": "シングルスピードAT",
+    "drive": "RWD / AWD",
+    "fuel": "電気",
+    "fuelEconomy": "実航続距離：約300〜500km（仕様・条件による）",
+    "priceNew": "約500〜800万円（仕様・補助金適用前）",
+    "priceUsed": "約350〜650万円（バッテリー状態・年式による）",
+    "strengths": [
+      "アクセルを踏んだ瞬間からトルクが立ち上がるEV特有の加速感",
+      "ソフトウェアアップデートで機能が増えていく「育っていく車」体験",
+      "メカニカルな可動部が少なく、オイル交換など従来のメンテナンス項目がほぼ不要",
+      "自宅充電環境があれば、ガソリンスタンドに行かなくていい生活が手に入る"
+    ],
+    "weaknesses": [
+      "充電インフラや自宅駐車場事情に強く依存するため、住環境を選ぶ",
+      "内装の素材感や組み付け精度は、同価格帯の欧州プレミアムセダンと比べるとラフに感じる場面も",
+      "航続距離は十分でも、高速長距離移動ではこまめな充電計画が必要",
+      "ホイール・タイヤが大径で、交換コストがやや高め"
+    ],
+    "troubleTrends": [
+      "ソフトウェアアップデート後の挙動変化やバグは時折話題になる",
+      "ドア・トランク回りのゴムモールや内装パネルのチリ合わせに個体差がある",
+      "ホイールのガリ傷（リム傷）は中古車チェック時の定番ポイント"
+    ],
+    "costImpression": "電気料金と充電プラン次第では、燃料コストはガソリン車比で大きく圧縮可能。一方でタイヤ・保険・車両価格自体は決して安くないため、「トータルで劇的に安くなる」というよりは、ガソリンスタンドに行かなくてよくなる生活価値込みで考えるクルマ。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["TESLA", "EV", "セダン"]
+  },
+  {
+    "id": "toyota-prius-50",
+    "slug": "toyota-prius-50",
+    "name": "Toyota Prius (50系)",
+    "maker": "TOYOTA",
+    "releaseYear": 2015,
+    "difficulty": "basic",
+    "bodyType": "ハッチバック",
+    "segment": "Cセグメントハイブリッド",
+    "grade": "S / A / Aプレミアム など",
+    "summary": "「燃費の代名詞」から、「普通に良く走るハイブリッド」へ進化した4代目プリウス。",
+    "summaryLong": "TNGAプラットフォーム採用で走りと乗り心地を大きく底上げした50系プリウス。静かでスムーズなハイブリッドシステムに加え、フロントの入り方やロールの仕方が自然になり、「とりあえず燃費だけ」だった従来のイメージを良い意味で裏切る一台です。通勤・買い物・家族の送り迎えなど、日本の日常シーンに極めてフィットする道具でありながら、きちんと走らせると「意外と楽しい」と感じさせてくれます。",
+    "heroImage": "/images/cars/toyota-prius-50-hero.jpg",
+    "mainImage": "/images/cars/toyota-prius-50-hero.jpg",
+    "imageUrl": "/images/cars/toyota-prius-50-hero.jpg",
+    "gallery": [
+      "/images/cars/toyota-prius-50-front.jpg",
+      "/images/cars/toyota-prius-50-rear.jpg",
+      "/images/cars/toyota-prius-50-interior.jpg"
+    ],
+    "engine": "1.8L 直4ハイブリッド",
+    "powerPs": 122,
+    "torqueNm": 142,
+    "transmission": "e-CVT",
+    "drive": "FF / 4WD (E-Four)",
+    "fuel": "レギュラー",
+    "fuelEconomy": "約22〜30km/L（実用域目安・使い方次第）",
+    "priceNew": "約240〜360万円（新車時価格帯）",
+    "priceUsed": "約80〜250万円（年式・走行距離による）",
+    "strengths": [
+      "現実的な使用環境で20km/Lオーバーも狙える圧倒的な燃費性能",
+      "故障リスクが低く、トヨタディーラー網でどこでも面倒を見てもらえる安心感",
+      "室内・ラゲッジともに十分な広さで、ファミリーカーとしても優秀",
+      "中古車タマ数が多く、予算や用途に応じた選択肢が幅広い"
+    ],
+    "weaknesses": [
+      "デザインの好みが分かれやすく、特にリアビューは個性的",
+      "走りの完成度は高いが、あくまで「上手に整った実用車」でスポーツ性は控えめ",
+      "街中で台数が多く、個性を出しにくい",
+      "グレードや装備によっては内装の質感に物足りなさを感じる人も"
+    ],
+    "troubleTrends": [
+      "ハイブリッドバッテリーは基本的に長寿命だが、過走行車では念のためチェックしたいポイント",
+      "足回りブッシュやダンパーのヘタリによる乗り味の変化",
+      "社外ナビ・ドラレコなど後付け電装品の配線品質によってはトラブルの原因になりうる"
+    ],
+    "costImpression": "燃料費・税金・保険・メンテナンスのどれをとっても「家計に優しい」代表格。走行距離が多いユーザーほどメリットが大きく、シンプルに「車にかかるお金を減らしたい」人にとって最適解のひとつ。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["TOYOTA", "プリウス", "ハイブリッド"]
+  },
+  {
+    "id": "mercedes-g-class-w463",
+    "slug": "mercedes-g-class-w463",
+    "name": "Mercedes-Benz G 350d / G 550 (W463後期)",
+    "maker": "MERCEDES-BENZ",
+    "releaseYear": 2018,
+    "difficulty": "advanced",
+    "bodyType": "クロカン/SUV",
+    "segment": "ラグジュアリーオフローダー",
+    "grade": "G 350d / G 550 / AMG G 63",
+    "summary": "本物のラダーフレームと3つのデフロックを持つ、ラグジュアリーオフローダーの象徴。",
+    "summaryLong": "見た目はほぼ変えずに中身をフルリニューアルした新世代Gクラス。G 350dは直6ディーゼルの厚いトルクで悠々と走り、G 550やAMG G 63はV8のパワーで巨大なボディを軽々と加速させます。スクエアなボディと直立したフロントウインドウ、ドアを閉めるときの「ガチャン」という音まで含めて、他のSUVでは代替できない存在感を放つ一台です。",
+    "heroImage": "/images/cars/mercedes-g-class-w463-hero.jpg",
+    "mainImage": "/images/cars/mercedes-g-class-w463-hero.jpg",
+    "imageUrl": "/images/cars/mercedes-g-class-w463-hero.jpg",
+    "gallery": [
+      "/images/cars/mercedes-g-class-w463-front.jpg",
+      "/images/cars/mercedes-g-class-w463-rear.jpg",
+      "/images/cars/mercedes-g-class-w463-interior.jpg"
+    ],
+    "engine": "3.0L 直6ディーゼル / 4.0L V8ツインターボ",
+    "powerPs": 286,
+    "torqueNm": 600,
+    "transmission": "9速AT",
+    "drive": "4WD（3デフロック付）",
+    "fuel": "軽油 / ハイオク",
+    "fuelEconomy": "約6〜9km/L（実用域目安）",
+    "priceNew": "約1,500〜2,500万円（グレード・オプションにより）",
+    "priceUsed": "約1,400〜3,000万円（相場は高値安定）",
+    "strengths": [
+      "唯一無二のデザインと存在感で、街中でも圧倒的なオーラを放つ",
+      "ラダーフレーム＋3デフロックを備えた「本物のオフローダー」でありつつ、オンロードの乗り味も大幅に洗練",
+      "シートポジションが高く見切りも良いため、ボディサイズの割に運転しやすい",
+      "リセールバリューが非常に高く、長期保有でも価値が落ちにくい"
+    ],
+    "weaknesses": [
+      "車両価格・オプション価格・維持費の全てがハイレベル",
+      "車重が重く、ブレーキ・タイヤなど消耗品の負担が大きい",
+      "車幅が広く、狭い道や駐車場ではかなり気を使う",
+      "空力的に不利な形状のため、高速道路での風切り音はそれなりに入ってくる"
+    ],
+    "troubleTrends": [
+      "電子制御装備が多く、年数が経つとセンサー類の不具合リスク",
+      "重量級ゆえにサスペンションブッシュやダンパーのヘタリは早めに出やすい",
+      "アフターパーツで過度にリフトアップした個体は要注意"
+    ],
+    "costImpression": "購入段階からすでに「趣味性の高い贅沢品」という位置づけで、タイヤ・ブレーキ・保険・燃料費も含めて維持コストはかなりヘビー。その分、所有している時間そのものがステータスと喜びになるタイプのクルマ。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["MERCEDES-BENZ", "Gクラス", "SUV", "ラグジュアリー"]
+  },
+  {
+    "id": "suzuki-jimny-jb64",
+    "slug": "suzuki-jimny-jb64",
+    "name": "Suzuki Jimny (JB64)",
+    "maker": "SUZUKI",
+    "releaseYear": 2018,
+    "difficulty": "basic",
+    "bodyType": "軽SUV",
+    "segment": "軽クロカン",
+    "grade": "XG / XL / XC",
+    "summary": "小さなボディに本格ラダーフレーム4WDを詰め込んだ、日本が誇る軽クロカン。",
+    "summaryLong": "見た目は可愛くもあり無骨でもあるJB64ジムニー。中身はラダーフレーム＋副変速機付きパートタイム4WDという本格派で、林道や雪道など悪路での走破性はクラスを超えています。一方で街乗りでは背の高いボディとショートホイールベースならではの乗り味があり、「可愛い見た目の軽自動車」として買うとギャップを感じることも。使い方とキャラクターがハマれば、これ以上楽しい相棒はいないと言える一台です。",
+    "heroImage": "/images/cars/suzuki-jimny-jb64-hero.jpg",
+    "mainImage": "/images/cars/suzuki-jimny-jb64-hero.jpg",
+    "imageUrl": "/images/cars/suzuki-jimny-jb64-hero.jpg",
+    "gallery": [
+      "/images/cars/suzuki-jimny-jb64-front.jpg",
+      "/images/cars/suzuki-jimny-jb64-rear.jpg",
+      "/images/cars/suzuki-jimny-jb64-offroad.jpg"
+    ],
+    "engine": "0.66L 直3ターボ",
+    "powerPs": 64,
+    "torqueNm": 96,
+    "transmission": "5速MT / 4速AT",
+    "drive": "FR＋パートタイム4WD（副変速機付）",
+    "fuel": "レギュラー",
+    "fuelEconomy": "約12〜16km/L（実用域目安）",
+    "priceNew": "約150〜200万円（新車時価格帯）",
+    "priceUsed": "約180〜350万円（相場は高値傾向）",
+    "strengths": [
+      "コンパクトなボディと高い最低地上高で、狭い道やラフロードに強い",
+      "ラダーフレーム＋4WD＋副変速機という本格オフロードメカニズム",
+      "カスタムパーツが非常に豊富で、自分だけの一台に仕上げやすい",
+      "軽自動車枠のため税金や保険、車検費用など固定費が抑えられる"
+    ],
+    "weaknesses": [
+      "ショートホイールベース＋ラダーフレームのため、舗装路での乗り心地はフワフワ・ゴツゴツしがち",
+      "直進安定性や静粛性はあくまで「軽クロカン」としての基準",
+      "高速道路の長距離移動は得意ではなく、速度・風に気を使う",
+      "納期が長く、中古相場も新車価格を上回るケースが多い"
+    ],
+    "troubleTrends": [
+      "悪路走行が多い個体では下回りの傷・サビチェックが必須",
+      "リフトアップやオフロードタイヤ装着車はハンドリング・燃費への影響を要確認",
+      "車内のきしみ音やビビり音は個体差が出やすい"
+    ],
+    "costImpression": "燃費は軽自動車としては「普通〜やや重め」だが、税金・保険・車検など固定費は非常に優秀。街乗りメインよりも、休日にアウトドアやオフロードを楽しむ「趣味×実用」バランスの一台としてハマると、コスパは非常に高い。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["SUZUKI", "ジムニー", "軽SUV", "オフロード"]
+  },
+  {
+    "id": "audi-rs6-avant-c8",
+    "slug": "audi-rs6-avant-c8",
+    "name": "Audi RS 6 Avant (C8)",
+    "maker": "AUDI",
+    "releaseYear": 2019,
+    "difficulty": "advanced",
+    "bodyType": "ワゴン",
+    "segment": "ハイパフォーマンスワゴン",
+    "grade": "RS 6 Avant",
+    "summary": "ファミリーカーの実用性とスーパーカー級の性能を一台に詰め込んだモンスター・ワゴン。",
+    "summaryLong": "4.0L V8ツインターボ＋quattroシステムで600ps級のパワーを路面に叩きつけるRS 6 Avant。見た目は大きなステーションワゴンですが、中身はほぼスーパーカー。サスペンションや走行モードを切り替えることで、日常の買い物からアウトバーン的ロングクルーズ、ワインディングでのスポーツドライブまで、1台で振れ幅の大きなキャラクターを演じ分けます。",
+    "heroImage": "/images/cars/audi-rs6-avant-c8-hero.jpg",
+    "mainImage": "/images/cars/audi-rs6-avant-c8-hero.jpg",
+    "imageUrl": "/images/cars/audi-rs6-avant-c8-hero.jpg",
+    "gallery": [
+      "/images/cars/audi-rs6-avant-c8-front.jpg",
+      "/images/cars/audi-rs6-avant-c8-rear.jpg",
+      "/images/cars/audi-rs6-avant-c8-interior.jpg"
+    ],
+    "engine": "4.0L V8ツインターボ＋マイルドハイブリッド",
+    "powerPs": 600,
+    "torqueNm": 800,
+    "transmission": "8速AT",
+    "drive": "quattro（AWD）",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約6〜8km/L（実用域目安）",
+    "priceNew": "約1,900〜2,200万円（新車時価格帯）",
+    "priceUsed": "約1,600〜2,400万円（仕様・走行距離による）",
+    "strengths": [
+      "巨大なトルクとAWDにより、どんな状況からでも圧倒的な加速を得られる",
+      "荷室容量が大きく、ファミリーカーとしても十分な実用性",
+      "アウディらしい上質なインテリアと先進的なコクピットデザイン",
+      "「分かる人には分かる」控えめな外観と、中身のギャップが魅力"
+    ],
+    "weaknesses": [
+      "車両価格だけでなく、タイヤ・ブレーキ・保険など維持コストが非常に高い",
+      "ボディサイズ・車幅が大きく、日本の狭い道や駐車場では取り回しに気を使う",
+      "街中だけでは性能を持て余しやすく、真価を発揮できるシーンが限られる",
+      "燃費は完全に目をつぶる必要があるレベル"
+    ],
+    "troubleTrends": [
+      "ハイパワー車ゆえ、ブレーキ・タイヤ・駆動系への負担が大きい",
+      "電子制御装備が多く、経年でのセンサー・モジュール類のトラブルリスクはゼロではない",
+      "サーキット走行歴のある個体はメンテ履歴の確認が重要"
+    ],
+    "costImpression": "「ファミリーカーとスーパーカーを2台持ちするくらいなら、RS 6一台でまとめてしまう」という発想のクルマ。維持コストは高額だが、その代わり得られる万能感と所有体験は唯一無二で、走りと実用をどちらも妥協したくない人向けの究極解。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["AUDI", "RS6", "ワゴン", "ハイパフォーマンス"]
   }
 ]
