@@ -45,6 +45,22 @@ function mapDifficultyLabel(
   }
 }
 
+// 一覧ページ用の短い説明テキスト
+function mapDifficultyShortDescription(
+  difficulty: CarItem["difficulty"],
+): string {
+  switch (difficulty) {
+    case "basic":
+      return "定期点検と消耗品交換が中心の、扱いやすいクラス。";
+    case "intermediate":
+      return "一般的な維持に加えて、ときどき予防整備を意識したいクラス。";
+    case "advanced":
+      return "専門店での点検や、故障時の出費に余裕を見ておきたいクラス。";
+    default:
+      return "";
+  }
+}
+
 export default async function CarsPage({ searchParams }: PageProps) {
   const all = await getAllCars();
 
@@ -99,6 +115,13 @@ export default async function CarsPage({ searchParams }: PageProps) {
     Boolean(difficultyFilter) ||
     Boolean(bodyTypeFilter) ||
     Boolean(segmentFilter);
+
+  // 難易度レジェンド用のプリセット
+  const difficultyPresets: { value: CarItem["difficulty"]; label: string }[] = [
+    { value: "basic", label: mapDifficultyLabel("basic") },
+    { value: "intermediate", label: mapDifficultyLabel("intermediate") },
+    { value: "advanced", label: mapDifficultyLabel("advanced") },
+  ];
 
   return (
     <main className="min-h-screen bg-site text-text-main">
@@ -252,6 +275,33 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 </button>
               </div>
             </form>
+
+            {/* 維持難易度の凡例＋ワンクリックフィルター */}
+            <div className="mt-4 rounded-2xl bg-slate-50/80 px-3 py-3 text-[10px] text-slate-600">
+              <p className="mb-2 font-semibold tracking-[0.18em] text-slate-500">
+                DIFFICULTY GUIDE
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {difficultyPresets.map(({ value, label }) => (
+                  <Link
+                    key={value}
+                    href={`/cars?difficulty=${value ?? ""}`}
+                    className="group flex min-w-[140px] flex-1 items-start gap-2 rounded-2xl border border-slate-200 bg-white/80 px-3 py-2 text-left shadow-[0_0_0_1px_rgba(148,163,184,0.25)] transition hover:border-tiffany-300 hover:shadow-soft"
+                    aria-label={`維持難易度「${label}」の車種で絞り込み`}
+                  >
+                    <span className="mt-[4px] h-[6px] w-[6px] rounded-full bg-tiffany-400" />
+                    <span className="space-y-0.5">
+                      <span className="block text-[10px] font-semibold text-slate-800">
+                        {label}
+                      </span>
+                      <span className="block text-[10px] text-slate-500">
+                        {value ? mapDifficultyShortDescription(value) : ""}
+                      </span>
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </section>
         </Reveal>
 
