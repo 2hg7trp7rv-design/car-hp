@@ -6,6 +6,7 @@ import type {
   HTMLAttributes,
   ReactNode,
 } from "react";
+import { MagneticArea } from "@/components/ui/magnetic-area";
 
 type Padding = "none" | "sm" | "md" | "lg";
 type Variant = "standard" | "dim" | "crystal";
@@ -17,6 +18,11 @@ type GlassCardBaseProps = {
   interactive?: boolean;
   variant?: Variant;
   className?: string;
+  /**
+   * MagneticArea による吸い付きインタラクションを有効にするか。
+   * デフォルト true。落ち着かせたいカードだけ false を指定。
+   */
+  magnetic?: boolean;
 };
 
 type GlassCardProps = GlassCardBaseProps & HTMLAttributes<HTMLElement>;
@@ -36,6 +42,7 @@ export function GlassCard(props: GlassCardProps) {
     interactive = false,
     variant = "dim", // Phase 2では dim を標準とします
     className,
+    magnetic = true,
     ...rest
   } = props;
 
@@ -81,13 +88,18 @@ export function GlassCard(props: GlassCardProps) {
     ].join(" "),
   };
 
-  const interactiveClasses = interactive
-    ? [
-        "cursor-pointer",
-        "transition-transform duration-500",
-        "hover:-translate-y-[2px]",
-      ].join(" ")
-    : "";
+  const interactiveClasses =
+    interactive
+      ? [
+          "cursor-pointer",
+          "transition-transform duration-500",
+          // magnetic=true の場合は MagneticArea が transform を担当するので
+          // ここでは hover:-translate-y を重ねない
+          magnetic ? "" : "hover:-translate-y-[2px]",
+        ]
+          .filter(Boolean)
+          .join(" ")
+      : "";
 
   const baseClasses = [
     "relative",
@@ -107,12 +119,20 @@ export function GlassCard(props: GlassCardProps) {
     .filter(Boolean)
     .join(" ");
 
-  return (
+  const card = (
     <Component className={classes} {...rest}>
       {/* beforeオーバーレイの中身を上に乗せるため relative を維持 */}
       <div className="relative z-10">{children}</div>
     </Component>
   );
+
+  // magnetic=false のカードは従来通りそのまま描画
+  if (!magnetic) {
+    return card;
+  }
+
+  // magnetic=true の場合は MagneticArea で包んで吸い付きインタラクションを付与
+  return <MagneticArea>{card}</MagneticArea>;
 }
 
 export default GlassCard;
