@@ -395,28 +395,32 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                 }
 
                 // paragraph
-                if (index === 0) {
+                if (block.type === "paragraph") {
                   const text = block.text.trim();
                   if (!text) return null;
 
-                  // Tailwind の first-letter ユーティリティでドロップキャップ表現
+                  if (index === 0) {
+                    // HERITAGE 専用ドロップキャップ（グローバルCSS .heritage-dropcap）
+                    return (
+                      <Reveal key={`p-${index}`} delay={100}>
+                        <p className="heritage-dropcap mt-4 text-sm leading-8 text-slate-700 sm:text-[16px] sm:leading-[2rem]">
+                          {text}
+                        </p>
+                      </Reveal>
+                    );
+                  }
+
                   return (
-                    <Reveal key={`p-${index}`} delay={100}>
-                      <p className="mt-4 text-sm leading-8 text-slate-700 sm:text-[16px] sm:leading-[2rem] first-letter:float-left first-letter:mr-3 first-letter:-mt-1 first-letter:mb-1 first-letter:font-serif first-letter:text-[3.4em] first-letter:leading-[0.85] first-letter:font-medium first-letter:text-tiffany-500">
-                        {text}
-                      </p>
-                    </Reveal>
+                    <p
+                      key={`p-${index}`}
+                      className="mt-4 text-sm leading-7 text-slate-700 sm:text-[15px] sm:leading-8"
+                    >
+                      {text}
+                    </p>
                   );
                 }
 
-                return (
-                  <p
-                    key={`p-${index}`}
-                    className="mt-4 text-sm leading-7 text-slate-700 sm:text-[15px] sm:leading-8"
-                  >
-                    {block.text}
-                  </p>
-                );
+                return null;
               })}
             </GlassCard>
           </Reveal>
