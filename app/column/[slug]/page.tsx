@@ -2,11 +2,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
 import {
   getColumnBySlug,
   getAllColumns,
   type ColumnItem,
 } from "@/lib/columns";
+import { GlassCard } from "@/components/GlassCard";
+import { Reveal } from "@/components/animation/Reveal";
+import { Button } from "@/components/ui/button";
+
 import ColumnReaderShell from "./reader-shell";
 
 export const runtime = "edge";
@@ -105,83 +110,113 @@ export default async function ColumnDetailPage({ params }: Props) {
 
   return (
     <>
+      {/* 読書体験本体（没入レイアウトやProgress barは ColumnReaderShell 側で） */}
       <ColumnReaderShell item={item} />
 
+      {/* RELATED COLUMN セクション：雑誌の巻末みたいな雰囲気で */}
       {related.length > 0 && (
-        <section className="mx-auto max-w-6xl px-4 pb-8 pt-4 sm:px-6 lg:px-8">
-          <div className="mb-3 flex items-baseline justify-between gap-2">
-            <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
-              RELATED COLUMN
-            </h2>
-            <Link
-              href="/column"
-              className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
-            >
-              一覧に戻る
-            </Link>
-          </div>
+        <section className="mx-auto max-w-6xl px-4 pb-10 pt-6 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="mb-4 flex items-baseline justify-between gap-2">
+              <div>
+                <p className="text-[10px] font-semibold tracking-[0.26em] text-slate-500">
+                  NEXT READ
+                </p>
+                <h2 className="mt-1 text-xs font-semibold tracking-[0.22em] text-slate-700">
+                  RELATED COLUMN
+                </h2>
+              </div>
+              <Link
+                href="/column"
+                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+              >
+                コラム一覧へ
+              </Link>
+            </div>
+          </Reveal>
 
           <div className="grid gap-4 md:grid-cols-2">
             {related.map((col) => (
-              <Link key={col.id} href={`/column/${col.slug}`}>
-                <article className="rounded-3xl border border-white/80 bg-white/90 p-4 text-xs shadow-sm transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
-                  <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
-                    <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-                      {mapCategoryLabel(col.category)}
-                    </span>
-                    {col.readMinutes && (
-                      <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-                        約{col.readMinutes}分
-                      </span>
-                    )}
-                    {col.publishedAt && (
-                      <span className="ml-auto text-[10px] text-slate-400">
-                        {formatDate(col.publishedAt)}
-                      </span>
-                    )}
-                  </div>
+              <Reveal key={col.id}>
+                <Link href={`/column/${col.slug}`}>
+                  <GlassCard
+                    as="article"
+                    padding="md"
+                    interactive
+                    className="group relative h-full overflow-hidden border border-white/80 bg-white/92 text-xs shadow-soft"
+                  >
+                    {/* カード内 Tiffany の光 */}
+                    <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                      <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.18),_transparent_70%)] blur-2xl" />
+                    </div>
 
-                  <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
-                    {col.title}
-                  </h3>
-
-                  <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
-                    {col.summary}
-                  </p>
-
-                  {col.tags && col.tags.length > 0 && (
-                    <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-slate-500">
-                      {col.tags.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full bg-slate-50 px-2 py-1"
-                        >
-                          {tag}
+                    <div className="relative z-10 flex h-full flex-col gap-2">
+                      <div className="mb-1 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                        <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                          {mapCategoryLabel(col.category)}
                         </span>
-                      ))}
-                      {col.tags.length > 3 && (
-                        <span className="rounded-full bg-slate-50 px-2 py-1">
-                          +{col.tags.length - 3}
-                        </span>
+                        {col.readMinutes && (
+                          <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                            約{col.readMinutes}分
+                          </span>
+                        )}
+                        {col.publishedAt && (
+                          <span className="ml-auto text-[10px] text-slate-400">
+                            {formatDate(col.publishedAt)}
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
+                        {col.title}
+                      </h3>
+
+                      {col.summary && (
+                        <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
+                          {col.summary}
+                        </p>
+                      )}
+
+                      {col.tags && col.tags.length > 0 && (
+                        <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-slate-500">
+                          {col.tags.slice(0, 3).map((tag) => (
+                            <span
+                              key={tag}
+                              className="rounded-full bg-slate-50 px-2 py-1"
+                            >
+                              #{tag}
+                            </span>
+                          ))}
+                          {col.tags.length > 3 && (
+                            <span className="rounded-full bg-slate-50 px-2 py-1">
+                              +{col.tags.length - 3}
+                            </span>
+                          )}
+                        </div>
                       )}
                     </div>
-                  )}
-                </article>
-              </Link>
+                  </GlassCard>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </section>
       )}
 
-      {/* モバイル向けの戻る導線 */}
+      {/* モバイル向けの戻る導線：ブランドボタン版 */}
       <div className="mx-auto max-w-6xl px-4 pb-10 pt-4 sm:px-6 lg:px-8 lg:hidden">
         <div className="border-t border-slate-100 pt-4">
-          <Link
-            href="/column"
-            className="inline-flex items-center justify-center rounded-full border border-tiffany-400/70 bg-white/80 px-6 py-2 text-xs font-medium tracking-[0.18em] text-tiffany-700 shadow-soft hover:bg-white"
-          >
-            コラム一覧へ戻る
-          </Link>
+          <Reveal>
+            <Button
+              asChild
+              variant="primary"
+              size="sm"
+              magnetic
+              className="w-full justify-center rounded-full text-[11px] tracking-[0.2em]"
+            >
+              <Link href="/column">コラム一覧へ戻る</Link>
+            </Button>
+          </Reveal>
         </div>
       </div>
     </>
