@@ -1,21 +1,174 @@
-// components/home/HomePrimaryNavPanel.tsx
+// components/home/HomeNavDrawer.tsx
 "use client";
 
+import { useState } from "react";
+import Link from "next/link";
+import { GlassCard } from "@/components/GlassCard";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
 /**
- * HomePrimaryNavPanel
- * ------------------------------------------------
- * 以前ホーム上部に常時表示していた NEWS / CARS / COLUMN / GUIDE
- * の大きなカード用コンポーネント。
- *
- * いまは HomeNavDrawer（画面左下から出てくるドロワー）が
- * その役割を担っているため、このコンポーネントは
- * UI を一切描画しないダミーとして残してあります。
- *
- * 将来的に完全に不要になったら、import している箇所ごと
- * 削除しても問題ありません。
+ * ホーム左下の「NEWS / CARS / COLUMN / GUIDE」ナビカード。
+ * 右上の丸いアイコンで開閉できるドロワーとして表示する。
+ * （上部に常時出ていた大きいカードは HomePrimaryNavPanel を
+ *  null にしているので、そちらはもう出てこない想定）
  */
-export function HomePrimaryNavPanel() {
-  return null;
+export function HomeNavDrawer() {
+  const [open, setOpen] = useState(false);
+
+  const toggle = () => setOpen((v) => !v);
+
+  return (
+    <>
+      {/* 右上のトグルボタン */}
+      <button
+        type="button"
+        onClick={toggle}
+        aria-label="メインメニューを開閉"
+        aria-expanded={open}
+        className="fixed right-4 top-4 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/90 shadow-soft backdrop-blur transition hover:-translate-y-[1px] hover:shadow-soft-strong"
+      >
+        {/* 三本線アイコン（開いているときは × 風） */}
+        <span className="relative block h-4 w-5">
+          <span
+            className={cn(
+              "absolute left-0 h-[1.5px] w-full bg-slate-800 transition-transform duration-300",
+              open ? "top-1/2 -translate-y-1/2 rotate-45" : "top-0",
+            )}
+          />
+          <span
+            className={cn(
+              "absolute left-0 h-[1.5px] w-full bg-slate-800 transition-all duration-300",
+              open
+                ? "top-1/2 -translate-y-1/2 opacity-0"
+                : "top-1/2 -translate-y-1/2 opacity-70",
+            )}
+          />
+          <span
+            className={cn(
+              "absolute left-0 h-[1.5px] w-full bg-slate-800 transition-transform duration-300",
+              open ? "top-1/2 -translate-y-1/2 -rotate-45" : "bottom-0",
+            )}
+          />
+        </span>
+      </button>
+
+      {/* ナビゲーションカード本体（左下にドロワー表示） */}
+      <div
+        className={cn(
+          "fixed inset-x-4 bottom-6 z-40 mx-auto max-w-xl transition-all duration-400 ease-out md:bottom-10",
+          open
+            ? "translate-y-0 opacity-100 pointer-events-auto"
+            : "translate-y-4 opacity-0 pointer-events-none",
+        )}
+      >
+        <GlassCard
+          padding="lg"
+          className="w-full border border-white/80 bg-white/96 shadow-soft-strong"
+        >
+          <div className="space-y-6 text-slate-700">
+            {/* ロゴ行 */}
+            <div>
+              <p className="serif-heading text-lg font-medium tracking-[0.16em] text-slate-900">
+                CAR BOUTIQUE
+              </p>
+              <p className="mt-1 text-[10px] tracking-[0.32em] text-slate-400">
+                NEWS ・ COLUMNS ・ DATABASE
+              </p>
+            </div>
+
+            {/* メインタブ 4 本 */}
+            <div className="space-y-4 text-[11px]">
+              <Link
+                href="/news"
+                className="flex items-center justify-between rounded-2xl px-2 py-2.5 transition hover:bg-slate-50"
+              >
+                <div>
+                  <p className="text-[12px] font-semibold tracking-[0.24em] text-slate-800">
+                    NEWS
+                  </p>
+                  <p className="mt-0.5 text-[11px] text-slate-400">
+                    アップデート
+                  </p>
+                </div>
+                <span className="text-slate-400">→</span>
+              </Link>
+
+              <Link
+                href="/cars"
+                className="flex items-center justify-between rounded-2xl px-2 py-2.5 transition hover:bg-slate-50"
+              >
+                <div>
+                  <p className="text-[12px] font-semibold tracking-[0.24em] text-slate-800">
+                    CARS
+                  </p>
+                  <p className="mt-0.5 text-[11px] text-slate-400">
+                    車種データベース
+                  </p>
+                </div>
+                <span className="text-slate-400">→</span>
+              </Link>
+
+              <Link
+                href="/column"
+                className="flex items-center justify-between rounded-2xl px-2 py-2.5 transition hover:bg-slate-50"
+              >
+                <div>
+                  <p className="text-[12px] font-semibold tracking-[0.24em] text-slate-800">
+                    COLUMN
+                  </p>
+                  <p className="mt-0.5 text-[11px] text-slate-400">
+                    技術・メンテナンス
+                  </p>
+                </div>
+                <span className="text-slate-400">→</span>
+              </Link>
+
+              <Link
+                href="/guide"
+                className="flex items-center justify-between rounded-2xl px-2 py-2.5 transition hover:bg-slate-50"
+              >
+                <div>
+                  <p className="text-[12px] font-semibold tracking-[0.24em] text-slate-800">
+                    GUIDE
+                  </p>
+                  <p className="mt-0.5 text-[11px] text-slate-400">
+                    お金と手放し方
+                  </p>
+                </div>
+                <span className="text-slate-400">→</span>
+              </Link>
+            </div>
+
+            {/* 下部 2 ボタン */}
+            <div className="flex flex-col gap-2 pt-1 sm:flex-row">
+              <Button
+                asChild
+                variant="primary"
+                size="sm"
+                fullWidth
+                magnetic
+                className="justify-center"
+              >
+                <Link href="/cars">車種一覧を開く</Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                fullWidth
+                magnetic
+                className="justify-center"
+              >
+                <Link href="/guide">GUIDE を読む</Link>
+              </Button>
+            </div>
+          </div>
+        </GlassCard>
+      </div>
+    </>
+  );
 }
 
-export default HomePrimaryNavPanel;
+// named import 用 & default import 用どちらにも対応
+export default HomeNavDrawer;
