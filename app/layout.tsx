@@ -115,9 +115,21 @@ export default function RootLayout({ children }: RootLayoutProps) {
         Tailwind 側で var(--font-manrope), var(--font-bodoni) を
         font-family にマップして使う前提。
       */}
-      <body className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(186,230,253,0.55),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(125,211,252,0.4),_transparent_60%),radial-gradient(circle_at_top_left,_rgba(56,189,248,0.35),_transparent_60%),#f8fafc] text-slate-900 antialiased">
+      <body className="min-h-screen bg-site text-text-main antialiased">
         <SmoothScrollProvider>
-          <div className="flex min-h-screen flex-col">
+          {/* グローバル背景メッシュレイヤー */}
+          <div className="pointer-events-none fixed inset-0 -z-10">
+            {/* ベースの縦グラデーション */}
+            <div className="absolute inset-0 bg-gradient-to-b from-white via-white/70 to-site" />
+            {/* Tiffany の光（右上） */}
+            <div className="absolute -top-[18%] -right-[10%] h-[46vw] w-[46vw] rounded-full bg-tiffany-100/40 blur-[100px]" />
+            {/* Slate 系の空気感（左中） */}
+            <div className="absolute top-[40%] -left-[20%] h-[40vw] w-[40vw] rounded-full bg-slate-200/45 blur-[110px]" />
+            {/* 下側の淡い Tiffany */}
+            <div className="absolute bottom-[-15%] right-[5%] h-[32vw] w-[32vw] rounded-full bg-tiffany-50/45 blur-[120px]" />
+          </div>
+
+          <div className="relative z-10 flex min-h-screen flex-col">
             <SiteHeader />
             <main className="flex-1 pb-20 pt-10 sm:pb-24 sm:pt-16">
               {children}
