@@ -1,19 +1,20 @@
 // components/home/HomeNavDrawer.tsx
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 /**
- * ホーム左下の「NEWS / CARS / COLUMN / GUIDE」ナビカード。
- * 右上の丸いアイコンで開閉できるドロワーとして表示する。
- * （上部に常時出ていた大きいカードは HomePrimaryNavPanel を
- *  null にしているので、そちらはもう出てこない想定）
+ * ホーム上部の「NEWS / CARS / COLUMN / GUIDE」ナビカード。
+ * 右上の丸いアイコンで開閉できるドロワーとして実装。
+ *
+ * 画面右上：トグルボタン
+ * 画面下中央：開いたときだけ出てくるナビカード
  */
-export function HomeNavDrawer() {
+export default function HomeNavDrawer() {
   const [open, setOpen] = useState(false);
 
   const toggle = () => setOpen((v) => !v);
@@ -26,7 +27,7 @@ export function HomeNavDrawer() {
         onClick={toggle}
         aria-label="メインメニューを開閉"
         aria-expanded={open}
-        className="fixed right-4 top-4 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/90 shadow-soft backdrop-blur transition hover:-translate-y-[1px] hover:shadow-soft-strong"
+        className="fixed right-4 top-4 z-[60] flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/90 shadow-soft backdrop-blur transition hover:-translate-y-[1px] hover:shadow-soft-strong"
       >
         {/* 三本線アイコン（開いているときは × 風） */}
         <span className="relative block h-4 w-5">
@@ -53,10 +54,10 @@ export function HomeNavDrawer() {
         </span>
       </button>
 
-      {/* ナビゲーションカード本体（左下にドロワー表示） */}
+      {/* ナビゲーションカード本体（画面下からスライド） */}
       <div
         className={cn(
-          "fixed inset-x-4 bottom-6 z-40 mx-auto max-w-xl transition-all duration-400 ease-out md:bottom-10",
+          "fixed inset-x-4 bottom-6 z-50 mx-auto max-w-xl transition-all duration-400 ease-out md:bottom-10",
           open
             ? "translate-y-0 opacity-100 pointer-events-auto"
             : "translate-y-4 opacity-0 pointer-events-none",
@@ -169,6 +170,3 @@ export function HomeNavDrawer() {
     </>
   );
 }
-
-// named import 用 & default import 用どちらにも対応
-export default HomeNavDrawer;
