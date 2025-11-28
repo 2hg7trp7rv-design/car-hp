@@ -2,15 +2,9 @@
 "use client";
 
 /**
- * 以前はホーム上部に常時表示されていた
- * 大きな NEWS / CARS / COLUMN / GUIDE カード用のコンポーネント。
- *
- * いまは左下の HomeNavDrawer を使う仕様に統一したため、
- * 既存の import / 使用箇所を壊さずに「何も描画しない」スタブとして残しています。
+ * 以前の HOME 上部ナビ（NEWS / CARS / COLUMN / GUIDE）用コンポーネント。
+ * いまは使わないので、既存の import を壊さないためのダミー実装。
  */
-export function HomePrimaryNavPanel() {
-  // 何も表示しない
+export default function HomePrimaryNavPanel() {
   return null;
 }
-
-export default HomePrimaryNavPanel;
