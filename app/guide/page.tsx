@@ -1,8 +1,10 @@
 // app/guide/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
+
 import { GlassCard } from "@/components/GlassCard";
 import { Reveal } from "@/components/animation/Reveal";
+import { Button } from "@/components/ui/button";
 
 export const runtime = "edge";
 
@@ -30,7 +32,7 @@ type GuideSection = {
   topics: GuideTopic[];
 };
 
-// 実ガイド記事へのリンク付きセクション（実用トーンに調整）
+// 実ガイド記事へのリンク付きセクション（実用トーン）
 const guideSections: GuideSection[] = [
   {
     id: "money",
@@ -80,18 +82,40 @@ const guideSections: GuideSection[] = [
 ];
 
 export default function GuidePage() {
+  const totalTopics = guideSections.reduce(
+    (sum, section) => sum + section.topics.length,
+    0,
+  );
+
   return (
     <main className="min-h-screen bg-site text-text-main">
-      {/* 背景装飾レイヤー: メッシュグラデーション */}
+      {/* --- 背景：Tiffanyメッシュ + ラジアル光源 --- */}
       <div className="pointer-events-none fixed inset-0 z-0">
-        <div className="absolute left-0 top-0 h-[50vh] w-full bg-gradient-to-b from-white/80 via-white/40 to-transparent" />
-        <div className="absolute -right-[10%] -top-[10%] h-[60vw] w-[60vw] rounded-full bg-tiffany-100/30 blur-[100px]" />
-        <div className="absolute bottom-[10%] -left-[10%] h-[40vw] w-[40vw] rounded-full bg-slate-200/40 blur-[80px]" />
+        {/* 上層のホワイトレイヤー（紙のトーン） */}
+        <div className="absolute left-0 top-0 h-[50vh] w-full bg-gradient-to-b from-white/90 via-white/60 to-transparent" />
+        {/* 左上 Tiffany 光 */}
+        <div className="absolute -left-[18%] -top-[18%] h-[52vw] w-[52vw] rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.22),_transparent_70%)] blur-[110px]" />
+        {/* 右下 Obsidian 系の落ち着いた光 */}
+        <div className="absolute bottom-[-20%] -right-[18%] h-[60vw] w-[60vw] rounded-full bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.25),_transparent_75%)] blur-[110px]" />
+        {/* うっすらノイズ */}
+        <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 pb-24 pt-24 sm:px-6 lg:px-8">
-        {/* ヘッダー */}
-        <header className="mb-16 space-y-6 sm:mb-24">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 pb-28 pt-24 sm:px-6 lg:px-8">
+        {/* パンくず */}
+        <nav
+          aria-label="パンくずリスト"
+          className="mb-6 text-xs text-slate-500"
+        >
+          <Link href="/" className="hover:text-slate-800">
+            HOME
+          </Link>
+          <span className="mx-2">/</span>
+          <span className="text-slate-400">GUIDE</span>
+        </nav>
+
+        {/* --- ヘッダー --- */}
+        <header className="mb-16 space-y-6 sm:mb-20 lg:mb-24">
           <Reveal>
             <div className="flex items-center gap-3">
               <span className="h-[1px] w-8 bg-tiffany-400" />
@@ -102,36 +126,73 @@ export default function GuidePage() {
           </Reveal>
 
           <Reveal delay={100}>
-            <h1 className="serif-heading text-4xl font-medium leading-[1.1] text-slate-900 sm:text-5xl lg:text-6xl">
+            <h1 className="serif-heading text-4xl font-medium leading-[1.1] text-slate-900 sm:text-5xl lg:text-[3.25rem]">
               買い方・維持費・売却を
               <br className="hidden sm:block" />
-              まとめて確認できるガイド
+              落ち着いて整理するためのガイド
             </h1>
           </Reveal>
 
           <Reveal delay={200}>
             <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
               <p className="max-w-xl text-xs font-medium leading-loose text-text-sub sm:text-sm">
-                クルマを「買う・維持する・手放す」ときに必要になる、お金や手続きまわりの情報を整理したページです。
-                具体的な金額の目安や、考える順番を確認したいときに使えることを目指しています。
+                クルマを「買う・維持する・手放す」ときに必要になる、お金や手続きまわりの情報を
+                小さな読み物としてまとめたエリアです。具体的な金額の目安というよりも、
+                「どこから考え始めると楽か」を整理するための道しるべとして使えることを目指しています。
               </p>
 
-              {/* 関連リンクへの誘導 */}
-              <Link
-                href="/column"
-                className="group flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] text-slate-800 transition-colors hover:text-tiffany-600"
-              >
-                <span>VIEW COLUMNS</span>
-                <span className="block h-[1px] w-8 bg-slate-300 transition-all group-hover:w-12 group-hover:bg-tiffany-400" />
-              </Link>
+              {/* 関連コンテンツへの導線（Glassボタン） */}
+              <div className="flex flex-col items-start gap-3 text-[11px] sm:items-end">
+                <Button
+                  asChild
+                  variant="glass"
+                  size="sm"
+                  magnetic
+                  className="rounded-full px-5 py-2 tracking-[0.2em]"
+                >
+                  <Link href="/column">VIEW COLUMNS</Link>
+                </Button>
+                <p className="max-w-xs text-[10px] leading-relaxed text-slate-500">
+                  実際のトラブル事例や、ブランド・技術の背景は COLUMN セクションで少しずつ掘り下げています。
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* --- GUIDE ナビ（セクション内アンカー） --- */}
+          <Reveal delay={260}>
+            <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-white/70 bg-white/80 px-4 py-3 shadow-soft sm:flex-row sm:items-center sm:justify-between sm:px-6">
+              <div className="flex items-center gap-2 text-[10px] text-slate-500">
+                <span className="rounded-full bg-slate-50 px-2 py-0.5 text-slate-400">
+                  GUIDE NAV
+                </span>
+                <span className="hidden text-[10px] tracking-[0.12em] text-slate-500 sm:inline">
+                  全 {totalTopics} 本のガイドを、テーマ別に整理しています。
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2 text-[10px]">
+                {guideSections.map((section) => (
+                  <a
+                    key={section.id}
+                    href={`#${section.id}`}
+                    className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-3 py-1 tracking-[0.16em] text-slate-700 transition hover:bg-white hover:text-tiffany-700 hover:shadow-soft"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-tiffany-400" />
+                    <span>{section.subLabel}</span>
+                    <span className="text-[9px] text-slate-400">
+                      ({section.topics.length})
+                    </span>
+                  </a>
+                ))}
+              </div>
             </div>
           </Reveal>
         </header>
 
-        {/* Bento Grid */}
+        {/* --- Bento Grid 本体 --- */}
         <section className="grid auto-rows-min grid-cols-1 gap-4 md:grid-cols-12 md:gap-6 lg:gap-8">
           {guideSections.map((section, index) => {
-            const delay = 300 + index * 100;
+            const delay = 320 + index * 120;
 
             const accentStyles: Record<
               NonNullable<GuideSection["accent"]>,
@@ -140,7 +201,8 @@ export default function GuidePage() {
               default: "bg-white/80 border-white/60",
               tiffany:
                 "bg-gradient-to-br from-tiffany-50 to-white border-tiffany-100",
-              obsidian: "bg-slate-900 border-slate-800 text-white",
+              obsidian:
+                "bg-slate-900 border-slate-800 text-white shadow-soft-strong",
               glass: "bg-white/40 backdrop-blur-md border-white/50",
             };
 
@@ -148,12 +210,13 @@ export default function GuidePage() {
             const textMainColor =
               accent === "obsidian" ? "text-white" : "text-slate-900";
             const textSubColor =
-              accent === "obsidian" ? "text-slate-400" : "text-text-sub";
+              accent === "obsidian" ? "text-slate-300" : "text-text-sub";
 
             return (
               <div
                 key={section.id}
-                className={section.gridArea ?? "col-span-12"}
+                id={section.id}
+                className={section.gridArea ?? "md:col-span-6"}
               >
                 <Reveal delay={delay} className="h-full">
                   <GlassCard
@@ -165,25 +228,27 @@ export default function GuidePage() {
                       ${accentStyles[accent]}
                     `}
                   >
-                    {/* ホバー時の背景エフェクト */}
-                    <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-gradient-to-br from-tiffany-100/20 to-transparent blur-3xl transition-transform duration-700 group-hover:scale-150" />
+                    {/* ホバー時の光のにじみ */}
+                    <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                      <div className="absolute -right-24 -top-16 h-56 w-56 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.25),_transparent_65%)] blur-3xl" />
+                    </div>
 
                     {/* 背景アイコン（巨大透かし） */}
                     <div
-                      className={`pointer-events-none absolute -bottom-4 -right-4 select-none text-[120px] font-serif leading-none opacity-5 ${textMainColor}`}
+                      className={`pointer-events-none absolute -bottom-4 -right-4 select-none text-[120px] font-serif leading-none opacity-[0.05] sm:text-[150px] ${textMainColor}`}
                     >
                       {section.icon}
                     </div>
 
                     {/* コンテンツ */}
                     <div className="relative z-10 space-y-4">
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between gap-2">
                         <div className="flex flex-col">
                           <span
                             className={`text-[10px] font-bold uppercase tracking-[0.22em] ${
                               accent === "obsidian"
-                                ? "text-tiffany-400"
-                                : "text-tiffany-600"
+                                ? "text-tiffany-300"
+                                : "text-tiffany-700"
                             }`}
                           >
                             {section.subLabel}
@@ -194,6 +259,16 @@ export default function GuidePage() {
                             {section.label}
                           </h2>
                         </div>
+                        {/* セクション内の件数バッジ */}
+                        <span
+                          className={`hidden rounded-full px-3 py-1 text-[10px] tracking-[0.16em] sm:inline-flex ${
+                            accent === "obsidian"
+                              ? "bg-white/10 text-slate-100"
+                              : "bg-white/70 text-slate-600"
+                          }`}
+                        >
+                          {section.topics.length} GUIDES
+                        </span>
                       </div>
 
                       <p
@@ -202,15 +277,33 @@ export default function GuidePage() {
                         {section.description}
                       </p>
 
+                      {/* トピックリスト */}
                       {section.topics.length > 0 && (
-                        <ul className="mt-4 space-y-2 text-[11px] text-slate-600">
-                          {section.topics.map((topic) => {
+                        <ul className="mt-4 space-y-3 text-[11px]">
+                          {section.topics.map((topic, topicIndex) => {
                             const content = (
                               <>
-                                <p className="font-semibold text-slate-800">
-                                  {topic.title}
-                                </p>
-                                <p className="text-[11px] leading-relaxed text-text-sub">
+                                <div className="mb-0.5 flex items-center gap-2">
+                                  <span className="text-[9px] tracking-[0.18em] text-slate-400">
+                                    STEP {topicIndex + 1}
+                                  </span>
+                                  <p
+                                    className={`font-semibold ${
+                                      accent === "obsidian"
+                                        ? "text-slate-50"
+                                        : "text-slate-800"
+                                    }`}
+                                  >
+                                    {topic.title}
+                                  </p>
+                                </div>
+                                <p
+                                  className={`text-[11px] leading-relaxed ${
+                                    accent === "obsidian"
+                                      ? "text-slate-300"
+                                      : "text-text-sub"
+                                  }`}
+                                >
                                   {topic.description}
                                 </p>
                               </>
@@ -221,21 +314,34 @@ export default function GuidePage() {
                                 key={topic.id}
                                 className="flex items-start gap-2"
                               >
-                                <span className="mt-[6px] h-[3px] w-8 rounded-full bg-tiffany-300" />
+                                <span
+                                  className={`mt-[7px] h-[3px] w-8 rounded-full ${
+                                    accent === "obsidian"
+                                      ? "bg-tiffany-400/80"
+                                      : "bg-tiffany-300"
+                                  }`}
+                                />
                                 <div>
                                   {topic.link ? (
                                     <Link
                                       href={topic.link}
                                       className="group/link inline-block"
                                     >
-                                      <div className="inline-flex items-center gap-1">
+                                      <div className="inline-flex items-end gap-1">
                                         <span className="relative">
-                                          <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-tiffany-400 transition-transform duration-300 group-hover/link:scale-x-100" />
+                                          {/* 下線アニメーション */}
+                                          <span className="absolute -bottom-0.5 left-0 h-[1px] w-full origin-left scale-x-0 bg-tiffany-400 transition-transform duration-300 group-hover/link:scale-x-100" />
                                           <span className="relative">
                                             {content}
                                           </span>
                                         </span>
-                                        <span className="mt-3 text-[9px] text-tiffany-500">
+                                        <span
+                                          className={`mb-0.5 text-[9px] ${
+                                            accent === "obsidian"
+                                              ? "text-tiffany-300"
+                                              : "text-tiffany-500"
+                                          }`}
+                                        >
                                           → READ GUIDE
                                         </span>
                                       </div>
@@ -257,37 +363,51 @@ export default function GuidePage() {
           })}
         </section>
 
-        {/* CTA */}
-        <section className="mt-20">
+        {/* --- 下部 CTA：ガイドと他コンテンツの関係性を説明 --- */}
+        <section className="mt-24 lg:mt-28">
           <Reveal delay={800}>
             <div className="relative overflow-hidden rounded-3xl bg-slate-900 px-6 py-12 text-center shadow-soft-strong sm:px-12 sm:py-16">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-tiffany-900/40 via-slate-900 to-slate-900" />
-              <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(10,186,181,0.36),_transparent_60%),radial-gradient(circle_at_bottom_left,_rgba(15,23,42,0.85),_transparent_65%)]" />
+              <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.04]" />
 
               <div className="relative z-10 flex flex-col items-center">
                 <span className="mb-4 inline-block rounded-full bg-white/10 px-4 py-1.5 text-[10px] font-bold tracking-[0.2em] text-tiffany-300 backdrop-blur-sm">
                   INFORMATION
                 </span>
                 <h3 className="serif-heading mb-6 text-2xl text-white sm:text-3xl">
-                  ガイドと関連コンテンツ
+                  ガイドと、ニュース / コラム / 車種ページのつながり
                 </h3>
-                <p className="mx-auto mb-8 max-w-lg text-xs leading-relaxed text-slate-400 sm:text-sm">
-                  ガイドの内容は、今後のアップデートで順次追加・更新していきます。
-                  特定の車種に関する維持費やトラブル事例は CARS ページと COLUMN セクションで取り上げていく予定です。
+                <p className="mx-auto mb-8 max-w-xl text-xs leading-relaxed text-slate-300 sm:text-sm">
+                  ここで扱うのは「お金や段取りの全体像」の部分です。
+                  実際のトラブル事例や、ブランドごとの考え方、車種ごとの維持難易度は
+                  NEWS・COLUMN・CARS の各ページで少しずつ補っていくイメージになっています。
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
-                  <Link
-                    href="/column"
-                    className="inline-flex min-w-[160px] items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-bold tracking-[0.16em] text-slate-900 transition-transform hover:scale-105 active:scale-95"
+                  <Button
+                    asChild
+                    variant="primary"
+                    size="sm"
+                    magnetic
+                    className="min-w-[160px] rounded-full px-6 py-3 text-[11px] tracking-[0.18em]"
                   >
-                    COLUMN LIST
-                  </Link>
-                  <Link
-                    href="/cars"
-                    className="inline-flex min-w-[160px] items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-xs font-bold tracking-[0.16em] text-white backdrop-blur-sm transition-colors hover:bg-white/10"
+                    <Link href="/cars">CAR DATABASE</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="glass"
+                    size="sm"
+                    className="min-w-[160px] rounded-full border border-white/30 bg-white/5 px-6 py-3 text-[11px] font-semibold tracking-[0.18em] text-slate-100 backdrop-blur-sm hover:bg-white/10"
                   >
-                    CAR DATABASE
-                  </Link>
+                    <Link href="/column">READ COLUMNS</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="subtle"
+                    size="sm"
+                    className="min-w-[160px] rounded-full border border-white/10 bg-transparent px-6 py-3 text-[11px] tracking-[0.18em] text-slate-200 hover:bg-white/5"
+                  >
+                    <Link href="/news">NEWS FEED</Link>
+                  </Button>
                 </div>
               </div>
             </div>
