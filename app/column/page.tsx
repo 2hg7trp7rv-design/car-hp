@@ -34,7 +34,6 @@ function mapCategoryLabel(category: ColumnItem["category"]): string {
       return "メンテナンス・トラブル";
     case "TECHNICAL":
       return "ブランド・技術・歴史";
-    case "OWNER_STORY":
     default:
       return "コラム";
   }
