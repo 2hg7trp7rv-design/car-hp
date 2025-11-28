@@ -32,6 +32,13 @@ type ContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "list"; items: string[] };
 
+// STEP タイムラインで使う型（ヘッディングから抽出）
+type StepHeading = {
+  id: string;
+  stepNumber: number;
+  label: string;
+};
+
 // 日付表示用
 function formatDate(iso?: string): string {
   if (!iso) return "";
@@ -254,6 +261,31 @@ export async function generateMetadata({
   };
 }
 
+// STEP 見出しを抽出してタイムライン用データに変換
+function extractStepHeadings(headings: HeadingBlock[]): StepHeading[] {
+  const result: StepHeading[] = [];
+
+  headings.forEach((h) => {
+    const m = h.text.match(/^STEP\s*(\d+)[\.\:：]?\s*(.*)$/i);
+    if (!m) return;
+
+    const stepNumber = Number(m[1]);
+    const rawLabel = m[2]?.trim() ?? "";
+    const label = rawLabel || `STEP ${stepNumber}`;
+
+    if (!Number.isNaN(stepNumber)) {
+      result.push({
+        id: h.id,
+        stepNumber,
+        label,
+      });
+    }
+  });
+
+  // STEP番号順ソート（1,2,3...）
+  return result.sort((a, b) => a.stepNumber - b.stepNumber);
+}
+
 export default async function GuideDetailPage({ params }: PageProps) {
   const guide = await getGuideBySlug(params.slug);
 
@@ -263,13 +295,14 @@ export default async function GuideDetailPage({ params }: PageProps) {
 
   const { blocks, headings } = parseBody(guide.body);
   const relatedColumns = await getRelatedColumnsForGuide(guide);
+  const stepHeadings = extractStepHeadings(headings);
 
   // ドロップキャップ用フラグ
   let firstParagraphRendered = false;
 
   return (
     <main className="min-h-screen bg-site text-text-main">
-      {/* ページ専用の光レイヤー（ガイド＝実用寄りの落ち着いた光） */}
+      {/* ページ専用の光レイヤー */}
       <div className="pointer-events-none fixed inset-0 z-0">
         <div className="absolute left-0 top-0 h-[40vh] w-full bg-gradient-to-b from-white/90 via-white/70 to-transparent" />
         <div className="absolute -left-[18%] top-[10%] h-[40vw] w-[40vw] rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.15),_transparent_70%)] blur-[110px]" />
@@ -380,15 +413,62 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   </p>
                 </div>
 
+                {/* STEP タイムライン（STEP 1/2/3... の見出しがある場合だけ表示） */}
+                {stepHeadings.length > 0 && (
+                  <section className="mb-6 rounded-2xl border border-tiffany-100 bg-gradient-to-br from-tiffany-50/90 via-white to-white px-4 py-4 text-[11px] shadow-soft-card sm:px-5 sm:py-5">
+                    <p className="mb-3 text-[10px] font-semibold tracking-[0.22em] text-tiffany-700">
+                      GUIDE STEPS
+                    </p>
+                    <div className="relative pl-4">
+                      {/* 縦ライン */}
+                      <div className="absolute left-[10px] top-1 bottom-1 w-px bg-gradient-to-b from-tiffany-300/60 via-slate-200/80 to-transparent" />
+                      <ol className="space-y-3">
+                        {stepHeadings.map((s, idx) => (
+                          <li key={s.id} className="relative flex gap-3">
+                            {/* 丸アイコン */}
+                            <div className="relative mt-[2px] flex h-5 w-5 items-center justify-center">
+                              <div className="absolute h-5 w-5 rounded-full bg-white shadow-[0_0_0_1px_rgba(148,163,184,0.35)]" />
+                              <div className="relative h-2.5 w-2.5 rounded-full bg-gradient-to-br from-tiffany-400 to-tiffany-600" />
+                            </div>
+                            <a
+                              href={`#${s.id}`}
+                              className="group inline-flex flex-1 flex-col gap-0.5"
+                            >
+                              <span className="text-[10px] font-semibold tracking-[0.18em] text-slate-400">
+                                STEP {s.stepNumber.toString().padStart(2, "0")}
+                              </span>
+                              <span className="text-[11px] font-medium text-slate-800 group-hover:text-tiffany-700">
+                                {s.label}
+                              </span>
+                              {idx === 0 && (
+                                <span className="mt-0.5 text-[10px] text-slate-400">
+                                  上から順に、ざっくりこの順番で考える前提のステップです。
+                                </span>
+                              )}
+                            </a>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  </section>
+                )}
+
                 {/* 実際の本文 */}
                 <div className="mt-6">
                   {blocks.map((block, index) => {
                     if (block.type === "heading") {
                       const Tag = block.heading.level === 2 ? "h2" : "h3";
-                      const baseClass =
-                        block.heading.level === 2
-                          ? "mt-12 mb-5 font-serif text-lg font-medium text-slate-900 sm:text-xl"
-                          : "mt-8 mb-3 text-sm font-semibold tracking-[0.04em] text-slate-800";
+
+                      // STEP 見出しは少しだけ強調したスタイルに
+                      const isStepHeading = /^STEP\s*\d+/i.test(
+                        block.heading.text,
+                      );
+
+                      const baseClass = isStepHeading
+                        ? "mt-10 mb-4 text-sm font-semibold tracking-[0.18em] text-slate-800 sm:text-[13px] uppercase"
+                        : block.heading.level === 2
+                        ? "mt-12 mb-5 font-serif text-lg font-medium text-slate-900 sm:text-xl"
+                        : "mt-8 mb-3 text-sm font-semibold tracking-[0.04em] text-slate-800";
 
                       return (
                         <Reveal
@@ -491,7 +571,6 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   </ul>
                 )}
 
-                {/* ささやかな補足 */}
                 <p className="mt-4 border-t border-slate-100 pt-3 text-[10px] leading-relaxed text-slate-400">
                   一度読み切ったあとに、気になる見出しだけをもう一度
                   辿り直せるようにするための簡易的な目次です。
@@ -587,7 +666,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
         )}
       </div>
 
-      {/* ガイド専用の drop caps スタイル（Column と同系統） */}
+      {/* ガイド専用の drop caps スタイル */}
       <style jsx global>{`
         .first-letter-float {
           text-indent: 0;
