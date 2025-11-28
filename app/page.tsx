@@ -11,6 +11,7 @@ import { getLatestNews, type NewsItem } from "@/lib/news";
 import { getAllCars, type CarItem } from "@/lib/cars";
 import { getAllColumns, type ColumnItem } from "@/lib/columns";
 import { getAllGuides, type GuideItem } from "@/lib/guides";
+import { HomeNavDrawer } from "@/components/home/HomeNavDrawer";
 
 export const runtime = "edge";
 
@@ -86,6 +87,9 @@ export default async function HomePage() {
 
   return (
     <main className="min-h-screen bg-site text-text-main">
+      {/* 右上ボタン＋ナビカード（開閉ドロワー） */}
+      <HomeNavDrawer />
+
       <div className="mx-auto max-w-6xl px-4 pb-24 pt-24 sm:px-6 lg:px-8">
         {/* HERO */}
         <section className="mb-20 sm:mb-24 lg:mb-28">
