@@ -665,24 +665,6 @@ export default async function GuideDetailPage({ params }: PageProps) {
           </section>
         )}
       </div>
-
-      {/* ガイド専用の drop caps スタイル */}
-      <style jsx global>{`
-        .first-letter-float {
-          text-indent: 0;
-        }
-        .first-letter-span {
-          float: left;
-          margin-right: 12px;
-          margin-top: -6px;
-          margin-bottom: -2px;
-          font-family: var(--font-bodoni), var(--font-serif), serif;
-          font-size: 3.6em;
-          line-height: 0.85;
-          font-weight: 500;
-          color: #0abab5;
-        }
-      `}</style>
     </main>
   );
 }
