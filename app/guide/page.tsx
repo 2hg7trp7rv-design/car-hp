@@ -5,6 +5,7 @@ import Link from "next/link";
 import { GlassCard } from "@/components/GlassCard";
 import { Reveal } from "@/components/animation/Reveal";
 import { Button } from "@/components/ui/button";
+import { getAllGuides, type GuideItem } from "@/lib/guides";
 
 export const runtime = "edge";
 
@@ -81,11 +82,40 @@ const guideSections: GuideSection[] = [
   },
 ];
 
-export default function GuidePage() {
-  const totalTopics = guideSections.reduce(
-    (sum, section) => sum + section.topics.length,
-    0,
-  );
+// 日付表示用
+function formatDate(iso?: string | null): string {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "";
+  const y = d.getFullYear();
+  const m = `${d.getMonth() + 1}`.padStart(2, "0");
+  const day = `${d.getDate()}`.padStart(2, "0");
+  return `${y}/${m}/${day}`;
+}
+
+// ガイドカテゴリ表示用（一覧用のざっくりラベル）
+function mapGuideCategoryLabel(category?: GuideItem["category"] | null): string {
+  switch (category) {
+    case "MONEY":
+      return "お金・維持費";
+    case "SELL":
+      return "売却・乗り換え";
+    default:
+      return "ガイド";
+  }
+}
+
+export default async function GuidePage() {
+  const allGuides = await getAllGuides();
+
+  // 公開日の新しい順に並べ替え（undefined は最後に）
+  const sortedGuides = [...allGuides].sort((a, b) => {
+    const ta = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
+    const tb = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
+    return tb - ta;
+  });
+
+  const totalTopics = sortedGuides.length;
 
   return (
     <main className="min-h-screen bg-site text-text-main">
@@ -159,7 +189,7 @@ export default function GuidePage() {
             </div>
           </Reveal>
 
-          {/* --- GUIDE ナビ（セクション内アンカー） --- */}
+          {/* --- GUIDE ナビ（セクション内アンカー + 件数） --- */}
           <Reveal delay={260}>
             <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-white/70 bg-white/80 px-4 py-3 shadow-soft sm:flex-row sm:items-center sm:justify-between sm:px-6">
               <div className="flex items-center gap-2 text-[10px] text-slate-500">
@@ -189,7 +219,7 @@ export default function GuidePage() {
           </Reveal>
         </header>
 
-        {/* --- Bento Grid 本体 --- */}
+        {/* --- Bento Grid 本体（テーマ別ガイドの入口） --- */}
         <section className="grid auto-rows-min grid-cols-1 gap-4 md:grid-cols-12 md:gap-6 lg:gap-8">
           {guideSections.map((section, index) => {
             const delay = 320 + index * 120;
@@ -361,6 +391,64 @@ export default function GuidePage() {
               </div>
             );
           })}
+        </section>
+
+        {/* --- 実ガイド一覧（動的データ） --- */}
+        <section className="mt-20 sm:mt-24">
+          <Reveal delay={640}>
+            <div className="mb-4 flex flex-wrap items-baseline justify-between gap-3">
+              <div>
+                <p className="text-[10px] font-bold tracking-[0.22em] text-slate-500">
+                  GUIDE INDEX
+                </p>
+                <h2 className="serif-heading mt-2 text-lg text-slate-900 sm:text-xl">
+                  すべての実用ガイド一覧
+                </h2>
+              </div>
+              <p className="text-[10px] leading-relaxed text-slate-500 sm:text-[11px]">
+                公開日の新しい順に並んでいます。気になるテーマがあればタイトルから詳細へ。
+              </p>
+            </div>
+          </Reveal>
+
+          {sortedGuides.length === 0 ? (
+            <Reveal delay={680}>
+              <div className="rounded-2xl border border-slate-100 bg-white/80 px-4 py-6 text-[11px] text-slate-500">
+                現在、公開中のガイドはまだありません。順次追加していきます。
+              </div>
+            </Reveal>
+          ) : (
+            <div className="grid gap-4 md:grid-cols-2">
+              {sortedGuides.map((guide, index) => (
+                <Reveal key={guide.id} delay={680 + index * 40}>
+                  <Link href={`/guide/${encodeURIComponent(guide.slug)}`}>
+                    <GlassCard className="group h-full border border-slate-200/80 bg-gradient-to-br from-vapor/80 via-white/95 to-white/90 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card sm:p-5">
+                      <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                        <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                          {mapGuideCategoryLabel(guide.category)}
+                        </span>
+                        {guide.publishedAt && (
+                          <span className="ml-auto text-[10px] text-slate-400">
+                            {formatDate(guide.publishedAt)}
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900 group-hover:text-tiffany-700">
+                        {guide.title}
+                      </h3>
+
+                      {guide.summary && (
+                        <p className="mt-2 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
+                          {guide.summary}
+                        </p>
+                      )}
+                    </GlassCard>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          )}
         </section>
 
         {/* --- 下部 CTA：ガイドと他コンテンツの関係性を説明 --- */}
