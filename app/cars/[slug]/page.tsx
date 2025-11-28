@@ -14,6 +14,10 @@ import {
 } from "@/lib/cars";
 import { getLatestNews, type NewsItem } from "@/lib/news";
 import { getAllColumns, type ColumnItem } from "@/lib/columns";
+import {
+  getAllGuides,
+  type GuideItem,
+} from "@/lib/guides";
 
 export const runtime = "edge";
 
@@ -153,6 +157,66 @@ async function getRelatedNewsAndColumns(car: ExtendedCarItem) {
   return { relatedNews, relatedColumns };
 }
 
+/**
+ * この車種に「効きそうな」ガイドを抽出する
+ * - ガイドと車種のタグ重なり
+ * - 車名・メーカーなどのキーワード
+ * - ガイドカテゴリと difficulty の組み合わせ
+ */
+async function getRelatedGuides(
+  car: ExtendedCarItem,
+): Promise<GuideItem[]> {
+  const guides = await getAllGuides();
+
+  const carKeywords = new Set(
+    buildKeywords(car).map((k) => String(k).toLowerCase()),
+  );
+
+  return guides
+    .map((guide) => {
+      let score = 0;
+
+      // タグの重なり
+      const guideTags = guide.tags ?? [];
+      if (guideTags.length > 0 && carKeywords.size > 0) {
+        const overlap = guideTags.filter((t) =>
+          carKeywords.has(t.toLowerCase()),
+        ).length;
+        if (overlap > 0) {
+          score += 2 + overlap * 0.3;
+        }
+      }
+
+      // タイトル・サマリと車名／メーカーの単純マッチ
+      const text = `${guide.title} ${guide.summary}`.toLowerCase();
+      if (
+        Array.from(carKeywords).some(
+          (kw) => kw.length > 1 && text.includes(kw),
+        )
+      ) {
+        score += 1;
+      }
+
+      // difficulty とカテゴリのざっくりマッチ
+      if (guide.category === "MONEY") {
+        // お金系ガイドは、difficulty が高い／輸入車だと少し重要度アップ
+        if (car.difficulty === "advanced") score += 1;
+        else if (car.difficulty === "intermediate") score += 0.5;
+      }
+      if (guide.category === "SELL") {
+        // 売却系は年式が古い／セグメントが高級寄りなどに寄せてもよいが、
+        // ここでは一律で少しだけ加点
+        score += 0.3;
+      }
+
+      return { guide, score };
+    })
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map((x) => x.guide);
+}
+
 export default async function CarDetailPage({ params }: PageProps) {
   const car = (await getCarBySlug(params.slug)) as ExtendedCarItem | null;
 
@@ -164,13 +228,18 @@ export default async function CarDetailPage({ params }: PageProps) {
   const weaknesses = car.weaknesses ?? [];
   const troubleTrends = car.troubleTrends ?? [];
 
-  const [relatedCars, { relatedNews, relatedColumns }] = await Promise.all([
+  const [relatedCars, newsAndColumns, relatedGuides] = await Promise.all([
     getRelatedCars(car),
     getRelatedNewsAndColumns(car),
+    getRelatedGuides(car),
   ]);
+  const { relatedNews, relatedColumns } = newsAndColumns;
 
   const mainImage =
-    car.mainImage ?? car.heroImage ?? (car as CarItem & { imageUrl?: string }).imageUrl ?? "";
+    car.mainImage ??
+    car.heroImage ??
+    (car as CarItem & { imageUrl?: string }).imageUrl ??
+    "";
 
   return (
     <main className="min-h-screen bg-site pb-20 pt-10 sm:pb-28 sm:pt-12">
@@ -364,7 +433,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                   <p className="text-[12px] leading-relaxed text-slate-600">
                     新旧モデルや他グレードとの違いを視覚的に比べられるようにするための
                     比較スライダーのプレースホルダーです。
-                    実画像が揃い次第、ここに本番用の比較写真を配置します。
+                    実画像が揃い次第、ここに比較用の写真を配置します。
                   </p>
                 </div>
                 <div className="flex-1">
@@ -507,6 +576,81 @@ export default async function CarDetailPage({ params }: PageProps) {
             </div>
           </div>
         </section>
+
+        {/* RELATED GUIDES */}
+        {relatedGuides.length > 0 && (
+          <section className="mt-4">
+            <Reveal>
+              <div className="mb-3 flex items-baseline justify-between gap-2">
+                <h2 className="text-xs font-semibold tracking-[0.2em] text-slate-500">
+                  RELATED GUIDES
+                </h2>
+                <Link
+                  href="/guide"
+                  className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+                >
+                  ガイド一覧へ
+                </Link>
+              </div>
+            </Reveal>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              {relatedGuides.map((guide) => (
+                <Reveal key={guide.slug}>
+                  <Link href={`/guide/${encodeURIComponent(guide.slug)}`}>
+                    <GlassCard className="h-full bg-white/90 p-4 text-xs shadow-sm transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
+                      <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                        <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                          {guide.category === "MONEY"
+                            ? "お金・購入計画"
+                            : "売却・乗り換え"}
+                        </span>
+                        {guide.readMinutes && (
+                          <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                            約{guide.readMinutes}分
+                          </span>
+                        )}
+                        {guide.publishedAt && (
+                          <span className="ml-auto text-[10px] text-slate-400">
+                            {formatDate(guide.publishedAt)}
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
+                        {guide.title}
+                      </h3>
+
+                      {guide.summary && (
+                        <p className="mt-1 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
+                          {guide.summary}
+                        </p>
+                      )}
+
+                      {guide.tags && guide.tags.length > 0 && (
+                        <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-slate-500">
+                          {guide.tags.slice(0, 3).map((tag) => (
+                            <span
+                              key={tag}
+                              className="rounded-full bg-slate-50 px-2 py-1"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                          {guide.tags.length > 3 && (
+                            <span className="rounded-full bg-slate-50 px-2 py-1">
+                              +{guide.tags.length - 3}
+                            </span>
+                          )}
+                        </div>
+                      )}
+                    </GlassCard>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </main>
   );
