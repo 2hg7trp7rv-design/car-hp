@@ -1,6 +1,6 @@
 // lib/utils.ts
-// Tailwind / shadcn風の className 結合ユーティリティ。
-// Button や MagneticArea から使われる前提。
+// Tailwind / UI コンポーネント用の className 結合ユーティリティ。
+// Button や MagneticArea などから `cn` が呼ばれる前提。
 
 /**
  * 可変長のクラス名を受け取って、truthy なものだけを
