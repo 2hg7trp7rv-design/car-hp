@@ -7,6 +7,8 @@ import { Reveal } from "@/components/animation/Reveal";
 import {
   getAllHeritageEras,
   getAllHeritageBrands,
+  getAllHeritageCarStories,
+  type HeritageCarStory,
 } from "@/lib/heritage";
 
 export const runtime = "edge";
@@ -213,6 +215,99 @@ function BrandStripesSection() {
   );
 }
 
+function ModelStoriesSection() {
+  const stories = getAllHeritageCarStories();
+
+  if (stories.length === 0) return null;
+
+  const groupedByLine = stories.reduce<Record<string, HeritageCarStory[]>>(
+    (acc, story) => {
+      const key = `${story.maker ?? ""} ${story.modelLine ?? ""}`.trim() || "MODEL";
+      if (!acc[key]) acc[key] = [];
+      acc[key].push(story);
+      return acc;
+    },
+    {},
+  );
+
+  return (
+    <section
+      aria-label="モデル別ストーリー"
+      className="mt-16 space-y-6"
+    >
+      <Reveal>
+        <header className="flex flex-wrap items-baseline justify-between gap-3">
+          <div>
+            <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+              MODEL STORIES
+            </p>
+            <h2 className="serif-heading mt-1 text-lg font-medium text-slate-900 sm:text-xl">
+              気になる 1 台の『前後の世代』を続けて読める小さなアーカイブ。
+            </h2>
+          </div>
+          <p className="max-w-md text-[11px] leading-relaxed text-text-sub">
+            CARS のスペックや維持難易度とは別に、「キャラクターの変化」に焦点を当てた読み物です。
+            世代ごとの記事から、前後の世代へそのまま読み進めることができます。
+          </p>
+        </header>
+      </Reveal>
+
+      {Object.entries(groupedByLine).map(([line, list], groupIndex) => (
+        <Reveal key={line} delay={80 + groupIndex * 80}>
+          <GlassCard className="border border-slate-200/80 bg-white/92 px-4 py-5 sm:px-6 sm:py-6">
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+              <h3 className="text-sm font-semibold tracking-[0.14em] text-slate-700">
+                {line}
+              </h3>
+              <p className="text-[10px] text-slate-400">
+                世代ごとのキャラクターの変化をざっくり確認できます。
+              </p>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-3">
+              {list.map((story) => (
+                <Link
+                  key={story.slug}
+                  href={`/heritage/${encodeURIComponent(
+                    story.slug,
+                  )}`}
+                >
+                  <GlassCard
+                    as="article"
+                    padding="md"
+                    interactive
+                    className="h-full border border-slate-200/70 bg-white"
+                  >
+                    <div className="flex h-full flex-col gap-2 text-[11px]">
+                      <p className="text-[10px] font-semibold tracking-[0.22em] text-tiffany-600">
+                        {story.generationLabel}
+                      </p>
+                      <h4 className="text-[12px] font-semibold leading-relaxed text-slate-900">
+                        {story.title}
+                      </h4>
+                      {story.years && (
+                        <p className="text-[10px] text-slate-500">
+                          {story.years}
+                        </p>
+                      )}
+                      <p className="mt-1 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
+                        {story.summary}
+                      </p>
+                      <span className="mt-auto pt-1 text-[10px] font-semibold tracking-[0.18em] text-tiffany-700">
+                        READ STORY →
+                      </span>
+                    </div>
+                  </GlassCard>
+                </Link>
+              ))}
+            </div>
+          </GlassCard>
+        </Reveal>
+      ))}
+    </section>
+  );
+}
+
 export default function HeritagePage() {
   return (
     <main className="min-h-screen bg-site text-text-main">
@@ -249,12 +344,13 @@ export default function HeritagePage() {
               <h1 className="serif-heading text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl lg:text-[2.6rem]">
                 静かな熱量を受け継ぐ、
                 <br className="hidden sm:block" />
-                名車たちの系譜を、時代の空気と一緒に眺める。
+                名車たちの系譜を、時代とブランドからたどる。
               </h1>
               <p className="max-w-3xl text-[12px] leading-relaxed text-text-sub sm:text-sm">
                 スペックの大小では測れない「空気感」や「哲学」に焦点を当てて、
                 クルマの歴史をゆっくりたどっていきます。細かい年表ではなく、
-                「どの年代のキャラクターが好きそうか」を掴むための、ラフな地図のようなセクションです。
+                「どの年代・どの世代のキャラクターが好きそうか」を掴むための、
+                ラフな地図のようなセクションです。
               </p>
             </div>
 
@@ -280,6 +376,9 @@ export default function HeritagePage() {
 
         {/* BRAND STRIPES */}
         <BrandStripesSection />
+
+        {/* MODEL STORIES（前後世代チェーン） */}
+        <ModelStoriesSection />
 
         {/* クロージング */}
         <section className="mt-18 sm:mt-20">
