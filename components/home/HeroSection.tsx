@@ -1,7 +1,7 @@
 // components/home/HeroSection.tsx
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Reveal } from "@/components/animation/Reveal";
 import { Button } from "@/components/ui/button";
@@ -17,12 +17,142 @@ type HeroSectionProps = {
   stats?: HeroStats;
 };
 
+type HeroNavCardProps = {
+  onNavigate?: () => void;
+};
+
+function HeroNavCard({ onNavigate }: HeroNavCardProps) {
+  const handleClick = () => {
+    if (onNavigate) onNavigate();
+  };
+
+  return (
+    <section className="relative flex flex-col justify-between overflow-hidden rounded-[2.2rem] border border-white/70 bg-gradient-to-b from-white/96 via-white/92 to-white/88 px-6 py-6 text-slate-800 shadow-soft-card sm:px-8 sm:py-7">
+      {/* 光レイヤー */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-24 -top-24 h-64 w-64 rounded-[3rem] bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.18),_transparent_70%)] blur-3xl" />
+        <div className="absolute -right-32 bottom-[-40%] h-72 w-72 rounded-[4rem] bg-[radial-gradient(circle_at_center,_rgba(148,163,184,0.24),_transparent_75%)] blur-3xl" />
+      </div>
+
+      <div className="relative z-10 space-y-6">
+        {/* ロゴ */}
+        <div>
+          <p className="serif-heading text-xl tracking-[0.22em] text-slate-900 sm:text-2xl">
+            CAR BOUTIQUE
+          </p>
+          <p className="mt-1 text-[10px] tracking-[0.32em] text-slate-400">
+            NEWS ・ COLUMNS ・ DATABASE
+          </p>
+        </div>
+
+        {/* 4つのタブ */}
+        <nav
+          aria-label="メインセクションナビゲーション"
+          className="space-y-4 text-xs text-slate-700"
+        >
+          <Link href="/news" onClick={handleClick}>
+            <div className="group flex items-center justify-between rounded-2xl px-1 py-1.5 transition hover:bg-slate-50/70">
+              <div>
+                <p className="text-[11px] font-semibold tracking-[0.26em] text-slate-700">
+                  NEWS
+                </p>
+                <p className="text-[11px] text-slate-400">アップデート</p>
+              </div>
+              <span className="text-[16px] text-slate-400 transition-transform group-hover:translate-x-[2px]">
+                →
+              </span>
+            </div>
+          </Link>
+
+          <Link href="/cars" onClick={handleClick}>
+            <div className="group flex items-center justify-between rounded-2xl px-1 py-1.5 transition hover:bg-slate-50/70">
+              <div>
+                <p className="text-[11px] font-semibold tracking-[0.26em] text-slate-700">
+                  CARS
+                </p>
+                <p className="text-[11px] text-slate-400">車種データベース</p>
+              </div>
+              <span className="text-[16px] text-slate-400 transition-transform group-hover:translate-x-[2px]">
+                →
+              </span>
+            </div>
+          </Link>
+
+          <Link href="/column" onClick={handleClick}>
+            <div className="group flex items-center justify-between rounded-2xl px-1 py-1.5 transition hover:bg-slate-50/70">
+              <div>
+                <p className="text-[11px] font-semibold tracking-[0.26em] text-slate-700">
+                  COLUMN
+                </p>
+                <p className="text-[11px] text-slate-400">技術・メンテナンス</p>
+              </div>
+              <span className="text-[16px] text-slate-400 transition-transform group-hover:translate-x-[2px]">
+                →
+              </span>
+            </div>
+          </Link>
+
+          <Link href="/guide" onClick={handleClick}>
+            <div className="group flex items-center justify-between rounded-2xl px-1 py-1.5 transition hover:bg-slate-50/70">
+              <div>
+                <p className="text-[11px] font-semibold tracking-[0.26em] text-slate-700">
+                  GUIDE
+                </p>
+                <p className="text-[11px] text-slate-400">お金と手放し方</p>
+              </div>
+              <span className="text-[16px] text-slate-400 transition-transform group-hover:translate-x-[2px]">
+                →
+              </span>
+            </div>
+          </Link>
+        </nav>
+
+        {/* 下の2ボタン */}
+        <div className="mt-2 flex flex-col gap-3 sm:flex-row">
+          <Button
+            asChild
+            fullWidth
+            variant="primary"
+            size="sm"
+            className="justify-center"
+            onClick={handleClick}
+          >
+            <Link href="/cars">車種一覧を開く</Link>
+          </Button>
+          <Button
+            asChild
+            fullWidth
+            variant="outline"
+            size="sm"
+            className="justify-center"
+            onClick={handleClick}
+          >
+            <Link href="/guide">GUIDE を読む</Link>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function HeroSection({ stats }: HeroSectionProps) {
   const [videoError, setVideoError] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
+
+  // ナビ開閉中はスクロールロック
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    if (navOpen) {
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [navOpen]);
 
   return (
     <section className="relative h-[78vh] min-h-[560px] w-full overflow-hidden rounded-[2.5rem] border border-white/40 bg-obsidian shadow-soft-strong">
-      {/* VIDEO / IMAGE BACKGROUND LAYER */}
+      {/* 背景動画レイヤー */}
       <div className="absolute inset-0 z-0">
         {!videoError ? (
           <video
@@ -43,17 +173,32 @@ export function HeroSection({ stats }: HeroSectionProps) {
           />
         )}
 
-        {/* 光のレイヤー（Tiffanyを“光”として扱う） */}
-        {/* 左上：Tiffany Light */}
+        {/* 光レイヤー */}
         <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.55),_transparent_65%)] blur-3xl" />
-        {/* 右下：やや深めのシアン〜オブシディアン */}
         <div className="pointer-events-none absolute -bottom-32 -right-16 h-80 w-80 rounded-full bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.9),_transparent_70%)] blur-3xl" />
-        {/* 全体トーン補正（Obsidianグラデーション） */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-obsidian/55 to-obsidian/15" />
         <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent" />
       </div>
 
-      {/* CONTENT LAYER */}
+      {/* 右上トグルボタン */}
+      <button
+        type="button"
+        onClick={() => setNavOpen((v) => !v)}
+        aria-label={navOpen ? "メニューを閉じる" : "メニューを開く"}
+        className="absolute right-5 top-5 z-30 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/80 bg-white/80 text-slate-700 shadow-soft backdrop-blur-md"
+      >
+        {navOpen ? (
+          <span className="text-lg leading-none">×</span>
+        ) : (
+          <span className="relative flex h-4 w-4 items-center justify-center">
+            <span className="absolute h-[2px] w-full -translate-y-[5px] rounded-full bg-slate-700" />
+            <span className="absolute h-[2px] w-full rounded-full bg-slate-700" />
+            <span className="absolute h-[2px] w-full translate-y-[5px] rounded-full bg-slate-700" />
+          </span>
+        )}
+      </button>
+
+      {/* メインコンテンツ */}
       <div className="relative z-10 flex h-full flex-col justify-center px-5 sm:px-10 lg:px-16">
         <div className="max-w-3xl">
           {/* ラベル行 */}
@@ -81,7 +226,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
             </h1>
           </Reveal>
 
-          {/* リード文（「何ができるか」を明示） */}
+          {/* リード文 */}
           <Reveal delay={260}>
             <p className="mt-5 max-w-xl text-[12px] leading-relaxed text-slate-200/85 sm:text-[13px]">
               新型車のニュース、トラブルやメンテナンスのコラム、維持の難易度や
@@ -111,7 +256,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
                 </Button>
               </Link>
 
-              {/* 補助情報（PCでのみ表示） */}
+              {/* 補助情報（PCのみ表示） */}
               <div className="hidden min-w-[190px] flex-1 text-[10px] text-slate-300/80 sm:block">
                 <div className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1.5 shadow-glass-edge backdrop-blur">
                   <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
@@ -127,7 +272,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
             </div>
           </Reveal>
 
-          {/* 小さな統計・特徴チップ＋サイト全体のインデックス */}
+          {/* チップ + インデックス */}
           <Reveal delay={480}>
             <div className="mt-8 space-y-3">
               <div className="flex flex-wrap gap-2 text-[10px] text-slate-200/80">
@@ -198,6 +343,25 @@ export function HeroSection({ stats }: HeroSectionProps) {
             </div>
           </Reveal>
         </div>
+      </div>
+
+      {/* オーバーレイ背景 */}
+      <div
+        className={`fixed inset-0 z-40 bg-black/30 backdrop-blur-sm transition-opacity duration-200 ${
+          navOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        onClick={() => setNavOpen(false)}
+      />
+
+      {/* ナビカード本体 */}
+      <div
+        className={`fixed inset-x-4 top-20 z-50 transition-transform duration-250 ease-out ${
+          navOpen
+            ? "translate-y-0 opacity-100"
+            : "-translate-y-4 opacity-0 pointer-events-none"
+        }`}
+      >
+        <HeroNavCard onNavigate={() => setNavOpen(false)} />
       </div>
     </section>
   );
