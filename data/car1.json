@@ -1,0 +1,512 @@
+[
+  {
+    "id": "toyota-alphard-30",
+    "slug": "toyota-alphard-30",
+    "name": "Toyota Alphard (30系)",
+    "maker": "TOYOTA",
+    "releaseYear": 2015,
+    "difficulty": "basic",
+    "bodyType": "ミニバン",
+    "segment": "Lクラスラグジュアリーミニバン",
+    "grade": "Executive Lounge / SC など",
+    "summary": "日本の「おもてなしミニバン」を代表する、ラグジュアリー送迎の定番。",
+    "summaryLong": "30系アルファードは、広大な室内空間とリムジン並みの後席快適性で、日本だけでなくアジア各国の送迎シーンを席巻したモデル。Executive Loungeなどの上位グレードは、オットマン付きキャプテンシートや落ち着いた間接照明により、もはや「動くラウンジ」。街中の買い物から家族旅行、空港送迎まで、後席に座る人の快適性を最優先に設計された一台です。",
+    "heroImage": "/images/cars/toyota-alphard-30-hero.jpg",
+    "mainImage": "/images/cars/toyota-alphard-30-hero.jpg",
+    "imageUrl": "/images/cars/toyota-alphard-30-hero.jpg",
+    "gallery": [
+      "/images/cars/toyota-alphard-30-front.jpg",
+      "/images/cars/toyota-alphard-30-rear.jpg",
+      "/images/cars/toyota-alphard-30-interior.jpg"
+    ],
+    "engine": "2.5L 直4 / 3.5L V6 / 2.5L ハイブリッド",
+    "powerPs": 182,
+    "torqueNm": 235,
+    "transmission": "CVT / 6速AT / e-CVT",
+    "drive": "FF / 4WD",
+    "fuel": "レギュラー / ハイオク",
+    "fuelEconomy": "約9〜16km/L（エンジン種別・使い方による）",
+    "priceNew": "約330〜800万円（新車時価格帯）",
+    "priceUsed": "約200〜700万円（年式・グレード・走行距離による）",
+    "strengths": [
+      "2列目シートの快適性が圧倒的で、長距離移動でも疲れにくい",
+      "静粛性が高く、移動中の会話や仕事がしやすい室内環境",
+      "シートアレンジと荷室容量が豊富で、ファミリーカーとしても万能",
+      "トヨタ車ならではの信頼性と、全国ディーラー網によるサポート体制"
+    ],
+    "weaknesses": [
+      "ボディサイズが大きく、狭い立体駐車場や旧来型コインパーキングでは取り回しに気を使う",
+      "上位グレードは新車・中古問わず価格が高止まりしやすい",
+      "車重が重いため、ガソリン車は街乗り燃費が伸びにくい",
+      "人気車種ゆえに街中で同じクルマとすれ違う頻度が高く、個性は出しにくい"
+    ],
+    "troubleTrends": [
+      "パワースライドドアのモーター・レール部の異音や動作不良",
+      "大径タイヤ装着車ではタイヤ摩耗が早めに進む傾向",
+      "サードシート周りからのきしみ音など、室内の細かなビビり音"
+    ],
+    "costImpression": "ミニバンとしてはハイエンドクラスの価格帯だが、家族・ビジネス双方で使い倒せることを考えると「移動する時間そのもの」の価値を高める投資とも言える存在。ハイブリッドなら燃料費もある程度抑えられ、総合的には“高いけれど納得感のあるラグジュアリーミニバン”。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["TOYOTA", "アルファード", "ミニバン", "ラグジュアリー"]
+  },
+  {
+    "id": "honda-n-box-jf3",
+    "slug": "honda-n-box-jf3",
+    "name": "Honda N-BOX (JF3/4)",
+    "maker": "HONDA",
+    "releaseYear": 2017,
+    "difficulty": "basic",
+    "bodyType": "軽ハイトワゴン",
+    "segment": "軽スーパーハイトワゴン",
+    "grade": "G / L / Custom など",
+    "summary": "「とりあえずN-BOX」で済んでしまう、現代日本のスタンダード軽。",
+    "summaryLong": "圧倒的な室内空間と使い勝手で、長年軽自動車販売台数トップを走り続けるN-BOX。後席のレッグスペースはコンパクトカーを凌駕し、大人4人が無理なく座れるパッケージングは見事の一言。スライドドアや低床フロアにより、子育て世代だけでなくシニア層にも優しい日常の足です。",
+    "heroImage": "/images/cars/honda-n-box-jf3-hero.jpg",
+    "mainImage": "/images/cars/honda-n-box-jf3-hero.jpg",
+    "imageUrl": "/images/cars/honda-n-box-jf3-hero.jpg",
+    "gallery": [
+      "/images/cars/honda-n-box-jf3-front.jpg",
+      "/images/cars/honda-n-box-jf3-rear.jpg",
+      "/images/cars/honda-n-box-jf3-interior.jpg"
+    ],
+    "engine": "0.66L 直3 NA / ターボ",
+    "powerPs": 64,
+    "torqueNm": 104,
+    "transmission": "CVT",
+    "drive": "FF / 4WD",
+    "fuel": "レギュラー",
+    "fuelEconomy": "約16〜22km/L（実用域目安）",
+    "priceNew": "約140〜220万円（新車時価格帯）",
+    "priceUsed": "約90〜200万円（年式・グレードによる）",
+    "strengths": [
+      "後席の足元スペースと頭上空間が非常に広く、チャイルドシート2脚でも余裕",
+      "大開口スライドドア＋低いフロアで乗り降りがラク",
+      "軽自動車としては静粛性・乗り心地ともに高水準",
+      "軽の中では安全装備が充実しており、予防安全性能も高い"
+    ],
+    "weaknesses": [
+      "車高が高くフロントガラスも大きいため、強風時や高速道路ではふらつきを感じやすい",
+      "NAエンジン＋4人乗車だと、上り坂や高速合流で非力さを感じる場面も",
+      "人気車種ゆえ中古価格が高止まりしており、割安感はそれほど強くない",
+      "収納スペースは十分だが、ラゲッジフロアは軽トールワゴン相応で大量の荷物には向かない"
+    ],
+    "troubleTrends": [
+      "スライドドア周辺のモール・レール部からのきしみ音",
+      "アイドリングストップ用バッテリーの寿命が使用環境によって短くなりがち",
+      "背が高いボディゆえ、ドアパンチやこすり傷のチェックは重要"
+    ],
+    "costImpression": "税金・保険・車検などの固定費は軽自動車枠で非常に優秀。燃費も良好で、家族の足としてフルに使ってもランニングコストは抑えやすい。初めてのマイカーからセカンドカーまで、「とりあえずN-BOX」という選択が合理的に成立してしまう一台。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["HONDA", "N-BOX", "軽自動車", "スーパーハイト"]
+  },
+  {
+    "id": "subaru-forester-sk",
+    "slug": "subaru-forester-sk",
+    "name": "Subaru Forester (SK系)",
+    "maker": "SUBARU",
+    "releaseYear": 2018,
+    "difficulty": "intermediate",
+    "bodyType": "SUV",
+    "segment": "ミッドサイズSUV",
+    "grade": "Advance / Sport など",
+    "summary": "シンメトリカルAWDと高い実用性を両立した、安心感の塊のようなSUV。",
+    "summaryLong": "スバルらしい水平対向エンジン＋シンメトリカルAWDを搭載したフォレスターSK系。アイサイトを中心とした安全装備と、見切りの良いボディ形状により、悪天候の高速道路や雪道でも高い安心感を与えてくれます。荷室も広く、アウトドアやウインタースポーツの相棒として非常に優秀な一台です。",
+    "heroImage": "/images/cars/subaru-forester-sk-hero.jpg",
+    "mainImage": "/images/cars/subaru-forester-sk-hero.jpg",
+    "imageUrl": "/images/cars/subaru-forester-sk-hero.jpg",
+    "gallery": [
+      "/images/cars/subaru-forester-sk-front.jpg",
+      "/images/cars/subaru-forester-sk-rear.jpg",
+      "/images/cars/subaru-forester-sk-interior.jpg"
+    ],
+    "engine": "2.0L 直噴＋モーター（e-BOXER） / 1.8L ターボ",
+    "powerPs": 145,
+    "torqueNm": 188,
+    "transmission": "CVT",
+    "drive": "AWD",
+    "fuel": "レギュラー",
+    "fuelEconomy": "約11〜15km/L（実用域目安）",
+    "priceNew": "約300〜380万円（新車時価格帯）",
+    "priceUsed": "約160〜320万円（年式・仕様による）",
+    "strengths": [
+      "シンメトリカルAWD＋アイサイトの組み合わせで、悪天候時の安心感が非常に高い",
+      "荷室開口部が広く、アウトドアギアや自転車も積みやすい",
+      "視界が良いボディ形状で、取り回しのストレスが少ない",
+      "SUVとしては重心が低めで、カーブでの安定感が高い"
+    ],
+    "weaknesses": [
+      "ハイブリッドのe-BOXERは「燃費向上よりスムーズさ重視」で、数値上の燃費メリットはイメージほど大きくない",
+      "CVT特有の加速フィールが好みに合わない人もいる",
+      "内装デザイン・質感は実用重視で、ラグジュアリーさを求めると物足りない場面も",
+      "AWD前提の車重と背の高さから、街乗り燃費はコンパクトカーほどは伸びない"
+    ],
+    "troubleTrends": [
+      "オフロード走行や雪国使用が多い個体では、下回りのサビチェックが必須",
+      "アイサイトのカメラ部を含むフロントガラス交換はコストが高め",
+      "タイヤ・ブレーキなど足回りの消耗具合は使用環境に大きく左右される"
+    ],
+    "costImpression": "AWD＋安全装備てんこ盛りのSUVとしては、車両価格・維持費ともに比較的良心的。高速道路や雪道をよく使うユーザーにとっては、安心感という“見えないリターン”を含めてコスパの高い一台。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["SUBARU", "フォレスター", "SUV", "AWD"]
+  },
+  {
+    "id": "bmw-m2-f87",
+    "slug": "bmw-m2-f87",
+    "name": "BMW M2 (F87)",
+    "maker": "BMW",
+    "releaseYear": 2016,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "コンパクトハイパフォーマンスクーペ",
+    "grade": "M2 / M2 Competition",
+    "summary": "「現代のE30M3」とも言われた、サイズ感がちょうどいいMのホットクーペ。",
+    "summaryLong": "F87型M2は、3シリーズより一回り小さい2シリーズクーペのボディに、M3/M4由来のパワートレインと足回りを詰め込んだモデル。ショートホイールベースならではのクイックな回頭性と、直6ターボの厚いトルクが組み合わさった走りは、現代のクルマでは貴重な「手に負えるじゃじゃ馬」といったキャラクターです。",
+    "heroImage": "/images/cars/bmw-m2-f87-hero.jpg",
+    "mainImage": "/images/cars/bmw-m2-f87-hero.jpg",
+    "imageUrl": "/images/cars/bmw-m2-f87-hero.jpg",
+    "gallery": [
+      "/images/cars/bmw-m2-f87-front.jpg",
+      "/images/cars/bmw-m2-f87-rear.jpg",
+      "/images/cars/bmw-m2-f87-interior.jpg"
+    ],
+    "engine": "3.0L 直6ターボ",
+    "powerPs": 370,
+    "torqueNm": 465,
+    "transmission": "6速MT / 7速DCT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約8〜11km/L（実用域目安）",
+    "priceNew": "約720〜830万円（新車時価格帯）",
+    "priceUsed": "約550〜1,000万円（相場は高値傾向）",
+    "strengths": [
+      "コンパクトなボディとFRレイアウトで、とにかくドライバー主体に楽しめる",
+      "直6ターボのサウンドとトルクの厚みが病みつきになる",
+      "M3/M4よりもサイズ感が手頃で、街中や峠でも持て余しにくい",
+      "希少性が高く、スポーツカー好きからの評価も高い"
+    ],
+    "weaknesses": [
+      "足回りはかなりしっかりしており、街乗り中心だと乗り心地がハードに感じられることも",
+      "タイヤ・ブレーキなど消耗品はMカー水準でコスト高",
+      "リアシートは「大人も座れるが長距離は厳しい」レベル",
+      "中古相場が高騰気味で、気軽に手を出せる価格帯ではなくなりつつある"
+    ],
+    "troubleTrends": [
+      "サーキット走行歴のある個体では、ブレーキ・足回りの消耗を要チェック",
+      "低めの車高とフロントリップの関係で、段差ヒット跡がないか確認したい",
+      "DCT車は定期的なオイル交換などメンテ履歴の有無が重要"
+    ],
+    "costImpression": "購入価格・維持費ともに「本気の趣味車」レンジだが、得られる走りの体験は非常に濃い。ガレージに一台置いておき、週末ごとにエンジンをかけて近郊のワインディングに出かけたくなる、そんなタイプのクルマ。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["BMW", "M2", "スポーツカー", "クーペ"]
+  },
+  {
+    "id": "ferrari-roma",
+    "slug": "ferrari-roma",
+    "name": "Ferrari Roma",
+    "maker": "FERRARI",
+    "releaseYear": 2020,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "ラグジュアリーGTクーペ",
+    "grade": "Roma",
+    "summary": "日常にも溶け込む上品さを持った、フェラーリのモダンGT。",
+    "summaryLong": "フェラーリの中では珍しく、過度なアグレッシブさを抑えたエレガントなスタイリングを持つRoma。フロントミッドに搭載されるV8ツインターボは620ps級のパワーを発生しつつも、低速域では非常に扱いやすく、長距離のグランドツーリングにも向いた性格を持っています。インテリアは2＋2レイアウトで、後席はあくまでエマージェンシー用途ながら、荷物置きとしては十分実用的です。",
+    "heroImage": "/images/cars/ferrari-roma-hero.jpg",
+    "mainImage": "/images/cars/ferrari-roma-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-roma-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-roma-front.jpg",
+      "/images/cars/ferrari-roma-rear.jpg",
+      "/images/cars/ferrari-roma-interior.jpg"
+    ],
+    "engine": "3.9L V8ツインターボ",
+    "powerPs": 620,
+    "torqueNm": 760,
+    "transmission": "8速DCT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約5〜8km/L（実用域目安）",
+    "priceNew": "約2,800〜3,500万円（オプションにより大きく変動）",
+    "priceUsed": "約2,500〜3,800万円（仕様・走行距離による）",
+    "strengths": [
+      "フェラーリらしい官能的なV8サウンドと、日常速度域から感じられるレスポンス",
+      "エレガントなデザインで、街中に停めても嫌味が少ない佇まい",
+      "最新世代のインフォテインメントとデジタルメーターで、操作系がモダン",
+      "フロントミッドシップ＋FRで、GTカーとしてのバランスが良い"
+    ],
+    "weaknesses": [
+      "車両価格・オプション価格を含め、完全に富裕層向けのレンジ",
+      "都市部での駐車環境やセキュリティ確保が必須",
+      "段差や勾配のきつい立体駐車場など、行ける場所が制限されるケースも",
+      "維持費（点検・タイヤ・保険）が非常に高く、走らせるほどコストもかかる"
+    ],
+    "troubleTrends": [
+      "最新世代の電子制御・インフォテインメントを多用しているため、ソフトウェア絡みの不具合報告も時折見られる",
+      "カーボンブレーキ装着車はローター自体は長寿命だが、交換時のコストが極めて高い",
+      "低い車高ゆえ、フロントリップの擦り傷チェックは必須"
+    ],
+    "costImpression": "購入・維持ともに完全に「夢の領域」だが、所有している時間の全てが特別な体験になるGTクーペ。走行距離よりもコンディション維持とガレージ環境に投資するタイプのクルマで、クルマ好きの“最終到達点のひとつ”と言える存在。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["FERRARI", "Roma", "GT", "クーペ"]
+  },
+  {
+    "id": "vw-golf-gti-mk7-5",
+    "slug": "vw-golf-gti-mk7-5",
+    "name": "Volkswagen Golf GTI (7.5世代)",
+    "maker": "VOLKSWAGEN",
+    "releaseYear": 2017,
+    "difficulty": "intermediate",
+    "bodyType": "ハッチバック",
+    "segment": "Cセグメントホットハッチ",
+    "grade": "GTI / GTI Performance",
+    "summary": "「とりあえずこれで間違いない」と言えてしまう、万能ホットハッチ。",
+    "summaryLong": "ゴルフ7.5 GTIは、日常の足としての快適性と、ワインディングでのスポーツ性を高いレベルで両立したホットハッチ。2.0Lターボのパワーは必要十分以上で、DCC（アダプティブダンパー）装着車なら、コンフォートとスポーツのキャラクターをボタンひとつで切り替えられます。通勤・買い物からロングドライブ、たまのサーキット走行まで、「一台で全部こなしたい」人に向いたパッケージです。",
+    "heroImage": "/images/cars/vw-golf-gti-mk7-5-hero.jpg",
+    "mainImage": "/images/cars/vw-golf-gti-mk7-5-hero.jpg",
+    "imageUrl": "/images/cars/vw-golf-gti-mk7-5-hero.jpg",
+    "gallery": [
+      "/images/cars/vw-golf-gti-mk7-5-front.jpg",
+      "/images/cars/vw-golf-gti-mk7-5-rear.jpg",
+      "/images/cars/vw-golf-gti-mk7-5-interior.jpg"
+    ],
+    "engine": "2.0L 直4ターボ",
+    "powerPs": 230,
+    "torqueNm": 350,
+    "transmission": "6速MT / 6速DSG",
+    "drive": "FF",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約11〜14km/L（実用域目安）",
+    "priceNew": "約380〜450万円（新車時価格帯）",
+    "priceUsed": "約200〜380万円（年式・仕様による）",
+    "strengths": [
+      "日常域では普通のコンパクトハッチのように扱いやすく、必要なときだけしっかり速い",
+      "ステアリングフィールやペダル配置が自然で、長時間運転しても疲れにくい",
+      "荷室も十分な広さがあり、実用車としても優秀",
+      "ホットハッチらしい遊び心と、フォーマルな場にも出せる上品さを両立している"
+    ],
+    "weaknesses": [
+      "電子制御が優秀なぶん、「生の荒々しさ」を求めると少し物足りなく感じるかもしれない",
+      "DSGの特性に慣れないと、低速域でギクシャク感を覚える場面も",
+      "内外装はあくまでゴルフであり、ド派手な特別感を求める人には刺さりにくい",
+      "輸入車としては維持費は控えめだが、国産コンパクトカーよりは一段高め"
+    ],
+    "troubleTrends": [
+      "DSGのオイル交換など、定期メンテをサボるとトラブルリスクが上がる",
+      "ホイール・タイヤサイズがやや大きめで、タイヤ交換コストはそれなり",
+      "チューニング済み車両の場合、クラッチやターボへの負荷が増えている可能性"
+    ],
+    "costImpression": "燃費・税金・保険・メンテナンスすべてを総合すると、「少し贅沢な実用ハッチバック」といったポジション。走りと実用性をバランスよく楽しみたい人にとっては、非常にコスパの良い選択肢。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["VOLKSWAGEN", "ゴルフ", "GTI", "ホットハッチ"]
+  },
+  {
+    "id": "mini-cooper-s-f56",
+    "slug": "mini-cooper-s-f56",
+    "name": "MINI Cooper S (F56)",
+    "maker": "MINI",
+    "releaseYear": 2014,
+    "difficulty": "intermediate",
+    "bodyType": "ハッチバック",
+    "segment": "プレミアムコンパクト",
+    "grade": "Cooper S",
+    "summary": "ゴーカートフィールを現代風にアップデートした、プレミアムコンパクトのアイコン。",
+    "summaryLong": "BMW傘下となった現代MINIの中でも、3ドアF56 Cooper Sは「ゴーカートフィール」というコンセプトを色濃く残した一台。ショートホイールベースとクイックなステアリング、そして2.0Lターボの軽やかな加速が組み合わさり、街中を軽快に走り回る楽しさは格別です。一方でインテリアはプレミアムコンパクトらしい質感があり、日常の足としても十分な快適性を備えています。",
+    "heroImage": "/images/cars/mini-cooper-s-f56-hero.jpg",
+    "mainImage": "/images/cars/mini-cooper-s-f56-hero.jpg",
+    "imageUrl": "/images/cars/mini-cooper-s-f56-hero.jpg",
+    "gallery": [
+      "/images/cars/mini-cooper-s-f56-front.jpg",
+      "/images/cars/mini-cooper-s-f56-rear.jpg",
+      "/images/cars/mini-cooper-s-f56-interior.jpg"
+    ],
+    "engine": "2.0L 直4ターボ",
+    "powerPs": 192,
+    "torqueNm": 280,
+    "transmission": "6速MT / 6速AT / 7速DCT",
+    "drive": "FF",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約11〜15km/L（実用域目安）",
+    "priceNew": "約320〜400万円（新車時価格帯）",
+    "priceUsed": "約150〜320万円（年式・仕様による）",
+    "strengths": [
+      "コンパクトなサイズとキビキビしたハンドリングで、街乗りがとにかく楽しい",
+      "デザイン性の高いインテリアで、乗り込むたびに気分が上がる",
+      "ボディカラーやオプションで自分らしい一台を作りやすい",
+      "高速道路でも安定していて、長距離ドライブも十分こなせる"
+    ],
+    "weaknesses": [
+      "リアシートと荷室はあくまで「おまけ」レベルで、実用性重視の人には狭く感じられる",
+      "ランフラットタイヤ装着車は乗り心地が硬めになりがち",
+      "オプションを付けていくと新車価格がかなり上がる",
+      "輸入コンパクトとしては維持費がやや高め"
+    ],
+    "troubleTrends": [
+      "足回りやタイヤのヘタリによる乗り心地の悪化",
+      "年式が進んだ個体では内装パネルからのきしみ音が出ることも",
+      "カスタム多数の車両は、整備履歴や取り付け品質のチェックが重要"
+    ],
+    "costImpression": "コンパクトカーとして見ると高価だが、デザイン・走り・ブランドイメージを含めた「所有する楽しさ」まで含めると、十分納得感のあるプライスタグ。セカンドカーとしても、メインカーとしても“ちょうどいい贅沢”を楽しめる一台。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["MINI", "クーパーS", "コンパクト", "ホットハッチ"]
+  },
+  {
+    "id": "toyota-gr-yaris-rz",
+    "slug": "toyota-gr-yaris-rz",
+    "name": "Toyota GR Yaris RZ",
+    "maker": "TOYOTA",
+    "releaseYear": 2020,
+    "difficulty": "advanced",
+    "bodyType": "ハッチバック",
+    "segment": "ホモロゲーションスペシャル",
+    "grade": "RZ High performance など",
+    "summary": "WRC参戦のために“ヤリスの皮を被った別物”として開発された、本格ラリー・ホモロゲモデル。",
+    "summaryLong": "GRヤリスは、WRCホモロゲーション取得のために通常のヤリスとは異なる専用ボディ・専用シャシーで作られたモデル。1.6L直3ターボは272ps級のパワーを発生し、4WDシステム「GR-FOUR」と組み合わさることで、一般道からサーキット、雪道まで高いトラクション性能を発揮します。コンパクトなボディに本気のメカを詰め込んだ、令和時代の本格ラリーマシンです。",
+    "heroImage": "/images/cars/toyota-gr-yaris-rz-hero.jpg",
+    "mainImage": "/images/cars/toyota-gr-yaris-rz-hero.jpg",
+    "imageUrl": "/images/cars/toyota-gr-yaris-rz-hero.jpg",
+    "gallery": [
+      "/images/cars/toyota-gr-yaris-rz-front.jpg",
+      "/images/cars/toyota-gr-yaris-rz-rear.jpg",
+      "/images/cars/toyota-gr-yaris-rz-interior.jpg"
+    ],
+    "engine": "1.6L 直3ターボ",
+    "powerPs": 272,
+    "torqueNm": 370,
+    "transmission": "6速MT",
+    "drive": "4WD（GR-FOUR）",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約10〜13km/L（実用域目安）",
+    "priceNew": "約360〜460万円（新車時価格帯）",
+    "priceUsed": "約350〜550万円（相場は高値安定）",
+    "strengths": [
+      "コンパクトなボディに272psのターボエンジンと本格4WDを搭載した、希少なラリー直系モデル",
+      "シャシー剛性が非常に高く、サーキットや峠でも安心して攻められる",
+      "電子制御を切っても素直な挙動で、ドライビングスキルの上達にも向く",
+      "トヨタ車ゆえの信頼性と、パーツ供給の安心感"
+    ],
+    "weaknesses": [
+      "足回りはかなりハードで、街乗り中心だと乗り心地の厳しさを感じることも",
+      "2ドア＋タイトなリアシートで実用性は割り切りが必要",
+      "MTのみの設定なので、渋滞の多いエリアでは根気が必要",
+      "ホモロゲモデルゆえ、中古相場が高値で推移しがち"
+    ],
+    "troubleTrends": [
+      "スポーツ走行メインの個体では、タイヤ・ブレーキ・クラッチの消耗が激しい",
+      "車高調や剛性パーツなどアフターパーツ装着車は、取り付け品質を要チェック",
+      "ラリー・ダート走行歴がある場合、下回りダメージの有無が重要"
+    ],
+    "costImpression": "コンパクトハッチとして見れば高価だが、内容はほぼ競技ベース車。走行フィールドを持っていて、クルマを本気で走らせたい人にとっては「むしろ破格」とも言えるパッケージで、維持費もスーパースポーツほどは重くないのが魅力。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["TOYOTA", "GRヤリス", "ラリー", "ホットハッチ"]
+  },
+  {
+    "id": "lexus-ux250h-mzec",
+    "slug": "lexus-ux250h-mzec",
+    "name": "Lexus UX250h (MZEA/MZAH)",
+    "maker": "LEXUS",
+    "releaseYear": 2018,
+    "difficulty": "basic",
+    "bodyType": "SUV/クロスオーバー",
+    "segment": "コンパクトラグジュアリーSUV",
+    "grade": "version C / F SPORT / version L など",
+    "summary": "都市生活にちょうどいいサイズ感の、レクサスエントリーSUV。",
+    "summaryLong": "レクサスUXは、街中で扱いやすい全長と最小回転半径を持ちながら、しっかりレクサスらしい上質さを感じられるコンパクトSUV。ハイブリッドの250hは日常域での静粛性と燃費性能に優れ、都心部のストップ＆ゴーが多い環境でもストレスなく扱えます。室内・荷室は必要十分サイズで、「2人＋たまに後席」くらいのライフスタイルにぴったりの一台です。",
+    "heroImage": "/images/cars/lexus-ux250h-mzec-hero.jpg",
+    "mainImage": "/images/cars/lexus-ux250h-mzec-hero.jpg",
+    "imageUrl": "/images/cars/lexus-ux250h-mzec-hero.jpg",
+    "gallery": [
+      "/images/cars/lexus-ux250h-mzec-front.jpg",
+      "/images/cars/lexus-ux250h-mzec-rear.jpg",
+      "/images/cars/lexus-ux250h-mzec-interior.jpg"
+    ],
+    "engine": "2.0L 直4ハイブリッド",
+    "powerPs": 184,
+    "torqueNm": 188,
+    "transmission": "e-CVT",
+    "drive": "FF / 4WD (E-Four)",
+    "fuel": "レギュラー",
+    "fuelEconomy": "約16〜22km/L（実用域目安）",
+    "priceNew": "約400〜530万円（新車時価格帯）",
+    "priceUsed": "約260〜450万円（年式・仕様による）",
+    "strengths": [
+      "コンパクトなボディで取り回しが良く、都市部で扱いやすい",
+      "ハイブリッドの静粛性とレクサスクオリティの遮音で、日常の移動が非常に快適",
+      "レクサスならではのディーラーサービスとアフターケアを享受できる",
+      "燃費性能が高く、ラグジュアリーブランドとしてはランニングコストが控えめ"
+    ],
+    "weaknesses": [
+      "ラゲッジスペースは同クラスSUVと比べて小さめで、大荷物には向かない",
+      "後席は大人が長時間乗ると少し窮屈に感じられる",
+      "乗り心地はグレード・タイヤサイズにより硬めになることがある",
+      "エントリーモデルとはいえ、オプションを付けると価格はそれなりに高くなる"
+    ],
+    "troubleTrends": [
+      "ホイール・タイヤの大径化による乗り心地悪化やロードノイズ増加",
+      "ハイブリッドシステム自体は信頼性が高いが、万一の修理時には高額になる可能性",
+      "ドア開閉頻度が多い個体では、ウェザーストリップ劣化による風切り音の報告も"
+    ],
+    "costImpression": "燃費・税金・メンテナンスを含め、レクサスブランドとしては非常に現実的なランニングコストで持てるSUV。都市生活を中心に、少人数で上質な移動体験を求めるユーザーにはぴったりの“日常ラグジュアリー”な一台。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["LEXUS", "UX", "コンパクトSUV", "ハイブリッド"]
+  },
+  {
+    "id": "volvo-xc60-b5",
+    "slug": "volvo-xc60-b5",
+    "name": "Volvo XC60 B5",
+    "maker": "VOLVO",
+    "releaseYear": 2020,
+    "difficulty": "basic",
+    "bodyType": "SUV",
+    "segment": "プレミアムミッドサイズSUV",
+    "grade": "Inscription / R-Design など",
+    "summary": "北欧デザインと高い安全性を備えた、上質なファミリーSUVの代表格。",
+    "summaryLong": "XC60 B5は、2.0Lターボ＋マイルドハイブリッドを搭載したボルボの中核SUV。シンプルながら温かみのある北欧デザインのインテリアと、ゆったりしたシートが特徴で、長距離ドライブでも疲れにくいパッケージです。最新の安全装備や運転支援機能も充実しており、家族の移動を安心して任せられる一台です。",
+    "heroImage": "/images/cars/volvo-xc60-b5-hero.jpg",
+    "mainImage": "/images/cars/volvo-xc60-b5-hero.jpg",
+    "imageUrl": "/images/cars/volvo-xc60-b5-hero.jpg",
+    "gallery": [
+      "/images/cars/volvo-xc60-b5-front.jpg",
+      "/images/cars/volvo-xc60-b5-rear.jpg",
+      "/images/cars/volvo-xc60-b5-interior.jpg"
+    ],
+    "engine": "2.0L 直4ターボ＋マイルドハイブリッド",
+    "powerPs": 250,
+    "torqueNm": 350,
+    "transmission": "8速AT",
+    "drive": "FF / AWD",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約10〜13km/L（実用域目安）",
+    "priceNew": "約650〜800万円（新車時価格帯）",
+    "priceUsed": "約400〜700万円（年式・仕様による）",
+    "strengths": [
+      "シートの出来が非常によく、長距離ドライブでも腰や首が疲れにくい",
+      "北欧らしいミニマルなデザインと素材感で、インテリアの満足度が高い",
+      "先進安全装備が充実しており、家族を乗せるクルマとしての安心感が大きい",
+      "エンジンのパワーと静粛性のバランスが良く、日常使いでストレスが少ない"
+    ],
+    "weaknesses": [
+      "車両価格・維持費ともに国産SUVより一段高め",
+      "インフォテインメントの動作レスポンスやUIが人によって好みの分かれるところ",
+      "日本の狭い立体駐車場ではサイズ的にギリギリになる場合もある",
+      "ディーラー拠点が都市部中心のため、地方在住だとアクセスに工夫が必要なケースも"
+    ],
+    "troubleTrends": [
+      "電子制御系統が多いため、稀にセンサー類の警告が出ることがある",
+      "大径タイヤによるロードノイズや段差での突き上げ感は、タイヤ銘柄で差が出やすい",
+      "長期使用での内装のきしみ音など、細かなノイズが出る個体もある"
+    ],
+    "costImpression": "プレミアムSUVとして考えれば、内容に対してフェアな価格設定。安全性・快適性・デザインを重視しつつ、派手さではなく“静かな豊かさ”を求める人に向いた一台で、家族の移動時間の質を上げる投資と考えると納得感が高い。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "tags": ["VOLVO", "XC60", "SUV", "ファミリー"]
+  }
+]
