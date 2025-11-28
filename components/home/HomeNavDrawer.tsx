@@ -1,11 +1,12 @@
 // components/home/HomeNavDrawer.tsx
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
 
 /**
  * ホーム上部の「NEWS / CARS / COLUMN / GUIDE」ナビカード。
@@ -16,8 +17,15 @@ import { useState } from "react";
  */
 export default function HomeNavDrawer() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggle = () => setOpen((v) => !v);
+  const close = () => setOpen(false);
+
+  // ルートが変わったら自動で閉じる
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   return (
     <>
@@ -27,7 +35,7 @@ export default function HomeNavDrawer() {
         onClick={toggle}
         aria-label="メインメニューを開閉"
         aria-expanded={open}
-        className="fixed right-4 top-4 z-[60] flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/90 shadow-soft backdrop-blur transition hover:-translate-y-[1px] hover:shadow-soft-strong"
+        className="fixed right-4 top-4 z-[60] flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/90 shadow-soft backdrop-blur transition hover:-translate-y-[1px] hover:shadow-soft-strong sm:right-6 sm:top-6"
       >
         {/* 三本線アイコン（開いているときは × 風） */}
         <span className="relative block h-4 w-5">
@@ -53,6 +61,16 @@ export default function HomeNavDrawer() {
           />
         </span>
       </button>
+
+      {/* 外側タップで閉じるためのオーバーレイ（少しだけ暗く） */}
+      {open && (
+        <button
+          type="button"
+          aria-hidden="true"
+          onClick={close}
+          className="fixed inset-0 z-[45] bg-black/10 backdrop-blur-[1px]"
+        />
+      )}
 
       {/* ナビゲーションカード本体（画面下からスライド） */}
       <div
@@ -82,6 +100,7 @@ export default function HomeNavDrawer() {
             <div className="space-y-4 text-[11px]">
               <Link
                 href="/news"
+                onClick={close}
                 className="flex items-center justify-between rounded-2xl px-2 py-2.5 transition hover:bg-slate-50"
               >
                 <div>
@@ -97,6 +116,7 @@ export default function HomeNavDrawer() {
 
               <Link
                 href="/cars"
+                onClick={close}
                 className="flex items-center justify-between rounded-2xl px-2 py-2.5 transition hover:bg-slate-50"
               >
                 <div>
@@ -112,6 +132,7 @@ export default function HomeNavDrawer() {
 
               <Link
                 href="/column"
+                onClick={close}
                 className="flex items-center justify-between rounded-2xl px-2 py-2.5 transition hover:bg-slate-50"
               >
                 <div>
@@ -127,6 +148,7 @@ export default function HomeNavDrawer() {
 
               <Link
                 href="/guide"
+                onClick={close}
                 className="flex items-center justify-between rounded-2xl px-2 py-2.5 transition hover:bg-slate-50"
               >
                 <div>
@@ -151,7 +173,9 @@ export default function HomeNavDrawer() {
                 magnetic
                 className="justify-center"
               >
-                <Link href="/cars">車種一覧を開く</Link>
+                <Link href="/cars" onClick={close}>
+                  車種一覧を開く
+                </Link>
               </Button>
               <Button
                 asChild
@@ -161,7 +185,9 @@ export default function HomeNavDrawer() {
                 magnetic
                 className="justify-center"
               >
-                <Link href="/guide">GUIDE を読む</Link>
+                <Link href="/guide" onClick={close}>
+                  GUIDE を読む
+                </Link>
               </Button>
             </div>
           </div>
