@@ -18,6 +18,19 @@ export const metadata: Metadata = {
   title: "CAR BOUTIQUE | クルマのニュースとストーリー",
   description:
     "ニュース・車種データベース・整備やトラブルのコラム・購入/売却ガイドをまとめて確認できるクルマ情報サイトです。",
+  openGraph: {
+    title: "CAR BOUTIQUE | クルマのニュースとストーリー",
+    description:
+      "ニュース・車種データベース・整備やトラブルのコラム・購入/売却ガイドをまとめて確認できるクルマ情報サイトです。",
+    type: "website",
+    url: "https://car-hp.vercel.app/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CAR BOUTIQUE | クルマのニュースとストーリー",
+    description:
+      "ニュース・車種データベース・整備やトラブルのコラム・購入/売却ガイドをまとめて確認できるクルマ情報サイトです。",
+  },
 };
 
 function formatNewsDate(iso?: string | null) {
@@ -76,6 +89,7 @@ export default async function HomePage() {
       <div className="mx-auto max-w-6xl px-4 pb-24 pt-24 sm:px-6 lg:px-8">
         {/* HERO */}
         <section className="mb-20 sm:mb-24 lg:mb-28">
+          {/* HeroSection 側は stats を受け取る props 実装になっている前提 */}
           <HeroSection stats={stats} />
         </section>
 
