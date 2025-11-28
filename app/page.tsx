@@ -13,6 +13,8 @@ import { getAllColumns, type ColumnItem } from "@/lib/columns";
 import { getAllGuides, type GuideItem } from "@/lib/guides";
 import { HomeNavDrawer } from "@/components/home/HomeNavDrawer";
 
+import HomeNavDrawer from "@/components/home/HomeNavDrawer";
+
 export const runtime = "edge";
 
 export const metadata: Metadata = {
