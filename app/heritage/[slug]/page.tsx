@@ -233,12 +233,15 @@ export default async function HeritageDetailPage({ params }: PageProps) {
     getHeritageNeighbors(item),
   ]);
 
-  const { blocks } = parseBody(item.body);
+  const { blocks, headings } = parseBody(item.body);
 
   let linkedCar: CarItem | null = null;
   if (item.carSlug) {
     try {
-      linkedCar = await getCarBySlug(item.carSlug);
+      const car = await getCarBySlug(item.carSlug); // CarItem | undefined
+      if (car) {
+        linkedCar = car; // ここで CarItem に絞り込んでから代入
+      }
     } catch {
       linkedCar = null;
     }
@@ -395,32 +398,30 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                 }
 
                 // paragraph
-                if (block.type === "paragraph") {
+                if (index === 0) {
                   const text = block.text.trim();
                   if (!text) return null;
-
-                  if (index === 0) {
-                    // HERITAGE 専用ドロップキャップ（グローバルCSS .heritage-dropcap）
-                    return (
-                      <Reveal key={`p-${index}`} delay={100}>
-                        <p className="heritage-dropcap mt-4 text-sm leading-8 text-slate-700 sm:text-[16px] sm:leading-[2rem]">
-                          {text}
-                        </p>
-                      </Reveal>
-                    );
-                  }
+                  const firstChar = text[0];
+                  const rest = text.slice(1);
 
                   return (
-                    <p
-                      key={`p-${index}`}
-                      className="mt-4 text-sm leading-7 text-slate-700 sm:text-[15px] sm:leading-8"
-                    >
-                      {text}
-                    </p>
+                    <Reveal key={`p-${index}`} delay={100}>
+                      <p className="first-letter-float mt-4 text-sm leading-8 text-slate-700 sm:text-[16px] sm:leading-[2rem]">
+                        <span className="first-letter-span">{firstChar}</span>
+                        {rest}
+                      </p>
+                    </Reveal>
                   );
                 }
 
-                return null;
+                return (
+                  <p
+                    key={`p-${index}`}
+                    className="mt-4 text-sm leading-7 text-slate-700 sm:text-[15px] sm:leading-8"
+                  >
+                    {block.text}
+                  </p>
+                );
               })}
             </GlassCard>
           </Reveal>
