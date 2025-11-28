@@ -102,6 +102,38 @@ function buildKeywords(car: ExtendedCarItem): string[] {
   return [car.maker, ...nameParts, ...tags].filter(Boolean);
 }
 
+// 難易度ラベル
+function mapDifficultyLabel(
+  difficulty: CarItem["difficulty"] | undefined,
+): string {
+  switch (difficulty) {
+    case "basic":
+      return "やさしい";
+    case "intermediate":
+      return "標準的";
+    case "advanced":
+      return "気を使う";
+    default:
+      return "未設定";
+  }
+}
+
+// 難易度の説明テキスト（実務寄り）
+function mapDifficultyDescription(
+  difficulty: CarItem["difficulty"] | undefined,
+): string {
+  switch (difficulty) {
+    case "basic":
+      return "定期点検と消耗品交換をしていれば、大きなトラブルは起きにくいクラスです。初めての輸入車やセカンドカー候補としても検討しやすいレベルです。";
+    case "intermediate":
+      return "一般的な維持はしやすいものの、年式や走行距離によっては部品交換や予防整備を計画的に考えたいクラスです。輸入車らしい持ち味とコストのバランスを取るイメージです。";
+    case "advanced":
+      return "コンディション維持のために、専門店での点検や予防整備を前提に考えたいクラスです。故障時の部品代・工賃も、ある程度の余裕を見ておくと安心です。";
+    default:
+      return "この車種の維持難易度は、今後の情報更新時に追記予定です。";
+  }
+}
+
 async function getRelatedCars(
   current: ExtendedCarItem,
 ): Promise<CarItem[]> {
@@ -204,8 +236,7 @@ async function getRelatedGuides(
         else if (car.difficulty === "intermediate") score += 0.5;
       }
       if (guide.category === "SELL") {
-        // 売却系は年式が古い／セグメントが高級寄りなどに寄せてもよいが、
-        // ここでは一律で少しだけ加点
+        // 売却系は一律で少し加点
         score += 0.3;
       }
 
@@ -340,6 +371,36 @@ export default async function CarDetailPage({ params }: PageProps) {
                   </>
                 )}
               </dl>
+
+              {/* 維持難易度・コスト感のクイックビュー */}
+              {(car.difficulty || car.costImpression) && (
+                <div className="mt-5 space-y-3">
+                  {car.difficulty && (
+                    <div className="rounded-2xl bg-slate-50 px-3 py-3 text-[11px]">
+                      <p className="text-[10px] font-semibold tracking-[0.18em] text-slate-500">
+                        維持の難易度
+                      </p>
+                      <p className="mt-1 text-[13px] font-semibold text-slate-900">
+                        {mapDifficultyLabel(car.difficulty)}
+                      </p>
+                      <p className="mt-1 text-[11px] text-slate-600">
+                        {mapDifficultyDescription(car.difficulty)}
+                      </p>
+                    </div>
+                  )}
+
+                  {car.costImpression && (
+                    <div className="rounded-2xl bg-slate-50 px-3 py-3 text-[11px]">
+                      <p className="text-[10px] font-semibold tracking-[0.18em] text-slate-500">
+                        維持費のざっくり感
+                      </p>
+                      <p className="mt-1 text-[11px] text-slate-600">
+                        {car.costImpression}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
             </GlassCard>
           </Reveal>
         </section>
