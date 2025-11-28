@@ -93,10 +93,18 @@ function formatDate(iso?: string | null): string {
   });
 }
 
+// 関連NEWS/COLUMN 用のキーワード
 function buildKeywords(car: ExtendedCarItem): string[] {
   const tags = (car as CarItem & { tags?: string[] }).tags ?? [];
   const nameParts = car.name.split(/\s+/);
-  return [car.maker, ...nameParts, ...tags].filter(Boolean);
+  const extra = [
+    car.segment,
+    car.bodyType,
+    car.slug,
+  ];
+  return [car.maker, ...nameParts, ...extra, ...tags]
+    .filter(Boolean)
+    .map((v) => String(v));
 }
 
 // 一覧ページと揃えた難易度ラベル
@@ -159,8 +167,10 @@ async function getRelatedNewsAndColumns(car: ExtendedCarItem) {
   const relatedNews: NewsItem[] = news
     .filter((item) => {
       if (item.maker && item.maker === car.maker) return true;
+
       const tags = item.tags ?? [];
       if (tags.some((tag) => keywords.has(tag))) return true;
+
       const title = `${item.titleJa ?? ""} ${item.title}`.toUpperCase();
       return Array.from(keywords).some(
         (kw) => kw && title.includes(String(kw).toUpperCase()),
