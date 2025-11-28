@@ -1,367 +1,686 @@
 // app/news/page.tsx
-import Link from "next/link";
 import type { Metadata } from "next";
-import { getLatestNews, type NewsItem } from "@/lib/news";
+import Link from "next/link";
+
 import { Reveal } from "@/components/animation/Reveal";
 import { GlassCard } from "@/components/GlassCard";
+import { getLatestNews, type NewsItem } from "@/lib/news";
 
 export const runtime = "edge";
 
 export const metadata: Metadata = {
-  title: "NEWS | CAR BOUTIQUE",
+  title: "NEWS | メーカー公式ニュース一覧",
   description:
-    "編集部が厳選した自動車ニュースのキュレーション。要約と視点を添えてお届けします。",
+    "輸入車・プレミアムブランドを中心に、メーカー公式サイトなどの一次情報へのリンクをまとめたニュースフィードです。カテゴリやメーカー、キーワードで絞り込んで確認できます。",
 };
 
-type Props = {
-  searchParams?: {
-    q?: string;
-    category?: string;
-    maker?: string;
-    tag?: string;
-  };
+type SearchParams = {
+  q?: string;
+  category?: string;
+  maker?: string;
+  tag?: string;
+  source?: string;
+  period?: string; // "7d" | "30d" | それ以外は全期間
 };
+
+type PageProps = {
+  searchParams?: SearchParams;
+};
+
+function normalize(value: string | undefined | null): string {
+  return (value ?? "").trim().toLowerCase();
+}
 
 function formatDate(iso?: string | null): string {
   if (!iso) return "";
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return "";
-  return date.toLocaleDateString("ja-JP", {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "";
+  return d.toLocaleDateString("ja-JP", {
     year: "numeric",
     month: "short",
     day: "numeric",
   });
 }
 
-function filterNews(
-  items: NewsItem[],
-  {
-    q,
-    category,
-    maker,
-    tag,
-  }: {
-    q?: string;
-    category?: string;
-    maker?: string;
-    tag?: string;
-  },
-): NewsItem[] {
-  const keyword = (q ?? "").trim().toLowerCase();
-  const categoryFilter = (category ?? "").trim();
-  const makerFilter = (maker ?? "").trim();
-  const tagFilter = (tag ?? "").trim();
+function buildSourceLabel(item: NewsItem): string {
+  if (item.sourceName) return item.sourceName;
+  if (item.maker) return item.maker;
+  return "その他ソース";
+}
+
+function buildTagList(item: NewsItem): string[] {
+  return Array.isArray(item.tags) ? item.tags.filter(Boolean) : [];
+}
+
+function isRecent(item: NewsItem, days = 7): boolean {
+  const base = item.publishedAt ?? item.createdAt;
+  if (!base) return false;
+  const d = new Date(base);
+  if (Number.isNaN(d.getTime())) return false;
+  const diffMs = Date.now() - d.getTime();
+  const diffDays = diffMs / (1000 * 60 * 60 * 24);
+  return diffDays <= days;
+}
+
+function filterNews(items: NewsItem[], filters: SearchParams): NewsItem[] {
+  const keyword = normalize(filters.q);
+  const categoryFilter = (filters.category ?? "").trim();
+  const makerFilter = (filters.maker ?? "").trim();
+  const tagFilter = (filters.tag ?? "").trim();
+  const sourceFilter = (filters.source ?? "").trim();
+  const periodFilter = (filters.period ?? "").trim(); // "7d" | "30d" | ""
+
+  const now = new Date();
 
   return items.filter((item) => {
+    // キーワード検索
     if (keyword) {
       const haystack = [
-        item.title,
-        item.titleJa,
-        item.excerpt,
-        item.sourceName,
+        item.title ?? "",
+        item.titleJa ?? "",
+        item.excerpt ?? "",
+        item.commentJa ?? "",
+        item.maker ?? "",
+        item.sourceName ?? "",
+        item.category ?? "",
+        ...(item.tags ?? []),
       ]
-        .filter(Boolean)
         .join(" ")
         .toLowerCase();
-      if (!haystack.includes(keyword)) return false;
+
+      if (!haystack.includes(keyword)) {
+        return false;
+      }
     }
 
+    // カテゴリ
     if (categoryFilter && item.category !== categoryFilter) {
       return false;
     }
 
+    // メーカー
     if (makerFilter && item.maker !== makerFilter) {
       return false;
     }
 
+    // ソース
+    if (sourceFilter) {
+      const sourceLabel = buildSourceLabel(item);
+      if (sourceLabel !== sourceFilter) {
+        return false;
+      }
+    }
+
+    // タグ
     if (tagFilter) {
-      const tags = item.tags ?? [];
+      const tags = buildTagList(item);
       if (!tags.includes(tagFilter)) {
         return false;
       }
+    }
+
+    // 期間フィルター（7日 / 30日）
+    if (periodFilter === "7d" || periodFilter === "30d") {
+      const base = item.publishedAt ?? item.createdAt;
+      if (!base) return false;
+      const d = new Date(base);
+      if (Number.isNaN(d.getTime())) return false;
+      const diffMs = now.getTime() - d.getTime();
+      const diffDays = diffMs / (1000 * 60 * 60 * 24);
+
+      if (periodFilter === "7d" && diffDays > 7) return false;
+      if (periodFilter === "30d" && diffDays > 30) return false;
     }
 
     return true;
   });
 }
 
-export default async function NewsPage({ searchParams }: Props) {
-  const q = searchParams?.q ?? "";
-  const category = searchParams?.category ?? "";
-  const maker = searchParams?.maker ?? "";
-  const tag = searchParams?.tag ?? "";
-
-  const items = await getLatestNews(80);
-
-  const categories = Array.from(
-    new Set(items.map((i) => i.category).filter(Boolean)),
-  ) as string[];
-
-  const makers = Array.from(
-    new Set(items.map((i) => i.maker).filter(Boolean)),
-  ) as string[];
-
-  const tags = Array.from(
-    new Set(
-      items.flatMap((i) => (i.tags && i.tags.length > 0 ? i.tags : [])),
-    ),
-  );
-
-  const filtered = filterNews(items, {
-    q,
-    category,
-    maker,
-    tag,
-  });
-
-  const hasFilter = Boolean(
-    (q && q.trim().length > 0) || category || maker || tag,
-  );
-
-  return (
-    <main className="mx-auto max-w-6xl px-4 pb-16 pt-6 sm:px-6 lg:px-8">
-      <Reveal>
-        <header className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
-              CURATED NEWS
-            </p>
-            <h1 className="mt-1 font-serif text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl">
-              今日チェックしておきたいクルマのニュース
-            </h1>
-            <p className="mt-2 max-w-2xl text-xs leading-relaxed text-slate-500">
-              OEMのリリース情報から業界動向、EVやスポーツモデルのトピックまで、
-              編集部が日本語で追いやすい形に整えたニュースダイジェストです。
-            </p>
-          </div>
-          <div className="flex flex-col items-start gap-1 text-[10px] text-slate-500 sm:items-end">
-            <p className="tracking-[0.18em]">
-              TOTAL{" "}
-              <span className="font-semibold text-slate-900">
-                {items.length}
-              </span>{" "}
-              ARTICLES
-            </p>
-            {filtered.length !== items.length && (
-              <p className="tracking-[0.18em]">
-                FILTERED{" "}
-                <span className="font-semibold text-tiffany-600">
-                  {filtered.length}
-                </span>
-              </p>
-            )}
-          </div>
-        </header>
-      </Reveal>
-
-      {/* フィルターエリア */}
-      <Reveal>
-        <GlassCard className="mb-6 border border-slate-200/70 bg-white/80 px-4 py-3 text-[11px] shadow-sm sm:px-5 sm:py-3.5">
-          <form className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex-1">
-              <label className="flex flex-col gap-1">
-                <span className="text-[9px] font-semibold tracking-[0.18em] text-slate-400">
-                  KEYWORD
-                </span>
-                <input
-                  type="text"
-                  name="q"
-                  defaultValue={q}
-                  placeholder="キーワード検索（車名・媒体名など）"
-                  className="w-full rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-[11px] tracking-[0.05em] text-slate-800 placeholder:text-slate-300 focus:border-tiffany-400 focus:outline-none focus:ring-1 focus:ring-tiffany-300"
-                />
-              </label>
-            </div>
-            <div className="flex flex-wrap items-center gap-2 sm:justify-end">
-              <FilterSelect
-                name="category"
-                label="CATEGORY"
-                value={category}
-                options={categories}
-              />
-              <FilterSelect
-                name="maker"
-                label="MAKER"
-                value={maker}
-                options={makers}
-              />
-              <FilterSelect
-                name="tag"
-                label="TAG"
-                value={tag}
-                options={tags}
-              />
-              <button
-                type="submit"
-                className="rounded-full border border-slate-200 bg-slate-900 px-3 py-1.5 text-[10px] font-semibold tracking-[0.2em] text-white transition hover:bg-slate-800"
-              >
-                APPLY
-              </button>
-              {hasFilter && (
-                <Link
-                  href="/news"
-                  className="text-[10px] tracking-[0.16em] text-slate-400 hover:text-slate-700"
-                >
-                  CLEAR
-                </Link>
-              )}
-            </div>
-          </form>
-        </GlassCard>
-      </Reveal>
-
-      {/* アクティブフィルター表示 */}
-      {hasFilter && (
-        <Reveal>
-          <div className="mb-4 flex flex-wrap items-center gap-2 text-[10px]">
-            <span className="rounded-full bg-slate-50 px-2 py-0.5 text-slate-400">
-              ACTIVE FILTERS
-            </span>
-            {q && q.trim().length > 0 && (
-              <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                keyword: <span className="font-semibold">“{q}”</span>
-              </span>
-            )}
-            {category && (
-              <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                category: <span className="font-semibold">{category}</span>
-              </span>
-            )}
-            {maker && (
-              <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                maker: <span className="font-semibold">{maker}</span>
-              </span>
-            )}
-            {tag && (
-              <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                tag: <span className="font-semibold">{tag}</span>
-              </span>
-            )}
-          </div>
-        </Reveal>
-      )}
-
-      {/* ニュース一覧 */}
-      <section aria-label="ニュース一覧" className="space-y-3">
-        {filtered.map((item) => (
-          <Reveal key={item.id}>
-            <NewsListItem item={item} />
-          </Reveal>
-        ))}
-
-        {filtered.length === 0 && (
-          <Reveal>
-            <GlassCard className="mt-8 border border-dashed border-slate-300 bg-white/70 px-4 py-6 text-center text-xs text-slate-500">
-              条件に一致するニュースが見つかりませんでした。
-              フィルター条件を変更して再度お試しください。
-            </GlassCard>
-          </Reveal>
-        )}
-      </section>
-    </main>
-  );
-}
-
-type FilterSelectProps = {
-  name: string;
-  label: string;
-  value: string;
-  options: string[];
-};
-
-function FilterSelect({
-  name,
-  label,
-  value,
-  options,
-}: FilterSelectProps) {
-  if (options.length === 0) return null;
-
-  return (
-    <label className="flex items-center gap-1 rounded-full bg-slate-50 px-3 py-1">
-      <span className="text-[9px] font-semibold tracking-[0.18em] text-slate-400">
-        {label}
-      </span>
-      <select
-        name={name}
-        defaultValue={value}
-        className="bg-transparent text-[10px] tracking-[0.08em] text-slate-800 focus:outline-none"
-      >
-        <option value="">ALL</option>
-        {options.map((opt) => (
-          <option key={opt} value={opt}>
-            {opt}
-          </option>
-        ))}
-      </select>
-    </label>
-  );
-}
-
 type NewsListItemProps = {
   item: NewsItem;
+  index: number;
 };
 
-function NewsListItem({ item }: NewsListItemProps) {
-  const title = item.titleJa ?? item.title;
+function NewsListItem({ item, index }: NewsListItemProps) {
   const dateLabel =
     item.publishedAtJa ?? formatDate(item.publishedAt ?? item.createdAt);
+  const sourceLabel = buildSourceLabel(item);
+  const tags = buildTagList(item);
+  const recent = isRecent(item, 7);
 
   return (
     <Link
       href={`/news/${encodeURIComponent(item.id)}`}
-      className="block"
+      className="group block"
     >
-      <article className="group flex items-stretch gap-3 rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-3 text-[11px] shadow-sm transition hover:-translate-y-[1px] hover:shadow-md sm:px-5 sm:py-3.5">
-        <div className="flex flex-1 flex-col gap-1">
-          <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-400">
-            {item.sourceName && (
-              <span className="tracking-[0.18em]">
-                {item.sourceName}
+      <article className="relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white/85 px-4 py-3 text-[11px] shadow-[0_18px_40px_rgba(15,23,42,0.08)] transition hover:-translate-y-[1px] hover:border-tiffany-200/80 hover:bg-white hover:shadow-soft-card">
+        {/* タイムライン風インジケーター（左） */}
+        <div className="pointer-events-none absolute -left-3 top-3 flex h-8 flex-col items-center justify-between opacity-40">
+          <span className="h-5 w-px bg-slate-200" />
+          <span className="h-1.5 w-1.5 rounded-full bg-tiffany-400" />
+        </div>
+
+        {/* カテゴリ / NEW / ソース */}
+        <div className="mb-1 flex flex-wrap items-center gap-2">
+          {item.category && (
+            <span className="inline-flex items-center rounded-full bg-slate-50 px-2 py-0.5 text-[10px] tracking-[0.16em] text-slate-500">
+              {item.category.toUpperCase()}
+            </span>
+          )}
+
+          {recent && (
+            <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold tracking-[0.18em] text-emerald-700">
+              NEW
+            </span>
+          )}
+
+          {sourceLabel && (
+            <span className="inline-flex items-center rounded-full bg-slate-900/90 px-2 py-0.5 text-[9px] tracking-[0.18em] text-slate-100">
+              {sourceLabel}
+            </span>
+          )}
+
+          <span className="ml-auto text-[10px] text-slate-400">
+            {dateLabel}
+          </span>
+        </div>
+
+        {/* タイトル */}
+        <h3 className="line-clamp-2 text-[12px] font-semibold leading-relaxed text-slate-900">
+          {item.titleJa ?? item.title}
+        </h3>
+
+        {/* 抄録 / コメント */}
+        {(item.commentJa || item.excerpt) && (
+          <p className="mt-1 line-clamp-2 text-[10px] leading-relaxed text-slate-500">
+            {item.commentJa ?? item.excerpt}
+          </p>
+        )}
+
+        {/* タグ */}
+        {tags.length > 0 && (
+          <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-slate-500">
+            {tags.slice(0, 4).map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full bg-slate-50 px-2 py-1 text-[10px]"
+              >
+                #{tag}
+              </span>
+            ))}
+            {tags.length > 4 && (
+              <span className="rounded-full bg-slate-50 px-2 py-1">
+                +{tags.length - 4}
               </span>
             )}
-            {item.maker && (
-              <>
-                <span className="h-[1px] w-4 bg-slate-200" />
-                <span className="tracking-[0.18em]">
-                  {item.maker}
-                </span>
-              </>
-            )}
-            {dateLabel && (
-              <>
-                <span className="h-[1px] w-4 bg-slate-200" />
-                <span className="tracking-[0.16em]">
-                  {dateLabel}
-                </span>
-              </>
-            )}
           </div>
-          <h2 className="line-clamp-2 text-[13px] font-semibold leading-relaxed tracking-[0.06em] text-slate-900">
-            {title}
-          </h2>
-          {item.excerpt && (
-            <p className="mt-0.5 line-clamp-2 text-[11px] leading-snug text-slate-500">
-              {item.excerpt}
-            </p>
-          )}
-          {item.tags && item.tags.length > 0 && (
-            <div className="mt-1 flex flex-wrap gap-1.5">
-              {item.tags.slice(0, 4).map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[9px] tracking-[0.14em] text-slate-500"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
-        </div>
-        <div className="hidden items-center pl-4 text-[9px] font-semibold tracking-[0.24em] text-slate-300 transition group-hover:text-tiffany-500 sm:flex">
-          READ
-        </div>
+        )}
       </article>
     </Link>
+  );
+}
+
+export default async function NewsPage({ searchParams }: PageProps) {
+  const news = await getLatestNews(80);
+
+  const rawQ = searchParams?.q ?? "";
+  const q = normalize(rawQ);
+  const categoryFilter = (searchParams?.category ?? "").trim();
+  const makerFilter = (searchParams?.maker ?? "").trim();
+  const tagFilter = (searchParams?.tag ?? "").trim();
+  const sourceFilter = (searchParams?.source ?? "").trim();
+  const periodFilter = (searchParams?.period ?? "").trim();
+
+  const makers = Array.from(
+    new Set(news.map((n) => n.maker).filter(Boolean)),
+  ).sort();
+
+  const categories = Array.from(
+    new Set(news.map((n) => n.category).filter(Boolean)),
+  ).sort();
+
+  const tags = Array.from(
+    new Set(news.flatMap((n) => buildTagList(n))),
+  ).sort();
+
+  const sources = Array.from(
+    new Set(news.map((n) => buildSourceLabel(n)).filter(Boolean)),
+  ).sort();
+
+  const filtered = filterNews(news, {
+    q: rawQ,
+    category: categoryFilter,
+    maker: makerFilter,
+    tag: tagFilter,
+    source: sourceFilter,
+    period: periodFilter,
+  });
+
+  const hasFilter =
+    Boolean(q) ||
+    Boolean(categoryFilter) ||
+    Boolean(makerFilter) ||
+    Boolean(tagFilter) ||
+    Boolean(sourceFilter) ||
+    Boolean(periodFilter);
+
+  const featured = filtered[0];
+  const rest = filtered.slice(1);
+
+  return (
+    <main className="min-h-screen bg-site text-text-main">
+      <div className="mx-auto max-w-6xl px-4 pb-24 pt-24 sm:px-6 lg:px-8">
+        {/* パンくず */}
+        <nav
+          className="mb-6 text-xs text-slate-500"
+          aria-label="パンくずリスト"
+        >
+          <Link href="/" className="hover:text-slate-800">
+            HOME
+          </Link>
+          <span className="mx-2">/</span>
+          <span className="text-slate-400">NEWS</span>
+        </nav>
+
+        {/* ヘッダー */}
+        <header className="mb-10 space-y-4">
+          <Reveal>
+            <p className="text-[10px] font-bold tracking-[0.32em] text-tiffany-600">
+              NEWS FEED
+            </p>
+          </Reveal>
+          <Reveal delay={80}>
+            <h1 className="serif-heading text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
+              メーカー公式ニュースを、静かな画面でまとめて追う
+            </h1>
+          </Reveal>
+          <Reveal delay={160}>
+            <div className="flex flex-col gap-3 text-xs text-text-sub sm:flex-row sm:items-end sm:justify-between sm:text-sm">
+              <p className="max-w-2xl leading-relaxed">
+                輸入車やプレミアムブランドを中心に、新型車の発表、仕様変更、
+                リコール、キャンペーン情報などを、メーカー公式サイトなどの一次情報への
+                リンクとしてまとめています。
+              </p>
+              <div className="flex flex-wrap gap-2 text-[10px] text-slate-500">
+                <span className="rounded-full bg-white/80 px-3 py-1 shadow-soft">
+                  TOTAL{" "}
+                  <span className="font-semibold text-slate-900">
+                    {news.length}
+                  </span>{" "}
+                  ARTICLES
+                </span>
+                {filtered.length !== news.length && (
+                  <span className="rounded-full bg-white/80 px-3 py-1 shadow-soft">
+                    FILTERED{" "}
+                    <span className="font-semibold text-tiffany-600">
+                      {filtered.length}
+                    </span>
+                  </span>
+                )}
+              </div>
+            </div>
+          </Reveal>
+        </header>
+
+        {/* フィルターエリア */}
+        <Reveal delay={220}>
+          <section className="mb-6 rounded-3xl border border-slate-200/70 bg-white/90 p-4 shadow-soft">
+            <form className="space-y-4 text-xs sm:text-[11px]">
+              <div className="grid gap-3 md:grid-cols-4">
+                {/* キーワード */}
+                <div className="md:col-span-2">
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    KEYWORD
+                  </label>
+                  <input
+                    type="search"
+                    name="q"
+                    defaultValue={rawQ}
+                    placeholder="車名やトピック、ソース名で検索"
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  />
+                </div>
+
+                {/* カテゴリ */}
+                <div>
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    CATEGORY
+                  </label>
+                  <select
+                    name="category"
+                    defaultValue={categoryFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">すべて</option>
+                    {categories.map((c) => (
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* メーカー */}
+                <div>
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    MAKER
+                  </label>
+                  <select
+                    name="maker"
+                    defaultValue={makerFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">すべて</option>
+                    {makers.map((m) => (
+                      <option key={m} value={m}>
+                        {m}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid gap-3 md:grid-cols-4">
+                {/* ソース */}
+                <div className="md:col-span-2">
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    SOURCE
+                  </label>
+                  <select
+                    name="source"
+                    defaultValue={sourceFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">すべて</option>
+                    {sources.map((s) => (
+                      <option key={s} value={s}>
+                        {s}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* タグ */}
+                <div>
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    TAG
+                  </label>
+                  <select
+                    name="tag"
+                    defaultValue={tagFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">すべて</option>
+                    {tags.map((t) => (
+                      <option key={t} value={t}>
+                        {t}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* 期間 */}
+                <div>
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    PERIOD
+                  </label>
+                  <select
+                    name="period"
+                    defaultValue={periodFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">全期間</option>
+                    <option value="7d">直近7日</option>
+                    <option value="30d">直近30日</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* ボタン */}
+              <div className="mt-2 flex items-center justify-end gap-3">
+                {hasFilter && (
+                  <Link
+                    href="/news"
+                    className="text-[10px] tracking-[0.16em] text-slate-400 hover:text-slate-700"
+                  >
+                    CLEAR
+                  </Link>
+                )}
+                <button
+                  type="submit"
+                  className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-[11px] font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
+                >
+                  絞り込み
+                </button>
+              </div>
+            </form>
+          </section>
+        </Reveal>
+
+        {/* アクティブフィルター表示 */}
+        {hasFilter && (
+          <Reveal delay={240}>
+            <div className="mb-6 flex flex-wrap items-center gap-2 text-[10px]">
+              <span className="rounded-full bg-slate-50 px-2 py-0.5 text-slate-400">
+                ACTIVE FILTERS
+              </span>
+              {q && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  keyword: <span className="font-semibold">“{rawQ}”</span>
+                </span>
+              )}
+              {categoryFilter && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  category:{" "}
+                  <span className="font-semibold">{categoryFilter}</span>
+                </span>
+              )}
+              {makerFilter && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  maker:{" "}
+                  <span className="font-semibold">{makerFilter}</span>
+                </span>
+              )}
+              {sourceFilter && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  source:{" "}
+                  <span className="font-semibold">{sourceFilter}</span>
+                </span>
+              )}
+              {tagFilter && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  tag: <span className="font-semibold">{tagFilter}</span>
+                </span>
+              )}
+              {periodFilter && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  period:{" "}
+                  <span className="font-semibold">
+                    {periodFilter === "7d"
+                      ? "直近7日"
+                      : periodFilter === "30d"
+                      ? "直近30日"
+                      : periodFilter}
+                  </span>
+                </span>
+              )}
+            </div>
+          </Reveal>
+        )}
+
+        {/* 一覧レイアウト */}
+        <section
+          className="grid gap-8 lg:grid-cols-[minmax(0,3.3fr)_minmax(0,1.7fr)]"
+          aria-label="ニュース一覧"
+        >
+          {/* 左：ハイライト＋リスト */}
+          <div className="space-y-4">
+            {/* ハイライト */}
+            <Reveal>
+              {featured ? (
+                <GlassCard
+                  as="section"
+                  padding="lg"
+                  interactive
+                  className="relative overflow-hidden border border-tiffany-100 bg-gradient-to-br from-tiffany-50 via-white to-white shadow-soft-card"
+                >
+                  {/* 背景光 */}
+                  <div className="pointer-events-none absolute -left-24 -top-24 h-64 w-64 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.28),_transparent_70%)] blur-3xl" />
+                  <div className="pointer-events-none absolute -right-32 bottom-[-40%] h-80 w-80 rounded-full bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.2),_transparent_70%)] blur-3xl" />
+
+                  <div className="relative z-10 space-y-3 text-[11px]">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="rounded-full bg-black/80 px-3 py-1 text-[10px] font-semibold tracking-[0.2em] text-slate-50">
+                        FEATURED
+                      </span>
+                      {featured.category && (
+                        <span className="rounded-full bg-white/80 px-2 py-0.5 text-[10px] tracking-[0.16em] text-slate-600">
+                          {featured.category.toUpperCase()}
+                        </span>
+                      )}
+                      <span className="ml-auto text-[10px] text-slate-500">
+                        {featured.publishedAtJa ??
+                          formatDate(
+                            featured.publishedAt ?? featured.createdAt,
+                          )}
+                      </span>
+                    </div>
+
+                    <Link
+                      href={`/news/${encodeURIComponent(featured.id)}`}
+                      className="block"
+                    >
+                      <h2 className="serif-heading text-lg font-medium leading-relaxed text-slate-900 sm:text-xl">
+                        {featured.titleJa ?? featured.title}
+                      </h2>
+                    </Link>
+
+                    {(featured.commentJa || featured.excerpt) && (
+                      <p className="max-w-2xl text-[11px] leading-relaxed text-slate-600 sm:text-xs">
+                        {featured.commentJa ?? featured.excerpt}
+                      </p>
+                    )}
+
+                    <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                      {buildSourceLabel(featured) && (
+                        <span className="rounded-full bg-white/80 px-2 py-1 tracking-[0.16em]">
+                          {buildSourceLabel(featured)}
+                        </span>
+                      )}
+                      {featured.maker && (
+                        <span className="rounded-full bg-white/80 px-2 py-1 tracking-[0.16em]">
+                          {featured.maker}
+                        </span>
+                      )}
+                      {buildTagList(featured).slice(0, 3).map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full bg-white/80 px-2 py-1"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </GlassCard>
+              ) : (
+                <p className="rounded-2xl border border-dashed border-slate-200 bg-white/80 p-6 text-center text-xs text-slate-500">
+                  現在表示できるニュースがありません。
+                </p>
+              )}
+            </Reveal>
+
+            {/* 残りのリスト */}
+            <Reveal delay={80}>
+              {rest.length === 0 ? (
+                <p className="rounded-2xl border border-dashed border-slate-200 bg-white/80 p-6 text-center text-xs text-slate-500">
+                  条件に合致するニュースが見つかりませんでした。
+                  絞り込み条件を少し緩めて、もう一度お試しください。
+                </p>
+              ) : (
+                <div className="space-y-3">
+                  {rest.map((item, index) => (
+                    <NewsListItem
+                      key={item.id}
+                      item={item}
+                      index={index + 1}
+                    />
+                  ))}
+                </div>
+              )}
+            </Reveal>
+          </div>
+
+          {/* 右：ソース / メーカー クイックフィルター（PCのみ） */}
+          <aside className="hidden lg:block">
+            <Reveal delay={120}>
+              <div className="sticky top-24 space-y-5">
+                <GlassCard
+                  as="section"
+                  padding="md"
+                  className="border border-slate-200/70 bg-white/90"
+                >
+                  <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                    QUICK SOURCE
+                  </p>
+                  <div className="flex flex-wrap gap-2 text-[10px] text-slate-600">
+                    {sources.slice(0, 10).map((s) => {
+                      const count = filtered.filter(
+                        (item) => buildSourceLabel(item) === s,
+                      ).length;
+                      return (
+                        <Link
+                          key={s}
+                          href={`/news?source=${encodeURIComponent(s)}`}
+                          className="inline-flex items-center gap-1 rounded-full bg-slate-50 px-3 py-1 tracking-[0.14em] transition hover:bg-white hover:text-tiffany-700 hover:shadow-soft"
+                        >
+                          <span>{s}</span>
+                          {count > 0 && (
+                            <span className="text-[9px] text-slate-400">
+                              ({count})
+                            </span>
+                          )}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </GlassCard>
+
+                <GlassCard
+                  as="section"
+                  padding="md"
+                  className="border border-slate-200/70 bg-white/90"
+                >
+                  <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                    MAKER FOCUS
+                  </p>
+                  <div className="flex flex-wrap gap-2 text-[10px] text-slate-600">
+                    {makers.slice(0, 10).map((m) => {
+                      const count = filtered.filter(
+                        (item) => item.maker === m,
+                      ).length;
+                      return (
+                        <Link
+                          key={m}
+                          href={`/news?maker=${encodeURIComponent(m)}`}
+                          className="inline-flex items-center gap-1 rounded-full bg-slate-50 px-3 py-1 tracking-[0.14em] transition hover:bg-white hover:text-tiffany-700 hover:shadow-soft"
+                        >
+                          <span>{m}</span>
+                          {count > 0 && (
+                            <span className="text-[9px] text-slate-400">
+                              ({count})
+                            </span>
+                          )}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </GlassCard>
+              </div>
+            </Reveal>
+          </aside>
+        </section>
+      </div>
+    </main>
   );
 }
