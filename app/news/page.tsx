@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Reveal } from "@/components/animation/Reveal";
 import { GlassCard } from "@/components/GlassCard";
 import { getLatestNews, type NewsItem } from "@/lib/news";
+import { Button } from "@/components/ui/button";
 
 export const runtime = "edge";
 
@@ -141,7 +142,7 @@ type NewsListItemProps = {
   index: number;
 };
 
-function NewsListItem({ item, index }: NewsListItemProps) {
+function NewsListItem({ item }: NewsListItemProps) {
   const dateLabel =
     item.publishedAtJa ?? formatDate(item.publishedAt ?? item.createdAt);
   const sourceLabel = buildSourceLabel(item);
@@ -220,6 +221,17 @@ function NewsListItem({ item, index }: NewsListItemProps) {
   );
 }
 
+// 月ごとのラベルを作る（YYYY年MM月）
+function buildMonthLabel(item: NewsItem): string {
+  const base = item.publishedAt ?? item.createdAt;
+  if (!base) return "日付未設定";
+  const d = new Date(base);
+  if (Number.isNaN(d.getTime())) return "日付未設定";
+  const y = d.getFullYear();
+  const m = `${d.getMonth() + 1}`.padStart(2, "0");
+  return `${y}年${m}月`;
+}
+
 export default async function NewsPage({ searchParams }: PageProps) {
   const news = await getLatestNews(80);
 
@@ -266,6 +278,24 @@ export default async function NewsPage({ searchParams }: PageProps) {
 
   const featured = filtered[0];
   const rest = filtered.slice(1);
+
+  // 残りのニュースを「月ごとのセクション」にグルーピングしてタイムライン化
+  const groupedRestEntries = (() => {
+    const grouped: Record<string, NewsItem[]> = {};
+    for (const item of rest) {
+      const label = buildMonthLabel(item);
+      if (!grouped[label]) grouped[label] = [];
+      grouped[label].push(item);
+    }
+    return Object.entries(grouped).sort((a, b) => {
+      // 各グループの先頭ニュースの日付で降順ソート
+      const aItem = a[1][0];
+      const bItem = b[1][0];
+      const aDate = new Date(aItem.publishedAt ?? aItem.createdAt ?? 0);
+      const bDate = new Date(bItem.publishedAt ?? bItem.createdAt ?? 0);
+      return bDate.getTime() - aDate.getTime();
+    });
+  })();
 
   return (
     <main className="min-h-screen bg-site text-text-main">
@@ -320,10 +350,36 @@ export default async function NewsPage({ searchParams }: PageProps) {
               </div>
             </div>
           </Reveal>
+
+          {/* 期間プリセットチップ（7日 / 30日 / 全期間） */}
+          <Reveal delay={220}>
+            <div className="mt-4 flex flex-wrap gap-2 text-[10px]">
+              <Link
+                href="/news?period=7d"
+                className="inline-flex items-center gap-1 rounded-full border border-emerald-100 bg-emerald-50/90 px-3 py-1 tracking-[0.16em] text-emerald-800 transition hover:border-emerald-300 hover:bg-emerald-50"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                直近7日
+              </Link>
+              <Link
+                href="/news?period=30d"
+                className="inline-flex items-center gap-1 rounded-full border border-sky-100 bg-sky-50/90 px-3 py-1 tracking-[0.16em] text-slate-700 transition hover:border-sky-300 hover:bg-sky-50"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
+                直近30日
+              </Link>
+              <Link
+                href="/news"
+                className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white/80 px-3 py-1 tracking-[0.16em] text-slate-600 transition hover:border-tiffany-300 hover:bg-white"
+              >
+                全期間
+              </Link>
+            </div>
+          </Reveal>
         </header>
 
         {/* フィルターエリア */}
-        <Reveal delay={220}>
+        <Reveal delay={260}>
           <section className="mb-6 rounded-3xl border border-slate-200/70 bg-white/90 p-4 shadow-soft">
             <form className="space-y-4 text-xs sm:text-[11px]">
               <div className="grid gap-3 md:grid-cols-4">
@@ -446,12 +502,15 @@ export default async function NewsPage({ searchParams }: PageProps) {
                     CLEAR
                   </Link>
                 )}
-                <button
+                <Button
                   type="submit"
-                  className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-[11px] font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
+                  size="sm"
+                  variant="primary"
+                  className="rounded-full px-5 py-2 text-[11px] tracking-[0.2em]"
+                  magnetic
                 >
                   絞り込み
-                </button>
+                </Button>
               </div>
             </form>
           </section>
@@ -459,7 +518,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
 
         {/* アクティブフィルター表示 */}
         {hasFilter && (
-          <Reveal delay={240}>
+          <Reveal delay={280}>
             <div className="mb-6 flex flex-wrap items-center gap-2 text-[10px]">
               <span className="rounded-full bg-slate-50 px-2 py-0.5 text-slate-400">
                 ACTIVE FILTERS
@@ -514,7 +573,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
           aria-label="ニュース一覧"
         >
           {/* 左：ハイライト＋リスト */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             {/* ハイライト */}
             <Reveal>
               {featured ? (
@@ -590,7 +649,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
               )}
             </Reveal>
 
-            {/* 残りのリスト */}
+            {/* 残りのリスト（月ごとタイムライン） */}
             <Reveal delay={80}>
               {rest.length === 0 ? (
                 <p className="rounded-2xl border border-dashed border-slate-200 bg-white/80 p-6 text-center text-xs text-slate-500">
@@ -598,13 +657,28 @@ export default async function NewsPage({ searchParams }: PageProps) {
                   絞り込み条件を少し緩めて、もう一度お試しください。
                 </p>
               ) : (
-                <div className="space-y-3">
-                  {rest.map((item, index) => (
-                    <NewsListItem
-                      key={item.id}
-                      item={item}
-                      index={index + 1}
-                    />
+                <div className="space-y-6">
+                  {groupedRestEntries.map(([label, group]) => (
+                    <div key={label} className="space-y-2">
+                      {/* 月ラベル：タイムラインの節 */}
+                      <div className="flex items-center gap-3 text-[10px] text-slate-400">
+                        <span className="h-px flex-1 bg-slate-100" />
+                        <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 shadow-soft">
+                          <span className="h-1.5 w-1.5 rounded-full bg-tiffany-400" />
+                          <span className="tracking-[0.18em]">{label}</span>
+                        </span>
+                      </div>
+
+                      <div className="space-y-3">
+                        {group.map((item, index) => (
+                          <NewsListItem
+                            key={item.id}
+                            item={item}
+                            index={index + 1}
+                          />
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
               )}
