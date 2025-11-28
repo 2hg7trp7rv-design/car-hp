@@ -9,8 +9,7 @@
     "start": "next start",
     "lint": "next lint"
   },
-  // dependencies に追加（まだ入れてなければ）
-"dependencies": {
+　"dependencies": {
   "next": "14.2.3",
   "react": "18.3.1",
   "react-dom": "18.3.1",
