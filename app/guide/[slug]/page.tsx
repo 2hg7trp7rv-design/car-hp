@@ -296,6 +296,10 @@ export default async function GuideDetailPage({ params }: PageProps) {
   const { blocks, headings } = parseBody(guide.body);
   const relatedColumns = await getRelatedColumnsForGuide(guide);
   const stepHeadings = extractStepHeadings(headings);
+  const relatedCarSlugs =
+    (guide.relatedCarSlugs ?? []).filter(
+      (slug) => typeof slug === "string" && slug.trim().length > 0,
+    ) ?? [];
 
   // ドロップキャップ用フラグ
   let firstParagraphRendered = false;
@@ -350,7 +354,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
           <Reveal delay={160}>
             <div className="mt-4 flex flex-wrap items-center gap-3 text-[11px] text-slate-500">
               {guide.readMinutes && (
-                <span className="inline-flex items-center gap-2 rounded-full bg-slate-900 text-[10px] tracking-[0.18em] text-slate-100 shadow-soft px-3 py-1.5">
+                <span className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-3 py-1.5 text-[10px] tracking-[0.18em] text-slate-100 shadow-soft">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                   約 {guide.readMinutes} 分で読めます
                 </span>
@@ -594,6 +598,37 @@ export default async function GuideDetailPage({ params }: PageProps) {
             </div>
           </aside>
         </div>
+
+        {/* 関連する車種（GuideItem.relatedCarSlugs を利用） */}
+        {relatedCarSlugs.length > 0 && (
+          <section className="mt-16 lg:mt-18">
+            <div className="mb-4 flex items-baseline justify-between gap-2">
+              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
+                このガイドと関連する車種
+              </h2>
+              <Link
+                href="/cars"
+                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+              >
+                CARS 一覧へ
+              </Link>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {relatedCarSlugs.map((slug) => (
+                <Link
+                  key={slug}
+                  href={`/cars/${encodeURIComponent(slug)}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-[11px] text-slate-600 shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-200 hover:text-tiffany-700"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-tiffany-400" />
+                  <span className="uppercase tracking-[0.12em]">
+                    {slug}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* 関連コラム */}
         {relatedColumns.length > 0 && (
