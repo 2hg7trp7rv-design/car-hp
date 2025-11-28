@@ -40,7 +40,7 @@ type StepHeading = {
 };
 
 // 日付表示用
-function formatDate(iso?: string): string {
+function formatDate(iso?: string | null): string {
   if (!iso) return "";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return "";
@@ -54,9 +54,12 @@ function formatDate(iso?: string): string {
 function mapCategoryLabel(category: GuideItem["category"]): string {
   switch (category) {
     case "MONEY":
+    case "BUY":
       return "お金・購入計画";
     case "SELL":
       return "売却・乗り換え";
+    case "MAINTENANCE_COST":
+      return "維持費・お金まわり";
     default:
       return "ガイド";
   }
@@ -174,7 +177,7 @@ async function getRelatedColumnsForGuide(
   guide: GuideItem,
 ): Promise<ColumnItem[]> {
   const allColumns = await getAllColumns();
-  const guideTags = new Set(guide.tags ?? []);
+  const guideTags = new Set((guide as GuideItem & { tags?: string[] }).tags ?? []);
 
   return allColumns
     .map((col) => {
@@ -189,19 +192,24 @@ async function getRelatedColumnsForGuide(
       }
 
       // ガイドカテゴリと相性の良さでざっくり加点
-      if (guide.category === "MONEY") {
+      const guideCategory = guide.category;
+      if (
+        guideCategory === "MONEY" ||
+        guideCategory === "BUY" ||
+        guideCategory === "MAINTENANCE_COST"
+      ) {
         if (col.category === "MAINTENANCE" || col.category === "TECHNICAL") {
           score += 1;
         }
-      } else if (guide.category === "SELL") {
+      } else if (guideCategory === "SELL") {
         if (col.category === "TECHNICAL") {
           score += 1.5;
         }
       }
 
       // タイトル・サマリのざっくりキーワードマッチ
-      const haystack = `${col.title} ${col.summary}`.toLowerCase();
-      const words = (guide.title + " " + guide.summary)
+      const haystack = `${col.title} ${col.summary ?? ""}`.toLowerCase();
+      const words = `${guide.title} ${guide.summary ?? ""}`
         .toLowerCase()
         .split(/\s+/)
         .filter((w) => w.length > 1);
@@ -296,10 +304,10 @@ export default async function GuideDetailPage({ params }: PageProps) {
   const { blocks, headings } = parseBody(guide.body);
   const relatedColumns = await getRelatedColumnsForGuide(guide);
   const stepHeadings = extractStepHeadings(headings);
-  const relatedCarSlugs =
-    (guide.relatedCarSlugs ?? []).filter(
-      (slug) => typeof slug === "string" && slug.trim().length > 0,
-    ) ?? [];
+  const relatedCarSlugs = (guide.relatedCarSlugs ?? []).filter(
+    (slug): slug is string =>
+      typeof slug === "string" && slug.trim().length > 0,
+  );
 
   // ドロップキャップ用フラグ
   let firstParagraphRendered = false;
@@ -353,10 +361,15 @@ export default async function GuideDetailPage({ params }: PageProps) {
 
           <Reveal delay={160}>
             <div className="mt-4 flex flex-wrap items-center gap-3 text-[11px] text-slate-500">
-              {guide.readMinutes && (
+              {(guide as GuideItem & { readMinutes?: number }).readMinutes && (
                 <span className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-3 py-1.5 text-[10px] tracking-[0.18em] text-slate-100 shadow-soft">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  約 {guide.readMinutes} 分で読めます
+                  約{" "}
+                  {
+                    (guide as GuideItem & { readMinutes?: number })
+                      .readMinutes
+                  }{" "}
+                  分で読めます
                 </span>
               )}
               {guide.publishedAt && (
@@ -367,21 +380,25 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   </span>
                 </>
               )}
-              {guide.tags && guide.tags.length > 0 && (
-                <>
-                  <span className="h-[1px] w-6 bg-slate-200" />
-                  <div className="flex flex-wrap gap-1.5">
-                    {guide.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-slate-50 px-2 py-0.5 text-[10px] tracking-[0.12em]"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                </>
-              )}
+              {(guide as GuideItem & { tags?: string[] }).tags &&
+                (guide as GuideItem & { tags?: string[] }).tags!.length >
+                  0 && (
+                  <>
+                    <span className="h-[1px] w-6 bg-slate-200" />
+                    <div className="flex flex-wrap gap-1.5">
+                      {(guide as GuideItem & { tags?: string[] }).tags!.map(
+                        (tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-full bg-slate-50 px-2 py-0.5 text-[10px] tracking-[0.12em]"
+                          >
+                            #{tag}
+                          </span>
+                        ),
+                      )}
+                    </div>
+                  </>
+                )}
             </div>
           </Reveal>
 
