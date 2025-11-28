@@ -109,7 +109,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       tone,
       fullWidth,
       asChild = false,
-      magnetic = false,
+      magnetic = true,
       iconOnly,
       children,
       ...props
