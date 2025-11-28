@@ -233,7 +233,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
     getHeritageNeighbors(item),
   ]);
 
-  const { blocks, headings } = parseBody(item.body);
+  const { blocks } = parseBody(item.body);
 
   let linkedCar: CarItem | null = null;
   if (item.carSlug) {
@@ -398,14 +398,12 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                 if (index === 0) {
                   const text = block.text.trim();
                   if (!text) return null;
-                  const firstChar = text[0];
-                  const rest = text.slice(1);
 
+                  // Tailwind の first-letter ユーティリティでドロップキャップ表現
                   return (
                     <Reveal key={`p-${index}`} delay={100}>
-                      <p className="first-letter-float mt-4 text-sm leading-8 text-slate-700 sm:text-[16px] sm:leading-[2rem]">
-                        <span className="first-letter-span">{firstChar}</span>
-                        {rest}
+                      <p className="mt-4 text-sm leading-8 text-slate-700 sm:text-[16px] sm:leading-[2rem] first-letter:float-left first-letter:mr-3 first-letter:-mt-1 first-letter:mb-1 first-letter:font-serif first-letter:text-[3.4em] first-letter:leading-[0.85] first-letter:font-medium first-letter:text-tiffany-500">
+                        {text}
                       </p>
                     </Reveal>
                   );
@@ -576,24 +574,6 @@ export default async function HeritageDetailPage({ params }: PageProps) {
           </div>
         </aside>
       </section>
-
-      {/* Drop caps 用スタイル */}
-      <style jsx global>{`
-        .first-letter-float {
-          text-indent: 0;
-        }
-        .first-letter-span {
-          float: left;
-          margin-right: 12px;
-          margin-top: -6px;
-          margin-bottom: -2px;
-          font-family: var(--font-bodoni), var(--font-serif), serif;
-          font-size: 3.4em;
-          line-height: 0.85;
-          font-weight: 500;
-          color: #0abab5;
-        }
-      `}</style>
     </main>
   );
 }
