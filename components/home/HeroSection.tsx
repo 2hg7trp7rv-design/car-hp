@@ -1,4 +1,4 @@
-// components/hero/HeroSection.tsx
+// components/home/HeroSection.tsx
 "use client";
 
 import { useState } from "react";
