@@ -17,6 +17,15 @@ type PageProps = {
   params: { id: string };
 };
 
+// ---- メタデータ / SSG ----
+
+export async function generateStaticParams() {
+  const items = await getLatestNews(80);
+  return items.map((item) => ({
+    id: String(item.id),
+  }));
+}
+
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
@@ -33,7 +42,7 @@ export async function generateMetadata({
   const description =
     item.excerpt ??
     item.commentJa ??
-    "クルマのニュースと、その先にある物語を届ける CAR BOUTIQUE のニュース詳細ページです。";
+    "クルマのニュースを静かに読み解く CAR BOUTIQUE のニュース詳細ページです。";
 
   return {
     title: `${title} | CAR BOUTIQUE`,
@@ -42,15 +51,21 @@ export async function generateMetadata({
       title,
       description,
       type: "article",
-      url: item.url || `https://car-hp.vercel.app/news/${encodeURIComponent(item.id)}`,
+      url:
+        item.url ||
+        `https://car-hp.vercel.app/news/${encodeURIComponent(
+          String(item.id),
+        )}`,
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title,
       description,
     },
   };
 }
+
+// ---- ユーティリティ ----
 
 function formatDate(iso?: string | null): string {
   if (!iso) return "";
@@ -72,6 +87,27 @@ function buildSourceLabel(item: NewsItem): string {
 function buildTagList(item: NewsItem): string[] {
   return Array.isArray(item.tags) ? item.tags.filter(Boolean) : [];
 }
+
+async function getRelatedNews(current: NewsItem): Promise<NewsItem[]> {
+  const items = await getLatestNews(80);
+  const { id, maker, category, tags: currentTags } = current;
+
+  return items
+    .filter((item) => item.id !== id)
+    .filter((item) => {
+      if (maker && item.maker === maker) return true;
+      if (category && item.category === category) return true;
+      if (currentTags && currentTags.length > 0) {
+        const set = new Set(currentTags);
+        const itemTags = item.tags ?? [];
+        if (itemTags.some((t) => set.has(t))) return true;
+      }
+      return false;
+    })
+    .slice(0, 5);
+}
+
+// ---- ページ本体 ----
 
 export default async function NewsDetailPage({ params }: PageProps) {
   const item = await getNewsById(params.id);
@@ -116,16 +152,14 @@ export default async function NewsDetailPage({ params }: PageProps) {
               NEWS
             </Link>
             <span className="mx-2 text-slate-400">/</span>
-            <span className="line-clamp-1 text-slate-400">
-              DETAIL
-            </span>
+            <span className="line-clamp-1 text-slate-400">DETAIL</span>
           </nav>
         </Reveal>
 
-        {/* HERO バンド（雑誌の見出し帯イメージ） */}
+        {/* HERO バンド */}
         <Reveal>
           <section className="relative mb-8 overflow-hidden rounded-3xl border border-slate-200/70 bg-gradient-to-br from-slate-900 via-obsidian to-slate-900/96 px-5 py-6 text-slate-100 shadow-soft-strong sm:px-7 sm:py-8">
-            {/* Tiffany 光レイヤー */}
+            {/* 光レイヤー */}
             <div className="pointer-events-none absolute -left-24 -top-24 h-64 w-64 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.36),_transparent_70%)] blur-3xl" />
             <div className="pointer-events-none absolute -right-32 bottom-[-40%] h-80 w-80 rounded-full bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.8),_transparent_70%)] blur-3xl" />
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.08),_transparent_55%)]" />
@@ -193,7 +227,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
                   <h2 className="mb-1 text-[10px] font-semibold tracking-[0.18em] text-tiffany-700">
                     SUMMARY
                   </h2>
-                  <p className="font-body">{item.excerpt}</p>
+                  <p>{item.excerpt}</p>
                 </section>
               )}
 
@@ -203,7 +237,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
                   <h2 className="mb-1 text-[10px] font-semibold tracking-[0.18em] text-tiffany-200">
                     CAR BOUTIQUE&apos;S NOTE
                   </h2>
-                  <p className="font-body">{item.commentJa}</p>
+                  <p>{item.commentJa}</p>
                 </section>
               )}
 
@@ -405,23 +439,4 @@ export default async function NewsDetailPage({ params }: PageProps) {
       </div>
     </main>
   );
-}
-
-async function getRelatedNews(current: NewsItem): Promise<NewsItem[]> {
-  const items = await getLatestNews(80);
-  const { id, maker, category, tags: currentTags } = current;
-
-  return items
-    .filter((item) => item.id !== id)
-    .filter((item) => {
-      if (maker && item.maker === maker) return true;
-      if (category && item.category === category) return true;
-      if (currentTags && currentTags.length > 0) {
-        const set = new Set(currentTags);
-        const itemTags = item.tags ?? [];
-        if (itemTags.some((t) => set.has(t))) return true;
-      }
-      return false;
-    })
-    .slice(0, 5);
 }
