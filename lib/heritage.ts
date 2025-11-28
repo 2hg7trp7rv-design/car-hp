@@ -1,406 +1,198 @@
 // lib/heritage.ts
-// --------------------------------------------------------
-// HERITAGE セクション用のデータモデルとスタティックデータ
-// - ERA: 時代ごとのストーリー
-// - BRAND: ブランドごとのキャラクター変遷
-// - CAR: 世代ごとの車種ストーリー（前後世代への回遊用）
-// --------------------------------------------------------
+import heritageData from "@/data/heritage.json";
 
-export type HeritageEra = {
-  kind: "ERA";
+export type HeritageKind = "ERA" | "BRAND" | "CAR";
+
+export type HeritageItem = {
+  id: string;
   slug: string;
-  year: string; // "1970s" など
-  periodJa?: string; // "〜1980年代前半" など
+  kind: HeritageKind;
+
   title: string;
-  description: string;
-  subDescription?: string;
+  subtitle?: string;
+  lead?: string;
+
+  /** 時代ラベル（例: "1970s", "Bubble era"） */
+  eraLabel?: string | null;
+  /** ブランド名（例: "BMW"） */
+  brandName?: string | null;
+  /** モデル名（例: "3 Series"） */
+  modelName?: string | null;
+  /** 世代コード（例: "E36", "W124"） */
+  generationCode?: string | null;
+  /** 年式レンジ（例: "1990–1998"） */
+  years?: string | null;
+
+  heroImage?: string | null;
+  heroTone?: "tiffany" | "obsidian" | "vapor";
+
+  highlights?: string[];
   tags?: string[];
-  accentBrand?: string;
-  /** 記事本文（空行で段落分割されます） */
-  body?: string;
-  /** 冒頭にまとめる「ポイント」の箇条書き */
-  highlights?: string[];
+
+  /** 系譜チェーンを識別するキー（例: "BMW-3", "Mercedes-E" など） */
+  chainKey?: string | null;
+  /** 同じ chainKey 内での並び順（世代順など） */
+  chainOrder?: number | null;
+
+  /** CARS の slug と紐付けると詳細ページへリンク可能 */
+  carSlug?: string | null;
+
+  /** その他メタ情報（任意 key/value） */
+  meta?: Record<string, string | number | null | undefined>;
+
+  /** Markdown ライク本文（##, ###, - 箇条書き対応） */
+  body: string;
 };
 
-export type HeritageBrandStripe = {
-  kind: "BRAND";
-  slug: string;
-  brand: string;
-  tagline: string;
-  summary: string;
-  focusYears?: string;
-  note?: string;
-  body?: string;
-  highlights?: string[];
-  /** ブランド内のざっくり年表 */
-  timeline?: { year: string; text: string }[];
-};
+function normalizeItem(raw: any): HeritageItem {
+  return {
+    id: String(raw.id),
+    slug: String(raw.slug),
+    kind: raw.kind as HeritageKind,
 
-export type HeritageCarStory = {
-  kind: "CAR";
-  slug: string;
-  /** CARS データの slug （存在しなくても落ちないように扱う） */
-  carSlug: string;
-  /** BMW 3 Series E46 などの記事タイトル */
-  title: string;
-  /** 「E46 / 4th generation」などの世代ラベル */
-  generationLabel?: string;
-  /** 1998–2005 などの年式レンジ */
-  years?: string;
-  /** メーカー名（表示用） */
-  maker?: string;
-  /** モデル系統名（3 Series など） */
-  modelLine?: string;
-  /** 関連ブランドストーリーへの紐付け（存在すればリンク表示） */
-  brandSlug?: string;
-  /** この記事の要約テキスト */
-  summary: string;
-  body?: string;
-  highlights?: string[];
-  /** 前後世代の記事 slug（存在すれば prev / next ナビに出す） */
-  previousSlug?: string;
-  nextSlug?: string;
-};
+    title: String(raw.title),
+    subtitle: raw.subtitle ?? undefined,
+    lead: raw.lead ?? undefined,
 
-export type HeritageNode =
-  | HeritageEra
-  | HeritageBrandStripe
-  | HeritageCarStory;
+    eraLabel: raw.eraLabel ?? null,
+    brandName: raw.brandName ?? null,
+    modelName: raw.modelName ?? null,
+    generationCode: raw.generationCode ?? null,
+    years: raw.years ?? null,
 
-// --------------------------------------------------------
-// ERA データ
-// --------------------------------------------------------
+    heroImage: raw.heroImage ?? null,
+    heroTone: raw.heroTone ?? "vapor",
 
-export const HERITAGE_ERAS: HeritageEra[] = [
-  {
-    kind: "ERA",
-    slug: "1970s-salon-sedan",
-    year: "1970s",
-    periodJa: "〜1980年代前半",
-    title: "欧州セダンが「道具」から「サロン」へ",
-    description:
-      "高速道路網の整備とともに、欧州セダンは単なる移動手段から、移動時間そのものを楽しむためのサロンへ変化していきました。",
-    subDescription:
-      "クラシックとして残っている個体は、ほとんどがオーナーの丁寧な手入れの賜物。日常の足というより、週末のためのセカンドカーとして語られることが多い世代です。",
-    tags: ["EUROPE", "SEDAN", "CLASSIC"],
-    accentBrand: "Mercedes-Benz / BMW など",
-    highlights: [
-      "ガラスエリアが広く、細いピラーによる独特の開放感。",
-      "いまの基準では素朴だが、メカニカルなステアリングフィールが魅力。",
-      "毎日の足というより、『時間を取りに行く』ためのセカンドカー的な付き合い方。",
-    ],
-    body: [
-      "高速道路網が整い始めた 1970 年代、欧州セダンの役割は『早く着くための道具』から、『長距離移動そのものを楽しむための場所』へとゆっくり変わっていきました。",
-      "現代の基準では静粛性も安全装備も素朴ですが、細いピラーと大きなガラスがつくる開放感、メカニカルなステアリングフィールなど、いまのクルマにはない空気感があります。",
-      "CARS や COLUMN では、この世代のモデルを『毎日の足』というよりは、週末にじっくり付き合うセカンドカーとしてどう楽しむか、という視点で取り上げていく予定です。",
-    ].join("\n\n"),
-  },
-  {
-    kind: "ERA",
-    slug: "1990s-luxury-sedan",
-    year: "1990s",
-    periodJa: "1990年代〜2000年代前半",
-    title: "静かな熱量を持つ、セダン黄金期",
-    description:
-      "電子制御はまだ控えめで、足まわりやシートは『機械としてのバランス』が中心。路面からの情報量と快適性のバランスが絶妙で、いまでもファンの多い世代です。",
-    subDescription:
-      "少し重たく、でも疲れにくい乗り味が好きなら、このあたりの世代を起点に CARS ページを眺めてみるのがおすすめです。",
-    tags: ["PREMIUM", "LONG TOURING", "COMFORT"],
-    accentBrand: "Mercedes-Benz / Volvo など",
-    highlights: [
-      "アナログな感触を残しつつ、高速安定性と静粛性が大きく向上した時期。",
-      "シートとサスペンションの作り込みが、長距離移動の疲れにくさに直結している世代。",
-      "『古いからこそ味がある』と感じやすい一方、メンテナンスの計画性が重要。",
-    ],
-    body: [
-      "1990 年代から 2000 年代前半にかけては、『高級セダンとはこういうものだ』という共通認識が最も分かりやすかった時期かもしれません。",
-      "電子制御は最低限にとどまり、シートやサスペンションは『長距離を淡々とこなす』ために作り込まれていました。いま乗っても古さより『余裕』を感じる個体も多く、静かな熱量を好む人には刺さる世代です。",
-      "維持に関しては、年式相応のゴム類・油脂類の更新前提にはなりますが、構造がまだシンプルな分だけ、整備方針も組み立てやすいという側面があります。",
-    ].join("\n\n"),
-  },
-  {
-    kind: "ERA",
-    slug: "2000s-electronics",
-    year: "2000s",
-    periodJa: "2000年代〜2010年代前半",
-    title: "電子制御と安全技術が一気に花開く",
-    description:
-      "ABS、エアバッグ、トラクションコントロールは当たり前になり、サスペンションやステアリングにも電子制御が入り始める時期。安心感が増す一方で、『あえて電子制御の少ない世代』を選ぶ楽しみ方も出てきます。",
-    subDescription:
-      "メンテナンスではテスター前提の診断が増え始めるので、COLUMN のトラブル・修理系の記事とセットで眺めるとイメージしやすくなります。",
-    tags: ["TECHNOLOGY", "SAFETY", "ELECTRONICS"],
-    accentBrand: "BMW / Audi など",
-    highlights: [
-      "安全装備と電子制御が一気に標準化していく転換期。",
-      "テスター診断前提のトラブルシュートが増え、DIY のハードルがやや上がる。",
-      "『古き良き感触』よりも、『毎日の足としての安心感』が強い世代。",
-    ],
-    body: [
-      "2000 年代に入ると、ほとんどの輸入車で電子制御と安全装備が標準的なものになりました。快適性と安全性は大きく向上する一方で、『機械としての素朴さ』は一歩後ろに下がっていきます。",
-      "整備の現場でもテスターによる診断が前提となり、DIY のハードルは少しずつ上がっていきます。その代わり、日常の足として使ううえでは『普通に乗れる安心感』が高まる世代とも言えます。",
-      "どこまでを自分で触りたいか、どこからをプロに任せたいかによって、この世代を『ちょうど良い落とし所』と感じるかどうかが変わってきます。",
-    ].join("\n\n"),
-  },
-  {
-    kind: "ERA",
-    slug: "2010s-downsizing",
-    year: "2010s",
-    periodJa: "2010年代〜",
-    title: "ダウンサイジングターボと電動化のはじまり",
-    description:
-      "排気量を抑えつつもトルクフルな走りを実現するダウンサイジングターボと、マイルドハイブリッド／EVが同時に進行していく時代。SUV がセダンの役割を肩代わりし、ラインナップの中心が置き換わっていきます。",
-    subDescription:
-      "『昔ながらの大排気量』よりも、燃費と環境性能を重視した設計がメインに。何を優先したいかで、選ぶべきブランドとパワートレインが変わってきます。",
-    tags: ["POWERTRAIN", "DOWN-SIZING", "SUV"],
-    accentBrand: "Volvo / Mercedes-Benz など",
-    highlights: [
-      "小排気量ターボと電動アシストの組み合わせが一気に一般化。",
-      "SUV がセダンのポジションを肩代わりし、街で見るクルマの姿が変わる。",
-      "『走りの濃さ』と『燃費・環境性能』のバランス感覚がブランドごとに分かれる時期。",
-    ],
-    body: [
-      "2010 年代は、多くのブランドで『大排気量 NA』から『ダウンサイジングターボ』へ軸足を移していく時代でした。同時に、ハイブリッドやマイルドハイブリッド、EV も身近な存在になっていきます。",
-      "ラグジュアリーセダンのポジションを、SUV が少しずつ肩代わりしていくのもこの頃。街で見かけるボディタイプの比率が変わることで、『そのブランドらしさ』の見え方も変化していきます。",
-      "CARS ページではパワートレインや維持の難易度を、COLUMN ではこの転換期ならではのトラブルや注意点を扱っていきます。",
-    ].join("\n\n"),
-  },
-  {
-    kind: "ERA",
-    slug: "2020s-digital",
-    year: "2020s",
-    periodJa: "2020年代〜",
-    title: "デジタル体験としてのクルマ",
-    description:
-      "コネクテッドサービスや OTA アップデートにより、購入後もソフトウェアで進化していく『デジタルプロダクト』としての性格が強まってきました。",
-    subDescription:
-      "物理スイッチが減る一方で、UI や HMI の好みがクルマ選びの大きな要素になりつつあります。ハードだけでなく、ソフト側の付き合い方も考える時代です。",
-    tags: ["DIGITAL", "UI/UX", "CONNECTED"],
-    accentBrand: "各ブランド共通の潮流",
-    highlights: [
-      "UI / UX の好みがクルマ選びに直結するようになった時代。",
-      "OTA アップデートにより、購入後も性格が少しずつ変わるクルマが増加。",
-      "サブスクやコネクテッドサービスなど、『ランニングコストの設計』も重要なテーマに。",
-    ],
-    body: [
-      "2020 年代は、ハードウェアとしての完成度だけでなく、ソフトウェアとしての体験がクルマ選びに直結する時代になりました。",
-      "センターディスプレイの UI、音声アシスタント、スマホアプリとの連携、OTA アップデートなど、『乗る前・乗ったあと』の体験まで含めて 1 台のクルマが設計されています。",
-      "GUIDE セクションでは、サブスクリプションサービスやコネクテッドプランの考え方、COLUMN では UI/UX の好みが分かれやすいポイントなども扱っていく予定です。",
-    ].join("\n\n"),
-  },
-];
+    highlights: Array.isArray(raw.highlights) ? raw.highlights : [],
+    tags: Array.isArray(raw.tags) ? raw.tags : [],
 
-// --------------------------------------------------------
-// BRAND STRIPE データ（メーカーの歴史）
-// --------------------------------------------------------
+    chainKey: raw.chainKey ?? null,
+    chainOrder:
+      typeof raw.chainOrder === "number"
+        ? raw.chainOrder
+        : raw.chainOrder != null
+        ? Number(raw.chainOrder)
+        : null,
 
-export const HERITAGE_BRANDS: HeritageBrandStripe[] = [
-  {
-    kind: "BRAND",
-    slug: "bmw-character",
-    brand: "BMW",
-    tagline: "『機械の手触り』から『デジタルな安心感』へ",
-    summary:
-      "E46 / E39 世代あたりを境に、ステアリングフィールや足まわりの味付けが大きく変わっていきます。古い世代は機械的な手応えが強く、近年のモデルは高速安定性や安全装備を含めた総合力が魅力です。",
-    focusYears: "〜2000年代前半が分岐点",
-    note: "「どこまで電子制御に任せたいか」で、狙う世代がはっきり変わります。",
-    highlights: [
-      "直 6・MT を中心とした『ドライバーズカー』像からの変化。",
-      "E46 / E39 を境に、乗り味が『しなやかなスポーティ』から『高い安定感』寄りへ。",
-      "現行世代では、デジタルな安全装備と高速での安心感が大きな魅力。",
-    ],
-    timeline: [
-      {
-        year: "〜1990s",
-        text: "直列 6 気筒とマニュアルトランスミッションが象徴的な、『機械としての BMW』の時代。",
-      },
-      {
-        year: "1990s–2000s",
-        text: "E46 / E39 世代。ステアリングフィールとボディ剛性のバランスが良く、今もファンの多い世代。",
-      },
-      {
-        year: "2000s–",
-        text: "オートマ主体・電子制御の比率が増え、高速安定性と安全装備を含めた総合力が向上。",
-      },
-    ],
-    body: [
-      "かつての BMW は『直列 6 気筒とマニュアルミッション』という分かりやすい価値軸がありました。E46 / E39 世代は、そのイメージを象徴する最後の世代とも言われます。",
-      "その後はオートマチック主体になり、電子制御の介入も増えていきますが、そのぶん高速道路での安定感や、安全装備を含めた総合力は大きく向上しています。",
-      "COLUMN では、世代ごとのステアリングフィールの違いや、トラブル傾向の変化なども含めて、より具体的に掘り下げていく予定です。",
-    ].join("\n\n"),
-  },
-  {
-    kind: "BRAND",
-    slug: "mercedes-character",
-    brand: "Mercedes-Benz",
-    tagline: "『静かな箱』としての完成度と、その後の軽やかさ",
-    summary:
-      "W124 / W210 世代のしっとりした重さと、W211 以降の軽やかさ・電子制御の充実は、同じブランドの中でも好みが分かれるポイントです。",
-    focusYears: "1990年代〜2000年代前半",
-    note: "COLUMN のメンテナンス記事と合わせて読むと、年式ごとの維持難易度もイメージしやすくなります。",
-    highlights: [
-      "『最後のメカニカル・メルセデス』と呼ばれる W124 周辺のキャラクター。",
-      "W210 / W211 以降でボディ構造や電子制御が刷新され、乗り味の方向性も変化。",
-      "世代ごとに『重さ』と『軽やかさ』のバランスが違うブランド。",
-    ],
-    timeline: [
-      {
-        year: "1980s–1990s",
-        text: "W124 世代。『静かな箱』としての完成度が高く、今も評価が高いクラシック世代。",
-      },
-      {
-        year: "1990s–2000s",
-        text: "W210 / W211 世代。安全装備と電子制御が充実しつつも、独特のしっとり感を残す。",
-      },
-      {
-        year: "2000s–",
-        text: "軽量化やダウンサイジングの流れの中で、より軽快なキャラクターへ。",
-      },
-    ],
-    body: [
-      "『最後のメカニカル・メルセデス』と語られることの多い W124 世代から、W210、W211 と進むにつれて、ボディの作りや安全装備、サスペンションの設計思想は少しずつ変化していきます。",
-      "どの世代にも共通しているのは、『長く乗ること』を前提とした設計が感じられること。ただし、年式が進むにつれて電子制御の比率も高まり、メンテナンスのアプローチも変わっていきます。",
-      "どこまでクラシック寄りの世界観を求めるかによって、CARS ページで狙うべき世代が変わってきます。",
-    ].join("\n\n"),
-  },
-  {
-    kind: "BRAND",
-    slug: "volvo-character",
-    brand: "Volvo",
-    tagline: "『四角いボルボ』から、北欧デザインと電動化へ",
-    summary:
-      "かつての角張ったボディと武骨な安全性のイメージから、近年はミニマルな北欧デザインと電動化の文脈が強くなっています。",
-    focusYears: "2000年代〜現行",
-    note: "同じ Volvo でも、選ぶ年代によってライフスタイルの見え方が大きく変わるブランドです。",
-    highlights: [
-      "240 / 940 など『四角いボルボ』の時代は、安全と実用性を前面に出したキャラクター。",
-      "現行世代はミニマルな北欧デザインと電動化がキーワード。",
-      "どの世代も『家族との時間を大切にする』という軸は共通。",
-    ],
-    timeline: [
-      {
-        year: "〜1990s",
-        text: "240 / 940 など、角張ったボディと堅牢な安全性を象徴する時代。",
-      },
-      {
-        year: "2000s–2010s",
-        text: "フォード傘下などを経て、デザインとパッケージングが大きくモダンに。",
-      },
-      {
-        year: "2010s–",
-        text: "北欧デザインと電動化を前面に出した現行世代。UI / UX の方向性も特徴的。",
-      },
-    ],
-    body: [
-      "240 や 940 といった『四角いボルボ』の時代は、安全性と実用性を前面に出した、ある意味でとても分かりやすいキャラクターでした。",
-      "現行世代では、ミニマルな北欧デザインと電動化がキーワードになり、ライフスタイル全体の中でクルマを位置づけるブランドへと変化しています。",
-      "どちらの Volvo も『家族との時間を大切にする』という軸は共通しているので、自分の暮らしに合う温度感の世代を選ぶのがポイントです。",
-    ].join("\n\n"),
-  },
-];
+    carSlug: raw.carSlug ?? null,
 
-// --------------------------------------------------------
-// CAR STORY データ（世代ごとのストーリー）
-// ※ carSlug は実データに合わせてあとで調整しても OK
-// --------------------------------------------------------
+    meta: (raw.meta as Record<string, any>) ?? {},
 
-export const HERITAGE_CAR_STORIES: HeritageCarStory[] = [
-  {
-    kind: "CAR",
-    slug: "bmw-3series-e36",
-    carSlug: "bmw-3-series-e36", // 実際の CARS の slug に合わせて変更
-    maker: "BMW",
-    modelLine: "3 Series",
-    generationLabel: "E36 / 3rd generation",
-    years: "1990–1998",
-    title: "E36：『昔の BMW』と『現代的な BMW』のあいだにある節目",
-    brandSlug: "bmw-character",
-    summary:
-      "シャシーはすでに現代的ですが、ステアリングや足まわりの手触りにはクラシック寄りの素朴さが残る世代。E30 から続く『小さなスポーツサルーン』像を、ギリギリまで保っている 3 シリーズです。",
-    highlights: [
-      "ボディ剛性とコンパクトさのバランスが良く、峠も街乗りも楽しいサイズ感。",
-      "電子制御は最小限で、ステアリングフィールや足の動きに素直さが残る。",
-      "今選ぶなら、錆や室内の傷みなどコンディション重視で個体を選びたい世代。",
-    ],
-    body: [
-      "E36 は、E30 から続く『小さなスポーツサルーン』像を現代的なパッケージに乗せ換えた世代と言えます。ボディは一回り大きくなりましたが、今の基準から見るとまだまだコンパクトで、取り回しのしやすさと安定感のバランスが絶妙です。",
-      "電子制御は必要最低限にとどまり、ステアリングやペダル、ミッションのフィールには素朴さが残っています。その一方で、高速道路での安定性や安全性は、E30 よりもぐっと現代的になりました。",
-      "中古車として選ぶ場合は、錆や内装の傷みなど、年式相応の『古さ』とどう付き合うかがポイントになります。メカ的な構造は比較的シンプルなので、信頼できるショップと組めれば、まだまだ長く楽しめる世代です。",
-    ].join("\n\n"),
-    nextSlug: "bmw-3series-e46",
-  },
-  {
-    kind: "CAR",
-    slug: "bmw-3series-e46",
-    carSlug: "bmw-3-series-e46",
-    maker: "BMW",
-    modelLine: "3 Series",
-    generationLabel: "E46 / 4th generation",
-    years: "1998–2005",
-    title: "E46：『黄金期の 3 シリーズ』と呼ばれる理由",
-    brandSlug: "bmw-character",
-    summary:
-      "ボディ剛性・サスペンション・ステアリングフィールのバランスが高いレベルでまとまっており、『最後のアナログ BMW』として名前が挙がることの多い世代です。",
-    highlights: [
-      "ステアリングフィールとボディ剛性のバランスが非常に良く、『走らせて気持ちいい』という評価が多い。",
-      "電子制御は増えつつも、まだメカニカルな手触りを残している転換点。",
-      "今でも専門店が多く、メンテナンス情報やパーツの入手性が比較的確保されている。",
-    ],
-    body: [
-      "E46 は、『3 シリーズの黄金期』として名前が挙がることの多い世代です。ボディ剛性、サスペンション設計、ステアリングフィールのどれもが高いレベルでまとまっており、日常の足としても、ワインディングロードの相棒としてもバランスが取れています。",
-      "電子制御は E36 よりも増えていますが、まだ過度ではなく、『人間が操作している感覚』と『クルマが補ってくれる安心感』のバランスが絶妙です。",
-      "中古で探す際は、年式なりの消耗と、整備履歴の有無が重要になります。サスペンションやブッシュ類を一新した個体は、想像以上に『現役』の乗り味を取り戻すことも珍しくありません。",
-    ].join("\n\n"),
-    previousSlug: "bmw-3series-e36",
-    nextSlug: "bmw-3series-e90",
-  },
-  {
-    kind: "CAR",
-    slug: "bmw-3series-e90",
-    carSlug: "bmw-3-series-e90",
-    maker: "BMW",
-    modelLine: "3 Series",
-    generationLabel: "E90 / 5th generation",
-    years: "2005–2012",
-    title: "E90：『現代の 3 シリーズ』への入口",
-    brandSlug: "bmw-character",
-    summary:
-      "安全装備と電子制御が一気に充実し、高速道路主体の使い方にも安心感がある世代。E46 までの素朴さは薄れる一方で、日常の道具としての完成度は大きく上がっています。",
-    highlights: [
-      "ボディサイズは一回り大きくなり、室内とラゲッジの実用性が向上。",
-      "安全装備や電子制御が充実し、『普通のファミリーカーのアップグレード版』として使いやすい。",
-      "整備では電子制御まわりの知識が必須になるため、主治医選びがより重要に。",
-    ],
-    body: [
-      "E90 世代の 3 シリーズは、E46 までの『アナログ BMW』感から一歩進み、現代的な安全装備と電子制御を備えたプレミアムセダンとしての性格が強くなります。",
-      "ボディサイズは一回り大きくなり、室内やラゲッジの実用性も向上。ファミリーカーとしての使い勝手と、『走らせて楽しい』という 3 シリーズらしさを両立しようとした世代です。",
-      "維持の面では、サスペンションやゴム類の交換に加えて、電子制御まわりの診断や対策がポイントになります。信頼できるショップと組めれば、長距離移動の相棒としても心強い一台になってくれます。",
-    ].join("\n\n"),
-    previousSlug: "bmw-3series-e46",
-  },
-];
-
-// --------------------------------------------------------
-// ヘルパー
-// --------------------------------------------------------
-
-export function getAllHeritageEras(): HeritageEra[] {
-  return HERITAGE_ERAS;
+    body: String(raw.body ?? ""),
+  };
 }
 
-export function getAllHeritageBrands(): HeritageBrandStripe[] {
-  return HERITAGE_BRANDS;
+const ALL_HERITAGE_ITEMS: HeritageItem[] = (heritageData as any[]).map(
+  normalizeItem,
+);
+
+/**
+ * 全 HERITAGE 記事を取得。
+ * JSON はビルド時にロードされるので同期でもよいが、
+ * 他の lib とインターフェイスを揃えて async で返却。
+ */
+export async function getAllHeritage(): Promise<HeritageItem[]> {
+  return ALL_HERITAGE_ITEMS;
 }
 
-export function getAllHeritageCarStories(): HeritageCarStory[] {
-  return HERITAGE_CAR_STORIES;
-}
-
-export function getAllHeritageNodes(): HeritageNode[] {
-  return [...HERITAGE_ERAS, ...HERITAGE_BRANDS, ...HERITAGE_CAR_STORIES];
-}
-
-export function getHeritageNodeBySlug(
+export async function getHeritageBySlug(
   slug: string,
-): HeritageNode | undefined {
-  return getAllHeritageNodes().find((n) => n.slug === slug);
+): Promise<HeritageItem | null> {
+  const all = await getAllHeritage();
+  return all.find((n) => n.slug === slug) ?? null;
+}
+
+export async function getHeritageById(
+  id: string,
+): Promise<HeritageItem | null> {
+  const all = await getAllHeritage();
+  return all.find((n) => n.id === id) ?? null;
+}
+
+export async function getHeritageByKind(
+  kind: HeritageKind,
+): Promise<HeritageItem[]> {
+  const all = await getAllHeritage();
+  return all
+    .filter((n) => n.kind === kind)
+    .sort((a, b) => {
+      const aOrder = a.chainOrder ?? 0;
+      const bOrder = b.chainOrder ?? 0;
+      if (a.chainKey === b.chainKey) {
+        return aOrder - bOrder;
+      }
+      const aKey = a.chainKey ?? "";
+      const bKey = b.chainKey ?? "";
+      if (aKey === bKey) return a.title.localeCompare(b.title);
+      return aKey.localeCompare(bKey);
+    });
+}
+
+/**
+ * 同じ chainKey を持つノード群を、chainOrder 昇順で返す。
+ * chainKey 未設定の場合は空配列。
+ */
+export async function getHeritageChainForItem(
+  item: HeritageItem,
+): Promise<HeritageItem[]> {
+  if (!item.chainKey) return [];
+  const all = await getAllHeritage();
+
+  return all
+    .filter((n) => n.chainKey === item.chainKey)
+    .sort((a, b) => (a.chainOrder ?? 0) - (b.chainOrder ?? 0));
+}
+
+/**
+ * 前後の記事（同じ chainKey 内）を取得。
+ * 見つからない場合は null。
+ */
+export async function getHeritageNeighbors(
+  item: HeritageItem,
+): Promise<{
+  previous: HeritageItem | null;
+  next: HeritageItem | null;
+}> {
+  const chain = await getHeritageChainForItem(item);
+  if (!item.chainKey || chain.length === 0) {
+    return { previous: null, next: null };
+  }
+
+  const index = chain.findIndex((n) => n.id === item.id);
+  if (index === -1) return { previous: null, next: null };
+
+  const previous = index > 0 ? chain[index - 1] : null;
+  const next = index < chain.length - 1 ? chain[index + 1] : null;
+
+  return { previous, next };
+}
+
+/**
+ * chainKey ごとにグルーピングした系譜一覧。
+ * HERITAGE トップで「ブランド別の系譜ビュー」に使用。
+ */
+export async function getHeritageChains(): Promise<
+  { chainKey: string; nodes: HeritageItem[] }[]
+> {
+  const all = await getAllHeritage();
+  const map = new Map<string, HeritageItem[]>();
+
+  for (const item of all) {
+    if (!item.chainKey) continue;
+    const key = item.chainKey;
+    if (!map.has(key)) {
+      map.set(key, []);
+    }
+    map.get(key)!.push(item);
+  }
+
+  const chains: { chainKey: string; nodes: HeritageItem[] }[] = [];
+
+  for (const [key, nodes] of map.entries()) {
+    nodes.sort((a, b) => (a.chainOrder ?? 0) - (b.chainOrder ?? 0));
+    chains.push({ chainKey: key, nodes });
+  }
+
+  chains.sort((a, b) => a.chainKey.localeCompare(b.chainKey));
+  return chains;
 }
