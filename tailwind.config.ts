@@ -22,7 +22,7 @@ const config: Config = {
         "soft-strong": "0 20px 50px -12px rgba(10, 186, 181, 0.25)",
         glow: "0 0 20px rgba(10, 186, 181, 0.3)",
 
-        // 【新規】ガラスの厚みと内部反射
+        // ガラスの厚みと内部反射
         "glass-edge":
           "inset 0 1px 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 2px 0 rgba(10, 186, 181, 0.1)",
         "glass-deep":
@@ -30,7 +30,10 @@ const config: Config = {
       },
 
       colors: {
+        // サイト全体のベース背景
+        site: "#F8FAFC",
         background: "#F8FAFC",
+
         // テキスト色：純粋な黒ではなく、わずかに青みを含ませて馴染ませる
         "text-main": "#0F172A",
         "text-sub": "#6B7280",
@@ -48,12 +51,12 @@ const config: Config = {
           700: "#077F7B",
         },
 
-        // 【新規】空間色と素材色
+        // 空間色と素材色
         vapor: "#F0FBFB", // Ice Vapor: 白と青の中間にある空気色
         obsidian: "#1A1A1A", // 柔らかい黒
         porcelain: "#FFFFFF", // 陶器のような白
 
-        // 【新規】Phase 2: Glassmorphism 用 Dim パレット
+        // Glassmorphism 用 Dim パレット
         "tiffany-dim": {
           50: "#F2FAFA",
           100: "#E6F4F4",
@@ -71,12 +74,13 @@ const config: Config = {
       borderRadius: {
         "2xl": "1.25rem",
         "3xl": "1.75rem",
+        "4xl": "2.25rem",
       },
 
       fontFamily: {
         // app/layout.tsx で定義するCSS変数と紐付け
-        sans: ["var(--font-manrope)", "sans-serif"],
-        serif: ["var(--font-bodoni)", "serif"],
+        sans: ["var(--font-manrope)", "system-ui", "sans-serif"],
+        serif: ["var(--font-bodoni)", "ui-serif", "serif"],
       },
 
       // 物理感のあるイージング / アニメーション
@@ -99,6 +103,13 @@ const config: Config = {
             opacity: "1",
           },
         },
+      },
+
+      // 広めのセクション余白（仕様書に合わせたスケール）
+      spacing: {
+        30: "7.5rem", // 120px
+        40: "10rem", // 160px
+        50: "12.5rem", // 200px
       },
     },
   },
