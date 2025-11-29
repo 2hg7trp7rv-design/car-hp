@@ -1,4 +1,3 @@
-// app/column/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -12,7 +11,7 @@ export const runtime = "edge";
 export const metadata: Metadata = {
   title: "コラムとストーリー | CAR BOUTIQUE",
   description:
-    "トラブルや修理の実例、ブランドの歴史や技術解説など、クルマに関する情報を整理して読めるコラム集です。",
+    "トラブル 修理 ブランドの歴史 技術解説など クルマまわりの情報を整理したコラム集",
 };
 
 type SearchParams = {
@@ -146,13 +145,13 @@ export default async function ColumnPage({ searchParams }: PageProps) {
           </Reveal>
           <Reveal delay={80}>
             <h1 className="serif-heading text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
-              トラブル・修理と、ブランドや技術のコラム集
+              トラブル 修理 ブランドや技術のコラム集
             </h1>
           </Reveal>
           <Reveal delay={160}>
             <p className="max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
-              メンテナンスやトラブルの実例、ブランドの歴史、技術的な背景などをまとめた読み物です。
-              車種選びや維持の判断材料として、必要な情報だけを落ち着いて確認できることを目指しています。
+              メンテナンスやトラブルの実例 ブランドの歴史 技術的な背景などをまとめた読み物
+              車種選びや維持の判断材料として 重要な情報だけを落ち着いて確認できる構成
             </p>
           </Reveal>
         </header>
@@ -176,8 +175,8 @@ export default async function ColumnPage({ searchParams }: PageProps) {
                     COLUMN INDEX
                   </p>
                   <p className="mt-1 text-[11px] leading-relaxed text-text-sub sm:text-xs">
-                    現在登録されているコラム数と、メンテナンス系 / 技術・ブランド系の
-                    おおまかなバランスです。
+                    現在登録されているコラム数と メンテナンス系 技術 ブランド系の
+                    おおまかなバランスを表示
                   </p>
                 </div>
 
@@ -303,7 +302,7 @@ export default async function ColumnPage({ searchParams }: PageProps) {
                       href="/column?category=TECHNICAL"
                       className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 tracking-[0.16em] hover:border-tiffany-300 hover:bg-white"
                     >
-                      技術・ブランド系だけ
+                      技術 ブランド系だけ
                     </Link>
                     {featuredTags.map((tag) => (
                       <Link
@@ -401,8 +400,7 @@ export default async function ColumnPage({ searchParams }: PageProps) {
 
             {filtered.length === 0 ? (
               <p className="rounded-2xl border border-dashed border-slate-200 bg-white/70 p-6 text-center text-xs text-slate-500">
-                条件に合致するコラムが見つかりませんでした。
-                絞り込み条件を少し緩めて、もう一度お試しください。
+                条件に合うコラムはなし 絞り込み条件を少し緩めて再検索する想定
               </p>
             ) : (
               <div className="grid gap-4 md:grid-cols-2">
