@@ -51,7 +51,9 @@ function formatDate(iso?: string | null): string {
 }
 
 // ガイドのカテゴリ表示用
-function mapCategoryLabel(category: GuideItem["category"]): string {
+// ※ GuideItem["category"] に縛らず、string ベースで扱うことで
+//   "BUY" / "MAINTENANCE_COST" も型エラーなくハンドリング
+function mapCategoryLabel(category: string | null | undefined): string {
   switch (category) {
     case "MONEY":
     case "BUY":
@@ -177,7 +179,14 @@ async function getRelatedColumnsForGuide(
   guide: GuideItem,
 ): Promise<ColumnItem[]> {
   const allColumns = await getAllColumns();
-  const guideTags = new Set((guide as GuideItem & { tags?: string[] }).tags ?? []);
+
+  // tags / category は実データ上は string 系が入る前提で扱う
+  const guideWithMeta = guide as GuideItem & {
+    category?: string | null;
+    tags?: string[] | null;
+  };
+
+  const guideTags = new Set(guideWithMeta.tags ?? []);
 
   return allColumns
     .map((col) => {
@@ -192,7 +201,8 @@ async function getRelatedColumnsForGuide(
       }
 
       // ガイドカテゴリと相性の良さでざっくり加点
-      const guideCategory = guide.category;
+      const guideCategory = (guideWithMeta.category ?? null) as string | null;
+
       if (
         guideCategory === "MONEY" ||
         guideCategory === "BUY" ||
@@ -304,7 +314,15 @@ export default async function GuideDetailPage({ params }: PageProps) {
   const { blocks, headings } = parseBody(guide.body);
   const relatedColumns = await getRelatedColumnsForGuide(guide);
   const stepHeadings = extractStepHeadings(headings);
-  const relatedCarSlugs = (guide.relatedCarSlugs ?? []).filter(
+
+  const guideWithMeta = guide as GuideItem & {
+    readMinutes?: number | null;
+    tags?: string[] | null;
+    category?: string | null;
+    relatedCarSlugs?: (string | null)[];
+  };
+
+  const relatedCarSlugs = (guideWithMeta.relatedCarSlugs ?? []).filter(
     (slug): slug is string =>
       typeof slug === "string" && slug.trim().length > 0,
   );
@@ -349,7 +367,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                 GUIDE
               </span>
               <span className="h-[1px] w-6 bg-slate-200" />
-              <span>{mapCategoryLabel(guide.category)}</span>
+              <span>{mapCategoryLabel(guideWithMeta.category)}</span>
             </div>
           </Reveal>
 
@@ -361,15 +379,10 @@ export default async function GuideDetailPage({ params }: PageProps) {
 
           <Reveal delay={160}>
             <div className="mt-4 flex flex-wrap items-center gap-3 text-[11px] text-slate-500">
-              {(guide as GuideItem & { readMinutes?: number }).readMinutes && (
+              {guideWithMeta.readMinutes != null && (
                 <span className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-3 py-1.5 text-[10px] tracking-[0.18em] text-slate-100 shadow-soft">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  約{" "}
-                  {
-                    (guide as GuideItem & { readMinutes?: number })
-                      .readMinutes
-                  }{" "}
-                  分で読めます
+                  約 {guideWithMeta.readMinutes} 分で読めます
                 </span>
               )}
               {guide.publishedAt && (
@@ -380,25 +393,21 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   </span>
                 </>
               )}
-              {(guide as GuideItem & { tags?: string[] }).tags &&
-                (guide as GuideItem & { tags?: string[] }).tags!.length >
-                  0 && (
-                  <>
-                    <span className="h-[1px] w-6 bg-slate-200" />
-                    <div className="flex flex-wrap gap-1.5">
-                      {(guide as GuideItem & { tags?: string[] }).tags!.map(
-                        (tag) => (
-                          <span
-                            key={tag}
-                            className="rounded-full bg-slate-50 px-2 py-0.5 text-[10px] tracking-[0.12em]"
-                          >
-                            #{tag}
-                          </span>
-                        ),
-                      )}
-                    </div>
-                  </>
-                )}
+              {guideWithMeta.tags && guideWithMeta.tags.length > 0 && (
+                <>
+                  <span className="h-[1px] w-6 bg-slate-200" />
+                  <div className="flex flex-wrap gap-1.5">
+                    {guideWithMeta.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full bg-slate-50 px-2 py-0.5 text-[10px] tracking-[0.12em]"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           </Reveal>
 
@@ -427,8 +436,8 @@ export default async function GuideDetailPage({ params }: PageProps) {
                     GUIDE OUTLINE
                   </p>
                   <p className="mt-1 leading-relaxed">
-                    このガイドは、「{mapCategoryLabel(guide.category)}」に関する
-                    基本的な考え方や、順番を整理するためのメモです。細かい
+                    このガイドは、「{mapCategoryLabel(guideWithMeta.category)}」
+                    に関する基本的な考え方や、順番を整理するためのメモです。細かい
                     数字の比較というよりも、「まずここから押さえておくと楽」という
                     目線で構成しています。
                   </p>
@@ -669,7 +678,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   href={`/column/${encodeURIComponent(col.slug)}`}
                 >
                   <GlassCard className="h-full border border-slate-200/80 bg-gradient-to-br from-vapor/80 via-white/95 to-white/90 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
-                    <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                    <div className="mb-2 flex flex-wrap items中心 gap-2 text-[10px] text-slate-500">
                       <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
                         {mapColumnCategoryLabel(col.category)}
                       </span>
