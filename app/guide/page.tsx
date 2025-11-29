@@ -1,4 +1,3 @@
-// app/guide/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -12,7 +11,7 @@ export const runtime = "edge";
 export const metadata: Metadata = {
   title: "GUIDE | CAR BOUTIQUE",
   description:
-    "買い方・売り方・維持費・保険・税金など、クルマとの付き合い方を整理するための実用ガイド集です。",
+    "買い方 売り方 維持費 保険 税金など クルマとの付き合い方を整理するための実用ガイド集",
 };
 
 type GuideTopic = {
@@ -41,22 +40,22 @@ const guideSections: GuideSection[] = [
     label: "お金と維持費のこと",
     subLabel: "FINANCE & COST",
     description:
-      "ローン、残価設定ローン、保険、税金など、クルマにかかる費用の全体像を整理するためのガイドです。",
+      "ローン 残価設定ローン 保険 税金など クルマにかかる費用の全体像を整理するためのガイド",
     accent: "tiffany",
     gridArea: "md:col-span-7 lg:col-span-7 lg:row-span-2",
     topics: [
       {
         id: "loan-or-lump-sum",
-        title: "ローン or 一括、どちらが良い？",
+        title: "ローン or 一括 どちらが良いか考えるときの基準",
         description:
-          "金利・返済期間・売却タイミングなどを比較しながら検討するための基本的なチェックポイント。",
+          "金利 返済期間 売却タイミングを比較しながら判断するときの基本チェックポイント",
         link: "/guide/loan-or-lump-sum",
       },
       {
         id: "maintenance-cost-simulation",
         title: "維持費シミュレーションの基本",
         description:
-          "税金、保険、車検、タイヤなどを「月いくら」の目安で把握するためのシンプルな考え方。",
+          "税金 保険 車検 タイヤなどを 月いくら の目安で把握するためのシンプルな考え方",
         link: "/guide/maintenance-cost-simulation",
       },
     ],
@@ -67,15 +66,15 @@ const guideSections: GuideSection[] = [
     label: "手放すときのポイント",
     subLabel: "SELLING",
     description:
-      "乗り換えや売却を検討するときに確認しておきたい、査定・買取・下取りの違いや注意点をまとめます。",
+      "乗り換えや売却を検討するときに確認しておきたい 査定 買取 下取りの違いや注意点を整理",
     accent: "obsidian",
     gridArea: "md:col-span-5 lg:col-span-5 lg:row-span-2",
     topics: [
       {
         id: "selling-without-rush",
-        title: "『急いで売らない』ための段取り",
+        title: "急がず売るための段取り",
         description:
-          "下取り、買取、個人売買の特徴とメリット・デメリットを整理し、スケジュールに余裕を持たせるための基本的な手順。",
+          "下取り 買取 個人売買の特徴とメリット デメリットを整理し スケジュールに余裕を持たせるための基本手順",
         link: "/guide/selling-without-rush",
       },
     ],
@@ -157,7 +156,7 @@ export default async function GuidePage() {
 
           <Reveal delay={100}>
             <h1 className="serif-heading text-4xl font-medium leading-[1.1] text-slate-900 sm:text-5xl lg:text-[3.25rem]">
-              買い方・維持費・売却を
+              買い方 維持費 売却を
               <br className="hidden sm:block" />
               落ち着いて整理するためのガイド
             </h1>
@@ -166,9 +165,9 @@ export default async function GuidePage() {
           <Reveal delay={200}>
             <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
               <p className="max-w-xl text-xs font-medium leading-loose text-text-sub sm:text-sm">
-                クルマを「買う・維持する・手放す」ときに必要になる、お金や手続きまわりの情報を
-                小さな読み物としてまとめたエリアです。具体的な金額の目安というよりも、
-                「どこから考え始めると楽か」を整理するための道しるべとして使えることを目指しています。
+                クルマを買う 維持する 手放すときに必要になる お金や手続きまわりの情報を
+                コンパクトな読み物として整理したエリア
+                具体的な金額よりも 何から確認するかをそろえるためのガイドとして使う前提
               </p>
 
               {/* 関連コンテンツへの導線（Glassボタン） */}
@@ -183,7 +182,7 @@ export default async function GuidePage() {
                   <Link href="/column">VIEW COLUMNS</Link>
                 </Button>
                 <p className="max-w-xs text-[10px] leading-relaxed text-slate-500">
-                  実際のトラブル事例や、ブランド・技術の背景は COLUMN セクションで少しずつ掘り下げています。
+                  実際のトラブル事例や ブランド 技術の背景は COLUMN セクション側で補足
                 </p>
               </div>
             </div>
@@ -197,7 +196,7 @@ export default async function GuidePage() {
                   GUIDE NAV
                 </span>
                 <span className="hidden text-[10px] tracking-[0.12em] text-slate-500 sm:inline">
-                  全 {totalTopics} 本のガイドを、テーマ別に整理しています。
+                  全 {totalTopics} 本のガイドをテーマ別に整理
                 </span>
               </div>
               <div className="flex flex-wrap gap-2 text-[10px]">
@@ -406,7 +405,7 @@ export default async function GuidePage() {
                 </h2>
               </div>
               <p className="text-[10px] leading-relaxed text-slate-500 sm:text-[11px]">
-                公開日の新しい順に並んでいます。気になるテーマがあればタイトルから詳細へ。
+                公開日の新しい順に並び替え済み 気になるテーマがあればタイトルから詳細へ
               </p>
             </div>
           </Reveal>
@@ -414,7 +413,7 @@ export default async function GuidePage() {
           {sortedGuides.length === 0 ? (
             <Reveal delay={680}>
               <div className="rounded-2xl border border-slate-100 bg-white/80 px-4 py-6 text-[11px] text-slate-500">
-                現在、公開中のガイドはまだありません。順次追加していきます。
+                現在公開中のガイドはなし 今後追加予定
               </div>
             </Reveal>
           ) : (
@@ -451,7 +450,7 @@ export default async function GuidePage() {
           )}
         </section>
 
-        {/* --- 下部 CTA：ガイドと他コンテンツの関係性を説明 --- */}
+        {/* --- 下部 CTA：ガイドと他コンテンツの関係性 --- */}
         <section className="mt-24 lg:mt-28">
           <Reveal delay={800}>
             <div className="relative overflow-hidden rounded-3xl bg-slate-900 px-6 py-12 text-center shadow-soft-strong sm:px-12 sm:py-16">
@@ -463,12 +462,12 @@ export default async function GuidePage() {
                   INFORMATION
                 </span>
                 <h3 className="serif-heading mb-6 text-2xl text-white sm:text-3xl">
-                  ガイドと、ニュース / コラム / 車種ページのつながり
+                  ガイドと NEWS COLUMN CARS の関係
                 </h3>
                 <p className="mx-auto mb-8 max-w-xl text-xs leading-relaxed text-slate-300 sm:text-sm">
-                  ここで扱うのは「お金や段取りの全体像」の部分です。
-                  実際のトラブル事例や、ブランドごとの考え方、車種ごとの維持難易度は
-                  NEWS・COLUMN・CARS の各ページで少しずつ補っていくイメージになっています。
+                  ここでは お金や段取りの全体像を扱う想定
+                  実際のトラブル事例やブランドごとの傾向 車種ごとの維持難易度などは
+                  NEWS COLUMN CARS 各ページの内容で補完する前提
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
                   <Button
