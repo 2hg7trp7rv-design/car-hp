@@ -1,57 +1,84 @@
 // lib/guides.ts
-import guidesRaw from "@/data/guides.json";
+import guidesData from "@/data/guides.json";
 
-export type GuideCategory = "MONEY" | "SELL";
+// カテゴリは data-model の設計どおり「任意の string 」とする
+export type GuideCategory = string;
 
 export type GuideItem = {
   id: string;
   slug: string;
   title: string;
+  category?: GuideCategory | null;
   summary: string;
-  category: GuideCategory;
-  tags?: string[];
-  publishedAt?: string; // ISO文字列
-  readMinutes?: number; // 読了目安（分）
-  heroImage?: string;
-  body: string; // Markdownライクなテキスト
+  body: string;
+  relatedCarSlugs?: string[];
+  publishedAt?: string | null;
 };
 
-function normalizeGuideItem(raw: any): GuideItem {
-  const slug: string = raw.slug ?? raw.id ?? "";
-  const id: string = raw.id ?? slug;
+type RawGuide = (typeof guidesData)[number];
 
-  return {
-    id,
-    slug,
-    title: raw.title ?? "(タイトル未設定)",
-    summary: raw.summary ?? "",
-    category: (raw.category as GuideCategory) ?? "MONEY",
-    tags: Array.isArray(raw.tags) ? raw.tags : [],
-    publishedAt: raw.publishedAt ?? undefined,
-    readMinutes:
-      typeof raw.readMinutes === "number" ? raw.readMinutes : undefined,
-    heroImage: raw.heroImage ?? undefined,
-    body: raw.body ?? "",
-  };
+function normalizeSlug(item: Partial<RawGuide>): string {
+  if (item.slug && item.slug.length > 0) return item.slug;
+  if (item.id && item.id.length > 0) return item.id;
+  return "";
 }
 
-const allGuides: GuideItem[] = Array.isArray(guidesRaw)
-  ? (guidesRaw as any[])
-      .map(normalizeGuideItem)
-      .sort((a, b) => {
-        const aDate = a.publishedAt ?? "";
-        const bDate = b.publishedAt ?? "";
-        return aDate < bDate ? 1 : aDate > bDate ? -1 : 0;
-      })
-  : [];
+function normalizeGuide(raw: RawGuide): GuideItem | null {
+  const slug = normalizeSlug(raw);
+  if (!slug) return null;
+
+  if (!raw.id || !raw.title || !raw.summary || !raw.body) {
+    return null;
+  }
+
+  const normalized: GuideItem = {
+    id: String(raw.id),
+    slug,
+    title: String(raw.title),
+    summary: String(raw.summary),
+    body: String(raw.body),
+    category: (raw as any).category ?? null,
+    relatedCarSlugs: Array.isArray((raw as any).relatedCarSlugs)
+      ? ((raw as any).relatedCarSlugs as string[])
+      : [],
+    publishedAt: (raw as any).publishedAt ?? null,
+  };
+
+  return normalized;
+}
+
+function buildAllGuides(): GuideItem[] {
+  const seen = new Map<string, GuideItem>();
+
+  for (const raw of guidesData) {
+    const normalized = normalizeGuide(raw);
+    if (!normalized) continue;
+
+    if (seen.has(normalized.slug)) continue;
+    seen.set(normalized.slug, normalized);
+  }
+
+  const result = Array.from(seen.values());
+
+  result.sort((a, b) => {
+    const ta = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
+    const tb = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
+    if (ta !== tb) return tb - ta;
+
+    return a.title.localeCompare(b.title, "ja");
+  });
+
+  return result;
+}
+
+const ALL_GUIDES: GuideItem[] = buildAllGuides();
 
 export async function getAllGuides(): Promise<GuideItem[]> {
-  return allGuides;
+  return ALL_GUIDES;
 }
 
 export async function getGuideBySlug(
   slug: string,
 ): Promise<GuideItem | null> {
-  const item = allGuides.find((g) => g.slug === slug);
-  return item ?? null;
+  return ALL_GUIDES.find((g) => g.slug === slug) ?? null;
 }
