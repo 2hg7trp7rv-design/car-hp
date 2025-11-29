@@ -18,46 +18,20 @@ type HeroSectionProps = {
 };
 
 export function HeroSection({ stats }: HeroSectionProps) {
-  const [videoError, setVideoError] = useState(false);
+  const [hoveredBlock, setHoveredBlock] = useState<"news" | "columns" | "guide" | "cars" | null>(null);
 
   return (
-    <section className="relative h-[78vh] min-h-[560px] w-full overflow-hidden rounded-[2.5rem] border border-white/40 bg-obsidian shadow-soft-strong">
-      {/* BACKGROUND */}
-      <div className="absolute inset-0 z-0">
-        {!videoError ? (
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            onError={() => setVideoError(true)}
-            className="h-full w-full object-cover opacity-55"
-            poster="/images/hero-sedan.jpg"
-          >
-            <source src="/videos/hero.mp4" type="video/mp4" />
-          </video>
-        ) : (
-          <div
-            className="h-full w-full bg-cover bg-center opacity-70"
-            style={{ backgroundImage: "url(/images/hero-sedan.jpg)" }}
-          />
-        )}
+    <section className="relative overflow-hidden bg-[radial-gradient(circle_at_0%_0%,rgba(129,216,208,0.35),transparent_55%),radial-gradient(circle_at_100%_0%,rgba(15,23,42,0.6),transparent_55%),radial-gradient(circle_at_50%_120%,rgba(10,186,181,0.4),transparent_55%)]">
+      {/* 薄いオーバーレイ */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,rgba(255,255,255,0.3),transparent_60%),radial-gradient(circle_at_80%_20%,rgba(15,23,42,0.45),transparent_60%)]" />
 
-        {/* Tiffany の光 */}
-        <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.55),_transparent_65%)] blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-32 -right-16 h-80 w-80 rounded-full bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.9),_transparent_70%)] blur-3xl" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-obsidian/55 to-obsidian/15" />
-        <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent" />
-      </div>
-
-      {/* CONTENT */}
-      <div className="relative z-10 flex h-full flex-col justify-center px-5 sm:px-10 lg:px-16">
-        <div className="max-w-3xl">
+      <div className="relative mx-auto flex max-w-6xl flex-col gap-12 px-4 pb-16 pt-14 sm:gap-14 sm:px-6 sm:pb-20 sm:pt-16 lg:flex-row lg:items-center lg:gap-16 lg:px-8 lg:pb-24 lg:pt-20">
+        {/* 左側：キャッチコピー + CTA */}
+        <div className="relative z-10 max-w-xl text-white">
           {/* ラベル */}
-          <Reveal delay={0}>
-            <div className="mb-5 flex flex-wrap items-center gap-3 text-[10px] font-semibold tracking-[0.32em] text-tiffany-200">
-              <span className="inline-flex items-center gap-2">
-                <span className="h-[1px] w-8 bg-tiffany-300" />
+          <Reveal delay={60}>
+            <div className="flex items-center gap-2 text-[10px] tracking-[0.28em] text-slate-100/70">
+              <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1">
                 CAR BOUTIQUE
               </span>
               <span className="hidden h-[1px] w-6 bg-slate-600/60 sm:inline-block" />
@@ -70,21 +44,19 @@ export function HeroSection({ stats }: HeroSectionProps) {
           {/* 見出し */}
           <Reveal delay={160}>
             <h1 className="serif-heading text-3xl font-medium leading-tight text-white sm:text-4xl lg:text-[2.8rem]">
-              クルマのニュースとデータを、
-              <br className="hidden sm:block" />
-              <span className="bg-gradient-to-r from-white via-tiffany-100 to-tiffany-300 bg-clip-text text-transparent">
-                静かな画面でまとめて確認できる場所。
-              </span>
+              車のニュースと情報をまとめたサイト
             </h1>
           </Reveal>
 
           {/* リード文 */}
           <Reveal delay={260}>
             <p className="mt-5 max-w-xl text-[12px] leading-relaxed text-slate-200/85 sm:text-[13px]">
-              新型車のニュース、トラブルやメンテナンスのコラム、維持の難易度や
-              ボディタイプで絞り込める車種データベースをひとつにまとめたサイトです。
-              「検討中の一台」について、情報を落ち着いて整理したい人向けの
-              デジタルブティックを目指しています。
+              新車情報
+              よくあるトラブルやメンテナンスの話
+              気になる車種のスペックや維持のしやすさ
+              
+              クルマを検討するときに
+              ひと通りの情報を見られるようにしたサイト
             </p>
           </Reveal>
 
@@ -110,16 +82,18 @@ export function HeroSection({ stats }: HeroSectionProps) {
 
               {/* 補助テキスト（PC） */}
               <div className="hidden min-w-[190px] flex-1 text-[10px] text-slate-300/80 sm:block">
-                <div className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1.5 shadow-glass-edge backdrop-blur">
-                  <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  <span className="tracking-[0.16em]">
-                    NEWS / COLUMN / CARS / GUIDE 連動
-                  </span>
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                    <span className="tracking-[0.16em]">
+                      NEWS / COLUMN / CARS / GUIDE 連動
+                    </span>
+                  </div>
+                  <p className="mt-2 leading-relaxed tracking-[0.03em]">
+                    気になる車種のページを起点に
+                    関連ニュース コラム ガイドへ移動できる構成
+                  </p>
                 </div>
-                <p className="mt-2 leading-relaxed tracking-[0.03em]">
-                  まずは気になる車種のページから、
-                  関連ニュースとコラム、ガイドをセットで読み進めるイメージです。
-                </p>
               </div>
             </div>
           </Reveal>
@@ -127,29 +101,19 @@ export function HeroSection({ stats }: HeroSectionProps) {
           {/* インデックス */}
           <Reveal delay={480}>
             <div className="mt-8 space-y-3">
-              <div className="flex flex-wrap gap-2 text-[10px] text-slate-200/80">
-                <div className="flex items-center gap-2 rounded-full bg-black/30 px-3 py-1 shadow-soft-glow backdrop-blur">
-                  <span className="h-1.5 w-1.5 rounded-full bg-tiffany-400" />
-                  <span className="tracking-[0.14em]">
-                    IMPORT &amp; PREMIUM MODELS FOCUSED
-                  </span>
+              <div className="flex items-center gap-4 text-[10px] text-slate-200/90">
+                <div className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1.5 ring-1 ring-white/20 backdrop-blur">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  <span className="tracking-[0.18em]">CURRENT COVERAGE</span>
                 </div>
-                <div className="flex items-center gap-2 rounded-full bg-black/20 px-3 py-1 backdrop-blur">
-                  <span className="h-1 w-1 rounded-full bg-slate-300" />
-                  <span className="tracking-[0.12em]">
-                    維持難易度 / ボディタイプで検索
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 rounded-full bg-black/20 px-3 py-1 backdrop-blur">
-                  <span className="h-1 w-1 rounded-full bg-slate-300" />
-                  <span className="tracking-[0.12em]">
-                    トラブル・修理コラムとガイドを連動
-                  </span>
-                </div>
+
+                <p className="hidden text-[10px] tracking-[0.06em] text-slate-200/80 sm:inline">
+                  トラブル・修理コラムとガイドを連動
+                </p>
               </div>
 
               {stats && (
-                <div className="max-w-xl rounded-2xl border border-white/20 bg-black/35 px-4 py-3 text-[10px] text-slate-100 shadow-glass-edge backdrop-blur">
+                <div className="max-w-xl rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-[10px] text-slate-100 shadow-glass-edge backdrop-blur">
                   <p className="text-[9px] font-semibold tracking-[0.2em] text-slate-300/80">
                     CURRENT INDEX
                   </p>
@@ -187,11 +151,147 @@ export function HeroSection({ stats }: HeroSectionProps) {
                       </span>
                     </div>
                     <p className="mt-1 w-full text-[9px] text-slate-300/80">
-                      情報は少しずつ増えていく前提で、サイト自体も一緒に更新されていきます。
+                      とりあえず輸入車とプレミアム系が中心
                     </p>
                   </div>
                 </div>
               )}
+            </div>
+          </Reveal>
+        </div>
+
+        {/* 右側：Bento 風インタラクションパネル */}
+        <div className="relative z-10 flex-1">
+          {/* 背景の「光」レイヤー */}
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute -left-10 top-[-12%] h-40 w-40 rounded-full bg-[radial-gradient(circle_at_center,_rgba(129,216,208,0.55),_transparent_70%)] blur-3xl" />
+            <div className="absolute -right-12 bottom-[-8%] h-48 w-48 rounded-full bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.7),_transparent_70%)] blur-3xl" />
+          </div>
+
+          <Reveal delay={220}>
+            <div className="relative grid grid-cols-2 gap-3 text-[11px] text-slate-900 sm:gap-4 lg:grid-cols-2">
+              {/* NEWS */}
+              <button
+                type="button"
+                onMouseEnter={() => setHoveredBlock("news")}
+                onMouseLeave={() => setHoveredBlock((prev) => (prev === "news" ? null : prev))}
+                className="group relative flex h-32 flex-col justify-between rounded-2xl border border-white/50 bg-white/85 p-3 text-left shadow-soft-glass transition hover:-translate-y-0.5 hover:shadow-glow-lg sm:h-36"
+              >
+                <div>
+                  <p className="text-[9px] font-semibold tracking-[0.24em] text-slate-500">
+                    NEWS
+                  </p>
+                  <p className="mt-2 text-[11px] font-medium text-slate-900">
+                    メーカー公式ニュースの概要
+                  </p>
+                </div>
+                <div className="flex items-center justify-between">
+                  <p className="max-w-[70%] text-[10px] leading-relaxed text-slate-500">
+                    新型車やモデルチェンジの動きを\n静かな画面でまとめて確認。
+                  </p>
+                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-[10px] text-slate-600">
+                    →
+                  </span>
+                </div>
+              </button>
+
+              {/* COLUMN */}
+              <button
+                type="button"
+                onMouseEnter={() => setHoveredBlock("columns")}
+                onMouseLeave={() => setHoveredBlock((prev) => (prev === "columns" ? null : prev))}
+                className="group relative flex h-32 flex-col justify-between rounded-2xl border border-white/40 bg-white/80 p-3 text-left shadow-soft-glass transition hover:-translate-y-0.5 hover:shadow-glow-lg sm:h-36"
+              >
+                <div>
+                  <p className="text-[9px] font-semibold tracking-[0.24em] text-slate-500">
+                    COLUMN
+                  </p>
+                  <p className="mt-2 text-[11px] font-medium text-slate-900">
+                    トラブルと整備の話
+                  </p>
+                </div>
+                <div className="flex items-center justify-between">
+                  <p className="max-w-[70%] text-[10px] leading-relaxed text-slate-500">
+                    実際によくあるトラブルと\n整備まわりの考え方をメモ感覚で整理。
+                  </p>
+                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-[10px] text-slate-600">
+                    →
+                  </span>
+                </div>
+              </button>
+
+              {/* GUIDE */}
+              <button
+                type="button"
+                onMouseEnter={() => setHoveredBlock("guide")}
+                onMouseLeave={() => setHoveredBlock((prev) => (prev === "guide" ? null : prev))}
+                className="group relative flex h-32 flex-col justify-between rounded-2xl border border-white/40 bg-slate-950/80 p-3 text-left text-slate-50 shadow-soft-glass transition hover:-translate-y-0.5 hover:shadow-glow-lg sm:h-36"
+              >
+                <div>
+                  <p className="text-[9px] font-semibold tracking-[0.24em] text-slate-200">
+                    GUIDE
+                  </p>
+                  <p className="mt-2 text-[11px] font-medium text-slate-50">
+                    お金と手続きの話
+                  </p>
+                </div>
+                <div className="flex items-center justify-between">
+                  <p className="max-w-[70%] text-[10px] leading-relaxed text-slate-200/85">
+                    買う前と手放す前に\n一度だけ確認しておきたいポイント。
+                  </p>
+                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-500/60 bg-slate-900/60 text-[10px] text-slate-100">
+                    →
+                  </span>
+                </div>
+              </button>
+
+              {/* CARS */}
+              <button
+                type="button"
+                onMouseEnter={() => setHoveredBlock("cars")}
+                onMouseLeave={() => setHoveredBlock((prev) => (prev === "cars" ? null : prev))}
+                className="group relative flex h-32 flex-col justify-between rounded-2xl border border-white/50 bg-white/90 p-3 text-left shadow-soft-glass transition hover:-translate-y-0.5 hover:shadow-glow-lg sm:h-36"
+              >
+                <div>
+                  <p className="text-[9px] font-semibold tracking-[0.24em] text-slate-500">
+                    CARS DATABASE
+                  </p>
+                  <p className="mt-2 text-[11px] font-medium text-slate-900">
+                    気になる車種の一覧
+                  </p>
+                </div>
+                <div className="flex items-center justify-between">
+                  <p className="max-w-[70%] text-[10px] leading-relaxed text-slate-500">
+                    サイズとスペック\n維持のしやすさをざっと比較するためのベース。
+                  </p>
+                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-[10px] text-slate-600">
+                    →
+                  </span>
+                </div>
+              </button>
+            </div>
+          </Reveal>
+
+          {/* ホバー状態の説明パネル */}
+          <Reveal delay={260}>
+            <div className="relative mt-5">
+              <div className="rounded-2xl border border-white/30 bg-slate-950/70 px-4 py-3 text-[10px] text-slate-100 shadow-soft-glow backdrop-blur">
+                <p className="text-[9px] font-semibold tracking-[0.2em] text-slate-300/80">
+                  HOW TO USE
+                </p>
+                <p className="mt-1 leading-relaxed text-slate-100/90">
+                  {hoveredBlock === "news" &&
+                    "まずは NEWS で全体の動きをざっと見る前提"}
+                  {hoveredBlock === "columns" &&
+                    "COLUMN でトラブルや整備の話を、あとで読み返すノートのように積み上げていく想定"}
+                  {hoveredBlock === "guide" &&
+                    "GUIDE で買う前と手放す前のお金と手続きの段取りをざっくり整理"}
+                  {hoveredBlock === "cars" &&
+                    "CARS では気になる車種を並べて、サイズ スペック 維持のしやすさを比較するベースとして使う"}
+                  {!hoveredBlock &&
+                    "NEWS COLUMN GUIDE CARS を行き来しながら、検討中の一台についての考えをゆっくり整理する場所"}
+                </p>
+              </div>
             </div>
           </Reveal>
         </div>
