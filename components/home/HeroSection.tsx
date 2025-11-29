@@ -1,4 +1,3 @@
-// components/home/HeroSection.tsx
 "use client";
 
 import { useState } from "react";
@@ -18,7 +17,9 @@ type HeroSectionProps = {
 };
 
 export function HeroSection({ stats }: HeroSectionProps) {
-  const [hoveredBlock, setHoveredBlock] = useState<"news" | "columns" | "guide" | "cars" | null>(null);
+  const [hoveredBlock, setHoveredBlock] = useState<
+    "news" | "columns" | "guide" | "cars" | null
+  >(null);
 
   return (
     <section className="relative overflow-hidden bg-[radial-gradient(circle_at_0%_0%,rgba(129,216,208,0.35),transparent_55%),radial-gradient(circle_at_100%_0%,rgba(15,23,42,0.6),transparent_55%),radial-gradient(circle_at_50%_120%,rgba(10,186,181,0.4),transparent_55%)]">
@@ -54,7 +55,8 @@ export function HeroSection({ stats }: HeroSectionProps) {
               新車情報
               よくあるトラブルやメンテナンスの話
               気になる車種のスペックや維持のしやすさ
-              
+              <br />
+              <br />
               クルマを検討するときに
               ひと通りの情報を見られるようにしたサイト
             </p>
@@ -122,17 +124,13 @@ export function HeroSection({ stats }: HeroSectionProps) {
                       <span className="text-xs font-semibold text-white">
                         {stats.carsCount}
                       </span>
-                      <span className="text-[9px] text-slate-300">
-                        MODELS
-                      </span>
+                      <span className="text-[9px] text-slate-300">MODELS</span>
                     </div>
                     <div className="flex items-baseline gap-1.5">
                       <span className="text-xs font-semibold text-white">
                         {stats.newsCount}
                       </span>
-                      <span className="text-[9px] text-slate-300">
-                        NEWS
-                      </span>
+                      <span className="text-[9px] text-slate-300">NEWS</span>
                     </div>
                     <div className="flex items-baseline gap-1.5">
                       <span className="text-xs font-semibold text-white">
@@ -146,9 +144,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
                       <span className="text-xs font-semibold text-white">
                         {stats.guidesCount}
                       </span>
-                      <span className="text-[9px] text-slate-300">
-                        GUIDES
-                      </span>
+                      <span className="text-[9px] text-slate-300">GUIDES</span>
                     </div>
                     <p className="mt-1 w-full text-[9px] text-slate-300/80">
                       とりあえず輸入車とプレミアム系が中心
@@ -174,7 +170,9 @@ export function HeroSection({ stats }: HeroSectionProps) {
               <button
                 type="button"
                 onMouseEnter={() => setHoveredBlock("news")}
-                onMouseLeave={() => setHoveredBlock((prev) => (prev === "news" ? null : prev))}
+                onMouseLeave={() =>
+                  setHoveredBlock((prev) => (prev === "news" ? null : prev))
+                }
                 className="group relative flex h-32 flex-col justify-between rounded-2xl border border-white/50 bg-white/85 p-3 text-left shadow-soft-glass transition hover:-translate-y-0.5 hover:shadow-glow-lg sm:h-36"
               >
                 <div>
@@ -187,7 +185,9 @@ export function HeroSection({ stats }: HeroSectionProps) {
                 </div>
                 <div className="flex items-center justify-between">
                   <p className="max-w-[70%] text-[10px] leading-relaxed text-slate-500">
-                    新型車やモデルチェンジの動きを\n静かな画面でまとめて確認。
+                    新型車やモデルチェンジの動きを
+                    <br />
+                    静かな画面でまとめて確認
                   </p>
                   <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-[10px] text-slate-600">
                     →
@@ -199,7 +199,11 @@ export function HeroSection({ stats }: HeroSectionProps) {
               <button
                 type="button"
                 onMouseEnter={() => setHoveredBlock("columns")}
-                onMouseLeave={() => setHoveredBlock((prev) => (prev === "columns" ? null : prev))}
+                onMouseLeave={() =>
+                  setHoveredBlock((prev) =>
+                    prev === "columns" ? null : prev,
+                  )
+                }
                 className="group relative flex h-32 flex-col justify-between rounded-2xl border border-white/40 bg-white/80 p-3 text-left shadow-soft-glass transition hover:-translate-y-0.5 hover:shadow-glow-lg sm:h-36"
               >
                 <div>
@@ -212,7 +216,9 @@ export function HeroSection({ stats }: HeroSectionProps) {
                 </div>
                 <div className="flex items-center justify-between">
                   <p className="max-w-[70%] text-[10px] leading-relaxed text-slate-500">
-                    実際によくあるトラブルと\n整備まわりの考え方をメモ感覚で整理。
+                    実際によくあるトラブルと
+                    <br />
+                    整備まわりの考え方をメモ感覚で整理
                   </p>
                   <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-[10px] text-slate-600">
                     →
@@ -224,7 +230,9 @@ export function HeroSection({ stats }: HeroSectionProps) {
               <button
                 type="button"
                 onMouseEnter={() => setHoveredBlock("guide")}
-                onMouseLeave={() => setHoveredBlock((prev) => (prev === "guide" ? null : prev))}
+                onMouseLeave={() =>
+                  setHoveredBlock((prev) => (prev === "guide" ? null : prev))
+                }
                 className="group relative flex h-32 flex-col justify-between rounded-2xl border border-white/40 bg-slate-950/80 p-3 text-left text-slate-50 shadow-soft-glass transition hover:-translate-y-0.5 hover:shadow-glow-lg sm:h-36"
               >
                 <div>
@@ -237,7 +245,9 @@ export function HeroSection({ stats }: HeroSectionProps) {
                 </div>
                 <div className="flex items-center justify-between">
                   <p className="max-w-[70%] text-[10px] leading-relaxed text-slate-200/85">
-                    買う前と手放す前に\n一度だけ確認しておきたいポイント。
+                    買う前と手放す前に
+                    <br />
+                    一度だけ確認しておきたいポイント
                   </p>
                   <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-500/60 bg-slate-900/60 text-[10px] text-slate-100">
                     →
@@ -249,7 +259,9 @@ export function HeroSection({ stats }: HeroSectionProps) {
               <button
                 type="button"
                 onMouseEnter={() => setHoveredBlock("cars")}
-                onMouseLeave={() => setHoveredBlock((prev) => (prev === "cars" ? null : prev))}
+                onMouseLeave={() =>
+                  setHoveredBlock((prev) => (prev === "cars" ? null : prev))
+                }
                 className="group relative flex h-32 flex-col justify-between rounded-2xl border border-white/50 bg-white/90 p-3 text-left shadow-soft-glass transition hover:-translate-y-0.5 hover:shadow-glow-lg sm:h-36"
               >
                 <div>
@@ -262,7 +274,9 @@ export function HeroSection({ stats }: HeroSectionProps) {
                 </div>
                 <div className="flex items-center justify-between">
                   <p className="max-w-[70%] text-[10px] leading-relaxed text-slate-500">
-                    サイズとスペック\n維持のしやすさをざっと比較するためのベース。
+                    サイズとスペックと維持のしやすさを
+                    <br />
+                    ざっと比較するためのベース
                   </p>
                   <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-[10px] text-slate-600">
                     →
