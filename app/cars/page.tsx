@@ -12,7 +12,7 @@ export const runtime = "edge";
 export const metadata: Metadata = {
   title: "CARS | CAR DATABASE",
   description:
-    "主要な車種について、維持の難易度・ボディタイプ・セグメントなどの条件で絞り込んで確認できる車種データベースです。",
+    "主要な車種について 維持の難易度 ボディタイプ セグメントなどの条件で絞り込んで確認できる車種データベース",
 };
 
 type SearchParams = {
@@ -212,9 +212,9 @@ export default async function CarsPage({ searchParams }: PageProps) {
                   条件で絞り込める車種一覧
                 </h1>
                 <p className="mt-3 max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
-                  メーカー、ボディタイプ、セグメント、維持の難易度などで絞り込みながら、
-                  気になる車種の概要を一覧で確認できるページです。詳細ページでは、関連ニュースや
-                  コラムもあわせて参照できます。
+                  メーカー ボディタイプ セグメント 維持の難易度で絞り込みながら
+                  気になる車種の概要を一覧で確認できるページ
+                  詳細ページでは関連ニュースやコラムもあわせて参照できる構成
                 </p>
               </div>
               <div className="hidden text-[10px] text-slate-500 sm:block">
@@ -225,8 +225,8 @@ export default async function CarsPage({ searchParams }: PageProps) {
                   </span>
                 </div>
                 <p className="mt-2 max-w-xs leading-relaxed tracking-[0.03em]">
-                  家族の一台というよりも、「少しこだわったクルマ時間」を前提にした
-                  車種を中心に集めています。
+                  家族の一台というよりも 少しこだわったクルマ時間を前提にした
+                  車種を中心に集めているイメージ
                 </p>
               </div>
             </div>
@@ -252,8 +252,8 @@ export default async function CarsPage({ searchParams }: PageProps) {
                     CURRENT INDEX
                   </p>
                   <p className="mt-1 text-[11px] leading-relaxed text-text-sub sm:text-xs">
-                    登録済みの車種数と、維持の難易度・ボディタイプのざっくりした分布です。
-                    データは、今後も少しずつ追加・更新されていく前提の「小さな図鑑」です。
+                    登録済みの車種数と 維持の難易度やボディタイプのざっくりした分布を表示
+                    データは今後も少しずつ追加 更新していく前提の 小さな図鑑イメージ
                   </p>
                 </div>
 
@@ -284,7 +284,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                       </span>
                     </p>
                     <p className="mt-0.5 text-[9px] text-slate-400">
-                      * 左ほど扱いやすい目安です
+                      * 左側ほど扱いやすい目安
                     </p>
                   </div>
                   <div>
@@ -416,7 +416,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                   </select>
                 </div>
 
-                {/* ボディタイプ（仕様の「ボディタイプで絞り込み」用） */}
+                {/* ボディタイプ */}
                 <div>
                   <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
                     BODY TYPE
@@ -481,7 +481,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                   気を使う
                 </span>
                 <span className="ml-auto text-[9px] text-slate-400">
-                  * 条件は自由に組み合わせて使えます
+                  * 条件は自由に組み合わせて利用可能
                 </span>
               </div>
 
@@ -588,8 +588,8 @@ export default async function CarsPage({ searchParams }: PageProps) {
 
             {sorted.length === 0 ? (
               <p className="rounded-2xl border border-dashed border-slate-200 bg-white/70 p-6 text-center text-xs text-slate-500">
-                条件に合致するクルマが見つかりませんでした。
-                絞り込み条件を緩めて再度お試しください。
+                条件に合うクルマはなし
+                絞り込み条件を少し緩めて再検索する想定
               </p>
             ) : (
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
