@@ -1,4 +1,3 @@
-// app/news/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -12,7 +11,7 @@ export const runtime = "edge";
 export const metadata: Metadata = {
   title: "NEWS | メーカー公式ニュース一覧",
   description:
-    "輸入車・プレミアムブランドを中心に、メーカー公式サイトなどの一次情報へのリンクをまとめたニュースフィードです。カテゴリやメーカー、キーワードで絞り込んで確認できます。",
+    "輸入車とプレミアムブランド中心の新型車発表 仕様変更 リコール キャンペーンなどをメーカー公式サイトの一次情報リンクとして整理したニュース一覧",
 };
 
 type SearchParams = {
@@ -256,7 +255,6 @@ export default async function NewsPage({ searchParams }: PageProps) {
   const sourceFilter = (searchParams?.source ?? "").trim();
   const periodFilter = (searchParams?.period ?? "").trim();
 
-  // ★ 型ガードで string[] に確定させる（ここが今回の修正ポイント）
   const makers: string[] = Array.from(
     new Set(news.map((n) => n.maker).filter(isNonEmptyString)),
   ).sort();
@@ -335,15 +333,15 @@ export default async function NewsPage({ searchParams }: PageProps) {
           </Reveal>
           <Reveal delay={80}>
             <h1 className="serif-heading text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
-              メーカー公式ニュースを、静かな画面でまとめて追う
+              メーカー公式ニュースを一覧で確認
             </h1>
           </Reveal>
           <Reveal delay={160}>
             <div className="flex flex-col gap-3 text-xs text-text-sub sm:flex-row sm:items-end sm:justify-between sm:text-sm">
               <p className="max-w-2xl leading-relaxed">
-                輸入車やプレミアムブランドを中心に、新型車の発表、仕様変更、
-                リコール、キャンペーン情報などを、メーカー公式サイトなどの一次情報への
-                リンクとしてまとめています。
+                輸入車とプレミアムブランドを中心に
+                新型車発表 仕様変更 リコール キャンペーン情報などを
+                メーカー公式サイトの一次情報リンクとして整理したニュース一覧
               </p>
               <div className="flex flex-wrap gap-2 text-[10px] text-slate-500">
                 <span className="rounded-full bg-white/80 px-3 py-1 shadow-soft">
@@ -365,7 +363,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
             </div>
           </Reveal>
 
-          {/* 期間プリセットチップ（7日 / 30日 / 全期間） */}
+        {/* 期間プリセットチップ（7日 / 30日 / 全期間） */}
           <Reveal delay={220}>
             <div className="mt-4 flex flex-wrap gap-2 text-[10px]">
               <Link
@@ -658,7 +656,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
                 </GlassCard>
               ) : (
                 <p className="rounded-2xl border border-dashed border-slate-200 bg-white/80 p-6 text-center text-xs text-slate-500">
-                  現在表示できるニュースがありません。
+                  現在表示可能なニュースはなし
                 </p>
               )}
             </Reveal>
@@ -667,8 +665,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
             <Reveal delay={80}>
               {rest.length === 0 ? (
                 <p className="rounded-2xl border border-dashed border-slate-200 bg-white/80 p-6 text-center text-xs text-slate-500">
-                  条件に合致するニュースが見つかりませんでした。
-                  絞り込み条件を少し緩めて、もう一度お試しください。
+                  条件に合うニュースはなし 絞り込み条件を少し緩めて再検索する想定
                 </p>
               ) : (
                 <div className="space-y-6">
