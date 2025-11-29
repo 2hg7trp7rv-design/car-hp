@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Reveal } from "@/components/animation/Reveal";
 import { Button } from "@/components/ui/button";
 
@@ -22,9 +23,30 @@ export function HeroSection({ stats }: HeroSectionProps) {
   >(null);
 
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(circle_at_0%_0%,rgba(129,216,208,0.35),transparent_55%),radial-gradient(circle_at_100%_0%,rgba(15,23,42,0.6),transparent_55%),radial-gradient(circle_at_50%_120%,rgba(10,186,181,0.4),transparent_55%)]">
-      {/* 薄いオーバーレイ */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,rgba(255,255,255,0.3),transparent_60%),radial-gradient(circle_at_80%_20%,rgba(15,23,42,0.45),transparent_60%)]" />
+    <section className="relative overflow-hidden bg-slate-950 text-white">
+      {/* 背景レイヤー：セダン画像 + ティファニーブルー系グラデーション */}
+      <div className="absolute inset-0">
+        {/* セダン写真 */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/hero-sedan.jpg"
+            alt="セダンのサイドビュー"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center opacity-80"
+          />
+        </div>
+
+        {/* 元のヒーロー用グラデーション（大きめ） */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(129,216,208,0.35),transparent_55%),radial-gradient(circle_at_100%_0%,rgba(15,23,42,0.6),transparent_55%),radial-gradient(circle_at_50%_120%,rgba(10,186,181,0.4),transparent_55%)]" />
+
+        {/* 薄いオーバーレイ */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,rgba(255,255,255,0.3),transparent_60%),radial-gradient(circle_at_80%_20%,rgba(15,23,42,0.45),transparent_60%)]" />
+
+        {/* 最後に軽く暗くして文字を読みやすくする */}
+        <div className="absolute inset-0 bg-slate-950/45" />
+      </div>
 
       <div className="relative mx-auto flex max-w-6xl flex-col gap-12 px-4 pb-16 pt-14 sm:gap-14 sm:px-6 sm:pb-20 sm:pt-16 lg:flex-row lg:items-center lg:gap-16 lg:px-8 lg:pb-24 lg:pt-20">
         {/* 左側：キャッチコピー + CTA */}
@@ -158,7 +180,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
 
         {/* 右側：Bento 風インタラクションパネル */}
         <div className="relative z-10 flex-1">
-          {/* 背景の「光」レイヤー */}
+          {/* 右パネル内の光レイヤー（元のまま） */}
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute -left-10 top-[-12%] h-40 w-40 rounded-full bg-[radial-gradient(circle_at_center,_rgba(129,216,208,0.55),_transparent_70%)] blur-3xl" />
             <div className="absolute -right-12 bottom-[-8%] h-48 w-48 rounded-full bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.7),_transparent_70%)] blur-3xl" />
