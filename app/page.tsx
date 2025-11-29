@@ -1,4 +1,3 @@
-// app/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -121,7 +120,8 @@ export default async function HomePage() {
                       車種ごとのスペックと簡単なコメントを一覧で確認
                       トラブル 整備 お金まわりの話をコラムで整理
                       購入 売却 維持費の考え方をガイドで整理
-                      
+                      <br />
+                      <br />
                       クルマとの付き合い方を
                       一度ここでざっくり整理しておくイメージ
                     </p>
@@ -138,7 +138,7 @@ export default async function HomePage() {
                       interactive
                       className="group relative flex h-full flex-col justify-between overflow-hidden border-slate-200/70 bg-gradient-to-br from-tiffany-50 via-white to-white shadow-soft-card"
                     >
-                      {/* 背景の光（Tiffany を“光”として扱う） */}
+                      {/* 背景の光 */}
                       <div className="pointer-events-none absolute inset-0">
                         <div className="absolute -left-24 -top-24 h-52 w-52 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.22),_transparent_70%)] blur-3xl" />
                         <div className="absolute -right-24 bottom-[-10%] h-52 w-52 rounded-full bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.16),_transparent_70%)] blur-3xl" />
@@ -173,7 +173,8 @@ export default async function HomePage() {
                         <p className="text-[11px] leading-relaxed text-text-sub sm:text-xs">
                           メーカー公式サイトなどの情報をもとに
                           新型車 モデルチェンジ 新しい装備の動きをピックアップ
-                          
+                          <br />
+                          <br />
                           流れとポイントだけここで確認
                           細かい内容や全文は
                           ニュースごとのリンク先でチェックする前提
@@ -259,28 +260,11 @@ export default async function HomePage() {
                         <p className="mt-3 text-[11px] leading-relaxed text-text-sub sm:text-xs">
                           気になっている車種について
                           サイズ スペック 維持のしやすさ セグメントを一覧で確認
-                          
+                          <br />
+                          <br />
                           もっと詳しく見たい車種は
                           詳細ページからニュース コラム ガイドもあわせてチェックする想定
                         </p>
-
-                        {/* クイックフィルター */}
-                        <div className="mt-4">
-                          <p className="mb-1 text-[10px] font-semibold tracking-[0.18em] text-slate-500">
-                            QUICK FILTER
-                          </p>
-                          <div className="flex flex-wrap gap-2 text-[10px]">
-                            <span className="rounded-full bg-slate-50 px-3 py-1 text-slate-600">
-                              輸入Dセグ / Eセグ
-                            </span>
-                            <span className="rounded-full bg-slate-50 px-3 py-1 text-slate-600">
-                              FR / 4WD セダン
-                            </span>
-                            <span className="rounded-full bg-slate-50 px-3 py-1 text-slate-600">
-                              2.0Lクラス
-                            </span>
-                          </div>
-                        </div>
 
                         {/* ハイライト車種 */}
                         <div className="mt-4 space-y-2">
@@ -348,11 +332,12 @@ export default async function HomePage() {
                         </div>
 
                         <p className="mt-3 text-[11px] leading-relaxed text-text-sub sm:text-xs">
-                          実際によくあるトラブルの例
+                          実際によくあるトラブル
                           どこから手を付けると良いかという整備の優先度
                           セダン SUV などボディタイプごとの乗り味
                           エンジンの違いによるキャラクター
-                          
+                          <br />
+                          <br />
                           カタログでは分かりにくい部分を
                           あとから読み返せるノートのような感覚で置いておく
                         </p>
@@ -423,7 +408,8 @@ export default async function HomePage() {
                           いくらくらいまでなら無理せず買えるか
                           ローン 一括 残価設定のおおまかな違い
                           売るとき どんな流れになるか
-                          
+                          <br />
+                          <br />
                           クルマを買う前と手放す前に
                           一回だけ確認しておきたいポイントをまとめたエリア
                         </p>
@@ -464,8 +450,81 @@ export default async function HomePage() {
 
           {/* CARS ハイライトセクション */}
           <section className="mt-14 border-t border-slate-200/70 pt-10">
-            {/* ... ここ以降は元のまま（CARS ハイライトなど） ... */}
-            {/* 以降のコードは変更していないので、そのまま既存ファイルを使ってOK */}
+            <Reveal>
+              <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.28em] text-slate-500">
+                    HIGHLIGHT
+                  </p>
+                  <h2 className="serif-heading mt-1 text-lg font-medium tracking-tight text-slate-900 sm:text-xl">
+                    最近追加された車種
+                  </h2>
+                </div>
+                <Button asChild variant="outline" size="sm">
+                  <Link href="/cars">OPEN CARS DATABASE</Link>
+                </Button>
+              </div>
+            </Reveal>
+
+            <Reveal delay={160}>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {latestCars.map((car) => (
+                  <Link
+                    key={car.slug}
+                    href={`/cars/${encodeURIComponent(car.slug)}`}
+                  >
+                    <article className="group flex h-full flex-col justify-between rounded-2xl border border-slate-200/80 bg-white/90 p-4 text-xs shadow-soft-sm transition hover:border-tiffany-400 hover:bg-white">
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <p className="text-[10px] font-semibold tracking-[0.16em] text-slate-500">
+                            {car.maker}
+                          </p>
+                          <h3 className="mt-1 line-clamp-2 text-sm font-medium leading-snug text-slate-900 group-hover:underline">
+                            {car.name}
+                          </h3>
+                        </div>
+                        <div className="flex flex-col items-end gap-1 text-[9px] text-slate-500">
+                          {car.releaseYear && (
+                            <span>{car.releaseYear}年頃</span>
+                          )}
+                          {car.difficulty && (
+                            <span className="rounded-full bg-slate-50 px-2 py-0.5">
+                              {car.difficulty === "basic"
+                                ? "扱いやすさ：やさしめ"
+                                : car.difficulty === "intermediate"
+                                ? "扱いやすさ：ふつう"
+                                : "扱いやすさ：しっかり準備"}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="mt-3 flex flex-wrap gap-2 text-[10px] text-slate-500">
+                        {car.bodyType && (
+                          <span className="rounded-full bg-slate-50 px-2 py-0.5">
+                            {car.bodyType}
+                          </span>
+                        )}
+                        {car.segment && (
+                          <span className="rounded-full bg-slate-50 px-2 py-0.5">
+                            {car.segment}
+                          </span>
+                        )}
+                        {car.drive && (
+                          <span className="rounded-full bg-slate-50 px-2 py-0.5">
+                            {car.drive}
+                          </span>
+                        )}
+                      </div>
+
+                      <p className="mt-3 line-clamp-3 text-[11px] leading-snug text-slate-600">
+                        {car.summary}
+                      </p>
+                    </article>
+                  </Link>
+                ))}
+              </div>
+            </Reveal>
           </section>
         </div>
       </section>
