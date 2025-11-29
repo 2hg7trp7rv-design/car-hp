@@ -189,8 +189,8 @@ export function HeroSection({ stats }: HeroSectionProps) {
           <Reveal delay={220}>
             <div className="relative grid grid-cols-2 gap-3 text-[11px] text-slate-900 sm:gap-4 lg:grid-cols-2">
               {/* NEWS */}
-              <button
-                type="button"
+              <Link
+                href="/news"
                 onMouseEnter={() => setHoveredBlock("news")}
                 onMouseLeave={() =>
                   setHoveredBlock((prev) => (prev === "news" ? null : prev))
@@ -215,11 +215,11 @@ export function HeroSection({ stats }: HeroSectionProps) {
                     →
                   </span>
                 </div>
-              </button>
+              </Link>
 
               {/* COLUMN */}
-              <button
-                type="button"
+              <Link
+                href="/column"
                 onMouseEnter={() => setHoveredBlock("columns")}
                 onMouseLeave={() =>
                   setHoveredBlock((prev) =>
@@ -246,11 +246,11 @@ export function HeroSection({ stats }: HeroSectionProps) {
                     →
                   </span>
                 </div>
-              </button>
+              </Link>
 
               {/* GUIDE */}
-              <button
-                type="button"
+              <Link
+                href="/guide"
                 onMouseEnter={() => setHoveredBlock("guide")}
                 onMouseLeave={() =>
                   setHoveredBlock((prev) => (prev === "guide" ? null : prev))
@@ -275,11 +275,11 @@ export function HeroSection({ stats }: HeroSectionProps) {
                     →
                   </span>
                 </div>
-              </button>
+              </Link>
 
               {/* CARS */}
-              <button
-                type="button"
+              <Link
+                href="/cars"
                 onMouseEnter={() => setHoveredBlock("cars")}
                 onMouseLeave={() =>
                   setHoveredBlock((prev) => (prev === "cars" ? null : prev))
@@ -304,7 +304,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
                     →
                   </span>
                 </div>
-              </button>
+              </Link>
             </div>
           </Reveal>
 
