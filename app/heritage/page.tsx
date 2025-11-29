@@ -16,7 +16,7 @@ export const runtime = "edge";
 export const metadata: Metadata = {
   title: "HERITAGE | CAR BOUTIQUE",
   description:
-    "ブランドの系譜や名車のストーリーを静かに味わうためのヘリテージ・アーカイブ。",
+    "ブランドの系譜や車種の履歴を整理して見られるヘリテージアーカイブ",
 };
 
 function toneBadgeClass(item: HeritageItem) {
@@ -69,14 +69,13 @@ export default async function HeritagePage() {
           <Reveal delay={100}>
             <div className="mt-5 space-y-3">
               <h1 className="serif-heading text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl lg:text-[2.7rem]">
-                静かな熱量を受け継ぐ、
+                ブランドと車種の系譜を
                 <br className="hidden sm:block" />
-                名車とブランドの系譜。
+                まとめて確認できるアーカイブ
               </h1>
               <p className="max-w-3xl text-xs leading-relaxed text-text-sub sm:text-sm">
-                ここでは、スペックの大小では測れない「空気感」や「哲学」に焦点を当てて、
-                1台のクルマ、1つのブランド、1つの時代をゆっくりたどっていきます。
-                CARS や COLUMN と連動しながら、ヘリテージの断片を少しずつアーカイブしていく場所です。
+                スペックだけでは分かりにくい ブランドごとの流れや 車種の位置付けを整理するためのエリア
+                CARS と COLUMN と連動させながら 時代 ブランド 車種をヘリテージという単位で少しずつ追加していく想定
               </p>
             </div>
           </Reveal>
@@ -97,9 +96,9 @@ export default async function HeritagePage() {
                       ARCHIVE INDEX
                     </p>
                     <p className="mt-2 text-[11px] leading-relaxed text-text-sub sm:text-xs">
-                      時代（ERA）、ブランド（BRAND）、モデル（CAR）の 3 つの粒度で、
-                      クルマの系譜をゆっくりたどるためのインデックスです。
-                      1つのブランドの中で、前後の世代を続けて読み進められるように構成しています。
+                      時代 ERA ブランド BRAND モデル CAR の三つの粒度で
+                      クルマの系譜を整理したインデックス
+                      同じブランドの中で 前後の世代を続けて追いやすい構成
                     </p>
                   </div>
 
@@ -112,7 +111,7 @@ export default async function HeritagePage() {
                         {totalEra}
                       </p>
                       <p className="mt-0.5 text-[10px] text-slate-400">
-                        時代のスナップショット
+                        時代単位のまとめ
                       </p>
                     </div>
                     <div>
@@ -123,7 +122,7 @@ export default async function HeritagePage() {
                         {totalBrand}
                       </p>
                       <p className="mt-0.5 text-[10px] text-slate-400">
-                        ブランドのストーリー
+                        ブランド単位のまとめ
                       </p>
                     </div>
                     <div>
@@ -145,7 +144,7 @@ export default async function HeritagePage() {
                         {totalChains}
                       </p>
                       <p className="mt-0.5 text-[10px] text-slate-400">
-                        系譜チェーン
+                        系譜チェーン数
                       </p>
                     </div>
                   </div>
@@ -163,8 +162,8 @@ export default async function HeritagePage() {
                 ERA TIMELINE
               </h2>
               <p className="max-w-sm text-[11px] leading-relaxed text-text-sub">
-                まずは「時代」という粗い粒度で、クルマと技術、社会背景の変化をざっくり眺めておくと、
-                個別のブランドやモデルの位置づけが見やすくなります。
+                時代ごとの区切りで 技術と社会背景の変化を整理しておくことで
+                その時期のブランドやモデルの位置付けを俯瞰しやすくする想定
               </p>
             </div>
           </Reveal>
@@ -244,8 +243,8 @@ export default async function HeritagePage() {
                 BRAND &amp; CAR LINEAGE
               </h2>
               <p className="max-w-sm text-[11px] leading-relaxed text-text-sub">
-                ブランド別に、前後の世代をつなげて読むための小さな系譜ビューです。
-                まずブランドのストーリーを押さえてから、気になる世代を HERITAGE 記事として深掘りできます。
+                ブランドごとに 前後の世代をつないで確認できる系譜ビュー
+                ブランド単位の流れを押さえたうえで 気になる世代を HERITAGE 記事として個別に読みにいく構成
               </p>
             </div>
           </Reveal>
