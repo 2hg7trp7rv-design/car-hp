@@ -44,47 +44,71 @@ export type HeritageItem = {
   body: string;
 };
 
-function normalizeItem(raw: any): HeritageItem {
+// heritage.json の型を元に「1件分」の生データ型を推論
+type RawHeritageData = typeof heritageData;
+type RawHeritageItem = RawHeritageData extends (infer U)[] ? U : RawHeritageData;
+
+function normalizeItem(raw: RawHeritageItem): HeritageItem {
+  const metaRaw = (raw as any).meta;
+  const meta: Record<string, string | number | null | undefined> =
+    metaRaw && typeof metaRaw === "object" ? metaRaw : {};
+
   return {
-    id: String(raw.id),
-    slug: String(raw.slug),
-    kind: raw.kind as HeritageKind,
+    id: String((raw as any).id),
+    slug: String((raw as any).slug),
+    kind: (raw as any).kind as HeritageKind,
 
-    title: String(raw.title),
-    subtitle: raw.subtitle ?? undefined,
-    lead: raw.lead ?? undefined,
+    title: String((raw as any).title),
+    subtitle: (raw as any).subtitle ?? undefined,
+    lead: (raw as any).lead ?? undefined,
 
-    eraLabel: raw.eraLabel ?? null,
-    brandName: raw.brandName ?? null,
-    modelName: raw.modelName ?? null,
-    generationCode: raw.generationCode ?? null,
-    years: raw.years ?? null,
+    eraLabel: (raw as any).eraLabel ?? null,
+    brandName: (raw as any).brandName ?? null,
+    modelName: (raw as any).modelName ?? null,
+    generationCode: (raw as any).generationCode ?? null,
+    years: (raw as any).years ?? null,
 
-    heroImage: raw.heroImage ?? null,
-    heroTone: raw.heroTone ?? "vapor",
+    heroImage: (raw as any).heroImage ?? null,
+    heroTone: (raw as any).heroTone ?? "vapor",
 
-    highlights: Array.isArray(raw.highlights) ? raw.highlights : [],
-    tags: Array.isArray(raw.tags) ? raw.tags : [],
+    highlights: Array.isArray((raw as any).highlights)
+      ? (raw as any).highlights
+      : [],
+    tags: Array.isArray((raw as any).tags) ? (raw as any).tags : [],
 
-    chainKey: raw.chainKey ?? null,
+    chainKey: (raw as any).chainKey ?? null,
     chainOrder:
-      typeof raw.chainOrder === "number"
-        ? raw.chainOrder
-        : raw.chainOrder != null
-        ? Number(raw.chainOrder)
+      typeof (raw as any).chainOrder === "number"
+        ? (raw as any).chainOrder
+        : (raw as any).chainOrder != null
+        ? Number((raw as any).chainOrder)
         : null,
 
-    carSlug: raw.carSlug ?? null,
+    carSlug: (raw as any).carSlug ?? null,
 
-    meta: (raw.meta as Record<string, any>) ?? {},
+    meta,
 
-    body: String(raw.body ?? ""),
+    body: String((raw as any).body ?? ""),
   };
 }
 
-const ALL_HERITAGE_ITEMS: HeritageItem[] = (heritageData as any[]).map(
-  normalizeItem,
-);
+/**
+ * heritage.json が
+ * - 配列でも
+ * - 単一オブジェクトでも
+ * 正常に配列に変換するヘルパー
+ */
+function toRawArray(data: RawHeritageData): RawHeritageItem[] {
+  if (Array.isArray(data)) {
+    // Array.isArray の分岐後に unknown を挟んでから正しい要素型配列にキャスト
+    return data as unknown as RawHeritageItem[];
+  }
+  return [data as RawHeritageItem];
+}
+
+const ALL_HERITAGE_ITEMS: HeritageItem[] = toRawArray(heritageData)
+  .map(normalizeItem)
+  .filter((item) => item.body.trim().length > 0);
 
 /**
  * 全 HERITAGE 記事を取得。
