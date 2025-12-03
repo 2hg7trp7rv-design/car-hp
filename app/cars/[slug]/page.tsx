@@ -29,10 +29,6 @@ type PageProps = {
 type ExtendedCarItem = CarItem & {
   mainImage?: string;
   heroImage?: string;
-  strengths?: string[];
-  weaknesses?: string[];
-  troubleTrends?: string[];
-  costImpression?: string;
 };
 
 export async function generateStaticParams() {
@@ -97,11 +93,7 @@ function formatDate(iso?: string | null): string {
 function buildKeywords(car: ExtendedCarItem): string[] {
   const tags = (car as CarItem & { tags?: string[] }).tags ?? [];
   const nameParts = car.name.split(/\s+/);
-  const extra = [
-    car.segment,
-    car.bodyType,
-    car.slug,
-  ];
+  const extra = [car.segment, car.bodyType, car.slug];
   return [car.maker, ...nameParts, ...extra, ...tags]
     .filter(Boolean)
     .map((v) => String(v));
@@ -222,6 +214,135 @@ export default async function CarDetailPage({ params }: PageProps) {
   const relatedNewsCount = relatedNews.length;
   const relatedColumnsCount = relatedColumns.length;
   const relatedCarsCount = relatedCars.length;
+
+  const isBMW530iG30 =
+    car.slug === "bmw-530i-g30" || car.id === "bmw-530i-g30";
+
+  // BMW 530i (G30) 用の「理想テンプレ」ドライブメモ
+  const driveScenes = isBMW530iG30
+    ? [
+        {
+          id: "city",
+          label: "街乗り（短距離〜日常の足）",
+          body: (
+            <>
+              見た目のサイズ感からは「取り回しが大変そう」に見えますが、実際に走らせると
+              ステアリングは軽く、視界も悪くありません。2.0Lターボは低回転からトルクが立ち上がり、
+              2000rpm 前後でスッと流れに乗ってくれるので、幹線道路やバイパス中心の生活ならストレスは少なめ。
+              ただし「自宅〜コンビニ」のような超短距離メインだと、正直オーバースペック気味です。
+            </>
+          ),
+        },
+        {
+          id: "highway",
+          label: "高速道路（通勤・出張）",
+          body: (
+            <>
+              G30 の真価は高速巡航で実感できます。100km/h 付近ではエンジン音はほとんど聞こえず、
+              風切り音とロードノイズもよく抑えられています。アクティブクルーズコントロールや
+              レーンキープ機能と組み合わせると、「移動」ではなく「運ばれている」感覚に近い滑らかさ。
+              国産ミドルセダンから乗り換えると、長距離後の疲労感が一段階下がったと感じるはずです。
+            </>
+          ),
+        },
+        {
+          id: "longtrip",
+          label: "ロングツーリング（500〜800km クラス）",
+          body: (
+            <>
+              シートの出来と足まわりのしなやかさが効いてくるのが、このあたりの距離。
+              ランフラットタイヤ特有のコツコツ感はあるものの、うねりをしっかりいなしてくれるので、
+              同乗者の評判も上々です。トランクはゴルフバッグ 2 個＋スーツケース程度なら余裕で積める容量があり、
+              「大人 4 人＋荷物」での旅行にも十分対応できます。
+            </>
+          ),
+        },
+        {
+          id: "cost",
+          label: "日常の維持費イメージ",
+          body: (
+            <>
+              ハイオク仕様ではあるものの、実用燃費は 9〜13km/L 程度。排気量のわりに「思ったより飲まない」
+              という印象になることが多いです。一方で、タイヤ・ブレーキ・オイルなどの消耗品は
+              国産セダンより 1 段高めの価格帯。車検や定期メンテナンスをすべてディーラー任せにすると、
+              毎回の請求書にドキッとする場面も出てきます。
+            </>
+          ),
+        },
+      ]
+    : [
+        {
+          id: "city",
+          label: "街乗りでのフィーリング",
+          body: (
+            <>
+              ストップ＆ゴーの多い街中での乗り味や、取り回しやすさのイメージをここにまとめます。
+              実際のオーナー目線で「どのくらいストレスなく扱えるか」を書いておくゾーンです。
+            </>
+          ),
+        },
+        {
+          id: "highway",
+          label: "高速道路・バイパスでの安心感",
+          body: (
+            <>
+              高速域での安定感や静粛性、運転支援機能の使い勝手など、「遠くへ行きたくなるかどうか」の
+              視点でコメントを入れておくと、この車種のキャラクターが伝わりやすくなります。
+            </>
+          ),
+        },
+        {
+          id: "longtrip",
+          label: "ロングツーリングの相棒として",
+          body: (
+            <>
+              500km 前後のドライブを想定して、シート・乗り心地・荷物の積載性など、旅行向きかどうかを整理する場所です。
+            </>
+          ),
+        },
+        {
+          id: "cost",
+          label: "日常の維持費ざっくり感",
+          body: (
+            <>
+              燃費やガソリン種別、タイヤ／ブレーキなどの消耗品コスト感を一言でまとめておきます。
+            </>
+          ),
+        },
+      ];
+
+  const annualCostParagraph = isBMW530iG30 ? (
+    <>
+      自動車税（2.0L）で年およそ 4.5 万円、自賠責・任意保険で 10〜15 万円前後、
+      車検・点検の積立として年 10〜15 万円程度、タイヤやオイルなどの消耗品で
+      年 8〜15 万円程度を見ておくと、トータルのランニングコストは
+      <span className="font-semibold"> 年 35〜55 万円前後</span>
+      のイメージになります。
+    </>
+  ) : (
+    <>
+      このセクションでは「税金」「保険」「車検・点検」「消耗品」に分けて、
+      年あたりいくらくらいを見ておくと安心か、ざっくりとレンジで示しておきます。
+      金額はあくまで目安なので、実際の見積もりと比較するときの“感覚合わせ”に使うイメージです。
+    </>
+  );
+
+  const ctaTitle = isBMW530iG30
+    ? "修理費がかさんできたら、“査定してから次の一手”を考えるのもアリです。"
+    : "「乗り続けるか、手放すか」を考えはじめたときの次の一手。";
+
+  const ctaBody = isBMW530iG30 ? (
+    <>
+      G30 530i は、まだまだ十分に商品力のあるモデルです。
+      まとまった修理費がかかるタイミングで、一度現在の査定額をチェックしておくと、
+      「直して乗る」「乗り換える」の判断がしやすくなります。
+    </>
+  ) : (
+    <>
+      まとまった修理費や次回車検の見積もりが出たタイミングで、
+      一度「今いくらで売れるのか」を知っておくと、乗り換えも含めた選択肢が広がります。
+    </>
+  );
 
   return (
     <main className="min-h-screen bg-site text-text-main">
@@ -364,6 +485,12 @@ export default async function CarDetailPage({ params }: PageProps) {
                 </a>
               )}
               <a
+                href="#drive-and-cost"
+                className="rounded-full bg-white px-3 py-1 tracking-[0.16em] hover:text-tiffany-700"
+              >
+                DRIVE &amp; COST
+              </a>
+              <a
                 href="#visual-comparison"
                 className="rounded-full bg-white px-3 py-1 tracking-[0.16em] hover:text-tiffany-700"
               >
@@ -427,7 +554,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                       試乗前に押さえておきたい、パワートレインや駆動方式などの基本情報です。
                     </p>
                   </div>
-                  <Link href="/guide?category=MONEY">
+                  <Link href="/guide?category=MAINTENANCE_COST">
                     <Button
                       variant="subtle"
                       size="xs"
@@ -625,6 +752,132 @@ export default async function CarDetailPage({ params }: PageProps) {
             </div>
           </section>
         )}
+
+        {/* DRIVE IMPRESSIONS & COST SIMULATION */}
+        <section id="drive-and-cost" className="mb-12 space-y-6">
+          <Reveal>
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+              <div>
+                <h2 className="text-xs font-semibold tracking-[0.2em] text-slate-600">
+                  DRIVE IMPRESSIONS &amp; COST
+                </h2>
+                <p className="mt-1 max-w-xl text-[11px] text-slate-500">
+                  「街乗り／高速／ロングツーリング／お財布」の 4
+                  つの視点から、このクルマとの日常をイメージしてもらうためのゾーンです。
+                </p>
+              </div>
+              <p className="max-w-sm text-[10px] text-slate-400">
+                ここは CARS ページの中でもっとも“オーナー目線”が出るブロックです。
+                他車種でも同じ構成で揃えると、比較検討がしやすくなります。
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+            {/* DRIVE IMPRESSIONS */}
+            <Reveal>
+              <GlassCard
+                as="section"
+                padding="lg"
+                className="h-full border border-slate-200/80 bg-white/92"
+              >
+                <h3 className="text-[11px] font-semibold tracking-[0.2em] text-slate-500">
+                  DRIVE IMPRESSIONS BY SCENE
+                </h3>
+                <div className="mt-3 space-y-3 text-[12px] leading-relaxed text-slate-700">
+                  {driveScenes.map((scene) => (
+                    <div
+                      key={scene.id}
+                      className="rounded-2xl bg-slate-50/80 px-3 py-2.5"
+                    >
+                      <p className="text-[10px] font-semibold tracking-[0.18em] text-slate-500">
+                        {scene.label}
+                      </p>
+                      <p className="mt-1 text-[12px] leading-relaxed text-slate-700">
+                        {scene.body}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </GlassCard>
+            </Reveal>
+
+            {/* COST SIMULATION */}
+            <Reveal>
+              <GlassCard
+                as="section"
+                padding="lg"
+                className="h-full border border-slate-200/80 bg-white/92"
+              >
+                <h3 className="text-[11px] font-semibold tracking-[0.2em] text-slate-500">
+                  MAINTENANCE &amp; COST SIMULATION
+                </h3>
+                <p className="mt-2 text-[11px] leading-relaxed text-slate-600">
+                  年間 1 万 km 前後走るオーナーを想定した、
+                  税金・保険・車検・消耗品を含めた「ざっくり維持費イメージ」です。
+                  実際の見積もりは条件により大きく変わるので、あくまで目安としてご覧ください。
+                </p>
+
+                <dl className="mt-3 space-y-1.5 text-[11px] text-slate-700">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <dt className="text-slate-400">自動車税（年）</dt>
+                    <dd className="font-medium">
+                      {isBMW530iG30 ? "約 4.5 万円（2.0L クラス）" : "排気量クラスに応じた目安額"}
+                    </dd>
+                  </div>
+                  <div className="flex items-baseline justify-between gap-3">
+                    <dt className="text-slate-400">自賠責＋任意保険（年）</dt>
+                    <dd className="font-medium">
+                      {isBMW530iG30 ? "約 10〜15 万円" : "等級・条件により大きく変動"}
+                    </dd>
+                  </div>
+                  <div className="flex items-baseline justify-between gap-3">
+                    <dt className="text-slate-400">車検・法定点検積立（年換算）</dt>
+                    <dd className="font-medium">
+                      {isBMW530iG30 ? "約 10〜15 万円" : "次回車検見積もりから年割りで算出"}
+                    </dd>
+                  </div>
+                  <div className="flex items-baseline justify-between gap-3">
+                    <dt className="text-slate-400">
+                      タイヤ・オイルなど消耗品（年）
+                    </dt>
+                    <dd className="font-medium">
+                      {isBMW530iG30 ? "約 8〜15 万円" : "走行距離と履歴に応じて変動"}
+                    </dd>
+                  </div>
+                </dl>
+
+                <p className="mt-3 text-[11px] leading-relaxed text-slate-700">
+                  {annualCostParagraph}
+                </p>
+                <p className="mt-2 text-[10px] leading-relaxed text-slate-400">
+                  ここで挙げている金額はあくまで編集部の試算であり、実際の金額を保証するものではありません。
+                  正確な金額はディーラーや整備工場、保険会社の見積もりをご確認ください。
+                </p>
+
+                <div className="mt-4 rounded-2xl bg-slate-50/80 px-3 py-3 text-[11px]">
+                  <p className="text-[10px] font-semibold tracking-[0.2em] text-slate-500">
+                    関連ガイド
+                  </p>
+                  <div className="mt-1 space-y-1.5">
+                    <Link
+                      href="/guide/import-car-shaken-cost"
+                      className="block text-tiffany-700 underline-offset-2 hover:underline"
+                    >
+                      ・輸入車の車検費用を抑える 3 つの考え方
+                    </Link>
+                    <Link
+                      href="/guide/buy-used-bmw-checkpoints"
+                      className="block text-tiffany-700 underline-offset-2 hover:underline"
+                    >
+                      ・中古 BMW を選ぶときに絶対見ておきたいポイント
+                    </Link>
+                  </div>
+                </div>
+              </GlassCard>
+            </Reveal>
+          </div>
+        </section>
 
         {/* VISUAL COMPARISON */}
         <section id="visual-comparison" className="mb-12">
@@ -827,6 +1080,51 @@ export default async function CarDetailPage({ params }: PageProps) {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* CTA：査定・ガイドへの導線（アフィ設置想定ゾーン） */}
+        <section className="mt-10">
+          <Reveal>
+            <GlassCard
+              as="section"
+              padding="lg"
+              className="border border-slate-200/80 bg-white/92"
+            >
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div className="max-w-xl">
+                  <p className="text-[10px] font-semibold tracking-[0.2em] text-slate-500">
+                    NEXT STEP
+                  </p>
+                  <h2 className="mt-1 text-[13px] font-semibold tracking-[0.08em] text-slate-900">
+                    {ctaTitle}
+                  </h2>
+                  <p className="mt-2 text-[11px] leading-relaxed text-slate-600">
+                    {ctaBody}
+                  </p>
+                </div>
+                <div className="flex flex-col gap-2 text-[11px]">
+                  <Link href="/guide/sell-car-compare-options">
+                    <Button
+                      size="sm"
+                      className="w-full rounded-full px-5 text-[10px] tracking-[0.18em]"
+                    >
+                      売るときの選択肢を整理する
+                    </Button>
+                  </Link>
+                  <Link href="/guide?category=MAINTENANCE_COST">
+                    <button className="w-full rounded-full border border-slate-300 px-5 py-2 text-[10px] tracking-[0.18em] text-slate-600 hover:border-tiffany-400 hover:text-tiffany-700">
+                      維持費ガイドをもっと見る
+                    </button>
+                  </Link>
+                </div>
+              </div>
+              <p className="mt-3 text-[10px] leading-relaxed text-slate-400">
+                将来的にはここに「一括査定」「車検予約」「保険見直し」などの外部サービスボタンを
+                設置する想定です。CARS / COLUMN / GUIDE いずれのページでも、
+                ページ末尾に 1 つだけ“次の一手”を置くことで、世界観を保ちながらアフィ導線を作ります。
+              </p>
+            </GlassCard>
+          </Reveal>
         </section>
 
         {/* モバイル向けの戻る導線 */}
