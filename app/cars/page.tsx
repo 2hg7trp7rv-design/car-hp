@@ -7,7 +7,6 @@ import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
 import { getAllCars, type CarItem } from "@/lib/cars";
 
-// ✅ Edge でも問題ないようにトップレベル await は使わない
 export const runtime = "edge";
 
 export const metadata: Metadata = {
@@ -16,7 +15,7 @@ export const metadata: Metadata = {
     "主要な車種について 維持の難易度 ボディタイプ セグメントなどの条件で絞り込んで確認できる車種データベース",
 };
 
-// Next.js 標準の searchParams 仕様に寄せる
+// Next.js の searchParams 仕様に合わせた型
 type SearchParams = {
   q?: string | string[];
   maker?: string | string[];
@@ -34,13 +33,13 @@ function normalize(value: string | undefined | null): string {
   return (value ?? "").trim().toLowerCase();
 }
 
-// string | string[] を安全に1つの string にするヘルパー
+// string | string[] を安全に 1 つの string にする
 function toSingle(value: string | string[] | undefined): string {
   if (Array.isArray(value)) return value[0] ?? "";
   return value ?? "";
 }
 
-// CarDifficulty = "basic" | "intermediate" | "advanced" に合わせる
+// CarDifficulty = "basic" | "intermediate" | "advanced"
 function mapDifficultyLabel(
   difficulty: CarItem["difficulty"] | undefined,
 ): string {
@@ -56,7 +55,7 @@ function mapDifficultyLabel(
   }
 }
 
-// バッジ用の色
+// バッジの色
 function difficultyBadgeClass(
   difficulty: CarItem["difficulty"] | undefined,
 ): string {
@@ -86,7 +85,7 @@ function mapSortLabel(key: string): string {
   }
 }
 
-// 難易度を数値化してソートに利用
+// 難易度ソート用の重み
 function difficultyWeight(
   difficulty: CarItem["difficulty"] | undefined,
 ): number {
@@ -103,10 +102,9 @@ function difficultyWeight(
 }
 
 export default async function CarsPage({ searchParams }: PageProps) {
-  // ✅ データ取得はコンポーネント内でだけ行う
   const all = await getAllCars();
 
-  // searchParams の生値をすべて toSingle() で安全に文字列化
+  // searchParams を全部 string に落とす
   const rawQ = toSingle(searchParams?.q);
   const q = normalize(rawQ);
   const makerFilter = toSingle(searchParams?.maker).trim();
@@ -119,7 +117,6 @@ export default async function CarsPage({ searchParams }: PageProps) {
     new Set(all.map((c) => c.maker).filter(Boolean)),
   ).sort();
 
-  // 並び順を固定しつつ、実際に存在するものだけを採用
   const difficultyOptions: CarItem["difficulty"][] = (
     ["basic", "intermediate", "advanced"] as CarItem["difficulty"][]
   ).filter((d) => all.some((c) => c.difficulty === d));
@@ -132,6 +129,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
     new Set(all.map((c) => c.segment).filter(Boolean)),
   ).sort();
 
+  // フィルタリング
   const filtered = all.filter((car) => {
     if (q) {
       const haystack = [
@@ -150,33 +148,34 @@ export default async function CarsPage({ searchParams }: PageProps) {
     if (
       difficultyFilter &&
       car.difficulty !== (difficultyFilter as CarItem["difficulty"])
-    )
+    ) {
       return false;
+    }
     if (bodyTypeFilter && car.bodyType !== bodyTypeFilter) return false;
     if (segmentFilter && car.segment !== segmentFilter) return false;
 
     return true;
   });
 
-  // ソート適用
+  // ソート
   const sorted = [...filtered];
   if (sortKey === "name") {
-    sorted.sort((a, b) => (a.name ?? "").localeCompare(b.name ?? ""));
+    sorted.sort((a, b) => (a.name ?? "").localeCompare(b.name ?? "", "ja"));
   } else if (sortKey === "maker") {
     sorted.sort((a, b) => {
-      const makerDiff = (a.maker ?? "").localeCompare(b.maker ?? "");
+      const makerDiff = (a.maker ?? "").localeCompare(b.maker ?? "", "ja");
       if (makerDiff !== 0) return makerDiff;
-      return (a.name ?? "").localeCompare(b.name ?? "");
+      return (a.name ?? "").localeCompare(b.name ?? "", "ja");
     });
   } else if (sortKey === "difficulty") {
     sorted.sort((a, b) => {
       const diff =
         difficultyWeight(a.difficulty) - difficultyWeight(b.difficulty);
       if (diff !== 0) return diff;
-      return (a.name ?? "").localeCompare(b.name ?? "");
+      return (a.name ?? "").localeCompare(b.name ?? "", "ja");
     });
   }
-  // sortKey が空のときは登録順（all の順）を維持
+  // sortKey が空なら buildAllCars() の順をそのまま使う
 
   const hasFilter =
     Boolean(q) ||
@@ -186,7 +185,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
     Boolean(segmentFilter) ||
     Boolean(sortKey);
 
-  // ----- インデックス用の簡易統計 -----
+  // インデックス用の統計
   const totalModels = all.length;
   const basicCount = all.filter((c) => c.difficulty === "basic").length;
   const intermediateCount = all.filter(
@@ -247,14 +246,14 @@ export default async function CarsPage({ searchParams }: PageProps) {
           </Reveal>
         </header>
 
-        {/* インデックスパネル（overview） */}
+        {/* インデックスパネル */}
         <Reveal delay={160}>
           <section className="mb-8">
             <GlassCard
               padding="md"
               className="relative overflow-hidden border border-white/80 bg-gradient-to-r from-white/95 via-white/85 to-vapor/95 shadow-soft"
             >
-              {/* 光のレイヤー */}
+              {/* 背景の光 */}
               <div className="pointer-events-none absolute inset-0">
                 <div className="absolute -left-16 top-[-30%] h-40 w-40 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.18),_transparent_70%)] blur-3xl" />
                 <div className="absolute -right-24 bottom-[-40%] h-64 w-64 rounded-full bg-[radial-gradient(circle_at_center,_rgba(148,163,184,0.25),_transparent_72%)] blur-3xl" />
@@ -333,23 +332,354 @@ export default async function CarsPage({ searchParams }: PageProps) {
         </Reveal>
 
         {/* フィルターエリア */}
-        {/* ……以下は元のコードと同じなので省略せずそのまま使ってOK（省略せずに全部残してある） */}
-        {/* === ここから下はあなたの元コードと内容は同じです === */}
-
-        {/* フィルターエリア */}
         <Reveal delay={220}>
-          {/* ここから下は質問に貼ってくれたコードそのまま */}
-          {/* 省略せず全部残してあります */}
           <section className="mb-6 rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-soft">
-            {/* ... フィルター用の <form> 全部 ... */}
-            {/* ★ 質問に貼ってくれた部分をそのまま使ってください ★ */}
+            <form className="space-y-4 text-xs sm:text-[11px]">
+              <div className="grid gap-3 md:grid-cols-5">
+                {/* キーワード */}
+                <div className="md:col-span-2">
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    KEYWORD
+                  </label>
+                  <input
+                    type="search"
+                    name="q"
+                    defaultValue={rawQ}
+                    placeholder="モデル名やキーワードで検索"
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  />
+                </div>
+
+                {/* メーカー */}
+                <div>
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    MAKER
+                  </label>
+                  <select
+                    name="maker"
+                    defaultValue={makerFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">すべて</option>
+                    {makers.map((m) => (
+                      <option key={m} value={m}>
+                        {m}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* 難易度 */}
+                <div>
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    DIFFICULTY
+                  </label>
+                  <select
+                    name="difficulty"
+                    defaultValue={difficultyFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">すべて</option>
+                    {difficultyOptions.map((d) => (
+                      <option key={d} value={d ?? ""}>
+                        {mapDifficultyLabel(d)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* ソート */}
+                <div>
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    SORT
+                  </label>
+                  <select
+                    name="sort"
+                    defaultValue={sortKey}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">登録順</option>
+                    <option value="name">車名順</option>
+                    <option value="maker">メーカー順</option>
+                    <option value="difficulty">
+                      維持難易度（やさしい→気を使う）
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              {/* セグメント + BODY TYPE + クイックプリセット */}
+              <div className="grid gap-3 md:grid-cols-5">
+                {/* セグメント */}
+                <div className="md:col-span-2">
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    SEGMENT
+                  </label>
+                  <select
+                    name="segment"
+                    defaultValue={segmentFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">すべて</option>
+                    {segments.map((s) => (
+                      <option key={s} value={s}>
+                        {s}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* ボディタイプ */}
+                <div>
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    BODY TYPE
+                  </label>
+                  <select
+                    name="bodyType"
+                    defaultValue={bodyTypeFilter}
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                  >
+                    <option value="">すべて</option>
+                    {bodyTypes.map((bt) => (
+                      <option key={bt} value={bt}>
+                        {bt}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* クイックプリセット */}
+                <div className="md:col-span-2">
+                  <p className="text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    QUICK PRESET
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-2 text-[10px]">
+                    <Link
+                      href="/cars?difficulty=basic&sort=difficulty"
+                      className="rounded-full border border-emerald-100 bg-emerald-50/90 px-3 py-1 tracking-[0.16em] text-emerald-800 transition hover:border-emerald-300 hover:bg-emerald-50"
+                    >
+                      初めての輸入車向き
+                    </Link>
+                    <Link
+                      href="/cars?bodyType=セダン&sort=name"
+                      className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 tracking-[0.16em] hover:border-tiffany-300 hover:bg-white"
+                    >
+                      しっとり系セダン
+                    </Link>
+                    <Link
+                      href="/cars?bodyType=SUV&difficulty=advanced&sort=difficulty"
+                      className="rounded-full border border-rose-100 bg-rose-50/90 px-3 py-1 tracking-[0.16em] text-rose-800 transition hover:border-rose-300 hover:bg-rose-50"
+                    >
+                      手のかかるSUV
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* レジェンド */}
+              <div className="mt-1 flex flex-wrap items-center gap-2 text-[9px] text-slate-400">
+                <span className="rounded-full bg-slate-50 px-2 py-0.5">
+                  LEGEND
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50/80 px-2 py-0.5 text-emerald-800">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                  やさしい
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-full bg-amber-50/80 px-2 py-0.5 text-amber-800">
+                  <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+                  標準的
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-full bg-rose-50/80 px-2 py-0.5 text-rose-800">
+                  <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
+                  気を使う
+                </span>
+                <span className="ml-auto text-[9px] text-slate-400">
+                  * 条件は自由に組み合わせて利用可能
+                </span>
+              </div>
+
+              {/* ボタン */}
+              <div className="mt-3 flex items-center justify-end gap-3">
+                {hasFilter && (
+                  <Link
+                    href="/cars"
+                    className="text-[10px] tracking-[0.16em] text-slate-400 hover:text-slate-700"
+                  >
+                    CLEAR
+                  </Link>
+                )}
+                <Button
+                  type="submit"
+                  size="sm"
+                  variant="primary"
+                  className="rounded-full px-5 py-2 text-[11px] tracking-[0.2em]"
+                  magnetic
+                >
+                  絞り込み
+                </Button>
+              </div>
+            </form>
           </section>
         </Reveal>
 
-        {/* そのまま一覧レンダリング部分も維持 */}
+        {/* アクティブフィルタ表示 */}
+        {hasFilter && (
+          <Reveal delay={260}>
+            <div className="mb-5 flex flex-wrap items-center gap-2 text-[10px]">
+              <span className="rounded-full bg-slate-50 px-2 py-0.5 text-slate-400">
+                ACTIVE FILTERS
+              </span>
+              {q && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  keyword: <span className="font-semibold">“{rawQ}”</span>
+                </span>
+              )}
+              {makerFilter && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  maker: <span className="font-semibold">{makerFilter}</span>
+                </span>
+              )}
+              {difficultyFilter && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  difficulty:{" "}
+                  <span className="font-semibold">
+                    {mapDifficultyLabel(
+                      difficultyFilter as CarItem["difficulty"],
+                    )}
+                  </span>
+                </span>
+              )}
+              {bodyTypeFilter && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  body:{" "}
+                  <span className="font-semibold">{bodyTypeFilter}</span>
+                </span>
+              )}
+              {segmentFilter && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  segment:{" "}
+                  <span className="font-semibold">{segmentFilter}</span>
+                </span>
+              )}
+              {sortKey && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  sort:{" "}
+                  <span className="font-semibold">
+                    {mapSortLabel(sortKey)}
+                  </span>
+                </span>
+              )}
+            </div>
+          </Reveal>
+        )}
 
-        {/* ここから先も、元コードと全く同じように使えます */}
-        {/* （長いのでここで説明を止めますが、実際は上で貼った全文をそのまま使ってOK） */}
+        {/* 一覧 */}
+        <Reveal delay={280}>
+          <section className="space-y-4" aria-label="車種一覧">
+            <div className="flex items-baseline justify-between">
+              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
+                CAR LIST
+              </h2>
+              <div className="flex flex-col items-end text-[10px] text-slate-400">
+                <span>
+                  TOTAL{" "}
+                  <span className="font-semibold text-slate-800">
+                    {all.length}
+                  </span>{" "}
+                  MODELS
+                </span>
+                {sorted.length !== all.length && (
+                  <span>
+                    FILTERED{" "}
+                    <span className="font-semibold text-tiffany-600">
+                      {sorted.length}
+                    </span>
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {sorted.length === 0 ? (
+              <p className="rounded-2xl border border-dashed border-slate-200 bg-white/70 p-6 text-center text-xs text-slate-500">
+                条件に合うクルマはなし
+                絞り込み条件を少し緩めて再検索する想定
+              </p>
+            ) : (
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {sorted.map((car) => (
+                  <Link
+                    key={car.id}
+                    href={`/cars/${encodeURIComponent(car.slug)}`}
+                  >
+                    <GlassCard
+                      as="article"
+                      padding="md"
+                      interactive
+                      className="group relative h-full overflow-hidden border border-slate-200/80 bg-white/95 transition-transform duration-500 hover:-translate-y-[3px] hover:shadow-soft-card"
+                    >
+                      {/* カード内の光 */}
+                      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                        <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.18),_transparent_70%)] blur-2xl" />
+                      </div>
+
+                      <div className="relative z-10 flex h-full flex-col gap-3">
+                        {/* サムネイル */}
+                        {(car.heroImage || (car as any).mainImage) && (
+                          <div className="overflow-hidden rounded-2xl border border-slate-100">
+                            <img
+                              src={
+                                car.heroImage ||
+                                (car as any).mainImage ||
+                                ""
+                              }
+                              alt={car.name}
+                              className="h-40 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                          </div>
+                        )}
+
+                        <div className="space-y-1">
+                          <p className="text-[10px] font-semibold tracking-[0.24em] text-tiffany-600">
+                            {car.maker}
+                          </p>
+                          <h3 className="text-sm font-semibold leading-relaxed text-slate-900">
+                            {car.name}
+                          </h3>
+                          {car.summary && (
+                            <p className="text-[11px] leading-relaxed text-text-sub line-clamp-3">
+                              {car.summary}
+                            </p>
+                          )}
+                        </div>
+
+                        <div className="mt-auto flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                          {car.segment && (
+                            <span className="rounded-full bg-slate-50 px-2 py-1">
+                              {car.segment}
+                            </span>
+                          )}
+                          {car.bodyType && (
+                            <span className="rounded-full bg-slate-50 px-2 py-1">
+                              {car.bodyType}
+                            </span>
+                          )}
+                          <span
+                            className={[
+                              "rounded-full border px-2 py-1",
+                              difficultyBadgeClass(car.difficulty),
+                            ].join(" ")}
+                          >
+                            維持難易度: {mapDifficultyLabel(car.difficulty)}
+                          </span>
+                        </div>
+                      </div>
+                    </GlassCard>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </section>
+        </Reveal>
       </div>
     </main>
   );
