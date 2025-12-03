@@ -53,13 +53,48 @@ type RootLayoutProps = {
 function SiteFooter() {
   return (
     <footer className="border-t border-slate-200/60 bg-white/80 py-6 text-[10px] text-slate-500">
-      <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-        <p className="tracking-[0.16em]">
-          © {new Date().getFullYear()} CAR BOUTIQUE
-        </p>
-        <p className="max-w-md leading-relaxed tracking-[0.03em]">
-          クルマのニュース コラム 車種データを個人目線で整理している小さなサイト
-        </p>
+      <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+        <div className="space-y-1">
+          <p className="tracking-[0.16em]">
+            © {new Date().getFullYear()} CAR BOUTIQUE
+          </p>
+          <p className="max-w-md leading-relaxed tracking-[0.03em]">
+            クルマのニュース コラム 車種データを個人目線で整理している小さなサイト
+          </p>
+        </div>
+
+        <nav className="flex flex-wrap gap-x-4 gap-y-1 text-[10px] tracking-[0.08em]">
+          <Link
+            href="/legal/privacy"
+            className="transition hover:text-slate-700"
+          >
+            プライバシーポリシー
+          </Link>
+          <Link
+            href="/legal/disclaimer"
+            className="transition hover:text-slate-700"
+          >
+            免責事項
+          </Link>
+          <Link
+            href="/legal/copyright"
+            className="transition hover:text-slate-700"
+          >
+            著作権・引用ポリシー
+          </Link>
+          <Link
+            href="/legal/about"
+            className="transition hover:text-slate-700"
+          >
+            運営者情報
+          </Link>
+          <Link
+            href="/contact"
+            className="transition hover:text-slate-700"
+          >
+            お問い合わせ
+          </Link>
+        </nav>
       </div>
     </footer>
   );
@@ -85,7 +120,7 @@ function BottomNavLink({ href, label }: BottomNavLinkProps) {
 }
 
 /**
- * PCではヘッダー + フッター、モバイルでは専用ボトムナビも併用。
+ * PCではヘッダー+フッター、モバイルでは専用ボトムナビも併用。
  * 既存の MobileBottomNav コンポーネントがあるが、
  * 万一中身が空でも最低限の導線を維持するためのフォールバックナビ。
  */
@@ -136,7 +171,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <SiteFooter />
           </div>
 
-          {/* モバイル用ボトムナビ（既存 + フォールバック） */}
+          {/* モバイル用ボトムナビ（既存+フォールバック） */}
           <div className="sm:hidden">
             <MobileBottomNav />
             <InlineBottomNav />
