@@ -36,13 +36,13 @@ export type CarItem = {
   tiresFront?: string;
   tiresRear?: string;
 
-  /** 維持費に関するざっくりした印象コメント */
-  costImpression?: string;
+  // OWNERSHIP NOTES 系
+  strengths?: string[];
+  weaknesses?: string[];
+  troubleTrends?: string[];
 
-  /** OWNERSHIP NOTES 用フィールド */
-  strengths?: string[];      // 長所
-  weaknesses?: string[];     // 短所
-  troubleTrends?: string[];  // トラブル傾向
+  // 維持費のざっくり印象
+  costImpression?: string;
 };
 
 type RawCar = (typeof carsData)[number];
@@ -76,7 +76,7 @@ function normalizeCar(item: RawCar): CarItem | null {
   const maker = normalizeMaker(item.maker);
   const summary = item.summary ?? "";
 
-  // name or summary がないものは CARS 一覧に出さない
+  // name or summary が無いものは一覧対象から除外
   if (!item.name || summary.length === 0) {
     return null;
   }
@@ -87,7 +87,7 @@ function normalizeCar(item: RawCar): CarItem | null {
     slug,
     maker,
     releaseYear: item.releaseYear ?? undefined,
-    difficulty: normalizeDifficulty(item.difficulty as any),
+    difficulty: normalizeDifficulty(item.difficulty),
     bodyType: item.bodyType,
     segment: item.segment,
     grade: item.grade,
@@ -95,7 +95,6 @@ function normalizeCar(item: RawCar): CarItem | null {
     summaryLong: item.summaryLong,
     engine: item.engine,
     powerPs: item.powerPs ?? undefined,
-    // JSON の null をそのまま通さず undefined に正規化
     torqueNm: item.torqueNm ?? undefined,
     transmission: item.transmission,
     drive: item.drive,
@@ -114,11 +113,10 @@ function normalizeCar(item: RawCar): CarItem | null {
     tiresFront: (item as any).tiresFront,
     tiresRear: (item as any).tiresRear,
 
-    // ここから OWNERSHIP / COST 系
-    costImpression: (item as any).costImpression,
     strengths: (item as any).strengths,
     weaknesses: (item as any).weaknesses,
     troubleTrends: (item as any).troubleTrends,
+    costImpression: (item as any).costImpression,
   };
 
   return normalized;
@@ -128,17 +126,16 @@ function buildAllCars(): CarItem[] {
   const seen = new Map<string, CarItem>();
 
   for (const raw of carsData) {
-    const normalized = normalizeCar(raw);
+    const normalized = normalizeCar(raw as RawCar);
     if (!normalized) continue;
 
-    // slug が重複するものは最初の1件だけ採用
     if (seen.has(normalized.slug)) continue;
     seen.set(normalized.slug, normalized);
   }
 
   const result = Array.from(seen.values());
 
-  // 年式 → 名前 でソート（新しい順）
+  // 年式の新しい順 → 同年なら名前順
   result.sort((a, b) => {
     const yearA = a.releaseYear ?? 0;
     const yearB = b.releaseYear ?? 0;
@@ -153,12 +150,21 @@ function buildAllCars(): CarItem[] {
   return result;
 }
 
+// ランタイム共通のキャッシュ
 const ALL_CARS: CarItem[] = buildAllCars();
 
+// サーバー用（従来どおり async）
 export async function getAllCars(): Promise<CarItem[]> {
   return ALL_CARS;
 }
 
-export async function getCarBySlug(slug: string): Promise<CarItem | undefined> {
+// クライアントコンポーネント等から使う同期版
+export function getAllCarsSync(): CarItem[] {
+  return ALL_CARS;
+}
+
+export async function getCarBySlug(
+  slug: string,
+): Promise<CarItem | undefined> {
   return ALL_CARS.find((car) => car.slug === slug);
 }
