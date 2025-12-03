@@ -36,11 +36,13 @@ export type CarItem = {
   tiresFront?: string;
   tiresRear?: string;
 
-  /** ←← ここから追加（必須） */
-  strengths?: string[];       // 長所
-  weaknesses?: string[];      // 短所
-  troubleTrends?: string[];   // トラブル傾向
-  /** ←← ここまで追加 */
+  /** 維持費に関するざっくりした印象コメント */
+  costImpression?: string;
+
+  /** OWNERSHIP NOTES 用フィールド */
+  strengths?: string[];      // 長所
+  weaknesses?: string[];     // 短所
+  troubleTrends?: string[];  // トラブル傾向
 };
 
 type RawCar = (typeof carsData)[number];
@@ -50,7 +52,9 @@ function normalizeMaker(rawMaker: string | undefined): string {
   return rawMaker.toUpperCase();
 }
 
-function normalizeDifficulty(raw: string | undefined): CarDifficulty | undefined {
+function normalizeDifficulty(
+  raw: string | undefined,
+): CarDifficulty | undefined {
   if (!raw) return undefined;
   const value = raw.toLowerCase();
   if (value === "basic" || value === "intermediate" || value === "advanced") {
@@ -72,6 +76,7 @@ function normalizeCar(item: RawCar): CarItem | null {
   const maker = normalizeMaker(item.maker);
   const summary = item.summary ?? "";
 
+  // name or summary がないものは CARS 一覧に出さない
   if (!item.name || summary.length === 0) {
     return null;
   }
@@ -82,7 +87,7 @@ function normalizeCar(item: RawCar): CarItem | null {
     slug,
     maker,
     releaseYear: item.releaseYear ?? undefined,
-    difficulty: normalizeDifficulty(item.difficulty),
+    difficulty: normalizeDifficulty(item.difficulty as any),
     bodyType: item.bodyType,
     segment: item.segment,
     grade: item.grade,
@@ -90,7 +95,7 @@ function normalizeCar(item: RawCar): CarItem | null {
     summaryLong: item.summaryLong,
     engine: item.engine,
     powerPs: item.powerPs ?? undefined,
-    // ★ ここで null を undefined に正規化して型エラーを回避
+    // JSON の null をそのまま通さず undefined に正規化
     torqueNm: item.torqueNm ?? undefined,
     transmission: item.transmission,
     drive: item.drive,
@@ -109,7 +114,8 @@ function normalizeCar(item: RawCar): CarItem | null {
     tiresFront: (item as any).tiresFront,
     tiresRear: (item as any).tiresRear,
 
-    /** ←← ここも追加（データ側にあれば反映される） */
+    // ここから OWNERSHIP / COST 系
+    costImpression: (item as any).costImpression,
     strengths: (item as any).strengths,
     weaknesses: (item as any).weaknesses,
     troubleTrends: (item as any).troubleTrends,
@@ -125,12 +131,14 @@ function buildAllCars(): CarItem[] {
     const normalized = normalizeCar(raw);
     if (!normalized) continue;
 
+    // slug が重複するものは最初の1件だけ採用
     if (seen.has(normalized.slug)) continue;
     seen.set(normalized.slug, normalized);
   }
 
   const result = Array.from(seen.values());
 
+  // 年式 → 名前 でソート（新しい順）
   result.sort((a, b) => {
     const yearA = a.releaseYear ?? 0;
     const yearB = b.releaseYear ?? 0;
