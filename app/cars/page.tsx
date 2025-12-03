@@ -6,6 +6,8 @@ import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
 import { getAllCars, type CarItem } from "@/lib/cars";
 
+const cars = await getAllCars();
+console.log("cars length:", cars.length);
 export const runtime = "edge";
 
 export const metadata: Metadata = {
