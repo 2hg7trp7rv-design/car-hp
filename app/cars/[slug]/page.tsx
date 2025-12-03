@@ -16,6 +16,12 @@ import { getLatestNews, type NewsItem } from "@/lib/news";
 import { getAllColumns, type ColumnItem } from "@/lib/columns";
 import { Button } from "@/components/ui/button";
 
+// ★ G30 専用テンプレ読み込み
+import {
+  getG30TemplateBySlug,
+  type G30CarTemplate,
+} from "@/lib/car-bmw-530i-g30";
+
 export const runtime = "edge";
 
 type PageProps = {
@@ -97,11 +103,7 @@ function formatDate(iso?: string | null): string {
 function buildKeywords(car: ExtendedCarItem): string[] {
   const tags = (car as CarItem & { tags?: string[] }).tags ?? [];
   const nameParts = car.name.split(/\s+/);
-  const extra = [
-    car.segment,
-    car.bodyType,
-    car.slug,
-  ];
+  const extra = [car.segment, car.bodyType, car.slug];
   return [car.maker, ...nameParts, ...extra, ...tags]
     .filter(Boolean)
     .map((v) => String(v));
@@ -203,10 +205,20 @@ export default async function CarDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  // ★ G30 用マシマシテンプレ（他車種は null のまま）
+  const g30Template: G30CarTemplate | null = getG30TemplateBySlug(
+    params.slug,
+  );
+
   const strengths = car.strengths ?? [];
   const weaknesses = car.weaknesses ?? [];
   const troubleTrends = car.troubleTrends ?? [];
   const costImpression = car.costImpression;
+
+  // ★ G30 専用の追加ブロック
+  const usageImpressions = g30Template?.usageImpressions;
+  const troubleDetails = g30Template?.troubleDetails ?? [];
+  const maintenanceSimulation = g30Template?.maintenanceSimulation;
 
   const [relatedCars, { relatedNews, relatedColumns }] = await Promise.all([
     getRelatedCars(car),
@@ -361,6 +373,31 @@ export default async function CarDetailPage({ params }: PageProps) {
                   className="rounded-full bg-white px-3 py-1 tracking-[0.16em] hover:text-tiffany-700"
                 >
                   OWNERSHIP NOTES
+                </a>
+              )}
+              {/* ★ G30 だけ追加でナビ表示 */}
+              {usageImpressions && (
+                <a
+                  href="#g30-usage-impressions"
+                  className="rounded-full bg-white px-3 py-1 tracking-[0.16em] hover:text-tiffany-700"
+                >
+                  DRIVE SCENES
+                </a>
+              )}
+              {troubleDetails.length > 0 && (
+                <a
+                  href="#g30-trouble-details"
+                  className="rounded-full bg-white px-3 py-1 tracking-[0.16em] hover:text-tiffany-700"
+                >
+                  TROUBLE &amp; COST
+                </a>
+              )}
+              {maintenanceSimulation && (
+                <a
+                  href="#g30-maintenance-simulation"
+                  className="rounded-full bg-white px-3 py-1 tracking-[0.16em] hover:text-tiffany-700"
+                >
+                  COST SIMULATION
                 </a>
               )}
               <a
@@ -623,6 +660,400 @@ export default async function CarDetailPage({ params }: PageProps) {
                 </Reveal>
               )}
             </div>
+          </section>
+        )}
+
+        {/* ★ G30 専用：走り方シーン別の印象 */}
+        {usageImpressions && (
+          <section id="g30-usage-impressions" className="mb-12">
+            <Reveal>
+              <div className="mb-4 flex items-baseline justify-between gap-3">
+                <h2 className="text-xs font-semibold tracking-[0.2em] text-slate-600">
+                  DRIVING SCENES
+                </h2>
+                <p className="text-[11px] text-slate-400">
+                  街乗り・高速・長距離・維持費それぞれのシーンで、
+                  G30とどう付き合うかのイメージをざっくりつかむためのメモです。
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {usageImpressions.city && (
+                <Reveal>
+                  <GlassCard
+                    padding="lg"
+                    className="h-full border border-slate-200/80 bg-white/90"
+                  >
+                    <p className="text-[10px] tracking-[0.2em] text-slate-400">
+                      CITY
+                    </p>
+                    <h3 className="mt-1 text-xs font-semibold text-slate-800">
+                      {usageImpressions.city.title}
+                    </h3>
+                    <p className="mt-2 text-[12px] leading-relaxed text-slate-700">
+                      {usageImpressions.city.summary}
+                    </p>
+                    <div className="mt-3 grid gap-3 text-[11px] text-slate-600 sm:grid-cols-2">
+                      {usageImpressions.city.pros?.length > 0 && (
+                        <div>
+                          <p className="text-[10px] font-semibold tracking-[0.16em] text-emerald-600">
+                            GOOD
+                          </p>
+                          <ul className="mt-1 space-y-1.5">
+                            {usageImpressions.city.pros.map((p) => (
+                              <li key={p} className="flex gap-2">
+                                <span className="mt-[5px] h-1 w-3 rounded-full bg-emerald-400" />
+                                <span>{p}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {usageImpressions.city.cons?.length > 0 && (
+                        <div>
+                          <p className="text-[10px] font-semibold tracking-[0.16em] text-amber-600">
+                            CAREFUL
+                          </p>
+                          <ul className="mt-1 space-y-1.5">
+                            {usageImpressions.city.cons.map((c) => (
+                              <li key={c} className="flex gap-2">
+                                <span className="mt-[5px] h-1 w-3 rounded-full bg-amber-400" />
+                                <span>{c}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </GlassCard>
+                </Reveal>
+              )}
+
+              {usageImpressions.highway && (
+                <Reveal>
+                  <GlassCard
+                    padding="lg"
+                    className="h-full border border-slate-200/80 bg-white/90"
+                  >
+                    <p className="text-[10px] tracking-[0.2em] text-slate-400">
+                      HIGHWAY
+                    </p>
+                    <h3 className="mt-1 text-xs font-semibold text-slate-800">
+                      {usageImpressions.highway.title}
+                    </h3>
+                    <p className="mt-2 text-[12px] leading-relaxed text-slate-700">
+                      {usageImpressions.highway.summary}
+                    </p>
+                    <div className="mt-3 grid gap-3 text-[11px] text-slate-600 sm:grid-cols-2">
+                      {usageImpressions.highway.pros?.length > 0 && (
+                        <div>
+                          <p className="text-[10px] font-semibold tracking-[0.16em] text-emerald-600">
+                            GOOD
+                          </p>
+                          <ul className="mt-1 space-y-1.5">
+                            {usageImpressions.highway.pros.map((p) => (
+                              <li key={p} className="flex gap-2">
+                                <span className="mt-[5px] h-1 w-3 rounded-full bg-emerald-400" />
+                                <span>{p}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {usageImpressions.highway.cons?.length > 0 && (
+                        <div>
+                          <p className="text-[10px] font-semibold tracking-[0.16em] text-amber-600">
+                            CAREFUL
+                          </p>
+                          <ul className="mt-1 space-y-1.5">
+                            {usageImpressions.highway.cons.map((c) => (
+                              <li key={c} className="flex gap-2">
+                                <span className="mt-[5px] h-1 w-3 rounded-full bg-amber-400" />
+                                <span>{c}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </GlassCard>
+                </Reveal>
+              )}
+
+              {usageImpressions.longTrip && (
+                <Reveal>
+                  <GlassCard
+                    padding="lg"
+                    className="h-full border border-slate-200/80 bg-white/90"
+                  >
+                    <p className="text-[10px] tracking-[0.2em] text-slate-400">
+                      LONG TRIP
+                    </p>
+                    <h3 className="mt-1 text-xs font-semibold text-slate-800">
+                      {usageImpressions.longTrip.title}
+                    </h3>
+                    <p className="mt-2 text-[12px] leading-relaxed text-slate-700">
+                      {usageImpressions.longTrip.summary}
+                    </p>
+                    <div className="mt-3 grid gap-3 text-[11px] text-slate-600 sm:grid-cols-2">
+                      {usageImpressions.longTrip.pros?.length > 0 && (
+                        <div>
+                          <p className="text-[10px] font-semibold tracking-[0.16em] text-emerald-600">
+                            GOOD
+                          </p>
+                          <ul className="mt-1 space-y-1.5">
+                            {usageImpressions.longTrip.pros.map((p) => (
+                              <li key={p} className="flex gap-2">
+                                <span className="mt-[5px] h-1 w-3 rounded-full bg-emerald-400" />
+                                <span>{p}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {usageImpressions.longTrip.cons?.length > 0 && (
+                        <div>
+                          <p className="text-[10px] font-semibold tracking-[0.16em] text-amber-600">
+                            CAREFUL
+                          </p>
+                          <ul className="mt-1 space-y-1.5">
+                            {usageImpressions.longTrip.cons.map((c) => (
+                              <li key={c} className="flex gap-2">
+                                <span className="mt-[5px] h-1 w-3 rounded-full bg-amber-400" />
+                                <span>{c}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </GlassCard>
+                </Reveal>
+              )}
+
+              {usageImpressions.maintenance && (
+                <Reveal>
+                  <GlassCard
+                    padding="lg"
+                    className="h-full border border-slate-200/80 bg-white/90"
+                  >
+                    <p className="text-[10px] tracking-[0.2em] text-slate-400">
+                      MAINTENANCE FEEL
+                    </p>
+                    <h3 className="mt-1 text-xs font-semibold text-slate-800">
+                      {usageImpressions.maintenance.title}
+                    </h3>
+                    <p className="mt-2 text-[12px] leading-relaxed text-slate-700">
+                      {usageImpressions.maintenance.summary}
+                    </p>
+                    <div className="mt-3 grid gap-3 text-[11px] text-slate-600 sm:grid-cols-2">
+                      {usageImpressions.maintenance.pros?.length > 0 && (
+                        <div>
+                          <p className="text-[10px] font-semibold tracking-[0.16em] text-emerald-600">
+                            GOOD
+                          </p>
+                          <ul className="mt-1 space-y-1.5">
+                            {usageImpressions.maintenance.pros.map((p) => (
+                              <li key={p} className="flex gap-2">
+                                <span className="mt-[5px] h-1 w-3 rounded-full bg-emerald-400" />
+                                <span>{p}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {usageImpressions.maintenance.cons?.length > 0 && (
+                        <div>
+                          <p className="text-[10px] font-semibold tracking-[0.16em] text-amber-600">
+                            CAREFUL
+                          </p>
+                          <ul className="mt-1 space-y-1.5">
+                            {usageImpressions.maintenance.cons.map((c) => (
+                              <li key={c} className="flex gap-2">
+                                <span className="mt-[5px] h-1 w-3 rounded-full bg-amber-400" />
+                                <span>{c}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </GlassCard>
+                </Reveal>
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* ★ G30 専用：トラブル詳細＋修理費目安 */}
+        {troubleDetails.length > 0 && (
+          <section id="g30-trouble-details" className="mb-12">
+            <Reveal>
+              <div className="mb-4 flex items-baseline justify-between gap-3">
+                <h2 className="text-xs font-semibold tracking-[0.2em] text-slate-600">
+                  TROUBLE &amp; REPAIR COST
+                </h2>
+                <p className="text-[11px] text-slate-400">
+                  「起きがちなトラブル」と「修理費の目安」を、
+                  大まかなイメージが持てるレベルでまとめています。
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal>
+              <GlassCard
+                padding="lg"
+                className="border border-rose-100/80 bg-white/95"
+              >
+                <div className="divide-y divide-slate-100">
+                  {troubleDetails.map((t) => (
+                    <div
+                      key={t.title}
+                      className="flex flex-col gap-2 py-3 text-[11px] text-slate-700 md:flex-row md:items-baseline md:justify-between"
+                    >
+                      <div className="md:w-3/4">
+                        <p className="font-semibold text-slate-900">
+                          {t.title}
+                        </p>
+                        {t.symptoms && (
+                          <p className="mt-1 leading-relaxed text-slate-700">
+                            {t.symptoms}
+                          </p>
+                        )}
+                        <div className="mt-1 flex flex-wrap gap-2 text-[10px] text-slate-400">
+                          {t.when && (
+                            <span className="rounded-full bg-rose-50 px-2 py-0.5">
+                              発生しやすいタイミング：{t.when}
+                            </span>
+                          )}
+                          {t.note && (
+                            <span className="rounded-full bg-slate-50 px-2 py-0.5">
+                              {t.note}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      {t.cost && (
+                        <div className="md:w-1/4 md:text-right">
+                          <p className="text-[10px] tracking-[0.16em] text-slate-400">
+                            修理費の目安
+                          </p>
+                          <p className="text-[12px] font-semibold text-rose-700">
+                            {t.cost}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-3 text-[10px] leading-relaxed text-rose-700/80">
+                  金額はあくまで「ざっくりとしたレンジ感」の参考です。
+                  実際の費用は、年式・走行距離・故障の程度・部品や工場の選び方によって大きく変動します。
+                </p>
+              </GlassCard>
+            </Reveal>
+          </section>
+        )}
+
+        {/* ★ G30 専用：維持費シミュレーション */}
+        {maintenanceSimulation && (
+          <section id="g30-maintenance-simulation" className="mb-12">
+            <Reveal>
+              <div className="mb-4 flex items-baseline justify-between gap-3">
+                <h2 className="text-xs font-semibold tracking-[0.2em] text-slate-600">
+                  MAINTENANCE COST SIMULATION
+                </h2>
+                <p className="text-[11px] text-slate-400">
+                  税金・保険・車検・タイヤなど、
+                  ざっくり「年間これくらい」のイメージをつかむための簡易シミュレーションです。
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal>
+              <GlassCard
+                padding="lg"
+                className="border border-slate-200/80 bg-white/95"
+              >
+                <div className="space-y-4 text-[11px] text-slate-700">
+                  {maintenanceSimulation.note && (
+                    <p className="leading-relaxed text-slate-600">
+                      {maintenanceSimulation.note}
+                    </p>
+                  )}
+
+                  <div className="grid gap-3 md:grid-cols-2">
+                    {[
+                      maintenanceSimulation.items.tax,
+                      maintenanceSimulation.items.insurance,
+                      maintenanceSimulation.items.shaken,
+                      maintenanceSimulation.items.tires,
+                      maintenanceSimulation.items.brakes,
+                      maintenanceSimulation.items.routine,
+                    ].map((item) => (
+                      <div
+                        key={item.label}
+                        className="rounded-2xl bg-slate-50/80 px-4 py-3"
+                      >
+                        <p className="text-[10px] font-semibold tracking-[0.16em] text-slate-500">
+                          {item.label}
+                        </p>
+                        {item.perYear && (
+                          <p className="mt-1">
+                            <span className="text-[10px] text-slate-400">
+                              年間目安：
+                            </span>
+                            <span className="font-semibold">
+                              {item.perYear}
+                            </span>
+                          </p>
+                        )}
+                        {item.per2Years && (
+                          <p>
+                            <span className="text-[10px] text-slate-400">
+                              2年あたり：
+                            </span>
+                            <span className="font-semibold">
+                              {item.per2Years}
+                            </span>
+                          </p>
+                        )}
+                        {item.per3Years && (
+                          <p>
+                            <span className="text-[10px] text-slate-400">
+                              3年あたり：
+                            </span>
+                            <span className="font-semibold">
+                              {item.per3Years}
+                            </span>
+                          </p>
+                        )}
+                        {item.memo && (
+                          <p className="mt-1 text-[10px] leading-relaxed text-slate-500">
+                            {item.memo}
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+
+                  {maintenanceSimulation.yearlyRoughTotal && (
+                    <p className="mt-2 border-t border-slate-100 pt-3 text-[11px] text-slate-600">
+                      トータルのざっくり年間目安：{" "}
+                      <span className="font-semibold text-slate-900">
+                        {maintenanceSimulation.yearlyRoughTotal}
+                      </span>
+                    </p>
+                  )}
+
+                  <p className="text-[10px] leading-relaxed text-slate-400">
+                    ※実際の維持費は、走行距離・利用シーン・加入する保険や選ぶ工場によって大きく変わります。
+                    ここでは「同クラス輸入セダンとして、このくらいを見ておくと安心」という目安イメージです。
+                  </p>
+                </div>
+              </GlassCard>
+            </Reveal>
           </section>
         )}
 
