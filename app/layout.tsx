@@ -49,6 +49,10 @@ export const metadata: Metadata = {
     description:
       "クルマのニュース コラム 車種データを個人目線でまとめた小さなサイト",
   },
+  // Google Search Console 用サイト確認タグ
+  verification: {
+    google: "fPw-nBgPqDkI8ogL5QrdlKHKi-80KOsN_65_s_0Lz08",
+  },
 };
 
 type RootLayoutProps = {
