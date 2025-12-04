@@ -198,6 +198,79 @@ async function getRelatedNewsAndColumns(car: ExtendedCarItem) {
   return { relatedNews, relatedColumns };
 }
 
+// ===== G30 用：走行シーン共通カードコンポーネント =====
+
+type SceneImpression = {
+  title: string;
+  summary: string;
+  pros?: string[];
+  cons?: string[];
+};
+
+type SceneSectionProps = {
+  label: string;
+  impression?: SceneImpression;
+};
+
+function SceneSection({ label, impression }: SceneSectionProps) {
+  if (!impression) return null;
+
+  const pros = impression.pros ?? [];
+  const cons = impression.cons ?? [];
+
+  return (
+    <Reveal>
+      <GlassCard
+        padding="lg"
+        className="h-full border border-slate-200/80 bg-white/90"
+      >
+        <p className="text-[10px] tracking-[0.2em] text-slate-400">
+          {label}
+        </p>
+        <h3 className="mt-1 text-xs font-semibold text-slate-800">
+          {impression.title}
+        </h3>
+        <p className="mt-2 text-[12px] leading-relaxed text-slate-700">
+          {impression.summary}
+        </p>
+        <div className="mt-3 grid gap-3 text-[11px] text-slate-600 sm:grid-cols-2">
+          {pros.length > 0 && (
+            <div>
+              <p className="text-[10px] font-semibold tracking-[0.16em] text-emerald-600">
+                GOOD
+              </p>
+              <ul className="mt-1 space-y-1.5">
+                {pros.map((p) => (
+                  <li key={p} className="flex gap-2">
+                    <span className="mt-[5px] h-1 w-3 rounded-full bg-emerald-400" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {cons.length > 0 && (
+            <div>
+              <p className="text-[10px] font-semibold tracking-[0.16em] text-amber-600">
+                CAREFUL
+              </p>
+              <ul className="mt-1 space-y-1.5">
+                {cons.map((c) => (
+                  <li key={c} className="flex gap-2">
+                    <span className="mt-[5px] h-1 w-3 rounded-full bg-amber-400" />
+                    <span>{c}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </GlassCard>
+    </Reveal>
+  );
+}
+
 export default async function CarDetailPage({ params }: PageProps) {
   const car = (await getCarBySlug(params.slug)) as ExtendedCarItem | null;
 
@@ -377,12 +450,14 @@ export default async function CarDetailPage({ params }: PageProps) {
               )}
               {/* ★ G30 だけ追加でナビ表示 */}
               {usageImpressions && (
-                <a
-                  href="#g30-usage-impressions"
-                  className="rounded-full bg-white px-3 py-1 tracking-[0.16em] hover:text-tiffany-700"
-                >
-                  DRIVE SCENES
-                </a>
+                <>
+                  <a
+                    href="#g30-usage-impressions"
+                    className="rounded-full bg-white px-3 py-1 tracking-[0.16em] hover:text-tiffany-700"
+                  >
+                    DRIVE SCENES
+                  </a>
+                </>
               )}
               {troubleDetails.length > 0 && (
                 <a
@@ -679,209 +754,19 @@ export default async function CarDetailPage({ params }: PageProps) {
             </Reveal>
 
             <div className="grid gap-6 md:grid-cols-2">
-              {usageImpressions.city && (
-                <Reveal>
-                  <GlassCard
-                    padding="lg"
-                    className="h-full border border-slate-200/80 bg-white/90"
-                  >
-                    <p className="text-[10px] tracking-[0.2em] text-slate-400">
-                      CITY
-                    </p>
-                    <h3 className="mt-1 text-xs font-semibold text-slate-800">
-                      {usageImpressions.city.title}
-                    </h3>
-                    <p className="mt-2 text-[12px] leading-relaxed text-slate-700">
-                      {usageImpressions.city.summary}
-                    </p>
-                    <div className="mt-3 grid gap-3 text-[11px] text-slate-600 sm:grid-cols-2">
-                      {usageImpressions.city.pros?.length > 0 && (
-                        <div>
-                          <p className="text-[10px] font-semibold tracking-[0.16em] text-emerald-600">
-                            GOOD
-                          </p>
-                          <ul className="mt-1 space-y-1.5">
-                            {usageImpressions.city.pros.map((p) => (
-                              <li key={p} className="flex gap-2">
-                                <span className="mt-[5px] h-1 w-3 rounded-full bg-emerald-400" />
-                                <span>{p}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      {usageImpressions.city.cons?.length > 0 && (
-                        <div>
-                          <p className="text-[10px] font-semibold tracking-[0.16em] text-amber-600">
-                            CAREFUL
-                          </p>
-                          <ul className="mt-1 space-y-1.5">
-                            {usageImpressions.city.cons.map((c) => (
-                              <li key={c} className="flex gap-2">
-                                <span className="mt-[5px] h-1 w-3 rounded-full bg-amber-400" />
-                                <span>{c}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-                  </GlassCard>
-                </Reveal>
-              )}
-
-              {usageImpressions.highway && (
-                <Reveal>
-                  <GlassCard
-                    padding="lg"
-                    className="h-full border border-slate-200/80 bg-white/90"
-                  >
-                    <p className="text-[10px] tracking-[0.2em] text-slate-400">
-                      HIGHWAY
-                    </p>
-                    <h3 className="mt-1 text-xs font-semibold text-slate-800">
-                      {usageImpressions.highway.title}
-                    </h3>
-                    <p className="mt-2 text-[12px] leading-relaxed text-slate-700">
-                      {usageImpressions.highway.summary}
-                    </p>
-                    <div className="mt-3 grid gap-3 text-[11px] text-slate-600 sm:grid-cols-2">
-                      {usageImpressions.highway.pros?.length > 0 && (
-                        <div>
-                          <p className="text-[10px] font-semibold tracking-[0.16em] text-emerald-600">
-                            GOOD
-                          </p>
-                          <ul className="mt-1 space-y-1.5">
-                            {usageImpressions.highway.pros.map((p) => (
-                              <li key={p} className="flex gap-2">
-                                <span className="mt-[5px] h-1 w-3 rounded-full bg-emerald-400" />
-                                <span>{p}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      {usageImpressions.highway.cons?.length > 0 && (
-                        <div>
-                          <p className="text-[10px] font-semibold tracking-[0.16em] text-amber-600">
-                            CAREFUL
-                          </p>
-                          <ul className="mt-1 space-y-1.5">
-                            {usageImpressions.highway.cons.map((c) => (
-                              <li key={c} className="flex gap-2">
-                                <span className="mt-[5px] h-1 w-3 rounded-full bg-amber-400" />
-                                <span>{c}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-                  </GlassCard>
-                </Reveal>
-              )}
-
-              {usageImpressions.longTrip && (
-                <Reveal>
-                  <GlassCard
-                    padding="lg"
-                    className="h-full border border-slate-200/80 bg-white/90"
-                  >
-                    <p className="text-[10px] tracking-[0.2em] text-slate-400">
-                      LONG TRIP
-                    </p>
-                    <h3 className="mt-1 text-xs font-semibold text-slate-800">
-                      {usageImpressions.longTrip.title}
-                    </h3>
-                    <p className="mt-2 text-[12px] leading-relaxed text-slate-700">
-                      {usageImpressions.longTrip.summary}
-                    </p>
-                    <div className="mt-3 grid gap-3 text-[11px] text-slate-600 sm:grid-cols-2">
-                      {usageImpressions.longTrip.pros?.length > 0 && (
-                        <div>
-                          <p className="text-[10px] font-semibold tracking-[0.16em] text-emerald-600">
-                            GOOD
-                          </p>
-                          <ul className="mt-1 space-y-1.5">
-                            {usageImpressions.longTrip.pros.map((p) => (
-                              <li key={p} className="flex gap-2">
-                                <span className="mt-[5px] h-1 w-3 rounded-full bg-emerald-400" />
-                                <span>{p}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      {usageImpressions.longTrip.cons?.length > 0 && (
-                        <div>
-                          <p className="text-[10px] font-semibold tracking-[0.16em] text-amber-600">
-                            CAREFUL
-                          </p>
-                          <ul className="mt-1 space-y-1.5">
-                            {usageImpressions.longTrip.cons.map((c) => (
-                              <li key={c} className="flex gap-2">
-                                <span className="mt-[5px] h-1 w-3 rounded-full bg-amber-400" />
-                                <span>{c}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-                  </GlassCard>
-                </Reveal>
-              )}
-
-              {usageImpressions.maintenance && (
-                <Reveal>
-                  <GlassCard
-                    padding="lg"
-                    className="h-full border border-slate-200/80 bg-white/90"
-                  >
-                    <p className="text-[10px] tracking-[0.2em] text-slate-400">
-                      MAINTENANCE FEEL
-                    </p>
-                    <h3 className="mt-1 text-xs font-semibold text-slate-800">
-                      {usageImpressions.maintenance.title}
-                    </h3>
-                    <p className="mt-2 text-[12px] leading-relaxed text-slate-700">
-                      {usageImpressions.maintenance.summary}
-                    </p>
-                    <div className="mt-3 grid gap-3 text-[11px] text-slate-600 sm:grid-cols-2">
-                      {usageImpressions.maintenance.pros?.length > 0 && (
-                        <div>
-                          <p className="text-[10px] font-semibold tracking-[0.16em] text-emerald-600">
-                            GOOD
-                          </p>
-                          <ul className="mt-1 space-y-1.5">
-                            {usageImpressions.maintenance.pros.map((p) => (
-                              <li key={p} className="flex gap-2">
-                                <span className="mt-[5px] h-1 w-3 rounded-full bg-emerald-400" />
-                                <span>{p}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      {usageImpressions.maintenance.cons?.length > 0 && (
-                        <div>
-                          <p className="text-[10px] font-semibold tracking-[0.16em] text-amber-600">
-                            CAREFUL
-                          </p>
-                          <ul className="mt-1 space-y-1.5">
-                            {usageImpressions.maintenance.cons.map((c) => (
-                              <li key={c} className="flex gap-2">
-                                <span className="mt-[5px] h-1 w-3 rounded-full bg-amber-400" />
-                                <span>{c}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-                  </GlassCard>
-                </Reveal>
-              )}
+              <SceneSection label="CITY" impression={usageImpressions.city} />
+              <SceneSection
+                label="HIGHWAY"
+                impression={usageImpressions.highway}
+              />
+              <SceneSection
+                label="LONG TRIP"
+                impression={usageImpressions.longTrip}
+              />
+              <SceneSection
+                label="MAINTENANCE FEEL"
+                impression={usageImpressions.maintenance}
+              />
             </div>
           </section>
         )}
