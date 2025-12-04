@@ -3,14 +3,9 @@ import type { MetadataRoute } from "next";
 
 const baseUrl = "https://car-hp.vercel.app";
 
-/**
- * シンプル版サイトマップ
- * まずは主要な固定ページだけを載せておく。
- * 後から車種ページやコラムを追加して拡張できる。
- */
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
-    "",          // /
+    "",
     "/news",
     "/cars",
     "/column",
@@ -26,6 +21,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return staticPaths.map((path) => ({
     url: `${baseUrl}${path}`,
-    lastModified: now,
+    lastModified: now.toISOString(),
+    changeFrequency: "daily",
+    priority: 0.8,
   }));
 }
