@@ -1,3 +1,4 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
@@ -9,7 +10,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SmoothScrollProvider } from "@/components/scroll/SmoothScrollProvider";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 
-// ★ Vercel Pro の機能
+// 🔍 Vercel Analytics / Speed Insights
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -125,8 +126,7 @@ function BottomNavLink({ href, label }: BottomNavLinkProps) {
 
 /**
  * PCではヘッダー+フッター、モバイルでは専用ボトムナビも併用。
- * 既存の MobileBottomNav コンポーネントがあるが、
- * 万一中身が空でも最低限の導線を維持するためのフォールバックナビ。
+ * 「スマホメイン」の想定なので、ボトムナビは sm 以上で非表示にしている。
  */
 function InlineBottomNav() {
   return (
@@ -148,11 +148,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
       lang="ja"
       className={`${manrope.variable} ${bodoni.variable}`}
     >
-      {/* 
-        Manrope / Bodoni Moda を CSS 変数として付与。
-        Tailwind 側で var(--font-manrope), var(--font-bodoni) を
-        font-family にマップして使う前提。
-      */}
       <body className="min-h-screen bg-site text-text-main antialiased">
         <SmoothScrollProvider>
           {/* グローバル背景メッシュレイヤー */}
@@ -169,6 +164,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
           <div className="relative z-10 flex min-h-screen flex-col">
             <SiteHeader />
+            {/* スマホ前提だけど、一応PCで見ても崩れないようにしてある */}
             <main className="flex-1 pb-20 pt-10 sm:pb-24 sm:pt-16">
               {children}
             </main>
@@ -182,7 +178,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </div>
         </SmoothScrollProvider>
 
-        {/* ★ Vercel Analytics / Speed Insights */}
+        {/* 🔍 Pro プランで使える計測系（レイアウトには影響しない） */}
         <Analytics />
         <SpeedInsights />
       </body>
