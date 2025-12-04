@@ -107,7 +107,7 @@ function difficultyWeight(
 }
 
 export default async function CarsPage({ searchParams }: PageProps) {
-  // ✅ データ取得はコンポーネント内でだけ行う
+  // データ取得
   const all = await getAllCars();
 
   // searchParams の生値をすべて toSingle() で安全に文字列化
@@ -198,7 +198,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
     Boolean(segmentFilter) ||
     Boolean(sortKey);
 
-  // ----- インデックス用の簡易統計 -----
+  // インデックス用の簡易統計
   const totalModels = all.length;
   const basicCount = all.filter((c) => c.difficulty === "basic").length;
   const intermediateCount = all.filter(
@@ -259,7 +259,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
           </Reveal>
         </header>
 
-        {/* インデックスパネル（overview） */}
+        {/* インデックスパネル */}
         <Reveal delay={160}>
           <section className="mb-8 grid gap-3 text-[11px] text-slate-700 sm:grid-cols-3">
             <GlassCard
@@ -311,7 +311,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                   SUV系: {suvCount} 車種
                 </span>
                 <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-500">
-                  クーペ / ハッチバックなど順次追加
+                  クーペ/ハッチバックなど順次追加
                 </span>
               </div>
             </GlassCard>
@@ -323,7 +323,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
               <div className="mt-2 flex flex-wrap gap-2 text-[11px]">
                 <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 shadow-sm">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  <span>やさしい（国産中心 / 故障リスク低め）</span>
+                  <span>やさしい（国産中心/故障リスク低め）</span>
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 shadow-sm">
                   <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
@@ -331,7 +331,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 shadow-sm">
                   <span className="h-1.5 w-1.5 rounded-full bg-rose-400" />
-                  <span>気を使う（ハイパフォーマンス / 旧車 etc.）</span>
+                  <span>気を使う（ハイパフォーマンス/旧車 etc.）</span>
                 </span>
               </div>
             </GlassCard>
@@ -520,37 +520,44 @@ export default async function CarsPage({ searchParams }: PageProps) {
 
         {/* 一覧 */}
         <section className="space-y-4" aria-label="車種一覧">
-            <div className="flex items-baseline justify-between">
-              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
-                CAR LIST
-              </h2>
-              <div className="flex flex-col items-end text-[10px] text-slate-400">
+          <div className="flex items-baseline justify-between">
+            <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
+              CAR LIST
+            </h2>
+            <div className="flex flex-col items-end text-[10px] text-slate-400">
+              <span>
+                TOTAL{" "}
+                <span className="font-semibold text-slate-800">
+                  {all.length}
+                </span>{" "}
+                MODELS
+              </span>
+              {sorted.length !== all.length && (
                 <span>
-                  TOTAL{" "}
-                  <span className="font-semibold text-slate-800">
-                    {all.length}
-                  </span>{" "}
-                  MODELS
-                </span>
-                {sorted.length !== all.length && (
-                  <span>
-                    FILTERED{" "}
-                    <span className="font-semibold text-tiffany-600">
-                      {sorted.length}
-                    </span>
+                  FILTERED{" "}
+                  <span className="font-semibold text-tiffany-600">
+                    {sorted.length}
                   </span>
-                )}
-              </div>
+                </span>
+              )}
             </div>
+          </div>
 
-            {sorted.length === 0 ? (
-              <p className="rounded-2xl border border-dashed border-slate-200 bg-white/70 p-6 text-center text-xs text-slate-500">
-                条件に合うクルマはなし
-                絞り込み条件を少し緩めて再検索する想定
-              </p>
-            ) : (
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {sorted.map((car) => (
+          {sorted.length === 0 ? (
+            <p className="rounded-2xl border border-dashed border-slate-200 bg-white/70 p-6 text-center text-xs text-slate-500">
+              条件に合うクルマはなし
+              絞り込み条件を少し緩めて再検索する想定
+            </p>
+          ) : (
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {sorted.map((car) => {
+                const anyCar = car as any;
+                const thumbnail: string =
+                  car.heroImage ||
+                  anyCar.mainImage ||
+                  "/images/cars/placeholder.jpg";
+
+                return (
                   <Link
                     key={car.id}
                     href={`/cars/${encodeURIComponent(car.slug)}`}
@@ -567,21 +574,15 @@ export default async function CarsPage({ searchParams }: PageProps) {
                       </div>
 
                       <div className="relative z-10 flex h-full flex-col gap-3">
-                        {/* サムネイル */}
-                        {(car.heroImage || (car as any).mainImage) && (
-                          <div className="overflow-hidden rounded-2xl border border-slate-100">
-                            <img
-                              src={
-                                car.heroImage ||
-                                (car as any).mainImage ||
-                                ""
-                              }
-                              alt={car.name ?? car.slug}
-                              className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                              loading="lazy"
-                            />
-                          </div>
-                        )}
+                        {/* サムネイル（プレースホルダー含め必ず表示） */}
+                        <div className="overflow-hidden rounded-2xl border border-slate-100">
+                          <img
+                            src={thumbnail}
+                            alt={car.name ?? car.slug}
+                            className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                            loading="lazy"
+                          />
+                        </div>
 
                         {/* テキスト部 */}
                         <div className="flex flex-1 flex-col gap-2">
@@ -613,18 +614,18 @@ export default async function CarsPage({ searchParams }: PageProps) {
                                 difficultyBadgeClass(car.difficulty),
                               ].join(" ")}
                             >
-                              維持難易度:{" "}
-                              {mapDifficultyLabel(car.difficulty)}
+                              維持難易度: {mapDifficultyLabel(car.difficulty)}
                             </span>
                           </div>
                         </div>
                       </div>
                     </GlassCard>
                   </Link>
-                ))}
-              </div>
-            )}
-          </section>
+                );
+              })}
+            </div>
+          )}
+        </section>
       </div>
     </main>
   );
