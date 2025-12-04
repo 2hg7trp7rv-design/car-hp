@@ -47,11 +47,6 @@ export type CarItem = {
 
 type RawCar = (typeof carsData)[number];
 
-function normalizeMaker(rawMaker: string | undefined): string {
-  if (!rawMaker) return "OTHER";
-  return rawMaker.toUpperCase();
-}
-
 function normalizeDifficulty(
   raw: string | undefined,
 ): CarDifficulty | undefined {
@@ -63,66 +58,61 @@ function normalizeDifficulty(
   return undefined;
 }
 
-function normalizeSlug(item: Partial<RawCar>): string {
+function normalizeSlug(item: Partial<RawCar>, fallbackId: string): string {
   if (item.slug && item.slug.length > 0) return item.slug;
   if (item.id && item.id.length > 0) return item.id;
-  return "";
+  return fallbackId;
 }
 
-function normalizeCar(item: RawCar): CarItem | null {
-  const slug = normalizeSlug(item);
-  if (!slug) return null;
+function normalizeCar(raw: RawCar, index: number): CarItem | null {
+  // 最低限：name が無いものだけ除外
+  if (!raw.name) return null;
 
-  const maker = normalizeMaker(item.maker);
+  const id = (raw as any).id ?? (raw as any).slug ?? `car-${index}`;
+  const slug = normalizeSlug(raw, id);
 
-  // summary が空でも一覧に出したいので、プレースホルダーを用意
-  const summaryRaw = item.summary ?? item.summaryLong ?? "";
+  // summary が無い場合はダミーテキストを詰める（一覧に出したいので）
+  const summaryRaw = (raw as any).summary ?? (raw as any).summaryLong ?? "";
   const summary =
-    summaryRaw.trim().length > 0
-      ? summaryRaw
+    String(summaryRaw).trim().length > 0
+      ? String(summaryRaw)
       : "この車種の説明は準備中です。";
 
-  // name が無いものだけ除外（summary はプレースホルダーで埋める）
-  if (!item.name) {
-    return null;
-  }
-
   const normalized: CarItem = {
-    id: item.id,
-    name: item.name,
+    id,
+    name: (raw as any).name,
     slug,
-    maker,
-    releaseYear: item.releaseYear ?? undefined,
-    difficulty: normalizeDifficulty(item.difficulty),
-    bodyType: item.bodyType,
-    segment: item.segment,
-    grade: item.grade,
+    maker: (raw as any).maker ?? "OTHER",
+    releaseYear: (raw as any).releaseYear ?? undefined,
+    difficulty: normalizeDifficulty((raw as any).difficulty),
+    bodyType: (raw as any).bodyType,
+    segment: (raw as any).segment,
+    grade: (raw as any).grade,
     summary,
-    summaryLong: item.summaryLong,
-    engine: item.engine,
-    powerPs: item.powerPs ?? undefined,
-    torqueNm: item.torqueNm ?? undefined,
-    transmission: item.transmission,
-    drive: item.drive,
-    fuel: item.fuel,
-    fuelEconomy: item.fuelEconomy,
-    priceNew: item.priceNew,
-    priceUsed: item.priceUsed,
-    tags: item.tags,
-    heroImage: item.heroImage,
-    mainImage: (item as any).mainImage,
-    lengthMm: (item as any).lengthMm,
-    widthMm: (item as any).widthMm,
-    heightMm: (item as any).heightMm,
-    wheelbaseMm: (item as any).wheelbaseMm,
-    weightKg: (item as any).weightKg,
-    tiresFront: (item as any).tiresFront,
-    tiresRear: (item as any).tiresRear,
-
-    strengths: (item as any).strengths,
-    weaknesses: (item as any).weaknesses,
-    troubleTrends: (item as any).troubleTrends,
-    costImpression: (item as any).costImpression,
+    summaryLong: (raw as any).summaryLong,
+    engine: (raw as any).engine,
+    powerPs: (raw as any).powerPs ?? undefined,
+    torqueNm: (raw as any).torqueNm ?? undefined,
+    transmission: (raw as any).transmission,
+    drive: (raw as any).drive,
+    fuel: (raw as any).fuel,
+    fuelEconomy: (raw as any).fuelEconomy,
+    priceNew: (raw as any).priceNew,
+    priceUsed: (raw as any).priceUsed,
+    tags: (raw as any).tags,
+    heroImage: (raw as any).heroImage,
+    mainImage: (raw as any).mainImage,
+    lengthMm: (raw as any).lengthMm,
+    widthMm: (raw as any).widthMm,
+    heightMm: (raw as any).heightMm,
+    wheelbaseMm: (raw as any).wheelbaseMm,
+    weightKg: (raw as any).weightKg,
+    tiresFront: (raw as any).tiresFront,
+    tiresRear: (raw as any).tiresRear,
+    strengths: (raw as any).strengths,
+    weaknesses: (raw as any).weaknesses,
+    troubleTrends: (raw as any).troubleTrends,
+    costImpression: (raw as any).costImpression,
   };
 
   return normalized;
@@ -131,13 +121,15 @@ function normalizeCar(item: RawCar): CarItem | null {
 function buildAllCars(): CarItem[] {
   const seen = new Map<string, CarItem>();
 
-  for (const raw of carsData) {
-    const normalized = normalizeCar(raw as RawCar);
-    if (!normalized) continue;
+  carsData.forEach((raw, index) => {
+    const normalized = normalizeCar(raw as RawCar, index);
+    if (!normalized) return;
 
-    if (seen.has(normalized.slug)) continue;
+    // slug が被っているものは最初の1件だけ採用
+    if (seen.has(normalized.slug)) return;
+
     seen.set(normalized.slug, normalized);
-  }
+  });
 
   const result = Array.from(seen.values());
 
@@ -152,6 +144,9 @@ function buildAllCars(): CarItem[] {
     const nameB = b.name ?? "";
     return nameA.localeCompare(nameB, "ja");
   });
+
+  // デバッグ用（必要なければ消してOK）
+  // console.log("ALL_CARS length:", result.length);
 
   return result;
 }
