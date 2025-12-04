@@ -6,7 +6,6 @@ import { Reveal } from "@/components/animation/Reveal";
 import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
 import { getAllCars, type CarItem } from "@/lib/cars";
-import { CarCardThumbnail } from "@/components/cars/CarCardThumbnail";
 
 export const runtime = "edge";
 
@@ -103,7 +102,6 @@ function difficultyWeight(
 }
 
 export default async function CarsPage({ searchParams }: PageProps) {
-  // ✅ データ取得はコンポーネント内でだけ行う
   const all = await getAllCars();
 
   // searchParams の生値をすべて toSingle() で安全に文字列化
@@ -195,10 +193,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
   const advancedCount = all.filter((c) => c.difficulty === "advanced").length;
 
   const sedanCount = all.filter((c) => c.bodyType === "セダン").length;
-  // 「SUV/クロスオーバー」を含むものを SUV カウントとみなす
-  const suvCount = all.filter((c) =>
-    c.bodyType?.includes("SUV"),
-  ).length;
+  const suvCount = all.filter((c) => c.bodyType === "SUV").length;
 
   return (
     <main className="min-h-screen bg-site text-text-main">
@@ -471,9 +466,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                       しっとり系セダン
                     </Link>
                     <Link
-                      href={`/cars?bodyType=${encodeURIComponent(
-                        "SUV/クロスオーバー",
-                      )}&difficulty=advanced&sort=difficulty`}
+                      href="/cars?bodyType=SUV&difficulty=advanced&sort=difficulty"
                       className="rounded-full border border-rose-100 bg-rose-50/90 px-3 py-1 tracking-[0.16em] text-rose-800 transition hover:border-rose-300 hover:bg-rose-50"
                     >
                       手のかかるSUV
@@ -629,13 +622,20 @@ export default async function CarsPage({ searchParams }: PageProps) {
                       </div>
 
                       <div className="relative z-10 flex h-full flex-col gap-3">
-                        {/* サムネイル（プレースホルダー付き） */}
-                        <CarCardThumbnail
-                          src={
-                            car.heroImage || (car as any).mainImage || undefined
-                          }
-                          alt={car.name}
-                        />
+                        {/* サムネイル（あとで車両画像を入れる前提） */}
+                        {(car.heroImage || (car as any).mainImage) && (
+                          <div className="overflow-hidden rounded-2xl border border-slate-100">
+                            <img
+                              src={
+                                car.heroImage ||
+                                (car as any).mainImage ||
+                                ""
+                              }
+                              alt={car.name}
+                              className="h-40 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                          </div>
+                        )}
 
                         <div className="space-y-1">
                           <p className="text-[10px] font-semibold tracking-[0.24em] text-tiffany-600">
