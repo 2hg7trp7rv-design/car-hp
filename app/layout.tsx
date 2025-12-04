@@ -9,6 +9,10 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SmoothScrollProvider } from "@/components/scroll/SmoothScrollProvider";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 
+// ★ Vercel Pro の機能
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 // ---- フォント設定（next/font） ----
 const manrope = Manrope({
   subsets: ["latin"],
@@ -177,6 +181,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <InlineBottomNav />
           </div>
         </SmoothScrollProvider>
+
+        {/* ★ Vercel Analytics / Speed Insights */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
