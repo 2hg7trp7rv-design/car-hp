@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "主要な車種について 維持の難易度 ボディタイプ セグメントなどの条件で絞り込んで確認できる車種データベース",
 };
 
-// Next.js 標準の searchParams 仕様に寄せる
+// Next.js 標準の searchParams 仕様に合わせる
 type SearchParams = {
   q?: string | string[];
   maker?: string | string[];
@@ -259,7 +259,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 <div className="absolute -right-24 bottom-[-40%] h-64 w-64 rounded-full bg-[radial-gradient(circle_at_center,_rgba(148,163,184,0.25),_transparent_72%)] blur-3xl" />
               </div>
 
-              <div className="relative z-10动作 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div className="relative z-10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 <div>
                   <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
                     CURRENT INDEX
@@ -381,7 +381,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                   >
                     <option value="">すべて</option>
                     {difficultyOptions.map((d) => (
-                      <option key={d ?? ""} value={d ?? ""}>
+                      <option key={d} value={d ?? ""}>
                         {mapDifficultyLabel(d)}
                       </option>
                     ))}
@@ -536,8 +536,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
               )}
               {makerFilter && (
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                  maker:{" "}
-                  <span className="font-semibold">{makerFilter}</span>
+                  maker: <span className="font-semibold">{makerFilter}</span>
                 </span>
               )}
               {difficultyFilter && (
@@ -592,9 +591,9 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 {sorted.length !== all.length && (
                   <span>
                     FILTERED{" "}
-                      <span className="font-semibold text-tiffany-600">
-                        {sorted.length}
-                      </span>
+                    <span className="font-semibold text-tiffany-600">
+                      {sorted.length}
+                    </span>
                   </span>
                 )}
               </div>
