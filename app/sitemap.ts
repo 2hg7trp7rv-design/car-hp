@@ -1,70 +1,84 @@
 // app/sitemap.ts
 import type { MetadataRoute } from "next";
+import { getAllCars } from "@/lib/cars";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://car-hp.vercel.app";
+const BASE_URL = "https://car-hp.vercel.app";
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
-  return [
+  // 固定ページ
+  const staticUrls: MetadataRoute.Sitemap = [
     {
-      url: `${baseUrl}/`,
+      url: `${BASE_URL}/`,
       lastModified: now,
       changeFrequency: "daily",
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/news`,
+      url: `${BASE_URL}/news`,
       lastModified: now,
       changeFrequency: "daily",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/cars`,
+      url: `${BASE_URL}/cars`,
       lastModified: now,
       changeFrequency: "daily",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/column`,
+      url: `${BASE_URL}/column`,
       lastModified: now,
       changeFrequency: "daily",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/guide`,
+      url: `${BASE_URL}/guide`,
       lastModified: now,
       changeFrequency: "daily",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/legal/privacy`,
+      url: `${BASE_URL}/legal/privacy`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
-      url: `${baseUrl}/legal/disclaimer`,
+      url: `${BASE_URL}/legal/disclaimer`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
-      url: `${baseUrl}/legal/copyright`,
+      url: `${BASE_URL}/legal/copyright`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
-      url: `${baseUrl}/legal/about`,
+      url: `${BASE_URL}/legal/about`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
-      url: `${baseUrl}/contact`,
+      url: `${BASE_URL}/contact`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.5,
     },
   ];
+
+  // 車種ページ（/cars/[slug]）
+  const cars = await getAllCars();
+  const carUrls: MetadataRoute.Sitemap = cars.map((car) => ({
+    url: `${BASE_URL}/cars/${car.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.7,
+  }));
+
+  return [...staticUrls, ...carUrls];
 }
