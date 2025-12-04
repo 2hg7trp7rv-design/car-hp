@@ -74,10 +74,16 @@ function normalizeCar(item: RawCar): CarItem | null {
   if (!slug) return null;
 
   const maker = normalizeMaker(item.maker);
-  const summary = item.summary ?? "";
 
-  // name or summary が無いものは一覧対象から除外
-  if (!item.name || summary.length === 0) {
+  // summary が空でも一覧に出したいので、プレースホルダーを用意
+  const summaryRaw = item.summary ?? item.summaryLong ?? "";
+  const summary =
+    summaryRaw.trim().length > 0
+      ? summaryRaw
+      : "この車種の説明は準備中です。";
+
+  // name が無いものだけ除外（summary はプレースホルダーで埋める）
+  if (!item.name) {
     return null;
   }
 
