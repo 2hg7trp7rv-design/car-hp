@@ -102,6 +102,7 @@ function difficultyWeight(
 }
 
 export default async function CarsPage({ searchParams }: PageProps) {
+  // ✅ データ取得はコンポーネント内でだけ行う
   const all = await getAllCars();
 
   // searchParams の生値をすべて toSingle() で安全に文字列化
@@ -258,7 +259,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 <div className="absolute -right-24 bottom-[-40%] h-64 w-64 rounded-full bg-[radial-gradient(circle_at_center,_rgba(148,163,184,0.25),_transparent_72%)] blur-3xl" />
               </div>
 
-              <div className="relative z-10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div className="relative z-10량 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 <div>
                   <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
                     CURRENT INDEX
@@ -622,7 +623,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                       </div>
 
                       <div className="relative z-10 flex h-full flex-col gap-3">
-                        {/* サムネイル（あとで車両画像を入れる前提） */}
+                        {/* サムネイル */}
                         {(car.heroImage || (car as any).mainImage) && (
                           <div className="overflow-hidden rounded-2xl border border-slate-100">
                             <img
