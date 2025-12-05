@@ -162,7 +162,7 @@ function NewsListItem({ item }: NewsListItemProps) {
       href={`/news/${encodeURIComponent(item.id)}`}
       className="group block"
     >
-      <article className="relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white/85 px-4 py-3 text-[11px] shadow-[0_18px_40px_rgba(15,23,42,0.08)] transition hover:-translate-y-[1px] hover:border-tiffany-200/80 hover:bg-white hover:shadow-soft-card">
+      <article className="relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white/90 px-4 py-3 text-[11px] text-slate-900 shadow-[0_18px_40px_rgba(15,23,42,0.08)] transition hover:-translate-y-[1px] hover:border-tiffany-200/80 hover:bg-white hover:shadow-soft-card">
         {/* タイムライン風インジケーター（左） */}
         <div className="pointer-events-none absolute -left-3 top-3 flex h-8 flex-col items-center justify-between opacity-40">
           <span className="h-5 w-px bg-slate-200" />
@@ -201,14 +201,14 @@ function NewsListItem({ item }: NewsListItemProps) {
 
         {/* 抄録 / コメント */}
         {(item.commentJa || item.excerpt) && (
-          <p className="mt-1 line-clamp-2 text-[10px] leading-relaxed text-slate-500">
+          <p className="mt-1 line-clamp-2 text-[10px] leading-relaxed text-slate-600">
             {item.commentJa ?? item.excerpt}
           </p>
         )}
 
         {/* タグ */}
         {tags.length > 0 && (
-          <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-slate-500">
+          <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-slate-600">
             {tags.slice(0, 4).map((tag) => (
               <span
                 key={tag}
@@ -363,7 +363,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
             </div>
           </Reveal>
 
-        {/* 期間プリセットチップ（7日 / 30日 / 全期間） */}
+          {/* 期間プリセットチップ（7日 / 30日 / 全期間） */}
           <Reveal delay={220}>
             <div className="mt-4 flex flex-wrap gap-2 text-[10px]">
               <Link
@@ -392,7 +392,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
 
         {/* フィルターエリア */}
         <Reveal delay={260}>
-          <section className="mb-6 rounded-3xl border border-slate-200/70 bg-white/90 p-4 shadow-soft">
+          <section className="mb-6 rounded-3xl border border-slate-200/70 bg-white/90 p-4 text-slate-900 shadow-soft">
             <form className="space-y-4 text-xs sm:text-[11px]">
               <div className="grid gap-3 md:grid-cols-4">
                 {/* キーワード */}
@@ -405,7 +405,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
                     name="q"
                     defaultValue={rawQ}
                     placeholder="車名やトピック、ソース名で検索"
-                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
                   />
                 </div>
 
@@ -417,7 +417,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
                   <select
                     name="category"
                     defaultValue={categoryFilter}
-                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
                   >
                     <option value="">すべて</option>
                     {categories.map((c) => (
@@ -436,7 +436,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
                   <select
                     name="maker"
                     defaultValue={makerFilter}
-                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
                   >
                     <option value="">すべて</option>
                     {makers.map((m) => (
@@ -457,7 +457,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
                   <select
                     name="source"
                     defaultValue={sourceFilter}
-                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
                   >
                     <option value="">すべて</option>
                     {sources.map((s) => (
@@ -476,7 +476,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
                   <select
                     name="tag"
                     defaultValue={tagFilter}
-                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
                   >
                     <option value="">すべて</option>
                     {tags.map((t) => (
@@ -495,7 +495,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
                   <select
                     name="period"
                     defaultValue={periodFilter}
-                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
                   >
                     <option value="">全期間</option>
                     <option value="7d">直近7日</option>
@@ -593,7 +593,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
                   as="section"
                   padding="lg"
                   interactive
-                  className="relative overflow-hidden border border-tiffany-100 bg-gradient-to-br from-tiffany-50 via-white to-white shadow-soft-card"
+                  className="relative overflow-hidden border border-tiffany-100 bg-gradient-to-br from-tiffany-50 via-white to-white text-slate-900 shadow-soft-card"
                 >
                   {/* 背景光 */}
                   <div className="pointer-events-none absolute -left-24 -top-24 h-64 w-64 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.28),_transparent_70%)] blur-3xl" />
@@ -632,7 +632,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
                       </p>
                     )}
 
-                    <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                    <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-600">
                       {buildSourceLabel(featured) && (
                         <span className="rounded-full bg-white/80 px-2 py-1 tracking-[0.16em]">
                           {buildSourceLabel(featured)}
@@ -703,7 +703,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
                 <GlassCard
                   as="section"
                   padding="md"
-                  className="border border-slate-200/70 bg-white/90"
+                  className="border border-slate-200/70 bg-white/90 text-slate-900"
                 >
                   <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-500">
                     QUICK SOURCE
@@ -734,7 +734,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
                 <GlassCard
                   as="section"
                   padding="md"
-                  className="border border-slate-200/70 bg-white/90"
+                  className="border border-slate-200/70 bg-white/90 text-slate-900"
                 >
                   <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-500">
                     MAKER FOCUS
