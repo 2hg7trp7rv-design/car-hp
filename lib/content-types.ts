@@ -35,18 +35,19 @@ export type GuideItem = ArticleBase & {
   relatedCarSlugs?: string[];
 };
 
-// 今後COLUMN/NEWS/HERITAGEもここに集約していく想定
-// ひとまず型だけ用意しておき、既存コードは順次移行する
+// COLUMN専用の拡張
 export type ColumnItem = ArticleBase & {
   type: "COLUMN";
   tone?: string | null;
   body: string;
   relatedCarSlugs?: string[];
+  readMinutes?: number | null;
 };
 
+// NEWS専用の拡張
 export type NewsItem = ArticleBase & {
   type: "NEWS";
-  // NEWS特有のフィールドはゆるくオプショナルで定義
+
   titleJa?: string | null;
   excerpt?: string | null;
   commentJa?: string | null;
@@ -60,6 +61,7 @@ export type NewsItem = ArticleBase & {
   createdAt?: string | null;
 };
 
+// HERITAGE専用の拡張
 export type HeritageItem = ArticleBase & {
   type: "HERITAGE";
   body: string;
