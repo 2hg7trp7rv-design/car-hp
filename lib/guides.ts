@@ -1,84 +1,107 @@
 // lib/guides.ts
-import guidesData from "@/data/guides.json";
 
-// カテゴリは data-model の設計どおり「任意の string 」とする
-export type GuideCategory = string;
+import type {
+  GuideItem as GuideItemBase,
+  GuideCategory as GuideCategoryBase,
+} from "@/lib/content-types";
+import {
+  findAllGuides,
+  findGuideBySlug as repoFindGuideBySlug,
+} from "@/lib/repository/guides-repository";
 
-export type GuideItem = {
-  id: string;
-  slug: string;
-  title: string;
-  category?: GuideCategory | null;
-  summary: string;
-  body: string;
-  relatedCarSlugs?: string[];
-  publishedAt?: string | null;
-};
+// 既存のインポート側互換のため再エクスポート
+export type GuideItem = GuideItemBase;
+export type GuideCategory = GuideCategoryBase;
 
-type RawGuide = (typeof guidesData)[number];
-
-function normalizeSlug(item: Partial<RawGuide>): string {
-  if (item.slug && item.slug.length > 0) return item.slug;
-  if (item.id && item.id.length > 0) return item.id;
-  return "";
+function isPublished(guide: GuideItem): boolean {
+  return guide.status === "published";
 }
 
-function normalizeGuide(raw: RawGuide): GuideItem | null {
-  const slug = normalizeSlug(raw);
-  if (!slug) return null;
-
-  if (!raw.id || !raw.title || !raw.summary || !raw.body) {
-    return null;
-  }
-
-  const normalized: GuideItem = {
-    id: String(raw.id),
-    slug,
-    title: String(raw.title),
-    summary: String(raw.summary),
-    body: String(raw.body),
-    category: (raw as any).category ?? null,
-    relatedCarSlugs: Array.isArray((raw as any).relatedCarSlugs)
-      ? ((raw as any).relatedCarSlugs as string[])
-      : [],
-    publishedAt: (raw as any).publishedAt ?? null,
-  };
-
-  return normalized;
+function compareByPublishedDesc(a: GuideItem, b: GuideItem): number {
+  const aTime = a.publishedAt ? Date.parse(a.publishedAt) : 0;
+  const bTime = b.publishedAt ? Date.parse(b.publishedAt) : 0;
+  if (aTime === bTime) return 0;
+  return aTime < bTime ? 1 : -1;
 }
 
-function buildAllGuides(): GuideItem[] {
-  const seen = new Map<string, GuideItem>();
-
-  for (const raw of guidesData) {
-    const normalized = normalizeGuide(raw);
-    if (!normalized) continue;
-
-    if (seen.has(normalized.slug)) continue;
-    seen.set(normalized.slug, normalized);
-  }
-
-  const result = Array.from(seen.values());
-
-  result.sort((a, b) => {
-    const ta = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
-    const tb = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
-    if (ta !== tb) return tb - ta;
-
-    return a.title.localeCompare(b.title, "ja");
-  });
-
-  return result;
+function sortGuides(items: GuideItem[]): GuideItem[] {
+  return [...items].sort(compareByPublishedDesc);
 }
 
-const ALL_GUIDES: GuideItem[] = buildAllGuides();
-
+// 一覧用 全件取得
 export async function getAllGuides(): Promise<GuideItem[]> {
-  return ALL_GUIDES;
+  const all = findAllGuides();
+  // 将来statusがdraft等になったときのためにフィルタしておく
+  const published = all.filter(isPublished);
+  return sortGuides(published);
 }
 
+// 詳細ページ用 slug指定取得
 export async function getGuideBySlug(
   slug: string,
 ): Promise<GuideItem | null> {
-  return ALL_GUIDES.find((g) => g.slug === slug) ?? null;
+  const guide = repoFindGuideBySlug(slug);
+  if (!guide) return null;
+  if (!isPublished(guide)) return null;
+  return guide;
+}
+
+// トップやGUIDE一覧で使える最新n件
+export async function getLatestGuides(
+  limit: number,
+): Promise<GuideItem[]> {
+  const all = findAllGuides().filter(isPublished);
+  return sortGuides(all).slice(0, limit);
+}
+
+// カテゴリ別取得
+export async function getGuidesByCategory(
+  category: GuideCategory,
+  limit?: number,
+): Promise<GuideItem[]> {
+  const filtered = findAllGuides().filter(
+    (g) => isPublished(g) && g.category === category,
+  );
+  const sorted = sortGuides(filtered);
+  return typeof limit === "number" ? sorted.slice(0, limit) : sorted;
+}
+
+// 関連ガイド取得用の簡易スコアリング
+export async function getRelatedGuides(
+  base: GuideItem,
+  limit = 4,
+): Promise<GuideItem[]> {
+  const all = findAllGuides().filter(
+    (g) => isPublished(g) && g.id !== base.id,
+  );
+
+  const baseTags = base.tags ?? [];
+  const baseCategory = base.category ?? null;
+
+  const scored = all.map((g) => {
+    let score = 0;
+    const tags = g.tags ?? [];
+
+    // タグ一致を強めに
+    for (const tag of tags) {
+      if (baseTags.includes(tag)) score += 2;
+    }
+
+    // カテゴリ一致
+    if (baseCategory && g.category === baseCategory) {
+      score += 1;
+    }
+
+    return { item: g, score };
+  });
+
+  scored.sort((a, b) => {
+    if (a.score !== b.score) return b.score - a.score;
+    return compareByPublishedDesc(a.item, b.item);
+  });
+
+  return scored
+    .filter((entry) => entry.score > 0)
+    .slice(0, limit)
+    .map((entry) => entry.item);
 }
