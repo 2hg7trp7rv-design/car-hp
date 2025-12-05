@@ -128,7 +128,7 @@ function filterNews(items: NewsItem[], filters: SearchParams): NewsItem[] {
       }
     }
 
-    // 期間フィルター（7日 / 30日）
+    // 期間フィルター（7日/30日）
     if (periodFilter === "7d" || periodFilter === "30d") {
       const base = item.publishedAt ?? item.createdAt;
       if (!base) return false;
@@ -169,7 +169,7 @@ function NewsListItem({ item }: NewsListItemProps) {
           <span className="h-1.5 w-1.5 rounded-full bg-tiffany-400" />
         </div>
 
-        {/* カテゴリ / NEW / ソース */}
+        {/* カテゴリ/NEW/ソース */}
         <div className="mb-1 flex flex-wrap items-center gap-2">
           {item.category && (
             <span className="inline-flex items-center rounded-full bg-slate-50 px-2 py-0.5 text-[10px] tracking-[0.16em] text-slate-500">
@@ -199,7 +199,7 @@ function NewsListItem({ item }: NewsListItemProps) {
           {item.titleJa ?? item.title}
         </h3>
 
-        {/* 抄録 / コメント */}
+        {/* 抄録/コメント */}
         {(item.commentJa || item.excerpt) && (
           <p className="mt-1 line-clamp-2 text-[10px] leading-relaxed text-slate-600">
             {item.commentJa ?? item.excerpt}
@@ -363,7 +363,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
             </div>
           </Reveal>
 
-          {/* 期間プリセットチップ（7日 / 30日 / 全期間） */}
+          {/* 期間プリセットチップ（7日/30日/全期間） */}
           <Reveal delay={220}>
             <div className="mt-4 flex flex-wrap gap-2 text-[10px]">
               <Link
@@ -584,7 +584,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
           className="grid gap-8 lg:grid-cols-[minmax(0,3.3fr)_minmax(0,1.7fr)]"
           aria-label="ニュース一覧"
         >
-          {/* 左：ハイライト＋リスト */}
+          {/* 左:ハイライト＋リスト */}
           <div className="space-y-6">
             {/* ハイライト */}
             <Reveal>
@@ -661,42 +661,40 @@ export default async function NewsPage({ searchParams }: PageProps) {
               )}
             </Reveal>
 
-            {/* 残りのリスト（月ごとタイムライン） */}
-            <Reveal delay={80}>
-              {rest.length === 0 ? (
-                <p className="rounded-2xl border border-dashed border-slate-200 bg-white/80 p-6 text-center text-xs text-slate-500">
-                  条件に合うニュースはなし 絞り込み条件を少し緩めて再検索する想定
-                </p>
-              ) : (
-                <div className="space-y-6">
-                  {groupedRestEntries.map(([label, group]) => (
-                    <div key={label} className="space-y-2">
-                      {/* 月ラベル：タイムラインの節 */}
-                      <div className="flex items-center gap-3 text-[10px] text-slate-400">
-                        <span className="h-px flex-1 bg-slate-100" />
-                        <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 shadow-soft">
-                          <span className="h-1.5 w-1.5 rounded-full bg-tiffany-400" />
-                          <span className="tracking-[0.18em]">{label}</span>
-                        </span>
-                      </div>
-
-                      <div className="space-y-3">
-                        {group.map((item, index) => (
-                          <NewsListItem
-                            key={item.id}
-                            item={item}
-                            index={index + 1}
-                          />
-                        ))}
-                      </div>
+            {/* 残りのリスト(月ごとタイムライン) */}
+            {rest.length === 0 ? (
+              <p className="rounded-2xl border border-dashed border-slate-200 bg-white/80 p-6 text-center text-xs text-slate-500">
+                条件に合うニュースはなし 絞り込み条件を少し緩めて再検索する想定
+              </p>
+            ) : (
+              <div className="space-y-6">
+                {groupedRestEntries.map(([label, group]) => (
+                  <div key={label} className="space-y-2">
+                    {/* 月ラベル:タイムラインの節 */}
+                    <div className="flex items-center gap-3 text-[10px] text-slate-400">
+                      <span className="h-px flex-1 bg-slate-100" />
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 shadow-soft">
+                        <span className="h-1.5 w-1.5 rounded-full bg-tiffany-400" />
+                        <span className="tracking-[0.18em]">{label}</span>
+                      </span>
                     </div>
-                  ))}
-                </div>
-              )}
-            </Reveal>
+
+                    <div className="space-y-3">
+                      {group.map((item, index) => (
+                        <NewsListItem
+                          key={item.id}
+                          item={item}
+                          index={index + 1}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          {/* 右：ソース / メーカー クイックフィルター（PCのみ） */}
+          {/* 右:ソース/メーカー クイックフィルター(PCのみ) */}
           <aside className="hidden lg:block">
             <Reveal delay={120}>
               <div className="sticky top-24 space-y-5">
