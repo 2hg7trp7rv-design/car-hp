@@ -1,165 +1,67 @@
 // lib/content-types.ts
 
-// 記事系コンテンツの共通種別
-export type ContentType = "GUIDE" | "COLUMN" | "NEWS" | "HERITAGE";
+// 共通のステータス
+export type ArticleStatus = "draft" | "published" | "archived";
 
-// 公開ステータス
-export type ContentStatus = "draft" | "published" | "archived";
+// 共通のtype
+export type ArticleType = "GUIDE" | "COLUMN" | "NEWS" | "HERITAGE" | string;
 
-// 全記事系で共通に持つベース項目
-export type BaseContentItem = {
+// 記事系すべての共通ベース型
+export type ArticleBase = {
   id: string;
   slug: string;
-  type: ContentType;
-  status: ContentStatus;
+  type: ArticleType;
+  category?: string | null;
+  status?: ArticleStatus;
+
   title: string;
   summary: string;
-  category?: string | null;
+
   seoTitle?: string | null;
   seoDescription?: string | null;
+
   publishedAt?: string | null;
   updatedAt?: string | null;
+
   tags?: string[];
 };
 
-// ========== GUIDE ==========
-
-export type GuideCategory = string;
-
-export type GuideItem = BaseContentItem & {
+// GUIDE専用の拡張
+export type GuideItem = ArticleBase & {
   type: "GUIDE";
-  category?: GuideCategory | null;
   readMinutes?: number | null;
   heroImage?: string | null;
   body: string;
   relatedCarSlugs?: string[];
 };
 
-// ========== COLUMN ==========
-
-// 代表的なカテゴリ(これ以外の文字列も許容)
-export type ColumnCategoryBase =
-  | "OWNER_STORY"
-  | "MAINTENANCE"
-  | "TECHNICAL";
-
-export type ColumnCategory = ColumnCategoryBase | string;
-
-export type ColumnItem = BaseContentItem & {
+// 今後COLUMN/NEWS/HERITAGEもここに集約していく想定
+// ひとまず型だけ用意しておき、既存コードは順次移行する
+export type ColumnItem = ArticleBase & {
   type: "COLUMN";
-  // ★ここを「null/未指定もOK」に変更
-  category?: ColumnCategory | null;
-  readMinutes?: number | null;
-  heroImage?: string | null;
+  tone?: string | null;
   body: string;
   relatedCarSlugs?: string[];
 };
 
-// ========== NEWS ==========
-
-export type NewsItem = BaseContentItem & {
+export type NewsItem = ArticleBase & {
   type: "NEWS";
-
-  // 元記事へのリンク(URL)
-  url: string;
-  // Next.js の Link 用(基本は `/news/[id]`)
-  link: string;
-
-  // 元記事タイトル(日本語訳など)
+  // NEWS特有のフィールドはゆるくオプショナルで定義
   titleJa?: string | null;
-  // 要約
   excerpt?: string | null;
-
-  // メーカーや媒体などメタ情報
-  maker?: string | null;
-  sourceName?: string | null;
-
-  // RSS取得時の作成日時など
-  createdAt?: string | null;
-
-  // 編集部コメント(生)と画面用コメント
-  editorNote?: string | null;
   commentJa?: string | null;
 
-  // 「2025年4月1日」のような整形済み日付
+  maker?: string | null;
+  sourceName?: string | null;
+  sourceUrl?: string | null;
+  rssId?: string | null;
+
   publishedAtJa?: string | null;
+  createdAt?: string | null;
 };
 
-// ========== HERITAGE ==========
-
-export type HeritageKind = "ERA" | "BRAND" | "CAR";
-
-export type HeritageItem = {
-  id: string;
-  slug: string;
-  kind: HeritageKind;
-
-  title: string;
-  subtitle?: string;
-  lead?: string;
-
-  // ラベル系
-  eraLabel?: string | null;
-  brandLabel?: string | null;
-  carLabel?: string | null;
-
-  // 系譜表示用
-  chainKey?: string | null;
-  chainOrder?: number | null;
-
-  tags?: string[];
-  publishedAt?: string | null;
-  updatedAt?: string | null;
-
-  meta?: Record<string, string | number | null | undefined>;
-
-  // Markdownライク本文
+export type HeritageItem = ArticleBase & {
+  type: "HERITAGE";
   body: string;
-};
-
-// ========== CARS ==========
-
-export type CarDifficulty = "basic" | "intermediate" | "advanced";
-
-export type CarItem = {
-  id: string;
-  name: string;
-  slug: string;
-  maker: string;
-
-  releaseYear?: number;
-  difficulty?: CarDifficulty;
-  bodyType?: string;
-  segment?: string;
-  grade?: string;
-
-  summary: string;
-  summaryLong?: string;
-
-  heroImage?: string;
-  mainImage?: string;
-  imageUrl?: string;
-  gallery?: string[];
-
-  engine?: string;
-  powerPs?: number;
-  torqueNm?: number;
-  transmission?: string;
-  drive?: string;
-
-  fuel?: string;
-  fuelEconomy?: string;
-  priceNew?: string;
-  priceUsed?: string;
-
-  strengths?: string[];
-  weaknesses?: string[];
-  troubleTrends?: string[];
-  costImpression?: string;
-
-  relatedNewsIds?: string[];
-  relatedColumnSlugs?: string[];
-  relatedHeritageIds?: string[];
-
-  tags?: string[];
+  generationLabel?: string | null;
 };
