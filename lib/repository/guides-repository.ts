@@ -1,110 +1,87 @@
 // lib/repository/guides-repository.ts
 
-import guidesData from "@/data/guides.json";
-import type {
-  GuideItem,
-  GuideCategory,
-  ContentStatus,
-} from "@/lib/content-types";
+// Repository層:GUIDEデータ取得専用(現在はJSON固定)
+// 将来CMS/DBに移行するときは、このファイルだけ差し替える想定
 
-type RawGuideRecord = {
-  id?: string;
-  slug?: string;
-  title?: string;
-  summary?: string;
-  category?: GuideCategory;
-  tags?: string[];
-  publishedAt?: string;
-  readMinutes?: number;
-  heroImage?: string;
-  body?: string;
-  seoTitle?: string;
-  seoDescription?: string;
-  status?: ContentStatus;
-  updatedAt?: string;
-  relatedCarSlugs?: string[];
-};
+import rawGuides from "@/data/guides.json";
+import type { GuideItem, ArticleStatus } from "@/lib/content-types";
 
-const DEFAULT_STATUS: ContentStatus = "published";
+// data/guides.jsonの素の型
+type RawGuide = (typeof rawGuides)[number];
 
-function normalizeGuide(raw: RawGuideRecord): GuideItem | null {
-  const id = raw.id?.toString().trim();
-  const slug = raw.slug?.toString().trim();
-  const title = raw.title?.toString().trim();
-  const summary = raw.summary?.toString().trim();
-  const body = raw.body?.toString();
-
-  if (!id || !slug || !title || !summary || !body) {
-    return null;
+function normalizeStatus(status: unknown): ArticleStatus {
+  if (status === "draft" || status === "archived" || status === "published") {
+    return status;
   }
+  // 既存JSONにはstatusが無いので、当面はpublished扱いに統一
+  return "published";
+}
 
-  const category = (raw.category ?? null) as GuideCategory | null;
-
-  const tags = Array.isArray(raw.tags)
-    ? raw.tags.map((t) => t.toString())
-    : [];
-
-  const readMinutes =
-    typeof raw.readMinutes === "number" ? raw.readMinutes : null;
-
-  const heroImage =
-    typeof raw.heroImage === "string" ? raw.heroImage : null;
-
-  const publishedAt =
-    typeof raw.publishedAt === "string" ? raw.publishedAt : null;
-
-  const updatedAt =
-    typeof raw.updatedAt === "string" ? raw.updatedAt : null;
-
-  const relatedCarSlugs = Array.isArray(raw.relatedCarSlugs)
-    ? raw.relatedCarSlugs.map((s) => s.toString())
-    : [];
-
-  const seoTitle =
-    typeof raw.seoTitle === "string" && raw.seoTitle.trim().length > 0
-      ? raw.seoTitle
-      : title;
-
-  const seoDescription =
-    typeof raw.seoDescription === "string" &&
-    raw.seoDescription.trim().length > 0
-      ? raw.seoDescription
-      : summary;
-
-  const status: ContentStatus = raw.status ?? DEFAULT_STATUS;
-
-  const normalized: GuideItem = {
+function normalizeGuide(item: RawGuide): GuideItem {
+  // JSON側にはtype/status/seo系が無いので、ここで補完してGuideItemに揃える
+  const {
     id,
     slug,
-    type: "GUIDE",
     title,
     summary,
     category,
-    status,
-    seoTitle,
-    seoDescription,
+    body,
     publishedAt,
     updatedAt,
     tags,
     readMinutes,
     heroImage,
-    body,
     relatedCarSlugs,
+    seoTitle,
+    seoDescription,
+    status,
+  } = item as RawGuide & {
+    seoTitle?: string | null;
+    seoDescription?: string | null;
+    status?: ArticleStatus;
+    updatedAt?: string | null;
+    tags?: string[];
+    readMinutes?: number | null;
+    heroImage?: string | null;
+    relatedCarSlugs?: string[];
   };
 
-  return normalized;
+  return {
+    id,
+    slug,
+    type: "GUIDE",
+    category: category ?? null,
+    status: normalizeStatus(status),
+
+    title,
+    summary,
+
+    seoTitle: seoTitle ?? title,
+    seoDescription: seoDescription ?? summary,
+
+    publishedAt: publishedAt ?? null,
+    updatedAt: updatedAt ?? null,
+
+    tags: tags ?? [],
+
+    readMinutes: readMinutes ?? null,
+    heroImage: heroImage ?? null,
+    body,
+    relatedCarSlugs: relatedCarSlugs ?? [],
+  };
 }
 
-const ALL_GUIDES: GuideItem[] = (guidesData as RawGuideRecord[])
-  .map(normalizeGuide)
-  .filter((g): g is GuideItem => g !== null);
+// 起動時に一度だけ正規化してメモリに展開
+const ALL_GUIDES_INTERNAL: GuideItem[] = (rawGuides as RawGuide[]).map(
+  normalizeGuide,
+);
 
+// Repositoryの公開API
 export function findAllGuides(): GuideItem[] {
-  return ALL_GUIDES;
+  // 呼び出し側で破壊されないようコピーを返す
+  return [...ALL_GUIDES_INTERNAL];
 }
 
 export function findGuideBySlug(slug: string): GuideItem | undefined {
-  const key = slug.trim();
-  if (!key) return undefined;
-  return ALL_GUIDES.find((g) => g.slug === key);
+  return ALL_GUIDES_INTERNAL.find((g) => g.slug === slug);
 }
