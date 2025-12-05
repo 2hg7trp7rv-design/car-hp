@@ -4,11 +4,11 @@
 import { findAllGuides, findGuideBySlug } from "@/lib/repository/guides-repository";
 import type { GuideItem } from "@/lib/content-types";
 
-// カテゴリは data-model の設計どおり「任意の string」とする
+// カテゴリはdata-modelの設計どおり「任意のstring」とする
 export type GuideCategory = string;
 
 // 公開用の型はこれまでどおりlib/guidesからもimportできるように再エクスポート
-export type { GuideItem } from "@/lib/content-types;
+export type { GuideItem } from "@/lib/content-types";
 
 // 日付文字列→タイムスタンプ(不正な場合は0)
 function toTime(value?: string | null): number {
@@ -30,7 +30,7 @@ function sortGuides(items: GuideItem[]): GuideItem[] {
       return bTime - aTime;
     }
 
-    return a.title.localeCompare(b.title, "ja");
+    return a.title.localeCompare(a.title, "ja");
   });
 
   return result;
@@ -44,9 +44,7 @@ export async function getAllGuides(): Promise<GuideItem[]> {
   return ALL_GUIDES;
 }
 
-export async function getGuideBySlug(
-  slug: string,
-): Promise<GuideItem | null> {
+export async function getGuideBySlug(slug: string): Promise<GuideItem | null> {
   const guide = findGuideBySlug(slug);
   return guide ?? null;
 }
