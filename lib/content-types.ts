@@ -47,7 +47,8 @@ export type ColumnCategory = ColumnCategoryBase | string;
 
 export type ColumnItem = BaseContentItem & {
   type: "COLUMN";
-  category: ColumnCategory;
+  // ★ここを「null/未指定もOK」に変更
+  category?: ColumnCategory | null;
   readMinutes?: number | null;
   heroImage?: string | null;
   body: string;
@@ -59,12 +60,12 @@ export type ColumnItem = BaseContentItem & {
 export type NewsItem = BaseContentItem & {
   type: "NEWS";
 
-  // 元記事へのリンク
+  // 元記事へのリンク(URL)
   url: string;
-  // Next.js の Link 用(基本は`/news/[id]`)
+  // Next.js の Link 用(基本は `/news/[id]`)
   link: string;
 
-  // 元記事タイトル(英語等)
+  // 元記事タイトル(日本語訳など)
   titleJa?: string | null;
   // 要約
   excerpt?: string | null;
@@ -73,7 +74,7 @@ export type NewsItem = BaseContentItem & {
   maker?: string | null;
   sourceName?: string | null;
 
-  // 生成日時など
+  // RSS取得時の作成日時など
   createdAt?: string | null;
 
   // 編集部コメント(生)と画面用コメント
