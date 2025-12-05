@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
+# Next.js の内部ファイルや API はクロール不要なのでブロック
+Disallow: /_next/
+Disallow: /api/
+Disallow: /static/
+Disallow: /assets/
+
 Sitemap: https://car-hp.vercel.app/sitemap.xml
