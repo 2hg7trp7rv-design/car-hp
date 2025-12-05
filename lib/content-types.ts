@@ -3,6 +3,9 @@
 // 共通のステータス
 export type ArticleStatus = "draft" | "published" | "archived";
 
+// 既存コード互換用エイリアス（RepositoryなどでContentStatusを使っているため）
+export type ContentStatus = ArticleStatus;
+
 // 共通のtype
 export type ArticleType = "GUIDE" | "COLUMN" | "NEWS" | "HERITAGE" | string;
 
@@ -30,7 +33,6 @@ export type ArticleBase = {
 // GUIDE
 // ============================
 
-// GUIDE専用の拡張
 export type GuideItem = ArticleBase & {
   type:"GUIDE";
   readMinutes?:number | null;
@@ -45,7 +47,7 @@ export type GuideItem = ArticleBase & {
 
 // Columnのカテゴリ型
 // いったんstringとしておき、あとで必要に応じて
-// "OWNER_STORY" | "MAINTENANCE" | "TECHNICAL" | ... のように絞り込む想定
+// "OWNER_STORY"|"MAINTENANCE"|"TECHNICAL"|... のように絞り込む想定
 export type ColumnCategory = string;
 
 export type ColumnItem = ArticleBase & {
