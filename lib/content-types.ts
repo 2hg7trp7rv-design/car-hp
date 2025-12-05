@@ -27,6 +27,9 @@ export type ArticleBase = {
   updatedAt?:string | null;
 
   tags?:string[];
+
+  // 記事共通で使えるメインビジュアル
+  heroImage?:string | null;
 };
 
 // ============================
@@ -36,7 +39,6 @@ export type ArticleBase = {
 export type GuideItem = ArticleBase & {
   type:"GUIDE";
   readMinutes?:number | null;
-  heroImage?:string | null;
   body:string;
   relatedCarSlugs?:string[];
 };
