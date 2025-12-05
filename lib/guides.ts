@@ -1,107 +1,58 @@
 // lib/guides.ts
+// Domain層:GUIDEのドメインロジック(ソート/フィルタ/関連記事など)を担当
 
-import type {
-  GuideItem as GuideItemBase,
-  GuideCategory as GuideCategoryBase,
-} from "@/lib/content-types";
-import {
-  findAllGuides,
-  findGuideBySlug as repoFindGuideBySlug,
-} from "@/lib/repository/guides-repository";
+import { findAllGuides, findGuideBySlug } from "@/lib/repository/guides-repository";
+import type { GuideItem } from "@/lib/content-types";
 
-// 既存のインポート側互換のため再エクスポート
-export type GuideItem = GuideItemBase;
-export type GuideCategory = GuideCategoryBase;
+// カテゴリは data-model の設計どおり「任意の string」とする
+export type GuideCategory = string;
 
-function isPublished(guide: GuideItem): boolean {
-  return guide.status === "published";
+// 公開用の型はこれまでどおりlib/guidesからもimportできるように再エクスポート
+export type { GuideItem } from "@/lib/content-types;
+
+// 日付文字列→タイムスタンプ(不正な場合は0)
+function toTime(value?: string | null): number {
+  if (!value) return 0;
+  const t = Date.parse(value);
+  if (Number.isNaN(t)) return 0;
+  return t;
 }
 
-function compareByPublishedDesc(a: GuideItem, b: GuideItem): number {
-  const aTime = a.publishedAt ? Date.parse(a.publishedAt) : 0;
-  const bTime = b.publishedAt ? Date.parse(b.publishedAt) : 0;
-  if (aTime === bTime) return 0;
-  return aTime < bTime ? 1 : -1;
-}
-
+// 公開日降順→タイトル昇順でソート
 function sortGuides(items: GuideItem[]): GuideItem[] {
-  return [...items].sort(compareByPublishedDesc);
+  const result = [...items];
+
+  result.sort((a, b) => {
+    const aTime = toTime(a.publishedAt);
+    const bTime = toTime(b.publishedAt);
+
+    if (aTime !== bTime) {
+      return bTime - aTime;
+    }
+
+    return a.title.localeCompare(b.title, "ja");
+  });
+
+  return result;
 }
 
-// 一覧用 全件取得
+// 起動時にRepositoryから取得してソート済みキャッシュを用意
+const ALL_GUIDES: GuideItem[] = sortGuides(findAllGuides());
+
+// App層から呼び出すためのDomain API
 export async function getAllGuides(): Promise<GuideItem[]> {
-  const all = findAllGuides();
-  // 将来statusがdraft等になったときのためにフィルタしておく
-  const published = all.filter(isPublished);
-  return sortGuides(published);
+  return ALL_GUIDES;
 }
 
-// 詳細ページ用 slug指定取得
 export async function getGuideBySlug(
   slug: string,
 ): Promise<GuideItem | null> {
-  const guide = repoFindGuideBySlug(slug);
-  if (!guide) return null;
-  if (!isPublished(guide)) return null;
-  return guide;
+  const guide = findGuideBySlug(slug);
+  return guide ?? null;
 }
 
-// トップやGUIDE一覧で使える最新n件
-export async function getLatestGuides(
-  limit: number,
-): Promise<GuideItem[]> {
-  const all = findAllGuides().filter(isPublished);
-  return sortGuides(all).slice(0, limit);
-}
-
-// カテゴリ別取得
-export async function getGuidesByCategory(
-  category: GuideCategory,
-  limit?: number,
-): Promise<GuideItem[]> {
-  const filtered = findAllGuides().filter(
-    (g) => isPublished(g) && g.category === category,
-  );
-  const sorted = sortGuides(filtered);
-  return typeof limit === "number" ? sorted.slice(0, limit) : sorted;
-}
-
-// 関連ガイド取得用の簡易スコアリング
-export async function getRelatedGuides(
-  base: GuideItem,
-  limit = 4,
-): Promise<GuideItem[]> {
-  const all = findAllGuides().filter(
-    (g) => isPublished(g) && g.id !== base.id,
-  );
-
-  const baseTags = base.tags ?? [];
-  const baseCategory = base.category ?? null;
-
-  const scored = all.map((g) => {
-    let score = 0;
-    const tags = g.tags ?? [];
-
-    // タグ一致を強めに
-    for (const tag of tags) {
-      if (baseTags.includes(tag)) score += 2;
-    }
-
-    // カテゴリ一致
-    if (baseCategory && g.category === baseCategory) {
-      score += 1;
-    }
-
-    return { item: g, score };
-  });
-
-  scored.sort((a, b) => {
-    if (a.score !== b.score) return b.score - a.score;
-    return compareByPublishedDesc(a.item, b.item);
-  });
-
-  return scored
-    .filter((entry) => entry.score > 0)
-    .slice(0, limit)
-    .map((entry) => entry.item);
-}
+// 今後、カテゴリ別取得・関連記事取得などのロジックもここに追加していく想定
+// 例:
+// export async function getGuidesByCategory(category: GuideCategory): Promise<GuideItem[]> {
+//   return ALL_GUIDES.filter((g) => g.category === category);
+// }
