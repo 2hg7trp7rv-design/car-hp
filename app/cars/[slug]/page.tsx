@@ -14,7 +14,7 @@ import {
 import { getLatestNews, type NewsItem } from "@/lib/news";
 import { getAllColumns, type ColumnItem } from "@/lib/columns";
 import {
-  G30TemplateBySlug,
+  getG30TemplateBySlug,
   type G30CarTemplate,
 } from "@/lib/car-bmw-530i-g30";
 
@@ -172,7 +172,11 @@ async function getRelatedNewsAndColumns(car: ExtendedCarItem): Promise<{
       if (item.maker && item.maker === car.maker) return true;
 
       const tags: string[] = item.tags ?? [];
-      if (tags.some((tag: string) => keywords.has(tag.toUpperCase()))) {
+      if (
+        tags.some((tag: string) =>
+          keywords.has(tag.toUpperCase()),
+        )
+      ) {
         return true;
       }
 
@@ -209,7 +213,7 @@ async function getRelatedNewsAndColumns(car: ExtendedCarItem): Promise<{
 function getG30Template(
   car: ExtendedCarItem,
 ): G30CarTemplate | undefined {
-  return G30TemplateBySlug[car.slug];
+  return getG30TemplateBySlug(car.slug);
 }
 
 // ===== Next.js メタ情報 =====
