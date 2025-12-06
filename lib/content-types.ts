@@ -1,92 +1,154 @@
 // lib/content-types.ts
 
-// 共通のステータス
+// ----------------------------------------
+// 共通で使う基本型
+// ----------------------------------------
+
+export type ArticleType =
+  | "GUIDE"
+  | "COLUMN"
+  | "NEWS"
+  | "HERITAGE"
+  | "CARS"
+  | "OTHER";
+
 export type ArticleStatus = "draft" | "published" | "archived";
 
-// 既存コード互換用エイリアス（RepositoryなどでContentStatusを使っているため）
+// 既存コード互換用エイリアス
 export type ContentStatus = ArticleStatus;
 
-// 共通のtype
-export type ArticleType = "GUIDE" | "COLUMN" | "NEWS" | "HERITAGE" | string;
-
-// 記事系すべての共通ベース型
 export type ArticleBase = {
-  id:string;
-  slug:string;
-  type:ArticleType;
-  category?:string | null;
-  status?:ArticleStatus;
+  /** 不変ID */
+  id: string;
+  /** URL用スラッグ (/guide/[slug] など) */
+  slug: string;
+  /** コンテンツ種別 */
+  type: ArticleType;
+  /** サブカテゴリ (MONEY / MAINTENANCE / TECHNICAL など) */
+  category?: string | null;
+  /** 公開状態 */
+  status?: ArticleStatus;
 
-  title:string;
-  summary:string;
+  /** 記事タイトル */
+  title: string;
+  /** 一覧・カードに出す要約 */
+  summary: string;
 
-  seoTitle?:string | null;
-  seoDescription?:string | null;
+  /** 明示的なSEOタイトル (なければtitleを使う) */
+  seoTitle?: string | null;
+  /** 明示的なSEOディスクリプション (なければsummaryを使う) */
+  seoDescription?: string | null;
 
-  publishedAt?:string | null;
-  updatedAt?:string | null;
+  /** 公開日時(ISO) */
+  publishedAt?: string | null;
+  /** 最終更新日時(ISO) */
+  updatedAt?: string | null;
 
-  tags?:string[];
+  /** タグ */
+  tags?: string[];
 
-  // 記事共通で使えるメインビジュアル
-  heroImage?:string | null;
+  /** 一覧やディテールで使うヒーロー画像 */
+  heroImage?: string | null;
 };
 
-// ============================
+// ----------------------------------------
 // GUIDE
-// ============================
+// ----------------------------------------
+
+export type GuideCategory = string;
 
 export type GuideItem = ArticleBase & {
-  type:"GUIDE";
-  readMinutes?:number | null;
-  body:string;
-  relatedCarSlugs?:string[];
+  type: "GUIDE";
+  category?: GuideCategory | null;
+
+  /** 読了目安(分) */
+  readMinutes?: number;
+
+  /** 本文(Markdown想定) */
+  body: string;
+
+  /** 関連する車種(slugの配列) */
+  relatedCarSlugs?: string[];
 };
 
-// ============================
+// ----------------------------------------
 // COLUMN
-// ============================
+// ----------------------------------------
 
-// Columnのカテゴリ型
-// いったんstringとしておき、あとで必要に応じて
-// "OWNER_STORY"|"MAINTENANCE"|"TECHNICAL"|... のように絞り込む想定
-export type ColumnCategory = string;
+export type ColumnCategory = "MAINTENANCE" | "TECHNICAL";
 
 export type ColumnItem = ArticleBase & {
-  type:"COLUMN";
-  category?:ColumnCategory | null;
-  tone?:string | null;
-  body:string;
-  relatedCarSlugs?:string[];
-  readMinutes?:number | null;
+  type: "COLUMN";
+  /** コラムのカテゴリー */
+  category: ColumnCategory;
+
+  /** 読了目安(分) */
+  readMinutes?: number;
+
+  /** 本文(Markdown想定) */
+  body: string;
+
+  /** 関連する車種(slugの配列) */
+  relatedCarSlugs?: string[];
 };
 
-// ============================
+// ----------------------------------------
 // NEWS
-// ============================
+// ----------------------------------------
 
 export type NewsItem = ArticleBase & {
-  type:"NEWS";
+  type: "NEWS";
 
-  titleJa?:string | null;
-  excerpt?:string | null;
-  commentJa?:string | null;
+  /** メーカー公式など元記事のURL */
+  url: string;
 
-  maker?:string | null;
-  sourceName?:string | null;
-  sourceUrl?:string | null;
-  rssId?:string | null;
+  /**
+   * Next.js側でのリンク用エイリアス。
+   * 現状は /news/[id] なので id をそのまま使う想定。
+   */
+  link: string;
 
-  publishedAtJa?:string | null;
-  createdAt?:string | null;
+  /** 日本語タイトル */
+  titleJa?: string | null;
+
+  /** 要約・リード文 */
+  excerpt?: string | null;
+
+  /** ソース名 (メーカー公式サイト名など) */
+  sourceName?: string | null;
+
+  /** 編集部コメント(テキスト) */
+  editorNote?: string | null;
+
+  /** 日本語コメント(表示用) */
+  commentJa?: string | null;
+
+  /** 日本語の整形済み日付文字列 */
+  publishedAtJa?: string | null;
+
+  /** メーカー名 (BMW / TOYOTA など) */
+  maker?: string | null;
+
+  /** カテゴリ(NEW_MODEL / RECALL など任意文字列) */
+  category?: string | null;
+
+  /** サムネイル画像 */
+  heroImage?: string | null;
 };
 
-// ============================
-// HERITAGE
-// ============================
+// ----------------------------------------
+// HERITAGE (将来拡張用)
+// ----------------------------------------
 
 export type HeritageItem = ArticleBase & {
-  type:"HERITAGE";
-  body:string;
-  generationLabel?:string | null;
+  type: "HERITAGE";
+
+  /** 年代や世代を表すラベル (例: "1960s", "1st-Gen" など) */
+  era?: string | null;
+
+  /** 対応する車種slug (あれば) */
+  carSlug?: string | null;
+
+  /** 本文(Markdown想定) */
+  body: string;
 };
