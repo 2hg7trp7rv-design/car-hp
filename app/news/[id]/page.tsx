@@ -85,7 +85,9 @@ async function getRelatedNews(
   const latest = (await getLatestNews(40)) as NewsWithMeta[];
 
   const currentTags: string[] = Array.isArray(current.tags)
-    ? current.tags.filter((tag): tag is string => typeof tag === "string")
+    ? current.tags.filter(
+        (tag: unknown): tag is string => typeof tag === "string",
+      )
     : [];
 
   const currentId = current.id;
@@ -94,7 +96,9 @@ async function getRelatedNews(
     .filter((item) => item.id !== currentId)
     .map((item) => {
       const itemTags: string[] = Array.isArray(item.tags)
-        ? item.tags.filter((tag): tag is string => typeof tag === "string")
+        ? item.tags.filter(
+            (tag: unknown): tag is string => typeof tag === "string",
+          )
         : [];
 
       let score = 0;
@@ -141,7 +145,9 @@ export default async function NewsDetailPage({ params }: PageProps) {
   const titleJa = news.titleJa ?? news.title;
   const dateLabel = formatDate(news.publishedAt);
   const tags: string[] = Array.isArray(news.tags)
-    ? news.tags.filter((tag): tag is string => typeof tag === "string")
+    ? news.tags.filter(
+        (tag: unknown): tag is string => typeof tag === "string",
+      )
     : [];
 
   const related = await getRelatedNews(news);
@@ -150,7 +156,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
     <main className="min-h-screen bg-slate-100 text-slate-900">
       {/* 上部ヒーロー＋パンくず */}
       <section className="border-b border-slate-200 bg-gradient-to-b from-slate-50 to-slate-100">
-        <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 md:py-10">
+        <div className="mx-autoflex max-w-5xlflex-col gap-6 px-4 py-8 md:py-10">
           <Reveal>
             <nav className="flex items-center text-xs text-slate-500">
               <Link href="/" className="hover:text-slate-800">
@@ -286,7 +292,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
                     <Link
                       key={item.id}
                       href={`/news/${encodeURIComponent(item.id)}`}
-                      className="block rounded-lg border border-slate-200/80 bg-white/60 p-3 text-xs text-slate-800 transition hover:border-tiffany-300 hover:bg-white"
+                      className="block rounded-lg border border-slate-200/80 bg-white/60 p-3 text-xs text-slate-800 transition hover:border-tiffany-300 hover:bg白"
                     >
                       <p className="mb-1 line-clamp-2 font-medium">
                         {item.titleJa ?? item.title}
