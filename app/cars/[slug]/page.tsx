@@ -28,8 +28,7 @@ type PageProps = {
  * CarItem をこのページ用に少し拡張したローカル型
  */
 type ExtendedCarItem = CarItem & {
-  mainImage?: string | null;
-  heroImage?: string | null;
+  mainImage?: string;
   strengths?: string[];
   weaknesses?: string[];
   troubleTrends?: string[];
@@ -86,7 +85,8 @@ function formatPowerAndTorque(
 function ensureExtended(car: CarItem): ExtendedCarItem {
   return {
     ...car,
-    mainImage: car.heroImage ?? car.heroImage ?? null,
+    // heroImage を mainImage としても扱えるようにしておく（undefined のままでもOK）
+    mainImage: car.heroImage,
   };
 }
 
