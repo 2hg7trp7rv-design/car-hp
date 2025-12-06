@@ -1,29 +1,23 @@
 // lib/repository/cars-repository.ts
 
 /**
- * CARS用 Data Source層
+ * CARS Data Source層
  *
  * 役割:
- * ・data/cars.jsonから“生データ”をそのまま取り出すだけ
- * ・Domain層(lib/cars.ts)がどんな構造で使うかまでは関与しない
+ * - data/cars.json から“生データ”をそのまま取り出すだけ
+ * - Domain層(lib/cars.ts)側ではこのモジュール経由でのみデータ取得する
  */
 
-import carsRaw from "@/data/cars.json";
+import carsJson from "@/data/cars.json";
 
-// JSON1件分の型(生データ)。ここでは汎用的なキー/値の塊として扱う。
-export type CarRecord = Record<string, unknown>;
+// data/cars.json 1件分の「生の型」
+export type CarsJson = typeof carsJson;
+export type CarRecord = CarsJson[number];
 
 /**
- * data/cars.jsonの全件を生データとして返す。
- * ここでは整形やソートは一切行わない。
+ * 生の車データを全件返す。
+ * ここでは整形・ソート・フィルタは一切しない。
  */
 export function findAllCars(): CarRecord[] {
-  const items = carsRaw as unknown;
-
-  if (Array.isArray(items)) {
-    return items as CarRecord[];
-  }
-
-  // 万が一配列でない構造だった場合も、型安全に空配列を返す
-  return [];
+  return carsJson as CarRecord[];
 }
