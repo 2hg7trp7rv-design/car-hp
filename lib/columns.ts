@@ -3,48 +3,113 @@
 import type {
   ColumnItem as ColumnItemBase,
   ColumnCategory as ColumnCategoryBase,
+  ContentStatus,
 } from "@/lib/content-types";
 import {
   findAllColumns,
   findColumnBySlug as repoFindColumnBySlug,
 } from "@/lib/repository/columns-repository";
 
-// 既存のインポート互換用エクスポート
+// 既存互換用のエクスポート
 export type ColumnItem = ColumnItemBase;
 export type ColumnCategory = ColumnCategoryBase;
 
-function isPublished(column: ColumnItem): boolean {
-  return column.status === "published";
+// ----------------------------------------
+// 内部ユーティリティ
+// ----------------------------------------
+
+function isPublished(status: ContentStatus): boolean {
+  return status === "published";
 }
 
-function compareByPublishedDesc(
-  a: ColumnItem,
-  b: ColumnItem,
-): number {
-  const aTime = a.publishedAt ? Date.parse(a.publishedAt) : 0;
-  const bTime = b.publishedAt ? Date.parse(b.publishedAt) : 0;
-  if (aTime === bTime) return 0;
+function toTime(value?: string | null): number {
+  if (!value) return 0;
+  const t = Date.parse(value);
+  return Number.isNaN(t) ? 0 : t;
+}
+
+function compareByPublishedDesc(a: ColumnItem, b: ColumnItem): number {
+  const aTime = toTime(a.publishedAt ?? a.updatedAt ?? null);
+  const bTime = toTime(b.publishedAt ?? b.updatedAt ?? null);
+
+  if (aTime === bTime) {
+    const at = a.title.toLowerCase();
+    const bt = b.title.toLowerCase();
+    if (at < bt) return -1;
+    if (at > bt) return 1;
+    return 0;
+  }
+
   return aTime < bTime ? 1 : -1;
 }
 
-function sortColumns(items: ColumnItem[]): ColumnItem[] {
-  return [...items].sort(compareByPublishedDesc);
+type ColumnIndex = {
+  allPublishedSorted: ColumnItem[];
+  bySlug: Map<string, ColumnItem>;
+  byCategory: Map<ColumnCategory, ColumnItem[]>;
+};
+
+let columnIndexCache: ColumnIndex | null = null;
+
+function buildColumnIndex(): ColumnIndex {
+  const rawAll = findAllColumns();
+
+  const published = rawAll.filter((c) => isPublished(c.status));
+
+  const sorted = [...published].sort(compareByPublishedDesc);
+
+  const bySlug = new Map<string, ColumnItem>();
+  const byCategory = new Map<ColumnCategory, ColumnItem[]>();
+
+  for (const c of sorted) {
+    bySlug.set(c.slug, c);
+
+    if (c.category) {
+      const key = c.category as ColumnCategory;
+      const list = byCategory.get(key);
+      if (list) {
+        list.push(c);
+      } else {
+        byCategory.set(key, [c]);
+      }
+    }
+  }
+
+  return {
+    allPublishedSorted: sorted,
+    bySlug,
+    byCategory,
+  };
 }
 
-// 全コラム一覧
+function ensureColumnIndex(): ColumnIndex {
+  if (!columnIndexCache) {
+    columnIndexCache = buildColumnIndex();
+  }
+  return columnIndexCache;
+}
+
+export function __resetColumnCacheForTest(): void {
+  columnIndexCache = null;
+}
+
+// ----------------------------------------
+// 公開API(Domain層)
+// ----------------------------------------
+
+// 全コラム一覧(公開済みのみ/公開日降順)
 export async function getAllColumns(): Promise<ColumnItem[]> {
-  const all = findAllColumns();
-  const published = all.filter(isPublished);
-  return sortColumns(published);
+  return ensureColumnIndex().allPublishedSorted;
 }
 
-// slug指定で1件取得
+// slug指定で1件取得(公開済みのみ)
 export async function getColumnBySlug(
   slug: string,
 ): Promise<ColumnItem | null> {
-  const column = repoFindColumnBySlug(slug);
+  const index = ensureColumnIndex();
+  const column = index.bySlug.get(slug) ?? repoFindColumnBySlug(slug);
   if (!column) return null;
-  if (!isPublished(column)) return null;
+  if (!isPublished(column.status)) return null;
   return column;
 }
 
@@ -52,8 +117,8 @@ export async function getColumnBySlug(
 export async function getLatestColumns(
   limit: number,
 ): Promise<ColumnItem[]> {
-  const all = findAllColumns().filter(isPublished);
-  return sortColumns(all).slice(0, limit);
+  const all = ensureColumnIndex().allPublishedSorted;
+  return all.slice(0, limit);
 }
 
 // カテゴリ別
@@ -61,11 +126,12 @@ export async function getColumnsByCategory(
   category: ColumnCategory,
   limit?: number,
 ): Promise<ColumnItem[]> {
-  const filtered = findAllColumns().filter(
-    (c) => isPublished(c) && c.category === category,
-  );
-  const sorted = sortColumns(filtered);
-  return typeof limit === "number" ? sorted.slice(0, limit) : sorted;
+  const index = ensureColumnIndex();
+  const list = index.byCategory.get(category) ?? [];
+  if (typeof limit === "number") {
+    return list.slice(0, limit);
+  }
+  return list;
 }
 
 // 関連コラム(タグ＋カテゴリで簡易スコアリング)
@@ -73,27 +139,27 @@ export async function getRelatedColumns(
   base: ColumnItem,
   limit = 4,
 ): Promise<ColumnItem[]> {
-  const all = findAllColumns().filter(
-    (c) => isPublished(c) && c.id !== base.id,
-  );
+  const { allPublishedSorted } = ensureColumnIndex();
 
   const baseTags = base.tags ?? [];
   const baseCategory = base.category ?? null;
 
-  const scored = all.map((c) => {
-    let score = 0;
-    const tags = c.tags ?? [];
+  const scored = allPublishedSorted
+    .filter((c) => c.id !== base.id)
+    .map((c) => {
+      let score = 0;
 
-    for (const tag of tags) {
-      if (baseTags.includes(tag)) score += 2;
-    }
+      const tags = c.tags ?? [];
+      for (const tag of tags) {
+        if (baseTags.includes(tag)) score += 2;
+      }
 
-    if (baseCategory && c.category === baseCategory) {
-      score += 1;
-    }
+      if (baseCategory && c.category === baseCategory) {
+        score += 1;
+      }
 
-    return { item: c, score };
-  });
+      return { item: c, score };
+    });
 
   scored.sort((a, b) => {
     if (a.score !== b.score) return b.score - a.score;
