@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import {
   getNewsById,
   getLatestNews,
+  getAllNews,
   type NewsItem,
 } from "@/lib/news";
 import { GlassCard } from "@/components/GlassCard";
@@ -14,429 +15,306 @@ import { Reveal } from "@/components/animation/Reveal";
 export const runtime = "edge";
 
 type PageProps = {
-  params: { id: string };
+  params: {
+    id: string;
+  };
 };
 
-// ---- メタデータ / SSG ----
+// NewsItemをローカルで少しだけ拡張して扱う
+type NewsWithMeta = NewsItem & {
+  tags?: string[] | null;
+  maker?: string | null;
+  category?: string | null;
+  publishedAt?: string | null;
+  imageUrl?: string | null;
+};
 
+function formatDate(iso?: string | null): string | null {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return null;
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}.${m}.${day}`;
+}
+
+// SSG用:全ニュースのidから動的パスを生成
 export async function generateStaticParams() {
-  const items = await getLatestNews(80);
-  return items.map((item) => ({
-    id: String(item.id),
+  const all = await getAllNews();
+  return all.map((item) => ({
+    id: item.id,
   }));
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  const item = await getNewsById(params.id);
+// SEOメタ
+export async function generateMetadata(
+  { params }: PageProps,
+): Promise<Metadata> {
+  const news = (await getNewsById(params.id)) as NewsWithMeta | null;
 
-  if (!item) {
+  if (!news) {
     return {
-      title: "記事が見つかりません | CAR BOUTIQUE",
-      description: "指定されたニュース記事が見つかりませんでした。",
+      title: "ニュースが見つかりません | CAR BOUTIQUE",
+      description: "指定されたニュース記事は見つかりませんでした。",
     };
   }
 
-  const title = item.titleJa ?? item.title;
+  const titleJa = news.titleJa ?? news.title;
   const description =
-    item.excerpt ??
-    item.commentJa ??
-    "クルマのニュースを静かに読み解く CAR BOUTIQUE のニュース詳細ページです。";
+    news.excerpt ??
+    news.comment ??
+    "CAR BOUTIQUE編集部によるニュース記事です。";
 
   return {
-    title: `${title} | CAR BOUTIQUE`,
+    title: `${titleJa} | NEWS | CAR BOUTIQUE`,
     description,
     openGraph: {
-      title,
+      title: `${titleJa} | NEWS | CAR BOUTIQUE`,
       description,
       type: "article",
-      url:
-        item.url ||
-        `https://car-hp.vercel.app/news/${encodeURIComponent(
-          String(item.id),
-        )}`,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
+      url: `https://car-hp.vercel.app/news/${encodeURIComponent(news.id)}`,
     },
   };
 }
 
-// ---- ユーティリティ ----
+// 関連ニュースをざっくり拾うロジック
+async function getRelatedNews(
+  current: NewsWithMeta,
+): Promise<NewsWithMeta[]> {
+  const latest = (await getLatestNews(40)) as NewsWithMeta[];
 
-function formatDate(iso?: string | null): string {
-  if (!iso) return "";
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return "";
-  return date.toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
+  const currentTags: string[] = Array.isArray(current.tags)
+    ? current.tags.filter((tag): tag is string => typeof tag === "string")
+    : [];
 
-function buildSourceLabel(item: NewsItem): string {
-  if (item.sourceName) return item.sourceName;
-  if (item.maker) return item.maker;
-  return "";
-}
+  const currentId = current.id;
 
-function buildTagList(item: NewsItem): string[] {
-  return Array.isArray(item.tags) ? item.tags.filter(Boolean) : [];
-}
+  const withScore = latest
+    .filter((item) => item.id !== currentId)
+    .map((item) => {
+      const itemTags: string[] = Array.isArray(item.tags)
+        ? item.tags.filter((tag): tag is string => typeof tag === "string")
+        : [];
 
-async function getRelatedNews(current: NewsItem): Promise<NewsItem[]> {
-  const items = await getLatestNews(80);
-  const { id, maker, category, tags: currentTags } = current;
+      let score = 0;
 
-  return items
-    .filter((item) => item.id !== id)
-    .filter((item) => {
-      if (maker && item.maker === maker) return true;
-      if (category && item.category === category) return true;
-      if (currentTags && currentTags.length > 0) {
-        const set = new Set(currentTags);
-        const itemTags = item.tags ?? [];
-        if (itemTags.some((t) => set.has(t))) return true;
+      // メーカー一致
+      if (current.maker && item.maker && current.maker === item.maker) {
+        score += 3;
       }
-      return false;
+
+      // カテゴリー一致
+      if (
+        current.category &&
+        item.category &&
+        current.category === item.category
+      ) {
+        score += 2;
+      }
+
+      // タグの重なり数
+      if (currentTags.length && itemTags.length) {
+        const set = new Set(currentTags);
+        const overlapCount = itemTags.filter((t: string) => set.has(t)).length;
+        score += overlapCount;
+      }
+
+      return { item, score };
     })
-    .slice(0, 5);
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 4)
+    .map(({ item }) => item);
+
+  return withScore;
 }
 
-// ---- ページ本体 ----
-
+// Pageコンポーネント本体
 export default async function NewsDetailPage({ params }: PageProps) {
-  const item = await getNewsById(params.id);
+  const news = (await getNewsById(params.id)) as NewsWithMeta | null;
 
-  if (!item) {
+  if (!news) {
     notFound();
   }
 
-  const related = await getRelatedNews(item);
+  const titleJa = news.titleJa ?? news.title;
+  const dateLabel = formatDate(news.publishedAt);
+  const tags: string[] = Array.isArray(news.tags)
+    ? news.tags.filter((tag): tag is string => typeof tag === "string")
+    : [];
 
-  const title = item.titleJa ?? item.title;
-  const dateLabel =
-    item.publishedAtJa ?? formatDate(item.publishedAt ?? item.createdAt);
-  const sourceLabel = buildSourceLabel(item);
-  const tags = buildTagList(item);
-
-  const sourceDomain = item.url
-    ? (() => {
-        try {
-          const u = new URL(item.url);
-          return u.hostname.replace(/^www\./, "");
-        } catch {
-          return "";
-        }
-      })()
-    : "";
+  const related = await getRelatedNews(news);
 
   return (
-    <main className="min-h-screen bg-site text-text-main">
-      <div className="mx-auto max-w-5xl px-4 pb-20 pt-20 sm:px-6 lg:px-8">
-        {/* パンくず */}
-        <Reveal>
-          <nav
-            aria-label="パンくずリスト"
-            className="mb-6 text-[10px] text-slate-500"
-          >
-            <Link href="/" className="hover:text-slate-800">
-              HOME
-            </Link>
-            <span className="mx-2 text-slate-400">/</span>
-            <Link href="/news" className="hover:text-slate-800">
-              NEWS
-            </Link>
-            <span className="mx-2 text-slate-400">/</span>
-            <span className="line-clamp-1 text-slate-400">DETAIL</span>
-          </nav>
-        </Reveal>
-
-        {/* HERO バンド */}
-        <Reveal>
-          <section className="relative mb-8 overflow-hidden rounded-3xl border border-slate-200/70 bg-gradient-to-br from-slate-900 via-obsidian to-slate-900/96 px-5 py-6 text-slate-100 shadow-soft-strong sm:px-7 sm:py-8">
-            {/* 光レイヤー */}
-            <div className="pointer-events-none absolute -left-24 -top-24 h-64 w-64 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.36),_transparent_70%)] blur-3xl" />
-            <div className="pointer-events-none absolute -right-32 bottom-[-40%] h-80 w-80 rounded-full bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.8),_transparent_70%)] blur-3xl" />
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.08),_transparent_55%)]" />
-
-            <div className="relative z-10 space-y-4">
-              {/* ラベル行 */}
-              <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold tracking-[0.26em] text-tiffany-100">
-                <span className="inline-flex items-center gap-2">
-                  <span className="h-[1px] w-6 bg-tiffany-300" />
-                  NEWS DETAIL
-                </span>
-                {item.category && (
-                  <>
-                    <span className="h-[1px] w-6 bg-slate-500/60" />
-                    <span className="rounded-full bg-white/5 px-2 py-0.5 text-[9px] tracking-[0.2em] text-slate-100">
-                      {item.category.toUpperCase()}
-                    </span>
-                  </>
-                )}
-              </div>
-
-              {/* タイトル */}
-              <h1 className="serif-heading text-2xl font-medium leading-snug text-white sm:text-[1.8rem]">
-                {title}
-              </h1>
-
-              {/* 原題（翻訳タイトルの場合のみ） */}
-              {item.title !== title && (
-                <p className="text-[10px] text-slate-300">
-                  原題: <span className="opacity-90">{item.title}</span>
-                </p>
-              )}
-
-              {/* メタ情報 */}
-              <div className="mt-1 flex flex-wrap items-center gap-2 text-[10px] text-slate-200/80">
-                {sourceLabel && (
-                  <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 tracking-[0.18em]">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                    {sourceLabel}
-                  </span>
-                )}
-                {item.maker && (
-                  <span className="inline-flex items-center gap-1 rounded-full bg-white/5 px-3 py-1 tracking-[0.18em]">
-                    {item.maker}
-                  </span>
-                )}
-                {dateLabel && (
-                  <span className="inline-flex items-center gap-1 rounded-full bg-white/5 px-3 py-1 tracking-[0.18em]">
-                    {dateLabel}
-                  </span>
-                )}
-              </div>
-            </div>
-          </section>
-        </Reveal>
-
-        {/* 本文 + サイドメタ */}
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,1.3fr)]">
-          {/* 本文カード */}
+    <main className="min-h-screen bg-slate-100 text-slate-900">
+      {/* 上部ヒーロー＋パンくず */}
+      <section className="border-b border-slate-200 bg-gradient-to-b from-slate-50 to-slate-100">
+        <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 md:py-10">
           <Reveal>
-            <GlassCard className="border border-slate-200/70 bg-white/90 px-4 py-5 text-[13px] leading-relaxed text-slate-800 shadow-soft sm:px-6 sm:py-6">
-              {/* 要約 */}
-              {item.excerpt && (
-                <section className="mb-5 rounded-2xl border border-tiffany-100 bg-tiffany-50/60 px-4 py-3 text-[12px] leading-relaxed text-slate-800">
-                  <h2 className="mb-1 text-[10px] font-semibold tracking-[0.18em] text-tiffany-700">
-                    SUMMARY
-                  </h2>
-                  <p>{item.excerpt}</p>
-                </section>
-              )}
-
-              {/* CAR BOUTIQUE の視点 */}
-              {item.commentJa && (
-                <section className="mb-6 rounded-2xl bg-slate-900/95 px-4 py-3 text-[12px] leading-relaxed text-slate-100 shadow-soft-glow">
-                  <h2 className="mb-1 text-[10px] font-semibold tracking-[0.18em] text-tiffany-200">
-                    CAR BOUTIQUE&apos;S NOTE
-                  </h2>
-                  <p>{item.commentJa}</p>
-                </section>
-              )}
-
-              {/* タグ */}
-              {(tags.length > 0 || item.category || item.maker) && (
-                <section className="mt-2 space-y-3 text-[11px]">
-                  <div className="flex flex-wrap gap-1.5">
-                    {tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[9px] tracking-[0.14em] text-slate-500"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                </section>
-              )}
-
-              {/* 出典リンク */}
-              {item.url && item.url !== "#" && (
-                <section className="mt-6 flex flex-wrap items-center justify-between gap-3 text-[11px]">
-                  <div className="text-[10px] text-slate-400">
-                    <p className="tracking-[0.16em]">ORIGINAL SOURCE</p>
-                    {sourceDomain && (
-                      <p className="mt-0.5 break-all text-[10px] text-slate-500">
-                        {sourceDomain}
-                      </p>
-                    )}
-                  </div>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Link
-                      href={item.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1 rounded-full border border-slate-900 bg-slate-900 px-4 py-1.5 text-[10px] font-semibold tracking-[0.2em] text-white transition hover:-translate-y-[1px] hover:bg-slate-800 hover:shadow-soft-card"
-                    >
-                      元記事を読む
-                      {sourceDomain && (
-                        <span className="text-[9px] text-slate-200">
-                          ({sourceDomain})
-                        </span>
-                      )}
-                      <span className="text-[9px] text-slate-200">↗</span>
-                    </Link>
-                  </div>
-                </section>
-              )}
-            </GlassCard>
+            <nav className="flex items-center text-xs text-slate-500">
+              <Link href="/" className="hover:text-slate-800">
+                HOME
+              </Link>
+              <span className="mx-2 text-slate-400">/</span>
+              <Link href="/news" className="hover:text-slate-800">
+                NEWS
+              </Link>
+              <span className="mx-2 text-slate-400">/</span>
+              <span className="line-clamp-1 text-slate-400">DETAIL</span>
+            </nav>
           </Reveal>
 
-          {/* サイドメタ（PCのみ） */}
-          <aside className="hidden lg:block">
-            <Reveal delay={80}>
-              <div className="sticky top-24 space-y-4">
-                <GlassCard className="border border-slate-200/70 bg-white/90 px-4 py-4 text-[11px] text-slate-700 shadow-soft">
-                  <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-500">
-                    ARTICLE META
+          <Reveal>
+            <div className="flex flex-col gap-4 md:flex-row md:items-end">
+              <div className="flex-1 space-y-3">
+                <p className="text-[11px] uppercase tracking-[0.28em] text-slate-500">
+                  EDITOR&apos;S PICK NEWS
+                </p>
+                <h1 className="text-xl font-semibold tracking-wide text-slate-900 md:text-2xl">
+                  {titleJa}
+                </h1>
+                {news.excerpt && (
+                  <p className="text-sm leading-relaxed text-slate-600">
+                    {news.excerpt}
                   </p>
-                  <dl className="space-y-1.5">
-                    {sourceLabel && (
-                      <div className="flex items-center justify-between gap-3">
-                        <dt className="text-[10px] text-slate-400">
-                          SOURCE
-                        </dt>
-                        <dd className="text-right">{sourceLabel}</dd>
-                      </div>
-                    )}
-                    {item.maker && (
-                      <div className="flex items-center justify-between gap-3">
-                        <dt className="text-[10px] text-slate-400">
-                          MAKER
-                        </dt>
-                        <dd className="text-right">{item.maker}</dd>
-                      </div>
-                    )}
-                    {item.category && (
-                      <div className="flex items-center justify-between gap-3">
-                        <dt className="text-[10px] text-slate-400">
-                          CATEGORY
-                        </dt>
-                        <dd className="text-right">
-                          {item.category.toUpperCase()}
-                        </dd>
-                      </div>
-                    )}
-                    {dateLabel && (
-                      <div className="flex items-center justify-between gap-3">
-                        <dt className="text-[10px] text-slate-400">
-                          DATE
-                        </dt>
-                        <dd className="text-right">{dateLabel}</dd>
-                      </div>
-                    )}
-                  </dl>
-                </GlassCard>
-
-                <GlassCard className="border border-slate-200/70 bg-white/90 px-4 py-4 text-[11px] text-slate-700 shadow-soft">
-                  <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-500">
-                    BACK TO LIST
-                  </p>
-                  <Link
-                    href="/news"
-                    className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[10px] tracking-[0.18em] text-slate-700 transition hover:border-tiffany-300 hover:text-tiffany-700"
-                  >
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full border border-slate-200 text-[11px]">
-                      ←
-                    </span>
-                    NEWS 一覧に戻る
-                  </Link>
-                </GlassCard>
+                )}
               </div>
-            </Reveal>
-          </aside>
+              <div className="flex flex-col items-start gap-2 text-xs text-slate-500 md:items-end">
+                {dateLabel && (
+                  <p className="font-medium text-slate-600">{dateLabel}</p>
+                )}
+                <div className="flex flex-wrap gap-1">
+                  {news.maker && (
+                    <span className="rounded-full border border-slate-300 px-2.5 py-0.5 text-[11px] uppercase tracking-[0.16em] text-slate-700">
+                      {news.maker}
+                    </span>
+                  )}
+                  {news.category && (
+                    <span className="rounded-full border border-slate-300 px-2.5 py-0.5 text-[11px] tracking-[0.08em] text-slate-700">
+                      {news.category}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
+      </section>
 
-        {/* 関連ニュース */}
-        {related.length > 0 && (
-          <section className="mt-12">
-            <Reveal>
-              <div className="mb-3 flex items-baseline justify-between gap-2">
-                <h2 className="text-xs font-semibold tracking-[0.2em] text-slate-600">
+      {/* 本文＋サイド */}
+      <section className="border-b border-slate-200 bg-slate-100/80">
+        <div className="mx-auto grid max-w-5xl gap-6 px-4 py-8 md:grid-cols-[minmax(0,2fr)_minmax(0,1.1fr)] md:py-10">
+          {/* 本文 */}
+          <div className="space-y-6">
+            <GlassCard className="bg-white/80">
+              <div className="space-y-5 p-4 md:p-6">
+                {news.imageUrl && (
+                  <div className="aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-100" />
+                  // 画像は後でnext/imageに差し替え予定
+                )}
+                {news.comment && (
+                  <div className="space-y-3 text-sm leading-relaxed text-slate-700 whitespace-pre-line">
+                    {news.comment}
+                  </div>
+                )}
+                {!news.comment && news.excerpt && (
+                  <p className="text-sm leading-relaxed text-slate-700 whitespace-pre-line">
+                    {news.excerpt}
+                  </p>
+                )}
+
+                {news.url && (
+                  <div className="pt-3">
+                    <a
+                      href={news.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-xs font-medium text-tiffany-700 underline-offset-4 hover:underline"
+                    >
+                      元記事を開く
+                      <span className="text-[10px]">↗</span>
+                    </a>
+                  </div>
+                )}
+
+                {tags.length > 0 && (
+                  <div className="pt-4">
+                    <p className="mb-1 text-[11px] font-medium tracking-[0.16em] text-slate-500">
+                      TAGS
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-slate-300 bg-slate-50 px-2.5 py-0.5 text-[11px] text-slate-700"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </GlassCard>
+
+            <div className="flex justify-start pt-2">
+              <Link
+                href="/news"
+                className="inline-flex items-center gap-2 text-xs font-medium text-slate-600 underline-offset-4 hover:text-slate-900 hover:underline"
+              >
+                <span className="flex h-6 w-6 items-center justify-center rounded-full border border-slate-300 text-[11px]">
+                  ←
+                </span>
+                NEWS一覧に戻る
+              </Link>
+            </div>
+          </div>
+
+          {/* サイド:関連ニュース */}
+          <aside className="space-y-4">
+            <GlassCard className="bg-white/80">
+              <div className="space-y-3 p-4 md:p-5">
+                <h2 className="text-xs font-semibold tracking-[0.16em] text-slate-500">
                   RELATED NEWS
                 </h2>
-                <Link
-                  href="/news"
-                  className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
-                >
-                  NEWS 一覧へ
-                </Link>
-              </div>
-            </Reveal>
-            <div className="space-y-3">
-              {related.map((r) => {
-                const relatedDate =
-                  r.publishedAtJa ??
-                  formatDate(r.publishedAt ?? r.createdAt);
-                const relatedSource = buildSourceLabel(r);
-
-                return (
-                  <Reveal key={r.id}>
+                <p className="text-[11px] text-slate-500">
+                  同じメーカーやカテゴリー、タグが近いニュースをピックアップしています。
+                </p>
+                <div className="mt-3 space-y-3">
+                  {related.map((item) => (
                     <Link
-                      href={`/news/${encodeURIComponent(r.id)}`}
-                      className="block"
+                      key={item.id}
+                      href={`/news/${encodeURIComponent(item.id)}`}
+                      className="block rounded-lg border border-slate-200/80 bg-white/60 p-3 text-xs text-slate-800 transition hover:border-tiffany-300 hover:bg-white"
                     >
-                      <article className="group flex items-center justify-between gap-3 rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-[11px] shadow-sm transition hover:-translate-y-[1px] hover:border-tiffany-200 hover:shadow-soft-card">
-                        <div className="flex-1">
-                          <p className="line-clamp-2 font-medium tracking-[0.06em] text-slate-900">
-                            {r.titleJa ?? r.title}
-                          </p>
-                          <div className="mt-1 flex flex-wrap items-center gap-2 text-[10px] text-slate-400">
-                            {relatedSource && (
-                              <span className="tracking-[0.16em]">
-                                {relatedSource}
-                              </span>
-                            )}
-                            {r.maker && (
-                              <>
-                                <span className="h-[1px] w-4 bg-slate-200" />
-                                <span className="tracking-[0.16em]">
-                                  {r.maker}
-                                </span>
-                              </>
-                            )}
-                            {relatedDate && (
-                              <>
-                                <span className="h-[1px] w-4 bg-slate-200" />
-                                <span className="tracking-[0.16em]">
-                                  {relatedDate}
-                                </span>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                        <div className="hidden pl-3 text-[9px] font-semibold tracking-[0.24em] text-slate-300 transition group-hover:text-tiffany-500 sm:block">
-                          READ
-                        </div>
-                      </article>
+                      <p className="mb-1 line-clamp-2 font-medium">
+                        {item.titleJa ?? item.title}
+                      </p>
+                      {item.maker && (
+                        <p className="text-[11px] text-slate-500">
+                          {item.maker}
+                        </p>
+                      )}
+                      {item.publishedAt && (
+                        <p className="mt-1 text-[11px] text-slate-400">
+                          {formatDate(item.publishedAt)}
+                        </p>
+                      )}
                     </Link>
-                  </Reveal>
-                );
-              })}
-            </div>
-          </section>
-        )}
+                  ))}
 
-        {/* モバイル向け戻る導線 */}
-        <div className="mt-10 border-t border-slate-100 pt-5 lg:hidden">
-          <Link
-            href="/news"
-            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-4 py-2 text-[11px] tracking-[0.18em] text-slate-700 transition hover:border-tiffany-300 hover:text-tiffany-700"
-          >
-            <span className="flex h-6 w-6 items-center justify-center rounded-full border border-slate-200 text-[11px]">
-              ←
-            </span>
-            NEWS 一覧に戻る
-          </Link>
+                  {related.length === 0 && (
+                    <p className="text-[11px] text-slate-500">
+                      関連ニュースはまだ登録されていません。
+                    </p>
+                  )}
+                </div>
+              </div>
+            </GlassCard>
+          </aside>
         </div>
-      </div>
+      </section>
     </main>
   );
 }
