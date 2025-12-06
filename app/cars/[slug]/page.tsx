@@ -192,9 +192,7 @@ async function getRelatedNewsAndColumns(car: ExtendedCarItem): Promise<{
 
   const relatedColumns: ColumnItem[] = columns
     .filter((c) => {
-      const relatedCarSlugs: string[] =
-        // @ts-expect-error 型定義側に拡張予定のフィールド
-        c.relatedCarSlugs ?? [];
+      const relatedCarSlugs: string[] = c.relatedCarSlugs ?? [];
 
       if (relatedCarSlugs.includes(car.slug)) {
         return true;
