@@ -20,12 +20,8 @@ type PageProps = {
   };
 };
 
-// NewsItemをローカルで少しだけ拡張して扱う
+// Domain層のNewsItemをベースに、画面用の追加フィールドだけ拡張
 type NewsWithMeta = NewsItem & {
-  tags?: string[] | null;
-  maker?: string | null;
-  category?: string | null;
-  publishedAt?: string | null;
   imageUrl?: string | null;
 };
 
@@ -63,7 +59,7 @@ export async function generateMetadata(
   const titleJa = news.titleJa ?? news.title;
   const description =
     news.excerpt ??
-    news.comment ??
+    news.commentJa ??
     "CAR BOUTIQUE編集部によるニュース記事です。";
 
   return {
@@ -156,7 +152,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
     <main className="min-h-screen bg-slate-100 text-slate-900">
       {/* 上部ヒーロー＋パンくず */}
       <section className="border-b border-slate-200 bg-gradient-to-b from-slate-50 to-slate-100">
-        <div className="mx-autoflex max-w-5xlflex-col gap-6 px-4 py-8 md:py-10">
+        <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 md:py-10">
           <Reveal>
             <nav className="flex items-center text-xs text-slate-500">
               <Link href="/" className="hover:text-slate-800">
@@ -219,13 +215,13 @@ export default async function NewsDetailPage({ params }: PageProps) {
                   <div className="aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-100" />
                   // 画像は後でnext/imageに差し替え予定
                 )}
-                {news.comment && (
-                  <div className="space-y-3 text-sm leading-relaxed text-slate-700 whitespace-pre-line">
-                    {news.comment}
+                {news.commentJa && (
+                  <div className="space-y-3 whitespace-pre-line text-sm leading-relaxed text-slate-700">
+                    {news.commentJa}
                   </div>
                 )}
-                {!news.comment && news.excerpt && (
-                  <p className="text-sm leading-relaxed text-slate-700 whitespace-pre-line">
+                {!news.commentJa && news.excerpt && (
+                  <p className="whitespace-pre-line text-sm leading-relaxed text-slate-700">
                     {news.excerpt}
                   </p>
                 )}
@@ -292,7 +288,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
                     <Link
                       key={item.id}
                       href={`/news/${encodeURIComponent(item.id)}`}
-                      className="block rounded-lg border border-slate-200/80 bg-white/60 p-3 text-xs text-slate-800 transition hover:border-tiffany-300 hover:bg白"
+                      className="block rounded-lg border border-slate-200/80 bg-white/60 p-3 text-xs text-slate-800 transition hover:border-tiffany-300 hover:bg-white"
                     >
                       <p className="mb-1 line-clamp-2 font-medium">
                         {item.titleJa ?? item.title}
