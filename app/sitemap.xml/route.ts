@@ -1,63 +1,87 @@
-// app/sitemap.xml/route.ts
-import { NextResponse } from "next/server";
-import { getAllCars } from "@/lib/cars";
+// app/sitemap.ts
+import { MetadataRoute } from 'next'
+import { getAllCars } from '@/lib/cars'
 
-const BASE_URL = "https://car-hp.vercel.app";
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const BASE_URL = 'https://car-hp.vercel.app'
+  const now = new Date()
 
-export async function GET() {
-  const now = new Date();
-  const isoNow = now.toISOString();
+  // 1. 固定ページの定義
+  // changeFrequency や priority は Next.js が自動でタグ化してくれます
+  const staticPaths: MetadataRoute.Sitemap = [
+    {
+      url: `${BASE_URL}`,
+      lastModified: now,
+      changeFrequency: 'daily',
+      priority: 1.0,
+    },
+    {
+      url: `${BASE_URL}/news`,
+      lastModified: now,
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/cars`,
+      lastModified: now,
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/column`,
+      lastModified: now,
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/guide`,
+      lastModified: now,
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/legal/privacy`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${BASE_URL}/legal/disclaimer`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${BASE_URL}/legal/copyright`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${BASE_URL}/legal/about`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${BASE_URL}/contact`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+  ]
 
-  // 固定ページ
-  const staticPaths = [
-    { path: "/", freq: "daily", priority: 1.0 },
-    { path: "/news", freq: "daily", priority: 0.8 },
-    { path: "/cars", freq: "daily", priority: 0.8 },
-    { path: "/column", freq: "daily", priority: 0.8 },
-    { path: "/guide", freq: "daily", priority: 0.8 },
-    { path: "/legal/privacy", freq: "monthly", priority: 0.5 },
-    { path: "/legal/disclaimer", freq: "monthly", priority: 0.5 },
-    { path: "/legal/copyright", freq: "monthly", priority: 0.5 },
-    { path: "/legal/about", freq: "monthly", priority: 0.5 },
-    { path: "/contact", freq: "monthly", priority: 0.5 },
-  ];
-
-  // 車種ページ
-  const cars = await getAllCars();
-  const carPaths = cars
+  // 2. 車種ページ（動的ページ）の取得
+  const cars = await getAllCars()
+  const carPaths: MetadataRoute.Sitemap = cars
     .filter((c) => c.slug)
     .map((c) => ({
-      path: `/cars/${c.slug}`,
-      freq: "weekly",
+      url: `${BASE_URL}/cars/${c.slug}`,
+      lastModified: now,
+      changeFrequency: 'weekly',
       priority: 0.7,
-    }));
+    }))
 
-  const all = [...staticPaths, ...carPaths];
-
-  // XML body 作成
-  const xml = [
-    '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...all.map(
-      (u) =>
-        [
-          "  <url>",
-          `    <loc>${BASE_URL}${u.path}</loc>`,
-          `    <lastmod>${isoNow}</lastmod>`,
-          `    <changefreq>${u.freq}</changefreq>`,
-          `    <priority>${u.priority.toFixed(1)}</priority>`,
-          "  </url>",
-        ].join("\n")
-    ),
-    "</urlset>",
-    "",
-  ].join("\n");
-
-  return new NextResponse(xml, {
-    status: 200,
-    headers: {
-      "Content-Type": "application/xml; charset=utf-8",
-      "Cache-Control": "no-cache, no-store, must-revalidate",
-    },
-  });
+  // 3. 全てを結合して返す（Next.jsがこれをXMLに変換します）
+  return [...staticPaths, ...carPaths]
 }
