@@ -1,137 +1,126 @@
 // lib/repository/columns-repository.ts
-//
-// COLUMNコンテンツのRepository層。
-// data/columns.json という「永続化の詳細」をここに閉じ込める。
 
-import columnsData from "@/data/columns.json";
+import columnsRaw from "@/data/columns.json";
 import type {
   ColumnItem,
   ColumnCategory,
   ContentStatus,
 } from "@/lib/content-types";
 
+/**
+ * JSONの生データ型
+ */
 type RawColumnRecord = {
-  id: string;
-  slug: string;
-  title: string;
-  summary: string;
-  category?: ColumnCategory | string | null;
-  tags?: string[];
-  publishedAt?: string | null;
-  readMinutes?: number;
-  heroImage?: string;
-  body?: string;
-  relatedCarSlugs?: string[];
+  id?: string;
+  slug?: string;
+  type?: string;
   status?: ContentStatus;
+
+  title?: string;
+  summary?: string | null;
   seoTitle?: string | null;
   seoDescription?: string | null;
+
+  category?: ColumnCategory;
+
+  readMinutes?: number | null;
+  heroImage?: string | null;
+
+  body?: string;
+
+  publishedAt?: string | null;
+  updatedAt?: string | null;
+
+  tags?: string[];
+  relatedCarSlugs?: string[];
 };
 
-const ALLOWED_COLUMN_CATEGORIES: ColumnCategory[] = [
-  "MAINTENANCE",
-  "TECHNICAL",
-];
+function normalizeColumn(
+  raw: RawColumnRecord,
+  index: number,
+): ColumnItem {
+  const id = raw.id ?? `column-${index + 1}`;
+  const slug = raw.slug ?? id;
 
-function normalizeCategory(value?: string | null): ColumnCategory {
-  if (!value) return "TECHNICAL";
-  const upper = value.trim().toUpperCase();
-  if ((ALLOWED_COLUMN_CATEGORIES as string[]).includes(upper)) {
-    return upper as ColumnCategory;
-  }
-  // 想定外はとりあえずTECHNICAL扱い
-  return "TECHNICAL";
-}
+  const status: ContentStatus = raw.status ?? "published";
 
-function normalizeColumn(raw: RawColumnRecord): ColumnItem | null {
-  const id = String(raw.id ?? "").trim();
-  const slug = String(raw.slug ?? raw.id ?? "").trim();
-  const title = String(raw.title ?? "").trim();
-  const summary = String(raw.summary ?? "").trim();
+  const title = raw.title ?? slug;
 
-  if (!id || !slug || !title || !summary) {
-    return null;
-  }
+  const summary = raw.summary ?? null;
+  const seoTitle = raw.seoTitle ?? null;
+  const seoDescription = raw.seoDescription ?? summary ?? null;
 
-  const category = normalizeCategory(raw.category ?? null);
+  const category: ColumnCategory =
+    (raw.category as ColumnCategory) ?? "TECHNICAL";
+
+  const readMinutes =
+    typeof raw.readMinutes === "number" ? raw.readMinutes : null;
+
+  const heroImage =
+    typeof raw.heroImage === "string" ? raw.heroImage : null;
+
+  const body = raw.body ?? "";
+
+  const publishedAt = raw.publishedAt ?? null;
+  const updatedAt = raw.updatedAt ?? null;
 
   const tags = Array.isArray(raw.tags)
-    ? raw.tags.filter((t): t is string => typeof t === "string" && t.trim().length > 0)
+    ? raw.tags.filter((t): t is string => typeof t === "string")
     : [];
 
   const relatedCarSlugs = Array.isArray(raw.relatedCarSlugs)
     ? raw.relatedCarSlugs.filter(
-        (v): v is string => typeof v === "string" && v.trim().length > 0,
+        (s): s is string => typeof s === "string" && s.trim().length > 0,
       )
     : [];
 
-  const readMinutes =
-    typeof raw.readMinutes === "number" && Number.isFinite(raw.readMinutes)
-      ? raw.readMinutes
-      : undefined;
-
-  const heroImage =
-    typeof raw.heroImage === "string" && raw.heroImage.trim().length > 0
-      ? raw.heroImage
-      : null;
-
-  const body = typeof raw.body === "string" ? raw.body : "";
-
-  const publishedAt =
-    typeof raw.publishedAt === "string" && raw.publishedAt.trim().length > 0
-      ? raw.publishedAt
-      : null;
-
-  const status: ContentStatus = raw.status ?? "published";
-
-  const seoTitle =
-    typeof raw.seoTitle === "string" && raw.seoTitle.trim().length > 0
-      ? raw.seoTitle
-      : null;
-
-  const seoDescription =
-    typeof raw.seoDescription === "string" && raw.seoDescription.trim().length > 0
-      ? raw.seoDescription
-      : null;
-
-  const normalized: ColumnItem = {
+  return {
     id,
     slug,
     type: "COLUMN",
-    category,
     status,
     title,
     summary,
     seoTitle,
     seoDescription,
-    publishedAt,
-    updatedAt: null,
-    tags,
-    heroImage,
+    category,
     readMinutes,
+    heroImage,
     body,
+    publishedAt,
+    updatedAt,
+    tags,
     relatedCarSlugs,
   };
-
-  return normalized;
 }
 
-const ALL_COLUMNS_INTERNAL: ColumnItem[] = (columnsData as RawColumnRecord[])
-  .map(normalizeColumn)
-  .filter((c): c is ColumnItem => c !== null);
+function toArray(data: unknown): RawColumnRecord[] {
+  if (Array.isArray(data)) return data as RawColumnRecord[];
+  if (data && typeof data === "object") {
+    return [data as RawColumnRecord];
+  }
+  return [];
+}
+
+// ビルド時に一度だけ正規化
+const ALL_COLUMNS_INTERNAL: ColumnItem[] = toArray(columnsRaw).map(
+  normalizeColumn,
+);
+
+// ----------------------------------------
+// Repository API
+// ----------------------------------------
 
 /**
- * 全COLUMN記事(生データ)を返す。
- * Domain層からのみ呼び出す想定。
+ * すべてのCOLUMN(ステータス問わず)を返す
  */
 export function findAllColumns(): ColumnItem[] {
   return ALL_COLUMNS_INTERNAL;
 }
 
 /**
- * slugでCOLUMN記事を1件取得。
- * 見つからなければ undefined。
+ * slugで1件取得(ステータスは問わない)
  */
 export function findColumnBySlug(slug: string): ColumnItem | undefined {
-  if (!slug) return undefined;
   return ALL_COLUMNS_INTERNAL.find((c) => c.slug === slug);
 }
