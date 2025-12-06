@@ -1,6 +1,19 @@
 // lib/cars.ts
 
-import carsData from "@/data/cars.json";
+/**
+ * CARS Domain層
+ *
+ * 役割:
+ * - Data Source層(lib/repository/cars-repository)から上がってくる生データを
+ *   画面(App層)で扱いやすい CarItem に正規化する
+ * - ソートや難易度の正規化など、“ビジネスロジック寄り”はここで完結させる
+ * - App層は data/*.json ではなく、このファイルの公開関数だけを見る
+ */
+
+import {
+  findAllCars,
+  type CarRecord,
+} from "@/lib/repository/cars-repository";
 
 export type CarDifficulty = "basic" | "intermediate" | "advanced";
 
@@ -45,7 +58,8 @@ export type CarItem = {
   costImpression?: string;
 };
 
-type RawCar = (typeof carsData)[number];
+// Data Source層から上がってくる“生”の1件分
+type RawCar = CarRecord;
 
 function normalizeDifficulty(
   raw: string | undefined,
@@ -59,8 +73,8 @@ function normalizeDifficulty(
 }
 
 function normalizeSlug(item: Partial<RawCar>, fallbackId: string): string {
-  if (item.slug && item.slug.length > 0) return item.slug;
-  if (item.id && item.id.length > 0) return item.id;
+  if (item.slug && item.slug.length > 0) return item.slug as string;
+  if (item.id && (item.id as string).length > 0) return item.id as string;
   return fallbackId;
 }
 
@@ -68,11 +82,13 @@ function normalizeCar(raw: RawCar, index: number): CarItem | null {
   // 最低限：name が無いものだけ除外
   if (!raw.name) return null;
 
-  const id = (raw as any).id ?? (raw as any).slug ?? `car-${index}`;
+  const anyRaw = raw as any;
+
+  const id = anyRaw.id ?? anyRaw.slug ?? `car-${index}`;
   const slug = normalizeSlug(raw, id);
 
   // summary が無い場合はダミーテキストを詰める（一覧に出したいので）
-  const summaryRaw = (raw as any).summary ?? (raw as any).summaryLong ?? "";
+  const summaryRaw = anyRaw.summary ?? anyRaw.summaryLong ?? "";
   const summary =
     String(summaryRaw).trim().length > 0
       ? String(summaryRaw)
@@ -80,39 +96,39 @@ function normalizeCar(raw: RawCar, index: number): CarItem | null {
 
   const normalized: CarItem = {
     id,
-    name: (raw as any).name,
+    name: anyRaw.name,
     slug,
-    maker: (raw as any).maker ?? "OTHER",
-    releaseYear: (raw as any).releaseYear ?? undefined,
-    difficulty: normalizeDifficulty((raw as any).difficulty),
-    bodyType: (raw as any).bodyType,
-    segment: (raw as any).segment,
-    grade: (raw as any).grade,
+    maker: anyRaw.maker ?? "OTHER",
+    releaseYear: anyRaw.releaseYear ?? undefined,
+    difficulty: normalizeDifficulty(anyRaw.difficulty),
+    bodyType: anyRaw.bodyType,
+    segment: anyRaw.segment,
+    grade: anyRaw.grade,
     summary,
-    summaryLong: (raw as any).summaryLong,
-    engine: (raw as any).engine,
-    powerPs: (raw as any).powerPs ?? undefined,
-    torqueNm: (raw as any).torqueNm ?? undefined,
-    transmission: (raw as any).transmission,
-    drive: (raw as any).drive,
-    fuel: (raw as any).fuel,
-    fuelEconomy: (raw as any).fuelEconomy,
-    priceNew: (raw as any).priceNew,
-    priceUsed: (raw as any).priceUsed,
-    tags: (raw as any).tags,
-    heroImage: (raw as any).heroImage,
-    mainImage: (raw as any).mainImage,
-    lengthMm: (raw as any).lengthMm,
-    widthMm: (raw as any).widthMm,
-    heightMm: (raw as any).heightMm,
-    wheelbaseMm: (raw as any).wheelbaseMm,
-    weightKg: (raw as any).weightKg,
-    tiresFront: (raw as any).tiresFront,
-    tiresRear: (raw as any).tiresRear,
-    strengths: (raw as any).strengths,
-    weaknesses: (raw as any).weaknesses,
-    troubleTrends: (raw as any).troubleTrends,
-    costImpression: (raw as any).costImpression,
+    summaryLong: anyRaw.summaryLong,
+    engine: anyRaw.engine,
+    powerPs: anyRaw.powerPs ?? undefined,
+    torqueNm: anyRaw.torqueNm ?? undefined,
+    transmission: anyRaw.transmission,
+    drive: anyRaw.drive,
+    fuel: anyRaw.fuel,
+    fuelEconomy: anyRaw.fuelEconomy,
+    priceNew: anyRaw.priceNew,
+    priceUsed: anyRaw.priceUsed,
+    tags: anyRaw.tags,
+    heroImage: anyRaw.heroImage,
+    mainImage: anyRaw.mainImage,
+    lengthMm: anyRaw.lengthMm,
+    widthMm: anyRaw.widthMm,
+    heightMm: anyRaw.heightMm,
+    wheelbaseMm: anyRaw.wheelbaseMm,
+    weightKg: anyRaw.weightKg,
+    tiresFront: anyRaw.tiresFront,
+    tiresRear: anyRaw.tiresRear,
+    strengths: anyRaw.strengths,
+    weaknesses: anyRaw.weaknesses,
+    troubleTrends: anyRaw.troubleTrends,
+    costImpression: anyRaw.costImpression,
   };
 
   return normalized;
@@ -121,7 +137,9 @@ function normalizeCar(raw: RawCar, index: number): CarItem | null {
 function buildAllCars(): CarItem[] {
   const seen = new Map<string, CarItem>();
 
-  carsData.forEach((raw, index) => {
+  const rawList = findAllCars();
+
+  rawList.forEach((raw, index) => {
     const normalized = normalizeCar(raw as RawCar, index);
     if (!normalized) return;
 
@@ -144,9 +162,6 @@ function buildAllCars(): CarItem[] {
     const nameB = b.name ?? "";
     return nameA.localeCompare(nameB, "ja");
   });
-
-  // デバッグ用（必要なければ消してOK）
-  // console.log("ALL_CARS length:", result.length);
 
   return result;
 }
