@@ -32,22 +32,86 @@ type MultilineTextProps = {
 };
 
 /**
- * 文章を空行(\n\n)ごとに分割して段落表示するヘルパー
- * variant でヒーロー用/カード用の文字サイズと行間を変える
+ * テキストを読みやすい段落に分割するヘルパー
+ * 1. 空行(\n\n)があればそれで区切る
+ * 2. 無ければ「。」を目安に2文ずつまとめて段落にする
+ */
+function splitIntoParagraphs(text: string): string[] {
+  const trimmed = text.trim();
+  if (!trimmed) return [];
+
+  const manual = trimmed
+    .split(/\n{2,}/)
+    .map((block) => block.trim())
+    .filter(Boolean);
+  if (manual.length > 1) return manual;
+
+  const sentences = trimmed
+    .split("。")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  if (sentences.length <= 1) return [trimmed];
+
+  const paras: string[] = [];
+  for (let i = 0; i < sentences.length; i += 2) {
+    const chunk = sentences.slice(i, i + 2).join("。");
+    paras.push(chunk + "。");
+  }
+  return paras;
+}
+
+/**
+ * 文章を段落または箇条書き風にレンダリング
+ * hero: ヒーロー用の説明テキスト
+ * card: カード内の「このクルマの性格」
  */
 function MultilineText({ text, variant }: MultilineTextProps) {
-  const baseClass =
-    variant === "hero"
-      ? "max-w-2xl text-[12px] sm:text-[13px] leading-[1.9] text-text-sub"
-      : "text-[12px] sm:text-[13px] leading-[1.9] text-text-sub";
+  const paragraphs = splitIntoParagraphs(text);
 
-  const paragraphs = text.split(/\n{2,}/).map((block) => block.trim()).filter(Boolean);
+  if (variant === "hero") {
+    return (
+      <div className="mt-3">
+        <div className="relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white/85 px-4 py-4 shadow-soft-sm">
+          <div className="pointer-events-none absolute -left-10 -top-12 h-24 w-24 rounded-full bg-[radial-gradient(circle_at_center,_rgba(129,216,208,0.35),_transparent_70%)] blur-2xl" />
+          <div className="pointer-events-none absolute -right-16 bottom-[-40%] h-28 w-28 rounded-full bg-[radial-gradient(circle_at_center,_rgba(148,163,184,0.25),_transparent_70%)] blur-3xl" />
+          <div className="relative space-y-2 border-l border-slate-200/80 pl-3">
+            {paragraphs.map((block, index) => (
+              <p
+                key={index}
+                className="text-[12px] leading-[1.9] text-text-sub sm:text-[13px]"
+              >
+                {block}
+              </p>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
+  // card variant: 箇条書き風
   return (
-    <div className={`space-y-2 ${baseClass}`}>
-      {paragraphs.length > 0
-        ? paragraphs.map((block, index) => <p key={index}>{block}</p>)
-        : <p>{text}</p>}
+    <ul className="space-y-2">
+      {paragraphs.map((block, index) => (
+        <li
+          key={index}
+          className="relative pl-3 text-[12px] leading-relaxed text-text-sub sm:text-[13px]"
+        >
+          <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-slate-400" />
+          {block}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function CarBadgeIllustration() {
+  return (
+    <div className="relative h-10 w-28 overflow-hidden rounded-full bg-gradient-to-r from-tiffany-200/70 via-white to-slate-100/80">
+      <div className="absolute inset-y-1 left-2 right-6 rounded-full border border-white/70 bg-white/40" />
+      <div className="absolute right-1 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full border border-slate-300/80 bg-gradient-to-br from-slate-50 via-white to-slate-200/80 shadow-sm" />
+      <div className="absolute inset-y-[11px] left-3 right-7 rounded-full border-t border-slate-300/70" />
     </div>
   );
 }
@@ -119,22 +183,27 @@ export default async function CarDetailPage({ params }: PageProps) {
 
   return (
     <main className="min-h-screen">
-      {/* ヒーローエリア：他ページと同系の淡いグラデーション */}
+      {/* ヒーローエリア */}
       <section className="border-b border-slate-200/70 bg-gradient-to-b from-white/90 via-white/80 to-ice-vapor/80">
         <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 sm:px-6 sm:py-10 md:flex-row md:items-end lg:px-8">
           <div className="flex-1 space-y-4">
             <p className="text-[10px] font-semibold tracking-[0.28em] text-slate-500">
               CAR DATABASE
             </p>
-            <h1 className="serif-heading text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl">
-              {title}
-            </h1>
+            <div className="flex items-center gap-3">
+              <h1 className="serif-heading text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl">
+                {title}
+              </h1>
+              <div className="hidden shrink-0 sm:block">
+                <CarBadgeIllustration />
+              </div>
+            </div>
             {overviewText && (
               <MultilineText text={overviewText} variant="hero" />
             )}
           </div>
 
-          <div className="flex flex-col items-start gap-2 text-[11px] text-slate-600 md:items-end">
+          <div className="flex flex-col items-start gap-3 text-[11px] text-slate-600 md:items-end">
             {car.segment && (
               <p className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-[10px] tracking-[0.18em] text-slate-700">
                 {car.segment}
@@ -152,15 +221,21 @@ export default async function CarDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* 本文エリア：淡い背景＋ガラスカード */}
+      {/* 本文エリア */}
       <section className="bg-gradient-to-b from-ice-vapor/80 via-ice-vapor/60 to-white">
         <div className="mx-auto grid max-w-5xl gap-6 px-4 py-8 sm:px-6 sm:py-10 md:grid-cols-[minmax(0,2fr)_minmax(0,1.3fr)] lg:px-8">
           {/* 基本スペック */}
-          <GlassCard className="h-full border-slate-200/80 bg-white/85">
+          <GlassCard className="h-full border-slate-200/80 bg-white/90">
             <div className="space-y-4 p-4 sm:p-5">
-              <h2 className="serif-heading text-sm font-semibold tracking-[0.12em] text-slate-900">
-                基本スペック
-              </h2>
+              <div className="flex items-center justify-between gap-3">
+                <h2 className="serif-heading text-sm font-semibold tracking-[0.12em] text-slate-900">
+                  基本スペック
+                </h2>
+                <div className="hidden text-[10px] text-slate-500 sm:flex sm:flex-col sm:items-end sm:gap-1">
+                  {car.bodyType && <span>{car.bodyType}</span>}
+                  {car.fuel && <span>{car.fuel}</span>}
+                </div>
+              </div>
               <dl className="grid grid-cols-2 gap-x-4 gap-y-3 text-[11px] text-slate-800 sm:grid-cols-3">
                 {car.releaseYear && (
                   <>
@@ -218,11 +293,18 @@ export default async function CarDetailPage({ params }: PageProps) {
 
           {/* 性格・維持費コメント */}
           <div className="space-y-4">
-            <GlassCard className="border-slate-200/80 bg-white/85">
+            <GlassCard className="border-slate-200/80 bg-white/90">
               <div className="space-y-3 p-4 sm:p-5">
-                <h2 className="serif-heading text-sm font-semibold tracking-[0.12em] text-slate-900">
-                  このクルマの性格
-                </h2>
+                <div className="flex items-center justify-between gap-3">
+                  <h2 className="serif-heading text-sm font-semibold tracking-[0.12em] text-slate-900">
+                    このクルマの性格
+                  </h2>
+                  {car.priceNew && (
+                    <p className="rounded-full bg-slate-900/90 px-3 py-1 text-[10px] tracking-[0.14em] text-white">
+                      新車価格目安 {car.priceNew}
+                    </p>
+                  )}
+                </div>
                 {characterText && (
                   <MultilineText text={characterText} variant="card" />
                 )}
