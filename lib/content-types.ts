@@ -1,54 +1,49 @@
 // lib/content-types.ts
+// CAR BOUTIQUE 共通のコンテンツ型定義
 
-// ----------------------------------------
-// 共通で使う基本型
-// ----------------------------------------
+// 記事ステータス
+export type ContentStatus = "draft" | "published" | "archived";
 
-export type ArticleType =
-  | "GUIDE"
-  | "COLUMN"
-  | "NEWS"
-  | "HERITAGE"
-  | "CARS"
-  | "OTHER";
-
-export type ArticleStatus = "draft" | "published" | "archived";
-
-// 既存コード互換用エイリアス
-export type ContentStatus = ArticleStatus;
-
-export type ArticleBase = {
-  /** 不変ID */
+/**
+ * 共通メタ情報(SEOなど)のベース
+ * どのコンテンツタイプでも基本的にはこの形を踏襲する
+ */
+export type BaseContentMeta = {
+  /** 不変の内部ID(JSONやCMSの主キー相当) */
   id: string;
-  /** URL用スラッグ (/guide/[slug] など) */
+
+  /** ルーティング用スラッグ(/guide/xxx,/column/yyyなど) */
   slug: string;
-  /** コンテンツ種別 */
-  type: ArticleType;
-  /** サブカテゴリ (MONEY / MAINTENANCE / TECHNICAL など) */
-  category?: string | null;
-  /** 公開状態 */
-  status?: ArticleStatus;
+
+  /** コンテンツ種別(GUIDE/COLUMN/NEWS/HERITAGEなど) */
+  type: string;
+
+  /** 下書き/公開/アーカイブ */
+  status: ContentStatus;
 
   /** 記事タイトル */
   title: string;
-  /** 一覧・カードに出す要約 */
-  summary: string;
 
-  /** 明示的なSEOタイトル (なければtitleを使う) */
+  /** 一覧用の短い要約 */
+  summary?: string | null;
+
+  /** SEOタイトル(指定がなければtitleを使う) */
   seoTitle?: string | null;
-  /** 明示的なSEOディスクリプション (なければsummaryを使う) */
+
+  /** SEOディスクリプション(指定がなければsummaryを使う) */
   seoDescription?: string | null;
 
-  /** 公開日時(ISO) */
+  /** 公開日時(ISO文字列) */
   publishedAt?: string | null;
-  /** 最終更新日時(ISO) */
+
+  /** 最終更新日時(ISO文字列) */
   updatedAt?: string | null;
 
   /** タグ */
   tags?: string[];
 
-  /** 一覧やディテールで使うヒーロー画像 */
-  heroImage?: string | null;
+  /** 関連する車種(slug) */
+  relatedCarSlugs?: string[];
 };
 
 // ----------------------------------------
@@ -57,98 +52,132 @@ export type ArticleBase = {
 
 export type GuideCategory = string;
 
-export type GuideItem = ArticleBase & {
+export type GuideItem = BaseContentMeta & {
   type: "GUIDE";
+
+  /** ガイドのカテゴリ(MONEY,MAINTENANCEなど/自由入力) */
   category?: GuideCategory | null;
 
-  /** 読了目安(分) */
-  readMinutes?: number;
+  /** 読了目安時間(分) */
+  readMinutes?: number | null;
 
-  /** 本文(Markdown想定) */
+  /** ヒーロー画像パス(任意) */
+  heroImage?: string | null;
+
+  /** Markdown本文 */
   body: string;
-
-  /** 関連する車種(slugの配列) */
-  relatedCarSlugs?: string[];
 };
 
 // ----------------------------------------
 // COLUMN
 // ----------------------------------------
 
-export type ColumnCategory = "MAINTENANCE" | "TECHNICAL";
+// COLUMNカテゴリはある程度固定＋将来拡張のためstringも許可
+export type ColumnCategory =
+  | "OWNER_STORY"
+  | "MAINTENANCE"
+  | "TECHNICAL"
+  | "MONEY"
+  | "LIFESTYLE"
+  | string;
 
-export type ColumnItem = ArticleBase & {
+export type ColumnItem = BaseContentMeta & {
   type: "COLUMN";
-  /** コラムのカテゴリー */
+
+  /** COLUMNカテゴリ */
   category: ColumnCategory;
 
-  /** 読了目安(分) */
-  readMinutes?: number;
+  /** 読了目安時間(分) */
+  readMinutes?: number | null;
 
-  /** 本文(Markdown想定) */
+  /** ヒーロー画像パス(任意) */
+  heroImage?: string | null;
+
+  /** Markdown本文 */
   body: string;
-
-  /** 関連する車種(slugの配列) */
-  relatedCarSlugs?: string[];
 };
 
 // ----------------------------------------
-// NEWS
+// NEWS(将来のために最低限だけ定義しておく)
+// 今回は型だけ用意しておき、Repository/Domainは別フェーズで拡張でもOK
 // ----------------------------------------
 
-export type NewsItem = ArticleBase & {
+export type NewsItem = BaseContentMeta & {
   type: "NEWS";
 
-  /** メーカー公式など元記事のURL */
+  /** メーカー公式など一次情報のURL */
   url: string;
 
-  /**
-   * Next.js側でのリンク用エイリアス。
-   * 現状は /news/[id] なので id をそのまま使う想定。
-   */
+  /** サイト内での詳細ページへのリンク(/news/[id]など) */
   link: string;
 
-  /** 日本語タイトル */
+  /** 日本語タイトル(あれば優先的に表示) */
   titleJa?: string | null;
 
-  /** 要約・リード文 */
+  /** 抄録(元記事要約) */
   excerpt?: string | null;
 
-  /** ソース名 (メーカー公式サイト名など) */
-  sourceName?: string | null;
-
-  /** 編集部コメント(テキスト) */
-  editorNote?: string | null;
-
-  /** 日本語コメント(表示用) */
+  /** 編集コメント(日本語) */
   commentJa?: string | null;
 
-  /** 日本語の整形済み日付文字列 */
-  publishedAtJa?: string | null;
-
-  /** メーカー名 (BMW / TOYOTA など) */
+  /** メーカー名(BMW,TOYOTAなど) */
   maker?: string | null;
 
-  /** カテゴリ(NEW_MODEL / RECALL など任意文字列) */
+  /** NEWS用カテゴリ(NEW_MODEL,RECALLなど自由入力) */
   category?: string | null;
 
-  /** サムネイル画像 */
-  heroImage?: string | null;
+  /** ソース名(メーカー名,媒体名など) */
+  sourceName?: string | null;
+
+  /** RSSフィードIDなど */
+  rssId?: string | null;
+
+  /** 日本語表記済みの公開日(任意) */
+  publishedAtJa?: string | null;
+
+  /** 元データの作成日時(公開日と同じでも可) */
+  createdAt?: string | null;
+
+  /** 編集注記など */
+  editorNote?: string | null;
+
+  /** サムネイル画像など */
+  imageUrl?: string | null;
 };
 
 // ----------------------------------------
-// HERITAGE (将来拡張用)
+// HERITAGE(最低限)
 // ----------------------------------------
 
-export type HeritageItem = ArticleBase & {
-  type: "HERITAGE";
+export type HeritageKind = "ERA" | "BRAND" | "CAR";
 
-  /** 年代や世代を表すラベル (例: "1960s", "1st-Gen" など) */
-  era?: string | null;
+export type HeritageItem = {
+  id: string;
+  slug: string;
+  kind: HeritageKind;
 
-  /** 対応する車種slug (あれば) */
-  carSlug?: string | null;
+  title: string;
+  subtitle?: string;
+  lead?: string;
 
-  /** 本文(Markdown想定) */
+  eraLabel?: string | null;
+  brandName?: string | null;
+  modelName?: string | null;
+  generationCode?: string | null;
+  years?: string | null;
+
+  heroImage?: string | null;
+  heroTone?: string | null;
+
+  /** 本文(Markdownやリッチテキストをプレーンテキストで持たせてもOK) */
   body: string;
+
+  /** ハイライト箇条書き */
+  highlights?: string[] | null;
+
+  /** タグ */
+  tags?: string[] | null;
+
+  /** 関連する車種IDなど */
+  relatedCarIds?: string[] | null;
 };
