@@ -1,87 +1,121 @@
 // lib/repository/guides-repository.ts
+//
+// GUIDEコンテンツのRepository層。
+// data/guides.json という「永続化の詳細」をここに閉じ込める。
 
-// Repository層:GUIDEデータ取得専用(現在はJSON固定)
-// 将来CMS/DBに移行するときは、このファイルだけ差し替える想定
+import guidesData from "@/data/guides.json";
+import type { GuideItem, GuideCategory, ContentStatus } from "@/lib/content-types";
 
-import rawGuides from "@/data/guides.json";
-import type { GuideItem, ArticleStatus } from "@/lib/content-types";
+type RawGuideRecord = {
+  id: string;
+  slug: string;
+  title: string;
+  summary: string;
+  category?: GuideCategory | string | null;
+  tags?: string[];
+  publishedAt?: string | null;
+  readMinutes?: number;
+  heroImage?: string;
+  body?: string;
+  relatedCarSlugs?: string[];
+  status?: ContentStatus;
+  seoTitle?: string | null;
+  seoDescription?: string | null;
+};
 
-// data/guides.jsonの素の型
-type RawGuide = (typeof rawGuides)[number];
+function normalizeGuide(raw: RawGuideRecord): GuideItem | null {
+  const id = String(raw.id ?? "").trim();
+  const slug = String(raw.slug ?? raw.id ?? "").trim();
+  const title = String(raw.title ?? "").trim();
+  const summary = String(raw.summary ?? "").trim();
 
-function normalizeStatus(status: unknown): ArticleStatus {
-  if (status === "draft" || status === "archived" || status === "published") {
-    return status;
+  if (!id || !slug || !title || !summary) {
+    return null;
   }
-  // 既存JSONにはstatusが無いので、当面はpublished扱いに統一
-  return "published";
-}
 
-function normalizeGuide(item: RawGuide): GuideItem {
-  // JSON側にはtype/status/seo系が無いので、ここで補完してGuideItemに揃える
-  const {
-    id,
-    slug,
-    title,
-    summary,
-    category,
-    body,
-    publishedAt,
-    updatedAt,
-    tags,
-    readMinutes,
-    heroImage,
-    relatedCarSlugs,
-    seoTitle,
-    seoDescription,
-    status,
-  } = item as RawGuide & {
-    seoTitle?: string | null;
-    seoDescription?: string | null;
-    status?: ArticleStatus;
-    updatedAt?: string | null;
-    tags?: string[];
-    readMinutes?: number | null;
-    heroImage?: string | null;
-    relatedCarSlugs?: string[];
-  };
+  const category =
+    typeof raw.category === "string" && raw.category.trim().length > 0
+      ? (raw.category.trim() as GuideCategory)
+      : null;
 
-  return {
+  const tags = Array.isArray(raw.tags)
+    ? raw.tags.filter((t): t is string => typeof t === "string" && t.trim().length > 0)
+    : [];
+
+  const relatedCarSlugs = Array.isArray(raw.relatedCarSlugs)
+    ? raw.relatedCarSlugs.filter(
+        (v): v is string => typeof v === "string" && v.trim().length > 0,
+      )
+    : [];
+
+  const readMinutes =
+    typeof raw.readMinutes === "number" && Number.isFinite(raw.readMinutes)
+      ? raw.readMinutes
+      : undefined;
+
+  const status: ContentStatus = raw.status ?? "published";
+
+  const heroImage =
+    typeof raw.heroImage === "string" && raw.heroImage.trim().length > 0
+      ? raw.heroImage
+      : null;
+
+  const body = typeof raw.body === "string" ? raw.body : "";
+
+  const publishedAt =
+    typeof raw.publishedAt === "string" && raw.publishedAt.trim().length > 0
+      ? raw.publishedAt
+      : null;
+
+  const seoTitle =
+    typeof raw.seoTitle === "string" && raw.seoTitle.trim().length > 0
+      ? raw.seoTitle
+      : null;
+
+  const seoDescription =
+    typeof raw.seoDescription === "string" && raw.seoDescription.trim().length > 0
+      ? raw.seoDescription
+      : null;
+
+  const normalized: GuideItem = {
     id,
     slug,
     type: "GUIDE",
-    category: category ?? null,
-    status: normalizeStatus(status),
-
+    category,
+    status,
     title,
     summary,
-
-    seoTitle: seoTitle ?? title,
-    seoDescription: seoDescription ?? summary,
-
-    publishedAt: publishedAt ?? null,
-    updatedAt: updatedAt ?? null,
-
-    tags: tags ?? [],
-
-    readMinutes: readMinutes ?? null,
-    heroImage: heroImage ?? null,
+    seoTitle,
+    seoDescription,
+    publishedAt,
+    updatedAt: null,
+    tags,
+    heroImage,
+    readMinutes,
     body,
-    relatedCarSlugs: relatedCarSlugs ?? [],
+    relatedCarSlugs,
   };
+
+  return normalized;
 }
 
-// 起動時に一度だけ正規化してメモリに展開
-const ALL_GUIDES_INTERNAL: GuideItem[] = (rawGuides as RawGuide[]).map(
-  normalizeGuide,
-);
+const ALL_GUIDES_INTERNAL: GuideItem[] = (guidesData as RawGuideRecord[])
+  .map(normalizeGuide)
+  .filter((g): g is GuideItem => g !== null);
 
-// Repositoryの公開API
+/**
+ * 全GUIDE記事(生データ)を返す。
+ * Domain層からのみ呼び出す想定。
+ */
 export function findAllGuides(): GuideItem[] {
-  // 呼び出し側で破壊されないようコピーを返す
-  return [...ALL_GUIDES_INTERNAL];
+  return ALL_GUIDES_INTERNAL;
 }
 
+/**
+ * slugでGUIDE記事を1件取得。
+ * 見つからなければ undefined。
+ */
 export function findGuideBySlug(slug: string): GuideItem | undefined {
+  if (!slug) return undefined;
   return ALL_GUIDES_INTERNAL.find((g) => g.slug === slug);
 }
