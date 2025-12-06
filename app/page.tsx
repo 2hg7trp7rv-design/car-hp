@@ -10,6 +10,7 @@ import { getLatestNews, type NewsItem } from "@/lib/news";
 import { getAllCars, type CarItem } from "@/lib/cars";
 import { getAllColumns, type ColumnItem } from "@/lib/columns";
 import { getAllGuides, type GuideItem } from "@/lib/guides";
+import { getAllHeritage, type HeritageItem } from "@/lib/heritage";
 
 export const metadata: Metadata = {
   title: "CAR BOUTIQUE | クルマのニュースとストーリー",
@@ -35,14 +36,16 @@ type HomePageData = {
   latestCars: CarItem[];
   latestColumns: ColumnItem[];
   latestGuides: GuideItem[];
+  latestHeritage: HeritageItem[];
 };
 
 async function getHomePageData(): Promise<HomePageData> {
-  const [news, cars, columns, guides] = await Promise.all([
+  const [news, cars, columns, guides, heritage] = await Promise.all([
     getLatestNews(12),
     getAllCars(),
     getAllColumns(),
     getAllGuides(),
+    getAllHeritage(),
   ]);
 
   const sortedCars = [...cars].sort((a, b) => {
@@ -51,7 +54,6 @@ async function getHomePageData(): Promise<HomePageData> {
     if (yearA !== yearB) return yearB - yearA;
     return a.name.localeCompare(b.name, "ja");
   });
-
   const latestCars = sortedCars.slice(0, 6);
 
   const sortedColumns = [...columns].sort((a, b) => {
@@ -60,7 +62,6 @@ async function getHomePageData(): Promise<HomePageData> {
     if (dateA && dateB && dateA !== dateB) return dateB.localeCompare(dateA);
     return a.title.localeCompare(b.title, "ja");
   });
-
   const latestColumns = sortedColumns.slice(0, 6);
 
   const sortedGuides = [...guides].sort((a, b) => {
@@ -69,20 +70,35 @@ async function getHomePageData(): Promise<HomePageData> {
     if (dateA && dateB && dateA !== dateB) return dateB.localeCompare(dateA);
     return a.title.localeCompare(b.title, "ja");
   });
-
   const latestGuides = sortedGuides.slice(0, 6);
+
+  const sortedHeritage = [...heritage].sort((a, b) => {
+    const dateA = a.publishedAt ?? "";
+    const dateB = b.publishedAt ?? "";
+    if (dateA && dateB && dateA !== dateB) return dateB.localeCompare(dateA);
+    const titleA = (a.titleJa ?? a.title ?? "").toString();
+    const titleB = (b.titleJa ?? b.title ?? "").toString();
+    return titleA.localeCompare(titleB, "ja");
+  });
+  const latestHeritage = sortedHeritage.slice(0, 4);
 
   return {
     latestNews: news,
     latestCars,
     latestColumns,
     latestGuides,
+    latestHeritage,
   };
 }
 
 export default async function HomePage() {
-  const { latestNews, latestCars, latestColumns, latestGuides } =
-    await getHomePageData();
+  const {
+    latestNews,
+    latestCars,
+    latestColumns,
+    latestGuides,
+    latestHeritage,
+  } = await getHomePageData();
 
   const stats = {
     carsCount: latestCars.length,
@@ -120,6 +136,7 @@ export default async function HomePage() {
                       車種ごとのスペックと簡単なコメントを一覧で確認
                       トラブル 整備 お金まわりの話をコラムで整理
                       購入 売却 維持費の考え方をガイドで整理
+                      名車やブランドの歴史をHERITAGEとして整理
                       <br />
                       <br />
                       クルマとの付き合い方を
@@ -439,6 +456,79 @@ export default async function HomePage() {
                               </article>
                             </Link>
                           ))}
+                        </div>
+                      </div>
+                    </GlassCard>
+                  </Reveal>
+
+                  {/* HERITAGE：名車・ブランドの系譜 */}
+                  <Reveal className="md:col-span-12">
+                    <GlassCard
+                      as="section"
+                      padding="lg"
+                      interactive
+                      className="relative overflow-hidden border-slate-200/80 bg-slate-900 text-slate-50"
+                    >
+                      <div className="pointer-events-none absolute inset-0">
+                        <div className="absolute -left-28 top-[-30%] h-48 w-48 rounded-full bg-[radial-gradient(circle_at_center,_rgba(56,189,248,0.35),_transparent_70%)] blur-3xl" />
+                        <div className="absolute -right-20 bottom-[-30%] h-44 w-44 rounded-full bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.9),_transparent_70%)] blur-3xl" />
+                      </div>
+
+                      <div className="relative z-10 flex flex-col gap-4">
+                        <div className="flex items-start justify-between gap-3">
+                          <div>
+                            <p className="text-[10px] font-semibold tracking-[0.26em] text-slate-400">
+                              HERITAGE
+                            </p>
+                            <h3 className="serif-heading mt-2 text-lg font-medium text-slate-50">
+                              名車とブランドの系譜をたどる
+                            </h3>
+                          </div>
+                          <Button
+                            asChild
+                            variant="outline"
+                            size="sm"
+                            className="hidden whitespace-nowrap sm:inline-flex"
+                          >
+                            <Link href="/heritage">OPEN HERITAGE</Link>
+                          </Button>
+                        </div>
+
+                        <p className="mt-1 text-[11px] leading-relaxed text-slate-200 sm:text-xs">
+                          F40 M3 GT-R など
+                          クルマ文化をつくってきたモデルの背景や時代性を
+                          メーカーごとの「系譜」として整理した読み物エリア
+                        </p>
+
+                        <div className="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2">
+                          {latestHeritage.length > 0 ? (
+                            latestHeritage.map((h) => (
+                              <Link
+                                key={h.slug}
+                                href={`/heritage/${encodeURIComponent(h.slug)}`}
+                              >
+                                <article className="group flex h-full flex-col gap-1 rounded-2xl bg-slate-50/10 px-3 py-2 text-[11px] transition hover:bg-slate-50/15">
+                                  <p className="text-[9px] tracking-[0.18em] text-slate-400">
+                                    {h.maker ?? "BRAND"}
+                                    {h.eraLabel ? ` · ${h.eraLabel}` : ""}
+                                  </p>
+                                  <p className="line-clamp-2 font-medium text-slate-50 group-hover:underline">
+                                    {h.titleJa ?? h.title}
+                                  </p>
+                                  {h.summary && (
+                                    <p className="line-clamp-2 text-[10px] leading-snug text-slate-300">
+                                      {h.summary}
+                                    </p>
+                                  )}
+                                </article>
+                              </Link>
+                            ))
+                          ) : (
+                            <p className="text-[11px] text-slate-300">
+                              HERITAGEの記事はまだ準備中です。
+                              まずはCARSやCOLUMNから順番に増やしていく予定です。
+                            </p>
+                          )}
                         </div>
                       </div>
                     </GlassCard>
