@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     description:
       "クルマのニュース コラム 車種データを個人目線でまとめた小さなサイト",
   },
-  // Google Search Console 用サイト確認タグ（これが <meta name="google-site-verification" ...> になる）
+  // Google Search Console 用サイト確認タグ
   verification: {
     google: "fPw-nBgPqDkI8ogL5QrdlKHKi-80KOsN_65_s_0Lz08",
   },
@@ -109,43 +109,10 @@ function SiteFooter() {
   );
 }
 
-type BottomNavLinkProps = {
-  href: string;
-  label: string;
-};
-
-function BottomNavLink({ href, label }: BottomNavLinkProps) {
-  return (
-    <Link
-      href={href}
-      className="flex flex-1 flex-col items-center justify-center gap-0.5 rounded-full px-1 py-1 transition active:bg-slate-100/80"
-    >
-      <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />
-      <span className="text-[9px] tracking-[0.16em] text-slate-700">
-        {label}
-      </span>
-    </Link>
-  );
-}
-
 /**
- * PCではヘッダー+フッター、モバイルでは専用ボトムナビも併用。
- * 「スマホメイン」の想定なので、ボトムナビは sm 以上で非表示にしている。
+ * PCではヘッダー+フッター、モバイルでは MobileBottomNav を使用。
+ * 「スマホメイン」の想定なので、ボトムナビは sm 以上で非表示。
  */
-function InlineBottomNav() {
-  return (
-    <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200/70 bg-white/90 py-1 text-[10px] text-slate-600 shadow-[0_-10px_30px_rgba(15,23,42,0.12)] backdrop-blur sm:hidden">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-1 px-3">
-        <BottomNavLink href="/" label="HOME" />
-        <BottomNavLink href="/news" label="NEWS" />
-        <BottomNavLink href="/cars" label="CARS" />
-        <BottomNavLink href="/column" label="COLUMN" />
-        <BottomNavLink href="/guide" label="GUIDE" />
-      </div>
-    </nav>
-  );
-}
-
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
@@ -175,14 +142,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <SiteFooter />
           </div>
 
-          {/* モバイル用ボトムナビ（既存+フォールバック） */}
+          {/* モバイル用ボトムナビ */}
           <div className="sm:hidden">
             <MobileBottomNav />
-            <InlineBottomNav />
           </div>
         </SmoothScrollProvider>
 
-        {/* 🔍 Pro プランで使える計測系（レイアウトには影響しない） */}
+        {/* Pro プラン計測系 */}
         <Analytics />
         <SpeedInsights />
       </body>
