@@ -1,60 +1,82 @@
 // lib/guides.ts
-// Domain層:GUIDEのドメインロジック(ソート/フィルタ/関連記事など)を担当
+//
+// GUIDEコンテンツのDomain層。
+// Repository層から受け取ったデータをソート・重複排除して
+// app層に渡す責務を持つ。
 
-import {
-  findAllGuides,
-  findGuideBySlug,
-} from "@/lib/repository/guides-repository";
-import type { GuideItem } from "@/lib/content-types";
+import type { GuideItem, GuideCategory } from "@/lib/content-types";
+import { findAllGuides, findGuideBySlug } from "@/lib/repository/guides-repository";
 
-// カテゴリはdata-modelの設計どおり「任意のstring」とする
-export type GuideCategory = string;
-
-// 公開用の型はこれまでどおりlib/guidesからもimportできるように再エクスポート
-export type { GuideItem } from "@/lib/content-types";
+// 型はこれまで通りlib/guidesからもimportできるように再エクスポート
+export type { GuideItem, GuideCategory } from "@/lib/content-types";
 
 // 日付文字列→タイムスタンプ(不正な場合は0)
-function toTime(value?:string | null):number {
+function toTime(value?: string | null): number {
   if (!value) return 0;
-  const t = Date.parse(value);
-  if (Number.isNaN(t)) return 0;
-  return t;
+  const d = new Date(value);
+  const t = d.getTime();
+  return Number.isNaN(t) ? 0 : t;
 }
 
-// 公開日降順→タイトル昇順でソート
-function sortGuides(items:GuideItem[]):GuideItem[] {
-  const result = [...items];
+/**
+ * 重複slugを統合しつつ、公開日降順→タイトル昇順でソート
+ */
+function buildAllGuidesSorted(): GuideItem[] {
+  const raw = findAllGuides();
+  const map = new Map<string, GuideItem>();
 
-  result.sort((a, b) => {
-    const aTime = toTime(a.publishedAt);
-    const bTime = toTime(b.publishedAt);
+  for (const item of raw) {
+    const key = item.slug;
+    if (!key) continue;
 
-    if (aTime !== bTime) {
-      return bTime - aTime;
+    const existing = map.get(key);
+    if (!existing) {
+      map.set(key, item);
+      continue;
     }
 
-    // ここのtypoを修正:a.title.localeCompare(b.title, "ja")
+    const existingTime = toTime(existing.publishedAt);
+    const nextTime = toTime(item.publishedAt);
+
+    if (nextTime > existingTime) {
+      map.set(key, item);
+    }
+  }
+
+  const result = Array.from(map.values());
+
+  result.sort((a, b) => {
+    const at = toTime(a.publishedAt);
+    const bt = toTime(b.publishedAt);
+
+    if (at !== bt) {
+      return bt - at;
+    }
+
     return a.title.localeCompare(b.title, "ja");
   });
 
   return result;
 }
 
-// 起動時にRepositoryから取得してソート済みキャッシュを用意
-const ALL_GUIDES:GuideItem[] = sortGuides(findAllGuides());
+const ALL_GUIDES_SORTED: GuideItem[] = buildAllGuidesSorted();
 
-// App層から呼び出すためのDomain API
-export async function getAllGuides():Promise<GuideItem[]> {
-  return ALL_GUIDES;
+/**
+ * 全GUIDE記事を返す(Domain層ソート済み)。
+ */
+export async function getAllGuides(): Promise<GuideItem[]> {
+  return ALL_GUIDES_SORTED;
 }
 
-export async function getGuideBySlug(slug:string):Promise<GuideItem | null> {
-  const guide = findGuideBySlug(slug);
-  return guide ?? null;
-}
+/**
+ * slugでGUIDE記事を1件取得。
+ * 見つからなければ null。
+ */
+export async function getGuideBySlug(
+  slug: string,
+): Promise<GuideItem | null> {
+  if (!slug) return null;
 
-// 今後、カテゴリ別取得・関連記事取得などのロジックもここに追加していく想定
-// 例:
-// export async function getGuidesByCategory(category:GuideCategory):Promise<GuideItem[]> {
-//   return ALL_GUIDES.filter((g) => g.category === category);
-// }
+  const item = findGuideBySlug(slug);
+  return item ?? null;
+}
