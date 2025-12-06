@@ -26,6 +26,32 @@ type ExtendedCarItem = CarItem & {
   zeroTo100?: number;
 };
 
+type MultilineTextProps = {
+  text: string;
+  variant: "hero" | "card";
+};
+
+/**
+ * 文章を空行(\n\n)ごとに分割して段落表示するヘルパー
+ * variant でヒーロー用/カード用の文字サイズと行間を変える
+ */
+function MultilineText({ text, variant }: MultilineTextProps) {
+  const baseClass =
+    variant === "hero"
+      ? "max-w-2xl text-[12px] sm:text-[13px] leading-[1.9] text-text-sub"
+      : "text-[12px] sm:text-[13px] leading-[1.9] text-text-sub";
+
+  const paragraphs = text.split(/\n{2,}/).map((block) => block.trim()).filter(Boolean);
+
+  return (
+    <div className={`space-y-2 ${baseClass}`}>
+      {paragraphs.length > 0
+        ? paragraphs.map((block, index) => <p key={index}>{block}</p>)
+        : <p>{text}</p>}
+    </div>
+  );
+}
+
 // SSG 用: 動的パス生成
 export async function generateStaticParams() {
   const cars = await getAllCars();
@@ -88,27 +114,23 @@ export default async function CarDetailPage({ params }: PageProps) {
   const title = formatMakerAndName(car);
   const zeroTo100 = formatZeroTo100(car.zeroTo100);
 
+  const overviewText = car.summaryLong ?? car.summary ?? "";
+  const characterText = car.costImpression ?? car.summary ?? "";
+
   return (
     <main className="min-h-screen">
       {/* ヒーローエリア：他ページと同系の淡いグラデーション */}
       <section className="border-b border-slate-200/70 bg-gradient-to-b from-white/90 via-white/80 to-ice-vapor/80">
         <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 sm:px-6 sm:py-10 md:flex-row md:items-end lg:px-8">
-          <div className="flex-1 space-y-3">
+          <div className="flex-1 space-y-4">
             <p className="text-[10px] font-semibold tracking-[0.28em] text-slate-500">
               CAR DATABASE
             </p>
             <h1 className="serif-heading text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl">
               {title}
             </h1>
-            {car.summaryLong && (
-              <p className="max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
-                {car.summaryLong}
-              </p>
-            )}
-            {!car.summaryLong && car.summary && (
-              <p className="max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
-                {car.summary}
-              </p>
+            {overviewText && (
+              <MultilineText text={overviewText} variant="hero" />
             )}
           </div>
 
@@ -201,15 +223,8 @@ export default async function CarDetailPage({ params }: PageProps) {
                 <h2 className="serif-heading text-sm font-semibold tracking-[0.12em] text-slate-900">
                   このクルマの性格
                 </h2>
-                {car.costImpression && (
-                  <p className="text-[11px] leading-relaxed text-text-sub sm:text-xs">
-                    {car.costImpression}
-                  </p>
-                )}
-                {!car.costImpression && car.summary && (
-                  <p className="text-[11px] leading-relaxed text-text-sub sm:text-xs">
-                    {car.summary}
-                  </p>
+                {characterText && (
+                  <MultilineText text={characterText} variant="card" />
                 )}
               </div>
             </GlassCard>
