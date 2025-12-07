@@ -174,6 +174,60 @@ function parseBody(body: string): {
   return { blocks, headings };
 }
 
+// 本文内の装飾（URLリンク化 + **強調** のマーク除去）
+// - https://〜 を <a> に変換
+// - **text** はマークを消しつつ少し強調表示
+function inlineNodes(text: string): (string | JSX.Element)[] {
+  const result: (string | JSX.Element)[] = [];
+  const tokenRegex = /(\*\*.+?\*\*|https?:\/\/[^\s]+)/g;
+
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = tokenRegex.exec(text)) !== null) {
+    const start = match.index;
+    const token = match[0];
+
+    if (start > lastIndex) {
+      result.push(text.slice(lastIndex, start));
+    }
+
+    if (token.startsWith("**") && token.endsWith("**")) {
+      const inner = token.slice(2, -2);
+      result.push(
+        <span
+          key={`${start}-bold`}
+          className="font-semibold text-slate-900"
+        >
+          {inner}
+        </span>,
+      );
+    } else if (token.startsWith("http://") || token.startsWith("https://")) {
+      result.push(
+        <a
+          key={`${start}-link`}
+          href={token}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline decoration-tiffany-400/80 underline-offset-2"
+        >
+          {token}
+        </a>,
+      );
+    } else {
+      result.push(token);
+    }
+
+    lastIndex = start + token.length;
+  }
+
+  if (lastIndex < text.length) {
+    result.push(text.slice(lastIndex));
+  }
+
+  return result;
+}
+
 // ガイドに関連するコラムを抽出
 async function getRelatedColumnsForGuide(
   guide: GuideItem,
@@ -330,6 +384,9 @@ export default async function GuideDetailPage({ params }: PageProps) {
   // ドロップキャップ用フラグ
   let firstParagraphRendered = false;
 
+  // 表示用の日付（登録日に合わせる: publishedAt を優先）
+  const primaryDate = guide.publishedAt ?? guide.updatedAt;
+
   return (
     <main className="min-h-screen bg-site text-text-main">
       {/* ページ専用の光レイヤー */}
@@ -385,11 +442,11 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   約 {guideWithMeta.readMinutes} 分で読めます
                 </span>
               )}
-              {guide.publishedAt && (
+              {primaryDate && (
                 <>
                   <span className="h-[1px] w-6 bg-slate-200" />
                   <span className="tracking-[0.16em]">
-                    LAST UPDATE {formatDate(guide.publishedAt)}
+                    PUBLISHED {formatDate(primaryDate)}
                   </span>
                 </>
               )}
@@ -497,8 +554,8 @@ export default async function GuideDetailPage({ params }: PageProps) {
                       const baseClass = isStepHeading
                         ? "mt-10 mb-4 text-sm font-semibold tracking-[0.18em] text-slate-800 sm:text-[13px] uppercase"
                         : block.heading.level === 2
-                        ? "mt-12 mb-5 font-serif text-lg font-medium text-slate-900 sm:text-xl"
-                        : "mt-8 mb-3 text-sm font-semibold tracking-[0.04em] text-slate-800";
+                        ? "mt-12 mb-5 font-serif text-xl font-medium text-slate-900 sm:text-2xl"
+                        : "mt-8 mb-3 text-base font-semibold tracking-[0.04em] text-slate-800";
 
                       return (
                         <Reveal
@@ -519,7 +576,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                             {block.items.map((item) => (
                               <li key={item} className="flex gap-2">
                                 <span className="mt-[7px] h-[3px] w-5 rounded-full bg-tiffany-300" />
-                                <span>{item}</span>
+                                <span>{inlineNodes(item)}</span>
                               </li>
                             ))}
                           </ul>
@@ -539,7 +596,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                             <span className="first-letter-span">
                               {firstChar}
                             </span>
-                            {rest}
+                            {inlineNodes(rest)}
                           </p>
                         </Reveal>
                       );
@@ -550,7 +607,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                         key={`p-${index}`}
                         className="mt-4 text-sm leading-8 text-slate-700 sm:text-[15px] sm:leading-[2rem]"
                       >
-                        {block.text}
+                        {inlineNodes(block.text)}
                       </p>
                     );
                   })}
@@ -678,7 +735,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   href={`/column/${encodeURIComponent(col.slug)}`}
                 >
                   <GlassCard className="h-full border border-slate-200/80 bg-gradient-to-br from-vapor/80 via-white/95 to-white/90 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
-                    <div className="mb-2 flex flex-wrap items中心 gap-2 text-[10px] text-slate-500">
+                    <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
                       <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
                         {mapColumnCategoryLabel(col.category)}
                       </span>
