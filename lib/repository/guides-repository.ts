@@ -1,9 +1,8 @@
 // lib/repository/guides-repository.ts
 
 import guidesRaw from "@/data/guides.json";
-import guides1Raw from "@/data/guides1.json";
-import guides2Raw from "@/data/guides2.json";
-
+import guidesRaw1 from "@/data/guides1.json";
+import guidesRaw2 from "@/data/guides2.json";
 import type {
   GuideItem,
   ContentStatus,
@@ -58,8 +57,7 @@ function normalizeGuide(raw: RawGuideRecord, index: number): GuideItem {
   const readMinutes =
     typeof raw.readMinutes === "number" ? raw.readMinutes : null;
 
-  const heroImage =
-    typeof raw.heroImage === "string" ? raw.heroImage : null;
+  const heroImage = typeof raw.heroImage === "string" ? raw.heroImage : null;
 
   const body = raw.body ?? "";
 
@@ -105,17 +103,15 @@ function toArray(data: unknown): RawGuideRecord[] {
   return [];
 }
 
-// guides.json + guides1.json + guides2.json をまとめて配列化
-const RAW_GUIDES_INTERNAL: RawGuideRecord[] = [
+// guides.json+guides1.json+guides2.jsonをまとめて正規化
+const RAW_ALL: RawGuideRecord[] = [
   ...toArray(guidesRaw),
-  ...toArray(guides1Raw),
-  ...toArray(guides2Raw),
+  ...toArray(guidesRaw1),
+  ...toArray(guidesRaw2),
 ];
 
 // ビルド時に一度だけ正規化&キャッシュ
-const ALL_GUIDES_INTERNAL: GuideItem[] = RAW_GUIDES_INTERNAL.map(
-  normalizeGuide,
-);
+const ALL_GUIDES_INTERNAL: GuideItem[] = RAW_ALL.map(normalizeGuide);
 
 // ----------------------------------------
 // Repositoryが外部に提供するAPI
