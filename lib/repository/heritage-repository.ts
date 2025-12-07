@@ -4,26 +4,42 @@
  * HERITAGE用 Data Source層
  *
  * 役割:
- * ・data/heritage.jsonから“生データ”をそのまま取り出すだけ
- * ・Domain層( lib/heritage.ts )がどんな構造で使うかまでは関与しない
+ *・data/heritage.json,data/heritage1.jsonから“生データ”をそのまま取り出すだけ
+ *・Domain層(lib/heritage.ts)がどんな構造で使うかまでは関与しない
  */
 
 import heritageRaw from "@/data/heritage.json";
+import heritageRaw1 from "@/data/heritage1.json";
 
 // JSON1件分の型(生データ)。ここでは汎用的なキー/値の塊として扱う。
 export type HeritageRecord = Record<string, unknown>;
 
 /**
- * data/heritage.jsonの全件を生データとして返す。
+ * unknownを「HeritageRecordの配列」に正規化するユーティリティ
+ *・配列ならそのまま
+ *・オブジェクト1件なら[object]に包む
+ *・それ以外は空配列
+ */
+function toArray(data: unknown): HeritageRecord[] {
+  if (Array.isArray(data)) {
+    return data as HeritageRecord[];
+  }
+  if (data && typeof data === "object") {
+    return [data as HeritageRecord];
+  }
+  return [];
+}
+
+// data/heritage.json + data/heritage1.json をまとめて1本の配列にしてキャッシュ
+const ALL_HERITAGE_INTERNAL: HeritageRecord[] = [
+  ...toArray(heritageRaw),
+  ...toArray(heritageRaw1),
+];
+
+/**
+ * data/heritage*.jsonの全件を生データとして返す。
  * ここでは整形やソートは一切行わない。
  */
 export function findAllHeritage(): HeritageRecord[] {
-  const items = heritageRaw as unknown;
-
-  if (Array.isArray(items)) {
-    return items as HeritageRecord[];
-  }
-
-  // 万が一配列でない構造だった場合も、型安全に空配列を返す
-  return [];
+  return ALL_HERITAGE_INTERNAL;
 }
