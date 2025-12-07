@@ -97,6 +97,11 @@ export async function generateMetadata(
         heritage.slug,
       )}`,
     },
+    twitter: {
+      card: "summary",
+      title: `${title} | HERITAGE | CAR BOUTIQUE`,
+      description,
+    },
   };
 }
 
@@ -128,170 +133,220 @@ export default async function HeritageDetailPage({ params }: PageProps) {
   const title = heritage.titleJa ?? heritage.title ?? heritage.slug;
 
   return (
-    <main className="min-h-screen bg-slate-100 text-slate-900">
-      {/* ヒーロー */}
-      <section className="border-b border-slate-200 bg-gradient-to-b from-slate-50 to-slate-100">
-        <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 md:py-10">
-          <Reveal>
-            <nav className="flex items-center text-xs text-slate-500">
-              <Link href="/" className="hover:text-slate-800">
-                HOME
-              </Link>
-              <span className="mx-2 text-slate-400">/</span>
-              <Link href="/heritage" className="hover:text-slate-800">
-                HERITAGE
-              </Link>
-              <span className="mx-2 text-slate-400">/</span>
-              <span className="line-clamp-1 text-slate-400">DETAIL</span>
-            </nav>
-          </Reveal>
+    <main className="min-h-screen bg-site text-text-main">
+      {/* ページ専用の光レイヤー */}
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <div className="absolute inset-x-0 top-0 h-[42vh] bg-gradient-to-b from-white via-white/80 to-transparent" />
+        <div className="absolute -left-[22%] top-[18%] h-[46vw] w-[46vw] rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.18),_transparent_70%)] blur-[110px]" />
+        <div className="absolute -right-[18%] bottom-[-12%] h-[52vw] w-[52vw] rounded-full bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.26),_transparent_75%)] blur-[120px]" />
+      </div>
 
-          <Reveal>
-            <div className="flex flex-col gap-4 md:flex-row md:items-end">
-              <div className="flex-1 space-y-3">
-                <p className="text-[11px] uppercase tracking-[0.28em] text-slate-500">
-                  BRAND HERITAGE
-                </p>
-                <h1 className="text-2xl font-semibold tracking-wide text-slate-900 md:text-3xl">
-                  {title}
-                </h1>
-                <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600">
-                  {heritage.maker && (
-                    <span className="rounded-full border border-slate-300 px-2.5 py-0.5 text-[11px] uppercase tracking-[0.16em] text-slate-700">
-                      {heritage.maker}
-                    </span>
-                  )}
-                  {heritage.modelName && (
-                    <span className="text-[11px] text-slate-500">
-                      {heritage.modelName}
-                    </span>
-                  )}
-                  {heritage.eraLabel && (
-                    <span className="text-[11px] text-slate-500">
-                      {heritage.eraLabel}
-                    </span>
-                  )}
-                  {dateLabel && (
-                    <span className="text-[11px] text-slate-400">
-                      {dateLabel} 更新
-                    </span>
-                  )}
-                </div>
-                {heritage.summary && (
-                  <p className="max-w-2xl text-sm leading-relaxed text-slate-600">
-                    {heritage.summary}
-                  </p>
-                )}
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 本文＋前後リンク */}
-      <section className="border-b border-slate-200 bg-slate-100/80">
-        <div className="mx-auto grid max-w-5xl gap-6 px-4 py-8 md:grid-cols-[minmax(0,2fr)_minmax(0,1.1fr)] md:py-10">
-          {/* 本文 */}
-          <div className="space-y-6">
-            <GlassCard className="bg-white/80">
-              <div className="space-y-5 p-4 md:p-6">
-                {heritage.body && (
-                  <div className="whitespace-pre-line text-sm leading-relaxed text-slate-700">
-                    {heritage.body}
-                  </div>
-                )}
-                {!heritage.body && heritage.summary && (
-                  <p className="whitespace-pre-line text-sm leading-relaxed text-slate-700">
-                    {heritage.summary}
-                  </p>
-                )}
-
-                {tags.length > 0 && (
-                  <div className="pt-4">
-                    <p className="mb-1 text-[11px] font-medium tracking-[0.16em] text-slate-500">
-                      TAGS
-                    </p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full border border-slate-300 bg-slate-50 px-2.5 py-0.5 text-[11px] text-slate-700"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </GlassCard>
-
-            <div className="flex flex-col gap-3 pt-2 text-xs">
-              <div className="flex flex-wrap gap-2">
-                <Link
-                  href="/heritage"
-                  className="inline-flex items-center gap-2 text-xs font-medium text-slate-600 underline-offset-4 hover:text-slate-900 hover:underline"
-                >
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full border border-slate-300 text-[11px]">
-                    ←
-                  </span>
-                  HERITAGE一覧に戻る
+      <div className="relative z-10">
+        {/* ヒーロー */}
+        <section className="border-b border-slate-100/70 bg-gradient-to-b from-white/90 via-vapor/70 to-transparent">
+          <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 pb-10 pt-20 sm:px-6 lg:px-8">
+            <Reveal>
+              <nav className="flex items-center text-xs text-slate-500">
+                <Link href="/" className="hover:text-slate-800">
+                  HOME
                 </Link>
-              </div>
+                <span className="mx-2 text-slate-400">/</span>
+                <Link href="/heritage" className="hover:text-slate-800">
+                  HERITAGE
+                </Link>
+                <span className="mx-2 text-slate-400">/</span>
+                <span className="line-clamp-1 text-slate-400">
+                  {title}
+                </span>
+              </nav>
+            </Reveal>
 
-              {(prev || next) && (
-                <div className="flex flex-col gap-2 pt-1 text-xs text-slate-600 md:flex-row md:justify-between">
-                  {prev ? (
-                    <Link
-                      href={`/heritage/${encodeURIComponent(prev.slug)}`}
-                      className="inline-flex max-w-xs flex-col gap-1 border border-slate-200 bg-white/70 px-3 py-2 hover:border-tiffany-300 hover:bg-white"
-                    >
-                      <span className="text-[10px] text-slate-500">
-                        PREVIOUS
-                      </span>
-                      <span className="line-clamp-2 text-[12px] font-medium text-slate-800">
-                        {prev.titleJa ?? prev.title}
-                      </span>
-                    </Link>
-                  ) : (
-                    <span />
-                  )}
+            <Reveal>
+              <div className="flex flex-col gap-5 lg:flex-row lg:items-end">
+                <div className="flex-1 space-y-4">
+                  <div className="inline-flex items-center gap-3 rounded-full border border-slate-200/80 bg-white/80 px-4 py-1.5 text-[10px] font-semibold tracking-[0.26em] text-slate-500 shadow-soft">
+                    <span className="h-[1px] w-6 bg-gradient-to-r from-tiffany-400 to-slate-400" />
+                    BRAND HERITAGE
+                    <span className="h-[1px] w-6 bg-slate-200" />
+                  </div>
 
-                  {next ? (
-                    <Link
-                      href={`/heritage/${encodeURIComponent(next.slug)}`}
-                      className="inline-flex max-w-xs flex-col items-end gap-1 border border-slate-200 bg-white/70 px-3 py-2 text-right hover:border-tiffany-300 hover:bg-white"
-                    >
-                      <span className="text-[10px] text-slate-500">
-                        NEXT
+                  <h1 className="serif-heading text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl lg:text-[2.3rem]">
+                    {title}
+                  </h1>
+
+                  <div className="flex flex-wrap items-center gap-2 text-[11px] text-slate-600">
+                    {heritage.maker && (
+                      <span className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/80 px-3 py-1 font-semibold uppercase tracking-[0.18em] text-slate-800">
+                        <span className="h-1.5 w-1.5 rounded-full bg-tiffany-400" />
+                        {heritage.maker}
                       </span>
-                      <span className="line-clamp-2 text-[12px] font-medium text-slate-800">
-                        {next.titleJa ?? next.title}
+                    )}
+                    {heritage.modelName && (
+                      <span className="rounded-full border border-tiffany-200 bg-tiffany-50/80 px-3 py-1 text-[11px] font-medium text-tiffany-800">
+                        {heritage.modelName}
                       </span>
-                    </Link>
-                  ) : (
-                    <span />
+                    )}
+                    {heritage.eraLabel && (
+                      <span className="rounded-full border border-slate-200 bg-slate-50/80 px-3 py-1 text-[11px] text-slate-600">
+                        {heritage.eraLabel}
+                      </span>
+                    )}
+                    {dateLabel && (
+                      <>
+                        <span className="h-[1px] w-6 bg-slate-200" />
+                        <span className="text-[11px] text-slate-400">
+                          {dateLabel} 更新
+                        </span>
+                      </>
+                    )}
+                  </div>
+
+                  {heritage.summary && (
+                    <p className="max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
+                      {heritage.summary}
+                    </p>
                   )}
                 </div>
-              )}
-            </div>
-          </div>
-
-          {/* 右カラム: 同一メーカーの簡易リストなどに将来拡張予定 */}
-          <aside className="space-y-4">
-            <GlassCard className="bg-white/80">
-              <div className="space-y-3 p-4 md:p-5">
-                <h2 className="text-xs font-semibold tracking-[0.16em] text-slate-500">
-                  SAME BRAND LINEUP
-                </h2>
-                <p className="text-[11px] text-slate-500">
-                  同じメーカーのHERITAGEは、一覧ページから時系列で追いかけられます。
-                </p>
               </div>
-            </GlassCard>
-          </aside>
-        </div>
-      </section>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* 本文＋前後リンク */}
+        <section className="border-b border-slate-100/70 pb-14 pt-6 sm:pb-18 sm:pt-8">
+          <div className="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 lg:grid-cols-[minmax(0,2.2fr)_minmax(0,1fr)] lg:px-8">
+            {/* 本文 */}
+            <div className="space-y-6">
+              <GlassCard className="border border-slate-200/80 bg-gradient-to-br from-white/92 via-vapor/90 to-white/95 shadow-soft">
+                <article className="space-y-5 px-4 py-5 sm:px-6 sm:py-6">
+                  {/* 導入ボックス */}
+                  <div className="rounded-2xl bg-slate-50/90 px-4 py-3 text-[11px] text-slate-600">
+                    <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                      MODEL HERITAGE OUTLINE
+                    </p>
+                    <p className="mt-1 leading-relaxed">
+                      このHERITAGEは、「
+                      <span className="font-semibold text-slate-800">
+                        {heritage.modelName ?? title}
+                      </span>
+                      」がどの時代にどんな役割を担ったのかを、
+                      ブランドの系譜の中で振り返るための読み物です。
+                    </p>
+                  </div>
+
+                  {/* 本文 */}
+                  {heritage.body && (
+                    <div className="whitespace-pre-line text-sm leading-8 text-slate-700 sm:text-[15px] sm:leading-[2rem]">
+                      {heritage.body}
+                    </div>
+                  )}
+                  {!heritage.body && heritage.summary && (
+                    <p className="whitespace-pre-line text-sm leading-relaxed text-slate-700 sm:text-[15px]">
+                      {heritage.summary}
+                    </p>
+                  )}
+
+                  {/* タグ */}
+                  {tags.length > 0 && (
+                    <div className="pt-4">
+                      <p className="mb-1 text-[10px] font-semibold tracking-[0.18em] text-slate-500">
+                        TAGS
+                      </p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-full border border-slate-300 bg-slate-50/90 px-2.5 py-0.5 text-[11px] text-slate-700"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </article>
+              </GlassCard>
+
+              {/* 戻る＆前後ナビ */}
+              <div className="flex flex-col gap-3 pt-2 text-xs">
+                <div className="flex flex-wrap gap-2">
+                  <Link
+                    href="/heritage"
+                    className="inline-flex items-center gap-2 text-xs font-medium text-slate-600 underline-offset-4 hover:text-tiffany-700 hover:underline"
+                  >
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-300 text-[11px]">
+                      ←
+                    </span>
+                    HERITAGE一覧に戻る
+                  </Link>
+                </div>
+
+                {(prev || next) && (
+                  <div className="flex flex-col gap-2 pt-1 text-xs text-slate-600 md:flex-row md:justify-between">
+                    {prev ? (
+                      <Link
+                        href={`/heritage/${encodeURIComponent(prev.slug)}`}
+                        className="inline-flex max-w-xs flex-col gap-1 border border-slate-200 bg-white/85 px-3 py-2 text-left shadow-sm transition hover:border-tiffany-300 hover:bg-white"
+                      >
+                        <span className="text-[10px] text-slate-500">
+                          PREVIOUS
+                        </span>
+                        <span className="line-clamp-2 text-[12px] font-medium text-slate-800">
+                          {prev.titleJa ?? prev.title}
+                        </span>
+                      </Link>
+                    ) : (
+                      <span />
+                    )}
+
+                    {next ? (
+                      <Link
+                        href={`/heritage/${encodeURIComponent(next.slug)}`}
+                        className="inline-flex max-w-xs flex-col items-end gap-1 border border-slate-200 bg-white/85 px-3 py-2 text-right shadow-sm transition hover:border-tiffany-300 hover:bg-white"
+                      >
+                        <span className="text-[10px] text-slate-500">
+                          NEXT
+                        </span>
+                        <span className="line-clamp-2 text-[12px] font-medium text-slate-800">
+                          {next.titleJa ?? next.title}
+                        </span>
+                      </Link>
+                    ) : (
+                      <span />
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* 右カラム: 同一ブランドの案内ボックス（将来拡張用） */}
+            <aside className="space-y-4">
+              <GlassCard className="border border-slate-200/80 bg-white/90 shadow-sm">
+                <div className="space-y-3 px-4 py-4 sm:px-5 sm:py-5">
+                  <h2 className="text-xs font-semibold tracking-[0.18em] text-slate-500">
+                    SAME BRAND LINEUP
+                  </h2>
+                  <p className="text-[11px] leading-relaxed text-slate-500">
+                    同じメーカーのHERITAGEは、一覧ページから
+                    年代順にたどれるようになっています。
+                    <br />
+                    少し間をおいてから、他の世代と続けて読むと
+                    ブランドのキャラクターの変遷が見えやすくなります。
+                  </p>
+                  {heritage.maker && (
+                    <p className="text-[11px] text-slate-500">
+                      現在表示中のブランド:
+                      <span className="ml-1 font-semibold text-slate-800">
+                        {heritage.maker}
+                      </span>
+                    </p>
+                  )}
+                </div>
+              </GlassCard>
+            </aside>
+          </div>
+        </section>
+      </div>
     </main>
   );
 }
