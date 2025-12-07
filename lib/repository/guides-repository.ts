@@ -3,6 +3,7 @@
 import guidesRaw from "@/data/guides.json";
 import guidesRaw1 from "@/data/guides1.json";
 import guidesRaw2 from "@/data/guides2.json";
+import guidesRaw3 from "@/data/guides3.json";
 import type {
   GuideItem,
   ContentStatus,
@@ -103,11 +104,12 @@ function toArray(data: unknown): RawGuideRecord[] {
   return [];
 }
 
-// guides.json+guides1.json+guides2.jsonをまとめて正規化
+// guides.json+guides1.json+guides2.json+guides3.jsonをまとめて正規化
 const RAW_ALL: RawGuideRecord[] = [
   ...toArray(guidesRaw),
   ...toArray(guidesRaw1),
   ...toArray(guidesRaw2),
+  ...toArray(guidesRaw3),
 ];
 
 // ビルド時に一度だけ正規化&キャッシュ
