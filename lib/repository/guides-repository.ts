@@ -1,7 +1,14 @@
 // lib/repository/guides-repository.ts
 
 import guidesRaw from "@/data/guides.json";
-import type { GuideItem, ContentStatus, GuideCategory } from "@/lib/content-types";
+import guides1Raw from "@/data/guides1.json";
+import guides2Raw from "@/data/guides2.json";
+
+import type {
+  GuideItem,
+  ContentStatus,
+  GuideCategory,
+} from "@/lib/content-types";
 
 /**
  * JSONの生データ型
@@ -98,8 +105,15 @@ function toArray(data: unknown): RawGuideRecord[] {
   return [];
 }
 
+// guides.json + guides1.json + guides2.json をまとめて配列化
+const RAW_GUIDES_INTERNAL: RawGuideRecord[] = [
+  ...toArray(guidesRaw),
+  ...toArray(guides1Raw),
+  ...toArray(guides2Raw),
+];
+
 // ビルド時に一度だけ正規化&キャッシュ
-const ALL_GUIDES_INTERNAL: GuideItem[] = toArray(guidesRaw).map(
+const ALL_GUIDES_INTERNAL: GuideItem[] = RAW_GUIDES_INTERNAL.map(
   normalizeGuide,
 );
 
