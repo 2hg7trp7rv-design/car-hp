@@ -149,14 +149,6 @@ export default async function HeritageIndexPage() {
                                     <span className="h-[1px] w-4 bg-tiffany-400/80" />
                                     {item.eraLabel ?? "ERA"}
                                   </span>
-                                  {item.platformCode && (
-                                    <>
-                                      <span className="h-[1px] w-4 bg-slate-200" />
-                                      <span className="text-slate-400">
-                                        {item.platformCode}
-                                      </span>
-                                    </>
-                                  )}
                                 </div>
 
                                 <h3 className="line-clamp-2 text-sm font-semibold leading-relaxed text-slate-950 sm:text-[15px]">
