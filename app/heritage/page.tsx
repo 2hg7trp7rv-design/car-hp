@@ -99,10 +99,12 @@ export default async function HeritageIndexPage() {
                 <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-slate-500">
                   BRAND HERITAGE
                 </p>
-                <h1 className="serif-heading text-2xl font-semibold tracking-tight text-slate-900 sm:text-[1.9rem] md:text-[2.15rem]">
+                {/* タイトルを一段大きく */}
+                <h1 className="serif-heading text-3xl font-semibold tracking-tight text-slate-900 sm:text-[2.25rem] md:text-[2.5rem]">
                   ブランドの系譜と名車の歴史
                 </h1>
-                <p className="max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
+                {/* リードは少しだけ大きめ */}
+                <p className="max-w-2xl text-[13px] leading-relaxed text-text-sub sm:text-sm sm:leading-7">
                   F40やM3、GT-Rなど、クルマ文化をつくってきたモデルたちを
                   「ブランドの系譜」として整理しながら、どの時代にどんなキャラクターの
                   クルマがいたのかを振り返るためのアーカイブです。
@@ -120,7 +122,8 @@ export default async function HeritageIndexPage() {
               <Reveal key={group.maker}>
                 <div className="space-y-3">
                   <div className="flex items-baseline justify-between gap-3 border-b border-slate-200/70 pb-1.5">
-                    <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-700">
+                    {/* メーカー名は1段階大きく＋字間広め */}
+                    <h2 className="text-sm font-semibold tracking-[0.24em] text-slate-700 sm:text-[0.9rem]">
                       {group.maker}
                     </h2>
                     <p className="text-[11px] text-slate-500">
@@ -140,10 +143,11 @@ export default async function HeritageIndexPage() {
                           <GlassCard className="h-full border border-slate-200/80 bg-gradient-to-br from-white/92 via-white to-white/95 shadow-soft transition group-hover:-translate-y-[1px] group-hover:border-tiffany-300 group-hover:shadow-soft-card">
                             <div className="flex h-full flex-col gap-3 p-4">
                               <div className="space-y-1.5">
-                                <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-slate-500">
+                                <p className="text-[10px] font-medium uppercase tracking-[0.26em] text-slate-500">
                                   {item.eraLabel ?? "ERA"}
                                 </p>
-                                <h3 className="line-clamp-2 text-sm font-semibold leading-relaxed text-slate-900">
+                                {/* タイトルを一段大きく */}
+                                <h3 className="line-clamp-2 text-[15px] font-semibold leading-relaxed text-slate-900 sm:text-base">
                                   {item.titleJa ?? item.title}
                                 </h3>
                                 {item.modelName && (
@@ -152,9 +156,8 @@ export default async function HeritageIndexPage() {
                                   </p>
                                 )}
                               </div>
-
                               {item.summary && (
-                                <p className="line-clamp-3 text-[12px] leading-relaxed text-text-sub">
+                                <p className="line-clamp-3 text-[12px] leading-relaxed text-text-sub sm:text-[13px]">
                                   {item.summary}
                                 </p>
                               )}
