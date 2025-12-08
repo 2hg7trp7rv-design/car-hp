@@ -155,12 +155,54 @@ function parseHeritageBody(body?: string | null): ParsedBody {
   };
 }
 
-// 「GT-R」の文字だけ赤く強調して描画
-function renderEmphasizedText(text: string) {
-  const parts = text.split(/(GT-R)/g);
+// --- キーワード強調 -----------------------------------------------------
+
+function escapeRegExp(str: string): string {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * heritage から、デフォルトの強調キーワード候補をざっくり抽出。
+ * - タイトルや modelName に含まれる GT-R / M3 / M5 など
+ * - 足りない場合は JSON 側で highlightKeywords を持たせて補う想定
+ */
+function getDefaultHighlightKeywords(heritage: HeritageItem): string[] {
+  const base =
+    (heritage.titleJa ?? "") +
+    " " +
+    (heritage.title ?? "") +
+    " " +
+    (heritage.modelName ?? "");
+  const list: string[] = [];
+
+  if (base.includes("GT-R")) list.push("GT-R");
+  if (base.includes("M3")) list.push("M3");
+  if (base.includes("M5")) list.push("M5");
+
+  return Array.from(new Set(list));
+}
+
+/**
+ * 指定されたキーワードを本文中で強調表示する。
+ * 例: ["GT-R", "M3"] を渡すと、その文字列だけ赤系でハイライト。
+ */
+function renderEmphasizedText(
+  text: string,
+  keywords: string[],
+) {
+  const valid = keywords.filter((k) => k && k.length > 0);
+  if (valid.length === 0) {
+    return text;
+  }
+
+  const pattern = new RegExp(
+    `(${valid.map(escapeRegExp).join("|")})`,
+    "g",
+  );
+  const parts = text.split(pattern);
 
   return parts.map((part, idx) =>
-    part === "GT-R" ? (
+    valid.includes(part) ? (
       <span
         key={idx}
         className="font-semibold text-rose-400"
@@ -225,6 +267,11 @@ export default async function HeritageDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  // 拡張メタ（JSONにあれば使う。なければ型エラーにならないように intersection で扱う）
+  const heritageWithMeta = heritage as HeritageItem & {
+    highlightKeywords?: string[] | null;
+  };
+
   const all = await getAllHeritage();
   const sameMaker = sortWithinMaker(
     all.filter(
@@ -245,6 +292,13 @@ export default async function HeritageDetailPage({ params }: PageProps) {
   const title = heritage.titleJa ?? heritage.title ?? heritage.slug;
 
   const parsed = parseHeritageBody(heritage.body);
+
+  // 強調キーワード: JSONに highlightKeywords があればそれを優先し、なければ自動推定
+  const highlightKeywords =
+    (heritageWithMeta.highlightKeywords &&
+      heritageWithMeta.highlightKeywords.length > 0
+      ? heritageWithMeta.highlightKeywords
+      : getDefaultHighlightKeywords(heritage)) ?? [];
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50 via-slate-900/70 to-slate-950 text-slate-50">
@@ -328,7 +382,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
               <div className="mb-6 max-w-3xl text-[15px] leading-8 text-slate-100 sm:text-[15px] sm:leading-8">
                 {parsed.introParagraphs.map((p, idx) => (
                   <p key={idx} className={idx > 0 ? "mt-3" : ""}>
-                    {renderEmphasizedText(p)}
+                    {renderEmphasizedText(p, highlightKeywords)}
                   </p>
                 ))}
               </div>
@@ -357,13 +411,18 @@ export default async function HeritageDetailPage({ params }: PageProps) {
 
                     {/* 見出し */}
                     <h2 className="text-[17px] font-semibold tracking-wide text-white sm:text-[18px] md:text-[20px]">
-                      {renderEmphasizedText(chapter.title)}
+                      {renderEmphasizedText(
+                        chapter.title,
+                        highlightKeywords,
+                      )}
                     </h2>
 
                     {/* 本文 */}
                     <div className="mt-4 space-y-3 text-[15px] leading-8 text-slate-100 sm:text-[15px] sm:leading-8">
                       {chapter.paragraphs.map((p, idx) => (
-                        <p key={idx}>{renderEmphasizedText(p)}</p>
+                        <p key={idx}>
+                          {renderEmphasizedText(p, highlightKeywords)}
+                        </p>
                       ))}
                     </div>
                   </div>
@@ -376,7 +435,10 @@ export default async function HeritageDetailPage({ params }: PageProps) {
               <Reveal>
                 <GlassCard className="rounded-[32px] border border-white/18 bg-gradient-to-br from-slate-900/85 via-slate-900/95 to-slate-950/95 px-5 py-6 shadow-[0_22px_60px_rgba(15,23,42,0.8)] sm:px-7 sm:py-8 md:px-10 md:py-10">
                   <div className="whitespace-pre-line text-[15px] leading-8 text-slate-100 sm:text-[15px] sm:leading-8">
-                    {renderEmphasizedText(heritage.body)}
+                    {renderEmphasizedText(
+                      heritage.body,
+                      highlightKeywords,
+                    )}
                   </div>
                 </GlassCard>
               </Reveal>
