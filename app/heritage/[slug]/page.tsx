@@ -274,7 +274,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
               </div>
 
               <div className="relative space-y-8 p-5 sm:p-7">
-                {/* イントロ：1回だけ表示（ここが上の白枠カードの置き換え） */}
+                {/* イントロ：1回だけ表示 */}
                 {parsed.intro && (
                   <section className="space-y-3">
                     <p className="text-[10px] font-semibold tracking-[0.28em] text-slate-400">
@@ -410,4 +410,5 @@ export default async function HeritageDetailPage({ params }: PageProps) {
         </div>
       </section>
     </main>
-  )
+  );
+}
