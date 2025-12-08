@@ -252,7 +252,8 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                   <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-slate-500">
                     BRAND HERITAGE
                   </p>
-                  <h1 className="serif-heading text-2xl font-semibold tracking-tight text-slate-900 sm:text-[2rem] md:text-[2.25rem]">
+                  {/* タイトルをかなり大きめに */}
+                  <h1 className="serif-heading text-3xl font-semibold tracking-tight text-slate-900 sm:text-[2.4rem] md:text-[2.6rem]">
                     {title}
                   </h1>
                   <div className="flex flex-wrap items-center gap-2 text-[11px] text-slate-600">
@@ -281,7 +282,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                     )}
                   </div>
                   {heritage.summary && (
-                    <p className="max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
+                    <p className="max-w-2xl text-[13px] leading-relaxed text-text-sub sm:text-sm sm:leading-7">
                       {heritage.summary}
                     </p>
                   )}
@@ -302,10 +303,11 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                     <div className="space-y-5 text-sm leading-relaxed text-text-main sm:text-[15px] sm:leading-[1.9rem]">
                       {blocks.map((block, idx) => {
                         if (block.type === "heading") {
+                          // 見出しは明確に大きく
                           return (
                             <h2
                               key={`h-${idx}`}
-                              className="mt-2 border-l-2 border-tiffany-400 pl-3 text-[11px] font-semibold tracking-[0.2em] text-slate-700"
+                              className="mt-4 border-l-2 border-tiffany-400 pl-3 text-xs font-semibold tracking-[0.22em] text-slate-700 sm:text-sm"
                             >
                               {highlightText(block.text, tags)}
                             </h2>
@@ -315,7 +317,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                         return (
                           <p
                             key={`p-${idx}`}
-                            className="text-sm leading-7 text-text-main sm:text-[15px] sm:leading-[1.9rem]"
+                            className="text-[13px] leading-7 text-text-main sm:text-[15px] sm:leading-[1.9rem]"
                           >
                             {highlightText(block.text, tags)}
                           </p>
@@ -325,12 +327,12 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                   ) : (
                     <>
                       {heritage.body && (
-                        <div className="whitespace-pre-line text-sm leading-relaxed text-text-main sm:text-[15px] sm:leading-[1.9rem]">
+                        <div className="whitespace-pre-line text-[13px] leading-7 text-text-main sm:text-[15px] sm:leading-[1.9rem]">
                           {heritage.body}
                         </div>
                       )}
                       {!heritage.body && heritage.summary && (
-                        <p className="whitespace-pre-line text-sm leading-relaxed text-text-main sm:text-[15px] sm:leading-[1.9rem]">
+                        <p className="whitespace-pre-line text-[13px] leading-7 text-text-main sm:text-[15px] sm:leading-[1.9rem]">
                           {heritage.summary}
                         </p>
                       )}
@@ -380,7 +382,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                         <span className="text-[10px] text-slate-500">
                           PREVIOUS
                         </span>
-                        <span className="line-clamp-2 text-[12px] font-medium text-slate-800">
+                        <span className="line-clamp-2 text-[12px] font-medium text-slate-800 sm:text-[13px]">
                           {prev.titleJa ?? prev.title}
                         </span>
                       </Link>
@@ -396,7 +398,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                         <span className="text-[10px] text-slate-500">
                           NEXT
                         </span>
-                        <span className="line-clamp-2 text-[12px] font-medium text-slate-800">
+                        <span className="line-clamp-2 text-[12px] font-medium text-slate-800 sm:text-[13px]">
                           {next.titleJa ?? next.title}
                         </span>
                       </Link>
