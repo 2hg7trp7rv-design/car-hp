@@ -71,8 +71,14 @@ type RootLayoutProps = {
 // ---- ルートレイアウト ----
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="ja" className={`${manrope.variable} ${bodoni.variable}`}>
-      <body className="bg-site text-text-main antialiased">
+    <html
+      lang="ja"
+      className={`${manrope.variable} ${bodoni.variable}`}
+    >
+      <body className="min-h-screen bg-background text-text-main antialiased">
+        {/* グローバルの大気メッシュ（Tiffany系グラデーション） */}
+        <div className="pointer-events-none fixed inset-0 -z-10 bg-site" />
+
         <SmoothScrollProvider>
           <div className="flex min-h-screen flex-col">
             <SiteHeader />
