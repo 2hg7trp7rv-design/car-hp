@@ -458,7 +458,7 @@ export default async function GuidePage() {
                   実際のトラブル事例やブランドごとの傾向 車種ごとの維持難易度などは
                   NEWS COLUMN CARS 各ページの内容で補完する前提
                 </p>
-                <div className="flex flex-wrap justify中心 gap-4">
+                <div className="flex flex-wrap justify-center gap-4">
                   <Button
                     asChild
                     variant="primary"
@@ -472,7 +472,7 @@ export default async function GuidePage() {
                     asChild
                     variant="glass"
                     size="sm"
-                    className="min-w-[160px] rounded-full border border-white/30 bg-white/5 px-6 py-3 text-[11px] font-semibold tracking-[0.18em] text-slate-100 backdrop-blur-sm hover:bg-white/10"
+                    className="min-w-[160px] rounded-full border border-white/30 bg-white/5 px-6 py-3 text-[11px] font-semibold tracking-[0.18em] text-slate-100 backdrop-blur-sm hover:bg白/10"
                   >
                     <Link href="/column">READ COLUMNS</Link>
                   </Button>
