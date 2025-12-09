@@ -12,52 +12,159 @@ type Props = { item: ColumnItem };
 
 type Heading = { id: string; text: string; level: 2 | 3 };
 
-type Block = string | Heading;
+type ParagraphBlock = { type: "paragraph"; text: string };
+type HeadingBlock = { type: "heading"; heading: Heading };
+type ListBlock = { type: "list"; items: string[] };
 
-function parseBodyToBlocks(body: string): { blocks: Block[] } {
+type Block = ParagraphBlock | HeadingBlock | ListBlock;
+
+// Markdownライクな本文をブロックに分解
+// - ## 見出し -> level 2
+// - ### 見出し -> level 3
+// - "- "で始まる行の連続 -> 箇条書き
+// - その他 -> 段落（空行で区切り）
+function parseBodyToBlocks(body: string): {
+  blocks: Block[];
+  headings: Heading[];
+} {
   const lines = body.split(/\r?\n/);
   const blocks: Block[] = [];
+  const headings: Heading[] = [];
+
   let currentParagraph: string[] = [];
+  let currentList: string[] = [];
 
   const flushParagraph = () => {
     if (currentParagraph.length > 0) {
-      blocks.push(currentParagraph.join(" "));
+      blocks.push({
+        type: "paragraph",
+        text: currentParagraph.join(" "),
+      });
       currentParagraph = [];
     }
   };
 
-  lines.forEach((line) => {
-    const trimmed = line.trim();
-    if (!trimmed) {
+  const flushList = () => {
+    if (currentList.length > 0) {
+      blocks.push({
+        type: "list",
+        items: [...currentList],
+      });
+      currentList = [];
+    }
+  };
+
+  lines.forEach((rawLine, index) => {
+    const line = rawLine.trim();
+
+    // 空行 -> パラグラフ／リストを区切る
+    if (!line) {
       flushParagraph();
+      flushList();
       return;
     }
 
-    if (trimmed.startsWith("### ")) {
+    // 見出し（###）
+    if (line.startsWith("### ")) {
       flushParagraph();
-      blocks.push({
-        id: `h3-${blocks.length}`,
-        text: trimmed.slice(4).trim(),
+      flushList();
+      const text = line.slice(4).trim();
+      const heading: Heading = {
+        id: `h3-${index}`,
+        text,
         level: 3,
-      });
+      };
+      blocks.push({ type: "heading", heading });
+      headings.push(heading);
       return;
     }
 
-    if (trimmed.startsWith("## ")) {
+    // 見出し（##）
+    if (line.startsWith("## ")) {
       flushParagraph();
-      blocks.push({
-        id: `h2-${blocks.length}`,
-        text: trimmed.slice(3).trim(),
+      flushList();
+      const text = line.slice(3).trim();
+      const heading: Heading = {
+        id: `h2-${index}`,
+        text,
         level: 2,
-      });
+      };
+      blocks.push({ type: "heading", heading });
+      headings.push(heading);
       return;
     }
 
-    currentParagraph.push(trimmed);
+    // 箇条書き
+    if (line.startsWith("- ")) {
+      flushParagraph();
+      currentList.push(line.slice(2).trim());
+      return;
+    }
+
+    // 通常テキスト -> 段落
+    flushList();
+    currentParagraph.push(line);
   });
 
+  // 残りを反映
   flushParagraph();
-  return { blocks };
+  flushList();
+
+  return { blocks, headings };
+}
+
+// 本文内の装飾（URLリンク化 + **強調**のマーク除去）
+// - https://〜 を <a> に変換
+// - **text** はマークを消しつつ少し強調表示
+function inlineNodes(text: string): (string | JSX.Element)[] {
+  const result: (string | JSX.Element)[] = [];
+  const tokenRegex = /(\*\*.+?\*\*|https?:\/\/[^\s]+)/g;
+
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = tokenRegex.exec(text)) !== null) {
+    const start = match.index;
+    const token = match[0];
+
+    if (start > lastIndex) {
+      result.push(text.slice(lastIndex, start));
+    }
+
+    if (token.startsWith("**") && token.endsWith("**")) {
+      const inner = token.slice(2, -2);
+      result.push(
+        <span
+          key={`${start}-bold`}
+          className="font-semibold text-slate-900"
+        >
+          {inner}
+        </span>,
+      );
+    } else if (token.startsWith("http://") || token.startsWith("https://")) {
+      result.push(
+        <a
+          key={`${start}-link`}
+          href={token}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline decoration-tiffany-400/80 underline-offset-2"
+        >
+          {token}
+        </a>,
+      );
+    } else {
+      result.push(token);
+    }
+
+    lastIndex = start + token.length;
+  }
+
+  if (lastIndex < text.length) {
+    result.push(text.slice(lastIndex));
+  }
+
+  return result;
 }
 
 function useReadingProgress() {
@@ -101,7 +208,11 @@ function useActiveHeading(headings: Heading[]) {
       (entries) => {
         const visible = entries
           .filter((e) => e.isIntersecting)
-          .sort((a, b) => (a.target as HTMLElement).offsetTop - (b.target as HTMLElement).offsetTop);
+          .sort(
+            (a, b) =>
+              (a.target as HTMLElement).offsetTop -
+              (b.target as HTMLElement).offsetTop,
+          );
 
         if (visible[0]) {
           setActiveId(visible[0].target.id);
@@ -137,8 +248,8 @@ function formatDate(value?: string | null) {
 }
 
 // OWNER_STORY は扱わず、実質残すのは
-// ・メンテナンス／トラブル
-// ・技術・歴史・ブランド
+//・メンテナンス／トラブル
+//・技術・歴史・ブランド
 function mapCategoryLabel(category: ColumnItem["category"]): string {
   switch (category) {
     case "MAINTENANCE":
@@ -151,15 +262,15 @@ function mapCategoryLabel(category: ColumnItem["category"]): string {
 }
 
 export default function ColumnReaderShell({ item }: Props) {
-  const { blocks } = parseBodyToBlocks(item.body);
-  const headings = blocks.filter(
-    (b): b is Heading => typeof b !== "string",
-  );
+  const { blocks, headings } = parseBodyToBlocks(item.body);
   const progress = useReadingProgress();
   const activeHeadingId = useActiveHeading(headings);
 
   const heroImage = (item as ColumnItem & { heroImage?: string })
     .heroImage;
+
+  // ドロップキャップ用フラグ
+  let firstParagraphRendered = false;
 
   return (
     <main className="min-h-screen bg-[radial-gradient(circle_at_10%_0%,rgba(10,186,181,0.06),transparent_55%),radial-gradient(circle_at_90%_100%,rgba(15,23,42,0.06),transparent_60%),#f9fafb]">
@@ -167,7 +278,7 @@ export default function ColumnReaderShell({ item }: Props) {
       <div className="fixed inset-x-0 top-0 z-40">
         <div className="mx-auto h-[3px] max-w-6xl rounded-full bg-slate-900/5 shadow-glass-inner backdrop-blur">
           <div
-            className="h-full rounded-full bg-gradient-to-r from-tiffany-300 via-tiffany-400 to-tiffany-600 transition-[width] duration-120 ease-out"
+            className="h-full rounded-full bg-gradient-to-r from-tiffany-300 via-tiffany-400 to-tiffany-600 transition-[width] duration-150 ease-out"
             style={{ width: `${progress * 100}%` }}
           />
         </div>
@@ -178,7 +289,7 @@ export default function ColumnReaderShell({ item }: Props) {
         <article className="w-full lg:w-[68%]">
           <GlassCard
             padding="lg"
-            className="relative overflow-hidden border border-white/80 bg-white/95 px-5 py-6 shadow-soft lg:px-8 lg:py-8"
+            className="relative overflow-hidden border border-white/80 bg-white/95 px-5 py-6 text-text-main shadow-soft lg:px-8 lg:py-8"
           >
             {/* 背景の光 */}
             <div className="pointer-events-none absolute inset-0">
@@ -256,42 +367,60 @@ export default function ColumnReaderShell({ item }: Props) {
               {/* 本文 */}
               <div className="mt-4">
                 {blocks.map((block, index) => {
-                  if (typeof block !== "string") {
-                    const Tag = block.level === 2 ? "h2" : "h3";
+                  if (block.type === "heading") {
+                    const { heading } = block;
+                    const Tag = heading.level === 2 ? "h2" : "h3";
                     const styleClass =
-                      block.level === 2
+                      heading.level === 2
                         ? "mt-14 mb-6 font-serif text-xl font-medium text-slate-900 sm:text-[1.5rem]"
                         : "mt-9 mb-4 text-sm font-semibold tracking-[0.06em] text-slate-800";
 
                     return (
-                      <Reveal key={block.id} delay={100}>
-                        <Tag id={block.id} className={styleClass}>
-                          {block.text}
+                      <Reveal key={heading.id} delay={100}>
+                        <Tag id={heading.id} className={styleClass}>
+                          {heading.text}
                         </Tag>
                       </Reveal>
                     );
                   }
 
-                  // ドロップキャップ：最初の段落
-                  if (index === 0 && block.length > 0) {
-                    const firstChar = block[0];
-                    const rest = block.slice(1);
+                  if (block.type === "list") {
                     return (
-                      <Reveal key={index} delay={160}>
-                        <p className="first-letter-float mt-2 text-sm leading-8 text-slate-700 sm:text-[15px] sm:leading-[2rem]">
+                      <Reveal key={`list-${index}`} delay={80}>
+                        <ul className="mt-4 space-y-1.5 text-sm leading-relaxed text-slate-800 sm:text-[15px] sm:leading-[1.9rem]">
+                          {block.items.map((itemText, idx) => (
+                            <li key={`${itemText}-${idx}`} className="flex gap-2">
+                              <span className="mt-[7px] h-[3px] w-5 rounded-full bg-tiffany-300" />
+                              <span>{inlineNodes(itemText)}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </Reveal>
+                    );
+                  }
+
+                  // paragraph
+                  if (!firstParagraphRendered && block.text.trim().length) {
+                    firstParagraphRendered = true;
+                    const firstChar = block.text[0];
+                    const rest = block.text.slice(1);
+
+                    return (
+                      <Reveal key={`p-${index}`} delay={160}>
+                        <p className="first-letter-float mt-2 text-[13px] leading-8 text-slate-800 sm:text-[15px] sm:leading-[2rem]">
                           <span className="first-letter-span">
                             {firstChar}
                           </span>
-                          {rest}
+                          {inlineNodes(rest)}
                         </p>
                       </Reveal>
                     );
                   }
 
                   return (
-                    <Reveal key={index} delay={60}>
-                      <p className="mt-6 text-sm leading-8 text-slate-700 sm:text-[15px] sm:leading-[2rem]">
-                        {block}
+                    <Reveal key={`p-${index}`} delay={60}>
+                      <p className="mt-6 text-[13px] leading-8 text-slate-800 sm:text-[15px] sm:leading-[2rem]">
+                        {inlineNodes(block.text)}
                       </p>
                     </Reveal>
                   );
@@ -338,9 +467,7 @@ export default function ColumnReaderShell({ item }: Props) {
                           h.level === 2
                             ? "font-medium text-slate-700"
                             : "pl-3 text-slate-500",
-                          isActive
-                            ? "text-tiffany-700"
-                            : "",
+                          isActive ? "text-tiffany-700" : "",
                         ]
                           .filter(Boolean)
                           .join(" ")}
