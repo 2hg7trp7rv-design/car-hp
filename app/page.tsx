@@ -63,7 +63,7 @@ async function getHomePageData(): Promise<HomePageData> {
     const yearA = a.releaseYear ?? 0;
     const yearB = b.releaseYear ?? 0;
     if (yearA !== yearB) return yearB - yearA;
-    return a.name.localeCompare(a.name, "ja");
+    return a.name.localeCompare(b.name, "ja");
   });
   const latestCars = sortedCars.slice(0, 6);
 
