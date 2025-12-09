@@ -1,3 +1,4 @@
+// app/cars/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -11,10 +12,19 @@ export const runtime = "edge";
 export const metadata: Metadata = {
   title: "CARS | CAR DATABASE",
   description:
-    "主要な車種について 維持の難易度 ボディタイプ セグメントなどの条件で絞り込んで確認できる車種データベース",
+    "主要な車種について維持の難易度ボディタイプセグメント年式や価格帯などの条件で絞り込んで確認できる車種データベース",
 };
 
-// searchParams の型定義
+// 既存CarItemを拡張して年式レンジ/価格レンジ/価格帯を持てるようにしておく
+// 実データ側は後から対応していく前提で全部optional
+type ExtendedCarItem = CarItem & {
+  minYear?: number;
+  maxYear?: number;
+  minPriceYen?: number;
+  maxPriceYen?: number;
+  priceBand?: string;
+};
+
 type SearchParams = {
   q?: string | string[];
   maker?: string | string[];
@@ -22,6 +32,14 @@ type SearchParams = {
   bodyType?: string | string[];
   segment?: string | string[];
   sort?: string | string[];
+  minYear?: string | string[];
+  maxYear?: string | string[];
+  minPrice?: string | string[];
+  maxPrice?: string | string[];
+  priceBand?: string | string[];
+  page?: string | string[];
+  perPage?: string | string[];
+  view?: string | string[];
 };
 
 type PageProps = {
@@ -37,6 +55,12 @@ function normalize(value: string | undefined | null): string {
 function toSingle(value: string | string[] | undefined): string {
   if (Array.isArray(value)) return value[0] ?? "";
   return value ?? "";
+}
+
+function parseIntegerOrUndefined(raw: string): number | undefined {
+  const v = Number.parseInt(raw, 10);
+  if (Number.isNaN(v)) return undefined;
+  return v;
 }
 
 // CarDifficulty = "basic" | "intermediate" | "advanced" に合わせる
@@ -83,7 +107,7 @@ function mapSortLabel(key: string): string {
     case "oldest":
       return "古い年式順";
     case "difficulty":
-      return "維持難易度（やさしい→気を使う）";
+      return "維持難易度(やさしい→気を使う)";
     default:
       return "おすすめ順";
   }
@@ -105,9 +129,25 @@ function difficultyWeight(
   }
 }
 
+// クエリストリング生成ヘルパー(ページネーションやVIEW切替用)
+function buildQueryString(
+  base: Record<string, string | undefined>,
+  overrides: Record<string, string | undefined>,
+): string {
+  const params = new URLSearchParams();
+  const merged = { ...base, ...overrides };
+  for (const [key, value] of Object.entries(merged)) {
+    if (value && value.trim() !== "") {
+      params.set(key, value);
+    }
+  }
+  const qs = params.toString();
+  return qs ? `?${qs}` : "";
+}
+
 export default async function CarsPage({ searchParams }: PageProps) {
   // データ取得
-  const all = await getAllCars();
+  const all = (await getAllCars()) as ExtendedCarItem[];
 
   // searchParams の生値をすべて toSingle() で安全に文字列化
   const rawQ = toSingle(searchParams?.q);
@@ -118,11 +158,43 @@ export default async function CarsPage({ searchParams }: PageProps) {
   const segmentFilter = toSingle(searchParams?.segment).trim();
   const sortKey = toSingle(searchParams?.sort).trim();
 
+  const rawMinYear = toSingle(searchParams?.minYear).trim();
+  const rawMaxYear = toSingle(searchParams?.maxYear).trim();
+  const rawMinPrice = toSingle(searchParams?.minPrice).trim();
+  const rawMaxPrice = toSingle(searchParams?.maxPrice).trim();
+  const priceBandFilter = toSingle(searchParams?.priceBand).trim();
+
+  const viewRaw = toSingle(searchParams?.view).trim();
+  const viewMode: "card" | "list" =
+    viewRaw === "list" ? "list" : "card";
+
+  const perPageRaw = toSingle(searchParams?.perPage).trim();
+  const parsedPerPage = parseIntegerOrUndefined(perPageRaw);
+  const perPage =
+    parsedPerPage === 24 || parsedPerPage === 48 ? parsedPerPage : 12;
+
+  const pageRaw = toSingle(searchParams?.page).trim();
+  const requestedPage = parseIntegerOrUndefined(pageRaw) ?? 1;
+
+  const minYear = rawMinYear ? parseIntegerOrUndefined(rawMinYear) : undefined;
+  const maxYear = rawMaxYear ? parseIntegerOrUndefined(rawMaxYear) : undefined;
+
+  const minPriceUnit = rawMinPrice
+    ? parseIntegerOrUndefined(rawMinPrice)
+    : undefined; // 万円単位
+  const maxPriceUnit = rawMaxPrice
+    ? parseIntegerOrUndefined(rawMaxPrice)
+    : undefined;
+
+  const minPriceYen =
+    minPriceUnit != null ? minPriceUnit * 10000 : undefined;
+  const maxPriceYen =
+    maxPriceUnit != null ? maxPriceUnit * 10000 : undefined;
+
   const makers = Array.from(
     new Set(all.map((c) => c.maker).filter(Boolean)),
   ).sort();
 
-  // 並び順を固定しつつ、実際に存在するものだけを採用
   const difficultyOptions: CarItem["difficulty"][] = (
     ["basic", "intermediate", "advanced"] as CarItem["difficulty"][]
   ).filter((d) => all.some((c) => c.difficulty === d));
@@ -135,6 +207,15 @@ export default async function CarsPage({ searchParams }: PageProps) {
     new Set(all.map((c) => c.segment).filter(Boolean)),
   ).sort();
 
+  const priceBands = Array.from(
+    new Set(
+      all
+        .map((c) => c.priceBand)
+        .filter((b): b is string => typeof b === "string" && b.length > 0),
+    ),
+  ).sort();
+
+  // フィルタ
   const filtered = all.filter((car) => {
     if (q) {
       const haystack = [
@@ -150,14 +231,55 @@ export default async function CarsPage({ searchParams }: PageProps) {
     }
 
     if (makerFilter && car.maker !== makerFilter) return false;
+
     if (
       difficultyFilter &&
       car.difficulty !== (difficultyFilter as CarItem["difficulty"])
     ) {
       return false;
     }
+
     if (bodyTypeFilter && car.bodyType !== bodyTypeFilter) return false;
     if (segmentFilter && car.segment !== segmentFilter) return false;
+
+    // 年式レンジフィルタ
+    if (minYear != null || maxYear != null) {
+      const carMinYear = car.minYear ?? car.releaseYear ?? undefined;
+      const carMaxYear = car.maxYear ?? car.releaseYear ?? undefined;
+
+      if (minYear != null && carMaxYear != null && carMaxYear < minYear) {
+        return false;
+      }
+      if (maxYear != null && carMinYear != null && carMinYear > maxYear) {
+        return false;
+      }
+    }
+
+    // 価格レンジフィルタ
+    if (minPriceYen != null || maxPriceYen != null) {
+      const carMinPrice = car.minPriceYen;
+      const carMaxPrice = car.maxPriceYen;
+
+      if (
+        minPriceYen != null &&
+        carMaxPrice != null &&
+        carMaxPrice < minPriceYen
+      ) {
+        return false;
+      }
+      if (
+        maxPriceYen != null &&
+        carMinPrice != null &&
+        carMinPrice > maxPriceYen
+      ) {
+        return false;
+      }
+    }
+
+    // 価格帯バンドフィルタ
+    if (priceBandFilter && car.priceBand !== priceBandFilter) {
+      return false;
+    }
 
     return true;
   });
@@ -190,16 +312,34 @@ export default async function CarsPage({ searchParams }: PageProps) {
   }
   // sortKey が空のときは登録順（all の順）を維持
 
+  const totalModels = all.length;
+  const totalFiltered = sorted.length;
+
+  // ページング
+  const maxPage =
+    totalFiltered === 0
+      ? 1
+      : Math.max(1, Math.ceil(totalFiltered / perPage));
+  const currentPage =
+    requestedPage < 1 ? 1 : requestedPage > maxPage ? maxPage : requestedPage;
+
+  const startIndex = (currentPage - 1) * perPage;
+  const paged = sorted.slice(startIndex, startIndex + perPage);
+
   const hasFilter =
     Boolean(q) ||
     Boolean(makerFilter) ||
     Boolean(difficultyFilter) ||
     Boolean(bodyTypeFilter) ||
     Boolean(segmentFilter) ||
-    Boolean(sortKey);
+    Boolean(sortKey) ||
+    Boolean(rawMinYear) ||
+    Boolean(rawMaxYear) ||
+    Boolean(rawMinPrice) ||
+    Boolean(rawMaxPrice) ||
+    Boolean(priceBandFilter);
 
   // インデックス用の簡易統計
-  const totalModels = all.length;
   const basicCount = all.filter((c) => c.difficulty === "basic").length;
   const intermediateCount = all.filter(
     (c) => c.difficulty === "intermediate",
@@ -208,6 +348,28 @@ export default async function CarsPage({ searchParams }: PageProps) {
 
   const sedanCount = all.filter((c) => c.bodyType?.includes("セダン")).length;
   const suvCount = all.filter((c) => c.bodyType?.includes("SUV")).length;
+
+  // ページネーションやVIEW切替で使う共通クエリ
+  const baseQueryParams: Record<string, string | undefined> = {
+    q: rawQ || undefined,
+    maker: makerFilter || undefined,
+    difficulty: difficultyFilter || undefined,
+    bodyType: bodyTypeFilter || undefined,
+    segment: segmentFilter || undefined,
+    sort: sortKey || undefined,
+    minYear: rawMinYear || undefined,
+    maxYear: rawMaxYear || undefined,
+    minPrice: rawMinPrice || undefined,
+    maxPrice: rawMaxPrice || undefined,
+    priceBand: priceBandFilter || undefined,
+    perPage: perPageRaw || undefined,
+    view: viewRaw || undefined,
+  };
+
+  const paginationBaseParams = {
+    ...baseQueryParams,
+    page: undefined,
+  };
 
   return (
     <main className="min-h-screen bg-site text-text-main">
@@ -238,7 +400,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                   条件で絞り込める車種一覧
                 </h1>
                 <p className="mt-3 max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
-                  メーカー ボディタイプ セグメント 維持の難易度で絞り込みながら
+                  メーカーボディタイプセグメント維持の難易度に加えて年式レンジやおおよその価格帯で絞り込みながら
                   気になる車種の概要を一覧で確認できるページ
                   詳細ページでは関連ニュースやコラムもあわせて参照できる構成
                 </p>
@@ -247,7 +409,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 <div className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 shadow-soft-glow backdrop-blur">
                   <span className="h-1.5 w-1.5 rounded-full bg-tiffany-500" />
                   <span className="tracking-[0.18em]">
-                    IMPORT / PREMIUM ORIENTED
+                    IMPORT/PREMIUM ORIENTED
                   </span>
                 </div>
                 <p className="mt-2 max-w-xs leading-relaxed tracking-[0.03em]">
@@ -279,20 +441,20 @@ export default async function CarsPage({ searchParams }: PageProps) {
               </div>
               <div className="text-right text-[10px] text-slate-500">
                 <p>
-                  やさしい:{" "}
-                  <span className="font-semibold text-emerald-600">
+                  やさしい:
+                  <span className="ml-1 font-semibold text-emerald-600">
                     {basicCount}
                   </span>
                 </p>
                 <p>
-                  標準的:{" "}
-                  <span className="font-semibold text-amber-600">
+                  標準的:
+                  <span className="ml-1 font-semibold text-amber-600">
                     {intermediateCount}
                   </span>
                 </p>
                 <p>
-                  気を使う:{" "}
-                  <span className="font-semibold text-rose-600">
+                  気を使う:
+                  <span className="ml-1 font-semibold text-rose-600">
                     {advancedCount}
                   </span>
                 </p>
@@ -305,13 +467,13 @@ export default async function CarsPage({ searchParams }: PageProps) {
               </p>
               <div className="mt-2 flex flex-wrap gap-2 text-[11px]">
                 <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-800">
-                  セダン系: {sedanCount} 車種
+                  セダン系:{sedanCount}車種
                 </span>
                 <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-800">
-                  SUV系: {suvCount} 車種
+                  SUV系:{suvCount}車種
                 </span>
                 <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-500">
-                  クーペ/ハッチバックなど順次追加
+                  クーペやハッチバックなど順次追加
                 </span>
               </div>
             </GlassCard>
@@ -323,15 +485,15 @@ export default async function CarsPage({ searchParams }: PageProps) {
               <div className="mt-2 flex flex-wrap gap-2 text-[11px]">
                 <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 shadow-sm">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  <span>やさしい（国産中心/故障リスク低め）</span>
+                  <span>やさしい(国産中心/故障リスク低め)</span>
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 shadow-sm">
                   <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
-                  <span>標準的（輸入車エントリー〜ミドル）</span>
+                  <span>標準的(輸入車エントリー〜ミドル)</span>
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 shadow-sm">
                   <span className="h-1.5 w-1.5 rounded-full bg-rose-400" />
-                  <span>気を使う（ハイパフォーマンス/旧車 etc.）</span>
+                  <span>気を使う(ハイパフォーマンスや旧車など)</span>
                 </span>
               </div>
             </GlassCard>
@@ -342,6 +504,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
         <Reveal delay={200}>
           <section className="mb-6 rounded-3xl border border-slate-200/80 bg-white/80 p-4 shadow-soft-card sm:p-5">
             <form className="space-y-4 text-xs sm:text-[11px]">
+              {/* 1段目 基本フィルタ */}
               <div className="grid gap-3 md:grid-cols-4">
                 {/* キーワード */}
                 <div>
@@ -352,7 +515,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                     type="search"
                     name="q"
                     defaultValue={rawQ}
-                    placeholder="車名 メーカー セグメントなどのキーワード"
+                    placeholder="車名メーカーセグメントなどのキーワード"
                     className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
                   />
                 </div>
@@ -415,6 +578,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 </div>
               </div>
 
+              {/* 2段目 難易度/年式/価格/SORT+ROWS */}
               <div className="grid gap-3 md:grid-cols-4">
                 {/* 維持難易度 */}
                 <div>
@@ -435,92 +599,218 @@ export default async function CarsPage({ searchParams }: PageProps) {
                   </select>
                 </div>
 
-                {/* ソート */}
+                {/* 年式レンジ */}
                 <div>
                   <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                    SORT BY
+                    MODEL YEAR RANGE
                   </label>
-                  <select
-                    name="sort"
-                    defaultValue={sortKey}
-                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
-                  >
-                    <option value="">{mapSortLabel("")}</option>
-                    <option value="name">{mapSortLabel("name")}</option>
-                    <option value="maker">{mapSortLabel("maker")}</option>
-                    <option value="newest">{mapSortLabel("newest")}</option>
-                    <option value="oldest">{mapSortLabel("oldest")}</option>
-                    <option value="difficulty">
-                      {mapSortLabel("difficulty")}
-                    </option>
-                  </select>
+                  <div className="mt-1 grid grid-cols-2 gap-2">
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      name="minYear"
+                      defaultValue={rawMinYear}
+                      placeholder="最小"
+                      className="w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                    />
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      name="maxYear"
+                      defaultValue={rawMaxYear}
+                      placeholder="最大"
+                      className="w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                    />
+                  </div>
+                  <p className="mt-1 text-[10px] leading-relaxed text-slate-400">
+                    例:2010〜2018の範囲で絞り込む想定
+                  </p>
                 </div>
 
-                {/* ダミースペース/今後の拡張用 */}
-                <div className="md:col-span-2">
+                {/* 価格レンジ */}
+                <div>
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    PRICE RANGE
+                  </label>
+                  <div className="mt-1 grid grid-cols-2 gap-2">
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      name="minPrice"
+                      defaultValue={rawMinPrice}
+                      placeholder="最小"
+                      className="w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                    />
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      name="maxPrice"
+                      defaultValue={rawMaxPrice}
+                      placeholder="最大"
+                      className="w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                    />
+                  </div>
+                  <p className="mt-1 text-[10px] leading-relaxed text-slate-400">
+                    単位は万円想定(例:300〜600)
+                  </p>
+                  {priceBands.length > 0 && (
+                    <div className="mt-2">
+                      <select
+                        name="priceBand"
+                        defaultValue={priceBandFilter}
+                        className="w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                      >
+                        <option value="">価格帯指定なし</option>
+                        {priceBands.map((band) => (
+                          <option key={band} value={band}>
+                            {band}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                </div>
+
+                {/* SORT + ROWS */}
+                <div>
+                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
+                    SORT/ROWS
+                  </label>
+                  <div className="mt-1 space-y-2">
+                    <select
+                      name="sort"
+                      defaultValue={sortKey}
+                      className="w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                    >
+                      <option value="">{mapSortLabel("")}</option>
+                      <option value="name">{mapSortLabel("name")}</option>
+                      <option value="maker">{mapSortLabel("maker")}</option>
+                      <option value="newest">{mapSortLabel("newest")}</option>
+                      <option value="oldest">{mapSortLabel("oldest")}</option>
+                      <option value="difficulty">
+                        {mapSortLabel("difficulty")}
+                      </option>
+                    </select>
+                    <select
+                      name="perPage"
+                      defaultValue={
+                        perPage === 24
+                          ? "24"
+                          : perPage === 48
+                          ? "48"
+                          : ""
+                      }
+                      className="w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
+                    >
+                      <option value="">
+                        1ページあたり12件(標準)
+                      </option>
+                      <option value="24">1ページあたり24件</option>
+                      <option value="48">1ページあたり48件</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              {/* NOTEとクイックプリセット */}
+              <div className="mt-1 grid gap-3 md:grid-cols-2">
+                <div>
                   <p className="text-[10px] font-medium tracking-[0.22em] text-slate-500">
                     NOTE
                   </p>
                   <p className="mt-1 text-[10px] leading-relaxed text-slate-500">
-                    将来的にはここに「年式レンジ」や「価格帯」など
-                    もう少し細かい条件を追加していく想定
+                    将来的にはここからさらに年式細分化やボディサイズなど
+                    もう少し細かい条件を追加していく前提
                   </p>
                 </div>
-              </div>
-
-              {/* クイックプリセット */}
-              <div className="flex flex-col gap-1.5 pt-1 text-[10px] text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-                <p className="font-medium tracking-[0.22em] text-slate-500">
-                  QUICK PRESET
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Link
-                    href="/cars?bodyType=%E3%82%BB%E3%83%80%E3%83%B3&difficulty=basic"
-                    className="rounded-full border border-emerald-100 bg-emerald-50/90 px-3 py-1 tracking-[0.16em] text-emerald-800 transition hover:border-emerald-300 hover:bg-emerald-50"
-                  >
-                    セダン×やさしい
-                  </Link>
-                  <Link
-                    href="/cars?bodyType=SUV&difficulty=intermediate"
-                    className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 tracking-[0.16em] hover:border-tiffany-300 hover:bg-white"
-                  >
-                    SUV×標準的
-                  </Link>
-                  <Link
-                    href="/cars?difficulty=advanced"
-                    className="rounded-full border border-slate-200 bg-white/90 px-3 py-1 tracking-[0.16em] hover:border-rose-300 hover:bg-white"
-                  >
-                    気を使うクルマだけ
-                  </Link>
+                <div className="flex flex-col gap-1.5 text-[10px] text-slate-500">
+                  <p className="font-medium tracking-[0.22em] text-slate-500">
+                    QUICK PRESET
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Link
+                      href="/cars?bodyType=%E3%82%BB%E3%83%80%E3%83%B3&difficulty=basic"
+                      className="rounded-full border border-emerald-100 bg-emerald-50/90 px-3 py-1 tracking-[0.16em] text-emerald-800 transition hover:border-emerald-300 hover:bg-emerald-50"
+                    >
+                      セダン×やさしい
+                    </Link>
+                    <Link
+                      href="/cars?bodyType=SUV&difficulty=intermediate"
+                      className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 tracking-[0.16em] hover:border-tiffany-300 hover:bg-white"
+                    >
+                      SUV×標準的
+                    </Link>
+                    <Link
+                      href="/cars?difficulty=advanced"
+                      className="rounded-full border border-slate-200 bg-white/90 px-3 py-1 tracking-[0.16em] hover:border-rose-300 hover:bg-white"
+                    >
+                      気を使うクルマだけ
+                    </Link>
+                  </div>
                 </div>
               </div>
 
               {/* ボタン */}
-              <div className="mt-3 flex items-center justify-end gap-3">
-                {hasFilter && (
-                  <Link
-                    href="/cars"
-                    className="text-[10px] tracking-[0.16em] text-slate-400 hover:text-slate-700"
+              <div className="mt-3 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2 text-[10px] text-slate-500">
+                  <span className="font-medium tracking-[0.22em] text-slate-500">
+                    VIEW MODE
+                  </span>
+                  <div className="inline-flex rounded-full bg-slate-100 p-1">
+                    <Link
+                      href={buildQueryString(baseQueryParams, {
+                        view: "card",
+                        page: "1",
+                      })}
+                      className={`rounded-full px-3 py-1 text-[10px] tracking-[0.16em] ${
+                        viewMode === "card"
+                          ? "bg-white text-slate-900 shadow-soft"
+                          : "text-slate-500 hover:text-slate-800"
+                      }`}
+                    >
+                      CARD
+                    </Link>
+                    <Link
+                      href={buildQueryString(baseQueryParams, {
+                        view: "list",
+                        page: "1",
+                      })}
+                      className={`rounded-full px-3 py-1 text-[10px] tracking-[0.16em] ${
+                        viewMode === "list"
+                          ? "bg-white text-slate-900 shadow-soft"
+                          : "text-slate-500 hover:text-slate-800"
+                      }`}
+                    >
+                      LIST
+                    </Link>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  {hasFilter && (
+                    <Link
+                      href="/cars"
+                      className="text-[10px] tracking-[0.16em] text-slate-400 hover:text-slate-700"
+                    >
+                      CLEAR
+                    </Link>
+                  )}
+                  <Button
+                    type="submit"
+                    size="sm"
+                    variant="primary"
+                    magnetic
+                    className="rounded-full px-5 py-2 text-[11px] tracking-[0.2em]"
                   >
-                    CLEAR
-                  </Link>
-                )}
-                <Button
-                  type="submit"
-                  size="sm"
-                  variant="primary"
-                  magnetic
-                  className="rounded-full px-5 py-2 text-[11px] tracking-[0.2em]"
-                >
-                  絞り込み
-                </Button>
+                    絞り込み
+                  </Button>
+                </div>
               </div>
             </form>
           </section>
         </Reveal>
 
         {/* アクティブフィルター表示 */}
-        {hasFilter && (
+        {(hasFilter || viewMode === "list" || perPage !== 12) && (
           <Reveal delay={230}>
             <div className="mb-6 flex flex-wrap items-center gap-2 text-[10px]">
               <span className="rounded-full bg-slate-50 px-2 py-0.5 text-slate-400">
@@ -528,39 +818,88 @@ export default async function CarsPage({ searchParams }: PageProps) {
               </span>
               {q && (
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                  keyword: <span className="font-semibold">“{rawQ}”</span>
+                  keyword:
+                  <span className="ml-1 font-semibold">“{rawQ}”</span>
                 </span>
               )}
               {makerFilter && (
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                  maker: <span className="font-semibold">{makerFilter}</span>
+                  maker:
+                  <span className="ml-1 font-semibold">{makerFilter}</span>
                 </span>
               )}
               {bodyTypeFilter && (
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                  body: <span className="font-semibold">{bodyTypeFilter}</span>
+                  body:
+                  <span className="ml-1 font-semibold">
+                    {bodyTypeFilter}
+                  </span>
                 </span>
               )}
               {segmentFilter && (
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                  segment:{" "}
-                  <span className="font-semibold">{segmentFilter}</span>
+                  segment:
+                  <span className="ml-1 font-semibold">
+                    {segmentFilter}
+                  </span>
                 </span>
               )}
               {difficultyFilter && (
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                  difficulty:{" "}
-                  <span className="font-semibold">
+                  difficulty:
+                  <span className="ml-1 font-semibold">
                     {mapDifficultyLabel(
                       difficultyFilter as CarItem["difficulty"],
                     )}
                   </span>
                 </span>
               )}
+              {(rawMinYear || rawMaxYear) && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  year:
+                  <span className="ml-1 font-semibold">
+                    {rawMinYear || "指定なし"}〜
+                    {rawMaxYear || "指定なし"}
+                  </span>
+                </span>
+              )}
+              {(rawMinPrice || rawMaxPrice) && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  price(万円):
+                  <span className="ml-1 font-semibold">
+                    {rawMinPrice || "指定なし"}〜
+                    {rawMaxPrice || "指定なし"}
+                  </span>
+                </span>
+              )}
+              {priceBandFilter && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  band:
+                  <span className="ml-1 font-semibold">
+                    {priceBandFilter}
+                  </span>
+                </span>
+              )}
               {sortKey && (
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                  sort:{" "}
-                  <span className="font-semibold">{mapSortLabel(sortKey)}</span>
+                  sort:
+                  <span className="ml-1 font-semibold">
+                    {mapSortLabel(sortKey)}
+                  </span>
+                </span>
+              )}
+              {perPage !== 12 && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  rows:
+                  <span className="ml-1 font-semibold">
+                    {perPage}件/ページ
+                  </span>
+                </span>
+              )}
+              {viewMode === "list" && (
+                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
+                  view:
+                  <span className="ml-1 font-semibold">LIST</span>
                 </span>
               )}
             </div>
@@ -569,38 +908,123 @@ export default async function CarsPage({ searchParams }: PageProps) {
 
         {/* 一覧 */}
         <section className="space-y-4" aria-label="車種一覧">
-          <div className="flex items-baseline justify-between">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
             <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
               CAR LIST
             </h2>
-            <div className="flex flex-col items-end text-[10px] text-slate-400">
+            <div className="flex flex-col items-end text-[10px] text-slate-400 sm:flex-row sm:items-center sm:gap-3">
               <span>
-                TOTAL{" "}
-                <span className="font-semibold text-slate-800">
-                  {all.length}
-                </span>{" "}
+                TOTAL
+                <span className="ml-1 font-semibold text-slate-800">
+                  {totalModels}
+                </span>
                 MODELS
               </span>
-              {sorted.length !== all.length && (
-                <span>
-                  FILTERED{" "}
-                  <span className="font-semibold text-tiffany-600">
-                    {sorted.length}
-                  </span>
+              <span>
+                FILTERED
+                <span className="ml-1 font-semibold text-tiffany-600">
+                  {totalFiltered}
                 </span>
-              )}
+                MODELS
+              </span>
+              <span>
+                PAGE
+                <span className="mx-1 font-semibold text-slate-800">
+                  {currentPage}
+                </span>
+                /
+                <span className="ml-1 font-semibold text-slate-800">
+                  {maxPage}
+                </span>
+              </span>
             </div>
           </div>
 
-          {sorted.length === 0 ? (
+          {totalFiltered === 0 ? (
             <p className="rounded-2xl border border-dashed border-slate-200 bg-white/70 p-6 text-center text-xs text-slate-500">
               条件に合うクルマはなし
               絞り込み条件を少し緩めて再検索する想定
             </p>
+          ) : viewMode === "list" ? (
+            // 情報密度高めのリストビュー
+            <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white/90">
+              <table className="min-w-full divide-y divide-slate-100 text-[11px]">
+                <thead className="bg-slate-50/80">
+                  <tr className="text-left text-[10px] font-semibold tracking-[0.16em] text-slate-500">
+                    <th className="px-4 py-2">CAR</th>
+                    <th className="px-4 py-2">BODY/SEGMENT</th>
+                    <th className="px-4 py-2">YEAR</th>
+                    <th className="px-4 py-2">DIFFICULTY</th>
+                    <th className="px-4 py-2">SUMMARY</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {paged.map((car) => (
+                    <tr
+                      key={car.id}
+                      className="hover:bg-slate-50/80"
+                    >
+                      <td className="px-4 py-3 align-top">
+                        <Link
+                          href={`/cars/${encodeURIComponent(car.slug)}`}
+                          className="block"
+                        >
+                          <div className="text-[10px] font-semibold tracking-[0.22em] text-tiffany-700">
+                            {car.maker}
+                          </div>
+                          <div className="text-[12px] font-semibold text-slate-900">
+                            {car.name}
+                          </div>
+                          <div className="text-[10px] text-slate-400">
+                            {car.slug}
+                          </div>
+                        </Link>
+                      </td>
+                      <td className="px-4 py-3 align-top">
+                        <div className="flex flex-wrap gap-1 text-[10px] text-slate-700">
+                          {car.bodyType && (
+                            <span className="rounded-full bg-slate-100 px-2 py-0.5">
+                              {car.bodyType}
+                            </span>
+                          )}
+                          {car.segment && (
+                            <span className="rounded-full bg-slate-100 px-2 py-0.5">
+                              {car.segment}
+                            </span>
+                          )}
+                        </div>
+                      </td>
+                      <td className="px-4 py-3 align-top text-[10px] text-slate-600">
+                        {car.releaseYear
+                          ? `${car.releaseYear}年頃`
+                          : "未設定"}
+                      </td>
+                      <td className="px-4 py-3 align-top">
+                        <span
+                          className={[
+                            "inline-flex items-center rounded-full border px-3 py-1 text-[10px]",
+                            difficultyBadgeClass(car.difficulty),
+                          ].join(" ")}
+                        >
+                          {mapDifficultyLabel(car.difficulty)}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 align-top text-[11px] text-text-sub">
+                        <p className="line-clamp-3 leading-relaxed">
+                          {car.summary ??
+                            "この車種についての詳細なインプレッションは順次追加予定。"}
+                        </p>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           ) : (
+            // カードビュー
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {sorted.map((car) => {
-                // ここで常にプレースホルダーを使う
+              {paged.map((car) => {
+                // 画像はプレースホルダー固定
                 const thumbnail = "/images/cars/placeholder.jpg";
 
                 return (
@@ -660,7 +1084,9 @@ export default async function CarsPage({ searchParams }: PageProps) {
                                 difficultyBadgeClass(car.difficulty),
                               ].join(" ")}
                             >
-                              維持難易度: {mapDifficultyLabel(car.difficulty)}
+                              維持難易度:{mapDifficultyLabel(
+                                car.difficulty,
+                              )}
                             </span>
                           </div>
                         </div>
@@ -670,6 +1096,97 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 );
               })}
             </div>
+          )}
+
+          {/* ページネーション */}
+          {totalFiltered > 0 && maxPage > 1 && (
+            <nav
+              className="mt-6 flex justify-center"
+              aria-label="ページネーション"
+            >
+              <div className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white/80 px-2 py-1 text-[10px] shadow-soft-card">
+                <Link
+                  href={buildQueryString(paginationBaseParams, {
+                    page: String(
+                      currentPage > 1 ? currentPage - 1 : 1,
+                    ),
+                  })}
+                  className={`rounded-full px-3 py-1 ${
+                    currentPage === 1
+                      ? "text-slate-300"
+                      : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                  }`}
+                  aria-disabled={currentPage === 1}
+                >
+                  ← PREV
+                </Link>
+                {Array.from({ length: maxPage }).map((_, idx) => {
+                  const pageNum = idx + 1;
+                  const active = pageNum === currentPage;
+                  if (maxPage > 7) {
+                    // 簡易省略表示
+                    if (
+                      pageNum !== 1 &&
+                      pageNum !== maxPage &&
+                      Math.abs(pageNum - currentPage) > 1
+                    ) {
+                      if (
+                        (pageNum === 2 && currentPage > 3) ||
+                        (pageNum === maxPage - 1 &&
+                          currentPage < maxPage - 2)
+                      ) {
+                        return (
+                          <span
+                            key={pageNum}
+                            className="px-2 py-1 text-slate-300"
+                          >
+                            …
+                          </span>
+                        );
+                      }
+                      if (
+                        pageNum !== 2 &&
+                        pageNum !== maxPage - 1
+                      ) {
+                        return null;
+                      }
+                    }
+                  }
+                  return (
+                    <Link
+                      key={pageNum}
+                      href={buildQueryString(paginationBaseParams, {
+                        page: String(pageNum),
+                      })}
+                      className={`rounded-full px-3 py-1 ${
+                        active
+                          ? "bg-slate-900 text-slate-50"
+                          : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                      }`}
+                    >
+                      {pageNum}
+                    </Link>
+                  );
+                })}
+                <Link
+                  href={buildQueryString(paginationBaseParams, {
+                    page: String(
+                      currentPage < maxPage
+                        ? currentPage + 1
+                        : maxPage,
+                    ),
+                  })}
+                  className={`rounded-full px-3 py-1 ${
+                    currentPage === maxPage
+                      ? "text-slate-300"
+                      : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                  }`}
+                  aria-disabled={currentPage === maxPage}
+                >
+                  NEXT →
+                </Link>
+              </div>
+            </nav>
           )}
         </section>
       </div>
