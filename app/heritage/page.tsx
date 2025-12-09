@@ -18,12 +18,12 @@ export const metadata: Metadata = {
     "ブランドの系譜や名車の歴史を、年代やメーカーごとに整理してたどれるHERITAGEコンテンツ。",
 };
 
-// 検索パラメータ
+// Next.js の searchParams 仕様に合わせた型
 type SearchParams = {
-  q?: string;
-  maker?: string;
-  era?: string;
-  tag?: string;
+  q?: string | string[];
+  maker?: string | string[];
+  era?: string | string[];
+  tag?: string | string[];
 };
 
 type PageProps = {
@@ -42,6 +42,12 @@ function normalize(value: string | undefined | null): string {
 
 function isNonEmptyString(value: string | null | undefined): value is string {
   return typeof value === "string" && value.trim().length > 0;
+}
+
+// string | string[] | undefined を安全に1つの string にする
+function toSingle(value: string | string[] | undefined): string {
+  if (Array.isArray(value)) return value[0] ?? "";
+  return value ?? "";
 }
 
 function parseDate(value?: string | null): Date | null {
@@ -95,12 +101,12 @@ export default async function HeritageIndexPage({ searchParams }: PageProps) {
       item.status === "PUBLIC",
   );
 
-  // 検索パラメータ
-  const rawQ = searchParams?.q ?? "";
+  // searchParams をすべて toSingle() で正規化
+  const rawQ = toSingle(searchParams?.q);
   const q = normalize(rawQ);
-  const makerFilter = (searchParams?.maker ?? "").trim();
-  const eraFilter = (searchParams?.era ?? "").trim();
-  const tagFilter = (searchParams?.tag ?? "").trim();
+  const makerFilter = toSingle(searchParams?.maker).trim();
+  const eraFilter = toSingle(searchParams?.era).trim();
+  const tagFilter = toSingle(searchParams?.tag).trim();
 
   // セレクト用候補
   const makers: string[] = Array.from(
@@ -334,7 +340,7 @@ export default async function HeritageIndexPage({ searchParams }: PageProps) {
                       </select>
                     </div>
 
-                    {/* クイックプリセット */}
+                    {/* クイックプリセット（メーカー） */}
                     <div className="flex flex-col gap-1 pt-1 text-[10px] text-slate-500">
                       <span className="font-medium tracking-[0.22em] text-slate-500">
                         QUICK NAV
