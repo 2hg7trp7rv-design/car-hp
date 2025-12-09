@@ -41,14 +41,149 @@ type HeroStats = {
   heritageCount: number;
 };
 
+type CrossTimelineItem = {
+  id: string;
+  kind: "news" | "column" | "guide" | "heritage";
+  title: string;
+  href: string;
+  dateLabel: string | null;
+  meta: string;
+};
+
 type HomePageData = {
   latestNews: NewsItem[];
   latestCars: CarItem[];
   latestColumns: ColumnItem[];
   latestGuides: GuideItem[];
   latestHeritage: HeritageItem[];
+  crossTimeline: CrossTimelineItem[];
   stats: HeroStats;
 };
+
+function safeDateFromISO(value?: string | null): Date | null {
+  if (!value) return null;
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return null;
+  return d;
+}
+
+function formatDateLabel(date: Date | null): string | null {
+  if (!date) return null;
+  const y = date.getFullYear();
+  const m = `${date.getMonth() + 1}`.padStart(2, "0");
+  const d = `${date.getDate()}`.padStart(2, "0");
+  return `${y}/${m}/${d}`;
+}
+
+function mapColumnCategoryShort(category: ColumnItem["category"]): string {
+  switch (category) {
+    case "MAINTENANCE":
+      return "メンテナンス・トラブル";
+    case "TECHNICAL":
+      return "ブランド・技術";
+    case "OWNER_STORY":
+      return "オーナーストーリー";
+    default:
+      return "コラム";
+  }
+}
+
+function mapGuideCategoryShort(category?: GuideItem["category"]): string {
+  switch (category) {
+    case "MONEY":
+      return "お金・維持費";
+    case "PROCEDURE":
+      return "手続き・名義変更";
+    case "INSURANCE":
+      return "保険・リスク";
+    case "BUY":
+      return "購入ガイド";
+    case "SELL":
+      return "売却ガイド";
+    default:
+      return "ガイド";
+  }
+}
+
+function buildCrossTimeline(
+  news: NewsItem[],
+  columns: ColumnItem[],
+  guides: GuideItem[],
+  heritage: HeritageItem[],
+): CrossTimelineItem[] {
+  type ItemWithTime = CrossTimelineItem & { sortTime: number | null };
+
+  const items: ItemWithTime[] = [];
+
+  news.forEach((n) => {
+    const d = safeDateFromISO(n.publishedAt ?? null);
+    items.push({
+      id: `news-${n.id}`,
+      kind: "news",
+      title: n.titleJa || n.title,
+      href: `/news/${encodeURIComponent(n.id)}`,
+      dateLabel: formatDateLabel(d),
+      meta:
+        n.maker && n.category
+          ? `${n.maker} · ${n.category}`
+          : n.maker || n.category || "NEWS",
+      sortTime: d ? d.getTime() : null,
+    });
+  });
+
+  columns.forEach((c) => {
+    const d = safeDateFromISO(c.publishedAt ?? null);
+    items.push({
+      id: `column-${c.id}`,
+      kind: "column",
+      title: c.title,
+      href: `/column/${encodeURIComponent(c.slug)}`,
+      dateLabel: formatDateLabel(d),
+      meta: mapColumnCategoryShort(c.category),
+      sortTime: d ? d.getTime() : null,
+    });
+  });
+
+  guides.forEach((g) => {
+    const d = safeDateFromISO(g.publishedAt ?? null);
+    items.push({
+      id: `guide-${g.id}`,
+      kind: "guide",
+      title: g.title,
+      href: `/guide/${encodeURIComponent(g.slug)}`,
+      dateLabel: formatDateLabel(d),
+      meta: mapGuideCategoryShort(g.category),
+      sortTime: d ? d.getTime() : null,
+    });
+  });
+
+  heritage.forEach((h) => {
+    const baseTitle = h.titleJa ?? h.title;
+    const d = safeDateFromISO(h.publishedAt ?? h.updatedAt ?? null);
+    items.push({
+      id: `heritage-${h.id}`,
+      kind: "heritage",
+      title: baseTitle,
+      href: `/heritage/${encodeURIComponent(h.slug)}`,
+      dateLabel: formatDateLabel(d),
+      meta:
+        h.maker && h.eraLabel
+          ? `${h.maker} · ${h.eraLabel}`
+          : h.maker || h.eraLabel || "HERITAGE",
+      sortTime: d ? d.getTime() : null,
+    });
+  });
+
+  items.sort((a, b) => {
+    if (a.sortTime === null && b.sortTime === null) return 0;
+    if (a.sortTime === null) return 1;
+    if (b.sortTime === null) return -1;
+    return b.sortTime - a.sortTime;
+  });
+
+  const limited = items.slice(0, 12);
+  return limited.map(({ sortTime, ...rest }) => rest);
+}
 
 async function getHomePageData(): Promise<HomePageData> {
   const [news, cars, columns, guides, heritage] = await Promise.all([
@@ -101,12 +236,15 @@ async function getHomePageData(): Promise<HomePageData> {
     heritageCount: heritage.length,
   };
 
+  const crossTimeline = buildCrossTimeline(news, columns, guides, heritage);
+
   return {
     latestNews: news,
     latestCars,
     latestColumns,
     latestGuides,
     latestHeritage,
+    crossTimeline,
     stats,
   };
 }
@@ -118,6 +256,7 @@ export default async function HomePage() {
     latestColumns,
     latestGuides,
     latestHeritage,
+    crossTimeline,
     stats,
   } = await getHomePageData();
 
@@ -166,13 +305,13 @@ export default async function HomePage() {
 
                 {/* Bento レイアウト */}
                 <div className="grid auto-rows-[minmax(0,1fr)] grid-cols-1 gap-4 md:grid-cols-12 md:gap-5 lg:gap-6">
-                  {/* NEWS：メインカード（左上・大きめ） */}
+                  {/* NEWS: メインカード */}
                   <Reveal className="md:col-span-7 lg:col-span-7 lg:row-span-2">
                     <GlassCard
                       as="section"
                       padding="lg"
                       interactive
-                      className="group relative flex h-full flex-col justify-between overflow-hidden border-slate-200/70 bg-gradient-to-br from-tiffany-50 via-white to-white shadow-soft-card"
+                      className="group relative flex hfull flex-col justify-between overflow-hidden border-slate-200/70 bg-gradient-to-br from-tiffany-50 via-white to-white shadow-soft-card"
                     >
                       {/* 背景の光 */}
                       <div className="pointer-events-none absolute inset-0">
@@ -260,7 +399,7 @@ export default async function HomePage() {
                     </GlassCard>
                   </Reveal>
 
-                  {/* CARS：車種カード（右側） */}
+                  {/* CARS: 車種カード */}
                   <Reveal className="md:col-span-5 lg:col-span-5">
                     <GlassCard
                       as="section"
@@ -302,7 +441,6 @@ export default async function HomePage() {
                           詳細ページからニュース コラム ガイドもあわせてチェックする想定
                         </p>
 
-                        {/* ハイライト車種 */}
                         <div className="mt-4 space-y-2">
                           {latestCars.slice(0, 3).map((car) => (
                             <Link
@@ -334,7 +472,7 @@ export default async function HomePage() {
                     </GlassCard>
                   </Reveal>
 
-                  {/* COLUMN：トラブル / 整備コラム */}
+                  {/* COLUMN: トラブル/整備コラム */}
                   <Reveal className="md:col-span-7 lg:col-span-5">
                     <GlassCard
                       as="section"
@@ -408,7 +546,7 @@ export default async function HomePage() {
                     </GlassCard>
                   </Reveal>
 
-                  {/* GUIDE：お金・維持・売却 */}
+                  {/* GUIDE: お金・維持・売却 */}
                   <Reveal className="md:col-span-5 lg:col-span-7">
                     <GlassCard
                       as="section"
@@ -480,7 +618,7 @@ export default async function HomePage() {
                     </GlassCard>
                   </Reveal>
 
-                  {/* HERITAGE：名車・ブランドの系譜 */}
+                  {/* HERITAGE: 名車・ブランドの系譜 */}
                   <Reveal className="md:col-span-12">
                     <GlassCard
                       as="section"
@@ -556,6 +694,77 @@ export default async function HomePage() {
                 </div>
               </div>
             </div>
+          </section>
+
+          {/* サイト全体の横断タイムライン */}
+          <section className="mt-10 border-t border-slate-200/70 pt-8">
+            <Reveal>
+              <header className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.28em] text-slate-500">
+                    CROSS CONTENT TIMELINE
+                  </p>
+                  <h2 className="serif-heading mt-1 text-lg font-medium tracking-tight text-slate-900 sm:text-xl">
+                    サイト全体の「最近の動き」
+                  </h2>
+                </div>
+                <p className="max-w-sm text-[10px] leading-relaxed text-slate-500 sm:text-xs">
+                  NEWS COLUMN GUIDE HERITAGE をまとめて
+                  公開日の新しい順に並べたタイムライン
+                  いま何が追加・更新されているかを一目で確認するためのエリア
+                </p>
+              </header>
+            </Reveal>
+
+            <Reveal delay={120}>
+              {crossTimeline.length === 0 ? (
+                <p className="rounded-2xl border border-dashed border-slate-200 bg-white/80 p-6 text-center text-xs text-slate-500">
+                  まだ横断的に表示できるコンテンツがありません。
+                  NEWS COLUMN GUIDE HERITAGE を追加していくと ここに時系列で並びます。
+                </p>
+              ) : (
+                <div className="rounded-3xl border border-slate-200/80 bg-white/95 p-4 shadow-soft sm:p-5">
+                  <ol className="space-y-3 text-xs">
+                    {crossTimeline.map((item) => (
+                      <li
+                        key={item.id}
+                        className="group relative flex items-start gap-3"
+                      >
+                        <div className="mt-[6px] h-[9px] w-[9px] flex-shrink-0 rounded-full bg-gradient-to-br from-tiffany-400 to-slate-400" />
+                        <div className="flex-1">
+                          <div className="flex flex-wrap items-baseline gap-2">
+                            <span className="rounded-full bg-slate-50 px-2 py-0.5 text-[9px] font-semibold tracking-[0.18em] text-slate-600">
+                              {item.kind === "news"
+                                ? "NEWS"
+                                : item.kind === "column"
+                                ? "COLUMN"
+                                : item.kind === "guide"
+                                ? "GUIDE"
+                                : "HERITAGE"}
+                            </span>
+                            {item.meta && (
+                              <span className="text-[10px] text-slate-500">
+                                {item.meta}
+                              </span>
+                            )}
+                            {item.dateLabel && (
+                              <span className="ml-auto text-[10px] text-slate-400">
+                                {item.dateLabel}
+                              </span>
+                            )}
+                          </div>
+                          <Link href={item.href}>
+                            <p className="mt-1 line-clamp-2 text-[12px] font-medium leading-relaxed text-slate-900 group-hover:underline">
+                              {item.title}
+                            </p>
+                          </Link>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+            </Reveal>
           </section>
 
           {/* CARS ハイライトセクション */}
