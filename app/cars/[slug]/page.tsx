@@ -1,6 +1,7 @@
 // app/cars/[slug]/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { getAllCars, getCarBySlug, type CarItem } from "@/lib/cars";
@@ -28,6 +29,20 @@ type ExtendedCarItem = CarItem & {
   relatedNewsIds?: string[];
   relatedColumnSlugs?: string[];
   relatedHeritageIds?: string[];
+
+  // こんな人におすすめ/向いていない
+  bestFor?: string[];
+  notFor?: string[];
+
+  // 維持メモ
+  maintenanceNotes?: string[];
+
+  // サイズ系スペック
+  lengthMm?: number;
+  widthMm?: number;
+  heightMm?: number;
+  wheelbaseMm?: number;
+  weightKg?: number;
 };
 
 type MultilineTextProps = {
@@ -131,6 +146,17 @@ function formatMakerAndName(car: ExtendedCarItem): string {
   return car.slug;
 }
 
+// サイズ表示用
+function formatMm(value?: number): string | null {
+  if (value == null) return null;
+  return `${value.toLocaleString()}mm`;
+}
+
+function formatKg(value?: number): string | null {
+  if (value == null) return null;
+  return `${value.toLocaleString()}kg`;
+}
+
 // メタデータ
 export async function generateMetadata(
   { params }: PageProps,
@@ -171,14 +197,27 @@ export default async function CarDetailPage({ params }: PageProps) {
   const zeroTo100 = formatZeroTo100(car.zeroTo100);
   const overviewText = car.summaryLong ?? car.summary ?? "";
   const characterText = car.costImpression ?? car.summary ?? "";
-
   const difficultyLabel = formatDifficultyLabel(car.difficulty);
+
+  const heroImage = car.heroImage ?? car.mainImage ?? null;
 
   const hasStrengths = Array.isArray(car.strengths) && car.strengths.length > 0;
   const hasWeaknesses =
     Array.isArray(car.weaknesses) && car.weaknesses.length > 0;
   const hasTroubleTrends =
     Array.isArray(car.troubleTrends) && car.troubleTrends.length > 0;
+
+  const hasBestFor = Array.isArray(car.bestFor) && car.bestFor.length > 0;
+  const hasNotFor = Array.isArray(car.notFor) && car.notFor.length > 0;
+  const hasMaintenanceNotes =
+    Array.isArray(car.maintenanceNotes) && car.maintenanceNotes.length > 0;
+
+  const hasSizeSpec =
+    car.lengthMm != null ||
+    car.widthMm != null ||
+    car.heightMm != null ||
+    car.wheelbaseMm != null ||
+    car.weightKg != null;
 
   const hasRelated =
     (car.relatedNewsIds && car.relatedNewsIds.length > 0) ||
@@ -206,7 +245,7 @@ export default async function CarDetailPage({ params }: PageProps) {
 
         {/* ヒーロー/概要ブロック */}
         <section className="mb-10 rounded-3xl border border-slate-200/80 bg-gradient-to-b from-white/95 via-white/90 to-vapor/70 p-6 shadow-soft-card backdrop-blur-sm sm:p-8">
-          {/* ラベル */}
+          {/* ラベル行 */}
           <div className="mb-4 flex items-center justify-between gap-3">
             <div className="flex items-center gap-2">
               <span className="h-[6px] w-[6px] rounded-full bg-tiffany-500" />
@@ -254,6 +293,11 @@ export default async function CarDetailPage({ params }: PageProps) {
                     燃費目安:{car.fuelEconomy}
                   </span>
                 )}
+                {zeroTo100 && (
+                  <span className="rounded-full bg-white/90 px-3 py-1 shadow-sm">
+                    加速:{zeroTo100}
+                  </span>
+                )}
               </div>
             </div>
 
@@ -273,6 +317,22 @@ export default async function CarDetailPage({ params }: PageProps) {
             )}
           </div>
 
+          {/* ヒーロー画像 */}
+          {heroImage && (
+            <div className="mt-6 overflow-hidden rounded-3xl border border-slate-200/80 bg-slate-950/90">
+              <div className="relative aspect-[16/9] w-full">
+                <Image
+                  src={heroImage}
+                  alt={title}
+                  fill
+                  sizes="(min-width: 1024px) 960px, 100vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
+          )}
+
           {/* 概要テキスト */}
           {overviewText && (
             <div className="mt-6 border-t border-slate-200 pt-6">
@@ -283,7 +343,7 @@ export default async function CarDetailPage({ params }: PageProps) {
 
         {/* メインコンテンツグリッド */}
         <section className="mb-10 grid gap-6 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-          {/* 基本スペック */}
+          {/* 基本スペック + サイズ */}
           <div className="space-y-6">
             <div className="rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
               <h2 className="serif-heading mb-6 text-lg font-medium text-slate-900">
@@ -326,6 +386,56 @@ export default async function CarDetailPage({ params }: PageProps) {
                     ),
                 )}
               </dl>
+
+              {hasSizeSpec && (
+                <div className="mt-6 rounded-2xl bg-slate-50/80 px-4 py-3">
+                  <p className="mb-2 text-[10px] font-semibold tracking-[0.18em] text-slate-500">
+                    サイズ感と取り回し
+                  </p>
+                  <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-[11px] text-slate-700">
+                    {car.lengthMm != null && (
+                      <div className="flex items-baseline justify-between gap-2">
+                        <dt className="text-slate-400">全長</dt>
+                        <dd className="font-medium">
+                          {formatMm(car.lengthMm)}
+                        </dd>
+                      </div>
+                    )}
+                    {car.widthMm != null && (
+                      <div className="flex items-baseline justify-between gap-2">
+                        <dt className="text-slate-400">全幅</dt>
+                        <dd className="font-medium">
+                          {formatMm(car.widthMm)}
+                        </dd>
+                      </div>
+                    )}
+                    {car.heightMm != null && (
+                      <div className="flex items-baseline justify-between gap-2">
+                        <dt className="text-slate-400">全高</dt>
+                        <dd className="font-medium">
+                          {formatMm(car.heightMm)}
+                        </dd>
+                      </div>
+                    )}
+                    {car.wheelbaseMm != null && (
+                      <div className="flex items-baseline justify-between gap-2">
+                        <dt className="text-slate-400">ホイールベース</dt>
+                        <dd className="font-medium">
+                          {formatMm(car.wheelbaseMm)}
+                        </dd>
+                      </div>
+                    )}
+                    {car.weightKg != null && (
+                      <div className="flex items-baseline justify-between gap-2">
+                        <dt className="text-slate-400">車両重量</dt>
+                        <dd className="font-medium">
+                          {formatKg(car.weightKg)}
+                        </dd>
+                      </div>
+                    )}
+                  </dl>
+                </div>
+              )}
             </div>
           </div>
 
@@ -375,7 +485,7 @@ export default async function CarDetailPage({ params }: PageProps) {
         </section>
 
         {/* 長所/短所セクション */}
-        {(hasStrengths || hasWeaknesses) && (
+        {(hasStrengths || hasWeaknesses || hasBestFor || hasNotFor) && (
           <section className="mb-10 rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
             <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
@@ -421,11 +531,52 @@ export default async function CarDetailPage({ params }: PageProps) {
                 </div>
               )}
             </div>
+
+            {(hasBestFor || hasNotFor) && (
+              <div className="mt-8 rounded-2xl bg-slate-50/80 px-4 py-4 text-[11px] text-slate-700">
+                <div className="grid gap-4 md:grid-cols-2">
+                  {hasBestFor && (
+                    <div>
+                      <p className="mb-2 text-[10px] font-semibold tracking-[0.18em] text-emerald-700">
+                        こんな人におすすめ
+                      </p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {car.bestFor?.map((label) => (
+                          <span
+                            key={label}
+                            className="rounded-full bg-white px-3 py-1 shadow-[0_0_0_1px_rgba(16,185,129,0.15)]"
+                          >
+                            {label}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {hasNotFor && (
+                    <div>
+                      <p className="mb-2 text-[10px] font-semibold tracking-[0.18em] text-rose-700">
+                        向いていないかもしれない人
+                      </p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {car.notFor?.map((label) => (
+                          <span
+                            key={label}
+                            className="rounded-full bg-white px-3 py-1 shadow-[0_0_0_1px_rgba(248,113,113,0.18)]"
+                          >
+                            {label}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </section>
         )}
 
         {/* トラブル傾向/維持の注意 */}
-        {hasTroubleTrends && (
+        {(hasTroubleTrends || hasMaintenanceNotes) && (
           <section className="mb-10 rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
             <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
@@ -438,14 +589,32 @@ export default async function CarDetailPage({ params }: PageProps) {
               </div>
             </div>
 
-            <ul className="space-y-2.5 text-[12px] text-slate-700">
-              {car.troubleTrends?.map((item, index) => (
-                <li key={index} className="flex items-start gap-2.5">
-                  <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-amber-400" />
-                  <p className="leading-relaxed">{item}</p>
-                </li>
-              ))}
-            </ul>
+            {hasMaintenanceNotes && (
+              <div className="mb-4 rounded-2xl bg-slate-50/80 px-4 py-3 text-[12px] leading-relaxed text-slate-700">
+                <p className="mb-1 text-[10px] font-semibold tracking-[0.18em] text-slate-500">
+                  維持のメモ
+                </p>
+                <ul className="mt-1 space-y-1.5">
+                  {car.maintenanceNotes?.map((note, index) => (
+                    <li key={index} className="flex gap-2">
+                      <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400" />
+                      <span>{note}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {hasTroubleTrends && (
+              <ul className="space-y-2.5 text-[12px] text-slate-700">
+                {car.troubleTrends?.map((item, index) => (
+                  <li key={index} className="flex items-start gap-2.5">
+                    <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-amber-400" />
+                    <p className="leading-relaxed">{item}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
           </section>
         )}
 
@@ -455,7 +624,7 @@ export default async function CarDetailPage({ params }: PageProps) {
             <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <h2 className="serif-heading text-lg font-medium text-slate-900">
-                  関連ニュース/コラム/HERITAGEへ
+                  関連ニュース COLUMN HERITAGEへ
                 </h2>
                 <p className="mt-1 text-[11px] text-slate-500">
                   この車種に関連するニュースやコラム ブランドのHERITAGEへ飛べるアンカー
@@ -471,7 +640,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                   href={`/news/${encodeURIComponent(id)}`}
                   className="rounded-full bg-slate-100 px-3 py-1 text-slate-700 transition hover:bg-tiffany-50 hover:text-tiffany-700"
                 >
-                  関連ニュースへ:id:{id}
+                  関連NEWS:{id}
                 </Link>
               ))}
               {car.relatedColumnSlugs?.map((slug) => (
@@ -480,7 +649,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                   href={`/column/${encodeURIComponent(slug)}`}
                   className="rounded-full bg-slate-100 px-3 py-1 text-slate-700 transition hover:bg-tiffany-50 hover:text-tiffany-700"
                 >
-                  関連コラムへ:{slug}
+                  関連COLUMN:{slug}
                 </Link>
               ))}
               {car.relatedHeritageIds?.map((id) => (
@@ -489,7 +658,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                   href={`/heritage/${encodeURIComponent(id)}`}
                   className="rounded-full bg-slate-100 px-3 py-1 text-slate-700 transition hover:bg-tiffany-50 hover:text-tiffany-700"
                 >
-                  関連HERITAGEへ:id:{id}
+                  関連HERITAGE:{id}
                 </Link>
               ))}
             </div>
