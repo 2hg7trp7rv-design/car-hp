@@ -281,6 +281,13 @@ function renderToc(chapters: Chapter[]) {
   );
 }
 
+// HeritageItem に series があるケースだけを安全に扱うための type guard
+type HeritageItemWithSeries = HeritageItem & { series?: string };
+
+function hasSeries(heritage: HeritageItem): heritage is HeritageItemWithSeries {
+  return typeof (heritage as any).series === "string";
+}
+
 // ------------ メタデータ ------------
 
 export async function generateStaticParams() {
@@ -397,7 +404,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                     {heritage.maker}
                   </span>
                 )}
-                {heritage.series && (
+                {hasSeries(heritage) && heritage.series && (
                   <span className="rounded-full border border-slate-700/80 px-2.5 py-0.5 text-[10px] uppercase tracking-[0.18em] text-slate-300">
                     {heritage.series}
                   </span>
@@ -524,8 +531,6 @@ export default async function HeritageDetailPage({ params }: PageProps) {
               )}
             </div>
           </Reveal>
-
-          {/* 右カラムにしていた説明カードは、読みやすさ優先で省略 */}
         </div>
       </section>
     </main>
