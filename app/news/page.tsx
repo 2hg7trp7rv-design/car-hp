@@ -1,3 +1,4 @@
+// app/news/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -158,11 +159,14 @@ function NewsListItem({ item }: NewsListItemProps) {
   const recent = isRecent(item, 7);
 
   return (
-    <Link
-      href={`/news/${encodeURIComponent(item.id)}`}
-      className="group block"
-    >
-      <article className="relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white/90 px-4 py-3 text-[11px] text-slate-900 shadow-[0_18px_40px_rgba(15,23,42,0.08)] transition hover:-translate-y-[1px] hover:border-tiffany-200/80 hover:bg-white hover:shadow-soft-card">
+    <Link href={`/news/${encodeURIComponent(item.id)}`} className="group block">
+      <GlassCard
+        as="article"
+        variant="dim"
+        padding="sm"
+        interactive
+        className="relative overflow-hidden text-[11px]"
+      >
         {/* タイムライン風インジケーター（左） */}
         <div className="pointer-events-none absolute -left-3 top-3 flex h-8 flex-col items-center justify-between opacity-40">
           <span className="h-5 w-px bg-slate-200" />
@@ -172,7 +176,7 @@ function NewsListItem({ item }: NewsListItemProps) {
         {/* カテゴリ/NEW/ソース */}
         <div className="mb-1 flex flex-wrap items-center gap-2">
           {item.category && (
-            <span className="inline-flex items-center rounded-full bg-slate-50 px-2 py-0.5 text-[10px] tracking-[0.16em] text-slate-500">
+            <span className="inline-flex items-center rounded-full bg-white/70 px-2 py-0.5 text-[10px] tracking-[0.16em] text-slate-500">
               {item.category.toUpperCase()}
             </span>
           )}
@@ -212,19 +216,19 @@ function NewsListItem({ item }: NewsListItemProps) {
             {tags.slice(0, 4).map((tag) => (
               <span
                 key={tag}
-                className="rounded-full bg-slate-50 px-2 py-1 text-[10px]"
+                className="rounded-full bg-white/70 px-2 py-1 text-[10px]"
               >
                 #{tag}
               </span>
             ))}
             {tags.length > 4 && (
-              <span className="rounded-full bg-slate-50 px-2 py-1">
+              <span className="rounded-full bg-white/70 px-2 py-1">
                 +{tags.length - 4}
               </span>
             )}
           </div>
         )}
-      </article>
+      </GlassCard>
     </Link>
   );
 }
@@ -310,8 +314,8 @@ export default async function NewsPage({ searchParams }: PageProps) {
   })();
 
   return (
-    <main className="min-h-screen bg-site text-text-main">
-      <div className="mx-auto max-w-6xl px-4 pb-24 pt-24 sm:px-6 lg:px-8">
+    <main className="min-h-screen text-text-main">
+      <div className="container max-w-6xl pb-24 pt-24">
         {/* パンくず */}
         <nav
           className="mb-6 text-xs text-slate-500"
@@ -392,7 +396,13 @@ export default async function NewsPage({ searchParams }: PageProps) {
 
         {/* フィルターエリア */}
         <Reveal delay={260}>
-          <section className="mb-6 rounded-3xl border border-slate-200/70 bg-white/90 p-4 text-slate-900 shadow-soft">
+          <GlassCard
+            as="section"
+            padding="md"
+            variant="standard"
+            magnetic={false}
+            className="mb-6 text-slate-900"
+          >
             <form className="space-y-4 text-xs sm:text-[11px]">
               <div className="grid gap-3 md:grid-cols-4">
                 {/* キーワード */}
@@ -525,7 +535,7 @@ export default async function NewsPage({ searchParams }: PageProps) {
                 </Button>
               </div>
             </form>
-          </section>
+          </GlassCard>
         </Reveal>
 
         {/* アクティブフィルター表示 */}
@@ -593,7 +603,8 @@ export default async function NewsPage({ searchParams }: PageProps) {
                   as="section"
                   padding="lg"
                   interactive
-                  className="relative overflow-hidden border border-tiffany-100 bg-gradient-to-br from-tiffany-50 via-white to-white text-slate-900 shadow-soft-card"
+                  variant="crystal"
+                  className="relative overflow-hidden text-slate-900"
                 >
                   {/* 背景光 */}
                   <div className="pointer-events-none absolute -left-24 -top-24 h-64 w-64 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.28),_transparent_70%)] blur-3xl" />
@@ -701,7 +712,9 @@ export default async function NewsPage({ searchParams }: PageProps) {
                 <GlassCard
                   as="section"
                   padding="md"
-                  className="border border-slate-200/70 bg-white/90 text-slate-900"
+                  variant="standard"
+                  magnetic={false}
+                  className="text-slate-900"
                 >
                   <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-500">
                     QUICK SOURCE
@@ -732,7 +745,9 @@ export default async function NewsPage({ searchParams }: PageProps) {
                 <GlassCard
                   as="section"
                   padding="md"
-                  className="border border-slate-200/70 bg-white/90 text-slate-900"
+                  variant="standard"
+                  magnetic={false}
+                  className="text-slate-900"
                 >
                   <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-500">
                     MAKER FOCUS
