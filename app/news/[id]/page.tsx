@@ -23,6 +23,7 @@ type PageProps = {
 // Domain層のNewsItemをベースに、画面用の追加フィールドだけ拡張
 type NewsWithMeta = NewsItem & {
   imageUrl?: string | null;
+  sourceName?: string | null;
 };
 
 function formatDate(iso?: string | null): string | null {
@@ -35,7 +36,20 @@ function formatDate(iso?: string | null): string | null {
   return `${y}.${m}.${day}`;
 }
 
-// SSG用:全ニュースのidから動的パスを生成
+function getSourceLabel(news: NewsWithMeta): string | null {
+  if (news.sourceName && typeof news.sourceName === "string") {
+    return news.sourceName;
+  }
+  if (!news.url) return null;
+  try {
+    const u = new URL(news.url);
+    return u.hostname.replace(/^www\./, "");
+  } catch {
+    return null;
+  }
+}
+
+// SSG用: 全ニュースのidから動的パスを生成
 export async function generateStaticParams() {
   const all = await getAllNews();
   return all.map((item) => ({
@@ -140,6 +154,8 @@ export default async function NewsDetailPage({ params }: PageProps) {
 
   const titleJa = news.titleJa ?? news.title;
   const dateLabel = formatDate(news.publishedAt);
+  const sourceLabel = getSourceLabel(news);
+
   const tags: string[] = Array.isArray(news.tags)
     ? news.tags.filter(
         (tag: unknown): tag is string => typeof tag === "string",
@@ -154,7 +170,10 @@ export default async function NewsDetailPage({ params }: PageProps) {
       <section className="border-b border-slate-200 bg-gradient-to-b from-slate-50 to-slate-100">
         <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 md:py-10">
           <Reveal>
-            <nav className="flex items-center text-xs text-slate-500">
+            <nav
+              className="flex items-center text-xs text-slate-500"
+              aria-label="パンくずリスト"
+            >
               <Link href="/" className="hover:text-slate-800">
                 HOME
               </Link>
@@ -197,6 +216,11 @@ export default async function NewsDetailPage({ params }: PageProps) {
                       {news.category}
                     </span>
                   )}
+                  {sourceLabel && (
+                    <span className="rounded-full border border-slate-300 px-2.5 py-0.5 text-[11px] tracking-[0.08em] text-slate-600">
+                      SOURCE {sourceLabel}
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
@@ -209,53 +233,79 @@ export default async function NewsDetailPage({ params }: PageProps) {
         <div className="mx-auto grid max-w-5xl gap-6 px-4 py-8 md:grid-cols-[minmax(0,2fr)_minmax(0,1.1fr)] md:py-10">
           {/* 本文 */}
           <div className="space-y-6">
-            <GlassCard className="bg-white/80">
-              <div className="space-y-5 p-4 md:p-6">
+            <GlassCard className="bg-white/90">
+              <div className="space-y-6 p-4 md:p-6">
                 {news.imageUrl && (
-                  <div className="aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-100" />
-                  // 画像は後でnext/imageに差し替え予定
-                )}
-                {news.commentJa && (
-                  <div className="space-y-3 whitespace-pre-line text-sm leading-relaxed text-slate-700">
-                    {news.commentJa}
+                  <div className="aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-100">
+                    {/* 画像は後でnext/imageに差し替え予定 */}
                   </div>
                 )}
-                {!news.commentJa && news.excerpt && (
-                  <p className="whitespace-pre-line text-sm leading-relaxed text-slate-700">
-                    {news.excerpt}
-                  </p>
+
+                {/* ニュース概要ブロック（excerpt優先） */}
+                {news.excerpt && (
+                  <section className="space-y-2">
+                    <h2 className="text-sm font-semibold tracking-[0.12em] text-slate-500">
+                      ニュース概要
+                    </h2>
+                    <p className="whitespace-pre-line text-sm leading-relaxed text-slate-700">
+                      {news.excerpt}
+                    </p>
+                  </section>
                 )}
 
+                {/* 編集部コメント（commentJa） */}
+                {news.commentJa && (
+                  <section className="space-y-2 border-t border-slate-100 pt-4">
+                    <h2 className="text-sm font-semibold tracking-[0.12em] text-slate-500">
+                      CAR BOUTIQUE編集部コメント
+                    </h2>
+                    <div className="space-y-3 whitespace-pre-line text-[13px] leading-relaxed text-slate-700 md:text-sm">
+                      {news.commentJa}
+                    </div>
+                  </section>
+                )}
+
+                {/* 元記事リンク＋出典 */}
                 {news.url && (
-                  <div className="pt-3">
+                  <section className="border-t border-slate-100 pt-4 text-xs">
+                    <p className="mb-1 text-[11px] font-medium tracking-[0.12em] text-slate-500">
+                      元記事・出典
+                    </p>
                     <a
                       href={news.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-xs font-medium text-tiffany-700 underline-offset-4 hover:underline"
+                      className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-3 py-1.5 text-[11px] font-medium text-slate-50 underline-offset-4 hover:bg-slate-800"
                     >
                       元記事を開く
                       <span className="text-[10px]">↗</span>
                     </a>
-                  </div>
+                    {sourceLabel && (
+                      <p className="mt-1 text-[11px] text-slate-500">
+                        出典:{sourceLabel}
+                      </p>
+                    )}
+                  </section>
                 )}
 
+                {/* タグ */}
                 {tags.length > 0 && (
-                  <div className="pt-4">
+                  <section className="border-t border-slate-100 pt-4">
                     <p className="mb-1 text-[11px] font-medium tracking-[0.16em] text-slate-500">
                       TAGS
                     </p>
                     <div className="flex flex-wrap gap-1.5">
                       {tags.map((tag) => (
-                        <span
+                        <Link
                           key={tag}
-                          className="rounded-full border border-slate-300 bg-slate-50 px-2.5 py-0.5 text-[11px] text-slate-700"
+                          href={`/news?tag=${encodeURIComponent(tag)}`}
+                          className="rounded-full border border-slate-300 bg-slate-50 px-2.5 py-0.5 text-[11px] text-slate-700 hover:border-tiffany-400 hover:bg-white"
                         >
-                          {tag}
-                        </span>
+                          #{tag}
+                        </Link>
                       ))}
                     </div>
-                  </div>
+                  </section>
                 )}
               </div>
             </GlassCard>
@@ -273,36 +323,38 @@ export default async function NewsDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* サイド:関連ニュース */}
-          <aside className="space-y-4">
-            <GlassCard className="bg-white/80">
+          {/* サイド: 関連ニュース */}
+          <aside className="space-y-4" aria-label="関連ニュース">
+            <GlassCard className="bg-white/90">
               <div className="space-y-3 p-4 md:p-5">
                 <h2 className="text-xs font-semibold tracking-[0.16em] text-slate-500">
                   RELATED NEWS
                 </h2>
                 <p className="text-[11px] text-slate-500">
-                  同じメーカーやカテゴリー、タグが近いニュースをピックアップしています。
+                  同じメーカーやカテゴリー タグが近いニュースをピックアップしています。
                 </p>
                 <div className="mt-3 space-y-3">
                   {related.map((item) => (
                     <Link
                       key={item.id}
                       href={`/news/${encodeURIComponent(item.id)}`}
-                      className="block rounded-lg border border-slate-200/80 bg-white/60 p-3 text-xs text-slate-800 transition hover:border-tiffany-300 hover:bg-white"
+                      className="block rounded-lg border border-slate-200/80 bg-white/70 p-3 text-xs text-slate-800 transition hover:border-tiffany-300 hover:bg-white"
                     >
                       <p className="mb-1 line-clamp-2 font-medium">
                         {item.titleJa ?? item.title}
                       </p>
-                      {item.maker && (
-                        <p className="text-[11px] text-slate-500">
-                          {item.maker}
-                        </p>
-                      )}
-                      {item.publishedAt && (
-                        <p className="mt-1 text-[11px] text-slate-400">
-                          {formatDate(item.publishedAt)}
-                        </p>
-                      )}
+                      <div className="flex flex-wrap items-center justify-between gap-1">
+                        {item.maker && (
+                          <p className="text-[11px] text-slate-500">
+                            {item.maker}
+                          </p>
+                        )}
+                        {item.publishedAt && (
+                          <p className="text-[11px] text-slate-400">
+                            {formatDate(item.publishedAt)}
+                          </p>
+                        )}
+                      </div>
                     </Link>
                   ))}
 
