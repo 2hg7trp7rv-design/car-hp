@@ -15,12 +15,21 @@ type GlassCardBaseProps = {
   as?: ElementType;
   children: ReactNode;
   padding?: Padding;
+  /**
+   * ホバー時の浮遊感など、インタラクティブな動きを付けるかどうか
+   */
   interactive?: boolean;
+  /**
+   * カードの質感バリエーション
+   * - standard: 白ベースの汎用カード
+   * - dim: Tiffany系の淡いガラスカード(デフォルト)
+   * - crystal: Heroなど強く見せたい場所用のクリスタルカード
+   */
   variant?: Variant;
   className?: string;
   /**
-   * MagneticArea による吸い付きインタラクションを有効にするか。
-   * デフォルト true。落ち着かせたいカードだけ false を指定。
+   * MagneticAreaによる吸い付きインタラクションを有効にするか
+   * デフォルトtrue。落ち着かせたいカードだけfalseを指定
    */
   magnetic?: boolean;
 };
@@ -28,11 +37,13 @@ type GlassCardBaseProps = {
 type GlassCardProps = GlassCardBaseProps & HTMLAttributes<HTMLElement>;
 
 /**
- * GlassCard Component Phase 2
+ * GlassCard Component
  *
- * 新しいカラーパレット 'tiffany-dim' を活用し、透明感だけでなく
- * 「物質としての奥行き」を表現したカードコンポーネント。
- * インタラクティブモードでは、物理的な浮遊感をシミュレートする。
+ * ラグジュアリー・デジタル・ブティックの世界観を支える
+ * 汎用ガラスカードコンポーネント。
+ * - 新カラーパレット(tiffany・tiffany-dim・vapor/ice・obsidian)対応
+ * - 背景グラデーション(bg-card-spot)やshadow-glass系と連携
+ * - MagneticAreaによる物理的な「吸い付き」をオプションで付与
  */
 export function GlassCard(props: GlassCardProps) {
   const {
@@ -40,7 +51,7 @@ export function GlassCard(props: GlassCardProps) {
     children,
     padding = "md",
     interactive = false,
-    variant = "dim", // Phase 2では dim を標準とします
+    variant = "dim", // デフォルトは最もブティック感の強いdim
     className,
     magnetic = true,
     ...rest
@@ -61,30 +72,34 @@ export function GlassCard(props: GlassCardProps) {
   // バリアントごとのスタイル定義（デザインシステムの中核）
   const variantStyles: Record<Variant, string> = {
     standard: [
-      "bg-white/70",
+      // 白ベースでどこにでも使えるカード
+      "bg-white/75",
       "backdrop-blur-lg",
       "border border-white/60",
       "shadow-soft-card",
     ].join(" "),
 
     dim: [
-      // 背景色：tiffany-dim-100をベースに、わずかに透けさせる
-      "bg-tiffany-dim-100/40",
-      // ブラー：強めにかけることで、背景のノイズを消し、高級感を出す
-      "backdrop-blur-xl",
-      // ボーダー：単色ではなく、光の反射を意識した色（dim-200）
-      "border border-tiffany-dim-200/50",
-      // 影：ガラスの厚みを表現するインナーシャドウ + 落ち影
+      // Tiffany系の淡い空気感をまとったカード
+      "bg-card-spot", // tailwind.configのbackgroundImage.card-spotを利用
+      "bg-origin-border",
+      "backdrop-blur-2xl",
+      // ボーダーはtiffany-dim系でほんのり色味を付ける
+      "border border-tiffany-dim-200/60",
+      // ガラスの厚みと奥行き
       "shadow-glass-deep",
-      // 微妙なグラデーションオーバーレイで質感をリッチに
-      "relative before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/40 before:to-transparent before:opacity-30 before:pointer-events-none before:rounded-[inherit]",
+      // 上部にうっすら光を入れるグラデーションオーバーレイ
+      "relative before:absolute before:inset-0",
+      "before:bg-gradient-to-br before:from-white/55 before:via-white/10 before:to-transparent",
+      "before:opacity-60 before:pointer-events-none before:rounded-[inherit]",
     ].join(" "),
 
     crystal: [
-      "bg-gradient-to-br from-white/90 via-white/30 to-tiffany-50/20",
+      // Hero・特集カード用の強いクリスタル感
+      "bg-gradient-to-br from-white/95 via-white/40 to-tiffany-50/30",
       "backdrop-blur-2xl",
       "border border-white/80",
-      "shadow-glass-edge",
+      "shadow-glass-edge shadow-soft-glow",
     ].join(" "),
   };
 
@@ -92,10 +107,10 @@ export function GlassCard(props: GlassCardProps) {
     interactive
       ? [
           "cursor-pointer",
-          "transition-transform duration-500",
-          // magnetic=true の場合は MagneticArea が transform を担当するので
-          // ここでは hover:-translate-y を重ねない
-          magnetic ? "" : "hover:-translate-y-[2px]",
+          "transition-transform duration-500 ease-liquid",
+          "motion-safe:hover:scale-[1.01]",
+          // magnetic=trueのときtransformはMagneticArea側が主に担当するので
+          // ここでは軽いscaleのみ付与
         ]
           .filter(Boolean)
           .join(" ")
@@ -103,10 +118,15 @@ export function GlassCard(props: GlassCardProps) {
 
   const baseClasses = [
     "relative",
+    "group",
     "overflow-hidden",
     "rounded-3xl",
-    "border",
-    "bg-white/60",
+    // フォーカスリング(アクセシビリティ)
+    "focus-visible:outline-none",
+    "focus-visible:ring-2",
+    "focus-visible:ring-tiffany-400/60",
+    "focus-visible:ring-offset-2",
+    "focus-visible:ring-offset-white/80",
   ].join(" ");
 
   const classes = [
