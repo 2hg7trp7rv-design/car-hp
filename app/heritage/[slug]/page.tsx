@@ -51,173 +51,238 @@ function findNeighbors(
   currentSlug: string,
 ): { prev: HeritageItem | null; next: HeritageItem | null } {
   const index = chain.findIndex((item) => item.slug === currentSlug);
-  if (index === -1) {
-    return { prev: null, next: null };
-  }
+  if (index === -1) return { prev: null, next: null };
   const prev = index > 0 ? chain[index - 1] : null;
   const next = index < chain.length - 1 ? chain[index + 1] : null;
   return { prev, next };
 }
 
-// --- 本文パース ---------------------------------------------------------
+// ------------ 本文パーサーまわり ------------
 
-type ChapterBlock = {
+type Chapter = {
   id: string;
-  index: number;
   title: string;
-  paragraphs: string[];
+  content: string;
 };
 
-type ParsedBody = {
-  introParagraphs: string[];
-  chapters: ChapterBlock[];
-};
-
-function toParagraphs(lines: string[]): string[] {
-  const paragraphs: string[] = [];
-  let buffer: string[] = [];
-
-  const flush = () => {
-    if (buffer.length > 0) {
-      paragraphs.push(buffer.join(" "));
-      buffer = [];
-    }
-  };
-
-  for (const raw of lines) {
-    const line = raw.trim();
-    if (!line) {
-      flush();
-      continue;
-    }
-    buffer.push(line);
-  }
-  flush();
-  return paragraphs;
-}
-
-/**
- * heritage.body を
- * - 冒頭のイントロ
- * - 「■」から始まる行ごとのチャプター
- * に分解する。
- */
-function parseHeritageBody(body?: string | null): ParsedBody {
-  if (!body) {
-    return { introParagraphs: [], chapters: [] };
-  }
-
+function parseChapters(body: string): Chapter[] {
   const lines = body.split(/\r?\n/);
-  const introLines: string[] = [];
 
-  const chapters: ChapterBlock[] = [];
+  const chapters: Chapter[] = [];
   let currentTitle: string | null = null;
   let currentLines: string[] = [];
-  let chapterStarted = false;
 
-  const startNewChapter = () => {
-    if (currentTitle !== null) {
-      const idx = chapters.length + 1;
-      chapters.push({
-        id: `chapter-${idx}`,
-        index: idx,
-        title: currentTitle,
-        paragraphs: toParagraphs(currentLines),
-      });
-    }
+  const pushCurrent = () => {
+    if (!currentTitle) return;
+    chapters.push({
+      id: `chapter-${chapters.length + 1}`,
+      title: currentTitle.trim(),
+      content: currentLines.join("\n").trim(),
+    });
+    currentTitle = null;
     currentLines = [];
   };
 
   for (const raw of lines) {
-    const line = raw.replace(/\s+$/u, "");
-    const trimmed = line.trim();
-
-    if (/^■\s*/.test(trimmed)) {
-      // 新チャプター開始
-      startNewChapter();
-      currentTitle = trimmed.replace(/^■\s*/, "");
-      chapterStarted = true;
+    const trimmed = raw.trim();
+    if (!trimmed) {
+      currentLines.push("");
       continue;
     }
 
-    if (!chapterStarted) {
-      introLines.push(line);
+    if (trimmed.startsWith("■")) {
+      // 新しい章の開始
+      pushCurrent();
+      currentTitle = trimmed.replace(/^■\s*/, "");
     } else {
-      currentLines.push(line);
+      currentLines.push(raw);
     }
   }
 
-  startNewChapter();
-
-  return {
-    introParagraphs: toParagraphs(introLines),
-    chapters,
-  };
+  pushCurrent();
+  return chapters;
 }
-
-// --- キーワード強調 -----------------------------------------------------
 
 function escapeRegExp(str: string): string {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-/**
- * heritage から、デフォルトの強調キーワード候補をざっくり抽出。
- * - タイトルや modelName に含まれる GT-R / M3 / M5 など
- * - 足りない場合は JSON 側で highlightKeywords を持たせて補う想定
- */
-function getDefaultHighlightKeywords(heritage: HeritageItem): string[] {
-  const base =
-    (heritage.titleJa ?? "") +
-    " " +
-    (heritage.title ?? "") +
-    " " +
-    (heritage.modelName ?? "");
-  const list: string[] = [];
+const HIGHLIGHT_WORDS = [
+  "GT-R",
+  "スカイラインGT-R",
+  "スカイライン",
+  "ハコスカ",
+  "ケンメリ",
+  "R32",
+  "R33",
+  "R34",
+  "R35",
+  "PGC10",
+  "KPGC10",
+  "KPGC110",
+  "BNR32",
+  "BCNR33",
+  "BNR34",
+  "S20型",
+  "RB26DETT",
+  "VR38DETT",
+  "NISSAN",
+];
 
-  if (base.includes("GT-R")) list.push("GT-R");
-  if (base.includes("M3")) list.push("M3");
-  if (base.includes("M5")) list.push("M5");
+const HIGHLIGHT_REGEX = new RegExp(
+  HIGHLIGHT_WORDS.map(escapeRegExp).join("|"),
+  "g",
+);
 
-  return Array.from(new Set(list));
-}
+function highlightInline(text: string) {
+  if (!text) return text;
 
-/**
- * 指定されたキーワードを本文中で強調表示する。
- * 例: ["GT-R", "M3"] を渡すと、その文字列だけ赤系でハイライト。
- */
-function renderEmphasizedText(
-  text: string,
-  keywords: string[],
-) {
-  const valid = keywords.filter((k) => k && k.length > 0);
-  if (valid.length === 0) {
+  let lastIndex = 0;
+  const nodes: (string | JSX.Element)[] = [];
+
+  text.replace(HIGHLIGHT_REGEX, (match, offset) => {
+    if (offset > lastIndex) {
+      nodes.push(text.slice(lastIndex, offset));
+    }
+    nodes.push(
+      <span
+        key={`${match}-${offset}`}
+        className="font-semibold text-rose-300"
+      >
+        {match}
+      </span>,
+    );
+    lastIndex = offset + match.length;
+    return match;
+  });
+
+  if (lastIndex === 0) {
+    // ハイライト対象なし
     return text;
   }
 
-  const pattern = new RegExp(
-    `(${valid.map(escapeRegExp).join("|")})`,
-    "g",
-  );
-  const parts = text.split(pattern);
+  if (lastIndex < text.length) {
+    nodes.push(text.slice(lastIndex));
+  }
 
-  return parts.map((part, idx) =>
-    valid.includes(part) ? (
-      <span
-        key={idx}
-        className="font-semibold text-rose-400"
+  return nodes;
+}
+
+function renderChapterBody(content: string) {
+  const lines = content.split(/\r?\n/);
+
+  const elements: JSX.Element[] = [];
+  let listBuffer: { type: "ul" | "ol"; items: string[] } | null = null;
+
+  const flushList = () => {
+    if (!listBuffer) return;
+
+    if (listBuffer.type === "ul") {
+      elements.push(
+        <ul
+          key={`ul-${elements.length}`}
+          className="space-y-1 text-[13px] md:text-sm leading-relaxed text-slate-100"
+        >
+          {listBuffer.items.map((item, idx) => (
+            <li key={idx} className="flex gap-2">
+              <span className="mt-[7px] h-[3px] w-[3px] rounded-full bg-slate-500" />
+              <span>{highlightInline(item.replace(/^・\s*/, ""))}</span>
+            </li>
+          ))}
+        </ul>,
+      );
+    } else {
+      elements.push(
+        <ol
+          key={`ol-${elements.length}`}
+          className="space-y-1 text-[13px] md:text-sm leading-relaxed text-slate-100"
+        >
+          {listBuffer.items.map((item, idx) => {
+            const numMatch = item.match(/^(\d+)\./);
+            const num = numMatch ? numMatch[1] : String(idx + 1);
+            return (
+              <li key={idx} className="flex gap-2">
+                <span className="mt-[1px] min-w-[1.5rem] text-right text-xs font-semibold text-slate-400">
+                  {num}.
+                </span>
+                <span>{highlightInline(item.replace(/^\d+\.\s*/, ""))}</span>
+              </li>
+            );
+          })}
+        </ol>,
+      );
+    }
+
+    listBuffer = null;
+  };
+
+  for (const raw of lines) {
+    const line = raw.trim();
+
+    // 空行→段落区切り
+    if (!line) {
+      flushList();
+      continue;
+    }
+
+    // 番号付きリスト
+    if (/^\d+\./.test(line)) {
+      if (!listBuffer || listBuffer.type !== "ol") {
+        flushList();
+        listBuffer = { type: "ol", items: [] };
+      }
+      listBuffer.items.push(line);
+      continue;
+    }
+
+    // 箇条書き
+    if (line.startsWith("・")) {
+      if (!listBuffer || listBuffer.type !== "ul") {
+        flushList();
+        listBuffer = { type: "ul", items: [] };
+      }
+      listBuffer.items.push(line);
+      continue;
+    }
+
+    // 通常段落
+    flushList();
+    elements.push(
+      <p
+        key={`p-${elements.length}`}
+        className="text-[13px] md:text-[15px] leading-relaxed text-slate-100"
       >
-        {part}
-      </span>
-    ) : (
-      <span key={idx}>{part}</span>
-    ),
+        {highlightInline(line)}
+      </p>,
+    );
+  }
+
+  flushList();
+
+  return (
+    <div className="mx-auto max-w-3xl space-y-3 md:space-y-4">{elements}</div>
   );
 }
 
-// --- SSG ---------------------------------------------------------------
+function renderToc(chapters: Chapter[]) {
+  if (chapters.length === 0) return null;
 
-// SSG用: 全HERITAGEのslugから動的パスを生成
+  return (
+    <ol className="mx-auto max-w-3xl space-y-1.5 text-[13px] md:text-sm leading-relaxed text-slate-100">
+      {chapters.map((chapter, index) => (
+        <li key={chapter.id} className="flex gap-2">
+          <span className="mt-[1px] min-w-[1.5rem] text-right text-xs font-semibold text-slate-400">
+            {index + 1}.
+          </span>
+          <span>{highlightInline(chapter.title)}</span>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+// ------------ メタデータ ------------
+
 export async function generateStaticParams() {
   const items = await getAllHeritage();
   return items.map((item) => ({
@@ -225,7 +290,6 @@ export async function generateStaticParams() {
   }));
 }
 
-// SEOメタ
 export async function generateMetadata(
   { params }: PageProps,
 ): Promise<Metadata> {
@@ -258,7 +322,7 @@ export async function generateMetadata(
   };
 }
 
-// --- Page本体 ----------------------------------------------------------
+// ------------ Page本体 ------------
 
 export default async function HeritageDetailPage({ params }: PageProps) {
   const heritage = await getHeritageBySlug(params.slug);
@@ -266,11 +330,6 @@ export default async function HeritageDetailPage({ params }: PageProps) {
   if (!heritage) {
     notFound();
   }
-
-  // 拡張メタ（JSONにあれば使う。なければ型エラーにならないように intersection で扱う）
-  const heritageWithMeta = heritage as HeritageItem & {
-    highlightKeywords?: string[] | null;
-  };
 
   const all = await getAllHeritage();
   const sameMaker = sortWithinMaker(
@@ -281,232 +340,192 @@ export default async function HeritageDetailPage({ params }: PageProps) {
         item.maker === heritage.maker,
     ),
   );
-
   const { prev, next } = findNeighbors(sameMaker, heritage.slug);
 
   const dateLabel =
     formatDateLabel(heritage.publishedAt) ??
     formatDateLabel(heritage.updatedAt);
   const tags = heritage.tags ?? [];
-
   const title = heritage.titleJa ?? heritage.title ?? heritage.slug;
 
-  const parsed = parseHeritageBody(heritage.body);
-
-  // 強調キーワード: JSONに highlightKeywords があればそれを優先し、なければ自動推定
-  const highlightKeywords =
-    (heritageWithMeta.highlightKeywords &&
-      heritageWithMeta.highlightKeywords.length > 0
-      ? heritageWithMeta.highlightKeywords
-      : getDefaultHighlightKeywords(heritage)) ?? [];
+  const body = heritage.body ?? heritage.summary ?? "";
+  const chapters = parseChapters(body);
+  const introChapter = chapters[0] ?? null;
+  const contentChapters = chapters.slice(1);
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-50 via-slate-900/70 to-slate-950 text-slate-50">
+    <main className="min-h-screen bg-slate-950 text-slate-50">
       {/* ヒーロー */}
-      <section className="border-b border-white/10 bg-gradient-to-b from-slate-50/80 via-slate-900/90 to-slate-950">
-        <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-10 sm:px-6 md:py-12">
+      <section className="border-b border-slate-800 bg-gradient-to-b from-slate-900/80 via-slate-950 to-slate-950">
+        <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 md:py-10">
           <Reveal>
-            <nav className="flex items-center text-[11px] text-slate-300">
-              <Link href="/" className="hover:text-white/90">
+            <nav className="flex items-center text-xs text-slate-400">
+              <Link href="/" className="hover:text-slate-100">
                 HOME
               </Link>
               <span className="mx-2 text-slate-500">/</span>
-              <Link
-                href="/heritage"
-                className="hover:text-white/90"
-              >
+              <Link href="/heritage" className="hover:text-slate-100">
                 HERITAGE
               </Link>
               <span className="mx-2 text-slate-500">/</span>
-              <span className="line-clamp-1 text-slate-400">
-                DETAIL
-              </span>
+              <span className="line-clamp-1 text-slate-400">DETAIL</span>
             </nav>
           </Reveal>
 
-          <Reveal delay={80}>
-            <header className="space-y-4">
-              <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold tracking-[0.24em] text-slate-300">
-                <span className="inline-flex items-center gap-2">
-                  <span className="h-px w-6 bg-emerald-300/70" />
-                  BRAND HERITAGE
-                </span>
+          <Reveal>
+            <div className="space-y-4">
+              <div className="flex flex-wrap items-center gap-3 text-[11px] tracking-[0.26em] text-slate-300">
+                <span className="uppercase">BRAND HERITAGE</span>
+                <span className="h-px w-10 bg-slate-500/60" />
                 {dateLabel && (
-                  <>
-                    <span className="h-px w-8 bg-slate-500/60" />
-                    <span className="text-[10px] tracking-[0.18em] text-slate-400">
-                      UPDATED {dateLabel}
-                    </span>
-                  </>
+                  <span className="tracking-normal text-slate-400">
+                    UPDATED {dateLabel}
+                  </span>
                 )}
               </div>
-
-              <h1 className="max-w-3xl text-[1.75rem] font-semibold leading-snug tracking-wide text-white sm:text-[2.1rem] md:text-[2.4rem]">
+              <h1 className="text-2xl font-semibold tracking-wide text-slate-50 md:text-3xl">
                 {title}
               </h1>
-
               {heritage.summary && (
-                <p className="max-w-3xl text-[14px] leading-7 text-slate-200 sm:text-[15px] sm:leading-8">
+                <p className="max-w-3xl text-[13px] md:text-[15px] leading-relaxed text-slate-200">
                   {heritage.summary}
                 </p>
               )}
-
-              <div className="flex flex-wrap items-center gap-2 text-[11px] text-slate-300">
+              <div className="flex flex-wrap gap-2 pt-1 text-[11px] text-slate-300">
                 {heritage.maker && (
-                  <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 uppercase tracking-[0.16em]">
+                  <span className="rounded-full border border-slate-600/80 px-2.5 py-0.5 uppercase tracking-[0.16em]">
                     {heritage.maker}
                   </span>
                 )}
-                {heritage.modelName && (
-                  <span className="text-[11px] text-slate-300">
-                    {heritage.modelName}
-                  </span>
-                )}
-                {heritage.eraLabel && (
-                  <span className="text-[11px] text-slate-400">
-                    {heritage.eraLabel}
+                {heritage.series && (
+                  <span className="rounded-full border border-slate-700/80 px-2.5 py-0.5 text-[10px] uppercase tracking-[0.18em] text-slate-300">
+                    {heritage.series}
                   </span>
                 )}
               </div>
-            </header>
+            </div>
           </Reveal>
         </div>
       </section>
 
-      {/* 本文＋前後リンク */}
-      <section className="border-b border-slate-900/60 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-950">
-        <div className="mx-auto max-w-5xl px-4 pb-14 pt-8 sm:px-6 md:pb-16 md:pt-10">
-          {/* イントロ（body の最初に別パートがある場合） */}
-          {parsed.introParagraphs.length > 0 && (
+      {/* 本文エリア */}
+      <section className="bg-gradient-to-b from-slate-950 via-slate-950 to-slate-950 pb-10 pt-6">
+        <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4">
+          {/* 01: 導入チャプター */}
+          {introChapter && (
             <Reveal>
-              <div className="mb-6 max-w-3xl text-[15px] leading-8 text-slate-100 sm:text-[15px] sm:leading-8">
-                {parsed.introParagraphs.map((p, idx) => (
-                  <p key={idx} className={idx > 0 ? "mt-3" : ""}>
-                    {renderEmphasizedText(p, highlightKeywords)}
-                  </p>
-                ))}
-              </div>
+              <GlassCard className="bg-slate-900/80 ring-1 ring-slate-800/80">
+                <div className="space-y-4 p-5 md:p-7">
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="text-[11px] font-semibold tracking-[0.26em] text-slate-400">
+                      01 CHAPTER
+                    </p>
+                  </div>
+                  <h2 className="text-[15px] md:text-lg font-semibold text-slate-50">
+                    {highlightInline(introChapter.title)}
+                  </h2>
+                  {renderChapterBody(introChapter.content)}
+                </div>
+              </GlassCard>
             </Reveal>
           )}
 
-          {/* CHAPTER カード */}
-          <div className="space-y-8">
-            {parsed.chapters.map((chapter) => (
-              <Reveal key={chapter.id}>
-                <GlassCard className="relative overflow-hidden rounded-[32px] border border-white/18 bg-gradient-to-br from-slate-900/85 via-slate-900/95 to-slate-950/95 shadow-[0_22px_60px_rgba(15,23,42,0.8)]">
-                  {/* 光のエフェクト */}
-                  <div className="pointer-events-none absolute -left-32 -top-32 h-64 w-64 rounded-full bg-[radial-gradient(circle_at_center,_rgba(59,130,246,0.25),_transparent_70%)] blur-3xl" />
-                  <div className="pointer-events-none absolute -right-28 bottom-[-40%] h-72 w-72 rounded-full bg-[radial-gradient(circle_at_center,_rgba(251,113,133,0.2),_transparent_75%)] blur-3xl" />
-
-                  <div className="relative z-10 px-5 py-6 sm:px-7 sm:py-8 md:px-10 md:py-10">
-                    {/* CHAPTER ラベル */}
-                    <div className="mb-4 flex items-center justify-between gap-3 text-[11px] font-semibold tracking-[0.22em] text-slate-300">
-                      <span className="inline-flex items-center gap-3">
-                        <span className="text-[10px] text-slate-400">
-                          {chapter.index.toString().padStart(2, "0")} CHAPTER
-                        </span>
-                        <span className="h-px w-10 bg-rose-400/80" />
-                      </span>
-                    </div>
-
-                    {/* 見出し */}
-                    <h2 className="text-[17px] font-semibold tracking-wide text-white sm:text-[18px] md:text-[20px]">
-                      {renderEmphasizedText(
-                        chapter.title,
-                        highlightKeywords,
-                      )}
-                    </h2>
-
-                    {/* 本文 */}
-                    <div className="mt-4 space-y-3 text-[15px] leading-8 text-slate-100 sm:text-[15px] sm:leading-8">
-                      {chapter.paragraphs.map((p, idx) => (
-                        <p key={idx}>
-                          {renderEmphasizedText(p, highlightKeywords)}
-                        </p>
-                      ))}
-                    </div>
+          {/* 02: 目次 */}
+          {chapters.length > 0 && (
+            <Reveal>
+              <GlassCard className="bg-slate-900/80 ring-1 ring-slate-800/80">
+                <div className="space-y-4 p-5 md:p-7">
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="text-[11px] font-semibold tracking-[0.26em] text-slate-400">
+                      02 CHAPTER
+                    </p>
                   </div>
-                </GlassCard>
-              </Reveal>
-            ))}
-
-            {/* body に「■」が無くて chapters が空だった場合は、従来どおり一括表示 */}
-            {parsed.chapters.length === 0 && heritage.body && (
-              <Reveal>
-                <GlassCard className="rounded-[32px] border border-white/18 bg-gradient-to-br from-slate-900/85 via-slate-900/95 to-slate-950/95 px-5 py-6 shadow-[0_22px_60px_rgba(15,23,42,0.8)] sm:px-7 sm:py-8 md:px-10 md:py-10">
-                  <div className="whitespace-pre-line text-[15px] leading-8 text-slate-100 sm:text-[15px] sm:leading-8">
-                    {renderEmphasizedText(
-                      heritage.body,
-                      highlightKeywords,
-                    )}
-                  </div>
-                </GlassCard>
-              </Reveal>
-            )}
-          </div>
-
-          {/* TAGS */}
-          {tags.length > 0 && (
-            <div className="mt-8">
-              <p className="mb-2 text-[11px] font-medium tracking-[0.18em] text-slate-400">
-                TAGS
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-slate-600 bg-slate-900/60 px-3 py-1 text-[11px] text-slate-100"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
+                  <h2 className="text-[15px] md:text-lg font-semibold text-slate-50">
+                    目次
+                  </h2>
+                  {renderToc(chapters)}
+                </div>
+              </GlassCard>
+            </Reveal>
           )}
 
-          {/* 戻る & 前後ナビ */}
-          <div className="mt-10 flex flex-col gap-4 text-[12px] text-slate-200 md:flex-row md:items-start md:justify-between">
-            <Link
-              href="/heritage"
-              className="inline-flex items-center gap-2 text-[12px] font-medium text-slate-200 underline-offset-4 hover:text-white hover:underline"
-            >
-              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-500 text-[11px]">
-                ←
-              </span>
-              HERITAGE 一覧に戻る
-            </Link>
+          {/* 03以降: 各世代チャプター */}
+          {contentChapters.map((chapter, index) => {
+            const chapterNo = index + 3;
+            const chapterLabel = String(chapterNo).padStart(2, "0");
+            return (
+              <Reveal key={chapter.id}>
+                <GlassCard className="bg-slate-900/80 ring-1 ring-slate-800/80">
+                  <div className="space-y-4 p-5 md:p-7">
+                    <div className="flex items-center justify-between gap-4">
+                      <p className="text-[11px] font-semibold tracking-[0.26em] text-slate-400">
+                        {chapterLabel} CHAPTER
+                      </p>
+                    </div>
+                    <h2 className="text-[15px] md:text-lg font-semibold text-slate-50">
+                      {highlightInline(chapter.title)}
+                    </h2>
+                    {renderChapterBody(chapter.content)}
+                  </div>
+                </GlassCard>
+              </Reveal>
+            );
+          })}
 
-            {(prev || next) && (
-              <div className="flex flex-1 flex-col gap-3 md:flex-row md:justify-end">
-                {prev && (
-                  <Link
-                    href={`/heritage/${encodeURIComponent(prev.slug)}`}
-                    className="inline-flex max-w-xs flex-1 flex-col gap-1 rounded-2xl border border-slate-700 bg-slate-900/70 px-4 py-3 text-left hover:border-emerald-400/60 hover:bg-slate-900"
-                  >
-                    <span className="text-[10px] font-semibold tracking-[0.18em] text-slate-400">
-                      PREVIOUS
-                    </span>
-                    <span className="line-clamp-2 text-[13px] font-medium text-slate-50">
-                      {prev.titleJa ?? prev.title}
-                    </span>
-                  </Link>
-                )}
-                {next && (
-                  <Link
-                    href={`/heritage/${encodeURIComponent(next.slug)}`}
-                    className="inline-flex max-w-xs flex-1 flex-col gap-1 rounded-2xl border border-slate-700 bg-slate-900/70 px-4 py-3 text-right hover:border-emerald-400/60 hover:bg-slate-900"
-                  >
-                    <span className="text-[10px] font-semibold tracking-[0.18em] text-slate-400">
-                      NEXT
-                    </span>
-                    <span className="line-clamp-2 text-[13px] font-medium text-slate-50">
-                      {next.titleJa ?? next.title}
-                    </span>
-                  </Link>
-                )}
+          {/* 下部ナビ */}
+          <Reveal>
+            <div className="flex flex-col gap-3 pt-2 text-xs">
+              <div className="flex flex-wrap gap-2">
+                <Link
+                  href="/heritage"
+                  className="inline-flex items-center gap-2 text-xs font-medium text-slate-300 underline-offset-4 hover:text-slate-50 hover:underline"
+                >
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full border border-slate-600 text-[11px]">
+                    ←
+                  </span>
+                  HERITAGE一覧に戻る
+                </Link>
               </div>
-            )}
-          </div>
+
+              {(prev || next) && (
+                <div className="flex flex-col gap-2 pt-1 text-xs text-slate-200 md:flex-row md:justify-between">
+                  {prev ? (
+                    <Link
+                      href={`/heritage/${encodeURIComponent(prev.slug)}`}
+                      className="inline-flex max-w-xs flex-col gap-1 border border-slate-700/80 bg-slate-900/80 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
+                    >
+                      <span className="text-[10px] text-slate-400">
+                        PREVIOUS
+                      </span>
+                      <span className="line-clamp-2 text-[12px] font-medium text-slate-50">
+                        {prev.titleJa ?? prev.title}
+                      </span>
+                    </Link>
+                  ) : (
+                    <span />
+                  )}
+
+                  {next ? (
+                    <Link
+                      href={`/heritage/${encodeURIComponent(next.slug)}`}
+                      className="inline-flex max-w-xs flex-col items-end gap-1 border border-slate-700/80 bg-slate-900/80 px-3 py-2 text-right hover:border-rose-400/70 hover:bg-slate-900"
+                    >
+                      <span className="text-[10px] text-slate-400">
+                        NEXT
+                      </span>
+                      <span className="line-clamp-2 text-[12px] font-medium text-slate-50">
+                        {next.titleJa ?? next.title}
+                      </span>
+                    </Link>
+                  ) : (
+                    <span />
+                  )}
+                </div>
+              )}
+            </div>
+          </Reveal>
+
+          {/* 右カラムにしていた説明カードは、読みやすさ優先で省略 */}
         </div>
       </section>
     </main>
