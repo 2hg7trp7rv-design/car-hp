@@ -11,6 +11,7 @@ type HeroStats = {
   columnsCount: number;
   newsCount: number;
   guidesCount: number;
+  heritageCount: number;
 };
 
 type HeroSectionProps = {
@@ -59,7 +60,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
               </span>
               <span className="hidden h-[1px] w-6 bg-slate-600/60 sm:inline-block" />
               <span className="hidden text-slate-300/70 sm:inline">
-                NEWS · COLUMNS · CAR DATABASE · GUIDE
+                NEWS · COLUMNS · CAR DATABASE · GUIDE · HERITAGE
               </span>
             </div>
           </Reveal>
@@ -110,12 +111,12 @@ export function HeroSection({ stats }: HeroSectionProps) {
                   <div className="flex items-center gap-2">
                     <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
                     <span className="tracking-[0.16em]">
-                      NEWS / COLUMN / CARS / GUIDE 連動
+                      NEWS / COLUMN / CARS / GUIDE / HERITAGE 連動
                     </span>
                   </div>
                   <p className="mt-2 leading-relaxed tracking-[0.03em]">
                     気になる車種のページを起点に
-                    関連ニュース コラム ガイドへ移動できる構成
+                    関連ニュース コラム ガイド HERITAGEへ移動できる構成
                   </p>
                 </div>
               </div>
@@ -132,7 +133,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
                 </div>
 
                 <p className="hidden text-[10px] tracking-[0.06em] text-slate-200/80 sm:inline">
-                  トラブル・修理コラムとガイドを連動
+                  トラブル・修理コラムとガイド HERITAGEを連動
                 </p>
               </div>
 
@@ -167,6 +168,14 @@ export function HeroSection({ stats }: HeroSectionProps) {
                         {stats.guidesCount}
                       </span>
                       <span className="text-[9px] text-slate-300">GUIDES</span>
+                    </div>
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-xs font-semibold text-white">
+                        {stats.heritageCount}
+                      </span>
+                      <span className="text-[9px] text-slate-300">
+                        HERITAGE
+                      </span>
                     </div>
                     <p className="mt-1 w-full text-[9px] text-slate-300/80">
                       とりあえず輸入車とプレミアム系が中心
@@ -325,7 +334,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
                   {hoveredBlock === "cars" &&
                     "CARS では気になる車種を並べて、サイズ スペック 維持のしやすさを比較するベースとして使う"}
                   {!hoveredBlock &&
-                    "NEWS COLUMN GUIDE CARS を行き来しながら、検討中の一台についての考えをゆっくり整理する場所"}
+                    "NEWS COLUMN GUIDE CARS HERITAGE を行き来しながら、検討中の一台についての考えをゆっくり整理する場所"}
                 </p>
               </div>
             </div>
