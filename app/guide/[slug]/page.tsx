@@ -365,7 +365,9 @@ export default async function GuideDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const { blocks, headings } = parseBody(guide.body);
+  // body の存在を念のため安全に扱う
+  const safeBody = typeof guide.body === "string" ? guide.body : "";
+  const { blocks, headings } = parseBody(safeBody);
   const relatedColumns = await getRelatedColumnsForGuide(guide);
   const stepHeadings = extractStepHeadings(headings);
 
@@ -495,7 +497,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   <p className="mt-1 leading-relaxed">
                     このガイドは、「{mapCategoryLabel(guideWithMeta.category)}」
                     に関する基本的な考え方や、順番を整理するためのメモです。細かい
-                    数字の比較というよりも、「まずここから押さえておくと楽」という
+                    数字の比較というよりも、まずここから押さえておくと楽という
                     目線で構成しています。
                   </p>
                 </div>
@@ -684,8 +686,8 @@ export default async function GuideDetailPage({ params }: PageProps) {
 
         {/* 関連する車種（GuideItem.relatedCarSlugs を利用） */}
         {relatedCarSlugs.length > 0 && (
-          <section className="mt-16 lg:mt-18">
-            <div className="mb-4 flex items-baseline justify-between gap-2">
+          <section className="mt-16 lg:mt-20">
+            <div className="mb-4 flex items-baseline justify之间 gap-2">
               <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
                 このガイドと関連する車種
               </h2>
@@ -715,7 +717,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
 
         {/* 関連コラム */}
         {relatedColumns.length > 0 && (
-          <section className="mt-18 lg:mt-20">
+          <section className="mt-20 lg:mt-24">
             <div className="mb-4 flex items-baseline justify-between gap-2">
               <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
                 このガイドと関連するコラム
