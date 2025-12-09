@@ -33,6 +33,7 @@ const config: Config = {
 
         // 空気色・素材色
         vapor: "#F0FBFB", // Ice Vapor: 白と青の中間にある空気色
+        ice: "#F0FBFB", // alias: ice カラーとしても使えるようにする
         obsidian: "#1A1A1A", // 柔らかい黒
         porcelain: "#FFFFFF", // 陶器のような白
 
@@ -55,8 +56,18 @@ const config: Config = {
       // グラデーション / 背景（仕様書: メッシュ系）
       // --------------------------------
       backgroundImage: {
-        // サイト共通の大気グラデーション（.bg-site とほぼ同等）
+        // サイト共通の大気グラデーション（メインのメッシュ）
         "site-mesh":
+          "radial-gradient(circle at 10% 20%, rgba(10, 186, 181, 0.08) 0%, transparent 45%)," +
+          "radial-gradient(circle at 90% 80%, rgba(10, 186, 181, 0.05) 0%, transparent 40%)," +
+          "linear-gradient(180deg, rgba(255,255,255,0) 0%, #FFFFFF 100%)",
+
+        // 互換用: bg-site / bg-atmosphere どちらでも同じメッシュを使えるようにする
+        site:
+          "radial-gradient(circle at 10% 20%, rgba(10, 186, 181, 0.08) 0%, transparent 45%)," +
+          "radial-gradient(circle at 90% 80%, rgba(10, 186, 181, 0.05) 0%, transparent 40%)," +
+          "linear-gradient(180deg, rgba(255,255,255,0) 0%, #FFFFFF 100%)",
+        atmosphere:
           "radial-gradient(circle at 10% 20%, rgba(10, 186, 181, 0.08) 0%, transparent 45%)," +
           "radial-gradient(circle at 90% 80%, rgba(10, 186, 181, 0.05) 0%, transparent 40%)," +
           "linear-gradient(180deg, rgba(255,255,255,0) 0%, #FFFFFF 100%)",
@@ -129,7 +140,7 @@ const config: Config = {
       spacing: {
         // セクション縦方向の標準値（仕様書: 120–200px）
         "section-sm": "3.5rem", // ~56px
-        "section": "5rem", // ~80px
+        section: "5rem", // ~80px
         "section-lg": "7.5rem", // ~120px
         "section-xl": "9.5rem", // ~152px
       },
