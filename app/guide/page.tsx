@@ -1,3 +1,4 @@
+// app/guide/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -117,20 +118,8 @@ export default async function GuidePage() {
   const totalTopics = sortedGuides.length;
 
   return (
-    <main className="min-h-screen bg-site text-text-main">
-      {/* --- 背景：Tiffanyメッシュ + ラジアル光源 --- */}
-      <div className="pointer-events-none fixed inset-0 z-0">
-        {/* 上層のホワイトレイヤー（紙のトーン） */}
-        <div className="absolute left-0 top-0 h-[50vh] w-full bg-gradient-to-b from-white/90 via-white/60 to-transparent" />
-        {/* 左上 Tiffany 光 */}
-        <div className="absolute -left-[18%] -top-[18%] h-[52vw] w-[52vw] rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.22),_transparent_70%)] blur-[110px]" />
-        {/* 右下 Obsidian 系の落ち着いた光 */}
-        <div className="absolute bottom-[-20%] -right-[18%] h-[60vw] w-[60vw] rounded-full bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.25),_transparent_75%)] blur-[110px]" />
-        {/* うっすらノイズ */}
-        <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-7xl px-4 pb-28 pt-24 sm:px-6 lg:px-8">
+    <main className="min-h-screen text-text-main">
+      <div className="container relative max-w-7xl pb-28 pt-24">
         {/* パンくず */}
         <nav
           aria-label="パンくずリスト"
@@ -469,7 +458,7 @@ export default async function GuidePage() {
                   実際のトラブル事例やブランドごとの傾向 車種ごとの維持難易度などは
                   NEWS COLUMN CARS 各ページの内容で補完する前提
                 </p>
-                <div className="flex flex-wrap justify-center gap-4">
+                <div className="flex flex-wrap justify中心 gap-4">
                   <Button
                     asChild
                     variant="primary"
