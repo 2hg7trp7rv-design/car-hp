@@ -15,14 +15,18 @@ export const metadata: Metadata = {
 };
 
 type SearchParams = {
-  q?: string;
-  category?: string;
-  tag?: string;
+  q?: string | string[];
+  category?: string | string[];
+  tag?: string | string[];
 };
 
 type PageProps = {
   searchParams?: SearchParams;
 };
+
+// ----------------------------------------
+// ユーティリティ
+// ----------------------------------------
 
 function normalize(value: string | undefined | null): string {
   return (value ?? "").trim().toLowerCase();
@@ -32,12 +36,19 @@ function isNonEmptyString(value: string | null | undefined): value is string {
   return typeof value === "string" && value.trim().length > 0;
 }
 
+function firstOf(param?: string | string[]): string {
+  if (!param) return "";
+  return Array.isArray(param) ? param[0] ?? "" : param;
+}
+
 function mapCategoryLabel(category: ColumnItem["category"]): string {
   switch (category) {
     case "MAINTENANCE":
       return "メンテナンス・トラブル";
     case "TECHNICAL":
       return "ブランド・技術・歴史";
+    case "OWNER_STORY":
+      return "オーナー体験談";
     default:
       return "コラム";
   }
@@ -56,10 +67,10 @@ function formatDate(value?: string | null) {
 export default async function ColumnPage({ searchParams }: PageProps) {
   const items = await getAllColumns();
 
-  const rawQ = searchParams?.q ?? "";
+  const rawQ = firstOf(searchParams?.q);
   const q = normalize(rawQ);
-  const categoryFilter = (searchParams?.category ?? "").trim();
-  const tagFilter = (searchParams?.tag ?? "").trim();
+  const categoryFilter = firstOf(searchParams?.category).trim();
+  const tagFilter = firstOf(searchParams?.tag).trim();
 
   const categories: string[] = Array.from(
     new Set(items.map((i) => i.category).filter(isNonEmptyString)),
@@ -96,6 +107,14 @@ export default async function ColumnPage({ searchParams }: PageProps) {
 
   const hasFilter = Boolean(q || categoryFilter || tagFilter);
 
+  // 新しい順に並べ替え（公開日 → タイトル）
+  const sortedFiltered = [...filtered].sort((a, b) => {
+    const ta = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
+    const tb = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
+    if (ta !== tb) return tb - ta;
+    return (a.title ?? "").localeCompare(b.title ?? "", "ja");
+  });
+
   // ── 簡易インデックス ──
   const totalArticles = items.length;
   const maintenanceCount = items.filter(
@@ -118,8 +137,12 @@ export default async function ColumnPage({ searchParams }: PageProps) {
         )
       : null;
 
-  // クイックプリセット向けに、先頭数件のタグを「人気タグ」として扱う
+  // クイックプリセット向け「人気タグ」
   const featuredTags = tags.slice(0, 4);
+
+  // 最も新しい1本をハイライトとして抜き出し
+  const featured = sortedFiltered[0] ?? null;
+  const rest = featured ? sortedFiltered.slice(1) : [];
 
   return (
     <main className="min-h-screen bg-site text-text-main">
@@ -161,7 +184,7 @@ export default async function ColumnPage({ searchParams }: PageProps) {
           <section className="mb-6">
             <GlassCard
               padding="md"
-              className="relative overflow-hidden border border-white/80 bg-gradient-to-r from-white/96 via-white/88 to-vapor/95 shadow-soft"
+              className="relative overflow-hidden border border-white/80 bg-gradient-to-r from-white/95 via-white/88 to-vapor/95 shadow-soft"
             >
               {/* 光レイヤー */}
               <div className="pointer-events-none absolute inset-0">
@@ -374,11 +397,17 @@ export default async function ColumnPage({ searchParams }: PageProps) {
 
         {/* 一覧 */}
         <Reveal delay={260}>
-          <section className="space-y-4" aria-label="コラム一覧">
-            <div className="flex items-baseline justify-between">
-              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
-                COLUMN LIST
-              </h2>
+          <section className="space-y-5" aria-label="コラム一覧">
+            {/* 上部: ハイライト + メタ情報 */}
+            <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div>
+                <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
+                  COLUMN LIST
+                </h2>
+                <p className="mt-1 text-[10px] text-slate-500">
+                  新しい順に並べ替え済み 気になるテーマがあればタイトルから詳細へ
+                </p>
+              </div>
               <div className="flex flex-col items-end text-[10px] text-slate-400">
                 <span>
                   TOTAL{" "}
@@ -387,24 +416,96 @@ export default async function ColumnPage({ searchParams }: PageProps) {
                   </span>{" "}
                   ARTICLES
                 </span>
-                {filtered.length !== items.length && (
+                {sortedFiltered.length !== items.length && (
                   <span>
                     FILTERED{" "}
                     <span className="font-semibold text-tiffany-600">
-                      {filtered.length}
+                      {sortedFiltered.length}
                     </span>
                   </span>
                 )}
               </div>
             </div>
 
-            {filtered.length === 0 ? (
+            {/* ハイライト */}
+            {featured && (
+              <GlassCard
+                as="section"
+                padding="lg"
+                interactive
+                className="relative mb-2 overflow-hidden border border-tiffany-100 bg-gradient-to-br from-tiffany-50 via-white to-white text-slate-900 shadow-soft-card"
+              >
+                <div className="pointer-events-none absolute inset-0">
+                  <div className="absolute -left-24 -top-24 h-56 w-56 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.22),_transparent_70%)] blur-3xl" />
+                  <div className="absolute -right-24 bottom-[-40%] h-72 w-72 rounded-full bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.2),_transparent_70%)] blur-3xl" />
+                </div>
+
+                <div className="relative z-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="max-w-xl space-y-2">
+                    <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-600">
+                      <span className="rounded-full bg-black/80 px-3 py-1 text-[10px] font-semibold tracking-[0.2em] text-slate-50">
+                        FEATURED
+                      </span>
+                      <span className="rounded-full bg-white/80 px-2 py-1 text-[10px]">
+                        {mapCategoryLabel(featured.category)}
+                      </span>
+                      {featured.readMinutes && (
+                        <span className="rounded-full bg-white/80 px-2 py-1 text-[10px]">
+                          約{featured.readMinutes}分
+                        </span>
+                      )}
+                      {featured.publishedAt && (
+                        <span className="ml-auto text-[10px] text-slate-500">
+                          {formatDate(featured.publishedAt)}
+                        </span>
+                      )}
+                    </div>
+
+                    <Link
+                      href={`/column/${encodeURIComponent(featured.slug)}`}
+                      className="block"
+                    >
+                      <h2 className="serif-heading text-lg font-medium leading-relaxed text-slate-900 sm:text-xl">
+                        {featured.title}
+                      </h2>
+                    </Link>
+
+                    {featured.summary && (
+                      <p className="text-[11px] leading-relaxed text-text-sub sm:text-xs">
+                        {featured.summary}
+                      </p>
+                    )}
+                  </div>
+
+                  {(featured.tags?.length ?? 0) > 0 && (
+                    <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-slate-600 sm:mt-0 sm:max-w-xs sm:justify-end">
+                      {featured.tags!.slice(0, 6).map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full bg-white/80 px-2 py-1"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </GlassCard>
+            )}
+
+            {/* 残り一覧 */}
+            {sortedFiltered.length === 0 ? (
               <p className="rounded-2xl border border-dashed border-slate-200 bg-white/70 p-6 text-center text-xs text-slate-500">
                 条件に合うコラムはなし 絞り込み条件を少し緩めて再検索する想定
               </p>
+            ) : rest.length === 0 && featured ? (
+              // フィルタ後1件しかない場合はメッセージだけ
+              <p className="rounded-2xl border border-slate-100 bg-white/80 p-6 text-center text-[11px] text-slate-500">
+                絞り込み条件に合うコラムは 現在表示中の1本のみ
+              </p>
             ) : (
               <div className="grid gap-4 md:grid-cols-2">
-                {filtered.map((item) => (
+                {rest.map((item) => (
                   <Link
                     key={item.slug}
                     href={`/column/${encodeURIComponent(item.slug)}`}
