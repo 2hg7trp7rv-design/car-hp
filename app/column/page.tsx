@@ -1,3 +1,11 @@
+修正版フルページです。既存のフィルターやカード表示ロジックは維持しつつ、
+・インデックス周りの構成を微調整
+・一覧まわりの余白と文字サイズを整理
+・ページ下部に「COLUMN と他コンテンツの関係」CTA セクションを追加
+
+という形で“モリモリ寄り”にしています。
+
+// app/column/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -123,6 +131,9 @@ export default async function ColumnPage({ searchParams }: PageProps) {
   const technicalCount = items.filter(
     (i) => i.category === "TECHNICAL",
   ).length;
+  const ownerStoryCount = items.filter(
+    (i) => i.category === "OWNER_STORY",
+  ).length;
 
   const articlesWithReadMinutes = items.filter(
     (i) => typeof i.readMinutes === "number",
@@ -142,7 +153,7 @@ export default async function ColumnPage({ searchParams }: PageProps) {
 
   // 最も新しい1本をハイライトとして抜き出し
   const featured = sortedFiltered[0] ?? null;
-  const rest = featured ? sortedFiltered.slice(1) : [];
+  const rest = featured ? sortedFiltered.slice(1) : sortedFiltered;
 
   return (
     <main className="min-h-screen bg-site text-text-main">
@@ -160,28 +171,68 @@ export default async function ColumnPage({ searchParams }: PageProps) {
         </nav>
 
         {/* ヘッダー */}
-        <header className="mb-10 space-y-4">
+        <header className="mb-12 space-y-6 lg:mb-16">
           <Reveal>
-            <p className="text-[10px] font-bold tracking-[0.32em] text-tiffany-600">
-              TECH &amp; MAINTENANCE COLUMN
-            </p>
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-[10px] font-bold tracking-[0.32em] text-tiffany-600">
+                TECH &amp; MAINTENANCE COLUMN
+              </p>
+              <div className="hidden gap-2 text-[10px] text-slate-500 sm:flex">
+                <Link
+                  href="/guide"
+                  className="rounded-full bg-white/80 px-3 py-1 tracking-[0.18em] hover:bg-white hover:text-tiffany-700"
+                >
+                  VIEW GUIDE
+                </Link>
+                <Link
+                  href="/cars"
+                  className="rounded-full bg-white/70 px-3 py-1 tracking-[0.18em] hover:bg-white hover:text-tiffany-700"
+                >
+                  CAR DATABASE
+                </Link>
+              </div>
+            </div>
           </Reveal>
+
           <Reveal delay={80}>
-            <h1 className="serif-heading text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
-              トラブル 修理 ブランドや技術のコラム集
+            <h1 className="serif-heading text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl lg:text-[2.6rem]">
+              トラブル 修理 ブランドや技術を
+              <br className="hidden sm:block" />
+              落ち着いて整理するためのコラム集
             </h1>
           </Reveal>
+
           <Reveal delay={160}>
-            <p className="max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
-              メンテナンスやトラブルの実例 ブランドの歴史 技術的な背景などをまとめた読み物
-              車種選びや維持の判断材料として 重要な情報だけを落ち着いて確認できる構成
-            </p>
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+              <p className="max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
+                メンテナンスやトラブルの実例 ブランドの歴史 技術的な背景などをまとめた読み物
+                車種選びや維持の判断材料として 重要な情報だけを落ち着いて確認できる構成
+              </p>
+              <div className="flex items-center gap-3 text-[10px] text-slate-500">
+                <span className="rounded-full bg-white/80 px-3 py-1">
+                  TOTAL{" "}
+                  <span className="font-semibold text-slate-900">
+                    {totalArticles}
+                  </span>{" "}
+                  COLUMNS
+                </span>
+                {avgReadMinutes && (
+                  <span className="hidden rounded-full bg-white/80 px-3 py-1 sm:inline">
+                    平均読了時間 約{" "}
+                    <span className="font-semibold text-slate-900">
+                      {avgReadMinutes}
+                    </span>{" "}
+                    分
+                  </span>
+                )}
+              </div>
+            </div>
           </Reveal>
         </header>
 
         {/* インデックスパネル */}
         <Reveal delay={190}>
-          <section className="mb-6">
+          <section className="mb-8">
             <GlassCard
               padding="md"
               className="relative overflow-hidden border border-white/80 bg-gradient-to-r from-white/95 via-white/88 to-vapor/95 shadow-soft"
@@ -192,21 +243,21 @@ export default async function ColumnPage({ searchParams }: PageProps) {
                 <div className="absolute -right-24 bottom-[-40%] h-64 w-64 rounded-full bg-[radial-gradient(circle_at_center,_rgba(148,163,184,0.22),_transparent_72%)] blur-3xl" />
               </div>
 
-              <div className="relative z-10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div className="relative z-10 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
                 <div className="max-w-md">
                   <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
                     COLUMN INDEX
                   </p>
                   <p className="mt-1 text-[11px] leading-relaxed text-text-sub sm:text-xs">
-                    現在登録されているコラム数と メンテナンス系 技術 ブランド系の
-                    おおまかなバランスを表示
+                    現在登録されているコラム数と メンテナンス系 技術 ブランド系
+                    オーナー体験談のおおまかなバランスを表示
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-x-6 gap-y-3 text-[10px] text-slate-700 sm:grid-cols-3">
+                <div className="grid grid-cols-2 gap-x-6 gap-y-4 text-[10px] text-slate-700 sm:grid-cols-4">
                   <div>
                     <p className="text-[9px] tracking-[0.2em] text-slate-400">
-                      TOTAL ARTICLES
+                      TOTAL
                     </p>
                     <p className="mt-1 text-base font-semibold tracking-wide text-slate-900">
                       {totalArticles}
@@ -214,34 +265,35 @@ export default async function ColumnPage({ searchParams }: PageProps) {
                   </div>
                   <div>
                     <p className="text-[9px] tracking-[0.2em] text-slate-400">
-                      MAINTENANCE / TECH
+                      MAINTENANCE
                     </p>
                     <p className="mt-1 text-xs">
                       <span className="font-semibold text-emerald-700">
                         {maintenanceCount}
                       </span>
-                      <span className="mx-1 text-slate-400">/</span>
-                      <span className="font-semibold text-slate-900">
-                        {technicalCount}
-                      </span>
+                      <span className="ml-1 text-slate-400">記事</span>
                     </p>
                   </div>
                   <div>
                     <p className="text-[9px] tracking-[0.2em] text-slate-400">
-                      AVERAGE READING TIME
+                      TECH / BRAND
                     </p>
-                    <p className="mt-1 text-xs text-slate-900">
-                      {avgReadMinutes ? (
-                        <>
-                          約{" "}
-                          <span className="font-semibold">
-                            {avgReadMinutes}
-                          </span>{" "}
-                          分
-                        </>
-                      ) : (
-                        <span className="text-slate-400">－</span>
-                      )}
+                    <p className="mt-1 text-xs">
+                      <span className="font-semibold text-slate-900">
+                        {technicalCount}
+                      </span>
+                      <span className="ml-1 text-slate-400">記事</span>
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[9px] tracking-[0.2em] text-slate-400">
+                      OWNER STORY
+                    </p>
+                    <p className="mt-1 text-xs">
+                      <span className="font-semibold text-slate-900">
+                        {ownerStoryCount}
+                      </span>
+                      <span className="ml-1 text-slate-400">記事</span>
                     </p>
                   </div>
                 </div>
@@ -397,8 +449,8 @@ export default async function ColumnPage({ searchParams }: PageProps) {
 
         {/* 一覧 */}
         <Reveal delay={260}>
-          <section className="space-y-5" aria-label="コラム一覧">
-            {/* 上部: ハイライト + メタ情報 */}
+          <section className="space-y-6" aria-label="コラム一覧">
+            {/* 上部: 見出し + メタ情報 */}
             <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
                 <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
@@ -539,7 +591,7 @@ export default async function ColumnPage({ searchParams }: PageProps) {
                         </div>
 
                         <div className="space-y-1">
-                          <h3 className="text-sm font-semibold leading-relaxed text-slate-900">
+                          <h3 className="text-sm font-semibold leading-relaxed text-slate-900 group-hover:text-tiffany-700">
                             {item.title}
                           </h3>
                           {item.summary && (
@@ -567,6 +619,58 @@ export default async function ColumnPage({ searchParams }: PageProps) {
             )}
           </section>
         </Reveal>
+
+        {/* 下部 CTA：COLUMN と他コンテンツの関係 */}
+        <section className="mt-24 lg:mt-28">
+          <Reveal delay={320}>
+            <div className="relative overflow-hidden rounded-3xl bg-slate-900 px-6 py-12 text-center shadow-soft-strong sm:px-12 sm:py-16">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(10,186,181,0.36),_transparent_60%),radial-gradient(circle_at_bottom_left,_rgba(15,23,42,0.85),_transparent_65%)]" />
+              <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.04]" />
+
+              <div className="relative z-10 flex flex-col items-center">
+                <span className="mb-4 inline-block rounded-full bg-white/10 px-4 py-1.5 text-[10px] font-bold tracking-[0.2em] text-tiffany-300 backdrop-blur-sm">
+                  COLUMN &amp; OTHER CONTENTS
+                </span>
+                <h3 className="serif-heading mb-6 text-2xl text-white sm:text-3xl">
+                  COLUMN と GUIDE CARS NEWS の役割分担
+                </h3>
+                <p className="mx-auto mb-8 max-w-xl text-xs leading-relaxed text-slate-300 sm:text-sm">
+                  COLUMN では トラブルや技術 背景ストーリーをじっくり整理
+                  お金の整理や段取りは GUIDE
+                  車種ごとの維持難易度やスペックは CARS
+                  日々のアップデートは NEWS セクションで補う想定
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <Button
+                    asChild
+                    variant="primary"
+                    size="sm"
+                    magnetic
+                    className="min-w-[160px] rounded-full px-6 py-3 text-[11px] tracking-[0.18em]"
+                  >
+                    <Link href="/guide">VIEW GUIDE</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="glass"
+                    size="sm"
+                    className="min-w-[160px] rounded-full border border-white/30 bg-white/5 px-6 py-3 text-[11px] font-semibold tracking-[0.18em] text-slate-100 backdrop-blur-sm hover:bg-white/10"
+                  >
+                    <Link href="/cars">CAR DATABASE</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="subtle"
+                    size="sm"
+                    className="min-w-[160px] rounded-full border border-white/10 bg-transparent px-6 py-3 text-[11px] tracking-[0.18em] text-slate-200 hover:bg-white/5"
+                  >
+                    <Link href="/news">NEWS FEED</Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </section>
       </div>
     </main>
   );
