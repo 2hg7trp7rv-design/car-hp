@@ -1,3 +1,5 @@
+修正版フルページです。
+
 // app/guide/[slug]/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -32,7 +34,7 @@ type ContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "list"; items: string[] };
 
-// STEP タイムラインで使う型（ヘッディングから抽出）
+// STEPタイムラインで使う型(ヘッディングから抽出)
 type StepHeading = {
   id: string;
   stepNumber: number;
@@ -51,8 +53,8 @@ function formatDate(iso?: string | null): string {
 }
 
 // ガイドのカテゴリ表示用
-// ※ GuideItem["category"] に縛らず、string ベースで扱うことで
-//   "BUY" / "MAINTENANCE_COST" も型エラーなくハンドリング
+// ※ GuideItem["category"]に縛らず、stringベースで扱うことで
+//   "BUY"/"MAINTENANCE_COST"も型エラーなくハンドリング
 function mapCategoryLabel(category: string | null | undefined): string {
   switch (category) {
     case "MONEY":
@@ -80,10 +82,10 @@ function mapColumnCategoryLabel(category: ColumnItem["category"]): string {
 }
 
 // Markdownライクな本文をブロックに分解
-// - ## 見出し -> level 2
-// - ### 見出し -> level 3
-// - "- " で始まる行の連続 -> 箇条書き
-// - その他 -> 段落（空行で区切り）
+// - ##見出し -> level 2
+// - ###見出し -> level 3
+// - "- "で始まる行の連続 -> 箇条書き
+// - その他 -> 段落(空行で区切り)
 function parseBody(body: string): {
   blocks: ContentBlock[];
   headings: HeadingBlock[];
@@ -118,14 +120,14 @@ function parseBody(body: string): {
   lines.forEach((rawLine, index) => {
     const line = rawLine.trim();
 
-    // 空行 -> パラグラフ／リストを区切る
+    // 空行 -> パラグラフ/リストを区切る
     if (!line) {
       flushParagraph();
       flushList();
       return;
     }
 
-    // 見出し（###）
+    // 見出し(###)
     if (line.startsWith("### ")) {
       flushParagraph();
       flushList();
@@ -140,7 +142,7 @@ function parseBody(body: string): {
       return;
     }
 
-    // 見出し（##）
+    // 見出し(##)
     if (line.startsWith("## ")) {
       flushParagraph();
       flushList();
@@ -174,9 +176,9 @@ function parseBody(body: string): {
   return { blocks, headings };
 }
 
-// 本文内の装飾（URLリンク化 + **強調** のマーク除去）
+// 本文内の装飾(URLリンク化 + **強調**のマーク除去)
 // - https://〜 を <a> に変換
-// - **text** はマークを消しつつ少し強調表示
+// - **text**はマークを消しつつ少し強調表示
 function inlineNodes(text: string): (string | JSX.Element)[] {
   const result: (string | JSX.Element)[] = [];
   const tokenRegex = /(\*\*.+?\*\*|https?:\/\/[^\s]+)/g;
@@ -234,60 +236,81 @@ async function getRelatedColumnsForGuide(
 ): Promise<ColumnItem[]> {
   const allColumns = await getAllColumns();
 
-  // tags / category は実データ上は string 系が入る前提で扱う
   const guideWithMeta = guide as GuideItem & {
     category?: string | null;
     tags?: string[] | null;
   };
 
   const guideTags = new Set(guideWithMeta.tags ?? []);
+  const guideCategory = (guideWithMeta.category ?? null) as string | null;
 
-  return allColumns
-    .map((col) => {
-      let score = 0;
+  const scored = allColumns.map((col) => {
+    let score = 0;
 
-      // タグの重なり
-      if (col.tags && guideTags.size > 0) {
-        const overlap = col.tags.filter((t) => guideTags.has(t)).length;
-        if (overlap > 0) {
-          score += 2 + overlap * 0.2;
-        }
+    // タグの重なり
+    if (col.tags && guideTags.size > 0) {
+      const overlap = col.tags.filter((t) => guideTags.has(t)).length;
+      if (overlap > 0) {
+        score += 2 + overlap * 0.2;
       }
+    }
 
-      // ガイドカテゴリと相性の良さでざっくり加点
-      const guideCategory = (guideWithMeta.category ?? null) as string | null;
-
-      if (
-        guideCategory === "MONEY" ||
-        guideCategory === "BUY" ||
-        guideCategory === "MAINTENANCE_COST"
-      ) {
-        if (col.category === "MAINTENANCE" || col.category === "TECHNICAL") {
-          score += 1;
-        }
-      } else if (guideCategory === "SELL") {
-        if (col.category === "TECHNICAL") {
-          score += 1.5;
-        }
+    // ガイドカテゴリと相性の良さでざっくり加点
+    if (
+      guideCategory === "MONEY" ||
+      guideCategory === "BUY" ||
+      guideCategory === "MAINTENANCE_COST"
+    ) {
+      if (col.category === "MAINTENANCE" || col.category === "TECHNICAL") {
+        score += 1;
       }
-
-      // タイトル・サマリのざっくりキーワードマッチ
-      const haystack = `${col.title} ${col.summary ?? ""}`.toLowerCase();
-      const words = `${guide.title} ${guide.summary ?? ""}`
-        .toLowerCase()
-        .split(/\s+/)
-        .filter((w) => w.length > 1);
-
-      if (words.some((w) => haystack.includes(w))) {
-        score += 0.5;
+    } else if (guideCategory === "SELL") {
+      if (col.category === "TECHNICAL") {
+        score += 1.5;
       }
+    }
 
-      return { col, score };
-    })
+    // タイトル・サマリのざっくりキーワードマッチ
+    const haystack = `${col.title} ${col.summary ?? ""}`.toLowerCase();
+    const words = `${guide.title} ${guide.summary ?? ""}`
+      .toLowerCase()
+      .split(/\s+/)
+      .filter((w) => w.length > 1);
+
+    if (words.some((w) => haystack.includes(w))) {
+      score += 0.5;
+    }
+
+    return { col, score };
+  });
+
+  const pickedByScore = scored
     .filter((x) => x.score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, 4)
     .map((x) => x.col);
+
+  if (pickedByScore.length > 0) {
+    return pickedByScore;
+  }
+
+  // スコアで拾えなかった場合のフォールバック
+  let fallback = allColumns;
+
+  if (guideCategory) {
+    const byCategory = allColumns.filter((col) => col.category === "TECHNICAL" || col.category === "MAINTENANCE");
+    if (byCategory.length > 0) {
+      fallback = byCategory;
+    }
+  }
+
+  const sortedFallback = [...fallback].sort((a, b) => {
+    const ta = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
+    const tb = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
+    return tb - ta;
+  });
+
+  return sortedFallback.slice(0, 4);
 }
 
 // 静的パス生成
@@ -333,7 +356,7 @@ export async function generateMetadata({
   };
 }
 
-// STEP 見出しを抽出してタイムライン用データに変換
+// STEP見出しを抽出してタイムライン用データに変換
 function extractStepHeadings(headings: HeadingBlock[]): StepHeading[] {
   const result: StepHeading[] = [];
 
@@ -354,7 +377,7 @@ function extractStepHeadings(headings: HeadingBlock[]): StepHeading[] {
     }
   });
 
-  // STEP番号順ソート（1,2,3...）
+  // STEP番号順ソート(1,2,3...)
   return result.sort((a, b) => a.stepNumber - b.stepNumber);
 }
 
@@ -384,7 +407,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
   // ドロップキャップ用フラグ
   let firstParagraphRendered = false;
 
-  // 表示用の日付（登録日に合わせる: publishedAt を優先）
+  // 表示用の日付(登録日に合わせる: publishedAtを優先)
   const primaryDate = guide.publishedAt ?? guide.updatedAt;
 
   return (
@@ -419,7 +442,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
         <header className="mb-12 lg:mb-14">
           <Reveal>
             <div className="flex flex-wrap items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-slate-500">
-              <span className="inline-flex items-center gap-2">
+              <span className="inline-flex itemsセンター gap-2">
                 <span className="h-[1px] w-6 bg-tiffany-400" />
                 GUIDE
               </span>
@@ -482,25 +505,24 @@ export default async function GuideDetailPage({ params }: PageProps) {
           {/* 本文エリア */}
           <section className="w-full lg:w-[68%]">
             <GlassCard className="relative overflow-hidden border border-slate-200/80 bg-white/92 px-5 py-6 shadow-soft sm:px-7 sm:py-8">
-              {/* カード内 光エフェクト */}
+              {/* カード内光エフェクト */}
               <div className="pointer-events-none absolute -right-28 -top-28 h-48 w-48 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.2),_transparent_70%)] blur-3xl" />
               <div className="pointer-events-none absolute -left-24 bottom-[-30%] h-56 w-56 rounded-full bg-[radial-gradient(circle_at_center,_rgba(148,163,184,0.25),_transparent_70%)] blur-3xl" />
 
               <article className="relative z-10">
                 {/* ガイドの概要ラベル */}
-                <div className="mb-5 rounded-2xl bg-slate-50/80 px-4 py-3 text-[11px] text-slate-600">
+                <div className="mb-5 rounded-2xl bg-slate-50/80 px-4 py-3 text-[11px] text-slate-700">
                   <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
                     GUIDE OUTLINE
                   </p>
                   <p className="mt-1 leading-relaxed">
-                    このガイドは、「{mapCategoryLabel(guideWithMeta.category)}」
-                    に関する基本的な考え方や、順番を整理するためのメモです。細かい
-                    数字の比較というよりも、「まずここから押さえておくと楽」という
-                    目線で構成しています。
+                    このガイドは「{mapCategoryLabel(guideWithMeta.category)}」
+                    に関する基本的な考え方や順番を整理するためのメモです。細かい数字の比較というよりも
+                    まずここから押さえておくと楽という目線で構成しています。
                   </p>
                 </div>
 
-                {/* STEP タイムライン（STEP 1/2/3... の見出しがある場合だけ表示） */}
+                {/* STEPタイムライン(STEP 1/2/3...の見出しがある場合だけ表示) */}
                 {stepHeadings.length > 0 && (
                   <section className="mb-6 rounded-2xl border border-tiffany-100 bg-gradient-to-br from-tiffany-50/90 via-white to-white px-4 py-4 text-[11px] shadow-soft-card sm:px-5 sm:py-5">
                     <p className="mb-3 text-[10px] font-semibold tracking-[0.22em] text-tiffany-700">
@@ -529,7 +551,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                               </span>
                               {idx === 0 && (
                                 <span className="mt-0.5 text-[10px] text-slate-400">
-                                  上から順に、ざっくりこの順番で考える前提のステップです。
+                                  上から順にざっくりこの順番で考える前提のステップです。
                                 </span>
                               )}
                             </a>
@@ -546,7 +568,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                     if (block.type === "heading") {
                       const Tag = block.heading.level === 2 ? "h2" : "h3";
 
-                      // STEP 見出しは少しだけ強調したスタイルに
+                      // STEP見出しは少しだけ強調したスタイルに
                       const isStepHeading = /^STEP\s*\d+/i.test(
                         block.heading.text,
                       );
@@ -572,7 +594,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                     if (block.type === "list") {
                       return (
                         <Reveal key={`list-${index}`} delay={80}>
-                          <ul className="mt-3 space-y-1.5 text-sm leading-relaxed text-slate-700 sm:text-[15px]">
+                          <ul className="mt-3 space-y-1.5 text-sm leading-relaxed text-slate-800 sm:text-[15px]">
                             {block.items.map((item) => (
                               <li key={item} className="flex gap-2">
                                 <span className="mt-[7px] h-[3px] w-5 rounded-full bg-tiffany-300" />
@@ -584,7 +606,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                       );
                     }
 
-                    // paragraph（最初の段落は Drop cap）
+                    // paragraph(最初の段落はDrop cap)
                     if (!firstParagraphRendered && block.text.trim().length) {
                       firstParagraphRendered = true;
                       const firstChar = block.text[0];
@@ -592,7 +614,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
 
                       return (
                         <Reveal key={`p-${index}`} delay={100}>
-                          <p className="mt-4 text-sm leading-8 text-slate-700 sm:text-[15px] sm:leading-[2rem] first-letter-float">
+                          <p className="mt-4 text-sm leading-8 text-slate-800 sm:text-[15px] sm:leading-[2rem] first-letter-float">
                             <span className="first-letter-span">
                               {firstChar}
                             </span>
@@ -603,19 +625,18 @@ export default async function GuideDetailPage({ params }: PageProps) {
                     }
 
                     return (
-                      <p
-                        key={`p-${index}`}
-                        className="mt-4 text-sm leading-8 text-slate-700 sm:text-[15px] sm:leading-[2rem]"
-                      >
-                        {inlineNodes(block.text)}
-                      </p>
+                      <Reveal key={`p-${index}`} delay={60}>
+                        <p className="mt-4 text-sm leading-8 text-slate-800 sm:text-[15px] sm:leading-[2rem]">
+                          {inlineNodes(block.text)}
+                        </p>
+                      </Reveal>
                     );
                   })}
                 </div>
               </article>
             </GlassCard>
 
-            {/* 下部ナビ（SPメイン） */}
+            {/* 下部ナビ(SPメイン) */}
             <div className="mt-10 border-t border-slate-100 pt-6 lg:hidden">
               <Link
                 href="/guide"
@@ -624,12 +645,12 @@ export default async function GuideDetailPage({ params }: PageProps) {
                 <span className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200">
                   ←
                 </span>
-                GUIDE 一覧へ戻る
+                GUIDE一覧へ戻る
               </Link>
             </div>
           </section>
 
-          {/* 目次（PC） */}
+          {/* 目次(PC) */}
           <aside className="hidden w-[32%] lg:block">
             <div className="sticky top-24 space-y-4">
               <div className="rounded-2xl border border-white/70 bg-white/80 p-5 text-[11px] text-slate-600 shadow-soft backdrop-blur">
@@ -659,8 +680,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                 )}
 
                 <p className="mt-4 border-t border-slate-100 pt-3 text-[10px] leading-relaxed text-slate-400">
-                  一度読み切ったあとに、気になる見出しだけをもう一度
-                  辿り直せるようにするための簡易的な目次です。
+                  一度読み切ったあとに気になる見出しだけをもう一度辿り直せるようにする前提の簡易的な目次です。
                 </p>
               </div>
 
@@ -675,14 +695,14 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   <span className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 text-xs">
                     ←
                   </span>
-                  GUIDE 一覧に戻る
+                  GUIDE一覧に戻る
                 </Link>
               </div>
             </div>
           </aside>
         </div>
 
-        {/* 関連する車種（GuideItem.relatedCarSlugs を利用） */}
+        {/* 関連する車種(GuideItem.relatedCarSlugsを利用) */}
         {relatedCarSlugs.length > 0 && (
           <section className="mt-16 lg:mt-18">
             <div className="mb-4 flex items-baseline justify-between gap-2">
@@ -693,7 +713,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                 href="/cars"
                 className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
               >
-                CARS 一覧へ
+                CARS一覧へ
               </Link>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -783,6 +803,26 @@ export default async function GuideDetailPage({ params }: PageProps) {
           </section>
         )}
       </div>
+
+      {/* ドロップキャップ用のグローバルスタイル */}
+      <style jsx global>{`
+        .first-letter-float {
+          text-indent: 0;
+        }
+        .first-letter-span {
+          float: left;
+          margin-right: 12px;
+          margin-top: -4px;
+          margin-bottom: -2px;
+          font-family: var(--font-bodoni), serif;
+          font-size: 3.4em;
+          line-height: 0.9;
+          font-weight: 500;
+          letter-spacing: 0.02em;
+          color: #0abab5;
+          text-shadow: 0 12px 30px rgba(10, 186, 181, 0.35);
+        }
+      `}</style>
     </main>
   );
 }
