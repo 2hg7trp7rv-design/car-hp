@@ -31,6 +31,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const runtime = "edge";
+
 type HeroStats = {
   carsCount: number;
   columnsCount: number;
@@ -61,7 +63,7 @@ async function getHomePageData(): Promise<HomePageData> {
     const yearA = a.releaseYear ?? 0;
     const yearB = b.releaseYear ?? 0;
     if (yearA !== yearB) return yearB - yearA;
-    return a.name.localeCompare(b.name, "ja");
+    return a.name.localeCompare(a.name, "ja");
   });
   const latestCars = sortedCars.slice(0, 6);
 
@@ -120,9 +122,11 @@ export default async function HomePage() {
   } = await getHomePageData();
 
   return (
-    <main className="min-h-screen bg-ice-vapor">
+    <main className="min-h-screen bg-site text-text-main">
+      {/* ヒーロー（セダン × Tiffany メッシュ） */}
       <HeroSection stats={stats} />
 
+      {/* メインコンテンツ */}
       <section className="mx-auto w-full max-w-6xl px-4 pb-16 pt-10 sm:px-6 sm:pb-24 sm:pt-12 lg:px-8">
         <div className="space-y-12 sm:space-y-14">
           {/* OVERVIEW セクション */}
@@ -136,7 +140,10 @@ export default async function HomePage() {
                       <p className="text-[10px] font-bold tracking-[0.32em] text-tiffany-600">
                         OVERVIEW
                       </p>
-                      <h2 className="serif-heading mt-2 text-xl font-medium tracking-tight text-slate-900 sm:text-2xl">
+                      <h2
+                        id="section-overview"
+                        className="serif-heading mt-2 text-xl font-medium tracking-tight text-slate-900 sm:text-2xl"
+                      >
                         このサイトでできること
                       </h2>
                     </div>
@@ -343,10 +350,10 @@ export default async function HomePage() {
                       <div className="relative z-10">
                         <div className="flex items-start justify-between gap-3">
                           <div>
-                            <p className="text-[10px] font-semibold tracking-[0.26em] text-slate-500">
+                            <p className="text-[10px] font-semibold tracking-[0.26em] text-slate-400">
                               COLUMN
                             </p>
-                            <h3 className="serif-heading mt-2 text-lg font-medium text-slate-900">
+                            <h3 className="serif-heading mt-2 text-lg font-medium text-white">
                               トラブルと整備のコラム
                             </h3>
                           </div>
@@ -360,7 +367,7 @@ export default async function HomePage() {
                           </Button>
                         </div>
 
-                        <p className="mt-3 text-[11px] leading-relaxed text-text-sub sm:text-xs">
+                        <p className="mt-3 text-[11px] leading-relaxed text-slate-300 sm:text-xs">
                           実際によくあるトラブル
                           どこから手を付けると良いかという整備の優先度
                           セダン SUV などボディタイプごとの乗り味
@@ -407,7 +414,7 @@ export default async function HomePage() {
                       as="section"
                       padding="lg"
                       interactive
-                      className="relative overflow-hidden border-slate-200/80 bg-gradient-to-br from-white via-ice-vapor to-white"
+                      className="relative overflow-hidden border-slate-200/80 bg-gradient-to-br from-white via-vapor to-white"
                     >
                       <div className="pointer-events-none absolute inset-0">
                         <div className="absolute -left-24 -bottom-[30%] h-48 w-48 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.18),_transparent_70%)] blur-3xl" />
@@ -449,7 +456,7 @@ export default async function HomePage() {
                               key={g.slug}
                               href={`/guide/${encodeURIComponent(g.slug)}`}
                             >
-                              <article className="flex items-baseline gap-3 rounded-2xl bg-white/85 px-3 py-2 transition hover:bg白">
+                              <article className="flex items-baseline gap-3 rounded-2xl bg-white/85 px-3 py-2 transition hover:bg-white">
                                 <span className="mt-[7px] h-[3px] w-6 rounded-full bg-slate-300" />
                                 <div className="flex-1">
                                   <p className="text-[9px] tracking-[0.18em] text-slate-400">
@@ -484,7 +491,7 @@ export default async function HomePage() {
                       <div className="pointer-events-none absolute inset-0">
                         <div className="absolute -left-28 top-[-30%] h-48 w-48 rounded-full bg-[radial-gradient(circle_at_center,_rgba(148,210,245,0.35),_transparent_70%)] blur-3xl" />
                         <div className="absolute -right-20 bottom-[-30%] h-44 w-44 rounded-full bg-[radial-gradient(circle_at_center,_rgba(148,163,184,0.25),_transparent_70%)] blur-3xl" />
-                        <div className="absolute inset-0 bg-gradient-to-b from白/70 via白/60 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/60 to-transparent" />
                       </div>
 
                       <div className="relative z-10 flex flex-col gap-4">
@@ -520,7 +527,7 @@ export default async function HomePage() {
                                 key={h.slug}
                                 href={`/heritage/${encodeURIComponent(h.slug)}`}
                               >
-                                <article className="group flex h-full flex-col gap-1 rounded-2xl bg-white/90 px-3 py-2 text-[11px] transition hover:bg白">
+                                <article className="group flex h-full flex-col gap-1 rounded-2xl bg-white/90 px-3 py-2 text-[11px] transition hover:bg-white">
                                   <p className="text-[9px] tracking-[0.18em] text-slate-400">
                                     {h.maker ?? "BRAND"}
                                     {h.eraLabel ? ` · ${h.eraLabel}` : ""}
@@ -576,7 +583,7 @@ export default async function HomePage() {
                     key={car.slug}
                     href={`/cars/${encodeURIComponent(car.slug)}`}
                   >
-                    <article className="group flex h-full flex-col justify-between rounded-2xl border border-slate-200/80 bg-white/90 p-4 text-xs shadow-soft-sm transition hover:border-tiffany-400 hover:bg白">
+                    <article className="group flex h-full flex-col justify-between rounded-2xl border border-slate-200/80 bg-white/90 p-4 text-xs shadow-soft-sm transition hover:border-tiffany-400 hover:bg-white">
                       <div className="flex items-start justify-between gap-2">
                         <div>
                           <p className="text-[10px] font-semibold tracking-[0.16em] text-slate-500">
