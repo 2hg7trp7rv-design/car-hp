@@ -82,6 +82,17 @@ const guideSections: GuideSection[] = [
   },
 ];
 
+type SearchParams = {
+  q?: string | string[];
+  category?: string | string[];
+  tag?: string | string[];
+  sort?: string | string[];
+};
+
+type PageProps = {
+  searchParams?: SearchParams;
+};
+
 // 日付表示用
 function formatDate(iso?: string | null): string {
   if (!iso) return "";
@@ -94,31 +105,138 @@ function formatDate(iso?: string | null): string {
 }
 
 // ガイドカテゴリ表示用（一覧用のざっくりラベル）
-function mapGuideCategoryLabel(category?: GuideItem["category"] | null): string {
+function mapGuideCategoryLabel(
+  category?: GuideItem["category"] | null,
+): string {
   switch (category) {
     case "MONEY":
       return "お金・維持費";
     case "SELL":
       return "売却・乗り換え";
+    case "BUY":
+      return "購入計画";
+    case "MAINTENANCE_COST":
+      return "維持費・お金まわり";
     default:
       return "ガイド";
   }
 }
 
-export default async function GuidePage() {
+// searchParams 用のヘルパー
+function normalize(value: string | undefined | null): string {
+  return (value ?? "").trim().toLowerCase();
+}
+
+function toSingle(value: string | string[] | undefined): string {
+  if (Array.isArray(value)) return value[0] ?? "";
+  return value ?? "";
+}
+
+function getGuideTimestamp(guide: GuideItem): number {
+  if (guide.publishedAt) {
+    const t = new Date(guide.publishedAt).getTime();
+    if (!Number.isNaN(t)) return t;
+  }
+  if (guide.updatedAt) {
+    const t = new Date(guide.updatedAt).getTime();
+    if (!Number.isNaN(t)) return t;
+  }
+  return 0;
+}
+
+export default async function GuidePage({ searchParams }: PageProps = {}) {
   const allGuides = await getAllGuides();
 
-  // 公開日の新しい順に並べ替え（undefined は最後に）
-  const sortedGuides = [...allGuides].sort((a, b) => {
-    const ta = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
-    const tb = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
-    return tb - ta;
+  // searchParams からフィルタ条件を抽出
+  const rawQ = toSingle(searchParams?.q);
+  const q = normalize(rawQ);
+  const categoryFilter = toSingle(searchParams?.category).trim();
+  const tagFilter = toSingle(searchParams?.tag).trim();
+  const sortKey = toSingle(searchParams?.sort).trim() || "newest";
+
+  const totalTopics = allGuides.length;
+
+  // 実データからカテゴリとタグの一覧を生成
+  const categories = Array.from(
+    new Set(
+      allGuides
+        .map((g) => g.category)
+        .filter(
+          (c): c is NonNullable<GuideItem["category"]> =>
+            typeof c === "string" && c.length > 0,
+        ),
+    ),
+  ).sort();
+
+  const tags = Array.from(
+    new Set(
+      allGuides.flatMap((g) =>
+        (g as GuideItem & { tags?: string[] | null }).tags ?? [],
+      ),
+    ),
+  ).sort((a, b) => a.localeCompare(b));
+
+  // フィルタ適用
+  const filteredGuides = allGuides.filter((guide) => {
+    if (q) {
+      const meta = guide as GuideItem & {
+        tags?: string[] | null;
+        body?: string | null;
+      };
+
+      const haystack = [
+        guide.title,
+        guide.summary ?? "",
+        meta.body ?? "",
+        (meta.tags ?? []).join(" "),
+        guide.category ?? "",
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      if (!haystack.includes(q)) return false;
+    }
+
+    if (categoryFilter && guide.category !== categoryFilter) {
+      return false;
+    }
+
+    if (tagFilter) {
+      const meta = guide as GuideItem & { tags?: string[] | null };
+      if (!(meta.tags ?? []).includes(tagFilter)) {
+        return false;
+      }
+    }
+
+    return true;
   });
 
-  const totalTopics = sortedGuides.length;
+  // ソート適用
+  const sortedGuides = [...filteredGuides].sort((a, b) => {
+    if (sortKey === "oldest") {
+      return getGuideTimestamp(a) - getGuideTimestamp(b);
+    }
+    if (sortKey === "title") {
+      return a.title.localeCompare(b.title);
+    }
+    if (sortKey === "category") {
+      const ca = mapGuideCategoryLabel(a.category);
+      const cb = mapGuideCategoryLabel(b.category);
+      const diff = ca.localeCompare(cb);
+      if (diff !== 0) return diff;
+      return getGuideTimestamp(b) - getGuideTimestamp(a);
+    }
+
+    // default: newest
+    return getGuideTimestamp(b) - getGuideTimestamp(a);
+  });
+
+  const filteredCount = sortedGuides.length;
+  const hasFilter =
+    Boolean(q) || Boolean(categoryFilter) || Boolean(tagFilter) || sortKey !== "newest";
 
   return (
-    <main className="min-h-screen text-text-main">
+    <main className="min-h-screen bg-site text-text-main">
       <div className="container relative max-w-7xl pb-28 pt-24">
         {/* パンくず */}
         <nav
@@ -133,7 +251,7 @@ export default async function GuidePage() {
         </nav>
 
         {/* --- ヘッダー --- */}
-        <header className="mb-16 space-y-6 sm:mb-20 lg:mb-24">
+        <header className="mb-10 space-y-6 sm:mb-14 lg:mb-16">
           <Reveal>
             <div className="flex items-center gap-3">
               <span className="h-[1px] w-8 bg-tiffany-400" />
@@ -179,13 +297,17 @@ export default async function GuidePage() {
 
           {/* --- GUIDE ナビ（セクション内アンカー + 件数） --- */}
           <Reveal delay={260}>
-            <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-white/70 bg-white/80 px-4 py-3 shadow-soft sm:flex-row sm:items-center sm:justify-between sm:px-6">
-              <div className="flex items-center gap-2 text-[10px] text-slate-500">
+            <div className="mt-4 flex flex-col gap-3 rounded-2xl border border-white/70 bg-white/80 px-4 py-3 shadow-soft sm:flex-row sm:items-center sm:justify-between sm:px-6">
+              <div className="flex flex-col gap-1 text-[10px] text-slate-500 sm:flex-row sm:items-center sm:gap-3">
                 <span className="rounded-full bg-slate-50 px-2 py-0.5 text-slate-400">
                   GUIDE NAV
                 </span>
-                <span className="hidden text-[10px] tracking-[0.12em] text-slate-500 sm:inline">
-                  全 {totalTopics} 本のガイドをテーマ別に整理
+                <span className="tracking-[0.12em]">
+                  全 {totalTopics} 本中{" "}
+                  <span className="font-semibold text-slate-800">
+                    {filteredCount}
+                  </span>{" "}
+                  本を表示中
                 </span>
               </div>
               <div className="flex flex-wrap gap-2 text-[10px]">
@@ -206,6 +328,163 @@ export default async function GuidePage() {
             </div>
           </Reveal>
         </header>
+
+        {/* --- フィルタフォーム（検索 / カテゴリ / タグ / ソート） --- */}
+        <section className="mb-12 rounded-3xl border border-slate-200/70 bg-white/80 px-4 py-4 shadow-soft-card sm:px-6 sm:py-5">
+          <form className="flex flex-col gap-4 sm:gap-5" method="GET">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              {/* キーワード検索 */}
+              <div className="w-full sm:max-w-md">
+                <label
+                  htmlFor="q"
+                  className="mb-1 block text-[10px] font-semibold tracking-[0.18em] text-slate-500"
+                >
+                  検索キーワード
+                </label>
+                <input
+                  id="q"
+                  name="q"
+                  defaultValue={rawQ}
+                  placeholder="例: 維持費 ローン 売却タイミング など"
+                  className="w-full rounded-full border border-slate-200 bg-white px-4 py-2 text-xs text-slate-900 outline-none ring-0 placeholder:text-slate-300 focus:border-tiffany-400 focus:ring-1 focus:ring-tiffany-300"
+                />
+              </div>
+
+              {/* ソート */}
+              <div className="w-full sm:w-52">
+                <label
+                  htmlFor="sort"
+                  className="mb-1 block text-[10px] font-semibold tracking-[0.18em] text-slate-500"
+                >
+                  並び順
+                </label>
+                <div className="relative">
+                  <select
+                    id="sort"
+                    name="sort"
+                    defaultValue={sortKey || "newest"}
+                    className="w-full appearance-none rounded-full border border-slate-200 bg-white px-4 py-2 pr-8 text-[11px] text-slate-800 outline-none ring-0 focus:border-tiffany-400 focus:ring-1 focus:ring-tiffany-300"
+                  >
+                    <option value="newest">新しい順</option>
+                    <option value="oldest">古い順</option>
+                    <option value="title">タイトル順</option>
+                    <option value="category">カテゴリ順</option>
+                  </select>
+                  <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-[10px] text-slate-400">
+                    ▼
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* カテゴリ / タグフィルタ */}
+            <div className="grid gap-3 text-[11px] sm:grid-cols-2">
+              <div>
+                <label
+                  htmlFor="category"
+                  className="mb-1 block text-[10px] font-semibold tracking-[0.18em] text-slate-500"
+                >
+                  カテゴリで絞り込む
+                </label>
+                <div className="relative">
+                  <select
+                    id="category"
+                    name="category"
+                    defaultValue={categoryFilter || ""}
+                    className="w-full appearance-none rounded-full border border-slate-200 bg-white px-4 py-2 pr-8 text-[11px] text-slate-800 outline-none ring-0 focus:border-tiffany-400 focus:ring-1 focus:ring-tiffany-300"
+                  >
+                    <option value="">すべて</option>
+                    {categories.map((category) => (
+                      <option key={category} value={category}>
+                        {mapGuideCategoryLabel(category)}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-[10px] text-slate-400">
+                    ▼
+                  </span>
+                </div>
+                <p className="mt-1 text-[10px] leading-relaxed text-slate-400">
+                  「お金・維持費」「売却・乗り換え」など 大まかなテーマ単位での絞り込み
+                </p>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="tag"
+                  className="mb-1 block text-[10px] font-semibold tracking-[0.18em] text-slate-500"
+                >
+                  タグで絞り込む
+                </label>
+                {tags.length === 0 ? (
+                  <p className="text-[11px] text-slate-400">
+                    まだタグ付きのガイドはありません。
+                  </p>
+                ) : (
+                  <div className="relative">
+                    <select
+                      id="tag"
+                      name="tag"
+                      defaultValue={tagFilter || ""}
+                      className="w-full appearance-none rounded-full border border-slate-200 bg-white px-4 py-2 pr-8 text-[11px] text-slate-800 outline-none ring-0 focus:border-tiffany-400 focus:ring-1 focus:ring-tiffany-300"
+                    >
+                      <option value="">すべて</option>
+                      {tags.map((tag) => (
+                        <option key={tag} value={tag}>
+                          #{tag}
+                        </option>
+                      ))}
+                    </select>
+                    <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-[10px] text-slate-400">
+                      ▼
+                    </span>
+                  </div>
+                )}
+                <p className="mt-1 text-[10px] leading-relaxed text-slate-400">
+                  「残価設定ローン」「車検」「タイヤ」など 気になるキーワードでの絞り込み
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-2 flex justify-end">
+              <Button
+                type="submit"
+                variant="subtle"
+                size="sm"
+                className="rounded-full px-4 py-2 text-[11px] tracking-[0.16em]"
+              >
+                条件を適用
+              </Button>
+            </div>
+
+            {/* 下部ステータス行 */}
+            <div className="mt-1 flex flex-wrap items-center justify-between gap-2 text-[10px] text-slate-500">
+              <div className="flex flex-wrap items-center gap-2">
+                <span>
+                  表示中:{" "}
+                  <span className="font-semibold text-slate-800">
+                    {filteredCount}
+                  </span>{" "}
+                  / {totalTopics} 本
+                </span>
+                {hasFilter && (
+                  <span className="inline-flex items-center gap-1 rounded-full bg-slate-50 px-2 py-0.5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-tiffany-400" />
+                    <span>条件を変更するときは上部を再入力</span>
+                  </span>
+                )}
+              </div>
+              {hasFilter && (
+                <Link
+                  href="/guide"
+                  className="text-[10px] font-medium text-tiffany-700 underline-offset-4 hover:underline"
+                >
+                  絞り込みをクリア
+                </Link>
+              )}
+            </div>
+          </form>
+        </section>
 
         {/* --- Bento Grid 本体（テーマ別ガイドの入口） --- */}
         <section className="grid auto-rows-min grid-cols-1 gap-4 md:grid-cols-12 md:gap-6 lg:gap-8">
@@ -382,7 +661,7 @@ export default async function GuidePage() {
         </section>
 
         {/* --- 実ガイド一覧（動的データ） --- */}
-        <section className="mt-20 sm:mt-24">
+        <section className="mt-16 sm:mt-20">
           <Reveal delay={640}>
             <div className="mb-4 flex flex-wrap items-baseline justify-between gap-3">
               <div>
@@ -472,7 +751,7 @@ export default async function GuidePage() {
                     asChild
                     variant="glass"
                     size="sm"
-                    className="min-w-[160px] rounded-full border border-white/30 bg-white/5 px-6 py-3 text-[11px] font-semibold tracking-[0.18em] text-slate-100 backdrop-blur-sm hover:bg白/10"
+                    className="min-w-[160px] rounded-full border border-white/30 bg-white/5 px-6 py-3 text-[11px] font-semibold tracking-[0.18em] text-slate-100 backdrop-blur-sm hover:bg-white/10"
                   >
                     <Link href="/column">READ COLUMNS</Link>
                   </Button>
