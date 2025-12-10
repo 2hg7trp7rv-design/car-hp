@@ -23,24 +23,24 @@ type PageProps = {
 // Heritage の拡張仕様（将来的な連携も見据えて optional で拡張）
 type ExtendedHeritageItem = HeritageItem & {
   titleJa?: string | null;
-  heroTitle?: string | null;       // ヒーロー用タイトル（UI向けに追加）
+  heroTitle?: string | null; // ヒーロー用タイトル（UI向けに追加）
   heroImage?: string | null;
   heroImageCredit?: string | null;
-  heroCaption?: string | null;     // ヒーロー画像下に置くキャプション
-  periodLabel?: string | null;     // 例: "1969–1973"
+  heroCaption?: string | null; // ヒーロー画像下に置くキャプション
+  periodLabel?: string | null; // 例: "1969–1973"
   eraStartYear?: number | null;
   eraEndYear?: number | null;
-  eraRange?: string | null;        // "1969–1973" のようなレンジ表記
+  eraRange?: string | null; // "1969–1973" のようなレンジ表記
   highlightQuote?: string | null;
-  keyModels?: string[] | null;     // 関連する代表車種名
-  relatedCarSlugs?: string[] | null;   // /cars/[slug] 連携用
-  relatedNewsIds?: string[] | null;    // /news/[id] 連携用
+  keyModels?: string[] | null; // 関連する代表車種名
+  relatedCarSlugs?: string[] | null; // /cars/[slug] 連携用
+  relatedNewsIds?: string[] | null; // /news/[id] 連携用
   relatedGuideSlugs?: string[] | null; // /guide/[slug] 連携用
-  readingTimeMinutes?: number | null;  // 手動で指定する場合
+  readingTimeMinutes?: number | null; // 手動で指定する場合
 
   // シリーズ情報（どちらか or 両方を data 側で使う想定）
-  series?: string | null;          // シリーズ名そのもの
-  seriesTitle?: string | null;     // 表示用タイトル
+  series?: string | null; // シリーズ名そのもの
+  seriesTitle?: string | null; // 表示用タイトル
 };
 
 // ---- 日付まわり ----
@@ -106,7 +106,10 @@ function createHighlightRegex(keywords: string[]): RegExp | null {
   return new RegExp(`(${pattern})`, "gi");
 }
 
-function highlightInline(text: string, regex: RegExp | null): (string | JSX.Element)[] {
+function highlightInline(
+  text: string,
+  regex: RegExp | null,
+): (string | JSX.Element)[] {
   if (!regex) return [text];
 
   const parts: (string | JSX.Element)[] = [];
@@ -126,7 +129,10 @@ function highlightInline(text: string, regex: RegExp | null): (string | JSX.Elem
 
     const matchedText = match[0];
     parts.push(
-      <span key={`${start}-${end}`} className="bg-rose-500/20 px-0.5 text-rose-100">
+      <span
+        key={`${start}-${end}`}
+        className="bg-rose-500/20 px-0.5 text-rose-100"
+      >
         {matchedText}
       </span>,
     );
@@ -304,7 +310,9 @@ type HeritageItemWithSeries = ExtendedHeritageItem & {
   seriesTitle?: string | null;
 };
 
-function hasSeries(heritage: ExtendedHeritageItem): heritage is HeritageItemWithSeries {
+function hasSeries(
+  heritage: ExtendedHeritageItem,
+): heritage is HeritageItemWithSeries {
   const s = heritage.series;
   const st = heritage.seriesTitle;
   return (
@@ -341,8 +349,8 @@ export async function generateMetadata({
   }
 
   const title =
-    heritage.titleJa ??
     heritage.title ??
+    heritage.titleJa ??
     `${heritage.maker ?? ""} HERITAGE`.trim();
 
   const description =
@@ -399,11 +407,21 @@ export default async function HeritageDetailPage({
   );
   const { prev, next } = findNeighbors(sameMaker, heritage.slug);
 
+  // 同一メーカー内の「続きを読む」候補（なければ全体から）
+  const moreFromMaker = sameMaker.filter(
+    (item) => item.slug !== heritage.slug,
+  );
+  const moreHeritageBase =
+    moreFromMaker.length > 0
+      ? moreFromMaker
+      : all.filter((item) => item.slug !== heritage.slug);
+  const moreHeritage = moreHeritageBase.slice(0, 3);
+
   const dateLabel =
     formatDateLabel(heritage.publishedAt) ??
     formatDateLabel(heritage.updatedAt);
   const tags = heritage.tags ?? [];
-  const title = heritage.titleJa ?? heritage.title ?? heritage.slug;
+  const title = heritage.title ?? heritage.titleJa ?? heritage.slug;
 
   const body = heritage.body ?? heritage.summary ?? "";
   const chapters = parseChapters(body);
@@ -531,7 +549,7 @@ export default async function HeritageDetailPage({
                   <p className="max-w-xs text-sm leading-relaxed text-slate-100/90">
                     {highlightInline(
                       heritage.heroTitle ??
-                        heritage.seoTitle ??
+                        (heritage as any).seoTitle ??
                         heritage.subtitle ??
                         heritage.lead ??
                         "ブランドや時代の変遷を、代表的なモデルとともに辿るロングストーリー。",
@@ -549,7 +567,10 @@ export default async function HeritageDetailPage({
                     )}
                     {heritage.heroCaption && (
                       <p className="mt-1 max-w-xs text-[11px] leading-relaxed text-slate-300/90">
-                        {highlightInline(heritage.heroCaption, highlightRegex)}
+                        {highlightInline(
+                          heritage.heroCaption,
+                          highlightRegex,
+                        )}
                       </p>
                     )}
                   </div>
@@ -608,7 +629,10 @@ export default async function HeritageDetailPage({
                           id={block.heading.id}
                           className="pt-4 font-serif text-lg text-slate-50 sm:text-xl"
                         >
-                          {highlightInline(block.heading.text, highlightRegex)}
+                          {highlightInline(
+                            block.heading.text,
+                            highlightRegex,
+                          )}
                         </h2>
                       );
                     }
@@ -621,7 +645,10 @@ export default async function HeritageDetailPage({
               {contentChapters.length > 0 && (
                 <div className="mt-8 space-y-10 border-t border-slate-800/70 pt-8">
                   {contentChapters.map((chapter) => (
-                    <article key={chapter.id} className="scroll-mt-24 space-y-4">
+                    <article
+                      key={chapter.id}
+                      className="scroll-mt-24 space-y-4"
+                    >
                       <h2
                         id={chapter.id}
                         className="font-serif text-lg text-slate-50 sm:text-xl"
@@ -635,7 +662,10 @@ export default async function HeritageDetailPage({
                               key={`${chapter.id}-p-${index}`}
                               className="text-[13px] leading-relaxed text-slate-100/95 sm:text-[15px]"
                             >
-                              {highlightInline(block.text, highlightRegex)}
+                              {highlightInline(
+                                block.text,
+                                highlightRegex,
+                              )}
                             </p>
                           );
                         }
@@ -650,10 +680,16 @@ export default async function HeritageDetailPage({
                                 className="ml-5 list-outside list-decimal space-y-1 text-[13px] leading-relaxed text-slate-100/95 sm:text-[15px]"
                               >
                                 {block.items.map((item) => {
-                                  const label = item.replace(/^\d+\.\s*/, "");
+                                  const label = item.replace(
+                                    /^\d+\.\s*/,
+                                    "",
+                                  );
                                   return (
                                     <li key={item.slice(0, 20)}>
-                                      {highlightInline(label, highlightRegex)}
+                                      {highlightInline(
+                                        label,
+                                        highlightRegex,
+                                      )}
                                     </li>
                                   );
                                 })}
@@ -667,21 +703,28 @@ export default async function HeritageDetailPage({
                             >
                               {block.items.map((item) => (
                                 <li key={item.slice(0, 20)}>
-                                  {highlightInline(item, highlightRegex)}
+                                  {highlightInline(
+                                    item,
+                                    highlightRegex,
+                                  )}
                                 </li>
                               ))}
                             </ul>
                           );
                         }
                         if (block.type === "heading") {
-                          const Tag = block.heading.level === 2 ? "h2" : "h3";
+                          const Tag =
+                            block.heading.level === 2 ? "h2" : "h3";
                           return (
                             <Tag
                               key={`${chapter.id}-h-${block.heading.id}`}
                               id={block.heading.id}
                               className="pt-4 font-serif text-lg text-slate-50 sm:text-xl"
                             >
-                              {highlightInline(block.heading.text, highlightRegex)}
+                              {highlightInline(
+                                block.heading.text,
+                                highlightRegex,
+                              )}
                             </Tag>
                           );
                         }
@@ -808,7 +851,9 @@ export default async function HeritageDetailPage({
                     <div className="flex flex-col gap-2 pt-1 text-xs text-slate-200 md:flex-row md:justify-between">
                       {prev ? (
                         <Link
-                          href={`/heritage/${encodeURIComponent(prev.slug)}`}
+                          href={`/heritage/${encodeURIComponent(
+                            prev.slug,
+                          )}`}
                           className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900/80 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
                         >
                           <span className="text-[10px] text-slate-400">
@@ -824,7 +869,9 @@ export default async function HeritageDetailPage({
 
                       {next ? (
                         <Link
-                          href={`/heritage/${encodeURIComponent(next.slug)}`}
+                          href={`/heritage/${encodeURIComponent(
+                            next.slug,
+                          )}`}
                           className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900/80 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
                         >
                           <span className="text-[10px] text-slate-400">
@@ -845,6 +892,82 @@ export default async function HeritageDetailPage({
           </Reveal>
         </div>
       </section>
+
+      {/* 下部「MORE HERITAGE」セクション */}
+      {moreHeritage.length > 0 && (
+        <section className="border-t border-slate-800/70 bg-slate-950 py-10 md:py-14">
+          <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+            <Reveal className="max-w-xl">
+              <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-300">
+                MORE HERITAGE
+              </h2>
+              <p className="mt-2 text-[13px] leading-relaxed text-slate-200/90">
+                同じブランド、または近いテーマのHERITAGEストーリーから、
+                続けて読みやすい記事をピックアップしました。
+              </p>
+            </Reveal>
+
+            <Reveal className="mt-5 grid gap-4 md:grid-cols-3">
+              {moreHeritage.map((item) => {
+                const itemDateLabel =
+                  formatDateLabel(item.publishedAt) ??
+                  formatDateLabel(item.updatedAt);
+                const itemTitle =
+                  (item as any).titleJa ?? item.title ?? item.slug;
+                const itemMaker = item.maker ?? "";
+                const itemTags = item.tags ?? [];
+
+                return (
+                  <Link
+                    key={item.slug}
+                    href={`/heritage/${encodeURIComponent(item.slug)}`}
+                    className="group h-full"
+                  >
+                    <GlassCard className="flex h-full flex-col border-slate-800/70 bg-slate-950/85 p-4 transition group-hover:border-rose-400/70 group-hover:bg-slate-900">
+                      <p className="text-[11px] tracking-[0.26em] text-slate-400">
+                        {itemMaker || "HERITAGE"}
+                      </p>
+                      <h3 className="mt-1 line-clamp-2 font-serif text-sm text-slate-50">
+                        {itemTitle}
+                      </h3>
+                      {itemDateLabel && (
+                        <p className="mt-1 text-[11px] text-slate-400">
+                          {itemDateLabel}
+                        </p>
+                      )}
+                      {itemTags.length > 0 && (
+                        <div className="mt-2 flex flex-wrap gap-1.5">
+                          {itemTags.slice(0, 3).map((tag) => (
+                            <span
+                              key={tag}
+                              className="rounded-full border border-slate-700/80 bg-slate-900/80 px-2 py-0.5 text-[10px] text-slate-200"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </GlassCard>
+                  </Link>
+                );
+              })}
+            </Reveal>
+
+            <Reveal className="mt-6">
+              <div className="flex justify-end">
+                <Button
+                  asChild
+                  variant="outline"
+                  size="sm"
+                  className="border-slate-700 bg-slate-950/80 text-[11px] text-slate-100 hover:border-rose-400 hover:bg-slate-900"
+                >
+                  <Link href="/heritage">HERITAGE一覧をもっと見る</Link>
+                </Button>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
     </main>
   );
 }
