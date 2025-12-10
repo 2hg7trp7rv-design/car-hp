@@ -12,6 +12,10 @@ import {
   getAllColumns,
   type ColumnItem,
 } from "@/lib/columns";
+import {
+  getAllCars,
+  type CarItem,
+} from "@/lib/cars";
 import { Reveal } from "@/components/animation/Reveal";
 import { GlassCard } from "@/components/GlassCard";
 
@@ -84,11 +88,12 @@ function mapColumnCategoryLabel(category: ColumnItem["category"]): string {
 // - ###見出し -> level 3
 // - "- "で始まる行の連続 -> 箇条書き
 // - その他 -> 段落(空行で区切り)
-function parseBody(body: string): {
+function parseBody(body: string | undefined): {
   blocks: ContentBlock[];
   headings: HeadingBlock[];
 } {
-  const lines = body.split(/\r?\n/);
+  const src = body ?? "";
+  const lines = src.split(/\r?\n/);
   const blocks: ContentBlock[] = [];
   const headings: HeadingBlock[] = [];
 
@@ -296,7 +301,9 @@ async function getRelatedColumnsForGuide(
   let fallback = allColumns;
 
   if (guideCategory) {
-    const byCategory = allColumns.filter((col) => col.category === "TECHNICAL" || col.category === "MAINTENANCE");
+    const byCategory = allColumns.filter(
+      (col) => col.category === "TECHNICAL" || col.category === "MAINTENANCE",
+    );
     if (byCategory.length > 0) {
       fallback = byCategory;
     }
@@ -309,6 +316,33 @@ async function getRelatedColumnsForGuide(
   });
 
   return sortedFallback.slice(0, 4);
+}
+
+// ガイドに関連する車種(CarItem)を取得
+async function getRelatedCarsForGuide(
+  guide: GuideItem & { relatedCarSlugs?: (string | null)[] },
+): Promise<CarItem[]> {
+  const allCars = await getAllCars();
+
+  const slugs = (guide.relatedCarSlugs ?? []).filter(
+    (slug): slug is string =>
+      typeof slug === "string" && slug.trim().length > 0,
+  );
+  if (slugs.length === 0) return [];
+
+  const slugSet = new Set(slugs);
+
+  // slug の順番を尊重してソート
+  const orderMap = new Map<string, number>();
+  slugs.forEach((s, idx) => orderMap.set(s, idx));
+
+  return allCars
+    .filter((car) => car.slug && slugSet.has(car.slug))
+    .sort((a, b) => {
+      const ai = orderMap.get(a.slug ?? "") ?? 0;
+      const bi = orderMap.get(b.slug ?? "") ?? 0;
+      return ai - bi;
+    });
 }
 
 // 静的パス生成
@@ -380,24 +414,25 @@ function extractStepHeadings(headings: HeadingBlock[]): StepHeading[] {
 }
 
 export default async function GuideDetailPage({ params }: PageProps) {
-  const guide = await getGuideBySlug(params.slug);
+  const guideRaw = await getGuideBySlug(params.slug);
 
-  if (!guide) {
+  if (!guideRaw) {
     notFound();
   }
 
-  const { blocks, headings } = parseBody(guide.body);
-  const relatedColumns = await getRelatedColumnsForGuide(guide);
-  const stepHeadings = extractStepHeadings(headings);
-
-  const guideWithMeta = guide as GuideItem & {
+  const guide = guideRaw as GuideItem & {
     readMinutes?: number | null;
     tags?: string[] | null;
     category?: string | null;
     relatedCarSlugs?: (string | null)[];
   };
 
-  const relatedCarSlugs = (guideWithMeta.relatedCarSlugs ?? []).filter(
+  const { blocks, headings } = parseBody(guide.body);
+  const relatedColumns = await getRelatedColumnsForGuide(guide);
+  const relatedCars = await getRelatedCarsForGuide(guide);
+  const stepHeadings = extractStepHeadings(headings);
+
+  const relatedCarSlugs = (guide.relatedCarSlugs ?? []).filter(
     (slug): slug is string =>
       typeof slug === "string" && slug.trim().length > 0,
   );
@@ -440,12 +475,12 @@ export default async function GuideDetailPage({ params }: PageProps) {
         <header className="mb-12 lg:mb-14">
           <Reveal>
             <div className="flex flex-wrap items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-slate-500">
-              <span className="inline-flex itemsセンター gap-2">
+              <span className="inline-flex items-center gap-2">
                 <span className="h-[1px] w-6 bg-tiffany-400" />
                 GUIDE
               </span>
               <span className="h-[1px] w-6 bg-slate-200" />
-              <span>{mapCategoryLabel(guideWithMeta.category)}</span>
+              <span>{mapCategoryLabel(guide.category ?? null)}</span>
             </div>
           </Reveal>
 
@@ -457,10 +492,10 @@ export default async function GuideDetailPage({ params }: PageProps) {
 
           <Reveal delay={160}>
             <div className="mt-4 flex flex-wrap items-center gap-3 text-[11px] text-slate-500">
-              {guideWithMeta.readMinutes != null && (
+              {guide.readMinutes != null && (
                 <span className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-3 py-1.5 text-[10px] tracking-[0.18em] text-slate-100 shadow-soft">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  約 {guideWithMeta.readMinutes} 分で読めます
+                  約 {guide.readMinutes} 分で読めます
                 </span>
               )}
               {primaryDate && (
@@ -471,11 +506,11 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   </span>
                 </>
               )}
-              {guideWithMeta.tags && guideWithMeta.tags.length > 0 && (
+              {guide.tags && guide.tags.length > 0 && (
                 <>
                   <span className="h-[1px] w-6 bg-slate-200" />
                   <div className="flex flex-wrap gap-1.5">
-                    {guideWithMeta.tags.map((tag) => (
+                    {guide.tags.map((tag) => (
                       <span
                         key={tag}
                         className="rounded-full bg-slate-50 px-2 py-0.5 text-[10px] tracking-[0.12em]"
@@ -514,7 +549,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                     GUIDE OUTLINE
                   </p>
                   <p className="mt-1 leading-relaxed">
-                    このガイドは「{mapCategoryLabel(guideWithMeta.category)}」
+                    このガイドは「{mapCategoryLabel(guide.category ?? null)}」
                     に関する基本的な考え方や順番を整理するためのメモです。細かい数字の比較というよりも
                     まずここから押さえておくと楽という目線で構成しています。
                   </p>
@@ -701,11 +736,59 @@ export default async function GuideDetailPage({ params }: PageProps) {
         </div>
 
         {/* 関連する車種(GuideItem.relatedCarSlugsを利用) */}
-        {relatedCarSlugs.length > 0 && (
-          <section className="mt-16 lg:mt-18">
+        {relatedCars.length > 0 && (
+          <section className="mt-16 lg:mt-20">
             <div className="mb-4 flex items-baseline justify-between gap-2">
               <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
                 このガイドと関連する車種
+              </h2>
+              <Link
+                href="/cars"
+                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+              >
+                CARS一覧へ
+              </Link>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {relatedCars.map((car) => (
+                <Link
+                  key={car.slug}
+                  href={`/cars/${encodeURIComponent(car.slug)}`}
+                >
+                  <GlassCard className="group h-full border border-slate-200/80 bg-white/90 p-4 text-[11px] shadow-soft-sm transition hover:-translate-y-[1px] hover:border-tiffany-200 hover:bg-white">
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <p className="text-[10px] font-semibold tracking-[0.16em] text-slate-500">
+                          {car.maker}
+                        </p>
+                        <p className="mt-0.5 line-clamp-2 text-[13px] font-medium leading-snug text-slate-900 group-hover:underline">
+                          {car.name}
+                        </p>
+                      </div>
+                      {car.releaseYear && (
+                        <span className="text-[10px] text-slate-400">
+                          {car.releaseYear}年頃
+                        </span>
+                      )}
+                    </div>
+                    {car.summary && (
+                      <p className="mt-2 line-clamp-3 text-[11px] leading-snug text-slate-600">
+                        {car.summary}
+                      </p>
+                    )}
+                  </GlassCard>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* slug だけ埋まっていて CarItem 側にまだ無い場合の軽いフォールバック */}
+        {relatedCars.length === 0 && relatedCarSlugs.length > 0 && (
+          <section className="mt-16 lg:mt-20">
+            <div className="mb-4 flex items-baseline justify-between gap-2">
+              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
+                このガイドと関連する車種(仮)
               </h2>
               <Link
                 href="/cars"
@@ -733,7 +816,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
 
         {/* 関連コラム */}
         {relatedColumns.length > 0 && (
-          <section className="mt-18 lg:mt-20">
+          <section className="mt-20 lg:mt-24">
             <div className="mb-4 flex items-baseline justify-between gap-2">
               <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
                 このガイドと関連するコラム
@@ -801,26 +884,6 @@ export default async function GuideDetailPage({ params }: PageProps) {
           </section>
         )}
       </div>
-
-      {/* ドロップキャップ用のグローバルスタイル */}
-      <style jsx global>{`
-        .first-letter-float {
-          text-indent: 0;
-        }
-        .first-letter-span {
-          float: left;
-          margin-right: 12px;
-          margin-top: -4px;
-          margin-bottom: -2px;
-          font-family: var(--font-bodoni), serif;
-          font-size: 3.4em;
-          line-height: 0.9;
-          font-weight: 500;
-          letter-spacing: 0.02em;
-          color: #0abab5;
-          text-shadow: 0 12px 30px rgba(10, 186, 181, 0.35);
-        }
-      `}</style>
     </main>
   );
 }
