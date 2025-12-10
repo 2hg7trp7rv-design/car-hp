@@ -131,7 +131,7 @@ function highlightInline(
     parts.push(
       <span
         key={`${start}-${end}`}
-        className="bg-rose-500/20 px-0.5 text-rose-100"
+        className="bg-rose-500/30 px-0.5 text-rose-100"
       >
         {matchedText}
       </span>,
@@ -147,164 +147,8 @@ function highlightInline(
   return parts;
 }
 
-// ---- Markdownライクな本文を段落・見出し・リストに分解するヘルパー ----
+// ---- HeritageItem に series / seriesTitle があるケースだけを安全に扱うための type guard ----
 
-type HeadingBlock = {
-  id: string;
-  text: string;
-  level: 2 | 3;
-};
-
-type ContentBlock =
-  | { type: "heading"; heading: HeadingBlock }
-  | { type: "paragraph"; text: string }
-  | { type: "list"; items: string[] };
-
-type Chapter = {
-  id: string;
-  title: string;
-  level: 2 | 3;
-  blocks: ContentBlock[];
-};
-
-function toIdFromHeading(text: string): string {
-  return (
-    text
-      .toLowerCase()
-      .replace(/[。\s　]+/g, "-")
-      .replace(/[^\w\-ぁ-んァ-ン一-龠]/g, "")
-      .replace(/-+/g, "-")
-      .replace(/^-|-$/g, "") || "section"
-  );
-}
-
-function parseChapters(body: string): Chapter[] {
-  const lines = body.split(/\r?\n/);
-
-  const chapters: Chapter[] = [];
-  let currentChapter: Chapter | null = null;
-  let listBuffer: { type: "ul" | "ol"; items: string[] } | null = null;
-
-  const flushList = () => {
-    if (!listBuffer || !currentChapter) return;
-    currentChapter.blocks.push({
-      type: "list",
-      items: [...listBuffer.items],
-    });
-    listBuffer = null;
-  };
-
-  const ensureChapter = (heading: HeadingBlock) => {
-    if (!currentChapter) {
-      currentChapter = {
-        id: heading.id,
-        title: heading.text,
-        level: heading.level,
-        blocks: [],
-      };
-      chapters.push(currentChapter);
-    }
-  };
-
-  for (const rawLine of lines) {
-    const line = rawLine.trim();
-
-    if (line.length === 0) {
-      flushList();
-      continue;
-    }
-
-    // 見出し (##, ###)
-    const h2Match = line.match(/^##\s*(.+)$/);
-    if (h2Match) {
-      flushList();
-      const text = h2Match[1].trim();
-      const heading: HeadingBlock = {
-        id: toIdFromHeading(text),
-        text,
-        level: 2,
-      };
-      currentChapter = {
-        id: heading.id,
-        title: heading.text,
-        level: heading.level,
-        blocks: [],
-      };
-      chapters.push(currentChapter);
-      continue;
-    }
-
-    const h3Match = line.match(/^###\s*(.+)$/);
-    if (h3Match) {
-      flushList();
-      const text = h3Match[1].trim();
-      const heading: HeadingBlock = {
-        id: toIdFromHeading(text),
-        text,
-        level: 3,
-      };
-      ensureChapter(heading);
-      currentChapter!.blocks.push({
-        type: "heading",
-        heading,
-      });
-      continue;
-    }
-
-    // 番号付きリスト
-    if (/^\d+\./.test(line)) {
-      if (!listBuffer || listBuffer.type !== "ol") {
-        flushList();
-        listBuffer = { type: "ol", items: [] };
-      }
-      listBuffer.items.push(line);
-      continue;
-    }
-
-    // 箇条書き
-    if (line.startsWith("・")) {
-      if (!listBuffer || listBuffer.type !== "ul") {
-        flushList();
-        listBuffer = { type: "ul", items: [] };
-      }
-      listBuffer.items.push(line.replace(/^・\s*/, ""));
-      continue;
-    }
-
-    // それ以外は段落
-    flushList();
-    ensureChapter({
-      id: currentChapter?.id ?? "intro",
-      text: currentChapter?.title ?? "イントロダクション",
-      level: currentChapter?.level ?? 2,
-    });
-    currentChapter!.blocks.push({
-      type: "paragraph",
-      text: line,
-    });
-  }
-
-  flushList();
-
-  if (chapters.length === 0) {
-    return [
-      {
-        id: "intro",
-        title: "イントロダクション",
-        level: 2,
-        blocks: body
-          .split(/\n{2,}/)
-          .map((p) => p.trim())
-          .filter((p) => p.length > 0)
-          .map((p) => ({ type: "paragraph", text: p } as ContentBlock)),
-      },
-    ];
-  }
-
-  return chapters;
-}
-
-// HeritageItem に series / seriesTitle があるケースだけを安全に扱うための type guard
 type HeritageItemWithSeries = ExtendedHeritageItem & {
   series?: string | null;
   seriesTitle?: string | null;
@@ -327,7 +171,6 @@ function estimateReadingTimeMinutes(body: string): number {
   const plain = body.replace(/\s+/g, "");
   const length = plain.length;
   if (length === 0) return 0;
-  // 日本語: 400〜600文字/分くらいを目安
   const minutes = Math.round(length / 550);
   return minutes <= 0 ? 1 : minutes;
 }
@@ -344,7 +187,8 @@ export async function generateMetadata({
   if (!heritage) {
     return {
       title: "HERITAGEが見つかりません | CAR BOUTIQUE",
-      description: "指定されたHERITAGEコンテンツが見つかりませんでした。",
+      description:
+        "指定されたHERITAGEコンテンツが見つかりませんでした。",
     };
   }
 
@@ -423,13 +267,22 @@ export default async function HeritageDetailPage({
   const tags = heritage.tags ?? [];
   const title = heritage.title ?? heritage.titleJa ?? heritage.slug;
 
-  // 本文は body 優先、なければ summary を使う
-  const rawBody = (heritage.body ?? heritage.summary ?? "").trim();
+  // 本文は body 優先。なければ他のフィールドからでも必ず何か拾う
+  const rawBodySource =
+    heritage.body ??
+    (heritage as any).bodyJa ??
+    (heritage as any).content ??
+    heritage.highlightQuote ??
+    heritage.lead ??
+    heritage.summary ??
+    "";
+  const rawBody = String(rawBodySource).trim();
   const hasBody = rawBody.length > 0;
 
-  const chapters = hasBody ? parseChapters(rawBody) : [];
-  const introChapter = hasBody ? chapters[0] ?? null : null;
-  const contentChapters = hasBody ? chapters.slice(1) : [];
+  // 段落ごとに単純分割（Markdown の凝った解析は一旦やめて確実に表示）
+  const paragraphs = hasBody
+    ? rawBody.split(/\n{2,}|\r\n{2,}/).map((p) => p.trim()).filter(Boolean)
+    : [];
 
   const highlightRegex = createHighlightRegex([
     heritage.maker ?? "",
@@ -461,14 +314,14 @@ export default async function HeritageDetailPage({
           {/* 左:タイトルとメタ情報 */}
           <Reveal className="flex-1">
             <div className="max-w-xl space-y-5">
-              <div className="inline-flex items-center gap-2 rounded-full border border-slate-700/70 bg-slate-900/70 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-slate-200">
+              <div className="inline-flex items-center gap-2 rounded-full border border-slate-700/70 bg-slate-900/90 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-slate-100">
                 <span className="h-1.5 w-1.5 rounded-full bg-rose-400 shadow-[0_0_10px_rgba(248,113,113,0.8)]" />
                 <span>CAR BOUTIQUE HERITAGE</span>
               </div>
 
               <div className="space-y-2">
                 {heritage.maker && (
-                  <p className="text-xs tracking-[0.3em] text-slate-300">
+                  <p className="text-xs tracking-[0.3em] text-slate-200">
                     {heritage.maker}
                   </p>
                 )}
@@ -476,50 +329,50 @@ export default async function HeritageDetailPage({
                   {highlightInline(title, highlightRegex)}
                 </h1>
                 {heritage.periodLabel && (
-                  <p className="text-xs uppercase tracking-[0.25em] text-slate-300/80">
+                  <p className="text-xs uppercase tracking-[0.25em] text-slate-300">
                     {heritage.periodLabel}
                   </p>
                 )}
               </div>
 
               <div className="space-y-3">
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-slate-300">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-slate-200">
                   {dateLabel && (
                     <span className="inline-flex items-center gap-1 rounded-full border border-slate-700/80 px-2.5 py-0.5">
-                      <span className="h-1 w-1 rounded-full bg-slate-400" />
+                      <span className="h-1 w-1 rounded-full bg-slate-300" />
                       <span>{dateLabel}</span>
                     </span>
                   )}
                   {readingTimeMinutes > 0 && (
                     <span className="inline-flex items-center gap-1 rounded-full border border-slate-700/80 px-2.5 py-0.5">
-                      <span className="h-1 w-1 rounded-full bg-slate-400" />
+                      <span className="h-1 w-1 rounded-full bg-slate-300" />
                       <span>READ {readingTimeMinutes} min</span>
                     </span>
                   )}
                   {heritage.kind && (
-                    <span className="inline-flex items-center gap-1 rounded-full border border-slate-700/80 px-2.5 py-0.5 text-[10px] uppercase tracking-[0.2em] text-slate-200">
-                      <span className="h-1 w-1 rounded-full bg-slate-400" />
+                    <span className="inline-flex items-center gap-1 rounded-full border border-slate-700/80 px-2.5 py-0.5 text-[10px] uppercase tracking-[0.2em] text-slate-100">
+                      <span className="h-1 w-1 rounded-full bg-slate-300" />
                       <span>{heritage.kind}</span>
                     </span>
                   )}
                 </div>
 
                 {heritage.summary && (
-                  <p className="max-w-xl text-sm leading-relaxed text-slate-100/90">
+                  <p className="max-w-xl text-sm leading-relaxed text-slate-100">
                     {heritage.summary}
                   </p>
                 )}
 
-                <div className="flex flex-wrap gap-2 pt-1 text-[11px] text-slate-300">
+                <div className="flex flex-wrap gap-2 pt-1 text-[11px] text-slate-200">
                   {hasSeries(heritage) && (
-                    <span className="rounded-full border border-slate-700/80 px-2.5 py-0.5 text-[10px] uppercase tracking-[0.18em] text-slate-300">
+                    <span className="rounded-full border border-slate-700/80 bg-slate-900/90 px-2.5 py-0.5 text-[10px] uppercase tracking-[0.18em] text-slate-100">
                       {heritage.seriesTitle ?? heritage.series}
                     </span>
                   )}
                   {heritage.keyModels?.map((model) => (
                     <span
                       key={model}
-                      className="rounded-full border border-slate-700/70 bg-slate-900/70 px-2.5 py-0.5 text-[11px] text-slate-100"
+                      className="rounded-full border border-slate-700/70 bg-slate-900/90 px-2.5 py-0.5 text-[11px] text-slate-100"
                     >
                       {model}
                     </span>
@@ -528,7 +381,7 @@ export default async function HeritageDetailPage({
                     <Link
                       key={tag}
                       href={`/heritage?tag=${encodeURIComponent(tag)}`}
-                      className="inline-flex items-center gap-1 rounded-full border border-slate-700/70 bg-slate-950/80 px-2.5 py-0.5 text-[11px] text-slate-200 transition hover:border-rose-400/80 hover:bg-slate-900 hover:text-rose-50"
+                      className="inline-flex items-center gap-1 rounded-full border border-slate-700/70 bg-slate-950/90 px-2.5 py-0.5 text-[11px] text-slate-100 transition hover:border-rose-400/80 hover:bg-slate-900 hover:text-rose-50"
                     >
                       <span className="h-1 w-1 rounded-full bg-rose-400" />
                       <span>{tag}</span>
@@ -539,18 +392,18 @@ export default async function HeritageDetailPage({
             </div>
           </Reveal>
 
-          {/* 右:ヒーロー画像＋リード */}
+          {/* 右:ヒーロー画像＋リードテキスト的ボックス */}
           <Reveal className="flex-1">
-            <div className="relative h-64 w-full overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-900/60 shadow-[0_24px_60px_rgba(15,23,42,0.9)] sm:h-72 md:h-80">
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(248,250,252,0.24),_transparent_55%),radial-gradient(circle_at_bottom_right,_rgba(244,114,182,0.18),_transparent_55%)]" />
-              <div className="absolute inset-0 bg-[linear-gradient(135deg,_rgba(15,23,42,0.95),_rgba(15,23,42,0.6)_45%,_rgba(15,23,42,0.92)_90%)] mix-blend-multiply" />
+            <div className="relative h-64 w-full overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950 shadow-[0_24px_60px_rgba(15,23,42,0.9)] sm:h-72 md:h-80">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(248,250,252,0.18),_transparent_55%),radial-gradient(circle_at_bottom_right,_rgba(244,114,182,0.22),_transparent_55%)]" />
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,_rgba(15,23,42,0.96),_rgba(15,23,42,0.8)_45%,_rgba(15,23,42,0.96)_90%)]" />
 
               <div className="relative flex h-full flex-col justify-between p-5 sm:p-6">
                 <div className="space-y-2">
-                  <p className="text-[11px] uppercase tracking-[0.25em] text-slate-300/90">
+                  <p className="text-[11px] uppercase tracking-[0.25em] text-slate-200">
                     HERITAGE STORY
                   </p>
-                  <p className="max-w-xs text-sm leading-relaxed text-slate-100/90">
+                  <p className="max-w-xs text-sm leading-relaxed text-slate-100">
                     {highlightInline(
                       heritage.heroTitle ??
                         (heritage as any).seoTitle ??
@@ -562,15 +415,15 @@ export default async function HeritageDetailPage({
                   </p>
                 </div>
 
-                <div className="flex flex-col gap-2 text-[11px] text-slate-300/90 sm:flex-row sm:items-end sm:justify-between">
+                <div className="flex flex-col gap-2 text-[11px] text-slate-200 sm:flex-row sm:items-end sm:justify-between">
                   <div>
                     {heritage.eraRange && (
-                      <p className="font-mono text-xs uppercase tracking-[0.22em] text-slate-200">
+                      <p className="font-mono text-xs uppercase tracking-[0.22em] text-slate-100">
                         {heritage.eraRange}
                       </p>
                     )}
                     {heritage.heroCaption && (
-                      <p className="mt-1 max-w-xs text-[11px] leading-relaxed text-slate-300/90">
+                      <p className="mt-1 max-w-xs text-[11px] leading-relaxed text-slate-100">
                         {highlightInline(
                           heritage.heroCaption,
                           highlightRegex,
@@ -580,7 +433,7 @@ export default async function HeritageDetailPage({
                   </div>
                   <div className="text-right">
                     {heritage.heroImageCredit && (
-                      <p className="text-[10px] text-slate-400">
+                      <p className="text-[10px] text-slate-300">
                         PHOTO: {heritage.heroImageCredit}
                       </p>
                     )}
@@ -597,156 +450,21 @@ export default async function HeritageDetailPage({
         <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 md:flex-row md:px-6 lg:px-8">
           {/* 本文 */}
           <Reveal className="w-full md:w-[64%]">
-            <GlassCard className="border-slate-800/70 bg-slate-950/80 p-5 sm:p-6 lg:p-7">
+            <GlassCard className="border-slate-800/80 bg-slate-950 p-5 sm:p-6 lg:p-7">
               {hasBody ? (
-                <>
-                  {/* イントロ章 */}
-                  {introChapter && (
-                    <article className="space-y-4">
-                      {introChapter.blocks.map((block) => {
-                        if (block.type === "paragraph") {
-                          return (
-                            <p
-                              key={block.text.slice(0, 20)}
-                              className="text-[13px] leading-relaxed text-slate-100/95 sm:text-[15px]"
-                            >
-                              {highlightInline(block.text, highlightRegex)}
-                            </p>
-                          );
-                        }
-                        if (block.type === "list") {
-                          return (
-                            <ul
-                              key={block.items.join("|")}
-                              className="list-outside list-disc space-y-1 pl-5 text-[13px] leading-relaxed text-slate-100/95 sm:text-[15px]"
-                            >
-                              {block.items.map((item) => (
-                                <li key={item.slice(0, 20)}>
-                                  {highlightInline(item, highlightRegex)}
-                                </li>
-                              ))}
-                            </ul>
-                          );
-                        }
-                        if (block.type === "heading") {
-                          return (
-                            <h2
-                              key={block.heading.id}
-                              id={block.heading.id}
-                              className="pt-4 font-serif text-lg text-slate-50 sm:text-xl"
-                            >
-                              {highlightInline(
-                                block.heading.text,
-                                highlightRegex,
-                              )}
-                            </h2>
-                          );
-                        }
-                        return null;
-                      })}
-                    </article>
-                  )}
-
-                  {/* コンテンツ章 */}
-                  {contentChapters.length > 0 && (
-                    <div className="mt-8 space-y-10 border-t border-slate-800/70 pt-8">
-                      {contentChapters.map((chapter) => (
-                        <article
-                          key={chapter.id}
-                          className="scroll-mt-24 space-y-4"
-                        >
-                          <h2
-                            id={chapter.id}
-                            className="font-serif text-lg text-slate-50 sm:text-xl"
-                          >
-                            {highlightInline(
-                              chapter.title,
-                              highlightRegex,
-                            )}
-                          </h2>
-                          {chapter.blocks.map((block, index) => {
-                            if (block.type === "paragraph") {
-                              return (
-                                <p
-                                  key={`${chapter.id}-p-${index}`}
-                                  className="text-[13px] leading-relaxed text-slate-100/95 sm:text-[15px]"
-                                >
-                                  {highlightInline(
-                                    block.text,
-                                    highlightRegex,
-                                  )}
-                                </p>
-                              );
-                            }
-                            if (block.type === "list") {
-                              const isOrdered = block.items.every((item) =>
-                                /^\d+\./.test(item),
-                              );
-                              if (isOrdered) {
-                                return (
-                                  <ol
-                                    key={`${chapter.id}-ol-${index}`}
-                                    className="ml-5 list-outside list-decimal space-y-1 text-[13px] leading-relaxed text-slate-100/95 sm:text-[15px]"
-                                  >
-                                    {block.items.map((item) => {
-                                      const label = item.replace(
-                                        /^\d+\.\s*/,
-                                        "",
-                                      );
-                                      return (
-                                        <li key={item.slice(0, 20)}>
-                                          {highlightInline(
-                                            label,
-                                            highlightRegex,
-                                          )}
-                                        </li>
-                                      );
-                                    })}
-                                  </ol>
-                                );
-                              }
-                              return (
-                                <ul
-                                  key={`${chapter.id}-ul-${index}`}
-                                  className="ml-5 list-outside list-disc space-y-1 text-[13px] leading-relaxed text-slate-100/95 sm:text-[15px]"
-                                >
-                                  {block.items.map((item) => (
-                                    <li key={item.slice(0, 20)}>
-                                      {highlightInline(
-                                        item,
-                                        highlightRegex,
-                                      )}
-                                    </li>
-                                  ))}
-                                </ul>
-                              );
-                            }
-                            if (block.type === "heading") {
-                              const Tag =
-                                block.heading.level === 2 ? "h2" : "h3";
-                              return (
-                                <Tag
-                                  key={`${chapter.id}-h-${block.heading.id}`}
-                                  id={block.heading.id}
-                                  className="pt-4 font-serif text-lg text-slate-50 sm:text-xl"
-                                >
-                                  {highlightInline(
-                                    block.heading.text,
-                                    highlightRegex,
-                                  )}
-                                </Tag>
-                              );
-                            }
-                            return null;
-                          })}
-                        </article>
-                      ))}
-                    </div>
-                  )}
-                </>
+                <article className="space-y-4">
+                  {paragraphs.map((p) => (
+                    <p
+                      key={p.slice(0, 32)}
+                      className="text-[13px] leading-relaxed text-slate-100 sm:text-[15px]"
+                    >
+                      {highlightInline(p, highlightRegex)}
+                    </p>
+                  ))}
+                </article>
               ) : (
-                <p className="text-[13px] leading-relaxed text-slate-100/90 sm:text-[15px]">
-                  このHERITAGEの本文は現在準備中です。
+                <p className="text-[13px] leading-relaxed text-slate-100 sm:text-[15px]">
+                  このHERITAGEの本文テキストはまだ登録されていません。
                   ブランドや代表モデルの詳しいストーリーは、順次追加していきます。
                 </p>
               )}
@@ -758,18 +476,18 @@ export default async function HeritageDetailPage({
             <div className="flex flex-col gap-6">
               {/* 代表モデル */}
               {(heritage.keyModels?.length ?? 0) > 0 && (
-                <GlassCard className="border-slate-800/70 bg-slate-950/85 p-5">
-                  <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-300">
+                <GlassCard className="border-slate-800/80 bg-slate-950 p-5">
+                  <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-200">
                     KEY MODELS
                   </h2>
-                  <p className="mt-2 text-[13px] leading-relaxed text-slate-200/90">
+                  <p className="mt-2 text-[13px] leading-relaxed text-slate-100">
                     HERITAGEで取り上げる代表的なモデル達。CARSデータベースの個別ページとも連携していきます。
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {heritage.keyModels?.map((model) => (
                       <span
                         key={model}
-                        className="rounded-full border border-slate-700/80 bg-slate-900/80 px-2.5 py-0.5 text-[11px] text-slate-100"
+                        className="rounded-full border border-slate-700/80 bg-slate-900 px-2.5 py-0.5 text-[11px] text-slate-100"
                       >
                         {model}
                       </span>
@@ -780,19 +498,19 @@ export default async function HeritageDetailPage({
 
               {/* 関連コンテンツ */}
               {(hasRelatedCars || hasRelatedNews || hasRelatedGuides) && (
-                <GlassCard className="border-slate-800/70 bg-slate-950/85 p-5">
-                  <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-300">
+                <GlassCard className="border-slate-800/80 bg-slate-950 p-5">
+                  <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-200">
                     RELATED CONTENTS
                   </h2>
-                  <p className="mt-2 text-[13px] leading-relaxed text-slate-200/90">
+                  <p className="mt-2 text-[13px] leading-relaxed text-slate-100">
                     CAR BOUTIQUE内の他コンテンツとも緩やかにつながり、
                     「気になったブランドや時代」を深掘りできるようにしていきます。
                   </p>
 
-                  <div className="mt-3 space-y-2 text-[12px]">
+                  <div className="mt-3 space-y-2 text-[12px] text-slate-100">
                     {hasRelatedCars && (
                       <div>
-                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-400">
+                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-300">
                           CARS
                         </p>
                         <div className="flex flex-wrap gap-1.5">
@@ -800,7 +518,7 @@ export default async function HeritageDetailPage({
                             <Link
                               key={slug}
                               href={`/cars/${encodeURIComponent(slug)}`}
-                              className="rounded-full bg-slate-900/80 px-2.5 py-0.5 text-[11px] text-slate-100 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
+                              className="rounded-full bg-slate-900 px-2.5 py-0.5 text-[11px] text-slate-100 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
                             >
                               {slug}
                             </Link>
@@ -811,7 +529,7 @@ export default async function HeritageDetailPage({
 
                     {hasRelatedNews && (
                       <div>
-                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-400">
+                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-300">
                           NEWS
                         </p>
                         <div className="flex flex-wrap gap-1.5">
@@ -819,7 +537,7 @@ export default async function HeritageDetailPage({
                             <Link
                               key={id}
                               href={`/news/${encodeURIComponent(id)}`}
-                              className="rounded-full bg-slate-900/80 px-2.5 py-0.5 text-[11px] text-slate-100 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
+                              className="rounded-full bg-slate-900 px-2.5 py-0.5 text-[11px] text-slate-100 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
                             >
                               関連NEWS:id:{id}
                             </Link>
@@ -830,7 +548,7 @@ export default async function HeritageDetailPage({
 
                     {hasRelatedGuides && (
                       <div>
-                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-400">
+                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-300">
                           GUIDES
                         </p>
                         <div className="flex flex-wrap gap-1.5">
@@ -838,7 +556,7 @@ export default async function HeritageDetailPage({
                             <Link
                               key={slug}
                               href={`/guide/${encodeURIComponent(slug)}`}
-                              className="rounded-full bg-slate-900/80 px-2.5 py-0.5 text-[11px] text-slate-100 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
+                              className="rounded-full bg-slate-900 px-2.5 py-0.5 text-[11px] text-slate-100 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
                             >
                               {slug}
                             </Link>
@@ -851,7 +569,7 @@ export default async function HeritageDetailPage({
               )}
 
               {/* 一覧への戻り＋前後ナビ */}
-              <GlassCard className="border-slate-800/70 bg-slate-950/90 p-5">
+              <GlassCard className="border-slate-800/80 bg-slate-950 p-5">
                 <div className="flex flex-col gap-3">
                   <div>
                     <Link
@@ -864,13 +582,13 @@ export default async function HeritageDetailPage({
                   </div>
 
                   {(prev || next) && (
-                    <div className="flex flex-col gap-2 pt-1 text-xs text-slate-200 md:flex-row md:justify-between">
+                    <div className="flex flex-col gap-2 pt-1 text-xs text-slate-100 md:flex-row md:justify-between">
                       {prev ? (
                         <Link
                           href={`/heritage/${encodeURIComponent(
                             prev.slug,
                           )}`}
-                          className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900/80 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
+                          className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
                         >
                           <span className="text-[10px] text-slate-400">
                             PREVIOUS
@@ -888,7 +606,7 @@ export default async function HeritageDetailPage({
                           href={`/heritage/${encodeURIComponent(
                             next.slug,
                           )}`}
-                          className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900/80 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
+                          className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
                         >
                           <span className="text-[10px] text-slate-400">
                             NEXT
@@ -914,10 +632,10 @@ export default async function HeritageDetailPage({
         <section className="border-t border-slate-800/70 bg-slate-950 py-10 md:py-14">
           <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
             <Reveal className="max-w-xl">
-              <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-300">
+              <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-200">
                 MORE HERITAGE
               </h2>
-              <p className="mt-2 text-[13px] leading-relaxed text-slate-200/90">
+              <p className="mt-2 text-[13px] leading-relaxed text-slate-100">
                 同じブランド、または近いテーマのHERITAGEストーリーから、
                 続けて読みやすい記事をピックアップしました。
               </p>
@@ -939,8 +657,8 @@ export default async function HeritageDetailPage({
                     href={`/heritage/${encodeURIComponent(item.slug)}`}
                     className="group h-full"
                   >
-                    <GlassCard className="flex h-full flex-col border-slate-800/70 bg-slate-950/85 p-4 transition group-hover:border-rose-400/70 group-hover:bg-slate-900">
-                      <p className="text-[11px] tracking-[0.26em] text-slate-400">
+                    <GlassCard className="flex h-full flex-col border-slate-800/80 bg-slate-950 p-4 transition group-hover:border-rose-400/70 group-hover:bg-slate-900">
+                      <p className="text-[11px] tracking-[0.26em] text-slate-300">
                         {itemMaker || "HERITAGE"}
                       </p>
                       <h3 className="mt-1 line-clamp-2 font-serif text-sm text-slate-50">
@@ -956,7 +674,7 @@ export default async function HeritageDetailPage({
                           {itemTags.slice(0, 3).map((tag) => (
                             <span
                               key={tag}
-                              className="rounded-full border border-slate-700/80 bg-slate-900/80 px-2 py-0.5 text-[10px] text-slate-200"
+                              className="rounded-full border border-slate-700/80 bg-slate-900 px-2 py-0.5 text-[10px] text-slate-100"
                             >
                               {tag}
                             </span>
@@ -975,7 +693,7 @@ export default async function HeritageDetailPage({
                   asChild
                   variant="outline"
                   size="sm"
-                  className="border-slate-700 bg-slate-950/80 text-[11px] text-slate-100 hover:border-rose-400 hover:bg-slate-900"
+                  className="border-slate-700 bg-slate-950 text-[11px] text-slate-100 hover:border-rose-400 hover:bg-slate-900"
                 >
                   <Link href="/heritage">HERITAGE一覧をもっと見る</Link>
                 </Button>
