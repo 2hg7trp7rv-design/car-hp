@@ -21,16 +21,21 @@ type CarRotatorProps = {
   /** Tailwindのアスペクト比クラス (default: aspect-[16/9]) */
   aspectRatio?: string;
   className?: string;
-  /** 自動回転の有無 */
+  /** 自動回転の有無（初期はOFF。LPなどで使う場合にONを想定） */
   autoRotate?: boolean;
 };
 
 /**
  * Haptic 360° Car Viewer
+ *
  * ドラッグ操作により車両を回転させ、擬似的な「触れる」体験を提供するコンポーネント。
  *
  * - images があれば 360° ビュー
  * - images が無く imageUrl のみあれば 1枚の画像を静的表示
+ *
+ * スマホ前提:
+ * - touch操作とmouse操作の両方に対応
+ * - 画像は先にプリロードしてからローディング表示を外す
  */
 export function CarRotator({
   images,
@@ -51,18 +56,33 @@ export function CarRotator({
   const [startX, setStartX] = useState(0);
   const [loadedCount, setLoadedCount] = useState(0);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const sensitivity = 15; // ドラッグ感度 (値が大きいほど重厚な回転になる)
+
+  // ドラッグ感度 (値が大きいほど重厚な回転になる)
+  const sensitivity = 15;
 
   // ローディング進捗計算
   const isAllLoaded = loadedCount >= totalFrames && totalFrames > 0;
   const progress =
     totalFrames > 0 ? Math.round((loadedCount / totalFrames) * 100) : 0;
 
-  const altBase = alt ?? "Vehicle Angle";
+  const altBase = alt ?? "360度車両ビュー";
 
-  // 画像プリロード処理
+  // prefers-reduced-motion 判定（モーション弱者向け）
+  useEffect(() => {
+    if (typeof window === "undefined" || typeof window.matchMedia === "undefined") {
+      return;
+    }
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const listener = () => setReducedMotion(media.matches);
+    listener();
+    media.addEventListener("change", listener);
+    return () => media.removeEventListener("change", listener);
+  }, []);
+
+  // 画像プリロード処理（全フレームを先に読み込んでから操作可能に）
   useEffect(() => {
     if (totalFrames === 0) return;
 
@@ -73,11 +93,15 @@ export function CarRotator({
         const img = new window.Image();
         img.src = src;
         img.onload = () => {
-          if (mounted) setLoadedCount((prev) => prev + 1);
+          if (mounted) {
+            setLoadedCount((prev) => prev + 1);
+          }
         };
         img.onerror = () => {
           // エラー時もカウントアップしてスタックを防ぐ
-          if (mounted) setLoadedCount((prev) => prev + 1);
+          if (mounted) {
+            setLoadedCount((prev) => prev + 1);
+          }
         };
       });
     };
@@ -90,8 +114,12 @@ export function CarRotator({
 
   // 自動回転ロジック (インタラクションがあるまでゆっくり回る演出)
   useEffect(() => {
-    if (!autoRotate || hasInteracted || !isAllLoaded || isDragging) return;
+    if (!autoRotate) return;
+    if (hasInteracted) return;
+    if (!isAllLoaded) return;
+    if (isDragging) return;
     if (totalFrames <= 1) return;
+    if (reducedMotion) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % totalFrames);
@@ -99,7 +127,7 @@ export function CarRotator({
     }, 100);
 
     return () => clearInterval(interval);
-  }, [autoRotate, hasInteracted, isAllLoaded, isDragging, totalFrames]);
+  }, [autoRotate, hasInteracted, isAllLoaded, isDragging, totalFrames, reducedMotion]);
 
   // --- Event Handlers (Haptic Logic) ---
 
@@ -114,7 +142,7 @@ export function CarRotator({
     (clientX: number) => {
       if (!isDragging || totalFrames <= 1) return;
 
-      // 移動量（Delta）を計算
+      // 移動量(Delta)を計算
       const delta = startX - clientX;
 
       // 感度を超えた場合のみフレームを更新（無駄なレンダリング抑制）
@@ -170,7 +198,7 @@ export function CarRotator({
       <div
         className={`flex items-center justify-center rounded-2xl bg-slate-100 text-xs text-slate-400 ${aspectRatio}`}
       >
-        NO IMAGES
+        画像がまだ登録されていません
       </div>
     );
   }
@@ -180,7 +208,7 @@ export function CarRotator({
       ref={containerRef}
       className={`
         relative w-full overflow-hidden rounded-2xl bg-slate-50 shadow-inner
-        ${aspectRatio} ${className} 
+        ${aspectRatio} ${className}
         ${isAllLoaded ? "cursor-grab active:cursor-grabbing" : "cursor-wait"}
         touch-none select-none
       `}
@@ -192,22 +220,29 @@ export function CarRotator({
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
       aria-label="360度ビューワー。ドラッグして回転できます。"
+      aria-busy={!isAllLoaded}
+      role="group"
     >
       {/* 360 Badge (Tiffany Style) */}
-      <div className="absolute left-4 top-4 z-20 flex items-center gap-2 rounded-full border border-white/50 bg-white/90 px-3 py-1.5 shadow-sm backdrop-blur">
-        <div className="relative h-2 w-2">
-          <div className="absolute inset-0 animate-ping rounded-full bg-tiffany-400 opacity-75" />
-          <div className="relative h-2 w-2 rounded-full bg-tiffany-500" />
+      {totalFrames > 1 && (
+        <div className="absolute left-4 top-4 z-20 flex items-center gap-2 rounded-full border border-white/50 bg-white/90 px-3 py-1.5 text-[10px] font-semibold tracking-[0.2em] text-slate-900 shadow-sm backdrop-blur">
+          <div className="relative h-2 w-2">
+            {!reducedMotion && (
+              <div className="absolute inset-0 animate-ping rounded-full bg-tiffany-400 opacity-75" />
+            )}
+            <div className="relative h-2 w-2 rounded-full bg-tiffany-500" />
+          </div>
+          <span>360° VIEW</span>
         </div>
-        <span className="text-[9px] font-bold tracking-[0.2em] text-slate-900">
-          360° VIEW
-        </span>
-      </div>
+      )}
 
       {/* Loading Overlay */}
       {!isAllLoaded && (
-        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-white/80 backdrop-blur-sm transition-opacity duration-300">
-          <div className="mb-3 text-[10px] font-bold tracking-[0.3em] text-slate-400 animate-pulse">
+        <div
+          className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-white/80 backdrop-blur-sm transition-opacity duration-300"
+          aria-live="polite"
+        >
+          <div className="mb-3 text-[10px] font-bold tracking-[0.3em] text-slate-400">
             LOADING EXPERIENCE
           </div>
           {/* Progress Bar */}
@@ -223,44 +258,50 @@ export function CarRotator({
         </div>
       )}
 
-      {/* Interaction Guide (Initial only) */}
-      {isAllLoaded && !hasInteracted && !autoRotate && totalFrames > 1 && (
-        <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center">
-          <div className="flex animate-fade-in-up flex-col items-center gap-3 rounded-2xl bg-slate-900/60 px-6 py-4 backdrop-blur-md transition-opacity duration-700">
-            <div className="flex gap-4 opacity-80">
-              <svg
-                className="h-5 w-5 animate-bounce-horizontal-left text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10 19l-7-7m0 0 7-7m-7 7h18"
-                />
-              </svg>
-              <svg
-                className="h-5 w-5 animate-bounce-horizontal-right text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14 5l7 7m0 0-7 7m7-7H3"
-                />
-              </svg>
+      {/* Interaction Guide (初回のみ) */}
+      {isAllLoaded &&
+        !hasInteracted &&
+        !autoRotate &&
+        totalFrames > 1 &&
+        !reducedMotion && (
+          <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center">
+            <div className="flex animate-fade-in-up flex-col items-center gap-3 rounded-2xl bg-slate-900/60 px-6 py-4 text-center backdrop-blur-md transition-opacity duration-700">
+              <div className="flex gap-4 opacity-80">
+                <svg
+                  className="h-5 w-5 animate-bounce-horizontal-left text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 19l-7-7m0 0 7-7m-7 7h18"
+                  />
+                </svg>
+                <svg
+                  className="h-5 w-5 animate-bounce-horizontal-right text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14 5l7 7m0 0-7 7m7-7H3"
+                  />
+                </svg>
+              </div>
+              <span className="text-[9px] font-bold tracking-[0.2em] text-white">
+                DRAG TO ROTATE
+              </span>
             </div>
-            <span className="text-[9px] font-bold tracking-[0.2em] text-white">
-              DRAG TO ROTATE
-            </span>
           </div>
-        </div>
-      )}
+        )}
 
       {/* Image Renderer Layer */}
       <div className="relative h-full w-full">
@@ -268,9 +309,7 @@ export function CarRotator({
           <Image
             key={`${src}-${index}`}
             src={src}
-            alt={
-              index === 0 ? altBase : `${altBase} ${index + 1}`
-            }
+            alt={index === 0 ? altBase : `${altBase} ${index + 1}`}
             fill
             sizes="(min-width: 1024px) 800px, 100vw"
             className={`object-cover transition-opacity duration-100 ${
