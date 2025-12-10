@@ -37,6 +37,7 @@ export type HeritageItem = {
 
   // タイトル/要約
   title: string;
+  seoTitle?: string | null;
   titleJa?: string | null;
   subtitle?: string | null;
   lead?: string | null;
@@ -144,8 +145,9 @@ function toHeritageItem(
 
   // タイトル関連
   const titleJa = safeString(anyRaw.titleJa) ?? null;
+  const seoTitle = safeString(anyRaw.seoTitle) ?? null;
   const baseTitle =
-    safeString(anyRaw.title) ?? titleJa ?? "タイトル未設定";
+    safeString(anyRaw.title) ?? seoTitle ?? titleJa ?? "タイトル未設定";
   const subtitle = safeString(anyRaw.subtitle) ?? null;
 
   // 概要/リード
@@ -224,6 +226,7 @@ function toHeritageItem(
     type,
     status,
     title: baseTitle,
+    seoTitle,
     titleJa,
     subtitle,
     lead,
