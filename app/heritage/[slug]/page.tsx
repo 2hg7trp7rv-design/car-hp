@@ -131,7 +131,7 @@ function highlightInline(
     parts.push(
       <span
         key={`${start}-${end}`}
-        className="bg-rose-500/20 px-0.5 text-rose-100"
+        className="bg-rose-500/25 px-0.5 text-rose-100"
       >
         {matchedText}
       </span>,
@@ -287,12 +287,17 @@ function parseChapters(body: string): Chapter[] {
   flushList();
 
   if (chapters.length === 0) {
+    const trimmed = body.trim();
+    if (!trimmed) {
+      return [];
+    }
+
     return [
       {
         id: "intro",
         title: "イントロダクション",
         level: 2,
-        blocks: body
+        blocks: trimmed
           .split(/\n{2,}/)
           .map((p) => p.trim())
           .filter((p) => p.length > 0)
@@ -349,8 +354,8 @@ export async function generateMetadata({
   }
 
   const title =
-    heritage.title ??
     heritage.titleJa ??
+    heritage.title ??
     `${heritage.maker ?? ""} HERITAGE`.trim();
 
   const description =
@@ -421,10 +426,15 @@ export default async function HeritageDetailPage({
     formatDateLabel(heritage.publishedAt) ??
     formatDateLabel(heritage.updatedAt);
   const tags = heritage.tags ?? [];
-  const title = heritage.title ?? heritage.titleJa ?? heritage.slug;
+  const title = heritage.titleJa ?? heritage.title ?? heritage.slug;
 
-  const body = heritage.body ?? heritage.summary ?? "";
-  const chapters = parseChapters(body);
+  // 本文が空でも必ず何か出るように、summaryをフォールバックに使う
+  const rawBody = (heritage.body ?? "").trim();
+  const hasBody = rawBody.length > 0;
+  const summaryFallback = (heritage.summary ?? "").trim();
+  const bodySource = rawBody || summaryFallback;
+
+  const chapters = bodySource ? parseChapters(bodySource) : [];
   const introChapter = chapters[0] ?? null;
   const contentChapters = chapters.slice(1);
 
@@ -435,7 +445,8 @@ export default async function HeritageDetailPage({
   ]);
 
   const readingTimeMinutes =
-    heritage.readingTimeMinutes ?? estimateReadingTimeMinutes(body);
+    heritage.readingTimeMinutes ??
+    estimateReadingTimeMinutes(bodySource);
 
   const hasRelatedCars =
     Array.isArray(heritage.relatedCarSlugs) &&
@@ -593,9 +604,14 @@ export default async function HeritageDetailPage({
         <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 md:flex-row md:px-6 lg:px-8">
           {/* 本文 */}
           <Reveal className="w-full md:w-[64%]">
-            <GlassCard className="border-slate-800/70 bg-slate-950/80 p-5 sm:p-6 lg:p-7">
+            <GlassCard
+              padding="lg"
+              variant="dim"
+              interactive={false}
+              className="border border-white/12 bg-slate-950/90 p-5 sm:p-6 lg:p-7"
+            >
               {/* イントロ章 */}
-              {introChapter && (
+              {introChapter && introChapter.blocks.length > 0 && (
                 <article className="space-y-4">
                   {introChapter.blocks.map((block) => {
                     if (block.type === "paragraph") {
@@ -639,6 +655,12 @@ export default async function HeritageDetailPage({
                     return null;
                   })}
                 </article>
+              )}
+
+              {!introChapter && (
+                <p className="text-[13px] leading-relaxed text-slate-200/90 sm:text-[15px]">
+                  概要ベースの簡易版HERITAGEです。本文は順次追加していきます。
+                </p>
               )}
 
               {/* コンテンツ章 */}
@@ -742,7 +764,12 @@ export default async function HeritageDetailPage({
             <div className="flex flex-col gap-6">
               {/* 代表モデル */}
               {(heritage.keyModels?.length ?? 0) > 0 && (
-                <GlassCard className="border-slate-800/70 bg-slate-950/85 p-5">
+                <GlassCard
+                  padding="md"
+                  variant="dim"
+                  interactive={false}
+                  className="border border-white/12 bg-slate-950/90 p-5"
+                >
                   <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-300">
                     KEY MODELS
                   </h2>
@@ -764,7 +791,12 @@ export default async function HeritageDetailPage({
 
               {/* 関連コンテンツ */}
               {(hasRelatedCars || hasRelatedNews || hasRelatedGuides) && (
-                <GlassCard className="border-slate-800/70 bg-slate-950/85 p-5">
+                <GlassCard
+                  padding="md"
+                  variant="dim"
+                  interactive={false}
+                  className="border border-white/12 bg-slate-950/90 p-5"
+                >
                   <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-300">
                     RELATED CONTENTS
                   </h2>
@@ -835,12 +867,17 @@ export default async function HeritageDetailPage({
               )}
 
               {/* 一覧への戻り＋前後ナビ */}
-              <GlassCard className="border-slate-800/70 bg-slate-950/90 p-5">
+              <GlassCard
+                padding="md"
+                variant="dim"
+                interactive={false}
+                className="border border-white/12 bg-slate-950/95 p-5"
+              >
                 <div className="flex flex-col gap-3">
                   <div>
                     <Link
                       href="/heritage"
-                      className="inline-flex items-center gap-1 text-[12px] text-slate-100 underline-offset-4 hover:text-rose-100 hover:underline"
+                      className="inline-flex items-center gap-1 text-[12px] text-slate-50 underline-offset-4 hover:text-rose-100 hover:underline"
                     >
                       <span className="text-[11px] text-slate-400">←</span>
                       HERITAGE一覧に戻る
@@ -854,7 +891,7 @@ export default async function HeritageDetailPage({
                           href={`/heritage/${encodeURIComponent(
                             prev.slug,
                           )}`}
-                          className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900/80 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
+                          className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900/90 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
                         >
                           <span className="text-[10px] text-slate-400">
                             PREVIOUS
@@ -872,7 +909,7 @@ export default async function HeritageDetailPage({
                           href={`/heritage/${encodeURIComponent(
                             next.slug,
                           )}`}
-                          className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900/80 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
+                          className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900/90 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
                         >
                           <span className="text-[10px] text-slate-400">
                             NEXT
@@ -923,7 +960,12 @@ export default async function HeritageDetailPage({
                     href={`/heritage/${encodeURIComponent(item.slug)}`}
                     className="group h-full"
                   >
-                    <GlassCard className="flex h-full flex-col border-slate-800/70 bg-slate-950/85 p-4 transition group-hover:border-rose-400/70 group-hover:bg-slate-900">
+                    <GlassCard
+                      padding="md"
+                      variant="dim"
+                      interactive={false}
+                      className="flex h-full flex-col border border-white/12 bg-slate-950/90 p-4 transition group-hover:border-rose-400/70 group-hover:bg-slate-900"
+                    >
                       <p className="text-[11px] tracking-[0.26em] text-slate-400">
                         {itemMaker || "HERITAGE"}
                       </p>
