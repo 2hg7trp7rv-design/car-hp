@@ -23,17 +23,24 @@ type PageProps = {
 // Heritage の拡張仕様（将来的な連携も見据えて optional で拡張）
 type ExtendedHeritageItem = HeritageItem & {
   titleJa?: string | null;
+  heroTitle?: string | null;       // ヒーロー用タイトル（UI向けに追加）
   heroImage?: string | null;
   heroImageCredit?: string | null;
-  periodLabel?: string | null; // 例: "1969–1973"
+  heroCaption?: string | null;     // ヒーロー画像下に置くキャプション
+  periodLabel?: string | null;     // 例: "1969–1973"
   eraStartYear?: number | null;
   eraEndYear?: number | null;
+  eraRange?: string | null;        // "1969–1973" のようなレンジ表記
   highlightQuote?: string | null;
-  keyModels?: string[] | null; // 関連する代表車種名
-  relatedCarSlugs?: string[] | null; // /cars/[slug] 連携用
-  relatedNewsIds?: string[] | null; // /news/[id] 連携用
+  keyModels?: string[] | null;     // 関連する代表車種名
+  relatedCarSlugs?: string[] | null;   // /cars/[slug] 連携用
+  relatedNewsIds?: string[] | null;    // /news/[id] 連携用
   relatedGuideSlugs?: string[] | null; // /guide/[slug] 連携用
-  readingTimeMinutes?: number | null; // 手動で指定する場合
+  readingTimeMinutes?: number | null;  // 手動で指定する場合
+
+  // シリーズ情報（どちらか or 両方を data 側で使う想定）
+  series?: string | null;          // シリーズ名そのもの
+  seriesTitle?: string | null;     // 表示用タイトル
 };
 
 // ---- 日付まわり ----
@@ -155,13 +162,14 @@ type Chapter = {
 };
 
 function toIdFromHeading(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[。\s　]+/g, "-")
-    .replace(/[^\w\-ぁ-んァ-ン一-龠]/g, "")
-    .replace(/-+/g, "-")
-    .replace(/^-|-$/g, "")
-    || "section";
+  return (
+    text
+      .toLowerCase()
+      .replace(/[。\s　]+/g, "-")
+      .replace(/[^\w\-ぁ-んァ-ン一-龠]/g, "")
+      .replace(/-+/g, "-")
+      .replace(/^-|-$/g, "") || "section"
+  );
 }
 
 function parseChapters(body: string): Chapter[] {
@@ -290,12 +298,19 @@ function parseChapters(body: string): Chapter[] {
   return chapters;
 }
 
-// HeritageItem に seriesTitle があるケースだけを安全に扱うための type guard
-type HeritageItemWithSeries = ExtendedHeritageItem & { seriesTitle: string };
+// HeritageItem に series / seriesTitle があるケースだけを安全に扱うための type guard
+type HeritageItemWithSeries = ExtendedHeritageItem & {
+  series?: string | null;
+  seriesTitle?: string | null;
+};
 
 function hasSeries(heritage: ExtendedHeritageItem): heritage is HeritageItemWithSeries {
-  const v = (heritage as any).seriesTitle;
-  return typeof v === "string" && v.length > 0;
+  const s = heritage.series;
+  const st = heritage.seriesTitle;
+  return (
+    (typeof s === "string" && s.length > 0) ||
+    (typeof st === "string" && st.length > 0)
+  );
 }
 
 // ---- 読了時間のざっくり推定 ----
@@ -336,8 +351,8 @@ export async function generateMetadata({
     "CAR BOUTIQUEによるブランド/時代のストーリーと代表車をまとめたHERITAGEコンテンツ。";
 
   const images: string[] = [];
-  if (heritage.ogImageUrl) {
-    images.push(heritage.ogImageUrl);
+  if ((heritage as any).ogImageUrl) {
+    images.push((heritage as any).ogImageUrl as string);
   } else if (heritage.heroImage) {
     images.push(heritage.heroImage);
   }
@@ -474,9 +489,9 @@ export default async function HeritageDetailPage({
                 )}
 
                 <div className="flex flex-wrap gap-2 pt-1 text-[11px] text-slate-300">
-                  {hasSeries(heritage) && heritage.seriesTitle && (
+                  {hasSeries(heritage) && (
                     <span className="rounded-full border border-slate-700/80 px-2.5 py-0.5 text-[10px] uppercase tracking-[0.18em] text-slate-300">
-                      {heritage.seriesTitle}
+                      {heritage.seriesTitle ?? heritage.series}
                     </span>
                   )}
                   {heritage.keyModels?.map((model) => (
@@ -502,7 +517,7 @@ export default async function HeritageDetailPage({
             </div>
           </Reveal>
 
-          {/* 右:ヒーロー画像 */}
+          {/* 右:ヒーロー画像＋リード */}
           <Reveal className="flex-1">
             <div className="relative h-64 w-full overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-900/60 shadow-[0_24px_60px_rgba(15,23,42,0.9)] sm:h-72 md:h-80">
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(248,250,252,0.24),_transparent_55%),radial-gradient(circle_at_bottom_right,_rgba(244,114,182,0.18),_transparent_55%)]" />
@@ -516,6 +531,7 @@ export default async function HeritageDetailPage({
                   <p className="max-w-xs text-sm leading-relaxed text-slate-100/90">
                     {highlightInline(
                       heritage.heroTitle ??
+                        heritage.seoTitle ??
                         heritage.subtitle ??
                         heritage.lead ??
                         "ブランドや時代の変遷を、代表的なモデルとともに辿るロングストーリー。",
@@ -783,9 +799,7 @@ export default async function HeritageDetailPage({
                       href="/heritage"
                       className="inline-flex items-center gap-1 text-[12px] text-slate-100 underline-offset-4 hover:text-rose-100 hover:underline"
                     >
-                      <span className="text-slate-400 text-[11px]">
-                        ←
-                      </span>
+                      <span className="text-[11px] text-slate-400">←</span>
                       HERITAGE一覧に戻る
                     </Link>
                   </div>
@@ -801,7 +815,7 @@ export default async function HeritageDetailPage({
                             PREVIOUS
                           </span>
                           <span className="truncate text-[12px] text-slate-100">
-                            {prev.titleJa ?? prev.title}
+                            {(prev as any).titleJa ?? prev.title}
                           </span>
                         </Link>
                       ) : (
@@ -817,7 +831,7 @@ export default async function HeritageDetailPage({
                             NEXT
                           </span>
                           <span className="truncate text-[12px] text-slate-100">
-                            {next.titleJa ?? next.title}
+                            {(next as any).titleJa ?? next.title}
                           </span>
                         </Link>
                       ) : (
