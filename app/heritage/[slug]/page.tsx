@@ -197,8 +197,8 @@ export async function generateMetadata({
     `${heritage.maker ?? ""} HERITAGE`.trim();
 
   const description =
-    (typeof heritage.summary === "string" && heritage.summary) ||
-    (typeof heritage.lead === "string" && heritage.lead) ||
+    heritage.summary ??
+    heritage.lead ??
     "CAR BOUTIQUEによるブランド/時代のストーリーと代表車をまとめたHERITAGEコンテンツ。";
 
   const images: string[] = [];
@@ -266,15 +266,21 @@ export default async function HeritageDetailPage({
   const tags = heritage.tags ?? [];
   const title = heritage.title ?? heritage.titleJa ?? heritage.slug;
 
-  // 本文は body を優先し、なければ summary を使う
-  const bodySource =
-    typeof heritage.body === "string" && heritage.body.trim().length > 0
-      ? heritage.body
-      : typeof heritage.summary === "string"
-      ? heritage.summary
-      : "";
-
-  const bodyText = bodySource.trim();
+  // 本文は body 優先、なければ summary をそのまま使う
+  const bodyText = (() => {
+    const candidates = [
+      heritage.body,
+      (heritage as any).content,
+      (heritage as any).fullText,
+      heritage.summary,
+    ];
+    for (const c of candidates) {
+      if (typeof c === "string" && c.trim().length > 0) {
+        return c.trim();
+      }
+    }
+    return "";
+  })();
   const hasBody = bodyText.length > 0;
 
   const highlightRegex = createHighlightRegex([
@@ -350,12 +356,11 @@ export default async function HeritageDetailPage({
                   )}
                 </div>
 
-                {typeof heritage.summary === "string" &&
-                  heritage.summary.trim().length > 0 && (
-                    <p className="max-w-xl text-sm leading-relaxed text-slate-100/90">
-                      {heritage.summary}
-                    </p>
-                  )}
+                {heritage.summary && (
+                  <p className="max-w-xl text-sm leading-relaxed text-slate-100/90">
+                    {heritage.summary}
+                  </p>
+                )}
 
                 <div className="flex flex-wrap gap-2 pt-1 text-[11px] text-slate-300">
                   {hasSeries(heritage) && (
@@ -386,7 +391,7 @@ export default async function HeritageDetailPage({
             </div>
           </Reveal>
 
-          {/* 右:ヒーロー画像＋リード（今はテキストのみ） */}
+          {/* 右:ヒーロー画像＋リード（テキストのみ） */}
           <Reveal className="flex-1">
             <div className="relative h-64 w-full overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-900/60 shadow-[0_24px_60px_rgba(15,23,42,0.9)] sm:h-72 md:h-80">
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(248,250,252,0.24),_transparent_55%),radial-gradient(circle_at_bottom_right,_rgba(244,114,182,0.18),_transparent_55%)]" />
@@ -447,7 +452,7 @@ export default async function HeritageDetailPage({
             <GlassCard className="border-slate-800/70 bg-slate-950/80 p-5 sm:p-6 lg:p-7">
               {hasBody ? (
                 <article className="space-y-4">
-                  <p className="whitespace-pre-wrap text-[13px] leading-relaxed text-slate-100/95 sm:text-[15px]">
+                  <p className="whitespace-pre-line text-[13px] leading-relaxed text-slate-100 sm:text-[15px]">
                     {highlightInline(bodyText, highlightRegex)}
                   </p>
                 </article>
