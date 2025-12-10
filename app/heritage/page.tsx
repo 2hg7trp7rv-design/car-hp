@@ -209,52 +209,52 @@ export default async function HeritageIndexPage({
             >
               <GlassCard
                 padding="lg"
-                variant="crystal"
+                variant="dim"
                 interactive={false}
                 magnetic={false}
-                className="max-w-md"
+                className="max-w-md border border-slate-700/80 bg-slate-950/80"
               >
                 <div className="space-y-3">
-                  <p className="text-xs font-semibold tracking-[0.2em] text-slate-500">
+                  <p className="text-xs font-semibold tracking-[0.2em] text-slate-300">
                     HERITAGE INDEX
                   </p>
-                  <p className="text-sm text-slate-700">
+                  <p className="text-sm leading-relaxed text-slate-100/90">
                     登録されているHERITAGE記事の総数と
                     メーカー数・年代の幅から、
                     「どのくらいのアーカイブになっているか」を一目で把握できます。
                   </p>
                   <div className="mt-4 grid grid-cols-3 gap-3 text-center text-xs sm:text-sm">
                     <div className="space-y-1">
-                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-500">
-                        total
+                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">
+                        TOTAL
                       </div>
-                      <div className="text-2xl font-semibold text-slate-900">
+                      <div className="text-2xl font-semibold text-slate-50">
                         {totalHeritage}
                       </div>
-                      <div className="text-[0.7rem] text-slate-500">
-                        articles
+                      <div className="text-[0.7rem] text-slate-400">
+                        ARTICLES
                       </div>
                     </div>
                     <div className="space-y-1">
-                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-500">
-                        makers
+                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">
+                        MAKERS
                       </div>
-                      <div className="text-2xl font-semibold text-slate-900">
+                      <div className="text-2xl font-semibold text-slate-50">
                         {totalMakers}
                       </div>
-                      <div className="text-[0.7rem] text-slate-500">
-                        brands
+                      <div className="text-[0.7rem] text-slate-400">
+                        BRANDS
                       </div>
                     </div>
                     <div className="space-y-1">
-                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-500">
-                        eras
+                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">
+                        ERAS
                       </div>
-                      <div className="text-2xl font-semibold text-slate-900">
+                      <div className="text-2xl font-semibold text-slate-50">
                         {totalEras}
                       </div>
-                      <div className="text-[0.7rem] text-slate-500">
-                        periods
+                      <div className="text-[0.7rem] text-slate-400">
+                        PERIODS
                       </div>
                     </div>
                   </div>
