@@ -29,7 +29,7 @@ export type HeritageItem = HeritageItemBase & {
   maker?: string | null;
 
   /** draft/published/archivedなど(ContentStatusと揃える) */
-  status?: ContentStatus | null;
+  status?: ContentStatus;
 
   /** 公開日時/更新日時(JSONにあれば使う) */
   publishedAt?: string | null;
@@ -198,13 +198,13 @@ function toHeritageItem(
     heroTone,
     body,
     highlights,
-    // ← ここを型安全に修正
+    // nullをそのまま渡さず、undefinedに正規化
     tags: tags ?? undefined,
     relatedCarIds: relatedCarIds ?? undefined,
     // 拡張メタ
     titleJa,
     maker,
-    status,
+    status: status ?? undefined,
     publishedAt,
     updatedAt,
     sourceName,
