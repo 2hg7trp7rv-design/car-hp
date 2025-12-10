@@ -148,10 +148,7 @@ export default async function HeritageIndexPage({
       return false;
     }
     if (eraFilter && item.eraLabel !== eraFilter) return false;
-    if (
-      tagFilter &&
-      !(item.tags ?? []).includes(tagFilter)
-    ) {
+    if (tagFilter && !(item.tags ?? []).includes(tagFilter)) {
       return false;
     }
 
@@ -182,9 +179,7 @@ export default async function HeritageIndexPage({
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(186,230,253,0.18),transparent_55%)]" />
         <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
           <Reveal className="text-sm text-slate-300">
-            <span className="tracking-[0.2em]">
-              HOME / HERITAGE
-            </span>
+            <span className="tracking-[0.2em]">HOME / HERITAGE</span>
           </Reveal>
 
           <div className="grid gap-10 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-end">
@@ -202,10 +197,7 @@ export default async function HeritageIndexPage({
               </p>
             </Reveal>
 
-            <Reveal
-              className="md:justify-self-end"
-              delay={140}
-            >
+            <Reveal className="md:justify-self-end" delay={140}>
               <GlassCard
                 padding="lg"
                 variant="crystal"
@@ -372,8 +364,7 @@ export default async function HeritageIndexPage({
                     ))}
                   </div>
 
-                  {(quickEraNav.length > 0 ||
-                    quickTagNav.length > 0) && (
+                  {(quickEraNav.length > 0 || quickTagNav.length > 0) && (
                     <div className="flex flex-wrap gap-4">
                       {quickEraNav.length > 0 && (
                         <div className="flex flex-wrap items-center gap-2">
@@ -502,10 +493,7 @@ export default async function HeritageIndexPage({
         ) : (
           <div className="mt-8 space-y-10">
             {groups.map((group) => (
-              <section
-                key={group.maker}
-                className="space-y-4"
-              >
+              <section key={group.maker} className="space-y-4">
                 <Reveal>
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
                     <div>
@@ -522,60 +510,53 @@ export default async function HeritageIndexPage({
                 <div className="grid gap-4 md:grid-cols-2">
                   {group.items.map((item, index) => {
                     const itemTags = item.tags ?? [];
-                    const labelMaker =
-                      item.brandName ?? item.maker;
+                    const labelMaker = item.brandName ?? item.maker;
                     const era = item.eraLabel ?? "ERA";
 
                     return (
-                      <Reveal
-                        key={item.id}
-                        delay={index * 70}
-                      >
-                        <Link
-                          href={`/heritage/${item.slug}`}
-                          className="block"
-                        >
+                      <Reveal key={item.id} delay={index * 70}>
+                        <Link href={`/heritage/${item.slug}`} className="block">
                           <GlassCard
                             padding="lg"
                             interactive
                             variant="dim"
-                            className="h-full border border-slate-700/80 bg-slate-900/90"
+                            // カード内は「明るい背景＋濃い文字」でコントラストを確保
+                            className="h-full border border-white/40 bg-white/85 text-slate-900 shadow-[0_18px_45px_rgba(15,23,42,0.55)]"
                           >
-                            <div className="flex h-full flex-col gap-3">
-                              <div className="flex items-center justify_between gap-3 text-xs text-slate-200">
-                                <span className="rounded-full border border-slate-700/80 bg-slate-950/80 px-3 py-1 text-[0.7rem]">
+                            <div className="flex h-full flex-col gap-3 text-slate-900">
+                              <div className="flex items-center justify-between gap-3 text-xs text-slate-800">
+                                <span className="rounded-full border border-slate-300/80 bg-white/80 px-3 py-1 text-[0.7rem]">
                                   {era}
                                 </span>
                                 {labelMaker && (
-                                  <span className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
+                                  <span className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-500">
                                     {labelMaker}
                                   </span>
                                 )}
                               </div>
 
                               <div className="space-y-2">
-                                <h4 className="text-sm font-semibold text-white sm:text-base">
-                                  {item.titleJa ??
-                                    item.title}
+                                <h4 className="text-sm font-semibold text-slate-900 sm:text-base">
+                                  {item.titleJa ?? item.title}
                                 </h4>
                                 {item.modelName && (
-                                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
+                                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
                                     {item.modelName}
                                   </p>
                                 )}
                                 {item.summary && (
-                                  <p className="text-xs leading-relaxed text-slate-200">
+                                  <p className="text-xs leading-relaxed text-slate-800">
                                     {item.summary}
                                   </p>
                                 )}
                               </div>
 
                               {itemTags.length > 0 && (
-                                <div className="mt-1 flex flex-wrap gap-2 text-[0.7rem] text-slate-200">
+                                <div className="mt-1 flex flex-wrap gap-2 text-[0.7rem] text-slate-800">
                                   {itemTags.map((tag) => (
                                     <span
                                       key={tag}
-                                      className="rounded-full border border-slate-700/80 bg-slate-950/80 px-2.5 py-1"
+                                      className="rounded-full border border-slate-300/80 bg-white/80 px-2.5 py-1"
                                     >
                                       #{tag}
                                     </span>
