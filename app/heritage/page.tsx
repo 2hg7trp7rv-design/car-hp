@@ -176,7 +176,7 @@ export default async function HeritageIndexPage({
     <main className="min-h-screen bg-slate-950 text-slate-50">
       {/* ヒーロー */}
       <section className="relative overflow-hidden border-b border-white/5 bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-900">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(30,64,175,0.35),transparent_60%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(186,230,253,0.18),transparent_55%)]" />
         <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
           <Reveal className="text-sm text-slate-300">
             <span className="tracking-[0.2em]">HOME / HERITAGE</span>
@@ -198,53 +198,52 @@ export default async function HeritageIndexPage({
             </Reveal>
 
             <Reveal className="md:justify-self-end" delay={140}>
-              {/* ※ここを「明るいカード＋黒文字」にして読みやすく */}
               <GlassCard
                 padding="lg"
                 variant="crystal"
                 interactive={false}
                 magnetic={false}
-                className="max-w-md border border-slate-300/80 bg-slate-100/95 text-slate-900 shadow-[0_18px_45px_rgba(15,23,42,0.65)]"
+                className="max-w-md border border-slate-700/80 bg-slate-900/90 text-slate-50 shadow-[0_18px_45px_rgba(15,23,42,0.85)]"
               >
                 <div className="space-y-3">
-                  <p className="text-xs font-semibold tracking-[0.2em] text-slate-700">
+                  <p className="text-xs font-semibold tracking-[0.2em] text-slate-300">
                     HERITAGE INDEX
                   </p>
-                  <p className="text-xs leading-relaxed text-slate-700">
+                  <p className="text-xs leading-relaxed text-slate-200/90">
                     登録されているHERITAGEの件数とブランド数を、
                     ざっくり把握するためのインデックスです。
                   </p>
                   <div className="mt-4 grid grid-cols-3 gap-3 text-center text-xs sm:text-sm">
                     <div className="space-y-1">
-                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-500">
+                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">
                         total
                       </div>
-                      <div className="text-2xl font-semibold text-slate-900">
+                      <div className="text-2xl font-semibold text-white">
                         {totalHeritage}
                       </div>
-                      <div className="text-[0.7rem] text-slate-600">
+                      <div className="text-[0.7rem] text-slate-400">
                         articles
                       </div>
                     </div>
                     <div className="space-y-1">
-                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-500">
+                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">
                         makers
                       </div>
-                      <div className="text-2xl font-semibold text-slate-900">
+                      <div className="text-2xl font-semibold text-white">
                         {totalMakers}
                       </div>
-                      <div className="text-[0.7rem] text-slate-600">
+                      <div className="text-[0.7rem] text-slate-400">
                         brands
                       </div>
                     </div>
                     <div className="space-y-1">
-                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-500">
+                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">
                         eras
                       </div>
-                      <div className="text-2xl font-semibold text-slate-900">
+                      <div className="text-2xl font-semibold text-white">
                         {totalEras}
                       </div>
-                      <div className="text-[0.7rem] text-slate-600">
+                      <div className="text-[0.7rem] text-slate-400">
                         periods
                       </div>
                     </div>
@@ -260,12 +259,11 @@ export default async function HeritageIndexPage({
       <section className="mx-auto max-w-6xl space-y-10 px-4 pb-16 pt-10 sm:px-6 lg:px-8 lg:pb-24 lg:pt-14">
         {/* フィルター */}
         <Reveal>
-          {/* ここも明るいカードにして黒文字に */}
           <GlassCard
             padding="lg"
             variant="dim"
             interactive={false}
-            className="border border-slate-300/80 bg-slate-100/95 text-slate-900"
+            className="border border-slate-700/80 bg-slate-900/90"
           >
             <form
               action="/heritage"
@@ -274,7 +272,7 @@ export default async function HeritageIndexPage({
             >
               {/* キーワード */}
               <div className="space-y-2">
-                <label className="text-xs font-semibold tracking-[0.2em] text-slate-700">
+                <label className="text-xs font-semibold tracking-[0.2em] text-slate-300">
                   KEYWORD
                 </label>
                 <input
@@ -282,20 +280,20 @@ export default async function HeritageIndexPage({
                   name="q"
                   defaultValue={rawQ}
                   placeholder="モデル名・ブランド名・キーワードで検索"
-                  className="w-full rounded-xl border border-slate-400/80 bg-slate-950/80 px-3 py-2 text-sm text-slate-50 placeholder:text-slate-500 outline-none ring-0 transition focus:border-tiffany-300/70 focus:ring-2 focus:ring-tiffany-300/40"
+                  className="w-full rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2 text-sm text-slate-50 placeholder:text-slate-500 outline-none ring-0 transition focus:border-tiffany-300/70 focus:ring-2 focus:ring-tiffany-300/40"
                 />
               </div>
 
               {/* セレクト3種 */}
               <div className="grid gap-4 md:grid-cols-3">
                 <div className="space-y-2">
-                  <label className="text-xs font-semibold tracking-[0.2em] text-slate-700">
+                  <label className="text-xs font-semibold tracking-[0.2em] text-slate-300">
                     MAKER
                   </label>
                   <select
                     name="maker"
                     defaultValue={makerFilter || ""}
-                    className="w-full rounded-xl border border-slate-400/80 bg-slate-950/80 px-3 py-2 text-sm text-slate-50 outline-none ring-0 transition focus:border-tiffany-300/70 focus:ring-2 focus:ring-tiffany-300/40"
+                    className="w-full rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2 text-sm text-slate-50 outline-none ring-0 transition focus:border-tiffany-300/70 focus:ring-2 focus:ring-tiffany-300/40"
                   >
                     <option value="">すべて</option>
                     {makers.map((maker) => (
@@ -307,13 +305,13 @@ export default async function HeritageIndexPage({
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-semibold tracking-[0.2em] text-slate-700">
+                  <label className="text-xs font-semibold tracking-[0.2em] text-slate-300">
                     ERA
                   </label>
                   <select
                     name="era"
                     defaultValue={eraFilter || ""}
-                    className="w-full rounded-xl border border-slate-400/80 bg-slate-950/80 px-3 py-2 text-sm text-slate-50 outline-none ring-0 transition focus:border-tiffany-300/70 focus:ring-2 focus:ring-tiffany-300/40"
+                    className="w-full rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2 text-sm text-slate-50 outline-none ring-0 transition focus:border-tiffany-300/70 focus:ring-2 focus:ring-tiffany-300/40"
                   >
                     <option value="">すべて</option>
                     {eras.map((era) => (
@@ -325,13 +323,13 @@ export default async function HeritageIndexPage({
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-semibold tracking-[0.2em] text-slate-700">
+                  <label className="text-xs font-semibold tracking-[0.2em] text-slate-300">
                     TAG
                   </label>
                   <select
                     name="tag"
                     defaultValue={tagFilter || ""}
-                    className="w-full rounded-xl border border-slate-400/80 bg-slate-950/80 px-3 py-2 text-sm text-slate-50 outline-none ring-0 transition focus:border-tiffany-300/70 focus:ring-2 focus:ring-tiffany-300/40"
+                    className="w-full rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2 text-sm text-slate-50 outline-none ring-0 transition focus:border-tiffany-300/70 focus:ring-2 focus:ring-tiffany-300/40"
                   >
                     <option value="">すべて</option>
                     {tags.map((tag) => (
@@ -349,7 +347,7 @@ export default async function HeritageIndexPage({
                 quickTagNav.length > 0) && (
                 <div className="space-y-3 text-xs">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-[0.7rem] font-semibold tracking-[0.2em] text-slate-600">
+                    <span className="text-[0.7rem] font-semibold tracking-[0.2em] text-slate-400">
                       QUICK NAV
                     </span>
                     {quickMakerNav.map((maker) => (
@@ -359,7 +357,7 @@ export default async function HeritageIndexPage({
                           pathname: "/heritage",
                           query: { maker },
                         }}
-                        className="rounded-full border border-slate-400/80 bg-slate-950/80 px-3 py-1 text-[0.7rem] text-slate-50 hover:border-tiffany-300/70 hover:text-tiffany-50"
+                        className="rounded-full border border-slate-700/80 bg-slate-950/80 px-3 py-1 text-[0.7rem] text-slate-50 hover:border-tiffany-300/70 hover:text-tiffany-50"
                       >
                         {maker}
                       </Link>
@@ -370,7 +368,7 @@ export default async function HeritageIndexPage({
                     <div className="flex flex-wrap gap-4">
                       {quickEraNav.length > 0 && (
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className="text-[0.65rem] tracking-[0.2em] text-slate-600">
+                          <span className="text-[0.65rem] tracking-[0.2em] text-slate-500">
                             ERA
                           </span>
                           {quickEraNav.map((era) => (
@@ -380,7 +378,7 @@ export default async function HeritageIndexPage({
                                 pathname: "/heritage",
                                 query: { era },
                               }}
-                              className="rounded-full border border-slate-400/80 bg-slate-950/80 px-3 py-1 text-[0.7rem] text-slate-50 hover:border-tiffany-300/70 hover:text-tiffany-50"
+                              className="rounded-full border border-slate-700/80 bg-slate-950/80 px-3 py-1 text-[0.7rem] text-slate-50 hover:border-tiffany-300/70 hover:text-tiffany-50"
                             >
                               {era}
                             </Link>
@@ -390,7 +388,7 @@ export default async function HeritageIndexPage({
 
                       {quickTagNav.length > 0 && (
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className="text-[0.65rem] tracking-[0.2em] text-slate-600">
+                          <span className="text-[0.65rem] tracking-[0.2em] text-slate-500">
                             TAG
                           </span>
                           {quickTagNav.map((tag) => (
@@ -400,7 +398,7 @@ export default async function HeritageIndexPage({
                                 pathname: "/heritage",
                                 query: { tag },
                               }}
-                              className="rounded-full border border-slate-400/80 bg-slate-950/80 px-3 py-1 text-[0.7rem] text-slate-50 hover:border-tiffany-300/70 hover:text-tiffany-50"
+                              className="rounded-full border border-slate-700/80 bg-slate-950/80 px-3 py-1 text-[0.7rem] text-slate-50 hover:border-tiffany-300/70 hover:text-tiffany-50"
                             >
                               #{tag}
                             </Link>
@@ -414,9 +412,9 @@ export default async function HeritageIndexPage({
 
               {/* ボタン行 */}
               <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
-                {hasFilter ? (
-                  <div className="text-xs text-slate-700">
-                    <span className="mr-2 text-[0.7rem] font-semibold tracking-[0.2em] text-slate-600">
+                {hasFilter && (
+                  <div className="text-xs text-slate-300">
+                    <span className="mr-2 text-[0.7rem] font-semibold tracking-[0.2em] text-slate-400">
                       ACTIVE FILTERS
                     </span>
                     <span>
@@ -442,28 +440,15 @@ export default async function HeritageIndexPage({
                       )}
                     </span>
                   </div>
-                ) : (
-                  <div className="text-xs text-slate-600">
-                    必要なときだけ、キーワードやメーカー・年代・タグで軽く絞り込む前提です。
-                  </div>
                 )}
 
                 <div className="flex gap-3">
                   {hasFilter && (
-                    <Button
-                      asChild
-                      variant="outline"
-                      size="sm"
-                      className="border-slate-500 text-slate-800 hover:border-slate-700 hover:text-slate-900"
-                    >
+                    <Button asChild variant="outline" size="sm">
                       <Link href="/heritage">CLEAR</Link>
                     </Button>
                   )}
-                  <Button
-                    type="submit"
-                    size="sm"
-                    className="bg-slate-900 px-5 text-xs tracking-[0.15em]"
-                  >
+                  <Button type="submit" size="sm">
                     絞り込み
                   </Button>
                 </div>
@@ -476,7 +461,7 @@ export default async function HeritageIndexPage({
         <Reveal delay={60}>
           <div className="flex flex-wrap items-baseline justify-between gap-3 pt-4">
             <div className="space-y-1">
-              <h2 className="text-sm font-semibold tracking-[0.2em] text-slate-200">
+              <h2 className="text-sm font-semibold tracking-[0.2em] text-slate-300">
                 HERITAGE LIST
               </h2>
               <p className="text-xs text-slate-400">
