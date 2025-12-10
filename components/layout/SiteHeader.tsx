@@ -1,3 +1,4 @@
+// components/layout/SiteHeader.tsx
 "use client";
 
 import Link from "next/link";
@@ -16,6 +17,7 @@ const NAV_ITEMS: NavItem[] = [
   { href: "/cars", label: "CARS", subLabel: "車種データベース" },
   { href: "/column", label: "COLUMN", subLabel: "技術・メンテナンス" },
   { href: "/guide", label: "GUIDE", subLabel: "お金と手放し方" },
+  { href: "/heritage", label: "HERITAGE", subLabel: "ヒストリー" },
 ];
 
 function isActive(pathname: string, href: string) {
@@ -47,7 +49,7 @@ export function SiteHeader() {
       {/* メインバー */}
       <div
         className={[
-          "mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 transition-all duration-300 sm:px-6 lg:px-8",
+          "mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 transition-all duration-300 sm:px-6 lg:px-8",
           scrolled ? "py-2" : "py-3",
         ].join(" ")}
       >
