@@ -400,7 +400,7 @@ export default async function HeritageDetailPage({
     }
   }
 
-  // sections 配列からセクションを生成（Ferrari など）
+  // sections 配列からセクションを生成（Ferrari など JSON 主体）
   const sectionsFromData: BodySection[] =
     Array.isArray(heritage.sections) && heritage.sections.length > 0
       ? heritage.sections.map((sec) => {
