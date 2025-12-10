@@ -28,9 +28,6 @@ export type HeritageItem = HeritageItemBase & {
   /** maker/brandNameの補助用(旧データとの互換) */
   maker?: string | null;
 
-  /** draft/published/archivedなど(ContentStatusと揃える) */
-  status?: ContentStatus;
-
   /** 公開日時/更新日時(JSONにあれば使う) */
   publishedAt?: string | null;
   updatedAt?: string | null;
@@ -60,7 +57,7 @@ function parseDate(value?: string | null): Date | null {
   return d;
 }
 
-function isPublished(status?: ContentStatus | null): boolean {
+function isPublished(status?: ContentStatus): boolean {
   if (!status) return true; // 未指定は公開扱い
   return status === "published";
 }
@@ -170,12 +167,15 @@ function toHeritageItem(
   const statusRaw = safeString(anyRaw.status) as
     | ContentStatus
     | undefined;
-  const status: ContentStatus | null =
+
+  let status: ContentStatus = "published";
+  if (
     statusRaw === "draft" ||
     statusRaw === "published" ||
     statusRaw === "archived"
-      ? statusRaw
-      : null;
+  ) {
+    status = statusRaw;
+  }
 
   const publishedAt = safeString(anyRaw.publishedAt) ?? null;
   const updatedAt = safeString(anyRaw.updatedAt) ?? null;
@@ -189,6 +189,7 @@ function toHeritageItem(
     title: baseTitle,
     subtitle,
     lead,
+    summary: summary ?? undefined,
     eraLabel,
     brandName,
     modelName,
@@ -197,14 +198,13 @@ function toHeritageItem(
     heroImage,
     heroTone,
     body,
-    highlights,
-    // nullをそのまま渡さず、undefinedに正規化
+    highlights: highlights ?? undefined,
     tags: tags ?? undefined,
     relatedCarIds: relatedCarIds ?? undefined,
     // 拡張メタ
     titleJa,
     maker,
-    status: status ?? undefined,
+    status,
     publishedAt,
     updatedAt,
     sourceName,
