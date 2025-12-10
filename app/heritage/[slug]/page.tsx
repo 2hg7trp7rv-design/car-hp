@@ -39,6 +39,11 @@ type ExtendedHeritageItem = HeritageItem & {
   readingTimeMinutes?: number | null;
   series?: string | null;
   seriesTitle?: string | null;
+  sections?: {
+    id: string;
+    title?: string | null;
+    summary?: string | null;
+  }[] | null;
 };
 
 // ---- 日付まわり ----
@@ -395,6 +400,32 @@ export default async function HeritageDetailPage({
     }
   }
 
+  // sections 配列からセクションを生成（Ferrari など）
+  const sectionsFromData: BodySection[] =
+    Array.isArray(heritage.sections) && heritage.sections.length > 0
+      ? heritage.sections.map((sec) => {
+          const raw =
+            typeof sec.summary === "string" ? sec.summary : "";
+          const lines = raw
+            ? raw
+                .replace(/。/g, "。\n")
+                .split(/\r?\n/)
+                .map((l) => l.trim())
+                .filter((l) => l.length > 0)
+            : [];
+          return {
+            title: sec.title ?? undefined,
+            level: "heading",
+            lines,
+          };
+        })
+      : [];
+
+  // sections があればそちらを優先して使う
+  const contentSections =
+    sectionsFromData.length > 0 ? sectionsFromData : bodySections;
+  const hasStructuredContent = contentSections.length > 0;
+
   return (
     <main className="min-h-screen bg-slate-950 text-slate-50">
       {/* ヒーローセクション（ここは背景が濃いので白字のまま） */}
@@ -489,10 +520,10 @@ export default async function HeritageDetailPage({
         <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 md:flex-row md:px-6 lg:px-8">
           {/* 本文 */}
           <Reveal className="w-full md:w-[64%]" forceVisible>
-            {hasBody ? (
+            {hasBody || hasStructuredContent ? (
               <div className="space-y-6">
-                {bodySections.length > 0 ? (
-                  bodySections.map((section, sectionIndex) => (
+                {hasStructuredContent ? (
+                  contentSections.map((section, sectionIndex) => (
                     <GlassCard
                       key={sectionIndex}
                       className="border border-white/40 bg-white/90 p-5 text-slate-900 sm:p-6 lg:p-7"
