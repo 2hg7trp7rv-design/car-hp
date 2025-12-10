@@ -1,40 +1,73 @@
 // lib/car-bmw-530i-g30.ts
 
+/**
+ * BMW 530i (G30) 専用の「拡張テンプレート」。
+ *
+ * 目的:
+ * - cars.json 側の CarItem では書ききれない「実際の乗り味」「トラブル傾向」「維持費イメージ」を
+ *   1台ごとに紐付けるためのドメイン層データ。
+ * - 将来的に他車種用テンプレート (e.g. car-toyota-harrier-80.ts) を量産する際の型のひな型。
+ *
+ * ポイント:
+ * - slug は必ず data/cars.json の該当車種の slug と一致させること。
+ * - UI 側では「存在すれば表示」「なければ非表示」として扱う前提で、項目はすべて optional。
+ */
+
 // 走り方シーンごとの印象
 export type G30UsageScene = {
+  /** 見出し (例: 「都内の日常使いでもサイズ慣れすれば快適」) */
   title: string;
+  /** 全体のトーンをざっと掴める 2〜3文程度の要約 */
   summary: string;
+  /** 良いところ (箇条書き) */
   pros?: string[];
+  /** 気になるところ・注意点 (箇条書き) */
   cons?: string[];
 };
 
 export type G30UsageImpressions = {
+  /** 街乗り・渋滞・買い物などのイメージ */
   city?: G30UsageScene;
+  /** 高速巡航や追い越しの印象 */
   highway?: G30UsageScene;
+  /** ロングツーリング・旅行での印象 */
   longTrip?: G30UsageScene;
+  /** 日常のメンテ・コンディション維持のイメージ */
   maintenance?: G30UsageScene;
 };
 
 // トラブル詳細 + 修理費レンジ
 export type G30TroubleDetail = {
+  /** 例: 「バッテリー・電装系の要注意ゾーン」 */
   title: string;
+  /** 症状の出方・オーナーが気付きやすいサイン */
   symptoms?: string;
+  /** どのくらいのタイミングで出やすいか (年式/距離/使い方など) */
   when?: string;
+  /** メモや考え方、予防の考え方 */
   note?: string;
-  cost?: string; // 「◯◯万円くらい〜」みたいなテキスト
+  /** おおよその金額レンジ (地域・工場によって変動する前提のテキスト) */
+  cost?: string;
 };
 
 // 維持費シミュレーション用の項目
 export type G30MaintenanceItem = {
+  /** 例: 「自動車税・重量税」「タイヤ交換」など */
   label: string;
+  /** 1年あたりの目安 (テキスト) */
   perYear?: string;
+  /** 2年(車検周期)あたりの目安 (テキスト) */
   per2Years?: string;
+  /** 3年スパンで見たときの目安 (タイヤ・ブレーキ等) */
   per3Years?: string;
+  /** 備考・考え方 */
   memo?: string;
 };
 
 export type G30MaintenanceSimulation = {
+  /** 前提条件 (走行距離・地域・想定ユーザー像など) */
   note?: string;
+  /** 項目ごとの概算 (UI 側ではテーブル表示想定) */
   items: {
     tax: G30MaintenanceItem;
     insurance: G30MaintenanceItem;
@@ -43,31 +76,73 @@ export type G30MaintenanceSimulation = {
     brakes: G30MaintenanceItem;
     routine: G30MaintenanceItem;
   };
+  /** 年間どのくらいかかるかのざっくりレンジ (テキスト) */
   yearlyRoughTotal?: string;
+};
+
+// スペック要約・キャラクター全体像
+export type G30SpecHighlight = {
+  engine: string;
+  power: string;
+  torque: string;
+  drive: string;
+  size: string;
+  note?: string;
 };
 
 // ページで使う「G30拡張テンプレート」1台分
 export type G30CarTemplate = {
-  slug: string; // ★ cars.json の G30 の slug と合わせる
+  /**
+   * cars.json 側の slug と必ず一致させる。
+   * 例: "bmw-530i-g30"
+   */
+  slug: string;
+
+  /** 一覧や見出しで使うフルネーム (任意) */
+  displayName?: string;
+
+  /** 「この1台をひと言で表すとどんなクルマか」のテキスト */
+  overview?: string;
+
+  /** エンジン・パワー・サイズ感などのスペック要約 (カード右側などで使用想定) */
+  specHighlight?: G30SpecHighlight;
+
+  /** 街乗り・高速・ロングドライブ・維持のしやすさなどの印象まとめ */
   usageImpressions?: G30UsageImpressions;
+
+  /** 定番トラブル・経年劣化ポイントとざっくり費用感 */
   troubleDetails?: G30TroubleDetail[];
+
+  /** 税金・保険・車検・タイヤなどをならした「ざっくり維持費シミュレーション」 */
   maintenanceSimulation?: G30MaintenanceSimulation;
 };
 
 // ---- ここから実データ ----
 
-const G30_TEMPLATES: G30CarTemplate[] = [
+export const G30_TEMPLATES: G30CarTemplate[] = [
   {
-    slug: "bmw-530i-g30", // ← cars.json の slug に合わせてね
+    slug: "bmw-530i-g30", // ← data/cars.json の G30 の slug に合わせる
+    displayName: "BMW 530i M Sport (G30)",
+    overview:
+      "パワーと上質さのバランスが良い、現代型5シリーズの「ちょうどいい」ポジション。通勤から長距離旅行まで一台でこなしたい人向けの、静かで速いサルーン。",
+    specHighlight: {
+      engine: "2.0L 直4ターボ (B48)",
+      power: "252ps 前後 / 350Nm クラス",
+      torque: "街乗り〜高速の常用域で厚いトルク感",
+      drive: "FR (一部グレードで xDrive)",
+      size: "全長約4.9m / 全幅約1.9m のDセグメントセダン",
+      note: "G30 世代らしい軽量化シャシーと電子制御の組み合わせで、旧世代よりも軽快な印象。",
+    },
+
     usageImpressions: {
       city: {
         title: "都内の日常使いでもサイズ慣れすれば快適",
         summary:
-          "全幅はそれなりにあるけれど、ステアリングの取り回しと視界が良く、慣れてしまえば『大きいけど扱いやすいセダン』という印象に落ち着くイメージ。",
+          "全幅はそれなりにあるけれど、ステアリングの取り回しと視界が良く、慣れてしまえば「大きいけど扱いやすいセダン」に落ち着くイメージ。",
         pros: [
           "アイドリングストップやATのつながりが自然でギクシャク感が少ない",
           "ボディ剛性が高く、段差を越えたときのガタつきが少ない",
-          "静粛性が高く、渋滞の中でも疲れにくい",
+          "静粛性が高く、渋滞の中でも会話や音楽が聴きやすい",
         ],
         cons: [
           "立体駐車場やコインパーキングはサイズ制限に注意が必要",
@@ -91,7 +166,7 @@ const G30_TEMPLATES: G30CarTemplate[] = [
       longTrip: {
         title: "大人4人でロングツーリングしても疲れにくいキャラ",
         summary:
-          "シートの出来と足回りのセッティングが良く、500〜600kmのロングドライブでも『もう一歩いけるな』と思えるタイプのクルマ。",
+          "シートの出来と足回りのセッティングが良く、500〜600kmのロングドライブでも「もう一歩いけるな」と思えるタイプのクルマ。",
         pros: [
           "シート形状・クッションが良く、腰や首の疲れが出にくい",
           "トランク容量が大きく、旅行の荷物も積みやすい",
@@ -105,7 +180,7 @@ const G30_TEMPLATES: G30CarTemplate[] = [
       maintenance: {
         title: "きちんと手当てすれば『手がかかりすぎる』まではいかない",
         summary:
-          "定番の弱点に事前に手を入れておけば、いきなり大きな出費で驚くケースは減らせるイメージ。『国産と同じ感覚』ではなく『ちょっと気を使う相棒』として付き合う感じ。",
+          "定番の弱点に事前に手を入れておけば、いきなり大きな出費で驚くケースは減らせるイメージ。「国産と同じ感覚」ではなく「ちょっと気を使う相棒」として付き合う感じ。",
         pros: [
           "定番の弱点がある程度見えているので、事前対策がしやすい",
           "信頼できる専門ショップを見つければ、ディーラー一択より選択肢が増える",
@@ -141,6 +216,14 @@ const G30_TEMPLATES: G30CarTemplate[] = [
         when: "年式・距離ともに進んできたタイミング（7〜10年目以降）",
         note: "一部だけでなく、周辺の樹脂パーツもセットで予防交換すると安心度が高い。",
         cost: "8〜25万円前後（どこまで一緒に交換するかで大きく変動）",
+      },
+      {
+        title: "可変バルブ機構(VANOS)・カムシャフト周りのオイル管理",
+        symptoms:
+          "暖機後のアイドリングでわずかな振動やざらつきを感じる、エラー履歴にVANOS関連コードが出る、始動直後に一瞬だけ違和感のある音がする等。",
+        when: "オイル交換サイクルが長めだった個体 / 走行距離・年式ともに進んだ個体で出やすい傾向。",
+        note: "まずはオイル粘度・交換サイクルの見直しとテスター診断。重症例はアクチュエーターや関連部品の交換を含めて専門工場で相談したいポイント。",
+        cost: "軽微な対処なら数万円〜 / 部品交換を含めると 10〜40万円前後とレンジが広い",
       },
     ],
 
@@ -183,7 +266,20 @@ const G30_TEMPLATES: G30CarTemplate[] = [
   },
 ];
 
-// slug から G30 テンプレを取得するヘルパー
+// ---- Helper API ----
+
+/**
+ * slug から G30 テンプレを取得するヘルパー
+ * - cars の詳細ページ側で「拡張情報があれば上乗せ表示」する用途を想定。
+ */
 export function getG30TemplateBySlug(slug: string): G30CarTemplate | null {
   return G30_TEMPLATES.find((tpl) => tpl.slug === slug) ?? null;
+}
+
+/**
+ * G30 系テンプレを全件取得。
+ * - 一覧で「テンプレ対応済み車種」をハイライトしたい場合などに使用。
+ */
+export function getAllG30Templates(): G30CarTemplate[] {
+  return G30_TEMPLATES;
 }
