@@ -1,5 +1,3 @@
-修正版フルページです。
-
 // app/guide/[slug]/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
