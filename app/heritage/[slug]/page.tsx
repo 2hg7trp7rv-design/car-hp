@@ -131,7 +131,7 @@ function highlightInline(
     parts.push(
       <span
         key={`${start}-${end}`}
-        className="bg-rose-500/25 px-0.5 text-rose-100"
+        className="bg-rose-500/20 px-0.5 text-rose-100"
       >
         {matchedText}
       </span>,
@@ -287,17 +287,12 @@ function parseChapters(body: string): Chapter[] {
   flushList();
 
   if (chapters.length === 0) {
-    const trimmed = body.trim();
-    if (!trimmed) {
-      return [];
-    }
-
     return [
       {
         id: "intro",
         title: "イントロダクション",
         level: 2,
-        blocks: trimmed
+        blocks: body
           .split(/\n{2,}/)
           .map((p) => p.trim())
           .filter((p) => p.length > 0)
@@ -354,8 +349,8 @@ export async function generateMetadata({
   }
 
   const title =
-    heritage.titleJa ??
     heritage.title ??
+    heritage.titleJa ??
     `${heritage.maker ?? ""} HERITAGE`.trim();
 
   const description =
@@ -426,17 +421,15 @@ export default async function HeritageDetailPage({
     formatDateLabel(heritage.publishedAt) ??
     formatDateLabel(heritage.updatedAt);
   const tags = heritage.tags ?? [];
-  const title = heritage.titleJa ?? heritage.title ?? heritage.slug;
+  const title = heritage.title ?? heritage.titleJa ?? heritage.slug;
 
-  // 本文が空でも必ず何か出るように、summaryをフォールバックに使う
-  const rawBody = (heritage.body ?? "").trim();
+  // 本文は body 優先、なければ summary を使う
+  const rawBody = (heritage.body ?? heritage.summary ?? "").trim();
   const hasBody = rawBody.length > 0;
-  const summaryFallback = (heritage.summary ?? "").trim();
-  const bodySource = rawBody || summaryFallback;
 
-  const chapters = bodySource ? parseChapters(bodySource) : [];
-  const introChapter = chapters[0] ?? null;
-  const contentChapters = chapters.slice(1);
+  const chapters = hasBody ? parseChapters(rawBody) : [];
+  const introChapter = hasBody ? chapters[0] ?? null : null;
+  const contentChapters = hasBody ? chapters.slice(1) : [];
 
   const highlightRegex = createHighlightRegex([
     heritage.maker ?? "",
@@ -446,7 +439,7 @@ export default async function HeritageDetailPage({
 
   const readingTimeMinutes =
     heritage.readingTimeMinutes ??
-    estimateReadingTimeMinutes(bodySource);
+    (hasBody ? estimateReadingTimeMinutes(rawBody) : 0);
 
   const hasRelatedCars =
     Array.isArray(heritage.relatedCarSlugs) &&
@@ -459,7 +452,7 @@ export default async function HeritageDetailPage({
     heritage.relatedGuideSlugs.length > 0;
 
   return (
-    <main className="bg-slate-950 text-slate-50">
+    <main className="min-h-screen bg-slate-950 text-slate-50">
       {/* ヒーローセクション */}
       <section className="relative border-b border-slate-800/60 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-950/95">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.1),_transparent_60%),radial-gradient(circle_at_bottom,_rgba(56,189,248,0.18),_transparent_60%)]" />
@@ -604,142 +597,41 @@ export default async function HeritageDetailPage({
         <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 md:flex-row md:px-6 lg:px-8">
           {/* 本文 */}
           <Reveal className="w-full md:w-[64%]">
-            <GlassCard
-              padding="lg"
-              variant="dim"
-              interactive={false}
-              className="border border-white/12 bg-slate-950/90 p-5 sm:p-6 lg:p-7"
-            >
-              {/* イントロ章 */}
-              {introChapter && introChapter.blocks.length > 0 && (
-                <article className="space-y-4">
-                  {introChapter.blocks.map((block) => {
-                    if (block.type === "paragraph") {
-                      return (
-                        <p
-                          key={block.text.slice(0, 20)}
-                          className="text-[13px] leading-relaxed text-slate-100/95 sm:text-[15px]"
-                        >
-                          {highlightInline(block.text, highlightRegex)}
-                        </p>
-                      );
-                    }
-                    if (block.type === "list") {
-                      return (
-                        <ul
-                          key={block.items.join("|")}
-                          className="list-outside list-disc space-y-1 pl-5 text-[13px] leading-relaxed text-slate-100/95 sm:text-[15px]"
-                        >
-                          {block.items.map((item) => (
-                            <li key={item.slice(0, 20)}>
-                              {highlightInline(item, highlightRegex)}
-                            </li>
-                          ))}
-                        </ul>
-                      );
-                    }
-                    if (block.type === "heading") {
-                      return (
-                        <h2
-                          key={block.heading.id}
-                          id={block.heading.id}
-                          className="pt-4 font-serif text-lg text-slate-50 sm:text-xl"
-                        >
-                          {highlightInline(
-                            block.heading.text,
-                            highlightRegex,
-                          )}
-                        </h2>
-                      );
-                    }
-                    return null;
-                  })}
-                </article>
-              )}
-
-              {!introChapter && (
-                <p className="text-[13px] leading-relaxed text-slate-200/90 sm:text-[15px]">
-                  概要ベースの簡易版HERITAGEです。本文は順次追加していきます。
-                </p>
-              )}
-
-              {/* コンテンツ章 */}
-              {contentChapters.length > 0 && (
-                <div className="mt-8 space-y-10 border-t border-slate-800/70 pt-8">
-                  {contentChapters.map((chapter) => (
-                    <article
-                      key={chapter.id}
-                      className="scroll-mt-24 space-y-4"
-                    >
-                      <h2
-                        id={chapter.id}
-                        className="font-serif text-lg text-slate-50 sm:text-xl"
-                      >
-                        {highlightInline(chapter.title, highlightRegex)}
-                      </h2>
-                      {chapter.blocks.map((block, index) => {
+            <GlassCard className="border-slate-800/70 bg-slate-950/80 p-5 sm:p-6 lg:p-7">
+              {hasBody ? (
+                <>
+                  {/* イントロ章 */}
+                  {introChapter && (
+                    <article className="space-y-4">
+                      {introChapter.blocks.map((block) => {
                         if (block.type === "paragraph") {
                           return (
                             <p
-                              key={`${chapter.id}-p-${index}`}
+                              key={block.text.slice(0, 20)}
                               className="text-[13px] leading-relaxed text-slate-100/95 sm:text-[15px]"
                             >
-                              {highlightInline(
-                                block.text,
-                                highlightRegex,
-                              )}
+                              {highlightInline(block.text, highlightRegex)}
                             </p>
                           );
                         }
                         if (block.type === "list") {
-                          const isOrdered = block.items.every((item) =>
-                            /^\d+\./.test(item),
-                          );
-                          if (isOrdered) {
-                            return (
-                              <ol
-                                key={`${chapter.id}-ol-${index}`}
-                                className="ml-5 list-outside list-decimal space-y-1 text-[13px] leading-relaxed text-slate-100/95 sm:text-[15px]"
-                              >
-                                {block.items.map((item) => {
-                                  const label = item.replace(
-                                    /^\d+\.\s*/,
-                                    "",
-                                  );
-                                  return (
-                                    <li key={item.slice(0, 20)}>
-                                      {highlightInline(
-                                        label,
-                                        highlightRegex,
-                                      )}
-                                    </li>
-                                  );
-                                })}
-                              </ol>
-                            );
-                          }
                           return (
                             <ul
-                              key={`${chapter.id}-ul-${index}`}
-                              className="ml-5 list-outside list-disc space-y-1 text-[13px] leading-relaxed text-slate-100/95 sm:text-[15px]"
+                              key={block.items.join("|")}
+                              className="list-outside list-disc space-y-1 pl-5 text-[13px] leading-relaxed text-slate-100/95 sm:text-[15px]"
                             >
                               {block.items.map((item) => (
                                 <li key={item.slice(0, 20)}>
-                                  {highlightInline(
-                                    item,
-                                    highlightRegex,
-                                  )}
+                                  {highlightInline(item, highlightRegex)}
                                 </li>
                               ))}
                             </ul>
                           );
                         }
                         if (block.type === "heading") {
-                          const Tag =
-                            block.heading.level === 2 ? "h2" : "h3";
                           return (
-                            <Tag
-                              key={`${chapter.id}-h-${block.heading.id}`}
+                            <h2
+                              key={block.heading.id}
                               id={block.heading.id}
                               className="pt-4 font-serif text-lg text-slate-50 sm:text-xl"
                             >
@@ -747,14 +639,116 @@ export default async function HeritageDetailPage({
                                 block.heading.text,
                                 highlightRegex,
                               )}
-                            </Tag>
+                            </h2>
                           );
                         }
                         return null;
                       })}
                     </article>
-                  ))}
-                </div>
+                  )}
+
+                  {/* コンテンツ章 */}
+                  {contentChapters.length > 0 && (
+                    <div className="mt-8 space-y-10 border-t border-slate-800/70 pt-8">
+                      {contentChapters.map((chapter) => (
+                        <article
+                          key={chapter.id}
+                          className="scroll-mt-24 space-y-4"
+                        >
+                          <h2
+                            id={chapter.id}
+                            className="font-serif text-lg text-slate-50 sm:text-xl"
+                          >
+                            {highlightInline(
+                              chapter.title,
+                              highlightRegex,
+                            )}
+                          </h2>
+                          {chapter.blocks.map((block, index) => {
+                            if (block.type === "paragraph") {
+                              return (
+                                <p
+                                  key={`${chapter.id}-p-${index}`}
+                                  className="text-[13px] leading-relaxed text-slate-100/95 sm:text-[15px]"
+                                >
+                                  {highlightInline(
+                                    block.text,
+                                    highlightRegex,
+                                  )}
+                                </p>
+                              );
+                            }
+                            if (block.type === "list") {
+                              const isOrdered = block.items.every((item) =>
+                                /^\d+\./.test(item),
+                              );
+                              if (isOrdered) {
+                                return (
+                                  <ol
+                                    key={`${chapter.id}-ol-${index}`}
+                                    className="ml-5 list-outside list-decimal space-y-1 text-[13px] leading-relaxed text-slate-100/95 sm:text-[15px]"
+                                  >
+                                    {block.items.map((item) => {
+                                      const label = item.replace(
+                                        /^\d+\.\s*/,
+                                        "",
+                                      );
+                                      return (
+                                        <li key={item.slice(0, 20)}>
+                                          {highlightInline(
+                                            label,
+                                            highlightRegex,
+                                          )}
+                                        </li>
+                                      );
+                                    })}
+                                  </ol>
+                                );
+                              }
+                              return (
+                                <ul
+                                  key={`${chapter.id}-ul-${index}`}
+                                  className="ml-5 list-outside list-disc space-y-1 text-[13px] leading-relaxed text-slate-100/95 sm:text-[15px]"
+                                >
+                                  {block.items.map((item) => (
+                                    <li key={item.slice(0, 20)}>
+                                      {highlightInline(
+                                        item,
+                                        highlightRegex,
+                                      )}
+                                    </li>
+                                  ))}
+                                </ul>
+                              );
+                            }
+                            if (block.type === "heading") {
+                              const Tag =
+                                block.heading.level === 2 ? "h2" : "h3";
+                              return (
+                                <Tag
+                                  key={`${chapter.id}-h-${block.heading.id}`}
+                                  id={block.heading.id}
+                                  className="pt-4 font-serif text-lg text-slate-50 sm:text-xl"
+                                >
+                                  {highlightInline(
+                                    block.heading.text,
+                                    highlightRegex,
+                                  )}
+                                </Tag>
+                              );
+                            }
+                            return null;
+                          })}
+                        </article>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <p className="text-[13px] leading-relaxed text-slate-100/90 sm:text-[15px]">
+                  このHERITAGEの本文は現在準備中です。
+                  ブランドや代表モデルの詳しいストーリーは、順次追加していきます。
+                </p>
               )}
             </GlassCard>
           </Reveal>
@@ -764,12 +758,7 @@ export default async function HeritageDetailPage({
             <div className="flex flex-col gap-6">
               {/* 代表モデル */}
               {(heritage.keyModels?.length ?? 0) > 0 && (
-                <GlassCard
-                  padding="md"
-                  variant="dim"
-                  interactive={false}
-                  className="border border-white/12 bg-slate-950/90 p-5"
-                >
+                <GlassCard className="border-slate-800/70 bg-slate-950/85 p-5">
                   <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-300">
                     KEY MODELS
                   </h2>
@@ -791,12 +780,7 @@ export default async function HeritageDetailPage({
 
               {/* 関連コンテンツ */}
               {(hasRelatedCars || hasRelatedNews || hasRelatedGuides) && (
-                <GlassCard
-                  padding="md"
-                  variant="dim"
-                  interactive={false}
-                  className="border border-white/12 bg-slate-950/90 p-5"
-                >
+                <GlassCard className="border-slate-800/70 bg-slate-950/85 p-5">
                   <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-300">
                     RELATED CONTENTS
                   </h2>
@@ -867,17 +851,12 @@ export default async function HeritageDetailPage({
               )}
 
               {/* 一覧への戻り＋前後ナビ */}
-              <GlassCard
-                padding="md"
-                variant="dim"
-                interactive={false}
-                className="border border-white/12 bg-slate-950/95 p-5"
-              >
+              <GlassCard className="border-slate-800/70 bg-slate-950/90 p-5">
                 <div className="flex flex-col gap-3">
                   <div>
                     <Link
                       href="/heritage"
-                      className="inline-flex items-center gap-1 text-[12px] text-slate-50 underline-offset-4 hover:text-rose-100 hover:underline"
+                      className="inline-flex items-center gap-1 text-[12px] text-slate-100 underline-offset-4 hover:text-rose-100 hover:underline"
                     >
                       <span className="text-[11px] text-slate-400">←</span>
                       HERITAGE一覧に戻る
@@ -891,7 +870,7 @@ export default async function HeritageDetailPage({
                           href={`/heritage/${encodeURIComponent(
                             prev.slug,
                           )}`}
-                          className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900/90 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
+                          className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900/80 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
                         >
                           <span className="text-[10px] text-slate-400">
                             PREVIOUS
@@ -909,7 +888,7 @@ export default async function HeritageDetailPage({
                           href={`/heritage/${encodeURIComponent(
                             next.slug,
                           )}`}
-                          className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900/90 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
+                          className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900/80 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
                         >
                           <span className="text-[10px] text-slate-400">
                             NEXT
@@ -960,12 +939,7 @@ export default async function HeritageDetailPage({
                     href={`/heritage/${encodeURIComponent(item.slug)}`}
                     className="group h-full"
                   >
-                    <GlassCard
-                      padding="md"
-                      variant="dim"
-                      interactive={false}
-                      className="flex h-full flex-col border border-white/12 bg-slate-950/90 p-4 transition group-hover:border-rose-400/70 group-hover:bg-slate-900"
-                    >
+                    <GlassCard className="flex h-full flex-col border-slate-800/70 bg-slate-950/85 p-4 transition group-hover:border-rose-400/70 group-hover:bg-slate-900">
                       <p className="text-[11px] tracking-[0.26em] text-slate-400">
                         {itemMaker || "HERITAGE"}
                       </p>
