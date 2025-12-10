@@ -1,10 +1,3 @@
-修正版フルページです。既存のフィルターやカード表示ロジックは維持しつつ、
-・インデックス周りの構成を微調整
-・一覧まわりの余白と文字サイズを整理
-・ページ下部に「COLUMN と他コンテンツの関係」CTA セクションを追加
-
-という形で“モリモリ寄り”にしています。
-
 // app/column/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
