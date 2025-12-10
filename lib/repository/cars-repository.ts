@@ -101,6 +101,19 @@ export function findCarsByMaker(maker: CarMaker): CarRecord[] {
 }
 
 /**
+ * maker+bodyTypeで絞り込む。
+ * (「BMWのSUVだけ」「メルセデスのセダンだけ」など)
+ */
+export function findCarsByMakerAndBodyType(
+  maker: CarMaker,
+  bodyType: CarBodyType,
+): CarRecord[] {
+  return RAW_CARS.filter(
+    (car) => car.maker === maker && car.bodyType === bodyType,
+  );
+}
+
+/**
  * bodyTypeで絞り込む。
  * (SUVやセダンなどボディタイプ別の下層生成用)
  */
@@ -135,7 +148,7 @@ export function listAllMakers(): CarMaker[] {
   for (const car of RAW_CARS) {
     if (car.maker) set.add(car.maker);
   }
-  return Array.from(set).sort((a, b) => a.localeCompare(b));
+  return Array.from(set).sort();
 }
 
 /**
@@ -175,7 +188,7 @@ export function listBodyTypesByMaker(maker: CarMaker): CarBodyType[] {
 }
 
 /**
- * 指定したmakerに紐づくsegment一覧(重複排除済み)。
+ * 指定したmakerに紐づくsegment一覧(重複排除無し)。
  */
 export function listSegmentsByMaker(maker: CarMaker): CarSegment[] {
   const set = new Set<CarSegment>();
@@ -202,3 +215,4 @@ export function listSegmentsByMaker(maker: CarMaker): CarSegment[] {
   - 将来的に外部APIやHeadless CMSへ切り替える場合でも
     lib/cars.tsやページ側から見たインターフェースを変えないよう
     このモジュールの中身だけ
+ */
