@@ -131,7 +131,7 @@ function highlightInline(
     parts.push(
       <span
         key={`${start}-${end}`}
-        className="bg-rose-500/20 px-0.5 text-rose-100"
+        className="bg-rose-100 px-0.5 text-rose-900"
       >
         {matchedText}
       </span>,
@@ -453,12 +453,12 @@ export default async function HeritageDetailPage({
             <GlassCard className="border-slate-800/70 bg-slate-950/80 p-5 sm:p-6 lg:p-7">
               {hasBody ? (
                 <article className="space-y-4">
-                  <p className="whitespace-pre-line text-[13px] leading-relaxed text-slate-100 sm:text-[15px]">
+                  <p className="whitespace-pre-line text-[13px] leading-relaxed text-slate-900 sm:text-[15px]">
                     {highlightInline(bodyText, highlightRegex)}
                   </p>
                 </article>
               ) : (
-                <p className="text-[13px] leading-relaxed text-slate-100/90 sm:text-[15px]">
+                <p className="text-[13px] leading-relaxed text-slate-900 sm:text-[15px]">
                   このHERITAGEの本文は現在準備中です。
                   ブランドや代表モデルの詳しいストーリーは、順次追加していきます。
                 </p>
