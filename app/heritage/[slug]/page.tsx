@@ -130,10 +130,8 @@ function highlightInline(
 
     const spanClassName =
       variant === "strong"
-        ? // 本文中の GT-R など: 赤く大きめに
-          "text-rose-500 font-semibold text-[1.15em]"
-        : // それ以外の軽いハイライト
-          "bg-rose-100 px-0.5 text-rose-900";
+        ? "text-rose-500 font-semibold text-[1.15em]"
+        : "bg-rose-100 px-0.5 text-rose-900";
 
     parts.push(
       <span key={`${start}-${end}`} className={spanClassName}>
@@ -174,7 +172,6 @@ function estimateReadingTimeMinutes(body: string): number {
   const plain = body.replace(/\s+/g, "");
   const length = plain.length;
   if (length === 0) return 0;
-  // 日本語: 400〜600文字/分くらいを目安
   const minutes = Math.round(length / 550);
   return minutes <= 0 ? 1 : minutes;
 }
@@ -264,7 +261,6 @@ export default async function HeritageDetailPage({
   );
   const { prev, next } = findNeighbors(sameMaker, heritage.slug);
 
-  // 同一メーカー内の「続きを読む」候補（なければ全体から）
   const moreFromMaker = sameMaker.filter(
     (item) => item.slug !== heritage.slug,
   );
@@ -280,7 +276,6 @@ export default async function HeritageDetailPage({
   const tags = heritage.tags ?? [];
   const title = heritage.title ?? heritage.titleJa ?? heritage.slug;
 
-  // 本文は body 優先、なければ summary をそのまま使う
   const bodyText = (() => {
     const candidates = [
       heritage.body,
@@ -297,7 +292,6 @@ export default async function HeritageDetailPage({
   })();
   const hasBody = bodyText.length > 0;
 
-  // 「。」のあとで改行を入れる
   const formattedBodyText = hasBody
     ? bodyText.replace(/。/g, "。\n")
     : "";
@@ -403,12 +397,11 @@ export default async function HeritageDetailPage({
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-50">
-      {/* ヒーローセクション */}
+      {/* ヒーローセクション（ここは背景が濃いので白字のまま） */}
       <section className="relative border-b border-slate-800/60 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.1),_transparent_60%),radial-gradient(circle_at_bottom,_rgba(30,64,175,0.3),_transparent_60%)]" />
 
         <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-10 pt-20 md:px-6 lg:px-8 lg:pt-24">
-          {/* 左:タイトルとメタ情報 */}
           <Reveal className="flex-1">
             <div className="max-w-xl space-y-6">
               <div className="inline-flex items-center gap-2 rounded-full border border-slate-700/70 bg-slate-900/70 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-slate-200">
@@ -491,7 +484,7 @@ export default async function HeritageDetailPage({
         </div>
       </section>
 
-      {/* 本文＋サイドカラム */}
+      {/* 本文＋サイドカラム（ここからはカードが明るいので文字色を黒系に統一） */}
       <section className="border-t border-slate-800/60 bg-gradient-to-b from-slate-950 to-slate-900 py-10 md:py-14">
         <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 md:flex-row md:px-6 lg:px-8">
           {/* 本文 */}
@@ -502,11 +495,11 @@ export default async function HeritageDetailPage({
                   bodySections.map((section, sectionIndex) => (
                     <GlassCard
                       key={sectionIndex}
-                      className="border-slate-800/70 bg-slate-950/90 p-5 sm:p-6 lg:p-7"
+                      className="border border-white/40 bg-white/90 p-5 text-slate-900 sm:p-6 lg:p-7"
                     >
                       {section.title && (
                         <h2
-                          className={`mb-4 font-serif text-slate-50 ${
+                          className={`mb-4 font-serif ${
                             section.level === "heading"
                               ? "text-xl sm:text-2xl"
                               : "text-lg sm:text-xl"
@@ -542,7 +535,7 @@ export default async function HeritageDetailPage({
                               return (
                                 <p
                                   key={lineIndex}
-                                  className="mt-3 text-[15px] font-semibold leading-relaxed text-slate-50 sm:text-[18px]"
+                                  className="mt-3 text-[15px] font-semibold leading-relaxed text-slate-900 sm:text-[18px]"
                                 >
                                   {highlightInline(
                                     label,
@@ -556,7 +549,7 @@ export default async function HeritageDetailPage({
                             return (
                               <p
                                 key={lineIndex}
-                                className="whitespace-pre-line text-[15px] leading-relaxed text-slate-50 sm:text-[18px]"
+                                className="whitespace-pre-line text-[15px] leading-relaxed text-slate-900 sm:text-[18px]"
                               >
                                 {highlightInline(
                                   line,
@@ -571,8 +564,8 @@ export default async function HeritageDetailPage({
                     </GlassCard>
                   ))
                 ) : (
-                  <GlassCard className="border-slate-800/70 bg-slate-950/90 p-5 sm:p-6 lg:p-7">
-                    <p className="whitespace-pre-line text-[15px] leading-relaxed text-slate-50 sm:text-[18px]">
+                  <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900 sm:p-6 lg:p-7">
+                    <p className="whitespace-pre-line text-[15px] leading-relaxed text-slate-900 sm:text-[18px]">
                       {highlightInline(
                         formattedBodyText,
                         highlightRegex,
@@ -583,8 +576,8 @@ export default async function HeritageDetailPage({
                 )}
               </div>
             ) : (
-              <GlassCard className="border-slate-800/70 bg-slate-950/90 p-5 sm:p-6 lg:p-7">
-                <p className="text-[15px] leading-relaxed text-slate-50 sm:text-[18px]">
+              <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900 sm:p-6 lg:p-7">
+                <p className="text-[15px] leading-relaxed text-slate-900 sm:text-[18px]">
                   このHERITAGEの本文は現在準備中です。
                   ブランドや代表モデルの詳しいストーリーは、順次追加していきます。
                 </p>
@@ -598,7 +591,7 @@ export default async function HeritageDetailPage({
               {/* 代表モデル */}
               {(heritage.keyModels?.length ?? 0) > 0 && (
                 <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900">
-                  <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-900">
+                  <h2 className="font-serif text-sm uppercase tracking-[0.25em]">
                     KEY MODELS
                   </h2>
                   <div className="mt-3 flex flex-wrap gap-2">
@@ -616,15 +609,15 @@ export default async function HeritageDetailPage({
 
               {/* 関連コンテンツ */}
               {(hasRelatedCars || hasRelatedNews || hasRelatedGuides) && (
-                <GlassCard className="border-slate-800/70 bg-slate-950/90 p-5">
-                  <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-200">
+                <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900">
+                  <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-900">
                     RELATED CONTENTS
                   </h2>
 
                   <div className="mt-3 space-y-2 text-[12px]">
                     {hasRelatedCars && (
                       <div>
-                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-400">
+                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-600">
                           CARS
                         </p>
                         <div className="flex flex-wrap gap-1.5">
@@ -634,7 +627,7 @@ export default async function HeritageDetailPage({
                               href={`/cars/${encodeURIComponent(
                                 slug,
                               )}`}
-                              className="rounded-full bg-slate-900/80 px-2.5 py-0.5 text-[11px] text-slate-100 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
+                              className="rounded-full bg-slate-900/90 px-2.5 py-0.5 text-[11px] text-slate-50 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
                             >
                               {slug}
                             </Link>
@@ -645,7 +638,7 @@ export default async function HeritageDetailPage({
 
                     {hasRelatedNews && (
                       <div>
-                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-400">
+                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-600">
                           NEWS
                         </p>
                         <div className="flex flex-wrap gap-1.5">
@@ -655,7 +648,7 @@ export default async function HeritageDetailPage({
                               href={`/news/${encodeURIComponent(
                                 id,
                               )}`}
-                              className="rounded-full bg-slate-900/80 px-2.5 py-0.5 text-[11px] text-slate-100 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
+                              className="rounded-full bg-slate-900/90 px-2.5 py-0.5 text-[11px] text-slate-50 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
                             >
                               関連NEWS:id:{id}
                             </Link>
@@ -666,7 +659,7 @@ export default async function HeritageDetailPage({
 
                     {hasRelatedGuides && (
                       <div>
-                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-400">
+                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-600">
                           GUIDES
                         </p>
                         <div className="flex flex-wrap gap-1.5">
@@ -676,7 +669,7 @@ export default async function HeritageDetailPage({
                               href={`/guide/${encodeURIComponent(
                                 slug,
                               )}`}
-                              className="rounded-full bg-slate-900/80 px-2.5 py-0.5 text-[11px] text-slate-100 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
+                              className="rounded-full bg-slate-900/90 px-2.5 py-0.5 text-[11px] text-slate-50 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
                             >
                               {slug}
                             </Link>
