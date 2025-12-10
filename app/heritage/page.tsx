@@ -15,7 +15,6 @@ export const metadata: Metadata = {
     "ブランドの系譜や名車の歴史を、年代やメーカーごとに整理してたどれるHERITAGEコンテンツ。",
 };
 
-// Next.js の searchParams 仕様に合わせた型
 type SearchParams = {
   q?: string | string[];
   maker?: string | string[];
@@ -43,7 +42,6 @@ function isNonEmptyString(
   return typeof value === "string" && value.trim().length > 0;
 }
 
-// string | string[] | undefined を安全に1つの string にする
 function toSingle(value: string | string[] | undefined): string {
   if (Array.isArray(value)) return value[0] ?? "";
   return value ?? "";
@@ -95,18 +93,14 @@ export default async function HeritageIndexPage({
   searchParams,
 }: PageProps) {
   const all = await getAllHeritage();
-
-  // lib/heritage.ts 側で公開済みだけに絞り込んでいるので、そのまま使う
   const published = all;
 
-  // searchParams をすべて toSingle() で正規化
   const rawQ = toSingle(searchParams?.q);
   const q = normalize(rawQ);
   const makerFilter = toSingle(searchParams?.maker).trim();
   const eraFilter = toSingle(searchParams?.era).trim();
   const tagFilter = toSingle(searchParams?.tag).trim();
 
-  // セレクト用候補
   const makers: string[] = Array.from(
     new Set(
       published
@@ -129,7 +123,6 @@ export default async function HeritageIndexPage({
     ),
   ).sort();
 
-  // フィルタ本体
   const filtered = published.filter((item) => {
     const haystack = [
       item.title ?? "",
@@ -159,15 +152,12 @@ export default async function HeritageIndexPage({
     q || makerFilter || eraFilter || tagFilter,
   );
 
-  // インデックス用メタ情報
   const totalHeritage = published.length;
   const totalMakers = makers.length;
   const totalEras = eras.length;
 
-  // 表示用にメーカー単位にまとめる（フィルタ後）
   const groups = groupByMaker(filtered);
 
-  // クイックナビ用: 上位のメーカー・年代・タグ
   const quickMakerNav = makers.slice(0, 8);
   const quickEraNav = eras.slice(0, 6);
   const quickTagNav = tags.slice(0, 6);
@@ -190,7 +180,7 @@ export default async function HeritageIndexPage({
               <h1 className="font-display text-3xl tracking-tight text-white sm:text-4xl lg:text-5xl">
                 ブランドの系譜と名車の歴史
               </h1>
-              {/* 説明文は最小限 */}
+              {/* 説明文は最小限（そのまま維持） */}
               <p className="max-w-2xl text-sm leading-relaxed text-slate-200/90 sm:text-base">
                 代表的なブランドと名車の歴史を、
                 メーカー・年代・タグでざっと俯瞰するためのインデックスです。
@@ -203,47 +193,43 @@ export default async function HeritageIndexPage({
                 variant="crystal"
                 interactive={false}
                 magnetic={false}
-                className="max-w-md border border-slate-700/80 bg-slate-900/90 text-slate-50 shadow-[0_18px_45px_rgba(15,23,42,0.85)]"
+                className="max-w-md border border-white/40 bg-white/90 text-slate-900 shadow-[0_18px_45px_rgba(15,23,42,0.85)]"
               >
                 <div className="space-y-3">
-                  <p className="text-xs font-semibold tracking-[0.2em] text-slate-300">
+                  <p className="text-xs font-semibold tracking-[0.2em] text-slate-700">
                     HERITAGE INDEX
                   </p>
-                  <p className="text-xs leading-relaxed text-slate-200/90">
-                    登録されているHERITAGEの件数とブランド数を、
-                    ざっくり把握するためのインデックスです。
-                  </p>
-                  <div className="mt-4 grid grid-cols-3 gap-3 text-center text-xs sm:text-sm">
+                  <div className="mt-2 grid grid-cols-3 gap-3 text-center text-xs sm:text-sm">
                     <div className="space-y-1">
-                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">
+                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-500">
                         total
                       </div>
-                      <div className="text-2xl font-semibold text-white">
+                      <div className="text-2xl font-semibold text-slate-900">
                         {totalHeritage}
                       </div>
-                      <div className="text-[0.7rem] text-slate-400">
+                      <div className="text-[0.7rem] text-slate-500">
                         articles
                       </div>
                     </div>
                     <div className="space-y-1">
-                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">
+                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-500">
                         makers
                       </div>
-                      <div className="text-2xl font-semibold text-white">
+                      <div className="text-2xl font-semibold text-slate-900">
                         {totalMakers}
                       </div>
-                      <div className="text-[0.7rem] text-slate-400">
+                      <div className="text-[0.7rem] text-slate-500">
                         brands
                       </div>
                     </div>
                     <div className="space-y-1">
-                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">
+                      <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-500">
                         eras
                       </div>
-                      <div className="text-2xl font-semibold text-white">
+                      <div className="text-2xl font-semibold text-slate-900">
                         {totalEras}
                       </div>
-                      <div className="text-[0.7rem] text-slate-400">
+                      <div className="text-[0.7rem] text-slate-500">
                         periods
                       </div>
                     </div>
@@ -410,7 +396,7 @@ export default async function HeritageIndexPage({
                 </div>
               )}
 
-              {/* ボタン行 */}
+              {/* ボタン行（フィルタ情報のみ残し、説明文は削除） */}
               <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
                 {hasFilter && (
                   <div className="text-xs text-slate-300">
@@ -516,8 +502,7 @@ export default async function HeritageIndexPage({
                             padding="lg"
                             interactive
                             variant="dim"
-                            // カード内は「明るい背景＋濃い文字」でコントラストを確保
-                            className="h-full border border-white/40 bg-white/85 text-slate-900 shadow-[0_18px_45px_rgba(15,23,42,0.55)]"
+                            className="h-full border border-white/40 bg-white/90 text-slate-900 shadow-[0_18px_45px_rgba(15,23,42,0.55)]"
                           >
                             <div className="flex h-full flex-col gap-3 text-slate-900">
                               <div className="flex items-center justify-between gap-3 text-xs text-slate-800">
