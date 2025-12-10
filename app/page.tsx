@@ -1,3 +1,4 @@
+// app/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -311,7 +312,7 @@ export default async function HomePage() {
                       as="section"
                       padding="lg"
                       interactive
-                      className="group relative flex hfull flex-col justify-between overflow-hidden border-slate-200/70 bg-gradient-to-br from-tiffany-50 via-white to-white shadow-soft-card"
+                      className="group relative flex h-full flex-col justify-between overflow-hidden border-slate-200/70 bg-gradient-to-br from-tiffany-50 via-white to-white shadow-soft-card"
                     >
                       {/* 背景の光 */}
                       <div className="pointer-events-none absolute inset-0">
@@ -336,7 +337,7 @@ export default async function HomePage() {
                             </Button>
                             <Button
                               asChild
-                              variant="glass"
+                              variant="primary"
                               size="sm"
                               className="hidden whitespace-nowrap sm:inline-flex"
                             >
@@ -570,7 +571,7 @@ export default async function HomePage() {
                           </div>
                           <Button
                             asChild
-                            variant="subtle"
+                            variant="outline"
                             size="sm"
                             className="hidden whitespace-nowrap sm:inline-flex"
                           >
