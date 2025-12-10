@@ -130,10 +130,8 @@ function highlightInline(
 
     const spanClassName =
       variant === "strong"
-        ? // 本文中の GT-R など: 赤く大きめに
-          "text-rose-500 font-semibold text-[1.15em]"
-        : // それ以外の軽いハイライト
-          "bg-rose-100 px-0.5 text-rose-900";
+        ? "text-rose-500 font-semibold text-[1.15em]"
+        : "bg-rose-100 px-0.5 text-rose-900";
 
     parts.push(
       <span key={`${start}-${end}`} className={spanClassName}>
@@ -174,7 +172,6 @@ function estimateReadingTimeMinutes(body: string): number {
   const plain = body.replace(/\s+/g, "");
   const length = plain.length;
   if (length === 0) return 0;
-  // 日本語: 400〜600文字/分くらいを目安
   const minutes = Math.round(length / 550);
   return minutes <= 0 ? 1 : minutes;
 }
@@ -280,7 +277,7 @@ export default async function HeritageDetailPage({
   const tags = heritage.tags ?? [];
   const title = heritage.title ?? heritage.titleJa ?? heritage.slug;
 
-  // 本文は body 優先、なければ summary をそのまま使う
+  // 本文は body 優先、なければ summary
   const bodyText = (() => {
     const candidates = [
       heritage.body,
@@ -297,7 +294,6 @@ export default async function HeritageDetailPage({
   })();
   const hasBody = bodyText.length > 0;
 
-  // 「。」のあとで改行を入れる
   const formattedBodyText = hasBody
     ? bodyText.replace(/。/g, "。\n")
     : "";
@@ -322,7 +318,7 @@ export default async function HeritageDetailPage({
     Array.isArray(heritage.relatedGuideSlugs) &&
     heritage.relatedGuideSlugs.length > 0;
 
-  // 本文をセクション単位に分解（【…】/■… を見出し扱い）
+  // 本文セクション分解
   const rawSections: BodySection[] = [];
   if (formattedBodyText) {
     const lines = formattedBodyText
@@ -380,7 +376,7 @@ export default async function HeritageDetailPage({
     pushCurrent();
   }
 
-  // 「○○主なスペック…」セクションは直前のカードに統合
+  // 「○○主なスペック…」セクションは直前カードに統合
   const bodySections: BodySection[] = [];
   for (const section of rawSections) {
     if (
@@ -407,7 +403,7 @@ export default async function HeritageDetailPage({
       <section className="relative border-b border-slate-800/60 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.1),_transparent_60%),radial-gradient(circle_at_bottom,_rgba(30,64,175,0.3),_transparent_60%)]" />
 
-        <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-10 pt-20 md:px-6 lg:px-8 lg:pt-24">
+        <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-10 pt-20 md:flex-row md:px-6 lg:px-8 lg:pt-24">
           {/* 左:タイトルとメタ情報 */}
           <Reveal className="flex-1">
             <div className="max-w-xl space-y-6">
@@ -484,6 +480,50 @@ export default async function HeritageDetailPage({
                       <span>{tag}</span>
                     </Link>
                   ))}
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* 右:ヒーロー画像＋リード（テキストのみ） */}
+          <Reveal className="flex-1">
+            <div className="relative h-64 w-full overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-900/70 shadow-[0_24px_60px_rgba(15,23,42,0.9)] sm:h-72 md:h-80">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(248,250,252,0.24),_transparent_55%),radial-gradient(circle_at_bottom_right,_rgba(30,64,175,0.35),_transparent_55%)]" />
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,_rgba(15,23,42,0.96),_rgba(15,23,42,0.7)_45%,_rgba(15,23,42,0.96)_90%)] mix-blend-multiply" />
+
+              <div className="relative flex h-full flex-col justify-between p-5 sm:p-6">
+                <div className="space-y-2">
+                  <p className="text-[11px] uppercase tracking-[0.25em] text-slate-300/90">
+                    HERITAGE STORY
+                  </p>
+                  <p className="max-w-xs text-sm leading-relaxed text-slate-100/90">
+                    {highlightInline(
+                      heritage.heroTitle ??
+                        (heritage as any).seoTitle ??
+                        heritage.subtitle ??
+                        heritage.lead ??
+                        "ブランドや時代の変遷を、代表的なモデルとともに辿るロングストーリー。",
+                      highlightRegex,
+                      "strong",
+                    )}
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-2 text-[11px] text-slate-300/90 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    {heritage.eraRange && (
+                      <p className="font-mono text-xs uppercase tracking-[0.22em] text-slate-200">
+                        {heritage.eraRange}
+                      </p>
+                    )}
+                  </div>
+                  <div className="text-right">
+                    {heritage.heroImageCredit && (
+                      <p className="text-[10px] text-slate-400">
+                        PHOTO: {heritage.heroImageCredit}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -601,6 +641,9 @@ export default async function HeritageDetailPage({
                   <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-900">
                     KEY MODELS
                   </h2>
+                  <p className="mt-2 text-[13px] leading-relaxed text-slate-800">
+                    HERITAGEで取り上げる代表的なモデル達。CARSデータベースの個別ページとも連携していきます。
+                  </p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {heritage.keyModels?.map((model) => (
                       <span
@@ -616,25 +659,27 @@ export default async function HeritageDetailPage({
 
               {/* 関連コンテンツ */}
               {(hasRelatedCars || hasRelatedNews || hasRelatedGuides) && (
-                <GlassCard className="border-slate-800/70 bg-slate-950/90 p-5">
-                  <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-200">
+                <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900">
+                  <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-900">
                     RELATED CONTENTS
                   </h2>
+                  <p className="mt-2 text-[13px] leading-relaxed text-slate-800">
+                    CAR BOUTIQUE内の他コンテンツとも緩やかにつながり、
+                    「気になったブランドや時代」を深掘りできるようにしていきます。
+                  </p>
 
                   <div className="mt-3 space-y-2 text-[12px]">
                     {hasRelatedCars && (
                       <div>
-                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-400">
+                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-500">
                           CARS
                         </p>
                         <div className="flex flex-wrap gap-1.5">
                           {heritage.relatedCarSlugs?.map((slug) => (
                             <Link
                               key={slug}
-                              href={`/cars/${encodeURIComponent(
-                                slug,
-                              )}`}
-                              className="rounded-full bg-slate-900/80 px-2.5 py-0.5 text-[11px] text-slate-100 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
+                              href={`/cars/${encodeURIComponent(slug)}`}
+                              className="rounded-full bg-slate-900/80 px-2.5 py-0.5 text-[11px] text-slate-50 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
                             >
                               {slug}
                             </Link>
@@ -645,17 +690,15 @@ export default async function HeritageDetailPage({
 
                     {hasRelatedNews && (
                       <div>
-                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-400">
+                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-500">
                           NEWS
                         </p>
                         <div className="flex flex-wrap gap-1.5">
                           {heritage.relatedNewsIds?.map((id) => (
                             <Link
                               key={id}
-                              href={`/news/${encodeURIComponent(
-                                id,
-                              )}`}
-                              className="rounded-full bg-slate-900/80 px-2.5 py-0.5 text-[11px] text-slate-100 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
+                              href={`/news/${encodeURIComponent(id)}`}
+                              className="rounded-full bg-slate-900/80 px-2.5 py-0.5 text-[11px] text-slate-50 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
                             >
                               関連NEWS:id:{id}
                             </Link>
@@ -666,17 +709,15 @@ export default async function HeritageDetailPage({
 
                     {hasRelatedGuides && (
                       <div>
-                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-400">
+                        <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-500">
                           GUIDES
                         </p>
                         <div className="flex flex-wrap gap-1.5">
                           {heritage.relatedGuideSlugs?.map((slug) => (
                             <Link
                               key={slug}
-                              href={`/guide/${encodeURIComponent(
-                                slug,
-                              )}`}
-                              className="rounded-full bg-slate-900/80 px-2.5 py-0.5 text-[11px] text-slate-100 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
+                              href={`/guide/${encodeURIComponent(slug)}`}
+                              className="rounded-full bg-slate-900/80 px-2.5 py-0.5 text-[11px] text-slate-50 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
                             >
                               {slug}
                             </Link>
@@ -772,9 +813,7 @@ export default async function HeritageDetailPage({
                 return (
                   <Link
                     key={item.slug}
-                    href={`/heritage/${encodeURIComponent(
-                      item.slug,
-                    )}`}
+                    href={`/heritage/${encodeURIComponent(item.slug)}`}
                     className="group h-full"
                   >
                     <GlassCard className="flex h-full flex-col border border-white/40 bg-white/90 p-4 text-slate-900 transition group-hover:border-rose-400/70 group-hover:bg-rose-50">
