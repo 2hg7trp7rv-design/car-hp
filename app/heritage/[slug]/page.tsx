@@ -187,7 +187,8 @@ export async function generateMetadata({
   if (!heritage) {
     return {
       title: "HERITAGEが見つかりません | CAR BOUTIQUE",
-      description: "指定されたHERITAGEコンテンツが見つかりませんでした。",
+      description:
+        "指定されたHERITAGEコンテンツが見つかりませんでした。",
     };
   }
 
@@ -448,7 +449,7 @@ export default async function HeritageDetailPage({
       <section className="border-t border-slate-800/60 bg-gradient-to-b from-slate-950 to-slate-950/95 py-10 md:py-14">
         <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 md:flex-row md:px-6 lg:px-8">
           {/* 本文 */}
-          <Reveal className="w-full md:w-[64%]">
+          <Reveal className="w-full md:w-[64%]" forceVisible>
             <GlassCard className="border-slate-800/70 bg-slate-950/80 p-5 sm:p-6 lg:p-7">
               {hasBody ? (
                 <article className="space-y-4">
@@ -466,7 +467,7 @@ export default async function HeritageDetailPage({
           </Reveal>
 
           {/* サイドカラム */}
-          <Reveal className="w-full md:w-[36%]">
+          <Reveal className="w-full md:w-[36%]" forceVisible>
             <div className="flex flex-col gap-6">
               {/* 代表モデル */}
               {(heritage.keyModels?.length ?? 0) > 0 && (
@@ -579,9 +580,7 @@ export default async function HeritageDetailPage({
                     <div className="flex flex-col gap-2 pt-1 text-xs text-slate-200 md:flex-row md:justify-between">
                       {prev ? (
                         <Link
-                          href={`/heritage/${encodeURIComponent(
-                            prev.slug,
-                          )}`}
+                          href={`/heritage/${encodeURIComponent(prev.slug)}`}
                           className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900/80 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
                         >
                           <span className="text-[10px] text-slate-400">
@@ -597,9 +596,7 @@ export default async function HeritageDetailPage({
 
                       {next ? (
                         <Link
-                          href={`/heritage/${encodeURIComponent(
-                            next.slug,
-                          )}`}
+                          href={`/heritage/${encodeURIComponent(next.slug)}`}
                           className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900/80 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
                         >
                           <span className="text-[10px] text-slate-400">
