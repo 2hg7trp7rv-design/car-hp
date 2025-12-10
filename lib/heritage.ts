@@ -67,9 +67,11 @@ function isPublished(status?: ContentStatus | null): boolean {
 
 // ---- 生データ→Domain型への変換 ----
 
-function toHeritageItem(raw: RawHeritageItem, index: number): HeritageItem | null {
+function toHeritageItem(
+  raw: RawHeritageItem,
+  index: number,
+): HeritageItem | null {
   if (!raw || typeof raw !== "object") return null;
-
   const anyRaw = raw as any;
 
   // ID/slug
@@ -82,30 +84,23 @@ function toHeritageItem(raw: RawHeritageItem, index: number): HeritageItem | nul
 
   // タイトル関連
   const titleJa = safeString(anyRaw.titleJa) ?? null;
-  const baseTitle = safeString(anyRaw.title) ?? titleJa ?? "タイトル未設定";
+  const baseTitle =
+    safeString(anyRaw.title) ?? titleJa ?? "タイトル未設定";
   const subtitle = safeString(anyRaw.subtitle) ?? null;
 
   // 概要/リード
   const summary =
-    safeString(anyRaw.summary) ??
-    safeString(anyRaw.lead) ??
-    null;
-  const lead =
-    safeString(anyRaw.lead) ??
-    summary;
+    safeString(anyRaw.summary) ?? safeString(anyRaw.lead) ?? null;
+  const lead = safeString(anyRaw.lead) ?? summary;
 
   // メーカー/ブランド/モデル/世代
   const maker = safeString(anyRaw.maker) ?? null;
   const brandName =
-    safeString(anyRaw.brandName) ??
-    maker ??
-    null;
-
+    safeString(anyRaw.brandName) ?? maker ?? null;
   const modelName =
     safeString(anyRaw.modelName) ??
     safeString(anyRaw.model) ??
     null;
-
   const generationCode =
     safeString(anyRaw.generationCode) ??
     safeString(anyRaw.code) ??
@@ -117,7 +112,6 @@ function toHeritageItem(raw: RawHeritageItem, index: number): HeritageItem | nul
     safeString(anyRaw.era) ??
     safeString(anyRaw.period) ??
     null;
-
   const years =
     safeString(anyRaw.years) ??
     safeString(anyRaw.productionYears) ??
@@ -129,14 +123,11 @@ function toHeritageItem(raw: RawHeritageItem, index: number): HeritageItem | nul
     safeString(anyRaw.imageUrl) ??
     safeString(anyRaw.thumbnail) ??
     null;
-
   const heroTone = safeString(anyRaw.heroTone) ?? null;
 
   // 本文(空でも文字列で返す)
   const bodyRaw =
-    safeString(anyRaw.body) ??
-    safeString(anyRaw.content) ??
-    "";
+    safeString(anyRaw.body) ?? safeString(anyRaw.content) ?? "";
   const body = bodyRaw;
 
   // ハイライト
@@ -144,8 +135,8 @@ function toHeritageItem(raw: RawHeritageItem, index: number): HeritageItem | nul
   const rawHighlights = anyRaw.highlights;
   if (Array.isArray(rawHighlights)) {
     const cleaned = rawHighlights
-      .map((v) => String(v).trim())
-      .filter((v) => v.length > 0);
+      .map((v: unknown) => String(v).trim())
+      .filter((v: string) => v.length > 0);
     if (cleaned.length > 0) {
       highlights = cleaned;
     }
@@ -156,8 +147,8 @@ function toHeritageItem(raw: RawHeritageItem, index: number): HeritageItem | nul
   const rawTags = anyRaw.tags;
   if (Array.isArray(rawTags)) {
     const cleaned = rawTags
-      .map((t) => String(t).trim())
-      .filter((t) => t.length > 0);
+      .map((t: unknown) => String(t).trim())
+      .filter((t: string) => t.length > 0);
     if (cleaned.length > 0) {
       tags = cleaned;
     }
@@ -168,23 +159,26 @@ function toHeritageItem(raw: RawHeritageItem, index: number): HeritageItem | nul
   const rawRelatedCarIds = anyRaw.relatedCarIds;
   if (Array.isArray(rawRelatedCarIds)) {
     const cleaned = rawRelatedCarIds
-      .map((v) => String(v).trim())
-      .filter((v) => v.length > 0);
+      .map((v: unknown) => String(v).trim())
+      .filter((v: string) => v.length > 0);
     if (cleaned.length > 0) {
       relatedCarIds = cleaned;
     }
   }
 
   // ステータス/日付/ソース
-  const statusRaw = safeString(anyRaw.status) as ContentStatus | undefined;
+  const statusRaw = safeString(anyRaw.status) as
+    | ContentStatus
+    | undefined;
   const status: ContentStatus | null =
-    statusRaw === "draft" || statusRaw === "published" || statusRaw === "archived"
+    statusRaw === "draft" ||
+    statusRaw === "published" ||
+    statusRaw === "archived"
       ? statusRaw
       : null;
 
   const publishedAt = safeString(anyRaw.publishedAt) ?? null;
   const updatedAt = safeString(anyRaw.updatedAt) ?? null;
-
   const sourceName = safeString(anyRaw.sourceName) ?? null;
   const sourceUrl = safeString(anyRaw.sourceUrl) ?? null;
 
@@ -204,8 +198,9 @@ function toHeritageItem(raw: RawHeritageItem, index: number): HeritageItem | nul
     heroTone,
     body,
     highlights,
-    tags,
-    relatedCarIds,
+    // ← ここを型安全に修正
+    tags: tags ?? undefined,
+    relatedCarIds: relatedCarIds ?? undefined,
     // 拡張メタ
     titleJa,
     maker,
@@ -232,9 +227,11 @@ function buildHeritageCache(): HeritageItem[] {
       // 公開日(なければ更新日)の降順
       const ad = parseDate(a.publishedAt ?? a.updatedAt ?? null);
       const bd = parseDate(b.publishedAt ?? b.updatedAt ?? null);
+
       if (ad && bd) return bd.getTime() - ad.getTime();
       if (bd && !ad) return 1;
       if (ad && !bd) return -1;
+
       // 日付が両方ない場合はタイトル順で安定ソート
       const at = a.title.toLowerCase();
       const bt = b.title.toLowerCase();
@@ -268,7 +265,9 @@ export async function getAllHeritage(): Promise<HeritageItem[]> {
 /**
  * 最新のHERITAGEをlimit件取得
  */
-export async function getLatestHeritage(limit = 20): Promise<HeritageItem[]> {
+export async function getLatestHeritage(
+  limit = 20,
+): Promise<HeritageItem[]> {
   const all = getAllHeritageSync();
   if (!Number.isFinite(limit) || limit <= 0) return [];
   return all.slice(0, limit);
