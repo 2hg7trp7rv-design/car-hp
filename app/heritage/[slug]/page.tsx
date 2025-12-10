@@ -109,6 +109,7 @@ function createHighlightRegex(keywords: string[]): RegExp | null {
 function highlightInline(
   text: string,
   regex: RegExp | null,
+  variant: "default" | "strong" = "default",
 ): (string | JSX.Element)[] {
   if (!regex) return [text];
 
@@ -128,11 +129,14 @@ function highlightInline(
     }
 
     const matchedText = match[0];
+
+    const spanClassName =
+      variant === "strong"
+        ? "text-rose-500 font-semibold text-[1.15em]"
+        : "bg-rose-100 px-0.5 text-rose-900";
+
     parts.push(
-      <span
-        key={`${start}-${end}`}
-        className="bg-rose-100 px-0.5 text-rose-900"
-      >
+      <span key={`${start}-${end}`} className={spanClassName}>
         {matchedText}
       </span>,
     );
@@ -174,6 +178,13 @@ function estimateReadingTimeMinutes(body: string): number {
   const minutes = Math.round(length / 550);
   return minutes <= 0 ? 1 : minutes;
 }
+
+// 本文セクション用
+type BodySection = {
+  title?: string;
+  level: "heading" | "subheading" | null;
+  lines: string[];
+};
 
 // ---- メタデータ生成 ----
 
@@ -284,6 +295,11 @@ export default async function HeritageDetailPage({
   })();
   const hasBody = bodyText.length > 0;
 
+  // 「。」のあとで改行を入れる
+  const formattedBodyText = hasBody
+    ? bodyText.replace(/。/g, "。\n")
+    : "";
+
   const highlightRegex = createHighlightRegex([
     heritage.maker ?? "",
     ...(heritage.keyModels ?? []),
@@ -304,11 +320,69 @@ export default async function HeritageDetailPage({
     Array.isArray(heritage.relatedGuideSlugs) &&
     heritage.relatedGuideSlugs.length > 0;
 
+  // 本文をセクション単位に分解（【…】/■… を見出し扱い）
+  const bodySections: BodySection[] = [];
+  if (formattedBodyText) {
+    const lines = formattedBodyText
+      .split(/\r?\n/)
+      .map((line) => line.trim());
+
+    let current: BodySection | null = null;
+
+    const pushCurrent = () => {
+      if (
+        current &&
+        (current.title ||
+          current.lines.some((l) => l && l.length > 0))
+      ) {
+        bodySections.push(current);
+      }
+    };
+
+    for (const rawLine of lines) {
+      const line = rawLine.trim();
+      if (!line) {
+        if (current && current.lines.length > 0) {
+          current.lines.push("");
+        }
+        continue;
+      }
+
+      const headingMatch = line.match(/^【(.+?)】$/);
+      if (headingMatch) {
+        pushCurrent();
+        current = {
+          title: headingMatch[1],
+          level: "heading",
+          lines: [],
+        };
+        continue;
+      }
+
+      if (line.startsWith("■")) {
+        pushCurrent();
+        current = {
+          title: line.replace(/^■\s*/, ""),
+          level: "subheading",
+          lines: [],
+        };
+        continue;
+      }
+
+      if (!current) {
+        current = { title: undefined, level: null, lines: [] };
+      }
+      current.lines.push(line);
+    }
+
+    pushCurrent();
+  }
+
   return (
     <main className="min-h-screen bg-slate-950 text-slate-50">
       {/* ヒーローセクション */}
-      <section className="relative border-b border-slate-800/60 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-950/95">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.1),_transparent_60%),radial-gradient(circle_at_bottom,_rgba(56,189,248,0.18),_transparent_60%)]" />
+      <section className="relative border-b border-slate-800/60 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.1),_transparent_60%),radial-gradient(circle_at_bottom,_rgba(30,64,175,0.3),_transparent_60%)]" />
 
         <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-10 pt-20 md:flex-row md:px-6 lg:px-8 lg:pt-24">
           {/* 左:タイトルとメタ情報 */}
@@ -446,24 +520,74 @@ export default async function HeritageDetailPage({
       </section>
 
       {/* 本文＋サイドカラム */}
-      <section className="border-t border-slate-800/60 bg-gradient-to-b from-slate-950 to-slate-950/95 py-10 md:py-14">
+      <section className="border-t border-slate-800/60 bg-gradient-to-b from-slate-950 to-slate-900 py-10 md:py-14">
         <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 md:flex-row md:px-6 lg:px-8">
           {/* 本文 */}
           <Reveal className="w-full md:w-[64%]" forceVisible>
-            <GlassCard className="border-slate-800/70 bg-slate-950/80 p-5 sm:p-6 lg:p-7">
-              {hasBody ? (
-                <article className="space-y-4">
-                  <p className="whitespace-pre-line text-[13px] leading-relaxed text-slate-900 sm:text-[15px]">
-                    {highlightInline(bodyText, highlightRegex)}
-                  </p>
-                </article>
-              ) : (
-                <p className="text-[13px] leading-relaxed text-slate-900 sm:text-[15px]">
+            {hasBody ? (
+              <div className="space-y-5">
+                {bodySections.length > 0 ? (
+                  bodySections.map((section, sectionIndex) => (
+                    <GlassCard
+                      key={sectionIndex}
+                      className="border-slate-800/70 bg-slate-900/80 p-5 sm:p-6 lg:p-7"
+                    >
+                      {section.title && (
+                        <h2
+                          className={`mb-3 font-serif text-slate-900 ${
+                            section.level === "heading"
+                              ? "text-lg sm:text-xl"
+                              : "text-base sm:text-lg"
+                          }`}
+                        >
+                          {section.title}
+                        </h2>
+                      )}
+                      {section.lines.length > 0 && (
+                        <div className="space-y-2">
+                          {section.lines.map((line, lineIndex) =>
+                            line === "" ? (
+                              <div
+                                key={lineIndex}
+                                className="h-2"
+                              />
+                            ) : (
+                              <p
+                                key={lineIndex}
+                                className="whitespace-pre-line text-[15px] leading-relaxed text-slate-900 sm:text-[18px]"
+                              >
+                                {highlightInline(
+                                  line,
+                                  highlightRegex,
+                                  "strong",
+                                )}
+                              </p>
+                            ),
+                          )}
+                        </div>
+                      )}
+                    </GlassCard>
+                  ))
+                ) : (
+                  <GlassCard className="border-slate-800/70 bg-slate-900/80 p-5 sm:p-6 lg:p-7">
+                    <p className="whitespace-pre-line text-[15px] leading-relaxed text-slate-900 sm:text-[18px]">
+                      {highlightInline(
+                        formattedBodyText,
+                        highlightRegex,
+                        "strong",
+                      )}
+                    </p>
+                  </GlassCard>
+                )}
+              </div>
+            ) : (
+              <GlassCard className="border-slate-800/70 bg-slate-900/80 p-5 sm:p-6 lg:p-7">
+                <p className="text-[15px] leading-relaxed text-slate-900 sm:text-[18px]">
                   このHERITAGEの本文は現在準備中です。
                   ブランドや代表モデルの詳しいストーリーは、順次追加していきます。
                 </p>
-              )}
-            </GlassCard>
+              </GlassCard>
+            )}
           </Reveal>
 
           {/* サイドカラム */}
@@ -472,10 +596,10 @@ export default async function HeritageDetailPage({
               {/* 代表モデル */}
               {(heritage.keyModels?.length ?? 0) > 0 && (
                 <GlassCard className="border-slate-800/70 bg-slate-950/85 p-5">
-                  <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-300">
+                  <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-900">
                     KEY MODELS
                   </h2>
-                  <p className="mt-2 text-[13px] leading-relaxed text-slate-200/90">
+                  <p className="mt-2 text-[13px] leading-relaxed text-slate-900/90">
                     HERITAGEで取り上げる代表的なモデル達。CARSデータベースの個別ページとも連携していきます。
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
@@ -569,9 +693,11 @@ export default async function HeritageDetailPage({
                   <div>
                     <Link
                       href="/heritage"
-                      className="inline-flex items-center gap-1 text-[12px] text-slate-100 underline-offset-4 hover:text-rose-100 hover:underline"
+                      className="inline-flex items-center gap-1 text-[12px] text-slate-900 underline-offset-4 hover:text-rose-700 hover:underline"
                     >
-                      <span className="text-[11px] text-slate-400">←</span>
+                      <span className="text-[11px] text-slate-800">
+                        ←
+                      </span>
                       HERITAGE一覧に戻る
                     </Link>
                   </div>
@@ -580,7 +706,9 @@ export default async function HeritageDetailPage({
                     <div className="flex flex-col gap-2 pt-1 text-xs text-slate-200 md:flex-row md:justify-between">
                       {prev ? (
                         <Link
-                          href={`/heritage/${encodeURIComponent(prev.slug)}`}
+                          href={`/heritage/${encodeURIComponent(
+                            prev.slug,
+                          )}`}
                           className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900/80 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
                         >
                           <span className="text-[10px] text-slate-400">
@@ -596,7 +724,9 @@ export default async function HeritageDetailPage({
 
                       {next ? (
                         <Link
-                          href={`/heritage/${encodeURIComponent(next.slug)}`}
+                          href={`/heritage/${encodeURIComponent(
+                            next.slug,
+                          )}`}
                           className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-800/80 bg-slate-900/80 px-3 py-2 hover:border-rose-400/70 hover:bg-slate-900"
                         >
                           <span className="text-[10px] text-slate-400">
@@ -649,14 +779,14 @@ export default async function HeritageDetailPage({
                     className="group h-full"
                   >
                     <GlassCard className="flex h-full flex-col border-slate-800/70 bg-slate-950/85 p-4 transition group-hover:border-rose-400/70 group-hover:bg-slate-900">
-                      <p className="text-[11px] tracking-[0.26em] text-slate-400">
+                      <p className="text-[11px] tracking-[0.26em] text-slate-900">
                         {itemMaker || "HERITAGE"}
                       </p>
-                      <h3 className="mt-1 line-clamp-2 font-serif text-sm text-slate-50">
+                      <h3 className="mt-1 line-clamp-2 font-serif text-sm text-slate-900">
                         {itemTitle}
                       </h3>
                       {itemDateLabel && (
-                        <p className="mt-1 text-[11px] text-slate-400">
+                        <p className="mt-1 text-[11px] text-slate-800">
                           {itemDateLabel}
                         </p>
                       )}
@@ -665,7 +795,7 @@ export default async function HeritageDetailPage({
                           {itemTags.slice(0, 3).map((tag) => (
                             <span
                               key={tag}
-                              className="rounded-full border border-slate-700/80 bg-slate-900/80 px-2 py-0.5 text-[10px] text-slate-200"
+                              className="rounded-full border border-slate-700/80 bg-slate-900/80 px-2 py-0.5 text-[10px] text-slate-900"
                             >
                               {tag}
                             </span>
