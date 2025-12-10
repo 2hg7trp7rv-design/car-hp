@@ -1,5 +1,5 @@
 // app/layout.tsx
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
 import { Manrope, Bodoni_Moda } from "next/font/google";
@@ -23,15 +23,26 @@ const bodoni = Bodoni_Moda({
   adjustFontFallback: false,
 });
 
+// ---- viewport（スマホ前提の表示設定） ----
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  viewportFit: "cover",
+};
+
 // ---- サイト全体のメタデータ ----
 export const metadata: Metadata = {
+  metadataBase: new URL("https://car-hp.vercel.app"),
   title: {
     default: "CAR BOUTIQUE | クルマのニュースとストーリー",
     template: "%s | CAR BOUTIQUE",
   },
   description:
     "輸入車・国産車のニュースと本音レビューを届けるCAR BOUTIQUE。維持費やトラブル、買い方・売り方まで、大人のクルマ好きが知りたい情報を静かなブティックのような世界観でお届けします。",
-  metadataBase: new URL("https://car-hp.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
 
   // OGP / SNS 用
   openGraph: {
@@ -56,6 +67,36 @@ export const metadata: Metadata = {
     description:
       "輸入車・国産車のニュースと本音レビューを届けるCAR BOUTIQUE。維持費やトラブル、買い方・売り方まで、大人のクルマ好きが知りたい情報を静かなブティックのような世界観でお届けします。",
     images: ["/ogp-default.jpg"],
+  },
+
+  // favicon / PWA 系（画像ファイルは後で置き換えればOK）
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      {
+        url: "/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+  },
+  manifest: "/site.webmanifest",
+
+  // SEO / クローラー向け
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 
   // Google Search Console 用サイト確認タグ
@@ -83,6 +124,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <div className="flex min-h-screen flex-col">
             <SiteHeader />
 
+            {/* ページ本体 */}
             <div className="flex-1 pt-16 lg:pt-20">{children}</div>
 
             {/* モバイル用ボトムナビ */}
