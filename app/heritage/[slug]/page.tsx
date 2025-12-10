@@ -130,10 +130,8 @@ function highlightInline(
 
     const spanClassName =
       variant === "strong"
-        ? // 本文中の GT-R など: 赤く大きめに
-          "text-rose-500 font-semibold text-[1.15em]"
-        : // それ以外の軽いハイライト
-          "bg-rose-100 px-0.5 text-rose-900";
+        ? "text-rose-500 font-semibold text-[1.15em]"
+        : "bg-rose-100 px-0.5 text-rose-900";
 
     parts.push(
       <span key={`${start}-${end}`} className={spanClassName}>
@@ -174,7 +172,6 @@ function estimateReadingTimeMinutes(body: string): number {
   const plain = body.replace(/\s+/g, "");
   const length = plain.length;
   if (length === 0) return 0;
-  // 日本語: 400〜600文字/分くらいを目安
   const minutes = Math.round(length / 550);
   return minutes <= 0 ? 1 : minutes;
 }
@@ -264,7 +261,6 @@ export default async function HeritageDetailPage({
   );
   const { prev, next } = findNeighbors(sameMaker, heritage.slug);
 
-  // 同一メーカー内の「続きを読む」候補（なければ全体から）
   const moreFromMaker = sameMaker.filter(
     (item) => item.slug !== heritage.slug,
   );
@@ -280,7 +276,7 @@ export default async function HeritageDetailPage({
   const tags = heritage.tags ?? [];
   const title = heritage.title ?? heritage.titleJa ?? heritage.slug;
 
-  // 本文は body 優先、なければ summary をそのまま使う
+  // 本文は body 優先、なければ summary
   const bodyText = (() => {
     const candidates = [
       heritage.body,
@@ -297,7 +293,6 @@ export default async function HeritageDetailPage({
   })();
   const hasBody = bodyText.length > 0;
 
-  // 「。」のあとで改行を入れる
   const formattedBodyText = hasBody
     ? bodyText.replace(/。/g, "。\n")
     : "";
@@ -322,7 +317,7 @@ export default async function HeritageDetailPage({
     Array.isArray(heritage.relatedGuideSlugs) &&
     heritage.relatedGuideSlugs.length > 0;
 
-  // 本文をセクション単位に分解（【…】/■… を見出し扱い）
+  // 本文をセクション単位に分解
   const rawSections: BodySection[] = [];
   if (formattedBodyText) {
     const lines = formattedBodyText
@@ -389,9 +384,7 @@ export default async function HeritageDetailPage({
       bodySections.length > 0
     ) {
       const prev = bodySections[bodySections.length - 1];
-      if (prev.lines.length > 0) {
-        prev.lines.push("");
-      }
+      if (prev.lines.length > 0) prev.lines.push("");
       prev.lines.push(`${SPEC_HEADING_PREFIX}${section.title}`);
       for (const line of section.lines) {
         prev.lines.push(line);
@@ -403,14 +396,13 @@ export default async function HeritageDetailPage({
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-50">
-      {/* ヒーローセクション */}
+      {/* ヒーローセクション（HERITAGE STORY カードは削除） */}
       <section className="relative border-b border-slate-800/60 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.1),_transparent_60%),radial-gradient(circle_at_bottom,_rgba(30,64,175,0.3),_transparent_60%)]" />
 
-        <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-10 pt-20 md:flex-row md:px-6 lg:px-8 lg:pt-24">
-          {/* 左:タイトルとメタ情報 */}
-          <Reveal className="flex-1">
-            <div className="max-w-xl space-y-6">
+        <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-10 pt-20 md:px-6 lg:px-8 lg:pt-24">
+          <Reveal className="max-w-3xl">
+            <div className="space-y-6">
               <div className="inline-flex items-center gap-2 rounded-full border border-slate-700/70 bg-slate-900/70 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-slate-200">
                 <span className="h-1.5 w-1.5 rounded-full bg-rose-400 shadow-[0_0_10px_rgba(248,113,113,0.8)]" />
                 <span>CAR BOUTIQUE HERITAGE</span>
@@ -422,7 +414,7 @@ export default async function HeritageDetailPage({
                     {heritage.maker}
                   </p>
                 )}
-                <h1 className="font-serif text-3xl leading-tight text-slate-50 sm:text-4xl lg:text-5xl">
+                <h1 className="font-serif text-2xl leading-tight text-slate-50 sm:text-3xl lg:text-4xl">
                   {highlightInline(title, highlightRegex, "strong")}
                 </h1>
                 {heritage.periodLabel && (
@@ -488,57 +480,13 @@ export default async function HeritageDetailPage({
               </div>
             </div>
           </Reveal>
-
-          {/* 右:ヒーロー画像＋リード（テキストのみ） */}
-          <Reveal className="flex-1">
-            <div className="relative h-64 w-full overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-900/70 shadow-[0_24px_60px_rgba(15,23,42,0.9)] sm:h-72 md:h-80">
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(248,250,252,0.24),_transparent_55%),radial-gradient(circle_at_bottom_right,_rgba(30,64,175,0.35),_transparent_55%)]" />
-              <div className="absolute inset-0 bg-[linear-gradient(135deg,_rgba(15,23,42,0.96),_rgba(15,23,42,0.7)_45%,_rgba(15,23,42,0.96)_90%)] mix-blend-multiply" />
-
-              <div className="relative flex h-full flex-col justify-between p-5 sm:p-6">
-                <div className="space-y-2">
-                  <p className="text-[11px] uppercase tracking-[0.25em] text-slate-300/90">
-                    HERITAGE STORY
-                  </p>
-                  <p className="max-w-xs text-sm leading-relaxed text-slate-100/90">
-                    {highlightInline(
-                      heritage.heroTitle ??
-                        (heritage as any).seoTitle ??
-                        heritage.subtitle ??
-                        heritage.lead ??
-                        "ブランドや時代の変遷を、代表的なモデルとともに辿るロングストーリー。",
-                      highlightRegex,
-                      "strong",
-                    )}
-                  </p>
-                </div>
-
-                <div className="flex flex-col gap-2 text-[11px] text-slate-300/90 sm:flex-row sm:items-end sm:justify-between">
-                  <div>
-                    {heritage.eraRange && (
-                      <p className="font-mono text-xs uppercase tracking-[0.22em] text-slate-200">
-                        {heritage.eraRange}
-                      </p>
-                    )}
-                  </div>
-                  <div className="text-right">
-                    {heritage.heroImageCredit && (
-                      <p className="text-[10px] text-slate-400">
-                        PHOTO: {heritage.heroImageCredit}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
 
       {/* 本文＋サイドカラム */}
       <section className="border-t border-slate-800/60 bg-gradient-to-b from-slate-950 to-slate-900 py-10 md:py-14">
         <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 md:flex-row md:px-6 lg:px-8">
-          {/* 本文 */}
+          {/* 本文：カード背景を明るくして文字色を黒系に */}
           <Reveal className="w-full md:w-[64%]" forceVisible>
             {hasBody ? (
               <div className="space-y-6">
@@ -546,11 +494,11 @@ export default async function HeritageDetailPage({
                   bodySections.map((section, sectionIndex) => (
                     <GlassCard
                       key={sectionIndex}
-                      className="border-slate-800/70 bg-slate-950/90 p-5 sm:p-6 lg:p-7"
+                      className="border border-white/40 bg-white/90 p-5 text-slate-900 shadow-[0_18px_45px_rgba(15,23,42,0.55)] sm:p-6 lg:p-7"
                     >
                       {section.title && (
                         <h2
-                          className={`mb-4 font-serif text-slate-50 ${
+                          className={`mb-4 font-serif text-slate-900 ${
                             section.level === "heading"
                               ? "text-xl sm:text-2xl"
                               : "text-lg sm:text-xl"
@@ -586,7 +534,7 @@ export default async function HeritageDetailPage({
                               return (
                                 <p
                                   key={lineIndex}
-                                  className="mt-3 text-[15px] font-semibold leading-relaxed text-slate-50 sm:text-[18px]"
+                                  className="mt-3 text-[15px] font-semibold leading-relaxed text-slate-900 sm:text-[18px]"
                                 >
                                   {highlightInline(
                                     label,
@@ -600,7 +548,7 @@ export default async function HeritageDetailPage({
                             return (
                               <p
                                 key={lineIndex}
-                                className="whitespace-pre-line text-[15px] leading-relaxed text-slate-50 sm:text-[18px]"
+                                className="whitespace-pre-line text-[15px] leading-relaxed text-slate-900 sm:text-[18px]"
                               >
                                 {highlightInline(
                                   line,
@@ -615,8 +563,8 @@ export default async function HeritageDetailPage({
                     </GlassCard>
                   ))
                 ) : (
-                  <GlassCard className="border-slate-800/70 bg-slate-950/90 p-5 sm:p-6 lg:p-7">
-                    <p className="whitespace-pre-line text-[15px] leading-relaxed text-slate-50 sm:text-[18px]">
+                  <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900 shadow-[0_18px_45px_rgba(15,23,42,0.55)] sm:p-6 lg:p-7">
+                    <p className="whitespace-pre-line text-[15px] leading-relaxed text-slate-900 sm:text-[18px]">
                       {highlightInline(
                         formattedBodyText,
                         highlightRegex,
@@ -627,8 +575,8 @@ export default async function HeritageDetailPage({
                 )}
               </div>
             ) : (
-              <GlassCard className="border-slate-800/70 bg-slate-950/90 p-5 sm:p-6 lg:p-7">
-                <p className="text-[15px] leading-relaxed text-slate-50 sm:text-[18px]">
+              <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900 shadow-[0_18px_45px_rgba(15,23,42,0.55)] sm:p-6 lg:p-7">
+                <p className="text-[15px] leading-relaxed text-slate-900 sm:text-[18px]">
                   このHERITAGEの本文は現在準備中です。
                   ブランドや代表モデルの詳しいストーリーは、順次追加していきます。
                 </p>
@@ -639,9 +587,9 @@ export default async function HeritageDetailPage({
           {/* サイドカラム */}
           <Reveal className="w-full md:w-[36%]" forceVisible>
             <div className="flex flex-col gap-6">
-              {/* 代表モデル */}
+              {/* 代表モデル（白背景＋黒文字のまま） */}
               {(heritage.keyModels?.length ?? 0) > 0 && (
-                <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900">
+                <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900 shadow-[0_18px_45px_rgba(15,23,42,0.55)]">
                   <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-900">
                     KEY MODELS
                   </h2>
@@ -661,7 +609,7 @@ export default async function HeritageDetailPage({
                 </GlassCard>
               )}
 
-              {/* 関連コンテンツ */}
+              {/* 関連コンテンツ（ダークカードのまま） */}
               {(hasRelatedCars || hasRelatedNews || hasRelatedGuides) && (
                 <GlassCard className="border-slate-800/70 bg-slate-950/90 p-5">
                   <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-200">
@@ -739,8 +687,8 @@ export default async function HeritageDetailPage({
                 </GlassCard>
               )}
 
-              {/* 一覧への戻り＋前後ナビ */}
-              <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900">
+              {/* 一覧への戻り＋前後ナビ（白カード＋黒文字） */}
+              <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900 shadow-[0_18px_45px_rgba(15,23,42,0.55)]">
                 <div className="flex flex-col gap-3">
                   <div>
                     <Link
@@ -800,7 +748,7 @@ export default async function HeritageDetailPage({
         </div>
       </section>
 
-      {/* 下部「MORE HERITAGE」セクション */}
+      {/* 下部「MORE HERITAGE」セクション（説明文は出さない） */}
       {moreHeritage.length > 0 && (
         <section className="border-t border-slate-800/70 bg-slate-950 py-10 md:py-14">
           <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
@@ -828,7 +776,7 @@ export default async function HeritageDetailPage({
                     )}`}
                     className="group h-full"
                   >
-                    <GlassCard className="flex h-full flex-col border border-white/40 bg-white/90 p-4 text-slate-900 transition group-hover:border-rose-400/70 group-hover:bg-rose-50">
+                    <GlassCard className="flex h-full flex-col border border-white/40 bg-white/90 p-4 text-slate-900 shadow-[0_18px_45px_rgba(15,23,42,0.55)] transition group-hover:border-rose-400/70 group-hover:bg-rose-50">
                       <p className="text-[11px] tracking-[0.26em] text-slate-500">
                         {itemMaker || "HERITAGE"}
                       </p>
