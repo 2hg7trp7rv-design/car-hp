@@ -15,29 +15,69 @@ import {
   type HeritageRecord,
 } from "@/lib/repository/heritage-repository";
 import type {
-  HeritageItem as HeritageItemBase,
   HeritageKind,
   ContentStatus,
 } from "@/lib/content-types";
 
-// content-types側のHeritageItemをベースに、サイト内で使うメタ情報を少しだけ拡張
-export type HeritageItem = HeritageItemBase & {
-  /** 和文タイトル(あればこちらを優先して表示したいとき用) */
+// lib/heritage から HeritageKind も直接使えるようにしておく
+export type { HeritageKind } from "@/lib/content-types";
+
+/**
+ * HERITAGE用のDomain型
+ * - app/heritage 配下のページはこの型だけを参照する
+ * - data/heritage*.json の生データとは疎結合にしておく
+ */
+export type HeritageItem = {
+  id: string;
+  slug: string;
+  type: "HERITAGE";
+
+  // 公開ステータス(draft/published/archived)
+  status?: ContentStatus;
+
+  // タイトル/要約
+  title: string;
   titleJa?: string | null;
+  subtitle?: string | null;
+  lead?: string | null;
+  summary?: string | null;
 
-  /** maker/brandNameの補助用(旧データとの互換) */
+  // 種別・ブランド/車種系
+  kind: HeritageKind;
   maker?: string | null;
+  brandName?: string | null;
+  modelName?: string | null;
+  generationCode?: string | null;
 
-  /** 公開日時/更新日時(JSONにあれば使う) */
+  // 時代/年式表現
+  eraLabel?: string | null;
+  years?: string | null;
+
+  // 画像系
+  heroImage?: string | null;
+  heroTone?: string | null;
+
+  // 本文
+  body: string;
+
+  // ハイライト/タグ/関連コンテンツ
+  highlights?: string[];
+  tags?: string[];
+  relatedCarIds?: string[];
+  relatedHeritageSlugs?: string[];
+
+  // 日付系
+  createdAt?: string | null;
   publishedAt?: string | null;
   updatedAt?: string | null;
 
-  /** 情報ソース(メーカー名/媒体名など) */
+  // 出典情報など
   sourceName?: string | null;
   sourceUrl?: string | null;
-};
 
-export type { HeritageKind } from "@/lib/content-types";
+  // 年表などで使う任意の並び順
+  timelineOrder?: number | null;
+};
 
 // Data Source層からの生データ
 type RawHeritageItem = HeritageRecord;
@@ -48,6 +88,14 @@ function safeString(value: unknown): string | undefined {
   if (typeof value !== "string") return undefined;
   const v = value.trim();
   return v.length > 0 ? v : undefined;
+}
+
+function toStringArray(value: unknown): string[] | undefined {
+  if (!Array.isArray(value)) return undefined;
+  const cleaned = value
+    .map((v) => String(v).trim())
+    .filter((v) => v.length > 0);
+  return cleaned.length > 0 ? cleaned : undefined;
 }
 
 function parseDate(value?: string | null): Date | null {
@@ -62,6 +110,18 @@ function isPublished(status?: ContentStatus): boolean {
   return status === "published";
 }
 
+function normalizeStatus(value?: string): ContentStatus | undefined {
+  if (!value) return undefined;
+  const upper = value.toUpperCase();
+
+  if (upper === "DRAFT") return "draft";
+  if (upper === "ARCHIVED") return "archived";
+  if (upper === "PUBLISHED" || upper === "PUBLIC") return "published";
+
+  // 想定外の文字列はとりあえず公開扱いに寄せる
+  return "published";
+}
+
 // ---- 生データ→Domain型への変換 ----
 
 function toHeritageItem(
@@ -69,11 +129,14 @@ function toHeritageItem(
   index: number,
 ): HeritageItem | null {
   if (!raw || typeof raw !== "object") return null;
-  const anyRaw = raw as any;
+  const anyRaw = raw as Record<string, unknown>;
 
   // ID/slug
   const id = safeString(anyRaw.id) ?? `heritage-${index}`;
   const slug = safeString(anyRaw.slug) ?? id;
+
+  // type は固定
+  const type: "HERITAGE" = "HERITAGE";
 
   // kind(未指定ならCARとして扱う)
   const rawKind = safeString(anyRaw.kind) as HeritageKind | undefined;
@@ -127,88 +190,64 @@ function toHeritageItem(
     safeString(anyRaw.body) ?? safeString(anyRaw.content) ?? "";
   const body = bodyRaw;
 
-  // ハイライト
-  let highlights: string[] | null = null;
-  const rawHighlights = anyRaw.highlights;
-  if (Array.isArray(rawHighlights)) {
-    const cleaned = rawHighlights
-      .map((v: unknown) => String(v).trim())
-      .filter((v: string) => v.length > 0);
-    if (cleaned.length > 0) {
-      highlights = cleaned;
-    }
-  }
-
-  // タグ
-  let tags: string[] | null = null;
-  const rawTags = anyRaw.tags;
-  if (Array.isArray(rawTags)) {
-    const cleaned = rawTags
-      .map((t: unknown) => String(t).trim())
-      .filter((t: string) => t.length > 0);
-    if (cleaned.length > 0) {
-      tags = cleaned;
-    }
-  }
-
-  // 関連CARS
-  let relatedCarIds: string[] | null = null;
-  const rawRelatedCarIds = anyRaw.relatedCarIds;
-  if (Array.isArray(rawRelatedCarIds)) {
-    const cleaned = rawRelatedCarIds
-      .map((v: unknown) => String(v).trim())
-      .filter((v: string) => v.length > 0);
-    if (cleaned.length > 0) {
-      relatedCarIds = cleaned;
-    }
-  }
+  // ハイライト/タグ/関連CARS/HERITAGE
+  const highlights = toStringArray(anyRaw.highlights);
+  const tags = toStringArray(anyRaw.tags);
+  const relatedCarIds = toStringArray(anyRaw.relatedCarIds);
+  const relatedHeritageSlugs = toStringArray(
+    anyRaw.relatedHeritageSlugs,
+  );
 
   // ステータス/日付/ソース
-  const statusRaw = safeString(anyRaw.status) as
-    | ContentStatus
-    | undefined;
-
-  let status: ContentStatus = "published";
-  if (
-    statusRaw === "draft" ||
-    statusRaw === "published" ||
-    statusRaw === "archived"
-  ) {
-    status = statusRaw;
-  }
-
+  const status = normalizeStatus(safeString(anyRaw.status));
+  const createdAt = safeString(anyRaw.createdAt) ?? null;
   const publishedAt = safeString(anyRaw.publishedAt) ?? null;
   const updatedAt = safeString(anyRaw.updatedAt) ?? null;
   const sourceName = safeString(anyRaw.sourceName) ?? null;
   const sourceUrl = safeString(anyRaw.sourceUrl) ?? null;
 
+  // 並び順(数値 or 数値文字列)
+  let timelineOrder: number | null = null;
+  const rawOrder = anyRaw.timelineOrder;
+  if (typeof rawOrder === "number") {
+    timelineOrder = Number.isFinite(rawOrder) ? rawOrder : null;
+  } else if (typeof rawOrder === "string") {
+    const n = Number(rawOrder);
+    if (!Number.isNaN(n) && Number.isFinite(n)) {
+      timelineOrder = n;
+    }
+  }
+
   const item: HeritageItem = {
     id,
     slug,
-    kind,
+    type,
+    status,
     title: baseTitle,
+    titleJa,
     subtitle,
     lead,
-    summary: summary ?? undefined,
-    eraLabel,
+    summary,
+    kind,
+    maker,
     brandName,
     modelName,
     generationCode,
+    eraLabel,
     years,
     heroImage,
     heroTone,
     body,
-    highlights: highlights ?? undefined,
-    tags: tags ?? undefined,
-    relatedCarIds: relatedCarIds ?? undefined,
-    // 拡張メタ
-    titleJa,
-    maker,
-    status,
+    highlights,
+    tags,
+    relatedCarIds,
+    relatedHeritageSlugs,
+    createdAt,
     publishedAt,
     updatedAt,
     sourceName,
     sourceUrl,
+    timelineOrder,
   };
 
   return item;
@@ -221,26 +260,27 @@ function buildHeritageCache(): HeritageItem[] {
 
   const mapped = rawItems
     .map((raw, index) => toHeritageItem(raw, index))
-    .filter((item): item is HeritageItem => item !== null)
-    .filter((item) => isPublished(item.status))
-    .sort((a, b) => {
-      // 公開日(なければ更新日)の降順
-      const ad = parseDate(a.publishedAt ?? a.updatedAt ?? null);
-      const bd = parseDate(b.publishedAt ?? b.updatedAt ?? null);
+    .filter((item): item is HeritageItem => item !== null);
 
-      if (ad && bd) return bd.getTime() - ad.getTime();
-      if (bd && !ad) return 1;
-      if (ad && !bd) return -1;
+  // 公開済みのみ
+  const published = mapped.filter((item) =>
+    isPublished(item.status),
+  );
 
-      // 日付が両方ない場合はタイトル順で安定ソート
-      const at = a.title.toLowerCase();
-      const bt = b.title.toLowerCase();
-      if (at < bt) return -1;
-      if (at > bt) return 1;
-      return 0;
-    });
+  // 公開日(なければ更新日)の降順
+  const sorted = published.sort((a, b) => {
+    const ad = parseDate(a.publishedAt ?? a.updatedAt ?? null);
+    const bd = parseDate(b.publishedAt ?? b.updatedAt ?? null);
 
-  return mapped;
+    if (ad && bd) return bd.getTime() - ad.getTime();
+    if (bd && !ad) return 1;
+    if (ad && !bd) return -1;
+
+    // 日付が両方ない場合はタイトルで安定ソート
+    return a.title.localeCompare(b.title, "ja");
+  });
+
+  return sorted;
 }
 
 // SSR/ISR前提のモジュール内キャッシュ
