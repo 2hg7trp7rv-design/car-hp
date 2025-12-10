@@ -195,11 +195,10 @@ export default async function HeritageIndexPage({
               <h1 className="font-display text-3xl tracking-tight text-white sm:text-4xl lg:text-5xl">
                 ブランドの系譜と名車の歴史
               </h1>
-              <p className="max-w-2xl text-sm leading-relaxed text-slate-200 sm:text-base">
-                F40やM3、GT-Rなど、クルマ文化をつくってきたモデルたちを
-                「ブランドの系譜」として整理しながら、どの時代にどんな
-                キャラクターのクルマがいたのかを振り返るためのアーカイブです。
-                メーカーや年代、タグから気になる物語に潜っていけます。
+              {/* 説明文は最小限 */}
+              <p className="max-w-2xl text-sm leading-relaxed text-slate-200/90 sm:text-base">
+                代表的なブランドと名車の歴史を、
+                メーカー・年代・タグでざっと俯瞰するためのインデックスです。
               </p>
             </Reveal>
 
@@ -209,52 +208,51 @@ export default async function HeritageIndexPage({
             >
               <GlassCard
                 padding="lg"
-                variant="dim"
+                variant="crystal"
                 interactive={false}
                 magnetic={false}
-                className="max-w-md border border-slate-700/80 bg-slate-950/80"
+                className="max-w-md border border-slate-700/80 bg-slate-900/90 text-slate-50 shadow-[0_18px_45px_rgba(15,23,42,0.85)]"
               >
                 <div className="space-y-3">
                   <p className="text-xs font-semibold tracking-[0.2em] text-slate-300">
                     HERITAGE INDEX
                   </p>
-                  <p className="text-sm leading-relaxed text-slate-100/90">
-                    登録されているHERITAGE記事の総数と
-                    メーカー数・年代の幅から、
-                    「どのくらいのアーカイブになっているか」を一目で把握できます。
+                  <p className="text-xs leading-relaxed text-slate-200/90">
+                    登録されているHERITAGEの件数とブランド数を、
+                    ざっくり把握するためのインデックスです。
                   </p>
                   <div className="mt-4 grid grid-cols-3 gap-3 text-center text-xs sm:text-sm">
                     <div className="space-y-1">
                       <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">
-                        TOTAL
+                        total
                       </div>
-                      <div className="text-2xl font-semibold text-slate-50">
+                      <div className="text-2xl font-semibold text-white">
                         {totalHeritage}
                       </div>
                       <div className="text-[0.7rem] text-slate-400">
-                        ARTICLES
+                        articles
                       </div>
                     </div>
                     <div className="space-y-1">
                       <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">
-                        MAKERS
+                        makers
                       </div>
-                      <div className="text-2xl font-semibold text-slate-50">
+                      <div className="text-2xl font-semibold text-white">
                         {totalMakers}
                       </div>
                       <div className="text-[0.7rem] text-slate-400">
-                        BRANDS
+                        brands
                       </div>
                     </div>
                     <div className="space-y-1">
                       <div className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">
-                        ERAS
+                        eras
                       </div>
-                      <div className="text-2xl font-semibold text-slate-50">
+                      <div className="text-2xl font-semibold text-white">
                         {totalEras}
                       </div>
                       <div className="text-[0.7rem] text-slate-400">
-                        PERIODS
+                        periods
                       </div>
                     </div>
                   </div>
@@ -273,7 +271,7 @@ export default async function HeritageIndexPage({
             padding="lg"
             variant="dim"
             interactive={false}
-            className="border border-white/10 bg-white/5"
+            className="border border-slate-700/80 bg-slate-900/90"
           >
             <form
               action="/heritage"
@@ -290,7 +288,7 @@ export default async function HeritageIndexPage({
                   name="q"
                   defaultValue={rawQ}
                   placeholder="モデル名・ブランド名・キーワードで検索"
-                  className="w-full rounded-xl border border-white/15 bg-slate-900/60 px-3 py-2 text-sm text-white placeholder:text-slate-500 outline-none ring-0 transition focus:border-tiffany-300/70 focus:ring-2 focus:ring-tiffany-300/40"
+                  className="w-full rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2 text-sm text-slate-50 placeholder:text-slate-500 outline-none ring-0 transition focus:border-tiffany-300/70 focus:ring-2 focus:ring-tiffany-300/40"
                 />
               </div>
 
@@ -303,7 +301,7 @@ export default async function HeritageIndexPage({
                   <select
                     name="maker"
                     defaultValue={makerFilter || ""}
-                    className="w-full rounded-xl border border-white/15 bg-slate-900/60 px-3 py-2 text-sm text-white outline-none ring-0 transition focus:border-tiffany-300/70 focus:ring-2 focus:ring-tiffany-300/40"
+                    className="w-full rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2 text-sm text-slate-50 outline-none ring-0 transition focus:border-tiffany-300/70 focus:ring-2 focus:ring-tiffany-300/40"
                   >
                     <option value="">すべて</option>
                     {makers.map((maker) => (
@@ -321,7 +319,7 @@ export default async function HeritageIndexPage({
                   <select
                     name="era"
                     defaultValue={eraFilter || ""}
-                    className="w-full rounded-xl border border-white/15 bg-slate-900/60 px-3 py-2 text-sm text-white outline-none ring-0 transition focus:border-tiffany-300/70 focus:ring-2 focus:ring-tiffany-300/40"
+                    className="w-full rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2 text-sm text-slate-50 outline-none ring-0 transition focus:border-tiffany-300/70 focus:ring-2 focus:ring-tiffany-300/40"
                   >
                     <option value="">すべて</option>
                     {eras.map((era) => (
@@ -339,7 +337,7 @@ export default async function HeritageIndexPage({
                   <select
                     name="tag"
                     defaultValue={tagFilter || ""}
-                    className="w-full rounded-xl border border-white/15 bg-slate-900/60 px-3 py-2 text-sm text-white outline-none ring-0 transition focus:border-tiffany-300/70 focus:ring-2 focus:ring-tiffany-300/40"
+                    className="w-full rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2 text-sm text-slate-50 outline-none ring-0 transition focus:border-tiffany-300/70 focus:ring-2 focus:ring-tiffany-300/40"
                   >
                     <option value="">すべて</option>
                     {tags.map((tag) => (
@@ -367,7 +365,7 @@ export default async function HeritageIndexPage({
                           pathname: "/heritage",
                           query: { maker },
                         }}
-                        className="rounded-full border border-white/15 bg-slate-900/60 px-3 py-1 text-[0.7rem] text-slate-100 hover:border-tiffany-300/70 hover:text-tiffany-50"
+                        className="rounded-full border border-slate-700/80 bg-slate-950/80 px-3 py-1 text-[0.7rem] text-slate-50 hover:border-tiffany-300/70 hover:text-tiffany-50"
                       >
                         {maker}
                       </Link>
@@ -389,7 +387,7 @@ export default async function HeritageIndexPage({
                                 pathname: "/heritage",
                                 query: { era },
                               }}
-                              className="rounded-full border border-white/10 bg-slate-900/60 px-3 py-1 text-[0.7rem] text-slate-100 hover:border-tiffany-300/70 hover:text-tiffany-50"
+                              className="rounded-full border border-slate-700/80 bg-slate-950/80 px-3 py-1 text-[0.7rem] text-slate-50 hover:border-tiffany-300/70 hover:text-tiffany-50"
                             >
                               {era}
                             </Link>
@@ -409,7 +407,7 @@ export default async function HeritageIndexPage({
                                 pathname: "/heritage",
                                 query: { tag },
                               }}
-                              className="rounded-full border border-white/10 bg-slate-900/60 px-3 py-1 text-[0.7rem] text-slate-100 hover:border-tiffany-300/70 hover:text-tiffany-50"
+                              className="rounded-full border border-slate-700/80 bg-slate-950/80 px-3 py-1 text-[0.7rem] text-slate-50 hover:border-tiffany-300/70 hover:text-tiffany-50"
                             >
                               #{tag}
                             </Link>
@@ -453,8 +451,7 @@ export default async function HeritageIndexPage({
                   </div>
                 ) : (
                   <div className="text-xs text-slate-400">
-                    キーワードやメーカー・年代・タグを組み合わせて
-                    名車の歴史を絞り込めます。
+                    必要なときだけ、キーワードやメーカー・年代・タグで軽く絞り込む前提です。
                   </div>
                 )}
 
@@ -496,7 +493,7 @@ export default async function HeritageIndexPage({
         {/* 一覧本体 */}
         {groups.length === 0 ? (
           <Reveal delay={120}>
-            <div className="mt-8 rounded-2xl border border-dashed border-slate-700/80 bg-slate-900/60 px-6 py-10 text-center text-sm text-slate-300">
+            <div className="mt-8 rounded-2xl border border-dashed border-slate-700/80 bg-slate-900/80 px-6 py-10 text-center text-sm text-slate-300">
               条件に合うHERITAGEはありません。
               <br />
               絞り込み条件を少し緩めて再検索する想定です。
@@ -542,11 +539,11 @@ export default async function HeritageIndexPage({
                             padding="lg"
                             interactive
                             variant="dim"
-                            className="h-full border border-white/10 bg-slate-900/60"
+                            className="h-full border border-slate-700/80 bg-slate-900/90"
                           >
                             <div className="flex h-full flex-col gap-3">
-                              <div className="flex items-center justify-between gap-3 text-xs text-slate-300">
-                                <span className="rounded-full border border-white/10 bg-slate-950/60 px-3 py-1 text-[0.7rem]">
+                              <div className="flex items-center justify_between gap-3 text-xs text-slate-200">
+                                <span className="rounded-full border border-slate-700/80 bg-slate-950/80 px-3 py-1 text-[0.7rem]">
                                   {era}
                                 </span>
                                 {labelMaker && (
@@ -567,18 +564,18 @@ export default async function HeritageIndexPage({
                                   </p>
                                 )}
                                 {item.summary && (
-                                  <p className="text-xs leading-relaxed text-slate-300">
+                                  <p className="text-xs leading-relaxed text-slate-200">
                                     {item.summary}
                                   </p>
                                 )}
                               </div>
 
                               {itemTags.length > 0 && (
-                                <div className="mt-1 flex flex-wrap gap-2 text-[0.7rem] text-slate-300">
+                                <div className="mt-1 flex flex-wrap gap-2 text-[0.7rem] text-slate-200">
                                   {itemTags.map((tag) => (
                                     <span
                                       key={tag}
-                                      className="rounded-full border border-white/10 bg-slate-950/60 px-2.5 py-1"
+                                      className="rounded-full border border-slate-700/80 bg-slate-950/80 px-2.5 py-1"
                                     >
                                       #{tag}
                                     </span>
