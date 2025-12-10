@@ -184,6 +184,7 @@ type BodySection = {
   title?: string;
   level: "heading" | "subheading" | null;
   lines: string[];
+  inlineHeadings?: string[]; // 「主なスペック〜」など、同じカード内にまとめる小見出し
 };
 
 // ---- メタデータ生成 ----
@@ -320,7 +321,9 @@ export default async function HeritageDetailPage({
     Array.isArray(heritage.relatedGuideSlugs) &&
     heritage.relatedGuideSlugs.length > 0;
 
-  // 本文をセクション単位に分解（【…】/■… を見出し扱い）
+  // 本文をセクション単位に分解
+  // 「【…】」や「■…」を見出し扱いしつつ、
+  // 「主なスペック」を含む見出しは直前のカードの中に小見出しとしてまとめる
   const bodySections: BodySection[] = [];
   if (formattedBodyText) {
     const lines = formattedBodyText
@@ -341,9 +344,33 @@ export default async function HeritageDetailPage({
 
     for (const rawLine of lines) {
       const line = rawLine.trim();
+
       if (!line) {
         if (current && current.lines.length > 0) {
           current.lines.push("");
+        }
+        continue;
+      }
+
+      // 「主なスペック」を含む見出し行は、前のカード内の小見出しとして扱う
+      if (line.includes("主なスペック")) {
+        const cleaned = line
+          .replace(/^【/, "")
+          .replace(/】$/, "")
+          .replace(/^■\s*/, "");
+        if (!current) {
+          // 先頭に来てしまった場合は単独セクションとして扱う
+          current = {
+            title: cleaned,
+            level: "heading",
+            lines: [],
+            inlineHeadings: [],
+          };
+        } else {
+          if (!current.inlineHeadings) {
+            current.inlineHeadings = [];
+          }
+          current.inlineHeadings.push(cleaned);
         }
         continue;
       }
@@ -355,16 +382,19 @@ export default async function HeritageDetailPage({
           title: headingMatch[1],
           level: "heading",
           lines: [],
+          inlineHeadings: [],
         };
         continue;
       }
 
       if (line.startsWith("■")) {
+        const cleaned = line.replace(/^■\s*/, "");
         pushCurrent();
         current = {
-          title: line.replace(/^■\s*/, ""),
+          title: cleaned,
           level: "subheading",
           lines: [],
+          inlineHeadings: [],
         };
         continue;
       }
@@ -534,15 +564,40 @@ export default async function HeritageDetailPage({
                     >
                       {section.title && (
                         <h2
-                          className={`mb-3 font-serif text-slate-900 ${
+                          className={`mb-3 font-serif text-slate-50 ${
                             section.level === "heading"
-                              ? "text-lg sm:text-xl"
-                              : "text-base sm:text-lg"
+                              ? "text-2xl sm:text-3xl"
+                              : "text-xl sm:text-2xl"
                           }`}
                         >
-                          {section.title}
+                          {highlightInline(
+                            section.title,
+                            highlightRegex,
+                            "strong",
+                          )}
                         </h2>
                       )}
+
+                      {section.inlineHeadings &&
+                        section.inlineHeadings.length > 0 && (
+                          <div className="mb-2 space-y-1">
+                            {section.inlineHeadings.map(
+                              (label, idx) => (
+                                <p
+                                  key={idx}
+                                  className="font-serif text-xl font-semibold leading-snug text-slate-50 sm:text-2xl"
+                                >
+                                  {highlightInline(
+                                    label,
+                                    highlightRegex,
+                                    "strong",
+                                  )}
+                                </p>
+                              ),
+                            )}
+                          </div>
+                        )}
+
                       {section.lines.length > 0 && (
                         <div className="space-y-2">
                           {section.lines.map((line, lineIndex) =>
@@ -554,7 +609,7 @@ export default async function HeritageDetailPage({
                             ) : (
                               <p
                                 key={lineIndex}
-                                className="whitespace-pre-line text-[15px] leading-relaxed text-slate-900 sm:text-[18px]"
+                                className="whitespace-pre-line text-[16px] leading-relaxed text-slate-100 sm:text-[20px]"
                               >
                                 {highlightInline(
                                   line,
@@ -570,7 +625,7 @@ export default async function HeritageDetailPage({
                   ))
                 ) : (
                   <GlassCard className="border-slate-800/70 bg-slate-900/80 p-5 sm:p-6 lg:p-7">
-                    <p className="whitespace-pre-line text-[15px] leading-relaxed text-slate-900 sm:text-[18px]">
+                    <p className="whitespace-pre-line text-[16px] leading-relaxed text-slate-100 sm:text-[20px]">
                       {highlightInline(
                         formattedBodyText,
                         highlightRegex,
@@ -582,7 +637,7 @@ export default async function HeritageDetailPage({
               </div>
             ) : (
               <GlassCard className="border-slate-800/70 bg-slate-900/80 p-5 sm:p-6 lg:p-7">
-                <p className="text-[15px] leading-relaxed text-slate-900 sm:text-[18px]">
+                <p className="text-[16px] leading-relaxed text-slate-100 sm:text-[20px]">
                   このHERITAGEの本文は現在準備中です。
                   ブランドや代表モデルの詳しいストーリーは、順次追加していきます。
                 </p>
@@ -596,10 +651,10 @@ export default async function HeritageDetailPage({
               {/* 代表モデル */}
               {(heritage.keyModels?.length ?? 0) > 0 && (
                 <GlassCard className="border-slate-800/70 bg-slate-950/85 p-5">
-                  <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-900">
+                  <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-200">
                     KEY MODELS
                   </h2>
-                  <p className="mt-2 text-[13px] leading-relaxed text-slate-900/90">
+                  <p className="mt-2 text-[13px] leading-relaxed text-slate-200/90">
                     HERITAGEで取り上げる代表的なモデル達。CARSデータベースの個別ページとも連携していきます。
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
@@ -618,7 +673,7 @@ export default async function HeritageDetailPage({
               {/* 関連コンテンツ */}
               {(hasRelatedCars || hasRelatedNews || hasRelatedGuides) && (
                 <GlassCard className="border-slate-800/70 bg-slate-950/85 p-5">
-                  <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-300">
+                  <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-200">
                     RELATED CONTENTS
                   </h2>
                   <p className="mt-2 text-[13px] leading-relaxed text-slate-200/90">
@@ -693,9 +748,9 @@ export default async function HeritageDetailPage({
                   <div>
                     <Link
                       href="/heritage"
-                      className="inline-flex items-center gap-1 text-[12px] text-slate-900 underline-offset-4 hover:text-rose-700 hover:underline"
+                      className="inline-flex items-center gap-1 text-[12px] text-slate-100 underline-offset-4 hover:text-rose-100 hover:underline"
                     >
-                      <span className="text-[11px] text-slate-800">
+                      <span className="text-[11px] text-slate-300">
                         ←
                       </span>
                       HERITAGE一覧に戻る
@@ -779,14 +834,14 @@ export default async function HeritageDetailPage({
                     className="group h-full"
                   >
                     <GlassCard className="flex h-full flex-col border-slate-800/70 bg-slate-950/85 p-4 transition group-hover:border-rose-400/70 group-hover:bg-slate-900">
-                      <p className="text-[11px] tracking-[0.26em] text-slate-900">
+                      <p className="text-[11px] tracking-[0.26em] text-slate-300">
                         {itemMaker || "HERITAGE"}
                       </p>
-                      <h3 className="mt-1 line-clamp-2 font-serif text-sm text-slate-900">
+                      <h3 className="mt-1 line-clamp-2 font-serif text-sm text-slate-50">
                         {itemTitle}
                       </h3>
                       {itemDateLabel && (
-                        <p className="mt-1 text-[11px] text-slate-800">
+                        <p className="mt-1 text-[11px] text-slate-400">
                           {itemDateLabel}
                         </p>
                       )}
@@ -795,7 +850,7 @@ export default async function HeritageDetailPage({
                           {itemTags.slice(0, 3).map((tag) => (
                             <span
                               key={tag}
-                              className="rounded-full border border-slate-700/80 bg-slate-900/80 px-2 py-0.5 text-[10px] text-slate-900"
+                              className="rounded-full border border-slate-700/80 bg-slate-900/80 px-2 py-0.5 text-[10px] text-slate-100"
                             >
                               {tag}
                             </span>
