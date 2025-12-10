@@ -4,66 +4,43 @@
  * HERITAGE Domain層
  *
  * 役割:
- * ・Data Source層(lib/repository/heritage-repository)から上がってくる生データを
- *   画面(App層)で扱いやすい型(HeritageItem)にマッピングする
- * ・ID/slug/公開日などの整形やソートをここで完結させる
- * ・App層はこのファイルだけを見ればよい、という構造にする
+ * - Data Source層(lib/repository/heritage-repository)から上がってくる生データを
+ *   画面(App層)で扱いやすい HeritageItem にマッピングする
+ * - kind/brand/model/年代などの整形やソートをここで完結させる
+ * - CARSやGUIDEなど他コンテンツとの連携を見据えたヘルパーをまとめる
  */
 
 import {
   findAllHeritage,
   type HeritageRecord,
 } from "@/lib/repository/heritage-repository";
+import type {
+  HeritageItem as HeritageItemBase,
+  HeritageKind,
+  ContentStatus,
+} from "@/lib/content-types";
 
-/**
- * 画面(App層)から見るHERITAGE1件分の型
- *
- * できるだけ汎用的にしつつ、CARS/COLUMN/GUIDE/NEWSと揃えやすい構造を意識。
- * 実際のJSONにフィールドが無くても、Domain層で安全にfallbackするようにする。
- */
-export type HeritageItem = {
-  id: string;
-  slug: string;
-
-  // 表示用タイトル
-  title: string;
+// content-types側のHeritageItemをベースに、サイト内で使うメタ情報を少しだけ拡張
+export type HeritageItem = HeritageItemBase & {
+  /** 和文タイトル(あればこちらを優先して表示したいとき用) */
   titleJa?: string | null;
 
-  // メーカー/ブランド名(BMW/FERRARIなど)
+  /** maker/brandNameの補助用(旧データとの互換) */
   maker?: string | null;
 
-  // 車名・シリーズ名(例:"F40","Testarossa"など)
-  modelName?: string | null;
+  /** draft/published/archivedなど(ContentStatusと揃える) */
+  status?: ContentStatus | null;
 
-  // 時代・年代(例:"1980s","1990年代"など)
-  eraLabel?: string | null;
-
-  // ナビやリストに出す短い概要
-  summary?: string | null;
-
-  // 本文(タイムライン形式やストーリー本文をプレーンテキストで)
-  body?: string | null;
-
-  // サムネイル・ヒーロー画像
-  heroImage?: string | null;
-
-  // 関連するCARSのid/slug
-  relatedCarIds?: string[];
-
-  // タグ(レース名/エンジン形式/ボディタイプなど)
-  tags?: string[];
-
-  // 公開状態(published/draftなど)
-  status?: string | null;
-
-  // 公開日時/更新日時
+  /** 公開日時/更新日時(JSONにあれば使う) */
   publishedAt?: string | null;
   updatedAt?: string | null;
 
-  // 補助的なメタ情報(任意)
+  /** 情報ソース(メーカー名/媒体名など) */
   sourceName?: string | null;
   sourceUrl?: string | null;
 };
+
+export type { HeritageKind } from "@/lib/content-types";
 
 // Data Source層からの生データ
 type RawHeritageItem = HeritageRecord;
@@ -83,6 +60,11 @@ function parseDate(value?: string | null): Date | null {
   return d;
 }
 
+function isPublished(status?: ContentStatus | null): boolean {
+  if (!status) return true; // 未指定は公開扱い
+  return status === "published";
+}
+
 // ---- 生データ→Domain型への変換 ----
 
 function toHeritageItem(raw: RawHeritageItem, index: number): HeritageItem | null {
@@ -90,64 +72,88 @@ function toHeritageItem(raw: RawHeritageItem, index: number): HeritageItem | nul
 
   const anyRaw = raw as any;
 
-  // ID/slug周り
+  // ID/slug
   const id = safeString(anyRaw.id) ?? `heritage-${index}`;
-  const slug =
-    safeString(anyRaw.slug) ??
-    safeString(anyRaw.id) ??
-    `heritage-${index}`;
+  const slug = safeString(anyRaw.slug) ?? id;
+
+  // kind(未指定ならCARとして扱う)
+  const rawKind = safeString(anyRaw.kind) as HeritageKind | undefined;
+  const kind: HeritageKind = rawKind ?? "CAR";
 
   // タイトル関連
-  const title =
-    safeString(anyRaw.titleJa) ??
-    safeString(anyRaw.title) ??
-    "タイトル未設定";
-
   const titleJa = safeString(anyRaw.titleJa) ?? null;
+  const baseTitle = safeString(anyRaw.title) ?? titleJa ?? "タイトル未設定";
+  const subtitle = safeString(anyRaw.subtitle) ?? null;
 
-  // メーカー/モデル/時代
+  // 概要/リード
+  const summary =
+    safeString(anyRaw.summary) ??
+    safeString(anyRaw.lead) ??
+    null;
+  const lead =
+    safeString(anyRaw.lead) ??
+    summary;
+
+  // メーカー/ブランド/モデル/世代
   const maker = safeString(anyRaw.maker) ?? null;
+  const brandName =
+    safeString(anyRaw.brandName) ??
+    maker ??
+    null;
+
   const modelName =
     safeString(anyRaw.modelName) ??
     safeString(anyRaw.model) ??
     null;
+
+  const generationCode =
+    safeString(anyRaw.generationCode) ??
+    safeString(anyRaw.code) ??
+    null;
+
+  // 時代/年式表現
   const eraLabel =
     safeString(anyRaw.eraLabel) ??
     safeString(anyRaw.era) ??
     safeString(anyRaw.period) ??
     null;
 
-  // 概要・本文
-  const summary =
-    safeString(anyRaw.summary) ??
-    safeString(anyRaw.lead) ??
+  const years =
+    safeString(anyRaw.years) ??
+    safeString(anyRaw.productionYears) ??
     null;
 
-  const body =
-    safeString(anyRaw.body) ??
-    safeString(anyRaw.content) ??
-    null;
-
+  // 画像系
   const heroImage =
     safeString(anyRaw.heroImage) ??
+    safeString(anyRaw.imageUrl) ??
     safeString(anyRaw.thumbnail) ??
     null;
 
-  // 関連CARS
-  const rawRelatedCarIds = anyRaw.relatedCarIds;
-  let relatedCarIds: string[] | undefined;
-  if (Array.isArray(rawRelatedCarIds)) {
-    const cleaned = rawRelatedCarIds
+  const heroTone = safeString(anyRaw.heroTone) ?? null;
+
+  // 本文(空でも文字列で返す)
+  const bodyRaw =
+    safeString(anyRaw.body) ??
+    safeString(anyRaw.content) ??
+    "";
+  const body = bodyRaw;
+
+  // ハイライト
+  let highlights: string[] | null = null;
+  const rawHighlights = anyRaw.highlights;
+  if (Array.isArray(rawHighlights)) {
+    const cleaned = rawHighlights
       .map((v) => String(v).trim())
       .filter((v) => v.length > 0);
     if (cleaned.length > 0) {
-      relatedCarIds = cleaned;
+      highlights = cleaned;
     }
   }
 
   // タグ
+  let tags: string[] | null = null;
   const rawTags = anyRaw.tags;
-  let tags: string[] | undefined;
   if (Array.isArray(rawTags)) {
     const cleaned = rawTags
       .map((t) => String(t).trim())
@@ -157,32 +163,60 @@ function toHeritageItem(raw: RawHeritageItem, index: number): HeritageItem | nul
     }
   }
 
-  const status = safeString(anyRaw.status) ?? null;
+  // 関連CARS
+  let relatedCarIds: string[] | null = null;
+  const rawRelatedCarIds = anyRaw.relatedCarIds;
+  if (Array.isArray(rawRelatedCarIds)) {
+    const cleaned = rawRelatedCarIds
+      .map((v) => String(v).trim())
+      .filter((v) => v.length > 0);
+    if (cleaned.length > 0) {
+      relatedCarIds = cleaned;
+    }
+  }
+
+  // ステータス/日付/ソース
+  const statusRaw = safeString(anyRaw.status) as ContentStatus | undefined;
+  const status: ContentStatus | null =
+    statusRaw === "draft" || statusRaw === "published" || statusRaw === "archived"
+      ? statusRaw
+      : null;
+
   const publishedAt = safeString(anyRaw.publishedAt) ?? null;
   const updatedAt = safeString(anyRaw.updatedAt) ?? null;
 
   const sourceName = safeString(anyRaw.sourceName) ?? null;
   const sourceUrl = safeString(anyRaw.sourceUrl) ?? null;
 
-  return {
+  const item: HeritageItem = {
     id,
     slug,
-    title,
+    kind,
+    title: baseTitle,
+    subtitle,
+    lead,
+    eraLabel,
+    brandName,
+    modelName,
+    generationCode,
+    years,
+    heroImage,
+    heroTone,
+    body,
+    highlights,
+    tags,
+    relatedCarIds,
+    // 拡張メタ
     titleJa,
     maker,
-    modelName,
-    eraLabel,
-    summary,
-    body,
-    heroImage,
-    relatedCarIds,
-    tags,
     status,
     publishedAt,
     updatedAt,
     sourceName,
     sourceUrl,
   };
+
+  return item;
 }
 
 // ---- キャッシュ構築 ----
@@ -193,13 +227,19 @@ function buildHeritageCache(): HeritageItem[] {
   const mapped = rawItems
     .map((raw, index) => toHeritageItem(raw, index))
     .filter((item): item is HeritageItem => item !== null)
-    // 公開日(なければ更新日)の降順ソート
+    .filter((item) => isPublished(item.status))
     .sort((a, b) => {
+      // 公開日(なければ更新日)の降順
       const ad = parseDate(a.publishedAt ?? a.updatedAt ?? null);
       const bd = parseDate(b.publishedAt ?? b.updatedAt ?? null);
       if (ad && bd) return bd.getTime() - ad.getTime();
       if (bd && !ad) return 1;
       if (ad && !bd) return -1;
+      // 日付が両方ない場合はタイトル順で安定ソート
+      const at = a.title.toLowerCase();
+      const bt = b.title.toLowerCase();
+      if (at < bt) return -1;
+      if (at > bt) return 1;
       return 0;
     });
 
@@ -219,7 +259,7 @@ function getAllHeritageSync(): HeritageItem[] {
 // ---- 公開API(App層から使う関数) ----
 
 /**
- * HERITAGEを全件取得(ソート済み)
+ * HERITAGEを全件取得(公開済みのみ/ソート済み)
  */
 export async function getAllHeritage(): Promise<HeritageItem[]> {
   return getAllHeritageSync();
@@ -235,14 +275,35 @@ export async function getLatestHeritage(limit = 20): Promise<HeritageItem[]> {
 }
 
 /**
- * slugから1件取得
+ * slugから1件取得(公開済みのみ)
  */
 export async function getHeritageBySlug(
   slug: string,
 ): Promise<HeritageItem | null> {
   if (!slug) return null;
-
   const all = getAllHeritageSync();
-  const found = all.find((item) => item.slug === slug || item.id === slug);
+  const found = all.find(
+    (item) => item.slug === slug || item.id === slug,
+  );
   return found ?? null;
+}
+
+/**
+ * 指定した車種slug/idに紐づくHERITAGEを取得
+ * 例:CARSの詳細ページから関連HERITAGEを引く用途
+ */
+export async function getHeritageByRelatedCarSlug(
+  carSlugOrId: string,
+  limit = 6,
+): Promise<HeritageItem[]> {
+  const all = getAllHeritageSync();
+  const key = carSlugOrId.trim();
+  if (!key) return [];
+
+  const matched = all.filter((item) =>
+    (item.relatedCarIds ?? []).includes(key),
+  );
+
+  if (!Number.isFinite(limit) || limit <= 0) return matched;
+  return matched.slice(0, limit);
 }
