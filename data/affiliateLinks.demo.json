@@ -1,0 +1,15 @@
+{
+  "carSellUrl": "https://demo.carboutique.jp/aff/car-sell/main",
+  "carSellIkkatsuUrl": "https://demo.carboutique.jp/aff/car-sell/ikkatsu",
+  "carSellImportUrl": "https://demo.carboutique.jp/aff/car-sell/import",
+  "carSellLoanRemainUrl": "https://demo.carboutique.jp/aff/car-sell/loan-remain",
+  "insuranceCompareUrl": "https://demo.carboutique.jp/aff/insurance/compare",
+  "insuranceConsultUrl": "https://demo.carboutique.jp/aff/insurance/consult",
+  "insuranceBizConsultUrl": "https://demo.carboutique.jp/aff/insurance/biz-consult",
+  "shakenRakutenUrl": "https://demo.carboutique.jp/aff/shaken/rakuten-car",
+  "amazonDriveRecorderUrl": "https://demo.carboutique.jp/aff/amazon/driverecorder",
+  "amazonChildSeatUrl": "https://demo.carboutique.jp/aff/amazon/childseat",
+  "amazonCarWashUrl": "https://demo.carboutique.jp/aff/amazon/carwash",
+  "amazonInteriorCleanUrl": "https://demo.carboutique.jp/aff/amazon/interior-clean",
+  "amazonJumpStarterUrl": "https://demo.carboutique.jp/aff/amazon/jumpstarter"
+}
