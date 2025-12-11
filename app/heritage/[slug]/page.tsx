@@ -111,8 +111,9 @@ function createHighlightRegex(keywords: string[]): RegExp | null {
 
 /**
  * 車名 (keyModels) とキーワード (highlights) を 1 本の正規表現で走査し、
- * - 車種名       → ティファニーブルー系で大きめ強調
- * - キーワード   → 波線アンダーライン（.heritage-highlight-wave）
+ * - 車名       → ティファニーブルー系＋フォント大きめ
+ * - キーワード → 波線アンダーライン（heritage-highlight-wave）
+ * で装飾する。
  */
 function highlightRich(
   text: string,
@@ -143,15 +144,16 @@ function highlightRich(
     let spanClassName = "";
 
     if (carKeywordSet.has(normalized)) {
-      // 車種名: ティファニーブルーで 1.4倍
+      // 車種名: ティファニーブルー＋1.4倍くらい
       spanClassName =
         "text-tiffany-500 font-semibold text-[1.4em] leading-tight";
     } else if (keywordSet.has(normalized)) {
       // 重要キーワード: 波線アンダーライン（CSS は globals.css で定義）
       spanClassName = "heritage-highlight-wave";
     } else {
-      // フォールバック: ごく薄いティファニーブルー下地
-      spanClassName = "bg-tiffany-50 px-0.5 text-slate-900";
+      // 念のためのフォールバック（淡いティファニー帯）
+      spanClassName =
+        "bg-tiffany-50 px-0.5 text-tiffany-700";
     }
 
     parts.push(
@@ -199,7 +201,7 @@ function highlightInline(
     const spanClassName =
       variant === "strong"
         ? "text-tiffany-500 font-semibold text-[1.4em]"
-        : "bg-tiffany-50 px-0.5 text-slate-900";
+        : "bg-tiffany-50 px-0.5 text-tiffany-700";
 
     parts.push(
       <span key={`${start}-${end}`} className={spanClassName}>
