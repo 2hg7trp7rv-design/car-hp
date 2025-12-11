@@ -109,6 +109,70 @@ function createHighlightRegex(keywords: string[]): RegExp | null {
   return new RegExp(`(${pattern})`, "gi");
 }
 
+/**
+ * 車名 (keyModels) とキーワード (highlights) を 1 本の正規表現で走査し、
+ * - 車名       → 赤文字＋フォント大きめ
+ * - キーワード → 波線アンダーライン（heritage-highlight-wave）
+ * で装飾する。
+ */
+function highlightRich(
+  text: string,
+  regex: RegExp | null,
+  carKeywordSet: Set<string>,
+  keywordSet: Set<string>,
+): (string | JSX.Element)[] {
+  if (!regex) return [text];
+
+  const parts: (string | JSX.Element)[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  const source = text;
+  const r = new RegExp(regex.source, regex.flags);
+
+  while ((match = r.exec(source)) !== null) {
+    const start = match.index;
+    const end = r.lastIndex;
+
+    if (start > lastIndex) {
+      parts.push(source.slice(lastIndex, start));
+    }
+
+    const matchedText = match[0];
+    const normalized = matchedText.toLowerCase();
+
+    let spanClassName = "";
+
+    if (carKeywordSet.has(normalized)) {
+      // 車種名: 赤＋1.4倍くらい
+      spanClassName =
+        "text-rose-500 font-semibold text-[1.4em] leading-tight";
+    } else if (keywordSet.has(normalized)) {
+      // 重要キーワード: 波線アンダーライン（CSS は globals.css で定義）
+      spanClassName = "heritage-highlight-wave";
+    } else {
+      // 念のためのフォールバック（通常ハイライト）
+      spanClassName = "bg-rose-100 px-0.5 text-rose-900";
+    }
+
+    parts.push(
+      <span key={`${start}-${end}`} className={spanClassName}>
+        {matchedText}
+      </span>,
+    );
+
+    lastIndex = end;
+  }
+
+  if (lastIndex < source.length) {
+    parts.push(source.slice(lastIndex));
+  }
+
+  return parts;
+}
+
+// 旧 highlightInline は使わなくなったが、
+// 必要なら他のバリアントで再利用できるように残しておく。
 function highlightInline(
   text: string,
   regex: RegExp | null,
@@ -135,7 +199,7 @@ function highlightInline(
 
     const spanClassName =
       variant === "strong"
-        ? "text-rose-500 font-semibold text-[1.15em]"
+        ? "text-rose-500 font-semibold text-[1.4em]"
         : "bg-rose-100 px-0.5 text-rose-900";
 
     parts.push(
@@ -301,7 +365,7 @@ export default async function HeritageDetailPage({
     ? bodyText.replace(/。/g, "。\n")
     : "";
 
-  // 車種名だけを赤文字ハイライト対象にする
+  // 車種名ハイライト用キーワード
   const carKeywords: string[] = [];
   if (heritage.keyModels && heritage.keyModels.length > 0) {
     carKeywords.push(...heritage.keyModels);
@@ -316,7 +380,26 @@ export default async function HeritageDetailPage({
     carKeywords.push(...relatedCarIds);
   }
 
-  const highlightRegex = createHighlightRegex(carKeywords);
+  // 重要キーワード（波線アンダーライン用）
+  const highlightKeywords: string[] =
+    heritage.highlights && heritage.highlights.length > 0
+      ? heritage.highlights
+      : [];
+
+  // 正規化済みセット（小文字で比較）
+  const carKeywordSet = new Set(
+    carKeywords.map((k) => k.toLowerCase().trim()),
+  );
+  const keywordSet = new Set(
+    highlightKeywords.map((k) => k.toLowerCase().trim()),
+  );
+
+  // 車名＋キーワードをまとめたハイライト用正規表現
+  const combinedKeywords = Array.from(
+    new Set([...carKeywords, ...highlightKeywords]),
+  );
+  const combinedHighlightRegex =
+    createHighlightRegex(combinedKeywords);
 
   const readingTimeMinutes =
     heritage.readingTimeMinutes ??
@@ -458,7 +541,12 @@ export default async function HeritageDetailPage({
                   </p>
                 )}
                 <h1 className="font-serif text-3xl leading-tight text-slate-50 sm:text-4xl lg:text-5xl">
-                  {highlightInline(title, highlightRegex, "strong")}
+                  {highlightRich(
+                    title,
+                    combinedHighlightRegex,
+                    carKeywordSet,
+                    keywordSet,
+                  )}
                 </h1>
                 {heritage.periodLabel && (
                   <p className="text-xs uppercase tracking-[0.25em] text-slate-300/80">
@@ -543,64 +631,138 @@ export default async function HeritageDetailPage({
                         <h2
                           className={`mb-4 font-serif ${
                             section.level === "heading"
-                              ? "text-xl sm:text-2xl"
-                              : "text-lg sm:text-xl"
+                              ? "text-2xl sm:text-3xl"
+                              : "text-xl sm:text-2xl"
                           }`}
                         >
-                          {highlightInline(
+                          {highlightRich(
                             section.title,
-                            highlightRegex,
-                            "strong",
+                            combinedHighlightRegex,
+                            carKeywordSet,
+                            keywordSet,
                           )}
                         </h2>
                       )}
                       {section.lines.length > 0 && (
                         <div className="space-y-2">
-                          {section.lines.map((line, lineIndex) => {
-                            if (!line) {
-                              return (
-                                <div
-                                  key={lineIndex}
-                                  className="h-2"
-                                />
-                              );
-                            }
-
-                            if (
-                              line.startsWith(
-                                SPEC_HEADING_PREFIX,
-                              )
+                          {(() => {
+                            const blocks: JSX.Element[] = [];
+                            const lines = section.lines;
+                            for (
+                              let i = 0;
+                              i < lines.length;
+                              i++
                             ) {
-                              const label = line.slice(
-                                SPEC_HEADING_PREFIX.length,
-                              );
-                              return (
+                              const line = lines[i];
+
+                              if (!line) {
+                                blocks.push(
+                                  <div
+                                    key={`spacer-${i}`}
+                                    className="h-2"
+                                  />,
+                                );
+                                continue;
+                              }
+
+                              // スペック枠検出
+                              if (
+                                line.startsWith(
+                                  SPEC_HEADING_PREFIX,
+                                )
+                              ) {
+                                const label = line.slice(
+                                  SPEC_HEADING_PREFIX.length,
+                                );
+                                const specs: string[] = [];
+
+                                let j = i + 1;
+                                for (; j < lines.length; j++) {
+                                  const nextLine = lines[j];
+                                  if (
+                                    nextLine &&
+                                    nextLine.startsWith("・")
+                                  ) {
+                                    specs.push(nextLine);
+                                  } else if (
+                                    nextLine &&
+                                    nextLine.length === 0
+                                  ) {
+                                    continue;
+                                  } else {
+                                    break;
+                                  }
+                                }
+                                i = j - 1;
+
+                                blocks.push(
+                                  <div
+                                    key={`spec-${i}`}
+                                    className="mt-4 rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-[13px] sm:text-sm"
+                                  >
+                                    <p className="text-[10px] font-semibold tracking-[0.2em] text-slate-500">
+                                      SPEC
+                                    </p>
+                                    <p className="mt-1 text-[14px] font-semibold text-slate-900 sm:text-[15px]">
+                                      {highlightRich(
+                                        label,
+                                        combinedHighlightRegex,
+                                        carKeywordSet,
+                                        keywordSet,
+                                      )}
+                                    </p>
+                                    {specs.length > 0 && (
+                                      <ul className="mt-2 space-y-1">
+                                        {specs.map(
+                                          (specLine, idx) => {
+                                            const text =
+                                              specLine.replace(
+                                                /^・\s*/,
+                                                "",
+                                              );
+                                            return (
+                                              <li
+                                                key={`spec-line-${i}-${idx}`}
+                                                className="flex gap-1"
+                                              >
+                                                <span className="mt-1 block h-[3px] w-[3px] rounded-full bg-slate-400" />
+                                                <span className="text-[13px] leading-relaxed text-slate-900 sm:text-[14px]">
+                                                  {highlightRich(
+                                                    text,
+                                                    combinedHighlightRegex,
+                                                    carKeywordSet,
+                                                    keywordSet,
+                                                  )}
+                                                </span>
+                                              </li>
+                                            );
+                                          },
+                                        )}
+                                      </ul>
+                                    )}
+                                  </div>,
+                                );
+
+                                continue;
+                              }
+
+                              // 通常の本文段落
+                              blocks.push(
                                 <p
-                                  key={lineIndex}
-                                  className="mt-3 text-[15px] font-semibold leading-relaxed text-slate-900 sm:text-[18px]"
+                                  key={`p-${i}`}
+                                  className="whitespace-pre-line text-[15px] leading-relaxed text-slate-900 sm:text-[18px]"
                                 >
-                                  {highlightInline(
-                                    label,
-                                    highlightRegex,
-                                    "strong",
+                                  {highlightRich(
+                                    line,
+                                    combinedHighlightRegex,
+                                    carKeywordSet,
+                                    keywordSet,
                                   )}
-                                </p>
+                                </p>,
                               );
                             }
-
-                            return (
-                              <p
-                                key={lineIndex}
-                                className="whitespace-pre-line text-[15px] leading-relaxed text-slate-900 sm:text-[18px]"
-                              >
-                                {highlightInline(
-                                  line,
-                                  highlightRegex,
-                                  "strong",
-                                )}
-                              </p>
-                            );
-                          })}
+                            return blocks;
+                          })()}
                         </div>
                       )}
                     </GlassCard>
@@ -608,10 +770,11 @@ export default async function HeritageDetailPage({
                 ) : (
                   <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900 sm:p-6 lg:p-7">
                     <p className="whitespace-pre-line text-[15px] leading-relaxed text-slate-900 sm:text-[18px]">
-                      {highlightInline(
+                      {highlightRich(
                         formattedBodyText,
-                        highlightRegex,
-                        "strong",
+                        combinedHighlightRegex,
+                        carKeywordSet,
+                        keywordSet,
                       )}
                     </p>
                   </GlassCard>
