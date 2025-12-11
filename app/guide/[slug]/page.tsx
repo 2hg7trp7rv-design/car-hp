@@ -18,6 +18,7 @@ import {
 } from "@/lib/cars";
 import { Reveal } from "@/components/animation/Reveal";
 import { GlassCard } from "@/components/GlassCard";
+import { GuideMonetizeBlock } from "@/components/guide/GuideMonetizeBlock";
 
 export const runtime = "edge";
 
@@ -425,6 +426,8 @@ export default async function GuideDetailPage({ params }: PageProps) {
     tags?: string[] | null;
     category?: string | null;
     relatedCarSlugs?: (string | null)[];
+    monetizeKey?: string | null;
+    affiliateLinks?: Record<string, string> | null;
   };
 
   const { blocks, headings } = parseBody(guide.body);
@@ -666,6 +669,11 @@ export default async function GuideDetailPage({ params }: PageProps) {
                     );
                   })}
                 </div>
+
+                <GuideMonetizeBlock
+                  monetizeKey={guide.monetizeKey ?? undefined}
+                  affiliateLinks={guide.affiliateLinks ?? undefined}
+                />
               </article>
             </GlassCard>
 
