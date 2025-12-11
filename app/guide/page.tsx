@@ -31,6 +31,8 @@ export const metadata: Metadata = {
     "買い方 売り方 維持費 保険 税金など クルマとの付き合い方を整理するための実用ガイド集",
 };
 
+const PER_PAGE = 10;
+
 // ────────────────────────────────────────────
 // UI用の静的セクション定義
 //   - ここは「テーマ別の入口」の役割
@@ -113,6 +115,7 @@ type SearchParams = {
   category?: string | string[];
   tag?: string | string[];
   sort?: string | string[];
+  page?: string | string[];
 };
 
 type PageProps = {
@@ -182,6 +185,28 @@ function getGuidePrimaryDate(guide: GuideItem): string | null {
   return null;
 }
 
+type QueryParams = {
+  q?: string;
+  category?: string;
+  tag?: string;
+  sort?: string;
+  page?: string;
+};
+
+function buildQueryString(params: QueryParams) {
+  const sp = new URLSearchParams();
+
+  if (params.q) sp.set("q", params.q);
+  if (params.category) sp.set("category", params.category);
+  if (params.tag) sp.set("tag", params.tag);
+  if (params.sort && params.sort !== "newest") sp.set("sort", params.sort);
+  // page=1 は省略
+  if (params.page && params.page !== "1") sp.set("page", params.page);
+
+  const qs = sp.toString();
+  return qs ? `?${qs}` : "";
+}
+
 // ────────────────────────────────────────────
 // Page コンポーネント
 // ────────────────────────────────────────────
@@ -195,6 +220,7 @@ export default async function GuidePage({ searchParams }: PageProps) {
   const categoryFilter = toSingle(searchParams?.category).trim();
   const tagFilter = toSingle(searchParams?.tag).trim();
   const sortKey = toSingle(searchParams?.sort).trim() || "newest";
+  const rawPage = toSingle(searchParams?.page);
 
   const totalGuides = allGuides.length;
 
@@ -283,6 +309,28 @@ export default async function GuidePage({ searchParams }: PageProps) {
     Boolean(categoryFilter) ||
     Boolean(tagFilter) ||
     sortKey !== "newest";
+
+  // ページング（column/cars と同じ考え方で 10 件ずつ）
+  const requestedPage = Number(rawPage || "1") || 1;
+  const totalFiltered = filteredCount;
+  const maxPage =
+    totalFiltered === 0 ? 1 : Math.max(1, Math.ceil(totalFiltered / PER_PAGE));
+  const currentPage =
+    requestedPage < 1
+      ? 1
+      : requestedPage > maxPage
+      ? maxPage
+      : requestedPage;
+
+  const startIndex = (currentPage - 1) * PER_PAGE;
+  const pageGuides = sortedGuides.slice(startIndex, startIndex + PER_PAGE);
+
+  const baseQuery: QueryParams = {
+    q: rawQ || undefined,
+    category: categoryFilter || undefined,
+    tag: tagFilter || undefined,
+    sort: sortKey !== "newest" ? sortKey : undefined,
+  };
 
   return (
     <main className="min-h-screen bg-site text-text-main">
@@ -730,39 +778,109 @@ export default async function GuidePage({ searchParams }: PageProps) {
               </div>
             </Reveal>
           ) : (
-            <div className="grid gap-4 md:grid-cols-2">
-              {sortedGuides.map((guide, index) => {
-                const primaryDate = getGuidePrimaryDate(guide);
-                return (
-                  <Reveal key={guide.id} delay={680 + index * 40}>
-                    <Link href={`/guide/${encodeURIComponent(guide.slug)}`}>
-                      <GlassCard className="group h-full border border-slate-200/80 bg-gradient-to-br from-vapor/80 via-white/95 to-white/90 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card sm:p-5">
-                        <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
-                          <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-                            {mapGuideCategoryLabel(guide.category)}
-                          </span>
-                          {primaryDate && (
-                            <span className="ml-auto text-[10px] text-slate-400">
-                              {formatDate(primaryDate)}
+            <>
+              <div className="grid gap-4 md:grid-cols-2">
+                {pageGuides.map((guide, index) => {
+                  const primaryDate = getGuidePrimaryDate(guide);
+                  return (
+                    <Reveal key={guide.id} delay={680 + index * 40}>
+                      <Link href={`/guide/${encodeURIComponent(guide.slug)}`}>
+                        <GlassCard className="group h-full border border-slate-200/80 bg-gradient-to-br from-vapor/80 via-white/95 to-white/90 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card sm:p-5">
+                          <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                              {mapGuideCategoryLabel(guide.category)}
                             </span>
+                            {primaryDate && (
+                              <span className="ml-auto text-[10px] text-slate-400">
+                                {formatDate(primaryDate)}
+                              </span>
+                            )}
+                          </div>
+
+                          <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900 group-hover:text-tiffany-700">
+                            {guide.title}
+                          </h3>
+
+                          {guide.summary && (
+                            <p className="mt-2 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
+                              {guide.summary}
+                            </p>
                           )}
-                        </div>
+                        </GlassCard>
+                      </Link>
+                    </Reveal>
+                  );
+                })}
+              </div>
 
-                        <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900 group-hover:text-tiffany-700">
-                          {guide.title}
-                        </h3>
-
-                        {guide.summary && (
-                          <p className="mt-2 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
-                            {guide.summary}
-                          </p>
-                        )}
-                      </GlassCard>
+              {/* ページネーション（10件ずつ） */}
+              {totalFiltered > 0 && maxPage > 1 && (
+                <div className="mt-8 flex justify-center">
+                  <nav
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/90 px-3 py-1.5 text-[11px] shadow-soft-sm"
+                    aria-label="GUIDE pagination"
+                  >
+                    {/* PREV */}
+                    <Link
+                      href={`/guide${buildQueryString({
+                        ...baseQuery,
+                        page: String(
+                          currentPage > 1 ? currentPage - 1 : currentPage,
+                        ),
+                      })}`}
+                      aria-disabled={currentPage === 1}
+                      className={
+                        currentPage === 1
+                          ? "cursor-default rounded-full px-3 py-1 text-slate-400"
+                          : "rounded-full px-3 py-1 text-slate-700 hover:bg-slate-50"
+                      }
+                    >
+                      ← PREV
                     </Link>
-                  </Reveal>
-                );
-              })}
-            </div>
+
+                    {/* ページ番号 */}
+                    {Array.from({ length: maxPage }).map((_, index) => {
+                      const page = index + 1;
+                      const isActive = page === currentPage;
+                      return (
+                        <Link
+                          key={page}
+                          href={`/guide${buildQueryString({
+                            ...baseQuery,
+                            page: String(page),
+                          })}`}
+                          className={
+                            isActive
+                              ? "min-w-[32px] rounded-full bg-slate-900 px-2 py-1 text-center text-white"
+                              : "min-w-[32px] rounded-full px-2 py-1 text-center text-slate-700 hover:bg-slate-50"
+                          }
+                        >
+                          {page}
+                        </Link>
+                      );
+                    })}
+
+                    {/* NEXT */}
+                    <Link
+                      href={`/guide${buildQueryString({
+                        ...baseQuery,
+                        page: String(
+                          currentPage < maxPage ? currentPage + 1 : currentPage,
+                        ),
+                      })}`}
+                      aria-disabled={currentPage === maxPage}
+                      className={
+                        currentPage === maxPage
+                          ? "cursor-default rounded-full px-3 py-1 text-slate-400"
+                          : "rounded-full px-3 py-1 text-slate-700 hover:bg-slate-50"
+                      }
+                    >
+                      NEXT →
+                    </Link>
+                  </nav>
+                </div>
+              )}
+            </>
           )}
         </section>
 
