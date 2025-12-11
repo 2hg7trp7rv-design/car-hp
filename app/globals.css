@@ -165,15 +165,6 @@ li,
   letter-spacing: 0.08em;
 }
 
-/* HERITAGE キーワード用 波線アンダーライン */
-.heritage-highlight-wave {
-  text-decoration-line: underline;
-  text-decoration-style: wavy;
-  text-decoration-color: rgb(248, 113, 113);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.18em;
-}
-
 /* ----------------------------------------
    Drop caps（先頭ジャンボ1文字）
    - COLUMN / GUIDE: span 構造で使用
@@ -227,6 +218,20 @@ li,
   .heritage-dropcap::first-letter {
     font-size: 3.8rem;
   }
+}
+
+/* ----------------------------------------
+   Heritage highlight (強調テキスト用)
+   - 車名: Tiffany系の強調色
+   - キーワード: 波線アンダーライン
+----------------------------------------- */
+
+.heritage-highlight-wave {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: #0abab5; /* Tiffany 500 */
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
 }
 
 /* ----------------------------------------
