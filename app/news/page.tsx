@@ -337,15 +337,13 @@ export default async function NewsPage({ searchParams }: PageProps) {
           </Reveal>
           <Reveal delay={80}>
             <h1 className="serif-heading text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
-              メーカー公式ニュースを一覧で確認
+              NEWS
             </h1>
           </Reveal>
           <Reveal delay={160}>
             <div className="flex flex-col gap-3 text-xs text-text-sub sm:flex-row sm:items-end sm:justify-between sm:text-sm">
               <p className="max-w-2xl leading-relaxed">
-                輸入車とプレミアムブランドを中心に
-                新型車発表 仕様変更 リコール キャンペーン情報などを
-                メーカー公式サイトの一次情報リンクとして整理したニュース一覧
+                新型車・モデルチェンジ・新装備の公式ニュース
               </p>
               <div className="flex flex-wrap gap-2 text-[10px] text-slate-500">
                 <span className="rounded-full bg-white/80 px-3 py-1 shadow-soft">
