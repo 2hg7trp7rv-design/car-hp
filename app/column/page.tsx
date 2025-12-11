@@ -15,10 +15,13 @@ export const metadata: Metadata = {
     "トラブル 修理 ブランドの歴史 技術解説など クルマまわりの情報を整理したコラム集",
 };
 
+const PER_PAGE = 10;
+
 type SearchParams = {
   q?: string | string[];
   category?: string | string[];
   tag?: string | string[];
+  page?: string | string[];
 };
 
 type PageProps = {
@@ -65,6 +68,26 @@ function formatDate(value?: string | null) {
   return `${y}/${m}/${day}`;
 }
 
+type QueryParams = {
+  q?: string;
+  category?: string;
+  tag?: string;
+  page?: string;
+};
+
+function buildQueryString(params: QueryParams) {
+  const sp = new URLSearchParams();
+
+  if (params.q) sp.set("q", params.q);
+  if (params.category) sp.set("category", params.category);
+  if (params.tag) sp.set("tag", params.tag);
+  // page=1 は省略しておく
+  if (params.page && params.page !== "1") sp.set("page", params.page);
+
+  const qs = sp.toString();
+  return qs ? `?${qs}` : "";
+}
+
 export default async function ColumnPage({ searchParams }: PageProps) {
   const items = await getAllColumns();
 
@@ -72,6 +95,7 @@ export default async function ColumnPage({ searchParams }: PageProps) {
   const q = normalize(rawQ);
   const categoryFilter = firstOf(searchParams?.category).trim();
   const tagFilter = firstOf(searchParams?.tag).trim();
+  const rawPage = firstOf(searchParams?.page);
 
   const categories: string[] = Array.from(
     new Set(items.map((i) => i.category).filter(isNonEmptyString)),
@@ -116,6 +140,25 @@ export default async function ColumnPage({ searchParams }: PageProps) {
     return (a.title ?? "").localeCompare(b.title ?? "", "ja");
   });
 
+  // ページング（CARS と同じ考え方）
+  const requestedPage = Number(rawPage || "1") || 1;
+  const totalFiltered = sortedFiltered.length;
+  const maxPage =
+    totalFiltered === 0 ? 1 : Math.max(1, Math.ceil(totalFiltered / PER_PAGE));
+  const currentPage =
+    requestedPage < 1
+      ? 1
+      : requestedPage > maxPage
+      ? maxPage
+      : requestedPage;
+
+  const startIndex = (currentPage - 1) * PER_PAGE;
+  const pageItems = sortedFiltered.slice(startIndex, startIndex + PER_PAGE);
+
+  // 現在ページ内のハイライト＋残り
+  const featured = pageItems[0] ?? null;
+  const rest = featured ? pageItems.slice(1) : pageItems;
+
   // ── 簡易インデックス ──
   const totalArticles = items.length;
   const maintenanceCount = items.filter(
@@ -144,9 +187,11 @@ export default async function ColumnPage({ searchParams }: PageProps) {
   // クイックプリセット向け「人気タグ」
   const featuredTags = tags.slice(0, 4);
 
-  // 最も新しい1本をハイライトとして抜き出し
-  const featured = sortedFiltered[0] ?? null;
-  const rest = featured ? sortedFiltered.slice(1) : sortedFiltered;
+  const baseQuery: QueryParams = {
+    q: rawQ || undefined,
+    category: categoryFilter || undefined,
+    tag: tagFilter || undefined,
+  };
 
   return (
     <main className="min-h-screen bg-site text-text-main">
@@ -436,10 +481,10 @@ export default async function ColumnPage({ searchParams }: PageProps) {
           </Reveal>
         )}
 
-        {/* 一覧 */}
-        <Reveal delay={260}>
-          <section className="space-y-6" aria-label="コラム一覧">
-            {/* 上部: 見出し + メタ情報 */}
+        {/* 一覧（GUIDE 風アニメーション + CARS 風ページング） */}
+        <section className="space-y-6" aria-label="コラム一覧">
+          {/* 上部: 見出し + メタ情報 */}
+          <Reveal delay={260}>
             <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
                 <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
@@ -457,19 +502,21 @@ export default async function ColumnPage({ searchParams }: PageProps) {
                   </span>{" "}
                   ARTICLES
                 </span>
-                {sortedFiltered.length !== items.length && (
+                {totalFiltered !== items.length && (
                   <span>
                     FILTERED{" "}
                     <span className="font-semibold text-tiffany-600">
-                      {sortedFiltered.length}
+                      {totalFiltered}
                     </span>
                   </span>
                 )}
               </div>
             </div>
+          </Reveal>
 
-            {/* ハイライト */}
-            {featured && (
+          {/* ハイライト */}
+          {featured && (
+            <Reveal delay={280}>
               <GlassCard
                 as="section"
                 padding="lg"
@@ -532,25 +579,24 @@ export default async function ColumnPage({ searchParams }: PageProps) {
                   )}
                 </div>
               </GlassCard>
-            )}
+            </Reveal>
+          )}
 
-            {/* 残り一覧 */}
-            {sortedFiltered.length === 0 ? (
-              <p className="rounded-2xl border border-dashed border-slate-200 bg-white/70 p-6 text-center text-xs text-slate-500">
-                条件に合うコラムはなし 絞り込み条件を少し緩めて再検索する想定
-              </p>
-            ) : rest.length === 0 && featured ? (
-              // フィルタ後1件しかない場合はメッセージだけ
-              <p className="rounded-2xl border border-slate-100 bg-white/80 p-6 text-center text-[11px] text-slate-500">
-                絞り込み条件に合うコラムは 現在表示中の1本のみ
-              </p>
-            ) : (
-              <div className="grid gap-4 md:grid-cols-2">
-                {rest.map((item) => (
-                  <Link
-                    key={item.slug}
-                    href={`/column/${encodeURIComponent(item.slug)}`}
-                  >
+          {/* 残り一覧 */}
+          {totalFiltered === 0 ? (
+            <p className="rounded-2xl border border-dashed border-slate-200 bg-white/70 p-6 text-center text-xs text-slate-500">
+              条件に合うコラムはなし 絞り込み条件を少し緩めて再検索する想定
+            </p>
+          ) : rest.length === 0 && featured ? (
+            // 現在ページに featured 1件だけ
+            <p className="rounded-2xl border border-slate-100 bg_white/80 p-6 text-center text-[11px] text-slate-500">
+              絞り込み条件に合うコラムは 現在表示中の1本のみ
+            </p>
+          ) : (
+            <div className="grid gap-4 md:grid-cols-2">
+              {rest.map((item, index) => (
+                <Reveal key={item.slug} delay={320 + index * 40}>
+                  <Link href={`/column/${encodeURIComponent(item.slug)}`}>
                     <GlassCard
                       as="article"
                       padding="md"
@@ -603,11 +649,79 @@ export default async function ColumnPage({ searchParams }: PageProps) {
                       </div>
                     </GlassCard>
                   </Link>
-                ))}
-              </div>
-            )}
-          </section>
-        </Reveal>
+                </Reveal>
+              ))}
+            </div>
+          )}
+
+          {/* ページネーション（CARS 風） */}
+          {totalFiltered > 0 && maxPage > 1 && (
+            <div className="mt-8 flex justify-center">
+              <nav
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/90 px-3 py-1.5 text-[11px] shadow-soft-sm"
+                aria-label="COLUMN pagination"
+              >
+                {/* PREV */}
+                <Link
+                  href={`/column${buildQueryString({
+                    ...baseQuery,
+                    page: String(
+                      currentPage > 1 ? currentPage - 1 : currentPage,
+                    ),
+                  })}`}
+                  aria-disabled={currentPage === 1}
+                  className={
+                    currentPage === 1
+                      ? "cursor-default rounded-full px-3 py-1 text-slate-400"
+                      : "rounded-full px-3 py-1 text-slate-700 hover:bg-slate-50"
+                  }
+                >
+                  ← PREV
+                </Link>
+
+                {/* ページ番号 */}
+                {Array.from({ length: maxPage }).map((_, index) => {
+                  const page = index + 1;
+                  const isActive = page === currentPage;
+                  return (
+                    <Link
+                      key={page}
+                      href={`/column${buildQueryString({
+                        ...baseQuery,
+                        page: String(page),
+                      })}`}
+                      className={
+                        isActive
+                          ? "min-w-[32px] rounded-full bg-slate-900 px-2 py-1 text-center text-white"
+                          : "min-w-[32px] rounded-full px-2 py-1 text-center text-slate-700 hover:bg-slate-50"
+                      }
+                    >
+                      {page}
+                    </Link>
+                  );
+                })}
+
+                {/* NEXT */}
+                <Link
+                  href={`/column${buildQueryString({
+                    ...baseQuery,
+                    page: String(
+                      currentPage < maxPage ? currentPage + 1 : currentPage,
+                    ),
+                  })}`}
+                  aria-disabled={currentPage === maxPage}
+                  className={
+                    currentPage === maxPage
+                      ? "cursor-default rounded-full px-3 py-1 text-slate-400"
+                      : "rounded-full px-3 py-1 text-slate-700 hover:bg-slate-50"
+                  }
+                >
+                  NEXT →
+                </Link>
+              </nav>
+            </div>
+          )}
+        </section>
 
         {/* 下部 CTA：COLUMN と他コンテンツの関係 */}
         <section className="mt-24 lg:mt-28">
