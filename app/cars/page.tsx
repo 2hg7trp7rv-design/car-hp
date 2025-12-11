@@ -397,12 +397,10 @@ export default async function CarsPage({ searchParams }: PageProps) {
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <h1 className="serif-heading text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
-                  条件で絞り込める車種一覧
+                  CARS
                 </h1>
                 <p className="mt-3 max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
-                  メーカーボディタイプセグメント維持の難易度に加えて年式レンジやおおよその価格帯で絞り込みながら
-                  気になる車種の概要を一覧で確認できるページ
-                  詳細ページでは関連ニュースやコラムもあわせて参照できる構成
+                  サイズ・スペック・維持のしやすさ・セグメント別の車種
                 </p>
               </div>
               <div className="hidden text-[10px] text-slate-500 sm:block">
