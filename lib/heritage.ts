@@ -8,6 +8,13 @@
  *   画面(App層)で扱いやすい HeritageItem にマッピングする
  * - kind/brand/model/年代などの整形やソートをここで完結させる
  * - CARSやGUIDEなど他コンテンツとの連携を見据えたヘルパーをまとめる
+ *
+ * 運用上のポイント:
+ * - keyModels: 「赤文字＋フォント大きめ」で強調表示したい車種名/グレード名
+ *   例: "Ferrari 250 GTO", "Nissan GT-R (R35)"
+ * - highlights: 波線アンダーラインで強調したい技術用語・時代のキーワード
+ *   例: "RB26DETT", "ハイブリッドパワートレーン", "自主規制280ps時代"
+ * - JSON 側では、この2つをセットで定義しておくと UI 側から機械的に装飾できる
  */
 
 import {
@@ -58,6 +65,7 @@ export type HeritageItem = {
   summary?: string | null;
 
   // HERITAGE の種別(時代/ブランド/車種など)
+  // JSON 側で未指定なら "CAR" として扱う。
   kind: HeritageKind;
 
   // メーカー/ブランド/モデル/世代
@@ -67,7 +75,7 @@ export type HeritageItem = {
   generationCode?: string | null;
 
   // 時代/年式表現
-  eraLabel?: string | null; // 例: "第1世代GT-R"
+  eraLabel?: string | null; // 例: "第1世代GT-R", "1947–現代"
   years?: string | null; // 例: "1969–1973"
 
   // ヒーローエリア用
@@ -77,17 +85,22 @@ export type HeritageItem = {
   heroImageCredit?: string | null;
   heroTone?: string | null; // ダーク/ライトなど、トーン指定があれば
 
-  // 本文
+  // 本文（1 本のロングテキスト）
   body: string;
 
   // セクション（Ferrari などの章立て用）
+  // 章タイトルだけを切り出して一覧/目次に使う想定
   sections?: HeritageSection[] | null;
 
   // ハイライト/タグ
+  // - highlights: 波線アンダーラインで強調したいキーワード群
+  // - tags: 一般的な検索用タグ
   highlights?: string[] | null;
   tags?: string[] | null;
 
   // 代表車種や関連コンテンツ
+  // - keyModels: 赤文字＋大きめフォントで強調する代表車名（メーカー名＋車種名を推奨）
+  // - relatedCarIds / relatedCarSlugs: CARS 側との連携用
   keyModels?: string[] | null;
   relatedCarIds?: string[] | null;
   relatedHeritageSlugs?: string[] | null;
@@ -166,7 +179,7 @@ function toHeritageItem(
   const id = safeString(anyRaw.id) ?? `heritage-${index}`;
   const slug = safeString(anyRaw.slug) ?? id;
 
-  // kind(未指定ならCARとして扱う)
+  // kind (未指定なら CAR として扱う)
   const rawKind = safeString(anyRaw.kind) as HeritageKind | null;
   const kind: HeritageKind =
     rawKind === "ERA" || rawKind === "BRAND" || rawKind === "CAR"
