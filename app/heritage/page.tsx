@@ -20,15 +20,11 @@ type SearchParams = {
   maker?: string | string[];
   era?: string | string[];
   tag?: string | string[];
+  page?: string | string[];
 };
 
 type PageProps = {
   searchParams?: SearchParams;
-};
-
-type HeritageGroup = {
-  maker: string;
-  items: HeritageItem[];
 };
 
 // 共通ユーティリティ
@@ -70,36 +66,19 @@ function sortHeritageForList(items: HeritageItem[]): HeritageItem[] {
   });
 }
 
-// メーカーごとにグルーピング
-function groupByMaker(items: HeritageItem[]): HeritageGroup[] {
-  const map = new Map<string, HeritageItem[]>();
-
-  for (const item of items) {
-    const maker = item.brandName ?? item.maker ?? "OTHER";
-    const list = map.get(maker) ?? [];
-    list.push(item);
-    map.set(maker, list);
-  }
-
-  return Array.from(map.entries())
-    .map(([maker, list]) => ({
-      maker,
-      items: sortHeritageForList(list),
-    }))
-    .sort((a, b) => a.maker.localeCompare(b.maker, "ja"));
-}
-
+// ページング付き一覧ページ
 export default async function HeritageIndexPage({
   searchParams,
 }: PageProps) {
   const all = await getAllHeritage();
-  const published = all;
+  const published = all; // 公開・非公開の区別が必要になったらここでフィルタ
 
   const rawQ = toSingle(searchParams?.q);
   const q = normalize(rawQ);
   const makerFilter = toSingle(searchParams?.maker).trim();
   const eraFilter = toSingle(searchParams?.era).trim();
   const tagFilter = toSingle(searchParams?.tag).trim();
+  const rawPage = toSingle(searchParams?.page);
 
   const makers: string[] = Array.from(
     new Set(
@@ -156,11 +135,36 @@ export default async function HeritageIndexPage({
   const totalMakers = makers.length;
   const totalEras = eras.length;
 
-  const groups = groupByMaker(filtered);
+  // 一覧用にソート（メーカー単位でのグルーピングはやめてフラットに）
+  const sorted = sortHeritageForList(filtered);
 
-  const quickMakerNav = makers.slice(0, 8);
-  const quickEraNav = eras.slice(0, 6);
-  const quickTagNav = tags.slice(0, 6);
+  // ── ページング設定 ─────────────────────────────
+  const PER_PAGE = 10;
+  const totalItems = sorted.length;
+  const totalPages = Math.max(1, Math.ceil(totalItems / PER_PAGE));
+
+  const parsedPage = Number.parseInt(rawPage || "1", 10);
+  const currentPage =
+    !Number.isNaN(parsedPage) && parsedPage > 0
+      ? Math.min(parsedPage, totalPages)
+      : 1;
+
+  const start = (currentPage - 1) * PER_PAGE;
+  const end = start + PER_PAGE;
+  const paginatedItems = sorted.slice(start, end);
+
+  // ページリンク用クエリ生成
+  const buildPageHref = (page: number): string => {
+    const params = new URLSearchParams();
+    if (rawQ) params.set("q", rawQ);
+    if (makerFilter) params.set("maker", makerFilter);
+    if (eraFilter) params.set("era", eraFilter);
+    if (tagFilter) params.set("tag", tagFilter);
+    if (page > 1) params.set("page", String(page));
+
+    const qs = params.toString();
+    return qs ? `/heritage?${qs}` : "/heritage";
+  };
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-50">
@@ -180,7 +184,6 @@ export default async function HeritageIndexPage({
               <h1 className="font-display text-3xl tracking-tight text-white sm:text-4xl lg:text-5xl">
                 ブランドの系譜と名車の歴史
               </h1>
-              {/* 説明文は最小限（そのまま維持） */}
               <p className="max-w-2xl text-sm leading-relaxed text-slate-200/90 sm:text-base">
                 名車・ブランドの背景と時代性
               </p>
@@ -327,15 +330,15 @@ export default async function HeritageIndexPage({
               </div>
 
               {/* クイックナビ */}
-              {(quickMakerNav.length > 0 ||
-                quickEraNav.length > 0 ||
-                quickTagNav.length > 0) && (
+              {(makers.length > 0 ||
+                eras.length > 0 ||
+                tags.length > 0) && (
                 <div className="space-y-3 text-xs">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="text-[0.7rem] font-semibold tracking-[0.2em] text-slate-400">
                       QUICK NAV
                     </span>
-                    {quickMakerNav.map((maker) => (
+                    {makers.slice(0, 8).map((maker) => (
                       <Link
                         key={maker}
                         href={{
@@ -349,49 +352,47 @@ export default async function HeritageIndexPage({
                     ))}
                   </div>
 
-                  {(quickEraNav.length > 0 || quickTagNav.length > 0) && (
-                    <div className="flex flex-wrap gap-4">
-                      {quickEraNav.length > 0 && (
-                        <div className="flex flex-wrap items-center gap-2">
-                          <span className="text-[0.65rem] tracking-[0.2em] text-slate-500">
-                            ERA
-                          </span>
-                          {quickEraNav.map((era) => (
-                            <Link
-                              key={era}
-                              href={{
-                                pathname: "/heritage",
-                                query: { era },
-                              }}
-                              className="rounded-full border border-slate-700/80 bg-slate-950/80 px-3 py-1 text-[0.7rem] text-slate-50 hover:border-tiffany-300/70 hover:text-tiffany-50"
-                            >
-                              {era}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
+                  <div className="flex flex-wrap gap-4">
+                    {eras.slice(0, 6).length > 0 && (
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-[0.65rem] tracking-[0.2em] text-slate-500">
+                          ERA
+                        </span>
+                        {eras.slice(0, 6).map((era) => (
+                          <Link
+                            key={era}
+                            href={{
+                              pathname: "/heritage",
+                              query: { era },
+                            }}
+                            className="rounded-full border border-slate-700/80 bg-slate-950/80 px-3 py-1 text-[0.7rem] text-slate-50 hover:border-tiffany-300/70 hover:text-tiffany-50"
+                          >
+                            {era}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
 
-                      {quickTagNav.length > 0 && (
-                        <div className="flex flex-wrap items-center gap-2">
-                          <span className="text-[0.65rem] tracking-[0.2em] text-slate-500">
-                            TAG
-                          </span>
-                          {quickTagNav.map((tag) => (
-                            <Link
-                              key={tag}
-                              href={{
-                                pathname: "/heritage",
-                                query: { tag },
-                              }}
-                              className="rounded-full border border-slate-700/80 bg-slate-950/80 px-3 py-1 text-[0.7rem] text-slate-50 hover:border-tiffany-300/70 hover:text-tiffany-50"
-                            >
-                              #{tag}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  )}
+                    {tags.slice(0, 6).length > 0 && (
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-[0.65rem] tracking-[0.2em] text-slate-500">
+                          TAG
+                        </span>
+                        {tags.slice(0, 6).map((tag) => (
+                          <Link
+                            key={tag}
+                            href={{
+                              pathname: "/heritage",
+                              query: { tag },
+                            }}
+                            className="rounded-full border border-slate-700/80 bg-slate-950/80 px-3 py-1 text-[0.7rem] text-slate-50 hover:border-tiffany-300/70 hover:text-tiffany-50"
+                          >
+                            #{tag}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
 
@@ -459,11 +460,16 @@ export default async function HeritageIndexPage({
                 )}
               </p>
             </div>
+            {totalItems > 0 && (
+              <p className="text-[0.7rem] text-slate-500">
+                PAGE {currentPage} / {totalPages}
+              </p>
+            )}
           </div>
         </Reveal>
 
         {/* 一覧本体 */}
-        {groups.length === 0 ? (
+        {paginatedItems.length === 0 ? (
           <Reveal delay={120}>
             <div className="mt-8 rounded-2xl border border-dashed border-slate-700/80 bg-slate-900/80 px-6 py-10 text-center text-sm text-slate-300">
               条件に合うHERITAGEはありません。
@@ -472,91 +478,127 @@ export default async function HeritageIndexPage({
             </div>
           </Reveal>
         ) : (
-          <div className="mt-8 space-y-10">
-            {groups.map((group) => (
-              <section key={group.maker} className="space-y-4">
-                <Reveal>
-                  <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <div>
-                      {/* メーカー見出しを一回り大きくして「章タイトル」扱い */}
-                      <h3 className="font-serif text-xl tracking-[0.18em] text-white sm:text-2xl">
-                        {group.maker}
-                      </h3>
-                      <p className="mt-1 text-[0.7rem] tracking-[0.18em] text-slate-400">
-                        {group.items.length} MODEL
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
+          <>
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              {paginatedItems.map((item, index) => {
+                const itemTags = item.tags ?? [];
+                const labelMaker = item.brandName ?? item.maker;
+                const era = item.eraLabel ?? "ERA";
 
-                <div className="grid gap-4 md:grid-cols-2">
-                  {group.items.map((item, index) => {
-                    const itemTags = item.tags ?? [];
-                    const labelMaker = item.brandName ?? item.maker;
-                    const era = item.eraLabel ?? "ERA";
+                return (
+                  <Reveal key={item.id} delay={index * 70}>
+                    <Link href={`/heritage/${item.slug}`} className="block">
+                      <GlassCard
+                        padding="lg"
+                        interactive
+                        variant="dim"
+                        className="h-full border border-white/40 bg-white/90 text-slate-900 shadow-[0_18px_45px_rgba(15,23,42,0.55)]"
+                      >
+                        <div className="flex h-full flex-col gap-3 text-slate-900">
+                          <div className="flex items-center justify-between gap-3 text-xs text-slate-800">
+                            <span className="rounded-full border border-rose-200/80 bg-rose-50/90 px-3 py-1 text-[0.7rem] font-medium text-rose-600">
+                              {era}
+                            </span>
+                            {labelMaker && (
+                              <span className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-500">
+                                {labelMaker}
+                              </span>
+                            )}
+                          </div>
 
-                    return (
-                      <Reveal key={item.id} delay={index * 70}>
-                        <Link href={`/heritage/${item.slug}`} className="block">
-                          <GlassCard
-                            padding="lg"
-                            interactive
-                            variant="dim"
-                            className="h-full border border-white/40 bg-white/90 text-slate-900 shadow-[0_18px_45px_rgba(15,23,42,0.55)]"
-                          >
-                            <div className="flex h-full flex-col gap-3 text-slate-900">
-                              <div className="flex items-center justify-between gap-3 text-xs text-slate-800">
-                                {/* ERAピルを少しだけ強調 */}
-                                <span className="rounded-full border border-rose-200/80 bg-rose-50/90 px-3 py-1 text-[0.7rem] font-medium text-rose-600">
-                                  {era}
+                          <div className="space-y-1.5">
+                            <h4 className="font-serif text-base font-semibold text-slate-900 sm:text-lg">
+                              {item.titleJa ?? item.title}
+                            </h4>
+                            {item.modelName && (
+                              <p className="text-[0.8rem] font-semibold uppercase tracking-[0.22em] text-rose-500">
+                                {item.modelName}
+                              </p>
+                            )}
+                            {item.summary && (
+                              <p className="text-[0.8rem] leading-relaxed text-slate-800 sm:text-sm">
+                                {item.summary}
+                              </p>
+                            )}
+                          </div>
+
+                          {itemTags.length > 0 && (
+                            <div className="mt-1 flex flex-wrap gap-2 text-[0.7rem] text-slate-800">
+                              {itemTags.map((tag) => (
+                                <span
+                                  key={tag}
+                                  className="rounded-full border border-slate-300/80 bg-white/80 px-2.5 py-1"
+                                >
+                                  #{tag}
                                 </span>
-                                {labelMaker && (
-                                  <span className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-500">
-                                    {labelMaker}
-                                  </span>
-                                )}
-                              </div>
-
-                              <div className="space-y-1.5">
-                                {/* 記事タイトル：読みやすいサイズにアップ */}
-                                <h4 className="font-serif text-base font-semibold text-slate-900 sm:text-lg">
-                                  {item.titleJa ?? item.title}
-                                </h4>
-                                {/* 車種名：赤文字寄り＋少し大きめ */}
-                                {item.modelName && (
-                                  <p className="text-[0.8rem] font-semibold uppercase tracking-[0.22em] text-rose-500">
-                                    {item.modelName}
-                                  </p>
-                                )}
-                                {item.summary && (
-                                  <p className="text-[0.8rem] leading-relaxed text-slate-800 sm:text-sm">
-                                    {item.summary}
-                                  </p>
-                                )}
-                              </div>
-
-                              {itemTags.length > 0 && (
-                                <div className="mt-1 flex flex-wrap gap-2 text-[0.7rem] text-slate-800">
-                                  {itemTags.map((tag) => (
-                                    <span
-                                      key={tag}
-                                      className="rounded-full border border-slate-300/80 bg-white/80 px-2.5 py-1"
-                                    >
-                                      #{tag}
-                                    </span>
-                                  ))}
-                                </div>
-                              )}
+                              ))}
                             </div>
-                          </GlassCard>
+                          )}
+                        </div>
+                      </GlassCard>
+                    </Link>
+                  </Reveal>
+                );
+              })}
+            </div>
+
+            {/* ページネーション */}
+            {totalPages > 1 && (
+              <div className="mt-10 flex justify-center">
+                <nav
+                  aria-label="HERITAGE pagination"
+                  className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white/95 px-4 py-2 text-xs text-slate-700 shadow-soft"
+                >
+                  {/* Prev */}
+                  {currentPage > 1 ? (
+                    <Link
+                      href={buildPageHref(currentPage - 1)}
+                      className="rounded-full px-3 py-1 text-[0.7rem] text-slate-500 hover:bg-slate-100"
+                    >
+                      ← PREV
+                    </Link>
+                  ) : (
+                    <span className="rounded-full px-3 py-1 text-[0.7rem] text-slate-300">
+                      ← PREV
+                    </span>
+                  )}
+
+                  {/* ページ番号 */}
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                      (page) => (
+                        <Link
+                          key={page}
+                          href={buildPageHref(page)}
+                          className={
+                            page === currentPage
+                              ? "flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-[0.75rem] font-semibold text-slate-50"
+                              : "flex h-7 w-7 items-center justify-center rounded-full text-[0.75rem] text-slate-600 hover:bg-slate-100"
+                          }
+                        >
+                          {page}
                         </Link>
-                      </Reveal>
-                    );
-                  })}
-                </div>
-              </section>
-            ))}
-          </div>
+                      ),
+                    )}
+                  </div>
+
+                  {/* Next */}
+                  {currentPage < totalPages ? (
+                    <Link
+                      href={buildPageHref(currentPage + 1)}
+                      className="rounded-full px-3 py-1 text-[0.7rem] text-slate-500 hover:bg-slate-100"
+                    >
+                      NEXT →
+                    </Link>
+                  ) : (
+                    <span className="rounded-full px-3 py-1 text-[0.7rem] text-slate-300">
+                      NEXT →
+                    </span>
+                  )}
+                </nav>
+              </div>
+            )}
+          </>
         )}
       </section>
     </main>
