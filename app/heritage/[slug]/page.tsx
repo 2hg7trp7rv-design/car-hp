@@ -301,11 +301,22 @@ export default async function HeritageDetailPage({
     ? bodyText.replace(/。/g, "。\n")
     : "";
 
-  const highlightRegex = createHighlightRegex([
-    heritage.maker ?? "",
-    ...(heritage.keyModels ?? []),
-    ...(tags ?? []),
-  ]);
+  // 車種名だけを赤文字ハイライト対象にする
+  const carKeywords: string[] = [];
+  if (heritage.keyModels && heritage.keyModels.length > 0) {
+    carKeywords.push(...heritage.keyModels);
+  }
+  if (heritage.relatedCarSlugs && heritage.relatedCarSlugs.length > 0) {
+    carKeywords.push(...heritage.relatedCarSlugs);
+  }
+  const relatedCarIds =
+    ((heritage as any).relatedCarIds as string[] | undefined) ??
+    [];
+  if (relatedCarIds.length > 0) {
+    carKeywords.push(...relatedCarIds);
+  }
+
+  const highlightRegex = createHighlightRegex(carKeywords);
 
   const readingTimeMinutes =
     heritage.readingTimeMinutes ??
