@@ -18,7 +18,8 @@ import guidesRaw from "@/data/guides.json";
 import guidesRaw1 from "@/data/guides1.json";
 import guidesRaw2 from "@/data/guides2.json";
 import guidesRaw3 from "@/data/guides3.json";
-import guidesRaw4 from "@/data/guides4.json"; // ★追加済み
+import guidesRaw4 from "@/data/guides4.json"; // 既存
+import guidesRaw5 from "@/data/guides5.json"; // ★ 15本ガイド用
 
 import type {
   GuideItem,
@@ -55,6 +56,10 @@ type RawGuideRecord = {
 
   tags?: string[];
   relatedCarSlugs?: string[];
+
+  // ★ 追加: マネタイズ用メタ
+  monetizeKey?: string | null;
+  affiliateLinks?: Record<string, string> | null;
 };
 
 // JSON → GuideItem への正規化
@@ -94,7 +99,8 @@ function normalizeGuide(raw: RawGuideRecord, index: number): GuideItem {
       )
     : [];
 
-  return {
+  // ベースの GuideItem
+  const base: any = {
     id,
     slug,
     type: "GUIDE",
@@ -112,6 +118,17 @@ function normalizeGuide(raw: RawGuideRecord, index: number): GuideItem {
     tags,
     relatedCarSlugs,
   };
+
+  // ★ 追加: マネタイズ用メタをそのまま通す
+  if (typeof raw.monetizeKey === "string") {
+    base.monetizeKey = raw.monetizeKey;
+  }
+
+  if (raw.affiliateLinks && typeof raw.affiliateLinks === "object") {
+    base.affiliateLinks = raw.affiliateLinks;
+  }
+
+  return base as GuideItem;
 }
 
 // JSON を配列化するユーティリティ
@@ -124,7 +141,7 @@ function toArray(data: unknown): RawGuideRecord[] {
 }
 
 /**
- * guides.json + guides1〜4.json を「生配列」としてまとめる
+ * guides.json + guides1〜5.json を「生配列」としてまとめる
  *
  * - 将来ファイルが増えた場合も、この配列に追加するだけで OK
  * - ファイルごとの優先順位: 後ろに書かれているファイルほど“後勝ち”になる
@@ -135,6 +152,7 @@ const RAW_ALL: RawGuideRecord[] = [
   ...toArray(guidesRaw2),
   ...toArray(guidesRaw3),
   ...toArray(guidesRaw4),
+  ...toArray(guidesRaw5), // ★ ここで guides5.json を取り込む
 ];
 
 /**
