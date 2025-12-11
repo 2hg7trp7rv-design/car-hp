@@ -80,21 +80,16 @@ export function HeroSection({ stats }: HeroSectionProps) {
             <h1 className="serif-heading mt-4 text-[1.7rem] font-semibold leading-tight text-white sm:text-[2.1rem] lg:text-[2.5rem]">
               車のニュースと本音を
               <br className="hidden sm:block" />
-              落ち着いて整理できる小さなサイト
+              整理した小さなサイト
             </h1>
           </Reveal>
 
-          {/* リード文 */}
+          {/* リード文（極小テキスト） */}
           <Reveal delay={260}>
             <p className="mt-5 max-w-xl text-[12px] leading-relaxed text-slate-200/90 sm:text-[13px]">
-              新車情報
-              よくあるトラブルやメンテナンスの話
-              気になる車種のスペックや維持のしやすさ
+              新車情報・トラブル・メンテナンス・スペック・維持費
               <br />
-              <br />
-              クルマを検討するときに必要な情報を
-              一度ここでざっくり整理してから
-              メーカーサイトや他のメディアを見に行く前提のサイトです。
+              クルマ選びの下調べ
             </p>
           </Reveal>
 
@@ -124,14 +119,11 @@ export function HeroSection({ stats }: HeroSectionProps) {
                   <div className="flex items-center gap-2">
                     <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
                     <span className="tracking-[0.16em]">
-                      NEWS/COLUMN/CARS/GUIDE/HERITAGEを横断して回遊
+                      NEWS / COLUMN / CARS / GUIDE / HERITAGE の横断整理
                     </span>
                   </div>
                   <p className="mt-2 leading-relaxed tracking-[0.03em] text-slate-100/85">
-                    気になる車種のページを起点に
-                    関連ニュースやコラム
-                    ガイドやHERITAGEに移動しながら
-                    検討中の一台についてゆっくり考えられる構成です。
+                    気になる車種から NEWS / COLUMN / GUIDE / HERITAGE への行き来
                   </p>
                 </div>
               </div>
@@ -144,14 +136,11 @@ export function HeroSection({ stats }: HeroSectionProps) {
               <div className="flex items-center gap-4 text-[10px] text-slate-200/90">
                 <div className="inline-flex items-center gap-2 rounded-full bg-white/8 px-3 py-1.5 ring-1 ring-white/25 backdrop-blur">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  <span className="tracking-[0.18em]">
-                    CONTENT INDEX
-                  </span>
+                  <span className="tracking-[0.18em]">CONTENT INDEX</span>
                 </div>
 
                 <p className="hidden text-[10px] tracking-[0.06em] text-slate-200/80 sm:inline">
-                  トラブル·維持費コラムとガイド
-                  HERITAGEを連動させて読む前提
+                  トラブル・維持費・GUIDE・HERITAGE の連動
                 </p>
               </div>
 
@@ -202,8 +191,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
                       </span>
                     </div>
                     <p className="mt-1 w-full text-[9px] text-slate-200/85">
-                      今は輸入車やプレミアム系が中心
-                      順番に国産車や軽自動車も増やしていく予定です。
+                      掲載中の輸入車・プレミアム系の範囲
                     </p>
                   </div>
                 </div>
@@ -242,8 +230,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
                 </div>
                 <div className="flex items-center justify-between">
                   <p className="max-w-[70%] text-[10px] leading-relaxed text-slate-500">
-                    新型車やモデルチェンジの動きを
-                    静かな画面で一覧しやすく整理。
+                    新型車・モデルチェンジ・新装備
                   </p>
                   <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-[10px] text-slate-600">
                     →
@@ -270,9 +257,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
                 </div>
                 <div className="flex items-center justify-between">
                   <p className="max-w-[70%] text-[10px] leading-relaxed text-slate-500">
-                    実際によくあるトラブルや
-                    整備の優先度を
-                    あとで見返せるノートのように蓄積。
+                    トラブル・整備・乗り味
                   </p>
                   <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-[10px] text-slate-600">
                     →
@@ -299,9 +284,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
                 </div>
                 <div className="flex items-center justify-between">
                   <p className="max-w-[70%] text-[10px] leading-relaxed text-slate-200/90">
-                    いくらまでなら無理せず買えるか
-                    買う前と手放す前に
-                    一度だけ確認しておきたいポイント。
+                    予算・支払い方法・売却の流れ
                   </p>
                   <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-500/60 bg-slate-900/60 text-[10px] text-slate-100">
                     →
@@ -328,9 +311,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
                 </div>
                 <div className="flex items-center justify-between">
                   <p className="max-w-[70%] text-[10px] leading-relaxed text-slate-500">
-                    サイズ
-                    スペック
-                    維持のしやすさを並べて比較するためのベース。
+                    サイズ・スペック・維持のしやすさ
                   </p>
                   <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-[10px] text-slate-600">
                     →
@@ -340,7 +321,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
             </div>
           </Reveal>
 
-          {/* ホバー状態の説明パネル */}
+          {/* ホバー状態の説明パネル（極小テキスト） */}
           <Reveal delay={260}>
             <div className="relative mt-5">
               <div className="rounded-2xl border border-white/35 bg-slate-950/80 px-4 py-3 text-[10px] text-slate-100 shadow-soft-glow backdrop-blur">
@@ -349,15 +330,15 @@ export function HeroSection({ stats }: HeroSectionProps) {
                 </p>
                 <p className="mt-1 leading-relaxed text-slate-100/92">
                   {hoveredBlock === "news" &&
-                    "まずはNEWSで全体の動きをざっと見てから、気になったメーカーや車種をCARSやCOLUMNに辿っていく前提です。"}
+                    "NEWS：新型車・モデルチェンジ・新装備"}
                   {hoveredBlock === "columns" &&
-                    "COLUMNではトラブルや乗り味など、カタログだけでは分かりにくい部分をメモ帳感覚でストックしていきます。"}
+                    "COLUMN：トラブル・整備・乗り味・エンジンキャラクター"}
                   {hoveredBlock === "guide" &&
-                    "GUIDEはお金や手続きの流れをざっくり整理するための場所です。買う前と手放す前に1回だけ読み直すイメージです。"}
+                    "GUIDE：予算・支払い方法・売却の流れ"}
                   {hoveredBlock === "cars" &&
-                    "CARSでは気になる車種を並べて、サイズやセグメント、維持のしやすさを比べてから次の候補に進むためのベースとして使います。"}
+                    "CARS：サイズ・セグメント・維持のしやすさ"}
                   {!hoveredBlock &&
-                    "NEWS/COLUMN/GUIDE/CARS/HERITAGEを行き来しながら、検討中の一台についての情報を静かな画面でゆっくり整理できるようにすることを目指しています。"}
+                    "NEWS / COLUMN / GUIDE / CARS / HERITAGE の横断整理"}
                 </p>
               </div>
             </div>
