@@ -57,9 +57,10 @@ type RawGuideRecord = {
   tags?: string[];
   relatedCarSlugs?: string[];
 
-  // ★ 追加: マネタイズ用メタ
+  // ★ マネタイズ & 内部回遊メタ
   monetizeKey?: string | null;
   affiliateLinks?: Record<string, string> | null;
+  internalLinks?: string[] | null;
 };
 
 // JSON → GuideItem への正規化
@@ -119,13 +120,20 @@ function normalizeGuide(raw: RawGuideRecord, index: number): GuideItem {
     relatedCarSlugs,
   };
 
-  // ★ 追加: マネタイズ用メタをそのまま通す
+  // マネタイズ用メタ
   if (typeof raw.monetizeKey === "string") {
     base.monetizeKey = raw.monetizeKey;
   }
 
   if (raw.affiliateLinks && typeof raw.affiliateLinks === "object") {
     base.affiliateLinks = raw.affiliateLinks;
+  }
+
+  // ★ internalLinks を文字列配列に正規化して通す
+  if (Array.isArray(raw.internalLinks)) {
+    base.internalLinks = raw.internalLinks.filter(
+      (s): s is string => typeof s === "string" && s.trim().length > 0,
+    );
   }
 
   return base as GuideItem;
