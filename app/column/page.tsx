@@ -189,17 +189,14 @@ export default async function ColumnPage({ searchParams }: PageProps) {
 
           <Reveal delay={80}>
             <h1 className="serif-heading text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl lg:text-[2.6rem]">
-              トラブル 修理 ブランドや技術を
-              <br className="hidden sm:block" />
-              落ち着いて整理するためのコラム集
+              COLUMN
             </h1>
           </Reveal>
 
           <Reveal delay={160}>
             <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
               <p className="max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
-                メンテナンスやトラブルの実例 ブランドの歴史 技術的な背景などをまとめた読み物
-                車種選びや維持の判断材料として 重要な情報だけを落ち着いて確認できる構成
+                トラブル・整備・ブランド・技術のコラム
               </p>
               <div className="flex items-center gap-3 text-[10px] text-slate-500">
                 <span className="rounded-full bg-white/80 px-3 py-1">
@@ -242,8 +239,7 @@ export default async function ColumnPage({ searchParams }: PageProps) {
                     COLUMN INDEX
                   </p>
                   <p className="mt-1 text-[11px] leading-relaxed text-text-sub sm:text-xs">
-                    現在登録されているコラム数と メンテナンス系 技術 ブランド系
-                    オーナー体験談のおおまかなバランスを表示
+                    コラム数とカテゴリ内訳
                   </p>
                 </div>
 
