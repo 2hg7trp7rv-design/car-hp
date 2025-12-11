@@ -9,6 +9,7 @@
  */
 
 import heritageRaw from "@/data/heritage.json";
+import heritageRaw from "@/data/heritage1.json";
 
 // JSON 1 件分の型 (生データ)。ここでは汎用的なキー/値の塊として扱う。
 export type HeritageRecord = Record<string, unknown>;
