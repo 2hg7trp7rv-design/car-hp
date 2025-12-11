@@ -396,7 +396,7 @@ export default async function HeritageIndexPage({
                 </div>
               )}
 
-              {/* ボタン行（フィルタ情報のみ残し、説明文は削除） */}
+              {/* ボタン行 */}
               <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
                 {hasFilter && (
                   <div className="text-xs text-slate-300">
@@ -479,10 +479,11 @@ export default async function HeritageIndexPage({
                 <Reveal>
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
                     <div>
-                      <h3 className="text-lg font-semibold text-white">
+                      {/* メーカー見出しを一回り大きくして「章タイトル」扱い */}
+                      <h3 className="font-serif text-xl tracking-[0.18em] text-white sm:text-2xl">
                         {group.maker}
                       </h3>
-                      <p className="text-xs text-slate-400">
+                      <p className="mt-1 text-[0.7rem] tracking-[0.18em] text-slate-400">
                         {group.items.length} MODEL
                       </p>
                     </div>
@@ -506,7 +507,8 @@ export default async function HeritageIndexPage({
                           >
                             <div className="flex h-full flex-col gap-3 text-slate-900">
                               <div className="flex items-center justify-between gap-3 text-xs text-slate-800">
-                                <span className="rounded-full border border-slate-300/80 bg-white/80 px-3 py-1 text-[0.7rem]">
+                                {/* ERAピルを少しだけ強調 */}
+                                <span className="rounded-full border border-rose-200/80 bg-rose-50/90 px-3 py-1 text-[0.7rem] font-medium text-rose-600">
                                   {era}
                                 </span>
                                 {labelMaker && (
@@ -516,17 +518,19 @@ export default async function HeritageIndexPage({
                                 )}
                               </div>
 
-                              <div className="space-y-2">
-                                <h4 className="text-sm font-semibold text-slate-900 sm:text-base">
+                              <div className="space-y-1.5">
+                                {/* 記事タイトル：読みやすいサイズにアップ */}
+                                <h4 className="font-serif text-base font-semibold text-slate-900 sm:text-lg">
                                   {item.titleJa ?? item.title}
                                 </h4>
+                                {/* 車種名：赤文字寄り＋少し大きめ */}
                                 {item.modelName && (
-                                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
+                                  <p className="text-[0.8rem] font-semibold uppercase tracking-[0.22em] text-rose-500">
                                     {item.modelName}
                                   </p>
                                 )}
                                 {item.summary && (
-                                  <p className="text-xs leading-relaxed text-slate-800">
+                                  <p className="text-[0.8rem] leading-relaxed text-slate-800 sm:text-sm">
                                     {item.summary}
                                   </p>
                                 )}
