@@ -291,15 +291,17 @@ export default async function HomePage() {
 
                   <Reveal delay={80}>
                     <p className="max-w-md text-[11px] leading-relaxed text-text-sub sm:text-xs">
-                      メーカー公式サイトへのニュースリンクをまとめて確認
-                      車種ごとのスペックと簡単なコメントを一覧で確認
-                      トラブル 整備 お金まわりの話をコラムで整理
-                      購入 売却 維持費の考え方をガイドで整理
-                      名車やブランドの歴史をHERITAGEとして整理
+                      メーカー公式ニュースへのリンク一覧
                       <br />
+                      車種ごとのスペックとコメント一覧
                       <br />
-                      クルマとの付き合い方を
-                      一度ここでざっくり整理しておくイメージ
+                      トラブル・整備・お金まわり
+                      <br />
+                      購入・売却・維持費の考え方
+                      <br />
+                      名車・ブランドの歴史
+                      <br />
+                      クルマとの付き合い方の整理
                     </p>
                   </Reveal>
                 </header>
@@ -347,13 +349,9 @@ export default async function HomePage() {
                         </div>
 
                         <p className="text-[11px] leading-relaxed text-text-sub sm:text-xs">
-                          メーカー公式サイトなどの情報をもとに
-                          新型車 モデルチェンジ 新しい装備の動きをピックアップ
+                          新型車・モデルチェンジ・新装備のニュース
                           <br />
-                          <br />
-                          流れとポイントだけここで確認
-                          細かい内容や全文は
-                          ニュースごとのリンク先でチェックする前提
+                          要点とリンク
                         </p>
 
                         <div className="mt-4 space-y-2">
@@ -434,12 +432,9 @@ export default async function HomePage() {
                         </div>
 
                         <p className="mt-3 text-[11px] leading-relaxed text-text-sub sm:text-xs">
-                          気になっている車種について
-                          サイズ スペック 維持のしやすさ セグメントを一覧で確認
+                          気になる車種のサイズ・スペック・維持のしやすさ・セグメント
                           <br />
-                          <br />
-                          もっと詳しく見たい車種は
-                          詳細ページからニュース コラム ガイドもあわせてチェックする想定
+                          関連 NEWS / COLUMN / GUIDE への入口
                         </p>
 
                         <div className="mt-4 space-y-2">
@@ -507,14 +502,9 @@ export default async function HomePage() {
                         </div>
 
                         <p className="mt-3 text-[11px] leading-relaxed text-slate-300 sm:text-xs">
-                          実際によくあるトラブル
-                          どこから手を付けると良いかという整備の優先度
-                          セダン SUV などボディタイプごとの乗り味
-                          エンジンの違いによるキャラクター
+                          トラブル内容・整備の優先度・ボディタイプ別の乗り味・エンジンキャラクター
                           <br />
-                          <br />
-                          カタログでは分かりにくい部分を
-                          あとから読み返せるノートのような感覚で置いておく
+                          カタログでは分かりにくい部分
                         </p>
 
                         <div className="mt-4 space-y-1.5">
@@ -580,13 +570,9 @@ export default async function HomePage() {
                         </div>
 
                         <p className="mt-3 text-[11px] leading-relaxed text-text-sub sm:text-xs">
-                          いくらくらいまでなら無理せず買えるか
-                          ローン 一括 残価設定のおおまかな違い
-                          売るとき どんな流れになるか
+                          無理のない予算・支払い方法の違い・売却時の流れ
                           <br />
-                          <br />
-                          クルマを買う前と手放す前に
-                          一回だけ確認しておきたいポイントをまとめたエリア
+                          購入前・売却前に確認したいポイント
                         </p>
 
                         <div className="mt-4 space-y-1.5 text-[11px]">
@@ -654,9 +640,7 @@ export default async function HomePage() {
                         </div>
 
                         <p className="mt-1 text-[11px] leading-relaxed text-text-sub sm:text-xs">
-                          F40 M3 GT-R など
-                          クルマ文化をつくってきたモデルの背景や時代性を
-                          メーカーごとの「系譜」として整理した読み物エリア
+                          名車・ブランドの背景と時代性
                         </p>
 
                         <div className="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2">
@@ -684,8 +668,9 @@ export default async function HomePage() {
                             ))
                           ) : (
                             <p className="text-[11px] text-text-sub">
-                              HERITAGEの記事はまだ準備中です。
-                              まずはCARSやCOLUMNから順番に増やしていく予定です。
+                              コンテンツ未追加
+                              <br />
+                              NEWS / COLUMN / GUIDE / HERITAGE を追加すると表示
                             </p>
                           )}
                         </div>
@@ -710,9 +695,7 @@ export default async function HomePage() {
                   </h2>
                 </div>
                 <p className="max-w-sm text-[10px] leading-relaxed text-slate-500 sm:text-xs">
-                  NEWS COLUMN GUIDE HERITAGE をまとめて
-                  公開日の新しい順に並べたタイムライン
-                  いま何が追加・更新されているかを一目で確認するためのエリア
+                  NEWS / COLUMN / GUIDE / HERITAGE の更新タイムライン（新着順）
                 </p>
               </header>
             </Reveal>
@@ -720,8 +703,9 @@ export default async function HomePage() {
             <Reveal delay={120}>
               {crossTimeline.length === 0 ? (
                 <p className="rounded-2xl border border-dashed border-slate-200 bg-white/80 p-6 text-center text-xs text-slate-500">
-                  まだ横断的に表示できるコンテンツがありません。
-                  NEWS COLUMN GUIDE HERITAGE を追加していくと ここに時系列で並びます。
+                  コンテンツ未追加
+                  <br />
+                  NEWS / COLUMN / GUIDE / HERITAGE を追加すると表示
                 </p>
               ) : (
                 <div className="rounded-3xl border border-slate-200/80 bg-white/95 p-4 shadow-soft sm:p-5">
