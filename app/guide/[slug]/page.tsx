@@ -428,6 +428,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
     relatedCarSlugs?: (string | null)[];
     monetizeKey?: string | null;
     affiliateLinks?: Record<string, string> | null;
+    internalLinks?: string[] | null;
   };
 
   const { blocks, headings } = parseBody(guide.body);
@@ -439,6 +440,15 @@ export default async function GuideDetailPage({ params }: PageProps) {
     (slug): slug is string =>
       typeof slug === "string" && slug.trim().length > 0,
   );
+
+  // internalLinks から関連記事GUIDEを取得
+  const allGuides = await getAllGuides();
+  const internalLinkSlugs = (guide.internalLinks ?? []).filter(
+    (s): s is string => typeof s === "string" && s.trim().length > 0,
+  );
+  const internalRelatedGuides = internalLinkSlugs
+    .map((slug) => allGuides.find((g) => g.slug === slug))
+    .filter((g): g is GuideItem => Boolean(g));
 
   // ドロップキャップ用フラグ
   let firstParagraphRendered = false;
@@ -676,6 +686,46 @@ export default async function GuideDetailPage({ params }: PageProps) {
                 />
               </article>
             </GlassCard>
+
+            {/* ★ 追加: ガイド同士の内部リンクセクション */}
+            {internalRelatedGuides.length > 0 && (
+              <section className="mt-10 lg:mt-12">
+                <div className="mb-3 flex items-baseline justify-between gap-2">
+                  <h2 className="text-[10px] font-semibold tracking-[0.22em] text-slate-600">
+                    このガイドと一緒に読まれているGUIDE
+                  </h2>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {internalRelatedGuides.map((g) => (
+                    <Link
+                      key={g.slug}
+                      href={`/guide/${encodeURIComponent(g.slug)}`}
+                    >
+                      <GlassCard className="group h-full border border-slate-200/80 bg-white/92 p-4 text-[11px] shadow-soft-sm transition hover:-translate-y-[1px] hover:border-tiffany-200 hover:bg-white">
+                        <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                          <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                            {mapCategoryLabel((g as any).category ?? null)}
+                          </span>
+                          {(g as any).readMinutes && (
+                            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                              約{(g as any).readMinutes}分
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
+                          {g.title}
+                        </h3>
+                        {g.summary && (
+                          <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
+                            {g.summary}
+                          </p>
+                        )}
+                      </GlassCard>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* 下部ナビ(SPメイン) */}
             <div className="mt-10 border-t border-slate-100 pt-6 lg:hidden">
