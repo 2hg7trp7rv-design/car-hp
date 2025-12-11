@@ -28,6 +28,13 @@ export type { HeritageKind } from "@/lib/content-types";
 
 type RawHeritageItem = HeritageRecord;
 
+// sections 用の型
+export type HeritageSection = {
+  id: string;
+  title?: string | null;
+  summary?: string | null;
+};
+
 /**
  * App層から扱う HERITAGE 用の型
  *
@@ -72,6 +79,9 @@ export type HeritageItem = {
 
   // 本文
   body: string;
+
+  // セクション（Ferrari などの章立て用）
+  sections?: HeritageSection[] | null;
 
   // ハイライト/タグ
   highlights?: string[] | null;
@@ -218,6 +228,29 @@ function toHeritageItem(
     summary ??
     "";
 
+  // sections（Ferrari などの章立て）
+  let sections: HeritageSection[] | null = null;
+  const rawSections = (anyRaw as any).sections;
+  if (Array.isArray(rawSections)) {
+    const mappedSections: HeritageSection[] = [];
+    for (const sec of rawSections) {
+      if (!sec || typeof sec !== "object") continue;
+      const anySec = sec as Record<string, unknown>;
+      const id =
+        safeString(anySec.id) ?? `section-${mappedSections.length}`;
+      const title = safeString(anySec.title);
+      const summary = safeString(anySec.summary);
+      mappedSections.push({
+        id,
+        title: title ?? null,
+        summary: summary ?? null,
+      });
+    }
+    if (mappedSections.length > 0) {
+      sections = mappedSections;
+    }
+  }
+
   // ハイライト/タグ/関連CARS/HERITAGE
   const highlights = toStringArray(anyRaw.highlights);
   const tags = toStringArray(anyRaw.tags);
@@ -288,6 +321,7 @@ function toHeritageItem(
     heroImageCredit,
     heroTone,
     body,
+    sections,
     highlights,
     tags,
     keyModels,
