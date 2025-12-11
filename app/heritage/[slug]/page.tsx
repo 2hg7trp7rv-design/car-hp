@@ -144,14 +144,11 @@ function highlightRich(
     let spanClassName = "";
 
     if (carKeywordSet.has(normalized)) {
-      // 車種名: ティファニーブルー＋1.4倍くらい
       spanClassName =
         "text-tiffany-500 font-semibold text-[1.4em] leading-tight";
     } else if (keywordSet.has(normalized)) {
-      // 重要キーワード: 波線アンダーライン（CSS は globals.css で定義）
       spanClassName = "heritage-highlight-wave";
     } else {
-      // 念のためのフォールバック（淡いティファニー帯）
       spanClassName =
         "bg-tiffany-50 px-0.5 text-tiffany-700";
     }
@@ -172,8 +169,7 @@ function highlightRich(
   return parts;
 }
 
-// 旧 highlightInline は使わなくなったが、
-// 必要なら他のバリアントで再利用できるように残しておく。
+// 旧 highlightInline は未使用だが一応残す
 function highlightInline(
   text: string,
   regex: RegExp | null,
@@ -219,7 +215,6 @@ function highlightInline(
   return parts;
 }
 
-// HeritageItem に series / seriesTitle があるケースだけを安全に扱うための type guard
 type HeritageItemWithSeries = ExtendedHeritageItem & {
   series?: string | null;
   seriesTitle?: string | null;
@@ -236,7 +231,7 @@ function hasSeries(
   );
 }
 
-// ---- 読了時間のざっくり推定 ----
+// ---- 読了時間 ----
 
 function estimateReadingTimeMinutes(body: string): number {
   const plain = body.replace(/\s+/g, "");
@@ -246,7 +241,7 @@ function estimateReadingTimeMinutes(body: string): number {
   return minutes <= 0 ? 1 : minutes;
 }
 
-// 本文セクション用
+// 本文セクション
 type BodySection = {
   title?: string;
   level: "heading" | "subheading" | null;
@@ -255,7 +250,7 @@ type BodySection = {
 
 const SPEC_HEADING_PREFIX = "__SPEC_HEADING__";
 
-// ---- メタデータ生成 ----
+// ---- メタデータ ----
 
 export async function generateMetadata({
   params,
@@ -366,7 +361,7 @@ export default async function HeritageDetailPage({
     ? bodyText.replace(/。/g, "。\n")
     : "";
 
-  // 車種名ハイライト用キーワード
+  // 車名ハイライト用キーワード
   const carKeywords: string[] = [];
   if (heritage.keyModels && heritage.keyModels.length > 0) {
     carKeywords.push(...heritage.keyModels);
@@ -387,7 +382,6 @@ export default async function HeritageDetailPage({
       ? heritage.highlights
       : [];
 
-  // 正規化済みセット（小文字で比較）
   const carKeywordSet = new Set(
     carKeywords.map((k) => k.toLowerCase().trim()),
   );
@@ -395,7 +389,6 @@ export default async function HeritageDetailPage({
     highlightKeywords.map((k) => k.toLowerCase().trim()),
   );
 
-  // 車名＋キーワードをまとめたハイライト用正規表現
   const combinedKeywords = Array.from(
     new Set([...carKeywords, ...highlightKeywords]),
   );
@@ -416,7 +409,7 @@ export default async function HeritageDetailPage({
     Array.isArray(heritage.relatedGuideSlugs) &&
     heritage.relatedGuideSlugs.length > 0;
 
-  // 本文をセクション単位に分解（【…】/■… を見出し扱い）
+  // 本文をセクションに分解
   const rawSections: BodySection[] = [];
   if (formattedBodyText) {
     const lines = formattedBodyText
@@ -444,16 +437,25 @@ export default async function HeritageDetailPage({
         continue;
       }
 
-      const headingMatch = line.match(/^【(.+?)】$/);
+      // ★★ ここだけ変更：同じ行に本文が続いていても見出しとして認識する ★★
+      const headingMatch = line.match(/^【(.+?)】(.*)$/);
       if (headingMatch) {
+        const headingTitle = headingMatch[1];
+        const rest = headingMatch[2]?.trim() ?? "";
+
         pushCurrent();
         current = {
-          title: headingMatch[1],
+          title: headingTitle,
           level: "heading",
           lines: [],
         };
+
+        if (rest.length > 0) {
+          current.lines.push(rest);
+        }
         continue;
       }
+      // ★★ ここまで ★★
 
       if (line.startsWith("■")) {
         pushCurrent();
@@ -474,7 +476,7 @@ export default async function HeritageDetailPage({
     pushCurrent();
   }
 
-  // 「○○主なスペック…」セクションは直前のカードに統合
+  // 「主なスペック…」を直前カードに統合
   const bodySections: BodySection[] = [];
   for (const section of rawSections) {
     if (
@@ -495,7 +497,7 @@ export default async function HeritageDetailPage({
     }
   }
 
-  // sections 配列からセクションを生成（Ferrari など JSON 主体）
+  // JSON の sections があればそちらを優先
   const sectionsFromData: BodySection[] =
     Array.isArray(heritage.sections) && heritage.sections.length > 0
       ? heritage.sections.map((sec) => {
@@ -516,14 +518,13 @@ export default async function HeritageDetailPage({
         })
       : [];
 
-  // sections があればそちらを優先して使う
   const contentSections =
     sectionsFromData.length > 0 ? sectionsFromData : bodySections;
   const hasStructuredContent = contentSections.length > 0;
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-50">
-      {/* ヒーローセクション（ここは背景が濃いので白字のまま） */}
+      {/* HERO */}
       <section className="relative border-b border-slate-800/60 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.1),_transparent_60%),radial-gradient(circle_at_bottom,_rgba(30,64,175,0.3),_transparent_60%)]" />
 
@@ -615,7 +616,7 @@ export default async function HeritageDetailPage({
         </div>
       </section>
 
-      {/* 本文＋サイドカラム（ここからはカードが明るいので文字色を黒系に統一） */}
+      {/* 本文＋サイドカラム */}
       <section className="border-t border-slate-800/60 bg-gradient-to-b from-slate-950 to-slate-900 py-10 md:py-14">
         <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 md:flex-row md:px-6 lg:px-8">
           {/* 本文 */}
@@ -666,7 +667,6 @@ export default async function HeritageDetailPage({
                                 continue;
                               }
 
-                              // スペック枠検出
                               if (
                                 line.startsWith(
                                   SPEC_HEADING_PREFIX,
@@ -747,7 +747,6 @@ export default async function HeritageDetailPage({
                                 continue;
                               }
 
-                              // 通常の本文段落
                               blocks.push(
                                 <p
                                   key={`p-${i}`}
@@ -794,7 +793,6 @@ export default async function HeritageDetailPage({
           {/* サイドカラム */}
           <Reveal className="w-full md:w-[36%]" forceVisible>
             <div className="flex flex-col gap-6">
-              {/* 代表モデル */}
               {(heritage.keyModels?.length ?? 0) > 0 && (
                 <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900">
                   <h2 className="font-serif text-sm uppercase tracking-[0.25em]">
@@ -813,7 +811,6 @@ export default async function HeritageDetailPage({
                 </GlassCard>
               )}
 
-              {/* 関連コンテンツ */}
               {(hasRelatedCars || hasRelatedNews || hasRelatedGuides) && (
                 <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900">
                   <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-900">
@@ -887,7 +884,6 @@ export default async function HeritageDetailPage({
                 </GlassCard>
               )}
 
-              {/* 一覧への戻り＋前後ナビ */}
               <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900">
                 <div className="flex flex-col gap-3">
                   <div>
@@ -948,7 +944,6 @@ export default async function HeritageDetailPage({
         </div>
       </section>
 
-      {/* 下部「MORE HERITAGE」セクション */}
       {moreHeritage.length > 0 && (
         <section className="border-t border-slate-800/70 bg-slate-950 py-10 md:py-14">
           <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
