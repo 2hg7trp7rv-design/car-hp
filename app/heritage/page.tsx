@@ -182,8 +182,7 @@ export default async function HeritageIndexPage({
               </h1>
               {/* 説明文は最小限（そのまま維持） */}
               <p className="max-w-2xl text-sm leading-relaxed text-slate-200/90 sm:text-base">
-                代表的なブランドと名車の歴史を、
-                メーカー・年代・タグでざっと俯瞰するためのインデックスです。
+                名車・ブランドの背景と時代性
               </p>
             </Reveal>
 
