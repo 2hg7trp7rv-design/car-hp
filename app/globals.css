@@ -165,6 +165,15 @@ li,
   letter-spacing: 0.08em;
 }
 
+/* HERITAGE キーワード用 波線アンダーライン */
+.heritage-highlight-wave {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: rgb(248, 113, 113);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+
 /* ----------------------------------------
    Drop caps（先頭ジャンボ1文字）
    - COLUMN / GUIDE: span 構造で使用
