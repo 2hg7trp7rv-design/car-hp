@@ -131,7 +131,7 @@ function createHighlightRegex(keywords: string[]): RegExp | null {
 }
 
 /**
- * 車名 (keyModels) とキーワード (highlights) を 1 本の正規表現で走査し、
+ * 車名 (keyModels/relatedCarSlugs/relatedCarIds) とキーワード (highlights) を 1 本の正規表現で走査し、
  * - 車名       → ティファニーブルー系＋フォント大きめ
  * - キーワード → 波線アンダーライン（heritage-highlight-wave）
  * で装飾する。
@@ -166,7 +166,7 @@ function highlightRich(
 
     if (carKeywordSet.has(normalized)) {
       spanClassName =
-        "text-tiffany-500 font-semibold text-[1.4em] leading-tight";
+        "text-tiffany-600 font-semibold text-[1.35em] leading-tight";
     } else if (keywordSet.has(normalized)) {
       spanClassName = "heritage-highlight-wave";
     } else {
@@ -216,7 +216,7 @@ function highlightInline(
 
     const spanClassName =
       variant === "strong"
-        ? "text-tiffany-500 font-semibold text-[1.4em]"
+        ? "text-tiffany-600 font-semibold text-[1.35em]"
         : "bg-tiffany-50 px-0.5 text-tiffany-700";
 
     parts.push(
@@ -260,8 +260,9 @@ function pickRelatedCarsForHeritage(
   heritage: ExtendedHeritageItem,
   cars: CarItem[],
 ): CarItem[] {
-  const slugList = (heritage.relatedCarSlugs ?? [])
-    .filter((s): s is string => typeof s === "string" && s.trim().length > 0);
+  const slugList = (heritage.relatedCarSlugs ?? []).filter(
+    (s): s is string => typeof s === "string" && s.trim().length > 0,
+  );
 
   if (slugList.length > 0) {
     const ordered = slugList
@@ -272,9 +273,7 @@ function pickRelatedCarsForHeritage(
     }
   }
 
-  const keyNames = (heritage.keyModels ?? []).map((n) =>
-    n.toLowerCase().trim(),
-  );
+  const keyNames = (heritage.keyModels ?? []).map((n) => n.toLowerCase().trim());
   if (keyNames.length === 0) return [];
 
   const scored = cars
@@ -315,18 +314,13 @@ function pickRelatedGuidesForHeritage(
 
 // ---- メタデータ ----
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  const heritage = (await getHeritageBySlug(
-    params.slug,
-  )) as ExtendedHeritageItem | null;
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const heritage = (await getHeritageBySlug(params.slug)) as ExtendedHeritageItem | null;
 
   if (!heritage) {
     return {
       title: "HERITAGEが見つかりません | CAR BOUTIQUE",
-      description:
-        "指定されたHERITAGEコンテンツが見つかりませんでした。",
+      description: "指定されたHERITAGEコンテンツが見つかりませんでした。",
     };
   }
 
@@ -382,27 +376,17 @@ export default async function HeritageDetailPage({ params }: PageProps) {
   const heritage = heritageRaw as ExtendedHeritageItem;
 
   const sameMaker = sortWithinMaker(
-    all.filter(
-      (item) =>
-        item.maker &&
-        heritage.maker &&
-        item.maker === heritage.maker,
-    ),
+    all.filter((item) => item.maker && heritage.maker && item.maker === heritage.maker),
   );
   const { prev, next } = findNeighbors(sameMaker, heritage.slug);
 
-  const moreFromMaker = sameMaker.filter(
-    (item) => item.slug !== heritage.slug,
-  );
+  const moreFromMaker = sameMaker.filter((item) => item.slug !== heritage.slug);
   const moreHeritageBase =
-    moreFromMaker.length > 0
-      ? moreFromMaker
-      : all.filter((item) => item.slug !== heritage.slug);
+    moreFromMaker.length > 0 ? moreFromMaker : all.filter((item) => item.slug !== heritage.slug);
   const moreHeritage = moreHeritageBase.slice(0, 3);
 
   const dateLabel =
-    formatDateLabel(heritage.publishedAt) ??
-    formatDateLabel(heritage.updatedAt);
+    formatDateLabel(heritage.publishedAt) ?? formatDateLabel(heritage.updatedAt);
   const tags = heritage.tags ?? [];
   const title = heritage.title ?? heritage.titleJa ?? heritage.slug;
 
@@ -422,9 +406,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
   })();
   const hasBody = bodyText.length > 0;
 
-  const formattedBodyText = hasBody
-    ? bodyText.replace(/。/g, "。\n")
-    : "";
+  const formattedBodyText = hasBody ? bodyText.replace(/。/g, "。\n") : "";
 
   // 車名ハイライト用キーワード
   const carKeywords: string[] = [];
@@ -434,70 +416,43 @@ export default async function HeritageDetailPage({ params }: PageProps) {
   if (heritage.relatedCarSlugs && heritage.relatedCarSlugs.length > 0) {
     carKeywords.push(...heritage.relatedCarSlugs);
   }
-  const relatedCarIds =
-    ((heritage as any).relatedCarIds as string[] | undefined) ??
-    [];
+  const relatedCarIds = ((heritage as any).relatedCarIds as string[] | undefined) ?? [];
   if (relatedCarIds.length > 0) {
     carKeywords.push(...relatedCarIds);
   }
 
   // 重要キーワード（波線アンダーライン用）
   const highlightKeywords: string[] =
-    heritage.highlights && heritage.highlights.length > 0
-      ? heritage.highlights
-      : [];
+    heritage.highlights && heritage.highlights.length > 0 ? heritage.highlights : [];
 
-  const carKeywordSet = new Set(
-    carKeywords.map((k) => k.toLowerCase().trim()),
-  );
-  const keywordSet = new Set(
-    highlightKeywords.map((k) => k.toLowerCase().trim()),
-  );
+  const carKeywordSet = new Set(carKeywords.map((k) => k.toLowerCase().trim()));
+  const keywordSet = new Set(highlightKeywords.map((k) => k.toLowerCase().trim()));
 
-  const combinedKeywords = Array.from(
-    new Set([...carKeywords, ...highlightKeywords]),
-  );
-  const combinedHighlightRegex =
-    createHighlightRegex(combinedKeywords);
+  const combinedKeywords = Array.from(new Set([...carKeywords, ...highlightKeywords]));
+  const combinedHighlightRegex = createHighlightRegex(combinedKeywords);
 
   const readingTimeMinutes =
-    heritage.readingTimeMinutes ??
-    (hasBody ? estimateReadingTimeMinutes(bodyText) : 0);
+    heritage.readingTimeMinutes ?? (hasBody ? estimateReadingTimeMinutes(bodyText) : 0);
 
   const hasRelatedCarsBadges =
-    Array.isArray(heritage.relatedCarSlugs) &&
-    heritage.relatedCarSlugs.length > 0;
+    Array.isArray(heritage.relatedCarSlugs) && heritage.relatedCarSlugs.length > 0;
   const hasRelatedNews =
-    Array.isArray(heritage.relatedNewsIds) &&
-    heritage.relatedNewsIds.length > 0;
+    Array.isArray(heritage.relatedNewsIds) && heritage.relatedNewsIds.length > 0;
   const hasRelatedGuidesBadges =
-    Array.isArray(heritage.relatedGuideSlugs) &&
-    heritage.relatedGuideSlugs.length > 0;
+    Array.isArray(heritage.relatedGuideSlugs) && heritage.relatedGuideSlugs.length > 0;
 
-  const relatedCarItems = pickRelatedCarsForHeritage(
-    heritage,
-    allCars,
-  );
-  const relatedGuideItems = pickRelatedGuidesForHeritage(
-    heritage,
-    allGuides,
-  );
+  const relatedCarItems = pickRelatedCarsForHeritage(heritage, allCars);
+  const relatedGuideItems = pickRelatedGuidesForHeritage(heritage, allGuides);
 
   // 本文をセクションに分解
   const rawSections: BodySection[] = [];
   if (formattedBodyText) {
-    const lines = formattedBodyText
-      .split(/\r?\n/)
-      .map((line) => line.trim());
+    const lines = formattedBodyText.split(/\r?\n/).map((line) => line.trim());
 
     let current: BodySection | null = null;
 
     const pushCurrent = () => {
-      if (
-        current &&
-        (current.title ||
-          current.lines.some((l) => l && l.length > 0))
-      ) {
+      if (current && (current.title || current.lines.some((l) => l && l.length > 0))) {
         rawSections.push(current);
       }
     };
@@ -552,11 +507,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
   // 「主なスペック…」を直前カードに統合
   const bodySections: BodySection[] = [];
   for (const section of rawSections) {
-    if (
-      section.title &&
-      section.title.includes("主なスペック") &&
-      bodySections.length > 0
-    ) {
+    if (section.title && section.title.includes("主なスペック") && bodySections.length > 0) {
       const prev = bodySections[bodySections.length - 1];
       if (prev.lines.length > 0) {
         prev.lines.push("");
@@ -574,8 +525,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
   const sectionsFromData: BodySection[] =
     Array.isArray(heritage.sections) && heritage.sections.length > 0
       ? heritage.sections.map((sec) => {
-          const raw =
-            typeof sec.summary === "string" ? sec.summary : "";
+          const raw = typeof sec.summary === "string" ? sec.summary : "";
           const lines = raw
             ? raw
                 .replace(/。/g, "。\n")
@@ -591,37 +541,29 @@ export default async function HeritageDetailPage({ params }: PageProps) {
         })
       : [];
 
-  const contentSections =
-    sectionsFromData.length > 0 ? sectionsFromData : bodySections;
+  const contentSections = sectionsFromData.length > 0 ? sectionsFromData : bodySections;
   const hasStructuredContent = contentSections.length > 0;
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-50">
       {/* HERO */}
       <section className="relative border-b border-slate-800/60 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.1),_transparent_60%),radial-gradient(circle_at_bottom,_rgba(30,64,175,0.3),_transparent_60%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.1),_transparent_60%),radial-gradient(circle_at_bottom,_rgba(10,186,181,0.22),_transparent_60%)]" />
 
         <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-10 pt-20 md:px-6 lg:px-8 lg:pt-24">
           <Reveal className="flex-1">
             <div className="max-w-xl space-y-6">
               <div className="inline-flex items-center gap-2 rounded-full border border-slate-700/70 bg-slate-900/70 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-slate-200">
-                <span className="h-1.5 w-1.5 rounded-full bg-rose-400 shadow-[0_0_10px_rgba(248,113,113,0.8)]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-tiffany-400 shadow-[0_0_10px_rgba(10,186,181,0.8)]" />
                 <span>CAR BOUTIQUE HERITAGE</span>
               </div>
 
               <div className="space-y-3">
                 {heritage.maker && (
-                  <p className="text-xs tracking-[0.3em] text-slate-300">
-                    {heritage.maker}
-                  </p>
+                  <p className="text-xs tracking-[0.3em] text-slate-300">{heritage.maker}</p>
                 )}
                 <h1 className="font-serif text-3xl leading-tight text-slate-50 sm:text-4xl lg:text-5xl">
-                  {highlightRich(
-                    title,
-                    combinedHighlightRegex,
-                    carKeywordSet,
-                    keywordSet,
-                  )}
+                  {highlightRich(title, combinedHighlightRegex, carKeywordSet, keywordSet)}
                 </h1>
                 {heritage.periodLabel && (
                   <p className="text-xs uppercase tracking-[0.25em] text-slate-300/80">
@@ -675,12 +617,10 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                   {tags.map((tag) => (
                     <Link
                       key={tag}
-                      href={`/heritage?tag=${encodeURIComponent(
-                        tag,
-                      )}`}
-                      className="inline-flex items-center gap-1 rounded-full border border-slate-700/70 bg-slate-950/80 px-2.5 py-0.5 text-[11px] text-slate-100 transition hover:border-rose-400/80 hover:bg-slate-900 hover:text-rose-50"
+                      href={`/heritage?tag=${encodeURIComponent(tag)}`}
+                      className="inline-flex items-center gap-1 rounded-full border border-slate-700/70 bg-slate-950/80 px-2.5 py-0.5 text-[11px] text-slate-100 transition hover:border-tiffany-300/80 hover:bg-slate-900 hover:text-tiffany-50 hover:underline"
                     >
-                      <span className="h-1 w-1 rounded-full bg-rose-400" />
+                      <span className="h-1 w-1 rounded-full bg-tiffany-400" />
                       <span>{tag}</span>
                     </Link>
                   ))}
@@ -729,35 +669,20 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                               const line = lines[i];
 
                               if (!line) {
-                                blocks.push(
-                                  <div
-                                    key={`spacer-${i}`}
-                                    className="h-2"
-                                  />,
-                                );
+                                blocks.push(<div key={`spacer-${i}`} className="h-2" />);
                                 continue;
                               }
 
-                              if (
-                                line.startsWith(SPEC_HEADING_PREFIX)
-                              ) {
-                                const label = line.slice(
-                                  SPEC_HEADING_PREFIX.length,
-                                );
+                              if (line.startsWith(SPEC_HEADING_PREFIX)) {
+                                const label = line.slice(SPEC_HEADING_PREFIX.length);
                                 const specs: string[] = [];
 
                                 let j = i + 1;
                                 for (; j < lines.length; j++) {
                                   const nextLine = lines[j];
-                                  if (
-                                    nextLine &&
-                                    nextLine.startsWith("・")
-                                  ) {
+                                  if (nextLine && nextLine.startsWith("・")) {
                                     specs.push(nextLine);
-                                  } else if (
-                                    nextLine &&
-                                    nextLine.length === 0
-                                  ) {
+                                  } else if (nextLine && nextLine.length === 0) {
                                     continue;
                                   } else {
                                     break;
@@ -783,31 +708,22 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                                     </p>
                                     {specs.length > 0 && (
                                       <ul className="mt-2 space-y-1">
-                                        {specs.map(
-                                          (specLine, idx) => {
-                                            const text =
-                                              specLine.replace(
-                                                /^・\s*/,
-                                                "",
-                                              );
-                                            return (
-                                              <li
-                                                key={`spec-line-${i}-${idx}`}
-                                                className="flex gap-1"
-                                              >
-                                                <span className="mt-1 block h-[3px] w-[3px] rounded-full bg-slate-400" />
-                                                <span className="text-[13px] leading-relaxed text-slate-900 sm:text-[14px]">
-                                                  {highlightRich(
-                                                    text,
-                                                    combinedHighlightRegex,
-                                                    carKeywordSet,
-                                                    keywordSet,
-                                                  )}
-                                                </span>
-                                              </li>
-                                            );
-                                          },
-                                        )}
+                                        {specs.map((specLine, idx) => {
+                                          const text = specLine.replace(/^・\s*/, "");
+                                          return (
+                                            <li key={`spec-line-${i}-${idx}`} className="flex gap-1">
+                                              <span className="mt-1 block h-[3px] w-[3px] rounded-full bg-slate-400" />
+                                              <span className="text-[13px] leading-relaxed text-slate-900 sm:text-[14px]">
+                                                {highlightRich(
+                                                  text,
+                                                  combinedHighlightRegex,
+                                                  carKeywordSet,
+                                                  keywordSet,
+                                                )}
+                                              </span>
+                                            </li>
+                                          );
+                                        })}
                                       </ul>
                                     )}
                                   </div>,
@@ -839,12 +755,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                 ) : (
                   <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900 sm:p-6 lg:p-7">
                     <p className="whitespace-pre-line text-[15px] leading-relaxed text-slate-900 sm:text-[18px]">
-                      {highlightRich(
-                        formattedBodyText,
-                        combinedHighlightRegex,
-                        carKeywordSet,
-                        keywordSet,
-                      )}
+                      {highlightRich(formattedBodyText, combinedHighlightRegex, carKeywordSet, keywordSet)}
                     </p>
                   </GlassCard>
                 )}
@@ -852,8 +763,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
             ) : (
               <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900 sm:p-6 lg:p-7">
                 <p className="text-[15px] leading-relaxed text-slate-900 sm:text-[18px]">
-                  このHERITAGEの本文は現在準備中です。
-                  ブランドや代表モデルの詳しいストーリーは、順次追加していきます。
+                  このHERITAGEの本文は現在準備中です。ブランドや代表モデルの詳しいストーリーは、順次追加していきます。
                 </p>
               </GlassCard>
             )}
@@ -864,9 +774,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
             <div className="flex flex-col gap-6">
               {(heritage.keyModels?.length ?? 0) > 0 && (
                 <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900">
-                  <h2 className="font-serif text-sm uppercase tracking-[0.25em]">
-                    KEY MODELS
-                  </h2>
+                  <h2 className="font-serif text-sm uppercase tracking-[0.25em]">KEY MODELS</h2>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {heritage.keyModels?.map((model) => (
                       <span
@@ -880,9 +788,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                 </GlassCard>
               )}
 
-              {(hasRelatedCarsBadges ||
-                hasRelatedNews ||
-                hasRelatedGuidesBadges) && (
+              {(hasRelatedCarsBadges || hasRelatedNews || hasRelatedGuidesBadges) && (
                 <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900">
                   <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-900">
                     RELATED CONTENTS
@@ -898,10 +804,8 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                           {heritage.relatedCarSlugs?.map((slug) => (
                             <Link
                               key={slug}
-                              href={`/cars/${encodeURIComponent(
-                                slug,
-                              )}`}
-                              className="rounded-full bg-slate-900/90 px-2.5 py-0.5 text-[11px] text-slate-50 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
+                              href={`/cars/${encodeURIComponent(slug)}`}
+                              className="rounded-full bg-slate-900/90 px-2.5 py-0.5 text-[11px] text-slate-50 underline-offset-2 hover:bg-slate-800 hover:text-tiffany-50 hover:underline"
                             >
                               {slug}
                             </Link>
@@ -919,10 +823,8 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                           {heritage.relatedNewsIds?.map((id) => (
                             <Link
                               key={id}
-                              href={`/news/${encodeURIComponent(
-                                id,
-                              )}`}
-                              className="rounded-full bg-slate-900/90 px-2.5 py-0.5 text-[11px] text-slate-50 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
+                              href={`/news/${encodeURIComponent(id)}`}
+                              className="rounded-full bg-slate-900/90 px-2.5 py-0.5 text-[11px] text-slate-50 underline-offset-2 hover:bg-slate-800 hover:text-tiffany-50 hover:underline"
                             >
                               関連NEWS:id:{id}
                             </Link>
@@ -940,10 +842,8 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                           {heritage.relatedGuideSlugs?.map((slug) => (
                             <Link
                               key={slug}
-                              href={`/guide/${encodeURIComponent(
-                                slug,
-                              )}`}
-                              className="rounded-full bg-slate-900/90 px-2.5 py-0.5 text-[11px] text-slate-50 underline-offset-2 hover:bg-slate-800 hover:text-rose-100 hover:underline"
+                              href={`/guide/${encodeURIComponent(slug)}`}
+                              className="rounded-full bg-slate-900/90 px-2.5 py-0.5 text-[11px] text-slate-50 underline-offset-2 hover:bg-slate-800 hover:text-tiffany-50 hover:underline"
                             >
                               {slug}
                             </Link>
@@ -960,11 +860,9 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                   <div>
                     <Link
                       href="/heritage"
-                      className="inline-flex items-center gap-1 text-[12px] text-slate-900 underline-offset-4 hover:text-rose-700 hover:underline"
+                      className="inline-flex items-center gap-1 text-[12px] text-slate-900 underline-offset-4 hover:text-tiffany-700 hover:underline"
                     >
-                      <span className="text-[11px] text-slate-700">
-                        ←
-                      </span>
+                      <span className="text-[11px] text-slate-700">←</span>
                       HERITAGE一覧に戻る
                     </Link>
                   </div>
@@ -973,14 +871,10 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                     <div className="flex flex-col gap-2 pt-1 text-xs text-slate-900 md:flex-row md:justify-between">
                       {prev ? (
                         <Link
-                          href={`/heritage/${encodeURIComponent(
-                            prev.slug,
-                          )}`}
-                          className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-300/80 bg-slate-50 px-3 py-2 hover:border-rose-400/70 hover:bg-rose-50"
+                          href={`/heritage/${encodeURIComponent(prev.slug)}`}
+                          className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-300/80 bg-slate-50 px-3 py-2 hover:border-tiffany-300/70 hover:bg-tiffany-50"
                         >
-                          <span className="text-[10px] text-slate-500">
-                            PREVIOUS
-                          </span>
+                          <span className="text-[10px] text-slate-500">PREVIOUS</span>
                           <span className="truncate text-[12px] text-slate-900">
                             {(prev as any).titleJa ?? prev.title}
                           </span>
@@ -991,14 +885,10 @@ export default async function HeritageDetailPage({ params }: PageProps) {
 
                       {next ? (
                         <Link
-                          href={`/heritage/${encodeURIComponent(
-                            next.slug,
-                          )}`}
-                          className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-300/80 bg-slate-50 px-3 py-2 hover:border-rose-400/70 hover:bg-rose-50"
+                          href={`/heritage/${encodeURIComponent(next.slug)}`}
+                          className="inline-flex max-w-xs flex-col gap-0.5 rounded-xl border border-slate-300/80 bg-slate-50 px-3 py-2 hover:border-tiffany-300/70 hover:bg-tiffany-50"
                         >
-                          <span className="text-[10px] text-slate-500">
-                            NEXT
-                          </span>
+                          <span className="text-[10px] text-slate-500">NEXT</span>
                           <span className="truncate text-[12px] text-slate-900">
                             {(next as any).titleJa ?? next.title}
                           </span>
@@ -1012,8 +902,6 @@ export default async function HeritageDetailPage({ params }: PageProps) {
               </GlassCard>
             </div>
           </Reveal>
-
-          {/* 本文横の関連CARS / GUIDES は下の専用セクションに */}
         </div>
 
         {/* このHERITAGEに登場する車種 */}
@@ -1041,10 +929,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
             <Reveal delay={80}>
               <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
                 {relatedCarItems.map((car) => (
-                  <Link
-                    key={car.slug}
-                    href={`/cars/${encodeURIComponent(car.slug)}`}
-                  >
+                  <Link key={car.slug} href={`/cars/${encodeURIComponent(car.slug)}`}>
                     <GlassCard
                       as="article"
                       padding="md"
@@ -1062,14 +947,8 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                             </h3>
                           </div>
                           <div className="text-right text-[10px] text-slate-500">
-                            {car.releaseYear && (
-                              <p>{car.releaseYear}年頃</p>
-                            )}
-                            {car.segment && (
-                              <p className="mt-1 line-clamp-1">
-                                {car.segment}
-                              </p>
-                            )}
+                            {car.releaseYear && <p>{car.releaseYear}年頃</p>}
+                            {car.segment && <p className="mt-1 line-clamp-1">{car.segment}</p>}
                           </div>
                         </div>
                         <div className="mt-1 flex flex-wrap gap-1.5 text-[10px] text-slate-500">
@@ -1122,8 +1001,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
 
             <div className="grid gap-4 md:grid-cols-2">
               {relatedGuideItems.map((guide) => {
-                const primaryDate =
-                  guide.publishedAt ?? guide.updatedAt ?? null;
+                const primaryDate = guide.publishedAt ?? guide.updatedAt ?? null;
                 return (
                   <Reveal key={guide.id}>
                     <Link href={`/guide/${encodeURIComponent(guide.slug)}`}>
@@ -1171,22 +1049,18 @@ export default async function HeritageDetailPage({ params }: PageProps) {
             <Reveal className="mt-5 grid gap-4 md:grid-cols-3">
               {moreHeritage.map((item) => {
                 const itemDateLabel =
-                  formatDateLabel(item.publishedAt) ??
-                  formatDateLabel(item.updatedAt);
-                const itemTitle =
-                  (item as any).titleJa ?? item.title ?? item.slug;
+                  formatDateLabel(item.publishedAt) ?? formatDateLabel(item.updatedAt);
+                const itemTitle = (item as any).titleJa ?? item.title ?? item.slug;
                 const itemMaker = item.maker ?? "";
                 const itemTags = item.tags ?? [];
 
                 return (
                   <Link
                     key={item.slug}
-                    href={`/heritage/${encodeURIComponent(
-                      item.slug,
-                    )}`}
+                    href={`/heritage/${encodeURIComponent(item.slug)}`}
                     className="group h-full"
                   >
-                    <GlassCard className="flex h-full flex-col border border-white/40 bg-white/90 p-4 text-slate-900 transition group-hover:border-rose-400/70 group-hover:bg-rose-50">
+                    <GlassCard className="flex h-full flex-col border border-white/40 bg-white/90 p-4 text-slate-900 transition group-hover:border-tiffany-300/70 group-hover:bg-tiffany-50">
                       <p className="text-[11px] tracking-[0.26em] text-slate-500">
                         {itemMaker || "HERITAGE"}
                       </p>
@@ -1194,9 +1068,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                         {itemTitle}
                       </h3>
                       {itemDateLabel && (
-                        <p className="mt-1 text-[11px] text-slate-600">
-                          {itemDateLabel}
-                        </p>
+                        <p className="mt-1 text-[11px] text-slate-600">{itemDateLabel}</p>
                       )}
                       {itemTags.length > 0 && (
                         <div className="mt-2 flex flex-wrap gap-1.5">
@@ -1222,7 +1094,7 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                   asChild
                   variant="outline"
                   size="sm"
-                  className="border-slate-500 bg-slate-950/80 text-[11px] text-slate-50 hover:border-rose-400 hover:bg-slate-900"
+                  className="border-slate-500 bg-slate-950/80 text-[11px] text-slate-50 hover:border-tiffany-300 hover:bg-slate-900"
                 >
                   <Link href="/heritage">HERITAGE一覧をもっと見る</Link>
                 </Button>
