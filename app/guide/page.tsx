@@ -34,9 +34,7 @@ export const metadata: Metadata = {
 const PER_PAGE = 10;
 
 // ────────────────────────────────────────────
-// UI用の静的セクション定義
-//   - ここは「テーマ別の入口」の役割
-//   - 実データ(guides.json)とは独立しているが、リンクを張れば実ガイドにも接続可能
+// UI用の静的セクション定義（テーマ別入口）
 // ────────────────────────────────────────────
 
 type GuideTopic = {
@@ -74,7 +72,7 @@ const guideSections: GuideSection[] = [
         title: "ローン or 一括 どちらが良いか考えるときの基準",
         description:
           "金利 返済期間 売却タイミングを比較しながら判断するときの基本チェックポイント",
-        link: "/guide/loan-or-lump-sum", // 実ガイドのslugに合わせて後で調整
+        link: "/guide/loan-or-lump-sum",
       },
       {
         id: "maintenance-cost-simulation",
@@ -119,21 +117,18 @@ const guideSections: GuideSection[] = [
         title: "ドラレコを選ぶときに外したくない3つのポイント",
         description:
           "前後カメラ 録画画質 取付方法 など ドラレコ選びで最低限チェックしておきたいポイントの整理",
-        // link: "/guide/xxxx" // 実ガイドが確定したら slug を入れる
       },
       {
         id: "childseat-basic",
         title: "チャイルドシート選びの「安全＋使いやすさ」チェック",
         description:
           "適合年齢 ISOFIXの有無 取付けやすさ など 日常の使い勝手と安全性を両立させるための基本",
-        // link: "/guide/xxxx"
       },
       {
         id: "washgoods-basic",
         title: "洗車グッズは何から揃える？最低限セットの考え方",
         description:
           "シャンプー クロス コーティング剤 など 「これだけあれば困らない」スタートセットの組み方",
-        // link: "/guide/xxxx"
       },
     ],
   },
@@ -155,7 +150,6 @@ type PageProps = {
   searchParams?: SearchParams;
 };
 
-// 日付表示用（ISO文字列→YYYY/MM/DD）
 function formatDate(iso?: string | null): string {
   if (!iso) return "";
   const d = new Date(iso);
@@ -166,10 +160,7 @@ function formatDate(iso?: string | null): string {
   return `${y}/${m}/${day}`;
 }
 
-// ガイドカテゴリ表示用（一覧用のざっくりラベル）
-function mapGuideCategoryLabel(
-  category?: GuideItem["category"] | null,
-): string {
+function mapGuideCategoryLabel(category?: GuideItem["category"] | null): string {
   switch (category) {
     case "MONEY":
       return "お金・維持費";
@@ -184,7 +175,6 @@ function mapGuideCategoryLabel(
   }
 }
 
-// searchParams→内部用文字列への変換
 function normalize(value: string | undefined | null): string {
   return (value ?? "").trim().toLowerCase();
 }
@@ -194,9 +184,6 @@ function toSingle(value: string | string[] | undefined): string {
   return value ?? "";
 }
 
-// 並び替えに使うタイムスタンプ
-// - publishedAt 優先
-// - なければ updatedAt
 function getGuideTimestamp(guide: GuideItem): number {
   if (guide.publishedAt) {
     const t = new Date(guide.publishedAt).getTime();
@@ -209,9 +196,6 @@ function getGuideTimestamp(guide: GuideItem): number {
   return 0;
 }
 
-// 表示用の「主な日付」
-// - publishedAt があればそれ
-// - なければ updatedAt
 function getGuidePrimaryDate(guide: GuideItem): string | null {
   if (guide.publishedAt) return guide.publishedAt;
   if (guide.updatedAt) return guide.updatedAt;
@@ -233,7 +217,6 @@ function buildQueryString(params: QueryParams) {
   if (params.category) sp.set("category", params.category);
   if (params.tag) sp.set("tag", params.tag);
   if (params.sort && params.sort !== "newest") sp.set("sort", params.sort);
-  // page=1 は省略
   if (params.page && params.page !== "1") sp.set("page", params.page);
 
   const qs = sp.toString();
@@ -241,13 +224,12 @@ function buildQueryString(params: QueryParams) {
 }
 
 // ────────────────────────────────────────────
-// Page コンポーネント
+// Page
 // ────────────────────────────────────────────
 
 export default async function GuidePage({ searchParams }: PageProps) {
   const allGuides = await getAllGuides();
 
-  // searchParams からフィルタ条件を抽出
   const rawQ = toSingle(searchParams?.q);
   const q = normalize(rawQ);
   const categoryFilter = toSingle(searchParams?.category).trim();
@@ -257,7 +239,6 @@ export default async function GuidePage({ searchParams }: PageProps) {
 
   const totalGuides = allGuides.length;
 
-  // 実データからカテゴリとタグの一覧を生成
   const categories = Array.from(
     new Set(
       allGuides
@@ -272,21 +253,16 @@ export default async function GuidePage({ searchParams }: PageProps) {
   const tags = Array.from(
     new Set(
       allGuides.flatMap((g) => {
-        const meta = g as GuideItem & { tags?: string[] | null };
-        return meta.tags ?? [];
+        const meta = g as GuideItem & { tags?: unknown };
+        const arr = Array.isArray(meta.tags) ? meta.tags : [];
+        return arr.filter((t): t is string => typeof t === "string" && t.trim().length > 0);
       }),
     ),
   ).sort((a, b) => a.localeCompare(b, "ja"));
 
-  // フィルタ適用
   const filteredGuides = allGuides.filter((guide) => {
-    // キーワード検索
     if (q) {
-      const meta = guide as GuideItem & {
-        tags?: string[] | null;
-        body?: string | null;
-      };
-
+      const meta = guide as GuideItem & { tags?: string[] | null; body?: string | null };
       const haystack = [
         guide.title,
         guide.summary ?? "",
@@ -300,30 +276,19 @@ export default async function GuidePage({ searchParams }: PageProps) {
       if (!haystack.includes(q)) return false;
     }
 
-    // カテゴリ絞り込み
-    if (categoryFilter && guide.category !== categoryFilter) {
-      return false;
-    }
+    if (categoryFilter && guide.category !== categoryFilter) return false;
 
-    // タグ絞り込み
     if (tagFilter) {
       const meta = guide as GuideItem & { tags?: string[] | null };
-      if (!(meta.tags ?? []).includes(tagFilter)) {
-        return false;
-      }
+      if (!(meta.tags ?? []).includes(tagFilter)) return false;
     }
 
     return true;
   });
 
-  // ソート適用
   const sortedGuides = [...filteredGuides].sort((a, b) => {
-    if (sortKey === "oldest") {
-      return getGuideTimestamp(a) - getGuideTimestamp(b);
-    }
-    if (sortKey === "title") {
-      return a.title.localeCompare(b.title, "ja");
-    }
+    if (sortKey === "oldest") return getGuideTimestamp(a) - getGuideTimestamp(b);
+    if (sortKey === "title") return a.title.localeCompare(b.title, "ja");
     if (sortKey === "category") {
       const ca = mapGuideCategoryLabel(a.category);
       const cb = mapGuideCategoryLabel(b.category);
@@ -331,29 +296,18 @@ export default async function GuidePage({ searchParams }: PageProps) {
       if (diff !== 0) return diff;
       return getGuideTimestamp(b) - getGuideTimestamp(a);
     }
-
-    // default: newest
     return getGuideTimestamp(b) - getGuideTimestamp(a);
   });
 
   const filteredCount = sortedGuides.length;
   const hasFilter =
-    Boolean(q) ||
-    Boolean(categoryFilter) ||
-    Boolean(tagFilter) ||
-    sortKey !== "newest";
+    Boolean(q) || Boolean(categoryFilter) || Boolean(tagFilter) || sortKey !== "newest";
 
-  // ページング（column/cars と同じ考え方で 10 件ずつ）
   const requestedPage = Number(rawPage || "1") || 1;
   const totalFiltered = filteredCount;
-  const maxPage =
-    totalFiltered === 0 ? 1 : Math.max(1, Math.ceil(totalFiltered / PER_PAGE));
+  const maxPage = totalFiltered === 0 ? 1 : Math.max(1, Math.ceil(totalFiltered / PER_PAGE));
   const currentPage =
-    requestedPage < 1
-      ? 1
-      : requestedPage > maxPage
-      ? maxPage
-      : requestedPage;
+    requestedPage < 1 ? 1 : requestedPage > maxPage ? maxPage : requestedPage;
 
   const startIndex = (currentPage - 1) * PER_PAGE;
   const pageGuides = sortedGuides.slice(startIndex, startIndex + PER_PAGE);
@@ -369,10 +323,7 @@ export default async function GuidePage({ searchParams }: PageProps) {
     <main className="min-h-screen bg-site text-text-main">
       <div className="container relative max-w-7xl pb-28 pt-24">
         {/* パンくず */}
-        <nav
-          aria-label="パンくずリスト"
-          className="mb-6 text-xs text-slate-500"
-        >
+        <nav aria-label="パンくずリスト" className="mb-6 text-xs text-slate-500">
           <Link href="/" className="hover:text-slate-800">
             HOME
           </Link>
@@ -399,21 +350,17 @@ export default async function GuidePage({ searchParams }: PageProps) {
 
           <Reveal delay={200}>
             <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-              <p className="max-w-xl text-xsど font-medium leading-loose text-text-sub sm:text-sm">
+              <p className="max-w-xl text-xs font-medium leading-loose text-text-sub sm:text-sm">
                 車に関するお得な情報をコンパクトに
               </p>
 
-              {/* 関連コンテンツへの導線（Glassボタン） */}
               <div className="flex flex-col items-start gap-3 text-[11px] sm:items-end">
-                <Button
-                  asChild
-                  variant="glass"
-                  size="sm"
-                  magnetic
-                  className="rounded-full px-5 py-2 tracking-[0.2em]"
+                <Link
+                  href="/column"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-2 text-[11px] font-semibold tracking-[0.2em] text-slate-800 shadow-sm transition hover:border-tiffany-200 hover:bg-tiffany-50 hover:text-tiffany-700"
                 >
-                  <Link href="/column">VIEW COLUMNS</Link>
-                </Button>
+                  VIEW COLUMNS
+                </Link>
                 <p className="max-w-xs text-[10px] leading-relaxed text-slate-500">
                   実際のトラブル事例や ブランド 技術の背景は COLUMN セクション側で補足
                 </p>
@@ -421,21 +368,20 @@ export default async function GuidePage({ searchParams }: PageProps) {
             </div>
           </Reveal>
 
-          {/* GUIDE内ナビ（アンカーリンク＋件数表示） */}
+          {/* GUIDE内ナビ */}
           <Reveal delay={260}>
-            <div className="mt-4 flex flex-col gap-3 rounded-2xl border border-white/70 bg白/80 px-4 py-3 shadow-soft sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <div className="mt-4 flex flex-col gap-3 rounded-2xl border border-white/70 bg-white/80 px-4 py-3 shadow-soft sm:flex-row sm:items-center sm:justify-between sm:px-6">
               <div className="flex flex-col gap-1 text-[10px] text-slate-500 sm:flex-row sm:items-center sm:gap-3">
                 <span className="rounded-full bg-slate-50 px-2 py-0.5 text-slate-400">
                   GUIDE NAV
                 </span>
                 <span className="tracking-[0.12em]">
                   全 {totalGuides} 本中{" "}
-                  <span className="font-semibold text-slate-800">
-                    {filteredCount}
-                  </span>{" "}
+                  <span className="font-semibold text-slate-800">{filteredCount}</span>{" "}
                   本を表示中
                 </span>
               </div>
+
               <div className="flex flex-wrap gap-2 text-[10px]">
                 {guideSections.map((section) => (
                   <a
@@ -445,9 +391,7 @@ export default async function GuidePage({ searchParams }: PageProps) {
                   >
                     <span className="h-1.5 w-1.5 rounded-full bg-tiffany-400" />
                     <span>{section.subLabel}</span>
-                    <span className="text-[9px] text-slate-400">
-                      ({section.topics.length})
-                    </span>
+                    <span className="text-[9px] text-slate-400">({section.topics.length})</span>
                   </a>
                 ))}
               </div>
@@ -455,11 +399,10 @@ export default async function GuidePage({ searchParams }: PageProps) {
           </Reveal>
         </header>
 
-        {/* ── フィルタフォーム（検索/カテゴリ/タグ/ソート） ───────────── */}
+        {/* ── フィルタフォーム ───────────────────────── */}
         <section className="mb-12 rounded-3xl border border-slate-200/70 bg-white/80 px-4 py-4 shadow-soft-card sm:px-6 sm:py-5">
           <form className="flex flex-col gap-4 sm:gap-5" method="GET">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              {/* キーワード検索 */}
               <div className="w-full sm:max-w-md">
                 <label
                   htmlFor="q"
@@ -472,11 +415,10 @@ export default async function GuidePage({ searchParams }: PageProps) {
                   name="q"
                   defaultValue={rawQ}
                   placeholder="例: 維持費 ローン 売却タイミング など"
-                  className="w-full rounded-full border border-slate-200 bg-white px-4 py-2 text-xs text-slate-900 outline-none ring-0 placeholder:text-slate-300 focus:border-tiffany-400 focus:ring-1 focus:ring-tiffany-300"
+                  className="w-full rounded-full border border-slate-200 bg-white px-4 py-2 text-xs text-slate-900 outline-none placeholder:text-slate-300 focus:border-tiffany-400 focus:ring-1 focus:ring-tiffany-300"
                 />
               </div>
 
-              {/* ソート */}
               <div className="w-full sm:w-52">
                 <label
                   htmlFor="sort"
@@ -489,7 +431,7 @@ export default async function GuidePage({ searchParams }: PageProps) {
                     id="sort"
                     name="sort"
                     defaultValue={sortKey || "newest"}
-                    className="w-full appearance-none rounded-full border border-slate-200 bg-white px-4 py-2 pr-8 text-[11px] text-slate-800 outline-none ring-0 focus:border-tiffany-400 focus:ring-1 focus:ring-tiffany-300"
+                    className="w-full appearance-none rounded-full border border-slate-200 bg-white px-4 py-2 pr-8 text-[11px] text-slate-800 outline-none focus:border-tiffany-400 focus:ring-1 focus:ring-tiffany-300"
                   >
                     <option value="newest">新しい順</option>
                     <option value="oldest">古い順</option>
@@ -503,7 +445,6 @@ export default async function GuidePage({ searchParams }: PageProps) {
               </div>
             </div>
 
-            {/* カテゴリ / タグフィルタ */}
             <div className="grid gap-3 text-[11px] sm:grid-cols-2">
               <div>
                 <label
@@ -517,7 +458,7 @@ export default async function GuidePage({ searchParams }: PageProps) {
                     id="category"
                     name="category"
                     defaultValue={categoryFilter || ""}
-                    className="w-full appearance-none rounded-full border border-slate-200 bg-white px-4 py-2 pr-8 text-[11px] text-slate-800 outline-none ring-0 focus:border-tiffany-400 focus:ring-1 focus:ring-tiffany-300"
+                    className="w-full appearance-none rounded-full border border-slate-200 bg-white px-4 py-2 pr-8 text-[11px] text-slate-800 outline-none focus:border-tiffany-400 focus:ring-1 focus:ring-tiffany-300"
                   >
                     <option value="">すべて</option>
                     {categories.map((category) => (
@@ -552,7 +493,7 @@ export default async function GuidePage({ searchParams }: PageProps) {
                       id="tag"
                       name="tag"
                       defaultValue={tagFilter || ""}
-                      className="w-full appearance-none rounded-full border border-slate-200 bg-white px-4 py-2 pr-8 text-[11px] text-slate-800 outline-none ring-0 focus:border-tiffany-400 focus:ring-1 focus:ring-tiffany-300"
+                      className="w-full appearance-none rounded-full border border-slate-200 bg-white px-4 py-2 pr-8 text-[11px] text-slate-800 outline-none focus:border-tiffany-400 focus:ring-1 focus:ring-tiffany-300"
                     >
                       <option value="">すべて</option>
                       {tags.map((tag) => (
@@ -572,11 +513,9 @@ export default async function GuidePage({ searchParams }: PageProps) {
               </div>
             </div>
 
-            {/* 適用ボタン＋ステータス */}
             <div className="mt-2 flex justify-end">
               <Button
                 type="submit"
-                variant="subtle"
                 size="sm"
                 className="rounded-full px-4 py-2 text-[11px] tracking-[0.16em]"
               >
@@ -588,10 +527,8 @@ export default async function GuidePage({ searchParams }: PageProps) {
               <div className="flex flex-wrap items-center gap-2">
                 <span>
                   表示中:{" "}
-                  <span className="font-semibold text-slate-800">
-                    {filteredCount}
-                  </span>{" "}
-                  / {totalGuides} 本
+                  <span className="font-semibold text-slate-800">{filteredCount}</span> /{" "}
+                  {totalGuides} 本
                 </span>
                 {hasFilter && (
                   <span className="inline-flex items-center gap-1 rounded-full bg-slate-50 px-2 py-0.5">
@@ -600,6 +537,7 @@ export default async function GuidePage({ searchParams }: PageProps) {
                   </span>
                 )}
               </div>
+
               {hasFilter && (
                 <Link
                   href="/guide"
@@ -612,170 +550,140 @@ export default async function GuidePage({ searchParams }: PageProps) {
           </form>
         </section>
 
-        {/* ── Bento Grid: テーマ別ガイド入口 ───────────────────── */}
+        {/* ── Bento Grid: テーマ別入口 ───────────────────── */}
         <section className="grid auto-rows-min grid-cols-1 gap-4 md:grid-cols-12 md:gap-6 lg:gap-8">
           {guideSections.map((section, index) => {
             const delay = 320 + index * 120;
 
-            const accentStyles: Record<
-              NonNullable<GuideSection["accent"]>,
-              string
-            > = {
+            const accentStyles: Record<NonNullable<GuideSection["accent"]>, string> = {
               default: "bg-white/80 border-white/60",
-              tiffany:
-                "bg-gradient-to-br from-tiffany-50 to-white border-tiffany-100",
-              obsidian:
-                "bg-slate-900 border-slate-800 text-white shadow-soft-strong",
+              tiffany: "bg-gradient-to-br from-tiffany-50 to-white border-tiffany-100",
+              obsidian: "bg-slate-900 border-slate-800 text-white",
               glass: "bg-white/40 backdrop-blur-md border-white/50",
             };
 
             const accent = section.accent ?? "default";
-            const textMainColor =
-              accent === "obsidian" ? "text-white" : "text-slate-900";
-            const textSubColor =
-              accent === "obsidian" ? "text-slate-300" : "text-text-sub";
+            const textMainColor = accent === "obsidian" ? "text-white" : "text-slate-900";
+            const textSubColor = accent === "obsidian" ? "text-slate-300" : "text-text-sub";
 
             return (
-              <div
-                key={section.id}
-                id={section.id}
-                className={section.gridArea ?? "md:col-span-6"}
-              >
+              <div key={section.id} id={section.id} className={section.gridArea ?? "md:col-span-6"}>
                 <Reveal delay={delay} className="h-full">
                   <GlassCard
                     as="article"
                     padding="none"
                     interactive
-                    className={`
-                      group relative flex h-full flex-col justify-between overflow-hidden p-6 sm:p-8 transition-all duration-500
-                      ${accentStyles[accent]}
-                    `}
+                    className={`group relative flex h-full flex-col justify-between overflow-hidden p-6 sm:p-8 transition-all duration-500 ${accentStyles[accent]}`}
                   >
-                    {/* ホバー時の光 */}
                     <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                       <div className="absolute -right-24 -top-16 h-56 w-56 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.25),_transparent_65%)] blur-3xl" />
                     </div>
 
-                    {/* 背景アイコン（大きな透かし） */}
                     <div
                       className={`pointer-events-none absolute -bottom-4 -right-4 select-none text-[120px] font-serif leading-none opacity-[0.05] sm:text-[150px] ${textMainColor}`}
                     >
                       {section.icon}
                     </div>
 
-                    {/* コンテンツ本体 */}
                     <div className="relative z-10 space-y-4">
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex flex-col">
                           <span
                             className={`text-[10px] font-bold uppercase tracking-[0.22em] ${
-                              accent === "obsidian"
-                                ? "text-tiffany-300"
-                                : "text-tiffany-700"
+                              accent === "obsidian" ? "text-tiffany-300" : "text-tiffany-700"
                             }`}
                           >
                             {section.subLabel}
                           </span>
-                          <h2
-                            className={`mt-2 serif-heading text-xl font-medium sm:text-2xl ${textMainColor}`}
-                          >
+                          <h2 className={`mt-2 serif-heading text-xl font-medium sm:text-2xl ${textMainColor}`}>
                             {section.label}
                           </h2>
                         </div>
-                        {/* セクション内の件数バッジ */}
+
                         <span
                           className={`hidden rounded-full px-3 py-1 text-[10px] tracking-[0.16em] sm:inline-flex ${
-                            accent === "obsidian"
-                              ? "bg-white/10 text-slate-100"
-                              : "bg-white/70 text-slate-600"
+                            accent === "obsidian" ? "bg-white/10 text-slate-100" : "bg-white/70 text-slate-600"
                           }`}
                         >
                           {section.topics.length} GUIDES
                         </span>
                       </div>
 
-                      <p
-                        className={`max-w-md text-[11px] leading-relaxed ${textSubColor}`}
-                      >
+                      <p className={`max-w-md text-[11px] leading-relaxed ${textSubColor}`}>
                         {section.description}
                       </p>
 
-                      {/* 各トピック→対応する実ガイドへの導線 */}
                       {section.topics.length > 0 && (
                         <ul className="mt-4 space-y-3 text-[11px]">
-                          {section.topics.map((topic, topicIndex) => {
-                            const content = (
-                              <>
-                                <div className="mb-0.5 flex items-center gap-2">
-                                  <span className="text-[9px] tracking-[0.18em] text-slate-400">
-                                    STEP {topicIndex + 1}
-                                  </span>
-                                  <p
-                                    className={`font-semibold ${
-                                      accent === "obsidian"
-                                        ? "text-slate-50"
-                                        : "text-slate-800"
-                                    }`}
-                                  >
-                                    {topic.title}
-                                  </p>
-                                </div>
-                                <p
-                                  className={`text-[11px] leading-relaxed ${
-                                    accent === "obsidian"
-                                      ? "text-slate-300"
-                                      : "text-text-sub"
-                                  }`}
-                                >
-                                  {topic.description}
-                                </p>
-                              </>
-                            );
-
-                            return (
-                              <li
-                                key={topic.id}
-                                className="flex items-start gap-2"
-                              >
-                                <span
-                                  className={`mt-[7px] h-[3px] w-8 rounded-full ${
-                                    accent === "obsidian"
-                                      ? "bg-tiffany-400/80"
-                                      : "bg-tiffany-300"
-                                  }`}
-                                />
-                                <div>
-                                  {topic.link ? (
-                                    <Link
-                                      href={topic.link}
-                                      className="group/link inline-block"
-                                    >
-                                      <div className="inline-flex items-end gap-1">
-                                        <span className="relative">
-                                          {/* 下線アニメーション */}
-                                          <span className="absolute -bottom-0.5 left-0 h-[1px] w-full origin-left scale-x-0 bg-tiffany-400 transition-transform duration-300 group-hover/link:scale-x-100" />
-                                          <span className="relative">
-                                            {content}
-                                          </span>
+                          {section.topics.map((topic, topicIndex) => (
+                            <li key={topic.id} className="flex items-start gap-2">
+                              <span
+                                className={`mt-[7px] h-[3px] w-8 rounded-full ${
+                                  accent === "obsidian" ? "bg-tiffany-400/80" : "bg-tiffany-300"
+                                }`}
+                              />
+                              <div className="w-full">
+                                {topic.link ? (
+                                  <Link href={topic.link} className="group/link block">
+                                    <div className="space-y-1">
+                                      <div className="flex items-center gap-2">
+                                        <span className="text-[9px] tracking-[0.18em] text-slate-400">
+                                          STEP {topicIndex + 1}
                                         </span>
                                         <span
-                                          className={`mb-0.5 text-[9px] ${
-                                            accent === "obsidian"
-                                              ? "text-tiffany-300"
-                                              : "text-tiffany-500"
+                                          className={`text-[9px] ${
+                                            accent === "obsidian" ? "text-tiffany-300" : "text-tiffany-500"
                                           }`}
                                         >
                                           → READ GUIDE
                                         </span>
                                       </div>
-                                    </Link>
-                                  ) : (
-                                    content
-                                  )}
-                                </div>
-                              </li>
-                            );
-                          })}
+
+                                      <p
+                                        className={`font-semibold ${
+                                          accent === "obsidian" ? "text-slate-50" : "text-slate-800"
+                                        }`}
+                                      >
+                                        {topic.title}
+                                      </p>
+
+                                      <p
+                                        className={`text-[11px] leading-relaxed ${
+                                          accent === "obsidian" ? "text-slate-300" : "text-text-sub"
+                                        }`}
+                                      >
+                                        {topic.description}
+                                      </p>
+
+                                      <div className="h-[1px] w-full origin-left scale-x-0 bg-tiffany-400 transition-transform duration-300 group-hover/link:scale-x-100" />
+                                    </div>
+                                  </Link>
+                                ) : (
+                                  <div className="space-y-1">
+                                    <div className="flex items-center gap-2">
+                                      <span className="text-[9px] tracking-[0.18em] text-slate-400">
+                                        STEP {topicIndex + 1}
+                                      </span>
+                                    </div>
+                                    <p
+                                      className={`font-semibold ${
+                                        accent === "obsidian" ? "text-slate-50" : "text-slate-800"
+                                      }`}
+                                    >
+                                      {topic.title}
+                                    </p>
+                                    <p
+                                      className={`text-[11px] leading-relaxed ${
+                                        accent === "obsidian" ? "text-slate-300" : "text-text-sub"
+                                      }`}
+                                    >
+                                      {topic.description}
+                                    </p>
+                                  </div>
+                                )}
+                              </div>
+                            </li>
+                          ))}
                         </ul>
                       )}
                     </div>
@@ -786,14 +694,12 @@ export default async function GuidePage({ searchParams }: PageProps) {
           })}
         </section>
 
-        {/* ── 実ガイド一覧（動的データ） ──────────────────────── */}
+        {/* ── 実ガイド一覧 ─────────────────────────── */}
         <section className="mt-16 sm:mt-20">
           <Reveal delay={640}>
             <div className="mb-4 flex flex-wrap items-baseline justify-between gap-3">
               <div>
-                <p className="text-[10px] font-bold tracking-[0.22em] text-slate-500">
-                  GUIDE INDEX
-                </p>
+                <p className="text-[10px] font-bold tracking-[0.22em] text-slate-500">GUIDE INDEX</p>
                 <h2 className="serif-heading mt-2 text-lg text-slate-900 sm:text-xl">
                   すべての実用ガイド一覧
                 </h2>
@@ -846,20 +752,17 @@ export default async function GuidePage({ searchParams }: PageProps) {
                 })}
               </div>
 
-              {/* ページネーション（10件ずつ） */}
+              {/* ページネーション */}
               {totalFiltered > 0 && maxPage > 1 && (
                 <div className="mt-8 flex justify-center">
                   <nav
-                    className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/90 px-3 py-1.5 text-[11px] shadow-soft-sm"
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/90 px-3 py-1.5 text-[11px] shadow-soft"
                     aria-label="GUIDE pagination"
                   >
-                    {/* PREV */}
                     <Link
                       href={`/guide${buildQueryString({
                         ...baseQuery,
-                        page: String(
-                          currentPage > 1 ? currentPage - 1 : currentPage,
-                        ),
+                        page: String(currentPage > 1 ? currentPage - 1 : currentPage),
                       })}`}
                       aria-disabled={currentPage === 1}
                       className={
@@ -871,17 +774,13 @@ export default async function GuidePage({ searchParams }: PageProps) {
                       ← PREV
                     </Link>
 
-                    {/* ページ番号 */}
                     {Array.from({ length: maxPage }).map((_, index) => {
                       const page = index + 1;
                       const isActive = page === currentPage;
                       return (
                         <Link
                           key={page}
-                          href={`/guide${buildQueryString({
-                            ...baseQuery,
-                            page: String(page),
-                          })}`}
+                          href={`/guide${buildQueryString({ ...baseQuery, page: String(page) })}`}
                           className={
                             isActive
                               ? "min-w-[32px] rounded-full bg-slate-900 px-2 py-1 text-center text-white"
@@ -893,13 +792,10 @@ export default async function GuidePage({ searchParams }: PageProps) {
                       );
                     })}
 
-                    {/* NEXT */}
                     <Link
                       href={`/guide${buildQueryString({
                         ...baseQuery,
-                        page: String(
-                          currentPage < maxPage ? currentPage + 1 : currentPage,
-                        ),
+                        page: String(currentPage < maxPage ? currentPage + 1 : currentPage),
                       })}`}
                       aria-disabled={currentPage === maxPage}
                       className={
@@ -917,10 +813,10 @@ export default async function GuidePage({ searchParams }: PageProps) {
           )}
         </section>
 
-        {/* ── 下部CTA：GUIDEと他セクションの関係性を明示 ───────────── */}
+        {/* ── 下部CTA ─────────────────────────────── */}
         <section className="mt-24 lg:mt-28">
           <Reveal delay={800}>
-            <div className="relative overflow-hidden rounded-3xl bg-slate-900 px-6 py-12 text-center shadow-soft-strong sm:px-12 sm:py-16">
+            <div className="relative overflow-hidden rounded-3xl bg-slate-900 px-6 py-12 text-center shadow-soft sm:px-12 sm:py-16">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(10,186,181,0.36),_transparent_60%),radial-gradient(circle_at_bottom_left,_rgba(15,23,42,0.85),_transparent_65%)]" />
               <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.04]" />
 
@@ -931,32 +827,28 @@ export default async function GuidePage({ searchParams }: PageProps) {
                 <h3 className="serif-heading mb-6 text-2xl text-white sm:text-3xl">
                   ガイドと NEWS COLUMN CARS の関係
                 </h3>
+
                 <div className="flex flex-wrap justify-center gap-4">
-                  <Button
-                    asChild
-                    variant="primary"
-                    size="sm"
-                    magnetic
-                    className="min-w-[160px] rounded-full px-6 py-3 text-[11px] tracking-[0.18em]"
+                  <Link
+                    href="/cars"
+                    className="inline-flex min-w-[160px] items-center justify-center rounded-full bg-white px-6 py-3 text-[11px] font-semibold tracking-[0.18em] text-slate-900 transition hover:bg-tiffany-50 hover:text-tiffany-800"
                   >
-                    <Link href="/cars">CAR DATABASE</Link>
-                  </Button>
-                  <Button
-                    asChild
-                    variant="glass"
-                    size="sm"
-                    className="min-w-[160px] rounded-full border border-white/30 bg-white/5 px-6 py-3 text-[11px] font-semibold tracking-[0.18em] text-slate-100 backdrop-blur-sm hover:bg-white/10"
+                    CAR DATABASE
+                  </Link>
+
+                  <Link
+                    href="/column"
+                    className="inline-flex min-w-[160px] items-center justify-center rounded-full border border-white/30 bg-white/5 px-6 py-3 text-[11px] font-semibold tracking-[0.18em] text-slate-100 backdrop-blur-sm transition hover:bg-white/10"
                   >
-                    <Link href="/column">READ COLUMNS</Link>
-                  </Button>
-                  <Button
-                    asChild
-                    variant="subtle"
-                    size="sm"
-                    className="min-w-[160px] rounded-full border border-white/10 bg-transparent px-6 py-3 text-[11px] tracking-[0.18em] text-slate-200 hover:bg-white/5"
+                    READ COLUMNS
+                  </Link>
+
+                  <Link
+                    href="/news"
+                    className="inline-flex min-w-[160px] items-center justify-center rounded-full border border-white/10 bg-transparent px-6 py-3 text-[11px] tracking-[0.18em] text-slate-200 transition hover:bg-white/5"
                   >
-                    <Link href="/news">NEWS FEED</Link>
-                  </Button>
+                    NEWS FEED
+                  </Link>
                 </div>
               </div>
             </div>
