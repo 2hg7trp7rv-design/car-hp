@@ -178,6 +178,19 @@ function resolveMonetizeConfig(
         },
       };
 
+    case "sell_ikkatsu_phone":
+      return {
+        heading: "電話を減らして、一括査定で相場を先に掴む",
+        body: [
+          "電話が気になる場合でも、まずは相場を把握してから次の動きを決めると判断が早くなります。",
+          "一括査定で価格帯を押さえておけば、やり取りする相手を絞りやすくなります。",
+        ],
+        primaryCta: {
+          label: "一括査定で買取相場をまとめて見る",
+          href: links.carSellIkkatsuUrl,
+        },
+      };
+
     // ─── Bピラー: 保険・車検 ─────────────────────────
     case "insurance_compare_core":
       return {
