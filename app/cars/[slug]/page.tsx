@@ -5,6 +5,11 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { getAllCars, getCarBySlug, type CarItem } from "@/lib/cars";
+import { getAllGuides, type GuideItem } from "@/lib/guides";
+import { getAllColumns, type ColumnItem } from "@/lib/columns";
+import { getAllHeritage, type HeritageItem } from "@/lib/heritage";
+import { GlassCard } from "@/components/GlassCard";
+import { Reveal } from "@/components/animation/Reveal";
 
 export const runtime = "edge";
 
@@ -48,6 +53,18 @@ type ExtendedCarItem = CarItem & {
 type MultilineTextProps = {
   text: string;
   variant: "hero" | "card";
+};
+
+type GuideWithMeta = GuideItem & {
+  relatedCarSlugs?: (string | null)[];
+};
+
+type ColumnWithMeta = ColumnItem & {
+  relatedCarSlugs?: (string | null)[];
+};
+
+type HeritageWithMeta = HeritageItem & {
+  keyCarSlugs?: (string | null)[];
 };
 
 // テキストを読みやすい段落に分割
@@ -157,6 +174,67 @@ function formatKg(value?: number): string | null {
   return `${value.toLocaleString()}kg`;
 }
 
+function formatDate(value?: string | null): string {
+  if (!value) return "";
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return value ?? "";
+  const y = d.getFullYear();
+  const m = `${d.getMonth() + 1}`.padStart(2, "0");
+  const day = `${d.getDate()}`.padStart(2, "0");
+  return `${y}/${m}/${day}`;
+}
+
+function pickGuidesForCar(
+  carSlug: string,
+  guides: GuideWithMeta[],
+  limit = 4,
+): GuideWithMeta[] {
+  const target = carSlug.trim();
+  if (!target) return [];
+  const filtered = guides.filter((g) =>
+    (g.relatedCarSlugs ?? [])
+      .filter(
+        (s): s is string => typeof s === "string" && s.trim().length > 0,
+      )
+      .includes(target),
+  );
+  return filtered.slice(0, limit);
+}
+
+function pickColumnsForCar(
+  carSlug: string,
+  columns: ColumnWithMeta[],
+  limit = 4,
+): ColumnWithMeta[] {
+  const target = carSlug.trim();
+  if (!target) return [];
+  const filtered = columns.filter((c) =>
+    (c.relatedCarSlugs ?? [])
+      .filter(
+        (s): s is string => typeof s === "string" && s.trim().length > 0,
+      )
+      .includes(target),
+  );
+  return filtered.slice(0, limit);
+}
+
+function pickHeritageForCar(
+  carSlug: string,
+  heritageList: HeritageWithMeta[],
+): HeritageWithMeta | null {
+  const target = carSlug.trim();
+  if (!target) return null;
+  const hit =
+    heritageList.find((h) =>
+      (h.keyCarSlugs ?? [])
+        .filter(
+          (s): s is string => typeof s === "string" && s.trim().length > 0,
+        )
+        .includes(target),
+    ) ?? null;
+  return hit;
+}
+
 // メタデータ
 export async function generateMetadata(
   { params }: PageProps,
@@ -187,11 +265,26 @@ export async function generateMetadata(
 
 // メインページ
 export default async function CarDetailPage({ params }: PageProps) {
-  const car = (await getCarBySlug(params.slug)) as ExtendedCarItem | null;
+  const [carRaw, allGuidesRaw, allColumnsRaw, allHeritageRaw] =
+    await Promise.all([
+      getCarBySlug(params.slug),
+      getAllGuides(),
+      getAllColumns(),
+      getAllHeritage(),
+    ]);
 
-  if (!car) {
+  if (!carRaw) {
     notFound();
   }
+
+  const car = carRaw as ExtendedCarItem;
+  const guidesWithMeta = allGuidesRaw as GuideWithMeta[];
+  const columnsWithMeta = allColumnsRaw as ColumnWithMeta[];
+  const heritageWithMeta = allHeritageRaw as HeritageWithMeta[];
+
+  const relatedGuides = pickGuidesForCar(car.slug, guidesWithMeta);
+  const relatedColumns = pickColumnsForCar(car.slug, columnsWithMeta);
+  const relatedHeritage = pickHeritageForCar(car.slug, heritageWithMeta);
 
   const title = formatMakerAndName(car);
   const zeroTo100 = formatZeroTo100(car.zeroTo100);
@@ -615,6 +708,164 @@ export default async function CarDetailPage({ params }: PageProps) {
                 ))}
               </ul>
             )}
+          </section>
+        )}
+
+        {/* この車を例にしている実用ガイド */}
+        {relatedGuides.length > 0 && (
+          <section className="mb-10">
+            <Reveal>
+              <div className="mb-4 flex items-baseline justify-between gap-2">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                    GUIDE INDEX
+                  </p>
+                  <h2 className="serif-heading mt-1 text-sm font-medium text-slate-900 sm:text-base">
+                    この車を例にしている実用ガイド
+                  </h2>
+                </div>
+                <Link
+                  href="/guide"
+                  className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+                >
+                  GUIDE一覧へ
+                </Link>
+              </div>
+            </Reveal>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              {relatedGuides.map((guide, index) => {
+                const primaryDate = guide.publishedAt ?? guide.updatedAt ?? null;
+                return (
+                  <Reveal key={guide.id} delay={index * 40}>
+                    <Link href={`/guide/${encodeURIComponent(guide.slug)}`}>
+                      <GlassCard className="group h-full border border-slate-200/80 bg-gradient-to-br from-vapor/80 via-white/95 to-white/90 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card sm:p-5">
+                        <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                          <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                            ガイド
+                          </span>
+                          {primaryDate && (
+                            <span className="ml-auto text-[10px] text-slate-400">
+                              {formatDate(primaryDate)}
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900 group-hover:text-tiffany-700">
+                          {guide.title}
+                        </h3>
+                        {guide.summary && (
+                          <p className="mt-2 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
+                            {guide.summary}
+                          </p>
+                        )}
+                      </GlassCard>
+                    </Link>
+                  </Reveal>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        {/* この車にまつわるコラム */}
+        {relatedColumns.length > 0 && (
+          <section className="mb-10">
+            <Reveal>
+              <div className="mb-4 flex items-baseline justify-between gap-2">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                    RELATED COLUMN
+                  </p>
+                  <h2 className="serif-heading mt-1 text-sm font-medium text-slate-900 sm:text-base">
+                    この車にまつわるコラム
+                  </h2>
+                </div>
+                <Link
+                  href="/column"
+                  className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+                >
+                  コラム一覧へ
+                </Link>
+              </div>
+            </Reveal>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              {relatedColumns.map((col, index) => (
+                <Reveal key={col.id} delay={index * 40}>
+                  <Link href={`/column/${encodeURIComponent(col.slug)}`}>
+                    <GlassCard className="h-full border border-slate-200/80 bg-white/90 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 sm:p-5">
+                      <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                        <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                          コラム
+                        </span>
+                        {col.readMinutes && (
+                          <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                            約{col.readMinutes}分
+                          </span>
+                        )}
+                        {col.publishedAt && (
+                          <span className="ml-auto text-[10px] text-slate-400">
+                            {formatDate(col.publishedAt)}
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
+                        {col.title}
+                      </h3>
+                      {col.summary && (
+                        <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
+                          {col.summary}
+                        </p>
+                      )}
+                    </GlassCard>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* このブランドのHERITAGE */}
+        {relatedHeritage && (
+          <section className="mb-10">
+            <Reveal>
+              <div className="mb-4 flex items-baseline justify-between gap-2">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                    BRAND HERITAGE
+                  </p>
+                  <h2 className="serif-heading mt-1 text-sm font-medium text-slate-900 sm:text-base">
+                    このブランドのHERITAGE
+                  </h2>
+                </div>
+                <Link
+                  href="/heritage"
+                  className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+                >
+                  HERITAGE一覧へ
+                </Link>
+              </div>
+            </Reveal>
+
+            <Reveal delay={40}>
+              <Link
+                href={`/heritage/${encodeURIComponent(relatedHeritage.slug)}`}
+              >
+                <GlassCard className="border border-slate-200/80 bg-gradient-to-br from-vapor/90 via-white to-white p-5 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                    BRAND STORY
+                  </p>
+                  <h3 className="mt-2 text-[15px] font-serif font-semibold text-slate-900">
+                    {relatedHeritage.heroTitle ?? relatedHeritage.title}
+                  </h3>
+                  {relatedHeritage.lead && (
+                    <p className="mt-2 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
+                      {relatedHeritage.lead}
+                    </p>
+                  )}
+                </GlassCard>
+              </Link>
+            </Reveal>
           </section>
         )}
 
