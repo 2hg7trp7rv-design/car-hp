@@ -3,13 +3,18 @@
   "carSellIkkatsuUrl": "https://demo.carboutique.jp/aff/car-sell/ikkatsu",
   "carSellImportUrl": "https://demo.carboutique.jp/aff/car-sell/import",
   "carSellLoanRemainUrl": "https://demo.carboutique.jp/aff/car-sell/loan-remain",
-  "insuranceCompareUrl": "https://demo.carboutique.jp/aff/insurance/compare",
+
+  "insuranceCompareUrl": "https://px.a8.net/svt/ejp?a8mat=45KB4U+633JEA+2PS+15OK29",
   "insuranceConsultUrl": "https://demo.carboutique.jp/aff/insurance/consult",
   "insuranceBizConsultUrl": "https://demo.carboutique.jp/aff/insurance/biz-consult",
+
   "shakenRakutenUrl": "https://demo.carboutique.jp/aff/shaken/rakuten-car",
-  "amazonDriveRecorderUrl": "https://demo.carboutique.jp/aff/amazon/driverecorder",
-  "amazonChildSeatUrl": "https://demo.carboutique.jp/aff/amazon/childseat",
-  "amazonCarWashUrl": "https://demo.carboutique.jp/aff/amazon/carwash",
-  "amazonInteriorCleanUrl": "https://demo.carboutique.jp/aff/amazon/interior-clean",
-  "amazonJumpStarterUrl": "https://demo.carboutique.jp/aff/amazon/jumpstarter"
+
+  "amazonDriveRecorderUrl": "https://www.amazon.co.jp/dp/B0DMZPKQLK?tag=carboutique-22",
+  "amazonChildSeatUrl": "https://www.amazon.co.jp/dp/B0B7GWRSL6?tag=carboutique-22",
+  "amazonCarWashUrl": "https://www.amazon.co.jp/dp/B003T1F2YA?tag=carboutique-22",
+  "amazonInteriorCleanUrl": "https://www.amazon.co.jp/dp/B0B15DXNW5?tag=carboutique-22",
+  "amazonJumpStarterUrl": "https://www.amazon.co.jp/b?node=3891427051&tag=carboutique-22",
+
+  "carLeaseSompoUrl": "https://px.a8.net/svt/ejp?a8mat=45KB4U+662PF6+4JVQ+64Z8X"
 }
