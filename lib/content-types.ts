@@ -97,6 +97,33 @@ export type BaseContentMeta = {
 };
 
 // ----------------------------------------
+// Monetize（GUIDE用）
+// ----------------------------------------
+
+/**
+ * GUIDEごとの「稼ぎどころ」を指定するキー
+ * - JSONの1フィールドでテンプレ&CTAを切替するためのロジックキー
+ */
+export type MonetizeKey =
+  // Aピラー（売却）
+  | "sell_basic_checklist"
+  | "sell_import_highclass"
+  | "sell_timing"
+  | "sell_loan_remain"
+  // Bピラー（保険・車検）
+  | "insurance_compare_core"
+  | "insurance_saving"
+  | "insurance_after_accident"
+  | "shaken_rakuten"
+  | "insurance_corporate"
+  // Cピラー（カー用品 Amazon）
+  | "goods_drive_recorder"
+  | "goods_child_seat"
+  | "goods_car_wash_coating"
+  | "goods_interior_clean"
+  | "goods_jump_starter";
+
+// ----------------------------------------
 // GUIDE
 // ----------------------------------------
 
@@ -136,6 +163,26 @@ export type GuideItem = BaseContentMeta & {
     text: string;
     level: 2 | 3 | 4;
   }[] | null;
+
+  // --- monetize layer ---
+
+  /**
+   * GUIDEごとの「稼ぎどころ」キー
+   * - null/未設定: ブロック非表示
+   */
+  monetizeKey?: MonetizeKey | null;
+
+  /**
+   * 例外的に「このGUIDEだけURLを上書きしたい」時の逃げ道（将来/運用用）
+   * - AffiliateLinksMap のキー（lib/affiliate.ts）と同じキーを想定
+   */
+  affiliateLinks?: Record<string, string> | null;
+
+  /**
+   * 関連GUIDEの内部リンク(slug)
+   * - app/guide/[slug]/page.tsx で使用
+   */
+  internalLinks?: string[] | null;
 };
 
 // ----------------------------------------
@@ -243,8 +290,6 @@ export type HeritageItem = BaseContentMeta & {
   /** 時代全体/ブランド/車種のどれか */
   kind: HeritageKind;
 
-  /** メイン見出し(タイトルはBaseContentMeta側を使用) */
-
   /** サブタイトル */
   subtitle?: string | null;
 
@@ -272,7 +317,7 @@ export type HeritageItem = BaseContentMeta & {
   /** ヒーローのトーン(white,black,vintageなど任意) */
   heroTone?: string | null;
 
-  /** ヒーローのレイアウト種別(wide,portrait,squareなど) */
+  /** ヒーローのレイアウト種別(wide,portrait,squareなど任意) */
   heroLayout?: "wide" | "portrait" | "square" | string | null;
 
   /** 本文(Markdownやプレーンテキスト) */
