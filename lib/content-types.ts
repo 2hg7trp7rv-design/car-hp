@@ -110,6 +110,7 @@ export type MonetizeKey =
   | "sell_import_highclass"
   | "sell_timing"
   | "sell_loan_remain"
+  | "sell_ikkatsu_phone"
   // Bピラー（保険・車検）
   | "insurance_compare_core"
   | "insurance_saving"
