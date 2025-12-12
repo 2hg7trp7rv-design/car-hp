@@ -97,6 +97,7 @@ export function resolveAffiliateLinksForGuide(input: {
     // ─── Aピラー: 売却 ─────────────────────────────
     case "sell_basic_checklist":
     case "sell_timing":
+    case "sell_ikkatsu_phone":
       if (nonEmpty(data.carSell?.ikkatsu)) {
         resolved.carSellIkkatsuUrl = data.carSell.ikkatsu;
       }
