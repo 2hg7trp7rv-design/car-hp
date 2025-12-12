@@ -236,9 +236,9 @@ function pickHeritageForCar(
 }
 
 // メタデータ
-export async function generateMetadata(
-  { params }: PageProps,
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const car = (await getCarBySlug(params.slug)) as ExtendedCarItem | null;
 
   if (!car) {
