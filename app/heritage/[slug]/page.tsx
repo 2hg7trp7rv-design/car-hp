@@ -8,6 +8,8 @@ import {
   getHeritageBySlug,
   type HeritageItem,
 } from "@/lib/heritage";
+import { getAllCars, type CarItem } from "@/lib/cars";
+import { getAllGuides, type GuideItem } from "@/lib/guides";
 import { GlassCard } from "@/components/GlassCard";
 import { Reveal } from "@/components/animation/Reveal";
 import { Button } from "@/components/ui/button";
@@ -44,7 +46,26 @@ type ExtendedHeritageItem = HeritageItem & {
     title?: string | null;
     summary?: string | null;
   }[] | null;
+  // cross-link 用の拡張
+  keyCarSlugs?: string[] | null;
+  highlights?: string[] | null;
 };
+
+type HeritageItemWithSeries = ExtendedHeritageItem & {
+  series?: string | null;
+  seriesTitle?: string | null;
+};
+
+function hasSeries(
+  heritage: ExtendedHeritageItem,
+): heritage is HeritageItemWithSeries {
+  const s = heritage.series;
+  const st = heritage.seriesTitle;
+  return (
+    (typeof s === "string" && s.length > 0) ||
+    (typeof st === "string" && st.length > 0)
+  );
+}
 
 // ---- 日付まわり ----
 
@@ -149,8 +170,7 @@ function highlightRich(
     } else if (keywordSet.has(normalized)) {
       spanClassName = "heritage-highlight-wave";
     } else {
-      spanClassName =
-        "bg-tiffany-50 px-0.5 text-tiffany-700";
+      spanClassName = "bg-tiffany-50 px-0.5 text-tiffany-700";
     }
 
     parts.push(
@@ -215,22 +235,6 @@ function highlightInline(
   return parts;
 }
 
-type HeritageItemWithSeries = ExtendedHeritageItem & {
-  series?: string | null;
-  seriesTitle?: string | null;
-};
-
-function hasSeries(
-  heritage: ExtendedHeritageItem,
-): heritage is HeritageItemWithSeries {
-  const s = heritage.series;
-  const st = heritage.seriesTitle;
-  return (
-    (typeof s === "string" && s.length > 0) ||
-    (typeof st === "string" && st.length > 0)
-  );
-}
-
 // ---- 読了時間 ----
 
 function estimateReadingTimeMinutes(body: string): number {
@@ -249,6 +253,65 @@ type BodySection = {
 };
 
 const SPEC_HEADING_PREFIX = "__SPEC_HEADING__";
+
+// ---- cross-link 用補助関数 ----
+
+function pickRelatedCarsForHeritage(
+  heritage: ExtendedHeritageItem,
+  cars: CarItem[],
+): CarItem[] {
+  const slugList = (heritage.relatedCarSlugs ?? [])
+    .filter((s): s is string => typeof s === "string" && s.trim().length > 0);
+
+  if (slugList.length > 0) {
+    const ordered = slugList
+      .map((slug) => cars.find((c) => c.slug === slug))
+      .filter((c): c is CarItem => Boolean(c));
+    if (ordered.length > 0) {
+      return ordered.slice(0, 6);
+    }
+  }
+
+  const keyNames = (heritage.keyModels ?? []).map((n) =>
+    n.toLowerCase().trim(),
+  );
+  if (keyNames.length === 0) return [];
+
+  const scored = cars
+    .map((car) => {
+      const fullName = `${car.maker ?? ""} ${car.name ?? ""}`
+        .trim()
+        .toLowerCase();
+      let score = 0;
+      for (const key of keyNames) {
+        if (!key) continue;
+        if (fullName.includes(key)) score += 2;
+        if ((car.slug ?? "").toLowerCase().includes(key)) score += 1;
+      }
+      return { car, score };
+    })
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 6);
+
+  return scored.map((x) => x.car);
+}
+
+function pickRelatedGuidesForHeritage(
+  heritage: ExtendedHeritageItem,
+  guides: GuideItem[],
+): GuideItem[] {
+  const slugs = (heritage.relatedGuideSlugs ?? []).filter(
+    (s): s is string => typeof s === "string" && s.trim().length > 0,
+  );
+
+  if (slugs.length === 0) return [];
+  const ordered = slugs
+    .map((slug) => guides.find((g) => g.slug === slug))
+    .filter((g): g is GuideItem => Boolean(g));
+
+  return ordered.slice(0, 4);
+}
 
 // ---- メタデータ ----
 
@@ -304,18 +367,20 @@ export async function generateMetadata({
 
 // ---- ページ本体 ----
 
-export default async function HeritageDetailPage({
-  params,
-}: PageProps) {
-  const heritage = (await getHeritageBySlug(
-    params.slug,
-  )) as ExtendedHeritageItem | null;
+export default async function HeritageDetailPage({ params }: PageProps) {
+  const [heritageRaw, all, allCars, allGuides] = await Promise.all([
+    getHeritageBySlug(params.slug),
+    getAllHeritage(),
+    getAllCars(),
+    getAllGuides(),
+  ]);
 
-  if (!heritage) {
+  if (!heritageRaw) {
     notFound();
   }
 
-  const all = await getAllHeritage();
+  const heritage = heritageRaw as ExtendedHeritageItem;
+
   const sameMaker = sortWithinMaker(
     all.filter(
       (item) =>
@@ -399,15 +464,24 @@ export default async function HeritageDetailPage({
     heritage.readingTimeMinutes ??
     (hasBody ? estimateReadingTimeMinutes(bodyText) : 0);
 
-  const hasRelatedCars =
+  const hasRelatedCarsBadges =
     Array.isArray(heritage.relatedCarSlugs) &&
     heritage.relatedCarSlugs.length > 0;
   const hasRelatedNews =
     Array.isArray(heritage.relatedNewsIds) &&
     heritage.relatedNewsIds.length > 0;
-  const hasRelatedGuides =
+  const hasRelatedGuidesBadges =
     Array.isArray(heritage.relatedGuideSlugs) &&
     heritage.relatedGuideSlugs.length > 0;
+
+  const relatedCarItems = pickRelatedCarsForHeritage(
+    heritage,
+    allCars,
+  );
+  const relatedGuideItems = pickRelatedGuidesForHeritage(
+    heritage,
+    allGuides,
+  );
 
   // 本文をセクションに分解
   const rawSections: BodySection[] = [];
@@ -437,7 +511,7 @@ export default async function HeritageDetailPage({
         continue;
       }
 
-      // ★★ ここだけ変更：同じ行に本文が続いていても見出しとして認識する ★★
+      // 同じ行に本文が続いていても見出しとして認識
       const headingMatch = line.match(/^【(.+?)】(.*)$/);
       if (headingMatch) {
         const headingTitle = headingMatch[1];
@@ -455,7 +529,6 @@ export default async function HeritageDetailPage({
         }
         continue;
       }
-      // ★★ ここまで ★★
 
       if (line.startsWith("■")) {
         pushCurrent();
@@ -602,7 +675,9 @@ export default async function HeritageDetailPage({
                   {tags.map((tag) => (
                     <Link
                       key={tag}
-                      href={`/heritage?tag=${encodeURIComponent(tag)}`}
+                      href={`/heritage?tag=${encodeURIComponent(
+                        tag,
+                      )}`}
                       className="inline-flex items-center gap-1 rounded-full border border-slate-700/70 bg-slate-950/80 px-2.5 py-0.5 text-[11px] text-slate-100 transition hover:border-rose-400/80 hover:bg-slate-900 hover:text-rose-50"
                     >
                       <span className="h-1 w-1 rounded-full bg-rose-400" />
@@ -650,11 +725,7 @@ export default async function HeritageDetailPage({
                           {(() => {
                             const blocks: JSX.Element[] = [];
                             const lines = section.lines;
-                            for (
-                              let i = 0;
-                              i < lines.length;
-                              i++
-                            ) {
+                            for (let i = 0; i < lines.length; i++) {
                               const line = lines[i];
 
                               if (!line) {
@@ -668,9 +739,7 @@ export default async function HeritageDetailPage({
                               }
 
                               if (
-                                line.startsWith(
-                                  SPEC_HEADING_PREFIX,
-                                )
+                                line.startsWith(SPEC_HEADING_PREFIX)
                               ) {
                                 const label = line.slice(
                                   SPEC_HEADING_PREFIX.length,
@@ -811,14 +880,16 @@ export default async function HeritageDetailPage({
                 </GlassCard>
               )}
 
-              {(hasRelatedCars || hasRelatedNews || hasRelatedGuides) && (
+              {(hasRelatedCarsBadges ||
+                hasRelatedNews ||
+                hasRelatedGuidesBadges) && (
                 <GlassCard className="border border-white/40 bg-white/90 p-5 text-slate-900">
                   <h2 className="font-serif text-sm uppercase tracking-[0.25em] text-slate-900">
                     RELATED CONTENTS
                   </h2>
 
                   <div className="mt-3 space-y-2 text-[12px]">
-                    {hasRelatedCars && (
+                    {hasRelatedCarsBadges && (
                       <div>
                         <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-600">
                           CARS
@@ -860,7 +931,7 @@ export default async function HeritageDetailPage({
                       </div>
                     )}
 
-                    {hasRelatedGuides && (
+                    {hasRelatedGuidesBadges && (
                       <div>
                         <p className="mb-1 text-[11px] font-semibold tracking-[0.16em] text-slate-600">
                           GUIDES
@@ -941,9 +1012,153 @@ export default async function HeritageDetailPage({
               </GlassCard>
             </div>
           </Reveal>
+
+          {/* 本文横の関連CARS / GUIDES は下の専用セクションに */}
         </div>
+
+        {/* このHERITAGEに登場する車種 */}
+        {relatedCarItems.length > 0 && (
+          <div className="mx-auto mt-10 max-w-6xl px-4 md:px-6 lg:px-8">
+            <Reveal>
+              <div className="mb-3 flex items-baseline justify-between gap-2">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-300">
+                    RELATED CARS
+                  </p>
+                  <h2 className="serif-heading mt-1 text-sm font-medium text-slate-50 sm:text-base">
+                    このHERITAGEに登場する主な車種
+                  </h2>
+                </div>
+                <Link
+                  href="/cars"
+                  className="text-[11px] text-tiffany-300 underline-offset-4 hover:underline"
+                >
+                  CARS一覧へ
+                </Link>
+              </div>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+                {relatedCarItems.map((car) => (
+                  <Link
+                    key={car.slug}
+                    href={`/cars/${encodeURIComponent(car.slug)}`}
+                  >
+                    <GlassCard
+                      as="article"
+                      padding="md"
+                      interactive
+                      className="group h-full border border-slate-200/80 bg-white/95 text-xs shadow-soft transition hover:-translate-y-[2px] hover:border-tiffany-200"
+                    >
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-baseline justify-between gap-2">
+                          <div>
+                            <p className="text-[10px] font-semibold tracking-[0.18em] text-slate-500">
+                              {car.maker}
+                            </p>
+                            <h3 className="mt-1 line-clamp-2 text-sm font-semibold leading-snug text-slate-900 group-hover:text-tiffany-700">
+                              {car.name}
+                            </h3>
+                          </div>
+                          <div className="text-right text-[10px] text-slate-500">
+                            {car.releaseYear && (
+                              <p>{car.releaseYear}年頃</p>
+                            )}
+                            {car.segment && (
+                              <p className="mt-1 line-clamp-1">
+                                {car.segment}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                        <div className="mt-1 flex flex-wrap gap-1.5 text-[10px] text-slate-500">
+                          {car.bodyType && (
+                            <span className="rounded-full bg-slate-50 px-2 py-0.5">
+                              {car.bodyType}
+                            </span>
+                          )}
+                          {car.drive && (
+                            <span className="rounded-full bg-slate-50 px-2 py-0.5">
+                              {car.drive}
+                            </span>
+                          )}
+                        </div>
+                        {car.summary && (
+                          <p className="mt-2 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
+                            {car.summary}
+                          </p>
+                        )}
+                      </div>
+                    </GlassCard>
+                  </Link>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        )}
+
+        {/* このHERITAGEを入り口に読むGUIDE */}
+        {relatedGuideItems.length > 0 && (
+          <div className="mx-auto mt-10 max-w-6xl px-4 md:px-6 lg:px-8">
+            <Reveal>
+              <div className="mb-3 flex items-baseline justify-between gap-2">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-300">
+                    GUIDE TOGETHER
+                  </p>
+                  <h2 className="serif-heading mt-1 text-sm font-medium text-slate-50 sm:text-base">
+                    このブランドの「お金・段取り」を整理するガイド
+                  </h2>
+                </div>
+                <Link
+                  href="/guide"
+                  className="text-[11px] text-tiffany-300 underline-offset-4 hover:underline"
+                >
+                  GUIDE一覧へ
+                </Link>
+              </div>
+            </Reveal>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              {relatedGuideItems.map((guide) => {
+                const primaryDate =
+                  guide.publishedAt ?? guide.updatedAt ?? null;
+                return (
+                  <Reveal key={guide.id}>
+                    <Link href={`/guide/${encodeURIComponent(guide.slug)}`}>
+                      <GlassCard className="group h-full border border-slate-200/80 bg-gradient-to-br from-vapor/80 via-white/95 to-white/90 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card sm:p-5">
+                        <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                          <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                            ガイド
+                          </span>
+                          {primaryDate && (
+                            <span className="ml-auto text-[10px] text-slate-400">
+                              {formatDateLabel(primaryDate)}
+                            </span>
+                          )}
+                        </div>
+
+                        <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900 group-hover:text-tiffany-700">
+                          {guide.title}
+                        </h3>
+
+                        {guide.summary && (
+                          <p className="mt-2 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
+                            {guide.summary}
+                          </p>
+                        )}
+                      </GlassCard>
+                    </Link>
+                  </Reveal>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </section>
 
+      {/* MORE HERITAGE */}
       {moreHeritage.length > 0 && (
         <section className="border-t border-slate-800/70 bg-slate-950 py-10 md:py-14">
           <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
