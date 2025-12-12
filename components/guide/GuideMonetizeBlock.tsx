@@ -36,15 +36,15 @@ type MonetizeConfig = {
 function ensureAmazonTag(url: string): string {
   const TRACKING_ID = "carboutique-22";
 
-  if (!url.includes("amazon.")) {
-    return url;
-  }
-  if (url.includes("tag=")) {
-    return url;
-  }
+  if (!url.includes("amazon.")) return url;
+  if (url.includes("tag=")) return url;
 
   const separator = url.includes("?") ? "&" : "?";
   return `${url}${separator}tag=${TRACKING_ID}`;
+}
+
+function isExternalHref(href: string) {
+  return /^https?:\/\//i.test(href);
 }
 
 /**
@@ -57,9 +57,7 @@ function ensureAmazonTag(url: string): string {
 export function GuideMonetizeBlock(props: GuideMonetizeBlockProps) {
   const { monetizeKey, affiliateLinks } = props;
 
-  if (!monetizeKey) {
-    return null;
-  }
+  if (!monetizeKey) return null;
 
   const mergedLinks: AffiliateLinksMap = {
     ...(globalAffiliateLinks as AffiliateLinksMap),
@@ -67,10 +65,10 @@ export function GuideMonetizeBlock(props: GuideMonetizeBlockProps) {
   };
 
   const config = resolveMonetizeConfig(monetizeKey, mergedLinks);
+  if (!config?.primaryCta?.href) return null;
 
-  if (!config || !config.primaryCta?.href) {
-    return null;
-  }
+  const href = config.primaryCta.href;
+  const external = isExternalHref(href);
 
   return (
     <Reveal delay={80}>
@@ -88,17 +86,20 @@ export function GuideMonetizeBlock(props: GuideMonetizeBlockProps) {
               <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
                 NEXT ACTION
               </p>
+
               <h2 className="font-serif text-[15px] font-semibold tracking-tight text-slate-900 sm:text-[16px]">
                 {config.heading}
               </h2>
-              {config.body.map((paragraph) => (
+
+              {config.body.map((paragraph, idx) => (
                 <p
-                  key={paragraph}
+                  key={`${monetizeKey}-${idx}`}
                   className="text-[11px] leading-relaxed text-slate-600 sm:text-[13px]"
                 >
                   {paragraph}
                 </p>
               ))}
+
               <p className="pt-1 text-[10px] leading-relaxed text-slate-400">
                 ※ リンク先は外部サイトです。条件や手数料・注意事項などの最新情報は、
                 必ず各サービスの公式ページでご確認ください。
@@ -111,9 +112,17 @@ export function GuideMonetizeBlock(props: GuideMonetizeBlockProps) {
                 size="lg"
                 className="mt-2 w-full rounded-xl text-[11px] font-semibold tracking-[0.12em] sm:w-auto"
               >
-                <Link href={config.primaryCta.href}>
-                  {config.primaryCta.label}
-                </Link>
+                {external ? (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="nofollow sponsored noopener noreferrer"
+                  >
+                    {config.primaryCta.label}
+                  </a>
+                ) : (
+                  <Link href={href}>{config.primaryCta.label}</Link>
+                )}
               </Button>
             </div>
           </div>
@@ -203,8 +212,7 @@ function resolveMonetizeConfig(
           "1社ずつ個別に見積もりを取るより、一括見積もりでざっと候補を出してから、気になる会社だけ詳しく比較していく方が、時間も手間も抑えやすくなります。",
         ],
         primaryCta: {
-          label:
-            "自動車保険を一括見積もりしてプランと保険料を比較する",
+          label: "自動車保険を一括見積もりしてプランと保険料を比較する",
           href: links.insuranceCompareUrl,
         },
       };
@@ -230,8 +238,7 @@ function resolveMonetizeConfig(
           "事故対応や等級の影響も踏まえて、専門家に一度内容を見てもらったうえで、次の契約方針を決めると失敗しにくくなります。",
         ],
         primaryCta: {
-          label:
-            "事故後の補償内容や等級について専門家に相談してみる",
+          label: "事故後の補償内容や等級について専門家に相談してみる",
           href: links.insuranceConsultUrl,
         },
       };
@@ -257,8 +264,7 @@ function resolveMonetizeConfig(
           "フリート契約や法人向け特約など、個人契約とは違う選択肢も含めて提案してもらえると、「どこまでを社用車としてカバーするか」も整理しやすくなります。",
         ],
         primaryCta: {
-          label:
-            "法人・個人事業主向けの自動車保険を相談できる窓口を探す",
+          label: "法人・個人事業主向けの自動車保険を相談できる窓口を探す",
           href: links.insuranceBizConsultUrl,
         },
       };
@@ -298,8 +304,7 @@ function resolveMonetizeConfig(
           "この記事で整理した考え方をベースに、まずは扱いやすいアイテムから揃えて、無理なく続けられる組み合わせを見つけてみてください。",
         ],
         primaryCta: {
-          label:
-            "Amazonで洗車シャンプーと簡易コーティングのスターターセットを見る",
+          label: "Amazonで洗車シャンプーと簡易コーティングのスターターセットを見る",
           href: ensureAmazonTag(links.amazonCarWashUrl),
         },
       };
@@ -312,8 +317,7 @@ function resolveMonetizeConfig(
           "この記事で整理した素材別の考え方を踏まえて、日常使いしやすいクリーナーとブラシ・クロス類をまとめてチェックしてみてください。",
         ],
         primaryCta: {
-          label:
-            "Amazonで車内クリーナーと掃除グッズの定番セットを見る",
+          label: "Amazonで車内クリーナーと掃除グッズの定番セットを見る",
           href: ensureAmazonTag(links.amazonInteriorCleanUrl),
         },
       };
@@ -326,8 +330,7 @@ function resolveMonetizeConfig(
           "この記事で整理した「対応排気量」「安全機能」などのポイントを前提に、自分の車に合う容量のモデルを候補から選んでみてください。",
         ],
         primaryCta: {
-          label:
-            "Amazonで対応排気量別ジャンプスターターの候補を見る",
+          label: "Amazonで対応排気量別ジャンプスターターの候補を見る",
           href: ensureAmazonTag(links.amazonJumpStarterUrl),
         },
       };
