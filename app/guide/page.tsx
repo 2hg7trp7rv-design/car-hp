@@ -57,7 +57,7 @@ type GuideSection = {
   topics: GuideTopic[];
 };
 
-// 実ガイド記事へのリンク付きセクション（お金/売却などのテーマ別入口）
+// 実ガイド記事へのリンク付きセクション（お金/売却/カー用品などのテーマ別入口）
 const guideSections: GuideSection[] = [
   {
     id: "money",
@@ -74,7 +74,7 @@ const guideSections: GuideSection[] = [
         title: "ローン or 一括 どちらが良いか考えるときの基準",
         description:
           "金利 返済期間 売却タイミングを比較しながら判断するときの基本チェックポイント",
-        link: "/guide/loan-or-lump-sum",
+        link: "/guide/loan-or-lump-sum", // 実ガイドのslugに合わせて後で調整
       },
       {
         id: "maintenance-cost-simulation",
@@ -101,6 +101,39 @@ const guideSections: GuideSection[] = [
         description:
           "下取り 買取 個人売買の特徴とメリット デメリットを整理し スケジュールに余裕を持たせるための基本手順",
         link: "/guide/selling-without-rush",
+      },
+    ],
+  },
+  {
+    id: "goods",
+    icon: "◎",
+    label: "カー用品・グッズの選び方",
+    subLabel: "CAR GOODS & AMAZON",
+    description:
+      "ドラレコ チャイルドシート 洗車グッズなど 「最低限ここを見ておくと失敗しにくい」ポイントを整理したカー用品向けガイド",
+    accent: "glass",
+    gridArea: "md:col-span-12 lg:col-span-12",
+    topics: [
+      {
+        id: "dashcam-basic",
+        title: "ドラレコを選ぶときに外したくない3つのポイント",
+        description:
+          "前後カメラ 録画画質 取付方法 など ドラレコ選びで最低限チェックしておきたいポイントの整理",
+        // link: "/guide/xxxx" // 実ガイドが確定したら slug を入れる
+      },
+      {
+        id: "childseat-basic",
+        title: "チャイルドシート選びの「安全＋使いやすさ」チェック",
+        description:
+          "適合年齢 ISOFIXの有無 取付けやすさ など 日常の使い勝手と安全性を両立させるための基本",
+        // link: "/guide/xxxx"
+      },
+      {
+        id: "washgoods-basic",
+        title: "洗車グッズは何から揃える？最低限セットの考え方",
+        description:
+          "シャンプー クロス コーティング剤 など 「これだけあれば困らない」スタートセットの組み方",
+        // link: "/guide/xxxx"
       },
     ],
   },
@@ -366,7 +399,7 @@ export default async function GuidePage({ searchParams }: PageProps) {
 
           <Reveal delay={200}>
             <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-              <p className="max-w-xl text-xs font-medium leading-loose text-text-sub sm:text-sm">
+              <p className="max-w-xl text-xsど font-medium leading-loose text-text-sub sm:text-sm">
                 車に関するお得な情報をコンパクトに
               </p>
 
@@ -390,7 +423,7 @@ export default async function GuidePage({ searchParams }: PageProps) {
 
           {/* GUIDE内ナビ（アンカーリンク＋件数表示） */}
           <Reveal delay={260}>
-            <div className="mt-4 flex flex-col gap-3 rounded-2xl border border-white/70 bg-white/80 px-4 py-3 shadow-soft sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <div className="mt-4 flex flex-col gap-3 rounded-2xl border border-white/70 bg白/80 px-4 py-3 shadow-soft sm:flex-row sm:items-center sm:justify-between sm:px-6">
               <div className="flex flex-col gap-1 text-[10px] text-slate-500 sm:flex-row sm:items-center sm:gap-3">
                 <span className="rounded-full bg-slate-50 px-2 py-0.5 text-slate-400">
                   GUIDE NAV
