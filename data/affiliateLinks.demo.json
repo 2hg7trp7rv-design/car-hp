@@ -5,16 +5,17 @@
   "carSellLoanRemainUrl": "https://demo.carboutique.jp/aff/car-sell/loan-remain",
 
   "insuranceCompareUrl": "https://px.a8.net/svt/ejp?a8mat=45KB4U+633JEA+2PS+15OK29",
+  "insuranceQuoteInzwebUrl": "https://px.a8.net/svt/ejp?a8mat=45KB4U+633JEA+2PS+15OK29",
   "insuranceConsultUrl": "https://demo.carboutique.jp/aff/insurance/consult",
   "insuranceBizConsultUrl": "https://demo.carboutique.jp/aff/insurance/biz-consult",
 
   "shakenRakutenUrl": "https://demo.carboutique.jp/aff/shaken/rakuten-car",
 
-  "amazonDriveRecorderUrl": "https://www.amazon.co.jp/dp/B0DMZPKQLK?tag=carboutique-22",
-  "amazonChildSeatUrl": "https://www.amazon.co.jp/dp/B0B7GWRSL6?tag=carboutique-22",
-  "amazonCarWashUrl": "https://www.amazon.co.jp/dp/B003T1F2YA?tag=carboutique-22",
-  "amazonInteriorCleanUrl": "https://www.amazon.co.jp/dp/B0B15DXNW5?tag=carboutique-22",
-  "amazonJumpStarterUrl": "https://www.amazon.co.jp/b?node=3891427051&tag=carboutique-22",
+  "carLeaseSompoUrl": "https://px.a8.net/svt/ejp?a8mat=45KB4U+662PF6+4JVQ+64Z8X",
 
-  "carLeaseSompoUrl": "https://px.a8.net/svt/ejp?a8mat=45KB4U+662PF6+4JVQ+64Z8X"
+  "amazonDriveRecorderUrl": "https://www.amazon.co.jp/s?k=HDR003+%E3%83%89%E3%83%A9%E3%82%A4%E3%83%96%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%80%E3%83%BC&tag=carboutique-22",
+  "amazonChildSeatUrl": "https://www.amazon.co.jp/s?k=%E3%82%B3%E3%83%B3%E3%83%93+THE+S+ISOFIX&tag=carboutique-22",
+  "amazonCarWashUrl": "https://www.amazon.co.jp/s?k=%E3%82%B5%E3%83%BC%E3%83%AB%E3%83%AC%E3%82%B9%E3%82%BF%E3%83%BC+%E3%82%B7%E3%83%A3%E3%83%B3%E3%83%97%E3%83%BC1000&tag=carboutique-22",
+  "amazonInteriorCleanUrl": "https://www.amazon.co.jp/s?k=ROOMPIA+%E5%AE%A4%E5%86%85+%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%8A%E3%83%BC&tag=carboutique-22",
+  "amazonJumpStarterUrl": "https://www.amazon.co.jp/s?k=FNNEMGE+%E3%82%B8%E3%83%A3%E3%83%B3%E3%83%97%E3%82%B9%E3%82%BF%E3%83%BC%E3%82%BF%E3%83%BC&tag=carboutique-22"
 }
