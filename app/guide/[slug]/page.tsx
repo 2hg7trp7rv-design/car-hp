@@ -20,6 +20,9 @@ import { Reveal } from "@/components/animation/Reveal";
 import { GlassCard } from "@/components/GlassCard";
 import { GuideMonetizeBlock } from "@/components/guide/GuideMonetizeBlock";
 
+// ★ 追加：解決レイヤー
+import { resolveAffiliateLinksForGuide } from "@/lib/affiliate";
+
 export const runtime = "edge";
 
 type PageProps = {
@@ -56,8 +59,6 @@ function formatDate(iso?: string | null): string {
 }
 
 // ガイドのカテゴリ表示用
-// ※ GuideItem["category"]に縛らず、stringベースで扱うことで
-//   "BUY"/"MAINTENANCE_COST"も型エラーなくハンドリング
 function mapCategoryLabel(category: string | null | undefined): string {
   switch (category) {
     case "MONEY":
@@ -85,10 +86,6 @@ function mapColumnCategoryLabel(category: ColumnItem["category"]): string {
 }
 
 // Markdownライクな本文をブロックに分解
-// - ##見出し -> level 2
-// - ###見出し -> level 3
-// - "- "で始まる行の連続 -> 箇条書き
-// - その他 -> 段落(空行で区切り)
 function parseBody(body: string | undefined): {
   blocks: ContentBlock[];
   headings: HeadingBlock[];
@@ -124,14 +121,12 @@ function parseBody(body: string | undefined): {
   lines.forEach((rawLine, index) => {
     const line = rawLine.trim();
 
-    // 空行 -> パラグラフ/リストを区切る
     if (!line) {
       flushParagraph();
       flushList();
       return;
     }
 
-    // 見出し(###)
     if (line.startsWith("### ")) {
       flushParagraph();
       flushList();
@@ -146,7 +141,6 @@ function parseBody(body: string | undefined): {
       return;
     }
 
-    // 見出し(##)
     if (line.startsWith("## ")) {
       flushParagraph();
       flushList();
@@ -161,19 +155,16 @@ function parseBody(body: string | undefined): {
       return;
     }
 
-    // 箇条書き
     if (line.startsWith("- ")) {
       flushParagraph();
       currentList.push(line.slice(2).trim());
       return;
     }
 
-    // 通常テキスト -> 段落
     flushList();
     currentParagraph.push(line);
   });
 
-  // 残りを反映
   flushParagraph();
   flushList();
 
@@ -181,8 +172,6 @@ function parseBody(body: string | undefined): {
 }
 
 // 本文内の装飾(URLリンク化 + **強調**のマーク除去)
-// - https://〜 を <a> に変換
-// - **text**はマークを消しつつ少し強調表示
 function inlineNodes(text: string): (string | JSX.Element)[] {
   const result: (string | JSX.Element)[] = [];
   const tokenRegex = /(\*\*.+?\*\*|https?:\/\/[^\s]+)/g;
@@ -201,10 +190,7 @@ function inlineNodes(text: string): (string | JSX.Element)[] {
     if (token.startsWith("**") && token.endsWith("**")) {
       const inner = token.slice(2, -2);
       result.push(
-        <span
-          key={`${start}-bold`}
-          className="font-semibold text-slate-900"
-        >
+        <span key={`${start}-bold`} className="font-semibold text-slate-900">
           {inner}
         </span>,
       );
@@ -251,7 +237,6 @@ async function getRelatedColumnsForGuide(
   const scored = allColumns.map((col) => {
     let score = 0;
 
-    // タグの重なり
     if (col.tags && guideTags.size > 0) {
       const overlap = col.tags.filter((t) => guideTags.has(t)).length;
       if (overlap > 0) {
@@ -259,7 +244,6 @@ async function getRelatedColumnsForGuide(
       }
     }
 
-    // ガイドカテゴリと相性の良さでざっくり加点
     if (
       guideCategory === "MONEY" ||
       guideCategory === "BUY" ||
@@ -274,7 +258,6 @@ async function getRelatedColumnsForGuide(
       }
     }
 
-    // タイトル・サマリのざっくりキーワードマッチ
     const haystack = `${col.title} ${col.summary ?? ""}`.toLowerCase();
     const words = `${guide.title} ${guide.summary ?? ""}`
       .toLowerCase()
@@ -298,7 +281,6 @@ async function getRelatedColumnsForGuide(
     return pickedByScore;
   }
 
-  // スコアで拾えなかった場合のフォールバック
   let fallback = allColumns;
 
   if (guideCategory) {
@@ -333,7 +315,6 @@ async function getRelatedCarsForGuide(
 
   const slugSet = new Set(slugs);
 
-  // slug の順番を尊重してソート
   const orderMap = new Map<string, number>();
   slugs.forEach((s, idx) => orderMap.set(s, idx));
 
@@ -377,9 +358,7 @@ export async function generateMetadata({
       title,
       description,
       type: "article",
-      url: `https://car-hp.vercel.app/guide/${encodeURIComponent(
-        guide.slug,
-      )}`,
+      url: `https://car-hp.vercel.app/guide/${encodeURIComponent(guide.slug)}`,
     },
     twitter: {
       card: "summary",
@@ -410,7 +389,6 @@ function extractStepHeadings(headings: HeadingBlock[]): StepHeading[] {
     }
   });
 
-  // STEP番号順ソート(1,2,3...)
   return result.sort((a, b) => a.stepNumber - b.stepNumber);
 }
 
@@ -427,7 +405,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
     category?: string | null;
     relatedCarSlugs?: (string | null)[];
     monetizeKey?: string | null;
-    affiliateLinks?: Record<string, string> | null;
+    affiliateLinks?: Record<string, string> | null; // 上書き用
     internalLinks?: string[] | null;
   };
 
@@ -449,6 +427,12 @@ export default async function GuideDetailPage({ params }: PageProps) {
   const internalRelatedGuides = internalLinkSlugs
     .map((slug) => allGuides.find((g) => g.slug === slug))
     .filter((g): g is GuideItem => Boolean(g));
+
+  // ★ 追加：monetizeKey + affiliateLinks（上書き）から最終URLマップを作る
+  const affiliateLinksResolved = resolveAffiliateLinksForGuide({
+    monetizeKey: guide.monetizeKey ?? null,
+    affiliateLinks: guide.affiliateLinks ?? null,
+  });
 
   // ドロップキャップ用フラグ
   let firstParagraphRendered = false;
@@ -551,12 +535,10 @@ export default async function GuideDetailPage({ params }: PageProps) {
           {/* 本文エリア */}
           <section className="w-full lg:w-[68%]">
             <GlassCard className="relative overflow-hidden border border-slate-200/80 bg-white/92 px-5 py-6 shadow-soft sm:px-7 sm:py-8">
-              {/* カード内光エフェクト */}
               <div className="pointer-events-none absolute -right-28 -top-28 h-48 w-48 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.2),_transparent_70%)] blur-3xl" />
               <div className="pointer-events-none absolute -left-24 bottom-[-30%] h-56 w-56 rounded-full bg-[radial-gradient(circle_at_center,_rgba(148,163,184,0.25),_transparent_70%)] blur-3xl" />
 
               <article className="relative z-10">
-                {/* ガイドの概要ラベル */}
                 <div className="mb-5 rounded-2xl bg-slate-50/80 px-4 py-3 text-[11px] text-slate-700">
                   <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
                     GUIDE OUTLINE
@@ -568,19 +550,16 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   </p>
                 </div>
 
-                {/* STEPタイムライン(STEP 1/2/3...の見出しがある場合だけ表示) */}
                 {stepHeadings.length > 0 && (
                   <section className="mb-6 rounded-2xl border border-tiffany-100 bg-gradient-to-br from-tiffany-50/90 via-white to-white px-4 py-4 text-[11px] shadow-soft-card sm:px-5 sm:py-5">
                     <p className="mb-3 text-[10px] font-semibold tracking-[0.22em] text-tiffany-700">
                       GUIDE STEPS
                     </p>
                     <div className="relative pl-4">
-                      {/* 縦ライン */}
                       <div className="absolute left-[10px] top-1 bottom-1 w-px bg-gradient-to-b from-tiffany-300/60 via-slate-200/80 to-transparent" />
                       <ol className="space-y-3">
                         {stepHeadings.map((s, idx) => (
                           <li key={s.id} className="relative flex gap-3">
-                            {/* 丸アイコン */}
                             <div className="relative mt-[2px] flex h-5 w-5 items-center justify-center">
                               <div className="absolute h-5 w-5 rounded-full bg-white shadow-[0_0_0_1px_rgba(148,163,184,0.35)]" />
                               <div className="relative h-2.5 w-2.5 rounded-full bg-gradient-to-br from-tiffany-400 to-tiffany-600" />
@@ -608,13 +587,11 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   </section>
                 )}
 
-                {/* 実際の本文 */}
                 <div className="mt-6">
                   {blocks.map((block, index) => {
                     if (block.type === "heading") {
                       const Tag = block.heading.level === 2 ? "h2" : "h3";
 
-                      // STEP見出しは少しだけ強調したスタイルに
                       const isStepHeading = /^STEP\s*\d+/i.test(
                         block.heading.text,
                       );
@@ -652,7 +629,6 @@ export default async function GuideDetailPage({ params }: PageProps) {
                       );
                     }
 
-                    // paragraph(最初の段落はDrop cap)
                     if (!firstParagraphRendered && block.text.trim().length) {
                       firstParagraphRendered = true;
                       const firstChar = block.text[0];
@@ -680,9 +656,10 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   })}
                 </div>
 
+                {/* ★ ここが差し替え：解決済みリンクを渡す */}
                 <GuideMonetizeBlock
                   monetizeKey={guide.monetizeKey ?? undefined}
-                  affiliateLinks={guide.affiliateLinks ?? undefined}
+                  affiliateLinks={affiliateLinksResolved}
                 />
               </article>
             </GlassCard>
@@ -727,7 +704,6 @@ export default async function GuideDetailPage({ params }: PageProps) {
               </section>
             )}
 
-            {/* 下部ナビ(SPメイン) */}
             <div className="mt-10 border-t border-slate-100 pt-6 lg:hidden">
               <Link
                 href="/guide"
@@ -841,7 +817,6 @@ export default async function GuideDetailPage({ params }: PageProps) {
           </section>
         )}
 
-        {/* slug だけ埋まっていて CarItem 側にまだ無い場合の軽いフォールバック */}
         {relatedCars.length === 0 && relatedCarSlugs.length > 0 && (
           <section className="mt-16 lg:mt-20">
             <div className="mb-4 flex items-baseline justify-between gap-2">
@@ -863,9 +838,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-[11px] text-slate-600 shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-200 hover:text-tiffany-700"
                 >
                   <span className="h-1.5 w-1.5 rounded-full bg-tiffany-400" />
-                  <span className="uppercase tracking-[0.12em]">
-                    {slug}
-                  </span>
+                  <span className="uppercase tracking-[0.12em]">{slug}</span>
                 </Link>
               ))}
             </div>
