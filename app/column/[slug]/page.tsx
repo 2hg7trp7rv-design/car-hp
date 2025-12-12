@@ -10,6 +10,7 @@ import {
 } from "@/lib/columns";
 import { getAllGuides, type GuideItem } from "@/lib/guides";
 import { getAllCars, type CarItem } from "@/lib/cars";
+import { getAllHeritage, type HeritageItem } from "@/lib/heritage";
 import { GlassCard } from "@/components/GlassCard";
 import { Reveal } from "@/components/animation/Reveal";
 import { Button } from "@/components/ui/button";
@@ -28,12 +29,15 @@ type ColumnWithMeta = ColumnItem & {
   tags?: string[] | null;
   relatedCarSlugs?: (string | null)[];
   relatedGuideSlugs?: (string | null)[];
+  relatedHeritageSlugs?: (string | null)[];
 };
 
 type GuideWithMeta = GuideItem & {
   category?: string | null;
   tags?: string[] | null;
 };
+
+type HeritageWithMeta = HeritageItem;
 
 // SSG 用パス
 export async function generateStaticParams() {
@@ -268,13 +272,36 @@ function pickRelatedCarsForColumn(
   return scored.map((x) => x.car);
 }
 
+// コラムに関連するHERITAGEを抽出
+function pickRelatedHeritageForColumn(
+  column: ColumnWithMeta,
+  heritageList: HeritageWithMeta[],
+): HeritageWithMeta[] {
+  const relatedSlugs = (column.relatedHeritageSlugs ?? []).filter(
+    (slug): slug is string => typeof slug === "string" && slug.trim().length > 0,
+  );
+
+  if (relatedSlugs.length > 0) {
+    const ordered = relatedSlugs
+      .map((slug) => heritageList.find((h) => h.slug === slug))
+      .filter((h): h is HeritageWithMeta => Boolean(h));
+    if (ordered.length > 0) {
+      return ordered.slice(0, 3);
+    }
+  }
+
+  return [];
+}
+
 export default async function ColumnDetailPage({ params }: Props) {
-  const [item, allColumns, allGuidesRaw, allCars] = await Promise.all([
-    getColumnBySlug(params.slug),
-    getAllColumns(),
-    getAllGuides(),
-    getAllCars(),
-  ]);
+  const [item, allColumns, allGuidesRaw, allCars, allHeritageRaw] =
+    await Promise.all([
+      getColumnBySlug(params.slug),
+      getAllColumns(),
+      getAllGuides(),
+      getAllCars(),
+      getAllHeritage(),
+    ]);
 
   if (!item) {
     notFound();
@@ -282,6 +309,7 @@ export default async function ColumnDetailPage({ params }: Props) {
 
   const columnWithMeta = item as ColumnWithMeta;
   const guidesWithMeta = allGuidesRaw as GuideWithMeta[];
+  const heritageWithMeta = allHeritageRaw as HeritageWithMeta[];
 
   const relatedColumns = pickRelatedColumns(columnWithMeta, allColumns);
   const relatedGuides = pickRelatedGuidesForColumn(
@@ -289,6 +317,10 @@ export default async function ColumnDetailPage({ params }: Props) {
     guidesWithMeta,
   );
   const relatedCars = pickRelatedCarsForColumn(columnWithMeta, allCars);
+  const relatedHeritage = pickRelatedHeritageForColumn(
+    columnWithMeta,
+    heritageWithMeta,
+  );
 
   const primaryDate = item.publishedAt ?? item.updatedAt ?? null;
 
@@ -378,13 +410,9 @@ export default async function ColumnDetailPage({ params }: Props) {
                           </h3>
                         </div>
                         <div className="text-right text-[10px] text-slate-500">
-                          {car.releaseYear && (
-                            <p>{car.releaseYear}年頃</p>
-                          )}
+                          {car.releaseYear && <p>{car.releaseYear}年頃</p>}
                           {car.segment && (
-                            <p className="mt-1 line-clamp-1">
-                              {car.segment}
-                            </p>
+                            <p className="mt-1 line-clamp-1">{car.segment}</p>
                           )}
                         </div>
                       </div>
@@ -459,6 +487,52 @@ export default async function ColumnDetailPage({ params }: Props) {
                     {guide.summary && (
                       <p className="mt-2 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
                         {guide.summary}
+                      </p>
+                    )}
+                  </GlassCard>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* 関連HERITAGE */}
+      {relatedHeritage.length > 0 && (
+        <section className="mx-auto max-w-6xl px-4 pb-10 pt-2 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="mb-3 flex items-baseline justify-between gap-2">
+              <div>
+                <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                  BRAND HERITAGE
+                </p>
+                <h2 className="serif-heading mt-1 text-sm font-medium text-slate-900 sm:text-base">
+                  関連するブランドのHERITAGE
+                </h2>
+              </div>
+              <Link
+                href="/heritage"
+                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+              >
+                HERITAGE一覧へ
+              </Link>
+            </div>
+          </Reveal>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {relatedHeritage.map((h) => (
+              <Reveal key={h.slug}>
+                <Link href={`/heritage/${encodeURIComponent(h.slug)}`}>
+                  <GlassCard className="border border-slate-200/80 bg-gradient-to-br from-vapor/90 via-white to-white p-5 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
+                    <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                      BRAND STORY
+                    </p>
+                    <h3 className="mt-2 text-[15px] font-serif font-semibold text-slate-900">
+                      {h.heroTitle ?? h.title}
+                    </h3>
+                    {h.lead && (
+                      <p className="mt-2 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
+                        {h.lead}
                       </p>
                     )}
                   </GlassCard>
