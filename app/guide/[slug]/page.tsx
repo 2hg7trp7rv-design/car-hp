@@ -3,24 +3,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import {
-  getAllGuides,
-  getGuideBySlug,
-  type GuideItem,
-} from "@/lib/guides";
-import {
-  getAllColumns,
-  type ColumnItem,
-} from "@/lib/columns";
-import {
-  getAllCars,
-  type CarItem,
-} from "@/lib/cars";
+import { getAllGuides, getGuideBySlug, type GuideItem } from "@/lib/guides";
+import { getAllColumns, type ColumnItem } from "@/lib/columns";
+import { getAllCars, type CarItem } from "@/lib/cars";
+import { getAllHeritage, type HeritageItem } from "@/lib/heritage";
+
 import { Reveal } from "@/components/animation/Reveal";
 import { GlassCard } from "@/components/GlassCard";
 import { GuideMonetizeBlock } from "@/components/guide/GuideMonetizeBlock";
 
-// ★ 追加：解決レイヤー
+// ★ 解決レイヤー
 import { resolveAffiliateLinksForGuide } from "@/lib/affiliate";
 
 export const runtime = "edge";
@@ -82,6 +74,20 @@ function mapColumnCategoryLabel(category: ColumnItem["category"]): string {
       return "ブランド・技術・歴史";
     default:
       return "コラム";
+  }
+}
+
+// HERITAGE側のラベル
+function mapHeritageKindLabel(kind: HeritageItem["kind"] | null | undefined) {
+  switch (kind) {
+    case "ERA":
+      return "ERA";
+    case "BRAND":
+      return "BRAND";
+    case "CAR":
+      return "CAR HISTORY";
+    default:
+      return "HERITAGE";
   }
 }
 
@@ -221,9 +227,7 @@ function inlineNodes(text: string): (string | JSX.Element)[] {
 }
 
 // ガイドに関連するコラムを抽出
-async function getRelatedColumnsForGuide(
-  guide: GuideItem,
-): Promise<ColumnItem[]> {
+async function getRelatedColumnsForGuide(guide: GuideItem): Promise<ColumnItem[]> {
   const allColumns = await getAllColumns();
 
   const guideWithMeta = guide as GuideItem & {
@@ -308,8 +312,7 @@ async function getRelatedCarsForGuide(
   const allCars = await getAllCars();
 
   const slugs = (guide.relatedCarSlugs ?? []).filter(
-    (slug): slug is string =>
-      typeof slug === "string" && slug.trim().length > 0,
+    (slug): slug is string => typeof slug === "string" && slug.trim().length > 0,
   );
   if (slugs.length === 0) return [];
 
@@ -327,6 +330,73 @@ async function getRelatedCarsForGuide(
     });
 }
 
+// ★ ガイドに関連するHERITAGEを抽出（relatedCarSlugsの重なり + tags）
+async function getRelatedHeritageForGuide(
+  guide: GuideItem & { relatedCarSlugs?: (string | null)[]; tags?: string[] | null },
+): Promise<HeritageItem[]> {
+  const allHeritage = await getAllHeritage();
+
+  const guideCarSlugs = (guide.relatedCarSlugs ?? []).filter(
+    (s): s is string => typeof s === "string" && s.trim().length > 0,
+  );
+  const guideCarSet = new Set(guideCarSlugs);
+  const guideTags = new Set((guide.tags ?? []).filter((t) => typeof t === "string" && t.trim().length > 0));
+
+  const scored = allHeritage.map((h) => {
+    let score = 0;
+
+    const hCarSlugs = ((h as any).relatedCarSlugs ?? []) as unknown[];
+    const hCarOverlap =
+      Array.isArray(hCarSlugs) && guideCarSet.size > 0
+        ? hCarSlugs.filter((x) => typeof x === "string" && guideCarSet.has(x)).length
+        : 0;
+
+    if (hCarOverlap > 0) score += 3 + hCarOverlap * 0.5;
+
+    const hTags = (h.tags ?? []) as unknown[];
+    const hTagOverlap =
+      Array.isArray(hTags) && guideTags.size > 0
+        ? hTags.filter((x) => typeof x === "string" && guideTags.has(x)).length
+        : 0;
+
+    if (hTagOverlap > 0) score += 1 + hTagOverlap * 0.2;
+
+    const haystack = `${h.title} ${(h.summary ?? "") as string}`.toLowerCase();
+    const words = `${guide.title} ${guide.summary ?? ""}`
+      .toLowerCase()
+      .split(/\s+/)
+      .filter((w) => w.length > 1);
+
+    if (words.some((w) => haystack.includes(w))) score += 0.4;
+
+    return { h, score };
+  });
+
+  const picked = scored
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 4)
+    .map((x) => x.h);
+
+  if (picked.length > 0) return picked;
+
+  const sortedFallback = [...allHeritage].sort((a, b) => {
+    const ta = a.publishedAt
+      ? new Date(a.publishedAt).getTime()
+      : a.updatedAt
+      ? new Date(a.updatedAt).getTime()
+      : 0;
+    const tb = b.publishedAt
+      ? new Date(b.publishedAt).getTime()
+      : b.updatedAt
+      ? new Date(b.updatedAt).getTime()
+      : 0;
+    return tb - ta;
+  });
+
+  return sortedFallback.slice(0, 4);
+}
+
 // 静的パス生成
 export async function generateStaticParams() {
   const guides = await getAllGuides();
@@ -334,9 +404,7 @@ export async function generateStaticParams() {
 }
 
 // メタデータ
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const guide = await getGuideBySlug(params.slug);
 
   if (!guide) {
@@ -412,11 +480,11 @@ export default async function GuideDetailPage({ params }: PageProps) {
   const { blocks, headings } = parseBody(guide.body);
   const relatedColumns = await getRelatedColumnsForGuide(guide);
   const relatedCars = await getRelatedCarsForGuide(guide);
+  const relatedHeritage = await getRelatedHeritageForGuide(guide);
   const stepHeadings = extractStepHeadings(headings);
 
   const relatedCarSlugs = (guide.relatedCarSlugs ?? []).filter(
-    (slug): slug is string =>
-      typeof slug === "string" && slug.trim().length > 0,
+    (slug): slug is string => typeof slug === "string" && slug.trim().length > 0,
   );
 
   // internalLinks から関連記事GUIDEを取得
@@ -428,7 +496,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
     .map((slug) => allGuides.find((g) => g.slug === slug))
     .filter((g): g is GuideItem => Boolean(g));
 
-  // ★ 追加：monetizeKey + affiliateLinks（上書き）から最終URLマップを作る
+  // ★ monetizeKey + affiliateLinks（上書き）から最終URLマップを作る
   const affiliateLinksResolved = resolveAffiliateLinksForGuide({
     monetizeKey: guide.monetizeKey ?? null,
     affiliateLinks: guide.affiliateLinks ?? null,
@@ -451,10 +519,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 pb-24 pt-24 sm:px-6 lg:px-8">
         {/* パンくず */}
-        <nav
-          aria-label="パンくずリスト"
-          className="mb-6 text-xs text-slate-500"
-        >
+        <nav aria-label="パンくずリスト" className="mb-6 text-xs text-slate-500">
           <Link href="/" className="hover:text-slate-800">
             HOME
           </Link>
@@ -463,9 +528,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
             GUIDE
           </Link>
           <span className="mx-2">/</span>
-          <span className="truncate text-slate-400 align-middle">
-            {guide.title}
-          </span>
+          <span className="truncate text-slate-400 align-middle">{guide.title}</span>
         </nav>
 
         {/* ヘッダー */}
@@ -498,9 +561,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
               {primaryDate && (
                 <>
                   <span className="h-[1px] w-6 bg-slate-200" />
-                  <span className="tracking-[0.16em]">
-                    PUBLISHED {formatDate(primaryDate)}
-                  </span>
+                  <span className="tracking-[0.16em]">PUBLISHED {formatDate(primaryDate)}</span>
                 </>
               )}
               {guide.tags && guide.tags.length > 0 && (
@@ -544,9 +605,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                     GUIDE OUTLINE
                   </p>
                   <p className="mt-1 leading-relaxed">
-                    このガイドは「{mapCategoryLabel(guide.category ?? null)}」
-                    に関する基本的な考え方や順番を整理するためのメモです。細かい数字の比較というよりも
-                    まずここから押さえておくと楽という目線で構成しています。
+                    このガイドは「{mapCategoryLabel(guide.category ?? null)}」に関する基本的な考え方や順番を整理するためのメモです。細かい数字の比較というよりも まずここから押さえておくと楽という目線で構成しています。
                   </p>
                 </div>
 
@@ -564,10 +623,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                               <div className="absolute h-5 w-5 rounded-full bg-white shadow-[0_0_0_1px_rgba(148,163,184,0.35)]" />
                               <div className="relative h-2.5 w-2.5 rounded-full bg-gradient-to-br from-tiffany-400 to-tiffany-600" />
                             </div>
-                            <a
-                              href={`#${s.id}`}
-                              className="group inline-flex flex-1 flex-col gap-0.5"
-                            >
+                            <a href={`#${s.id}`} className="group inline-flex flex-1 flex-col gap-0.5">
                               <span className="text-[10px] font-semibold tracking-[0.18em] text-slate-400">
                                 STEP {s.stepNumber.toString().padStart(2, "0")}
                               </span>
@@ -592,9 +648,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                     if (block.type === "heading") {
                       const Tag = block.heading.level === 2 ? "h2" : "h3";
 
-                      const isStepHeading = /^STEP\s*\d+/i.test(
-                        block.heading.text,
-                      );
+                      const isStepHeading = /^STEP\s*\d+/i.test(block.heading.text);
 
                       const baseClass = isStepHeading
                         ? "mt-10 mb-4 text-sm font-semibold tracking-[0.18em] text-slate-800 sm:text-[13px] uppercase"
@@ -603,10 +657,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                         : "mt-8 mb-3 text-base font-semibold tracking-[0.04em] text-slate-800";
 
                       return (
-                        <Reveal
-                          key={block.heading.id}
-                          delay={index === 0 ? 0 : 60}
-                        >
+                        <Reveal key={block.heading.id} delay={index === 0 ? 0 : 60}>
                           <Tag id={block.heading.id} className={baseClass}>
                             {block.heading.text}
                           </Tag>
@@ -637,9 +688,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                       return (
                         <Reveal key={`p-${index}`} delay={100}>
                           <p className="mt-4 text-sm leading-8 text-slate-800 sm:text-[15px] sm:leading-[2rem] first-letter-float">
-                            <span className="first-letter-span">
-                              {firstChar}
-                            </span>
+                            <span className="first-letter-span">{firstChar}</span>
                             {inlineNodes(rest)}
                           </p>
                         </Reveal>
@@ -656,7 +705,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   })}
                 </div>
 
-                {/* ★ ここが差し替え：解決済みリンクを渡す */}
+                {/* ★ 解決済みリンクを渡す */}
                 <GuideMonetizeBlock
                   monetizeKey={guide.monetizeKey ?? undefined}
                   affiliateLinks={affiliateLinksResolved}
@@ -664,7 +713,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
               </article>
             </GlassCard>
 
-            {/* ★ 追加: ガイド同士の内部リンクセクション */}
+            {/* ★ ガイド同士の内部リンクセクション */}
             {internalRelatedGuides.length > 0 && (
               <section className="mt-10 lg:mt-12">
                 <div className="mb-3 flex items-baseline justify-between gap-2">
@@ -674,10 +723,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {internalRelatedGuides.map((g) => (
-                    <Link
-                      key={g.slug}
-                      href={`/guide/${encodeURIComponent(g.slug)}`}
-                    >
+                    <Link key={g.slug} href={`/guide/${encodeURIComponent(g.slug)}`}>
                       <GlassCard className="group h-full border border-slate-200/80 bg-white/92 p-4 text-[11px] shadow-soft-sm transition hover:-translate-y-[1px] hover:border-tiffany-200 hover:bg-white">
                         <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
                           <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
@@ -726,9 +772,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                 </p>
 
                 {headings.length === 0 ? (
-                  <p className="text-[11px] text-slate-400">
-                    このガイドには見出しが設定されていません。
-                  </p>
+                  <p className="text-[11px] text-slate-400">このガイドには見出しが設定されていません。</p>
                 ) : (
                   <ul className="space-y-2">
                     {headings.map((h) => (
@@ -785,10 +829,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {relatedCars.map((car) => (
-                <Link
-                  key={car.slug}
-                  href={`/cars/${encodeURIComponent(car.slug)}`}
-                >
+                <Link key={car.slug} href={`/cars/${encodeURIComponent(car.slug)}`}>
                   <GlassCard className="group h-full border border-slate-200/80 bg-white/90 p-4 text-[11px] shadow-soft-sm transition hover:-translate-y-[1px] hover:border-tiffany-200 hover:bg-white">
                     <div className="flex items-start justify-between gap-2">
                       <div>
@@ -800,9 +841,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                         </p>
                       </div>
                       {car.releaseYear && (
-                        <span className="text-[10px] text-slate-400">
-                          {car.releaseYear}年頃
-                        </span>
+                        <span className="text-[10px] text-slate-400">{car.releaseYear}年頃</span>
                       )}
                     </div>
                     {car.summary && (
@@ -862,10 +901,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
 
             <div className="grid gap-4 md:grid-cols-2">
               {relatedColumns.map((col) => (
-                <Link
-                  key={col.id}
-                  href={`/column/${encodeURIComponent(col.slug)}`}
-                >
+                <Link key={col.id} href={`/column/${encodeURIComponent(col.slug)}`}>
                   <GlassCard className="h-full border border-slate-200/80 bg-gradient-to-br from-vapor/80 via-white/95 to-white/90 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
                     <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
                       <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
@@ -894,10 +930,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                     {col.tags && col.tags.length > 0 && (
                       <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-slate-500">
                         {col.tags.slice(0, 3).map((tag) => (
-                          <span
-                            key={tag}
-                            className="rounded-full bg-slate-50 px-2 py-1"
-                          >
+                          <span key={tag} className="rounded-full bg-slate-50 px-2 py-1">
                             {tag}
                           </span>
                         ))}
@@ -907,6 +940,57 @@ export default async function GuideDetailPage({ params }: PageProps) {
                           </span>
                         )}
                       </div>
+                    )}
+                  </GlassCard>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* ★ 追加：関連HERITAGE */}
+        {relatedHeritage.length > 0 && (
+          <section className="mt-20 lg:mt-24">
+            <div className="mb-4 flex items-baseline justify-between gap-2">
+              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
+                このガイドと関連するHERITAGE
+              </h2>
+              <Link
+                href="/heritage"
+                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+              >
+                HERITAGE一覧へ
+              </Link>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              {relatedHeritage.map((h) => (
+                <Link key={h.id} href={`/heritage/${encodeURIComponent(h.slug)}`}>
+                  <GlassCard className="h-full border border-slate-200/80 bg-white/92 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
+                    <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                      <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                        {mapHeritageKindLabel(h.kind)}
+                      </span>
+                      {(h as any).brandName && (
+                        <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                          {(h as any).brandName}
+                        </span>
+                      )}
+                      {h.publishedAt && (
+                        <span className="ml-auto text-[10px] text-slate-400">
+                          {formatDate(h.publishedAt)}
+                        </span>
+                      )}
+                    </div>
+
+                    <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
+                      {h.title}
+                    </h3>
+
+                    {h.summary && (
+                      <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
+                        {h.summary}
+                      </p>
                     )}
                   </GlassCard>
                 </Link>
