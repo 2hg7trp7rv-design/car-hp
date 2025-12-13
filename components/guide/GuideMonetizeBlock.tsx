@@ -73,7 +73,12 @@ export function GuideMonetizeBlock(props: GuideMonetizeBlockProps) {
           className="border border-slate-100/80 bg-white/80 shadow-soft-card"
         >
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <span aria-label="PR" className="inline-flex w-fit rounded-full border border-slate-200 bg-white/70 px-2 py-0.5 text-[10px] tracking-wide text-slate-600">PR</span>
+            <span
+              aria-label="PR"
+              className="inline-flex w-fit rounded-full border border-slate-200 bg-white/70 px-2 py-0.5 text-[10px] tracking-wide text-slate-600"
+            >
+              PR
+            </span>
             <div className="space-y-2.5 md:max-w-[70%]">
               <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
                 NEXT ACTION
@@ -99,7 +104,8 @@ export function GuideMonetizeBlock(props: GuideMonetizeBlockProps) {
 
               {!IS_PROD && (
                 <p className="text-[10px] leading-relaxed text-slate-400">
-                  ※ 現在はデモ用リンクが含まれる場合があります（本番切替は環境変数で制御）。
+                  ※
+                  現在はデモ用リンクが含まれる場合があります（本番切替は環境変数で制御）。
                 </p>
               )}
             </div>
@@ -251,7 +257,7 @@ function resolveMonetizeConfig(
         },
       };
 
-        case "lease_sompo_noru":
+    case "lease_sompo_noru":
       return {
         heading: "月額で乗る選択肢を、いったん比較してみる",
         body: [
@@ -264,7 +270,7 @@ function resolveMonetizeConfig(
         },
       };
 
-case "shaken_rakuten":
+    case "shaken_rakuten":
       return {
         heading: "楽天Car車検で対応店舗と概算費用を先に押さえる",
         body: [
