@@ -6,14 +6,13 @@ import { notFound } from "next/navigation";
 import { getAllGuides, getGuideBySlug, type GuideItem } from "@/lib/guides";
 import { getAllColumns, type ColumnItem } from "@/lib/columns";
 import { getAllCars, type CarItem } from "@/lib/cars";
-import { getAllHeritage, type HeritageItem } from "@/lib/heritage";
-
 import { Reveal } from "@/components/animation/Reveal";
 import { GlassCard } from "@/components/GlassCard";
 import { GuideMonetizeBlock } from "@/components/guide/GuideMonetizeBlock";
 
 // ★ 解決レイヤー
 import { resolveAffiliateLinksForGuide } from "@/lib/affiliate";
+import { getSiteUrl } from "@/lib/site";
 
 export const runtime = "edge";
 
@@ -30,975 +29,688 @@ type HeadingBlock = {
 type ContentBlock =
   | { type: "heading"; heading: HeadingBlock }
   | { type: "paragraph"; text: string }
-  | { type: "list"; items: string[] };
-
-// STEPタイムラインで使う型(ヘッディングから抽出)
-type StepHeading = {
-  id: string;
-  stepNumber: number;
-  label: string;
-};
-
-// 日付表示用
-function formatDate(iso?: string | null): string {
-  if (!iso) return "";
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return "";
-  const y = d.getFullYear();
-  const m = `${d.getMonth() + 1}`.padStart(2, "0");
-  const day = `${d.getDate()}`.padStart(2, "0");
-  return `${y}/${m}/${day}`;
-}
-
-// ガイドのカテゴリ表示用
-function mapCategoryLabel(category: string | null | undefined): string {
-  switch (category) {
-    case "MONEY":
-    case "BUY":
-      return "お金・購入計画";
-    case "SELL":
-      return "売却・乗り換え";
-    case "MAINTENANCE_COST":
-      return "維持費・お金まわり";
-    default:
-      return "ガイド";
-  }
-}
-
-// コラム側のカテゴリ表示用
-function mapColumnCategoryLabel(category: ColumnItem["category"]): string {
-  switch (category) {
-    case "MAINTENANCE":
-      return "メンテナンス・トラブル";
-    case "TECHNICAL":
-      return "ブランド・技術・歴史";
-    default:
-      return "コラム";
-  }
-}
-
-// HERITAGE側のラベル
-function mapHeritageKindLabel(kind: HeritageItem["kind"] | null | undefined) {
-  switch (kind) {
-    case "ERA":
-      return "ERA";
-    case "BRAND":
-      return "BRAND";
-    case "CAR":
-      return "CAR HISTORY";
-    default:
-      return "HERITAGE";
-  }
-}
-
-// Markdownライクな本文をブロックに分解
-function parseBody(body: string | undefined): {
-  blocks: ContentBlock[];
-  headings: HeadingBlock[];
-} {
-  const src = body ?? "";
-  const lines = src.split(/\r?\n/);
-  const blocks: ContentBlock[] = [];
-  const headings: HeadingBlock[] = [];
-
-  let currentParagraph: string[] = [];
-  let currentList: string[] = [];
-
-  const flushParagraph = () => {
-    if (currentParagraph.length > 0) {
-      blocks.push({
-        type: "paragraph",
-        text: currentParagraph.join(" "),
-      });
-      currentParagraph = [];
+  | { type: "quote"; text: string }
+  | { type: "divider" }
+  | { type: "list"; items: string[] }
+  | {
+      type: "callout";
+      title: string;
+      body: string[];
     }
-  };
+  | {
+      type: "image";
+      src: string;
+      alt: string;
+      caption?: string;
+    };
+
+function normalizeText(value: unknown): string {
+  if (typeof value !== "string") return "";
+  return value.replace(/\s+/g, " ").trim();
+}
+
+function slugifyId(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s-]/gu, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function parseContent(content: string): ContentBlock[] {
+  const lines = content.split("\n");
+
+  const blocks: ContentBlock[] = [];
+  let pendingList: string[] = [];
+  let pendingCallout: { title: string; body: string[] } | null = null;
 
   const flushList = () => {
-    if (currentList.length > 0) {
+    if (pendingList.length > 0) {
+      blocks.push({ type: "list", items: pendingList });
+      pendingList = [];
+    }
+  };
+
+  const flushCallout = () => {
+    if (pendingCallout) {
       blocks.push({
-        type: "list",
-        items: [...currentList],
+        type: "callout",
+        title: pendingCallout.title,
+        body: pendingCallout.body,
       });
-      currentList = [];
+      pendingCallout = null;
     }
   };
 
-  lines.forEach((rawLine, index) => {
-    const line = rawLine.trim();
+  for (const rawLine of lines) {
+    const line = rawLine.trimEnd();
+    const trimmed = line.trim();
 
-    if (!line) {
-      flushParagraph();
+    // Callout syntax:
+    // :::callout Title
+    // body...
+    // :::
+    if (trimmed.startsWith(":::callout ")) {
       flushList();
-      return;
+      flushCallout();
+      const title = normalizeText(trimmed.replace(":::callout ", ""));
+      pendingCallout = { title, body: [] };
+      continue;
     }
-
-    if (line.startsWith("### ")) {
-      flushParagraph();
+    if (trimmed === ":::") {
       flushList();
-      const text = line.slice(4).trim();
-      const heading: HeadingBlock = {
-        id: `h3-${index}`,
-        text,
-        level: 3,
-      };
-      blocks.push({ type: "heading", heading });
-      headings.push(heading);
-      return;
+      flushCallout();
+      continue;
+    }
+    if (pendingCallout) {
+      if (trimmed.length > 0) {
+        pendingCallout.body.push(trimmed);
+      }
+      continue;
     }
 
-    if (line.startsWith("## ")) {
-      flushParagraph();
+    // Image syntax:
+    // ![alt](src "caption")
+    const imgMatch = trimmed.match(/^!\[(.*?)\]\((.*?)(?:\s+"(.*?)")?\)$/);
+    if (imgMatch) {
       flushList();
-      const text = line.slice(3).trim();
-      const heading: HeadingBlock = {
-        id: `h2-${index}`,
-        text,
-        level: 2,
-      };
-      blocks.push({ type: "heading", heading });
-      headings.push(heading);
-      return;
+      flushCallout();
+      const alt = imgMatch[1] ?? "";
+      const src = imgMatch[2] ?? "";
+      const caption = imgMatch[3];
+      blocks.push({
+        type: "image",
+        src,
+        alt,
+        caption: caption ? caption : undefined,
+      });
+      continue;
     }
 
-    if (line.startsWith("- ")) {
-      flushParagraph();
-      currentList.push(line.slice(2).trim());
-      return;
+    // Divider
+    if (trimmed === "---") {
+      flushList();
+      flushCallout();
+      blocks.push({ type: "divider" });
+      continue;
     }
 
+    // Headings
+    if (trimmed.startsWith("## ")) {
+      flushList();
+      flushCallout();
+      const text = normalizeText(trimmed.replace(/^##\s+/, ""));
+      blocks.push({
+        type: "heading",
+        heading: {
+          id: slugifyId(text),
+          text,
+          level: 2,
+        },
+      });
+      continue;
+    }
+    if (trimmed.startsWith("### ")) {
+      flushList();
+      flushCallout();
+      const text = normalizeText(trimmed.replace(/^###\s+/, ""));
+      blocks.push({
+        type: "heading",
+        heading: {
+          id: slugifyId(text),
+          text,
+          level: 3,
+        },
+      });
+      continue;
+    }
+
+    // Quote
+    if (trimmed.startsWith("> ")) {
+      flushList();
+      flushCallout();
+      blocks.push({ type: "quote", text: normalizeText(trimmed.slice(2)) });
+      continue;
+    }
+
+    // List item
+    if (trimmed.startsWith("- ")) {
+      flushCallout();
+      pendingList.push(normalizeText(trimmed.slice(2)));
+      continue;
+    }
+
+    // Empty line flush list
+    if (trimmed.length === 0) {
+      flushList();
+      flushCallout();
+      continue;
+    }
+
+    // Paragraph
     flushList();
-    currentParagraph.push(line);
-  });
+    flushCallout();
+    blocks.push({ type: "paragraph", text: trimmed });
+  }
 
-  flushParagraph();
   flushList();
+  flushCallout();
 
-  return { blocks, headings };
+  return blocks;
 }
 
-// 本文内の装飾(URLリンク化 + **強調**のマーク除去)
-function inlineNodes(text: string): (string | JSX.Element)[] {
-  const result: (string | JSX.Element)[] = [];
-  const tokenRegex = /(\*\*.+?\*\*|https?:\/\/[^\s]+)/g;
-
-  let lastIndex = 0;
-  let match: RegExpExecArray | null;
-
-  while ((match = tokenRegex.exec(text)) !== null) {
-    const start = match.index;
-    const token = match[0];
-
-    if (start > lastIndex) {
-      result.push(text.slice(lastIndex, start));
-    }
-
-    if (token.startsWith("**") && token.endsWith("**")) {
-      const inner = token.slice(2, -2);
-      result.push(
-        <span key={`${start}-bold`} className="font-semibold text-slate-900">
-          {inner}
-        </span>,
-      );
-    } else if (token.startsWith("http://") || token.startsWith("https://")) {
-      result.push(
-        <a
-          key={`${start}-link`}
-          href={token}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline decoration-tiffany-400/80 underline-offset-2"
-        >
-          {token}
-        </a>,
-      );
-    } else {
-      result.push(token);
-    }
-
-    lastIndex = start + token.length;
-  }
-
-  if (lastIndex < text.length) {
-    result.push(text.slice(lastIndex));
-  }
-
-  return result;
+function extractToc(blocks: ContentBlock[]): HeadingBlock[] {
+  return blocks
+    .filter((b) => b.type === "heading")
+    .map((b) => (b as any).heading as HeadingBlock)
+    .filter(Boolean);
 }
 
-// ガイドに関連するコラムを抽出
-async function getRelatedColumnsForGuide(guide: GuideItem): Promise<ColumnItem[]> {
-  const allColumns = await getAllColumns();
+function formatDate(value: string | undefined): string | null {
+  if (!value) return null;
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return null;
+  return new Intl.DateTimeFormat("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(d);
+}
 
-  const guideWithMeta = guide as GuideItem & {
-    category?: string | null;
-    tags?: string[] | null;
+function pickRelatedGuides(
+  guide: GuideItem,
+  all: GuideItem[],
+  limit = 6,
+): GuideItem[] {
+  const tags = guide.tags ?? [];
+  const category = guide.category;
+
+  const score = (g: GuideItem) => {
+    if (g.slug === guide.slug) return -9999;
+    let s = 0;
+    if (g.category === category) s += 10;
+    const sharedTags = (g.tags ?? []).filter((t) => tags.includes(t)).length;
+    s += sharedTags * 4;
+
+    const recency = (() => {
+      const d = new Date(g.publishedAt);
+      if (Number.isNaN(d.getTime())) return 0;
+      const days = (Date.now() - d.getTime()) / 86400000;
+      if (days <= 14) return 5;
+      if (days <= 60) return 2;
+      return 0;
+    })();
+    s += recency;
+
+    const t = g.title ?? "";
+    if (tags.some((tag) => t.includes(tag))) s += 2;
+
+    return s;
   };
 
-  const guideTags = new Set(guideWithMeta.tags ?? []);
-  const guideCategory = (guideWithMeta.category ?? null) as string | null;
-
-  const scored = allColumns.map((col) => {
-    let score = 0;
-
-    if (col.tags && guideTags.size > 0) {
-      const overlap = col.tags.filter((t) => guideTags.has(t)).length;
-      if (overlap > 0) {
-        score += 2 + overlap * 0.2;
-      }
-    }
-
-    if (
-      guideCategory === "MONEY" ||
-      guideCategory === "BUY" ||
-      guideCategory === "MAINTENANCE_COST"
-    ) {
-      if (col.category === "MAINTENANCE" || col.category === "TECHNICAL") {
-        score += 1;
-      }
-    } else if (guideCategory === "SELL") {
-      if (col.category === "TECHNICAL") {
-        score += 1.5;
-      }
-    }
-
-    const haystack = `${col.title} ${col.summary ?? ""}`.toLowerCase();
-    const words = `${guide.title} ${guide.summary ?? ""}`
-      .toLowerCase()
-      .split(/\s+/)
-      .filter((w) => w.length > 1);
-
-    if (words.some((w) => haystack.includes(w))) {
-      score += 0.5;
-    }
-
-    return { col, score };
-  });
-
-  const pickedByScore = scored
-    .filter((x) => x.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 4)
-    .map((x) => x.col);
-
-  if (pickedByScore.length > 0) {
-    return pickedByScore;
-  }
-
-  let fallback = allColumns;
-
-  if (guideCategory) {
-    const byCategory = allColumns.filter(
-      (col) => col.category === "TECHNICAL" || col.category === "MAINTENANCE",
-    );
-    if (byCategory.length > 0) {
-      fallback = byCategory;
-    }
-  }
-
-  const sortedFallback = [...fallback].sort((a, b) => {
-    const ta = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
-    const tb = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
-    return tb - ta;
-  });
-
-  return sortedFallback.slice(0, 4);
+  return [...all]
+    .sort((a, b) => score(b) - score(a))
+    .slice(0, limit);
 }
 
-// ガイドに関連する車種(CarItem)を取得
-async function getRelatedCarsForGuide(
-  guide: GuideItem & { relatedCarSlugs?: (string | null)[] },
-): Promise<CarItem[]> {
-  const allCars = await getAllCars();
+function pickRelatedColumns(
+  guide: GuideItem,
+  all: ColumnItem[],
+  limit = 4,
+): ColumnItem[] {
+  const tags = guide.tags ?? [];
+  const category = guide.category;
 
-  const slugs = (guide.relatedCarSlugs ?? []).filter(
-    (slug): slug is string => typeof slug === "string" && slug.trim().length > 0,
-  );
-  if (slugs.length === 0) return [];
+  const score = (c: ColumnItem) => {
+    let s = 0;
+    const t = c.title ?? "";
+    if (tags.some((tag) => t.includes(tag))) s += 6;
+    if (c.tag === "OWNERSHIP" && category === "MAINTENANCE") s += 4;
+    if (c.tag === "MARKET" && (category === "BUY" || category === "SELL"))
+      s += 4;
+    if (c.tag === "TECH" && (category === "TROUBLE" || category === "BASICS"))
+      s += 4;
 
-  const slugSet = new Set(slugs);
+    const recency = (() => {
+      const d = new Date(c.publishedAt);
+      if (Number.isNaN(d.getTime())) return 0;
+      const days = (Date.now() - d.getTime()) / 86400000;
+      if (days <= 30) return 4;
+      if (days <= 120) return 2;
+      return 0;
+    })();
+    s += recency;
 
-  const orderMap = new Map<string, number>();
-  slugs.forEach((s, idx) => orderMap.set(s, idx));
+    return s;
+  };
 
-  return allCars
-    .filter((car) => car.slug && slugSet.has(car.slug))
-    .sort((a, b) => {
-      const ai = orderMap.get(a.slug ?? "") ?? 0;
-      const bi = orderMap.get(b.slug ?? "") ?? 0;
-      return ai - bi;
-    });
+  return [...all].sort((a, b) => score(b) - score(a)).slice(0, limit);
 }
 
-// ★ ガイドに関連するHERITAGEを抽出（relatedCarSlugsの重なり + tags）
-async function getRelatedHeritageForGuide(
-  guide: GuideItem & { relatedCarSlugs?: (string | null)[]; tags?: string[] | null },
-): Promise<HeritageItem[]> {
-  const allHeritage = await getAllHeritage();
+function pickRelatedCars(
+  guide: GuideItem,
+  cars: CarItem[],
+  limit = 6,
+): CarItem[] {
+  const slugs = guide.relatedCarSlugs ?? [];
+  const picked = slugs
+    .map((slug) => cars.find((c) => c.slug === slug))
+    .filter(Boolean) as CarItem[];
 
-  const guideCarSlugs = (guide.relatedCarSlugs ?? []).filter(
-    (s): s is string => typeof s === "string" && s.trim().length > 0,
-  );
-  const guideCarSet = new Set(guideCarSlugs);
-  const guideTags = new Set((guide.tags ?? []).filter((t) => typeof t === "string" && t.trim().length > 0));
+  if (picked.length > 0) return picked.slice(0, limit);
 
-  const scored = allHeritage.map((h) => {
-    let score = 0;
+  // Fallback: keyword match in title
+  const t = guide.title ?? "";
+  const score = (c: CarItem) => {
+    const maker = c.maker ?? "";
+    const series = c.series ?? "";
+    const gen = c.generation ?? "";
+    let s = 0;
+    if (maker && t.includes(maker)) s += 6;
+    if (series && t.includes(series)) s += 8;
+    if (gen && t.includes(gen)) s += 4;
+    return s;
+  };
 
-    const hCarSlugs = ((h as any).relatedCarSlugs ?? []) as unknown[];
-    const hCarOverlap =
-      Array.isArray(hCarSlugs) && guideCarSet.size > 0
-        ? hCarSlugs.filter((x) => typeof x === "string" && guideCarSet.has(x)).length
-        : 0;
-
-    if (hCarOverlap > 0) score += 3 + hCarOverlap * 0.5;
-
-    const hTags = (h.tags ?? []) as unknown[];
-    const hTagOverlap =
-      Array.isArray(hTags) && guideTags.size > 0
-        ? hTags.filter((x) => typeof x === "string" && guideTags.has(x)).length
-        : 0;
-
-    if (hTagOverlap > 0) score += 1 + hTagOverlap * 0.2;
-
-    const haystack = `${h.title} ${(h.summary ?? "") as string}`.toLowerCase();
-    const words = `${guide.title} ${guide.summary ?? ""}`
-      .toLowerCase()
-      .split(/\s+/)
-      .filter((w) => w.length > 1);
-
-    if (words.some((w) => haystack.includes(w))) score += 0.4;
-
-    return { h, score };
-  });
-
-  const picked = scored
-    .filter((x) => x.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 4)
-    .map((x) => x.h);
-
-  if (picked.length > 0) return picked;
-
-  const sortedFallback = [...allHeritage].sort((a, b) => {
-    const ta = a.publishedAt
-      ? new Date(a.publishedAt).getTime()
-      : a.updatedAt
-      ? new Date(a.updatedAt).getTime()
-      : 0;
-    const tb = b.publishedAt
-      ? new Date(b.publishedAt).getTime()
-      : b.updatedAt
-      ? new Date(b.updatedAt).getTime()
-      : 0;
-    return tb - ta;
-  });
-
-  return sortedFallback.slice(0, 4);
+  return [...cars].sort((a, b) => score(b) - score(a)).slice(0, limit);
 }
 
-// 静的パス生成
 export async function generateStaticParams() {
   const guides = await getAllGuides();
   return guides.map((g) => ({ slug: g.slug }));
 }
 
-// メタデータ
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const guide = await getGuideBySlug(params.slug);
+  if (!guide) return {};
 
-  if (!guide) {
-    return {
-      title: "ガイドが見つかりません | CAR BOUTIQUE",
-      description: "指定されたガイドページが見つかりませんでした。",
-    };
-  }
-
-  const title = `${guide.title} | CAR BOUTIQUE`;
-  const description =
-    guide.summary ||
-    "クルマの購入・維持・売却に関する実用情報をまとめたガイドです。";
+  const site = getSiteUrl();
+  const url = `${site}/guide/${encodeURIComponent(guide.slug)}`;
 
   return {
-    title,
-    description,
+    title: guide.title,
+    description: guide.summary,
+    alternates: {
+      canonical: `/guide/${guide.slug}`,
+    },
     openGraph: {
-      title,
-      description,
+      title: guide.title,
+      description: guide.summary,
+      url,
       type: "article",
-      url: `https://car-hp.vercel.app/guide/${encodeURIComponent(guide.slug)}`,
+      images: guide.coverImage
+        ? [
+            {
+              url: guide.coverImage,
+              width: 1200,
+              height: 630,
+              alt: guide.title,
+            },
+          ]
+        : undefined,
     },
     twitter: {
-      card: "summary",
-      title,
-      description,
+      card: "summary_large_image",
+      title: guide.title,
+      description: guide.summary,
+      images: guide.coverImage ? [guide.coverImage] : undefined,
     },
   };
-}
-
-// STEP見出しを抽出してタイムライン用データに変換
-function extractStepHeadings(headings: HeadingBlock[]): StepHeading[] {
-  const result: StepHeading[] = [];
-
-  headings.forEach((h) => {
-    const m = h.text.match(/^STEP\s*(\d+)[\.\:：]?\s*(.*)$/i);
-    if (!m) return;
-
-    const stepNumber = Number(m[1]);
-    const rawLabel = m[2]?.trim() ?? "";
-    const label = rawLabel || `STEP ${stepNumber}`;
-
-    if (!Number.isNaN(stepNumber)) {
-      result.push({
-        id: h.id,
-        stepNumber,
-        label,
-      });
-    }
-  });
-
-  return result.sort((a, b) => a.stepNumber - b.stepNumber);
 }
 
 export default async function GuideDetailPage({ params }: PageProps) {
-  const guideRaw = await getGuideBySlug(params.slug);
+  const guide = await getGuideBySlug(params.slug);
+  if (!guide) notFound();
 
-  if (!guideRaw) {
-    notFound();
-  }
-
-  const guide = guideRaw as GuideItem & {
-    readMinutes?: number | null;
-    tags?: string[] | null;
-    category?: string | null;
-    relatedCarSlugs?: (string | null)[];
-    monetizeKey?: string | null;
-    affiliateLinks?: Record<string, string> | null; // 上書き用
-    internalLinks?: string[] | null;
-  };
-
-  const { blocks, headings } = parseBody(guide.body);
-  const relatedColumns = await getRelatedColumnsForGuide(guide);
-  const relatedCars = await getRelatedCarsForGuide(guide);
-  const relatedHeritage = await getRelatedHeritageForGuide(guide);
-  const stepHeadings = extractStepHeadings(headings);
-
-  const relatedCarSlugs = (guide.relatedCarSlugs ?? []).filter(
-    (slug): slug is string => typeof slug === "string" && slug.trim().length > 0,
-  );
-
-  // internalLinks から関連記事GUIDEを取得
   const allGuides = await getAllGuides();
-  const internalLinkSlugs = (guide.internalLinks ?? []).filter(
-    (s): s is string => typeof s === "string" && s.trim().length > 0,
-  );
-  const internalRelatedGuides = internalLinkSlugs
-    .map((slug) => allGuides.find((g) => g.slug === slug))
-    .filter((g): g is GuideItem => Boolean(g));
+  const allColumns = await getAllColumns();
+  const cars = await getAllCars();
 
-  // ★ monetizeKey + affiliateLinks（上書き）から最終URLマップを作る
-  const affiliateLinksResolved = resolveAffiliateLinksForGuide({
-    monetizeKey: guide.monetizeKey ?? null,
-    affiliateLinks: guide.affiliateLinks ?? null,
+  const blocks = parseContent(guide.content ?? "");
+  const toc = extractToc(blocks);
+  const publishedAt = formatDate(guide.publishedAt);
+  const updatedAt = formatDate(guide.updatedAt);
+  const relatedGuides = pickRelatedGuides(guide, allGuides);
+  const relatedColumns = pickRelatedColumns(guide, allColumns);
+  const relatedCars = pickRelatedCars(guide, cars);
+
+  // monetize links resolved server-side
+  const affiliateLinks = resolveAffiliateLinksForGuide({
+    monetizeKey: (guide as any).monetizeKey,
+    affiliateLinks: (guide as any).affiliateLinks ?? null,
   });
 
-  // ドロップキャップ用フラグ
-  let firstParagraphRendered = false;
-
-  // 表示用の日付(登録日に合わせる: publishedAtを優先)
-  const primaryDate = guide.publishedAt ?? guide.updatedAt;
-
   return (
-    <main className="min-h-screen bg-site text-text-main">
-      {/* ページ専用の光レイヤー */}
-      <div className="pointer-events-none fixed inset-0 z-0">
-        <div className="absolute left-0 top-0 h-[40vh] w-full bg-gradient-to-b from-white/90 via-white/70 to-transparent" />
-        <div className="absolute -left-[18%] top-[10%] h-[40vw] w-[40vw] rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.15),_transparent_70%)] blur-[110px]" />
-        <div className="absolute -right-[20%] bottom-[-10%] h-[50vw] w-[50vw] rounded-full bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.22),_transparent_75%)] blur-[110px]" />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-6xl px-4 pb-24 pt-24 sm:px-6 lg:px-8">
-        {/* パンくず */}
-        <nav aria-label="パンくずリスト" className="mb-6 text-xs text-slate-500">
-          <Link href="/" className="hover:text-slate-800">
-            HOME
-          </Link>
-          <span className="mx-2">/</span>
-          <Link href="/guide" className="hover:text-slate-800">
+    <div className="mx-auto max-w-6xl px-4 pb-24 pt-10 sm:px-6">
+      <Reveal delay={80}>
+        <header className="mb-10">
+          <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
             GUIDE
-          </Link>
-          <span className="mx-2">/</span>
-          <span className="truncate text-slate-400 align-middle">{guide.title}</span>
-        </nav>
+          </p>
 
-        {/* ヘッダー */}
-        <header className="mb-12 lg:mb-14">
-          <Reveal>
-            <div className="flex flex-wrap items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-slate-500">
-              <span className="inline-flex items-center gap-2">
-                <span className="h-[1px] w-6 bg-tiffany-400" />
-                GUIDE
-              </span>
-              <span className="h-[1px] w-6 bg-slate-200" />
-              <span>{mapCategoryLabel(guide.category ?? null)}</span>
-            </div>
-          </Reveal>
-
-          <Reveal delay={80}>
-            <h1 className="serif-heading mt-4 text-2xl font-semibold leading-relaxed tracking-tight text-slate-900 sm:text-3xl lg:text-[2.3rem]">
-              {guide.title}
-            </h1>
-          </Reveal>
-
-          <Reveal delay={160}>
-            <div className="mt-4 flex flex-wrap items-center gap-3 text-[11px] text-slate-500">
-              {guide.readMinutes != null && (
-                <span className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-3 py-1.5 text-[10px] tracking-[0.18em] text-slate-100 shadow-soft">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  約 {guide.readMinutes} 分で読めます
-                </span>
-              )}
-              {primaryDate && (
-                <>
-                  <span className="h-[1px] w-6 bg-slate-200" />
-                  <span className="tracking-[0.16em]">PUBLISHED {formatDate(primaryDate)}</span>
-                </>
-              )}
-              {guide.tags && guide.tags.length > 0 && (
-                <>
-                  <span className="h-[1px] w-6 bg-slate-200" />
-                  <div className="flex flex-wrap gap-1.5">
-                    {guide.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-slate-50 px-2 py-0.5 text-[10px] tracking-[0.12em]"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                </>
-              )}
-            </div>
-          </Reveal>
+          <h1 className="serif-heading mt-3 text-2xl text-slate-900 sm:text-3xl">
+            {guide.title}
+          </h1>
 
           {guide.summary && (
-            <Reveal delay={220}>
-              <p className="mt-5 max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
-                {guide.summary}
-              </p>
+            <p className="mt-3 max-w-3xl text-[12px] leading-relaxed text-slate-600 sm:text-[14px]">
+              {guide.summary}
+            </p>
+          )}
+
+          <div className="mt-5 flex flex-wrap items-center gap-3 text-[10px] tracking-[0.18em] text-slate-500">
+            {publishedAt && (
+              <span className="rounded-full border border-slate-200 bg-white/70 px-2 py-0.5">
+                PUBLISHED {publishedAt}
+              </span>
+            )}
+            {updatedAt && (
+              <span className="rounded-full border border-slate-200 bg-white/70 px-2 py-0.5">
+                UPDATED {updatedAt}
+              </span>
+            )}
+            {guide.readingTimeMinutes && (
+              <span className="rounded-full border border-slate-200 bg-white/70 px-2 py-0.5">
+                {guide.readingTimeMinutes} MIN
+              </span>
+            )}
+          </div>
+        </header>
+      </Reveal>
+
+      <div className="grid gap-8 lg:grid-cols-12">
+        <div className="lg:col-span-8">
+          {/* Cover */}
+          {guide.coverImage && (
+            <Reveal delay={120}>
+              <div className="mb-8 overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-soft-card">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={guide.coverImage}
+                  alt={guide.title}
+                  className="h-auto w-full object-cover"
+                />
+              </div>
             </Reveal>
           )}
-        </header>
 
-        {/* 本文＋目次レイアウト */}
-        <div className="flex flex-col gap-10 lg:flex-row lg:gap-12">
-          {/* 本文エリア */}
-          <section className="w-full lg:w-[68%]">
-            <GlassCard className="relative overflow-hidden border border-slate-200/80 bg-white/92 px-5 py-6 shadow-soft sm:px-7 sm:py-8">
-              <div className="pointer-events-none absolute -right-28 -top-28 h-48 w-48 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.2),_transparent_70%)] blur-3xl" />
-              <div className="pointer-events-none absolute -left-24 bottom-[-30%] h-56 w-56 rounded-full bg-[radial-gradient(circle_at_center,_rgba(148,163,184,0.25),_transparent_70%)] blur-3xl" />
+          {/* Monetize block (top) */}
+          <GuideMonetizeBlock
+            monetizeKey={(guide as any).monetizeKey ?? null}
+            affiliateLinks={affiliateLinks}
+          />
 
-              <article className="relative z-10">
-                <div className="mb-5 rounded-2xl bg-slate-50/80 px-4 py-3 text-[11px] text-slate-700">
-                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
-                    GUIDE OUTLINE
-                  </p>
-                  <p className="mt-1 leading-relaxed">
-                    このガイドは「{mapCategoryLabel(guide.category ?? null)}」に関する基本的な考え方や順番を整理するためのメモです。細かい数字の比較というよりも まずここから押さえておくと楽という目線で構成しています。
-                  </p>
-                </div>
+          {/* Content */}
+          <article className="mt-10 space-y-6">
+            {blocks.map((block, index) => {
+              if (block.type === "heading") {
+                const h = block.heading;
+                const Tag = h.level === 2 ? "h2" : "h3";
+                const cls =
+                  h.level === 2
+                    ? "serif-heading mt-10 scroll-mt-24 text-xl text-slate-900 sm:text-2xl"
+                    : "serif-heading mt-8 scroll-mt-24 text-lg text-slate-900 sm:text-xl";
+                return (
+                  <Reveal key={`${h.id}-${index}`} delay={120 + index * 8}>
+                    <Tag id={h.id} className={cls}>
+                      {h.text}
+                    </Tag>
+                  </Reveal>
+                );
+              }
 
-                {stepHeadings.length > 0 && (
-                  <section className="mb-6 rounded-2xl border border-tiffany-100 bg-gradient-to-br from-tiffany-50/90 via-white to-white px-4 py-4 text-[11px] shadow-soft-card sm:px-5 sm:py-5">
-                    <p className="mb-3 text-[10px] font-semibold tracking-[0.22em] text-tiffany-700">
-                      GUIDE STEPS
+              if (block.type === "paragraph") {
+                return (
+                  <Reveal key={`p-${index}`} delay={120 + index * 8}>
+                    <p className="text-[12px] leading-relaxed text-slate-700 sm:text-[14px]">
+                      {block.text}
                     </p>
-                    <div className="relative pl-4">
-                      <div className="absolute left-[10px] top-1 bottom-1 w-px bg-gradient-to-b from-tiffany-300/60 via-slate-200/80 to-transparent" />
-                      <ol className="space-y-3">
-                        {stepHeadings.map((s, idx) => (
-                          <li key={s.id} className="relative flex gap-3">
-                            <div className="relative mt-[2px] flex h-5 w-5 items-center justify-center">
-                              <div className="absolute h-5 w-5 rounded-full bg-white shadow-[0_0_0_1px_rgba(148,163,184,0.35)]" />
-                              <div className="relative h-2.5 w-2.5 rounded-full bg-gradient-to-br from-tiffany-400 to-tiffany-600" />
-                            </div>
-                            <a href={`#${s.id}`} className="group inline-flex flex-1 flex-col gap-0.5">
-                              <span className="text-[10px] font-semibold tracking-[0.18em] text-slate-400">
-                                STEP {s.stepNumber.toString().padStart(2, "0")}
-                              </span>
-                              <span className="text-[11px] font-medium text-slate-800 group-hover:text-tiffany-700">
-                                {s.label}
-                              </span>
-                              {idx === 0 && (
-                                <span className="mt-0.5 text-[10px] text-slate-400">
-                                  上から順にざっくりこの順番で考える前提のステップです。
-                                </span>
-                              )}
-                            </a>
-                          </li>
-                        ))}
-                      </ol>
-                    </div>
-                  </section>
-                )}
+                  </Reveal>
+                );
+              }
 
-                <div className="mt-6">
-                  {blocks.map((block, index) => {
-                    if (block.type === "heading") {
-                      const Tag = block.heading.level === 2 ? "h2" : "h3";
+              if (block.type === "quote") {
+                return (
+                  <Reveal key={`q-${index}`} delay={120 + index * 8}>
+                    <blockquote className="rounded-2xl border border-slate-100 bg-white/70 p-4 text-[12px] leading-relaxed text-slate-700 shadow-soft sm:p-5 sm:text-[14px]">
+                      {block.text}
+                    </blockquote>
+                  </Reveal>
+                );
+              }
 
-                      const isStepHeading = /^STEP\s*\d+/i.test(block.heading.text);
+              if (block.type === "divider") {
+                return (
+                  <div
+                    key={`d-${index}`}
+                    className="my-8 h-px w-full bg-slate-200/70"
+                  />
+                );
+              }
 
-                      const baseClass = isStepHeading
-                        ? "mt-10 mb-4 text-sm font-semibold tracking-[0.18em] text-slate-800 sm:text-[13px] uppercase"
-                        : block.heading.level === 2
-                        ? "mt-12 mb-5 font-serif text-xl font-medium text-slate-900 sm:text-2xl"
-                        : "mt-8 mb-3 text-base font-semibold tracking-[0.04em] text-slate-800";
+              if (block.type === "list") {
+                return (
+                  <Reveal key={`l-${index}`} delay={120 + index * 8}>
+                    <ul className="space-y-2 rounded-2xl border border-slate-100 bg-white/70 p-4 text-[12px] leading-relaxed text-slate-700 shadow-soft sm:p-5 sm:text-[14px]">
+                      {block.items.map((it) => (
+                        <li key={it} className="flex gap-2">
+                          <span className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-tiffany-400" />
+                          <span>{it}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </Reveal>
+                );
+              }
 
-                      return (
-                        <Reveal key={block.heading.id} delay={index === 0 ? 0 : 60}>
-                          <Tag id={block.heading.id} className={baseClass}>
-                            {block.heading.text}
-                          </Tag>
-                        </Reveal>
-                      );
-                    }
-
-                    if (block.type === "list") {
-                      return (
-                        <Reveal key={`list-${index}`} delay={80}>
-                          <ul className="mt-3 space-y-1.5 text-sm leading-relaxed text-slate-800 sm:text-[15px]">
-                            {block.items.map((item) => (
-                              <li key={item} className="flex gap-2">
-                                <span className="mt-[7px] h-[3px] w-5 rounded-full bg-tiffany-300" />
-                                <span>{inlineNodes(item)}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </Reveal>
-                      );
-                    }
-
-                    if (!firstParagraphRendered && block.text.trim().length) {
-                      firstParagraphRendered = true;
-                      const firstChar = block.text[0];
-                      const rest = block.text.slice(1);
-
-                      return (
-                        <Reveal key={`p-${index}`} delay={100}>
-                          <p className="mt-4 text-sm leading-8 text-slate-800 sm:text-[15px] sm:leading-[2rem] first-letter-float">
-                            <span className="first-letter-span">{firstChar}</span>
-                            {inlineNodes(rest)}
+              if (block.type === "callout") {
+                return (
+                  <Reveal key={`c-${index}`} delay={120 + index * 8}>
+                    <GlassCard
+                      padding="lg"
+                      magnetic={false}
+                      className="border border-slate-100 bg-white/80 shadow-soft-card"
+                    >
+                      <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
+                        NOTE
+                      </p>
+                      <h3 className="serif-heading mt-2 text-lg text-slate-900">
+                        {block.title}
+                      </h3>
+                      <div className="mt-3 space-y-2">
+                        {block.body.map((t) => (
+                          <p
+                            key={t}
+                            className="text-[12px] leading-relaxed text-slate-700 sm:text-[14px]"
+                          >
+                            {t}
                           </p>
-                        </Reveal>
-                      );
-                    }
+                        ))}
+                      </div>
+                    </GlassCard>
+                  </Reveal>
+                );
+              }
 
-                    return (
-                      <Reveal key={`p-${index}`} delay={60}>
-                        <p className="mt-4 text-sm leading-8 text-slate-800 sm:text-[15px] sm:leading-[2rem]">
-                          {inlineNodes(block.text)}
-                        </p>
-                      </Reveal>
-                    );
-                  })}
-                </div>
+              if (block.type === "image") {
+                return (
+                  <Reveal key={`img-${index}`} delay={120 + index * 8}>
+                    <figure className="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-soft-card">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={block.src}
+                        alt={block.alt}
+                        className="h-auto w-full object-cover"
+                      />
+                      {block.caption && (
+                        <figcaption className="border-t border-slate-100 px-4 py-3 text-[10px] tracking-[0.18em] text-slate-500">
+                          {block.caption}
+                        </figcaption>
+                      )}
+                    </figure>
+                  </Reveal>
+                );
+              }
 
-                {/* ★ 解決済みリンクを渡す */}
-                <GuideMonetizeBlock
-                  monetizeKey={guide.monetizeKey ?? undefined}
-                  affiliateLinks={affiliateLinksResolved}
-                />
-              </article>
-            </GlassCard>
+              return null;
+            })}
+          </article>
 
-            {/* ★ ガイド同士の内部リンクセクション */}
-            {internalRelatedGuides.length > 0 && (
-              <section className="mt-10 lg:mt-12">
-                <div className="mb-3 flex items-baseline justify-between gap-2">
-                  <h2 className="text-[10px] font-semibold tracking-[0.22em] text-slate-600">
-                    このガイドと一緒に読まれているGUIDE
+          {/* Monetize block (bottom) */}
+          <GuideMonetizeBlock
+            monetizeKey={(guide as any).monetizeKey ?? null}
+            affiliateLinks={affiliateLinks}
+          />
+
+          {/* Related */}
+          <Reveal delay={180}>
+            <section className="mt-14">
+              <div className="mb-4 flex items-baseline justify-between gap-3">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
+                    RELATED
+                  </p>
+                  <h2 className="serif-heading mt-2 text-lg text-slate-900 sm:text-xl">
+                    関連GUIDE
                   </h2>
                 </div>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {internalRelatedGuides.map((g) => (
-                    <Link key={g.slug} href={`/guide/${encodeURIComponent(g.slug)}`}>
-                      <GlassCard className="group h-full border border-slate-200/80 bg-white/92 p-4 text-[11px] shadow-soft-sm transition hover:-translate-y-[1px] hover:border-tiffany-200 hover:bg-white">
-                        <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
-                          <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-                            {mapCategoryLabel((g as any).category ?? null)}
-                          </span>
-                          {(g as any).readMinutes && (
-                            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-                              約{(g as any).readMinutes}分
-                            </span>
-                          )}
-                        </div>
-                        <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
+                <Link
+                  href="/guide"
+                  className="text-[11px] font-semibold tracking-[0.18em] text-slate-600 hover:text-slate-900"
+                >
+                  GUIDE一覧へ →
+                </Link>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {relatedGuides.map((g, idx) => (
+                  <Reveal key={g.slug} delay={220 + idx * 30}>
+                    <Link href={`/guide/${encodeURIComponent(g.slug)}`}>
+                      <GlassCard className="group h-full border border-slate-200/80 bg-gradient-to-br from-vapor/80 via-white/95 to-white/90 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card sm:p-5">
+                        <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900 group-hover:text-tiffany-700">
                           {g.title}
                         </h3>
                         {g.summary && (
-                          <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
+                          <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
                             {g.summary}
                           </p>
                         )}
                       </GlassCard>
                     </Link>
-                  ))}
+                  </Reveal>
+                ))}
+              </div>
+            </section>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <section className="mt-12">
+              <div className="mb-4 flex items-baseline justify-between gap-3">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
+                    COLUMNS
+                  </p>
+                  <h2 className="serif-heading mt-2 text-lg text-slate-900 sm:text-xl">
+                    関連COLUMN
+                  </h2>
                 </div>
-              </section>
-            )}
+                <Link
+                  href="/column"
+                  className="text-[11px] font-semibold tracking-[0.18em] text-slate-600 hover:text-slate-900"
+                >
+                  COLUMN一覧へ →
+                </Link>
+              </div>
 
-            <div className="mt-10 border-t border-slate-100 pt-6 lg:hidden">
-              <Link
-                href="/guide"
-                className="inline-flex items-center gap-2 text-xs font-medium tracking-[0.18em] text-slate-500 hover:text-tiffany-600"
-              >
-                <span className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200">
-                  ←
-                </span>
-                GUIDE一覧へ戻る
-              </Link>
-            </div>
-          </section>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {relatedColumns.map((c, idx) => (
+                  <Reveal key={c.slug} delay={230 + idx * 30}>
+                    <Link href={`/column/${encodeURIComponent(c.slug)}`}>
+                      <GlassCard className="group h-full border border-slate-200/80 bg-gradient-to-br from-vapor/80 via-white/95 to-white/90 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card sm:p-5">
+                        <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900 group-hover:text-tiffany-700">
+                          {c.title}
+                        </h3>
+                        {c.excerpt && (
+                          <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
+                            {c.excerpt}
+                          </p>
+                        )}
+                      </GlassCard>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+            </section>
+          </Reveal>
+        </div>
 
-          {/* 目次(PC) */}
-          <aside className="hidden w-[32%] lg:block">
-            <div className="sticky top-24 space-y-4">
-              <div className="rounded-2xl border border-white/70 bg-white/80 p-5 text-[11px] text-slate-600 shadow-soft backdrop-blur">
-                <p className="mb-3 text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                  CONTENTS
-                </p>
-
-                {headings.length === 0 ? (
-                  <p className="text-[11px] text-slate-400">このガイドには見出しが設定されていません。</p>
-                ) : (
-                  <ul className="space-y-2">
-                    {headings.map((h) => (
-                      <li key={h.id}>
+        {/* Sidebar */}
+        <aside className="lg:col-span-4">
+          <div className="sticky top-24 space-y-6">
+            {/* TOC */}
+            {toc.length > 0 && (
+              <Reveal delay={120}>
+                <GlassCard
+                  padding="lg"
+                  magnetic={false}
+                  className="border border-slate-100 bg-white/80 shadow-soft-card"
+                >
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
+                    CONTENTS
+                  </p>
+                  <ul className="mt-4 space-y-2 text-[11px] leading-relaxed text-slate-700">
+                    {toc.map((h) => (
+                      <li key={h.id} className={h.level === 3 ? "pl-3" : ""}>
                         <a
                           href={`#${h.id}`}
-                          className={`block leading-relaxed transition-colors hover:text-tiffany-600 ${
-                            h.level === 3 ? "pl-3 text-slate-500" : ""
-                          }`}
+                          className="hover:text-tiffany-700"
                         >
                           {h.text}
                         </a>
                       </li>
                     ))}
                   </ul>
-                )}
+                </GlassCard>
+              </Reveal>
+            )}
 
-                <p className="mt-4 border-t border-slate-100 pt-3 text-[10px] leading-relaxed text-slate-400">
-                  一度読み切ったあとに気になる見出しだけをもう一度辿り直せるようにする前提の簡易的な目次です。
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-slate-200/70 bg-white/80 p-4 text-[11px] text-slate-600 shadow-sm">
-                <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                  BACK TO GUIDE
-                </p>
-                <Link
-                  href="/guide"
-                  className="inline-flex items-center gap-2 text-[11px] font-medium tracking-[0.18em] text-slate-500 hover:text-tiffany-600"
+            {/* Related Cars */}
+            {relatedCars.length > 0 && (
+              <Reveal delay={160}>
+                <GlassCard
+                  padding="lg"
+                  magnetic={false}
+                  className="border border-slate-100 bg-white/80 shadow-soft-card"
                 >
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 text-xs">
-                    ←
-                  </span>
-                  GUIDE一覧に戻る
-                </Link>
-              </div>
-            </div>
-          </aside>
-        </div>
-
-        {/* 関連する車種(GuideItem.relatedCarSlugsを利用) */}
-        {relatedCars.length > 0 && (
-          <section className="mt-16 lg:mt-20">
-            <div className="mb-4 flex items-baseline justify-between gap-2">
-              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
-                このガイドと関連する車種
-              </h2>
-              <Link
-                href="/cars"
-                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
-              >
-                CARS一覧へ
-              </Link>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {relatedCars.map((car) => (
-                <Link key={car.slug} href={`/cars/${encodeURIComponent(car.slug)}`}>
-                  <GlassCard className="group h-full border border-slate-200/80 bg-white/90 p-4 text-[11px] shadow-soft-sm transition hover:-translate-y-[1px] hover:border-tiffany-200 hover:bg-white">
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <p className="text-[10px] font-semibold tracking-[0.16em] text-slate-500">
-                          {car.maker}
-                        </p>
-                        <p className="mt-0.5 line-clamp-2 text-[13px] font-medium leading-snug text-slate-900 group-hover:underline">
-                          {car.name}
-                        </p>
-                      </div>
-                      {car.releaseYear && (
-                        <span className="text-[10px] text-slate-400">{car.releaseYear}年頃</span>
-                      )}
-                    </div>
-                    {car.summary && (
-                      <p className="mt-2 line-clamp-3 text-[11px] leading-snug text-slate-600">
-                        {car.summary}
-                      </p>
-                    )}
-                  </GlassCard>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {relatedCars.length === 0 && relatedCarSlugs.length > 0 && (
-          <section className="mt-16 lg:mt-20">
-            <div className="mb-4 flex items-baseline justify-between gap-2">
-              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
-                このガイドと関連する車種(仮)
-              </h2>
-              <Link
-                href="/cars"
-                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
-              >
-                CARS一覧へ
-              </Link>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {relatedCarSlugs.map((slug) => (
-                <Link
-                  key={slug}
-                  href={`/cars/${encodeURIComponent(slug)}`}
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-[11px] text-slate-600 shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-200 hover:text-tiffany-700"
-                >
-                  <span className="h-1.5 w-1.5 rounded-full bg-tiffany-400" />
-                  <span className="uppercase tracking-[0.12em]">{slug}</span>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* 関連コラム */}
-        {relatedColumns.length > 0 && (
-          <section className="mt-20 lg:mt-24">
-            <div className="mb-4 flex items-baseline justify-between gap-2">
-              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
-                このガイドと関連するコラム
-              </h2>
-              <Link
-                href="/column"
-                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
-              >
-                コラム一覧へ
-              </Link>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-2">
-              {relatedColumns.map((col) => (
-                <Link key={col.id} href={`/column/${encodeURIComponent(col.slug)}`}>
-                  <GlassCard className="h-full border border-slate-200/80 bg-gradient-to-br from-vapor/80 via-white/95 to-white/90 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
-                    <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
-                      <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-                        {mapColumnCategoryLabel(col.category)}
-                      </span>
-                      {col.readMinutes && (
-                        <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-                          約{col.readMinutes}分
-                        </span>
-                      )}
-                      {col.publishedAt && (
-                        <span className="ml-auto text-[10px] text-slate-400">
-                          {formatDate(col.publishedAt)}
-                        </span>
-                      )}
-                    </div>
-
-                    <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
-                      {col.title}
-                    </h3>
-
-                    <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
-                      {col.summary}
-                    </p>
-
-                    {col.tags && col.tags.length > 0 && (
-                      <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-slate-500">
-                        {col.tags.slice(0, 3).map((tag) => (
-                          <span key={tag} className="rounded-full bg-slate-50 px-2 py-1">
-                            {tag}
-                          </span>
-                        ))}
-                        {col.tags.length > 3 && (
-                          <span className="rounded-full bg-slate-50 px-2 py-1">
-                            +{col.tags.length - 3}
-                          </span>
-                        )}
-                      </div>
-                    )}
-                  </GlassCard>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* ★ 追加：関連HERITAGE */}
-        {relatedHeritage.length > 0 && (
-          <section className="mt-20 lg:mt-24">
-            <div className="mb-4 flex items-baseline justify-between gap-2">
-              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
-                このガイドと関連するHERITAGE
-              </h2>
-              <Link
-                href="/heritage"
-                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
-              >
-                HERITAGE一覧へ
-              </Link>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-2">
-              {relatedHeritage.map((h) => (
-                <Link key={h.id} href={`/heritage/${encodeURIComponent(h.slug)}`}>
-                  <GlassCard className="h-full border border-slate-200/80 bg-white/92 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
-                    <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
-                      <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-                        {mapHeritageKindLabel(h.kind)}
-                      </span>
-                      {(h as any).brandName && (
-                        <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-                          {(h as any).brandName}
-                        </span>
-                      )}
-                      {h.publishedAt && (
-                        <span className="ml-auto text-[10px] text-slate-400">
-                          {formatDate(h.publishedAt)}
-                        </span>
-                      )}
-                    </div>
-
-                    <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
-                      {h.title}
-                    </h3>
-
-                    {h.summary && (
-                      <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
-                        {h.summary}
-                      </p>
-                    )}
-                  </GlassCard>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
+                    RELATED CARS
+                  </p>
+                  <ul className="mt-4 space-y-3">
+                    {relatedCars.map((c) => (
+                      <li key={c.slug}>
+                        <Link
+                          href={`/cars/${encodeURIComponent(c.slug)}`}
+                          className="group block"
+                        >
+                          <div className="text-[12px] font-semibold text-slate-900 group-hover:text-tiffany-700">
+                            {c.maker} {c.series}
+                          </div>
+                          <div className="mt-0.5 text-[10px] tracking-[0.14em] text-slate-500">
+                            {c.bodyType} / {c.generation}
+                          </div>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </GlassCard>
+              </Reveal>
+            )}
+          </div>
+        </aside>
       </div>
-    </main>
+    </div>
   );
 }
