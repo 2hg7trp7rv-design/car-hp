@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getSiteUrl } from "@/lib/site";
 
 import { getColumnBySlug, getAllColumns, type ColumnItem } from "@/lib/columns";
 import { getAllGuides, type GuideItem } from "@/lib/guides";
@@ -11,6 +10,7 @@ import { getAllHeritage, type HeritageItem } from "@/lib/heritage";
 import { GlassCard } from "@/components/GlassCard";
 import { Reveal } from "@/components/animation/Reveal";
 import { Button } from "@/components/ui/button";
+import { getSiteUrl } from "@/lib/site";
 
 import ColumnReaderShell from "./reader-shell";
 
@@ -170,9 +170,7 @@ function pickRelatedGuidesForColumn(
     const ordered = relatedSlugs
       .map((slug) => guides.find((g) => g.slug === slug))
       .filter((g): g is GuideWithMeta => Boolean(g));
-    if (ordered.length > 0) {
-      return ordered.slice(0, 4);
-    }
+    if (ordered.length > 0) return ordered.slice(0, 4);
   }
 
   const columnTags = new Set(column.tags ?? []);
@@ -184,9 +182,7 @@ function pickRelatedGuidesForColumn(
 
       if (g.tags && columnTags.size > 0) {
         const overlap = g.tags.filter((t) => columnTags.has(t)).length;
-        if (overlap > 0) {
-          score += 2 + overlap * 0.2;
-        }
+        if (overlap > 0) score += 2 + overlap * 0.2;
       }
 
       if (columnCategory === "MAINTENANCE") {
@@ -194,13 +190,9 @@ function pickRelatedGuidesForColumn(
           score += 1.5;
         }
       } else if (columnCategory === "TECHNICAL") {
-        if (g.category === "BUY" || g.category === "SELL") {
-          score += 1;
-        }
+        if (g.category === "BUY" || g.category === "SELL") score += 1;
       } else if (columnCategory === "OWNER_STORY") {
-        if (g.category === "MONEY" || g.category === "SELL") {
-          score += 1;
-        }
+        if (g.category === "MONEY" || g.category === "SELL") score += 1;
       }
 
       const haystack = `${g.title} ${g.summary ?? ""}`.toLowerCase();
@@ -209,9 +201,7 @@ function pickRelatedGuidesForColumn(
         .split(/\s+/)
         .filter((w) => w.length > 1);
 
-      if (words.some((w) => haystack.includes(w))) {
-        score += 0.5;
-      }
+      if (words.some((w) => haystack.includes(w))) score += 0.5;
 
       return { guide: g, score };
     })
@@ -232,9 +222,7 @@ function pickRelatedCarsForColumn(column: ColumnWithMeta, cars: CarItem[]) {
     const ordered = relatedSlugs
       .map((slug) => cars.find((c) => c.slug === slug))
       .filter((c): c is CarItem => Boolean(c));
-    if (ordered.length > 0) {
-      return ordered.slice(0, 6);
-    }
+    if (ordered.length > 0) return ordered.slice(0, 6);
   }
 
   const titleSummary = `${column.title} ${column.summary ?? ""} ${
@@ -247,12 +235,8 @@ function pickRelatedCarsForColumn(column: ColumnWithMeta, cars: CarItem[]) {
       const name = `${car.maker ?? ""} ${car.name ?? ""}`.trim().toLowerCase();
       const alt = (car.slug ?? "").toLowerCase();
 
-      if (name && titleSummary.includes(name)) {
-        score += 3;
-      }
-      if (alt && titleSummary.includes(alt)) {
-        score += 1.5;
-      }
+      if (name && titleSummary.includes(name)) score += 3;
+      if (alt && titleSummary.includes(alt)) score += 1.5;
 
       return { car, score };
     })
@@ -276,9 +260,7 @@ function pickRelatedHeritageForColumn(
     const ordered = relatedSlugs
       .map((slug) => heritageList.find((h) => h.slug === slug))
       .filter((h): h is HeritageWithMeta => Boolean(h));
-    if (ordered.length > 0) {
-      return ordered.slice(0, 3);
-    }
+    if (ordered.length > 0) return ordered.slice(0, 3);
   }
 
   return [];
@@ -294,24 +276,16 @@ export default async function ColumnDetailPage({ params }: Props) {
       getAllHeritage(),
     ]);
 
-  if (!item) {
-    notFound();
-  }
+  if (!item) notFound();
 
   const columnWithMeta = item as ColumnWithMeta;
   const guidesWithMeta = allGuidesRaw as GuideWithMeta[];
   const heritageWithMeta = allHeritageRaw as HeritageWithMeta[];
 
   const relatedColumns = pickRelatedColumns(columnWithMeta, allColumns);
-  const relatedGuides = pickRelatedGuidesForColumn(
-    columnWithMeta,
-    guidesWithMeta,
-  );
+  const relatedGuides = pickRelatedGuidesForColumn(columnWithMeta, guidesWithMeta);
   const relatedCars = pickRelatedCarsForColumn(columnWithMeta, allCars);
-  const relatedHeritage = pickRelatedHeritageForColumn(
-    columnWithMeta,
-    heritageWithMeta,
-  );
+  const relatedHeritage = pickRelatedHeritageForColumn(columnWithMeta, heritageWithMeta);
 
   const primaryDate = item.publishedAt ?? item.updatedAt ?? null;
 
@@ -339,6 +313,7 @@ export default async function ColumnDetailPage({ params }: Props) {
                 </span>
               )}
             </div>
+
             {columnWithMeta.tags && columnWithMeta.tags.length > 0 && (
               <div className="flex flex-wrap gap-1.5">
                 {columnWithMeta.tags.map((tag) => (
@@ -380,10 +355,7 @@ export default async function ColumnDetailPage({ params }: Props) {
           <Reveal delay={80}>
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
               {relatedCars.map((car) => (
-                <Link
-                  key={car.slug}
-                  href={`/cars/${encodeURIComponent(car.slug)}`}
-                >
+                <Link key={car.slug} href={`/cars/${encodeURIComponent(car.slug)}`}>
                   <GlassCard
                     as="article"
                     padding="md"
@@ -402,11 +374,10 @@ export default async function ColumnDetailPage({ params }: Props) {
                         </div>
                         <div className="text-right text-[10px] text-slate-500">
                           {car.releaseYear && <p>{car.releaseYear}年頃</p>}
-                          {car.segment && (
-                            <p className="mt-1 line-clamp-1">{car.segment}</p>
-                          )}
+                          {car.segment && <p className="mt-1 line-clamp-1">{car.segment}</p>}
                         </div>
                       </div>
+
                       <div className="mt-1 flex flex-wrap gap-1.5 text-[10px] text-slate-500">
                         {car.bodyType && (
                           <span className="rounded-full bg-slate-50 px-2 py-0.5">
@@ -419,6 +390,7 @@ export default async function ColumnDetailPage({ params }: Props) {
                           </span>
                         )}
                       </div>
+
                       {car.summary && (
                         <p className="mt-2 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
                           {car.summary}
@@ -600,10 +572,7 @@ export default async function ColumnDetailPage({ params }: Props) {
                       {col.tags && col.tags.length > 0 && (
                         <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-slate-500">
                           {col.tags.slice(0, 3).map((tag) => (
-                            <span
-                              key={tag}
-                              className="rounded-full bg-slate-50 px-2 py-1"
-                            >
+                            <span key={tag} className="rounded-full bg-slate-50 px-2 py-1">
                               #{tag}
                             </span>
                           ))}
