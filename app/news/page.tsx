@@ -55,10 +55,6 @@ function parseQueryFromSearchParams(
   };
 }
 
-function uniq<T>(arr: T[]): T[] {
-  return Array.from(new Set(arr));
-}
-
 function normalizeStr(v: unknown): string {
   if (typeof v !== "string") return "";
   return v.trim();
@@ -130,9 +126,7 @@ function pickTopTags(all: NewsWithMeta[], limit = 18): string[] {
 }
 
 function pickTopMakers(all: NewsWithMeta[], limit = 14): string[] {
-  const makers = all
-    .map((n) => normalizeStr(n.maker))
-    .filter(Boolean);
+  const makers = all.map((n) => normalizeStr(n.maker)).filter(Boolean);
   const freq = new Map<string, number>();
   for (const m of makers) freq.set(m, (freq.get(m) ?? 0) + 1);
   return [...freq.entries()]
@@ -142,9 +136,7 @@ function pickTopMakers(all: NewsWithMeta[], limit = 14): string[] {
 }
 
 function pickTopCategories(all: NewsWithMeta[], limit = 10): string[] {
-  const cats = all
-    .map((n) => normalizeStr(n.category))
-    .filter(Boolean);
+  const cats = all.map((n) => normalizeStr(n.category)).filter(Boolean);
   const freq = new Map<string, number>();
   for (const c of cats) freq.set(c, (freq.get(c) ?? 0) + 1);
   return [...freq.entries()]
