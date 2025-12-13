@@ -8,29 +8,19 @@ const SITE_URL =
   process.env.SITE_URL ||
   (process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
-    : "https://car-hp.vercel.app");
+    : "https://carboutiquejournal.com");
 
 const nextConfig = {
   // React Strict Mode（開発時のみ有効 / Cloudflare 上ではそのままでも問題なし）
   reactStrictMode: true,
 
-  // セキュリティヘッダ（X-Powered-By を消す）
-  poweredByHeader: false,
-
-  // クライアント・サーバー双方で使う「サイトの絶対URL」
-  // ※ generateMetadata などから process.env.NEXT_PUBLIC_SITE_URL 経由で参照する想定
+  // メタデータベースを環境に応じて変える（OG/Canonical などの生成の基準）
   env: {
-    NEXT_PUBLIC_SITE_URL: SITE_URL,
+    SITE_URL,
   },
 
+  // 画像は外部 URL も許可（OGP 画像や車画像など）
   images: {
-    // Cloudflare Pages / Workers では Next の画像最適化APIが使えないため常に無効化
-    unoptimized: true,
-
-    // remotePatterns は「絶対URLの画像を使えるようにするため」の最低限の設定
-    // - いまは https のみ許可しつつ hostname はワイルドカード
-    // - 実際に使うホストが固まったら、
-    //   ここを allowlist 方式（example.com / images.cdn.example 等）に絞る想定
     remotePatterns: [
       {
         protocol: "https",
