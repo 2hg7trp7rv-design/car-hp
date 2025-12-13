@@ -1,6 +1,7 @@
 // app/legal/privacy/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "プライバシーポリシー | CAR BOUTIQUE",
@@ -30,7 +31,7 @@ export default function PrivacyPolicyPage() {
           </h2>
           <p>
             本プライバシーポリシーは、当サイト(
-            <span className="break-all">https://car-hp.vercel.app</span>
+            <span className="break-all">{getSiteUrl()}</span>
             )および関連ページに適用されます。
           </p>
         </section>
