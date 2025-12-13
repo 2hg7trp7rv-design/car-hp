@@ -2,6 +2,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getSiteUrl } from "@/lib/site";
 
 import {
   getNewsById,
@@ -83,7 +84,7 @@ export async function generateMetadata(
       title: `${titleJa} | NEWS | CAR BOUTIQUE`,
       description,
       type: "article",
-      url: `https://car-hp.vercel.app/news/${encodeURIComponent(news.id)}`,
+      url: `${getSiteUrl()}/news/${encodeURIComponent(news.id)}`,
     },
   };
 }
