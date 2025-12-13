@@ -14,6 +14,8 @@ export type AffiliateLinksMap = {
 
   shakenRakutenUrl?: string;
 
+  leaseSompoNoruUrl?: string;
+
   amazonDriveRecorderUrl?: string;
   amazonChildSeatUrl?: string;
   amazonCarWashUrl?: string;
@@ -39,6 +41,9 @@ type AffiliateJsonShape = {
   };
   shaken?: {
     rakuten?: string;
+  };
+  lease?: {
+    sompoNoru?: string;
   };
   amazon?: {
     driveRecorder?: string;
@@ -146,7 +151,15 @@ export function resolveAffiliateLinksForGuide(input: {
       }
       break;
 
-    // ─── Cピラー: Amazon ───────────────────────────
+    
+    // ─── B2ピラー: カーリース（SOMPOで乗ーる） ─────────────
+    case "lease_sompo_noru":
+      if (nonEmpty(data.lease?.sompoNoru)) {
+        resolved.leaseSompoNoruUrl = data.lease.sompoNoru;
+      }
+      break;
+
+// ─── Cピラー: Amazon ───────────────────────────
     case "goods_drive_recorder":
       if (nonEmpty(data.amazon?.driveRecorder)) {
         resolved.amazonDriveRecorderUrl = data.amazon.driveRecorder;
