@@ -1,17 +1,12 @@
-// app/guide/[slug]/page.tsx
+// app/column/[slug]/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { getAllGuides, getGuideBySlug, type GuideItem } from "@/lib/guides";
-import { getAllColumns, type ColumnItem } from "@/lib/columns";
+import { getAllColumns, getColumnBySlug, type ColumnItem } from "@/lib/columns";
 import { getAllCars, type CarItem } from "@/lib/cars";
 import { Reveal } from "@/components/animation/Reveal";
 import { GlassCard } from "@/components/GlassCard";
-import { GuideMonetizeBlock } from "@/components/guide/GuideMonetizeBlock";
-
-// ★ 解決レイヤー
-import { resolveAffiliateLinksForGuide } from "@/lib/affiliate";
 import { getSiteUrl } from "@/lib/site";
 
 export const runtime = "edge";
@@ -218,33 +213,26 @@ function formatDate(value: string | undefined): string | null {
   }).format(d);
 }
 
-function pickRelatedGuides(
-  guide: GuideItem,
-  all: GuideItem[],
+function pickRelatedColumns(
+  column: ColumnItem,
+  all: ColumnItem[],
   limit = 6,
-): GuideItem[] {
-  const tags = guide.tags ?? [];
-  const category = guide.category;
-
-  const score = (g: GuideItem) => {
-    if (g.slug === guide.slug) return -9999;
+): ColumnItem[] {
+  const tag = column.tag;
+  const score = (c: ColumnItem) => {
+    if (c.slug === column.slug) return -9999;
     let s = 0;
-    if (g.category === category) s += 10;
-    const sharedTags = (g.tags ?? []).filter((t) => tags.includes(t)).length;
-    s += sharedTags * 4;
+    if (c.tag === tag) s += 10;
 
     const recency = (() => {
-      const d = new Date(g.publishedAt);
+      const d = new Date(c.publishedAt);
       if (Number.isNaN(d.getTime())) return 0;
       const days = (Date.now() - d.getTime()) / 86400000;
-      if (days <= 14) return 5;
-      if (days <= 60) return 2;
+      if (days <= 30) return 5;
+      if (days <= 120) return 2;
       return 0;
     })();
     s += recency;
-
-    const t = g.title ?? "";
-    if (tags.some((tag) => t.includes(tag))) s += 2;
 
     return s;
   };
@@ -254,46 +242,12 @@ function pickRelatedGuides(
     .slice(0, limit);
 }
 
-function pickRelatedColumns(
-  guide: GuideItem,
-  all: ColumnItem[],
-  limit = 4,
-): ColumnItem[] {
-  const tags = guide.tags ?? [];
-  const category = guide.category;
-
-  const score = (c: ColumnItem) => {
-    let s = 0;
-    const t = c.title ?? "";
-    if (tags.some((tag) => t.includes(tag))) s += 6;
-    if (c.tag === "OWNERSHIP" && category === "MAINTENANCE") s += 4;
-    if (c.tag === "MARKET" && (category === "BUY" || category === "SELL"))
-      s += 4;
-    if (c.tag === "TECH" && (category === "TROUBLE" || category === "BASICS"))
-      s += 4;
-
-    const recency = (() => {
-      const d = new Date(c.publishedAt);
-      if (Number.isNaN(d.getTime())) return 0;
-      const days = (Date.now() - d.getTime()) / 86400000;
-      if (days <= 30) return 4;
-      if (days <= 120) return 2;
-      return 0;
-    })();
-    s += recency;
-
-    return s;
-  };
-
-  return [...all].sort((a, b) => score(b) - score(a)).slice(0, limit);
-}
-
 function pickRelatedCars(
-  guide: GuideItem,
+  column: ColumnItem,
   cars: CarItem[],
   limit = 6,
 ): CarItem[] {
-  const slugs = guide.relatedCarSlugs ?? [];
+  const slugs = column.relatedCarSlugs ?? [];
   const picked = slugs
     .map((slug) => cars.find((c) => c.slug === slug))
     .filter(Boolean) as CarItem[];
@@ -301,7 +255,7 @@ function pickRelatedCars(
   if (picked.length > 0) return picked.slice(0, limit);
 
   // Fallback: keyword match in title
-  const t = guide.title ?? "";
+  const t = column.title ?? "";
   const score = (c: CarItem) => {
     const maker = c.maker ?? "";
     const series = c.series ?? "";
@@ -317,87 +271,78 @@ function pickRelatedCars(
 }
 
 export async function generateStaticParams() {
-  const guides = await getAllGuides();
-  return guides.map((g) => ({ slug: g.slug }));
+  const columns = await getAllColumns();
+  return columns.map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const guide = await getGuideBySlug(params.slug);
-  if (!guide) return {};
+  const column = await getColumnBySlug(params.slug);
+  if (!column) return {};
 
   const site = getSiteUrl();
-  const url = `${site}/guide/${encodeURIComponent(guide.slug)}`;
+  const url = `${site}/column/${encodeURIComponent(column.slug)}`;
 
   return {
-    title: guide.title,
-    description: guide.summary,
+    title: column.title,
+    description: column.excerpt,
     alternates: {
-      canonical: `/guide/${guide.slug}`,
+      canonical: `/column/${column.slug}`,
     },
     openGraph: {
-      title: guide.title,
-      description: guide.summary,
+      title: column.title,
+      description: column.excerpt,
       url,
       type: "article",
-      images: guide.coverImage
+      images: column.coverImage
         ? [
             {
-              url: guide.coverImage,
+              url: column.coverImage,
               width: 1200,
               height: 630,
-              alt: guide.title,
+              alt: column.title,
             },
           ]
         : undefined,
     },
     twitter: {
       card: "summary_large_image",
-      title: guide.title,
-      description: guide.summary,
-      images: guide.coverImage ? [guide.coverImage] : undefined,
+      title: column.title,
+      description: column.excerpt,
+      images: column.coverImage ? [column.coverImage] : undefined,
     },
   };
 }
 
-export default async function GuideDetailPage({ params }: PageProps) {
-  const guide = await getGuideBySlug(params.slug);
-  if (!guide) notFound();
+export default async function ColumnDetailPage({ params }: PageProps) {
+  const column = await getColumnBySlug(params.slug);
+  if (!column) notFound();
 
-  const allGuides = await getAllGuides();
   const allColumns = await getAllColumns();
   const cars = await getAllCars();
 
-  const blocks = parseContent(guide.content ?? "");
+  const blocks = parseContent(column.content ?? "");
   const toc = extractToc(blocks);
-  const publishedAt = formatDate(guide.publishedAt);
-  const updatedAt = formatDate(guide.updatedAt);
-  const relatedGuides = pickRelatedGuides(guide, allGuides);
-  const relatedColumns = pickRelatedColumns(guide, allColumns);
-  const relatedCars = pickRelatedCars(guide, cars);
-
-  // monetize links resolved server-side
-  const affiliateLinks = resolveAffiliateLinksForGuide({
-    monetizeKey: (guide as any).monetizeKey,
-    affiliateLinks: (guide as any).affiliateLinks ?? null,
-  });
+  const publishedAt = formatDate(column.publishedAt);
+  const relatedColumns = pickRelatedColumns(column, allColumns);
+  const relatedCars = pickRelatedCars(column, cars);
 
   return (
     <div className="mx-auto max-w-6xl px-4 pb-24 pt-10 sm:px-6">
       <Reveal delay={80}>
         <header className="mb-10">
           <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-            GUIDE
+            COLUMN
           </p>
 
           <h1 className="serif-heading mt-3 text-2xl text-slate-900 sm:text-3xl">
-            {guide.title}
+            {column.title}
           </h1>
 
-          {guide.summary && (
+          {column.excerpt && (
             <p className="mt-3 max-w-3xl text-[12px] leading-relaxed text-slate-600 sm:text-[14px]">
-              {guide.summary}
+              {column.excerpt}
             </p>
           )}
 
@@ -407,14 +352,9 @@ export default async function GuideDetailPage({ params }: PageProps) {
                 PUBLISHED {publishedAt}
               </span>
             )}
-            {updatedAt && (
+            {column.tag && (
               <span className="rounded-full border border-slate-200 bg-white/70 px-2 py-0.5">
-                UPDATED {updatedAt}
-              </span>
-            )}
-            {guide.readingTimeMinutes && (
-              <span className="rounded-full border border-slate-200 bg-white/70 px-2 py-0.5">
-                {guide.readingTimeMinutes} MIN
+                TAG {column.tag}
               </span>
             )}
           </div>
@@ -424,27 +364,21 @@ export default async function GuideDetailPage({ params }: PageProps) {
       <div className="grid gap-8 lg:grid-cols-12">
         <div className="lg:col-span-8">
           {/* Cover */}
-          {guide.coverImage && (
+          {column.coverImage && (
             <Reveal delay={120}>
               <div className="mb-8 overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-soft-card">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={guide.coverImage}
-                  alt={guide.title}
+                  src={column.coverImage}
+                  alt={column.title}
                   className="h-auto w-full object-cover"
                 />
               </div>
             </Reveal>
           )}
 
-          {/* Monetize block (top) */}
-          <GuideMonetizeBlock
-            monetizeKey={(guide as any).monetizeKey ?? null}
-            affiliateLinks={affiliateLinks}
-          />
-
           {/* Content */}
-          <article className="mt-10 space-y-6">
+          <article className="space-y-6">
             {blocks.map((block, index) => {
               if (block.type === "heading") {
                 const h = block.heading;
@@ -559,12 +493,6 @@ export default async function GuideDetailPage({ params }: PageProps) {
             })}
           </article>
 
-          {/* Monetize block (bottom) */}
-          <GuideMonetizeBlock
-            monetizeKey={(guide as any).monetizeKey ?? null}
-            affiliateLinks={affiliateLinks}
-          />
-
           {/* Related */}
           <Reveal delay={180}>
             <section className="mt-14">
@@ -572,46 +500,6 @@ export default async function GuideDetailPage({ params }: PageProps) {
                 <div>
                   <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
                     RELATED
-                  </p>
-                  <h2 className="serif-heading mt-2 text-lg text-slate-900 sm:text-xl">
-                    関連GUIDE
-                  </h2>
-                </div>
-                <Link
-                  href="/guide"
-                  className="text-[11px] font-semibold tracking-[0.18em] text-slate-600 hover:text-slate-900"
-                >
-                  GUIDE一覧へ →
-                </Link>
-              </div>
-
-              <div className="grid gap-4 sm:grid-cols-2">
-                {relatedGuides.map((g, idx) => (
-                  <Reveal key={g.slug} delay={220 + idx * 30}>
-                    <Link href={`/guide/${encodeURIComponent(g.slug)}`}>
-                      <GlassCard className="group h-full border border-slate-200/80 bg-gradient-to-br from-vapor/80 via-white/95 to-white/90 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card sm:p-5">
-                        <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900 group-hover:text-tiffany-700">
-                          {g.title}
-                        </h3>
-                        {g.summary && (
-                          <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
-                            {g.summary}
-                          </p>
-                        )}
-                      </GlassCard>
-                    </Link>
-                  </Reveal>
-                ))}
-              </div>
-            </section>
-          </Reveal>
-
-          <Reveal delay={200}>
-            <section className="mt-12">
-              <div className="mb-4 flex items-baseline justify-between gap-3">
-                <div>
-                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                    COLUMNS
                   </p>
                   <h2 className="serif-heading mt-2 text-lg text-slate-900 sm:text-xl">
                     関連COLUMN
@@ -627,7 +515,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
 
               <div className="grid gap-4 sm:grid-cols-2">
                 {relatedColumns.map((c, idx) => (
-                  <Reveal key={c.slug} delay={230 + idx * 30}>
+                  <Reveal key={c.slug} delay={220 + idx * 30}>
                     <Link href={`/column/${encodeURIComponent(c.slug)}`}>
                       <GlassCard className="group h-full border border-slate-200/80 bg-gradient-to-br from-vapor/80 via-white/95 to-white/90 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card sm:p-5">
                         <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900 group-hover:text-tiffany-700">
