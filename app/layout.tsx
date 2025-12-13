@@ -5,9 +5,11 @@ import type { ReactNode } from "react";
 import { Manrope, Bodoni_Moda } from "next/font/google";
 
 import "./globals.css";
+import { getSiteOrigin, getSiteUrl } from "@/lib/site";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SmoothScrollProvider } from "@/components/scroll/SmoothScrollProvider";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 
 // ---- フォント設定（next/font） ----
 const manrope = Manrope({
@@ -33,7 +35,7 @@ export const viewport: Viewport = {
 
 // ---- サイト全体のメタデータ ----
 export const metadata: Metadata = {
-  metadataBase: new URL("https://car-hp.vercel.app"),
+  metadataBase: getSiteOrigin(),
   title: {
     default: "CAR BOUTIQUE | クルマのニュースとストーリー",
     template: "%s | CAR BOUTIQUE",
@@ -47,7 +49,7 @@ export const metadata: Metadata = {
   // OGP / SNS 用
   openGraph: {
     type: "website",
-    url: "https://car-hp.vercel.app",
+    url: getSiteUrl(),
     siteName: "CAR BOUTIQUE",
     title: "CAR BOUTIQUE | クルマのニュースとストーリー",
     description:
@@ -117,6 +119,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       className={`${manrope.variable} ${bodoni.variable}`}
     >
       <body className="min-h-screen bg-background text-text-main antialiased">
+        <GoogleAnalytics />
         {/* グローバルの大気メッシュ（Tiffany系グラデーション） */}
         <div className="pointer-events-none fixed inset-0 -z-10 bg-site" />
 
