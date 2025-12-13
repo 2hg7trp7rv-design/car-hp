@@ -1,3 +1,4 @@
+// app/guide/[slug]/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -18,9 +19,6 @@ import {
 import { Reveal } from "@/components/animation/Reveal";
 import { GlassCard } from "@/components/GlassCard";
 import { GuideMonetizeBlock } from "@/components/guide/GuideMonetizeBlock";
-import { getSiteUrl } from "@/lib/site";
-
-// ★ 解決レイヤー（affiliate link resolver）
 import { resolveAffiliateLinksForGuide } from "@/lib/affiliate";
 
 export const runtime = "edge";
@@ -41,19 +39,27 @@ type ContentBlock =
   | { type: "quote"; text: string }
   | { type: "divider" }
   | { type: "list"; items: string[] }
+  | { type: "table"; rows: Array<{ key: string; value: string }> }
   | {
       type: "callout";
       title: string;
       body: string[];
+    }
+  | {
+      type: "image";
+      src: string;
+      alt: string;
+      caption?: string;
     };
 
 type GuideWithMeta = GuideItem & {
   relatedCarSlugs?: (string | null)[];
-  relatedColumnSlugs?: (string | null)[];
+  tags?: string[] | null;
 };
 
 type ColumnWithMeta = ColumnItem & {
-  relatedCarSlugs?: (string | null)[];
+  relatedGuideSlugs?: (string | null)[];
+  tags?: string[] | null;
 };
 
 function normalizeText(value: unknown): string {
@@ -76,6 +82,7 @@ function parseContent(content: string): ContentBlock[] {
   const blocks: ContentBlock[] = [];
   let pendingList: string[] = [];
   let pendingCallout: { title: string; body: string[] } | null = null;
+  let pendingTable: Array<{ key: string; value: string }> = [];
 
   const flushList = () => {
     if (pendingList.length > 0) {
@@ -95,6 +102,13 @@ function parseContent(content: string): ContentBlock[] {
     }
   };
 
+  const flushTable = () => {
+    if (pendingTable.length > 0) {
+      blocks.push({ type: "table", rows: pendingTable });
+      pendingTable = [];
+    }
+  };
+
   for (const rawLine of lines) {
     const line = rawLine.trimEnd();
     const trimmed = line.trim();
@@ -105,6 +119,7 @@ function parseContent(content: string): ContentBlock[] {
     // :::
     if (trimmed.startsWith(":::callout ")) {
       flushList();
+      flushTable();
       flushCallout();
       const title = normalizeText(trimmed.replace(":::callout ", ""));
       pendingCallout = { title, body: [] };
@@ -112,6 +127,7 @@ function parseContent(content: string): ContentBlock[] {
     }
     if (trimmed === ":::") {
       flushList();
+      flushTable();
       flushCallout();
       continue;
     }
@@ -122,9 +138,29 @@ function parseContent(content: string): ContentBlock[] {
       continue;
     }
 
+    // Image syntax:
+    // ![alt](src "caption")
+    const imgMatch = trimmed.match(/^!\[(.*?)\]\((.*?)(?:\s+"(.*?)")?\)$/);
+    if (imgMatch) {
+      flushList();
+      flushTable();
+      flushCallout();
+      const alt = imgMatch[1] ?? "";
+      const src = imgMatch[2] ?? "";
+      const caption = imgMatch[3];
+      blocks.push({
+        type: "image",
+        src,
+        alt,
+        caption: caption ? caption : undefined,
+      });
+      continue;
+    }
+
     // Divider
     if (trimmed === "---") {
       flushList();
+      flushTable();
       flushCallout();
       blocks.push({ type: "divider" });
       continue;
@@ -133,6 +169,7 @@ function parseContent(content: string): ContentBlock[] {
     // Headings
     if (trimmed.startsWith("## ")) {
       flushList();
+      flushTable();
       flushCallout();
       const text = normalizeText(trimmed.replace(/^##\s+/, ""));
       blocks.push({
@@ -147,6 +184,7 @@ function parseContent(content: string): ContentBlock[] {
     }
     if (trimmed.startsWith("### ")) {
       flushList();
+      flushTable();
       flushCallout();
       const text = normalizeText(trimmed.replace(/^###\s+/, ""));
       blocks.push({
@@ -163,32 +201,50 @@ function parseContent(content: string): ContentBlock[] {
     // Quote
     if (trimmed.startsWith("> ")) {
       flushList();
+      flushTable();
       flushCallout();
       blocks.push({ type: "quote", text: normalizeText(trimmed.slice(2)) });
       continue;
     }
 
+    // Table row (simple): "key: value"
+    const tableMatch = trimmed.match(/^(.+?)\s*:\s*(.+)$/);
+    if (tableMatch && !trimmed.startsWith("- ")) {
+      flushList();
+      flushCallout();
+      const key = normalizeText(tableMatch[1]);
+      const value = normalizeText(tableMatch[2]);
+      if (key && value) {
+        pendingTable.push({ key, value });
+        continue;
+      }
+    }
+
     // List item
     if (trimmed.startsWith("- ")) {
       flushCallout();
+      flushTable();
       pendingList.push(normalizeText(trimmed.slice(2)));
       continue;
     }
 
-    // Empty line flush list
+    // Empty line flush list/table/callout
     if (trimmed.length === 0) {
       flushList();
+      flushTable();
       flushCallout();
       continue;
     }
 
     // Paragraph
     flushList();
+    flushTable();
     flushCallout();
     blocks.push({ type: "paragraph", text: trimmed });
   }
 
   flushList();
+  flushTable();
   flushCallout();
 
   return blocks;
@@ -201,7 +257,18 @@ function extractToc(blocks: ContentBlock[]): HeadingBlock[] {
     .filter(Boolean);
 }
 
-function mapCategoryLabel(category: GuideItem["category"]): string {
+function formatDate(value: string | undefined): string | null {
+  if (!value) return null;
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return null;
+  return new Intl.DateTimeFormat("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(d);
+}
+
+function mapGuideCategoryLabel(category?: GuideItem["category"] | null): string {
   switch (category) {
     case "MONEY":
       return "お金・維持費";
@@ -216,52 +283,32 @@ function mapCategoryLabel(category: GuideItem["category"]): string {
   }
 }
 
-function formatDate(value?: string | null): string | null {
-  if (!value) return null;
-  const d = new Date(value);
-  if (Number.isNaN(d.getTime())) return null;
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
-  return `${y}.${m}.${day}`;
-}
-
 function pickRelatedGuides(
   guide: GuideWithMeta,
   all: GuideWithMeta[],
   limit = 6,
 ): GuideWithMeta[] {
-  const candidates = all.filter((g) => g.slug !== guide.slug);
-
-  const baseTags = new Set((guide.tags ?? []).filter(Boolean) as string[]);
-  const baseCategory = guide.category ?? null;
+  const tags = new Set((guide.tags ?? []).filter((t): t is string => typeof t === "string"));
+  const cat = guide.category ?? null;
 
   const score = (g: GuideWithMeta) => {
+    if (g.slug === guide.slug) return -9999;
     let s = 0;
 
-    if (baseCategory && g.category === baseCategory) s += 4;
+    if (cat && g.category === cat) s += 4;
 
-    const tags = (g.tags ?? []).filter(Boolean) as string[];
-    if (tags.length > 0 && baseTags.size > 0) {
-      const overlap = tags.filter((t) => baseTags.has(t)).length;
-      if (overlap > 0) s += 2 + overlap * 0.2;
+    const gTags = (g.tags ?? []).filter((t): t is string => typeof t === "string");
+    if (tags.size > 0 && gTags.length > 0) {
+      const overlap = gTags.filter((t) => tags.has(t)).length;
+      if (overlap > 0) s += 2 + overlap * 0.4;
     }
 
-    // title keyword overlap (very light)
-    const hay = `${g.title} ${g.summary ?? ""}`.toLowerCase();
-    const words = `${guide.title} ${guide.summary ?? ""}`
-      .toLowerCase()
-      .split(/\s+/)
-      .filter((w) => w.length > 1);
-    if (words.some((w) => hay.includes(w))) s += 0.6;
-
-    // recency
     const recency = (() => {
       const d = new Date(g.publishedAt ?? g.updatedAt ?? "");
       if (Number.isNaN(d.getTime())) return 0;
       const days = (Date.now() - d.getTime()) / 86400000;
-      if (days <= 30) return 1.2;
-      if (days <= 120) return 0.6;
+      if (days <= 30) return 2.5;
+      if (days <= 120) return 1;
       return 0;
     })();
     s += recency;
@@ -269,12 +316,9 @@ function pickRelatedGuides(
     return s;
   };
 
-  return [...candidates]
-    .map((g) => ({ g, s: score(g) }))
-    .filter((x) => x.s > 0)
-    .sort((a, b) => b.s - a.s)
-    .slice(0, limit)
-    .map((x) => x.g);
+  return [...all]
+    .sort((a, b) => score(b) - score(a))
+    .slice(0, limit);
 }
 
 function pickRelatedColumnsForGuide(
@@ -282,41 +326,34 @@ function pickRelatedColumnsForGuide(
   columns: ColumnWithMeta[],
   limit = 6,
 ): ColumnWithMeta[] {
-  const relSlugs = (guide.relatedColumnSlugs ?? []).filter(
-    (s): s is string => typeof s === "string" && s.trim().length > 0,
-  );
+  const relatedSlugs = (guide.slug ? [guide.slug] : []).filter(Boolean);
 
-  if (relSlugs.length > 0) {
-    const ordered = relSlugs
-      .map((slug) => columns.find((c) => c.slug === slug))
-      .filter((c): c is ColumnWithMeta => Boolean(c));
-    if (ordered.length > 0) return ordered.slice(0, limit);
-  }
+  const picked = columns
+    .filter((c) =>
+      (c.relatedGuideSlugs ?? [])
+        .filter((s): s is string => typeof s === "string" && s.trim().length > 0)
+        .some((s) => relatedSlugs.includes(s)),
+    )
+    .slice(0, limit);
+
+  if (picked.length > 0) return picked;
 
   // fallback: tag overlap
-  const baseTags = new Set((guide.tags ?? []).filter(Boolean) as string[]);
+  const tags = new Set((guide.tags ?? []).filter((t): t is string => typeof t === "string"));
+  if (tags.size === 0) return [];
+
   const score = (c: ColumnWithMeta) => {
-    let s = 0;
-    const tags = (c.tags ?? []).filter(Boolean) as string[];
-    const overlap = tags.filter((t) => baseTags.has(t)).length;
-    if (overlap > 0) s += overlap * 1.2;
-
-    const hay = `${c.title} ${c.summary ?? ""}`.toLowerCase();
-    const words = `${guide.title} ${guide.summary ?? ""}`
-      .toLowerCase()
-      .split(/\s+/)
-      .filter((w) => w.length > 1);
-    if (words.some((w) => hay.includes(w))) s += 0.5;
-
-    return s;
+    const cTags = (c.tags ?? []).filter((t): t is string => typeof t === "string");
+    const overlap = cTags.filter((t) => tags.has(t)).length;
+    return overlap;
   };
 
   return [...columns]
     .map((c) => ({ c, s: score(c) }))
     .filter((x) => x.s > 0)
     .sort((a, b) => b.s - a.s)
-    .slice(0, limit)
-    .map((x) => x.c);
+    .map((x) => x.c)
+    .slice(0, limit);
 }
 
 function pickRelatedCarsForGuide(
@@ -324,30 +361,13 @@ function pickRelatedCarsForGuide(
   cars: CarItem[],
   limit = 8,
 ): CarItem[] {
-  const relSlugs = (guide.relatedCarSlugs ?? []).filter(
+  const slugs = (guide.relatedCarSlugs ?? []).filter(
     (s): s is string => typeof s === "string" && s.trim().length > 0,
   );
-  if (relSlugs.length > 0) {
-    const ordered = relSlugs
-      .map((slug) => cars.find((c) => c.slug === slug))
-      .filter((c): c is CarItem => Boolean(c));
-    if (ordered.length > 0) return ordered.slice(0, limit);
-  }
-
-  // fallback: keyword match in title
-  const t = guide.title ?? "";
-  const score = (c: CarItem) => {
-    const maker = c.maker ?? "";
-    const series = c.series ?? "";
-    const gen = c.generation ?? "";
-    let s = 0;
-    if (maker && t.includes(maker)) s += 5;
-    if (series && t.includes(series)) s += 7;
-    if (gen && t.includes(gen)) s += 3;
-    return s;
-  };
-
-  return [...cars].sort((a, b) => score(b) - score(a)).slice(0, limit);
+  const picked = slugs
+    .map((slug) => cars.find((c) => c.slug === slug))
+    .filter(Boolean) as CarItem[];
+  return picked.slice(0, limit);
 }
 
 export async function generateStaticParams() {
@@ -361,140 +381,121 @@ export async function generateMetadata({
   const guide = await getGuideBySlug(params.slug);
   if (!guide) return {};
 
-  const site = getSiteUrl();
-  const url = `${site}/guide/${encodeURIComponent(guide.slug)}`;
+  const title = `${guide.title} | CAR BOUTIQUE`;
+  const description =
+    guide.summary ||
+    "輸入車・国産車の購入/維持/売却を、判断しやすい形で整理する実用ガイドです。";
 
   return {
-    title: guide.title,
-    description: guide.summary,
+    title,
+    description,
     alternates: {
       canonical: `/guide/${guide.slug}`,
     },
     openGraph: {
-      title: guide.title,
-      description: guide.summary,
-      url,
+      title,
+      description,
       type: "article",
-      images: guide.coverImage
-        ? [
-            {
-              url: guide.coverImage,
-              width: 1200,
-              height: 630,
-              alt: guide.title,
-            },
-          ]
-        : undefined,
     },
     twitter: {
       card: "summary_large_image",
-      title: guide.title,
-      description: guide.summary,
-      images: guide.coverImage ? [guide.coverImage] : undefined,
+      title,
+      description,
     },
   };
 }
 
 export default async function GuideDetailPage({ params }: PageProps) {
-  const guide = (await getGuideBySlug(params.slug)) as GuideWithMeta | null;
-  if (!guide) notFound();
-
-  const [allGuidesRaw, allColumnsRaw, cars] = await Promise.all([
+  const [guide, allGuidesRaw, allColumnsRaw, allCarsRaw] = await Promise.all([
+    getGuideBySlug(params.slug),
     getAllGuides(),
     getAllColumns(),
     getAllCars(),
   ]);
 
+  if (!guide) notFound();
+
   const allGuides = allGuidesRaw as GuideWithMeta[];
   const allColumns = allColumnsRaw as ColumnWithMeta[];
+  const allCars = allCarsRaw as CarItem[];
 
   const blocks = parseContent(guide.content ?? "");
   const toc = extractToc(blocks);
 
-  const primaryDate = guide.publishedAt ?? guide.updatedAt ?? null;
-  const dateLabel = formatDate(primaryDate);
+  const publishedAt = formatDate(guide.publishedAt ?? guide.updatedAt ?? undefined);
+  const categoryLabel = mapGuideCategoryLabel(guide.category);
 
-  // ★ affiliate link resolver（guide.slugベースで紐付け）
-  const affiliateLinks = resolveAffiliateLinksForGuide(guide.slug);
+  const relatedGuides = pickRelatedGuides(guide as GuideWithMeta, allGuides);
+  const relatedColumns = pickRelatedColumnsForGuide(guide as GuideWithMeta, allColumns);
+  const relatedCars = pickRelatedCarsForGuide(guide as GuideWithMeta, allCars);
 
-  const relatedGuides = pickRelatedGuides(guide, allGuides);
-  const relatedColumns = pickRelatedColumnsForGuide(guide, allColumns);
-  const relatedCars = pickRelatedCarsForGuide(guide, cars);
-
-  const categoryLabel = mapCategoryLabel(guide.category);
+  const affiliate = resolveAffiliateLinksForGuide({
+    guideSlug: guide.slug,
+  });
 
   return (
     <main className="min-h-screen bg-site text-text-main">
-      {/* Hero */}
-      <section className="border-b border-slate-200/70 bg-gradient-to-b from-vapor/70 via-white to-white">
-        <div className="mx-auto max-w-6xl px-4 pb-10 pt-24 sm:px-6">
-          <Reveal>
-            <nav
-              className="flex items-center text-[11px] text-slate-500"
-              aria-label="パンくずリスト"
-            >
-              <Link href="/" className="hover:text-slate-800">
-                HOME
-              </Link>
-              <span className="mx-2 text-slate-400">/</span>
-              <Link href="/guide" className="hover:text-slate-800">
+      <div className="mx-auto max-w-6xl px-4 pb-24 pt-24 sm:px-6">
+        <Reveal>
+          <nav
+            className="mb-6 flex items-center text-[11px] text-slate-500"
+            aria-label="パンくずリスト"
+          >
+            <Link href="/" className="hover:text-slate-800">
+              HOME
+            </Link>
+            <span className="mx-2 text-slate-400">/</span>
+            <Link href="/guide" className="hover:text-slate-800">
+              GUIDE
+            </Link>
+            <span className="mx-2 text-slate-400">/</span>
+            <span className="text-slate-400">{guide.slug}</span>
+          </nav>
+        </Reveal>
+
+        <Reveal delay={60}>
+          <header className="mb-10 rounded-3xl border border-slate-200/70 bg-white/85 p-6 shadow-soft-card backdrop-blur sm:p-8">
+            <div className="flex flex-wrap items-center gap-2 text-[10px] tracking-[0.18em] text-slate-500">
+              <span className="rounded-full border border-slate-200 bg-white/70 px-2 py-0.5">
                 GUIDE
-              </Link>
-              <span className="mx-2 text-slate-400">/</span>
-              <span className="text-slate-400">{guide.slug}</span>
-            </nav>
-          </Reveal>
-
-          <Reveal delay={80}>
-            <header className="mt-6 space-y-5">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-slate-500">
-                GUIDE
-              </p>
-
-              <h1 className="serif-heading text-3xl font-semibold tracking-tight text-slate-900 sm:text-[2.4rem]">
-                {guide.title}
-              </h1>
-
-              {guide.summary && (
-                <p className="max-w-3xl text-[13px] leading-relaxed text-text-sub sm:text-sm sm:leading-7">
-                  {guide.summary}
-                </p>
-              )}
-
-              <div className="flex flex-wrap items-center gap-2 text-[10px] tracking-[0.18em] text-slate-500">
-                <span className="rounded-full border border-slate-200 bg-white/70 px-2 py-0.5">
-                  CATEGORY {categoryLabel}
+              </span>
+              <span className="rounded-full border border-slate-200 bg-white/70 px-2 py-0.5">
+                {categoryLabel}
+              </span>
+              {publishedAt && (
+                <span className="ml-auto rounded-full border border-slate-200 bg-white/70 px-2 py-0.5 text-slate-400">
+                  UPDATED {publishedAt}
                 </span>
-                {dateLabel && (
-                  <span className="rounded-full border border-slate-200 bg-white/70 px-2 py-0.5">
-                    UPDATED {dateLabel}
-                  </span>
-                )}
-                {guide.tags && guide.tags.length > 0 && (
-                  <span className="rounded-full border border-slate-200 bg-white/70 px-2 py-0.5">
-                    TAGS {(guide.tags ?? []).slice(0, 4).join(" / ")}
-                    {(guide.tags ?? []).length > 4 ? " ..." : ""}
-                  </span>
-                )}
-              </div>
-            </header>
-          </Reveal>
-        </div>
-      </section>
+              )}
+            </div>
 
-      {/* Body */}
-      <div className="mx-auto max-w-6xl px-4 pb-24 pt-10 sm:px-6">
-        <div className="grid gap-10 lg:grid-cols-12">
+            <h1 className="serif-heading mt-4 text-2xl text-slate-900 sm:text-3xl">
+              {guide.title}
+            </h1>
+
+            {guide.summary && (
+              <p className="mt-4 max-w-3xl text-[12px] leading-relaxed text-slate-600 sm:text-[14px]">
+                {guide.summary}
+              </p>
+            )}
+          </header>
+        </Reveal>
+
+        {/* Monetize block (affiliate) */}
+        <section className="mb-10">
+          <Reveal delay={90}>
+            <GuideMonetizeBlock
+              affiliate={affiliate}
+              guideSlug={guide.slug}
+              title={guide.title}
+            />
+          </Reveal>
+        </section>
+
+        <div className="grid gap-8 lg:grid-cols-12">
           {/* Main */}
           <div className="lg:col-span-8">
-            {/* Monetize / CTA block (top) */}
-            <GuideMonetizeBlock
-              guideSlug={guide.slug}
-              affiliateLinks={affiliateLinks}
-            />
-
-            {/* Content */}
-            <article className="mt-10 space-y-6">
+            <article className="space-y-6">
               {blocks.map((block, index) => {
                 if (block.type === "heading") {
                   const h = block.heading;
@@ -504,7 +505,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                       ? "serif-heading mt-10 scroll-mt-24 text-xl text-slate-900 sm:text-2xl"
                       : "serif-heading mt-8 scroll-mt-24 text-lg text-slate-900 sm:text-xl";
                   return (
-                    <Reveal key={`${h.id}-${index}`} delay={80 + index * 6}>
+                    <Reveal key={`${h.id}-${index}`} delay={80 + index * 8}>
                       <Tag id={h.id} className={cls}>
                         {h.text}
                       </Tag>
@@ -514,7 +515,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
 
                 if (block.type === "paragraph") {
                   return (
-                    <Reveal key={`p-${index}`} delay={80 + index * 6}>
+                    <Reveal key={`p-${index}`} delay={80 + index * 8}>
                       <p className="text-[12px] leading-relaxed text-slate-700 sm:text-[14px]">
                         {block.text}
                       </p>
@@ -524,7 +525,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
 
                 if (block.type === "quote") {
                   return (
-                    <Reveal key={`q-${index}`} delay={80 + index * 6}>
+                    <Reveal key={`q-${index}`} delay={80 + index * 8}>
                       <blockquote className="rounded-2xl border border-slate-100 bg-white/70 p-4 text-[12px] leading-relaxed text-slate-700 shadow-soft sm:p-5 sm:text-[14px]">
                         {block.text}
                       </blockquote>
@@ -543,7 +544,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
 
                 if (block.type === "list") {
                   return (
-                    <Reveal key={`l-${index}`} delay={80 + index * 6}>
+                    <Reveal key={`l-${index}`} delay={80 + index * 8}>
                       <ul className="space-y-2 rounded-2xl border border-slate-100 bg-white/70 p-4 text-[12px] leading-relaxed text-slate-700 shadow-soft sm:p-5 sm:text-[14px]">
                         {block.items.map((it) => (
                           <li key={it} className="flex gap-2">
@@ -556,9 +557,31 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   );
                 }
 
+                if (block.type === "table") {
+                  return (
+                    <Reveal key={`t-${index}`} delay={80 + index * 8}>
+                      <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white/70 shadow-soft">
+                        <div className="grid divide-y divide-slate-100">
+                          {block.rows.map((row) => (
+                            <div
+                              key={`${row.key}-${row.value}`}
+                              className="grid grid-cols-[minmax(0,0.45fr)_minmax(0,0.55fr)] gap-4 px-4 py-3 text-[12px] sm:px-5 sm:text-[13px]"
+                            >
+                              <div className="font-semibold text-slate-600">
+                                {row.key}
+                              </div>
+                              <div className="text-slate-700">{row.value}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </Reveal>
+                  );
+                }
+
                 if (block.type === "callout") {
                   return (
-                    <Reveal key={`c-${index}`} delay={80 + index * 6}>
+                    <Reveal key={`c-${index}`} delay={80 + index * 8}>
                       <GlassCard
                         padding="lg"
                         magnetic={false}
@@ -585,29 +608,87 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   );
                 }
 
+                if (block.type === "image") {
+                  return (
+                    <Reveal key={`img-${index}`} delay={80 + index * 8}>
+                      <figure className="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-soft-card">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={block.src}
+                          alt={block.alt}
+                          className="h-auto w-full object-cover"
+                        />
+                        {block.caption && (
+                          <figcaption className="border-t border-slate-100 px-4 py-3 text-[10px] tracking-[0.18em] text-slate-500">
+                            {block.caption}
+                          </figcaption>
+                        )}
+                      </figure>
+                    </Reveal>
+                  );
+                }
+
                 return null;
               })}
             </article>
 
-            {/* Monetize / CTA block (bottom) */}
-            <div className="mt-14">
-              <GuideMonetizeBlock
-                guideSlug={guide.slug}
-                affiliateLinks={affiliateLinks}
-              />
-            </div>
+            {/* Related Cars */}
+            {relatedCars.length > 0 && (
+              <section className="mt-14">
+                <Reveal>
+                  <div className="mb-4 flex items-baseline justify-between gap-3">
+                    <div>
+                      <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
+                        RELATED CARS
+                      </p>
+                      <h2 className="serif-heading mt-2 text-lg text-slate-900 sm:text-xl">
+                        関連車種
+                      </h2>
+                    </div>
+                    <Link
+                      href="/cars"
+                      className="text-[11px] font-semibold tracking-[0.18em] text-slate-600 hover:text-slate-900"
+                    >
+                      CARS一覧へ →
+                    </Link>
+                  </div>
+                </Reveal>
 
-            {/* Related columns */}
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {relatedCars.map((c, idx) => (
+                    <Reveal key={c.slug} delay={120 + idx * 30}>
+                      <Link href={`/cars/${encodeURIComponent(c.slug)}`}>
+                        <GlassCard className="group h-full border border-slate-200/80 bg-gradient-to-br from-vapor/80 via-white/95 to-white/90 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card sm:p-5">
+                          <p className="text-[10px] font-semibold tracking-[0.18em] text-slate-500">
+                            {c.maker}
+                          </p>
+                          <h3 className="mt-2 line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900 group-hover:text-tiffany-700">
+                            {c.name}
+                          </h3>
+                          {c.summary && (
+                            <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
+                              {c.summary}
+                            </p>
+                          )}
+                        </GlassCard>
+                      </Link>
+                    </Reveal>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Related Columns */}
             {relatedColumns.length > 0 && (
               <section className="mt-14">
                 <Reveal>
                   <div className="mb-4 flex items-baseline justify-between gap-3">
                     <div>
                       <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                        RELATED
+                        RELATED COLUMN
                       </p>
                       <h2 className="serif-heading mt-2 text-lg text-slate-900 sm:text-xl">
-                        関連COLUMN
+                        関連コラム
                       </h2>
                     </div>
                     <Link
@@ -627,64 +708,9 @@ export default async function GuideDetailPage({ params }: PageProps) {
                           <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900 group-hover:text-tiffany-700">
                             {c.title}
                           </h3>
-                          {c.summary && (
+                          {c.excerpt && (
                             <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
-                              {c.summary}
-                            </p>
-                          )}
-                        </GlassCard>
-                      </Link>
-                    </Reveal>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* Related guides */}
-            {relatedGuides.length > 0 && (
-              <section className="mt-14">
-                <Reveal>
-                  <div className="mb-4 flex items-baseline justify-between gap-3">
-                    <div>
-                      <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                        NEXT READ
-                      </p>
-                      <h2 className="serif-heading mt-2 text-lg text-slate-900 sm:text-xl">
-                        次に読むべきGUIDE
-                      </h2>
-                    </div>
-                    <Link
-                      href="/guide"
-                      className="text-[11px] font-semibold tracking-[0.18em] text-slate-600 hover:text-slate-900"
-                    >
-                      GUIDE一覧へ →
-                    </Link>
-                  </div>
-                </Reveal>
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {relatedGuides.map((g, idx) => (
-                    <Reveal key={g.slug} delay={120 + idx * 25}>
-                      <Link href={`/guide/${encodeURIComponent(g.slug)}`}>
-                        <GlassCard className="group h-full border border-slate-200/80 bg-white/92 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card sm:p-5">
-                          <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] tracking-[0.18em] text-slate-500">
-                            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
-                              {mapCategoryLabel(g.category)}
-                            </span>
-                            {g.publishedAt && (
-                              <span className="ml-auto text-[10px] text-slate-400">
-                                {formatDate(g.publishedAt)}
-                              </span>
-                            )}
-                          </div>
-
-                          <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900 group-hover:text-tiffany-700">
-                            {g.title}
-                          </h3>
-
-                          {g.summary && (
-                            <p className="mt-2 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
-                              {g.summary}
+                              {c.excerpt}
                             </p>
                           )}
                         </GlassCard>
@@ -701,7 +727,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
             <div className="sticky top-24 space-y-6">
               {/* TOC */}
               {toc.length > 0 && (
-                <Reveal delay={80}>
+                <Reveal delay={120}>
                   <GlassCard
                     padding="lg"
                     magnetic={false}
@@ -723,29 +749,29 @@ export default async function GuideDetailPage({ params }: PageProps) {
                 </Reveal>
               )}
 
-              {/* Related Cars */}
-              {relatedCars.length > 0 && (
-                <Reveal delay={120}>
+              {/* Related Guides */}
+              {relatedGuides.length > 0 && (
+                <Reveal delay={160}>
                   <GlassCard
                     padding="lg"
                     magnetic={false}
                     className="border border-slate-100 bg-white/80 shadow-soft-card"
                   >
                     <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                      RELATED CARS
+                      NEXT GUIDE
                     </p>
                     <ul className="mt-4 space-y-3">
-                      {relatedCars.map((c) => (
-                        <li key={c.slug}>
+                      {relatedGuides.map((g) => (
+                        <li key={g.slug}>
                           <Link
-                            href={`/cars/${encodeURIComponent(c.slug)}`}
+                            href={`/guide/${encodeURIComponent(g.slug)}`}
                             className="group block"
                           >
                             <div className="text-[12px] font-semibold text-slate-900 group-hover:text-tiffany-700">
-                              {c.maker} {c.series}
+                              {g.title}
                             </div>
                             <div className="mt-0.5 text-[10px] tracking-[0.14em] text-slate-500">
-                              {c.bodyType} / {c.generation}
+                              {mapGuideCategoryLabel(g.category)}
                             </div>
                           </Link>
                         </li>
@@ -757,6 +783,20 @@ export default async function GuideDetailPage({ params }: PageProps) {
             </div>
           </aside>
         </div>
+
+        {/* bottom nav */}
+        <section className="mt-14">
+          <Reveal>
+            <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-100 bg-white/80 px-4 py-3 text-[11px] text-slate-600 shadow-soft">
+              <Link href="/guide" className="hover:text-slate-900">
+                ← GUIDE一覧へ
+              </Link>
+              <Link href="/news" className="hover:text-slate-900">
+                NEWSへ →
+              </Link>
+            </div>
+          </Reveal>
+        </section>
       </div>
     </main>
   );
