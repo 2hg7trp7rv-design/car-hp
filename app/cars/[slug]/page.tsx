@@ -8,6 +8,7 @@ import { getAllCars, getCarBySlug, type CarItem } from "@/lib/cars";
 import { getAllGuides, type GuideItem } from "@/lib/guides";
 import { getAllColumns, type ColumnItem } from "@/lib/columns";
 import { getAllHeritage, type HeritageItem } from "@/lib/heritage";
+import { getSiteUrl } from "@/lib/site";
 import { GlassCard } from "@/components/GlassCard";
 import { Reveal } from "@/components/animation/Reveal";
 
@@ -258,7 +259,7 @@ export async function generateMetadata({
       title: `${titleBase} | CAR BOUTIQUE`,
       description,
       type: "article",
-      url: `https://car-hp.vercel.app/cars/${encodeURIComponent(car.slug)}`,
+      url: `${getSiteUrl()}/cars/${encodeURIComponent(car.slug)}`,
     },
   };
 }
