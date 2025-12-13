@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getSiteUrl } from "@/lib/site";
 
 import { getAllCars, getCarBySlug, type CarItem } from "@/lib/cars";
 import { getAllGuides, type GuideItem } from "@/lib/guides";
@@ -252,20 +251,14 @@ export async function generateMetadata({
   const titleBase = car.name ?? car.slug;
   const description = car.summaryLong ?? car.summary ?? "";
 
-  const site = getSiteUrl();
-  const url = `${site}/cars/${encodeURIComponent(car.slug)}`;
-
   return {
     title: `${titleBase} | CAR BOUTIQUE`,
     description,
-    alternates: {
-      canonical: `/cars/${car.slug}`,
-    },
     openGraph: {
       title: `${titleBase} | CAR BOUTIQUE`,
       description,
       type: "article",
-      url,
+      url: `https://car-hp.vercel.app/cars/${encodeURIComponent(car.slug)}`,
     },
   };
 }
