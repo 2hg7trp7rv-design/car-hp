@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getSiteUrl } from "@/lib/site";
 
 import { getColumnBySlug, getAllColumns, type ColumnItem } from "@/lib/columns";
 import { getAllGuides, type GuideItem } from "@/lib/guides";
@@ -56,9 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     "トラブル・修理の実例や、ブランドの歴史・技術解説などを整理したコラムです。";
 
   const title = `${item.title} | CAR BOUTIQUE`;
-  const url = `https://car-hp.vercel.app/column/${encodeURIComponent(
-    params.slug,
-  )}`;
+  const url = `${getSiteUrl()}/column/${encodeURIComponent(params.slug)}`;
 
   return {
     title,
@@ -159,7 +158,10 @@ function pickRelatedColumns(base: ColumnWithMeta, allColumns: ColumnItem[]) {
 }
 
 // コラムに関連するガイドを抽出
-function pickRelatedGuidesForColumn(column: ColumnWithMeta, guides: GuideWithMeta[]) {
+function pickRelatedGuidesForColumn(
+  column: ColumnWithMeta,
+  guides: GuideWithMeta[],
+) {
   const relatedSlugs = (column.relatedGuideSlugs ?? []).filter(
     (slug): slug is string => typeof slug === "string" && slug.trim().length > 0,
   );
@@ -301,9 +303,15 @@ export default async function ColumnDetailPage({ params }: Props) {
   const heritageWithMeta = allHeritageRaw as HeritageWithMeta[];
 
   const relatedColumns = pickRelatedColumns(columnWithMeta, allColumns);
-  const relatedGuides = pickRelatedGuidesForColumn(columnWithMeta, guidesWithMeta);
+  const relatedGuides = pickRelatedGuidesForColumn(
+    columnWithMeta,
+    guidesWithMeta,
+  );
   const relatedCars = pickRelatedCarsForColumn(columnWithMeta, allCars);
-  const relatedHeritage = pickRelatedHeritageForColumn(columnWithMeta, heritageWithMeta);
+  const relatedHeritage = pickRelatedHeritageForColumn(
+    columnWithMeta,
+    heritageWithMeta,
+  );
 
   const primaryDate = item.publishedAt ?? item.updatedAt ?? null;
 
@@ -372,7 +380,10 @@ export default async function ColumnDetailPage({ params }: Props) {
           <Reveal delay={80}>
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
               {relatedCars.map((car) => (
-                <Link key={car.slug} href={`/cars/${encodeURIComponent(car.slug)}`}>
+                <Link
+                  key={car.slug}
+                  href={`/cars/${encodeURIComponent(car.slug)}`}
+                >
                   <GlassCard
                     as="article"
                     padding="md"
@@ -391,7 +402,9 @@ export default async function ColumnDetailPage({ params }: Props) {
                         </div>
                         <div className="text-right text-[10px] text-slate-500">
                           {car.releaseYear && <p>{car.releaseYear}年頃</p>}
-                          {car.segment && <p className="mt-1 line-clamp-1">{car.segment}</p>}
+                          {car.segment && (
+                            <p className="mt-1 line-clamp-1">{car.segment}</p>
+                          )}
                         </div>
                       </div>
                       <div className="mt-1 flex flex-wrap gap-1.5 text-[10px] text-slate-500">
@@ -587,7 +600,10 @@ export default async function ColumnDetailPage({ params }: Props) {
                       {col.tags && col.tags.length > 0 && (
                         <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-slate-500">
                           {col.tags.slice(0, 3).map((tag) => (
-                            <span key={tag} className="rounded-full bg-slate-50 px-2 py-1">
+                            <span
+                              key={tag}
+                              className="rounded-full bg-slate-50 px-2 py-1"
+                            >
                               #{tag}
                             </span>
                           ))}
