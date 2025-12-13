@@ -5,6 +5,7 @@ import Link from "next/link";
 import { GlassCard } from "@/components/GlassCard";
 import { Reveal } from "@/components/animation/Reveal";
 import { Button } from "@/components/ui/button";
+import { trackOutbound } from "@/lib/gtag";
 
 import type { AffiliateLinksMap } from "@/lib/affiliate";
 
@@ -39,7 +40,7 @@ function isNonEmptyString(value: unknown): value is string {
  * - そうでなければ ? / & を見て追記
  */
 function ensureAmazonTag(url: string): string {
-  const TRACKING_ID = "carboutique-22";
+  const TRACKING_ID = process.env.NEXT_PUBLIC_AMAZON_TAG ?? "carboutique-22";
 
   if (!url.includes("amazon.")) return url;
   if (url.includes("tag=")) return url;
@@ -72,6 +73,7 @@ export function GuideMonetizeBlock(props: GuideMonetizeBlockProps) {
           className="border border-slate-100/80 bg-white/80 shadow-soft-card"
         >
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <span aria-label="PR" className="inline-flex w-fit rounded-full border border-slate-200 bg-white/70 px-2 py-0.5 text-[10px] tracking-wide text-slate-600">PR</span>
             <div className="space-y-2.5 md:max-w-[70%]">
               <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
                 NEXT ACTION
@@ -104,6 +106,24 @@ export function GuideMonetizeBlock(props: GuideMonetizeBlockProps) {
 
             <div className="shrink-0 md:text-right">
               <Button
+                onClick={() => {
+                  const href = config.primaryCta.href;
+                  const partner =
+                    monetizeKey === "lease_sompo_noru"
+                      ? "sompo_noru"
+                      : monetizeKey.startsWith("insurance_")
+                        ? "insweb"
+                        : monetizeKey.startsWith("goods_")
+                          ? "amazon"
+                          : "outbound";
+
+                  trackOutbound({
+                    event: "outbound_click",
+                    partner,
+                    href,
+                    cta_position: "guide_monetize_block",
+                  });
+                }}
                 asChild
                 size="lg"
                 className="mt-2 w-full rounded-xl text-[11px] font-semibold tracking-[0.12em] sm:w-auto"
@@ -231,7 +251,20 @@ function resolveMonetizeConfig(
         },
       };
 
-    case "shaken_rakuten":
+        case "lease_sompo_noru":
+      return {
+        heading: "月額で乗る選択肢を、いったん比較してみる",
+        body: [
+          "購入だけが正解ではありません。支出の見通しを立てるなら、月額定額のリースも比較対象に入れると判断がラクになります。",
+          "まずは条件を見て、自分の生活コストに合うかどうかを確認してから検討しましょう。",
+        ],
+        primaryCta: {
+          label: "SOMPOで乗ーる（定額カーリース）を見てみる",
+          href: links.leaseSompoNoruUrl,
+        },
+      };
+
+case "shaken_rakuten":
       return {
         heading: "楽天Car車検で対応店舗と概算費用を先に押さえる",
         body: [
