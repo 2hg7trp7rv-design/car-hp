@@ -2,779 +2,597 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { getAllNews, type NewsItem } from "@/lib/news";
 import { Reveal } from "@/components/animation/Reveal";
 import { GlassCard } from "@/components/GlassCard";
-import { getLatestNews, type NewsItem } from "@/lib/news";
-import { Button } from "@/components/ui/button";
 
 export const runtime = "edge";
 
 export const metadata: Metadata = {
-  title: "NEWS | メーカー公式ニュース一覧",
+  title: "NEWS | CAR BOUTIQUE",
   description:
-    "輸入車とプレミアムブランド中心の新型車発表 仕様変更 リコール キャンペーンなどをメーカー公式サイトの一次情報リンクとして整理したニュース一覧",
+    "輸入車・国産車の最新ニュースを、要点と一次情報リンクで静かにまとめるCAR BOUTIQUEのニュース一覧。",
+  alternates: {
+    canonical: "/news",
+  },
 };
 
-type SearchParams = {
-  q?: string;
-  category?: string;
+type Query = {
   maker?: string;
+  category?: string;
   tag?: string;
-  source?: string;
-  period?: string; // "7d" | "30d" | それ以外は全期間
 };
 
-type PageProps = {
-  searchParams?: SearchParams;
+type NewsWithMeta = NewsItem & {
+  imageUrl?: string | null;
+  sourceName?: string | null;
 };
 
-// ----------------------------------------
-// ユーティリティ
-// ----------------------------------------
-
-function normalize(value: string | undefined | null): string {
-  return (value ?? "").trim().toLowerCase();
-}
-
-function formatDate(iso?: string | null): string {
-  if (!iso) return "";
+function formatDate(iso?: string | null): string | null {
+  if (!iso) return null;
   const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return "";
-  return d.toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+  if (Number.isNaN(d.getTime())) return null;
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}.${m}.${day}`;
 }
 
-function buildSourceLabel(item: NewsItem): string {
-  if (item.sourceName) return item.sourceName;
-  if (item.maker) return item.maker;
-  return "その他ソース";
+function parseQueryFromSearchParams(
+  searchParams: Record<string, string | string[] | undefined>,
+): Query {
+  const getOne = (key: string): string | undefined => {
+    const v = searchParams[key];
+    if (!v) return undefined;
+    if (Array.isArray(v)) return v[0];
+    return v;
+  };
+
+  return {
+    maker: getOne("maker"),
+    category: getOne("category"),
+    tag: getOne("tag"),
+  };
 }
 
-function buildTagList(item: NewsItem): string[] {
-  return Array.isArray(item.tags) ? item.tags.filter(Boolean) : [];
+function uniq<T>(arr: T[]): T[] {
+  return Array.from(new Set(arr));
 }
 
-function isRecent(item: NewsItem, days = 7): boolean {
-  const base = item.publishedAt ?? item.createdAt;
-  if (!base) return false;
-  const d = new Date(base);
-  if (Number.isNaN(d.getTime())) return false;
-  const diffMs = Date.now() - d.getTime();
-  const diffDays = diffMs / (1000 * 60 * 60 * 24);
-  return diffDays <= days;
+function normalizeStr(v: unknown): string {
+  if (typeof v !== "string") return "";
+  return v.trim();
 }
 
-// string | null | undefined を「中身ありの string」に絞る型ガード
-function isNonEmptyString(value: string | null | undefined): value is string {
-  return typeof value === "string" && value.trim().length > 0;
+function getTagList(item: NewsWithMeta): string[] {
+  const tags: string[] = Array.isArray(item.tags)
+    ? item.tags.filter((t: unknown): t is string => typeof t === "string")
+    : [];
+  return tags.map((t) => normalizeStr(t)).filter(Boolean);
 }
 
-function filterNews(items: NewsItem[], filters: SearchParams): NewsItem[] {
-  const keyword = normalize(filters.q);
-  const categoryFilter = (filters.category ?? "").trim();
-  const makerFilter = (filters.maker ?? "").trim();
-  const tagFilter = (filters.tag ?? "").trim();
-  const sourceFilter = (filters.source ?? "").trim();
-  const periodFilter = (filters.period ?? "").trim(); // "7d" | "30d" | ""
+function getSourceLabel(item: NewsWithMeta): string | null {
+  if (item.sourceName && typeof item.sourceName === "string") {
+    return item.sourceName;
+  }
+  if (!item.url) return null;
+  try {
+    const u = new URL(item.url);
+    return u.hostname.replace(/^www\./, "");
+  } catch {
+    return null;
+  }
+}
 
-  const now = new Date();
+function makeFilterLabel(q: Query): string {
+  const parts: string[] = [];
+  if (q.maker) parts.push(`maker:${q.maker}`);
+  if (q.category) parts.push(`category:${q.category}`);
+  if (q.tag) parts.push(`tag:${q.tag}`);
+  return parts.length ? parts.join(" / ") : "ALL";
+}
 
-  return items.filter((item) => {
-    // キーワード検索
-    if (keyword) {
-      const haystack = [
-        item.title ?? "",
-        item.titleJa ?? "",
-        item.excerpt ?? "",
-        item.commentJa ?? "",
-        item.maker ?? "",
-        item.sourceName ?? "",
-        item.category ?? "",
-        ...(item.tags ?? []),
-      ]
-        .join(" ")
-        .toLowerCase();
+function applyFilter(all: NewsWithMeta[], q: Query): NewsWithMeta[] {
+  const maker = q.maker?.trim();
+  const category = q.category?.trim();
+  const tag = q.tag?.trim();
 
-      if (!haystack.includes(keyword)) {
-        return false;
-      }
+  return all.filter((item) => {
+    if (maker && item.maker !== maker) return false;
+    if (category && item.category !== category) return false;
+    if (tag) {
+      const tags = getTagList(item);
+      if (!tags.includes(tag)) return false;
     }
-
-    // カテゴリ
-    if (categoryFilter && item.category !== categoryFilter) {
-      return false;
-    }
-
-    // メーカー
-    if (makerFilter && item.maker !== makerFilter) {
-      return false;
-    }
-
-    // ソース
-    if (sourceFilter) {
-      const sourceLabel = buildSourceLabel(item);
-      if (sourceLabel !== sourceFilter) {
-        return false;
-      }
-    }
-
-    // タグ
-    if (tagFilter) {
-      const tags = buildTagList(item);
-      if (!tags.includes(tagFilter)) {
-        return false;
-      }
-    }
-
-    // 期間フィルター（7日/30日）
-    if (periodFilter === "7d" || periodFilter === "30d") {
-      const base = item.publishedAt ?? item.createdAt;
-      if (!base) return false;
-      const d = new Date(base);
-      if (Number.isNaN(d.getTime())) return false;
-      const diffMs = now.getTime() - d.getTime();
-      const diffDays = diffMs / (1000 * 60 * 60 * 24);
-
-      if (periodFilter === "7d" && diffDays > 7) return false;
-      if (periodFilter === "30d" && diffDays > 30) return false;
-    }
-
     return true;
   });
 }
 
-type NewsListItemProps = {
-  item: NewsItem;
-  index: number;
-};
-
-function NewsListItem({ item }: NewsListItemProps) {
-  const dateLabel =
-    item.publishedAtJa ?? formatDate(item.publishedAt ?? item.createdAt);
-  const sourceLabel = buildSourceLabel(item);
-  const tags = buildTagList(item);
-  const recent = isRecent(item, 7);
-
-  return (
-    <Link href={`/news/${encodeURIComponent(item.id)}`} className="group block">
-      <GlassCard
-        as="article"
-        variant="dim"
-        padding="sm"
-        interactive
-        className="relative overflow-hidden text-[11px]"
-      >
-        {/* タイムライン風インジケーター（左） */}
-        <div className="pointer-events-none absolute -left-3 top-3 flex h-8 flex-col items-center justify-between opacity-40">
-          <span className="h-5 w-px bg-slate-200" />
-          <span className="h-1.5 w-1.5 rounded-full bg-tiffany-400" />
-        </div>
-
-        {/* カテゴリ/NEW/ソース */}
-        <div className="mb-1 flex flex-wrap items-center gap-2">
-          {item.category && (
-            <span className="inline-flex items-center rounded-full bg-white/70 px-2 py-0.5 text-[10px] tracking-[0.16em] text-slate-500">
-              {item.category.toUpperCase()}
-            </span>
-          )}
-
-          {recent && (
-            <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold tracking-[0.18em] text-emerald-700">
-              NEW
-            </span>
-          )}
-
-          {sourceLabel && (
-            <span className="inline-flex items-center rounded-full bg-slate-900/90 px-2 py-0.5 text-[9px] tracking-[0.18em] text-slate-100">
-              {sourceLabel}
-            </span>
-          )}
-
-          <span className="ml-auto text-[10px] text-slate-400">
-            {dateLabel}
-          </span>
-        </div>
-
-        {/* タイトル */}
-        <h3 className="line-clamp-2 text-[12px] font-semibold leading-relaxed text-slate-900">
-          {item.titleJa ?? item.title}
-        </h3>
-
-        {/* 抄録/コメント */}
-        {(item.commentJa || item.excerpt) && (
-          <p className="mt-1 line-clamp-2 text-[10px] leading-relaxed text-slate-600">
-            {item.commentJa ?? item.excerpt}
-          </p>
-        )}
-
-        {/* タグ */}
-        {tags.length > 0 && (
-          <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-slate-600">
-            {tags.slice(0, 4).map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-white/70 px-2 py-1 text-[10px]"
-              >
-                #{tag}
-              </span>
-            ))}
-            {tags.length > 4 && (
-              <span className="rounded-full bg-white/70 px-2 py-1">
-                +{tags.length - 4}
-              </span>
-            )}
-          </div>
-        )}
-      </GlassCard>
-    </Link>
-  );
-}
-
-// 月ごとのラベルを作る（YYYY年MM月）
-function buildMonthLabel(item: NewsItem): string {
-  const base = item.publishedAt ?? item.createdAt;
-  if (!base) return "日付未設定";
-  const d = new Date(base);
-  if (Number.isNaN(d.getTime())) return "日付未設定";
-  const y = d.getFullYear();
-  const m = `${d.getMonth() + 1}`.padStart(2, "0");
-  return `${y}年${m}月`;
-}
-
-// ----------------------------------------
-// メインページ
-// ----------------------------------------
-
-export default async function NewsPage({ searchParams }: PageProps) {
-  const news = await getLatestNews(80);
-
-  const rawQ = searchParams?.q ?? "";
-  const q = normalize(rawQ);
-  const categoryFilter = (searchParams?.category ?? "").trim();
-  const makerFilter = (searchParams?.maker ?? "").trim();
-  const tagFilter = (searchParams?.tag ?? "").trim();
-  const sourceFilter = (searchParams?.source ?? "").trim();
-  const periodFilter = (searchParams?.period ?? "").trim();
-
-  const makers: string[] = Array.from(
-    new Set(news.map((n) => n.maker).filter(isNonEmptyString)),
-  ).sort();
-
-  const categories: string[] = Array.from(
-    new Set(news.map((n) => n.category).filter(isNonEmptyString)),
-  ).sort();
-
-  const tags: string[] = Array.from(
-    new Set(news.flatMap((n) => buildTagList(n))),
-  ).sort();
-
-  const sources: string[] = Array.from(
-    new Set(news.map((n) => buildSourceLabel(n)).filter(Boolean)),
-  ).sort();
-
-  const filtered = filterNews(news, {
-    q: rawQ,
-    category: categoryFilter,
-    maker: makerFilter,
-    tag: tagFilter,
-    source: sourceFilter,
-    period: periodFilter,
+function sortByDateDesc(all: NewsWithMeta[]): NewsWithMeta[] {
+  return [...all].sort((a, b) => {
+    const da = new Date(a.publishedAt ?? "").getTime();
+    const db = new Date(b.publishedAt ?? "").getTime();
+    return db - da;
   });
+}
 
-  const hasFilter =
-    Boolean(q) ||
-    Boolean(categoryFilter) ||
-    Boolean(makerFilter) ||
-    Boolean(tagFilter) ||
-    Boolean(sourceFilter) ||
-    Boolean(periodFilter);
-
-  const featured = filtered[0];
-  const rest = filtered.slice(1);
-
-  // 残りのニュースを「月ごとのセクション」にグルーピングしてタイムライン化
-  const groupedRestEntries = (() => {
-    const grouped: Record<string, NewsItem[]> = {};
-    for (const item of rest) {
-      const label = buildMonthLabel(item);
-      if (!grouped[label]) grouped[label] = [];
-      grouped[label].push(item);
+function pickTopTags(all: NewsWithMeta[], limit = 18): string[] {
+  const freq = new Map<string, number>();
+  for (const item of all) {
+    for (const t of getTagList(item)) {
+      freq.set(t, (freq.get(t) ?? 0) + 1);
     }
-    return Object.entries(grouped).sort((a, b) => {
-      // 各グループの先頭ニュースの日付で降順ソート
-      const aItem = a[1][0];
-      const bItem = b[1][0];
-      const aDate = new Date(aItem.publishedAt ?? aItem.createdAt ?? 0);
-      const bDate = new Date(bItem.publishedAt ?? bItem.createdAt ?? 0);
-      return bDate.getTime() - aDate.getTime();
-    });
-  })();
+  }
+  return [...freq.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .map(([t]) => t)
+    .slice(0, limit);
+}
+
+function pickTopMakers(all: NewsWithMeta[], limit = 14): string[] {
+  const makers = all
+    .map((n) => normalizeStr(n.maker))
+    .filter(Boolean);
+  const freq = new Map<string, number>();
+  for (const m of makers) freq.set(m, (freq.get(m) ?? 0) + 1);
+  return [...freq.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .map(([m]) => m)
+    .slice(0, limit);
+}
+
+function pickTopCategories(all: NewsWithMeta[], limit = 10): string[] {
+  const cats = all
+    .map((n) => normalizeStr(n.category))
+    .filter(Boolean);
+  const freq = new Map<string, number>();
+  for (const c of cats) freq.set(c, (freq.get(c) ?? 0) + 1);
+  return [...freq.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .map(([c]) => c)
+    .slice(0, limit);
+}
+
+// 収益前提の “推奨導線” — NEWS一覧の上部で強く出す
+const PIVOT_ENTRIES: Array<{
+  title: string;
+  description: string;
+  href: string;
+}> = [
+  {
+    title: "保険の比較（前提の揃え方）",
+    description:
+      "年齢条件・運転者範囲・車両保険…比較前に整えるべき項目だけ先に。",
+    href: "/guide/insurance",
+  },
+  {
+    title: "新車定額リース（条件の読み方）",
+    description:
+      "月額より先に走行距離/返却精算/中途解約/メンテ範囲。総額で判断。",
+    href: "/guide/lease",
+  },
+  {
+    title: "メンテ用品（まず揃える定番）",
+    description:
+      "洗車・車内・ドラレコ・バッテリー対策。必要になりやすい順に薄く。",
+    href: "/guide/maintenance",
+  },
+];
+
+// ニュースの世界観説明（SEOとユーザー理解のため）
+const NEWS_POLICY_POINTS = [
+  "一次情報（メーカー公式/行政/公的機関）を優先してリンクします",
+  "本文の転載は行わず、要点の要約と編集部コメントで整理します",
+  "年式・グレード・市場状況で情報は変動するため、出典の確認を推奨します",
+  "リコール/サービスキャンペーン等の重要情報は“公式リンク”の確認を前提に扱います",
+];
+
+export default async function NewsIndexPage({
+  searchParams,
+}: {
+  searchParams: Record<string, string | string[] | undefined>;
+}) {
+  const all = (await getAllNews()) as NewsWithMeta[];
+  const allSorted = sortByDateDesc(all);
+
+  const q = parseQueryFromSearchParams(searchParams);
+  const filtered = applyFilter(allSorted, q);
+
+  const makers = pickTopMakers(allSorted);
+  const categories = pickTopCategories(allSorted);
+  const tags = pickTopTags(allSorted);
+
+  const filterLabel = makeFilterLabel(q);
+
+  const clearHref = "/news";
+  const makerHref = (m: string) => `/news?maker=${encodeURIComponent(m)}`;
+  const categoryHref = (c: string) => `/news?category=${encodeURIComponent(c)}`;
+  const tagHref = (t: string) => `/news?tag=${encodeURIComponent(t)}`;
 
   return (
-    <main className="min-h-screen text-text-main">
-      <div className="container max-w-6xl pb-24 pt-24">
-        {/* パンくず */}
-        <nav
-          className="mb-6 text-xs text-slate-500"
-          aria-label="パンくずリスト"
-        >
-          <Link href="/" className="hover:text-slate-800">
-            HOME
-          </Link>
-          <span className="mx-2">/</span>
-          <span className="text-slate-400">NEWS</span>
-        </nav>
+    <main className="min-h-screen bg-site text-text-main">
+      {/* うっすら光の背景レイヤー */}
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <div className="absolute inset-x-0 top-0 h-[32vh] bg-gradient-to-b from-vapor/90 via-white/90 to-transparent" />
+        <div className="absolute -left-[18%] top-[14%] h-[38vw] w-[38vw] rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.16),_transparent_70%)] blur-[110px]" />
+        <div className="absolute -right-[20%] bottom-[-8%] h-[40vw] w-[40vw] rounded-full bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.18),_transparent_75%)] blur-[120px]" />
+      </div>
 
-        {/* ヘッダー */}
-        <header className="mb-10 space-y-4">
-          <Reveal>
-            <p className="text-[10px] font-bold tracking-[0.32em] text-tiffany-600">
-              NEWS FEED
-            </p>
-          </Reveal>
-          <Reveal delay={80}>
-            <h1 className="serif-heading text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
-              NEWS
-            </h1>
-          </Reveal>
-          <Reveal delay={160}>
-            <div className="flex flex-col gap-3 text-xs text-text-sub sm:flex-row sm:items-end sm:justify-between sm:text-sm">
-              <p className="max-w-2xl leading-relaxed">
-                新型車・モデルチェンジ・新装備の公式ニュース
-              </p>
-              <div className="flex flex-wrap gap-2 text-[10px] text-slate-500">
-                <span className="rounded-full bg-white/80 px-3 py-1 shadow-soft">
-                  TOTAL{" "}
-                  <span className="font-semibold text-slate-900">
-                    {news.length}
-                  </span>{" "}
-                  ARTICLES
-                </span>
-                {filtered.length !== news.length && (
-                  <span className="rounded-full bg-white/80 px-3 py-1 shadow-soft">
-                    FILTERED{" "}
-                    <span className="font-semibold text-tiffany-600">
-                      {filtered.length}
-                    </span>
-                  </span>
-                )}
-              </div>
-            </div>
-          </Reveal>
-
-          {/* 期間プリセットチップ（7日/30日/全期間） */}
-          <Reveal delay={220}>
-            <div className="mt-4 flex flex-wrap gap-2 text-[10px]">
-              <Link
-                href="/news?period=7d"
-                className="inline-flex items-center gap-1 rounded-full border border-emerald-100 bg-emerald-50/90 px-3 py-1 tracking-[0.16em] text-emerald-800 transition hover:border-emerald-300 hover:bg-emerald-50"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                直近7日
-              </Link>
-              <Link
-                href="/news?period=30d"
-                className="inline-flex items-center gap-1 rounded-full border border-sky-100 bg-sky-50/90 px-3 py-1 tracking-[0.16em] text-slate-700 transition hover:border-sky-300 hover:bg-sky-50"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
-                直近30日
-              </Link>
-              <Link
-                href="/news"
-                className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white/80 px-3 py-1 tracking-[0.16em] text-slate-600 transition hover:border-tiffany-300 hover:bg-white"
-              >
-                全期間
-              </Link>
-            </div>
-          </Reveal>
-        </header>
-
-        {/* フィルターエリア */}
-        <Reveal delay={260}>
-          <GlassCard
-            as="section"
-            padding="md"
-            variant="standard"
-            magnetic={false}
-            className="mb-6 text-slate-900"
-          >
-            <form className="space-y-4 text-xs sm:text-[11px]">
-              <div className="grid gap-3 md:grid-cols-4">
-                {/* キーワード */}
-                <div className="md:col-span-2">
-                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                    KEYWORD
-                  </label>
-                  <input
-                    type="search"
-                    name="q"
-                    defaultValue={rawQ}
-                    placeholder="車名やトピック、ソース名で検索"
-                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
-                  />
-                </div>
-
-                {/* カテゴリ */}
-                <div>
-                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                    CATEGORY
-                  </label>
-                  <select
-                    name="category"
-                    defaultValue={categoryFilter}
-                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
-                  >
-                    <option value="">すべて</option>
-                    {categories.map((c) => (
-                      <option key={c} value={c}>
-                        {c}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* メーカー */}
-                <div>
-                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                    MAKER
-                  </label>
-                  <select
-                    name="maker"
-                    defaultValue={makerFilter}
-                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
-                  >
-                    <option value="">すべて</option>
-                    {makers.map((m) => (
-                      <option key={m} value={m}>
-                        {m}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div className="grid gap-3 md:grid-cols-4">
-                {/* ソース */}
-                <div className="md:col-span-2">
-                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                    SOURCE
-                  </label>
-                  <select
-                    name="source"
-                    defaultValue={sourceFilter}
-                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
-                  >
-                    <option value="">すべて</option>
-                    {sources.map((s) => (
-                      <option key={s} value={s}>
-                        {s}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* タグ */}
-                <div>
-                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                    TAG
-                  </label>
-                  <select
-                    name="tag"
-                    defaultValue={tagFilter}
-                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
-                  >
-                    <option value="">すべて</option>
-                    {tags.map((t) => (
-                      <option key={t} value={t}>
-                        {t}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* 期間 */}
-                <div>
-                  <label className="block text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                    PERIOD
-                  </label>
-                  <select
-                    name="period"
-                    defaultValue={periodFilter}
-                    className="mt-1 w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
-                  >
-                    <option value="">全期間</option>
-                    <option value="7d">直近7日</option>
-                    <option value="30d">直近30日</option>
-                  </select>
-                </div>
-              </div>
-
-              {/* ボタン */}
-              <div className="mt-2 flex items-center justify-end gap-3">
-                {hasFilter && (
-                  <Link
-                    href="/news"
-                    className="text-[10px] tracking-[0.16em] text-slate-400 hover:text-slate-700"
-                  >
-                    CLEAR
-                  </Link>
-                )}
-                <Button
-                  type="submit"
-                  size="sm"
-                  variant="primary"
-                  className="rounded-full px-5 py-2 text-[11px] tracking-[0.2em]"
-                  magnetic
-                >
-                  絞り込み
-                </Button>
-              </div>
-            </form>
-          </GlassCard>
-        </Reveal>
-
-        {/* アクティブフィルター表示 */}
-        {hasFilter && (
-          <Reveal delay={280}>
-            <div className="mb-6 flex flex-wrap items-center gap-2 text-[10px]">
-              <span className="rounded-full bg-slate-50 px-2 py-0.5 text-slate-400">
-                ACTIVE FILTERS
-              </span>
-              {q && (
-                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                  keyword: <span className="font-semibold">“{rawQ}”</span>
-                </span>
-              )}
-              {categoryFilter && (
-                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                  category:{" "}
-                  <span className="font-semibold">{categoryFilter}</span>
-                </span>
-              )}
-              {makerFilter && (
-                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                  maker:{" "}
-                  <span className="font-semibold">{makerFilter}</span>
-                </span>
-              )}
-              {sourceFilter && (
-                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                  source:{" "}
-                  <span className="font-semibold">{sourceFilter}</span>
-                </span>
-              )}
-              {tagFilter && (
-                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                  tag: <span className="font-semibold">{tagFilter}</span>
-                </span>
-              )}
-              {periodFilter && (
-                <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
-                  period:{" "}
-                  <span className="font-semibold">
-                    {periodFilter === "7d"
-                      ? "直近7日"
-                      : periodFilter === "30d"
-                      ? "直近30日"
-                      : periodFilter}
-                  </span>
-                </span>
-              )}
-            </div>
-          </Reveal>
-        )}
-
-        {/* 一覧レイアウト */}
-        <section
-          className="grid gap-8 lg:grid-cols-[minmax(0,3.3fr)_minmax(0,1.7fr)]"
-          aria-label="ニュース一覧"
-        >
-          {/* 左:ハイライト＋リスト */}
-          <div className="space-y-6">
-            {/* ハイライト */}
+      <div className="relative z-10">
+        {/* HERO */}
+        <section className="border-b border-slate-200/70 bg-gradient-to-b from-vapor/70 via-white to-white">
+          <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 pb-10 pt-24 sm:px-6 md:pb-12 md:pt-24">
             <Reveal>
-              {featured ? (
-                <GlassCard
-                  as="section"
-                  padding="lg"
-                  interactive
-                  variant="crystal"
-                  className="relative overflow-hidden text-slate-900"
-                >
-                  {/* 背景光 */}
-                  <div className="pointer-events-none absolute -left-24 -top-24 h-64 w-64 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.28),_transparent_70%)] blur-3xl" />
-                  <div className="pointer-events-none absolute -right-32 bottom-[-40%] h-80 w-80 rounded-full bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.2),_transparent_70%)] blur-3xl" />
-
-                  <div className="relative z-10 space-y-3 text-[11px]">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded-full bg-black/80 px-3 py-1 text-[10px] font-semibold tracking-[0.2em] text-slate-50">
-                        FEATURED
-                      </span>
-                      {featured.category && (
-                        <span className="rounded-full bg-white/80 px-2 py-0.5 text-[10px] tracking-[0.16em] text-slate-600">
-                          {featured.category.toUpperCase()}
-                        </span>
-                      )}
-                      <span className="ml-auto text-[10px] text-slate-500">
-                        {featured.publishedAtJa ??
-                          formatDate(
-                            featured.publishedAt ?? featured.createdAt,
-                          )}
-                      </span>
-                    </div>
-
-                    <Link
-                      href={`/news/${encodeURIComponent(featured.id)}`}
-                      className="block"
-                    >
-                      <h2 className="serif-heading text-lg font-medium leading-relaxed text-slate-900 sm:text-xl">
-                        {featured.titleJa ?? featured.title}
-                      </h2>
-                    </Link>
-
-                    {(featured.commentJa || featured.excerpt) && (
-                      <p className="max-w-2xl text-[11px] leading-relaxed text-slate-600 sm:text-xs">
-                        {featured.commentJa ?? featured.excerpt}
-                      </p>
-                    )}
-
-                    <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-600">
-                      {buildSourceLabel(featured) && (
-                        <span className="rounded-full bg-white/80 px-2 py-1 tracking-[0.16em]">
-                          {buildSourceLabel(featured)}
-                        </span>
-                      )}
-                      {featured.maker && (
-                        <span className="rounded-full bg-white/80 px-2 py-1 tracking-[0.16em]">
-                          {featured.maker}
-                        </span>
-                      )}
-                      {buildTagList(featured).slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full bg-white/80 px-2 py-1"
-                        >
-                          #{tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </GlassCard>
-              ) : (
-                <p className="rounded-2xl border border-dashed border-slate-200 bg-white/80 p-6 text-center text-xs text-slate-500">
-                  現在表示可能なニュースはなし
-                </p>
-              )}
+              <nav
+                className="flex items-center text-[11px] text-slate-500"
+                aria-label="パンくずリスト"
+              >
+                <Link href="/" className="hover:text-slate-800">
+                  HOME
+                </Link>
+                <span className="mx-2 text-slate-400">/</span>
+                <span className="text-slate-400">NEWS</span>
+              </nav>
             </Reveal>
 
-            {/* 残りのリスト(月ごとタイムライン) */}
-            {rest.length === 0 ? (
-              <p className="rounded-2xl border border-dashed border-slate-200 bg-white/80 p-6 text-center text-xs text-slate-500">
-                条件に合うニュースはなし 絞り込み条件を少し緩めて再検索する想定
-              </p>
-            ) : (
-              <div className="space-y-6">
-                {groupedRestEntries.map(([label, group]) => (
-                  <div key={label} className="space-y-2">
-                    {/* 月ラベル:タイムラインの節 */}
-                    <div className="flex items-center gap-3 text-[10px] text-slate-400">
-                      <span className="h-px flex-1 bg-slate-100" />
-                      <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 shadow-soft">
-                        <span className="h-1.5 w-1.5 rounded-full bg-tiffany-400" />
-                        <span className="tracking-[0.18em]">{label}</span>
+            <Reveal>
+              <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+                <div className="space-y-4">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-slate-500">
+                    NEWS
+                  </p>
+                  <div className="space-y-3">
+                    <h1 className="serif-heading text-3xl font-semibold tracking-tight text-slate-900 sm:text-[2.25rem]">
+                      ニュース
+                    </h1>
+                    <p className="max-w-3xl text-[13px] leading-relaxed text-text-sub sm:text-sm sm:leading-7">
+                      輸入車・国産車のニュースを、要点と一次情報リンクで静かに整理します。
+                      <span className="font-medium text-slate-900">
+                        価格/スペック/装備/リコール
                       </span>
-                    </div>
-
-                    <div className="space-y-3">
-                      {group.map((item, index) => (
-                        <NewsListItem
-                          key={item.id}
-                          item={item}
-                          index={index + 1}
-                        />
-                      ))}
-                    </div>
+                      など、判断に関わる部分は必ず出典を辿れる形にしています。
+                    </p>
+                    <p className="max-w-3xl text-[11px] leading-relaxed text-slate-500">
+                      国内/海外メーカーの発表・仕様変更・リコール・サービスキャンペーン・ブランド動向などを中心に、
+                      “一次情報リンク＋編集部コメント”として構造化しています。
+                    </p>
                   </div>
-                ))}
+
+                  <div className="flex flex-wrap items-center gap-2 text-[10px] tracking-[0.18em] text-slate-500">
+                    <span className="rounded-full border border-slate-200 bg-white/70 px-2 py-0.5">
+                      FILTER {filterLabel}
+                    </span>
+                    <span className="rounded-full border border-slate-200 bg-white/70 px-2 py-0.5">
+                      {filtered.length} ITEMS
+                    </span>
+                  </div>
+                </div>
+
+                <div className="hidden text-[10px] text-slate-500 md:block">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 shadow-soft-glow backdrop-blur">
+                    <span className="h-1.5 w-1.5 rounded-full bg-tiffany-500" />
+                    <span className="tracking-[0.18em]">
+                      PRIMARY SOURCES FIRST
+                    </span>
+                  </div>
+                  <p className="mt-2 max-w-xs leading-relaxed tracking-[0.03em]">
+                    ニュースは“読む”より“確認する”が大事。一次情報へすぐ飛べる形でまとめます。
+                  </p>
+                </div>
               </div>
-            )}
+            </Reveal>
           </div>
+        </section>
 
-          {/* 右:ソース/メーカー クイックフィルター(PCのみ) */}
-          <aside className="hidden lg:block">
-            <Reveal delay={120}>
-              <div className="sticky top-24 space-y-5">
-                <GlassCard
-                  as="section"
-                  padding="md"
-                  variant="standard"
-                  magnetic={false}
-                  className="text-slate-900"
-                >
-                  <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-500">
-                    QUICK SOURCE
-                  </p>
-                  <div className="flex flex-wrap gap-2 text-[10px] text-slate-600">
-                    {sources.slice(0, 10).map((s) => {
-                      const count = filtered.filter(
-                        (item) => buildSourceLabel(item) === s,
-                      ).length;
-                      return (
+        {/* POLICY */}
+        <section className="border-b border-slate-200/70 bg-white/70">
+          <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+            <Reveal>
+              <div className="grid gap-4 lg:grid-cols-12">
+                <div className="lg:col-span-7">
+                  <GlassCard className="border border-slate-200/80 bg-white/90 shadow-soft-card">
+                    <div className="space-y-4 p-5 sm:p-6">
+                      <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                        NEWS POLICY
+                      </p>
+                      <h2 className="serif-heading text-xl text-slate-900">
+                        ここで扱うニュースの方針
+                      </h2>
+                      <p className="text-[12px] leading-relaxed text-text-sub sm:text-[13px]">
+                        CAR BOUTIQUEのニュースは、速報や転載を目的にしていません。
+                        “判断材料”として役立つように、一次情報リンクと要点整理を中心にまとめます。
+                      </p>
+                      <ul className="space-y-2 text-[12px] leading-relaxed text-slate-700 sm:text-[13px]">
+                        {NEWS_POLICY_POINTS.map((t) => (
+                          <li key={t} className="flex gap-2">
+                            <span className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-tiffany-400" />
+                            <span>{t}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </GlassCard>
+                </div>
+
+                <div className="lg:col-span-5">
+                  <GlassCard className="h-full border border-slate-200/80 bg-gradient-to-br from-white/95 via-white to-vapor/95 shadow-soft-card">
+                    <div className="space-y-4 p-5 sm:p-6">
+                      <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                        QUICK LINKS
+                      </p>
+                      <h3 className="serif-heading text-lg text-slate-900">
+                        迷いやすいテーマから先に
+                      </h3>
+                      <p className="text-[11px] leading-relaxed text-slate-600">
+                        ニュースを見て「結局どう判断すれば？」となりやすい領域に、先に入口を用意しています。
+                      </p>
+
+                      <div className="space-y-2">
+                        {PIVOT_ENTRIES.map((e) => (
+                          <Link key={e.href} href={e.href} className="block">
+                            <div className="rounded-xl border border-slate-200/70 bg-white/80 p-3 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-200 hover:bg-white">
+                              <div className="font-semibold text-slate-900">
+                                {e.title}
+                              </div>
+                              <div className="mt-1 text-[11px] leading-relaxed text-slate-600">
+                                {e.description}
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </GlassCard>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* FILTERS */}
+        <section className="border-b border-slate-200/70 bg-white/60">
+          <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+            <Reveal>
+              <div className="grid gap-4 lg:grid-cols-12">
+                <div className="lg:col-span-4">
+                  <GlassCard className="h-full border border-slate-200/80 bg-white/90 shadow-soft-card">
+                    <div className="space-y-4 p-5 sm:p-6">
+                      <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                        FILTER
+                      </p>
+                      <h2 className="serif-heading text-lg text-slate-900">
+                        絞り込み
+                      </h2>
+                      <p className="text-[11px] leading-relaxed text-slate-600">
+                        maker / category / tag で絞り込みできます。解除はALLへ。
+                      </p>
+
+                      <div className="pt-2">
                         <Link
-                          key={s}
-                          href={`/news?source=${encodeURIComponent(s)}`}
-                          className="inline-flex items-center gap-1 rounded-full bg-slate-50 px-3 py-1 tracking-[0.14em] transition hover:bg-white hover:text-tiffany-700 hover:shadow-soft"
+                          href={clearHref}
+                          className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-semibold tracking-[0.16em] text-slate-700 shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:text-tiffany-700"
                         >
-                          <span>{s}</span>
-                          {count > 0 && (
-                            <span className="text-[9px] text-slate-400">
-                              ({count})
-                            </span>
-                          )}
+                          ALL（解除）
                         </Link>
-                      );
-                    })}
+                      </div>
+
+                      <div className="border-t border-slate-200 pt-4">
+                        <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                          CURRENT
+                        </p>
+                        <p className="mt-2 text-[12px] text-slate-700">
+                          {filterLabel}
+                        </p>
+                      </div>
+                    </div>
+                  </GlassCard>
+                </div>
+
+                <div className="lg:col-span-8">
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {/* MAKER */}
+                    <GlassCard className="border border-slate-200/80 bg-white/90 shadow-soft-card">
+                      <div className="space-y-4 p-5 sm:p-6">
+                        <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                          MAKERS
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {makers.map((m) => (
+                            <Link
+                              key={m}
+                              href={makerHref(m)}
+                              className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] text-slate-700 shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:text-tiffany-700"
+                            >
+                              {m}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </GlassCard>
+
+                    {/* CATEGORY */}
+                    <GlassCard className="border border-slate-200/80 bg-white/90 shadow-soft-card">
+                      <div className="space-y-4 p-5 sm:p-6">
+                        <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                          CATEGORIES
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {categories.map((c) => (
+                            <Link
+                              key={c}
+                              href={categoryHref(c)}
+                              className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] text-slate-700 shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:text-tiffany-700"
+                            >
+                              {c}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </GlassCard>
+
+                    {/* TAG */}
+                    <GlassCard className="sm:col-span-2 border border-slate-200/80 bg-white/90 shadow-soft-card">
+                      <div className="space-y-4 p-5 sm:p-6">
+                        <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                          TAGS
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {tags.map((t) => (
+                            <Link
+                              key={t}
+                              href={tagHref(t)}
+                              className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] text-slate-700 shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:text-tiffany-700"
+                            >
+                              #{t}
+                            </Link>
+                          ))}
+                        </div>
+                        <p className="text-[10px] leading-relaxed text-slate-500">
+                          タグはニュースデータの頻出順です。追加されるほど精度が上がります。
+                        </p>
+                      </div>
+                    </GlassCard>
                   </div>
-                </GlassCard>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
 
-                <GlassCard
-                  as="section"
-                  padding="md"
-                  variant="standard"
-                  magnetic={false}
-                  className="text-slate-900"
-                >
-                  <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-500">
-                    MAKER FOCUS
+        {/* LIST */}
+        <section className="pb-24 pt-10">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <Reveal>
+              <div className="mb-6 flex items-end justify-between gap-4">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
+                    LIST
                   </p>
-                  <div className="flex flex-wrap gap-2 text-[10px] text-slate-600">
-                    {makers.slice(0, 10).map((m) => {
-                      const count = filtered.filter(
-                        (item) => item.maker === m,
-                      ).length;
-                      return (
-                        <Link
-                          key={m}
-                          href={`/news?maker=${encodeURIComponent(m)}`}
-                          className="inline-flex items-center gap-1 rounded-full bg-slate-50 px-3 py-1 tracking-[0.14em] transition hover:bg-white hover:text-tiffany-700 hover:shadow-soft"
-                        >
-                          <span>{m}</span>
-                          {count > 0 && (
-                            <span className="text-[9px] text-slate-400">
-                              ({count})
-                            </span>
+                  <h2 className="serif-heading mt-2 text-xl text-slate-900 sm:text-2xl">
+                    ニュース一覧
+                  </h2>
+                  <p className="mt-2 max-w-2xl text-[11px] leading-relaxed text-slate-600 sm:text-[13px]">
+                    最新順に表示します。タイトル→要点→出典リンク（一次情報優先）という構造です。
+                  </p>
+                </div>
+                <div className="text-[11px] font-semibold tracking-[0.18em] text-slate-500">
+                  {filtered.length} items
+                </div>
+              </div>
+            </Reveal>
+
+            <div className="grid gap-4">
+              {filtered.map((item, idx) => {
+                const title = item.titleJa ?? item.title;
+                const dateLabel = formatDate(item.publishedAt);
+                const sourceLabel = getSourceLabel(item);
+                const tagList = getTagList(item).slice(0, 6);
+
+                return (
+                  <Reveal key={item.id} delay={80 + idx * 15}>
+                    <Link href={`/news/${encodeURIComponent(item.id)}`}>
+                      <GlassCard className="group border border-slate-200/80 bg-gradient-to-br from-vapor/80 via-white/95 to-white/90 p-4 shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card sm:p-5">
+                        <div className="flex flex-col gap-3">
+                          <div className="flex flex-wrap items-center justify-between gap-3">
+                            <div className="flex flex-wrap items-center gap-2 text-[10px] tracking-[0.18em] text-slate-500">
+                              {item.maker ? (
+                                <span className="rounded-full border border-slate-200 bg-white/70 px-2 py-0.5">
+                                  {item.maker}
+                                </span>
+                              ) : (
+                                <span className="rounded-full border border-slate-200 bg-white/70 px-2 py-0.5">
+                                  NEWS
+                                </span>
+                              )}
+                              {item.category && (
+                                <span className="rounded-full border border-slate-200 bg-white/70 px-2 py-0.5">
+                                  {item.category}
+                                </span>
+                              )}
+                              {sourceLabel && (
+                                <span className="rounded-full border border-slate-200 bg-white/70 px-2 py-0.5 text-slate-400">
+                                  SOURCE {sourceLabel}
+                                </span>
+                              )}
+                            </div>
+                            {dateLabel && (
+                              <div className="text-[10px] tracking-[0.18em] text-slate-400">
+                                {dateLabel}
+                              </div>
+                            )}
+                          </div>
+
+                          <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900 group-hover:text-tiffany-700 sm:text-[15px]">
+                            {title}
+                          </h3>
+
+                          {item.excerpt && (
+                            <p className="line-clamp-2 text-[11px] leading-relaxed text-text-sub sm:text-[13px]">
+                              {item.excerpt}
+                            </p>
                           )}
-                        </Link>
-                      );
-                    })}
+
+                          {tagList.length > 0 && (
+                            <div className="flex flex-wrap gap-1.5 pt-1">
+                              {tagList.map((t) => (
+                                <span
+                                  key={t}
+                                  className="rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[10px] text-slate-600"
+                                >
+                                  #{t}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </GlassCard>
+                    </Link>
+                  </Reveal>
+                );
+              })}
+
+              {filtered.length === 0 && (
+                <Reveal>
+                  <GlassCard className="border border-slate-200/80 bg-white/90 p-6 text-center shadow-soft-card">
+                    <p className="text-[12px] text-slate-700">
+                      条件に一致するニュースがありません。
+                    </p>
+                    <p className="mt-2 text-[11px] text-slate-500">
+                      maker / category / tag を解除して再度お試しください。
+                    </p>
+                    <div className="mt-4">
+                      <Link
+                        href={clearHref}
+                        className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-semibold tracking-[0.16em] text-slate-700 shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:text-tiffany-700"
+                      >
+                        ALLへ戻る
+                      </Link>
+                    </div>
+                  </GlassCard>
+                </Reveal>
+              )}
+            </div>
+
+            {/* FOOTNOTE */}
+            <Reveal delay={120}>
+              <div className="mt-10">
+                <GlassCard className="border border-slate-200/80 bg-white/80 shadow-soft">
+                  <div className="space-y-3 p-5 sm:p-6">
+                    <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                      NOTE
+                    </p>
+                    <p className="text-[12px] leading-relaxed text-slate-700 sm:text-[13px]">
+                      当サイトのニュースは、速報性よりも「一次情報へたどり着けること」と「要点が分かること」を優先しています。
+                      気になるトピックは、必ず出典リンク（メーカー公式/行政/公的機関）まで確認してください。
+                    </p>
+                    <p className="text-[11px] leading-relaxed text-slate-500">
+                      例：リコール情報は国交省/メーカー公式、仕様変更やキャンペーンはメーカー公式発表を起点に確認するのが安全です。
+                    </p>
                   </div>
                 </GlassCard>
               </div>
             </Reveal>
-          </aside>
+          </div>
         </section>
       </div>
     </main>
