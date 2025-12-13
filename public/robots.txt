@@ -1,8 +1,0 @@
-# CAR BOUTIQUE robots.txt
-# すべてのページ・リソースをクロール許可し、
-# サイトマップの場所だけを明示するシンプル構成
-
-User-agent: *
-Allow: /
-
-Sitemap: https://car-hp.vercel.app/sitemap.xml
