@@ -1,3 +1,4 @@
+// components/guide/GuideMonetizeBlock.tsx
 "use client";
 
 import Link from "next/link";
@@ -57,7 +58,12 @@ export function GuideMonetizeBlock(props: GuideMonetizeBlockProps) {
   const links = affiliateLinks ?? null;
   const config = links ? resolveMonetizeConfig(monetizeKey, links) : null;
 
-  if (!config || !isNonEmptyString(config.primaryCta?.href)) return null;
+  if (!config) return null;
+
+  // href は MonetizeConfig 上 optional だが、ここでは必須として扱う
+  // （未設定ならブロック自体を表示しない）
+  const href = config.primaryCta.href;
+  if (!isNonEmptyString(href)) return null;
 
   const rel = "nofollow sponsored noopener";
 
@@ -73,7 +79,13 @@ export function GuideMonetizeBlock(props: GuideMonetizeBlockProps) {
           className="border border-slate-100/80 bg-white/80 shadow-soft-card"
         >
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <span aria-label="PR" className="inline-flex w-fit rounded-full border border-slate-200 bg-white/70 px-2 py-0.5 text-[10px] tracking-wide text-slate-600">PR</span>
+            <span
+              aria-label="PR"
+              className="inline-flex w-fit rounded-full border border-slate-200 bg-white/70 px-2 py-0.5 text-[10px] tracking-wide text-slate-600"
+            >
+              PR
+            </span>
+
             <div className="space-y-2.5 md:max-w-[70%]">
               <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
                 NEXT ACTION
@@ -107,7 +119,6 @@ export function GuideMonetizeBlock(props: GuideMonetizeBlockProps) {
             <div className="shrink-0 md:text-right">
               <Button
                 onClick={() => {
-                  const href = config.primaryCta.href;
                   const partner =
                     monetizeKey === "lease_sompo_noru"
                       ? "sompo_noru"
@@ -128,7 +139,7 @@ export function GuideMonetizeBlock(props: GuideMonetizeBlockProps) {
                 size="lg"
                 className="mt-2 w-full rounded-xl text-[11px] font-semibold tracking-[0.12em] sm:w-auto"
               >
-                <Link href={config.primaryCta.href} target="_blank" rel={rel}>
+                <Link href={href} target="_blank" rel={rel}>
                   {config.primaryCta.label}
                 </Link>
               </Button>
@@ -251,7 +262,7 @@ function resolveMonetizeConfig(
         },
       };
 
-        case "lease_sompo_noru":
+    case "lease_sompo_noru":
       return {
         heading: "月額で乗る選択肢を、いったん比較してみる",
         body: [
@@ -264,7 +275,7 @@ function resolveMonetizeConfig(
         },
       };
 
-case "shaken_rakuten":
+    case "shaken_rakuten":
       return {
         heading: "楽天Car車検で対応店舗と概算費用を先に押さえる",
         body: [
