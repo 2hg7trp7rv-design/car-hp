@@ -1033,6 +1033,109 @@ export default async function CarDetailPage({ params }: PageProps) {
               ))}
             </div>
           </section>
+      　// app/cars/[slug]/page.tsx
+// （※ ここから上は、あなたが貼った原文をそのまま保持）
+
+
+
+        {/* 関連コンテンツへの導線（ID/slugベース） */}
+        {hasRelated && (
+          <section className="rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
+            <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <h2 className="serif-heading text-lg font-medium text-slate-900">
+                  関連ニュース COLUMN HERITAGEへ
+                </h2>
+                <p className="mt-1 text-[11px] text-slate-500">
+                  この車種に関連するニュースやコラム ブランドのHERITAGEへ飛べるアンカー
+                  詳細は各ページ側で確認する想定
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2 text-[11px]">
+              {car.relatedNewsIds?.map((id) => (
+                <Link
+                  key={id}
+                  href={`/news/${encodeURIComponent(id)}`}
+                  className="rounded-full bg-slate-100 px-3 py-1 text-slate-700 transition hover:bg-tiffany-50 hover:text-tiffany-700"
+                >
+                  関連NEWS:{id}
+                </Link>
+              ))}
+              {car.relatedColumnSlugs?.map((slug) => (
+                <Link
+                  key={slug}
+                  href={`/column/${encodeURIComponent(slug)}`}
+                  className="rounded-full bg-slate-100 px-3 py-1 text-slate-700 transition hover:bg-tiffany-50 hover:text-tiffany-700"
+                >
+                  関連COLUMN:{slug}
+                </Link>
+              ))}
+              {car.relatedHeritageIds?.map((id) => (
+                <Link
+                  key={id}
+                  href={`/heritage/${encodeURIComponent(id)}`}
+                  className="rounded-full bg-slate-100 px-3 py-1 text-slate-700 transition hover:bg-tiffany-50 hover:text-tiffany-700"
+                >
+                  関連HERITAGE:{id}
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* ===== AFFILIATE ACTION SECTION ===== */}
+        <section className="mt-14">
+          <Reveal>
+            <div className="rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
+              <div className="mb-5">
+                <p className="text-[10px] font-semibold tracking-[0.22em] text-tiffany-600">
+                  NEXT ACTION
+                </p>
+                <h2 className="serif-heading mt-1 text-lg font-medium text-slate-900">
+                  次に取れるアクション
+                </h2>
+                <p className="mt-1 text-[11px] text-slate-500">
+                  気になったら、現実的な選択肢をここで確認
+                </p>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-3">
+                <Link
+                  href="/guide"
+                  className="flex items-center justify-center rounded-full border border-slate-900 px-5 py-3 text-[12px] font-medium text-slate-900 transition hover:bg-slate-900 hover:text-white"
+                >
+                  維持費・注意点を見る
+                </Link>
+
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-5 py-3 text-[12px] font-medium text-slate-700 transition hover:bg-tiffany-50 hover:text-tiffany-700"
+                >
+                  中古車相場をチェック
+                </a>
+
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-3 text-[12px] font-medium text-slate-700 transition hover:bg-slate-100"
+                >
+                  保険・ローンを比較する
+                </a>
+              </div>
+            </div>
+          </Reveal>
+        </section>
+        {/* ===== /AFFILIATE ACTION SECTION ===== */}
+
+      </div>
+    </main>
+  );
+}
         )}
       </div>
     </main>
