@@ -19,7 +19,7 @@ export function CarAffiliateCtas({ car, variant = "hero" }: Props) {
       ].join(" ")}
     >
       {car.affiliate?.buy && (
-        <Button asChild variant={isHero ? "outline" : "default"}>
+        <Button asChild variant={isHero ? "outline" : "subtle"}>
           <Link href={car.affiliate.buy} target="_blank">
             中古車価格をチェック
           </Link>
