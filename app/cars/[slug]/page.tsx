@@ -9,7 +9,6 @@ import { getSiteUrl } from "@/lib/site";
 import { getAllCars, getCarBySlug, type CarItem } from "@/lib/cars";
 import { getAllGuides, type GuideItem } from "@/lib/guides";
 import { getAllColumns, type ColumnItem } from "@/lib/columns";
-import { getAllNews, type NewsItem } from "@/lib/news";
 import {
   getAllHeritage,
   getHeritagePreviewText,
@@ -20,9 +19,7 @@ import { GlassCard } from "@/components/GlassCard";
 import { Reveal } from "@/components/animation/Reveal";
 import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
 
-// SEO: JSON-LD
 import { JsonLd } from "@/components/seo/JsonLd";
-
 import { getMonetizeConfig, type MonetizeKey } from "@/lib/monetize/config";
 
 export const runtime = "edge";
@@ -33,9 +30,33 @@ type PageProps = {
   };
 };
 
-type MultilineTextProps = {
-  text: string;
-  variant: "hero" | "card";
+// CarItem の拡張版
+type ExtendedCarItem = CarItem & {
+  mainImage?: string;
+  heroImage?: string;
+  strengths?: string[];
+  weaknesses?: string[];
+  troubleTrends?: string[];
+  costImpression?: string;
+
+  priceNew?: string;
+  priceUsed?: string;
+
+  releaseYear?: number;
+  engine?: string;
+  horsepower?: number;
+  drive?: string;
+  transmission?: string;
+  zeroTo100?: string | number;
+  fuel?: string;
+  fuelEconomy?: string;
+
+  segment?: string;
+  bodyType?: string;
+
+  relatedNewsIds?: string[];
+
+  size?: Record<string, string | number>;
 };
 
 type GuideWithMeta = GuideItem & {
@@ -51,47 +72,41 @@ type HeritageWithMeta = HeritageItem & {
   heroTitle?: string | null;
 };
 
+// ----------------------------------------
+// ユーティリティ
+// ----------------------------------------
+
 function formatDifficultyLabel(difficulty?: string | null): string | null {
   if (!difficulty) return null;
-
   const normalized = difficulty.toLowerCase();
-
   if (normalized === "beginner") return "BEGINNER";
   if (normalized === "intermediate") return "INTERMEDIATE";
   if (normalized === "advanced") return "ADVANCED";
-
   return difficulty.toUpperCase();
 }
 
-function formatMakerAndName(car: CarItem): string {
+function formatMakerAndName(car: ExtendedCarItem): string {
   const maker = (car.maker ?? "").trim();
   const name = (car.name ?? car.slug).trim();
-
   if (!maker) return name;
   if (name.toLowerCase().startsWith(maker.toLowerCase())) return name;
-
   return `${maker} ${name}`;
 }
 
 function formatZeroTo100(value?: string | number | null): string | null {
   if (value === null || value === undefined) return null;
-
   const raw = typeof value === "number" ? `${value}` : value;
   const normalized = raw.trim();
-
   if (!normalized) return null;
   if (normalized.includes("秒")) return normalized;
-
   return `${normalized}秒`;
 }
 
 function formatDate(value?: string | null): string | null {
   if (!value) return null;
-
   try {
     const date = new Date(value);
     if (Number.isNaN(date.getTime())) return null;
-
     return new Intl.DateTimeFormat("ja-JP", {
       year: "numeric",
       month: "2-digit",
@@ -111,15 +126,10 @@ function splitIntoParagraphs(text: string): string[] {
     .map((block) => block.trim())
     .filter(Boolean);
 
-  if (rawBlocks.length > 1) {
-    return rawBlocks;
-  }
+  if (rawBlocks.length > 1) return rawBlocks;
 
-  // 1段落しかない場合は、句点単位で自然に区切る
   const sentences = normalized.split(/。/).map((s) => s.trim()).filter(Boolean);
-  if (sentences.length <= 2) {
-    return [normalized];
-  }
+  if (sentences.length <= 2) return [normalized];
 
   const paras: string[] = [];
   for (let i = 0; i < sentences.length; i += 2) {
@@ -129,7 +139,11 @@ function splitIntoParagraphs(text: string): string[] {
   return paras;
 }
 
-// ヒーロー説明/カード共通のテキスト表示
+type MultilineTextProps = {
+  text: string;
+  variant: "hero" | "card";
+};
+
 function MultilineText({ text, variant }: MultilineTextProps) {
   const paragraphs = splitIntoParagraphs(text);
 
@@ -163,40 +177,38 @@ function MultilineText({ text, variant }: MultilineTextProps) {
 }
 
 function pickGuidesForCar(slug: string, allGuides: GuideWithMeta[]): GuideItem[] {
-  const picked = allGuides
+  return allGuides
     .filter((guide) =>
       (guide.relatedCarSlugs ?? []).some((candidate) => candidate === slug),
     )
     .slice(0, 6);
-
-  return picked;
 }
 
 function pickColumnsForCar(
   slug: string,
   allColumns: ColumnWithMeta[],
 ): ColumnItem[] {
-  const picked = allColumns
+  return allColumns
     .filter((column) =>
       (column.relatedCarSlugs ?? []).some((candidate) => candidate === slug),
     )
     .slice(0, 6);
-
-  return picked;
 }
 
 function pickHeritageForCar(
   slug: string,
   allHeritage: HeritageWithMeta[],
 ): HeritageWithMeta[] {
-  const picked = allHeritage
+  return allHeritage
     .filter((item) =>
       (item.keyCarSlugs ?? []).some((candidate) => candidate === slug),
     )
     .slice(0, 6);
-
-  return picked;
 }
+
+// ----------------------------------------
+// Static Params / Metadata
+// ----------------------------------------
 
 export async function generateStaticParams() {
   const cars = await getAllCars();
@@ -206,7 +218,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const car = await getCarBySlug(params.slug);
+  const car = (await getCarBySlug(params.slug)) as ExtendedCarItem | null;
   if (!car) return {};
 
   const title = `${formatMakerAndName(car)} | CARS | CAR BOUTIQUE`;
@@ -243,22 +255,23 @@ export async function generateMetadata({
   };
 }
 
-// メインページ
+// ----------------------------------------
+// Page
+// ----------------------------------------
+
 export default async function CarDetailPage({ params }: PageProps) {
-  const [carRaw, allGuidesRaw, allColumnsRaw, allHeritageRaw, allNewsRaw] =
+  const [carRaw, allGuidesRaw, allColumnsRaw, allHeritageRaw] =
     await Promise.all([
       getCarBySlug(params.slug),
       getAllGuides(),
       getAllColumns(),
       getAllHeritage(),
-      getAllNews(),
     ]);
 
-  if (!carRaw) {
-    notFound();
-  }
+  if (!carRaw) notFound();
 
-  const car = carRaw as CarItem;
+  const car = carRaw as ExtendedCarItem;
+
   const guidesWithMeta = allGuidesRaw as GuideWithMeta[];
   const columnsWithMeta = allColumnsRaw as ColumnWithMeta[];
   const heritageWithMeta = allHeritageRaw as HeritageWithMeta[];
@@ -267,13 +280,9 @@ export default async function CarDetailPage({ params }: PageProps) {
   const relatedColumns = pickColumnsForCar(car.slug, columnsWithMeta);
   const relatedHeritage = pickHeritageForCar(car.slug, heritageWithMeta);
 
-  const allNews = allNewsRaw as NewsItem[];
-  const relatedNews = (car.relatedNewsIds ?? [])
-    .map((id) => allNews.find((n) => n.id === id || (n as any).slug === id))
-    .filter(Boolean) as NewsItem[];
-
   const title = formatMakerAndName(car);
   const zeroTo100 = formatZeroTo100(car.zeroTo100);
+
   const overviewText = car.summaryLong ?? car.summary ?? "";
   const characterText = car.costImpression ?? car.summary ?? "";
   const difficultyLabel = formatDifficultyLabel(car.difficulty);
@@ -282,14 +291,17 @@ export default async function CarDetailPage({ params }: PageProps) {
 
   const hasStrengths = Array.isArray(car.strengths) && car.strengths.length > 0;
   const hasWeaknesses =
-    Array.isArray((car as any).weaknesses) && (car as any).weaknesses.length > 0;
+    Array.isArray(car.weaknesses) && car.weaknesses.length > 0;
   const hasTroubleTrends =
     Array.isArray(car.troubleTrends) && car.troubleTrends.length > 0;
   const hasMaintenanceNotes =
     Array.isArray(car.maintenanceNotes) && car.maintenanceNotes.length > 0;
 
-  // --- Monetize（外部導線：主2枚 + クイック） ---
-  const pickSecondaryMonetizeKey = (car: CarItem): MonetizeKey => {
+  // -------------------------
+  // 外部導線（主CTA + 副CTA + クイック）
+  // -------------------------
+
+  const pickSecondaryMonetizeKey = (car: ExtendedCarItem): MonetizeKey => {
     const difficulty = (car.difficulty ?? "").toLowerCase();
     const maker = (car.maker ?? "").toLowerCase();
     const bodyType = (car.bodyType ?? "").toLowerCase();
@@ -301,12 +313,10 @@ export default async function CarDetailPage({ params }: PageProps) {
       (car.priceUsed ?? "").trim() || (car.priceNew ?? "").trim(),
     );
 
-    // ① 維持費・注意点が多い / 難易度が高い → 保険見直し（固定費最適化）
     if (troubleCount >= 3 || hasCostText || difficulty === "advanced") {
       return "ins_compare";
     }
 
-    // ② 高価格帯・輸入系・SUVは支払総額を固めやすい → ローン目安
     const premiumMaker =
       maker.includes("bmw") ||
       maker.includes("mercedes") ||
@@ -326,7 +336,6 @@ export default async function CarDetailPage({ params }: PageProps) {
       return "loan_estimate";
     }
 
-    // ③ それ以外は相場
     return "car_search_price";
   };
 
@@ -344,7 +353,10 @@ export default async function CarDetailPage({ params }: PageProps) {
     (k) => k !== externalPrimaryKey && k !== externalSecondaryKey,
   );
 
-  // --- 外部カード背景（メーカー/ボディタイプで世界観固定） ---
+  // -------------------------
+  // 外部カード背景（簡易トーン）
+  // -------------------------
+
   const pickBrandTone = (makerRaw?: string) => {
     const maker = (makerRaw ?? "").toLowerCase();
 
@@ -398,9 +410,7 @@ export default async function CarDetailPage({ params }: PageProps) {
 
   type InventoryBg = { src?: string; gradientClass?: string };
 
-  const pickInventoryCardBg = (
-    kind: "external_primary" | "external_secondary",
-  ): InventoryBg => {
+  const pickInventoryCardBg = (): InventoryBg => {
     const body = (car.bodyType ?? "").toLowerCase();
     if (body.includes("sedan")) {
       return { src: "/images/hero-sedan.jpg" };
@@ -414,11 +424,11 @@ export default async function CarDetailPage({ params }: PageProps) {
     };
   };
 
-  const hasSizeSpec = Boolean((car as any).size);
-  const hasRelated =
-    relatedGuides.length > 0 ||
-    relatedColumns.length > 0 ||
-    relatedHeritage.length > 0;
+  const hasSizeSpec = Boolean(car.size);
+
+  // -------------------------
+  // JSON-LD
+  // -------------------------
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -437,12 +447,7 @@ export default async function CarDetailPage({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "HOME",
-        item: getSiteUrl(),
-      },
+      { "@type": "ListItem", position: 1, name: "HOME", item: getSiteUrl() },
       {
         "@type": "ListItem",
         position: 2,
@@ -458,15 +463,18 @@ export default async function CarDetailPage({ params }: PageProps) {
     ],
   };
 
+  // ----------------------------------------
+  // UI
+  // ----------------------------------------
+
   return (
     <main className="min-h-screen bg-site text-text-main">
-      {/* JSON-LD */}
       <JsonLd id={`jsonld-car-${car.slug}-product`} data={structuredData} />
       <JsonLd id={`jsonld-car-${car.slug}-breadcrumb`} data={breadcrumbData} />
 
       <ScrollDepthTracker />
 
-      {/* ✅ フルブリード・ヒーロー（画像上オーバーレイ） */}
+      {/* ① ヒーロー：フルブリード画像 + 画像上オーバーレイ */}
       {heroImage ? (
         <section className="relative w-full overflow-hidden bg-black">
           <div className="relative h-[520px] w-full sm:h-[560px]">
@@ -483,7 +491,6 @@ export default async function CarDetailPage({ params }: PageProps) {
             <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/55 to-transparent" />
           </div>
 
-          {/* オーバーレイ */}
           <div className="absolute inset-0 flex items-end">
             <div className="mx-auto w-full max-w-6xl px-5 pb-6 sm:px-7 sm:pb-7">
               <div className="max-w-2xl">
@@ -501,7 +508,6 @@ export default async function CarDetailPage({ params }: PageProps) {
                   {title}
                 </h1>
 
-                {/* バッジ */}
                 <div className="mt-4 flex flex-wrap gap-2">
                   {car.bodyType && (
                     <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] text-white/85">
@@ -540,7 +546,6 @@ export default async function CarDetailPage({ params }: PageProps) {
                   </div>
                 )}
 
-                {/* 主CTA（外部） */}
                 <div className="mt-6 flex flex-wrap gap-3">
                   <a
                     href={ctaPrimary.url}
@@ -560,6 +565,12 @@ export default async function CarDetailPage({ params }: PageProps) {
                     {ctaSecondary.label} <span aria-hidden>→</span>
                   </a>
                 </div>
+
+                {overviewText && (
+                  <div className="mt-6 hidden max-w-xl sm:block">
+                    <MultilineText text={overviewText} variant="hero" />
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -591,155 +602,105 @@ export default async function CarDetailPage({ params }: PageProps) {
           <span className="text-slate-600">{car.name ?? car.slug}</span>
         </nav>
 
-        {/* ✅ このクルマの特徴（上下2段：黒→白） */}
-        {(hasTroubleTrends || hasWeaknesses || hasStrengths) && (
+        {/* ② 主要コンテンツ（写真の構造：左に概要、右に特徴カード上下） */}
+        {(overviewText || hasStrengths || hasWeaknesses || hasTroubleTrends) && (
           <section className="mb-10">
-            <h2 className="text-center text-xl font-semibold text-slate-900">
-              このクルマの特徴
-            </h2>
-
-            <div className="mt-6 space-y-4">
-              {(hasTroubleTrends || hasWeaknesses) && (
-                <div className="rounded-[2.5rem] bg-neutral-900 p-6 text-white shadow-soft-card ring-1 ring-white/10 sm:p-8">
-                  <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-white/60">
-                    COMMON CONCERNS
-                  </p>
-                  <h3 className="serif-heading mb-3 text-sm font-medium text-white">
-                    よくある悩み・注意点
-                  </h3>
-
-                  <ul className="space-y-2.5 text-[12px] leading-relaxed text-white/85">
-                    {(car.troubleTrends ?? (car as any).weaknesses ?? []).map(
-                      (item, index) => (
-                        <li key={index} className="flex items-start gap-2.5">
-                          <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-white/70" />
-                          <p className="whitespace-pre-wrap">{item}</p>
-                        </li>
-                      ),
-                    )}
-                  </ul>
-                </div>
-              )}
-
-              {hasStrengths && (
-                <div className="rounded-[2.5rem] bg-white p-6 shadow-soft-card ring-1 ring-slate-100 sm:p-8">
+            <div className="grid gap-6 md:grid-cols-2">
+              {/* 左：概要（全文） */}
+              {overviewText ? (
+                <div className="rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
                   <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                    WHAT HELPS
+                    OVERVIEW
                   </p>
-                  <h3 className="serif-heading mb-3 text-sm font-medium text-slate-900">
-                    維持費面で効く箇所・魅力
-                  </h3>
+                  <h2 className="serif-heading mb-4 text-lg font-medium text-slate-900">
+                    概要
+                  </h2>
 
-                  <ul className="space-y-2.5 text-[12px] leading-relaxed text-slate-700">
-                    {(car.strengths ?? []).map((item, index) => (
-                      <li key={index} className="flex items-start gap-2.5">
-                        <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-slate-300" />
-                        <p className="whitespace-pre-wrap">{item}</p>
-                      </li>
+                  <div className="text-slate-700">
+                    {splitIntoParagraphs(overviewText).map((block, index) => (
+                      <p
+                        key={index}
+                        className="mb-4 whitespace-pre-wrap text-[13px] leading-[1.9] last:mb-0 sm:text-[14px]"
+                      >
+                        {block}
+                      </p>
                     ))}
-                  </ul>
+                  </div>
+                </div>
+              ) : (
+                <div className="rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
+                  <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-400">
+                    OVERVIEW
+                  </p>
+                  <h2 className="serif-heading mb-4 text-lg font-medium text-slate-900">
+                    概要
+                  </h2>
+                  <p className="text-[13px] leading-[1.9] text-slate-700 sm:text-[14px]">
+                    概要テキストが未設定です。
+                  </p>
                 </div>
               )}
+
+              {/* 右：特徴カード（上下） */}
+              <div className="space-y-4">
+                {/* よくある悩み（= troubleTrends/weaknesses を全文表示） */}
+                {(hasTroubleTrends || hasWeaknesses) && (
+                  <Reveal>
+                    <GlassCard className="rounded-2xl border border-white/10 bg-neutral-900/10 bg-gradient-to-br from-black/80 via-black/70 to-black/80 p-6 text-white shadow-soft ring-1 ring-white/10 sm:p-8">
+                      <div className="rounded-2xl bg-white/10 bg-gradient-to-br from-white/10 via-white/5 to-white/10 bg-yellow-50/10 p-5 text-white shadow-soft backdrop-blur-sm">
+                        <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-white/60">
+                          COMMON CONCERNS
+                        </p>
+                        <h3 className="serif-heading mb-3 text-sm font-medium text-white">
+                          よくある悩み・注意点
+                        </h3>
+
+                        <ul className="space-y-2.5 text-[12px] leading-relaxed text-white/85">
+                          {(car.troubleTrends ?? car.weaknesses ?? []).map(
+                            (item: string, index: number) => (
+                              <li key={index} className="flex items-start gap-2.5">
+                                <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-white/70" />
+                                <p className="whitespace-pre-wrap">{item}</p>
+                              </li>
+                            ),
+                          )}
+                        </ul>
+                      </div>
+                    </GlassCard>
+                  </Reveal>
+                )}
+
+                {/* 維持費面で効く箇所（= strengths を全文表示） */}
+                {hasStrengths && (
+                  <div className="rounded-[2.5rem] bg-white p-6 shadow-soft-card ring-1 ring-slate-100 sm:p-8">
+                    <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-400">
+                      WHAT HELPS
+                    </p>
+                    <h3 className="serif-heading mb-3 text-sm font-medium text-slate-900">
+                      維持費面で効く箇所・魅力
+                    </h3>
+
+                    <ul className="space-y-2.5 text-[12px] leading-relaxed text-slate-700">
+                      {(car.strengths ?? []).map(
+                        (item: string, index: number) => (
+                          <li key={index} className="flex items-start gap-2.5">
+                            <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-slate-300" />
+                            <p className="whitespace-pre-wrap">{item}</p>
+                          </li>
+                        ),
+                      )}
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
           </section>
         )}
 
-        {/* 概要 × 基本スペック（写真寄せの中段） */}
+        {/* ③ 基本スペック（右側に寄せたカードの構成） */}
         <section className="mb-10">
           <div className="grid gap-6 md:grid-cols-2">
-            {/* 左：概要（全文） */}
-            {overviewText && (
-              <div className="rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
-                <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                  OVERVIEW
-                </p>
-                <h2 className="serif-heading mb-4 text-lg font-medium text-slate-900">
-                  概要
-                </h2>
-
-                <div className="text-slate-700">
-                  {splitIntoParagraphs(overviewText).map((block, index) => (
-                    <p
-                      key={index}
-                      className="mb-4 whitespace-pre-wrap text-[13px] leading-[1.9] last:mb-0 sm:text-[14px]"
-                    >
-                      {block}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* 右：基本スペック + 性格/お金まわり */}
             <div className="space-y-6">
-              <div className="rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
-                <h2 className="serif-heading mb-6 text-lg font-medium text-slate-900">
-                  基本スペック
-                </h2>
-                <dl className="space-y-4">
-                  {[
-                    {
-                      label: "登場年",
-                      value: car.releaseYear ? `${car.releaseYear}年頃` : null,
-                    },
-                    { label: "エンジン", value: car.engine },
-                    {
-                      label: "最高出力",
-                      value: car.horsepower ? `${car.horsepower}ps` : null,
-                    },
-                    { label: "駆動方式", value: car.drive },
-                    {
-                      label: "トランスミッション",
-                      value: (car as any).transmission,
-                    },
-                    { label: "加速性能", value: zeroTo100 },
-                    { label: "燃料", value: (car as any).fuel },
-                    { label: "燃費目安", value: car.fuelEconomy },
-                  ].map(
-                    (item, index) =>
-                      item.value && (
-                        <div
-                          key={index}
-                          className="flex items-baseline justify-between gap-3 border-b border-slate-100 pb-3 last:border-b-0 last:pb-0"
-                        >
-                          <dt className="text-[11px] font-semibold tracking-wide text-slate-500">
-                            {item.label}
-                          </dt>
-                          <dd className="text-right text-[12px] font-medium text-slate-900">
-                            {item.value}
-                          </dd>
-                        </div>
-                      ),
-                  )}
-                </dl>
-
-                {hasSizeSpec && (
-                  <div className="mt-8">
-                    <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                      DIMENSIONS
-                    </p>
-
-                    <div className="mt-3 grid grid-cols-2 gap-3 text-[12px] text-slate-700">
-                      {Object.entries((car as any).size ?? {}).map(
-                        ([key, value]) => (
-                          <div
-                            key={key}
-                            className="rounded-2xl bg-slate-50 px-4 py-3 ring-1 ring-slate-100"
-                          >
-                            <p className="text-[10px] font-semibold tracking-wide text-slate-500">
-                              {key}
-                            </p>
-                            <p className="mt-1 text-[12px] font-medium text-slate-900">
-                              {String(value)}
-                            </p>
-                          </div>
-                        ),
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
-
               {(car.priceNew || car.priceUsed || characterText) && (
                 <div className="rounded-[2.5rem] bg-neutral-900 p-6 text-white shadow-soft-card ring-1 ring-white/10 sm:p-8">
                   <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-white/60">
@@ -771,165 +732,102 @@ export default async function CarDetailPage({ params }: PageProps) {
                   )}
                 </div>
               )}
-            </div>
-          </div>
-        </section>
 
-        {/* ✅ 3カード（要約） */}
-        <section className="mb-10">
-          <div className="grid gap-4 md:grid-cols-3">
-            <div className="rounded-[2.5rem] bg-white p-6 shadow-soft-card ring-1 ring-slate-100">
-              <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                VALUE
-              </p>
-              <h3 className="serif-heading mb-2 text-sm font-medium text-slate-900">
-                資産価値
-              </h3>
-              <p className="text-[12px] leading-relaxed text-slate-700">
-                {car.priceUsed
-                  ? `中古帯の目安は「${car.priceUsed}」。状態と履歴で振れ幅が出やすいモデルです。`
-                  : "相場はグレードと状態で差が出やすいので、購入前に条件を揃えて比較。"}
-              </p>
-            </div>
-
-            <div className="rounded-[2.5rem] bg-white p-6 shadow-soft-card ring-1 ring-slate-100">
-              <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                REPUTATION
-              </p>
-              <h3 className="serif-heading mb-2 text-sm font-medium text-slate-900">
-                オーナーの評判
-              </h3>
-              <ul className="space-y-2 text-[12px] leading-relaxed text-slate-700">
-                {(car.strengths ?? []).slice(0, 3).map((item, i) => (
-                  <li key={i} className="flex items-start gap-2.5">
-                    <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-slate-300" />
-                    <p className="leading-relaxed">{item}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="rounded-[2.5rem] bg-white p-6 shadow-soft-card ring-1 ring-slate-100">
-              <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                TROUBLE
-              </p>
-              <h3 className="serif-heading mb-2 text-sm font-medium text-slate-900">
-                トラブル傾向
-              </h3>
-              <ul className="space-y-2 text-[12px] leading-relaxed text-slate-700">
-                {(car.troubleTrends ?? []).slice(0, 3).map((item, i) => (
-                  <li key={i} className="flex items-start gap-2.5">
-                    <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-amber-400" />
-                    <p className="leading-relaxed">{item}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* 以下：既存の詳細セクション（機能維持のため残す） */}
-        {(hasStrengths || hasWeaknesses) && (
-          <section className="mb-10">
-            <Reveal>
-              <div className="mb-4">
-                <p className="text-[10px] font-semibold tracking-[0.22em] text-tiffany-600">
-                  OWNER&apos;S VIEW
-                </p>
-                <h2 className="serif-heading mt-2 text-xl font-semibold text-slate-900">
-                  長所 / 短所
-                </h2>
-              </div>
-
-              <div className="grid gap-4 md:grid-cols-2">
-                {hasStrengths && (
-                  <GlassCard className="p-6 sm:p-8">
-                    <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                      STRENGTHS
-                    </p>
-                    <ul className="mt-4 space-y-2 text-[13px] leading-relaxed text-slate-800">
-                      {(car.strengths ?? []).map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2.5">
-                          <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-tiffany-500" />
-                          <p className="whitespace-pre-wrap">{item}</p>
-                        </li>
-                      ))}
-                    </ul>
-                  </GlassCard>
-                )}
-
-                {hasWeaknesses && (
-                  <GlassCard className="p-6 sm:p-8">
-                    <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                      WEAKNESSES
-                    </p>
-                    <ul className="mt-4 space-y-2 text-[13px] leading-relaxed text-slate-800">
-                      {((car as any).weaknesses ?? []).map(
-                        (item: string, idx: number) => (
-                          <li key={idx} className="flex items-start gap-2.5">
-                            <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-slate-300" />
-                            <p className="whitespace-pre-wrap">{item}</p>
-                          </li>
-                        ),
-                      )}
-                    </ul>
-                  </GlassCard>
-                )}
-              </div>
-            </Reveal>
-          </section>
-        )}
-
-        {(hasTroubleTrends || hasMaintenanceNotes) && (
-          <section className="mb-10">
-            <Reveal>
-              <div className="mb-4">
-                <p className="text-[10px] font-semibold tracking-[0.22em] text-tiffany-600">
-                  REAL WORLD
-                </p>
-                <h2 className="serif-heading mt-2 text-xl font-semibold text-slate-900">
-                  トラブル傾向 / 維持の注意点
-                </h2>
-              </div>
-
-              <div className="grid gap-4 md:grid-cols-2">
-                {hasTroubleTrends && (
-                  <GlassCard className="p-6 sm:p-8">
-                    <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                      TROUBLE TRENDS
-                    </p>
-                    <ul className="mt-4 space-y-2 text-[13px] leading-relaxed text-slate-800">
-                      {(car.troubleTrends ?? []).map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2.5">
-                          <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-amber-400" />
-                          <p className="whitespace-pre-wrap">{item}</p>
-                        </li>
-                      ))}
-                    </ul>
-                  </GlassCard>
-                )}
-
-                {hasMaintenanceNotes && (
-                  <GlassCard className="p-6 sm:p-8">
-                    <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                      MAINTENANCE NOTES
-                    </p>
-                    <ul className="mt-4 space-y-2 text-[13px] leading-relaxed text-slate-800">
-                      {(car.maintenanceNotes ?? []).map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2.5">
+              {(hasTroubleTrends || hasMaintenanceNotes) && (
+                <div className="rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
+                  <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-400">
+                    MAINTENANCE
+                  </p>
+                  <h3 className="serif-heading mb-3 text-base font-medium text-slate-900">
+                    維持の注意点（メモ）
+                  </h3>
+                  <ul className="space-y-2.5 text-[12px] leading-relaxed text-slate-700">
+                    {(car.maintenanceNotes ?? []).map(
+                      (item: string, index: number) => (
+                        <li key={index} className="flex items-start gap-2.5">
                           <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-slate-300" />
                           <p className="whitespace-pre-wrap">{item}</p>
                         </li>
-                      ))}
-                    </ul>
-                  </GlassCard>
-                )}
-              </div>
-            </Reveal>
-          </section>
-        )}
+                      ),
+                    )}
+                  </ul>
+                </div>
+              )}
+            </div>
 
-        {/* ✅ 中古在庫を探す（外部：主2枚 + 内部：関連 + 外部クイック） */}
+            <div className="rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
+              <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-400">
+                SPEC
+              </p>
+              <h2 className="serif-heading mb-6 text-lg font-medium text-slate-900">
+                基本スペック
+              </h2>
+
+              <dl className="space-y-4">
+                {[
+                  {
+                    label: "登場年",
+                    value: car.releaseYear ? `${car.releaseYear}年頃` : null,
+                  },
+                  { label: "エンジン", value: car.engine },
+                  {
+                    label: "最高出力",
+                    value: car.horsepower ? `${car.horsepower}ps` : null,
+                  },
+                  { label: "駆動方式", value: car.drive },
+                  {
+                    label: "トランスミッション",
+                    value: car.transmission,
+                  },
+                  { label: "加速性能", value: zeroTo100 },
+                  { label: "燃料", value: car.fuel },
+                  { label: "燃費目安", value: car.fuelEconomy },
+                ].map(
+                  (item, index) =>
+                    item.value && (
+                      <div
+                        key={index}
+                        className="flex items-baseline justify-between gap-3 border-b border-slate-100 pb-3 last:border-b-0 last:pb-0"
+                      >
+                        <dt className="text-[11px] font-semibold tracking-wide text-slate-500">
+                          {item.label}
+                        </dt>
+                        <dd className="text-right text-[12px] font-medium text-slate-900">
+                          {item.value}
+                        </dd>
+                      </div>
+                    ),
+                )}
+              </dl>
+
+              {hasSizeSpec && car.size && (
+                <div className="mt-8">
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
+                    DIMENSIONS
+                  </p>
+
+                  <div className="mt-3 grid grid-cols-2 gap-3 text-[12px] text-slate-700">
+                    {Object.entries(car.size).map(([key, value]) => (
+                      <div
+                        key={key}
+                        className="rounded-2xl bg-slate-50 px-4 py-3 ring-1 ring-slate-100"
+                      >
+                        <p className="text-[10px] font-semibold tracking-wide text-slate-500">
+                          {key}
+                        </p>
+                        <p className="mt-1 text-[12px] font-medium text-slate-900">
+                          {String(value)}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* ④ 中古在庫を探す：外部カード2枚 + クイック */}
         <section className="mt-12 mb-12">
           <div className="mb-5 text-center">
             <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
@@ -941,8 +839,7 @@ export default async function CarDetailPage({ params }: PageProps) {
           </div>
 
           {(() => {
-            const bg1 = pickInventoryCardBg("external_primary");
-            const bg2 = pickInventoryCardBg("external_secondary");
+            const bg = pickInventoryCardBg();
 
             return (
               <>
@@ -954,9 +851,9 @@ export default async function CarDetailPage({ params }: PageProps) {
                     className="group relative overflow-hidden rounded-[2.75rem] ring-1 ring-slate-100 shadow-soft-card"
                   >
                     <div className="absolute inset-0">
-                      {bg1.src ? (
+                      {bg.src ? (
                         <Image
-                          src={bg1.src}
+                          src={bg.src}
                           alt=""
                           fill
                           sizes="(max-width: 768px) 100vw, 50vw"
@@ -965,7 +862,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                       ) : (
                         <div
                           className={`h-full w-full ${
-                            bg1.gradientClass ?? "bg-slate-900"
+                            bg.gradientClass ?? "bg-slate-900"
                           }`}
                         />
                       )}
@@ -997,9 +894,9 @@ export default async function CarDetailPage({ params }: PageProps) {
                     className="group relative overflow-hidden rounded-[2.75rem] ring-1 ring-slate-100 shadow-soft-card"
                   >
                     <div className="absolute inset-0">
-                      {bg2.src ? (
+                      {bg.src ? (
                         <Image
-                          src={bg2.src}
+                          src={bg.src}
                           alt=""
                           fill
                           sizes="(max-width: 768px) 100vw, 50vw"
@@ -1008,7 +905,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                       ) : (
                         <div
                           className={`h-full w-full ${
-                            bg2.gradientClass ?? "bg-slate-900"
+                            bg.gradientClass ?? "bg-slate-900"
                           }`}
                         />
                       )}
@@ -1036,104 +933,23 @@ export default async function CarDetailPage({ params }: PageProps) {
 
                 <div className="mt-6 rounded-[2.25rem] bg-white p-5 ring-1 ring-slate-100 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.06)] sm:p-6">
                   <p className="mb-3 text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                    INTERNAL
+                    EXTERNAL QUICK
                   </p>
-
                   <div className="flex flex-wrap gap-2">
-                    {relatedNews.slice(0, 3).map((n) => (
-                      <Link
-                        key={n.id}
-                        href={`/news/${encodeURIComponent(n.id)}`}
-                        className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-[12px] text-white"
-                      >
-                        NEWS: {n.title} <span aria-hidden>→</span>
-                      </Link>
-                    ))}
-
-                    {relatedColumns.slice(0, 2).map((c) => (
-                      <Link
-                        key={c.id}
-                        href={`/column/${encodeURIComponent(c.slug)}`}
-                        className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[12px] text-slate-900 ring-1 ring-slate-200"
-                      >
-                        COLUMN: {c.title} <span aria-hidden>→</span>
-                      </Link>
-                    ))}
-
-                    {relatedGuides.slice(0, 2).map((g) => (
-                      <Link
-                        key={g.id}
-                        href={`/guide/${encodeURIComponent(g.slug)}`}
-                        className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[12px] text-slate-900 ring-1 ring-slate-200"
-                      >
-                        GUIDE: {g.title} <span aria-hidden>→</span>
-                      </Link>
-                    ))}
-
-                    {relatedHeritage.slice(0, 2).map((h) => (
-                      <Link
-                        key={h.id}
-                        href={`/heritage/${encodeURIComponent(h.slug)}`}
-                        className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[12px] text-slate-900 ring-1 ring-slate-200"
-                      >
-                        HERITAGE: {h.heroTitle ?? h.title}{" "}
-                        <span aria-hidden>→</span>
-                      </Link>
-                    ))}
-
-                    {relatedNews.length === 0 &&
-                      relatedColumns.length === 0 &&
-                      relatedGuides.length === 0 &&
-                      relatedHeritage.length === 0 && (
-                        <>
-                          <Link
-                            href="/news"
-                            className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-[12px] text-white"
-                          >
-                            NEWS一覧 <span aria-hidden>→</span>
-                          </Link>
-                          <Link
-                            href="/column"
-                            className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[12px] text-slate-900 ring-1 ring-slate-200"
-                          >
-                            COLUMN一覧 <span aria-hidden>→</span>
-                          </Link>
-                          <Link
-                            href="/guide"
-                            className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[12px] text-slate-900 ring-1 ring-slate-200"
-                          >
-                            GUIDE一覧 <span aria-hidden>→</span>
-                          </Link>
-                          <Link
-                            href="/cars"
-                            className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[12px] text-slate-900 ring-1 ring-slate-200"
-                          >
-                            他の車を見る <span aria-hidden>→</span>
-                          </Link>
-                        </>
-                      )}
-                  </div>
-
-                  <div className="mt-5 border-t border-slate-100 pt-5">
-                    <p className="mb-3 text-[10px] font-semibold tracking-[0.22em] text-slate-400">
-                      EXTERNAL QUICK
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {externalQuickKeys.slice(0, 3).map((k) => {
-                        const c = getMonetizeConfig(k);
-                        return (
-                          <a
-                            key={c.key}
-                            href={c.url}
-                            target="_blank"
-                            rel="nofollow sponsored noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[12px] text-slate-900 ring-1 ring-slate-200"
-                          >
-                            {c.label} <span aria-hidden>→</span>
-                          </a>
-                        );
-                      })}
-                    </div>
+                    {externalQuickKeys.slice(0, 3).map((k) => {
+                      const c = getMonetizeConfig(k);
+                      return (
+                        <a
+                          key={c.key}
+                          href={c.url}
+                          target="_blank"
+                          rel="nofollow sponsored noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[12px] text-slate-900 ring-1 ring-slate-200"
+                        >
+                          {c.label} <span aria-hidden>→</span>
+                        </a>
+                      );
+                    })}
                   </div>
                 </div>
               </>
@@ -1141,7 +957,7 @@ export default async function CarDetailPage({ params }: PageProps) {
           })()}
         </section>
 
-        {/* Ownership棚（GUIDE INDEX） */}
+        {/* ⑤ 関連：GUIDE / COLUMN / HERITAGE */}
         {relatedGuides.length > 0 && (
           <section className="mb-10">
             <Reveal>
@@ -1192,7 +1008,6 @@ export default async function CarDetailPage({ params }: PageProps) {
           </section>
         )}
 
-        {/* Next Read棚（COLUMN INDEX） */}
         {relatedColumns.length > 0 && (
           <section className="mb-10">
             <Reveal>
@@ -1253,7 +1068,6 @@ export default async function CarDetailPage({ params }: PageProps) {
           </section>
         )}
 
-        {/* HERITAGE棚（keyCarSlugs） */}
         {relatedHeritage.length > 0 && (
           <section className="mb-10">
             <Reveal>
