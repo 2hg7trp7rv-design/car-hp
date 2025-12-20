@@ -169,7 +169,8 @@ export default async function CarsPage({ searchParams }: PageProps) {
 
   const perPageRaw = toSingle(searchParams?.perPage).trim();
   const parsedPerPage = parseIntegerOrUndefined(perPageRaw);
-  const perPage = parsedPerPage === 24 || parsedPerPage === 48 ? parsedPerPage : 12;
+  const perPage =
+    parsedPerPage === 24 || parsedPerPage === 48 ? parsedPerPage : 12;
 
   const pageRaw = toSingle(searchParams?.page).trim();
   const requestedPage = parseIntegerOrUndefined(pageRaw) ?? 1;
@@ -177,21 +178,33 @@ export default async function CarsPage({ searchParams }: PageProps) {
   const minYear = rawMinYear ? parseIntegerOrUndefined(rawMinYear) : undefined;
   const maxYear = rawMaxYear ? parseIntegerOrUndefined(rawMaxYear) : undefined;
 
-  const minPriceUnit = rawMinPrice ? parseIntegerOrUndefined(rawMinPrice) : undefined; // 万円単位
-  const maxPriceUnit = rawMaxPrice ? parseIntegerOrUndefined(rawMaxPrice) : undefined;
+  const minPriceUnit = rawMinPrice
+    ? parseIntegerOrUndefined(rawMinPrice)
+    : undefined; // 万円単位
+  const maxPriceUnit = rawMaxPrice
+    ? parseIntegerOrUndefined(rawMaxPrice)
+    : undefined;
 
-  const minPriceYen = minPriceUnit != null ? minPriceUnit * 10000 : undefined;
-  const maxPriceYen = maxPriceUnit != null ? maxPriceUnit * 10000 : undefined;
+  const minPriceYen =
+    minPriceUnit != null ? minPriceUnit * 10000 : undefined;
+  const maxPriceYen =
+    maxPriceUnit != null ? maxPriceUnit * 10000 : undefined;
 
-  const makers = Array.from(new Set(all.map((c) => c.maker).filter(Boolean))).sort();
+  const makers = Array.from(
+    new Set(all.map((c) => c.maker).filter(Boolean)),
+  ).sort();
 
   const difficultyOptions: CarItem["difficulty"][] = (
     ["basic", "intermediate", "advanced"] as CarItem["difficulty"][]
   ).filter((d) => all.some((c) => c.difficulty === d));
 
-  const bodyTypes = Array.from(new Set(all.map((c) => c.bodyType).filter(Boolean))).sort();
+  const bodyTypes = Array.from(
+    new Set(all.map((c) => c.bodyType).filter(Boolean)),
+  ).sort();
 
-  const segments = Array.from(new Set(all.map((c) => c.segment).filter(Boolean))).sort();
+  const segments = Array.from(
+    new Set(all.map((c) => c.segment).filter(Boolean)),
+  ).sort();
 
   const priceBands = Array.from(
     new Set(
@@ -204,7 +217,13 @@ export default async function CarsPage({ searchParams }: PageProps) {
   // フィルタ
   const filtered = all.filter((car) => {
     if (q) {
-      const haystack = [car.name ?? "", car.maker ?? "", car.segment ?? "", car.bodyType ?? "", car.summary ?? ""]
+      const haystack = [
+        car.name ?? "",
+        car.maker ?? "",
+        car.segment ?? "",
+        car.bodyType ?? "",
+        car.summary ?? "",
+      ]
         .join(" ")
         .toLowerCase();
       if (!haystack.includes(q)) return false;
@@ -212,7 +231,10 @@ export default async function CarsPage({ searchParams }: PageProps) {
 
     if (makerFilter && car.maker !== makerFilter) return false;
 
-    if (difficultyFilter && car.difficulty !== (difficultyFilter as CarItem["difficulty"])) {
+    if (
+      difficultyFilter &&
+      car.difficulty !== (difficultyFilter as CarItem["difficulty"])
+    ) {
       return false;
     }
 
@@ -237,10 +259,18 @@ export default async function CarsPage({ searchParams }: PageProps) {
       const carMinPrice = car.minPriceYen;
       const carMaxPrice = car.maxPriceYen;
 
-      if (minPriceYen != null && carMaxPrice != null && carMaxPrice < minPriceYen) {
+      if (
+        minPriceYen != null &&
+        carMaxPrice != null &&
+        carMaxPrice < minPriceYen
+      ) {
         return false;
       }
-      if (maxPriceYen != null && carMinPrice != null && carMinPrice > maxPriceYen) {
+      if (
+        maxPriceYen != null &&
+        carMinPrice != null &&
+        carMinPrice > maxPriceYen
+      ) {
         return false;
       }
     }
@@ -265,7 +295,8 @@ export default async function CarsPage({ searchParams }: PageProps) {
     });
   } else if (sortKey === "difficulty") {
     sorted.sort((a, b) => {
-      const diff = difficultyWeight(a.difficulty) - difficultyWeight(b.difficulty);
+      const diff =
+        difficultyWeight(a.difficulty) - difficultyWeight(b.difficulty);
       if (diff !== 0) return diff;
       return (a.name ?? "").localeCompare(b.name ?? "");
     });
@@ -280,8 +311,12 @@ export default async function CarsPage({ searchParams }: PageProps) {
   const totalFiltered = sorted.length;
 
   // ページング
-  const maxPage = totalFiltered === 0 ? 1 : Math.max(1, Math.ceil(totalFiltered / perPage));
-  const currentPage = requestedPage < 1 ? 1 : requestedPage > maxPage ? maxPage : requestedPage;
+  const maxPage =
+    totalFiltered === 0
+      ? 1
+      : Math.max(1, Math.ceil(totalFiltered / perPage));
+  const currentPage =
+    requestedPage < 1 ? 1 : requestedPage > maxPage ? maxPage : requestedPage;
 
   const startIndex = (currentPage - 1) * perPage;
   const paged = sorted.slice(startIndex, startIndex + perPage);
@@ -301,7 +336,9 @@ export default async function CarsPage({ searchParams }: PageProps) {
 
   // インデックス用の簡易統計
   const basicCount = all.filter((c) => c.difficulty === "basic").length;
-  const intermediateCount = all.filter((c) => c.difficulty === "intermediate").length;
+  const intermediateCount = all.filter(
+    (c) => c.difficulty === "intermediate",
+  ).length;
   const advancedCount = all.filter((c) => c.difficulty === "advanced").length;
 
   const sedanCount = all.filter((c) => c.bodyType?.includes("セダン")).length;
@@ -889,16 +926,12 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 const thumbnail = "/images/cars/placeholder.jpg";
 
                 return (
-                  <Link
-                    key={car.id}
-                    href={`/cars/${encodeURIComponent(car.slug)}`}
-                    className="block w-full"
-                  >
+                  <Link key={car.id} href={`/cars/${encodeURIComponent(car.slug)}`} className="block w-full">
                     <GlassCard
                       as="article"
                       padding="md"
                       interactive
-                      className="group relative h-full overflow-hidden rounded-3xl bg-white/90 shadow-soft-card transition-transform duration-500 hover:-translate-y-[3px] hover:shadow-soft-card"
+                      className="group relative h-full w-full max-w-none overflow-hidden rounded-3xl bg-white/90 shadow-soft-card transition-transform duration-500 hover:-translate-y-[3px] hover:shadow-soft-card"
                     >
                       {/* カード内の光 */}
                       <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
