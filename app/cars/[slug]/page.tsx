@@ -217,7 +217,6 @@ export async function generateMetadata({
 
   const url = `${getSiteUrl()}/cars/${encodeURIComponent(car.slug)}`;
   const image =
-    car.ogImage ??
     car.heroImage ??
     car.mainImage ??
     `${getSiteUrl()}/images/hero-sedan.jpg`;
