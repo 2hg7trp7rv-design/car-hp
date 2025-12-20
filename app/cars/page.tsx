@@ -889,7 +889,11 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 const thumbnail = "/images/cars/placeholder.jpg";
 
                 return (
-                  <Link key={car.id} href={`/cars/${encodeURIComponent(car.slug)}`}>
+                  <Link
+                    key={car.id}
+                    href={`/cars/${encodeURIComponent(car.slug)}`}
+                    className="block w-full"
+                  >
                     <GlassCard
                       as="article"
                       padding="md"
