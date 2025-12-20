@@ -14,15 +14,13 @@ import {
   getHeritagePreviewText,
   type HeritageItem,
 } from "@/lib/heritage";
+
 import { GlassCard } from "@/components/GlassCard";
 import { Reveal } from "@/components/animation/Reveal";
 import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
 
 // SEO: JSON-LD
 import { JsonLd } from "@/components/seo/JsonLd";
-
-// Icons（lucide-react）
-import { AlertTriangle, Sparkles, ArrowLeft, ChevronRight } from "lucide-react";
 
 export const runtime = "edge";
 
@@ -405,8 +403,6 @@ export default async function CarDetailPage({ params }: PageProps) {
     ],
   };
 
-  const heroParagraphs = splitIntoParagraphs(overviewText);
-
   return (
     <main className="min-h-screen bg-site text-text-main">
       {/* JSON-LD */}
@@ -415,227 +411,237 @@ export default async function CarDetailPage({ params }: PageProps) {
 
       <ScrollDepthTracker />
 
-      {/* =========================================================
-       * A. HERO（黒基調・画像全面・オーバーレイ）
-       * - 既存のデータ（title/overviewText/タグ）をそのまま使用
-       * - CTA: 中古価格相場をチェック / 一覧に戻る
-       * ======================================================= */}
-      <section className="relative bg-black">
-        <div className="relative h-[440px] w-full sm:h-[520px]">
-          {heroImage ? (
-            <Image
-              src={heroImage}
-              alt={title}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-          ) : (
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-950 to-black" />
-          )}
+      <div className="mx-auto max-w-5xl px-4 pb-24 pt-16 sm:px-6 sm:pt-20 lg:px-8">
 
-          {/* 下方向に濃くなるフェード */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/10" />
+        {/* パンくず（ヒーロー画像が無い場合のフォールバック） */}
+        {!heroImage && (
+          <nav
+            className="mb-6 text-xs text-slate-500"
+            aria-label="パンくずリスト"
+          >
+            <Link href="/" className="hover:text-slate-800">
+              HOME
+            </Link>
+            <span className="mx-2 text-slate-400">/</span>
+            <Link href="/cars" className="hover:text-slate-800">
+              CARS
+            </Link>
+            <span className="mx-2 text-slate-400">/</span>
+            <span className="text-slate-600">{car.name ?? car.slug}</span>
+          </nav>
+        )}
 
-          {/* ほんの少し粒状感（上品） */}
-          <div className="absolute inset-0 opacity-[0.10] [background-image:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.10)_1px,transparent_0)] [background-size:18px_18px]" />
-        </div>
-
-        <div className="absolute inset-0">
-          <div className="mx-auto flex h-full max-w-5xl items-end px-4 pb-10 sm:px-6 lg:px-8">
-            <div className="w-full max-w-2xl">
-              <p className="text-[10px] font-semibold tracking-[0.28em] text-white/65">
-                CAR BOUTIQUE
-              </p>
-
-              <h1 className="mt-2 font-serif text-3xl leading-tight text-white sm:text-4xl">
-                {title}
-              </h1>
-
-              {/* タグ（半透明ピル） */}
-              <div className="mt-4 flex flex-wrap gap-2 text-[10px] text-white/80">
-                {car.segment && (
-                  <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 backdrop-blur">
-                    {car.segment}
-                  </span>
-                )}
-                {car.bodyType && (
-                  <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 backdrop-blur">
-                    {car.bodyType}
-                  </span>
-                )}
-                {car.engine && (
-                  <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 backdrop-blur">
-                    {car.engine}
-                  </span>
-                )}
-                {car.drive && (
-                  <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 backdrop-blur">
-                    {car.drive}
-                  </span>
-                )}
-                {car.releaseYear && (
-                  <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 backdrop-blur">
-                    登場:{car.releaseYear}年頃
-                  </span>
-                )}
-                {car.fuelEconomy && (
-                  <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 backdrop-blur">
-                    燃費目安:{car.fuelEconomy}
-                  </span>
-                )}
-                {zeroTo100 && (
-                  <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 backdrop-blur">
-                    加速:{zeroTo100}
-                  </span>
-                )}
+        {/* ヒーロー（黒背景・画像上オーバーレイ） */}
+        {heroImage && (
+          <section className="mb-10 overflow-hidden rounded-3xl border border-slate-200/70 bg-black shadow-soft-card">
+            <div className="relative">
+              <div className="relative h-[420px] w-full sm:h-[480px]">
+                <Image
+                  src={heroImage}
+                  alt={title}
+                  fill
+                  sizes="(min-width: 1024px) 960px, 100vw"
+                  className="object-cover object-center"
+                  priority
+                />
+                {/* 下部フェード */}
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black via-black/70 to-transparent" />
+                {/* 上部うっすら */}
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/55 to-transparent" />
               </div>
 
-              {/* 説明（既存テキストを保持しつつ、ヒーロー向けに白寄りで表示） */}
-              {heroParagraphs.length > 0 && (
-                <div className="mt-5 space-y-3">
-                  {heroParagraphs.map((block, idx) => (
-                    <p
-                      key={idx}
-                      className="text-[13px] leading-[1.9] text-white/80 sm:text-[14px]"
+              {/* オーバーレイ情報 */}
+              <div className="absolute inset-x-0 bottom-0 px-5 pb-6 sm:px-7 sm:pb-7">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <div className="mb-2 flex items-center gap-2">
+                      <span className="h-[6px] w-[6px] rounded-full bg-white/70" />
+                      <span className="text-[10px] font-bold tracking-[0.2em] text-white/70">
+                        CAR BOUTIQUE
+                      </span>
+                      {difficultyLabel && (
+                        <span className="ml-2 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[10px] font-medium tracking-[0.16em] text-white/80 ring-1 ring-white/10">
+                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-300/80" />
+                          {difficultyLabel}
+                        </span>
+                      )}
+                    </div>
+
+                    <h1 className="serif-heading text-3xl font-medium leading-tight tracking-tight text-white sm:text-4xl">
+                      {title}
+                    </h1>
+
+                    <div className="mt-3 flex flex-wrap gap-2 text-[10px] text-white/80">
+                      {car.segment && (
+                        <span className="rounded-full bg-white/15 px-3 py-1 ring-1 ring-white/15">
+                          {car.segment}
+                        </span>
+                      )}
+                      {car.bodyType && (
+                        <span className="rounded-full bg-white/15 px-3 py-1 ring-1 ring-white/15">
+                          {car.bodyType}
+                        </span>
+                      )}
+                      {car.drive && (
+                        <span className="rounded-full bg-white/15 px-3 py-1 ring-1 ring-white/15">
+                          {car.drive}
+                        </span>
+                      )}
+                      {car.releaseYear && (
+                        <span className="rounded-full bg-white/15 px-3 py-1 ring-1 ring-white/15">
+                          登場:{car.releaseYear}年頃
+                        </span>
+                      )}
+                      {car.fuelEconomy && (
+                        <span className="rounded-full bg-white/15 px-3 py-1 ring-1 ring-white/15">
+                          燃費目安:{car.fuelEconomy}
+                        </span>
+                      )}
+                      {zeroTo100 && (
+                        <span className="rounded-full bg-white/15 px-3 py-1 ring-1 ring-white/15">
+                          加速:{zeroTo100}
+                        </span>
+                      )}
+                    </div>
+
+                    {(car.priceNew || car.priceUsed) && (
+                      <div className="mt-3 flex flex-col gap-1 text-[11px] text-white/75">
+                        {car.priceNew && (
+                          <p className="inline-flex w-fit rounded-full bg-white/10 px-3 py-1 ring-1 ring-white/10">
+                            新車価格目安:{car.priceNew}
+                          </p>
+                        )}
+                        {car.priceUsed && (
+                          <p className="inline-flex w-fit rounded-full bg-white/10 px-3 py-1 ring-1 ring-white/10">
+                            中古相場イメージ:{car.priceUsed}
+                          </p>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* CTA */}
+                  <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">
+                    <Link
+                      href="/guide"
+                      className="inline-flex items-center justify-center rounded-2xl bg-white px-5 py-3 text-[12px] font-semibold text-black shadow-sm transition hover:bg-white/90"
                     >
-                      {block}
-                    </p>
-                  ))}
+                      中古価格相場をチェック
+                    </Link>
+                    <Link
+                      href="/cars"
+                      className="inline-flex items-center justify-center rounded-2xl bg-white/10 px-5 py-3 text-[12px] font-semibold text-white ring-1 ring-white/15 backdrop-blur-sm transition hover:bg-white/15"
+                    >
+                      一覧に戻る
+                    </Link>
+                  </div>
                 </div>
-              )}
-
-              {/* CTA */}
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <a
-                  href="#used-market"
-                  className="inline-flex items-center justify-center rounded-2xl bg-white px-6 py-3 text-sm font-medium text-black shadow-sm transition hover:bg-white/95 active:bg-white/90"
-                >
-                  中古価格相場をチェック
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </a>
-
-                <Link
-                  href="/cars"
-                  className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/10 px-6 py-3 text-sm font-medium text-white/90 backdrop-blur transition hover:bg-white/15 active:bg-white/20"
-                >
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  一覧に戻る
-                </Link>
               </div>
-
-              {/* 難易度ラベル（既存ロジックを活かし、ヒーロー内でも見せる） */}
-              {difficultyLabel && (
-                <div className="mt-6">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[10px] font-medium tracking-[0.16em] text-white/85 backdrop-blur">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                    {difficultyLabel}
-                  </span>
-                </div>
-              )}
             </div>
-          </div>
-        </div>
 
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      </section>
-
-      <div className="mx-auto max-w-5xl px-4 pb-24 pt-10 sm:px-6 lg:px-8">
-        {/* パンくず */}
-        <nav
-          className="mb-6 text-xs text-slate-500"
-          aria-label="パンくずリスト"
-        >
-          <Link href="/" className="hover:text-slate-800">
-            HOME
-          </Link>
-          <span className="mx-2 text-slate-400">/</span>
-          <Link href="/cars" className="hover:text-slate-800">
-            CARS
-          </Link>
-          <span className="mx-2 text-slate-400">/</span>
-          <span className="text-slate-600">{car.name ?? car.slug}</span>
-        </nav>
-
-        {/* =========================================================
-         * B. 特徴セクション（カードデザイン）
-         * - 注意点: weaknesses を使用（無ければ表示しない）
-         * - 魅力: strengths を使用（無ければ表示しない）
-         * - 既存データは省略せずそのまま列挙
-         * ======================================================= */}
-        {(hasWeaknesses || hasStrengths) && (
-          <section className="mb-10">
-            <h2 className="text-center font-serif text-xl text-slate-900 sm:text-2xl">
-              このクルマの特徴
-            </h2>
-
-            <div className="mx-auto mt-6 grid max-w-3xl gap-4">
-              {hasWeaknesses && (
-                <div className="rounded-2xl border border-black/10 bg-yellow-50/50 p-5 shadow-sm">
-                  <div className="flex items-start gap-3">
-                    <div className="mt-0.5 rounded-xl border border-black/10 bg-white/70 p-2">
-                      <AlertTriangle className="h-5 w-5 text-black/70" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-serif text-base font-semibold text-black">
-                        注意すべきポイント
-                      </h3>
-
-                      <ul className="mt-3 space-y-2 font-sans text-sm leading-relaxed text-black/80">
-                        {car.weaknesses?.map((t, i) => (
-                          <li key={`${t}-${i}`} className="flex gap-2">
-                            <span className="mt-[0.35em] h-1.5 w-1.5 flex-none rounded-full bg-black/50" />
-                            <span className="min-w-0">{t}</span>
-                          </li>
-                        ))}
-                      </ul>
+            {/* 概要（全文） */}
+            {overviewText && (
+              <div className="border-t border-white/10 bg-black px-5 py-6 sm:px-7 sm:py-7">
+                <div className="grid gap-6 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+                  <div>
+                    <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-white/60">
+                      OVERVIEW
+                    </p>
+                    <h2 className="serif-heading mb-4 text-base font-medium text-white sm:text-lg">
+                      概要
+                    </h2>
+                    <div className="text-white/80">
+                      {/* ここは “省略なし” で段落表示 */}
+                      {splitIntoParagraphs(overviewText).map((block, index) => (
+                        <p
+                          key={index}
+                          className="mb-4 whitespace-pre-wrap text-[13px] leading-[1.9] last:mb-0 sm:text-[14px]"
+                        >
+                          {block}
+                        </p>
+                      ))}
                     </div>
                   </div>
-                </div>
-              )}
 
-              {hasStrengths && (
-                <div className="rounded-2xl border border-black/10 bg-gray-50 p-5 shadow-sm">
-                  <div className="flex items-start gap-3">
-                    <div className="mt-0.5 rounded-xl border border-black/10 bg-white/70 p-2">
-                      <Sparkles className="h-5 w-5 text-black/70" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-serif text-base font-semibold text-black">
-                        絶対的な魅力
-                      </h3>
+                  {/* 右：特徴カード（上下） */}
+                  <div className="space-y-4">
+                    {/* よくある悩み（= troubleTrends/weaknesses を全文表示） */}
+                    {(hasTroubleTrends || hasWeaknesses) && (
+                      <Reveal>
+                        <GlassCard className="rounded-2xl border border-white/10 bg-yellow-50/10 p-5 text-white shadow-soft backdrop-blur-sm">
+                          <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-white/60">
+                            COMMON CONCERNS
+                          </p>
+                          <h3 className="serif-heading mb-3 text-sm font-medium text-white">
+                            よくある悩み・注意点
+                          </h3>
 
-                      <ul className="mt-3 space-y-2 font-sans text-sm leading-relaxed text-black/80">
-                        {car.strengths?.map((t, i) => (
-                          <li key={`${t}-${i}`} className="flex gap-2">
-                            <span className="mt-[0.35em] h-1.5 w-1.5 flex-none rounded-full bg-black/40" />
-                            <span className="min-w-0">{t}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                          <ul className="space-y-2.5 text-[12px] leading-relaxed text-white/85">
+                            {(car.troubleTrends ?? car.weaknesses ?? []).map(
+                              (item, index) => (
+                                <li key={index} className="flex items-start gap-2.5">
+                                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-white/70" />
+                                  <p className="whitespace-pre-wrap">{item}</p>
+                                </li>
+                              ),
+                            )}
+                          </ul>
+                        </GlassCard>
+                      </Reveal>
+                    )}
+
+                    {/* 維持費面で効く箇所（= strengths を全文表示） */}
+                    {hasStrengths && (
+                      <Reveal>
+                        <GlassCard className="rounded-2xl border border-white/10 bg-white/5 p-5 text-white shadow-soft backdrop-blur-sm">
+                          <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-white/60">
+                            WHAT HELPS
+                          </p>
+                          <h3 className="serif-heading mb-3 text-sm font-medium text-white">
+                            維持費面で効く箇所・魅力
+                          </h3>
+                          <ul className="space-y-2.5 text-[12px] leading-relaxed text-white/85">
+                            {(car.strengths ?? []).map((item, index) => (
+                              <li key={index} className="flex items-start gap-2.5">
+                                <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-white/70" />
+                                <p className="whitespace-pre-wrap">{item}</p>
+                              </li>
+                            ))}
+                          </ul>
+                        </GlassCard>
+                      </Reveal>
+                    )}
                   </div>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </section>
+        )}
+
+        {/* パンくず（ヒーローがある場合はここに表示） */}
+        {heroImage && (
+          <nav className="mb-6 text-xs text-slate-500" aria-label="パンくずリスト">
+            <Link href="/" className="hover:text-slate-800">
+              HOME
+            </Link>
+            <span className="mx-2 text-slate-400">/</span>
+            <Link href="/cars" className="hover:text-slate-800">
+              CARS
+            </Link>
+            <span className="mx-2 text-slate-400">/</span>
+            <span className="text-slate-600">{car.name ?? car.slug}</span>
+          </nav>
         )}
 
         {/* メインコンテンツグリッド */}
         <section className="mb-10 grid gap-6 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-          {/* =========================================================
-           * C. スペック（罫線ミニマル）
-           * - 既存の表示内容は維持
-           * - 見た目を「border-bの整理されたリスト」へ寄せる
-           * ======================================================= */}
+          {/* 基本スペック + サイズ */}
           <div className="space-y-6">
             <div className="rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
               <h2 className="serif-heading mb-6 text-lg font-medium text-slate-900">
                 基本スペック
               </h2>
-
-              <dl className="divide-y divide-slate-100">
+              <dl className="space-y-4">
                 {[
                   {
                     label: "登場年",
@@ -667,12 +673,12 @@ export default async function CarDetailPage({ params }: PageProps) {
                     item.value && (
                       <div
                         key={index}
-                        className="grid grid-cols-[140px_1fr] gap-4 py-3"
+                        className="flex items-baseline justify-between border-b border-slate-50 pb-2 last:border-0 last:pb-0"
                       >
                         <dt className="text-[11px] font-medium text-slate-400">
                           {item.label}
                         </dt>
-                        <dd className="min-w-0 text-right text-[12px] font-medium text-slate-800">
+                        <dd className="max-w-[60%] text-right text-[12px] font-medium text-slate-800">
                           {item.value}
                         </dd>
                       </div>
@@ -689,9 +695,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                     {car.lengthMm != null && (
                       <div className="flex items-baseline justify-between gap-2">
                         <dt className="text-slate-400">全長</dt>
-                        <dd className="font-medium">
-                          {formatMm(car.lengthMm)}
-                        </dd>
+                        <dd className="font-medium">{formatMm(car.lengthMm)}</dd>
                       </div>
                     )}
                     {car.widthMm != null && (
@@ -703,9 +707,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                     {car.heightMm != null && (
                       <div className="flex items-baseline justify-between gap-2">
                         <dt className="text-slate-400">全高</dt>
-                        <dd className="font-medium">
-                          {formatMm(car.heightMm)}
-                        </dd>
+                        <dd className="font-medium">{formatMm(car.heightMm)}</dd>
                       </div>
                     )}
                     {car.wheelbaseMm != null && (
@@ -728,7 +730,7 @@ export default async function CarDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* 性格/お金まわり（ここから下は “見た目の上書き対象外” として原文維持） */}
+          {/* 性格/お金まわり */}
           <div className="space-y-6">
             <div className="rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
               <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -773,7 +775,7 @@ export default async function CarDetailPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* 長所/短所セクション（原文維持） */}
+        {/* 長所/短所セクション */}
         {(hasStrengths || hasWeaknesses || hasBestFor || hasNotFor) && (
           <section className="mb-10 rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
             <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
@@ -864,7 +866,7 @@ export default async function CarDetailPage({ params }: PageProps) {
           </section>
         )}
 
-        {/* トラブル傾向/維持の注意（原文維持） */}
+        {/* トラブル傾向/維持の注意 */}
         {(hasTroubleTrends || hasMaintenanceNotes) && (
           <section className="mb-10 rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
             <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
@@ -907,7 +909,7 @@ export default async function CarDetailPage({ params }: PageProps) {
           </section>
         )}
 
-        {/* Ownership棚（GUIDE INDEX）（原文維持） */}
+        {/* Ownership棚（GUIDE INDEX） */}
         {relatedGuides.length > 0 && (
           <section className="mb-10">
             <Reveal>
@@ -976,7 +978,7 @@ export default async function CarDetailPage({ params }: PageProps) {
           </section>
         )}
 
-        {/* この車にまつわるコラム（原文維持） */}
+        {/* この車にまつわるコラム */}
         {relatedColumns.length > 0 && (
           <section className="mb-10">
             <Reveal>
@@ -1034,7 +1036,7 @@ export default async function CarDetailPage({ params }: PageProps) {
           </section>
         )}
 
-        {/* このブランド/モデルに関係するHERITAGE（原文維持） */}
+        {/* このブランド/モデルに関係するHERITAGE */}
         {relatedHeritage.length > 0 && (
           <section className="mb-10">
             <Reveal>
@@ -1099,7 +1101,7 @@ export default async function CarDetailPage({ params }: PageProps) {
           </section>
         )}
 
-        {/* 関連コンテンツへの導線（ID/slugベース）（原文維持） */}
+        {/* 関連コンテンツへの導線（ID/slugベース） */}
         {hasRelated && (
           <section className="rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
             <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
@@ -1145,11 +1147,6 @@ export default async function CarDetailPage({ params }: PageProps) {
             </div>
           </section>
         )}
-
-        {/* CTAアンカー */}
-        <div id="used-market" className="sr-only">
-          used-market
-        </div>
       </div>
     </main>
   );
