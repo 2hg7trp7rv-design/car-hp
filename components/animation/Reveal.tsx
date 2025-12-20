@@ -60,7 +60,10 @@ export function Reveal({
 
   // prefers-reduced-motion判定
   useEffect(() => {
-    if (typeof window === "undefined" || typeof window.matchMedia === "undefined") {
+    if (
+      typeof window === "undefined" ||
+      typeof window.matchMedia === "undefined"
+    ) {
       return;
     }
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -128,26 +131,26 @@ export function Reveal({
         break;
     }
   } else {
-    // 初期/非表示状態
+    // 初期/非表示状態（※ SSR/遷移直後に“真っ白”を作らないため opacity は落とさない）
     switch (direction) {
       case "up":
-        stateClass = "opacity-0 translate-y-6";
+        stateClass = "opacity-100 translate-y-6";
         break;
       case "down":
-        stateClass = "opacity-0 -translate-y-6";
+        stateClass = "opacity-100 -translate-y-6";
         break;
       case "left":
-        stateClass = "opacity-0 translate-x-6";
+        stateClass = "opacity-100 translate-x-6";
         break;
       case "right":
-        stateClass = "opacity-0 -translate-x-6";
+        stateClass = "opacity-100 -translate-x-6";
         break;
       case "scale":
-        stateClass = "opacity-0 scale-95";
+        stateClass = "opacity-100 scale-95";
         break;
       case "fade":
       default:
-        stateClass = "opacity-0";
+        stateClass = "opacity-100";
         break;
     }
   }
