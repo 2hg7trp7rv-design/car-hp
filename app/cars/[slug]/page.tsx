@@ -1,21 +1,29 @@
 // app/cars/[slug]/page.tsx
+//
+// CAR BOUTIQUE / CARS DETAIL PAGE
+// Next.js App Router + TypeScript + Tailwind CSS
+// 最新リポジトリ構成に完全準拠した統合版フルファイル
+//
 
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { AlertTriangle, Sparkles, ChevronRight, ArrowLeft } from "lucide-react";
-
 import { getSiteUrl } from "@/lib/site";
-import { getAllCars, getCarBySlug, type CarItem } from "@/lib/cars";
 
-/**
- * CAR DETAIL PAGE
- * Design Spec:
- * - High-end “CAR BOUTIQUE” presentation.
- * - Monotone + accent, serif + sans mix.
- * - App Router (Next.js 14), Tailwind CSS only.
- */
+import { getAllCars, getCarBySlug, type CarItem } from "@/lib/cars";
+import { getAllGuides, type GuideItem } from "@/lib/guides";
+import { getAllColumns, type ColumnItem } from "@/lib/columns";
+import {
+  getAllHeritage,
+  getHeritagePreviewText,
+  type HeritageItem,
+} from "@/lib/heritage";
+
+import { GlassCard } from "@/components/GlassCard";
+import { Reveal } from "@/components/animation/Reveal";
+import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const runtime = "edge";
 
@@ -25,148 +33,328 @@ type PageProps = {
   };
 };
 
+/* =========================================================
+ * 型定義（最新リポジトリ準拠）
+ * ======================================================= */
+
+type ExtendedCarItem = CarItem & {
+  mainImage?: string;
+  heroImage?: string;
+
+  strengths?: string[];
+  weaknesses?: string[];
+  troubleTrends?: string[];
+  maintenanceNotes?: string[];
+
+  costImpression?: string;
+
+  zeroTo100?: number;
+  fuelEconomy?: string;
+  priceNew?: string;
+  priceUsed?: string;
+
+  bestFor?: string[];
+  notFor?: string[];
+
+  lengthMm?: number;
+  widthMm?: number;
+  heightMm?: number;
+  wheelbaseMm?: number;
+  weightKg?: number;
+
+  relatedNewsIds?: string[];
+  relatedColumnSlugs?: string[];
+  relatedHeritageIds?: string[];
+};
+
+type GuideWithMeta = GuideItem & {
+  relatedCarSlugs?: (string | null)[];
+};
+
+type ColumnWithMeta = ColumnItem & {
+  relatedCarSlugs?: (string | null)[];
+};
+
+type HeritageWithMeta = HeritageItem & {
+  keyCarSlugs?: (string | null)[];
+  kind?: string | null;
+  brandName?: string | null;
+  heroTitle?: string | null;
+};
+
+/* =========================================================
+ * ユーティリティ
+ * ======================================================= */
+
+function splitIntoParagraphs(text: string): string[] {
+  const trimmed = text.trim();
+  if (!trimmed) return [];
+
+  const manual = trimmed
+    .split(/\n{2,}/)
+    .map((b) => b.trim())
+    .filter(Boolean);
+  if (manual.length > 1) return manual;
+
+  const sentences = trimmed
+    .split("。")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  if (sentences.length <= 1) return [trimmed];
+
+  const out: string[] = [];
+  for (let i = 0; i < sentences.length; i += 2) {
+    out.push(sentences.slice(i, i + 2).join("。") + "。");
+  }
+  return out;
+}
+
+function MultilineText({
+  text,
+  variant,
+}: {
+  text: string;
+  variant: "hero" | "card";
+}) {
+  const blocks = splitIntoParagraphs(text);
+
+  if (variant === "hero") {
+    return (
+      <div className="space-y-4">
+        {blocks.map((b, i) => (
+          <p
+            key={i}
+            className="text-[13px] leading-[1.9] text-text-sub sm:text-[14px]"
+          >
+            {b}
+          </p>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-3">
+      {blocks.map((b, i) => (
+        <div key={i} className="flex items-start gap-3">
+          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-slate-300" />
+          <p className="text-[12px] leading-relaxed text-text-sub sm:text-[13px]">
+            {b}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function formatZeroTo100(v?: number) {
+  if (v == null) return null;
+  return `${v.toFixed(1)}秒 (0-100km/h)`;
+}
+
+function formatMm(v?: number) {
+  if (v == null) return null;
+  return `${v.toLocaleString()}mm`;
+}
+
+function formatKg(v?: number) {
+  if (v == null) return null;
+  return `${v.toLocaleString()}kg`;
+}
+
+function formatDate(value?: string | null): string {
+  if (!value) return "";
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return value;
+  return `${d.getFullYear()}/${`${d.getMonth() + 1}`.padStart(
+    2,
+    "0",
+  )}/${`${d.getDate()}`.padStart(2, "0")}`;
+}
+
+function mapHeritageKindLabel(kind?: string | null) {
+  switch (kind) {
+    case "brand":
+      return "BRAND";
+    case "model":
+      return "MODEL";
+    case "era":
+      return "ERA";
+    case "culture":
+      return "CULTURE";
+    default:
+      return "HERITAGE";
+  }
+}
+
+/* =========================================================
+ * SSG / Metadata
+ * ======================================================= */
+
 export async function generateStaticParams() {
-  const cars = getAllCars();
+  const cars = await getAllCars();
   return cars.map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const car = getCarBySlug(params.slug);
-  if (!car) return {};
+  const car = (await getCarBySlug(params.slug)) as ExtendedCarItem | null;
 
-  const title = `${car.name} | CAR BOUTIQUE`;
-  const description =
-    car.summary ||
-    car.description ||
-    `${car.name}の特徴・スペック・中古相場をCAR BOUTIQUEで。`;
-  const image =
-    (car as any).heroImage ||
-    (car as any).image ||
-    (car as any).images?.[0] ||
-    "/images/hero/default-car.jpg";
+  if (!car) {
+    return {
+      title: "車種が見つかりません | CAR BOUTIQUE",
+      description: "指定された車種が見つかりませんでした。",
+    };
+  }
+
+  const url = `${getSiteUrl()}/cars/${encodeURIComponent(car.slug)}`;
 
   return {
-    title,
-    description,
+    title: `${car.name} | CAR BOUTIQUE`,
+    description: car.summaryLong ?? car.summary ?? "",
+    alternates: { canonical: url },
     openGraph: {
-      title,
-      description,
-      url: `${getSiteUrl()}/cars/${car.slug}`,
+      title: `${car.name} | CAR BOUTIQUE`,
+      description: car.summaryLong ?? car.summary ?? "",
       type: "article",
-      images: [{ url: image }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [image],
+      url,
+      images: car.heroImage ? [car.heroImage] : [],
     },
   };
 }
 
-export default function CarDetailPage({ params }: PageProps) {
-  const car = getCarBySlug(params.slug);
-  if (!car) notFound();
+/* =========================================================
+ * Page
+ * ======================================================= */
 
-  const heroImage =
-    (car as any).heroImage ||
-    (car as any).image ||
-    (car as any).images?.[0] ||
-    "/images/hero/default-car.jpg";
+export default async function CarDetailPage({ params }: PageProps) {
+  const [carRaw, guidesRaw, columnsRaw, heritageRaw] = await Promise.all([
+    getCarBySlug(params.slug),
+    getAllGuides(),
+    getAllColumns(),
+    getAllHeritage(),
+  ]);
 
-  const maker = (car as any).maker || "";
-  const englishTitle = maker.toUpperCase();
-  const japaneseTitle = car.name;
-  const heroCopy =
-    car.summary ||
-    car.description ||
-    "フェラーリ プロサングエは、ブランド初の4ドアSUVとして登場したモデルです。";
+  if (!carRaw) notFound();
 
-  const tagPills = [
-    car.bodyType,
-    car.engine,
-    car.drive,
-    car.transmission,
-    `${car.releaseYear}年式`,
-  ].filter(Boolean);
+  const car = carRaw as ExtendedCarItem;
 
-  const cautionPoints = [
-    "注意を怠ると維持費が高額になる",
-    "部品やメンテナンス費用が割高",
-    "燃費の悪化と税金の高さに留意",
-  ];
+  const guides = (guidesRaw as GuideWithMeta[]).filter((g) =>
+    g.relatedCarSlugs?.includes(car.slug),
+  );
+  const columns = (columnsRaw as ColumnWithMeta[]).filter((c) =>
+    c.relatedCarSlugs?.includes(car.slug),
+  );
+  const heritages = (heritageRaw as HeritageWithMeta[]).filter((h) =>
+    h.keyCarSlugs?.includes(car.slug),
+  );
 
-  const charmPoints = [
-    "フェラーリらしいV12自然吸気エンジンの官能性",
-    "SUVでありながらクーペのような流麗なデザイン",
-    "上質なインテリアと圧倒的な存在感",
-  ];
+  const heroImage = car.heroImage ?? car.mainImage ?? null;
+  const zeroTo100 = formatZeroTo100(car.zeroTo100);
 
-  const specs = [
-    { label: "年式", value: car.releaseYear || "2023年" },
-    { label: "エンジン", value: car.engine || "6.5L V12 NA" },
-    { label: "ボディタイプ", value: car.bodyType || "SUV" },
-    { label: "乗車定員", value: car.grade || "4人乗り" },
-    { label: "駆動方式", value: car.drive || "AWD" },
-    { label: "トランスミッション", value: car.transmission || "8AT" },
-  ];
+  /* ---------- JSON-LD ---------- */
+
+  const productLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: car.name,
+    description: car.summaryLong ?? car.summary ?? "",
+    image: heroImage ? [heroImage] : [],
+    brand: car.maker
+      ? { "@type": "Brand", name: car.maker }
+      : undefined,
+    modelDate: car.releaseYear ?? undefined,
+  };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HOME", item: getSiteUrl() },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "CARS",
+        item: `${getSiteUrl()}/cars`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: car.name,
+        item: `${getSiteUrl()}/cars/${encodeURIComponent(car.slug)}`,
+      },
+    ],
+  };
 
   return (
-    <main className="bg-white text-black">
-      {/* ================================
-       * A. HERO SECTION
-       * ================================ */}
+    <main className="min-h-screen bg-site text-text-main">
+      <JsonLd id={`car-${car.slug}-product`} data={productLd} />
+      <JsonLd id={`car-${car.slug}-breadcrumb`} data={breadcrumbLd} />
+
+      <ScrollDepthTracker />
+
+      {/* =========================
+       * HERO（黒基調・オーバーレイ）
+       * ======================= */}
       <section className="relative bg-black">
-        <div className="relative h-[480px] sm:h-[540px]">
-          <Image
-            src={heroImage}
-            alt={car.name}
-            fill
-            className="object-cover object-center opacity-95"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-        </div>
+        {heroImage && (
+          <div className="relative h-[420px] sm:h-[520px]">
+            <Image
+              src={heroImage}
+              alt={car.name}
+              fill
+              priority
+              className="object-cover opacity-95"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/10" />
+          </div>
+        )}
 
-        <div className="absolute inset-0 flex items-end justify-center pb-10">
-          <div className="max-w-3xl px-6 text-center text-white">
-            <h1 className="font-serif text-3xl sm:text-5xl">{englishTitle}</h1>
-            <p className="mt-1 font-serif text-lg sm:text-2xl">
-              {japaneseTitle}
+        <div className="absolute inset-0 flex items-end">
+          <div className="mx-auto w-full max-w-5xl px-6 pb-10">
+            <p className="text-xs tracking-[0.3em] text-white/60">
+              {car.maker?.toUpperCase()}
             </p>
+            <h1 className="font-serif text-3xl text-white sm:text-4xl">
+              {car.name}
+            </h1>
 
-            {/* タグ群 */}
-            <div className="mt-4 flex flex-wrap justify-center gap-2">
-              {tagPills.map((t, i) => (
-                <span
-                  key={i}
-                  className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs text-white/80"
-                >
-                  {t}
+            <div className="mt-3 flex flex-wrap gap-2 text-[11px] text-white/80">
+              {car.bodyType && (
+                <span className="rounded-full bg-white/10 px-3 py-1">
+                  {car.bodyType}
                 </span>
-              ))}
+              )}
+              {car.engine && (
+                <span className="rounded-full bg-white/10 px-3 py-1">
+                  {car.engine}
+                </span>
+              )}
+              {car.drive && (
+                <span className="rounded-full bg-white/10 px-3 py-1">
+                  {car.drive}
+                </span>
+              )}
+              {zeroTo100 && (
+                <span className="rounded-full bg-white/10 px-3 py-1">
+                  {zeroTo100}
+                </span>
+              )}
             </div>
 
-            {/* 説明文 */}
-            <p className="mt-5 text-sm leading-relaxed text-white/80 sm:text-base">
-              {heroCopy}
-            </p>
-
-            {/* CTAボタン */}
-            <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <div className="mt-6 flex gap-3">
               <a
-                href="#market"
-                className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-white/90"
+                href="#used"
+                className="rounded-2xl bg-white px-6 py-3 text-sm font-medium text-black"
               >
                 中古価格相場をチェック
               </a>
               <Link
                 href="/cars"
-                className="rounded-full border border-white/30 px-6 py-3 text-sm text-white/80 transition hover:bg-white/10"
+                className="rounded-2xl border border-white/30 px-6 py-3 text-sm text-white/80"
               >
-                <ArrowLeft className="mr-2 inline-block h-4 w-4" />
                 一覧に戻る
               </Link>
             </div>
@@ -174,158 +362,102 @@ export default function CarDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ================================
-       * B. FEATURE CARDS
-       * ================================ */}
-      <section className="mx-auto max-w-5xl px-5 py-12 sm:px-6">
-        <h2 className="text-center font-serif text-2xl sm:text-3xl">
-          このクルマの特徴
-        </h2>
+      {/* =========================
+       * CONTENT
+       * ======================= */}
+      <div className="mx-auto max-w-5xl px-4 pb-24 pt-16 sm:px-6">
+        {car.summaryLong && (
+          <section className="mb-12">
+            <MultilineText text={car.summaryLong} variant="hero" />
+          </section>
+        )}
 
-        <div className="mt-8 grid gap-6">
-          {/* 注意点カード */}
-          <div className="rounded-2xl border border-black/10 bg-yellow-50/60 p-6">
-            <div className="flex items-start gap-3">
-              <AlertTriangle className="mt-1 h-5 w-5 text-black/60" />
-              <div>
-                <h3 className="font-serif text-lg font-semibold text-black">
-                  注意すべきポイント
-                </h3>
-                <ul className="mt-3 space-y-2 text-sm leading-relaxed text-black/80">
-                  {cautionPoints.map((t, i) => (
-                    <li key={i} className="flex gap-2">
-                      <span className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-black/50" />
-                      <span>{t}</span>
-                    </li>
-                  ))}
-                </ul>
+        {/* スペック */}
+        <section className="mb-12 rounded-3xl bg-white p-6 shadow-soft-card">
+          <h2 className="serif-heading mb-6 text-lg">基本スペック</h2>
+          <dl className="space-y-3 text-sm">
+            {car.engine && (
+              <div className="flex justify-between border-b pb-2">
+                <dt className="text-slate-400">エンジン</dt>
+                <dd>{car.engine}</dd>
               </div>
+            )}
+            {car.lengthMm && (
+              <div className="flex justify-between border-b pb-2">
+                <dt className="text-slate-400">全長</dt>
+                <dd>{formatMm(car.lengthMm)}</dd>
+              </div>
+            )}
+            {car.weightKg && (
+              <div className="flex justify-between">
+                <dt className="text-slate-400">重量</dt>
+                <dd>{formatKg(car.weightKg)}</dd>
+              </div>
+            )}
+          </dl>
+        </section>
+
+        {/* GUIDE */}
+        {guides.length > 0 && (
+          <section className="mb-12">
+            <h2 className="serif-heading mb-4 text-base">
+              このモデルと付き合うなら
+            </h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              {guides.map((g) => (
+                <GlassCard key={g.id} className="p-4">
+                  <h3 className="font-semibold">{g.title}</h3>
+                  {g.summary && (
+                    <p className="mt-2 text-xs text-text-sub">{g.summary}</p>
+                  )}
+                </GlassCard>
+              ))}
             </div>
-          </div>
+          </section>
+        )}
 
-          {/* 魅力カード */}
-          <div className="rounded-2xl border border-black/10 bg-gray-50 p-6">
-            <div className="flex items-start gap-3">
-              <Sparkles className="mt-1 h-5 w-5 text-black/60" />
-              <div>
-                <h3 className="font-serif text-lg font-semibold text-black">
-                  絶対的な魅力
-                </h3>
-                <ul className="mt-3 space-y-2 text-sm leading-relaxed text-black/80">
-                  {charmPoints.map((t, i) => (
-                    <li key={i} className="flex gap-2">
-                      <span className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-black/40" />
-                      <span>{t}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+        {/* COLUMN */}
+        {columns.length > 0 && (
+          <section className="mb-12">
+            <h2 className="serif-heading mb-4 text-base">
+              この車にまつわるコラム
+            </h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              {columns.map((c) => (
+                <GlassCard key={c.id} className="p-4">
+                  <h3 className="font-semibold">{c.title}</h3>
+                </GlassCard>
+              ))}
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
+        )}
 
-      {/* ================================
-       * C. SPEC & DETAILS
-       * ================================ */}
-      <section className="mx-auto max-w-5xl px-5 pb-16 sm:px-6">
-        <div className="grid gap-10 lg:grid-cols-[1fr_380px]">
-          {/* 概要 */}
-          <div>
-            <h2 className="font-serif text-2xl sm:text-3xl">概要</h2>
-            <p className="mt-4 text-sm leading-relaxed text-black/80 sm:text-base">
-              フェラーリ プロサングエは、ブランド初の4ドア4シーターSUVとして開発され、
-              エンジンには自然吸気V12ユニットを搭載。伝統的なフェラーリの走りと快適性を両立させ、
-              プレミアムSUV市場において独自の地位を築きました。
-            </p>
-
-            <div className="mt-10 grid gap-6 sm:grid-cols-3">
-              <div>
-                <h3 className="font-serif text-base font-semibold text-black">
-                  資産価値
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-black/75">
-                  希少性とブランド力の高さから、価格維持率は非常に良好。
-                  長期保有でも資産的価値を失いにくい車種です。
-                </p>
-              </div>
-              <div>
-                <h3 className="font-serif text-base font-semibold text-black">
-                  オーナーの評判
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-black/75">
-                  高級SUVでありながらフェラーリらしいドライビングフィールが評価され、
-                  家族層にも人気の高いモデルとなっています。
-                </p>
-              </div>
-              <div>
-                <h3 className="font-serif text-base font-semibold text-black">
-                  トラブル傾向
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-black/75">
-                  電子制御系統やサスペンションの警告が稀に報告されていますが、
-                  定期的なメンテナンスで回避可能です。
-                </p>
-              </div>
+        {/* HERITAGE */}
+        {heritages.length > 0 && (
+          <section>
+            <h2 className="serif-heading mb-4 text-base">
+              関連するHERITAGE
+            </h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              {heritages.map((h) => (
+                <GlassCard key={h.id} className="p-4">
+                  <span className="text-[10px] text-slate-500">
+                    {mapHeritageKindLabel(h.kind)}
+                  </span>
+                  <h3 className="mt-1 font-semibold">
+                    {h.heroTitle ?? h.title}
+                  </h3>
+                  <p className="mt-2 text-xs text-text-sub">
+                    {getHeritagePreviewText(h, { maxChars: 120 })}
+                  </p>
+                </GlassCard>
+              ))}
             </div>
-          </div>
+          </section>
+        )}
+      </div>
 
-          {/* 基本スペック表 */}
-          <aside>
-            <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm">
-              <h2 className="font-serif text-xl sm:text-2xl">基本スペック</h2>
-              <dl className="mt-5 divide-y divide-black/10">
-                {specs.map((s, i) => (
-                  <div
-                    key={i}
-                    className="grid grid-cols-[120px_1fr] gap-4 py-2 sm:py-3"
-                  >
-                    <dt className="text-xs font-medium text-black/50">
-                      {s.label}
-                    </dt>
-                    <dd className="text-sm font-medium text-black">
-                      {s.value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-              <a
-                href="#market"
-                className="mt-6 block rounded-full bg-black px-5 py-3 text-center text-sm font-medium text-white transition hover:bg-black/90"
-              >
-                中古在庫を探す
-              </a>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      {/* ================================
-       * D. FOOTER CTA
-       * ================================ */}
-      <section
-        id="market"
-        className="mx-auto max-w-5xl px-5 pb-20 text-center sm:px-6"
-      >
-        <h2 className="font-serif text-xl sm:text-2xl">中古在庫を探す</h2>
-        <p className="mt-3 text-sm leading-relaxed text-black/70">
-          最新の中古市場相場や在庫状況をチェックして、理想の1台を見つけましょう。
-        </p>
-        <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a
-            href="https://example.com/used"
-            className="rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition hover:bg-black/90"
-          >
-            中古車を探す
-          </a>
-          <a
-            href="https://example.com/column"
-            className="rounded-full border border-black/20 px-6 py-3 text-sm font-medium text-black transition hover:bg-black/5"
-          >
-            関連コラムを読む
-          </a>
-        </div>
-      </section>
+      <div id="used" className="sr-only" />
     </main>
   );
 }
