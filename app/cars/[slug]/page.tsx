@@ -4,12 +4,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+
 import { getSiteUrl } from "@/lib/site";
 
 import { getAllCars, getCarBySlug, type CarItem } from "@/lib/cars";
 import { getAllGuides, type GuideItem } from "@/lib/guides";
 import { getAllColumns, type ColumnItem } from "@/lib/columns";
-import { getAllHeritage, getHeritagePreviewText, type HeritageItem } from "@/lib/heritage";
+import {
+  getAllHeritage,
+  getHeritagePreviewText,
+  type HeritageItem,
+} from "@/lib/heritage";
+
 import { GlassCard } from "@/components/GlassCard";
 import { Reveal } from "@/components/animation/Reveal";
 import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
@@ -25,14 +31,16 @@ type PageProps = {
   };
 };
 
-// CarItem の拡張版
+// CarItem の拡張版（JSONの構造は変えず、ページ側で任意フィールドを受ける）
 type ExtendedCarItem = CarItem & {
   mainImage?: string;
   heroImage?: string;
+
   strengths?: string[];
   weaknesses?: string[];
   troubleTrends?: string[];
   costImpression?: string;
+
   zeroTo100?: number;
   priceNew?: string;
   priceUsed?: string;
@@ -42,14 +50,11 @@ type ExtendedCarItem = CarItem & {
   relatedColumnSlugs?: string[];
   relatedHeritageIds?: string[];
 
-  // こんな人におすすめ/向いていない
   bestFor?: string[];
   notFor?: string[];
 
-  // 維持メモ
   maintenanceNotes?: string[];
 
-  // サイズ系スペック
   lengthMm?: number;
   widthMm?: number;
   heightMm?: number;
@@ -203,9 +208,7 @@ function pickGuidesForCar(
   if (!target) return [];
   const filtered = guides.filter((g) =>
     (g.relatedCarSlugs ?? [])
-      .filter(
-        (s): s is string => typeof s === "string" && s.trim().length > 0,
-      )
+      .filter((s): s is string => typeof s === "string" && s.trim().length > 0)
       .includes(target),
   );
   return filtered.slice(0, limit);
@@ -220,9 +223,7 @@ function pickColumnsForCar(
   if (!target) return [];
   const filtered = columns.filter((c) =>
     (c.relatedCarSlugs ?? [])
-      .filter(
-        (s): s is string => typeof s === "string" && s.trim().length > 0,
-      )
+      .filter((s): s is string => typeof s === "string" && s.trim().length > 0)
       .includes(target),
   );
   return filtered.slice(0, limit);
@@ -237,9 +238,7 @@ function pickHeritageForCar(
   if (!target) return [];
   const hits = heritageList.filter((h) =>
     (h.keyCarSlugs ?? [])
-      .filter(
-        (s): s is string => typeof s === "string" && s.trim().length > 0,
-      )
+      .filter((s): s is string => typeof s === "string" && s.trim().length > 0)
       .includes(target),
   );
   return hits.slice(0, limit);
@@ -276,7 +275,7 @@ export async function generateMetadata({
   const titleBase = car.name ?? car.slug;
   const description = car.summaryLong ?? car.summary ?? "";
 
-  // Canonical URL (仕様書 7.4)
+  // Canonical URL
   const url = `${getSiteUrl()}/cars/${encodeURIComponent(car.slug)}`;
 
   return {
@@ -408,10 +407,7 @@ export default async function CarDetailPage({ params }: PageProps) {
 
       <div className="mx-auto max-w-5xl px-4 pb-24 pt-24 sm:px-6 lg:px-8">
         {/* パンくず */}
-        <nav
-          className="mb-6 text-xs text-slate-500"
-          aria-label="パンくずリスト"
-        >
+        <nav className="mb-6 text-xs text-slate-500" aria-label="パンくずリスト">
           <Link href="/" className="hover:text-slate-800">
             HOME
           </Link>
@@ -529,6 +525,7 @@ export default async function CarDetailPage({ params }: PageProps) {
               <h2 className="serif-heading mb-6 text-lg font-medium text-slate-900">
                 基本スペック
               </h2>
+
               <dl className="space-y-4">
                 {[
                   {
@@ -538,14 +535,21 @@ export default async function CarDetailPage({ params }: PageProps) {
                   { label: "エンジン", value: car.engine },
                   {
                     label: "最高出力",
-                    value: (car as any).powerPs ? `${(car as any).powerPs}ps` : null,
+                    value: (car as any).powerPs
+                      ? `${(car as any).powerPs}ps`
+                      : null,
                   },
                   {
                     label: "最大トルク",
-                    value: (car as any).torqueNm ? `${(car as any).torqueNm}Nm` : null,
+                    value: (car as any).torqueNm
+                      ? `${(car as any).torqueNm}Nm`
+                      : null,
                   },
                   { label: "駆動方式", value: car.drive },
-                  { label: "トランスミッション", value: (car as any).transmission },
+                  {
+                    label: "トランスミッション",
+                    value: (car as any).transmission,
+                  },
                   { label: "加速性能", value: zeroTo100 },
                   { label: "燃料", value: (car as any).fuel },
                   { label: "燃費目安", value: car.fuelEconomy },
@@ -732,6 +736,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                       </div>
                     </div>
                   )}
+
                   {hasNotFor && (
                     <div>
                       <p className="mb-2 text-[10px] font-semibold tracking-[0.18em] text-rose-700">
@@ -814,6 +819,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                     維持費・トラブル・買い方など、所有する前の「現実」チェック
                   </p>
                 </div>
+
                 <Link
                   href="/guide"
                   className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
@@ -825,8 +831,8 @@ export default async function CarDetailPage({ params }: PageProps) {
 
             <div className="grid gap-4 md:grid-cols-2">
               {relatedGuides.map((guide, index) => {
-                const primaryDate =
-                  guide.publishedAt ?? guide.updatedAt ?? null;
+                const primaryDate = guide.publishedAt ?? guide.updatedAt ?? null;
+
                 return (
                   <Reveal key={guide.id} delay={index * 40}>
                     <Link href={`/guide/${encodeURIComponent(guide.slug)}`}>
@@ -848,6 +854,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                         <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900 group-hover:text-tiffany-700">
                           {guide.title}
                         </h3>
+
                         {guide.summary && (
                           <p className="mt-2 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
                             {guide.summary}
@@ -881,6 +888,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                     この車にまつわるコラム
                   </h2>
                 </div>
+
                 <Link
                   href="/column"
                   className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
@@ -910,9 +918,11 @@ export default async function CarDetailPage({ params }: PageProps) {
                           </span>
                         )}
                       </div>
+
                       <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
                         {col.title}
                       </h3>
+
                       {col.summary && (
                         <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
                           {col.summary}
@@ -939,6 +949,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                     この車に関係するHERITAGE
                   </h2>
                 </div>
+
                 <Link
                   href="/heritage"
                   className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
@@ -953,7 +964,10 @@ export default async function CarDetailPage({ params }: PageProps) {
                 const preview = getHeritagePreviewText(h, { maxChars: 160 });
 
                 return (
-                  <Link key={h.id} href={`/heritage/${encodeURIComponent(h.slug)}`}>
+                  <Link
+                    key={h.id}
+                    href={`/heritage/${encodeURIComponent(h.slug)}`}
+                  >
                     <GlassCard className="h-full border border-slate-200/80 bg-white/92 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
                       <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
                         <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
@@ -990,65 +1004,15 @@ export default async function CarDetailPage({ params }: PageProps) {
 
         {/* 関連コンテンツへの導線（ID/slugベース） */}
         {hasRelated && (
-          <section className="rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
+          <section className="mb-10 rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
             <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <h2 className="serif-heading text-lg font-medium text-slate-900">
-                  関連ニュース COLUMN HERITAGEへ
+                  関連ニュース / COLUMN / HERITAGEへ
                 </h2>
                 <p className="mt-1 text-[11px] text-slate-500">
-                  この車種に関連するニュースやコラム ブランドのHERITAGEへ飛べるアンカー
-                  詳細は各ページ側で確認する想定
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-2 text-[11px]">
-              {car.relatedNewsIds?.map((id) => (
-                <Link
-                  key={id}
-                  href={`/news/${encodeURIComponent(id)}`}
-                  className="rounded-full bg-slate-100 px-3 py-1 text-slate-700 transition hover:bg-tiffany-50 hover:text-tiffany-700"
-                >
-                  関連NEWS:{id}
-                </Link>
-              ))}
-              {car.relatedColumnSlugs?.map((slug) => (
-                <Link
-                  key={slug}
-                  href={`/column/${encodeURIComponent(slug)}`}
-                  className="rounded-full bg-slate-100 px-3 py-1 text-slate-700 transition hover:bg-tiffany-50 hover:text-tiffany-700"
-                >
-                  関連COLUMN:{slug}
-                </Link>
-              ))}
-              {car.relatedHeritageIds?.map((id) => (
-                <Link
-                  key={id}
-                  href={`/heritage/${encodeURIComponent(id)}`}
-                  className="rounded-full bg-slate-100 px-3 py-1 text-slate-700 transition hover:bg-tiffany-50 hover:text-tiffany-700"
-                >
-                  関連HERITAGE:{id}
-                </Link>
-              ))}
-            </div>
-          </section>
-      　// app/cars/[slug]/page.tsx
-// （※ ここから上は、あなたが貼った原文をそのまま保持）
-
-
-
-        {/* 関連コンテンツへの導線（ID/slugベース） */}
-        {hasRelated && (
-          <section className="rounded-[2.5rem] bg-white p-6 shadow-[0_2px_20px_-4px_rgba(15,23,42,0.08)] ring-1 ring-slate-100 sm:p-8">
-            <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <h2 className="serif-heading text-lg font-medium text-slate-900">
-                  関連ニュース COLUMN HERITAGEへ
-                </h2>
-                <p className="mt-1 text-[11px] text-slate-500">
-                  この車種に関連するニュースやコラム ブランドのHERITAGEへ飛べるアンカー
-                  詳細は各ページ側で確認する想定
+                  この車種に関連するニュース・コラム・ブランド/時代のHERITAGEへ飛べるアンカー。
+                  詳細は各ページ側で確認する想定。
                 </p>
               </div>
             </div>
@@ -1127,16 +1091,14 @@ export default async function CarDetailPage({ params }: PageProps) {
                   保険・ローンを比較する
                 </a>
               </div>
+
+              <div className="mt-4 text-[10px] leading-relaxed text-slate-400">
+                ※ 外部リンクは実運用ではアフィリエイトURL（例: 中古車検索 / 保険比較 / 買取）に差し替える想定
+              </div>
             </div>
           </Reveal>
         </section>
         {/* ===== /AFFILIATE ACTION SECTION ===== */}
-
-      </div>
-    </main>
-  );
-}
-        )}
       </div>
     </main>
   );
