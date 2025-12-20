@@ -165,13 +165,11 @@ export default async function CarsPage({ searchParams }: PageProps) {
   const priceBandFilter = toSingle(searchParams?.priceBand).trim();
 
   const viewRaw = toSingle(searchParams?.view).trim();
-  const viewMode: "card" | "list" =
-    viewRaw === "list" ? "list" : "card";
+  const viewMode: "card" | "list" = viewRaw === "list" ? "list" : "card";
 
   const perPageRaw = toSingle(searchParams?.perPage).trim();
   const parsedPerPage = parseIntegerOrUndefined(perPageRaw);
-  const perPage =
-    parsedPerPage === 24 || parsedPerPage === 48 ? parsedPerPage : 12;
+  const perPage = parsedPerPage === 24 || parsedPerPage === 48 ? parsedPerPage : 12;
 
   const pageRaw = toSingle(searchParams?.page).trim();
   const requestedPage = parseIntegerOrUndefined(pageRaw) ?? 1;
@@ -179,33 +177,21 @@ export default async function CarsPage({ searchParams }: PageProps) {
   const minYear = rawMinYear ? parseIntegerOrUndefined(rawMinYear) : undefined;
   const maxYear = rawMaxYear ? parseIntegerOrUndefined(rawMaxYear) : undefined;
 
-  const minPriceUnit = rawMinPrice
-    ? parseIntegerOrUndefined(rawMinPrice)
-    : undefined; // 万円単位
-  const maxPriceUnit = rawMaxPrice
-    ? parseIntegerOrUndefined(rawMaxPrice)
-    : undefined;
+  const minPriceUnit = rawMinPrice ? parseIntegerOrUndefined(rawMinPrice) : undefined; // 万円単位
+  const maxPriceUnit = rawMaxPrice ? parseIntegerOrUndefined(rawMaxPrice) : undefined;
 
-  const minPriceYen =
-    minPriceUnit != null ? minPriceUnit * 10000 : undefined;
-  const maxPriceYen =
-    maxPriceUnit != null ? maxPriceUnit * 10000 : undefined;
+  const minPriceYen = minPriceUnit != null ? minPriceUnit * 10000 : undefined;
+  const maxPriceYen = maxPriceUnit != null ? maxPriceUnit * 10000 : undefined;
 
-  const makers = Array.from(
-    new Set(all.map((c) => c.maker).filter(Boolean)),
-  ).sort();
+  const makers = Array.from(new Set(all.map((c) => c.maker).filter(Boolean))).sort();
 
   const difficultyOptions: CarItem["difficulty"][] = (
     ["basic", "intermediate", "advanced"] as CarItem["difficulty"][]
   ).filter((d) => all.some((c) => c.difficulty === d));
 
-  const bodyTypes = Array.from(
-    new Set(all.map((c) => c.bodyType).filter(Boolean)),
-  ).sort();
+  const bodyTypes = Array.from(new Set(all.map((c) => c.bodyType).filter(Boolean))).sort();
 
-  const segments = Array.from(
-    new Set(all.map((c) => c.segment).filter(Boolean)),
-  ).sort();
+  const segments = Array.from(new Set(all.map((c) => c.segment).filter(Boolean))).sort();
 
   const priceBands = Array.from(
     new Set(
@@ -218,13 +204,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
   // フィルタ
   const filtered = all.filter((car) => {
     if (q) {
-      const haystack = [
-        car.name ?? "",
-        car.maker ?? "",
-        car.segment ?? "",
-        car.bodyType ?? "",
-        car.summary ?? "",
-      ]
+      const haystack = [car.name ?? "", car.maker ?? "", car.segment ?? "", car.bodyType ?? "", car.summary ?? ""]
         .join(" ")
         .toLowerCase();
       if (!haystack.includes(q)) return false;
@@ -232,10 +212,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
 
     if (makerFilter && car.maker !== makerFilter) return false;
 
-    if (
-      difficultyFilter &&
-      car.difficulty !== (difficultyFilter as CarItem["difficulty"])
-    ) {
+    if (difficultyFilter && car.difficulty !== (difficultyFilter as CarItem["difficulty"])) {
       return false;
     }
 
@@ -260,18 +237,10 @@ export default async function CarsPage({ searchParams }: PageProps) {
       const carMinPrice = car.minPriceYen;
       const carMaxPrice = car.maxPriceYen;
 
-      if (
-        minPriceYen != null &&
-        carMaxPrice != null &&
-        carMaxPrice < minPriceYen
-      ) {
+      if (minPriceYen != null && carMaxPrice != null && carMaxPrice < minPriceYen) {
         return false;
       }
-      if (
-        maxPriceYen != null &&
-        carMinPrice != null &&
-        carMinPrice > maxPriceYen
-      ) {
+      if (maxPriceYen != null && carMinPrice != null && carMinPrice > maxPriceYen) {
         return false;
       }
     }
@@ -296,19 +265,14 @@ export default async function CarsPage({ searchParams }: PageProps) {
     });
   } else if (sortKey === "difficulty") {
     sorted.sort((a, b) => {
-      const diff =
-        difficultyWeight(a.difficulty) - difficultyWeight(b.difficulty);
+      const diff = difficultyWeight(a.difficulty) - difficultyWeight(b.difficulty);
       if (diff !== 0) return diff;
       return (a.name ?? "").localeCompare(b.name ?? "");
     });
   } else if (sortKey === "newest") {
-    sorted.sort(
-      (a, b) => (b.releaseYear ?? 0) - (a.releaseYear ?? 0),
-    );
+    sorted.sort((a, b) => (b.releaseYear ?? 0) - (a.releaseYear ?? 0));
   } else if (sortKey === "oldest") {
-    sorted.sort(
-      (a, b) => (a.releaseYear ?? 0) - (b.releaseYear ?? 0),
-    );
+    sorted.sort((a, b) => (a.releaseYear ?? 0) - (b.releaseYear ?? 0));
   }
   // sortKey が空のときは登録順（all の順）を維持
 
@@ -316,12 +280,8 @@ export default async function CarsPage({ searchParams }: PageProps) {
   const totalFiltered = sorted.length;
 
   // ページング
-  const maxPage =
-    totalFiltered === 0
-      ? 1
-      : Math.max(1, Math.ceil(totalFiltered / perPage));
-  const currentPage =
-    requestedPage < 1 ? 1 : requestedPage > maxPage ? maxPage : requestedPage;
+  const maxPage = totalFiltered === 0 ? 1 : Math.max(1, Math.ceil(totalFiltered / perPage));
+  const currentPage = requestedPage < 1 ? 1 : requestedPage > maxPage ? maxPage : requestedPage;
 
   const startIndex = (currentPage - 1) * perPage;
   const paged = sorted.slice(startIndex, startIndex + perPage);
@@ -341,9 +301,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
 
   // インデックス用の簡易統計
   const basicCount = all.filter((c) => c.difficulty === "basic").length;
-  const intermediateCount = all.filter(
-    (c) => c.difficulty === "intermediate",
-  ).length;
+  const intermediateCount = all.filter((c) => c.difficulty === "intermediate").length;
   const advancedCount = all.filter((c) => c.difficulty === "advanced").length;
 
   const sedanCount = all.filter((c) => c.bodyType?.includes("セダン")).length;
@@ -375,10 +333,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
     <main className="min-h-screen bg-site text-text-main">
       <div className="mx-auto max-w-7xl px-4 pb-32 pt-28 sm:px-6 lg:px-8">
         {/* パンくず */}
-        <nav
-          className="mb-6 text-xs text-slate-500"
-          aria-label="パンくずリスト"
-        >
+        <nav className="mb-6 text-xs text-slate-500" aria-label="パンくずリスト">
           <Link href="/" className="hover:text-slate-800">
             HOME
           </Link>
@@ -406,9 +361,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
               <div className="hidden text-[10px] text-slate-500 sm:block">
                 <div className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 shadow-soft-glow backdrop-blur">
                   <span className="h-1.5 w-1.5 rounded-full bg-tiffany-500" />
-                  <span className="tracking-[0.18em]">
-                    IMPORT/PREMIUM ORIENTED
-                  </span>
+                  <span className="tracking-[0.18em]">IMPORT/PREMIUM ORIENTED</span>
                 </div>
                 <p className="mt-2 max-w-xs leading-relaxed tracking-[0.03em]">
                   家族の一台というよりも少しこだわったクルマ時間を前提にした
@@ -422,47 +375,32 @@ export default async function CarsPage({ searchParams }: PageProps) {
         {/* インデックスパネル */}
         <Reveal delay={160}>
           <section className="mb-8 grid gap-3 text-[11px] text-slate-700 sm:grid-cols-3">
-            <GlassCard
-              padding="md"
-              className="flex items-center justify-between bg-white/80"
-            >
+            <GlassCard padding="md" className="flex items-center justify-between bg-white/80">
               <div>
                 <p className="text-[10px] font-semibold tracking-[0.2em] text-slate-500">
                   TOTAL MODELS
                 </p>
-                <p className="mt-1 text-2xl font-semibold text-slate-900">
-                  {totalModels}
-                </p>
-                <p className="mt-1 text-[10px] text-slate-500">
-                  順次車種を追加予定
-                </p>
+                <p className="mt-1 text-2xl font-semibold text-slate-900">{totalModels}</p>
+                <p className="mt-1 text-[10px] text-slate-500">順次車種を追加予定</p>
               </div>
               <div className="text-right text-[10px] text-slate-500">
                 <p>
                   やさしい:
-                  <span className="ml-1 font-semibold text-emerald-600">
-                    {basicCount}
-                  </span>
+                  <span className="ml-1 font-semibold text-emerald-600">{basicCount}</span>
                 </p>
                 <p>
                   標準的:
-                  <span className="ml-1 font-semibold text-amber-600">
-                    {intermediateCount}
-                  </span>
+                  <span className="ml-1 font-semibold text-amber-600">{intermediateCount}</span>
                 </p>
                 <p>
                   気を使う:
-                  <span className="ml-1 font-semibold text-rose-600">
-                    {advancedCount}
-                  </span>
+                  <span className="ml-1 font-semibold text-rose-600">{advancedCount}</span>
                 </p>
               </div>
             </GlassCard>
 
             <GlassCard padding="md" className="bg-white/80">
-              <p className="text-[10px] font-semibold tracking-[0.2em] text-slate-500">
-                BODY TYPE
-              </p>
+              <p className="text-[10px] font-semibold tracking-[0.2em] text-slate-500">BODY TYPE</p>
               <div className="mt-2 flex flex-wrap gap-2 text-[11px]">
                 <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-800">
                   セダン系:{sedanCount}車種
@@ -477,9 +415,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
             </GlassCard>
 
             <GlassCard padding="md" className="bg-gradient-to-br from-tiffany-50/80 to-white">
-              <p className="text-[10px] font-semibold tracking-[0.2em] text-slate-500">
-                LEGEND
-              </p>
+              <p className="text-[10px] font-semibold tracking-[0.2em] text-slate-500">LEGEND</p>
               <div className="mt-2 flex flex-wrap gap-2 text-[11px]">
                 <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 shadow-sm">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
@@ -620,9 +556,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                       className="w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
                     />
                   </div>
-                  <p className="mt-1 text-[10px] leading-relaxed text-slate-400">
-                    例:2010〜2018の範囲で絞り込む想定
-                  </p>
+                  <p className="mt-1 text-[10px] leading-relaxed text-slate-400">例:2010〜2018の範囲で絞り込む想定</p>
                 </div>
 
                 {/* 価格レンジ */}
@@ -648,9 +582,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                       className="w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
                     />
                   </div>
-                  <p className="mt-1 text-[10px] leading-relaxed text-slate-400">
-                    単位は万円想定(例:300〜600)
-                  </p>
+                  <p className="mt-1 text-[10px] leading-relaxed text-slate-400">単位は万円想定(例:300〜600)</p>
                   {priceBands.length > 0 && (
                     <div className="mt-2">
                       <select
@@ -685,24 +617,14 @@ export default async function CarsPage({ searchParams }: PageProps) {
                       <option value="maker">{mapSortLabel("maker")}</option>
                       <option value="newest">{mapSortLabel("newest")}</option>
                       <option value="oldest">{mapSortLabel("oldest")}</option>
-                      <option value="difficulty">
-                        {mapSortLabel("difficulty")}
-                      </option>
+                      <option value="difficulty">{mapSortLabel("difficulty")}</option>
                     </select>
                     <select
                       name="perPage"
-                      defaultValue={
-                        perPage === 24
-                          ? "24"
-                          : perPage === 48
-                          ? "48"
-                          : ""
-                      }
+                      defaultValue={perPage === 24 ? "24" : perPage === 48 ? "48" : ""}
                       className="w-full rounded-full border border-slate-200 bg-white px-3 py-2 text-xs outline-none ring-0 transition focus:border-tiffany-400 focus:bg-white"
                     >
-                      <option value="">
-                        1ページあたり12件(標準)
-                      </option>
+                      <option value="">1ページあたり12件(標準)</option>
                       <option value="24">1ページあたり24件</option>
                       <option value="48">1ページあたり48件</option>
                     </select>
@@ -713,18 +635,14 @@ export default async function CarsPage({ searchParams }: PageProps) {
               {/* NOTEとクイックプリセット */}
               <div className="mt-1 grid gap-3 md:grid-cols-2">
                 <div>
-                  <p className="text-[10px] font-medium tracking-[0.22em] text-slate-500">
-                    NOTE
-                  </p>
+                  <p className="text-[10px] font-medium tracking-[0.22em] text-slate-500">NOTE</p>
                   <p className="mt-1 text-[10px] leading-relaxed text-slate-500">
                     将来的にはここからさらに年式細分化やボディサイズなど
                     もう少し細かい条件を追加していく前提
                   </p>
                 </div>
                 <div className="flex flex-col gap-1.5 text-[10px] text-slate-500">
-                  <p className="font-medium tracking-[0.22em] text-slate-500">
-                    QUICK PRESET
-                  </p>
+                  <p className="font-medium tracking-[0.22em] text-slate-500">QUICK PRESET</p>
                   <div className="flex flex-wrap gap-2">
                     <Link
                       href="/cars?bodyType=%E3%82%BB%E3%83%80%E3%83%B3&difficulty=basic"
@@ -751,15 +669,10 @@ export default async function CarsPage({ searchParams }: PageProps) {
               {/* ボタン */}
               <div className="mt-3 flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2 text-[10px] text-slate-500">
-                  <span className="font-medium tracking-[0.22em] text-slate-500">
-                    VIEW MODE
-                  </span>
+                  <span className="font-medium tracking-[0.22em] text-slate-500">VIEW MODE</span>
                   <div className="inline-flex rounded-full bg-slate-100 p-1">
                     <Link
-                      href={buildQueryString(baseQueryParams, {
-                        view: "card",
-                        page: "1",
-                      })}
+                      href={buildQueryString(baseQueryParams, { view: "card", page: "1" })}
                       className={`rounded-full px-3 py-1 text-[10px] tracking-[0.16em] ${
                         viewMode === "card"
                           ? "bg-white text-slate-900 shadow-soft"
@@ -769,10 +682,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                       CARD
                     </Link>
                     <Link
-                      href={buildQueryString(baseQueryParams, {
-                        view: "list",
-                        page: "1",
-                      })}
+                      href={buildQueryString(baseQueryParams, { view: "list", page: "1" })}
                       className={`rounded-full px-3 py-1 text-[10px] tracking-[0.16em] ${
                         viewMode === "list"
                           ? "bg-white text-slate-900 shadow-soft"
@@ -785,10 +695,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 </div>
                 <div className="flex items-center gap-3">
                   {hasFilter && (
-                    <Link
-                      href="/cars"
-                      className="text-[10px] tracking-[0.16em] text-slate-400 hover:text-slate-700"
-                    >
+                    <Link href="/cars" className="text-[10px] tracking-[0.16em] text-slate-400 hover:text-slate-700">
                       CLEAR
                     </Link>
                   )}
@@ -811,9 +718,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
         {(hasFilter || viewMode === "list" || perPage !== 12) && (
           <Reveal delay={230}>
             <div className="mb-6 flex flex-wrap items-center gap-2 text-[10px]">
-              <span className="rounded-full bg-slate-50 px-2 py-0.5 text-slate-400">
-                ACTIVE FILTERS
-              </span>
+              <span className="rounded-full bg-slate-50 px-2 py-0.5 text-slate-400">ACTIVE FILTERS</span>
               {q && (
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
                   keyword:
@@ -829,26 +734,20 @@ export default async function CarsPage({ searchParams }: PageProps) {
               {bodyTypeFilter && (
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
                   body:
-                  <span className="ml-1 font-semibold">
-                    {bodyTypeFilter}
-                  </span>
+                  <span className="ml-1 font-semibold">{bodyTypeFilter}</span>
                 </span>
               )}
               {segmentFilter && (
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
                   segment:
-                  <span className="ml-1 font-semibold">
-                    {segmentFilter}
-                  </span>
+                  <span className="ml-1 font-semibold">{segmentFilter}</span>
                 </span>
               )}
               {difficultyFilter && (
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
                   difficulty:
                   <span className="ml-1 font-semibold">
-                    {mapDifficultyLabel(
-                      difficultyFilter as CarItem["difficulty"],
-                    )}
+                    {mapDifficultyLabel(difficultyFilter as CarItem["difficulty"])}
                   </span>
                 </span>
               )}
@@ -856,8 +755,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
                   year:
                   <span className="ml-1 font-semibold">
-                    {rawMinYear || "指定なし"}〜
-                    {rawMaxYear || "指定なし"}
+                    {rawMinYear || "指定なし"}〜{rawMaxYear || "指定なし"}
                   </span>
                 </span>
               )}
@@ -865,33 +763,26 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
                   price(万円):
                   <span className="ml-1 font-semibold">
-                    {rawMinPrice || "指定なし"}〜
-                    {rawMaxPrice || "指定なし"}
+                    {rawMinPrice || "指定なし"}〜{rawMaxPrice || "指定なし"}
                   </span>
                 </span>
               )}
               {priceBandFilter && (
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
                   band:
-                  <span className="ml-1 font-semibold">
-                    {priceBandFilter}
-                  </span>
+                  <span className="ml-1 font-semibold">{priceBandFilter}</span>
                 </span>
               )}
               {sortKey && (
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
                   sort:
-                  <span className="ml-1 font-semibold">
-                    {mapSortLabel(sortKey)}
-                  </span>
+                  <span className="ml-1 font-semibold">{mapSortLabel(sortKey)}</span>
                 </span>
               )}
               {perPage !== 12 && (
                 <span className="rounded-full bg-white/80 px-2 py-0.5 text-slate-700 shadow-[0_0_0_1px_rgba(148,163,184,0.4)]">
                   rows:
-                  <span className="ml-1 font-semibold">
-                    {perPage}件/ページ
-                  </span>
+                  <span className="ml-1 font-semibold">{perPage}件/ページ</span>
                 </span>
               )}
               {viewMode === "list" && (
@@ -907,33 +798,22 @@ export default async function CarsPage({ searchParams }: PageProps) {
         {/* 一覧 */}
         <section className="space-y-4" aria-label="車種一覧">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
-            <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
-              CAR LIST
-            </h2>
+            <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">CAR LIST</h2>
             <div className="flex flex-col items-end text-[10px] text-slate-400 sm:flex-row sm:items-center sm:gap-3">
               <span>
                 TOTAL
-                <span className="ml-1 font-semibold text-slate-800">
-                  {totalModels}
-                </span>
+                <span className="ml-1 font-semibold text-slate-800">{totalModels}</span>
                 MODELS
               </span>
               <span>
                 FILTERED
-                <span className="ml-1 font-semibold text-tiffany-600">
-                  {totalFiltered}
-                </span>
+                <span className="ml-1 font-semibold text-tiffany-600">{totalFiltered}</span>
                 MODELS
               </span>
               <span>
                 PAGE
-                <span className="mx-1 font-semibold text-slate-800">
-                  {currentPage}
-                </span>
-                /
-                <span className="ml-1 font-semibold text-slate-800">
-                  {maxPage}
-                </span>
+                <span className="mx-1 font-semibold text-slate-800">{currentPage}</span>/
+                <span className="ml-1 font-semibold text-slate-800">{maxPage}</span>
               </span>
             </div>
           </div>
@@ -958,44 +838,28 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {paged.map((car) => (
-                    <tr
-                      key={car.id}
-                      className="hover:bg-slate-50/80"
-                    >
+                    <tr key={car.id} className="hover:bg-slate-50/80">
                       <td className="px-4 py-3 align-top">
-                        <Link
-                          href={`/cars/${encodeURIComponent(car.slug)}`}
-                          className="block"
-                        >
+                        <Link href={`/cars/${encodeURIComponent(car.slug)}`} className="block">
                           <div className="text-[10px] font-semibold tracking-[0.22em] text-tiffany-700">
                             {car.maker}
                           </div>
-                          <div className="text-[12px] font-semibold text-slate-900">
-                            {car.name}
-                          </div>
-                          <div className="text-[10px] text-slate-400">
-                            {car.slug}
-                          </div>
+                          <div className="text-[12px] font-semibold text-slate-900">{car.name}</div>
+                          <div className="text-[10px] text-slate-400">{car.slug}</div>
                         </Link>
                       </td>
                       <td className="px-4 py-3 align-top">
                         <div className="flex flex-wrap gap-1 text-[10px] text-slate-700">
                           {car.bodyType && (
-                            <span className="rounded-full bg-slate-100 px-2 py-0.5">
-                              {car.bodyType}
-                            </span>
+                            <span className="rounded-full bg-slate-100 px-2 py-0.5">{car.bodyType}</span>
                           )}
                           {car.segment && (
-                            <span className="rounded-full bg-slate-100 px-2 py-0.5">
-                              {car.segment}
-                            </span>
+                            <span className="rounded-full bg-slate-100 px-2 py-0.5">{car.segment}</span>
                           )}
                         </div>
                       </td>
                       <td className="px-4 py-3 align-top text-[10px] text-slate-600">
-                        {car.releaseYear
-                          ? `${car.releaseYear}年頃`
-                          : "未設定"}
+                        {car.releaseYear ? `${car.releaseYear}年頃` : "未設定"}
                       </td>
                       <td className="px-4 py-3 align-top">
                         <span
@@ -1009,8 +873,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                       </td>
                       <td className="px-4 py-3 align-top text-[11px] text-text-sub">
                         <p className="line-clamp-3 leading-relaxed">
-                          {car.summary ??
-                            "この車種についての詳細なインプレッションは順次追加予定。"}
+                          {car.summary ?? "この車種についての詳細なインプレッションは順次追加予定。"}
                         </p>
                       </td>
                     </tr>
@@ -1026,10 +889,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 const thumbnail = "/images/cars/placeholder.jpg";
 
                 return (
-                  <Link
-                    key={car.id}
-                    href={`/cars/${encodeURIComponent(car.slug)}`}
-                  >
+                  <Link key={car.id} href={`/cars/${encodeURIComponent(car.slug)}`}>
                     <GlassCard
                       as="article"
                       padding="md"
@@ -1057,12 +917,9 @@ export default async function CarsPage({ searchParams }: PageProps) {
                           <div className="text-[11px] font-semibold tracking-[0.28em] text-tiffany-700">
                             {car.maker}
                           </div>
-                          <h3 className="text-sm font-semibold tracking-[0.03em] text-slate-900">
-                            {car.name}
-                          </h3>
+                          <h3 className="text-sm font-semibold tracking-[0.03em] text-slate-900">{car.name}</h3>
                           <p className="line-clamp-3 text-[11px] leading-relaxed text-text-sub">
-                            {car.summary ??
-                              "この車種についての詳細なインプレッションは順次追加予定。"}
+                            {car.summary ?? "この車種についての詳細なインプレッションは順次追加予定。"}
                           </p>
 
                           <div className="mt-2 flex flex-wrap gap-2 text-[10px]">
@@ -1076,15 +933,8 @@ export default async function CarsPage({ searchParams }: PageProps) {
                                 {car.segment}
                               </span>
                             )}
-                            <span
-                              className={[
-                                "rounded-full border px-3 py-1",
-                                difficultyBadgeClass(car.difficulty),
-                              ].join(" ")}
-                            >
-                              維持難易度:{mapDifficultyLabel(
-                                car.difficulty,
-                              )}
+                            <span className={["rounded-full border px-3 py-1", difficultyBadgeClass(car.difficulty)].join(" ")}>
+                              維持難易度:{mapDifficultyLabel(car.difficulty)}
                             </span>
                           </div>
                         </div>
@@ -1098,16 +948,11 @@ export default async function CarsPage({ searchParams }: PageProps) {
 
           {/* ページネーション */}
           {totalFiltered > 0 && maxPage > 1 && (
-            <nav
-              className="mt-6 flex justify-center"
-              aria-label="ページネーション"
-            >
+            <nav className="mt-6 flex justify-center" aria-label="ページネーション">
               <div className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white/80 px-2 py-1 text-[10px] shadow-soft-card">
                 <Link
                   href={buildQueryString(paginationBaseParams, {
-                    page: String(
-                      currentPage > 1 ? currentPage - 1 : 1,
-                    ),
+                    page: String(currentPage > 1 ? currentPage - 1 : 1),
                   })}
                   className={`rounded-full px-3 py-1 ${
                     currentPage === 1
@@ -1118,44 +963,34 @@ export default async function CarsPage({ searchParams }: PageProps) {
                 >
                   ← PREV
                 </Link>
+
                 {Array.from({ length: maxPage }).map((_, idx) => {
                   const pageNum = idx + 1;
                   const active = pageNum === currentPage;
+
                   if (maxPage > 7) {
                     // 簡易省略表示
-                    if (
-                      pageNum !== 1 &&
-                      pageNum !== maxPage &&
-                      Math.abs(pageNum - currentPage) > 1
-                    ) {
+                    if (pageNum !== 1 && pageNum !== maxPage && Math.abs(pageNum - currentPage) > 1) {
                       if (
                         (pageNum === 2 && currentPage > 3) ||
-                        (pageNum === maxPage - 1 &&
-                          currentPage < maxPage - 2)
+                        (pageNum === maxPage - 1 && currentPage < maxPage - 2)
                       ) {
                         return (
-                          <span
-                            key={pageNum}
-                            className="px-2 py-1 text-slate-300"
-                          >
+                          <span key={pageNum} className="px-2 py-1 text-slate-300">
                             …
                           </span>
                         );
                       }
-                      if (
-                        pageNum !== 2 &&
-                        pageNum !== maxPage - 1
-                      ) {
+                      if (pageNum !== 2 && pageNum !== maxPage - 1) {
                         return null;
                       }
                     }
                   }
+
                   return (
                     <Link
                       key={pageNum}
-                      href={buildQueryString(paginationBaseParams, {
-                        page: String(pageNum),
-                      })}
+                      href={buildQueryString(paginationBaseParams, { page: String(pageNum) })}
                       className={`rounded-full px-3 py-1 ${
                         active
                           ? "bg-slate-900 text-slate-50"
@@ -1166,13 +1001,10 @@ export default async function CarsPage({ searchParams }: PageProps) {
                     </Link>
                   );
                 })}
+
                 <Link
                   href={buildQueryString(paginationBaseParams, {
-                    page: String(
-                      currentPage < maxPage
-                        ? currentPage + 1
-                        : maxPage,
-                    ),
+                    page: String(currentPage < maxPage ? currentPage + 1 : maxPage),
                   })}
                   className={`rounded-full px-3 py-1 ${
                     currentPage === maxPage
