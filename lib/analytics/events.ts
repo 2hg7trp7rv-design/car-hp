@@ -16,12 +16,20 @@ export type PageType =
   | "cars_detail"
   | "guide_index"
   | "guide_detail"
-  | "guide_hub"
   | "column_index"
   | "column_detail"
   | "heritage_index"
-  | "heritage_detail";
+  | "heritage_detail"
+  | "hub_index"
+  | "hub_detail";
 
+export type InternalFromType =
+  | "top"
+  | "cars"
+  | "heritage"
+  | "column"
+  | "guide"
+  | "hub";
 export type InternalToType = "cars" | "heritage" | "column" | "guide" | "hub" | "top";
 
 // ---- イベント名 ----
@@ -38,59 +46,190 @@ type AnyRecord = Record<string, any>;
 const isGtagAvailable = () =>
   typeof window !== "undefined" && typeof (window as any).gtag === "function";
 
-export const sendGAEvent = (eventName: EventName, params: AnyRecord) => {
-  if (!isGtagAvailable()) {
-    // 開発時の確認用（Vercel/本番では console は基本見えないが、落ちないように残す）
-    if (typeof window !== "undefined") {
-      // eslint-disable-next-line no-console
-      console.log(`[GA4 Dev] Event: ${eventName}`, params);
-    }
-    return;
+const safeString = (v: unknown): string | undefined => {
+  if (typeof v === "string") return v;
+  if (typeof v === "number") return String(v);
+  return undefined;
+};
+
+const normalizePageType = (v: unknown): PageType => {
+  const s = safeString(v);
+  if (!s) return "unknown";
+
+  // 既存互換
+  if (
+    s === "top" ||
+    s === "home" ||
+    s === "cars" ||
+    s === "guide" ||
+    s === "hub" ||
+    s === "column" ||
+    s === "heritage" ||
+    s === "unknown" ||
+    s === "other"
+  )
+    return s;
+
+  // v1.2 っぽい詳細
+  if (
+    s === "cars_index" ||
+    s === "cars_detail" ||
+    s === "guide_index" ||
+    s === "guide_detail" ||
+    s === "column_index" ||
+    s === "column_detail" ||
+    s === "heritage_index" ||
+    s === "heritage_detail" ||
+    s === "hub_index" ||
+    s === "hub_detail"
+  )
+    return s;
+
+  return "unknown";
+};
+
+const normalizeMonetizeKey = (v: unknown): string | undefined => safeString(v);
+
+const getHostname = (href: string): string | undefined => {
+  try {
+    const u = new URL(href);
+    return u.hostname;
+  } catch {
+    return undefined;
   }
-  (window as any).gtag("event", eventName, params);
 };
 
 // ---- Internal Nav ----
-// TrackedLink などが import している型（必須）
-export type InternalNavParams = {
-  // 推奨（v1.2）
+export type InternalNavClickParams = {
+  from?: InternalFromType;
+  to?: InternalToType;
+  label?: string;
+  href?: string;
+
+  // 既存互換
+  from_type?: InternalFromType | string;
+  to_type?: InternalToType | string;
+};
+
+export const trackInternalNavClick = (params: InternalNavClickParams = {}) => {
+  if (!isGtagAvailable()) return;
+
+  const from = safeString(params.from ?? params.from_type) ?? "top";
+  const to = safeString(params.to ?? params.to_type) ?? "top";
+  const label = safeString(params.label);
+  const href = safeString(params.href);
+
+  (window as any).gtag("event", "internal_nav_click", {
+    from_type: from,
+    to_type: to,
+    label,
+    href,
+  });
+};
+
+// ---- Next Read ----
+export type NextReadClickParams = {
+  from?: PageType;
+  to?: PageType;
+  label?: string;
+  href?: string;
+
+  // v1.2 っぽい詳細
+  pageType?: PageType;
+  contentId?: string;
+};
+
+export const trackNextReadClick = (params: NextReadClickParams = {}) => {
+  if (!isGtagAvailable()) return;
+
+  const from = normalizePageType(params.from);
+  const to = normalizePageType(params.to);
+  const label = safeString(params.label);
+  const href = safeString(params.href);
+
+  const pageType = normalizePageType(params.pageType);
+  const contentId = safeString(params.contentId);
+
+  (window as any).gtag("event", "next_read_click", {
+    from_type: from,
+    to_type: to,
+    label,
+    href,
+    page_type: pageType,
+    content_id: contentId,
+  });
+};
+
+// ---- CTA Impression ----
+export type CtaImpressionParams = {
+  label?: string;
+  monetizeKey?: string;
   pageType?: PageType;
   contentId?: string;
 
-  // 既存互換（snake_case）
-  from_type: PageType;
-  to_type: InternalToType;
-  from_id?: string;
-  to_id: string;
+  // 既存互換
+  monetize_key?: string;
+  page_type?: PageType | string;
+  content_id?: string;
 
-  shelf_id?: string;
+  // 位置・CTA・棚
+  position?: string;
   cta_id?: string;
+  shelf_id?: string;
 
-  // 追加で何が来ても落とさない
-  [key: string]: any;
+  // 互換で来がちな別名
+  ctaId?: string;
+  shelfId?: string;
 };
 
-// TrackedLink / Hub棚 / NextRead棚 などから呼ばれる
-export const trackInternalNavClick = (params: InternalNavParams) => {
-  const pageType = params.pageType ?? params.from_type ?? "other";
-  const contentId = params.contentId ?? params.from_id ?? "";
+export const trackCtaImpression = (params: CtaImpressionParams = {}) => {
+  if (!isGtagAvailable()) return;
 
-  sendGAEvent("internal_nav_click", {
-    // まずは仕様書に寄せる（snake_case を基本に）
+  const label = safeString(params.label);
+
+  const monetizeKey = normalizeMonetizeKey(params.monetizeKey ?? params.monetize_key);
+  const pageType = normalizePageType(params.pageType ?? params.page_type);
+  const contentId = safeString(params.contentId ?? params.content_id);
+
+  const position = safeString(params.position);
+  const cta_id = safeString(params.cta_id ?? params.ctaId);
+  const shelf_id = safeString(params.shelf_id ?? params.shelfId);
+
+  (window as any).gtag("event", "cta_impression", {
+    label,
+    monetize_key: monetizeKey,
     page_type: pageType,
     content_id: contentId,
+    position,
+    cta_id,
+    shelf_id,
+  });
+};
 
-    from_type: params.from_type,
-    from_id: params.from_id,
-    to_type: params.to_type,
-    to_id: params.to_id,
+// ---- Scroll Depth ----
+export type ScrollDepthParams = {
+  percent?: number;
+  pageType?: PageType;
+  contentId?: string;
 
-    shelf_id: params.shelf_id,
-    cta_id: params.cta_id,
+  // 既存互換
+  page_type?: PageType | string;
+  content_id?: string;
+};
 
-    // 互換用に camelCase も残しておく（将来の参照に耐える）
-    pageType,
-    contentId,
+export const trackScrollDepth = (params: ScrollDepthParams = {}) => {
+  if (!isGtagAvailable()) return;
+
+  const percent =
+    typeof params.percent === "number" ? params.percent : undefined;
+
+  const pageType = normalizePageType(params.pageType ?? params.page_type);
+  const contentId = safeString(params.contentId ?? params.content_id);
+
+  (window as any).gtag("event", "scroll_depth", {
+    percent,
+    page_type: pageType,
+    content_id: contentId,
   });
 };
 
@@ -112,10 +251,6 @@ export type OutboundClickParams = {
   page_slug?: string;
   outbound_domain?: string;
 
-  // 追加（分析用）
-  page_slug?: string;
-  outbound_domain?: string;
-
   // 位置・CTA・棚
   position?: string;
   cta_id?: string;
@@ -124,145 +259,36 @@ export type OutboundClickParams = {
   // 互換で来がちな別名
   ctaId?: string;
   shelfId?: string;
-  cta_position?: string;
-
-  // 任意付帯
-  partner?: string;
-  [key: string]: any;
 };
 
-export const trackOutboundClick = (params: OutboundClickParams) => {
-  // どの呼び出しでも落ちないように正規化
-  const href = params.href ?? params.url ?? "";
-  const monetizeKey = params.monetizeKey ?? params.monetize_key ?? "";
-  const pageType = (params.pageType ?? params.page_type ?? "other") as PageType;
-  const contentId = params.contentId ?? params.content_id ?? "";
+export const trackOutboundClick = (params: OutboundClickParams = {}) => {
+  if (!isGtagAvailable()) return;
 
-  const position = params.position ?? params.cta_position ?? "";
-  const ctaId = params.cta_id ?? params.ctaId ?? "";
-  const shelfId = params.shelf_id ?? params.shelfId ?? "";
+  const href = safeString(params.href ?? params.url);
+  const monetizeKey = normalizeMonetizeKey(params.monetizeKey ?? params.monetize_key);
+  const pageType = normalizePageType(params.pageType ?? params.page_type);
+  const contentId = safeString(params.contentId ?? params.content_id);
 
-  sendGAEvent("outbound_click", {
-    page_type: pageType,
-    content_id: contentId,
+  const position = safeString(params.position);
+  const cta_id = safeString(params.cta_id ?? params.ctaId);
+  const shelf_id = safeString(params.shelf_id ?? params.shelfId);
 
-    monetize_key: monetizeKey,
-    url: href,
+  const page_slug = safeString(params.page_slug);
+  const outbound_domain =
+    safeString(params.outbound_domain) ?? (href ? getHostname(href) : undefined);
 
-    position,
-    cta_id: ctaId,
-    shelf_id: shelfId,
-
-    partner: params.partner,
-
-    // 分析用（任意）
-    page_slug: params.page_slug,
-    outbound_domain: params.outbound_domain,
-
-    // 互換（camelCaseも一応出す）
-    pageType,
-    contentId,
-    monetizeKey,
+  const payload: AnyRecord = {
     href,
-    ctaId,
-    shelfId,
-  });
-};
-
-// ---- CTA Impression ----
-export type CtaImpressionParams = {
-  page_type: PageType | string;
-  content_id: string;
-  monetize_key: string;
-  cta_id: string;
-
-  position?: string;
-  variant?: string;
-
-  // 互換
-  pageType?: PageType;
-  contentId?: string;
-  monetizeKey?: string;
-  ctaId?: string;
-
-  [key: string]: any;
-};
-
-export const trackCtaImpression = (params: CtaImpressionParams) => {
-  const pageType = (params.pageType ?? params.page_type ?? "other") as PageType;
-  const contentId = params.contentId ?? params.content_id ?? "";
-  const monetizeKey = params.monetizeKey ?? params.monetize_key ?? "";
-  const ctaId = params.ctaId ?? params.cta_id ?? "";
-
-  sendGAEvent("cta_impression", {
-    page_type: pageType,
-    content_id: contentId,
+    url: href, // 互換で残す
     monetize_key: monetizeKey,
-    cta_id: ctaId,
-    position: params.position,
-    variant: params.variant,
-  });
-};
-
-// ---- Scroll Depth ----
-export type ScrollDepthParams = {
-  // ScrollDepthTracker 側で揺れやすいので広めに受ける
-  depth?: number;
-  percent?: number;
-
-  page_type?: PageType | string;
-  content_id?: string;
-
-  pageType?: PageType;
-  contentId?: string;
-
-  [key: string]: any;
-};
-
-export const trackScrollDepth = (params: ScrollDepthParams) => {
-  const depth =
-    typeof params.depth === "number"
-      ? params.depth
-      : typeof params.percent === "number"
-        ? params.percent
-        : 0;
-
-  const pageType = (params.pageType ?? params.page_type ?? "other") as PageType;
-  const contentId = params.contentId ?? params.content_id ?? "";
-
-  sendGAEvent("scroll_depth", {
     page_type: pageType,
     content_id: contentId,
-    depth,
-  });
-};
+    position,
+    cta_id,
+    shelf_id,
+    page_slug,
+    outbound_domain,
+  };
 
-// ---- Next Read (任意) ----
-export type NextReadClickParams = {
-  page_type?: PageType | string;
-  content_id?: string;
-
-  from_type?: PageType;
-  from_id?: string;
-
-  to_type?: InternalToType;
-  to_id?: string;
-
-  shelf_id?: string;
-
-  [key: string]: any;
-};
-
-export const trackNextReadClick = (params: NextReadClickParams) => {
-  sendGAEvent("next_read_click", {
-    page_type: params.page_type ?? params.from_type ?? "other",
-    content_id: params.content_id ?? params.from_id ?? "",
-
-    from_type: params.from_type,
-    from_id: params.from_id,
-    to_type: params.to_type,
-    to_id: params.to_id,
-
-    shelf_id: params.shelf_id,
-  });
+  (window as any).gtag("event", "outbound_click", payload);
 };
