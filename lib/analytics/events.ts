@@ -11,6 +11,8 @@ export type PageType =
   | "heritage"
   | "unknown"
   | "other"
+  // 既存ページで使われがちな派生（互換）
+  | "guide_hub"
   // v1.2 っぽい詳細（TrackedLink 側の normalize が返す可能性に備える）
   | "cars_index"
   | "cars_detail"
@@ -66,9 +68,10 @@ const normalizePageType = (v: unknown): PageType => {
     s === "column" ||
     s === "heritage" ||
     s === "unknown" ||
-    s === "other"
+    s === "other" ||
+    s === "guide_hub"
   )
-    return s;
+    return s as PageType;
 
   // v1.2 っぽい詳細
   if (
@@ -83,7 +86,7 @@ const normalizePageType = (v: unknown): PageType => {
     s === "hub_index" ||
     s === "hub_detail"
   )
-    return s;
+    return s as PageType;
 
   return "unknown";
 };
@@ -187,7 +190,9 @@ export const trackCtaImpression = (params: CtaImpressionParams = {}) => {
 
   const label = safeString(params.label);
 
-  const monetizeKey = normalizeMonetizeKey(params.monetizeKey ?? params.monetize_key);
+  const monetizeKey = normalizeMonetizeKey(
+    params.monetizeKey ?? params.monetize_key
+  );
   const pageType = normalizePageType(params.pageType ?? params.page_type);
   const contentId = safeString(params.contentId ?? params.content_id);
 
@@ -220,8 +225,7 @@ export type ScrollDepthParams = {
 export const trackScrollDepth = (params: ScrollDepthParams = {}) => {
   if (!isGtagAvailable()) return;
 
-  const percent =
-    typeof params.percent === "number" ? params.percent : undefined;
+  const percent = typeof params.percent === "number" ? params.percent : undefined;
 
   const pageType = normalizePageType(params.pageType ?? params.page_type);
   const contentId = safeString(params.contentId ?? params.content_id);
@@ -265,7 +269,9 @@ export const trackOutboundClick = (params: OutboundClickParams = {}) => {
   if (!isGtagAvailable()) return;
 
   const href = safeString(params.href ?? params.url);
-  const monetizeKey = normalizeMonetizeKey(params.monetizeKey ?? params.monetize_key);
+  const monetizeKey = normalizeMonetizeKey(
+    params.monetizeKey ?? params.monetize_key
+  );
   const pageType = normalizePageType(params.pageType ?? params.page_type);
   const contentId = safeString(params.contentId ?? params.content_id);
 
