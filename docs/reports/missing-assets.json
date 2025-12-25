@@ -1,0 +1,467 @@
+{
+  "generatedAt": "2025-12-25T13:39:48.701Z",
+  "counts": {
+    "CAR": 64,
+    "COLUMN": 39,
+    "GUIDE": 81,
+    "HERITAGE": 26
+  },
+  "groups": {
+    "missing_base": [
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-what-is-coupe",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-midship-vs-ff-fr-4wd",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-v12-v8-v6-difference",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-na-vs-turbo",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-flat12-vs-v-type",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-what-is-homologation",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-what-is-gt-car",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-supercar-vs-hypercar",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-why-racing-matters-for-ferrari",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-flagship-v12-vs-v8",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-electronic-control-basics",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-hybrid-vs-phev",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-carbon-monocoque",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-aerodynamics-and-downforce",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-daily-drivable-ferrari",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-limited-and-speciale",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-why-sound-is-special",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:maintenance-classic-vs-modern",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-ferrari-and-suv-era",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:technical-asset-vs-enjoyment",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-nissan-gtr-history-evolution",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-nissan-gtr-r35-running-cost-reality",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-toyota-supra-2jz-legend",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-toyota-supra-running-cost-trouble",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-mazda-rx7-rotary-maintenance-reality",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-mazda-rx7-trouble-points",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-nissan-fairlady-z-s30-legend",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-nissan-fairlady-z-rz34-buying-notes",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-gtr-history-evolution",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-toyota-supra-a80-2jz-legend",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-toyota-gr-supra-bmw-context",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-ferrari-v12-maintenance-reality",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-1995-watershed-r33-dc2",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-software-defined-performance-r35",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-high-rev-na-why-it-felt-fast",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-kei-sports-packaging-why",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-awd-yaw-control-why-it-turns",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-4ws-hicas-how-it-feels",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "COLUMN:column-midship-everyday-supercar-why",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:budget-import-sedan-annual-income",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:first-ev-cost-and-life",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:luxury-car-insurance-coverage",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:tax-and-fees-before-buying-import",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:loan-vs-lease-luxury-sedan",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:family-suv-budget-and-lifeplan",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:second-car-money-balance",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:oldtimer-maintenance-budget",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:company-car-tax-tips",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:subscription-vs-owning",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:life-event-and-car-upgrade",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:best-time-to-sell-import-sedan",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:distance-and-resale-value",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:sell-while-loan-remains",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:photo-guide-for-selling",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:dealer-vs-buyer-shop",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:trade-in-two-cars-into-one",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:keep-or-sell-when-moving-abroad",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:how-to-avoid-regret-after-selling",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:how-to-use-online-assessment",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:daily-maintenance-checklist",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:tires-and-season-change",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:ev-charging-etiquette",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:parking-strategy-in-city",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:how-to-choose-first-sports-car",
+        "detail": "type"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:hajimete-kuruma-uru-checklist",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:yunyusha-koukya-uru-kaitori-strategy",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:kuruma-baikyaku-timing-simulation",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:kuruma-ikkatsu-satei-shitsukoi-real",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:jidousha-hoken-ikkatsu-mitsumori-guide",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:jidousha-hoken-hiyou-sageru-5steps",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:jidousha-hoken-jiko-tokyu-daisha",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:rakuten-car-shaken-real-guide",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:houjin-jigyonushi-shayou-car-hoken-shaken",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:kuruma-ron-zansai-atta-mama-uru",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:drive-recorder-erabikata-amazon",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:child-seat-erabikata-amazon",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:sensha-coating-erabikata-amazon",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:car-interior-cleaner-erabikata-amazon",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:battery-agari-bosui-jumpstarter-amazon",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:guide-maintenance-rb26dett",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:guide-maintenance-cost-import-car",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:guide-buy-used-gtr-r35",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:guide-buy-classic-ferrari",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:guide-30year-heritage-car-ownership",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:guide-buy-early-r35-gtr-checklist",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:guide-buy-high-rev-na-checklist",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:guide-buy-kei-sports-checklist",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:guide-buy-electronic-awd-checklist",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:guide-buy-4ws-active-chassis-checklist",
+        "detail": "id, status"
+      },
+      {
+        "kind": "missing_base",
+        "ref": "GUIDE:guide-buy-midship-jdm-checklist",
+        "detail": "id, status"
+      }
+    ]
+  },
+  "missingImages": {
+    "uniquePaths": 0,
+    "refsByPath": {}
+  }
+}

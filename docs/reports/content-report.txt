@@ -1,0 +1,314 @@
+=== CAR BOUTIQUE content report ===
+- CAR: 64
+- COLUMN: 39
+- GUIDE: 81
+- HERITAGE: 26
+
+=== Needs attention (grouped) ===
+
+[missing_image] 211
+- CAR:bmw-530i-g30 :: heroImage: /images/cars/bmw-530i-g30-hero.jpg
+- CAR:bmw-530i-g30 :: imageUrl: /images/cars/bmw-530i-g30-hero.jpg
+- CAR:ferrari-125-s :: heroImage: /images/cars/ferrari-125-s-hero.jpg
+- CAR:ferrari-125-s :: imageUrl: /images/cars/ferrari-125-s-hero.jpg
+- CAR:ferrari-166-mm :: heroImage: /images/cars/ferrari-166-mm-hero.jpg
+- CAR:ferrari-166-mm :: imageUrl: /images/cars/ferrari-166-mm-hero.jpg
+- CAR:ferrari-275-gtb4 :: heroImage: /images/cars/ferrari-275-gtb4-hero.jpg
+- CAR:ferrari-275-gtb4 :: imageUrl: /images/cars/ferrari-275-gtb4-hero.jpg
+- CAR:ferrari-dino-246-gt :: heroImage: /images/cars/ferrari-dino-246-gt-hero.jpg
+- CAR:ferrari-dino-246-gt :: imageUrl: /images/cars/ferrari-dino-246-gt-hero.jpg
+- CAR:ferrari-365-gtb4-daytona :: heroImage: /images/cars/ferrari-365-gtb4-daytona-hero.jpg
+- CAR:ferrari-365-gtb4-daytona :: imageUrl: /images/cars/ferrari-365-gtb4-daytona-hero.jpg
+- CAR:ferrari-250-gto :: heroImage: /images/cars/ferrari-250-gto-hero.jpg
+- CAR:ferrari-250-gto :: imageUrl: /images/cars/ferrari-250-gto-hero.jpg
+- CAR:ferrari-308-gtb :: heroImage: /images/cars/ferrari-308-gtb-hero.jpg
+- CAR:ferrari-308-gtb :: imageUrl: /images/cars/ferrari-308-gtb-hero.jpg
+- CAR:ferrari-512-bb :: heroImage: /images/cars/ferrari-512-bb-hero.jpg
+- CAR:ferrari-512-bb :: imageUrl: /images/cars/ferrari-512-bb-hero.jpg
+- CAR:ferrari-testarossa :: heroImage: /images/cars/ferrari-testarossa-hero.jpg
+- CAR:ferrari-testarossa :: imageUrl: /images/cars/ferrari-testarossa-hero.jpg
+- CAR:ferrari-f40 :: heroImage: /images/cars/ferrari-f40-hero.jpg
+- CAR:ferrari-f40 :: imageUrl: /images/cars/ferrari-f40-hero.jpg
+- CAR:ferrari-f50 :: heroImage: /images/cars/ferrari-f50-hero.jpg
+- CAR:ferrari-f50 :: imageUrl: /images/cars/ferrari-f50-hero.jpg
+- CAR:ferrari-360-modena :: heroImage: /images/cars/ferrari-360-modena-hero.jpg
+- CAR:ferrari-360-modena :: imageUrl: /images/cars/ferrari-360-modena-hero.jpg
+- CAR:ferrari-f430 :: heroImage: /images/cars/ferrari-f430-hero.jpg
+- CAR:ferrari-f430 :: imageUrl: /images/cars/ferrari-f430-hero.jpg
+- CAR:ferrari-458-italia :: heroImage: /images/cars/ferrari-458-italia-hero.jpg
+- CAR:ferrari-458-italia :: imageUrl: /images/cars/ferrari-458-italia-hero.jpg
+- CAR:ferrari-la-ferrari :: heroImage: /images/cars/ferrari-la-ferrari-hero.jpg
+- CAR:ferrari-la-ferrari :: imageUrl: /images/cars/ferrari-la-ferrari-hero.jpg
+- CAR:ferrari-488-gtb :: heroImage: /images/cars/ferrari-488-gtb-hero.jpg
+- CAR:ferrari-488-gtb :: imageUrl: /images/cars/ferrari-488-gtb-hero.jpg
+- CAR:ferrari-812-superfast :: heroImage: /images/cars/ferrari-812-superfast-hero.jpg
+- CAR:ferrari-812-superfast :: imageUrl: /images/cars/ferrari-812-superfast-hero.jpg
+- CAR:ferrari-sf90-stradale :: heroImage: /images/cars/ferrari-sf90-stradale-hero.jpg
+- CAR:ferrari-sf90-stradale :: imageUrl: /images/cars/ferrari-sf90-stradale-hero.jpg
+- CAR:ferrari-roma :: heroImage: /images/cars/ferrari-roma-hero.jpg
+- CAR:ferrari-roma :: imageUrl: /images/cars/ferrari-roma-hero.jpg
+- CAR:ferrari-purosangue :: heroImage: /images/cars/ferrari-purosangue-hero.jpg
+- CAR:ferrari-purosangue :: imageUrl: /images/cars/ferrari-purosangue-hero.jpg
+- CAR:nissan-skyline-2000gtr-kpgc10 :: heroImage: /images/cars/nissan-skyline-2000gtr-kpgc10-hero.jpg
+- CAR:nissan-skyline-2000gtr-kpgc10 :: imageUrl: /images/cars/nissan-skyline-2000gtr-kpgc10-main.jpg
+- CAR:nissan-skyline-gtr-r32 :: heroImage: /images/cars/nissan-skyline-gtr-r32-hero.jpg
+- CAR:nissan-skyline-gtr-r32 :: imageUrl: /images/cars/nissan-skyline-gtr-r32-main.jpg
+- CAR:nissan-skyline-gtr-r34 :: heroImage: /images/cars/nissan-skyline-gtr-r34-hero.jpg
+- CAR:nissan-skyline-gtr-r34 :: imageUrl: /images/cars/nissan-skyline-gtr-r34-main.jpg
+- CAR:nissan-gtr-r35 :: heroImage: /images/cars/nissan-gtr-r35-hero.jpg
+- CAR:nissan-gtr-r35 :: imageUrl: /images/cars/nissan-gtr-r35-main.jpg
+- CAR:ferrari-550-maranello :: heroImage: /images/cars/ferrari-550-maranello-hero.jpg
+- CAR:ferrari-550-maranello :: imageUrl: /images/cars/ferrari-550-maranello-main.jpg
+- CAR:ferrari-250-gt-swb :: heroImage: /images/cars/ferrari-250-gt-swb-hero.jpg
+- CAR:ferrari-250-gt-swb :: imageUrl: /images/cars/ferrari-250-gt-swb-main.jpg
+- CAR:ferrari-275-gtb :: heroImage: /images/cars/ferrari-275-gtb-hero.jpg
+- CAR:ferrari-275-gtb :: imageUrl: /images/cars/ferrari-275-gtb-main.jpg
+- CAR:nissan-skyline-2000gtr-kpgc110 :: heroImage: /images/cars/nissan-skyline-2000gtr-kpgc110-hero.jpg
+- CAR:nissan-skyline-2000gtr-kpgc110 :: imageUrl: /images/cars/nissan-skyline-2000gtr-kpgc110-main.jpg
+- CAR:toyota-celica-xx-2000gt :: heroImage: /images/cars/toyota-celica-xx-2000gt-hero.jpg
+- CAR:toyota-celica-xx-2000gt :: imageUrl: /images/cars/toyota-celica-xx-2000gt-main.jpg
+- CAR:toyota-supra-a70-turbo-a :: heroImage: /images/cars/toyota-supra-a70-turbo-a-hero.jpg
+- CAR:toyota-supra-a70-turbo-a :: imageUrl: /images/cars/toyota-supra-a70-turbo-a-main.jpg
+- CAR:toyota-supra-a70-25gt-ttr :: heroImage: /images/cars/toyota-supra-a70-25gt-ttr-hero.jpg
+- CAR:toyota-supra-a70-25gt-ttr :: imageUrl: /images/cars/toyota-supra-a70-25gt-ttr-main.jpg
+- CAR:toyota-supra-jza80-rz :: heroImage: /images/cars/toyota-supra-jza80-rz-hero.jpg
+- CAR:toyota-supra-jza80-rz :: imageUrl: /images/cars/toyota-supra-jza80-rz-main.jpg
+- CAR:toyota-gr-supra-rz :: heroImage: /images/cars/toyota-gr-supra-rz-hero.jpg
+- CAR:toyota-gr-supra-rz :: imageUrl: /images/cars/toyota-gr-supra-rz-main.jpg
+- CAR:mazda-rx7-sa22c :: heroImage: /images/cars/mazda-rx7-sa22c-hero.jpg
+- CAR:mazda-rx7-sa22c :: imageUrl: /images/cars/mazda-rx7-sa22c-main.jpg
+- CAR:mazda-rx7-fc3s :: heroImage: /images/cars/mazda-rx7-fc3s-hero.jpg
+- CAR:mazda-rx7-fc3s :: imageUrl: /images/cars/mazda-rx7-fc3s-main.jpg
+- CAR:mazda-rx7-fd3s :: heroImage: /images/cars/mazda-rx7-fd3s-hero.jpg
+- CAR:mazda-rx7-fd3s :: imageUrl: /images/cars/mazda-rx7-fd3s-main.jpg
+- CAR:nissan-fairlady-z-s30 :: heroImage: /images/cars/nissan-fairlady-z-s30-hero.jpg
+- CAR:nissan-fairlady-z-s30 :: imageUrl: /images/cars/nissan-fairlady-z-s30-main.jpg
+- CAR:nissan-fairlady-z-z32 :: heroImage: /images/cars/nissan-fairlady-z-z32-hero.jpg
+- CAR:nissan-fairlady-z-z32 :: imageUrl: /images/cars/nissan-fairlady-z-z32-main.jpg
+- CAR:nissan-fairlady-z-z33 :: heroImage: /images/cars/nissan-fairlady-z-z33-hero.jpg
+- CAR:nissan-fairlady-z-z33 :: imageUrl: /images/cars/nissan-fairlady-z-z33-main.jpg
+- CAR:nissan-fairlady-z-z34 :: heroImage: /images/cars/nissan-fairlady-z-z34-hero.jpg
+- CAR:nissan-fairlady-z-z34 :: imageUrl: /images/cars/nissan-fairlady-z-z34-main.jpg
+- CAR:nissan-z-rz34 :: heroImage: /images/cars/nissan-z-rz34-hero.jpg
+- CAR:nissan-z-rz34 :: imageUrl: /images/cars/nissan-z-rz34-main.jpg
+- CAR:nissan-fairlady-z-z31 :: heroImage: /images/cars/nissan-fairlady-z-z31-hero.jpg
+- CAR:nissan-fairlady-z-z31 :: imageUrl: /images/cars/nissan-fairlady-z-z31-main.jpg
+- CAR:nissan-fairlady-z-rz34 :: heroImage: /images/cars/nissan-fairlady-z-rz34-hero.jpg
+- CAR:nissan-fairlady-z-rz34 :: imageUrl: /images/cars/nissan-fairlady-z-rz34-main.jpg
+- CAR:nissan-skyline-gtr-r33 :: heroImage: /images/cars/nissan-skyline-gtr-r33-hero.jpg
+- CAR:nissan-skyline-gtr-r33 :: imageUrl: /images/cars/nissan-skyline-gtr-r33-hero.jpg
+- CAR:honda-integra-type-r-dc2 :: heroImage: /images/cars/honda-integra-type-r-dc2-hero.jpg
+- CAR:honda-integra-type-r-dc2 :: imageUrl: /images/cars/honda-integra-type-r-dc2-hero.jpg
+- CAR:nissan-gt-r-r35-early :: heroImage: /images/cars/nissan-gt-r-r35-early-hero.jpg
+- CAR:nissan-gt-r-r35-early :: imageUrl: /images/cars/nissan-gt-r-r35-early-hero.jpg
+- CAR:lexus-lfa-2010 :: heroImage: /images/cars/lexus-lfa-2010-hero.jpg
+- CAR:lexus-lfa-2010 :: imageUrl: /images/cars/lexus-lfa-2010-hero.jpg
+- CAR:mitsubishi-lancer-evolution-x-final :: heroImage: /images/cars/mitsubishi-lancer-evolution-x-final-hero.jpg
+- CAR:mitsubishi-lancer-evolution-x-final :: imageUrl: /images/cars/mitsubishi-lancer-evolution-x-final-hero.jpg
+- CAR:honda-s2000-ap1 :: heroImage: /images/cars/honda-s2000-ap1-hero.jpg
+- CAR:honda-s2000-ap1 :: imageUrl: /images/cars/honda-s2000-ap1-hero.jpg
+- CAR:mazda-rx-8-se3p-type-s :: heroImage: /images/cars/mazda-rx-8-se3p-type-s-hero.jpg
+- CAR:mazda-rx-8-se3p-type-s :: imageUrl: /images/cars/mazda-rx-8-se3p-type-s-hero.jpg
+- CAR:honda-civic-type-r-fd2 :: heroImage: /images/cars/honda-civic-type-r-fd2-hero.jpg
+- CAR:honda-civic-type-r-fd2 :: imageUrl: /images/cars/honda-civic-type-r-fd2-hero.jpg
+- CAR:honda-beat-pp1 :: heroImage: /images/cars/honda-beat-pp1-hero.jpg
+- CAR:honda-beat-pp1 :: imageUrl: /images/cars/honda-beat-pp1-hero.jpg
+- CAR:suzuki-cappuccino-ea11r :: heroImage: /images/cars/suzuki-cappuccino-ea11r-hero.jpg
+- CAR:suzuki-cappuccino-ea11r :: imageUrl: /images/cars/suzuki-cappuccino-ea11r-hero.jpg
+- CAR:autozam-az-1-pg6sa :: heroImage: /images/cars/autozam-az-1-pg6sa-hero.jpg
+- CAR:autozam-az-1-pg6sa :: imageUrl: /images/cars/autozam-az-1-pg6sa-hero.jpg
+- CAR:mitsubishi-lancer-evolution-vi-gsr :: heroImage: /images/cars/mitsubishi-lancer-evolution-vi-gsr-hero.jpg
+- CAR:mitsubishi-lancer-evolution-vi-gsr :: imageUrl: /images/cars/mitsubishi-lancer-evolution-vi-gsr-hero.jpg
+- CAR:nissan-skyline-gt-r-r34-v-spec :: heroImage: /images/cars/nissan-skyline-gt-r-r34-v-spec-hero.jpg
+- CAR:nissan-skyline-gt-r-r34-v-spec :: imageUrl: /images/cars/nissan-skyline-gt-r-r34-v-spec-hero.jpg
+- CAR:subaru-impreza-wrx-sti-gc8-type-r :: heroImage: /images/cars/subaru-impreza-wrx-sti-gc8-type-r-hero.jpg
+- CAR:subaru-impreza-wrx-sti-gc8-type-r :: imageUrl: /images/cars/subaru-impreza-wrx-sti-gc8-type-r-hero.jpg
+- CAR:honda-prelude-bb4-4ws :: heroImage: /images/cars/honda-prelude-bb4-4ws-hero.jpg
+- CAR:honda-prelude-bb4-4ws :: imageUrl: /images/cars/honda-prelude-bb4-4ws-hero.jpg
+- CAR:nissan-skyline-r32-super-hicas :: heroImage: /images/cars/nissan-skyline-r32-super-hicas-hero.jpg
+- CAR:nissan-skyline-r32-super-hicas :: imageUrl: /images/cars/nissan-skyline-r32-super-hicas-hero.jpg
+- CAR:mitsubishi-gto-z15a-active-aero :: heroImage: /images/cars/mitsubishi-gto-z15a-active-aero-hero.jpg
+- CAR:mitsubishi-gto-z15a-active-aero :: imageUrl: /images/cars/mitsubishi-gto-z15a-active-aero-hero.jpg
+- CAR:honda-nsx-na1 :: heroImage: /images/cars/honda-nsx-na1-hero.jpg
+- CAR:honda-nsx-na1 :: imageUrl: /images/cars/honda-nsx-na1-hero.jpg
+- CAR:toyota-mr2-sw20-rev3 :: heroImage: /images/cars/toyota-mr2-sw20-rev3-hero.jpg
+- CAR:toyota-mr2-sw20-rev3 :: imageUrl: /images/cars/toyota-mr2-sw20-rev3-hero.jpg
+- CAR:mazda-rx-7-fd3s-type-r :: heroImage: /images/cars/mazda-rx-7-fd3s-type-r-hero.jpg
+- CAR:mazda-rx-7-fd3s-type-r :: imageUrl: /images/cars/mazda-rx-7-fd3s-type-r-hero.jpg
+- COLUMN:technical-what-is-coupe :: heroImage: /images/columns/ferrari-what-is-coupe.jpg
+- COLUMN:technical-midship-vs-ff-fr-4wd :: heroImage: /images/columns/ferrari-midship-layout.jpg
+- COLUMN:technical-v12-v8-v6-difference :: heroImage: /images/columns/ferrari-v12-v8-v6.jpg
+- COLUMN:technical-na-vs-turbo :: heroImage: /images/columns/ferrari-na-vs-turbo.jpg
+- COLUMN:technical-flat12-vs-v-type :: heroImage: /images/columns/ferrari-flat12-vs-v.jpg
+- COLUMN:technical-what-is-homologation :: heroImage: /images/columns/ferrari-homologation-250gto.jpg
+- COLUMN:technical-what-is-gt-car :: heroImage: /images/columns/ferrari-what-is-gt.jpg
+- COLUMN:technical-supercar-vs-hypercar :: heroImage: /images/columns/ferrari-supercar-vs-hypercar.jpg
+- COLUMN:technical-why-racing-matters-for-ferrari :: heroImage: /images/columns/ferrari-why-racing-matters.jpg
+- COLUMN:technical-flagship-v12-vs-v8 :: heroImage: /images/columns/ferrari-flagship-v12-v8.jpg
+- COLUMN:technical-electronic-control-basics :: heroImage: /images/columns/ferrari-electronic-control.jpg
+- COLUMN:technical-hybrid-vs-phev :: heroImage: /images/columns/ferrari-hybrid-vs-phev.jpg
+- COLUMN:technical-carbon-monocoque :: heroImage: /images/columns/ferrari-carbon-monocoque.jpg
+- COLUMN:technical-aerodynamics-and-downforce :: heroImage: /images/columns/ferrari-aero-downforce.jpg
+- COLUMN:technical-daily-drivable-ferrari :: heroImage: /images/columns/ferrari-daily-drivable.jpg
+- COLUMN:technical-limited-and-speciale :: heroImage: /images/columns/ferrari-limited-speciale.jpg
+- COLUMN:technical-why-sound-is-special :: heroImage: /images/columns/ferrari-engine-sound.jpg
+- COLUMN:maintenance-classic-vs-modern :: heroImage: /images/columns/ferrari-classic-vs-modern.jpg
+- COLUMN:technical-ferrari-and-suv-era :: heroImage: /images/columns/ferrari-purosangue-story.jpg
+- COLUMN:technical-asset-vs-enjoyment :: heroImage: /images/columns/ferrari-asset-vs-enjoyment.jpg
+- COLUMN:column-nissan-gtr-history-evolution :: heroImage: /images/columns/ferrari-classic-vs-modern.jpg
+- COLUMN:column-nissan-gtr-r35-running-cost-reality :: heroImage: /images/columns/ferrari-classic-vs-modern.jpg
+- COLUMN:column-toyota-supra-2jz-legend :: heroImage: /images/columns/ferrari-classic-vs-modern.jpg
+- COLUMN:column-toyota-supra-running-cost-trouble :: heroImage: /images/columns/ferrari-classic-vs-modern.jpg
+- COLUMN:column-mazda-rx7-rotary-maintenance-reality :: heroImage: /images/columns/ferrari-classic-vs-modern.jpg
+- COLUMN:column-mazda-rx7-trouble-points :: heroImage: /images/columns/ferrari-classic-vs-modern.jpg
+- COLUMN:column-nissan-fairlady-z-s30-legend :: heroImage: /images/columns/ferrari-classic-vs-modern.jpg
+- COLUMN:column-nissan-fairlady-z-rz34-buying-notes :: heroImage: /images/columns/ferrari-classic-vs-modern.jpg
+- COLUMN:column-gtr-history-evolution :: heroImage: /images/columns/gt-r-evolution.jpg
+- COLUMN:column-toyota-supra-a80-2jz-legend :: heroImage: /images/columns/supra-a80-2jz-legend.jpg
+- COLUMN:column-toyota-gr-supra-bmw-context :: heroImage: /images/columns/gr-supra-bmw-context.jpg
+- COLUMN:column-ferrari-v12-maintenance-reality :: heroImage: /images/columns/ferrari-v12-maintenance-reality.jpg
+- COLUMN:column-1995-watershed-r33-dc2 :: heroImage: /images/columns/1995-watershed-r33-dc2.jpg
+- COLUMN:column-software-defined-performance-r35 :: heroImage: /images/columns/column-software-defined-performance-r35-hero.jpg
+- COLUMN:column-high-rev-na-why-it-felt-fast :: heroImage: /images/columns/column-high-rev-na-why-it-felt-fast-hero.jpg
+- COLUMN:column-kei-sports-packaging-why :: heroImage: /images/columns/column-kei-sports-packaging-why-hero.jpg
+- COLUMN:column-awd-yaw-control-why-it-turns :: heroImage: /images/columns/column-awd-yaw-control-why-it-turns-hero.jpg
+- COLUMN:column-4ws-hicas-how-it-feels :: heroImage: /images/columns/column-4ws-hicas-how-it-fels-hero.jpg
+- COLUMN:column-midship-everyday-supercar-why :: heroImage: /images/columns/column-midship-everyday-supercar-why-hero.jpg
+- GUIDE:budget-import-sedan-annual-income :: heroImage: /images/guides/budget-import-sedan-annual-income.jpg
+- GUIDE:first-ev-cost-and-life :: heroImage: /images/guides/first-ev-cost-and-life.jpg
+- GUIDE:luxury-car-insurance-coverage :: heroImage: /images/guides/luxury-car-insurance-coverage.jpg
+- GUIDE:tax-and-fees-before-buying-import :: heroImage: /images/guides/tax-and-fees-before-buying-import.jpg
+- GUIDE:loan-vs-lease-luxury-sedan :: heroImage: /images/guides/loan-vs-lease-luxury-sedan.jpg
+- GUIDE:family-suv-budget-and-lifeplan :: heroImage: /images/guides/family-suv-budget-and-lifeplan.jpg
+- GUIDE:second-car-money-balance :: heroImage: /images/guides/second-car-money-balance.jpg
+- GUIDE:oldtimer-maintenance-budget :: heroImage: /images/guides/oldtimer-maintenance-budget.jpg
+- GUIDE:company-car-tax-tips :: heroImage: /images/guides/company-car-tax-tips.jpg
+- GUIDE:subscription-vs-owning :: heroImage: /images/guides/subscription-vs-owning.jpg
+- GUIDE:life-event-and-car-upgrade :: heroImage: /images/guides/life-event-and-car-upgrade.jpg
+- GUIDE:best-time-to-sell-import-sedan :: heroImage: /images/guides/best-time-to-sell-import-sedan.jpg
+- GUIDE:distance-and-resale-value :: heroImage: /images/guides/distance-and-resale-value.jpg
+- GUIDE:sell-while-loan-remains :: heroImage: /images/guides/sell-while-loan-remains.jpg
+- GUIDE:photo-guide-for-selling :: heroImage: /images/guides/photo-guide-for-selling.jpg
+- GUIDE:dealer-vs-buyer-shop :: heroImage: /images/guides/dealer-vs-buyer-shop.jpg
+- GUIDE:trade-in-two-cars-into-one :: heroImage: /images/guides/trade-in-two-cars-into-one.jpg
+- GUIDE:keep-or-sell-when-moving-abroad :: heroImage: /images/guides/keep-or-sell-when-moving-abroad.jpg
+- GUIDE:how-to-avoid-regret-after-selling :: heroImage: /images/guides/how-to-avoid-regret-after-selling.jpg
+- GUIDE:how-to-use-online-assessment :: heroImage: /images/guides/how-to-use-online-assessment.jpg
+- GUIDE:daily-maintenance-checklist :: heroImage: /images/guides/daily-maintenance-checklist.jpg
+- GUIDE:tires-and-season-change :: heroImage: /images/guides/tires-and-season-change.jpg
+- GUIDE:ev-charging-etiquette :: heroImage: /images/guides/ev-charging-etiquette.jpg
+- GUIDE:parking-strategy-in-city :: heroImage: /images/guides/parking-strategy-in-city.jpg
+- GUIDE:how-to-choose-first-sports-car :: heroImage: /images/guides/how-to-choose-first-sports-car.jpg
+- GUIDE:winter-window-fog :: heroImage: /images/guides/winter-window-fog.jpg
+- GUIDE:snow-tire-chain-choice :: heroImage: /images/guides/snow-tire-chain-choice.jpg
+- GUIDE:battery-trouble-winter :: heroImage: /images/guides/battery-trouble-winter.jpg
+- GUIDE:winter-washer-and-wiper :: heroImage: /images/guides/winter-washer-and-wiper.jpg
+- GUIDE:winter-interior-clean :: heroImage: /images/guides/winter-interior-clean.jpg
+- HERITAGE:ferrari-v12-gt-heritage :: heroImage: /images/heritage/ferrari-v12-gt.jpg
+- HERITAGE:nissan-gt-r-godzilla-heritage :: heroImage: /images/heritage/nissan-gt-r.jpg
+- HERITAGE:toyota-supra-heritage :: heroImage: /images/heritage/toyota-supra-heritage.jpg
+- HERITAGE:mazda-rx7-heritage :: heroImage: /images/heritage/mazda-rx7-heritage.jpg
+- HERITAGE:nissan-fairlady-z-heritage :: heroImage: /images/heritage/nissan-fairlady-z-heritage.jpg
+- HERITAGE:honda-nsx-legacy-heritage :: heroImage: /images/heritage/honda-nsx-heritage-hero.jpg
+- HERITAGE:toyota-supra-legacy-heritage :: heroImage: /images/heritage/heritage-toyota-supra-a80.jpg
+- HERITAGE:honda-integra-type-r-dc5-heritage :: heroImage: /images/heritage/honda-integra-type-r-dc5-heritage-hero.jpg
+- HERITAGE:japan-software-performance-era-heritage :: heroImage: /images/heritage/japan-software-performance-era-hero.jpg
+- HERITAGE:japan-high-rev-na-last-dance-heritage :: heroImage: /images/heritage/japan-high-rev-na-last-dance-hero.jpg
+- HERITAGE:japan-kei-sports-64ps-heritage :: heroImage: /images/heritage/japan-kei-sports-64ps-hero.jpg
+- HERITAGE:japan-electronic-awd-yaw-control-heritage :: heroImage: /images/heritage/japan-electronic-awd-yaw-control-hero.jpg
+- HERITAGE:japan-4ws-active-chassis-heritage :: heroImage: /images/heritage/japan-4ws-active-chassis-hero.jpg
+- HERITAGE:japan-everyday-supercar-nsx-heritage :: heroImage: /images/heritage/japan-everyday-supercar-nsx-hero.jpg
+
+[missing_base] 90
+- COLUMN:technical-what-is-coupe :: type
+- COLUMN:technical-midship-vs-ff-fr-4wd :: type
+- COLUMN:technical-v12-v8-v6-difference :: type
+- COLUMN:technical-na-vs-turbo :: type
+- COLUMN:technical-flat12-vs-v-type :: type
+- COLUMN:technical-what-is-homologation :: type
+- COLUMN:technical-what-is-gt-car :: type
+- COLUMN:technical-supercar-vs-hypercar :: type
+- COLUMN:technical-why-racing-matters-for-ferrari :: type
+- COLUMN:technical-flagship-v12-vs-v8 :: type
+- COLUMN:technical-electronic-control-basics :: type
+- COLUMN:technical-hybrid-vs-phev :: type
+- COLUMN:technical-carbon-monocoque :: type
+- COLUMN:technical-aerodynamics-and-downforce :: type
+- COLUMN:technical-daily-drivable-ferrari :: type
+- COLUMN:technical-limited-and-speciale :: type
+- COLUMN:technical-why-sound-is-special :: type
+- COLUMN:maintenance-classic-vs-modern :: type
+- COLUMN:technical-ferrari-and-suv-era :: type
+- COLUMN:technical-asset-vs-enjoyment :: type
+- COLUMN:column-nissan-gtr-history-evolution :: type
+- COLUMN:column-nissan-gtr-r35-running-cost-reality :: type
+- COLUMN:column-toyota-supra-2jz-legend :: type
+- COLUMN:column-toyota-supra-running-cost-trouble :: type
+- COLUMN:column-mazda-rx7-rotary-maintenance-reality :: type
+- COLUMN:column-mazda-rx7-trouble-points :: type
+- COLUMN:column-nissan-fairlady-z-s30-legend :: type
+- COLUMN:column-nissan-fairlady-z-rz34-buying-notes :: type
+- COLUMN:column-gtr-history-evolution :: type
+- COLUMN:column-toyota-supra-a80-2jz-legend :: type
+- COLUMN:column-toyota-gr-supra-bmw-context :: type
+- COLUMN:column-ferrari-v12-maintenance-reality :: type
+- COLUMN:column-1995-watershed-r33-dc2 :: type
+- COLUMN:column-software-defined-performance-r35 :: type
+- COLUMN:column-high-rev-na-why-it-felt-fast :: type
+- COLUMN:column-kei-sports-packaging-why :: type
+- COLUMN:column-awd-yaw-control-why-it-turns :: type
+- COLUMN:column-4ws-hicas-how-it-feels :: type
+- COLUMN:column-midship-everyday-supercar-why :: type
+- GUIDE:budget-import-sedan-annual-income :: type
+- GUIDE:first-ev-cost-and-life :: type
+- GUIDE:luxury-car-insurance-coverage :: type
+- GUIDE:tax-and-fees-before-buying-import :: type
+- GUIDE:loan-vs-lease-luxury-sedan :: type
+- GUIDE:family-suv-budget-and-lifeplan :: type
+- GUIDE:second-car-money-balance :: type
+- GUIDE:oldtimer-maintenance-budget :: type
+- GUIDE:company-car-tax-tips :: type
+- GUIDE:subscription-vs-owning :: type
+- GUIDE:life-event-and-car-upgrade :: type
+- GUIDE:best-time-to-sell-import-sedan :: type
+- GUIDE:distance-and-resale-value :: type
+- GUIDE:sell-while-loan-remains :: type
+- GUIDE:photo-guide-for-selling :: type
+- GUIDE:dealer-vs-buyer-shop :: type
+- GUIDE:trade-in-two-cars-into-one :: type
+- GUIDE:keep-or-sell-when-moving-abroad :: type
+- GUIDE:how-to-avoid-regret-after-selling :: type
+- GUIDE:how-to-use-online-assessment :: type
+- GUIDE:daily-maintenance-checklist :: type
+- GUIDE:tires-and-season-change :: type
+- GUIDE:ev-charging-etiquette :: type
+- GUIDE:parking-strategy-in-city :: type
+- GUIDE:how-to-choose-first-sports-car :: type
+- GUIDE:hajimete-kuruma-uru-checklist :: id, status
+- GUIDE:yunyusha-koukya-uru-kaitori-strategy :: id, status
+- GUIDE:kuruma-baikyaku-timing-simulation :: id, status
+- GUIDE:kuruma-ikkatsu-satei-shitsukoi-real :: id, status
+- GUIDE:jidousha-hoken-ikkatsu-mitsumori-guide :: id, status
+- GUIDE:jidousha-hoken-hiyou-sageru-5steps :: id, status
+- GUIDE:jidousha-hoken-jiko-tokyu-daisha :: id, status
+- GUIDE:rakuten-car-shaken-real-guide :: id, status
+- GUIDE:houjin-jigyonushi-shayou-car-hoken-shaken :: id, status
+- GUIDE:kuruma-ron-zansai-atta-mama-uru :: id, status
+- GUIDE:drive-recorder-erabikata-amazon :: id, status
+- GUIDE:child-seat-erabikata-amazon :: id, status
+- GUIDE:sensha-coating-erabikata-amazon :: id, status
+- GUIDE:car-interior-cleaner-erabikata-amazon :: id, status
+- GUIDE:battery-agari-bosui-jumpstarter-amazon :: id, status
+- GUIDE:guide-maintenance-rb26dett :: id, status
+- GUIDE:guide-maintenance-cost-import-car :: id, status
+- GUIDE:guide-buy-used-gtr-r35 :: id, status
+- GUIDE:guide-buy-classic-ferrari :: id, status
+- GUIDE:guide-30year-heritage-car-ownership :: id, status
+- GUIDE:guide-buy-early-r35-gtr-checklist :: id, status
+- GUIDE:guide-buy-high-rev-na-checklist :: id, status
+- GUIDE:guide-buy-kei-sports-checklist :: id, status
+- GUIDE:guide-buy-electronic-awd-checklist :: id, status
+- GUIDE:guide-buy-4ws-active-chassis-checklist :: id, status
+- GUIDE:guide-buy-midship-jdm-checklist :: id, status
+
+Note: This report is informational and does not fail builds.

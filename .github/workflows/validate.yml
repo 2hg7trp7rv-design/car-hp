@@ -1,0 +1,25 @@
+name: Validate content
+
+on:
+  pull_request:
+  push:
+    branches: [ main, master, v1, v2 ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+      - name: Install
+        run: npm ci
+      - name: Validate content
+        run: npm run validate
+      - name: Validate content (strict; non-blocking)
+        continue-on-error: true
+        run: npm run validate:strict
+      - name: Check data formatting
+        run: npm run check:data-format
