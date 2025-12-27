@@ -1,0 +1,1030 @@
+// app/guide/[slug]/page.tsx
+
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { getSiteUrl } from "@/lib/site";
+
+import { getAllGuides, getGuideBySlug, type GuideItem } from "@/lib/guides";
+import { getAllColumns, type ColumnItem } from "@/lib/columns";
+import { getAllCars, type CarItem } from "@/lib/cars";
+import { getAllHeritage, getHeritagePreviewText, type HeritageItem } from "@/lib/heritage";
+
+import { Reveal } from "@/components/animation/Reveal";
+import { GlassCard } from "@/components/GlassCard";
+
+// 【変更】共通CTAコンポーネントとSEOコンポーネントをインポート
+import { CtaBlock } from "@/components/monetize/CtaBlock";
+import { JsonLd } from "@/components/seo/JsonLd";
+
+import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
+
+export const runtime = "edge";
+
+type PageProps = {
+  params: { slug: string };
+};
+
+type HeadingBlock = {
+  id: string;
+  text: string;
+  level: 2 | 3;
+};
+
+type ContentBlock =
+  | { type: "heading"; heading: HeadingBlock }
+  | { type: "paragraph"; text: string }
+  | { type: "list"; items: string[] };
+
+type StepHeading = {
+  id: string;
+  stepNumber: number;
+  label: string;
+};
+
+function formatDate(iso?: string | null): string {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "";
+  const y = d.getFullYear();
+  const m = `${d.getMonth() + 1}`.padStart(2, "0");
+  const day = `${d.getDate()}`.padStart(2, "0");
+  return `${y}/${m}/${day}`;
+}
+
+function mapCategoryLabel(category: string | null | undefined): string {
+  switch (category) {
+    case "MONEY":
+    case "BUY":
+      return "お金・購入計画";
+    case "SELL":
+      return "売却・乗り換え";
+    case "MAINTENANCE_COST":
+      return "維持費・お金まわり";
+    default:
+      return "ガイド";
+  }
+}
+
+function mapColumnCategoryLabel(category: ColumnItem["category"]): string {
+  switch (category) {
+    case "MAINTENANCE":
+      return "メンテナンス・トラブル";
+    case "TECHNICAL":
+      return "ブランド・技術・歴史";
+    default:
+      return "コラム";
+  }
+}
+
+function mapHeritageKindLabel(kind: HeritageItem["kind"] | null | undefined) {
+  switch (kind) {
+    case "ERA":
+      return "ERA";
+    case "BRAND":
+      return "BRAND";
+    case "CAR":
+      return "CAR HISTORY";
+    default:
+      return "HERITAGE";
+  }
+}
+
+function parseBody(body: string | undefined): {
+  blocks: ContentBlock[];
+  headings: HeadingBlock[];
+} {
+  const src = body ?? "";
+  const lines = src.split(/\r?\n/);
+  const blocks: ContentBlock[] = [];
+  const headings: HeadingBlock[] = [];
+
+  let currentParagraph: string[] = [];
+  let currentList: string[] = [];
+
+  const flushParagraph = () => {
+    if (currentParagraph.length > 0) {
+      blocks.push({
+        type: "paragraph",
+        text: currentParagraph.join(" "),
+      });
+      currentParagraph = [];
+    }
+  };
+
+  const flushList = () => {
+    if (currentList.length > 0) {
+      blocks.push({
+        type: "list",
+        items: [...currentList],
+      });
+      currentList = [];
+    }
+  };
+
+  lines.forEach((rawLine, index) => {
+    const line = rawLine.trim();
+
+    if (!line) {
+      flushParagraph();
+      flushList();
+      return;
+    }
+
+    if (line.startsWith("### ")) {
+      flushParagraph();
+      flushList();
+      const text = line.slice(4).trim();
+      const heading: HeadingBlock = {
+        id: `h3-${index}`,
+        text,
+        level: 3,
+      };
+      blocks.push({ type: "heading", heading });
+      headings.push(heading);
+      return;
+    }
+
+    if (line.startsWith("## ")) {
+      flushParagraph();
+      flushList();
+      const text = line.slice(3).trim();
+      const heading: HeadingBlock = {
+        id: `h2-${index}`,
+        text,
+        level: 2,
+      };
+      blocks.push({ type: "heading", heading });
+      headings.push(heading);
+      return;
+    }
+
+    if (line.startsWith("- ")) {
+      flushParagraph();
+      currentList.push(line.slice(2).trim());
+      return;
+    }
+
+    flushList();
+    currentParagraph.push(line);
+  });
+
+  flushParagraph();
+  flushList();
+
+  return { blocks, headings };
+}
+
+function inlineNodes(text: string): (string | JSX.Element)[] {
+  const result: (string | JSX.Element)[] = [];
+  const tokenRegex = /(\*\*.+?\*\*|https?:\/\/[^\s]+)/g;
+
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = tokenRegex.exec(text)) !== null) {
+    const start = match.index;
+    const token = match[0];
+
+    if (start > lastIndex) {
+      result.push(text.slice(lastIndex, start));
+    }
+
+    if (token.startsWith("**") && token.endsWith("**")) {
+      const inner = token.slice(2, -2);
+      result.push(
+        <span key={`${start}-bold`} className="font-semibold text-slate-900">
+          {inner}
+        </span>,
+      );
+    } else if (token.startsWith("http://") || token.startsWith("https://")) {
+      result.push(
+        <a
+          key={`${start}-link`}
+          href={token}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline decoration-tiffany-400/80 underline-offset-2"
+        >
+          {token}
+        </a>,
+      );
+    } else {
+      result.push(token);
+    }
+
+    lastIndex = start + token.length;
+  }
+
+  if (lastIndex < text.length) {
+    result.push(text.slice(lastIndex));
+  }
+
+  return result;
+}
+
+async function getRelatedColumnsForGuide(guide: GuideItem): Promise<ColumnItem[]> {
+  const allColumns = await getAllColumns();
+
+  const guideWithMeta = guide as GuideItem & {
+    category?: string | null;
+    tags?: string[] | null;
+  };
+
+  const guideTags = new Set(guideWithMeta.tags ?? []);
+  const guideCategory = (guideWithMeta.category ?? null) as string | null;
+
+  const scored = allColumns.map((col) => {
+    let score = 0;
+
+    if (col.tags && guideTags.size > 0) {
+      const overlap = col.tags.filter((t) => guideTags.has(t)).length;
+      if (overlap > 0) {
+        score += 2 + overlap * 0.2;
+      }
+    }
+
+    if (
+      guideCategory === "MONEY" ||
+      guideCategory === "BUY" ||
+      guideCategory === "MAINTENANCE_COST"
+    ) {
+      if (col.category === "MAINTENANCE" || col.category === "TECHNICAL") {
+        score += 1;
+      }
+    } else if (guideCategory === "SELL") {
+      if (col.category === "TECHNICAL") {
+        score += 1.5;
+      }
+    }
+
+    const haystack = `${col.title} ${col.summary ?? ""}`.toLowerCase();
+    const words = `${guide.title} ${guide.summary ?? ""}`
+      .toLowerCase()
+      .split(/\s+/)
+      .filter((w) => w.length > 1);
+
+    if (words.some((w) => haystack.includes(w))) {
+      score += 0.5;
+    }
+
+    return { col, score };
+  });
+
+  const pickedByScore = scored
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 4)
+    .map((x) => x.col);
+
+  if (pickedByScore.length > 0) {
+    return pickedByScore;
+  }
+
+  let fallback = allColumns;
+
+  if (guideCategory) {
+    const byCategory = allColumns.filter(
+      (col) => col.category === "TECHNICAL" || col.category === "MAINTENANCE",
+    );
+    if (byCategory.length > 0) {
+      fallback = byCategory;
+    }
+  }
+
+  const sortedFallback = [...fallback].sort((a, b) => {
+    const ta = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
+    const tb = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
+    return tb - ta;
+  });
+
+  return sortedFallback.slice(0, 4);
+}
+
+async function getRelatedCarsForGuide(
+  guide: GuideItem & { relatedCarSlugs?: (string | null)[] },
+): Promise<CarItem[]> {
+  const allCars = await getAllCars();
+
+  const slugs = (guide.relatedCarSlugs ?? []).filter(
+    (slug): slug is string => typeof slug === "string" && slug.trim().length > 0,
+  );
+  if (slugs.length === 0) return [];
+
+  const slugSet = new Set(slugs);
+
+  const orderMap = new Map<string, number>();
+  slugs.forEach((s, idx) => orderMap.set(s, idx));
+
+  return allCars
+    .filter((car) => car.slug && slugSet.has(car.slug))
+    .sort((a, b) => {
+      const ai = orderMap.get(a.slug ?? "") ?? 0;
+      const bi = orderMap.get(b.slug ?? "") ?? 0;
+      return ai - bi;
+    });
+}
+
+async function getRelatedHeritageForGuide(
+  guide: GuideItem & { relatedCarSlugs?: (string | null)[]; tags?: string[] | null },
+): Promise<HeritageItem[]> {
+  const allHeritage = await getAllHeritage();
+
+  const guideCarSlugs = (guide.relatedCarSlugs ?? []).filter(
+    (s): s is string => typeof s === "string" && s.trim().length > 0,
+  );
+  const guideCarSet = new Set(guideCarSlugs);
+  const guideTags = new Set((guide.tags ?? []).filter((t) => typeof t === "string" && t.trim().length > 0));
+
+  const scored = allHeritage.map((h) => {
+    let score = 0;
+
+    const hCarSlugs = ((h as any).relatedCarSlugs ?? []) as unknown[];
+    const hCarOverlap =
+      Array.isArray(hCarSlugs) && guideCarSet.size > 0
+        ? hCarSlugs.filter((x) => typeof x === "string" && guideCarSet.has(x)).length
+        : 0;
+
+    if (hCarOverlap > 0) score += 3 + hCarOverlap * 0.5;
+
+    const hTags = (h.tags ?? []) as unknown[];
+    const hTagOverlap =
+      Array.isArray(hTags) && guideTags.size > 0
+        ? hTags.filter((x) => typeof x === "string" && guideTags.has(x)).length
+        : 0;
+
+    if (hTagOverlap > 0) score += 1 + hTagOverlap * 0.2;
+
+    const haystack = `${h.title} ${getHeritagePreviewText(h, { maxChars: 280 })}`.toLowerCase();
+    const words = `${guide.title} ${guide.summary ?? ""}`
+      .toLowerCase()
+      .split(/\s+/)
+      .filter((w) => w.length > 1);
+
+    if (words.some((w) => haystack.includes(w))) score += 0.4;
+
+    return { h, score };
+  });
+
+  const picked = scored
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 4)
+    .map((x) => x.h);
+
+  if (picked.length > 0) return picked;
+
+  const sortedFallback = [...allHeritage].sort((a, b) => {
+    const ta = a.publishedAt
+      ? new Date(a.publishedAt).getTime()
+      : a.updatedAt
+      ? new Date(a.updatedAt).getTime()
+      : 0;
+    const tb = b.publishedAt
+      ? new Date(b.publishedAt).getTime()
+      : b.updatedAt
+      ? new Date(b.updatedAt).getTime()
+      : 0;
+    return tb - ta;
+  });
+
+  return sortedFallback.slice(0, 4);
+}
+
+export async function generateStaticParams() {
+  const guides = await getAllGuides();
+  return guides.map((g) => ({ slug: g.slug }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const guide = await getGuideBySlug(params.slug);
+
+  if (!guide) {
+    return {
+      title: "ガイドが見つかりません | CAR BOUTIQUE",
+      description: "指定されたガイドページが見つかりませんでした。",
+    };
+  }
+
+  const title = `${guide.title} | CAR BOUTIQUE`;
+  const description =
+    guide.summary ||
+    "クルマの購入・維持・売却に関する実用情報をまとめたガイドです。";
+
+  // 【追加】canonical URLの設定 (仕様書7.4)
+  const url = `${getSiteUrl()}/guide/${encodeURIComponent(guide.slug)}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      url,
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
+  };
+}
+
+function extractStepHeadings(headings: HeadingBlock[]): StepHeading[] {
+  const result: StepHeading[] = [];
+
+  headings.forEach((h) => {
+    const m = h.text.match(/^STEP\s*(\d+)[\.\:：]?\s*(.*)$/i);
+    if (!m) return;
+
+    const stepNumber = Number(m[1]);
+    const rawLabel = m[2]?.trim() ?? "";
+    const label = rawLabel || `STEP ${stepNumber}`;
+
+    if (!Number.isNaN(stepNumber)) {
+      result.push({
+        id: h.id,
+        stepNumber,
+        label,
+      });
+    }
+  });
+
+  return result.sort((a, b) => a.stepNumber - b.stepNumber);
+}
+
+export default async function GuideDetailPage({ params }: PageProps) {
+  const guideRaw = await getGuideBySlug(params.slug);
+
+  if (!guideRaw) {
+    notFound();
+  }
+
+  const guide = guideRaw as GuideItem & {
+    readMinutes?: number | null;
+    tags?: string[] | null;
+    category?: string | null;
+    relatedCarSlugs?: (string | null)[];
+    monetizeKey?: string | null;
+    // affiliateLinks は CtaBlock への移行により不要になりますが型定義として残します
+    affiliateLinks?: Record<string, string> | null;
+    internalLinks?: string[] | null;
+  };
+
+  const { blocks, headings } = parseBody(guide.body);
+  const relatedColumns = await getRelatedColumnsForGuide(guide);
+  const relatedCars = await getRelatedCarsForGuide(guide);
+  const relatedHeritage = await getRelatedHeritageForGuide(guide);
+  const stepHeadings = extractStepHeadings(headings);
+
+  const relatedCarSlugs = (guide.relatedCarSlugs ?? []).filter(
+    (slug): slug is string => typeof slug === "string" && slug.trim().length > 0,
+  );
+
+  const allGuides = await getAllGuides();
+  const internalLinkSlugs = (guide.internalLinks ?? []).filter(
+    (s): s is string => typeof s === "string" && s.trim().length > 0,
+  );
+  const internalRelatedGuides = internalLinkSlugs
+    .map((slug) => allGuides.find((g) => g.slug === slug))
+    .filter((g): g is GuideItem => Boolean(g));
+
+  // CtaBlockへの移行により resolveAffiliateLinksForGuide は削除
+  // const affiliateLinksResolved = ...
+
+  const monetizeKey = (guide.monetizeKey ?? "car_search_conditions") as any;
+
+  let firstParagraphRendered = false;
+  const primaryDate = guide.publishedAt ?? guide.updatedAt;
+
+  // 【追加】構造化データ (仕様書7.4)
+  const structuredData = {
+    headline: guide.title,
+    description: guide.summary,
+    datePublished: guide.publishedAt,
+    dateModified: guide.updatedAt,
+    image: [], // 必要に応じてheroImageを追加
+    author: {
+      '@type': 'Organization',
+      name: 'CAR BOUTIQUE Editorial',
+    },
+  };
+
+  return (
+    <main className="min-h-screen bg-site text-text-main">
+      {/* 【追加】構造化データ出力 */}
+      <JsonLd type="Article" data={structuredData} />
+      
+      <ScrollDepthTracker />
+
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <div className="absolute left-0 top-0 h-[40vh] w-full bg-gradient-to-b from-white/90 via-white/70 to-transparent" />
+        <div className="absolute -left-[18%] top-[10%] h-[40vw] w-[40vw] rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.15),_transparent_70%)] blur-[110px]" />
+        <div className="absolute -right-[20%] bottom-[-10%] h-[50vw] w-[50vw] rounded-full bg-[radial-gradient(circle_at_center,_rgba(15,23,42,0.22),_transparent_75%)] blur-[110px]" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-6xl px-4 pb-24 pt-24 sm:px-6 lg:px-8">
+        <nav aria-label="パンくずリスト" className="mb-6 text-xs text-slate-500">
+          <Link href="/" className="hover:text-slate-800">
+            HOME
+          </Link>
+          <span className="mx-2">/</span>
+          <Link href="/guide" className="hover:text-slate-800">
+            GUIDE
+          </Link>
+          <span className="mx-2">/</span>
+          <span className="truncate text-slate-400 align-middle">{guide.title}</span>
+        </nav>
+
+        <header className="mb-12 lg:mb-14">
+          <Reveal>
+            <div className="flex flex-wrap items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-slate-500">
+              <span className="inline-flex items-center gap-2">
+                <span className="h-[1px] w-6 bg-tiffany-400" />
+                GUIDE
+              </span>
+              <span className="h-[1px] w-6 bg-slate-200" />
+              <span>{mapCategoryLabel(guide.category ?? null)}</span>
+            </div>
+          </Reveal>
+
+          <Reveal delay={80}>
+            <h1 className="serif-heading mt-4 text-2xl font-semibold leading-relaxed tracking-tight text-slate-900 sm:text-3xl lg:text-[2.3rem]">
+              {guide.title}
+            </h1>
+          </Reveal>
+
+          <Reveal delay={160}>
+            <div className="mt-4 flex flex-wrap items-center gap-3 text-[11px] text-slate-500">
+              {guide.readMinutes != null && (
+                <span className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-3 py-1.5 text-[10px] tracking-[0.18em] text-slate-100 shadow-soft">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  約 {guide.readMinutes} 分で読めます
+                </span>
+              )}
+              {primaryDate && (
+                <>
+                  <span className="h-[1px] w-6 bg-slate-200" />
+                  <span className="tracking-[0.16em]">PUBLISHED {formatDate(primaryDate)}</span>
+                </>
+              )}
+              {guide.tags && guide.tags.length > 0 && (
+                <>
+                  <span className="h-[1px] w-6 bg-slate-200" />
+                  <div className="flex flex-wrap gap-1.5">
+                    {guide.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full bg-slate-50 px-2 py-0.5 text-[10px] tracking-[0.12em]"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+          </Reveal>
+
+          {guide.summary && (
+            <Reveal delay={220}>
+              <p className="mt-5 max-w-2xl text-xs leading-relaxed text-text-sub sm:text-sm">
+                {guide.summary}
+              </p>
+            </Reveal>
+          )}
+        </header>
+
+        <div className="flex flex-col gap-10 lg:flex-row lg:gap-12">
+          <section className="w-full lg:w-[68%]">
+            <GlassCard className="relative overflow-hidden border border-slate-200/80 bg-white/92 px-5 py-6 shadow-soft sm:px-7 sm:py-8">
+              <div className="pointer-events-none absolute -right-28 -top-28 h-48 w-48 rounded-full bg-[radial-gradient(circle_at_center,_rgba(10,186,181,0.2),_transparent_70%)] blur-3xl" />
+              <div className="pointer-events-none absolute -left-24 bottom-[-30%] h-56 w-56 rounded-full bg-[radial-gradient(circle_at_center,_rgba(148,163,184,0.25),_transparent_70%)] blur-3xl" />
+
+              <article className="relative z-10">
+                <div className="mb-5 rounded-2xl bg-slate-50/80 px-4 py-3 text-[11px] text-slate-700">
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-500">
+                    GUIDE OUTLINE
+                  </p>
+                  <p className="mt-1 leading-relaxed">
+                    このガイドは「{mapCategoryLabel(guide.category ?? null)}」に関する基本的な考え方や順番を整理するためのメモです。細かい数字の比較というよりも まずここから押さえておくと楽という目線で構成しています。
+                  </p>
+                </div>
+
+                {stepHeadings.length > 0 && (
+                  <section className="mb-6 rounded-2xl border border-tiffany-100 bg-gradient-to-br from-tiffany-50/90 via-white to-white px-4 py-4 text-[11px] shadow-soft-card sm:px-5 sm:py-5">
+                    <p className="mb-3 text-[10px] font-semibold tracking-[0.22em] text-tiffany-700">
+                      GUIDE STEPS
+                    </p>
+                    <div className="relative pl-4">
+                      <div className="absolute left-[10px] top-1 bottom-1 w-px bg-gradient-to-b from-tiffany-300/60 via-slate-200/80 to-transparent" />
+                      <ol className="space-y-3">
+                        {stepHeadings.map((s, idx) => (
+                          <li key={s.id} className="relative flex gap-3">
+                            <div className="relative mt-[2px] flex h-5 w-5 items-center justify-center">
+                              <div className="absolute h-5 w-5 rounded-full bg-white shadow-[0_0_0_1px_rgba(148,163,184,0.35)]" />
+                              <div className="relative h-2.5 w-2.5 rounded-full bg-gradient-to-br from-tiffany-400 to-tiffany-600" />
+                            </div>
+                            <a href={`#${s.id}`} className="group inline-flex flex-1 flex-col gap-0.5">
+                              <span className="text-[10px] font-semibold tracking-[0.18em] text-slate-400">
+                                STEP {s.stepNumber.toString().padStart(2, "0")}
+                              </span>
+                              <span className="text-[11px] font-medium text-slate-800 group-hover:text-tiffany-700">
+                                {s.label}
+                              </span>
+                              {idx === 0 && (
+                                <span className="mt-0.5 text-[10px] text-slate-400">
+                                  上から順にざっくりこの順番で考える前提のステップです。
+                                </span>
+                              )}
+                            </a>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  </section>
+                )}
+
+                <div className="mt-6">
+                  {/* 【変更】冒頭CTA (仕様書4.4.1) - GuideMonetizeBlockをCtaBlockへ置換 */}
+                  <CtaBlock
+                    monetizeKey={monetizeKey}
+                    pageType="guide"
+                    contentId={guide.slug}
+                    position="top"
+                    // 必要に応じてclassNameでスタイル調整してください
+                  />
+
+                {blocks.map((block, index) => {
+                    if (block.type === "heading") {
+                      const Tag = block.heading.level === 2 ? "h2" : "h3";
+
+                      const isStepHeading = /^STEP\s*\d+/i.test(block.heading.text);
+
+                      const baseClass = isStepHeading
+                        ? "mt-10 mb-4 text-sm font-semibold tracking-[0.18em] text-slate-800 sm:text-[13px] uppercase"
+                        : block.heading.level === 2
+                        ? "mt-12 mb-5 font-serif text-xl font-medium text-slate-900 sm:text-2xl"
+                        : "mt-8 mb-3 text-base font-semibold tracking-[0.04em] text-slate-800";
+
+                      return (
+                        <Reveal key={block.heading.id} delay={index === 0 ? 0 : 60}>
+                          <Tag id={block.heading.id} className={baseClass}>
+                            {block.heading.text}
+                          </Tag>
+                        </Reveal>
+                      );
+                    }
+
+                    if (block.type === "list") {
+                      return (
+                        <Reveal key={`list-${index}`} delay={80}>
+                          <ul className="mt-3 space-y-1.5 text-sm leading-relaxed text-slate-800 sm:text-[15px]">
+                            {block.items.map((item) => (
+                              <li key={item} className="flex gap-2">
+                                <span className="mt-[7px] h-[3px] w-5 rounded-full bg-tiffany-300" />
+                                <span>{inlineNodes(item)}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </Reveal>
+                      );
+                    }
+
+                    if (!firstParagraphRendered && block.text.trim().length) {
+                      firstParagraphRendered = true;
+                      const firstChar = block.text[0];
+                      const rest = block.text.slice(1);
+
+                      return (
+                        <Reveal key={`p-${index}`} delay={100}>
+                          <p className="mt-4 text-sm leading-8 text-slate-800 sm:text-[15px] sm:leading-[2rem] first-letter-float">
+                            <span className="first-letter-span">{firstChar}</span>
+                            {inlineNodes(rest)}
+                          </p>
+                        </Reveal>
+                      );
+                    }
+
+                    return (
+                      <Reveal key={`p-${index}`} delay={60}>
+                        <p className="mt-4 text-sm leading-8 text-slate-800 sm:text-[15px] sm:leading-[2rem]">
+                          {inlineNodes(block.text)}
+                        </p>
+                      </Reveal>
+                    );
+                  })}
+                </div>
+
+                {/* 【変更】中盤CTA (仕様書4.4.1) */}
+                <CtaBlock
+                  monetizeKey="loan_estimate" // 例：記事途中は見積もり系
+                  pageType="guide"
+                  contentId={guide.slug}
+                  position="middle"
+                />
+              </article>
+            </GlassCard>
+            
+            {/* 【変更】末尾CTA (仕様書4.4.1 - 外部への出口) */}
+            <div className="mt-8">
+              <CtaBlock
+                monetizeKey={monetizeKey}
+                pageType="guide"
+                contentId={guide.slug}
+                position="bottom"
+              />
+            </div>
+
+            {internalRelatedGuides.length > 0 && (
+              <section className="mt-10 lg:mt-12">
+                <div className="mb-3 flex items-baseline justify-between gap-2">
+                  <h2 className="text-[10px] font-semibold tracking-[0.22em] text-slate-600">
+                    このガイドと一緒に読まれているGUIDE
+                  </h2>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {internalRelatedGuides.map((g) => (
+                    <Link key={g.slug} href={`/guide/${encodeURIComponent(g.slug)}`}>
+                      <GlassCard className="group h-full border border-slate-200/80 bg-white/92 p-4 text-[11px] shadow-soft-sm transition hover:-translate-y-[1px] hover:border-tiffany-200 hover:bg-white">
+                        <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                          <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                            {mapCategoryLabel((g as any).category ?? null)}
+                          </span>
+                          {(g as any).readMinutes && (
+                            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                              約{(g as any).readMinutes}分
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
+                          {g.title}
+                        </h3>
+                        {g.summary && (
+                          <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
+                            {g.summary}
+                          </p>
+                        )}
+                      </GlassCard>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            <div className="mt-10 border-t border-slate-100 pt-6 lg:hidden">
+              <Link
+                href="/guide"
+                className="inline-flex items-center gap-2 text-xs font-medium tracking-[0.18em] text-slate-500 hover:text-tiffany-600"
+              >
+                <span className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200">
+                  ←
+                </span>
+                GUIDE一覧へ戻る
+              </Link>
+            </div>
+          </section>
+
+          <aside className="hidden w-[32%] lg:block">
+            <div className="sticky top-24 space-y-4">
+              <div className="rounded-2xl border border-white/70 bg-white/80 p-5 text-[11px] text-slate-600 shadow-soft backdrop-blur">
+                <p className="mb-3 text-[10px] font-semibold tracking-[0.22em] text-slate-400">
+                  CONTENTS
+                </p>
+
+                {headings.length === 0 ? (
+                  <p className="text-[11px] text-slate-400">このガイドには見出しが設定されていません。</p>
+                ) : (
+                  <ul className="space-y-2">
+                    {headings.map((h) => (
+                      <li key={h.id}>
+                        <a
+                          href={`#${h.id}`}
+                          className={`block leading-relaxed transition-colors hover:text-tiffany-600 ${
+                            h.level === 3 ? "pl-3 text-slate-500" : ""
+                          }`}
+                        >
+                          {h.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <p className="mt-4 border-t border-slate-100 pt-3 text-[10px] leading-relaxed text-slate-400">
+                  一度読み切ったあとに気になる見出しだけをもう一度辿り直せるようにする前提の簡易的な目次です。
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200/70 bg-white/80 p-4 text-[11px] text-slate-600 shadow-sm">
+                <p className="mb-2 text-[10px] font-semibold tracking-[0.22em] text-slate-400">
+                  BACK TO GUIDE
+                </p>
+                <Link
+                  href="/guide"
+                  className="inline-flex items-center gap-2 text-[11px] font-medium tracking-[0.18em] text-slate-500 hover:text-tiffany-600"
+                >
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 text-xs">
+                    ←
+                  </span>
+                  GUIDE一覧に戻る
+                </Link>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        {relatedCars.length > 0 && (
+          <section className="mt-16 lg:mt-20">
+            <div className="mb-4 flex items-baseline justify-between gap-2">
+              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
+                このガイドと関連する車種
+              </h2>
+              <Link
+                href="/cars"
+                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+              >
+                CARS一覧へ
+              </Link>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {relatedCars.map((car) => (
+                <Link key={car.slug} href={`/cars/${encodeURIComponent(car.slug)}`}>
+                  <GlassCard className="group h-full border border-slate-200/80 bg-white/90 p-4 text-[11px] shadow-soft-sm transition hover:-translate-y-[1px] hover:border-tiffany-200 hover:bg-white">
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <p className="text-[10px] font-semibold tracking-[0.16em] text-slate-500">
+                          {car.maker}
+                        </p>
+                        <p className="mt-0.5 line-clamp-2 text-[13px] font-medium leading-snug text-slate-900 group-hover:underline">
+                          {car.name}
+                        </p>
+                      </div>
+                      {car.releaseYear && (
+                        <span className="text-[10px] text-slate-400">{car.releaseYear}年頃</span>
+                      )}
+                    </div>
+                    {car.summary && (
+                      <p className="mt-2 line-clamp-3 text-[11px] leading-snug text-slate-600">
+                        {car.summary}
+                      </p>
+                    )}
+                  </GlassCard>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {relatedCars.length === 0 && relatedCarSlugs.length > 0 && (
+          <section className="mt-16 lg:mt-20">
+            <div className="mb-4 flex items-baseline justify-between gap-2">
+              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
+                このガイドと関連する車種(仮)
+              </h2>
+              <Link
+                href="/cars"
+                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+              >
+                CARS一覧へ
+              </Link>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {relatedCarSlugs.map((slug) => (
+                <Link
+                  key={slug}
+                  href={`/cars/${encodeURIComponent(slug)}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-[11px] text-slate-600 shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-200 hover:text-tiffany-700"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-tiffany-400" />
+                  <span className="uppercase tracking-[0.12em]">{slug}</span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {relatedColumns.length > 0 && (
+          <section className="mt-20 lg:mt-24">
+            <div className="mb-4 flex items-baseline justify-between gap-2">
+              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
+                このガイドと関連するコラム
+              </h2>
+              <Link
+                href="/column"
+                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+              >
+                コラム一覧へ
+              </Link>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              {relatedColumns.map((col) => (
+                <Link key={col.id} href={`/column/${encodeURIComponent(col.slug)}`}>
+                  <GlassCard className="h-full border border-slate-200/80 bg-gradient-to-br from-vapor/80 via-white/95 to-white/90 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
+                    <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                      <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                        {mapColumnCategoryLabel(col.category)}
+                      </span>
+                      {col.readMinutes && (
+                        <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                          約{col.readMinutes}分
+                        </span>
+                      )}
+                      {col.publishedAt && (
+                        <span className="ml-auto text-[10px] text-slate-400">
+                          {formatDate(col.publishedAt)}
+                        </span>
+                      )}
+                    </div>
+
+                    <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
+                      {col.title}
+                    </h3>
+
+                    <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-sub">
+                      {col.summary}
+                    </p>
+
+                    {col.tags && col.tags.length > 0 && (
+                      <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-slate-500">
+                        {col.tags.slice(0, 3).map((tag) => (
+                          <span key={tag} className="rounded-full bg-slate-50 px-2 py-1">
+                            {tag}
+                          </span>
+                        ))}
+                        {col.tags.length > 3 && (
+                          <span className="rounded-full bg-slate-50 px-2 py-1">
+                            +{col.tags.length - 3}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </GlassCard>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {relatedHeritage.length > 0 && (
+          <section className="mt-20 lg:mt-24">
+            <div className="mb-4 flex items-baseline justify-between gap-2">
+              <h2 className="text-xs font-semibold tracking-[0.22em] text-slate-600">
+                このガイドと関連するHERITAGE
+              </h2>
+              <Link
+                href="/heritage"
+                className="text-[11px] text-tiffany-700 underline-offset-4 hover:underline"
+              >
+                HERITAGE一覧へ
+              </Link>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              {relatedHeritage.map((h) => {
+                const preview = getHeritagePreviewText(h, { maxChars: 160 });
+
+                return (
+                  <Link key={h.id} href={`/heritage/${encodeURIComponent(h.slug)}`}>
+                    <GlassCard className="h-full border border-slate-200/80 bg-white/92 p-4 text-xs shadow-soft transition hover:-translate-y-[1px] hover:border-tiffany-100 hover:shadow-soft-card">
+                      <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+                        <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                          {mapHeritageKindLabel(h.kind)}
+                        </span>
+                        {(h as any).brandName && (
+                          <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1">
+                            {(h as any).brandName}
+                          </span>
+                        )}
+                        {h.publishedAt && (
+                          <span className="ml-auto text-[10px] text-slate-400">
+                            {formatDate(h.publishedAt)}
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
+                        {h.title}
+                      </h3>
+
+                      {preview && (
+                        <p className="mt-1 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
+                          {preview}
+                        </p>
+                      )}
+                    </GlassCard>
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        )}
+      </div>
+    </main>
+  );
+}
