@@ -11,7 +11,6 @@ import {
 } from "@/lib/repository/columns-repository";
 
 // 既存互換用のエクスポート
-import { getRelatedSlugs } from "@/lib/linking/related";
 export type ColumnItem = ColumnItemBase;
 export type ColumnCategory = ColumnCategoryBase;
 
@@ -125,26 +124,26 @@ function buildColumnIndex(): ColumnIndex {
     }
 
     // 車種紐付けインデックス
-    const carSlugs = getRelatedSlugs(c as any, "cars");
-    for (const rawSlug of carSlugs) {
+    if (Array.isArray(c.relatedCarSlugs)) {
+      for (const rawSlug of c.relatedCarSlugs) {
         const slug = typeof rawSlug === "string" ? rawSlug.trim() : "";
         if (!slug) continue;
         const list = byCarSlug.get(slug);
         if (list) list.push(c);
         else byCarSlug.set(slug, [c]);
       }
-
+    }
 
     // ガイド紐付けインデックス
-    const guideSlugs = getRelatedSlugs(c as any, "guides");
-    for (const rawSlug of guideSlugs) {
+    if (Array.isArray(c.relatedGuideSlugs)) {
+      for (const rawSlug of c.relatedGuideSlugs) {
         const slug = typeof rawSlug === "string" ? rawSlug.trim() : "";
         if (!slug) continue;
         const list = byGuideSlug.get(slug);
         if (list) list.push(c);
         else byGuideSlug.set(slug, [c]);
       }
-
+    }
 
     // HERITAGE紐付けインデックス
     if (Array.isArray(c.relatedHeritageSlugs)) {
@@ -155,7 +154,7 @@ function buildColumnIndex(): ColumnIndex {
         if (list) list.push(c);
         else byHeritageSlug.set(slug, [c]);
       }
-
+    }
 
     // タグインデックス(小文字で揃える)
     if (Array.isArray(c.tags)) {
@@ -167,7 +166,7 @@ function buildColumnIndex(): ColumnIndex {
         if (list) list.push(c);
         else byTag.set(tag, [c]);
       }
-
+    }
   }
 
   return {

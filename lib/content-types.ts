@@ -10,24 +10,8 @@ export type ContentStatus = "draft" | "published" | "archived";
 // ----------------------------------------
 export type ContentType = "GUIDE" | "COLUMN" | "NEWS" | "HERITAGE" | "CAR" | string;
 
-
-// ----------------------------------------
-// Related Slugs (v2.0 non-breaking)
-// - legacy: relatedCarSlugs / relatedGuideSlugs / relatedColumnSlugs / relatedHeritageSlugs
-// - new: related: { cars, guides, columns, heritage }
-//   * new field is OPTIONAL and can be introduced gradually
-//   * when both exist, new field should be preferred by the resolver
-// ----------------------------------------
-export type RelatedSlugs = {
-  cars?: string[];
-  guides?: string[];
-  columns?: string[];
-  heritage?: string[];
-};
-
 // ----------------------------------------
 // 共通メタ(BaseContentMeta)
-
 // ----------------------------------------
 export type BaseContentMeta = {
   id: string;
@@ -59,13 +43,6 @@ export type BaseContentMeta = {
   relatedGuideSlugs?: string[]; // 関連ガイド
   relatedColumnSlugs?: string[]; // 関連コラム
   relatedHeritageSlugs?: string[]; // 関連HERITAGE
-
-  /**
-   * 関連コンテンツ（新フォーマット / 非破壊で段階移行）
-   * - related.cars / related.guides / related.columns / related.heritage
-   * - 両方ある場合は related.* を優先
-   */
-  related?: RelatedSlugs;
 
   /**
    * ユーザー意図タグ (仕様書v1.2)

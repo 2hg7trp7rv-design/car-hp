@@ -10,6 +10,14 @@ const SITE_URL =
     ? `https://${process.env.VERCEL_URL}`
     : "https://carboutiquejournal.com");
 
+// 画像最適化の可否
+// - Vercel: Next/Image 最適化APIが使える
+// - Cloudflare Pages/Workers: 最適化APIが使えないため unoptimized を有効化
+const IS_VERCEL = Boolean(process.env.VERCEL || process.env.VERCEL_URL);
+const IS_CLOUDFLARE = Boolean(
+  process.env.CF_PAGES || process.env.CLOUDFLARE || process.env.CF_WORKERS
+);
+
 const nextConfig = {
   // React Strict Mode（開発時のみ有効 / Cloudflare 上ではそのままでも問題なし）
   reactStrictMode: true,
@@ -24,8 +32,9 @@ const nextConfig = {
   },
 
   images: {
-    // Cloudflare Pages / Workers では Next の画像最適化APIが使えないため常に無効化
-    unoptimized: true,
+    // Cloudflare Pages / Workers では Next の画像最適化APIが使えないため unoptimized を有効化
+    // ただし Vercel では最適化を有効にする
+    unoptimized: IS_CLOUDFLARE && !IS_VERCEL,
 
     // remotePatterns は「絶対URLの画像を使えるようにするため」の最低限の設定
     // - いまは https のみ許可しつつ hostname はワイルドカード

@@ -14,12 +14,12 @@
  */
 
 import columnsRaw from "@/data/columns.json";
+import columnsRaw2 from "@/data/columns2.json";
 import type {
   ColumnItem,
   ColumnCategory,
   ContentStatus,
 } from "@/lib/content-types";
-import { safePublicImage } from "@/lib/assets/safePublicImage";
 
 /* ========================================
  * Raw 型（JSON 揺れ吸収専用）
@@ -175,7 +175,7 @@ function normalizeColumn(raw: RawColumnRecord, index: number): ColumnItem {
     (asString(raw.category) as ColumnCategory) ?? "TECHNICAL";
 
   const readMinutes = asNumberOrNull(raw.readMinutes);
-  const heroImage = safePublicImage(asString(raw.heroImage));
+  const heroImage = asString(raw.heroImage);
   const body = asString(raw.body) ?? "";
 
   const tags = asStringArray(raw.tags);
@@ -257,7 +257,7 @@ function normalizeColumn(raw: RawColumnRecord, index: number): ColumnItem {
  * ===================================== */
 
 /**
- * columns.json を「生配列」として扱う
+ * columns.json + columns2.json を「生配列」としてまとめる
  * - ファイルごとの優先順位: 後ろに書かれているファイルほど“後勝ち”になる
  */
 const RAW_ALL = [...toArray(columnsRaw), ...toArray(columnsRaw2)];

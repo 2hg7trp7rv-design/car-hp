@@ -10,7 +10,6 @@
  */
 
 import newsRaw from "@/data/news-latest.json";
-import { safePublicImage } from "@/lib/assets/safePublicImage";
 
 /**
  * JSON の生データ型
@@ -216,11 +215,10 @@ function normalizeNews(raw: RawNewsRecord, index: number): NewsRecord {
       ? raw.maker.trim()
       : null;
 
-  const imageUrl = safePublicImage(
+  const imageUrl =
     typeof raw.imageUrl === "string" && raw.imageUrl.trim().length > 0
       ? raw.imageUrl.trim()
-      : null,
-  );
+      : null;
 
   const summary =
     typeof raw.summary === "string" && raw.summary.trim().length > 0

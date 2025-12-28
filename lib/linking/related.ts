@@ -20,44 +20,6 @@ export function uniqStrings(list: Array<string | null | undefined>): string[] {
   return out;
 }
 
-/**
- * Non-breaking related schema reader.
- * - Prefer new: item.related.{cars,guides,columns,heritage}
- * - Fallback to legacy: relatedCarSlugs / relatedGuideSlugs / relatedColumnSlugs / relatedHeritageSlugs
- */
-export function getRelatedSlugs(
-  item: any,
-  kind: "cars" | "guides" | "columns" | "heritage",
-): string[] {
-  const rel = item?.related;
-  if (rel && typeof rel === "object") {
-    const v = (rel as any)[kind];
-    if (Array.isArray(v)) return uniqStrings(v as Array<string | null | undefined>);
-  }
-
-  switch (kind) {
-    case "cars":
-      return Array.isArray(item?.relatedCarSlugs) ? uniqStrings(item.relatedCarSlugs) : [];
-    case "guides":
-      return Array.isArray(item?.relatedGuideSlugs) ? uniqStrings(item.relatedGuideSlugs) : [];
-    case "columns":
-      return Array.isArray(item?.relatedColumnSlugs) ? uniqStrings(item.relatedColumnSlugs) : [];
-    case "heritage":
-      return Array.isArray(item?.relatedHeritageSlugs) ? uniqStrings(item.relatedHeritageSlugs) : [];
-    default:
-      return [];
-  }
-}
-
-export function hasAnyRelated(item: any): boolean {
-  return (
-    getRelatedSlugs(item, "cars").length > 0 ||
-    getRelatedSlugs(item, "guides").length > 0 ||
-    getRelatedSlugs(item, "columns").length > 0 ||
-    getRelatedSlugs(item, "heritage").length > 0
-  );
-}
-
 export function clampList<T>(list: T[], limit: number): T[] {
   if (!Array.isArray(list)) return [];
   if (limit <= 0) return [];
@@ -96,8 +58,12 @@ export function extractRelatedFromHeritageSections(heritage: any): {
 export function mergeHeritageRelated(heritage: any, opts?: { limit?: number }) {
   const limit = typeof opts?.limit === "number" ? opts!.limit! : 12;
 
-  const manualCars = getRelatedSlugs(heritage, "cars");
-  const manualGuides = getRelatedSlugs(heritage, "guides");
+  const manualCars = Array.isArray(heritage?.relatedCarSlugs)
+    ? heritage.relatedCarSlugs
+    : [];
+  const manualGuides = Array.isArray(heritage?.relatedGuideSlugs)
+    ? heritage.relatedGuideSlugs
+    : [];
 
   const extracted = extractRelatedFromHeritageSections(heritage);
 

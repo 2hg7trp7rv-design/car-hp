@@ -9,8 +9,8 @@
  */
 
 import carsJson from "@/data/cars.json";
+import carsJson2 from "@/data/cars2.json";
 import type { CarItem } from "@/lib/content-types";
-import { safePublicImage } from "@/lib/assets/safePublicImage";
 
 // ----------------------------------------
 // JSON生データの型定義 (入力用)
@@ -150,8 +150,8 @@ function normalizeCar(raw: RawCarRecord, index: number): CarItem {
     summaryLong: coerceStringNullable(raw.summaryLong) ?? undefined,
     costImpression: coerceStringNullable(raw.costImpression) ?? undefined,
 
-    heroImage: safePublicImage(coerceStringNullable(raw.heroImage)),
-    mainImage: safePublicImage(coerceStringNullable(raw.mainImage)),
+    heroImage: coerceStringNullable(raw.heroImage),
+    mainImage: coerceStringNullable(raw.mainImage),
 
     relatedNewsIds: coerceStringArray(raw.relatedNewsIds),
 
@@ -185,14 +185,16 @@ function normalizeCar(raw: RawCarRecord, index: number): CarItem {
 }
 
 // ----------------------------------------
-// データ読み込み（cars.json を唯一の正として扱う）
+// データ統合（cars.json + cars2.json）
 // ----------------------------------------
 
 /**
- * cars.json を「生配列」として扱う
+ * cars.json + cars2.json を「生配列」としてまとめる
  *
+ * - ファイルごとの優先順位: 後ろに書かれているファイルほど“後勝ち”になる
+ * - 上書き更新の運用（slug重複）のために、後続ファイルを末尾に置く
  */
-const RAW_ALL: RawCarRecord[] = toArray(carsJson);
+const RAW_ALL: RawCarRecord[] = [...toArray(carsJson), ...toArray(carsJson2)];
 
 const ALL_CARS_INTERNAL: CarItem[] = (() => {
   const map = new Map<string, CarItem>();

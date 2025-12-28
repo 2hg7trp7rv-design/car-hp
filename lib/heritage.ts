@@ -30,7 +30,6 @@ import type {
 } from "@/lib/content-types";
 
 // App 側で import されるため再 export
-import { getRelatedSlugs } from "@/lib/linking/related";
 export type {
   HeritageItem,
   HeritageSection,
@@ -494,7 +493,7 @@ export async function getNextReadHeritageV12(
   };
 
   // 1) 明示（入力順）
-  const explicit = getRelatedSlugs(base as any, "heritage");
+  const explicit = base.relatedHeritageSlugs ?? [];
   if (explicit.length > 0) {
     const map = new Map(pool.map((h) => [h.slug, h] as const));
     for (const slug of explicit) {

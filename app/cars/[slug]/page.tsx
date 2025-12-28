@@ -12,30 +12,16 @@ import { getAllGuides, type GuideItem } from "@/lib/guides";
 import { getAllColumns, type ColumnItem } from "@/lib/columns";
 import {
   getAllHeritage,
+  getHeritagePreviewText,
   type HeritageItem,
 } from "@/lib/heritage";
 
 import { GlassCard } from "@/components/GlassCard";
 import { Reveal } from "@/components/animation/Reveal";
-import { DetailPageScaffold } from "@/components/page/DetailPageScaffold";
+import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
 
-import { RelatedSection } from "@/components/related/RelatedSection";
-import { RelatedGuidesGrid } from "@/components/related/RelatedGuidesGrid";
-import { RelatedColumnsGrid } from "@/components/related/RelatedColumnsGrid";
-import { RelatedHeritageGrid } from "@/components/related/RelatedHeritageGrid";
-
+import { JsonLd } from "@/components/seo/JsonLd";
 import { getMonetizeConfig, type MonetizeKey } from "@/lib/monetize/config";
-
-import { splitIntoParagraphs } from "@/lib/viewmodel/text";
-import {
-  buildCarDetailModel,
-  buildCarDetailMeta,
-  formatDateJa,
-  type ExtendedCarItem,
-  type GuideWithMeta,
-  type ColumnWithMeta,
-  type HeritageWithMeta,
-} from "@/lib/viewmodel/car-detail";
 
 export const runtime = "edge";
 
@@ -45,6 +31,114 @@ type PageProps = {
   };
 };
 
+// CarItem の拡張版
+type ExtendedCarItem = CarItem & {
+  mainImage?: string;
+  heroImage?: string;
+  strengths?: string[];
+  weaknesses?: string[];
+  troubleTrends?: string[];
+  costImpression?: string;
+
+  priceNew?: string;
+  priceUsed?: string;
+
+  releaseYear?: number;
+  engine?: string;
+  horsepower?: number;
+  drive?: string;
+  transmission?: string;
+  zeroTo100?: string | number;
+  fuel?: string;
+  fuelEconomy?: string;
+
+  segment?: string;
+  bodyType?: string;
+
+  relatedNewsIds?: string[];
+
+  size?: Record<string, string | number>;
+};
+
+type GuideWithMeta = GuideItem & {
+  relatedCarSlugs?: (string | null)[];
+};
+
+type ColumnWithMeta = ColumnItem & {
+  relatedCarSlugs?: (string | null)[];
+};
+
+type HeritageWithMeta = HeritageItem & {
+  keyCarSlugs?: (string | null)[];
+  heroTitle?: string | null;
+};
+
+// ----------------------------------------
+// ユーティリティ
+// ----------------------------------------
+
+function formatDifficultyLabel(difficulty?: string | null): string | null {
+  if (!difficulty) return null;
+  const normalized = difficulty.toLowerCase();
+  if (normalized === "beginner") return "BEGINNER";
+  if (normalized === "intermediate") return "INTERMEDIATE";
+  if (normalized === "advanced") return "ADVANCED";
+  return difficulty.toUpperCase();
+}
+
+function formatMakerAndName(car: ExtendedCarItem): string {
+  const maker = (car.maker ?? "").trim();
+  const name = (car.name ?? car.slug).trim();
+  if (!maker) return name;
+  if (name.toLowerCase().startsWith(maker.toLowerCase())) return name;
+  return `${maker} ${name}`;
+}
+
+function formatZeroTo100(value?: string | number | null): string | null {
+  if (value === null || value === undefined) return null;
+  const raw = typeof value === "number" ? `${value}` : value;
+  const normalized = raw.trim();
+  if (!normalized) return null;
+  if (normalized.includes("秒")) return normalized;
+  return `${normalized}秒`;
+}
+
+function formatDate(value?: string | null): string | null {
+  if (!value) return null;
+  try {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return null;
+    return new Intl.DateTimeFormat("ja-JP", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(date);
+  } catch {
+    return null;
+  }
+}
+
+function splitIntoParagraphs(text: string): string[] {
+  const normalized = text.trim();
+  if (!normalized) return [];
+
+  const rawBlocks = normalized
+    .split(/\n{2,}/)
+    .map((block) => block.trim())
+    .filter(Boolean);
+
+  if (rawBlocks.length > 1) return rawBlocks;
+
+  const sentences = normalized.split(/。/).map((s) => s.trim()).filter(Boolean);
+  if (sentences.length <= 2) return [normalized];
+
+  const paras: string[] = [];
+  for (let i = 0; i < sentences.length; i += 2) {
+    const chunk = sentences.slice(i, i + 2).join("。");
+    paras.push(chunk + "。");
+  }
+  return paras;
+}
 
 type MultilineTextProps = {
   text: string;
@@ -83,6 +177,36 @@ function MultilineText({ text, variant }: MultilineTextProps) {
   );
 }
 
+function pickGuidesForCar(slug: string, allGuides: GuideWithMeta[]): GuideItem[] {
+  return allGuides
+    .filter((guide) =>
+      (guide.relatedCarSlugs ?? []).some((candidate) => candidate === slug),
+    )
+    .slice(0, 6);
+}
+
+function pickColumnsForCar(
+  slug: string,
+  allColumns: ColumnWithMeta[],
+): ColumnItem[] {
+  return allColumns
+    .filter((column) =>
+      (column.relatedCarSlugs ?? []).some((candidate) => candidate === slug),
+    )
+    .slice(0, 6);
+}
+
+function pickHeritageForCar(
+  slug: string,
+  allHeritage: HeritageWithMeta[],
+): HeritageWithMeta[] {
+  return allHeritage
+    .filter((item) =>
+      (item.keyCarSlugs ?? []).some((candidate) => candidate === slug),
+    )
+    .slice(0, 6);
+}
+
 // ----------------------------------------
 // Static Params / Metadata
 // ----------------------------------------
@@ -98,13 +222,17 @@ export async function generateMetadata({
   const car = (await getCarBySlug(params.slug)) as ExtendedCarItem | null;
   if (!car) return {};
 
-  const meta = buildCarDetailMeta(car);
+  const title = `${formatMakerAndName(car)} | CARS | CAR BOUTIQUE`;
+  const description =
+    car.summaryLong ??
+    car.summary ??
+    `${formatMakerAndName(car)}の特徴・維持費・中古相場の要点を、世界観を壊さずにまとめました。`;
 
-  const title = meta.title;
-  const description = meta.description;
-
-  const url = `${getSiteUrl()}${meta.canonicalPath}`;
-  const image = meta.ogImage ?? `${getSiteUrl()}/images/hero-sedan.jpg`;
+  const url = `${getSiteUrl()}/cars/${encodeURIComponent(car.slug)}`;
+  const image =
+    car.heroImage ??
+    car.mainImage ??
+    `${getSiteUrl()}/images/hero-sedan.jpg`;
 
   return {
     title,
@@ -149,46 +277,231 @@ export default async function CarDetailPage({ params }: PageProps) {
   const columnsWithMeta = allColumnsRaw as ColumnWithMeta[];
   const heritageWithMeta = allHeritageRaw as HeritageWithMeta[];
 
-  const model = buildCarDetailModel({
-    car,
-    allGuides: guidesWithMeta,
-    allColumns: columnsWithMeta,
-    allHeritage: heritageWithMeta,
-  });
+  const relatedGuides = pickGuidesForCar(car.slug, guidesWithMeta);
+  const relatedColumns = pickColumnsForCar(car.slug, columnsWithMeta);
+  const relatedHeritage = pickHeritageForCar(car.slug, heritageWithMeta);
 
-  const {
-    title,
-    zeroTo100,
-    difficultyLabel,
-    heroImage,
-    heroSrc,
-    overviewText,
-    characterText,
-    concernsItems,
-    helpsItems,
-    hasStrengths,
-    hasWeaknesses,
-    hasTroubleTrends,
-    hasMaintenanceNotes,
-    relatedGuides,
-    relatedColumns,
-    relatedHeritage,
-    ctaPrimary,
-    ctaSecondary,
-    externalQuickKeys,
-    inventoryCardBg,
-    hasSizeSpec,
-    structuredData,
-    breadcrumbData,
-  } = model;
+  const title = formatMakerAndName(car);
+  const zeroTo100 = formatZeroTo100(car.zeroTo100);
+
+  const overviewText = car.summaryLong ?? car.summary ?? "";
+  const characterText = car.costImpression ?? car.summary ?? "";
+  const difficultyLabel = formatDifficultyLabel(car.difficulty);
+
+  const heroImage = car.heroImage ?? car.mainImage ?? null;
+
+  const heroSrc = heroImage ?? "/images/cars/placeholder.jpg";
+
+  const normalizeBullets = (items: unknown, fallback: string[]): string[] => {
+    const cleaned = Array.isArray(items)
+      ? items
+          .filter((value): value is string => typeof value === "string")
+          .map((value) => value.trim())
+          .filter(Boolean)
+      : [];
+
+    if (cleaned.length === 0) return fallback;
+    if (cleaned.length >= 3) return cleaned;
+    return [...cleaned, ...fallback].slice(0, 3);
+  };
+
+  const concernsItems = normalizeBullets(car.troubleTrends ?? car.weaknesses, [
+    "現在、オーナーの声（故障傾向・持病）を整理中です。",
+    "購入前は整備記録・保証条件・修復歴の確認を推奨します。",
+    "年式/走行距離で個体差が出やすい点に注意してください。",
+  ]);
+
+  const helpsItems = normalizeBullets(car.strengths, [
+    "維持費を抑えるコツ（消耗品/工賃/保険）を整理中です。",
+    "購入時は『状態の良い個体』を優先し、後追い整備コストを減らすのが基本。",
+    "相見積もり（保険・整備・購入）で総額を固めるとブレが減ります。",
+  ]);
+
+  const hasStrengths = Array.isArray(car.strengths) && car.strengths.length > 0;
+  const hasWeaknesses =
+    Array.isArray(car.weaknesses) && car.weaknesses.length > 0;
+  const hasTroubleTrends =
+    Array.isArray(car.troubleTrends) && car.troubleTrends.length > 0;
+  const hasMaintenanceNotes =
+    Array.isArray(car.maintenanceNotes) && car.maintenanceNotes.length > 0;
+
+  // -------------------------
+  // 外部導線（主CTA + 副CTA + クイック）
+  // -------------------------
+
+  const pickSecondaryMonetizeKey = (car: ExtendedCarItem): MonetizeKey => {
+    const difficulty = (car.difficulty ?? "").toLowerCase();
+    const maker = (car.maker ?? "").toLowerCase();
+    const bodyType = (car.bodyType ?? "").toLowerCase();
+
+    const troubleCount =
+      (car.troubleTrends ?? []).length + (car.maintenanceNotes ?? []).length;
+    const hasCostText = Boolean((car.costImpression ?? "").trim());
+    const hasPrice = Boolean(
+      (car.priceUsed ?? "").trim() || (car.priceNew ?? "").trim(),
+    );
+
+    if (troubleCount >= 3 || hasCostText || difficulty === "advanced") {
+      return "ins_compare";
+    }
+
+    const premiumMaker =
+      maker.includes("bmw") ||
+      maker.includes("mercedes") ||
+      maker.includes("benz") ||
+      maker.includes("porsche") ||
+      maker.includes("audi") ||
+      maker.includes("lexus") ||
+      maker.includes("ferrari") ||
+      maker.includes("lamborghini");
+
+    if (
+      hasPrice ||
+      premiumMaker ||
+      bodyType.includes("suv") ||
+      difficulty === "intermediate"
+    ) {
+      return "loan_estimate";
+    }
+
+    return "car_search_price";
+  };
+
+  const externalPrimaryKey: MonetizeKey = "car_search_conditions";
+  const externalSecondaryKey: MonetizeKey = pickSecondaryMonetizeKey(car);
+
+  const ctaPrimary = getMonetizeConfig(externalPrimaryKey, { carName: car.name });
+  const ctaSecondary = getMonetizeConfig(externalSecondaryKey, { carName: car.name });
+
+  const externalQuickKeys: MonetizeKey[] = ([
+    "ins_compare",
+    "loan_precheck",
+    "sell_price_check",
+  ] as MonetizeKey[]).filter(
+    (k) => k !== externalPrimaryKey && k !== externalSecondaryKey,
+  );
+
+  // -------------------------
+  // 外部カード背景（簡易トーン）
+  // -------------------------
+
+  const pickBrandTone = (makerRaw?: string) => {
+    const maker = (makerRaw ?? "").toLowerCase();
+
+    if (
+      maker.includes("bmw") ||
+      maker.includes("mercedes") ||
+      maker.includes("benz") ||
+      maker.includes("audi") ||
+      maker.includes("porsche") ||
+      maker.includes("volvo")
+    ) {
+      return "from-slate-950 via-slate-800 to-slate-900";
+    }
+
+    if (
+      maker.includes("ferrari") ||
+      maker.includes("lamborghini") ||
+      maker.includes("alfa") ||
+      maker.includes("maserati")
+    ) {
+      return "from-zinc-950 via-rose-950/80 to-zinc-900";
+    }
+
+    if (
+      maker.includes("nissan") ||
+      maker.includes("toyota") ||
+      maker.includes("lexus") ||
+      maker.includes("honda") ||
+      maker.includes("subaru") ||
+      maker.includes("mazda")
+    ) {
+      return "from-slate-950 via-indigo-950/70 to-slate-900";
+    }
+
+    return "from-slate-950 via-slate-800 to-slate-900";
+  };
+
+  const pickBodyTone = (bodyTypeRaw?: string) => {
+    const body = (bodyTypeRaw ?? "").toLowerCase();
+
+    if (body.includes("suv"))
+      return "from-slate-950 via-emerald-950/35 to-slate-900";
+    if (body.includes("coupe"))
+      return "from-slate-950 via-violet-950/35 to-slate-900";
+    if (body.includes("wagon"))
+      return "from-slate-950 via-cyan-950/35 to-slate-900";
+    if (body.includes("minivan"))
+      return "from-slate-950 via-amber-950/30 to-slate-900";
+    return null;
+  };
+
+  type InventoryBg = { src?: string; gradientClass?: string };
+
+  const pickInventoryCardBg = (): InventoryBg => {
+    const body = (car.bodyType ?? "").toLowerCase();
+    if (body.includes("sedan")) {
+      return { src: "/images/hero-sedan.jpg" };
+    }
+
+    const brandTone = pickBrandTone(car.maker);
+    const bodyTone = pickBodyTone(car.bodyType);
+
+    return {
+      gradientClass: `bg-gradient-to-br ${bodyTone ?? brandTone}`,
+    };
+  };
+
+  const hasSizeSpec = Boolean(car.size);
+
+  // -------------------------
+  // JSON-LD
+  // -------------------------
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: title,
+    image: heroImage ? [`${getSiteUrl()}${heroImage}`] : undefined,
+    description:
+      car.summaryLong ??
+      car.summary ??
+      `${title}の特徴・維持費・中古相場の要点をまとめました。`,
+    brand: car.maker ? { "@type": "Brand", name: car.maker } : undefined,
+    url: `${getSiteUrl()}/cars/${encodeURIComponent(car.slug)}`,
+  };
+
+  const breadcrumbData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HOME", item: getSiteUrl() },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "CARS",
+        item: `${getSiteUrl()}/cars`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: title,
+        item: `${getSiteUrl()}/cars/${encodeURIComponent(car.slug)}`,
+      },
+    ],
+  };
 
   // ----------------------------------------
   // UI
   // ----------------------------------------
 
   return (
-    <DetailPageScaffold jsonLd={model.jsonLd}>
-      <main className="min-h-screen bg-site text-text-main">
+    <main className="min-h-screen bg-site text-text-main">
+      <JsonLd id={`jsonld-car-${car.slug}-product`} data={structuredData} />
+      <JsonLd id={`jsonld-car-${car.slug}-breadcrumb`} data={breadcrumbData} />
+
+      <ScrollDepthTracker />
+
       {/* ① ヒーロー：フルブリード画像 + 画像上オーバーレイ（車種で必ず統一） */}
       <section className="relative w-full overflow-hidden bg-black">
         <div className="relative h-[520px] w-full sm:h-[560px]">
@@ -523,7 +836,7 @@ export default async function CarDetailPage({ params }: PageProps) {
           </div>
 
           {(() => {
-            const bg = inventoryCardBg;
+            const bg = pickInventoryCardBg();
 
             return (
               <>
@@ -643,51 +956,178 @@ export default async function CarDetailPage({ params }: PageProps) {
 
         {/* ⑤ 関連：GUIDE / COLUMN / HERITAGE */}
         {relatedGuides.length > 0 && (
-          <RelatedSection
-            eyebrow="OWNERSHIP REALITY"
-            title="Ownership shelf"
-            hrefAll="/guide"
-            hrefLabel="GUIDEへ →"
-          >
-            <RelatedGuidesGrid
-              guides={relatedGuides}
-              className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-            />
-          </RelatedSection>
+          <section className="mb-10">
+            <Reveal>
+              <div className="mb-4 flex items-baseline justify-between gap-2">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-tiffany-600">
+                    OWNERSHIP REALITY
+                  </p>
+                  <h2 className="serif-heading mt-2 text-xl font-semibold text-slate-900">
+                    Ownership shelf
+                  </h2>
+                </div>
+                <Link
+                  href="/guide"
+                  className="text-[12px] font-semibold text-slate-500 underline-offset-4 transition hover:text-tiffany-600 hover:underline"
+                >
+                  GUIDEへ →
+                </Link>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {relatedGuides.map((guide) => (
+                  <Link
+                    key={guide.id}
+                    href={`/guide/${encodeURIComponent(guide.slug)}`}
+                    className="group block"
+                  >
+                    <GlassCard className="p-6 sm:p-7">
+                      <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
+                        GUIDE
+                      </p>
+                      <h3 className="mt-3 line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
+                        {guide.title}
+                      </h3>
+                      {guide.summary && (
+                        <p className="mt-2 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
+                          {guide.summary}
+                        </p>
+                      )}
+                      <p className="mt-4 text-[12px] font-semibold text-tiffany-700">
+                        読む →
+                      </p>
+                    </GlassCard>
+                  </Link>
+                ))}
+              </div>
+            </Reveal>
+          </section>
         )}
 
         {relatedColumns.length > 0 && (
-          <RelatedSection
-            eyebrow="NEXT READ"
-            title="Next Read shelf"
-            hrefAll="/column"
-            hrefLabel="COLUMNへ →"
-          >
-            <RelatedColumnsGrid
-              columns={relatedColumns}
-              className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-            />
-          </RelatedSection>
+          <section className="mb-10">
+            <Reveal>
+              <div className="mb-4 flex items-baseline justify-between gap-2">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-tiffany-600">
+                    NEXT READ
+                  </p>
+                  <h2 className="serif-heading mt-2 text-xl font-semibold text-slate-900">
+                    Next Read shelf
+                  </h2>
+                </div>
+                <Link
+                  href="/column"
+                  className="text-[12px] font-semibold text-slate-500 underline-offset-4 transition hover:text-tiffany-600 hover:underline"
+                >
+                  COLUMNへ →
+                </Link>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {relatedColumns.map((column) => (
+                  <Link
+                    key={column.id}
+                    href={`/column/${encodeURIComponent(column.slug)}`}
+                    className="group block"
+                  >
+                    <GlassCard className="p-6 sm:p-7">
+                      <div className="flex items-center gap-2">
+                        <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
+                          COLUMN
+                        </p>
+                        {column.publishedAt && (
+                          <span className="ml-auto text-[10px] text-slate-400">
+                            {formatDate(column.publishedAt)}
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="mt-3 line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
+                        {column.title}
+                      </h3>
+
+                      {column.summary && (
+                        <p className="mt-2 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
+                          {column.summary}
+                        </p>
+                      )}
+
+                      <p className="mt-4 text-[12px] font-semibold text-tiffany-700">
+                        読む →
+                      </p>
+                    </GlassCard>
+                  </Link>
+                ))}
+              </div>
+            </Reveal>
+          </section>
         )}
 
         {relatedHeritage.length > 0 && (
-          <RelatedSection
-            eyebrow="HERITAGE"
-            title="Heritage shelf"
-            hrefAll="/heritage"
-            hrefLabel="HERITAGEへ →"
-          >
-            <RelatedHeritageGrid
-              heritage={relatedHeritage}
-              className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-              maxChars={180}
-            />
-          </RelatedSection>
+          <section className="mb-10">
+            <Reveal>
+              <div className="mb-4 flex items-baseline justify-between gap-2">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-tiffany-600">
+                    HERITAGE
+                  </p>
+                  <h2 className="serif-heading mt-2 text-xl font-semibold text-slate-900">
+                    Heritage shelf
+                  </h2>
+                </div>
+                <Link
+                  href="/heritage"
+                  className="text-[12px] font-semibold text-slate-500 underline-offset-4 transition hover:text-tiffany-600 hover:underline"
+                >
+                  HERITAGEへ →
+                </Link>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {relatedHeritage.map((h) => {
+                  const preview = getHeritagePreviewText(h);
+                  return (
+                    <Link
+                      key={h.id}
+                      href={`/heritage/${encodeURIComponent(h.slug)}`}
+                      className="group block"
+                    >
+                      <GlassCard className="p-6 sm:p-7">
+                        <div className="flex items-center gap-2">
+                          <p className="text-[10px] font-semibold tracking-[0.22em] text-slate-400">
+                            HERITAGE
+                          </p>
+                          {h.publishedAt && (
+                            <span className="ml-auto text-[10px] text-slate-400">
+                              {formatDate(h.publishedAt)}
+                            </span>
+                          )}
+                        </div>
+
+                        <h3 className="mt-3 line-clamp-2 text-[13px] font-semibold leading-relaxed text-slate-900">
+                          {h.heroTitle ?? h.title}
+                        </h3>
+
+                        {preview && (
+                          <p className="mt-1 line-clamp-3 text-[11px] leading-relaxed text-text-sub">
+                            {preview}
+                          </p>
+                        )}
+
+                        <p className="mt-4 text-[12px] font-semibold text-tiffany-700">
+                          読む →
+                        </p>
+                      </GlassCard>
+                    </Link>
+                  );
+                })}
+              </div>
+            </Reveal>
+          </section>
         )}
-
-
       </div>
-      </main>
-    </DetailPageScaffold>
+    </main>
   );
 }

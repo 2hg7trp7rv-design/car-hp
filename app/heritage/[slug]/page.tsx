@@ -12,16 +12,18 @@ import {
   getNextHeritage,
   getNextReadHeritageV12,
   getNextReadForHeritage,
+  extractHeritageCarSlugs,
+  extractHeritageGuideSlugs,
+  extractHeritageColumnSlugs,
   assertHeritageCarsExist,
   type HeritageItem,
 } from "@/lib/heritage";
 
 import {
   getAllCars,
+  getHeritageAnchorCars,
   type CarItem,
 } from "@/lib/cars";
-
-import { resolveCarsBySlugs, resolveGuidesBySlugs, resolveColumnsBySlugs } from "@/lib/related-content";
 
 import { getAllGuides, type GuideItem } from "@/lib/guides";
 import { getAllColumns, type ColumnItem } from "@/lib/columns";
@@ -31,21 +33,59 @@ import { Reveal } from "@/components/animation/Reveal";
 import { Button } from "@/components/ui/button";
 import { NextReadShelf } from "@/components/heritage/NextReadShelf";
 
-import { IconCar } from "@/components/icons/IconCar";
-import { IconArrowRight } from "@/components/icons/IconArrowRight";
-import { IconSearch } from "@/components/icons/IconSearch";
-import { SectionRelatedLinks } from "@/components/heritage/SectionRelatedLinks";
-import { OwnershipRealitySection } from "@/components/heritage/OwnershipRealitySection";
+import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
 
-import { DetailPageScaffold } from "@/components/page/DetailPageScaffold";
+// ----------------------------------------
+// アイコンコンポーネント (lucide-react依存なし)
+// ----------------------------------------
+const IconCar = ({ className }: { className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
+    <circle cx="7" cy="17" r="2" />
+    <circle cx="17" cy="17" r="2" />
+  </svg>
+);
 
-import {
-  buildHeritageDetailModel,
-  formatDateLabel,
-  highlightRich,
-  SPEC_HEADING_PREFIX,
-} from "@/lib/viewmodel/heritage-detail";
+const IconArrowRight = ({ className }: { className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M5 12h14" />
+    <path d="m12 5 7 7-7 7" />
+  </svg>
+);
 
+const IconSearch = ({ className }: { className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <circle cx="11" cy="11" r="8" />
+    <path d="m21 21-4.3-4.3" />
+  </svg>
+);
 
 // ----------------------------------------
 // Dummy Data (関連コラム用)
@@ -77,6 +117,239 @@ export async function generateStaticParams() {
     .map((item) => item.slug)
     .filter((slug): slug is string => typeof slug === "string" && slug.length > 0)
     .map((slug) => ({ slug }));
+}
+
+// ----------------------------------------
+// Helper Functions
+// ----------------------------------------
+
+function parseDate(value?: string | null): Date | null {
+  if (!value) return null;
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return null;
+  return d;
+}
+
+function formatDateLabel(iso?: string | null): string | null {
+  const d = parseDate(iso);
+  if (!d) return null;
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}.${m}.${day}`;
+}
+
+function escapeRegExp(str: string): string {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function createHighlightRegex(keywords: string[]): RegExp | null {
+  const cleaned = keywords.map((k) => k.trim()).filter((k) => k.length > 0);
+  if (cleaned.length === 0) return null;
+  const pattern = cleaned.map(escapeRegExp).join("|");
+  return new RegExp(`(${pattern})`, "gi");
+}
+
+function highlightRich(
+  text: string,
+  regex: RegExp | null,
+  carKeywordSet: Set<string>,
+  keywordSet: Set<string>,
+): (string | JSX.Element)[] {
+  if (!regex) return [text];
+
+  const parts: (string | JSX.Element)[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  const source = text;
+  const r = new RegExp(regex.source, regex.flags);
+
+  while ((match = r.exec(source)) !== null) {
+    if (match.index === r.lastIndex) r.lastIndex++;
+
+    const start = match.index;
+    const end = r.lastIndex;
+
+    if (start > lastIndex) {
+      parts.push(source.slice(lastIndex, start));
+    }
+
+    const matchedText = match[0];
+    const normalized = matchedText.toLowerCase();
+
+    let spanClassName = "";
+    if (carKeywordSet.has(normalized)) {
+      spanClassName =
+        "text-tiffany-500 font-semibold text-[1.4em] leading-tight";
+    } else if (keywordSet.has(normalized)) {
+      spanClassName = "heritage-highlight-wave";
+    } else {
+      spanClassName = "bg-tiffany-50 px-0.5 text-tiffany-700";
+    }
+
+    parts.push(
+      <span key={`${start}-${end}`} className={spanClassName}>
+        {matchedText}
+      </span>,
+    );
+
+    lastIndex = end;
+  }
+
+  if (lastIndex < source.length) {
+    parts.push(source.slice(lastIndex));
+  }
+  return parts;
+}
+
+function estimateReadingTimeMinutes(body: string): number {
+  const plain = body.replace(/\s+/g, "");
+  const length = plain.length;
+  if (length === 0) return 0;
+  const minutes = Math.round(length / 550);
+  return minutes <= 0 ? 1 : minutes;
+}
+
+// ----------------------------------------
+// Content Resolution Logic
+// ----------------------------------------
+
+type BodySection = {
+  id?: string;
+  title?: string;
+  level: "heading" | "subheading" | null;
+  lines: string[];
+  // v1.2: 章ごとの関連
+  carSlugs?: string[];
+  guideSlugs?: string[];
+  columnSlugs?: string[];
+  // ★ JSONデータから受け取る在庫検索クエリ
+  stockCarQuery?: string;
+};
+
+const SPEC_HEADING_PREFIX = "__SPEC_HEADING__";
+
+function resolveCarsBySlugs(slugs: string[], allCars: CarItem[]): CarItem[] {
+  if (!Array.isArray(slugs) || slugs.length === 0) return [];
+  const map = new Map(allCars.map((c) => [c.slug, c] as const));
+  const out: CarItem[] = [];
+  const seen = new Set<string>();
+  for (const s of slugs) {
+    const slug = typeof s === "string" ? s.trim() : "";
+    if (!slug) continue;
+    const car = map.get(slug);
+    if (!car) continue;
+    if (seen.has(car.slug)) continue;
+    seen.add(car.slug);
+    out.push(car);
+  }
+  return out;
+}
+
+function resolveGuidesBySlugs(slugs: string[], allGuides: GuideItem[]): GuideItem[] {
+  if (!Array.isArray(slugs) || slugs.length === 0) return [];
+  const map = new Map(allGuides.map((g) => [g.slug, g] as const));
+  const out: GuideItem[] = [];
+  const seen = new Set<string>();
+  for (const s of slugs) {
+    const slug = typeof s === "string" ? s.trim() : "";
+    if (!slug) continue;
+    const g = map.get(slug);
+    if (!g) continue;
+    if (seen.has(g.slug)) continue;
+    seen.add(g.slug);
+    out.push(g);
+  }
+  return out;
+}
+
+function resolveColumnsBySlugs(slugs: string[], allColumns: ColumnItem[]): ColumnItem[] {
+  if (!Array.isArray(slugs) || slugs.length === 0) return [];
+  const map = new Map(allColumns.map((c) => [c.slug, c] as const));
+  const out: ColumnItem[] = [];
+  const seen = new Set<string>();
+  for (const s of slugs) {
+    const slug = typeof s === "string" ? s.trim() : "";
+    if (!slug) continue;
+    const c = map.get(slug);
+    if (!c) continue;
+    if (seen.has(c.slug)) continue;
+    seen.add(c.slug);
+    out.push(c);
+  }
+  return out;
+}
+
+function intersectionCount(a: string[] | undefined, b: string[] | undefined): number {
+  if (!a || !b || a.length === 0 || b.length === 0) return 0;
+  const set = new Set(a.map((x) => x.toLowerCase()));
+  let c = 0;
+  for (const x of b) if (set.has(String(x).toLowerCase())) c += 1;
+  return c;
+}
+
+function pickGuidesFallbackV12(args: {
+  heritage: HeritageItem;
+  allGuides: GuideItem[];
+  carSlugs: string[];
+  limit: number;
+}): GuideItem[] {
+  const { heritage, allGuides, carSlugs, limit } = args;
+  const hIntent = heritage.intentTags ?? [];
+  const hTags = heritage.tags ?? [];
+  const carSet = new Set(carSlugs.map((s) => s.toLowerCase()));
+
+  const scored = allGuides
+    .map((g) => {
+      const gAny = g as any;
+      const gCars = Array.isArray(gAny.relatedCarSlugs)
+        ? (gAny.relatedCarSlugs as string[]).map((s) => String(s).toLowerCase().trim())
+        : [];
+      const scoreCars = gCars.filter((s) => carSet.has(s)).length;
+      const scoreIntent = intersectionCount(hIntent, gAny.intentTags ?? []);
+      const scoreTags = intersectionCount(hTags, gAny.tags ?? []);
+      const score = scoreCars * 5 + scoreIntent * 3 + scoreTags * 2;
+      return { g, score };
+    })
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score);
+
+  return scored.slice(0, limit).map((x) => x.g);
+}
+
+function pickColumnsFallbackV12(args: {
+  heritage: HeritageItem;
+  allColumns: ColumnItem[];
+  carSlugs: string[];
+  limit: number;
+}): ColumnItem[] {
+  const { heritage, allColumns, carSlugs, limit } = args;
+  // ★ データがない場合はダミーを返す
+  if (!allColumns || allColumns.length === 0) {
+    return [];
+  }
+
+  const hIntent = heritage.intentTags ?? [];
+  const hTags = heritage.tags ?? [];
+  const carSet = new Set(carSlugs.map((s) => s.toLowerCase()));
+
+  const scored = allColumns
+    .map((c) => {
+      const cAny = c as any;
+      const cCars = Array.isArray(cAny.relatedCarSlugs)
+        ? (cAny.relatedCarSlugs as string[]).map((s) => String(s).toLowerCase().trim())
+        : [];
+      const scoreCars = cCars.filter((s) => carSet.has(s)).length;
+      const scoreIntent = intersectionCount(hIntent, cAny.intentTags ?? []);
+      const scoreTags = intersectionCount(hTags, cAny.tags ?? []);
+      const score = scoreCars * 5 + scoreIntent * 3 + scoreTags * 2;
+      return { c, score };
+    })
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score);
+
+  return scored.slice(0, limit).map((x) => x.c);
 }
 
 // ----------------------------------------
@@ -154,35 +427,217 @@ export default async function HeritageDetailPage({ params }: PageProps) {
   // More Heritage（HERITAGE一覧を返すのはこっち）
   const moreHeritage = await getNextReadHeritageV12(heritage, 3);
 
-  // Labels & Body (viewmodel)
-  const vm = buildHeritageDetailModel({
-    heritage,
-    slug: params.slug,
-    allCars,
-    allGuides,
-    allColumns,
-  });
-  const {
-    title,
-    tags,
-    dateLabel,
-    readingTimeMinutes,
-    carKeywordSet,
-    keywordSet,
-    combinedHighlightRegex,
-    contentSections,
-    hasBody,
-    hasStructuredContent,
-  } = vm;
+  // Labels & Body
+  const dateLabel =
+    formatDateLabel(heritage.publishedAt) ??
+    formatDateLabel(heritage.updatedAt);
 
-  // Related (viewmodel)
-  const relatedCarItems = vm.related.cars;
-  const relatedGuideItems = vm.related.guides;
-  const relatedColumnItems = vm.related.columns;
+  const tags = heritage.tags ?? [];
+  const title = heritage.title ?? heritage.titleJa ?? heritage.slug ?? params.slug;
+
+  const bodyText = (() => {
+    const candidates = [
+      heritage.body,
+      (heritage as any).content,
+      (heritage as any).fullText,
+      heritage.summary,
+    ];
+    for (const c of candidates) {
+      if (typeof c === "string" && c.trim().length > 0) return c.trim();
+    }
+    return "";
+  })();
+
+  const hasBody = bodyText.length > 0;
+  const formattedBodyText = hasBody ? bodyText.replace(/。/g, "。\n") : "";
+
+  // Highlights
+  const carKeywords: string[] = heritage.keyModels ?? [];
+  const highlightKeywords: string[] = (heritage as any).highlights ?? [];
+  const carKeywordSet = new Set(carKeywords.map((k) => k.toLowerCase().trim()));
+  const keywordSet = new Set(highlightKeywords.map((k) => k.toLowerCase().trim()));
+  const combinedKeywords = Array.from(new Set([...carKeywords, ...highlightKeywords]));
+  const combinedHighlightRegex = createHighlightRegex(combinedKeywords);
+
+  const readingTimeMinutes =
+    (heritage as any).readingTimeMinutes ??
+    (hasBody ? estimateReadingTimeMinutes(bodyText) : 0);
+
+  // ----------------------------------------
+  // Related Content Logic
+  // ----------------------------------------
+
+  // 1. Cars (本文中で言及、またはアンカー)
+  const heritageCarSlugs = extractHeritageCarSlugs(heritage);
+  let relatedCarItems = resolveCarsBySlugs(heritageCarSlugs, allCars);
+
+  if (relatedCarItems.length === 0) {
+    const anchors = getHeritageAnchorCars(heritage.slug);
+    relatedCarItems = anchors.slice(0, 6) as unknown as CarItem[];
+  }
+
+  const pickedCarSlugs = relatedCarItems
+    .map((c) => c.slug)
+    .filter((s): s is string => typeof s === "string" && s.length > 0);
+
+  // 2. Guides (明示 > フォールバック)
+  const guideSlugs = extractHeritageGuideSlugs(heritage);
+  const explicitGuides = resolveGuidesBySlugs(guideSlugs, allGuides).slice(0, 5);
+  const relatedGuideItems =
+    explicitGuides.length > 0
+      ? explicitGuides
+      : pickGuidesFallbackV12({
+          heritage,
+          allGuides,
+          carSlugs: pickedCarSlugs,
+          limit: 5,
+        });
+
+  // 3. Columns (明示 > フォールバック)
+  const columnSlugs = extractHeritageColumnSlugs(heritage);
+  const explicitColumns = resolveColumnsBySlugs(columnSlugs, allColumns).slice(0, 5);
+
+  const relatedColumnItems =
+    explicitColumns.length > 0
+      ? explicitColumns
+      : pickColumnsFallbackV12({
+          heritage,
+          allColumns,
+          carSlugs: pickedCarSlugs,
+          limit: 5,
+        });
+
+  // ----------------------------------------
+  // Parsing Sections
+  // ----------------------------------------
+
+  // 正規表現での簡易セクション分割（フォールバック用）
+  const rawSections: BodySection[] = [];
+  if (formattedBodyText) {
+    const lines = formattedBodyText.split(/\r?\n/).map((line) => line.trim());
+
+    let current: BodySection | null = null;
+    const pushCurrent = () => {
+      if (
+        current &&
+        (current.title || current.lines.some((l) => l && l.length > 0))
+      ) {
+        rawSections.push(current);
+      }
+    };
+
+    for (const rawLine of lines) {
+      const line = rawLine.trim();
+      if (!line) {
+        if (current && current.lines.length > 0) current.lines.push("");
+        continue;
+      }
+
+      const headingMatch = line.match(/^【(.+?)】(.*)$/);
+      if (headingMatch) {
+        const headingTitle = headingMatch[1];
+        const rest = headingMatch[2]?.trim() ?? "";
+        pushCurrent();
+        current = {
+          title: headingTitle,
+          level: "heading",
+          lines: [],
+        };
+        if (rest.length > 0) current.lines.push(rest);
+        continue;
+      }
+
+      if (line.startsWith("■")) {
+        pushCurrent();
+        current = {
+          title: line.replace(/^■\s*/, ""),
+          level: "subheading",
+          lines: [],
+        };
+        continue;
+      }
+
+      if (!current) current = { title: undefined, level: null, lines: [] };
+      current.lines.push(line);
+    }
+    pushCurrent();
+  }
+
+  // 「主なスペック」の結合
+  const bodySections: BodySection[] = [];
+  for (const section of rawSections) {
+    if (section.title && section.title.includes("主なスペック") && bodySections.length > 0) {
+      const prevSection = bodySections[bodySections.length - 1];
+      if (prevSection.lines.length > 0) prevSection.lines.push("");
+      prevSection.lines.push(`${SPEC_HEADING_PREFIX}${section.title}`);
+      for (const line of section.lines) prevSection.lines.push(line);
+    } else {
+      bodySections.push(section);
+    }
+  }
+
+  // JSON構造化データがある場合はそちらを優先
+  const structuredSections: BodySection[] =
+    Array.isArray((heritage as any).sections) && (heritage as any).sections.length > 0
+      ? (heritage as any).sections.map((sec: any) => {
+          const raw = typeof sec.summary === "string" ? sec.summary : "";
+          const lines = raw
+            ? raw
+                .replace(/。/g, "。\n")
+                .split(/\r?\n/)
+                .map((l: string) => l.trim())
+                .filter((l: string) => l.length > 0)
+            : [];
+
+          return {
+            id: sec.id,
+            title: sec.title ?? undefined,
+            level: "heading",
+            lines,
+            carSlugs: sec.carSlugs ?? [],
+            guideSlugs: sec.guideSlugs ?? [],
+            columnSlugs: sec.columnSlugs ?? [],
+            // ★ データからそのまま渡す (repository層で正規化済み)
+            stockCarQuery: sec.stockCarQuery,
+          } as BodySection;
+        })
+      : [];
+
+  // Prefer longform body text (1995-style). Use `sections` only for shelves/navigation, or as a fallback when body is missing.
+  const normalizeHeadingKey = (s?: string) =>
+    (s ?? "")
+      .toLowerCase()
+      .replace(/\s+/g, "")
+      .replace(/[：:・、。．\.\-—–_]/g, "")
+      .replace(/[【】\[\]\(\)（）"“”]/g, "");
+
+  const structuredMetaByTitle = new Map<string, BodySection>();
+  for (const sec of structuredSections) {
+    const key = normalizeHeadingKey(sec.title);
+    if (!key) continue;
+    if (!structuredMetaByTitle.has(key)) structuredMetaByTitle.set(key, sec);
+  }
+
+  const mergedBodySections: BodySection[] = bodySections.map((sec) => {
+    const key = normalizeHeadingKey(sec.title);
+    const meta = key ? structuredMetaByTitle.get(key) : undefined;
+    return {
+      ...sec,
+      carSlugs: meta?.carSlugs ?? sec.carSlugs ?? [],
+      guideSlugs: meta?.guideSlugs ?? sec.guideSlugs ?? [],
+      columnSlugs: meta?.columnSlugs ?? sec.columnSlugs ?? [],
+      stockCarQuery: meta?.stockCarQuery ?? sec.stockCarQuery,
+    };
+  });
+
+  const contentSections: BodySection[] =
+    mergedBodySections.length > 0 ? mergedBodySections : structuredSections;
+
+  const hasStructuredContent = structuredSections.length > 0;
 
   return (
-    <DetailPageScaffold jsonLd={vm.jsonLd}>
-      <main className="min-h-screen bg-slate-950 text-slate-50">
+    <main className="min-h-screen bg-slate-950 text-slate-50">
+      <ScrollDepthTracker />
 
       {/* ----------------- HERO SECTION ----------------- */}
       <section className="relative min-h-[72vh] overflow-hidden border-b border-slate-800/60 bg-slate-950">
@@ -319,7 +774,8 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                   return (
                     <GlassCard
                       key={section.id ?? sectionIndex}
-                      className="border border-white/40 bg-white/90 p-5 text-slate-900 sm:p-6 lg:p-7"
+                      magnetic={false}
+                      className="w-full border border-white/40 bg-white/90 p-5 text-slate-900 sm:p-6 lg:p-7"
                     >
                       {section.title && (
                         <h2
@@ -416,6 +872,28 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                                 continue;
                               }
 
+                              // Markdown見出し（本文中に混ざる `###` などをそのまま出さない）
+                              const mdHeading = line.match(/^#{2,6}\s*(.+)$/);
+                              if (mdHeading) {
+                                const headingText = mdHeading[1]?.trim();
+                                if (headingText) {
+                                  blocks.push(
+                                    <h3
+                                      key={`mdh-${i}`}
+                                      className="mt-6 font-serif text-xl leading-snug text-slate-900 sm:text-2xl"
+                                    >
+                                      {highlightRich(
+                                        headingText,
+                                        combinedHighlightRegex,
+                                        carKeywordSet,
+                                        keywordSet,
+                                      )}
+                                    </h3>,
+                                  );
+                                  continue;
+                                }
+                              }
+
                               // 通常パラグラフ
                               blocks.push(
                                 <p
@@ -496,7 +974,28 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                           </div>
 
                           {/* ガイド/コラム（章紐付けがあれば） */}
-                          <SectionRelatedLinks guides={sectionGuides} columns={sectionColumns} />
+                          {(sectionGuides.length > 0 || sectionColumns.length > 0) && (
+                            <div className="mt-3 pt-3 border-t border-slate-200/60 space-y-2">
+                              {sectionGuides.map((g) => (
+                                <Link
+                                  key={g.slug}
+                                  href={`/guide/${g.slug}`}
+                                  className="block text-[11px] text-slate-600 hover:text-rose-600 hover:underline"
+                                >
+                                  GUIDE: {g.title}
+                                </Link>
+                              ))}
+                              {sectionColumns.map((c) => (
+                                <Link
+                                  key={c.slug}
+                                  href={`/column/${c.slug}`}
+                                  className="block text-[11px] text-slate-600 hover:text-rose-600 hover:underline"
+                                >
+                                  COLUMN: {c.title}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       )}
                     </GlassCard>
@@ -511,7 +1010,69 @@ export default async function HeritageDetailPage({ params }: PageProps) {
                 </GlassCard>
               )}
 
-              <OwnershipRealitySection guides={relatedGuideItems} columns={relatedColumnItems} />
+              {/* ★ REQ 2: 記事終了直後の OWNERSHIP REALITY セクション (関連コラム) ★ */}
+              {/* テキストが終わった直後に配置 */}
+              {(relatedGuideItems.length > 0 || relatedColumnItems.length > 0) && (
+                <div className="mt-12">
+                  <div className="mb-6 flex items-center gap-4">
+                    <div className="h-[1px] flex-1 bg-slate-800" />
+                    <h2 className="font-serif text-sm font-bold tracking-[0.2em] text-slate-400 uppercase">
+                      Ownership Reality
+                    </h2>
+                    <div className="h-[1px] flex-1 bg-slate-800" />
+                  </div>
+
+                  <p className="mb-6 text-center text-[12px] text-slate-400">
+                    憧れだけで終わらせない。維持費や選び方の現実を知る。
+                  </p>
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {/* GUIDE */}
+                    {relatedGuideItems.slice(0, 2).map((g) => (
+                      <Link key={g.slug} href={`/guide/${encodeURIComponent(g.slug)}`} className="group h-full">
+                        <GlassCard className="flex h-full flex-col justify-between border border-tiffany-500/30 bg-gradient-to-br from-slate-900/80 to-slate-900/40 p-5 transition hover:border-tiffany-400 hover:shadow-[0_0_15px_rgba(45,212,191,0.15)]">
+                          <div>
+                            <div className="mb-3 flex items-center gap-2">
+                              <span className="rounded-full bg-tiffany-500/10 px-2 py-0.5 text-[9px] font-bold tracking-wider text-tiffany-400 border border-tiffany-500/20">
+                                GUIDE
+                              </span>
+                            </div>
+                            <h3 className="font-serif text-[15px] font-medium text-slate-100 leading-relaxed group-hover:text-tiffany-300">
+                              {g.title}
+                            </h3>
+                          </div>
+                          <div className="mt-4 flex items-center justify-end border-t border-tiffany-500/10 pt-3">
+                            <span className="text-[10px] font-bold tracking-widest text-tiffany-500 group-hover:underline decoration-1 underline-offset-4">READ</span>
+                            <IconArrowRight className="ml-1 h-3 w-3 text-tiffany-500" />
+                          </div>
+                        </GlassCard>
+                      </Link>
+                    ))}
+
+                    {/* COLUMN (ダミー含む) */}
+                    {relatedColumnItems.slice(0, 2).map((c) => (
+                      <Link key={c.slug} href={`/column/${encodeURIComponent(c.slug)}`} className="group h-full">
+                        <GlassCard className="flex h-full flex-col justify-between border border-slate-700 bg-slate-900/40 p-5 transition hover:border-slate-500 hover:bg-slate-800/60">
+                          <div>
+                            <div className="mb-3 flex items-center gap-2">
+                              <span className="rounded-full bg-slate-800 px-2 py-0.5 text-[9px] font-bold tracking-wider text-slate-400 border border-slate-700">
+                                COLUMN
+                              </span>
+                            </div>
+                            <h3 className="font-serif text-[15px] font-medium text-slate-200 leading-relaxed group-hover:text-white">
+                              {c.title}
+                            </h3>
+                          </div>
+                          <div className="mt-4 flex items-center justify-end border-t border-slate-700 pt-3">
+                            <span className="text-[10px] font-bold tracking-widest text-slate-500 group-hover:text-slate-300">READ</span>
+                            <IconArrowRight className="ml-1 h-3 w-3 text-slate-600 group-hover:text-slate-400" />
+                          </div>
+                        </GlassCard>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </Reveal>
 
@@ -663,7 +1224,6 @@ export default async function HeritageDetailPage({ params }: PageProps) {
           </div>
         </section>
       )}
-      </main>
-    </DetailPageScaffold>
+    </main>
   );
 }

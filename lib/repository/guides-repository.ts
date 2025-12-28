@@ -21,6 +21,12 @@
  */
 
 import guidesRaw from "@/data/guides.json";
+import guidesRaw1 from "@/data/guides1.json";
+import guidesRaw2 from "@/data/guides2.json";
+import guidesRaw3 from "@/data/guides3.json";
+import guidesRaw4 from "@/data/guides4.json"; // 既存
+import guidesRaw5 from "@/data/guides5.json"; // ★ 15本ガイド用
+import guidesRaw6 from "@/data/guides6.json"; // ★ 追加分
 
 import type {
   GuideItem,
@@ -30,7 +36,6 @@ import type {
   MonetizeType,
   CtaVariant,
 } from "@/lib/content-types";
-import { safePublicImage } from "@/lib/assets/safePublicImage";
 
 /**
  * JSON の生データ型
@@ -180,7 +185,7 @@ function normalizeGuide(raw: RawGuideRecord, index: number): GuideItem {
   const readMinutes =
     typeof raw.readMinutes === "number" ? raw.readMinutes : null;
 
-  const heroImage = safePublicImage(coerceString(raw.heroImage));
+  const heroImage = coerceString(raw.heroImage);
 
   const body = typeof raw.body === "string" ? raw.body : "";
 
@@ -283,12 +288,20 @@ function toArray(data: unknown): RawGuideRecord[] {
 }
 
 /**
- * guides.json を「生配列」として扱う
+ * guides.json + guides1〜5.json を「生配列」としてまとめる
  *
  * - 将来ファイルが増えた場合も、この配列に追加するだけで OK
  * - ファイルごとの優先順位: 後ろに書かれているファイルほど“後勝ち”になる
  */
-const RAW_ALL: RawGuideRecord[] = toArray(guidesRaw);
+const RAW_ALL: RawGuideRecord[] = [
+  ...toArray(guidesRaw),
+  ...toArray(guidesRaw1),
+  ...toArray(guidesRaw2),
+  ...toArray(guidesRaw3),
+  ...toArray(guidesRaw4),
+  ...toArray(guidesRaw5), // ★ ここで guides5.json を取り込む
+  ...toArray(guidesRaw6), // ★ ここで guides6.json を取り込む
+];
 
 // ---- 開発時の軽い警告（throwしない / 1回だけ） ----
 let didWarnOnce = false;

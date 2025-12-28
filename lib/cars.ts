@@ -17,8 +17,6 @@ import {
 import { findAllColumns } from "@/lib/repository/columns-repository";
 import { findAllGuides } from "@/lib/repository/guides-repository";
 
-import { getRelatedSlugs } from "@/lib/linking/related";
-
 // ★ 型定義は content-types からインポートして統一
 import type { 
   CarItem, 
@@ -70,7 +68,7 @@ export function getHeritageAnchorCars(heritageSlug: string): CarItem[] {
   // 例: heritageSlugに関連する車をフィルタリング
   return ALL_CARS_CACHE.filter((c) => {
     // 関連HERITAGEスラッグを持っているかチェック
-    return getRelatedSlugs(c as any, "heritage").includes(heritageSlug);
+    return c.relatedHeritageSlugs?.includes(heritageSlug);
   });
 }
 
@@ -120,7 +118,7 @@ export function getOwnershipGuidesForCarSlug(
   // 2) 逆引き補完（Guide側に relatedCarSlugs があるもの）
   for (const g of pool) {
     if (seen.has(g.slug)) continue;
-    if (getRelatedSlugs(g as any, "cars").includes(slug) !== true) continue;
+    if (g.relatedCarSlugs?.includes(slug) !== true) continue;
     seen.add(g.slug);
     picked.push(g);
     if (picked.length >= limit) break;
@@ -160,7 +158,7 @@ export function getRelatedColumnsForCarSlug(
   // 2) 逆引き
   for (const c of published) {
     if (seen.has(c.slug)) continue;
-    if (getRelatedSlugs(c as any, "cars").includes(slug) !== true) continue;
+    if (c.relatedCarSlugs?.includes(slug) !== true) continue;
     seen.add(c.slug);
     picked.push(c);
     if (picked.length >= limit) break;

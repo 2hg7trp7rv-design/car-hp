@@ -11,7 +11,6 @@ import {
 } from "@/lib/repository/guides-repository";
 
 // 既存インポート互換用エクスポート
-import { getRelatedSlugs } from "@/lib/linking/related";
 export type GuideItem = GuideItemBase;
 export type GuideCategory = GuideCategoryBase;
 
@@ -281,7 +280,7 @@ export async function getRelatedGuidesV12(
   const pool = allPublishedSorted.filter((g) => g.slug !== base.slug);
 
   const result = rankRelatedGuidesFromPool(pool, {
-    explicitSlugs: getRelatedSlugs(base as any, "guides"),
+    explicitSlugs: base.relatedGuideSlugs ?? [],
     intentTags: base.intentTags ?? [],
     tags: base.tags ?? [],
     limit,

@@ -9,13 +9,13 @@
  */
 
 import heritageRaw0 from "@/data/heritage.json";
+import heritageRaw1 from "@/data/heritage2.json";
 import type {
   HeritageItem,
   HeritageKind,
   ContentStatus,
   HeritageSection,
 } from "@/lib/content-types";
-import { safePublicImage } from "@/lib/assets/safePublicImage";
 
 export type HeritageRecord = HeritageItem;
 
@@ -155,7 +155,7 @@ function normalizeHeritage(raw: RawHeritageRecord, index: number): HeritageItem 
     modelName: safeString(raw.modelName),
     years: safeString(raw.years),
 
-    heroImage: safePublicImage(safeString(raw.heroImage) ?? safeString(raw.imageUrl)),
+    heroImage: safeString(raw.heroImage) ?? safeString(raw.imageUrl),
     heroTone: (safeString(raw.heroTone) as any) ?? "dark",
     heroTitle: safeString(raw.heroTitle),
     heroCaption: safeString(raw.heroCaption),
@@ -176,7 +176,7 @@ function normalizeHeritage(raw: RawHeritageRecord, index: number): HeritageItem 
 }
 
 /**
- * heritage.json を「生配列」として扱う
+ * heritage.json + heritage2.json を「生配列」としてまとめる
  * - ファイルごとの優先順位: 後ろに書かれているファイルほど“後勝ち”になる
  */
 const RAW_ALL = [...toArray(heritageRaw0), ...toArray(heritageRaw1)];
