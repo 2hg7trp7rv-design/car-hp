@@ -1,0 +1,405 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  フォントは app/layout.tsx の <link> で読み込み（build 時フェッチ無し）。
+  Tailwind は CSS 変数（--font-xxx）を参照。
+*/
+
+:root {
+  color-scheme: light;
+
+  /* Fonts */
+  --font-montserrat: "Montserrat";
+  --font-bodoni: "Bodoni Moda";
+  /* 互換: 以前の記述（Manrope）を残している箇所のフォールバック */
+  --font-manrope: var(--font-montserrat);
+
+  /* Brand tokens */
+  --cb-tiffany: 10 186 181;
+  --cb-porcelain: 255 255 255;
+  --cb-ink: 15 23 42;
+}
+
+/* ----------------------------------------
+   Base
+----------------------------------------- */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* フォントは tailwind.config.ts 経由で適用されるためここでは指定不要 */
+  body {
+    background-color: rgb(var(--cb-porcelain));
+    color: rgb(var(--cb-ink));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Links / Focus / Selection */
+  a {
+    text-decoration: none;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid rgba(var(--cb-tiffany), 0.7);
+    outline-offset: 3px;
+    border-radius: 9999px;
+  }
+
+  ::selection {
+    background: rgba(var(--cb-tiffany), 0.12);
+    color: rgb(var(--cb-ink));
+  }
+}
+
+/* ----------------------------------------
+   Site background (Tiffany × Vapor)
+   ※ Tailwindの `bg-site` クラスと連動
+----------------------------------------- */
+
+/* メインのサイト背景（ページ全体に使用） */
+.bg-site {
+  background-color: rgb(var(--cb-porcelain));
+  background-image:
+    /* プライマリ光源: 左上から淡いTiffany */
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(var(--cb-tiffany), 0.09) 0%,
+      transparent 46%
+    ),
+    /* セカンダリ光源: 右下からさらに薄い光 */
+    radial-gradient(
+      circle at 88% 82%,
+      rgba(var(--cb-tiffany), 0.055) 0%,
+      transparent 42%
+    ),
+    /* うっすらとしたVaporの空気感 */
+    radial-gradient(
+      circle at 50% 110%,
+      rgba(246, 247, 251, 0.9) 0%,
+      transparent 55%
+    ),
+    /* ベース */
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgb(var(--cb-porcelain)) 100%
+    );
+  background-attachment: fixed;
+}
+
+/* セクション単体で使う空間用背景 */
+.bg-atmosphere {
+  background:
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(var(--cb-tiffany), 0.16) 0%,
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 88% 82%,
+      rgba(var(--cb-tiffany), 0.11) 0%,
+      transparent 42%
+    ),
+    rgb(var(--cb-porcelain));
+}
+
+/* ----------------------------------------
+   Typography
+   - 見出し: Bodoni
+   - 本文: Montserrat
+----------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+.serif-heading {
+  font-family: var(--font-bodoni), ui-serif, serif;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
+p,
+li,
+.font-body {
+  font-family: var(--font-montserrat), system-ui, -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  font-size: 0.9rem;
+}
+
+/* セクションラベル（小さな大文字ラベル） */
+.section-label {
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+/* 大きめのページタイトル */
+.page-title {
+  font-family: var(--font-bodoni), ui-serif, serif;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* 記事本文用のタイポラッパ（COLUMN / GUIDE） */
+.article-body p {
+  margin-top: 1.25rem;
+}
+
+.article-body p:first-of-type {
+  margin-top: 0.5rem;
+}
+
+.article-body h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-bodoni), ui-serif, serif;
+  font-size: 1.25rem;
+  letter-spacing: 0;
+  line-height: 1.3;
+}
+
+.article-body h3 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* HERITAGE 用の本文（必要になったら使う想定） */
+.article-body-heritage p {
+  margin-top: 1.4rem;
+}
+
+.article-body-heritage p:first-of-type {
+  margin-top: 0.75rem;
+}
+
+.article-body-heritage h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-bodoni), ui-serif, serif;
+  font-size: 1.25rem;
+  letter-spacing: 0;
+  line-height: 1.3;
+}
+
+.article-body-heritage h3 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* ----------------------------------------
+   Drop caps（先頭ジャンボ1文字）
+----------------------------------------- */
+
+/* COLUMN / GUIDE 用（ColumnReaderShell / GuideDetail） */
+.first-letter-float {
+  text-indent: 0;
+}
+
+.first-letter-span {
+  float: left;
+  margin-right: 12px;
+  margin-top: -6px;
+  margin-bottom: -2px;
+  font-family: var(--font-bodoni), ui-serif, serif;
+  font-size: 3.4rem;
+  line-height: 0.85;
+  font-weight: 500;
+  color: rgba(var(--cb-tiffany), 1);
+}
+
+@media (min-width: 640px) {
+  .first-letter-span {
+    font-size: 3.8rem;
+  }
+}
+
+/* HERITAGE 詳細ページ用（::first-letter） */
+.heritage-dropcap {
+  text-indent: 0;
+}
+
+.heritage-dropcap::first-letter {
+  float: left;
+  margin-right: 12px;
+  margin-top: -6px;
+  margin-bottom: -2px;
+  font-family: var(--font-bodoni), ui-serif, serif;
+  font-size: 3.4rem;
+  line-height: 0.85;
+  font-weight: 500;
+  color: rgba(var(--cb-tiffany), 1);
+}
+
+@media (min-width: 640px) {
+  .heritage-dropcap::first-letter {
+    font-size: 3.8rem;
+  }
+}
+
+/* ----------------------------------------
+   Heritage highlight（強調テキスト用）
+   - キーワード: 波線アンダーライン（Tiffany）
+----------------------------------------- */
+
+.heritage-highlight-wave {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: rgba(var(--cb-tiffany), 0.95);
+  text-decoration-thickness: 1.6px;
+  text-underline-offset: 0.18em;
+}
+
+@supports not (text-decoration-thickness: 1px) {
+  .heritage-highlight-wave {
+    text-decoration-thickness: 2px;
+  }
+}
+
+/* ----------------------------------------
+   Layout helpers（雑誌っぽい余白スケール）
+----------------------------------------- */
+
+.page-shell {
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .page-shell {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-shell {
+    padding-inline: 2rem;
+  }
+}
+
+.page-section {
+  padding-block: 3.5rem;
+}
+
+@media (min-width: 1024px) {
+  .page-section {
+    padding-block: 5rem;
+  }
+}
+
+.page-section-lg {
+  padding-block: 5rem;
+}
+
+@media (min-width: 1024px) {
+  .page-section-lg {
+    padding-block: 7.5rem;
+  }
+}
+
+/* ----------------------------------------
+   Glassmorphism base
+----------------------------------------- */
+
+.glass-surface {
+  position: relative;
+  border-radius: 1.75rem;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.9),
+      rgba(240, 251, 251, 0.85)
+    );
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 18px 60px rgba(15, 23, 42, 0.12);
+}
+
+.glass-surface-dim {
+  position: relative;
+  border-radius: 1.75rem;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.94),
+      rgba(6, 95, 102, 0.9)
+    );
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.6);
+  color: #e5e7eb;
+}
+
+@supports (backdrop-filter: blur(10px)) {
+  .glass-surface,
+  .glass-surface-dim {
+    backdrop-filter: blur(18px);
+  }
+}
+
+/* ----------------------------------------
+   Magnetic / Interactive
+----------------------------------------- */
+
+[data-magnetic="true"] {
+  position: relative;
+  transition:
+    transform 0.25s cubic-bezier(0.35, 0, 0.65, 1),
+    box-shadow 0.25s ease;
+  will-change: transform;
+}
+
+[data-magnetic="true"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+}
+
+[data-magnetic="true"]:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.14);
+}
+
+/* ----------------------------------------
+   Scrollbar
+----------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--cb-tiffany), 0.22);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--cb-tiffany), 0.42);
+}
