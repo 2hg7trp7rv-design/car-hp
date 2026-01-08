@@ -1,0 +1,14 @@
+{
+  "siteName": "CAR BOUTIQUE",
+  "siteUrl": "https://carboutique.example",
+  "defaultLocale": "ja-JP",
+  "defaultOgImage": "/images/og/default.jpg",
+  "publisherName": "CAR BOUTIQUE",
+  "publisherLogoUrl": "/images/brand/logo-square.png",
+  "twitterCard": "summary_large_image",
+  "twitterSite": "@carboutique",
+  "brandTone": {
+    "avoidHardSell": true,
+    "heritageNoAffiliate": true
+  }
+}
