@@ -3,7 +3,6 @@
 
 import type { ReactNode } from "react";
 import { useEffect } from "react";
-import Lenis from "@studio-freight/lenis";
 
 type SmoothScrollProviderProps = {
   children: ReactNode;
@@ -29,11 +28,14 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
 
     if (prefersReducedMotion || isTouch || isSmallScreen) return;
 
-    let lenis: Lenis | null = null;
+    let lenis: import("@studio-freight/lenis").default | null = null;
     let frameId = 0;
     let cancelled = false;
 
-    const start = () => {
+    const start = async () => {
+      if (cancelled) return;
+
+      const { default: Lenis } = await import("@studio-freight/lenis");
       if (cancelled) return;
 
       lenis = new Lenis({

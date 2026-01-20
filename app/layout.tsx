@@ -1,16 +1,35 @@
 // app/layout.tsx
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import dynamic from "next/dynamic";
 
 import "./globals.css";
 import { getSiteOrigin, getSiteUrl } from "@/lib/site";
-import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SmoothScrollProvider } from "@/components/scroll/SmoothScrollProvider";
-import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { CompareFloatingBar } from "@/components/compare/CompareFloatingBar";
+
+const GoogleAnalytics = dynamic(
+  () =>
+    import("@/components/analytics/GoogleAnalytics").then(
+      (mod) => mod.GoogleAnalytics
+    ),
+  { ssr: false }
+);
+
+const CompareFloatingBar = dynamic(
+  () =>
+    import("@/components/compare/CompareFloatingBar").then(
+      (mod) => mod.CompareFloatingBar
+    ),
+  { ssr: false }
+);
+
+const MobileBottomNav = dynamic(
+  () => import("@/components/MobileBottomNav").then((mod) => mod.MobileBottomNav),
+  { ssr: false }
+);
 
 // ---- viewport（スマホ前提の表示設定） ----
 export const viewport: Viewport = {
