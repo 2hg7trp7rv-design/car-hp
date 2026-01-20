@@ -1,0 +1,181 @@
+[
+  {
+    "id": "used-import-car-buying-guide",
+    "slug": "used-import-car-buying-guide",
+    "type": "GUIDE",
+    "status": "published",
+    "title": "中古輸入車の買い方ガイド｜予算の決め方と現車チェックの基本",
+    "summary": "中古輸入車を失敗せずに買うためのチェック。整備履歴、保証、修復歴、初年度費用まで。",
+    "seoTitle": "中古輸入車の買い方完全ガイド｜失敗しないためのチェックリスト",
+    "seoDescription": "中古輸入車を失敗せずに買うためのチェック。整備履歴、保証、修復歴、初年度費用まで。",
+    "category": "BUY",
+    "readMinutes": 5,
+    "heroImage": null,
+    "body": "この記事は「中古輸入車の買い方ガイド｜予算の決め方と現車チェックの基本」をテーマに、購入の意思決定は「車両価格」だけで見るとズレます。毎月の総額と、支払い方法ごとの落とし穴を整理します。\n\n## 結論\n- 中古輸入車は「当たり外れ」より、**情報が揃っている個体を選べるか**で失敗が決まります。\n- 価格差の理由はだいたい3つ。**整備履歴・保証の有無・修復歴/状態**です。安い理由が説明できない個体は避けます。\n- 迷ったら、購入前に**第三者点検（購入前点検）**を入れると、後からの出費を減らしやすくなります。\n\n## まず確認するポイント\n- 整備記録簿：どこで、何を、いつ交換したか\n- 保証：期間と対象範囲（消耗品扱いの除外に注意）\n- 修復歴：定義と見方（/guide/repair-history-used-car-checklist）\n- 消耗品：タイヤ、ブレーキ、バッテリーの残量（ここが弱いと納車直後に出費）\n- 電装/警告灯：軽微に見えて診断費用が出やすい領域\n\n## 手順 1 「欲しい仕様」を先に言語化する\n中古は在庫の中から選ぶため、条件が曖昧だと比較がぶれます。\n- 必須条件：ボディ/駆動/グレード、絶対に欲しい装備（例：ADAS、サンルーフ）\n- できれば：色、内装、ホイール\n- 妥協点：年式と走行距離のどちらを優先するか\n\n## 手順 2 「安い理由」を説明できる個体だけ残す\n- 記録簿が欠けている、保証がない、消耗品が限界、など理由が明確なら判断できる\n- 納車整備は「一式」ではなく交換部品と工賃の内訳を確認\n- 修復歴の有無と部位を明確にしてもらう\n\n## 手順 3 購入前点検で不安を潰す\n- 可能なら第三者や別工場で点検（OBD診断、漏れ、下回り、電装、足回り）\n- 試乗で確認：変速ショック、異音、直進性、ブレーキの振動、警告灯\n- 気になる症状は「直りますか？」より「原因と見積」を出してもらう\n\n## 手順 4 初年度の出費を織り込む\n- 任意保険、税金、車検の時期は必ず事前に確認（/guide/tax-and-fees-before-buying-import）\n- タイヤ/バッテリー/ブレーキは納車整備に含まれないこともある（/guide/tire-replacement-cost-guide）\n- 不安ならロードサービスを検討（/guide/road-service-choice-guide）\n\n## よくあるつまずき\n- 「安いから」で即決し、納車直後に消耗品でまとまった出費\n- 保証の“対象外”を読まず、安心料だけ払ってしまう\n- 改造車を買い、車検・部品・修理先で苦労する\n- スペアキーや取説、記録簿が揃っていないまま買う\n\n## 補足（実務メモ）\n- 月々の支払いが同じでも、総支払額と“出口（返却/買い取り/乗り換え）”が違う\n- 走行距離が多い人ほど、走行距離制限があるプランは不利になりやすい\n- 中途解約の違約金は想定外の痛手になりやすいので、ライフイベントが近いなら短期契約に注意\n\n## 関連記事\n- /guide/tax-and-fees-before-buying-import\n- /guide/maintenance-cost-simulation\n- /guide/repair-history-used-car-checklist\n- /guide/sharyou-hoken-necessary\n- /guide/road-service-choice-guide\n",
+    "publishedAt": "2025-12-07T00:00:00.000Z",
+    "updatedAt": "2026-01-20",
+    "tags": [
+      "輸入車",
+      "中古車",
+      "買い方",
+      "チェックリスト"
+    ],
+    "relatedCarSlugs": [],
+    "relatedGuideSlugs": [
+      "tax-and-fees-before-buying-import",
+      "maintenance-cost-simulation",
+      "repair-history-used-car-checklist",
+      "sharyou-hoken-necessary"
+    ],
+    "relatedColumnSlugs": [],
+    "relatedHeritageSlugs": [
+      "supercar-parts-bin-engineering-heritage"
+    ],
+    "intentTags": [
+      "buy"
+    ],
+    "monetizeKey": "car_search_conditions",
+    "lead": "中古輸入車を失敗せずに買うためのチェック。整備履歴、保証、修復歴、初年度費用まで。",
+    "internalLinks": [
+      "tax-and-fees-before-buying-import",
+      "maintenance-cost-simulation",
+      "repair-history-used-car-checklist",
+      "sharyou-hoken-necessary"
+    ]
+  },
+  {
+    "id": "car-budget-simulation",
+    "slug": "car-budget-simulation",
+    "type": "GUIDE",
+    "status": "published",
+    "title": "車の予算はいくらが正解？年収別の安全ラインとシミュレーション",
+    "summary": "車の予算を月額化して考える手順。ローン・保険・税・車検・突発費まで含めたシミュレーション。",
+    "seoTitle": "車の予算はいくらが正解？年収別の安全ラインと失敗しないシミュレーション",
+    "seoDescription": "車の予算を月額化して考える手順。ローン・保険・税・車検・突発費まで含めたシミュレーション。",
+    "category": "MONEY",
+    "readMinutes": 12,
+    "heroImage": null,
+    "body": "この記事は「車の予算はいくらが正解？年収別の安全ラインとシミュレーション」をテーマに、購入の意思決定は「車両価格」だけで見るとズレます。毎月の総額と、支払い方法ごとの落とし穴を整理します。\n\n## 結論\n- 車の予算は「車両価格」ではなく、**毎月の固定費＋年1回の支払い＋突発費**で組むと破綻しません。\n- 先に決めるべきは“上限”。その上限の中で、購入方法（現金/ローン/残クレ/リース）を選ぶ方が安全です。\n- シミュレーションは難しくありません。**固定費を先に積み上げて、残りで車を選ぶ**だけです。\n\n## 予算に入れる項目（最低限）\n- 毎月：ローン/積立、任意保険、駐車場、燃料（目安）\n- 年1回〜：税金、車検、メンテ、タイヤ（/guide/maintenance-cost-simulation）\n- 突発：バッテリー、警告灯、事故対応など（/guide/road-service-choice-guide）\n\n## 手順 1 手取りと生活固定費をざっくり出す\n- 手取り（月）\n- 生活固定費（月）：家賃/住宅ローン、通信、保育料、サブスク等\n- 先に確保したいもの：貯蓄、教育費、趣味\nこの時点で「車に回せる上限（毎月）」を仮決めします。\n\n## 手順 2 車の費用を「月額化」する\n年に1回の支払いは、12で割って“毎月の積立”として扱うと管理しやすくなります。\n- 税金、車検、定期メンテは「年間額 ÷ 12」\n- タイヤなど数年ごとの支出は「年間の平均」にして見積もる\n\n## 手順 3 毎月の車コストを作る\n- ローン/リース（または買い替え積立）\n- 任意保険\n- 駐車場\n- 燃料\n- 年1回費用の積立（税/車検/メンテ）\n- バッファ（予備費）\n\n## 手順 4 上限を超えたら「3つのレバー」で調整する\n- 車両側：グレード/サイズを下げる、年式をずらす\n- 支払い側：頭金、期間、残クレ/リース（条件確認）\n- 運用側：保険の見直し、タイヤサイズ、乗り方\n\n## よくあるつまずき\n- 月々の支払いだけで決めて、税・車検のタイミングで資金繰りが崩れる\n- 保険を後回しにして、想定より高くなり計画が狂う\n- タイヤやバッテリーの交換時期を無視して、突発費で苦しくなる\n\n## 補足（実務メモ）\n- 予算は車両価格ではなく、税金・保険・駐車場・メンテを含めた“月の総額”で見る\n- ローン/残クレ/リース/サブスクは、金利だけでなく「所有権」「走行距離」「中途解約」「原状回復」で差が出る\n- 現金一括でも生活防衛資金は別枠で残す（故障や家計変化に弱くならない）\n\n## 関連記事\n- /guide/maintenance-cost-simulation\n- /guide/loan-or-lump-sum\n- /guide/compare-loan-lease-zancre\n- /guide/tax-and-fees-before-buying-import\n- /guide/family-suv-budget-and-lifeplan\n",
+    "publishedAt": "2025-12-07T00:00:00.000Z",
+    "updatedAt": "2026-01-20",
+    "tags": [
+      "車選び",
+      "予算",
+      "年収",
+      "シミュレーション"
+    ],
+    "relatedCarSlugs": [],
+    "relatedGuideSlugs": [
+      "maintenance-cost-simulation",
+      "loan-or-lump-sum",
+      "compare-loan-lease-zancre",
+      "tax-and-fees-before-buying-import"
+    ],
+    "relatedColumnSlugs": [],
+    "relatedHeritageSlugs": [
+      "toyota-celsior-ls400-silence-precision-heritage"
+    ],
+    "intentTags": [
+      "money"
+    ],
+    "monetizeKey": "loan_estimate",
+    "lead": "車の予算を月額化して考える手順。ローン・保険・税・車検・突発費まで含めたシミュレーション。",
+    "internalLinks": [
+      "maintenance-cost-simulation",
+      "loan-or-lump-sum",
+      "compare-loan-lease-zancre",
+      "tax-and-fees-before-buying-import"
+    ]
+  },
+  {
+    "id": "compare-loan-lease-zancre",
+    "slug": "compare-loan-lease-zancre",
+    "type": "GUIDE",
+    "status": "published",
+    "title": "残クレ・リース・通常ローンどれが得？メリット・デメリット徹底比較",
+    "summary": "通常ローン、残クレ、リースを総支払・自由度・リスクの3軸で比較し、失敗しない確認項目を整理。",
+    "seoTitle": "残クレ・リース・通常ローンどれが得？仕組みと注意点を分かりやすく解説",
+    "seoDescription": "通常ローン、残クレ、リースを総支払・自由度・リスクの3軸で比較し、失敗しない確認項目を整理。",
+    "category": "MONEY",
+    "readMinutes": 15,
+    "heroImage": null,
+    "body": "この記事は「残クレ・リース・通常ローンどれが得？メリット・デメリット徹底比較」をテーマに、購入の意思決定は「車両価格」だけで見るとズレます。毎月の総額と、支払い方法ごとの落とし穴を整理します。\n\n## 結論\n- 「月々が安い」だけで選ぶと、満了時の精算や条件の縛りで逆に高くつくことがあります。\n- **残クレ（残価設定ローン）**と**リース**は“出口”が決まっている分、条件（走行距離・原状回復・中途解約）を必ず確認します。\n- 比較は3軸。**総支払 / 自由度 / リスク**で並べると迷いが減ります。\n\n## まず用語を揃える\n- 通常ローン：元金を完済すれば車は自分の資産。途中売却もしやすい\n- 残クレ：最終回に残価（残りの価格）が残る。返却・買い取り・乗り換えを選ぶ形が多い\n- リース：契約期間は借りる。月額に税や車検が含まれるプランもある\n\n## 手順 1 先に「年数」と「走行距離」を決める\n- 2〜3年で乗り換える前提なら、残クレ/リースのメリットが出やすい\n- 5年以上乗るなら、通常ローンや現金の方が読みやすいことが多い\n- 走行距離が読めないなら、距離制限がある契約はリスクになる\n\n## 手順 2 比較は「総支払」「自由度」「リスク」の3つ\n- 総支払：頭金・諸費用・満了時の精算まで含める\n- 自由度：途中売却、カスタム、乗り方の制約の少なさ\n- リスク：相場下振れ、距離超過、傷の増加、途中解約\n\n## 手順 3 契約書で見るポイント（ここだけは外さない）\n- 走行距離：上限と超過精算の単価\n- 原状回復：返却時に請求されやすい傷・修理の基準\n- 中途解約：解約できるか、違約金の考え方\n- 満了時：返却/買い取り/乗り換えの条件、買い取り価格\n- メンテ：車検や消耗品が含まれるか（含まれないなら別で積立）\n\n## よくあるつまずき\n- 月額だけで決め、満了時の精算や返却条件を読み落とす\n- 走行距離の見積が甘く、超過精算で割高になる\n- 中途解約が難しい契約を組み、ライフスタイル変化に対応できない\n\n## 補足（実務メモ）\n- 月々の支払いが同じでも、総支払額と“出口（返却/買い取り/乗り換え）”が違う\n- 走行距離が多い人ほど、走行距離制限があるプランは不利になりやすい\n- 中途解約の違約金は想定外の痛手になりやすいので、ライフイベントが近いなら短期契約に注意\n\n## 関連記事\n- /guide/car-loan-interest-rate-guide\n- /guide/loan-vs-lease-luxury-sedan\n- /guide/subscription-vs-owning\n- /guide/car-budget-simulation\n- /guide/loan-or-lump-sum\n",
+    "publishedAt": "2025-12-07T00:00:00.000Z",
+    "updatedAt": "2026-01-20",
+    "tags": [
+      "車選び",
+      "残クレ",
+      "カーリース",
+      "ローン"
+    ],
+    "relatedCarSlugs": [],
+    "monetizeKey": "loan_estimate",
+    "relatedGuideSlugs": [
+      "car-loan-interest-rate-guide",
+      "loan-vs-lease-luxury-sedan",
+      "subscription-vs-owning",
+      "car-budget-simulation"
+    ],
+    "relatedColumnSlugs": [],
+    "relatedHeritageSlugs": [
+      "toyota-celsior-ls400-silence-precision-heritage"
+    ],
+    "intentTags": [
+      "money",
+      "loan",
+      "lease"
+    ],
+    "lead": "通常ローン、残クレ、リースを総支払・自由度・リスクの3軸で比較し、失敗しない確認項目を整理。",
+    "internalLinks": [
+      "car-loan-interest-rate-guide",
+      "loan-vs-lease-luxury-sedan",
+      "subscription-vs-owning",
+      "car-budget-simulation"
+    ]
+  },
+  {
+    "id": "best-time-to-sell-car",
+    "slug": "best-time-to-sell-car",
+    "type": "GUIDE",
+    "status": "published",
+    "title": "クルマを売るベストタイミングはいつ？乗り換え時期と高く売るコツ",
+    "summary": "車検・大きい整備・走行距離の節目を基準に、損しにくい売り時と2〜3週間の段取りをまとめます。",
+    "seoTitle": "車を売るベストタイミングはいつ？年式・走行距離・車検から考える後悔しない売り時",
+    "seoDescription": "車検・大きい整備・走行距離の節目を基準に、損しにくい売り時と2〜3週間の段取りをまとめます。",
+    "category": "MONEY",
+    "readMinutes": 14,
+    "heroImage": null,
+    "body": "この記事は「クルマを売るベストタイミングはいつ？乗り換え時期と高く売るコツ」をテーマに、売却は情報戦というより段取り勝負です。必要書類・比較の取り方・トラブル回避の要点をまとめます。\n\n## 結論\n- 迷ったら「次の大きい出費（車検・タイヤ・修理）」の前が売り時になりやすいです。\n- 高く売りたい場合でも、やることは同じ。**相場を確認して、比較して、期限を決める**だけです。\n- “売り時”は1日で決まりません。2〜3週間の段取りを作ると、焦って安売りしにくくなります。\n\n## 売り時を決める判断軸\n- 車検が近い：通す前に「車検+整備の見積」と「今売った場合の差」を比べる\n- 走行距離の節目：距離が増えるほど査定が落ちやすいポイントがある\n- 大きい整備が近い：タイヤ、バッテリー、足回りなど“まとまった出費”の前\n- 型落ち：フルモデルチェンジやマイナーチェンジで相場が動くことがある\n- 税のタイミング：軽自動車などは調整が効きにくいので、手放す時期で負担が変わることがある\n\n## 2〜3週間で動く段取り\n### STEP 1 相場を把握する\n- 同じ車種・年式・走行距離の相場を確認する\n- 装備（ナビ、ADAS、サンルーフ等）が評価されるかを見る\n\n### STEP 2 査定を「比較」できる形にする\n- 最低でも2社（できれば3社）で査定し、同じ条件で比べる\n- その場で即決せず、期限を区切って持ち帰る\n\n### STEP 3 査定前に“整備”より“情報”を揃える\n修理して完璧にするより、説明材料を揃える方が効くことが多いです。\n- 整備記録簿、取扱説明書、スペアキー\n- 修理歴や不具合は隠さず、伝え方を用意する\n\n### STEP 4 引き渡し日を決めて交渉する\n- 「いつまでに手放すか」を先に決める\n- 期限があると、相手のペースで決めづらくなります\n\n## よくあるつまずき\n- 車検を通してから売れば得だと思い込み、費用が回収できない\n- 1社で即決してしまい、比較せずに安く手放す\n- 期限を決めずに先延ばしし、相場が落ちたタイミングで売る\n\n## 補足（実務メモ）\n- 相場確認は“1社の提示額”で決めない。比較対象があるだけで交渉が楽になる\n- 査定前に洗車・車内清掃をしておくと、第一印象でのマイナスを避けやすい\n- 引き渡し日と入金日はセットで決める（先に車だけ渡さない）\n- 電話が負担なら、最初に「連絡方法/時間帯」を指定しておく\n\n## 関連記事\n- /guide/hajimete-kuruma-uru-checklist\n- /guide/selling-without-rush\n- /guide/kuruma-ikkatsu-satei-shitsukoi-real\n- /guide/meigi-henko-hitsuyou-shorui-futsuu\n- /guide/best-time-to-sell-import-sedan\n",
+    "publishedAt": "2025-12-07T00:00:00.000Z",
+    "updatedAt": "2026-01-20",
+    "tags": [
+      "車売却",
+      "買取",
+      "下取り",
+      "乗り換え"
+    ],
+    "relatedCarSlugs": [],
+    "relatedGuideSlugs": [
+      "hajimete-kuruma-uru-checklist",
+      "selling-without-rush",
+      "kuruma-ikkatsu-satei-shitsukoi-real",
+      "meigi-henko-hitsuyou-shorui-futsuu"
+    ],
+    "relatedColumnSlugs": [],
+    "relatedHeritageSlugs": [
+      "toyota-celsior-ls400-silence-precision-heritage"
+    ],
+    "intentTags": [
+      "money",
+      "sell"
+    ],
+    "monetizeKey": "sell_basic_checklist",
+    "lead": "車検・大きい整備・走行距離の節目を基準に、損しにくい売り時と2〜3週間の段取りをまとめます。",
+    "internalLinks": [
+      "hajimete-kuruma-uru-checklist",
+      "selling-without-rush",
+      "kuruma-ikkatsu-satei-shitsukoi-real",
+      "meigi-henko-hitsuyou-shorui-futsuu"
+    ]
+  }
+]
