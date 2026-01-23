@@ -1,0 +1,340 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Global Design Rules (CBJ Rebrand)
+  - 白背景 / 濃いグレー文字
+  - 日本語: 明朝（Serif）
+  - アクセント: Tiffany Blue（リンクhover / 細いラインのみ）
+
+  NOTE:
+  既存のTailwind設定が参照しているCSS変数（--font-montserrat / --font-bodoni）を
+  Noto Serif JP に寄せて互換を維持します。
+*/
+
+:root {
+  color-scheme: light;
+
+  /* Fonts (Tailwind互換) */
+  --font-montserrat: "Noto Serif JP";
+  --font-bodoni: "Noto Serif JP";
+  --font-manrope: "Noto Serif JP";
+
+  /* Brand tokens */
+  --cb-tiffany: 10 186 181; /* #0ABAB5 */
+  --cb-porcelain: 255 255 255; /* #FFFFFF */
+  --cb-ink: 34 34 34; /* #222222 */
+}
+
+/* ----------------------------------------
+   Base
+----------------------------------------- */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: rgb(var(--cb-porcelain));
+    color: rgb(var(--cb-ink));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.03em;
+  }
+
+  /* Selection（アクセントは使わない） */
+  ::selection {
+    background: rgba(34, 34, 34, 0.12);
+    color: rgb(var(--cb-ink));
+  }
+
+  /* Links: defaultは主張しない。hoverでのみアクセント */
+  a {
+    color: inherit;
+    text-decoration: none;
+    text-underline-offset: 0.24em;
+    text-decoration-thickness: 1px;
+  }
+
+  a:hover {
+    color: rgb(var(--cb-tiffany));
+    text-decoration: underline;
+    text-decoration-color: rgb(var(--cb-tiffany));
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid rgba(var(--cb-tiffany), 0.55);
+    outline-offset: 4px;
+  }
+}
+
+/* ----------------------------------------
+   Background helpers
+   - 既存ページで使われている bg-site / bg-atmosphere を“白”に収束させる
+----------------------------------------- */
+
+.bg-site,
+.bg-atmosphere {
+  background-color: rgb(var(--cb-porcelain));
+  background-image: none !important;
+}
+
+/* ----------------------------------------
+   Typography
+----------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+.serif-heading,
+.page-title {
+  font-family: var(--font-montserrat), ui-serif, serif;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+}
+
+p,
+li,
+.font-body {
+  font-family: var(--font-montserrat), ui-serif, serif;
+  line-height: 2.0;
+  letter-spacing: 0.04em;
+}
+
+/* セクションラベル（小さな大文字ラベル） */
+.section-label {
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+
+/* ----------------------------------------
+   Article body (COLUMN / GUIDE / HERITAGE)
+----------------------------------------- */
+
+.article-body p {
+  margin-top: 1.35rem;
+}
+
+.article-body p:first-of-type {
+  margin-top: 0.6rem;
+}
+
+.article-body h2 {
+  margin-top: 2.7rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+}
+
+.article-body h3 {
+  margin-top: 1.9rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.article-body-heritage p {
+  margin-top: 1.4rem;
+}
+
+.article-body-heritage p:first-of-type {
+  margin-top: 0.75rem;
+}
+
+.article-body-heritage h2 {
+  margin-top: 2.7rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+}
+
+.article-body-heritage h3 {
+  margin-top: 1.9rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+/* ----------------------------------------
+   Drop caps（先頭ジャンボ1文字）
+   - アクセント色は使わない（文字色で統一）
+----------------------------------------- */
+
+.first-letter-float {
+  text-indent: 0;
+}
+
+.first-letter-span {
+  float: left;
+  margin-right: 12px;
+  margin-top: -6px;
+  margin-bottom: -2px;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 3.4rem;
+  line-height: 0.85;
+  font-weight: 500;
+  color: rgb(var(--cb-ink));
+}
+
+@media (min-width: 640px) {
+  .first-letter-span {
+    font-size: 3.8rem;
+  }
+}
+
+.heritage-dropcap {
+  text-indent: 0;
+}
+
+.heritage-dropcap::first-letter {
+  float: left;
+  margin-right: 12px;
+  margin-top: -6px;
+  margin-bottom: -2px;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 3.4rem;
+  line-height: 0.85;
+  font-weight: 500;
+  color: rgb(var(--cb-ink));
+}
+
+@media (min-width: 640px) {
+  .heritage-dropcap::first-letter {
+    font-size: 3.8rem;
+  }
+}
+
+/* ----------------------------------------
+   Heritage highlight（波線アンダーライン = “細いライン”扱い）
+----------------------------------------- */
+
+.heritage-highlight-wave {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: rgba(var(--cb-tiffany), 0.95);
+  text-decoration-thickness: 1.4px;
+  text-underline-offset: 0.18em;
+}
+
+@supports not (text-decoration-thickness: 1px) {
+  .heritage-highlight-wave {
+    text-decoration-thickness: 2px;
+  }
+}
+
+/* ----------------------------------------
+   Layout helpers
+----------------------------------------- */
+
+.page-shell {
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .page-shell {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-shell {
+    padding-inline: 2rem;
+  }
+}
+
+.page-section {
+  padding-block: 3.5rem;
+}
+
+@media (min-width: 1024px) {
+  .page-section {
+    padding-block: 5rem;
+  }
+}
+
+.page-section-lg {
+  padding-block: 5rem;
+}
+
+@media (min-width: 1024px) {
+  .page-section-lg {
+    padding-block: 7.5rem;
+  }
+}
+
+/* ----------------------------------------
+   Home utilities
+----------------------------------------- */
+
+@layer components {
+  .vertical-rl {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  .home-section-no {
+    font-size: clamp(96px, 18vw, 260px);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: rgba(34, 34, 34, 0.1);
+  }
+
+  /* Safe area helpers (iOS notch) */
+  .safe-area-top {
+    top: calc(env(safe-area-inset-top) + 1rem) !important;
+  }
+  .safe-area-right {
+    right: calc(env(safe-area-inset-right) + 1rem) !important;
+  }
+  .safe-area-left {
+    left: calc(env(safe-area-inset-left) + 1rem) !important;
+  }
+  .safe-area-bottom {
+    bottom: calc(env(safe-area-inset-bottom) + 1rem) !important;
+  }
+}
+
+/* ----------------------------------------
+   Scrollbar（アクセントは使わず、グレーで静かに）
+----------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 34, 34, 0.22);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 34, 34, 0.32);
+}

@@ -1,0 +1,252 @@
+[
+  {
+    "id": "toyota-global",
+    "name": "Toyota Global Newsroom",
+    "maker": "Toyota",
+    "category": "OFFICIAL",
+    "baseUrl": "https://global.toyota",
+    "feedUrl": "https://global.toyota/export/en/allnews_rss.xml",
+    "lang": "en",
+    "tags": [
+      "press",
+      "official"
+    ]
+  },
+  {
+    "id": "toyota-usa",
+    "name": "Toyota USA Newsroom",
+    "maker": "Toyota",
+    "category": "OFFICIAL",
+    "baseUrl": "https://pressroom.toyota.com",
+    "feedUrl": "https://pressroom.toyota.com/feed/atom",
+    "lang": "en",
+    "tags": [
+      "press",
+      "official"
+    ]
+  },
+  {
+    "id": "lexus-pressroom",
+    "name": "Lexus Pressroom",
+    "maker": "Lexus",
+    "category": "OFFICIAL",
+    "baseUrl": "https://pressroom.lexus.com",
+    "feedUrl": "https://pressroom.lexus.com/feed/atom",
+    "lang": "en",
+    "tags": [
+      "press",
+      "official"
+    ]
+  },
+  {
+    "id": "mercedes-jp",
+    "name": "Newsroom Mercedes-Benz Japan",
+    "maker": "Mercedes-Benz",
+    "category": "OFFICIAL",
+    "baseUrl": "https://media.mercedes-benz.jp",
+    "feedUrl": "https://media.mercedes-benz.jp/feed/ja",
+    "lang": "ja",
+    "tags": [
+      "press",
+      "official",
+      "import"
+    ]
+  },
+  {
+    "id": "bmw-pressclub-global",
+    "name": "BMW Group PressClub Global",
+    "maker": "BMW",
+    "category": "OFFICIAL",
+    "baseUrl": "https://www.press.bmwgroup.com",
+    "feedUrl": "https://www.press.bmwgroup.com/global/rss",
+    "lang": "en",
+    "tags": [
+      "press",
+      "official",
+      "import"
+    ]
+  },
+  {
+    "id": "porsche-newsroom",
+    "name": "Porsche Newsroom",
+    "maker": "Porsche",
+    "category": "OFFICIAL",
+    "baseUrl": "https://newsroom.porsche.com",
+    "feedUrl": "https://newsroom.porsche.com/rss/en/index.rss",
+    "lang": "en",
+    "tags": [
+      "press",
+      "official",
+      "import"
+    ]
+  },
+  {
+    "id": "vw-group-press",
+    "name": "Volkswagen Group - Press releases",
+    "maker": "Volkswagen",
+    "category": "OFFICIAL",
+    "baseUrl": "https://www.volkswagen-group.com",
+    "feedUrl": "https://www.volkswagen-group.com/en/feeds/press-releases",
+    "lang": "en",
+    "tags": [
+      "press",
+      "official",
+      "import"
+    ]
+  },
+  {
+    "id": "honda-news-eu",
+    "name": "Honda News Europe - Press releases",
+    "maker": "Honda",
+    "category": "OFFICIAL",
+    "baseUrl": "https://hondanews.eu",
+    "feedUrl": "https://hondanews.eu/eu/lv/corporate/rss/pressreleases/feed.rss",
+    "lang": "en",
+    "tags": [
+      "press",
+      "official"
+    ]
+  },
+  {
+    "id": "tesla-blog",
+    "name": "Tesla Blog",
+    "maker": "Tesla",
+    "category": "OFFICIAL",
+    "baseUrl": "https://www.tesla.com/blog",
+    "feedUrl": "https://www.tesla.com/blog/rss",
+    "lang": "en",
+    "tags": [
+      "press",
+      "official",
+      "import",
+      "ev"
+    ]
+  },
+  {
+    "id": "gm-news",
+    "name": "General Motors News",
+    "maker": "GM",
+    "category": "OFFICIAL",
+    "baseUrl": "https://news.gm.com",
+    "feedUrl": "https://news.gm.com/rss.xml",
+    "lang": "en",
+    "tags": [
+      "press",
+      "official"
+    ]
+  },
+  {
+    "id": "stellantis-na",
+    "name": "Stellantis North America Media",
+    "maker": "Stellantis",
+    "category": "OFFICIAL",
+    "baseUrl": "https://media.stellantisnorthamerica.com",
+    "feedUrl": "https://media.stellantisnorthamerica.com/rss",
+    "discoverFeed": true,
+    "lang": "en",
+    "tags": [
+      "press",
+      "official"
+    ]
+  },
+  {
+    "id": "ford-media",
+    "name": "Ford Media Center",
+    "maker": "Ford",
+    "category": "OFFICIAL",
+    "baseUrl": "https://media.ford.com",
+    "feedUrl": "https://media.ford.com/content/fordmedia/fna/us/en/news.rss",
+    "discoverFeed": true,
+    "lang": "en",
+    "tags": [
+      "press",
+      "official"
+    ]
+  },
+  {
+    "id": "volvo-media",
+    "name": "Volvo Cars Media",
+    "maker": "Volvo",
+    "category": "OFFICIAL",
+    "baseUrl": "https://www.media.volvocars.com",
+    "discoverUrl": "https://www.media.volvocars.com/global/en-gb",
+    "feedUrl": "https://www.media.volvocars.com/global/en-gb/rss.xml",
+    "discoverFeed": true,
+    "lang": "en",
+    "tags": [
+      "press",
+      "official",
+      "import"
+    ]
+  },
+  {
+    "id": "jlr-media",
+    "name": "Jaguar Land Rover Media",
+    "maker": "JLR",
+    "category": "OFFICIAL",
+    "baseUrl": "https://media.jaguarlandrover.com",
+    "discoverFeed": true,
+    "lang": "en",
+    "tags": [
+      "press",
+      "official",
+      "import"
+    ]
+  },
+  {
+    "id": "nissan-global",
+    "name": "Nissan Global Newsroom",
+    "maker": "Nissan",
+    "category": "OFFICIAL",
+    "baseUrl": "https://global.nissannews.com",
+    "feedUrl": "https://global.nissannews.com/en/rss.xml",
+    "discoverFeed": true,
+    "lang": "en",
+    "tags": [
+      "press",
+      "official"
+    ]
+  },
+  {
+    "id": "mazda-global",
+    "name": "Mazda Global Newsroom",
+    "maker": "Mazda",
+    "category": "OFFICIAL",
+    "baseUrl": "https://newsroom.mazda.com",
+    "discoverUrl": "https://newsroom.mazda.com/en",
+    "feedUrl": "https://newsroom.mazda.com/en/rss.xml",
+    "discoverFeed": true,
+    "lang": "en",
+    "tags": [
+      "press",
+      "official"
+    ]
+  },
+  {
+    "id": "subaru-global",
+    "name": "Subaru Global",
+    "maker": "Subaru",
+    "category": "OFFICIAL",
+    "baseUrl": "https://www.subaru-global.com",
+    "discoverFeed": true,
+    "lang": "en",
+    "tags": [
+      "press",
+      "official"
+    ]
+  },
+  {
+    "id": "toyota-europe",
+    "name": "Toyota Europe Newsroom",
+    "maker": "Toyota",
+    "category": "OFFICIAL",
+    "baseUrl": "https://newsroom.toyota.eu",
+    "feedUrl": "https://newsroom.toyota.eu/feed/",
+    "discoverFeed": true,
+    "lang": "en",
+    "tags": [
+      "press",
+      "official"
+    ]
+  }
+]
