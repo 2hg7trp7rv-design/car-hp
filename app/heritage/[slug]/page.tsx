@@ -111,6 +111,12 @@ function parseHeritageChapters(
   let paraBuf: string[] = [];
   let listBuf: string[] = [];
 
+  const commitChapter = (chapter: HeritageChapter | null) => {
+    if (!chapter) return;
+    const hasContent = chapter.blocks.some((b) => b.type !== "hr");
+    if (hasContent) chapters.push(chapter);
+  };
+
   const flushParagraph = () => {
     if (!current) return;
     const joined = paraBuf
@@ -133,10 +139,7 @@ function parseHeritageChapters(
     // close prev
     flushParagraph();
     flushList();
-    if (current) {
-      const hasContent = current.blocks.some((b) => b.type !== "hr");
-      if (hasContent) chapters.push(current);
-    }
+    commitChapter(current);
 
     const m = findMetaByTitle(title);
     const id = (m?.id ? m.id : slugifyId(title)) || `section-${chapters.length + 1}`;
@@ -241,10 +244,7 @@ function parseHeritageChapters(
   // last
   flushParagraph();
   flushList();
-  if (current) {
-    const hasContent = current.blocks.some((b) => b.type !== "hr");
-    if (hasContent) chapters.push(current);
-  }
+  commitChapter(current);
 
   return chapters;
 }
