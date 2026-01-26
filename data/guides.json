@@ -1,0 +1,263 @@
+[
+  {
+    "id": "guide-tax-and-fees-before-buying-import",
+    "slug": "tax-and-fees-before-buying-import",
+    "title": "見積もりだけでは分からない「輸入車の税金・諸費用」チェックリスト",
+    "summary": "輸入車の見積で見落としやすい税金・諸費用の見方。削れる項目と確認手順を整理。",
+    "category": "MONEY",
+    "tags": [
+      "税金",
+      "諸費用",
+      "見積もり",
+      "輸入車"
+    ],
+    "publishedAt": "2025-04-04T09:00:00+09:00",
+    "updatedAt": "2026-01-20",
+    "readMinutes": 6,
+    "heroImage": "/images/guides/tax-and-fees-before-buying-import.jpg",
+    "status": "published",
+    "intentTags": [
+      "money"
+    ],
+    "monetizeKey": "loan_estimate",
+    "relatedCarSlugs": [],
+    "relatedGuideSlugs": [
+      "car-budget-simulation",
+      "maintenance-cost-simulation",
+      "car-loan-interest-rate-guide",
+      "loan-or-lump-sum"
+    ],
+    "relatedColumnSlugs": [],
+    "relatedHeritageSlugs": [
+      "supercar-parts-bin-engineering-heritage"
+    ],
+    "body": "この記事は「見積もりだけでは分からない「輸入車の税金・諸費用」チェックリスト」をテーマに、購入の意思決定は「車両価格」だけで見るとズレます。毎月の総額と、支払い方法ごとの落とし穴を整理します。\n\n## 結論\n- 見積書は「税金」「登録・代行」「保険」「オプション」に分解すると、削れる項目と削れない項目が整理できます。\n- 判断は“納車までの総額”だけでは足りません。**初年度に必ず出ていく固定費（税・保険・駐車場）**まで含めて安全ラインを決めます。\n- 不明な「一式」「その他」はそのまま契約しない。**内訳と根拠**を出してもらえば、無駄な上乗せを避けやすくなります。\n\n## 先に確認するチェックリスト\n- 税金：環境性能割（有無と算定根拠）／自動車税（種別割）の支払タイミング／自動車重量税\n- 保険：自賠責（期間）／任意保険（補償内容・車両保険の要否・免責）\n- 登録・代行：登録代行料／車庫証明（申請 or 代行）／納車費用（対象範囲）\n- オプション：コーティング／保証延長／ドラレコ等（後付け可否・必要度）\n- 初年度固定費：駐車場／任意保険（年払いの場合の初回支払）／税の月割り／メンテナンスの積立\n- 見積の見落とし：ETCセットアップ／リサイクル預託金／希望ナンバー／下取り精算（税の扱い）\n\n## 手順 1 見積を4つの箱に分ける\n輸入車の見積は、同じ「総額」でも中身が違うことがあります。まずは次の4分類で並べ替えると、比較が一気にラクになります。\n- 税金（制度で決まる）：削るより“発生条件”を確認する領域\n- 登録・代行（手間の代金）：自分でやるほど下げやすい領域\n- 保険（条件で変動）：補償の設計で総額が変わる領域\n- オプション（好み）：後付けできるものは後回しにできる領域\n\n## 手順 2 「一式」「その他」を分解してもらう\n- 何の作業が含まれるか（例：書類作成、申請代行、出張封印、納車整備など）\n- 必須なのか、断ると何が困るのか\n- 口頭で終わらせず、見積書の内訳に反映してもらう\n\n## 手順 3 削る順番は「後付け→手間→最後に保証」\n- まずは後付けできるオプション（コーティング、ドラレコ、フィルム等）\n- 次に代行料（車庫証明や登録の一部を自分でやる／納車の受け取り方法を変える等）\n- 保証や整備は、削る前に“故障したときの上限”と“対象範囲”を確認して判断する\n\n## 手順 4 支払タイミングまで確認する\n同じ総額でも、支払いが分かれていると家計の負担感が変わります。\n- 契約金：いつ、いくら必要か\n- 登録時：税金や手数料が乗るタイミング\n- 納車時：オプションや納車費用が確定するタイミング\n- 納車後：任意保険の支払方法、税の通知、駐車場の初期費用\n\n## よくあるつまずき\n- 本体価格だけで比較して、納車直前に諸費用が上振れする\n- 「安心だから」とオプションを盛って、毎月の固定費が限界になる\n- 任意保険の見積を取らずに契約し、想定外の保険料で詰まる\n\n## 補足（実務メモ）\n- 予算は車両価格ではなく、税金・保険・駐車場・メンテを含めた“月の総額”で見る\n- ローン/残クレ/リース/サブスクは、金利だけでなく「所有権」「走行距離」「中途解約」「原状回復」で差が出る\n- 現金一括でも生活防衛資金は別枠で残す（故障や家計変化に弱くならない）\n- 税制は改正が入りやすい。購入時点の制度（環境性能割など）を必ず最新で確認する\n- 税制改正で環境性能割は2026年3月31日で廃止する方針。購入時点の扱いは必ず最新で確認\n\n\n## 関連記事\n- /guide/car-budget-simulation\n- /guide/maintenance-cost-simulation\n- /guide/car-loan-interest-rate-guide\n- /guide/loan-or-lump-sum\n- /guide/used-import-car-buying-guide\n",
+    "seoTitle": "見積もりだけでは分からない「輸入車の税金・諸費用」チェックリスト｜CAR BOUTIQUE GUIDE",
+    "seoDescription": "輸入車の見積で見落としやすい税金・諸費用の見方。削れる項目と確認手順を整理。",
+    "lead": "輸入車の見積で見落としやすい税金・諸費用の見方。削れる項目と確認手順を整理。",
+    "internalLinks": [
+      "car-budget-simulation",
+      "maintenance-cost-simulation",
+      "car-loan-interest-rate-guide",
+      "loan-or-lump-sum"
+    ]
+  },
+  {
+    "id": "guide-loan-vs-lease-luxury-sedan",
+    "slug": "loan-vs-lease-luxury-sedan",
+    "title": "ローンかリースか。ラグジュアリーセダンの支払い比較",
+    "summary": "高級セダンのローンとリースを比較。月額ではなく総支払と契約条件で選ぶためのチェック。",
+    "category": "MONEY",
+    "tags": [
+      "ローン",
+      "リース",
+      "ラグジュアリーセダン",
+      "支払い方法"
+    ],
+    "publishedAt": "2025-04-05T09:00:00+09:00",
+    "updatedAt": "2026-01-20",
+    "readMinutes": 8,
+    "heroImage": "/images/guides/loan-vs-lease-luxury-sedan.jpg",
+    "status": "published",
+    "intentTags": [
+      "money",
+      "loan",
+      "lease"
+    ],
+    "monetizeKey": "loan_estimate",
+    "relatedCarSlugs": [],
+    "relatedGuideSlugs": [
+      "compare-loan-lease-zancre",
+      "subscription-vs-owning",
+      "car-loan-interest-rate-guide",
+      "maintenance-cost-simulation"
+    ],
+    "relatedColumnSlugs": [],
+    "relatedHeritageSlugs": [
+      "toyota-celsior-ls400-silence-precision-heritage"
+    ],
+    "body": "この記事は「ローンかリースか。ラグジュアリーセダンの支払い比較」をテーマに、ローン/残クレ/リース/一括。どれが正解かは使い方次第です。条件の違いが効くポイントだけに絞って整理します。\n\n## 結論\n- **短期で乗り換える・支出を平準化したい**ならリースが合いやすい一方、契約条件（走行距離・中途解約・原状回復）に縛られます。\n- **長く乗る・自由にカスタムしたい・途中で売る可能性がある**ならローン（または現金）が扱いやすいです。\n- 迷うときは「月額」ではなく、**同じ年数・同じ走行距離**で“総支払”と“途中の選択肢”を比べるのが安全です。\n\n## まず決める前提\n- 想定の保有期間：2〜3年／5年／それ以上\n- 年間走行距離：多い（通勤）／少ない（週末中心）\n- 使い方：屋内保管か、家族利用が多いか（原状回復リスク）\n- 車を資産として残したいか：最終的に所有したい／都度乗り換えたい\n- 支払い方：頭金を入れるか／毎月を軽くしたいか\n\n## 手順 1 リースの“縛り”を数字で確認する\nリースは分かりやすい反面、「途中でやめる」「想定より走る」「細かい傷が増える」といった場面でコストが出やすいです。契約前に次の4点を先に潰します。\n- 走行距離：上限と超過精算（1kmあたりの精算単価があるか）\n- 中途解約：解約可否、違約金の考え方、乗り換え時の手続き\n- 原状回復：返却時に請求されやすい傷・修理の基準\n- 含まれる範囲：車検・税金・メンテ・タイヤなどが月額に入るか\n\n## 手順 2 ローンは「出口」を2通り用意できる\nローンは月々が読みにくい印象がありますが、実務的には“出口”を2通り持てます。\n- 返済を続けて長く乗る（総支払は増えるが自由度が高い）\n- 途中で売る（相場が良ければ乗り換えが軽くなる／悪ければ残債に注意）\nラグジュアリーセダンは相場変動もあるので、「途中売却を選べるか」は意外と差になります。\n\n## 手順 3 比較はこの3つで決める\n- 同期間の総支払：頭金・諸費用・満了時の精算まで含めて並べる\n- 乗り換え自由度：途中売却・条件変更ができるか（契約上の縛り）\n- リスク：走行距離超過／傷の増加／中古相場の下振れに強いのはどちらか\n\n## どちらが向くか\n### リースが向く人\n- 2〜3年で定期的に入れ替える前提がはっきりしている\n- 走行距離が読みやすい（大きくブレない）\n- 家計を月額で管理したい（税金や車検をまとめて払いたくない）\n\n### ローンが向く人\n- 乗り方が変わりやすい（転勤、家族構成、走行距離の増減）\n- カスタムやホイール交換など“自由に触りたい”\n- 途中で手放す/乗り換える可能性がある（出口を残したい）\n\n## よくあるつまずき\n- 月額だけ見て決め、満了時の精算や返却条件を読み落とす\n- 走行距離を甘く見積もり、超過精算で割高になる\n- 原状回復を想定せず、返却時に追加費用が発生する\n- ローンの金利だけ見て、諸費用や保険まで含めた総支払で比較していない\n\n## 補足（実務メモ）\n- 予算は車両価格ではなく、税金・保険・駐車場・メンテを含めた“月の総額”で見る\n- ローン/残クレ/リース/サブスクは、金利だけでなく「所有権」「走行距離」「中途解約」「原状回復」で差が出る\n- 現金一括でも生活防衛資金は別枠で残す（故障や家計変化に弱くならない）\n\n## 関連記事\n- /guide/compare-loan-lease-zancre\n- /guide/subscription-vs-owning\n- /guide/car-loan-interest-rate-guide\n- /guide/maintenance-cost-simulation\n- /guide/loan-or-lump-sum\n",
+    "seoTitle": "ローンかリースか。ラグジュアリーセダンの支払い比較｜CAR BOUTIQUE GUIDE",
+    "seoDescription": "高級セダンのローンとリースを比較。月額ではなく総支払と契約条件で選ぶためのチェック。",
+    "lead": "高級セダンのローンとリースを比較。月額ではなく総支払と契約条件で選ぶためのチェック。",
+    "internalLinks": [
+      "compare-loan-lease-zancre",
+      "subscription-vs-owning",
+      "car-loan-interest-rate-guide",
+      "maintenance-cost-simulation"
+    ]
+  },
+  {
+    "id": "guide-family-suv-budget-and-lifeplan",
+    "slug": "family-suv-budget-and-lifeplan",
+    "title": "子育てファミリーがSUVを選ぶときの「教育費とクルマ費」のバランス",
+    "summary": "子育て家庭のSUV選びを家計目線で整理。固定費の上限、3〜5年の見通し、優先すべき装備。",
+    "category": "MONEY",
+    "tags": [
+      "ファミリーカー",
+      "SUV",
+      "教育費",
+      "家計管理"
+    ],
+    "publishedAt": "2025-04-06T09:00:00+09:00",
+    "updatedAt": "2026-01-20",
+    "readMinutes": 6,
+    "heroImage": "/images/guides/family-suv-budget-and-lifeplan.jpg",
+    "status": "published",
+    "intentTags": [
+      "money"
+    ],
+    "monetizeKey": "loan_estimate",
+    "relatedCarSlugs": [],
+    "relatedGuideSlugs": [
+      "car-budget-simulation",
+      "maintenance-cost-simulation",
+      "tire-replacement-cost-guide",
+      "compare-loan-lease-zancre"
+    ],
+    "relatedColumnSlugs": [],
+    "relatedHeritageSlugs": [
+      "toyota-celsior-ls400-silence-precision-heritage"
+    ],
+    "body": "この記事は「子育てファミリーがSUVを選ぶときの「教育費とクルマ費」のバランス」をテーマに、購入の意思決定は「車両価格」だけで見るとズレます。毎月の総額と、支払い方法ごとの落とし穴を整理します。\n\n## 結論\n- 子育て期のSUV選びは「好き/嫌い」より、**毎月の固定費が家計の余白を削らないか**で失敗が決まります。\n- 教育費や住居費は波が大きいので、車は“今の支払い”ではなく**3〜5年先までの安全ライン**で選ぶのが現実的です。\n- 迷ったら、車格を上げる前に「安全装備・タイヤ・保険」など**後から困りやすい部分**を優先すると満足度が上がります。\n\n## 先に押さえる家計の見取り図\n- 車の固定費：ローン/リース、任意保険、駐車場、税の月割り\n- 車の変動費：燃料、洗車、消耗品、突発修理（バッテリー、タイヤ、センサー等）\n- 生活の固定費：家賃/ローン、通信、保育料、習い事\n- “年に1回大きい出費”：車検、タイヤ、入学関連、帰省、旅行\n\n## 手順 1 「毎月いくらまでなら増やせるか」を決める\nSUVは本体価格より、毎月出ていく固定費が効きます。\n- まずは /guide/car-budget-simulation の考え方で、車に回せる上限を決める\n- 「ローン+保険+駐車場」が上限の中心。燃料は生活スタイルで変わるので別枠\n- 上限が曖昧なまま車格を上げると、後で装備や保険を削ることになりがちです\n\n## 手順 2 SUVの“支出が増えるポイント”を知っておく\n- タイヤ：サイズが上がるほど交換費用が跳ねやすい（/guide/tire-replacement-cost-guide）\n- 燃料：重量とタイヤ幅で差が出る。街乗り中心ほど影響が出やすい\n- 任意保険：条件によっては車両保険を付ける/付けないで差が大きい（/guide/sharyou-hoken-necessary）\n- 車検・整備：ディーラー系のメンテパックは安心だが、総額で見る\n\n## 手順 3 「サイズ」より先に決めると後悔しにくい項目\n- 安全装備：自動ブレーキ、後方検知、ACCなど（年式で差がある）\n- チャイルドシート周り：後席のドア開口、荷室の高さ、ベビーカーの積みやすさ\n- 取り回し：自宅駐車場、立体、よく行くスーパーの幅\n- 使い方：3列が必要なのか、2列で十分なのか（必要回数で考える）\n\n## 手順 4 支払い方法は「自由度」を残す\n子育て期は予定が変わります。支払いも“出口”を残すと安心です。\n- 長期ローンにするほど月々は軽くなるが、途中で売りにくくなる\n- 残クレ/リースは月額が見えやすいが、条件の縛りを確認（/guide/compare-loan-lease-zancre）\n- 迷うなら、まずは「3年で見直せる」設計にする\n\n## よくあるつまずき\n- 月々の支払いだけで決め、保険・駐車場・タイヤで想定を超える\n- 3列SUVを選んだが、実際は2列しか使わず取り回しだけ苦労する\n- 子どもの成長や転居で使い方が変わり、契約条件が合わなくなる\n\n## 補足（実務メモ）\n- 予算は車両価格ではなく、税金・保険・駐車場・メンテを含めた“月の総額”で見る\n- ローン/残クレ/リース/サブスクは、金利だけでなく「所有権」「走行距離」「中途解約」「原状回復」で差が出る\n- 現金一括でも生活防衛資金は別枠で残す（故障や家計変化に弱くならない）\n\n## 関連記事\n- /guide/car-budget-simulation\n- /guide/maintenance-cost-simulation\n- /guide/tire-replacement-cost-guide\n- /guide/compare-loan-lease-zancre\n- /guide/sharyou-hoken-necessary\n",
+    "seoTitle": "家族SUVの予算の決め方｜月々総額と生活の変化で逆算（保存版）",
+    "seoDescription": "子育て家庭のSUV選びを家計目線で整理。固定費の上限、3〜5年の見通し、優先すべき装備。",
+    "lead": "子育て家庭のSUV選びを家計目線で整理。固定費の上限、3〜5年の見通し、優先すべき装備。",
+    "internalLinks": [
+      "car-budget-simulation",
+      "maintenance-cost-simulation",
+      "tire-replacement-cost-guide",
+      "compare-loan-lease-zancre"
+    ]
+  },
+  {
+    "id": "guide-subscription-vs-owning",
+    "slug": "subscription-vs-owning",
+    "title": "サブスクか所有か。月額サービスと購入の境界線",
+    "summary": "車のサブスクと所有を比較。含まれる費用、制約、総支払で判断する方法。",
+    "category": "MONEY",
+    "tags": [
+      "サブスク",
+      "カーリース",
+      "所有",
+      "コスト比較"
+    ],
+    "publishedAt": "2025-04-10T09:00:00+09:00",
+    "updatedAt": "2026-01-20",
+    "readMinutes": 8,
+    "heroImage": "/images/guides/subscription-vs-owning.jpg",
+    "status": "published",
+    "intentTags": [
+      "money",
+      "lease"
+    ],
+    "monetizeKey": "lease_sompo_noru",
+    "relatedCarSlugs": [],
+    "relatedGuideSlugs": [
+      "compare-loan-lease-zancre",
+      "car-budget-simulation",
+      "maintenance-cost-simulation",
+      "loan-or-lump-sum"
+    ],
+    "relatedColumnSlugs": [],
+    "relatedHeritageSlugs": [
+      "toyota-celsior-ls400-silence-precision-heritage"
+    ],
+    "body": "この記事は「サブスクか所有か。月額サービスと購入の境界線」をテーマに、購入の意思決定は「車両価格」だけで見るとズレます。毎月の総額と、支払い方法ごとの落とし穴を整理します。\n\n## 結論\n- サブスクは「月額が高い/安い」ではなく、**含まれる範囲と制約（走行距離・中途解約・原状回復）**で得失が決まります。\n- 所有（現金・ローン）は、税や車検を自分で管理する必要がある一方、**自由度が高く、長く乗るほど総額が読みやすい**です。\n- 比較は「同じ年数・同じ走行距離」で、**月額ではなく総支払**を並べます。\n\n## まず見るチェックリスト\n- 月額に含まれるもの：税金、車検、メンテ、消耗品、タイヤ、任意保険（プランにより異なる）\n- 契約条件：走行距離の上限、途中解約の条件、返却時の原状回復\n- 使い方の自由度：カスタム可否、喫煙/ペットの扱い、事故時の精算\n- “出口”：満了後に返却だけか、買い取り選択肢があるか\n\n## 手順 1 比較期間を先に決める\n迷うときは「3年」と「5年」で2パターン作ると判断しやすいです。\n- 3年：乗り換え前提（新しさ・手間の少なさを優先）\n- 5年以上：長期保有（総額・自由度を優先）\n\n## 手順 2 所有（購入）のコストを「固定費＋年1回費用」で作る\n所有は月額が見えにくいだけで、分解すれば管理できます。\n- 毎月の固定費：ローン/積立、任意保険、駐車場\n- 年に1回〜：税、車検、メンテ、タイヤ（/guide/maintenance-cost-simulation）\n- 最後に“戻り”：売却/下取りの想定（長く乗るほど読みやすい）\n\n## 手順 3 サブスクは「含まれるもの」を言葉で確認する\n同じサブスクでも中身が違います。次の項目は“含まれる/含まれない”で総額が変わります。\n- 車検・法定費用が含まれるか\n- 消耗品（オイル、ワイパー等）の範囲\n- タイヤ交換が含まれるか（サイズが大きいほど差が出る）\n- 任意保険がセットか、別で加入する前提か\n\n## 手順 4 決め手は「制約を受け入れられるか」\n### サブスクが向く人\n- 手間を減らしたい（税・車検の段取りが苦手）\n- 走行距離が読みやすい\n- 2〜3年で定期的に車を替える前提\n\n### 所有が向く人\n- 走行距離や使い方が変わりやすい（転勤、家族構成の変化）\n- カスタムや装備追加を自由にしたい\n- 5年以上乗るつもりで、総額を抑えたい\n\n## よくあるつまずき\n- 月額だけで比較して、途中解約や返却条件で割高になる\n- サブスクに保険が含まれていないのに気づかず、想定を超える\n- 所有側の税・車検を“どこかで払うもの”として先送りし、資金繰りが苦しくなる\n\n## 補足（実務メモ）\n- 予算は車両価格ではなく、税金・保険・駐車場・メンテを含めた“月の総額”で見る\n- ローン/残クレ/リース/サブスクは、金利だけでなく「所有権」「走行距離」「中途解約」「原状回復」で差が出る\n- 現金一括でも生活防衛資金は別枠で残す（故障や家計変化に弱くならない）\n\n## 関連記事\n- /guide/compare-loan-lease-zancre\n- /guide/car-budget-simulation\n- /guide/maintenance-cost-simulation\n- /guide/loan-or-lump-sum\n- /guide/road-service-choice-guide\n",
+    "seoTitle": "サブスクか所有か。月額サービスと購入の境界線｜CAR BOUTIQUE GUIDE",
+    "seoDescription": "車のサブスクと所有を比較。含まれる費用、制約、総支払で判断する方法。",
+    "lead": "車のサブスクと所有を比較。含まれる費用、制約、総支払で判断する方法。",
+    "internalLinks": [
+      "compare-loan-lease-zancre",
+      "car-budget-simulation",
+      "maintenance-cost-simulation",
+      "loan-or-lump-sum"
+    ]
+  },
+  {
+    "id": "guide-best-time-to-sell-import-sedan",
+    "slug": "best-time-to-sell-import-sedan",
+    "title": "輸入セダンを一番おいしいタイミングで手放すには",
+    "summary": "輸入セダンの売却は販路と整備履歴が鍵。車検や大きい整備前に動くための判断軸と手順。",
+    "category": "SELL",
+    "tags": [
+      "売却タイミング",
+      "輸入セダン",
+      "車検",
+      "モデルチェンジ"
+    ],
+    "publishedAt": "2025-04-12T09:00:00+09:00",
+    "updatedAt": "2026-01-20",
+    "readMinutes": 8,
+    "heroImage": "/images/guides/best-time-to-sell-import-sedan.jpg",
+    "status": "published",
+    "intentTags": [
+      "sell",
+      "shaken"
+    ],
+    "monetizeKey": "sell_basic_checklist",
+    "relatedCarSlugs": [],
+    "relatedGuideSlugs": [
+      "yunyusha-koukya-uru-kaitori-strategy",
+      "best-time-to-sell-car",
+      "hajimete-kuruma-uru-checklist",
+      "selling-without-rush"
+    ],
+    "relatedColumnSlugs": [],
+    "relatedHeritageSlugs": [
+      "japan-1995-golden-age-heritage"
+    ],
+    "body": "この記事は「輸入セダンを一番おいしいタイミングで手放すには」をテーマに、売却は情報戦というより段取り勝負です。必要書類・比較の取り方・トラブル回避の要点をまとめます。\n\n## 結論\n- 輸入セダンの“売り時”は、**車検・大きい整備・モデルチェンジ・走行距離の節目**の前後で決まりやすいです。\n- 高く売るより「損しにくい」判断をするなら、**次に来る出費（車検/タイヤ/足回り）**を基準に動くのが現実的です。\n- 行動は2〜3週間で十分。相場→査定→書類の順に進めれば、焦って安売りしにくくなります。\n\n## 売り時の判断軸\n- 車検が近い：通すべきかは「車検+整備の見積」と「今の買取差」を比べる\n- 走行距離の節目：距離が増えるほど査定が落ちやすいポイントがある（乗り続けるほど“売却コスト”が増える）\n- 大きい整備が近い：ブレーキ、タイヤ、足回り、冷却系など“まとまった出費”の前\n- 保証/メンテパックの区切り：切れる直前は、購入側の安心材料になりやすい\n- モデルチェンジ：型落ちのタイミングで相場が動くことがある\n\n## 2〜3週間で動く段取り\n### STEP 1 まず相場を把握する\n- 近い年式・走行距離・グレードの相場を確認する\n- 装備（サンルーフ、レザー、先進安全装備等）が価格に効いているかを見る\n\n### STEP 2 査定は「輸入車に強い先」と「比較用」で取る\n- 輸入車（欧州車）を扱い慣れている買取店・専門店が1社\n- 比較用として、一般的な買取店を1社\n同じ車でも、売り先の得意不得意で評価が変わります。\n\n### STEP 3 査定前に“評価が上がる材料”を揃える\n修理して完璧にするより、**情報を揃える方が効きます**。\n- 整備記録簿、取扱説明書、スペアキー\n- 純正パーツ（戻せる場合）、保証書、点検の履歴\n- 修理歴や不具合は隠さず、説明できるようにしておく\n\n### STEP 4 引き渡し日を決めてから交渉する\n- 「いつまでに手放すか」を決める（乗り換え・駐車場・税のタイミング）\n- 期限があると、相手のペースで決めづらくなります\n\n## 事前に用意しておくとスムーズなもの\n- 車検証、自賠責保険証明書、納税証明書（必要な場合）\n- 整備記録簿、取扱説明書、スペアキー\n- 修理内容が分かる書類（ある場合）\n\n## よくあるつまずき\n- 先に高額な整備をして、結局回収できない\n- 1社で即決して、比較せずに安く手放す\n- 期限を決めずに先延ばしし、相場が落ちたタイミングで売る\n- カスタムパーツを付けたままにして、評価が割れたまま交渉する\n\n## 補足（実務メモ）\n- 同時査定は3社前後に絞ると、比較できて連絡負担も増えにくい\n- 連絡可能な時間帯を先に伝えるだけでも、電話のストレスが減る\n- 契約は「キャンセル条件」「減額条件（後日減額）」を口頭ではなく書面で確認\n- 整備記録簿・純正パーツ・スペアキーは、輸入車/高級車ほど査定に効きやすい\n\n## 関連記事\n- /guide/yunyusha-koukya-uru-kaitori-strategy\n- /guide/best-time-to-sell-car\n- /guide/hajimete-kuruma-uru-checklist\n- /guide/selling-without-rush\n- /guide/maintenance-cost-simulation\n",
+    "seoTitle": "輸入セダンを一番おいしいタイミングで手放すには｜CAR BOUTIQUE GUIDE",
+    "seoDescription": "輸入セダンの売却は販路と整備履歴が鍵。車検や大きい整備前に動くための判断軸と手順。",
+    "lead": "輸入セダンの売却は販路と整備履歴が鍵。車検や大きい整備前に動くための判断軸と手順。",
+    "internalLinks": [
+      "yunyusha-koukya-uru-kaitori-strategy",
+      "best-time-to-sell-car",
+      "hajimete-kuruma-uru-checklist",
+      "selling-without-rush"
+    ]
+  },
+  {
+    "id": "guide-how-to-choose-first-sports-car",
+    "slug": "how-to-choose-first-sports-car",
+    "title": "初めてのスポーツカーで後悔しないための選び方｜予算と用途から決める",
+    "summary": "初めてのスポーツカー選び。用途と維持費を先に決め、状態チェックと試乗で外さないコツ。",
+    "category": "BUY",
+    "tags": [
+      "スポーツカー",
+      "初めての1台",
+      "購入ガイド"
+    ],
+    "publishedAt": "2025-04-25T09:00:00+09:00",
+    "updatedAt": "2026-01-20",
+    "readMinutes": 5,
+    "heroImage": "/images/guides/how-to-choose-first-sports-car.jpg",
+    "status": "published",
+    "intentTags": [
+      "buy"
+    ],
+    "monetizeKey": "car_search_conditions",
+    "relatedCarSlugs": [],
+    "relatedGuideSlugs": [
+      "car-budget-simulation",
+      "maintenance-cost-simulation",
+      "repair-history-used-car-checklist",
+      "used-import-car-buying-guide"
+    ],
+    "relatedColumnSlugs": [],
+    "relatedHeritageSlugs": [
+      "japan-1995-golden-age-heritage"
+    ],
+    "body": "この記事は「初めてのスポーツカーで後悔しないための選び方｜予算と用途から決める」をテーマに、憧れだけで選ぶと後から維持がきつくなりがちです。買う前に確認したい現実的なチェックポイントをまとめます。\n\n## 結論\n- 初めてのスポーツカーは「最高の1台」を狙うより、**維持できて、ちゃんと乗れる1台**を選ぶ方が満足します。\n- 判断は本体価格だけでなく、**保険・タイヤ・整備**まで含めた総額で。特にタイヤと保険は想定より差が出ます。\n- 中古なら、走りの性能より先に**状態（修復歴・改造・整備記録）**を優先すると失敗しにくいです。\n\n## まず決める3つの前提\n- 何に使うか：通勤もする／週末だけ／サーキットも視野\n- 何を優先するか：操作感／加速／音／見た目／維持の安さ\n- どこまで妥協できるか：2シーター、荷室、車高、乗り心地\n\n## 手順 1 予算は「買うお金」ではなく「持つお金」で組む\n- /guide/car-budget-simulation で、月々と年1回の支払いを分けて考える\n- タイヤ・ブレーキはスポーツ走行をしなくても消耗が早い車種があります\n- 任意保険は条件によって大きく変わります（/guide/sharyou-hoken-necessary）\n\n## 手順 2 キャラクターは“得意な道”で選ぶ\n- FR：操作感が分かりやすい。雪や雨の日の安心はタイヤ次第\n- MR：反応が鋭い。慣れるまで癖が出ることがある\n- 4WD：安定感が高い。車重と維持費が増えやすい\n- AT/MT：毎日乗るなら混雑路での負担も想定する\n\n## 手順 3 中古は「状態チェック」を最優先にする\n- 修復歴の考え方と見方は /guide/repair-history-used-car-checklist を先に確認\n- 改造車は“当たり外れ”が大きい。純正戻しの可否、車検対応、部品の入手性を確認\n- 整備記録簿がある車は、説明がつきやすく売るときも有利になりやすい\n\n## 手順 4 迷ったら「乗って確かめる」\n同じスペックでも、座ったときの視界・ペダル位置・音・振動は合う合わないがあります。\n- 目線の高さ、乗り降りのしやすさ（腰や膝に来るか）\n- 低速の扱いやすさ（街中でストレスがないか）\n- 冷却や警告灯のクセ（点検履歴があるか）\n\n## よくあるつまずき\n- 本体価格だけで決め、保険とタイヤで家計が崩れる\n- 走行距離だけ見て状態を見ない（修復歴、改造、消耗品）\n- “憧れの仕様”を優先して、日常で乗らなくなる\n\n## 補足（実務メモ）\n- 見た目やスペックより、日常でストレスが出ないポイント（視界、乗り降り、荷室）が大事\n- 試乗は短時間でも、段差・狭い道・駐車を試すと相性が分かりやすい\n- 中古で買うなら、状態の良さは“整備記録と扱い方”に出やすい\n\n## 関連記事\n- /guide/car-budget-simulation\n- /guide/maintenance-cost-simulation\n- /guide/repair-history-used-car-checklist\n- /guide/used-import-car-buying-guide\n- /guide/sharyou-hoken-necessary\n",
+    "lead": "初めてのスポーツカー選び。用途と維持費を先に決め、状態チェックと試乗で外さないコツ。",
+    "seoTitle": "初めてのスポーツカーで後悔しないための選び方｜予算と用途から決める｜CAR BOUTIQUE GUIDE",
+    "seoDescription": "初めてのスポーツカー選び。用途と維持費を先に決め、状態チェックと試乗で外さないコツ。",
+    "internalLinks": [
+      "car-budget-simulation",
+      "maintenance-cost-simulation",
+      "repair-history-used-car-checklist",
+      "used-import-car-buying-guide"
+    ]
+  }
+]

@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "generatedAt": "2026-01-26",
+  "note": "Seeded from GSC Coverage Valid (2026-01-27 export). forceIndex keeps already-indexed detail pages indexable while stricter A/B/C thresholds roll out.",
+  "content": {
+    "CAR": {
+      "forceIndex": [
+        "aston-martin-db7-vantage",
+        "autozam-az-1-pg6sa",
+        "ferrari-275-gtb4",
+        "ferrari-purosangue",
+        "lamborghini-diablo-vt-60",
+        "lexus-lfa-2010",
+        "mazda-rx-7-fd3s-type-r",
+        "mitsubishi-lancer-evolution-ix-gsr",
+        "toyota-supra-jza80-rz"
+      ],
+      "forceNoindex": []
+    },
+    "GUIDE": {
+      "forceIndex": [
+        "insurance-deductible-guide",
+        "new-grad-first-car-choice"
+      ],
+      "forceNoindex": []
+    },
+    "HERITAGE": {
+      "forceIndex": [
+        "ferrari-f40-honest-speed-heritage",
+        "ferrari-suv-turning-point-purosangue",
+        "ferrari-v8-mid-engine-lineage-heritage",
+        "japan-1995-golden-age-heritage",
+        "lamborghini-diablo-vt60-fearful-speed-heritage",
+        "lamborghini-v10-to-hybrid-turning-point-temerario",
+        "mazda-roadster-na-lightweight-heritage",
+        "mazda-rx7-fd3s-subtraction-engineering-heritage",
+        "mclaren-f1-three-seater-heritage",
+        "nissan-skyline-2000gtr-hakosuka-heritage",
+        "supercar-parts-bin-engineering-heritage",
+        "toyota-ae86-slow-car-fast-heritage",
+        "toyota-celsior-ls400-silence-precision-heritage",
+        "toyota-flagship-gt-turning-point-gr-gt"
+      ],
+      "forceNoindex": []
+    },
+    "COLUMN": {
+      "forceIndex": [],
+      "forceNoindex": []
+    },
+    "NEWS": {
+      "forceIndex": [],
+      "forceNoindex": []
+    }
+  }
+}

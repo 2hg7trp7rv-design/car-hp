@@ -1,0 +1,3414 @@
+[
+  {
+    "id": "bmw-530i-g30",
+    "slug": "bmw-530i-g30",
+    "name": "BMW 530i (G30)",
+    "maker": "BMW",
+    "releaseYear": 2017,
+    "difficulty": "intermediate",
+    "bodyType": "セダン",
+    "segment": "プレミアムセダン",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "530i",
+    "summary": "G30型5シリーズの2.0Lターボ（530i）。スポーツ性と快適性、最新装備のバランスが“ちょうど良い”王道プレミアムセダンです。",
+    "summaryLong": "530i（G30）は、5シリーズの中でも扱いやすさと完成度の高さで評価される中核グレードです。上級セダンとしての静粛性・乗り心地をベースに、FRらしい自然な操舵感と、必要十分以上の加速力を両立。街中では滑らかに、長距離では疲れにくく、ワインディングでは“重さを感じさせない”身のこなしを見せます。\n\n選び方の要点は「装備とコンディション」。年式や仕様で運転支援・快適装備の差が出やすく、車両の当たり外れは整備履歴に強く依存します。理想は、消耗品と油脂類の管理が丁寧で、電子装備が正常に動作する個体。そうした1台に当たれば、G30の“完成された日常性”を長く味わえるはずです。",
+    "heroImage": "/images/cars/bmw-530i-g30-hero.jpg",
+    "mainImage": "/images/cars/bmw-530i-g30-hero.jpg",
+    "imageUrl": "/images/cars/bmw-530i-g30-hero.jpg",
+    "gallery": [
+      "/images/cars/bmw-530i-g30-front.jpg",
+      "/images/cars/bmw-530i-g30-side.jpg",
+      "/images/cars/bmw-530i-g30-interior.jpg"
+    ],
+    "engine": "2.0L 直4ターボ",
+    "powerPs": 252,
+    "torqueNm": 350,
+    "transmission": "8速AT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "実用域で10〜14km/L前後",
+    "priceNew": "800万〜1200万円（年式/グレード）",
+    "priceUsed": "250万〜800万円（年式/状態）",
+    "strengths": [
+      "サイズ感と快適性のバランスが良く、日常からロングまで守備範囲が広いです。",
+      "直進安定性・静粛性が高く、高速巡航が得意です。",
+      "8速ATとの相性が良く、滑らかで上質な走りをします。",
+      "装備の当たり個体なら、運転支援や快適装備の満足度が高いです。"
+    ],
+    "weaknesses": [
+      "装備差・個体差が出やすく、購入時の見極めが重要です。",
+      "電子装備が多く、細かな不具合が“地味にストレス”になりやすいです。",
+      "タイヤ・ブレーキ等の消耗品がプレミアムレンジで、交換費用がかさみがちです。",
+      "短距離中心の乗り方だと本来の良さ（巡航性・静粛性）が活きにくいです。"
+    ],
+    "troubleTrends": [
+      "電装・センサー系の軽微なエラー（警告灯、誤作動）は発生源の切り分けが重要です。",
+      "足回りブッシュやアライメントのズレで、乗り味が悪化している個体があります。",
+      "冷却系・樹脂パーツ・ホース類は経年で弱りやすく、予防整備の有無が差になります。",
+      "前オーナーの整備姿勢（記録簿、定期交換）がそのままコンディションに反映されます。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：500〜1000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "BMW",
+      "5シリーズ",
+      "G30",
+      "530i"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：300〜800万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間40〜80万円"
+    },
+    "maintenanceCostYenPerYear": 300000
+  },
+  {
+    "id": "ferrari-125-s",
+    "slug": "ferrari-125-s",
+    "name": "フェラーリ 125 S",
+    "maker": "FERRARI",
+    "releaseYear": 1947,
+    "difficulty": "advanced",
+    "bodyType": "オープンカー",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "125 S",
+    "summary": "フェラーリというメーカーの原点となった、1.5L V12搭載の小さなオープンスポーツです。",
+    "summaryLong": "フェラーリ 125 Sは、エンツォ・フェラーリが自らの名を冠したメーカーとして初めて世に送り出したモデルです。わずか1.5LのV12エンジンをフロントに搭載し、軽量なオープンボディと組み合わせることで、当時としては非常に高いパフォーマンスを発揮しました。台数も使用期間もごく限られた実験的なモデルですが、ここで培われたV12エンジンの思想やシャシー設計のノウハウが、その後のすべてのフェラーリに受け継がれていきます。現在、実車に触れられる機会はほぼありませんが、『フェラーリ＝V12スポーツ』というイメージのスタート地点として、ブランド史を語るうえで欠かせない存在です。",
+    "heroImage": "/images/cars/ferrari-125-s-hero.jpg",
+    "mainImage": "/images/cars/ferrari-125-s-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-125-s-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-125-s-front.jpg",
+      "/images/cars/ferrari-125-s-side.jpg",
+      "/images/cars/ferrari-125-s-interior.jpg"
+    ],
+    "engine": "1.5L V12",
+    "powerPs": 118,
+    "torqueNm": 120,
+    "transmission": "5速MT相当（実車は非同期式のレーシング仕様）",
+    "drive": "FR",
+    "fuel": "ガソリン",
+    "fuelEconomy": "参考値なし（ヒストリックレーサー）",
+    "priceNew": "当時：$5,000〜$10,000（参考）",
+    "priceUsed": "50億〜150億円（取引例少）",
+    "strengths": [
+      "フェラーリというメーカーの出発点となった歴史的価値があります。",
+      "小排気量V12という独自のエンジンコンセプトを最初に形にしたモデルです。",
+      "軽量オープンボディとV12の組み合わせによる、原始的でダイレクトな走りが魅力です。",
+      "ヒストリックイベントでの注目度は圧倒的で、存在そのものが語れる一台です。"
+    ],
+    "weaknesses": [
+      "実車の現存数が極めて少なく、一般的な中古車マーケットには一切出てきません。",
+      "部品の再生産やレストアには高度な専門知識が必要で、維持コストは想像を超えるレベルです。",
+      "快適装備や安全装備は皆無に等しく、通常のロードカーとしての使用は現実的ではありません。",
+      "保管環境・輸送・保険など、あらゆる面でコレクション前提の運用になります。"
+    ],
+    "troubleTrends": [
+      "実動個体はヒストリックレース用に徹底的なレストアが入っているケースが多く、オリジナル性の判断が難しいです。",
+      "古いV12エンジン特有のオイル漏れや冷却系トラブルには常に注意が必要です。",
+      "長期保管時の燃料系・ブレーキ系の固着やゴム類の劣化は避けられず、定期的なオーバーホールが前提です。",
+      "車両そのものが文化財クラスであるため、トラブル対応も含めて信頼できるスペシャリストの存在が不可欠です。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "125 S",
+      "クラシックカー",
+      "V12",
+      "FR",
+      "レーシングカー"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [
+      "oldtimer"
+    ],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "priceUsedYenRange": "（希少）要相談/取引事例級",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "ferrari-166-mm",
+    "slug": "ferrari-166-mm",
+    "name": "フェラーリ 166 MM",
+    "maker": "FERRARI",
+    "releaseYear": 1948,
+    "difficulty": "advanced",
+    "bodyType": "オープンカー",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "166 MM",
+    "summary": "ル・マンやミッレミリアで優勝し、フェラーリの名を世界に知らしめた初期レーシングロードカーです。",
+    "summaryLong": "フェラーリ 166 MMは、2.0L V12エンジンを搭載したオープン2シーターで、ル・マン24時間レースやミッレミリアといった耐久レースでの勝利によって、フェラーリというブランドを一気に世界へ知らしめたモデルです。ナンバープレートを付けて公道も走れるロードカーでありながら、そのままレースに出場して優勝を狙えるパッケージは、まさに『レースで勝てるロードカー』というフェラーリのスタイルを象徴しています。エレガントなカロッツェリア製ボディと、小さなV12が高回転まで伸びていくフィーリングは、クラシックフェラーリの原型そのものと言える存在です。",
+    "heroImage": "/images/cars/ferrari-166-mm-hero.jpg",
+    "mainImage": "/images/cars/ferrari-166-mm-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-166-mm-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-166-mm-front.jpg",
+      "/images/cars/ferrari-166-mm-side.jpg",
+      "/images/cars/ferrari-166-mm-interior.jpg"
+    ],
+    "engine": "2.0L V12",
+    "powerPs": 140,
+    "torqueNm": 170,
+    "transmission": "5速MT",
+    "drive": "FR",
+    "fuel": "ガソリン",
+    "fuelEconomy": "約4〜6km/L（実用域目安）",
+    "priceNew": "当時：$10,000〜$20,000（参考）",
+    "priceUsed": "20億〜60億円（オークション次第）",
+    "strengths": [
+      "ル・マンやミッレミリアでの勝利という、圧倒的なレース実績を持つモデルです。",
+      "小さなV12が高回転まで伸びる、クラシックフェラーリならではのフィーリングを味わえます。",
+      "オープンボディのため、エキゾーストサウンドと風を全身で感じながら走ることができます。",
+      "フェラーリ初期のカロッツェリアデザインを堪能できる、芸術作品としての価値も高いクルマです。"
+    ],
+    "weaknesses": [
+      "現代の視点で見るとブレーキ・タイヤ・安全装備の性能は非常に限られており、走行には大きな注意が必要です。",
+      "パーツ供給やメンテナンスはごく限られた専門工房に依存するため、維持の難易度は極めて高いです。",
+      "車両価格が高額なうえ、クラッシュ時のダメージは金銭で測れないレベルになります。",
+      "公道走行は可能でも、快適性や信頼性は現代車の感覚とはまったく別物です。"
+    ],
+    "troubleTrends": [
+      "V12エンジンのオイル管理や冷却系の不調は、大きなトラブルに直結するため入念な点検が必須です。",
+      "古い配線や電装品の接触不良は定番で、レストア時にどこまで刷新されているかが重要です。",
+      "ボディ・フレームの腐食や過去の補修履歴によって、車両価値が大きく変わります。",
+      "ヒストリックレースで酷使された個体も多く、履歴の正確な把握が重要です。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "166 MM",
+      "クラシックカー",
+      "V12",
+      "FR",
+      "耐久レース"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [
+      "oldtimer"
+    ],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "priceUsedYenRange": "（希少）要相談/取引事例級",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "ferrari-275-gtb4",
+    "slug": "ferrari-275-gtb4",
+    "name": "フェラーリ 275GTB/4",
+    "maker": "FERRARI",
+    "releaseYear": 1966,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "クラシックGT",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "275GTB/4",
+    "summary": "クラシックV12フロントエンジンGTの完成形と称される、美しい2ドアクーペです。",
+    "summaryLong": "フェラーリ 275GTB/4は、3.3L V12エンジンとトランスアクスルレイアウトを採用したフロントエンジンGTで、クラシックフェラーリの中でも特に完成度が高いと評されるモデルです。ロングノーズ・ショートデッキの美しいプロポーションに加え、4カムV12が高回転まで滑らかに回るフィーリングは、まさに『グランドツアラーの理想形』と言ってよいレベルです。レース活動で培われたメカニズムを持ちながら、長距離ツーリングでも疲れにくい乗り味を両立しており、サーキットとロードの中間に位置するフェラーリの魅力を凝縮した一台です。",
+    "heroImage": "/images/cars/ferrari-275-gtb4-hero.jpg",
+    "mainImage": "/images/cars/ferrari-275-gtb4-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-275-gtb4-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-275-gtb4-front.jpg",
+      "/images/cars/ferrari-275-gtb4-rear.jpg",
+      "/images/cars/ferrari-275-gtb4-interior.jpg"
+    ],
+    "engine": "3.3L V12 DOHC（4カム）",
+    "powerPs": 300,
+    "torqueNm": 294,
+    "transmission": "5速MT（トランスアクスル）",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約4〜6km/L（実用域目安）",
+    "priceNew": "当時：$14,000〜$20,000（参考）",
+    "priceUsed": "3.0億〜7.0億円（個体/履歴で変動）",
+    "strengths": [
+      "ロングノーズ・ショートデッキの典型的なGTプロポーションが非常に美しいモデルです。",
+      "4カムV12のスムーズで伸びやかなフィーリングを味わえる数少ないフェラーリの一つです。",
+      "トランスアクスルレイアウトにより、FRとして自然でバランスの良いハンドリングを実現しています。",
+      "クラシックフェラーリの中でも、スポーツ性と快適性のバランスが非常に優れています。"
+    ],
+    "weaknesses": [
+      "クラシックフェラーリの中でも人気が高く、車両価格はすでにコレクターズレンジです。",
+      "V12＋トランスアクスル構造ゆえ、メンテナンス作業は手間とコストがかかります。",
+      "現代基準の安全装備・快適装備は期待できず、長距離ツーリングにも割り切りが必要です。",
+      "大掛かりなレストア履歴の有無によって、車両の価値が大きく変動します。"
+    ],
+    "troubleTrends": [
+      "V12エンジンのオイル漏れや冷却系トラブルは定番で、予防整備を前提とした運用が望まれます。",
+      "古い配線や電装系のトラブルが、始動性や信頼性に影響することがあります。",
+      "トランスアクスルのギアボックス・デフのオーバーホール費用は高額になりがちです。",
+      "足回りのブッシュやショックの劣化により、乗り味が大きく変わるため、足回りの状態確認が重要です。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "275GTB/4",
+      "クラシックカー",
+      "V12",
+      "FR",
+      "GT"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [
+      "oldtimer"
+    ],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "ferrari-dino-246-gt",
+    "slug": "ferrari-dino-246-gt",
+    "name": "ディーノ 246GT",
+    "maker": "FERRARI",
+    "releaseYear": 1969,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "246GT",
+    "summary": "小さなV6ミドシップで『小さなフェラーリ』のイメージを作り上げた、ディーノブランドの代表モデルです。",
+    "summaryLong": "ディーノ 246GTは、2.4L V6エンジンをミドシップに搭載した2シータークーペで、フェラーリ本体ではなくサブブランド的な『Dino』として展開されたモデルです。V12ではなくV6、フロントエンジンではなくミドシップという構成は、当時のフェラーリとしては大胆なチャレンジでしたが、そのコンパクトなサイズと軽快なハンドリングから『小さなフェラーリ』として多くのファンを獲得しました。今日では、フェラーリのバッジが付いていなかった時代のモデルでありながら、クラシックフェラーリの一員として高く評価されています。",
+    "heroImage": "/images/cars/ferrari-dino-246-gt-hero.jpg",
+    "mainImage": "/images/cars/ferrari-dino-246-gt-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-dino-246-gt-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-dino-246-gt-front.jpg",
+      "/images/cars/ferrari-dino-246-gt-rear.jpg",
+      "/images/cars/ferrari-dino-246-gt-interior.jpg"
+    ],
+    "engine": "2.4L V6 DOHC",
+    "powerPs": 195,
+    "torqueNm": 226,
+    "transmission": "5速MT",
+    "drive": "MR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約5〜7km/L（実用域目安）",
+    "priceNew": "当時：$14,000〜$20,000（参考）",
+    "priceUsed": "4500万〜1.2億円（状態/履歴）",
+    "strengths": [
+      "コンパクトなボディとミドシップレイアウトにより、軽快で素直なハンドリングを楽しめます。",
+      "V6らしい鋭いレスポンスと高回転の伸びが魅力で、『回して楽しい』エンジンです。",
+      "ボディラインが非常に美しく、デザインアイコンとしての価値も高いモデルです。",
+      "V12モデルよりも取り回しや視界が良く、クラシックフェラーリとしては扱いやすい部類です。"
+    ],
+    "weaknesses": [
+      "クラシック人気の高まりにより、かつての『小さなフェラーリ』という価格感はすでに失われつつあります。",
+      "ミドシップ特有の整備性の悪さがあり、エンジン周りの作業には手間とコストがかかります。",
+      "エアコンや遮音性は現代基準では乏しく、夏場の街乗りにはかなり割り切りが必要です。",
+      "サビ対策やボディ剛性の面で、年式なりの弱点を抱えている個体も少なくありません。"
+    ],
+    "troubleTrends": [
+      "ボディ・フレームの腐食は要注意ポイントで、過去の板金・レストア履歴の確認が重要です。",
+      "冷却系のトラブルや電装系の接触不良は、旧車フェラーリとして典型的な症状です。",
+      "足回りのブッシュやステアリング系のガタは、走りの質感に直結します。",
+      "オリジナル状態をどこまで保っているかで、将来の価値が大きく変わります。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "ディーノ",
+      "ミドシップ",
+      "V6",
+      "クラシックカー",
+      "スポーツカー"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [
+      "oldtimer"
+    ],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "ferrari-365-gtb4-daytona",
+    "slug": "ferrari-365-gtb4-daytona",
+    "name": "フェラーリ 365GTB/4 デイトナ",
+    "maker": "FERRARI",
+    "releaseYear": 1968,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "クラシックGT",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "365GTB/4",
+    "summary": "大排気量V12とロングノーズボディを組み合わせた、フロントエンジンGT時代の頂点といえるモデルです。",
+    "summaryLong": "フェラーリ 365GTB/4、通称『デイトナ』は、4.4L V12エンジンをフロントに搭載した2ドアクーペで、クラシックフェラーリV12フロントエンジンGTの象徴的存在です。アメリカ市場での人気も高く、力強い加速と高速巡航性能に優れた長距離グランドツアラーとして高く評価されました。ロングノーズ・ショートデッキの堂々としたスタイリングは、現代の目で見ても迫力十分で、『最後の大排気量フロントV12フェラーリ』としてコレクターから絶大な支持を集めています。",
+    "heroImage": "/images/cars/ferrari-365-gtb4-daytona-hero.jpg",
+    "mainImage": "/images/cars/ferrari-365-gtb4-daytona-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-365-gtb4-daytona-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-365-gtb4-daytona-front.jpg",
+      "/images/cars/ferrari-365-gtb4-daytona-rear.jpg",
+      "/images/cars/ferrari-365-gtb4-daytona-interior.jpg"
+    ],
+    "engine": "4.4L V12 DOHC",
+    "powerPs": 352,
+    "torqueNm": 431,
+    "transmission": "5速MT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約3〜5km/L（実用域目安）",
+    "priceNew": "当時：$20,000〜$30,000（参考）",
+    "priceUsed": "1.5億〜3.0億円（個体差大）",
+    "strengths": [
+      "大排気量V12ならではの厚いトルクと伸びやかな加速を味わえます。",
+      "高速巡航性能に優れ、グランドツアラーとして長距離移動を得意とします。",
+      "デイトナらしいロングノーズの迫力あるスタイリングは、現在でも強い存在感を放ちます。",
+      "クラシックフェラーリV12フロントエンジンの集大成として、コレクション価値が非常に高いモデルです。"
+    ],
+    "weaknesses": [
+      "車両サイズが大きく、街中や日本の細い道では取り回しに気を遣います。",
+      "燃費や消耗品コストを含め、維持費はフラッグシップGT相当の水準です。",
+      "重めのクラッチとMT操作が必要で、渋滞路中心の使用には向きません。",
+      "レストア済みかどうか、どのレベルで手が入っているかによって、乗り味と価値が大きく変わります。"
+    ],
+    "troubleTrends": [
+      "V12エンジンのオイル漏れや冷却系の不具合は定番で、長距離走行前の点検が欠かせません。",
+      "高重量車ゆえ、ブレーキ・足回りの負担が大きく、定期的なオーバーホールが必要です。",
+      "電装系の接触不良やメーター類のトラブルは、旧車として典型的な症状です。",
+      "ボディ・フレームの腐食や過去の事故歴・補修歴の有無によって、価値が大きく変動します。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "デイトナ",
+      "V12",
+      "FR",
+      "GT",
+      "クラシックカー"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [
+      "oldtimer"
+    ],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "priceUsedYenRange": "4500万〜1.2億円（相場変動）",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "ferrari-250-gto",
+    "slug": "ferrari-250-gto",
+    "name": "フェラーリ 250GTO",
+    "maker": "FERRARI",
+    "releaseYear": 1962,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "クラシックGT",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "250GTO",
+    "summary": "クラシックGTの頂点とされる、レースホモロゲーション用の伝説的なV12クーペです。",
+    "summaryLong": "フェラーリ 250GTOは、GTレースで勝つために作られたホモロゲーションモデルで、クラシックフェラーリの中でも別格の存在として扱われています。3.0L V12エンジンをフロントに搭載し、空力を意識した流麗なクーペボディと組み合わせることで、高速サーキットから公道ラリーまで幅広いシーンで活躍しました。生産台数はわずか数十台程度と言われ、その希少性とレース実績から、オークションではしばしば『世界で最も高額なクラシックカー』としてニュースになるモデルです。",
+    "heroImage": "/images/cars/ferrari-250-gto-hero.jpg",
+    "mainImage": "/images/cars/ferrari-250-gto-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-250-gto-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-250-gto-front.jpg",
+      "/images/cars/ferrari-250-gto-side.jpg",
+      "/images/cars/ferrari-250-gto-rear.jpg"
+    ],
+    "engine": "3.0L V12",
+    "powerPs": 300,
+    "torqueNm": 294,
+    "transmission": "5速MT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約4〜6km/L（実用域目安）",
+    "priceNew": "当時：$18,000〜$25,000（参考）",
+    "priceUsed": "70億〜140億円（オークション級）",
+    "strengths": [
+      "GTレースで数多くの勝利を挙げた、伝説的な競争力を持つモデルです。",
+      "V12エンジンと軽量ボディにより、クラシックカーとは思えない鋭いパフォーマンスを発揮します。",
+      "スタイリング・サウンド・レース実績のすべてが高いレベルで揃った、アイコン的存在です。",
+      "クラシックカーとしての投資価値・文化財としての価値が極めて高いモデルです。"
+    ],
+    "weaknesses": [
+      "実車は超コレクターズアイテムであり、通常のオーナーが入手することは事実上不可能です。",
+      "事故や損傷時のダメージは金銭では測れず、精神的負担も非常に大きくなります。",
+      "純正度・オリジナル性の判定がシビアで、履歴管理が徹底されていない個体は評価が大きく下がります。",
+      "レースで使われてきた個体が多く、コンディション維持には高度なメンテナンス体制が必要です。"
+    ],
+    "troubleTrends": [
+      "ヒストリックレースでの酷使により、フレームやボディにストレスが溜まっている個体もあります。",
+      "V12エンジンは高回転型で負荷が大きく、オーバーホールの頻度も高くなりがちです。",
+      "過去の修復歴や再ボディ、レストア内容によって、オリジナル性の評価が大きく変わります。",
+      "レース仕様ゆえに快適性や静粛性はほぼ無く、一般道での使用には大きな割り切りが必要です。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "250GTO",
+      "クラシックカー",
+      "V12",
+      "FR",
+      "ホモロゲーション"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [
+      "oldtimer"
+    ],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "priceUsedYenRange": "400億円〜（取引事例級）",
+    "maintenanceCostYenPerYear": 1200000
+  },
+  {
+    "id": "ferrari-308-gtb",
+    "slug": "ferrari-308-gtb",
+    "name": "フェラーリ 308GTB",
+    "maker": "FERRARI",
+    "releaseYear": 1975,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "308GTB",
+    "summary": "赤いウェッジシェイプのボディで、『ミドシップフェラーリ』のイメージを決定づけたV8クーペです。",
+    "summaryLong": "フェラーリ 308GTBは、2.9L V8エンジンをミドシップに搭載した2ドアクーペで、テレビドラマや映画にも多数登場したことで、『赤いミドシップフェラーリ』というイメージを世界中に広めたモデルです。鋭く落ちたノーズとウェッジシェイプのボディラインは、70〜80年代スーパーカーの象徴的スタイルでありながら、現代の目で見ても十分に魅力的です。ディーノから続く『コンパクトなミドシップスポーツ』の系譜を受け継ぎつつ、量販V8フェラーリとしてのポジションを確立しました。",
+    "heroImage": "/images/cars/ferrari-308-gtb-hero.jpg",
+    "mainImage": "/images/cars/ferrari-308-gtb-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-308-gtb-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-308-gtb-front.jpg",
+      "/images/cars/ferrari-308-gtb-side.jpg",
+      "/images/cars/ferrari-308-gtb-interior.jpg"
+    ],
+    "engine": "2.9L V8 DOHC",
+    "powerPs": 240,
+    "torqueNm": 260,
+    "transmission": "5速MT",
+    "drive": "MR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約5〜7km/L（実用域目安）",
+    "priceNew": "当時：$25,000〜$35,000（参考）",
+    "priceUsed": "1500万〜3500万円（状態/仕様）",
+    "strengths": [
+      "コンパクトなミドシップレイアウトで、ワインディングでも扱いやすいサイズ感です。",
+      "キャブレター仕様のサウンドとレスポンスは、アナログなスポーツカーらしさに溢れています。",
+      "ウェッジシェイプのスタイリングは、いかにも『スーパーカー』らしい存在感があります。",
+      "現代のフェラーリほど過激ではなく、クラシックとしては比較的付き合いやすいキャラクターです。"
+    ],
+    "weaknesses": [
+      "年式相応にサビや電装トラブルのリスクがあり、個体差が大きいモデルです。",
+      "エアコンや遮音性は現代基準では不足しており、夏場の街乗りには工夫が必要です。",
+      "ミドシップゆえの整備性の悪さがあり、メンテナンスには手間とコストがかかります。",
+      "すでにクラシックとしての評価が高まっており、『気軽にいじる』という感覚では扱いにくくなりつつあります。"
+    ],
+    "troubleTrends": [
+      "ボディやフレームの腐食は要注意ポイントで、下回りやフェンダー内の錆びチェックが重要です。",
+      "キャブレターのセッティング不良による始動性・アイドリング不調が起こりやすいです。",
+      "電装系の接触不良やメーター類のトラブルは定番で、過去の対策状況を確認したい部分です。",
+      "冷却系・燃料系のホース類は、年式的に予防交換が前提と考えたほうが安心です。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "308GTB",
+      "ミドシップ",
+      "V8",
+      "クラシックカー",
+      "スーパーカー"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [
+      "oldtimer"
+    ],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "ferrari-512-bb",
+    "slug": "ferrari-512-bb",
+    "name": "フェラーリ 512BB",
+    "maker": "FERRARI",
+    "releaseYear": 1976,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "スーパーカー",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "512BB",
+    "summary": "フラット12エンジンをミドシップに搭載した、フェラーリ初期のフラッグシップ・スーパーカーです。",
+    "summaryLong": "フェラーリ 512BB（ベルリネッタ・ボクサー）は、5.0Lクラスのフラット12エンジンをミドシップに搭載したフラッグシップモデルで、フロントエンジンV12からミドシップへの大きな転換点となった一台です。ワイド&ローなボディと特徴的な2トーンカラー、低く構えたシルエットは、まさに70〜80年代スーパーカーの象徴的存在。重厚な12気筒サウンドと、高速域での安定感のある走りが魅力で、後のテスタロッサへとつながる系譜の起点となりました。",
+    "heroImage": "/images/cars/ferrari-512-bb-hero.jpg",
+    "mainImage": "/images/cars/ferrari-512-bb-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-512-bb-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-512-bb-front.jpg",
+      "/images/cars/ferrari-512-bb-side.jpg",
+      "/images/cars/ferrari-512-bb-interior.jpg"
+    ],
+    "engine": "5.0L フラット12",
+    "powerPs": 360,
+    "torqueNm": 451,
+    "transmission": "5速MT",
+    "drive": "MR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約3〜5km/L（実用域目安）",
+    "priceNew": "当時：$90,000〜$120,000（参考）",
+    "priceUsed": "3000万〜6000万円（相場変動）",
+    "strengths": [
+      "フラット12エンジンならではの低重心と独特のサウンドが楽しめます。",
+      "ワイド&ローなスタイリングは、ガレージに置いて眺めているだけでも満足感の高い一台です。",
+      "高速域での安定感が高く、グランドツーリング向きのキャラクターを持ちます。",
+      "テスタロッサへと続くフラッグシップ・ミドシップフェラーリの系譜の起点として、コレクション価値が高いモデルです。"
+    ],
+    "weaknesses": [
+      "車幅が広く視界も限定的なため、狭い日本の道路や駐車場では取り回しに気を使います。",
+      "エンジンルームの整備性が悪く、オーバーホールやクラッチ交換などの作業コストが高くつきます。",
+      "冷却系や燃料系のトラブルは致命傷になりかねず、日常的なチェックと予防整備が欠かせません。",
+      "車両重量が重く、街中でのストップ＆ゴーではクラッチやブレーキへの負担が大きくなります。"
+    ],
+    "troubleTrends": [
+      "エンジンのオイル漏れや冷却系の詰まり・漏れは定番トラブルで、放置すると大きな損傷につながります。",
+      "古い配線・ヒューズボックス由来の電装トラブルが発生しやすいモデルです。",
+      "サスペンションブッシュやダンパーの劣化により、乗り心地や直進安定性が損なわれます。",
+      "ボディ・下回りの錆びは要確認ポイントで、レストア内容によって将来価値が変わります。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "512BB",
+      "フラット12",
+      "ミドシップ",
+      "スーパーカー"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "ferrari-testarossa",
+    "slug": "ferrari-testarossa",
+    "name": "フェラーリ テスタロッサ",
+    "maker": "FERRARI",
+    "releaseYear": 1984,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "スーパーカー",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "テスタロッサ",
+    "summary": "サイドの大型フィンとワイドなボディで、80年代バブル期の象徴となったフラット12スーパーカーです。",
+    "summaryLong": "フェラーリ テスタロッサは、5.0Lクラスのフラット12エンジンをミドシップに搭載した2ドアクーペで、特徴的なサイドフィンと非常にワイドなボディが印象的なモデルです。テレビドラマや映画で多く起用されたこともあり、『成功者の象徴』『バブル期のアイコン』として世界的な知名度を獲得しました。512BBの後継として、冷却性能や快適性を高めつつも、スーパーカーらしい過激な存在感を維持しているのが魅力です。",
+    "heroImage": "/images/cars/ferrari-testarossa-hero.jpg",
+    "mainImage": "/images/cars/ferrari-testarossa-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-testarossa-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-testarossa-front.jpg",
+      "/images/cars/ferrari-testarossa-side.jpg",
+      "/images/cars/ferrari-testarossa-interior.jpg"
+    ],
+    "engine": "4.9L フラット12",
+    "powerPs": 390,
+    "torqueNm": 490,
+    "transmission": "5速MT",
+    "drive": "MR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約3〜5km/L（実用域目安）",
+    "priceNew": "当時：$120,000〜$180,000（参考）",
+    "priceUsed": "2000万〜4500万円（相場変動）",
+    "strengths": [
+      "サイドフィンとワイドボディによる圧倒的な存在感で、80年代スーパーカーの象徴です。",
+      "フラット12エンジンのサウンドとトルクフルな加速は、現代車にはない独特の魅力があります。",
+      "高速巡航に強く、アウトバーン的なステージで真価を発揮するグランドツアラー的性格も持っています。",
+      "メディア露出が多く、クルマに詳しくない人でも認知度が高いです。"
+    ],
+    "weaknesses": [
+      "非常にワイドな車幅のため、日本の一般的な道路・駐車場では取り回しが難しい場面が多いです。",
+      "整備性は良いとは言えず、エンジン関連作業を行う際の工賃が高くなりがちです。",
+      "年式相応に電装トラブルや内装の劣化が見られる個体も多く、購入時の見極めが重要です。",
+      "燃費や税金、保険などのランニングコストは高額になり得ます。"
+    ],
+    "troubleTrends": [
+      "冷却系トラブルは要注意で、ラジエーターやホース類のメンテナンス状況を確認したいポイントです。",
+      "クラッチやギアボックスへの負担が大きく、渋滞路中心の使用はおすすめできません。",
+      "電装系（パワーウインドウやライト類）の動作不良が発生しやすい傾向があります。",
+      "下回りやフロアの錆び、過去の事故・修復歴によって、車両の価値が大きく左右されます。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "テスタロッサ",
+      "フラット12",
+      "ミドシップ",
+      "スーパーカー",
+      "80年代"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "priceUsedYenRange": "1800万〜4500万円（相場変動）",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "ferrari-f40",
+    "slug": "ferrari-f40",
+    "name": "フェラーリ F40",
+    "maker": "FERRARI",
+    "releaseYear": 1987,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "スーパーカー",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "F40",
+    "summary": "創業40周年を記念して登場した、『最後のアナログスーパーカー』と呼ばれるターボV8モデルです。",
+    "summaryLong": "フェラーリ F40は、創業40周年を記念して1987年に登場した限定モデルで、カーボンコンポジットボディと3.0L V8ツインターボを組み合わせた、非常にストイックなスーパーカーです。遮音材や内装は必要最低限に抑えられ、パワーステアリングやABSといった電子デバイスも持たない、純粋なドライバーズカーとして設計されています。その荒々しい加速と、ターボラグを伴うピーキーな特性は、現代のハイテクスーパーカーとは一線を画す体験をもたらし、『最後のアナログスーパーカー』として今なお熱狂的な人気を誇ります。",
+    "heroImage": "/images/cars/ferrari-f40-hero.jpg",
+    "mainImage": "/images/cars/ferrari-f40-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-f40-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-f40-front.jpg",
+      "/images/cars/ferrari-f40-side.jpg",
+      "/images/cars/ferrari-f40-rear.jpg"
+    ],
+    "engine": "2.9L V8 ツインターボ",
+    "powerPs": 478,
+    "torqueNm": 577,
+    "transmission": "5速MT",
+    "drive": "MR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約3〜5km/L（実用域目安）",
+    "priceNew": "当時：6000万〜8000万円（参考）",
+    "priceUsed": "3.5億〜6.5億円（相場変動）",
+    "strengths": [
+      "極端に軽いボディとターボV8の組み合わせによる、凄まじい加速性能を持ちます。",
+      "電子制御に頼らないピュアな挙動で、ドライバーの腕がダイレクトに試されます。",
+      "カーボンボディと大型リアウイングを持つスタイリングは、スーパーカーのアイコン的存在です。",
+      "限定生産かつ象徴的モデルであり、コレクション価値が非常に高いです。"
+    ],
+    "weaknesses": [
+      "エアコンや遮音材が最低限で、車内環境はかなりハードです。",
+      "ターボラグが大きく、パワーの出方もピーキーなため、扱いには高いスキルが求められます。",
+      "クラッチやブレーキなど消耗品にかかる負荷が大きく、維持費も相当に高額です。",
+      "万一の事故や損傷時の修復は非常に難しく、車両価値への影響も大きくなります。"
+    ],
+    "troubleTrends": [
+      "ターボ周りや冷却系のトラブルは重大事故につながる可能性があり、定期的な点検・オーバーホールが必須です。",
+      "カーボンボディの補修は高度な技術とコストを必要とし、専門工房の存在が重要です。",
+      "年式的に燃料系・電装系の経年劣化が進んでおり、予防整備なしでのハードな走行はリスクが高いです。",
+      "タイヤやブレーキなどの消耗品は高性能な専用品となり、交換コストも大きくなります。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "F40",
+      "ターボ",
+      "ミドシップ",
+      "スーパーカー",
+      "限定車"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "priceUsedYenRange": "2.5億〜4.5億円（相場変動）",
+    "maintenanceCostYenPerYear": 1200000
+  },
+  {
+    "id": "ferrari-f50",
+    "slug": "ferrari-f50",
+    "name": "フェラーリ F50",
+    "maker": "FERRARI",
+    "releaseYear": 1995,
+    "difficulty": "advanced",
+    "bodyType": "オープンカー",
+    "segment": "ハイパーカー",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "F50",
+    "summary": "F1直系の自然吸気V12エンジンをミドシップに積んだ、『F1マシンにナンバーを付けた』と言われるハイパーカーです。",
+    "summaryLong": "フェラーリ F50は、F1マシン由来の4.7L自然吸気V12エンジンをミドシップに搭載し、カーボンモノコックにエンジンを直結する構造を採用したハイパーカーです。タルガトップ仕様のオープンボディと相まって、F1マシンに限りなく近いサウンドとレスポンスを、ナンバー付きで味わえることをコンセプトにしています。F40よりも技術的には進化しながらも、自然吸気V12と6速MTという組み合わせにより、よりリニアで官能的なドライビング体験を提供します。",
+    "heroImage": "/images/cars/ferrari-f50-hero.jpg",
+    "mainImage": "/images/cars/ferrari-f50-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-f50-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-f50-front.jpg",
+      "/images/cars/ferrari-f50-side.jpg",
+      "/images/cars/ferrari-f50-rear.jpg"
+    ],
+    "engine": "4.7L V12 自然吸気",
+    "powerPs": 520,
+    "torqueNm": 471,
+    "transmission": "6速MT",
+    "drive": "MR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約3〜5km/L（実用域目安）",
+    "priceNew": "当時：7000万〜1.0億円（参考）",
+    "priceUsed": "5.0億〜8.0億円（相場変動）",
+    "strengths": [
+      "自然吸気V12の高回転サウンドとレスポンスは、現代のクルマでは得難いレベルです。",
+      "オープンボディと組み合わせることで、サウンドと風を全身で感じることができます。",
+      "F1由来の技術を多く取り入れたシャシー構造により、非常に高い運動性能を持ちます。",
+      "生産台数が少なく、コレクターズアイテムとしての希少価値が非常に高いモデルです。"
+    ],
+    "weaknesses": [
+      "ボディ構造が高度かつ特殊で、修復やレストアには専門工房と多額の費用が必要です。",
+      "快適性や実用性は二の次で、長時間の街乗りには向きません。",
+      "車両価格と維持コストが極めて高く、保険や保管環境も含めた総コストが大きくなります。",
+      "電子制御に頼らない部分も多く、ドライバーの操作ミスがそのまま挙動に現れます。"
+    ],
+    "troubleTrends": [
+      "V12エンジンのメンテナンスは非常に専門的で、オーバーホール費用も高額です。",
+      "カーボンモノコックの損傷は致命的となり得るため、事故歴の有無や修復内容の確認が重要です。",
+      "限定車ゆえに純正部品の供給が限られており、入手性が悪いパーツも存在します。",
+      "長期保管中の燃料系・油脂類の管理を怠ると、再始動時にトラブルを起こすリスクがあります。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "F50",
+      "V12",
+      "ミドシップ",
+      "ハイパーカー",
+      "限定車"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "priceUsedYenRange": "4.0億〜7.0億円（相場変動）",
+    "maintenanceCostYenPerYear": 1200000
+  },
+  {
+    "id": "ferrari-360-modena",
+    "slug": "ferrari-360-modena",
+    "name": "フェラーリ 360モデナ",
+    "maker": "FERRARI",
+    "releaseYear": 1999,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "プレミアムスポーツ",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "360モデナ",
+    "summary": "アルミシャシーを採用し、『毎日乗れるスーパーカー』路線を切り開いたV8ミドシップフェラーリです。",
+    "summaryLong": "フェラーリ 360モデナは、アルミスペースフレームシャシーを採用したV8ミドシップモデルで、先代355よりも軽量化と剛性アップを同時に実現した一台です。3.6L自然吸気V8エンジンを搭載し、F1マチックと6速MTの2種類が存在します。インテリアやエアコン性能も向上しており、『サーキットだけでなく、日常でも使えるスーパーカー』というコンセプトを強く打ち出したモデルです。デザインも丸みを帯びつつ流麗で、現代のフェラーリへの橋渡し役となりました。",
+    "heroImage": "/images/cars/ferrari-360-modena-hero.jpg",
+    "mainImage": "/images/cars/ferrari-360-modena-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-360-modena-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-360-modena-front.jpg",
+      "/images/cars/ferrari-360-modena-side.jpg",
+      "/images/cars/ferrari-360-modena-interior.jpg"
+    ],
+    "engine": "3.6L V8 自然吸気",
+    "powerPs": 400,
+    "torqueNm": 373,
+    "transmission": "6速MT / 6速F1（セミAT）",
+    "drive": "MR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約5〜7km/L（実用域目安）",
+    "priceNew": "当時：2400万〜3200万円（参考）",
+    "priceUsed": "1200万〜2500万円（相場変動）",
+    "strengths": [
+      "アルミシャシーの採用により、軽快さと剛性感のバランスが良い走りを実現しています。",
+      "自然吸気V8のサウンドとレスポンスを、現代的なシャシーとエアコン性能で楽しめます。",
+      "デザインが比較的シンプルで、クラシックとモダンの中間的な雰囲気を持ちます。",
+      "後継モデルに比べて電子制御がシンプルで、アナログ感を残しつつも扱いやすいキャラクターです。"
+    ],
+    "weaknesses": [
+      "初期のF1マチックは変速ショックが大きく、渋滞路ではギクシャクすることがあります。",
+      "アルミシャシーゆえ、重大な事故歴がある個体の修復には注意が必要です。",
+      "年式的に内装のべたつきや樹脂パーツの劣化が出てくることがあります。",
+      "エアコンや電装系のトラブルが起こると、修理に手間とコストがかかるケースがあります。"
+    ],
+    "troubleTrends": [
+      "F1マチック車はクラッチ寿命や油圧系トラブルに注意が必要で、メンテ履歴の確認が重要です。",
+      "アルミボディ・シャシーの損傷や歪みは修復が難しく、事故歴の有無を慎重にチェックする必要があります。",
+      "サスペンションブッシュやダンパーのヘタリは、乗り味と直進性に直接影響します。",
+      "内装のべたつき処理や樹脂パーツ交換は、地味ながらコストがかさむポイントです。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "360モデナ",
+      "ミドシップ",
+      "V8",
+      "プレミアムスポーツ"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "priceUsedYenRange": "900万〜1800万円（相場変動）",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "ferrari-f430",
+    "slug": "ferrari-f430",
+    "name": "フェラーリ F430",
+    "maker": "FERRARI",
+    "releaseYear": 2004,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "プレミアムスポーツ",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "F430",
+    "summary": "電子制御ディファレンシャルなどが導入され、『速さと扱いやすさ』を大きく両立したV8ミドシップモデルです。",
+    "summaryLong": "フェラーリ F430は、360モデナの後継として登場したV8ミドシップモデルで、F1由来の電子制御ディファレンシャル（E-Diff）やマネッティーノスイッチを採用したことで、誰でも高いレベルで速く・安全に走れるスーパーカーへと進化しました。4.3L自然吸気V8エンジンは高回転まで鋭く吹け上がり、サウンドも非常に刺激的です。デザインはよりアグレッシブになり、ブレーキや空力性能も強化されているため、サーキットからツーリングまで幅広く楽しめるパッケージに仕上がっています。",
+    "heroImage": "/images/cars/ferrari-f430-hero.jpg",
+    "mainImage": "/images/cars/ferrari-f430-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-f430-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-f430-front.jpg",
+      "/images/cars/ferrari-f430-side.jpg",
+      "/images/cars/ferrari-f430-interior.jpg"
+    ],
+    "engine": "4.3L V8 自然吸気",
+    "powerPs": 490,
+    "torqueNm": 465,
+    "transmission": "6速MT / 6速F1（セミAT）",
+    "drive": "MR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約5〜7km/L（実用域目安）",
+    "priceNew": "当時：2600万〜3400万円（参考）",
+    "priceUsed": "1800万〜3500万円（相場変動）",
+    "strengths": [
+      "自然吸気V8のサウンドとパワーが非常に魅力的で、高回転まで気持ちよく回ります。",
+      "電子制御ディファレンシャルやトラクションコントロールにより、限界域での安心感が高いです。",
+      "マネッティーノにより、路面状況や好みに応じて走行モードを切り替えられます。",
+      "360モデナよりも剛性感とブレーキ性能が向上しており、サーキット走行にも向いた一台です。"
+    ],
+    "weaknesses": [
+      "F1マチック車ではクラッチ寿命と油圧系のトラブルに注意が必要です。",
+      "電子制御系の故障が起きた場合、診断・修理に専用テスターと高額な工賃がかかることがあります。",
+      "自然吸気V8の特性上、街中で低回転だけを使う乗り方では魅力を十分に感じにくいかもしれません。",
+      "車両価格は落ち着いてきているものの、整備費用は依然としてプレミアムレンジです。"
+    ],
+    "troubleTrends": [
+      "F1マチック車は、頻繁な渋滞走行や半クラッチ多用でクラッチ摩耗が早く進みます。",
+      "電子制御系（E-DiffやABS、トラコン）の警告灯が点灯した場合、原因特定に時間とコストがかかることがあります。",
+      "ブレーキやサスペンションの消耗部品は高性能なぶん、交換費用も高めです。",
+      "内装のべたつきやレザーの色あせなど、年式相応の経年変化にも注意が必要です。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "F430",
+      "ミドシップ",
+      "V8",
+      "プレミアムスポーツ"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "ferrari-458-italia",
+    "slug": "ferrari-458-italia",
+    "name": "フェラーリ 458イタリア",
+    "maker": "FERRARI",
+    "releaseYear": 2009,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "プレミアムスポーツ",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "458イタリア",
+    "summary": "自然吸気V8の集大成とされる、美しいスタイリングと高回転型エンジンを持つミドシップフェラーリです。",
+    "summaryLong": "フェラーリ 458イタリアは、4.5L自然吸気V8エンジンと7速DCTを組み合わせたV8ミドシップモデルで、自然吸気V8フェラーリの完成形とも言われる一台です。新世代のデュアルクラッチトランスミッションにより、変速は非常にスムーズかつ高速で、街中からサーキットまで幅広いシーンで快適に走ることができます。エクステリアデザインも評価が高く、空力と美しさを両立したスタイリングは、フェラーリの中でもトップクラスの完成度とされています。",
+    "heroImage": "/images/cars/ferrari-458-italia-hero.jpg",
+    "mainImage": "/images/cars/ferrari-458-italia-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-458-italia-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-458-italia-front.jpg",
+      "/images/cars/ferrari-458-italia-side.jpg",
+      "/images/cars/ferrari-458-italia-rear.jpg"
+    ],
+    "engine": "4.5L V8 自然吸気",
+    "powerPs": 570,
+    "torqueNm": 540,
+    "transmission": "7速DCT",
+    "drive": "MR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約5〜8km/L（実用域目安）",
+    "priceNew": "当時：3000万〜3800万円（参考）",
+    "priceUsed": "2500万〜4500万円（相場変動）",
+    "strengths": [
+      "自然吸気V8が高回転まで回る、高回転型エンジンのフィーリングが魅力です。",
+      "DCTにより変速が素早く、街中からスポーツ走行まで扱いやすいです。",
+      "空力を意識したスタイリングは美しく、フェラーリらしい存在感を放ちます。",
+      "電子制御の完成度が高く、限界域に近い走りでも安定感があります。"
+    ],
+    "weaknesses": [
+      "高回転まで回してこそ真価を発揮するため、街乗りメインでは魅力を持て余すことがあります。",
+      "DCTや電子制御系のトラブルが発生した場合、修理費用が高額になる可能性があります。",
+      "夏場の渋滞や高負荷走行後の熱管理には気を遣う必要があります。",
+      "人気が高いため、中古車価格は下がりにくい傾向があります。"
+    ],
+    "troubleTrends": [
+      "冷却系に負荷がかかる使い方を続けると、トラブルのリスクが高まります。",
+      "電子制御系のエラーメッセージが出た場合、専用テスターでの診断が必要です。",
+      "ブレーキやタイヤなどの消耗品コストは高く、走らせ方で差が出ます。",
+      "一部年式ではサービスキャンペーン対象の確認が重要です。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "458イタリア",
+      "ミドシップ",
+      "V8",
+      "自然吸気",
+      "プレミアムスポーツ"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "priceUsedYenRange": "2200万〜3600万円（相場変動）",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "ferrari-la-ferrari",
+    "slug": "ferrari-la-ferrari",
+    "name": "フェラーリ ラ フェラーリ",
+    "maker": "FERRARI",
+    "releaseYear": 2013,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "ハイパーカー",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "ラ フェラーリ",
+    "summary": "ハイブリッドシステムを組み合わせたV12ハイパーカーで、フェラーリの技術とブランドの頂点を象徴するモデルです。",
+    "summaryLong": "フェラーリ ラ フェラーリは、6.3L V12エンジンにKERS由来のハイブリッドシステムを組み合わせたフラッグシップハイパーカーで、合計出力900psオーバーの圧倒的なパフォーマンスを誇ります。F1で培われたエネルギー回生技術をロードカーに応用し、加速性能とレスポンスを新次元のレベルに引き上げました。生産台数はごく限られた台数にとどまり、選ばれた顧客のみに販売されたことで、ブランドの頂点モデルとしての希少性も非常に高い一台です。",
+    "heroImage": "/images/cars/ferrari-la-ferrari-hero.jpg",
+    "mainImage": "/images/cars/ferrari-la-ferrari-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-la-ferrari-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-la-ferrari-front.jpg",
+      "/images/cars/ferrari-la-ferrari-side.jpg",
+      "/images/cars/ferrari-la-ferrari-rear.jpg"
+    ],
+    "engine": "6.3L V12 + ハイブリッドシステム",
+    "powerPs": 963,
+    "torqueNm": 900,
+    "transmission": "7速DCT",
+    "drive": "MR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "参考値：ハイパーカーとしては優秀だが燃費重視のモデルではない",
+    "priceNew": "当時：2.0億〜2.5億円（参考）",
+    "priceUsed": "6.0億〜10億円（相場変動）",
+    "strengths": [
+      "V12＋ハイブリッドにより、驚異的な加速とレスポンスを実現しています。",
+      "F1由来のKERS技術により、エネルギー回生とパフォーマンス向上を両立しています。",
+      "空力を徹底的に突き詰めたボディは、見た目のインパクトと機能性を兼ね備えています。",
+      "フェラーリの頂点モデルとして、ブランドストーリーと希少性の両面で極めて高い価値を持ちます。"
+    ],
+    "weaknesses": [
+      "高度なハイブリッドシステムと電子制御を備えており、メンテナンスはごく限られた拠点でしか行えません。",
+      "車両価格と維持費が極端に高く、保管環境や保険なども含めて総コストは非常に大きくなります。",
+      "公道で性能をフルに発揮できる場面はほとんどなく、実力の多くはサーキット専用と言えます。",
+      "限定車ゆえに情報と部品の流通が限られ、一般的な中古車とは扱いが異なります。"
+    ],
+    "troubleTrends": [
+      "ハイブリッドシステムやバッテリー関連のトラブルは、専門設備と高額な修理費用を伴います。",
+      "高度な電子制御系の警告灯が点灯した場合、原因特定に時間とコストがかかる可能性があります。",
+      "長期保管におけるバッテリー管理や油脂類の管理を怠ると、再始動時のトラブルにつながります。",
+      "専用パーツの供給状況はメーカーとオーナーとの関係性に依存する面があります。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "ラ フェラーリ",
+      "ハイブリッド",
+      "V12",
+      "ハイパーカー",
+      "限定車"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "priceUsedYenRange": "9000万〜2.5億円（相場変動）",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "ferrari-488-gtb",
+    "slug": "ferrari-488-gtb",
+    "name": "フェラーリ 488GTB",
+    "maker": "FERRARI",
+    "releaseYear": 2015,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "プレミアムスポーツ",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "488GTB",
+    "summary": "ターボ化されたV8エンジンを搭載し、ダウンフォースと扱いやすさを両立したV8ミドシップモデルです。",
+    "summaryLong": "フェラーリ 488GTBは、3.9L V8ツインターボエンジンをミドシップに搭載した2ドアクーペで、自然吸気の458イタリアから大きな転換点となったモデルです。ターボ化によりトルクとパワーが大幅に向上しながらも、電子制御と精密なブースト制御により、レスポンスの良さと扱いやすさを両立しています。空力性能も大きく進化しており、サーキット走行時の安定感やコーナリング性能が大幅に向上しました。",
+    "heroImage": "/images/cars/ferrari-488-gtb-hero.jpg",
+    "mainImage": "/images/cars/ferrari-488-gtb-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-488-gtb-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-488-gtb-front.jpg",
+      "/images/cars/ferrari-488-gtb-side.jpg",
+      "/images/cars/ferrari-488-gtb-rear.jpg"
+    ],
+    "engine": "3.9L V8 ツインターボ",
+    "powerPs": 670,
+    "torqueNm": 760,
+    "transmission": "7速DCT",
+    "drive": "MR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約6〜9km/L（実用域目安）",
+    "priceNew": "当時：3200万〜4000万円（参考）",
+    "priceUsed": "2800万〜5200万円（相場変動）",
+    "strengths": [
+      "中低速から太いトルクで、日常域でも余裕のある加速が楽しめます。",
+      "電子制御とシャシーの完成度が高く、誰でも速く走れる懐の深さがあります。",
+      "空力性能が高く、サーキットでの安定感に優れています。",
+      "ツーリング用途でも快適に使えるパッケージです。"
+    ],
+    "weaknesses": [
+      "自然吸気V8の高回転サウンドとは質が違い、好みが分かれます。",
+      "高性能タイヤ・ブレーキの消耗が早く、走らせ方でコスト差が大きいです。",
+      "電子制御依存が強く、故障時の診断・修理費用が高くなりがちです。",
+      "中古は個体差が大きく、コンディションの見極めが重要です。"
+    ],
+    "troubleTrends": [
+      "冷却系・ターボ周辺はトラブルが大きくなりやすく、点検が重要です。",
+      "DCTは油脂管理と整備履歴が重要です。",
+      "警告灯点灯時は専用診断が必要で、原因切り分けに時間がかかる場合があります。",
+      "サーキット多用車は足回り・ブレーキの消耗が進んでいる可能性があります。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "488GTB",
+      "ミドシップ",
+      "V8",
+      "ターボ",
+      "プレミアムスポーツ"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "priceUsedYenRange": "2600万〜4500万円（相場変動）",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "ferrari-812-superfast",
+    "slug": "ferrari-812-superfast",
+    "name": "フェラーリ 812スーパーファスト",
+    "maker": "FERRARI",
+    "releaseYear": 2017,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "プレミアムGT",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "812スーパーファスト",
+    "summary": "フロントエンジン自然吸気V12の集大成として登場した、超高回転型GTクーペです。",
+    "summaryLong": "フェラーリ 812スーパーファストは、6.5L自然吸気V12エンジンをフロントに搭載した2ドアクーペで、フロントエンジンV12フェラーリの集大成とも言えるモデルです。800psを発生する高回転型V12と、後輪操舵や高度な電子制御を組み合わせることで、従来のV12GTとは一線を画する俊敏なハンドリングを実現しています。ロングツーリングを快適にこなしつつ、サーキットレベルのパフォーマンスも楽しめる、現代版『フロントエンジンV12グランドツアラー』です。",
+    "heroImage": "/images/cars/ferrari-812-superfast-hero.jpg",
+    "mainImage": "/images/cars/ferrari-812-superfast-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-812-superfast-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-812-superfast-front.jpg",
+      "/images/cars/ferrari-812-superfast-side.jpg",
+      "/images/cars/ferrari-812-superfast-rear.jpg"
+    ],
+    "engine": "6.5L V12 自然吸気",
+    "powerPs": 800,
+    "torqueNm": 718,
+    "transmission": "7速DCT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約5〜8km/L（実用域目安）",
+    "priceNew": "当時：4300万〜5000万円（参考）",
+    "priceUsed": "4500万〜8000万円（相場変動）",
+    "strengths": [
+      "自然吸気V12が高回転まで一気に吹け上がる官能性が魅力です。",
+      "後輪操舵や電子制御により、大柄なボディから想像できない俊敏さがあります。",
+      "快適性や積載性も一定レベル確保され、ロングツーリング向きです。",
+      "V12フロントの集大成として、将来的な価値も期待されやすいモデルです。"
+    ],
+    "weaknesses": [
+      "公道では性能のごく一部しか使えません。",
+      "タイヤやブレーキなどの消耗品コストが高く、走らせ方で差が大きいです。",
+      "ボディサイズが大きく、日本の道では取り回しに気を使います。",
+      "電子制御が高度で、故障時の診断・修理費用が高額になりがちです。"
+    ],
+    "troubleTrends": [
+      "油脂管理や冷却系のメンテナンスを怠ると、トラブルリスクが高まります。",
+      "後輪操舵や電子制御サスなど、警告灯点灯時の診断が複雑です。",
+      "ハード走行個体ではブレーキや足回りの負担が大きい可能性があります。",
+      "カーボン系オプション装備の補修・交換は高額になりがちです。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "812スーパーファスト",
+      "V12",
+      "FR",
+      "プレミアムGT"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "priceUsedYenRange": "4300万〜6500万円（相場変動）",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "ferrari-sf90-stradale",
+    "slug": "ferrari-sf90-stradale",
+    "name": "フェラーリ SF90ストラダーレ",
+    "maker": "FERRARI",
+    "releaseYear": 2019,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "ハイパーカー",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "SF90ストラダーレ",
+    "summary": "プラグインハイブリッドシステムと4WDを採用した、新世代フラッグシップハイパーカーです。",
+    "summaryLong": "フェラーリ SF90ストラダーレは、V8ターボエンジンと3基の電気モーターを組み合わせたプラグインハイブリッドハイパーカーで、システム総出力は1,000ps級に達します。前輪を電気モーターで駆動することで4WD化されており、低速から高速まで圧倒的なトラクションと加速性能を発揮します。EV走行モードも備えており、市街地を静かに走ることも可能です。ラ フェラーリで培われたハイブリッド技術をさらに発展させ、量産フラッグシップとして展開したモデルです。",
+    "heroImage": "/images/cars/ferrari-sf90-stradale-hero.jpg",
+    "mainImage": "/images/cars/ferrari-sf90-stradale-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-sf90-stradale-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-sf90-stradale-front.jpg",
+      "/images/cars/ferrari-sf90-stradale-side.jpg",
+      "/images/cars/ferrari-sf90-stradale-rear.jpg"
+    ],
+    "engine": "4.0L V8 ツインターボ + モーター（PHEV）",
+    "powerPs": 1000,
+    "torqueNm": 800,
+    "transmission": "8速DCT",
+    "drive": "4WD",
+    "fuel": "ハイオク＋電気",
+    "fuelEconomy": "PHEVのため走行パターンに大きく依存",
+    "priceNew": "当時：5200万〜6500万円（参考）",
+    "priceUsed": "6000万〜1.2億円（相場変動）",
+    "strengths": [
+      "PHEVにより圧倒的な加速性能と実用的なEV走行を両立しています。",
+      "4WD化により、路面状況を選ばず高いトラクションを発揮します。",
+      "電子制御と協調しながら、非常に高い速度域まで安心してアプローチできます。",
+      "最新世代のHMIで、体験が“現代フェラーリ”として完成しています。"
+    ],
+    "weaknesses": [
+      "システムが複雑で、長期維持（高電圧部品）の不確実性は残ります。",
+      "性能が高すぎて、公道では実力の一部しか体感できません。",
+      "高電圧系統のメンテは専用設備が必要で、費用が高額になり得ます。",
+      "従来の自然吸気モデルに比べ、メカニカルな荒々しさは薄れます。"
+    ],
+    "troubleTrends": [
+      "高電圧バッテリーやインバーターなど、PHEV特有の部位は長期耐久性を注視すべきです。",
+      "ソフトウェア起因の不具合やアップデート対応など、従来と違う維持が必要です。",
+      "重量と性能により、タイヤ・ブレーキの消耗は非常に早い傾向があります。",
+      "将来的なバッテリー関連費用が不透明な点は、購入前に織り込む必要があります。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "SF90ストラダーレ",
+      "ハイブリッド",
+      "4WD",
+      "ハイパーカー"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "priceUsedYenRange": "5200万〜7800万円（相場変動）",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "ferrari-roma",
+    "slug": "ferrari-roma",
+    "name": "フェラーリ ローマ",
+    "maker": "FERRARI",
+    "releaseYear": 2019,
+    "difficulty": "advanced",
+    "bodyType": "クーペ",
+    "segment": "プレミアムGT",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "ローマ",
+    "summary": "クラシックなエレガンスを現代的に再解釈した、フロントエンジンV8の2+2クーペです。",
+    "summaryLong": "フェラーリ ローマは、3.9L V8ツインターボエンジンをフロントに搭載した2+2クーペで、1960年代のエレガントなGTカーを現代的に再解釈したデザインが特徴です。過度なエアロ表現を抑えたクリーンなスタイリングと、上質なインテリアにより、『都会を優雅に流すフェラーリ』というキャラクターを持ちます。パワフルなV8エンジンと洗練されたシャシーにより、スポーツドライビングも十分に楽しめる一方で、日常からロングツーリングまで幅広いシーンに馴染むモデルです。",
+    "heroImage": "/images/cars/ferrari-roma-hero.jpg",
+    "mainImage": "/images/cars/ferrari-roma-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-roma-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-roma-front.jpg",
+      "/images/cars/ferrari-roma-side.jpg",
+      "/images/cars/ferrari-roma-rear.jpg"
+    ],
+    "engine": "3.9L V8 ツインターボ",
+    "powerPs": 620,
+    "torqueNm": 760,
+    "transmission": "8速DCT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約8〜11km/L（実用域目安）",
+    "priceNew": "$279,965 → 約4390万円（1USD=¥156.9換算）",
+    "priceUsed": "2120万〜3680万円（国内相場）",
+    "strengths": [
+      "上品で控えめなデザインで、日常の街並みにも溶け込みやすいフェラーリです。",
+      "パワフルなV8ツインターボで、高速道路やワインディングも楽しめます。",
+      "内装の質感が高く、長時間ドライブでも疲れにくいパッケージです。",
+      "過激さより“エレガンス”を重視したGTとして新しい魅力があります。"
+    ],
+    "weaknesses": [
+      "刺激を求める層には、おとなしいキャラクターに感じる可能性があります。",
+      "インフォテインメントや電子制御が複雑で、更新や不具合対応が必要になる場合があります。",
+      "リアシートは緊急用途寄りで、本格的な4人乗りとしては厳しいです。",
+      "ボディサイズは大きめで、狭い道や駐車場では注意が必要です。"
+    ],
+    "troubleTrends": [
+      "ソフトウェア起因の表示・操作系不具合が出る場合があります。",
+      "ターボ車ゆえ、油脂・冷却系のメンテが重要です。",
+      "電子制御サスやモード系の警告灯点灯時は専門診断が必要です。",
+      "保証切れ後の修理費が高額になり得る点は織り込みが必要です。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "ローマ",
+      "V8",
+      "FR",
+      "プレミアムGT"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "ferrari-purosangue",
+    "slug": "ferrari-purosangue",
+    "name": "フェラーリ プロサングエ",
+    "maker": "FERRARI",
+    "releaseYear": 2022,
+    "difficulty": "advanced",
+    "bodyType": "SUV/クロスオーバー",
+    "segment": "プレミアムSUV",
+    "heritageRefs": [],
+    "category": "",
+    "grade": "プロサングエ",
+    "summary": "フェラーリ初の4ドアに近いパッケージを持つプレミアムSUVで、自然吸気V12を搭載した異色モデルです。",
+    "summaryLong": "フェラーリ プロサングエは、ブランド初の本格的なSUV的パッケージを持つモデルでありながら、6.5L自然吸気V12エンジンをフロントに搭載するという、フェラーリらしいこだわりを貫いた一台です。後席へのアクセスを考慮した観音開きドアや高いアイポイントにより、日常使いの実用性を確保しつつも、サウンドと加速はまさにフェラーリそのもの。悪路走破性を極端に重視するのではなく、『どんなシーンでもフェラーリらしいドライビングを楽しめる4シーター』として開発されています。",
+    "heroImage": "/images/cars/ferrari-purosangue-hero.jpg",
+    "mainImage": "/images/cars/ferrari-purosangue-hero.jpg",
+    "imageUrl": "/images/cars/ferrari-purosangue-hero.jpg",
+    "gallery": [
+      "/images/cars/ferrari-purosangue-front.jpg",
+      "/images/cars/ferrari-purosangue-side.jpg",
+      "/images/cars/ferrari-purosangue-rear.jpg"
+    ],
+    "engine": "6.5L V12 自然吸気",
+    "powerPs": 725,
+    "torqueNm": 716,
+    "transmission": "8速DCT",
+    "drive": "4WD",
+    "fuel": "ハイオク",
+    "fuelEconomy": "約5〜8km/L（実用域目安）",
+    "priceNew": "$402,050 → 約6310万円（1USD=¥156.9換算）",
+    "priceUsed": "7780万〜8900万円（国内相場）",
+    "strengths": [
+      "自然吸気V12を搭載したSUVという、他にない組み合わせが魅力です。",
+      "4人が快適に乗れるキャビンと実用的なラゲッジを備えます。",
+      "オンロード性能重視で、高速道路やワインディングもフェラーリらしい仕上がりです。",
+      "家族や友人と“フェラーリの世界観”を共有できるモデルです。"
+    ],
+    "weaknesses": [
+      "車重と車高の面で、低いスポーツモデルほどのサーキット適性はありません。",
+      "ボディサイズが大きく、都市部や狭い道では取り回しに気を使います。",
+      "V12＋4WD＋重量級ゆえ、消耗品と燃費のコストは高めです。",
+      "新しいモデルのため、長期的な相場や持病傾向はまだ未知数です。"
+    ],
+    "troubleTrends": [
+      "最新電子制御サスや4WDシステムは、警告灯点灯時に専門診断が必須です。",
+      "重量級かつ高出力のため、ブレーキやタイヤの交換サイクルが早くなりがちです。",
+      "電子制御のソフトウェア更新や不具合対応など、従来と異なる維持が必要です。",
+      "長期耐久性の典型例は今後蓄積されていく段階です。"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "FERRARI",
+      "フェラーリ",
+      "プロサングエ",
+      "V12",
+      "4WD",
+      "SUV",
+      "プレミアムSUV"
+    ],
+    "relatedHeritageSlugs": [
+      "heritage-ferrari-history"
+    ],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "nissan-skyline-2000gtr-kpgc10",
+    "slug": "nissan-skyline-2000gtr-kpgc10",
+    "name": "Skyline GT-R KPGC10",
+    "maker": "Nissan",
+    "releaseYear": 1969,
+    "difficulty": "intermediate",
+    "bodyType": "sedan",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [
+      "nissan-gt-r-godzilla-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "Skyline GT-R KPGC10",
+    "summary": "GT-Rの出発点。レース由来の思想が市販車へ落ちた時代の象徴。",
+    "summaryLong": "Skyline GT-R KPGC10は、1969年に登場したNissanのsedanで、FRとFront Inline-6を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/nissan-skyline-2000gtr-kpgc10-hero.jpg",
+    "mainImage": "/images/cars/nissan-skyline-2000gtr-kpgc10-main.jpg",
+    "imageUrl": "/images/cars/nissan-skyline-2000gtr-kpgc10-main.jpg",
+    "gallery": [
+      "/images/cars/nissan-skyline-2000gtr-kpgc10-front.jpg",
+      "/images/cars/nissan-skyline-2000gtr-kpgc10-side.jpg",
+      "/images/cars/nissan-skyline-2000gtr-kpgc10-interior.jpg"
+    ],
+    "engine": "Front Inline-6",
+    "powerPs": 160,
+    "torqueNm": 177,
+    "transmission": "5MT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 6〜10 km/L",
+    "priceNew": "当時：162万円前後（参考）",
+    "priceUsed": "3000万〜1.2億円（相場変動）",
+    "strengths": [
+      "加速の太さとトラクション性能が高い",
+      "チューニング/補修パーツの情報量が多い",
+      "高速巡航でも安定感が高く、ロングツーリングに強い",
+      "コミュニティが大きく、相場/整備ノウハウが集まりやすい"
+    ],
+    "weaknesses": [
+      "足回りやブッシュ類のリフレッシュが前提",
+      "保険料や税金、消耗品が高めになりやすい",
+      "改造歴/履歴次第でリスクが大きく変わる"
+    ],
+    "troubleTrends": [
+      "タービン/配管・負圧ホースの劣化",
+      "4WD/駆動系オイル管理",
+      "電装（メーター/ハーネス）の経年"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：1800〜3000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Nissan",
+      "sedan",
+      "クラシックスポーツ",
+      "FR",
+      "5MT",
+      "Front Inline-6",
+      "クラシック",
+      "JDM",
+      "名車",
+      "GT-R"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1200〜2000万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間80〜150万円"
+    },
+    "priceUsedYenRange": "3000万〜1.2億円（相場変動）",
+    "maintenanceCostYenPerYear": 300000
+  },
+  {
+    "id": "nissan-skyline-gtr-r32",
+    "slug": "nissan-skyline-gtr-r32",
+    "name": "Skyline GT-R R32",
+    "maker": "Nissan",
+    "releaseYear": 1989,
+    "difficulty": "intermediate",
+    "bodyType": "sports-coupe",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [
+      "nissan-gt-r-godzilla-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "Skyline GT-R R32",
+    "summary": "復活のR。四駆×ターボで“勝つための公道車”を確立した。",
+    "summaryLong": "Skyline GT-R R32は、1989年に登場したNissanのsports-coupeで、AWDとFront Inline-6 Twin Turboを軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/nissan-skyline-gtr-r32-hero.jpg",
+    "mainImage": "/images/cars/nissan-skyline-gtr-r32-main.jpg",
+    "imageUrl": "/images/cars/nissan-skyline-gtr-r32-main.jpg",
+    "gallery": [
+      "/images/cars/nissan-skyline-gtr-r32-front.jpg",
+      "/images/cars/nissan-skyline-gtr-r32-side.jpg",
+      "/images/cars/nissan-skyline-gtr-r32-interior.jpg"
+    ],
+    "engine": "Front Inline-6 Twin Turbo",
+    "powerPs": 280,
+    "torqueNm": 353,
+    "transmission": "5MT / 4AT",
+    "drive": "AWD",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 6〜9 km/L",
+    "priceNew": "当時：400万〜500万円（参考）",
+    "priceUsed": "600万〜2000万円（相場変動）",
+    "strengths": [
+      "加速の太さとトラクション性能が高い",
+      "チューニング/補修パーツの情報量が多い",
+      "高速巡航でも安定感が高く、ロングツーリングに強い",
+      "コミュニティが大きく、相場/整備ノウハウが集まりやすい"
+    ],
+    "weaknesses": [
+      "足回りやブッシュ類のリフレッシュが前提",
+      "保険料や税金、消耗品が高めになりやすい",
+      "改造歴/履歴次第でリスクが大きく変わる"
+    ],
+    "troubleTrends": [
+      "タービン/配管・負圧ホースの劣化",
+      "4WD/駆動系オイル管理",
+      "電装（メーター/ハーネス）の経年"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：1800〜3000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Nissan",
+      "sports-coupe",
+      "クラシックスポーツ",
+      "AWD",
+      "5MT / 4AT",
+      "Front Inline-6 Twin Turbo",
+      "ネオクラシック",
+      "JDM",
+      "名車",
+      "GT-R"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1200〜2000万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間80〜150万円"
+    },
+    "priceUsedYenRange": "600万〜2000万円（相場変動）",
+    "maintenanceCostYenPerYear": 300000
+  },
+  {
+    "id": "nissan-skyline-gtr-r34",
+    "slug": "nissan-skyline-gtr-r34",
+    "name": "Skyline GT-R R34",
+    "maker": "Nissan",
+    "releaseYear": 1999,
+    "difficulty": "intermediate",
+    "bodyType": "sports-coupe",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [
+      "nissan-gt-r-godzilla-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "Skyline GT-R R34",
+    "summary": "走りと文化が同時に成熟した世代。GT-R像を決定づけた一台。",
+    "summaryLong": "Skyline GT-R R34は、1999年に登場したNissanのsports-coupeで、AWDとFront Inline-6 Twin Turboを軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/nissan-skyline-gtr-r34-hero.jpg",
+    "mainImage": "/images/cars/nissan-skyline-gtr-r34-main.jpg",
+    "imageUrl": "/images/cars/nissan-skyline-gtr-r34-main.jpg",
+    "gallery": [
+      "/images/cars/nissan-skyline-gtr-r34-front.jpg",
+      "/images/cars/nissan-skyline-gtr-r34-side.jpg",
+      "/images/cars/nissan-skyline-gtr-r34-interior.jpg"
+    ],
+    "engine": "Front Inline-6 Twin Turbo",
+    "powerPs": 280,
+    "torqueNm": 392,
+    "transmission": "6MT / 4AT",
+    "drive": "AWD",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 6〜9 km/L",
+    "priceNew": "当時：500万〜650万円（参考）",
+    "priceUsed": "1200万〜4500万円（相場変動）",
+    "strengths": [
+      "加速の太さとトラクション性能が高い",
+      "チューニング/補修パーツの情報量が多い",
+      "高速巡航でも安定感が高く、ロングツーリングに強い",
+      "コミュニティが大きく、相場/整備ノウハウが集まりやすい"
+    ],
+    "weaknesses": [
+      "足回りやブッシュ類のリフレッシュが前提",
+      "保険料や税金、消耗品が高めになりやすい",
+      "改造歴/履歴次第でリスクが大きく変わる"
+    ],
+    "troubleTrends": [
+      "タービン/配管・負圧ホースの劣化",
+      "4WD/駆動系オイル管理",
+      "電装（メーター/ハーネス）の経年"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：1800〜3000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Nissan",
+      "sports-coupe",
+      "クラシックスポーツ",
+      "AWD",
+      "6MT / 4AT",
+      "Front Inline-6 Twin Turbo",
+      "ヤングタイマー",
+      "JDM",
+      "名車",
+      "GT-R"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1200〜2000万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間80〜150万円"
+    },
+    "priceUsedYenRange": "1200万〜4500万円（相場変動）",
+    "maintenanceCostYenPerYear": 300000
+  },
+  {
+    "id": "nissan-gtr-r35",
+    "slug": "nissan-gtr-r35",
+    "name": "GT-R R35",
+    "maker": "Nissan",
+    "releaseYear": 2007,
+    "difficulty": "intermediate",
+    "bodyType": "sports-coupe",
+    "segment": "プレミアムスポーツ",
+    "heritageRefs": [
+      "nissan-gt-r-godzilla-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "GT-R R35",
+    "summary": "スカイラインの名を離れ、世界基準のハイパフォーマンスへ進化したGT-R。",
+    "summaryLong": "GT-R R35は、2007年に登場したNissanのsports-coupeで、AWDとFront V6 Twin Turboを軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/nissan-gtr-r35-hero.jpg",
+    "mainImage": "/images/cars/nissan-gtr-r35-main.jpg",
+    "imageUrl": "/images/cars/nissan-gtr-r35-main.jpg",
+    "gallery": [
+      "/images/cars/nissan-gtr-r35-front.jpg",
+      "/images/cars/nissan-gtr-r35-side.jpg",
+      "/images/cars/nissan-gtr-r35-interior.jpg"
+    ],
+    "engine": "Front V6 Twin Turbo",
+    "powerPs": 570,
+    "torqueNm": 637,
+    "transmission": "6DCT",
+    "drive": "AWD",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 6〜9 km/L",
+    "priceNew": "800万〜3000万円（年式/グレード）",
+    "priceUsed": "900万〜2500万円（相場変動）",
+    "strengths": [
+      "加速の太さとトラクション性能が高い",
+      "チューニング/補修パーツの情報量が多い",
+      "高速巡航でも安定感が高く、ロングツーリングに強い",
+      "コミュニティが大きく、相場/整備ノウハウが集まりやすい"
+    ],
+    "weaknesses": [
+      "足回りやブッシュ類のリフレッシュが前提",
+      "保険料や税金、消耗品が高めになりやすい",
+      "改造歴/履歴次第でリスクが大きく変わる"
+    ],
+    "troubleTrends": [
+      "タービン/配管・負圧ホースの劣化",
+      "4WD/駆動系オイル管理",
+      "電装（メーター/ハーネス）の経年"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：1800〜3000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Nissan",
+      "sports-coupe",
+      "プレミアムスポーツ",
+      "AWD",
+      "6DCT",
+      "Front V6 Twin Turbo",
+      "モダンクラシック",
+      "ハイパフォーマンス",
+      "JDM",
+      "名車",
+      "GT-R"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1200〜2000万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間80〜150万円"
+    },
+    "priceUsedYenRange": "900万〜2500万円（相場変動）",
+    "maintenanceCostYenPerYear": 300000
+  },
+  {
+    "id": "ferrari-550-maranello",
+    "slug": "ferrari-550-maranello",
+    "name": "550 Maranello",
+    "maker": "Ferrari",
+    "releaseYear": 1996,
+    "difficulty": "advanced",
+    "bodyType": "gt-coupe",
+    "segment": "スーパーカー",
+    "heritageRefs": [
+      "ferrari-v12-gt-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "550マラネロ",
+    "summary": "フロントV12・FRの伝統回帰。現代GTとして再定義したモデル。",
+    "summaryLong": "550 Maranelloは、1996年に登場したFerrariのgt-coupeで、FRとFront V12を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/ferrari-550-maranello-hero.jpg",
+    "mainImage": "/images/cars/ferrari-550-maranello-main.jpg",
+    "imageUrl": "/images/cars/ferrari-550-maranello-main.jpg",
+    "gallery": [
+      "/images/cars/ferrari-550-maranello-front.jpg",
+      "/images/cars/ferrari-550-maranello-side.jpg",
+      "/images/cars/ferrari-550-maranello-interior.jpg"
+    ],
+    "engine": "Front V12",
+    "powerPs": 485,
+    "torqueNm": 568,
+    "transmission": "6MT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 4〜7 km/L",
+    "priceNew": "当時：2400万〜3200万円（参考）",
+    "priceUsed": "1600万〜3200万円（相場変動）",
+    "strengths": [
+      "官能的なエンジンサウンドとレスポンス",
+      "時代を超える造形美とブランド価値",
+      "ステアリング応答が鋭く、操る楽しさが濃い",
+      "オーナーズクラブ/専門店の情報が豊富（維持の選択肢がある）"
+    ],
+    "weaknesses": [
+      "熱害・経年でゴム/樹脂類の劣化が出やすい",
+      "消耗品・整備単価が高い（専門店前提）",
+      "保管環境（湿度/電装）の影響が大きい"
+    ],
+    "troubleTrends": [
+      "電装系（センサー/配線）の経年",
+      "冷却系（ホース/ラジエター/ポンプ）の劣化",
+      "内装のベタつき・樹脂劣化"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Ferrari",
+      "gt-coupe",
+      "スーパーカー",
+      "FR",
+      "6MT",
+      "Front V12",
+      "ヤングタイマー",
+      "ハイパフォーマンス",
+      "イタリア"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "priceUsedYenRange": "1600万〜3200万円（相場変動）",
+    "maintenanceCostYenPerYear": 900000
+  },
+  {
+    "id": "ferrari-250-gt-swb",
+    "slug": "ferrari-250-gt-swb",
+    "name": "250 GT SWB",
+    "maker": "Ferrari",
+    "releaseYear": 1959,
+    "difficulty": "advanced",
+    "bodyType": "gt-coupe",
+    "segment": "クラシックGT",
+    "heritageRefs": [
+      "ferrari-v12-gt-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "250 GT SWB",
+    "summary": "Ferrari V12 GTの原点となる短ホイールベースの名作。",
+    "summaryLong": "250 GT SWBは、1959年に登場したFerrariのgt-coupeで、FRとFront V12を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/ferrari-250-gt-swb-hero.jpg",
+    "mainImage": "/images/cars/ferrari-250-gt-swb-main.jpg",
+    "imageUrl": "/images/cars/ferrari-250-gt-swb-main.jpg",
+    "gallery": [
+      "/images/cars/ferrari-250-gt-swb-front.jpg",
+      "/images/cars/ferrari-250-gt-swb-side.jpg",
+      "/images/cars/ferrari-250-gt-swb-interior.jpg"
+    ],
+    "engine": "Front V12",
+    "powerPs": 280,
+    "torqueNm": 325,
+    "transmission": "4MT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 4〜7 km/L",
+    "priceNew": "当時：$14,000〜$20,000（参考）",
+    "priceUsed": "1.5億〜4.0億円（相場変動）",
+    "strengths": [
+      "官能的なエンジンサウンドとレスポンス",
+      "時代を超える造形美とブランド価値",
+      "ステアリング応答が鋭く、操る楽しさが濃い",
+      "オーナーズクラブ/専門店の情報が豊富（維持の選択肢がある）"
+    ],
+    "weaknesses": [
+      "熱害・経年でゴム/樹脂類の劣化が出やすい",
+      "消耗品・整備単価が高い（専門店前提）",
+      "保管環境（湿度/電装）の影響が大きい"
+    ],
+    "troubleTrends": [
+      "電装系（センサー/配線）の経年",
+      "冷却系（ホース/ラジエター/ポンプ）の劣化",
+      "内装のベタつき・樹脂劣化"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Ferrari",
+      "gt-coupe",
+      "クラシックGT",
+      "FR",
+      "4MT",
+      "Front V12",
+      "クラシック",
+      "イタリア",
+      "スーパーカー"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "priceUsedYenRange": "1.5億〜4.0億円（相場変動）",
+    "maintenanceCostYenPerYear": 1200000
+  },
+  {
+    "id": "ferrari-275-gtb",
+    "slug": "ferrari-275-gtb",
+    "name": "275 GTB",
+    "maker": "Ferrari",
+    "releaseYear": 1964,
+    "difficulty": "advanced",
+    "bodyType": "gt-coupe",
+    "segment": "クラシックGT",
+    "heritageRefs": [
+      "ferrari-v12-gt-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "275GTB",
+    "summary": "ロードGTとレースの血統を繋ぐ、60年代フェラーリGTの象徴。",
+    "summaryLong": "275 GTBは、1964年に登場したFerrariのgt-coupeで、FRとFront V12を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/ferrari-275-gtb-hero.jpg",
+    "mainImage": "/images/cars/ferrari-275-gtb-main.jpg",
+    "imageUrl": "/images/cars/ferrari-275-gtb-main.jpg",
+    "gallery": [
+      "/images/cars/ferrari-275-gtb-front.jpg",
+      "/images/cars/ferrari-275-gtb-side.jpg",
+      "/images/cars/ferrari-275-gtb-interior.jpg"
+    ],
+    "engine": "Front V12",
+    "powerPs": 300,
+    "torqueNm": 328,
+    "transmission": "5MT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 4〜7 km/L",
+    "priceNew": "当時：$14,000〜$20,000（参考）",
+    "priceUsed": "1.8億〜4.5億円（相場変動）",
+    "strengths": [
+      "官能的なエンジンサウンドとレスポンス",
+      "時代を超える造形美とブランド価値",
+      "ステアリング応答が鋭く、操る楽しさが濃い",
+      "オーナーズクラブ/専門店の情報が豊富（維持の選択肢がある）"
+    ],
+    "weaknesses": [
+      "熱害・経年でゴム/樹脂類の劣化が出やすい",
+      "消耗品・整備単価が高い（専門店前提）",
+      "保管環境（湿度/電装）の影響が大きい"
+    ],
+    "troubleTrends": [
+      "電装系（センサー/配線）の経年",
+      "冷却系（ホース/ラジエター/ポンプ）の劣化",
+      "内装のベタつき・樹脂劣化"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Ferrari",
+      "gt-coupe",
+      "クラシックGT",
+      "FR",
+      "5MT",
+      "Front V12",
+      "クラシック",
+      "イタリア",
+      "スーパーカー"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+    },
+    "priceUsedYenRange": "1.8億〜4.5億円（相場変動）",
+    "maintenanceCostYenPerYear": 900000
+  },
+  {
+    "id": "nissan-skyline-2000gtr-kpgc110",
+    "slug": "nissan-skyline-2000gtr-kpgc110",
+    "name": "Skyline GT-R KPGC110",
+    "maker": "Nissan",
+    "releaseYear": 1973,
+    "difficulty": "intermediate",
+    "bodyType": "coupe",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [
+      "nissan-gt-r-godzilla-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "Skyline GT-R KPGC110",
+    "summary": "短命ゆえに伝説化した世代。空白を含めてGT-R史を語る一台。",
+    "summaryLong": "Skyline GT-R KPGC110は、1973年に登場したNissanのcoupeで、FRとFront Inline-6を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/nissan-skyline-2000gtr-kpgc110-hero.jpg",
+    "mainImage": "/images/cars/nissan-skyline-2000gtr-kpgc110-main.jpg",
+    "imageUrl": "/images/cars/nissan-skyline-2000gtr-kpgc110-main.jpg",
+    "gallery": [
+      "/images/cars/nissan-skyline-2000gtr-kpgc110-front.jpg",
+      "/images/cars/nissan-skyline-2000gtr-kpgc110-side.jpg",
+      "/images/cars/nissan-skyline-2000gtr-kpgc110-interior.jpg"
+    ],
+    "engine": "Front Inline-6",
+    "powerPs": 160,
+    "torqueNm": 177,
+    "transmission": "5MT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 6〜10 km/L",
+    "priceNew": "当時：200万〜250万円（参考）",
+    "priceUsed": "5000万〜1.6億円（相場変動）",
+    "strengths": [
+      "加速の太さとトラクション性能が高い",
+      "チューニング/補修パーツの情報量が多い",
+      "高速巡航でも安定感が高く、ロングツーリングに強い",
+      "コミュニティが大きく、相場/整備ノウハウが集まりやすい"
+    ],
+    "weaknesses": [
+      "足回りやブッシュ類のリフレッシュが前提",
+      "保険料や税金、消耗品が高めになりやすい",
+      "改造歴/履歴次第でリスクが大きく変わる"
+    ],
+    "troubleTrends": [
+      "タービン/配管・負圧ホースの劣化",
+      "4WD/駆動系オイル管理",
+      "電装（メーター/ハーネス）の経年"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：1800〜3000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Nissan",
+      "coupe",
+      "クラシックスポーツ",
+      "FR",
+      "5MT",
+      "Front Inline-6",
+      "ネオクラシック",
+      "JDM",
+      "名車",
+      "GT-R"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：1200〜2000万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間80〜150万円"
+    },
+    "priceUsedYenRange": "5000万〜1.6億円（相場変動）",
+    "maintenanceCostYenPerYear": 300000
+  },
+  {
+    "id": "toyota-celica-xx-2000gt",
+    "slug": "toyota-celica-xx-2000gt",
+    "name": "Celica XX 2000GT",
+    "maker": "Toyota",
+    "releaseYear": 1978,
+    "difficulty": "advanced",
+    "bodyType": "gt-coupe",
+    "segment": "プレミアムスポーツ",
+    "heritageRefs": [
+      "toyota-supra-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "Celica XX 2000GT",
+    "summary": "“スープラ以前”を形作ったGT。直6FRの文脈を始めた世代。",
+    "summaryLong": "Celica XX 2000GTは、1978年に登場したToyotaのgt-coupeで、FRとFront Inline-6を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/toyota-celica-xx-2000gt-hero.jpg",
+    "mainImage": "/images/cars/toyota-celica-xx-2000gt-main.jpg",
+    "imageUrl": "/images/cars/toyota-celica-xx-2000gt-main.jpg",
+    "gallery": [
+      "/images/cars/toyota-celica-xx-2000gt-front.jpg",
+      "/images/cars/toyota-celica-xx-2000gt-side.jpg",
+      "/images/cars/toyota-celica-xx-2000gt-interior.jpg"
+    ],
+    "engine": "Front Inline-6",
+    "powerPs": 145,
+    "torqueNm": 173,
+    "transmission": "5MT / 4AT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 8〜12 km/L",
+    "priceNew": "当時：200万〜300万円（参考）",
+    "priceUsed": "250万〜900万円（相場変動）",
+    "strengths": [
+      "デザインとキャラクターが明確で、所有満足度が高い",
+      "運転のフィードバックが濃く、操る楽しさがある",
+      "コミュニティ/情報が一定量あり、維持の道筋を作れる",
+      "相場が安定しやすく、資産性を期待できる場合がある"
+    ],
+    "weaknesses": [
+      "年式・個体差による当たり外れが大きい",
+      "部品の供給/価格が年々厳しくなる場合がある",
+      "日常用途では燃費・乗り心地の割り切りが必要"
+    ],
+    "troubleTrends": [
+      "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+      "電装系（センサー/配線）の経年",
+      "冷却系のメンテ不足"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：900〜2000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Toyota",
+      "gt-coupe",
+      "プレミアムスポーツ",
+      "FR",
+      "5MT / 4AT",
+      "Front Inline-6",
+      "ネオクラシック"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：500〜1200万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間70〜150万円"
+    },
+    "priceUsedYenRange": "250万〜900万円（相場変動）",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "toyota-supra-a70-turbo-a",
+    "slug": "toyota-supra-a70-turbo-a",
+    "name": "Supra A70 Turbo A",
+    "maker": "Toyota",
+    "releaseYear": 1988,
+    "difficulty": "advanced",
+    "bodyType": "gt-coupe",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [
+      "toyota-supra-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "Supra A70 Turbo A",
+    "summary": "ホモロゲーションの物語を背負った特別なA70。",
+    "summaryLong": "Supra A70 Turbo Aは、1988年に登場したToyotaのgt-coupeで、FRとFront Inline-6を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/toyota-supra-a70-turbo-a-hero.jpg",
+    "mainImage": "/images/cars/toyota-supra-a70-turbo-a-main.jpg",
+    "imageUrl": "/images/cars/toyota-supra-a70-turbo-a-main.jpg",
+    "gallery": [
+      "/images/cars/toyota-supra-a70-turbo-a-front.jpg",
+      "/images/cars/toyota-supra-a70-turbo-a-side.jpg",
+      "/images/cars/toyota-supra-a70-turbo-a-interior.jpg"
+    ],
+    "engine": "Front Inline-6",
+    "powerPs": 270,
+    "torqueNm": 343,
+    "transmission": "5MT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 6〜9 km/L",
+    "priceNew": "当時：500万〜600万円（参考）",
+    "priceUsed": "700万〜2000万円（相場変動）",
+    "strengths": [
+      "直6ターボの伸びと高速域の余裕",
+      "シャシー剛性が高く、チューニング耐性も高い",
+      "部品/ノウハウが豊富で弄り方の幅が広い",
+      "グランドツアラーとして快適性も確保"
+    ],
+    "weaknesses": [
+      "年式・個体差による当たり外れが大きい",
+      "部品の供給/価格が年々厳しくなる場合がある",
+      "日常用途では燃費・乗り心地の割り切りが必要"
+    ],
+    "troubleTrends": [
+      "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+      "電装系（センサー/配線）の経年",
+      "冷却系のメンテ不足"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：900〜2000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Toyota",
+      "gt-coupe",
+      "クラシックスポーツ",
+      "FR",
+      "5MT",
+      "Front Inline-6",
+      "ネオクラシック",
+      "2JZ"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：500〜1200万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間70〜150万円"
+    },
+    "priceUsedYenRange": "700万〜2000万円（相場変動）",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "toyota-supra-a70-25gt-ttr",
+    "slug": "toyota-supra-a70-25gt-ttr",
+    "name": "Supra A70 2.5GT Twin Turbo R",
+    "maker": "Toyota",
+    "releaseYear": 1990,
+    "difficulty": "advanced",
+    "bodyType": "gt-coupe",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [
+      "toyota-supra-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "Supra A70 2.5GT Twin",
+    "summary": "ツインターボ化で“走りのスープラ”へ加速した過渡期の代表。",
+    "summaryLong": "Supra A70 2.5GT Twin Turbo Rは、1990年に登場したToyotaのgt-coupeで、FRとFront Inline-6を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/toyota-supra-a70-25gt-ttr-hero.jpg",
+    "mainImage": "/images/cars/toyota-supra-a70-25gt-ttr-main.jpg",
+    "imageUrl": "/images/cars/toyota-supra-a70-25gt-ttr-main.jpg",
+    "gallery": [
+      "/images/cars/toyota-supra-a70-25gt-ttr-front.jpg",
+      "/images/cars/toyota-supra-a70-25gt-ttr-side.jpg",
+      "/images/cars/toyota-supra-a70-25gt-ttr-interior.jpg"
+    ],
+    "engine": "Front Inline-6",
+    "powerPs": 280,
+    "torqueNm": 363,
+    "transmission": "5MT / 4AT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 7〜11 km/L",
+    "priceNew": "当時：380万〜450万円（参考）",
+    "priceUsed": "300万〜900万円（相場変動）",
+    "strengths": [
+      "直6ターボの伸びと高速域の余裕",
+      "シャシー剛性が高く、チューニング耐性も高い",
+      "部品/ノウハウが豊富で弄り方の幅が広い",
+      "グランドツアラーとして快適性も確保"
+    ],
+    "weaknesses": [
+      "年式・個体差による当たり外れが大きい",
+      "部品の供給/価格が年々厳しくなる場合がある",
+      "日常用途では燃費・乗り心地の割り切りが必要"
+    ],
+    "troubleTrends": [
+      "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+      "電装系（センサー/配線）の経年",
+      "冷却系のメンテ不足"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：900〜2000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Toyota",
+      "gt-coupe",
+      "クラシックスポーツ",
+      "FR",
+      "5MT / 4AT",
+      "Front Inline-6",
+      "ヤングタイマー",
+      "2JZ"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：500〜1200万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間70〜150万円"
+    },
+    "priceUsedYenRange": "300万〜900万円（相場変動）",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "toyota-supra-jza80-rz",
+    "slug": "toyota-supra-jza80-rz",
+    "name": "Supra JZA80 RZ",
+    "maker": "Toyota",
+    "releaseYear": 1993,
+    "difficulty": "advanced",
+    "bodyType": "sports-coupe",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [
+      "toyota-supra-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "RZ",
+    "summary": "2JZの伝説が生まれた世代。チューニング文化の中心でもある。",
+    "summaryLong": "Supra JZA80 RZは、1993年に登場したToyotaのsports-coupeで、FRとFront Inline-6 Twin Turboを軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/toyota-supra-jza80-rz-hero.jpg",
+    "mainImage": "/images/cars/toyota-supra-jza80-rz-main.jpg",
+    "imageUrl": "/images/cars/toyota-supra-jza80-rz-main.jpg",
+    "gallery": [
+      "/images/cars/toyota-supra-jza80-rz-front.jpg",
+      "/images/cars/toyota-supra-jza80-rz-side.jpg",
+      "/images/cars/toyota-supra-jza80-rz-interior.jpg"
+    ],
+    "engine": "Front Inline-6 Twin Turbo",
+    "powerPs": 280,
+    "torqueNm": 451,
+    "transmission": "6MT / 4AT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 6〜10 km/L",
+    "priceNew": "当時：450万〜550万円（参考）",
+    "priceUsed": "500万〜1700万円（相場変動）",
+    "strengths": [
+      "直6ターボの伸びと高速域の余裕",
+      "シャシー剛性が高く、チューニング耐性も高い",
+      "部品/ノウハウが豊富で弄り方の幅が広い",
+      "グランドツアラーとして快適性も確保"
+    ],
+    "weaknesses": [
+      "年式・個体差による当たり外れが大きい",
+      "部品の供給/価格が年々厳しくなる場合がある",
+      "日常用途では燃費・乗り心地の割り切りが必要"
+    ],
+    "troubleTrends": [
+      "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+      "電装系（センサー/配線）の経年",
+      "冷却系のメンテ不足"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：900〜2000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Toyota",
+      "sports-coupe",
+      "クラシックスポーツ",
+      "FR",
+      "6MT / 4AT",
+      "Front Inline-6 Twin Turbo",
+      "ヤングタイマー",
+      "2JZ"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：500〜1200万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間70〜150万円"
+    },
+    "priceUsedYenRange": "500万〜1700万円（相場変動）",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "toyota-gr-supra-rz",
+    "slug": "toyota-gr-supra-rz",
+    "name": "GR Supra RZ",
+    "maker": "Toyota",
+    "releaseYear": 2019,
+    "difficulty": "intermediate",
+    "bodyType": "sports-coupe",
+    "segment": "プレミアムスポーツ",
+    "heritageRefs": [
+      "toyota-supra-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "RZ",
+    "summary": "令和のスープラ。現代の性能と“らしさ”の折衷点を担う。",
+    "summaryLong": "GR Supra RZは、2019年に登場したToyotaのsports-coupeで、FRとFront Inline-6 Turboを軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/toyota-gr-supra-rz-hero.jpg",
+    "mainImage": "/images/cars/toyota-gr-supra-rz-main.jpg",
+    "imageUrl": "/images/cars/toyota-gr-supra-rz-main.jpg",
+    "gallery": [
+      "/images/cars/toyota-gr-supra-rz-front.jpg",
+      "/images/cars/toyota-gr-supra-rz-side.jpg",
+      "/images/cars/toyota-gr-supra-rz-interior.jpg"
+    ],
+    "engine": "Front Inline-6 Turbo",
+    "powerPs": 387,
+    "torqueNm": 500,
+    "transmission": "8AT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 10〜14 km/L",
+    "priceNew": "現行：700万〜900万円（仕様）",
+    "priceUsed": "550万〜800万円（相場変動）",
+    "strengths": [
+      "直6ターボの伸びと高速域の余裕",
+      "シャシー剛性が高く、チューニング耐性も高い",
+      "部品/ノウハウが豊富で弄り方の幅が広い",
+      "グランドツアラーとして快適性も確保"
+    ],
+    "weaknesses": [
+      "年式・個体差による当たり外れが大きい",
+      "部品の供給/価格が年々厳しくなる場合がある",
+      "日常用途では燃費・乗り心地の割り切りが必要"
+    ],
+    "troubleTrends": [
+      "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+      "電装系（センサー/配線）の経年",
+      "冷却系のメンテ不足"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：500〜1000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Toyota",
+      "sports-coupe",
+      "プレミアムスポーツ",
+      "FR",
+      "8AT",
+      "Front Inline-6 Turbo",
+      "モダンクラシック",
+      "2JZ"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：300〜800万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間40〜80万円"
+    },
+    "priceUsedYenRange": "550万〜800万円（相場変動）",
+    "maintenanceCostYenPerYear": 300000
+  },
+  {
+    "id": "mazda-rx7-sa22c",
+    "slug": "mazda-rx7-sa22c",
+    "name": "RX-7 SA22C",
+    "maker": "Mazda",
+    "releaseYear": 1978,
+    "difficulty": "advanced",
+    "bodyType": "sports-coupe",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [
+      "mazda-rx7-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "RX-7 SA22C",
+    "summary": "ロータリースポーツの入口。軽さと回転感で“違う快楽”を提示した。",
+    "summaryLong": "RX-7 SA22Cは、1978年に登場したMazdaのsports-coupeで、FRとFront Rotaryを軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/mazda-rx7-sa22c-hero.jpg",
+    "mainImage": "/images/cars/mazda-rx7-sa22c-main.jpg",
+    "imageUrl": "/images/cars/mazda-rx7-sa22c-main.jpg",
+    "gallery": [
+      "/images/cars/mazda-rx7-sa22c-front.jpg",
+      "/images/cars/mazda-rx7-sa22c-side.jpg",
+      "/images/cars/mazda-rx7-sa22c-interior.jpg"
+    ],
+    "engine": "Front Rotary",
+    "powerPs": 105,
+    "torqueNm": 147,
+    "transmission": "5MT / 3AT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 9〜13 km/L",
+    "priceNew": "当時：150万〜250万円（参考）",
+    "priceUsed": "250万〜900万円（相場変動）",
+    "strengths": [
+      "軽量ボディと低重心でハンドリングが鋭い",
+      "ロータリー特有の伸びとサウンド",
+      "デザインが色褪せず、所有満足度が高い",
+      "専門店文化があり、リフレッシュの道筋が立てやすい"
+    ],
+    "weaknesses": [
+      "熱管理がシビアで、劣化するとトラブルに直結しやすい",
+      "燃費は期待できない",
+      "個体差が大きく、購入時点検が重要"
+    ],
+    "troubleTrends": [
+      "冷却系/熱害（ラジエター・水路）",
+      "点火系（プラグ・コイル）",
+      "ターボ周り/ホース類の劣化"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：900〜2000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Mazda",
+      "sports-coupe",
+      "クラシックスポーツ",
+      "FR",
+      "5MT / 3AT",
+      "Front Rotary",
+      "ネオクラシック",
+      "ロータリー"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：500〜1200万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間70〜150万円"
+    },
+    "priceUsedYenRange": "250万〜900万円（相場変動）",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "mazda-rx7-fc3s",
+    "slug": "mazda-rx7-fc3s",
+    "name": "RX-7 FC3S",
+    "maker": "Mazda",
+    "releaseYear": 1985,
+    "difficulty": "advanced",
+    "bodyType": "sports-coupe",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [
+      "mazda-rx7-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "FC3S",
+    "summary": "ターボ化で表情を変えた2代目。日常とスポーツの距離を詰めた。",
+    "summaryLong": "RX-7 FC3Sは、1985年に登場したMazdaのsports-coupeで、FRとFront Rotary Turboを軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/mazda-rx7-fc3s-hero.jpg",
+    "mainImage": "/images/cars/mazda-rx7-fc3s-main.jpg",
+    "imageUrl": "/images/cars/mazda-rx7-fc3s-main.jpg",
+    "gallery": [
+      "/images/cars/mazda-rx7-fc3s-front.jpg",
+      "/images/cars/mazda-rx7-fc3s-side.jpg",
+      "/images/cars/mazda-rx7-fc3s-interior.jpg"
+    ],
+    "engine": "Front Rotary Turbo",
+    "powerPs": 205,
+    "torqueNm": 265,
+    "transmission": "5MT / 4AT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 7〜11 km/L",
+    "priceNew": "当時：230万〜350万円（参考）",
+    "priceUsed": "250万〜800万円（相場変動）",
+    "strengths": [
+      "軽量ボディと低重心でハンドリングが鋭い",
+      "ロータリー特有の伸びとサウンド",
+      "デザインが色褪せず、所有満足度が高い",
+      "専門店文化があり、リフレッシュの道筋が立てやすい"
+    ],
+    "weaknesses": [
+      "熱管理がシビアで、劣化するとトラブルに直結しやすい",
+      "燃費は期待できない",
+      "個体差が大きく、購入時点検が重要"
+    ],
+    "troubleTrends": [
+      "冷却系/熱害（ラジエター・水路）",
+      "点火系（プラグ・コイル）",
+      "ターボ周り/ホース類の劣化"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：900〜2000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Mazda",
+      "sports-coupe",
+      "クラシックスポーツ",
+      "FR",
+      "5MT / 4AT",
+      "Front Rotary Turbo",
+      "ネオクラシック",
+      "ロータリー"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：500〜1200万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間70〜150万円"
+    },
+    "priceUsedYenRange": "250万〜800万円（相場変動）",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "mazda-rx7-fd3s",
+    "slug": "mazda-rx7-fd3s",
+    "name": "RX-7 FD3S",
+    "maker": "Mazda",
+    "releaseYear": 1991,
+    "difficulty": "advanced",
+    "bodyType": "sports-coupe",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [
+      "mazda-rx7-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "RX-7 FD3S",
+    "summary": "美しさと走りが同居した到達点。ロータリーの記憶を決定づけた。",
+    "summaryLong": "RX-7 FD3Sは、1991年に登場したMazdaのsports-coupeで、FRとFront Rotary Twin Turboを軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/mazda-rx7-fd3s-hero.jpg",
+    "mainImage": "/images/cars/mazda-rx7-fd3s-main.jpg",
+    "imageUrl": "/images/cars/mazda-rx7-fd3s-main.jpg",
+    "gallery": [
+      "/images/cars/mazda-rx7-fd3s-front.jpg",
+      "/images/cars/mazda-rx7-fd3s-side.jpg",
+      "/images/cars/mazda-rx7-fd3s-interior.jpg"
+    ],
+    "engine": "Front Rotary Twin Turbo",
+    "powerPs": 280,
+    "torqueNm": 314,
+    "transmission": "5MT / 4AT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 5〜9 km/L",
+    "priceNew": "当時：380万〜520万円（参考）",
+    "priceUsed": "350万〜1200万円（相場変動）",
+    "strengths": [
+      "軽量ボディと低重心でハンドリングが鋭い",
+      "ロータリー特有の伸びとサウンド",
+      "デザインが色褪せず、所有満足度が高い",
+      "専門店文化があり、リフレッシュの道筋が立てやすい"
+    ],
+    "weaknesses": [
+      "熱管理がシビアで、劣化するとトラブルに直結しやすい",
+      "燃費は期待できない",
+      "個体差が大きく、購入時点検が重要"
+    ],
+    "troubleTrends": [
+      "冷却系/熱害（ラジエター・水路）",
+      "点火系（プラグ・コイル）",
+      "ターボ周り/ホース類の劣化"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：900〜2000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Mazda",
+      "sports-coupe",
+      "クラシックスポーツ",
+      "FR",
+      "5MT / 4AT",
+      "Front Rotary Twin Turbo",
+      "ヤングタイマー",
+      "ロータリー"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：500〜1200万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間70〜150万円"
+    },
+    "priceUsedYenRange": "350万〜1200万円（相場変動）",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "nissan-fairlady-z-s30",
+    "slug": "nissan-fairlady-z-s30",
+    "name": "Fairlady Z S30",
+    "maker": "Nissan",
+    "releaseYear": 1969,
+    "difficulty": "advanced",
+    "bodyType": "sports-coupe",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [
+      "nissan-fairlady-z-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "Fairlady Z S30",
+    "summary": "Zの原点。直6FRスポーツを“手が届く夢”にした世代。",
+    "summaryLong": "Fairlady Z S30は、1969年に登場したNissanのsports-coupeで、FRとFront Inline-6を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/nissan-fairlady-z-s30-hero.jpg",
+    "mainImage": "/images/cars/nissan-fairlady-z-s30-main.jpg",
+    "imageUrl": "/images/cars/nissan-fairlady-z-s30-main.jpg",
+    "gallery": [
+      "/images/cars/nissan-fairlady-z-s30-front.jpg",
+      "/images/cars/nissan-fairlady-z-s30-side.jpg",
+      "/images/cars/nissan-fairlady-z-s30-interior.jpg"
+    ],
+    "engine": "Front Inline-6",
+    "powerPs": 151,
+    "torqueNm": 198,
+    "transmission": "5MT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 7〜12 km/L",
+    "priceNew": "当時：150万〜250万円（参考）",
+    "priceUsed": "450万〜2500万円（相場変動）",
+    "strengths": [
+      "デザインとキャラクターが明確で、所有満足度が高い",
+      "運転のフィードバックが濃く、操る楽しさがある",
+      "コミュニティ/情報が一定量あり、維持の道筋を作れる",
+      "相場が安定しやすく、資産性を期待できる場合がある"
+    ],
+    "weaknesses": [
+      "年式・個体差による当たり外れが大きい",
+      "部品の供給/価格が年々厳しくなる場合がある",
+      "日常用途では燃費・乗り心地の割り切りが必要"
+    ],
+    "troubleTrends": [
+      "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+      "電装系（センサー/配線）の経年",
+      "冷却系のメンテ不足"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：900〜2000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Nissan",
+      "sports-coupe",
+      "クラシックスポーツ",
+      "FR",
+      "5MT",
+      "Front Inline-6",
+      "クラシック"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：500〜1200万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間70〜150万円"
+    },
+    "priceUsedYenRange": "450万〜2500万円（相場変動）",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "nissan-fairlady-z-z32",
+    "slug": "nissan-fairlady-z-z32",
+    "name": "Fairlady Z Z32",
+    "maker": "Nissan",
+    "releaseYear": 1989,
+    "difficulty": "advanced",
+    "bodyType": "sports-coupe",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [
+      "nissan-fairlady-z-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "Z32",
+    "summary": "90年代の技術が凝縮されたZ。グランドツアラーとしての厚みがある。",
+    "summaryLong": "Fairlady Z Z32は、1989年に登場したNissanのsports-coupeで、FRとFront V6 Twin Turboを軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/nissan-fairlady-z-z32-hero.jpg",
+    "mainImage": "/images/cars/nissan-fairlady-z-z32-main.jpg",
+    "imageUrl": "/images/cars/nissan-fairlady-z-z32-main.jpg",
+    "gallery": [
+      "/images/cars/nissan-fairlady-z-z32-front.jpg",
+      "/images/cars/nissan-fairlady-z-z32-side.jpg",
+      "/images/cars/nissan-fairlady-z-z32-interior.jpg"
+    ],
+    "engine": "Front V6 Twin Turbo",
+    "powerPs": 280,
+    "torqueNm": 388,
+    "transmission": "5MT / 4AT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 7〜10 km/L",
+    "priceNew": "当時：320万〜500万円（参考）",
+    "priceUsed": "250万〜900万円（相場変動）",
+    "strengths": [
+      "デザインとキャラクターが明確で、所有満足度が高い",
+      "運転のフィードバックが濃く、操る楽しさがある",
+      "コミュニティ/情報が一定量あり、維持の道筋を作れる",
+      "相場が安定しやすく、資産性を期待できる場合がある"
+    ],
+    "weaknesses": [
+      "年式・個体差による当たり外れが大きい",
+      "部品の供給/価格が年々厳しくなる場合がある",
+      "日常用途では燃費・乗り心地の割り切りが必要"
+    ],
+    "troubleTrends": [
+      "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+      "電装系（センサー/配線）の経年",
+      "冷却系のメンテ不足"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：900〜2000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Nissan",
+      "sports-coupe",
+      "クラシックスポーツ",
+      "FR",
+      "5MT / 4AT",
+      "Front V6 Twin Turbo",
+      "ネオクラシック"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：500〜1200万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間70〜150万円"
+    },
+    "priceUsedYenRange": "250万〜900万円（相場変動）",
+    "maintenanceCostYenPerYear": 450000
+  },
+  {
+    "id": "nissan-fairlady-z-z33",
+    "slug": "nissan-fairlady-z-z33",
+    "name": "Fairlady Z Z33",
+    "maker": "Nissan",
+    "releaseYear": 2002,
+    "difficulty": "intermediate",
+    "bodyType": "sports-coupe",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [
+      "nissan-fairlady-z-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "Fairlady Z Z33",
+    "summary": "Zの復権を担った世代。素直なFRスポーツとしての基礎を整えた。",
+    "summaryLong": "Fairlady Z Z33は、2002年に登場したNissanのsports-coupeで、FRとFront V6を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/nissan-fairlady-z-z33-hero.jpg",
+    "mainImage": "/images/cars/nissan-fairlady-z-z33-main.jpg",
+    "imageUrl": "/images/cars/nissan-fairlady-z-z33-main.jpg",
+    "gallery": [
+      "/images/cars/nissan-fairlady-z-z33-front.jpg",
+      "/images/cars/nissan-fairlady-z-z33-side.jpg",
+      "/images/cars/nissan-fairlady-z-z33-interior.jpg"
+    ],
+    "engine": "Front V6",
+    "powerPs": 280,
+    "torqueNm": 363,
+    "transmission": "6MT / 5AT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 8〜11 km/L",
+    "priceNew": "当時：300万〜450万円（参考）",
+    "priceUsed": "150万〜450万円（相場変動）",
+    "strengths": [
+      "デザインとキャラクターが明確で、所有満足度が高い",
+      "運転のフィードバックが濃く、操る楽しさがある",
+      "コミュニティ/情報が一定量あり、維持の道筋を作れる",
+      "相場が安定しやすく、資産性を期待できる場合がある"
+    ],
+    "weaknesses": [
+      "年式・個体差による当たり外れが大きい",
+      "部品の供給/価格が年々厳しくなる場合がある",
+      "日常用途では燃費・乗り心地の割り切りが必要"
+    ],
+    "troubleTrends": [
+      "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+      "電装系（センサー/配線）の経年",
+      "冷却系のメンテ不足"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：500〜1000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Nissan",
+      "sports-coupe",
+      "クラシックスポーツ",
+      "FR",
+      "6MT / 5AT",
+      "Front V6",
+      "ヤングタイマー"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：300〜800万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間40〜80万円"
+    },
+    "priceUsedYenRange": "150万〜450万円（相場変動）",
+    "maintenanceCostYenPerYear": 300000
+  },
+  {
+    "id": "nissan-fairlady-z-z34",
+    "slug": "nissan-fairlady-z-z34",
+    "name": "Fairlady Z Z34",
+    "maker": "Nissan",
+    "releaseYear": 2008,
+    "difficulty": "intermediate",
+    "bodyType": "sports-coupe",
+    "segment": "プレミアムスポーツ",
+    "heritageRefs": [
+      "nissan-fairlady-z-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "Fairlady Z Z34",
+    "summary": "現代Zの骨格を固めた世代。熟成の延長線で語られるモデル。",
+    "summaryLong": "Fairlady Z Z34は、2008年に登場したNissanのsports-coupeで、FRとFront V6を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/nissan-fairlady-z-z34-hero.jpg",
+    "mainImage": "/images/cars/nissan-fairlady-z-z34-main.jpg",
+    "imageUrl": "/images/cars/nissan-fairlady-z-z34-main.jpg",
+    "gallery": [
+      "/images/cars/nissan-fairlady-z-z34-front.jpg",
+      "/images/cars/nissan-fairlady-z-z34-side.jpg",
+      "/images/cars/nissan-fairlady-z-z34-interior.jpg"
+    ],
+    "engine": "Front V6",
+    "powerPs": 336,
+    "torqueNm": 366,
+    "transmission": "6MT / 7AT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 7〜10 km/L",
+    "priceNew": "当時：380万〜600万円（参考）",
+    "priceUsed": "250万〜650万円（相場変動）",
+    "strengths": [
+      "デザインとキャラクターが明確で、所有満足度が高い",
+      "運転のフィードバックが濃く、操る楽しさがある",
+      "コミュニティ/情報が一定量あり、維持の道筋を作れる",
+      "相場が安定しやすく、資産性を期待できる場合がある"
+    ],
+    "weaknesses": [
+      "年式・個体差による当たり外れが大きい",
+      "部品の供給/価格が年々厳しくなる場合がある",
+      "日常用途では燃費・乗り心地の割り切りが必要"
+    ],
+    "troubleTrends": [
+      "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+      "電装系（センサー/配線）の経年",
+      "冷却系のメンテ不足"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：500〜1000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Nissan",
+      "sports-coupe",
+      "プレミアムスポーツ",
+      "FR",
+      "6MT / 7AT",
+      "Front V6",
+      "モダンクラシック"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：300〜800万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間40〜80万円"
+    },
+    "priceUsedYenRange": "250万〜650万円（相場変動）",
+    "maintenanceCostYenPerYear": 300000
+  },
+  {
+    "id": "nissan-z-rz34",
+    "slug": "nissan-z-rz34",
+    "name": "Nissan Z",
+    "maker": "Nissan",
+    "releaseYear": 2022,
+    "difficulty": "intermediate",
+    "bodyType": "sports-coupe",
+    "segment": "プレミアムスポーツ",
+    "heritageRefs": [
+      "nissan-fairlady-z-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "RZ34",
+    "summary": "ヘリテージを現代に翻訳した新世代Z。古典と最新の橋渡し。",
+    "summaryLong": "Nissan Zは、2022年に登場したNissanのsports-coupeで、FRとFront V6 Twin Turboを軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/nissan-z-rz34-hero.jpg",
+    "mainImage": "/images/cars/nissan-z-rz34-main.jpg",
+    "imageUrl": "/images/cars/nissan-z-rz34-main.jpg",
+    "gallery": [
+      "/images/cars/nissan-z-rz34-front.jpg",
+      "/images/cars/nissan-z-rz34-side.jpg",
+      "/images/cars/nissan-z-rz34-interior.jpg"
+    ],
+    "engine": "Front V6 Twin Turbo",
+    "powerPs": 405,
+    "torqueNm": 475,
+    "transmission": "6MT / 9AT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 8〜11 km/L",
+    "priceNew": "現行：550万〜700万円（グレード）",
+    "priceUsed": "550万〜900万円（相場変動）",
+    "strengths": [
+      "デザインとキャラクターが明確で、所有満足度が高い",
+      "運転のフィードバックが濃く、操る楽しさがある",
+      "コミュニティ/情報が一定量あり、維持の道筋を作れる",
+      "相場が安定しやすく、資産性を期待できる場合がある"
+    ],
+    "weaknesses": [
+      "年式・個体差による当たり外れが大きい",
+      "部品の供給/価格が年々厳しくなる場合がある",
+      "日常用途では燃費・乗り心地の割り切りが必要"
+    ],
+    "troubleTrends": [
+      "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+      "電装系（センサー/配線）の経年",
+      "冷却系のメンテ不足"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：500〜1000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Nissan",
+      "sports-coupe",
+      "プレミアムスポーツ",
+      "FR",
+      "6MT / 9AT",
+      "Front V6 Twin Turbo",
+      "モダンクラシック",
+      "ハイパフォーマンス"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：300〜800万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間40〜80万円"
+    },
+    "priceUsedYenRange": "550万〜900万円（相場変動）",
+    "maintenanceCostYenPerYear": 300000
+  },
+  {
+    "id": "nissan-fairlady-z-z31",
+    "slug": "nissan-fairlady-z-z31",
+    "name": "Fairlady Z Z31",
+    "maker": "Nissan",
+    "releaseYear": 1983,
+    "difficulty": "intermediate",
+    "bodyType": "sports-coupe",
+    "segment": "クラシックスポーツ",
+    "heritageRefs": [
+      "nissan-fairlady-z-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "Fairlady Z Z31",
+    "summary": "Zカー第二世代。V6化とツアラー志向で“速さと快適さ”の両立を目指した世代。",
+    "summaryLong": "Fairlady Z Z31は、1983年に登場したNissanのsports-coupeで、FRとFront V6を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/nissan-fairlady-z-z31-hero.jpg",
+    "mainImage": "/images/cars/nissan-fairlady-z-z31-main.jpg",
+    "imageUrl": "/images/cars/nissan-fairlady-z-z31-main.jpg",
+    "gallery": [
+      "/images/cars/nissan-fairlady-z-z31-front.jpg",
+      "/images/cars/nissan-fairlady-z-z31-side.jpg",
+      "/images/cars/nissan-fairlady-z-z31-interior.jpg"
+    ],
+    "engine": "Front V6",
+    "powerPs": 200,
+    "torqueNm": 275,
+    "transmission": "5MT / 4AT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 7〜11 km/L",
+    "priceNew": "当時：200万〜320万円（参考）",
+    "priceUsed": "200万〜650万円（相場変動）",
+    "strengths": [
+      "デザインとキャラクターが明確で、所有満足度が高い",
+      "運転のフィードバックが濃く、操る楽しさがある",
+      "コミュニティ/情報が一定量あり、維持の道筋を作れる",
+      "相場が安定しやすく、資産性を期待できる場合がある"
+    ],
+    "weaknesses": [
+      "年式・個体差による当たり外れが大きい",
+      "部品の供給/価格が年々厳しくなる場合がある",
+      "日常用途では燃費・乗り心地の割り切りが必要"
+    ],
+    "troubleTrends": [
+      "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+      "電装系（センサー/配線）の経年",
+      "冷却系のメンテ不足"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：400〜900万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Nissan",
+      "sports-coupe",
+      "クラシックスポーツ",
+      "FR",
+      "5MT / 4AT",
+      "Front V6",
+      "ネオクラシック"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：200〜500万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間35〜70万円"
+    },
+    "priceUsedYenRange": "200万〜650万円（相場変動）",
+    "maintenanceCostYenPerYear": 300000
+  },
+  {
+    "id": "nissan-fairlady-z-rz34",
+    "slug": "nissan-fairlady-z-rz34",
+    "name": "Fairlady Z RZ34",
+    "maker": "Nissan",
+    "releaseYear": 2022,
+    "difficulty": "intermediate",
+    "bodyType": "sports-coupe",
+    "segment": "プレミアムスポーツ",
+    "heritageRefs": [
+      "nissan-fairlady-z-heritage"
+    ],
+    "category": "HERITAGE_ANCHOR",
+    "grade": "Fairlady Z RZ34",
+    "summary": "レトロモダンな意匠でZを再定義。3.0Lツインターボで“現代の速さ”を手に入れた新型。",
+    "summaryLong": "Fairlady Z RZ34は、2022年に登場したNissanのsports-coupeで、FRとFront V6 Twin Turboを軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+    "heroImage": "/images/cars/nissan-fairlady-z-rz34-hero.jpg",
+    "mainImage": "/images/cars/nissan-fairlady-z-rz34-main.jpg",
+    "imageUrl": "/images/cars/nissan-fairlady-z-rz34-main.jpg",
+    "gallery": [
+      "/images/cars/nissan-fairlady-z-rz34-front.jpg",
+      "/images/cars/nissan-fairlady-z-rz34-side.jpg",
+      "/images/cars/nissan-fairlady-z-rz34-interior.jpg"
+    ],
+    "engine": "Front V6 Twin Turbo",
+    "powerPs": 405,
+    "torqueNm": 475,
+    "transmission": "6MT / 9AT",
+    "drive": "FR",
+    "fuel": "ハイオク",
+    "fuelEconomy": "目安: 8〜11 km/L",
+    "priceNew": "現行：550万〜700万円（グレード）",
+    "priceUsed": "550万〜900万円（相場変動）",
+    "strengths": [
+      "デザインとキャラクターが明確で、所有満足度が高い",
+      "運転のフィードバックが濃く、操る楽しさがある",
+      "コミュニティ/情報が一定量あり、維持の道筋を作れる",
+      "相場が安定しやすく、資産性を期待できる場合がある"
+    ],
+    "weaknesses": [
+      "年式・個体差による当たり外れが大きい",
+      "部品の供給/価格が年々厳しくなる場合がある",
+      "日常用途では燃費・乗り心地の割り切りが必要"
+    ],
+    "troubleTrends": [
+      "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+      "電装系（センサー/配線）の経年",
+      "冷却系のメンテ不足"
+    ],
+    "costImpression": "購入価格込みで考えると、5年総額：500〜900万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+    "relatedNewsIds": [],
+    "relatedColumnSlugs": [],
+    "relatedGuideSlugs": [
+      "luxury-car-insurance-coverage",
+      "loan-vs-lease-luxury-sedan",
+      "oldtimer-maintenance-budget"
+    ],
+    "relatedCarSlugs": [],
+    "tags": [
+      "Nissan",
+      "sports-coupe",
+      "プレミアムスポーツ",
+      "FR",
+      "6MT / 9AT",
+      "Front V6 Twin Turbo",
+      "モダンクラシック",
+      "ハイパフォーマンス"
+    ],
+    "relatedHeritageSlugs": [],
+    "intentTags": [],
+    "purchasePriceSafe": "安全ライン：600〜900万円前後",
+    "maintenanceSimulation": {
+      "yearlyRoughTotal": "年間30〜55万円"
+    },
+    "priceUsedYenRange": "550万〜900万円（相場変動）",
+    "maintenanceCostYenPerYear": 300000
+  }
+]
