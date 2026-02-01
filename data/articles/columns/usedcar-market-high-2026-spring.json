@@ -1,0 +1,56 @@
+{
+  "id": "col-028",
+  "slug": "usedcar-market-high-2026-spring",
+  "status": "published",
+  "title": "中古車相場が高い年、待つだけでは正解にならない。買い方を変える",
+  "summary": "中古車相場が高い年に取るべき戦略。待つより条件と買い方を組み替えて失敗確率を下げる方法を整理。",
+  "category": "MARKET",
+  "tags": [
+    "中古車",
+    "相場",
+    "買い時",
+    "判断"
+  ],
+  "intentTags": [
+    "usedcar",
+    "market",
+    "decision"
+  ],
+  "relatedGuideSlugs": [
+    "hub-usedcar",
+    "hub-loan",
+    "hub-sell-prepare"
+  ],
+  "targetKeyword": "中古車 相場 高い 2026",
+  "searchIntent": "中古車相場が高い状況で、買い時を待つべきか、買い方を変えるべきか判断したい。失敗しないコツを知りたい。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-02-01",
+  "noindex": false,
+  "body": "## 先に答え：相場が高い年は、待つより買い方を変えた方が早い\n中古車は相場が読みにくい。下がるのを待っている間に、狙っていたグレードが消えることもあります。高い年にやるべきは、値引き交渉の根性論ではなく、条件と買い方を組み替えることです。\n\n## 相場が高いときに起きること\n• 人気車ほど良い個体が先に消える  \n• 安い車は理由がある確率が上がる  \n• 走行距離の少なさだけが評価されて割高になる\n\n## 買い方を変える7つの手\n### 1) 条件を2層に分ける\n絶対に譲れない条件と、妥協しても生活に影響がない条件を分ける。\n\n### 2) 予算は車両価格ではなく総額で見る\n諸費用、保証、タイヤやバッテリー交換の見込みまで入れる。\n\n### 3) 認定中古車や保証付きに寄せる\n相場が高いときほど、失敗したときの損失が大きい。保証で保険をかける。\n\n### 4) 人気グレードを外す\n同じ車種でも、装備違いで相場が大きく動きます。\n\n### 5) 新車も一度計算する\n納期と総支払額次第では、新車の方が合理的になることがあります。\n\n### 6) 買い替えなら、売るタイミングもセットで考える\n下取りと買取、両方の見積もりを取って差を把握する。\n\n### 7) 安すぎる車は、安い理由を説明できるかで判断\n説明が曖昧なら避ける。\n\n中古車の見方は [中古車の選び方](/guide/hub-usedcar) に整理しました。  \nローンも含めて総額で考えるなら [ローンの基本](/guide/hub-loan) 、売却が絡むなら [売却の準備](/guide/hub-sell-prepare) から見ると早いです。",
+  "seoTitle": "中古車相場が高いときの買い方｜待つより失敗を減らす7つの手",
+  "seoDescription": "中古車相場が高止まりのときに、待つだけでは損しやすい理由と対策。条件の分解、総額比較、認定中古車や保証の使い方、人気グレード外し、売却タイミングまで、買い方を組み替える手順を整理。",
+  "planPriority": 4,
+  "publishedAt": "2026-01-27T13:30:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-usedcar",
+    "/guide/hub-loan",
+    "/guide/hub-sell-prepare"
+  ],
+  "primaryQuery": "中古車 相場 高い 2026",
+  "updateReason": "2026-02-01: noindex→index化と全文リライト（一次情報参照・内部リンク・SEO調整）",
+  "sources": [
+    "https://aucnet.com/circular-economy-lab/report/usedcar_market_price_index/",
+    "https://aucnet.com/circular-economy-lab/auction/usedcar_market_value202601/",
+    "https://www.navikuru.jp/articles/usedcar/2877/",
+    "https://prtimes.jp/main/html/rd/p/000000257.000114819.html",
+    "https://www.kurumaerabi.com/column/articles/802/",
+    "https://www.gulliver.co.jp/gulliverlab/usedcar/m/"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "col-001",
+  "slug": "usedcar-100k-km-myth",
+  "status": "published",
+  "title": "走行距離10万kmの中古車はやめとけ？距離より大事な3つの見方",
+  "summary": "10万km超え＝寿命は誤解。距離より整備記録と使われ方で判断する。買っていい個体の条件、避けたいサイン、保証を含めた総額の考え方を整理。",
+  "category": "MARKET",
+  "tags": [
+    "中古車",
+    "走行距離",
+    "10万km",
+    "整備記録",
+    "購入判断"
+  ],
+  "intentTags": [
+    "usedcar",
+    "decision",
+    "maintenance"
+  ],
+  "relatedGuideSlugs": [
+    "hub-usedcar",
+    "maintenance",
+    "hub-consumables"
+  ],
+  "targetKeyword": "走行距離 10万km 中古車",
+  "searchIntent": "10万km超えの中古車を避けるべきか迷っている人が、判断軸を持てるようにする。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-31",
+  "noindex": false,
+  "body": "## 結論\n「１０万km超え＝寿命」は、昔の感覚が残った目安です。今の車は１０万kmを超えても普通に走ります。ただし、買っていいかどうかは走行距離よりも「整備の証拠」と「使われ方」で決まります。\n\n• 記録簿と整備明細が揃っている１０万kmは、むしろ安心材料になることがある  \n• 記録が薄い１０万kmは、価格が安くても後で整備代が出る前提で見る  \n• 重要なのは、次の大きい整備が何かを把握して、総額で判断する\n\n中古車選びの全体像は [中古車HUB](/guide/hub-usedcar) にまとめています。\n\n---\n\n## １０万kmで見るべきは「距離」ではなく「中身」\n距離が伸びると消耗は進みます。でも、同じ１０万kmでも状態はバラバラです。\n\n• 高速が多い車は距離のわりに痛みが少ないことがある  \n• 近所の短距離ばかりは、距離が少なくても状態が荒れることがある（この話は /column/usedcar-low-mileage-trap）  \n• オイル交換や消耗品交換が定期的に行われているかで差が出る\n\n---\n\n## 買っていい１０万kmの条件\n次が揃っていると安心しやすいです。\n\n• 点検記録簿、整備明細が継続して残っている  \n• 大きい修理を繰り返していない（理由が説明できる）  \n• 試乗で異音、振動、変速の違和感がない  \n• 下回りの錆やオイル滲みが軽い\n\n距離より「現車の状態」。ここはシンプルです。\n\n---\n\n## 避けたい１０万kmのサイン\n価格が安くても、後で詰みやすいパターンです。\n\n• 記録がほぼない、前オーナーの使い方が見えない  \n• 走るときに金属音、ガタつき、段差で異音が出る  \n• エンジンや下回りの漏れが目立つ  \n• 冷却水やオイルが汚れている、管理が雑に見える\n\n---\n\n## 価格差の考え方：安さに飛びつかない\n１０万km超えが安いのは、距離だけで値付けが下がりやすいからです。大事なのは、その差額で何が吸収できるか。\n\n• 予防整備をしてもなお安いのか  \n• 保証を付けると総額がどう変わるか\n\n保証の考え方は /column/usedcar-warranty-needed にまとめています。\n\n---\n\n## 迷ったらこの結論でOK\n• 記録が揃っている → 候補に入れて良い  \n• 記録が薄い → 安くても慎重。総額で見る  \n• 不安が残る → 似た条件で走行距離が少ない個体と見比べる\n\n「１０万kmだからダメ」ではなく「その個体がどう管理されてきたか」で決めてください。\n",
+  "seoTitle": "走行距離10万kmの中古車はやめとけ？距離より大事な3つの見方",
+  "seoDescription": "10万kmは即NGじゃない。整備の記録と使われ方、買ったあとに掛かるお金が見えるかで判断する。",
+  "planPriority": 22,
+  "publishedAt": "2026-01-29T03:00:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-usedcar",
+    "/column/usedcar-low-mileage-trap",
+    "/column/usedcar-warranty-needed"
+  ],
+  "primaryQuery": "走行距離 10万km 中古車",
+  "updateReason": "seo-rewrite-2026-01-31 sell&usedcar cluster: body/sources/clusters/index (usedcar-100k-km-myth)",
+  "sources": [
+    "https://www.airia.or.jp/publish/news/news20250508.html",
+    "https://www.airia.or.jp/publish/news/news20250508_01.pdf",
+    "https://www.jaai.or.jp/images/jissiten/sateikijun240327/kagenten.pdf",
+    "https://221616.com/norico/mileage/",
+    "https://221616.com/norico/mileage-short/"
+  ]
+}

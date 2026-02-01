@@ -1,0 +1,61 @@
+{
+  "slug": "oil-leak-first-response",
+  "title": "オイル漏れしたらまず何する？液体の見分け方と走行判断",
+  "lead": "車の下に液体。水かオイルかで危険度が変わる。色と匂いで切り分けつつ、走行判断と初動を整理。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "TROUBLE",
+  "tags": [
+    "オイル漏れ",
+    "異臭",
+    "警告灯",
+    "修理"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-31",
+  "internalLinks": [
+    "road-service-choice-guide",
+    "engine-check-light-first-response",
+    "overheat-coolant-leak-guide"
+  ],
+  "body": "車の下に液体が垂れているとき、まずやるべきは正体の切り分けです。水なら急ぎではないこともありますが、オイルや冷却水なら走るほど危険になります。\n\nトラブル系の全体像はここ。\n[輸入車トラブルHUB](/guide/hub-import-trouble)\n\n## 結論\n•漏れの量が多い もしくは警告灯が点くなら走らない  \n•液体の色と匂いで、おおまかに種類は判別できる  \n•迷うならロードサービスを呼ぶ。無理に移動して二次被害が一番高い\n\n## まず安全確保\n•路肩や駐車場など安全な場所に停車  \n•漏れが続いているなら、下に紙や段ボールを置いて量と位置を確認  \n•火気厳禁。焦げ臭い 匂いが強いときは近づきすぎない\n\n## 液体のざっくり判別\n•透明でサラサラ 水っぽい→エアコンの結露水のことがある  \n•赤っぽい→ATFの可能性  \n•茶色から黒っぽい→エンジンオイルの可能性  \n•緑 ピンクなど色が付いて甘い匂い→冷却水の可能性\n\n正確な判断は点検が必要です。ここは無理に断定しないほうが安全です。\n\n## 走行をやめるべきサイン\n•エンジン警告灯や油圧系の警告が出る  \n•漏れがポタポタではなく流れる  \n•異音や振動がある  \n•焦げた匂いがする\n\n関連: [ロードサービスの選び方](/guide/road-service-choice-guide)\n\n## 次に読む\n•[エンジン警告灯の初動](/guide/engine-check-light-first-response)  \n•[オーバーヒートと冷却水漏れの初動](/guide/overheat-coolant-leak-guide)",
+  "monetizeKey": "goods_jump_starter",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "road-service-choice-guide",
+    "engine-check-light-first-response",
+    "overheat-coolant-leak-guide"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "trouble",
+    "maintenance"
+  ],
+  "seoTitle": "オイル漏れの初動｜液体の見分け方と走行をやめる判断",
+  "seoDescription": "車の下に液体が漏れているときの初動を整理。色と匂いでの切り分け、走らない判断、警告灯が出たときの対応、ロードサービスを呼ぶ基準。",
+  "summary": "車の下に液体が漏れているときの初動を整理。種類の切り分け、走行中止の判断、ロードサービスを呼ぶ基準までまとめる。",
+  "readMinutes": 5,
+  "status": "published",
+  "id": "guide:oil-leak-first-response",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-import-trouble",
+  "relatedClusterIds": [
+    "/guide/hub-import-trouble",
+    "/guide/road-service-choice-guide",
+    "/guide/engine-check-light-first-response"
+  ],
+  "primaryQuery": "オイル漏れを見つけたら最初にやること｜危険サインと応急判断",
+  "updateReason": "seo-rewrite-2026-01-31 hub-import-trouble pillar upgrade",
+  "sources": [
+    "https://jaf.or.jp/common/car-trouble-qa/emergency/leak-liquid",
+    "https://jafmate.jp/car/safety_tech/article/oil_leak_20240527.html",
+    "https://www.shakenkan.co.jp/blog/2025/02/04/%E3%82%AA%E3%82%A4%E3%83%AB%E6%BC%8F%E3%82%8C%E3%81%AF%E8%BB%8A%E3%81%AE%E4%B8%8B%E3%81%8B%E3%82%89%E5%9E%82%E3%82%8C%E3%82%8B%E6%B6%B2%E4%BD%93%E3%81%AE%E5%8E%9F%E5%9B%A0%E3%81%AE1%E3%81%A4%E3%80%82%E6%94%BE%E7%BD%AE%E3%81%99%E3%82%8B/",
+    "https://manual.toyota.jp/toyota/yaris/2311/hev/ja_JP/contents/service/warning.html",
+    "https://jaf.or.jp/common/car-trouble-qa/warning-lamp/"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "slug": "number-change-kibou-number-guide",
+  "title": "ナンバー変更・希望ナンバーの流れ｜管轄・費用・必要書類をまとめて理解する",
+  "lead": "ナンバー変更と希望ナンバーの流れを、管轄変更と予約済証の期限から整理。費用と現車が必要なケースも。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "LIFE",
+  "tags": [
+    "ナンバー変更",
+    "希望ナンバー",
+    "住所変更",
+    "必要書類"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-31",
+  "internalLinks": [
+    "jyuusho-henkou-shaken-shou",
+    "meigi-henko-hitsuyou-shorui-futsuu",
+    "meigi-henko-hitsuyou-shorui-kei",
+    "shako-shoumei-torikata"
+  ],
+  "body": "ナンバー変更は、やること自体は単純です。詰むのは予約済証の期限と、封印の都合で現車が必要になるケース。ここだけ押さえればスムーズです。\n\n書類系の全体像はここにまとめています。\n[名義変更・必要書類HUB](/guide/hub-paperwork)\n\n## 結論\n•引越しで管轄が変わるとナンバー変更が必要になることが多い  \n•希望ナンバーは先に予約済証を取る。有効期間は1ヶ月が目安  \n•登録車は封印が絡むため、現車の持ち込みが必要になるケースがある  \n•交付手数料はプレート種別や地域で差がある。予約センターの案内が確実\n\n## ナンバー変更が起きる代表パターン\n•引越しで使用の本拠の位置の管轄が変わった  \n•希望ナンバーにしたい 図柄ナンバーにしたい  \n•盗難や紛失で同一番号の再交付ができない\n\n関連: [住所変更したら何をする](/guide/jyuusho-henkou-shaken-shou)\n\n## 希望ナンバーの流れ\n### 1 予約センターで申し込む\n•希望番号予約センターのWebや窓口で申込み  \n•交付手数料を支払い、予約済証を受け取る  \n•プレートは注文製作なので、交付可能になるまで数日かかる\n\n### 2 交付可能日以降に登録申請へ進む\n•予約済証に記載された交付可能日を待つ  \n•運輸支局等や軽自動車検査協会で、登録申請とセットで予約済証を提出  \n•交付可能期間と有効期間を過ぎると予約済証が失効する。期限管理は最重要\n\n## 交付手数料の目安\n希望番号予約センターの案内では、プレート種別によって目安が示されています。\n•ペイント おおむね4,400円から6,400円程度  \n•字光式 おおむね8,100円から14,200円程度  \n•図柄ナンバー おおむね8,500円から13,000円程度\n地域や組合で差が出るので、最終確認は管轄の予約センターが確実です。\n\n## 現車が必要になるケース\n•登録車は封印が必要なため、現車の確認が必要になることがある  \n•車検切れで自走できないと難易度が上がる。日程は先に固定する  \n•軽自動車は封印がないが、ナンバー交換が必要なら持参が必要\n\n## 失敗しやすいポイント\n### 予約済証の期限を超える\n忙しい人ほど失効しがちです。支払日から1ヶ月ではなく、交付可能日から1ヶ月という運用になるケースがあるため、メールや予約済証の記載を必ず確認します。\n\n### 希望ナンバーと同時に名義変更や住所変更をやるのに段取りが逆\n書類が揃っていないと予約済証があっても申請できません。車庫証明や住民票など、先に揃えるものを先に片付けます。\n関連: [車庫証明の取り方](/guide/shako-shoumei-torikata)\n\n## 次に読む\n•[普通車の名義変更](/guide/meigi-henko-hitsuyou-shorui-futsuu)  \n•[軽自動車の名義変更](/guide/meigi-henko-hitsuyou-shorui-kei)  \n•[住所変更したら何をする](/guide/jyuusho-henkou-shaken-shou)",
+  "monetizeKey": "sell_prepare",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "jyuusho-henkou-shaken-shou",
+    "shako-shoumei-torikata",
+    "meigi-henko-hitsuyou-shorui-futsuu",
+    "meigi-henko-hitsuyou-shorui-kei"
+  ],
+  "relatedColumnSlugs": [
+    "name-change-delay-risk"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "paperwork",
+    "life"
+  ],
+  "seoTitle": "ナンバー変更 希望ナンバーの流れ｜管轄 期限 費用をまとめて理解",
+  "seoDescription": "引越しでの管轄変更や希望ナンバーで必要になる手順を整理。予約済証の有効期間 交付可能日、交付手数料の目安、登録車の封印で現車が必要なケース、失効を防ぐ段取り。",
+  "summary": "ナンバー変更と希望ナンバーの流れをまとめて整理。管轄変更、予約済証の期限、費用の目安、現車が必要になるケースまで先回りで確認。",
+  "status": "published",
+  "id": "guide:number-change-kibou-number-guide",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-paperwork",
+  "relatedClusterIds": [
+    "/guide/hub-paperwork",
+    "/guide/shako-shoumei-torikata",
+    "/guide/jyuusho-henkou-shaken-shou"
+  ],
+  "primaryQuery": "ナンバー変更・希望ナンバーの流れ｜管轄・費用・必要書類をまとめて理解する",
+  "updateReason": "seo-rewrite-2026-01-31 hub-paperwork pillar upgrade",
+  "sources": [
+    "https://www.kibou-number.jp/html/flow.html",
+    "https://www.kibou-number.jp/html/fee.html",
+    "https://www.kibou-number.jp/html/place.html",
+    "https://www.kanagawa-jidosya.or.jp/activity/apply",
+    "https://toyota.jp/ucar/guide/procedure/number_plate/",
+    "https://www.keikenkyo.or.jp/procedures/request_number/"
+  ]
+}

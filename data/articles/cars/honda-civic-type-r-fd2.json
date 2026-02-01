@@ -1,0 +1,105 @@
+{
+  "id": "honda-civic-type-r-fd2",
+  "slug": "honda-civic-type-r-fd2",
+  "name": "Honda Civic Type R (FD2)",
+  "maker": "Honda",
+  "releaseYear": 2007,
+  "difficulty": "intermediate",
+  "bodyType": "sedan",
+  "segment": "スポーツセダン",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "Type R FD2",
+  "summary": "実用の器で、回して前へ出る。高回転NAが日常に置けた最後のType Rらしさ。",
+  "summaryLong": "FD2 Type Rは、実用セダンの器にサーキット由来の応答を落とした高回転NAです。VTECの切り替わりと、回転域を使えるギア比。FFでも姿勢が整い、回して速い。\n\nいま買う目線では、足回りとボディの素直さが価値を決めます。ブッシュ、ハブ、ブレーキ、そして下回り。過去に走ってきた個体ほど、ここが疲れている。\n\nノーマルに近い個体は整え直しやすい。改造車は整合が取れているほど安心。回るだけでなく、回して走れる個体を選びたい。",
+  "heroImage": "/images/cars/honda-civic-type-r-fd2-hero.jpg",
+  "mainImage": "/images/cars/honda-civic-type-r-fd2-main.jpg",
+  "imageUrl": "/images/cars/honda-civic-type-r-fd2-hero.jpg",
+  "gallery": [
+    "/images/cars/honda-civic-type-r-fd2-front.jpg",
+    "/images/cars/honda-civic-type-r-fd2-side.jpg",
+    "/images/cars/honda-civic-type-r-fd2-interior.jpg"
+  ],
+  "engine": "Front Inline-4 2.0 NA (K20A)",
+  "powerPs": 225,
+  "torqueNm": 215,
+  "transmission": "6MT",
+  "drive": "FF",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 8〜13 km/L",
+  "priceNew": "当時: 280万〜330万円台（仕様差）",
+  "priceUsed": "180万〜450万円（相場変動）",
+  "strengths": [
+    "高回転NAの応答を、日常の器で味わえる。",
+    "FFらしい分かりやすさがあり、上達が楽しい。",
+    "情報と部品が多く、足回りのリフレッシュで化ける。",
+    "実用性が高く、所有のハードルが比較的低い。"
+  ],
+  "weaknesses": [
+    "足回りの消耗が走りに直結する。ガタがあると魅力が薄れる。",
+    "改造個体は整合が崩れるとトラブルが続く。",
+    "内装や電装の経年で、生活車としてのストレスが出ることがある。",
+    "錆・下回り状態で価値が大きく割れる。"
+  ],
+  "troubleTrends": [
+    "ブッシュ・ハブ・ベアリングの唸りは試乗で出やすいです。",
+    "クラッチやミッションの入り具合は必ず確認したいポイントです。",
+    "冷却系の更新履歴が薄い個体は、熱で調子を崩すことがあります。",
+    "下回りの錆（特に降雪地域）は要注意です。"
+  ],
+  "costImpression": "“走る実用車”は、足を整えた瞬間に別物になる。ベースの素直さが一番の価値。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "column-high-rev-na-why-it-felt-fast"
+  ],
+  "relatedGuideSlugs": [
+    "guide-buy-high-rev-na-checklist"
+  ],
+  "relatedCarSlugs": [
+    "honda-s2000-ap1",
+    "mazda-rx-8-se3p-type-s"
+  ],
+  "tags": [
+    "Honda",
+    "Civic",
+    "Type R",
+    "FD2",
+    "K20A",
+    "high-rev",
+    "FF"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-high-rev-na-last-dance-heritage"
+  ],
+  "intentTags": [
+    "high-rev",
+    "NA",
+    "FF",
+    "2000s",
+    "heritage",
+    "practical"
+  ],
+  "purchasePriceSafe": "安全ライン：240〜360万円前後（下回りと足の素直さ重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間28〜55万円"
+  },
+  "maintenanceCostYenPerYear": 380000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda Honda Civic Type R (FD2)",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Honda Civic Type R (FD2)",
+  "updateReason": "initial-import",
+  "sources": []
+}

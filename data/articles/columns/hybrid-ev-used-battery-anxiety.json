@@ -1,0 +1,57 @@
+{
+  "id": "col-020",
+  "slug": "hybrid-ev-used-battery-anxiety",
+  "status": "published",
+  "title": "中古のハイブリッド・EV、電池が不安なら見るのは保証と診断",
+  "summary": "中古ハイブリッド/EVの不安の中心は電池。保証残と診断の有無でリスクを落とす確認ポイントを整理。",
+  "category": "MAINTENANCE",
+  "tags": [
+    "ハイブリッド",
+    "EV",
+    "中古車",
+    "バッテリー",
+    "保証"
+  ],
+  "intentTags": [
+    "usedcar",
+    "ev",
+    "warranty"
+  ],
+  "relatedGuideSlugs": [
+    "hub-usedcar",
+    "maintenance",
+    "insurance"
+  ],
+  "targetKeyword": "中古 ハイブリッド バッテリー 不安",
+  "searchIntent": "中古のハイブリッド・EV購入時に、駆動用電池の劣化や故障リスクをどう見抜くか知りたい。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-02-01",
+  "noindex": false,
+  "body": "## 先に答え：中古の電池不安は、保証残と診断の有無でほぼ整理できる\nハイブリッドやEVの中古で怖いのは、電池そのものよりも、弱っているのに気づけないまま買うことです。保証が残っているか、状態を確認できる材料があるか。この2点を押さえるだけで、失敗確率は大きく下がります。\n\n## まず押さえる前提\n• 電池は消耗する。ゼロにはならない  \n• 劣化のスピードは車種、使い方、充電や保管環境で差が出る  \n• 費用が重いのは、保証が切れた後に不具合が出たケース\n\n## 買う前に確認したい6つ\n### 1) 駆動用電池の保証が残っているか\nメーカーや年式で条件が違います。買う車種の保証ページを必ず確認。\n\n### 2) その保証が中古購入でも引き継げるか\n名義変更で保証が継続するか、点検記録が条件かをチェック。\n\n### 3) 診断書や点検記録があるか\nEVなら容量や状態を示す資料が出せるか。  \nハイブリッドならハイブリッドシステムの点検記録が残っているか。\n\n### 4) 警告灯と履歴\n現時点で点灯していない、だけでは足りません。過去の修理履歴も見たい。\n\n### 5) 充電器や付属品が揃っているか（EV）\n地味に後から効く出費です。\n\n### 6) 保証外になったときの覚悟\n保証がない車を選ぶなら、電池以外も含めて年間の維持費を想定しておく。\n\n## 不安が強い人ほど、こう買う\n• メーカー認定中古車を優先  \n• 走行距離より、記録簿と保証を優先  \n• 値段が安い車は、理由を説明できるかで判断\n\n中古車全体の見方は [中古車の選び方](/guide/hub-usedcar) にまとめています。  \n維持費の見え方を整えるなら [維持費の考え方](/guide/maintenance) も先にどうぞ。",
+  "seoTitle": "中古HV・EVの電池が不安な人へ｜保証残と診断でリスクを下げる確認ポイント",
+  "seoDescription": "中古のハイブリッドやEVで不安になりがちな駆動用電池。保証残の確認、診断や記録簿で状態を見える化するポイント、避けたい個体の特徴、安心寄りの買い方を整理。",
+  "planPriority": 10,
+  "publishedAt": "2026-01-27T17:00:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-usedcar",
+    "/guide/maintenance",
+    "/guide/insurance"
+  ],
+  "primaryQuery": "中古 ハイブリッド バッテリー 不安",
+  "updateReason": "2026-02-01: noindex→index化と全文リライト（一次情報参照・内部リンク・SEO調整）",
+  "sources": [
+    "https://faq.toyota.jp/faq/show/6244?site_domain=default",
+    "https://toyota.jp/after_service/support_warranty/special/",
+    "https://www.honda.co.jp/auto/hondau-select/plus/guarantee/",
+    "https://www.nissan-global.com/JP/PDF/LEAF/Maintenance2019_02.pdf",
+    "https://www.goo-net.com/magazine/knowhow/carlife/210853/",
+    "https://www.nextage.jp/buy_guide/info/355304/"
+  ]
+}

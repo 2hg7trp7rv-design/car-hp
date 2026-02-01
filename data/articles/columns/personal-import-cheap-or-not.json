@@ -1,0 +1,53 @@
+{
+  "id": "col-024",
+  "slug": "personal-import-cheap-or-not",
+  "status": "published",
+  "title": "車の個人輸入は安い？安いのは車両価格で、詰むのは手続きと整備",
+  "summary": "車の個人輸入は安いのかを現実ベースで整理。追加コスト、手続きの流れ、向く人向かない人を解説。",
+  "category": "MONEY",
+  "tags": [
+    "個人輸入",
+    "輸入車",
+    "手続き",
+    "費用"
+  ],
+  "intentTags": [
+    "import",
+    "paperwork",
+    "money"
+  ],
+  "relatedGuideSlugs": [
+    "hub-import-trouble",
+    "hub-paperwork"
+  ],
+  "targetKeyword": "車 個人輸入 安い",
+  "searchIntent": "車の個人輸入が本当に安いのか、必要な費用や手続き、リスクを知りたい。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-02-01",
+  "noindex": false,
+  "body": "## 先に答え：個人輸入で安いのは車両価格だけ。手続きと整備で逆転しやすい\n海外で安く見える車でも、日本で走らせるまでに必要な費用と手間が乗ります。希少車を狙うなら意味がある。安さ目的だけだと失敗しやすい、これが現実です。\n\n## 個人輸入で追加になる主なコスト\n• 輸送費と保険  \n• 関税と消費税  \n• 港での費用、国内輸送  \n• 登録のための書類作成や翻訳  \n• 保安基準に合わせる改造や整備  \n• 車検と登録費用\n\n## 流れをざっくり掴む\n1) その車が日本で登録できるか確認  \n2) 必要書類を揃える  \n3) 輸送手配  \n4) 税関手続き  \n5) 予備検査や整備、改造  \n6) 新規登録\n\n工程が増えるほど、外注費も増えます。\n\n## 個人輸入が向く人\n• 国内で出回らないグレードや年式を狙う  \n• 手続きに時間を割ける  \n• 信頼できる輸入代行や整備先が確保できている\n\n## 向かない人\n• とにかく安く乗りたい  \n• すぐ納車が欲しい  \n• 整備やトラブル対応が苦手\n\n輸入の落とし穴は [輸入車トラブル回避](/guide/hub-import-trouble) にまとめています。  \n書類で詰まりたくないなら [必要書類の整理](/guide/hub-paperwork) も先にどうぞ。",
+  "seoTitle": "車の個人輸入は安い？追加コストと手続きの現実｜向く人向かない人",
+  "seoDescription": "車の個人輸入は安いのかを現実ベースで解説。輸送費、関税・消費税、港費用、登録書類、保安基準対応の改造や整備など、追加コストと流れ、個人輸入が向く人向かない人を整理。",
+  "planPriority": 28,
+  "publishedAt": "2026-01-29T11:16:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-import-trouble",
+    "/guide/hub-paperwork"
+  ],
+  "primaryQuery": "車 個人輸入 安い",
+  "updateReason": "2026-02-01: noindex→index化と全文リライト（一次情報参照・内部リンク・SEO調整）",
+  "sources": [
+    "https://www.jetro.go.jp/ext_images/_Reports/02/2016/214d818c75416639/import10.pdf",
+    "https://www.customs.go.jp/shiryo/qa/01.htm",
+    "https://www.mlit.go.jp/jidosha/jidosha_fr1_000050.html",
+    "https://www.jama.or.jp/industry/trade/tariff/",
+    "https://haisha110.com/cars/car-import-privately/"
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "car-loan-interest-rate-guide",
+  "title": "マイカーローン金利の目安｜銀行とディーラーの違い、比較チェックリスト",
+  "lead": "ローンの金利は低いほど得。でも手数料と繰上返済条件まで見ないと負ける。総返済額で比較するためのチェックリスト。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "MONEY",
+  "tags": [
+    "ローン",
+    "金利",
+    "月々",
+    "総支払",
+    "審査"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-31",
+  "internalLinks": [
+    "compare-loan-lease-zancre",
+    "loan-or-lump-sum",
+    "car-budget-simulation"
+  ],
+  "body": "マイカーローンの金利は、低いほど得です。でも金利だけ見て決めると、手数料や繰上返済条件で思ったより差が出ないことがあります。ここでは判断に必要なところだけ整理します。\n\nまず全体像を見たい人はこちら。\n[ローンHUB](/guide/hub-loan)\n\n## 結論\n•金利は同じ年数でも総支払に効く。比較は総返済額ベースでやる  \n•銀行系は低金利になりやすいが審査と手続きが増えがち  \n•ディーラー系は手続きが楽な一方、金利や条件で差が出やすい  \n•繰上返済できるか 手数料はいくらか ここを見落とすと負ける\n\n## 金利を見るときの最低ライン\n•固定金利か 途中で変わる可能性があるか  \n•金利の適用条件 優遇条件があるか  \n•事務手数料 保証料 印紙代など、金利以外のコスト  \n•繰上返済の可否と手数料 一部 全額\n\n## 金利の実例 目安の掴み方\n金利は毎月変わることがあります。ここでは公式ページに掲載されている表示を例として、どんな幅があるかを掴む目的で見ます。\n\n•三菱UFJ銀行 ネットDEマイカーローン 年1.875％から3.00％の表示  \n•住信SBIネット銀行 マイカーローン 年2.275％から4.475％の表示  \n•イオン銀行 自動車ローン 年3.80％から13.50％ 2026年1月1日現在\n\n重要なのは、下限の数字だけで判断しないこと。自分が適用される金利は審査で決まります。\n\n## どのローンを選ぶと失敗しにくいか\n### とにかく金利を下げたい\n•まず銀行系を当てる  \n•落ちたときの保険としてディーラー系も並行で見積もる\n\n### 手続きの手間を減らしたい\n•ディーラー系は車の購入と同時に進めやすい  \n•その分、金利と手数料で総支払が増えないかを必ず確認\n\n### 早めに返す可能性がある\n繰上返済を想定するなら、繰上返済手数料の考え方がローン会社で違います。契約前に確認しておくと損しません。\n\n## 見積書でチェックする項目\n•借入金額 付帯品まで入っていないか  \n•返済期間 長くすると月額は下がるが利息は増える  \n•ボーナス併用 収入が不安定なら避ける  \n•繰上返済条件 手数料 回数制限\n\n関連: [ローン リース 残クレの比較](/guide/compare-loan-lease-zancre)  \n関連: [ローンと一括払いの考え方](/guide/loan-or-lump-sum)\n\n## 次に読む\n•[ローンとリース 残クレの比較](/guide/compare-loan-lease-zancre)  \n•[ローンと一括払い どっちが安全か](/guide/loan-or-lump-sum)  \n•[車の予算を月額で設計する](/guide/car-budget-simulation)",
+  "monetizeKey": "loan_estimate",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "compare-loan-lease-zancre",
+    "loan-or-lump-sum",
+    "car-budget-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "budget-should-be-monthly-total"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "loan",
+    "money"
+  ],
+  "seoTitle": "マイカーローン金利の目安｜銀行とディーラーの違い、比較チェックリスト",
+  "seoDescription": "マイカーローンの金利を見るときのチェック項目を整理。固定 変動、手数料、繰上返済、総返済額で比較する方法。銀行系とディーラー系の違いも。",
+  "summary": "マイカーローン金利の目安を掴みつつ、固定 変動、手数料、繰上返済、ボーナス併用など、比較で外せない項目を整理。",
+  "readMinutes": 6,
+  "status": "published",
+  "id": "guide:car-loan-interest-rate-guide",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-loan",
+  "relatedClusterIds": [
+    "/guide/hub-loan",
+    "/guide/compare-loan-lease-zancre",
+    "/guide/loan-or-lump-sum"
+  ],
+  "primaryQuery": "マイカーローン金利の目安｜総支払と月々をズラして考えないための基礎",
+  "updateReason": "seo-rewrite-2026-01-31 hub-loan pillar upgrade",
+  "sources": [
+    "https://www.bk.mufg.jp/kariru/jidousha/mycar/index.html",
+    "https://www.netbk.co.jp/contents/lineup/loan/car/",
+    "https://www.aeonbank.co.jp/column/auto_loan/",
+    "https://www.ashikagabank.co.jp/personal/loan/mycar_lp2/",
+    "https://www.mizuhobank.co.jp/loan/multi/index.html"
+  ]
+}

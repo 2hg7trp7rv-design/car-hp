@@ -1,0 +1,86 @@
+{
+  "id": "honda-integra-type-r-dc2",
+  "slug": "honda-integra-type-r-dc2",
+  "name": "Integra Type R DC2",
+  "maker": "Honda",
+  "releaseYear": 1995,
+  "difficulty": "intermediate",
+  "bodyType": "sports-coupe",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "nissan-gt-r-godzilla-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "Type R",
+  "summary": "FFの革命を量産車で実現したDC2。軽さと手触りが“資産”になる30年車。",
+  "summaryLong": "インテグラType R（DC2）は、1990年代の日本車が持っていた“手触りの濃さ”を象徴する一台です。軽量ボディ、LSDの効き、VTECが切り替わる瞬間の熱量。電子制御で整える速さではなく、入力と応答が直結する緊張感が魅力です。いま買う視点では、走行距離よりもボディの真っ直ぐさ、足回り取り付け部の疲労、改造履歴の整合性が重要になります。整備履歴が連続し、冷却・潤滑が丁寧に管理された個体は、30年後でも“楽器”として鳴ります。逆に、歪みや修復歴が曖昧な個体は、乗り味と安全性の両面で後悔が残りやすい車種です。",
+  "heroImage": "/images/cars/honda-integra-type-r-dc2-hero.jpg",
+  "mainImage": "/images/cars/honda-integra-type-r-dc2-hero.jpg",
+  "imageUrl": "/images/cars/honda-integra-type-r-dc2-hero.jpg",
+  "gallery": [
+    "/images/cars/honda-integra-type-r-dc2-1.jpg",
+    "/images/cars/honda-integra-type-r-dc2-2.jpg"
+  ],
+  "engine": "Front Inline-4 NA (B18C VTEC)",
+  "powerPs": 200,
+  "torqueNm": 186,
+  "transmission": "5MT",
+  "drive": "FF",
+  "fuel": "ハイオク",
+  "fuelEconomy": "（年式/仕様で変動）",
+  "priceNew": "当時：200万〜250万円（参考）",
+  "priceUsed": "350万〜900万円（相場変動）",
+  "strengths": [
+    "軽さと反応の速さで、ドライバーの入力がそのまま挙動に返ってくる",
+    "機械式LSDとVTECの組み合わせが、速度域を問わず濃い体験を作る",
+    "構造が比較的シンプルで、整備の優先順位が立てやすい"
+  ],
+  "weaknesses": [
+    "ボディの歪み・修復歴の影響が大きく、個体差が体験差になる",
+    "足回りブッシュやマウントの劣化で“軽さ”が負債に変わる",
+    "改造車は燃調・足回りの整合性次第でトラブルが増える"
+  ],
+  "troubleTrends": "30年車として、ブッシュ類・マウント類・ハブ/ベアリングなど足回りの消耗が出やすい傾向があります。冷却系（ホース、ラジエーター）と潤滑系（オイル管理）を放置した個体は、高回転域で不調が出やすい。購入ではボディ状態（歪み・錆）と、改造履歴の説明が明快な個体を優先すると後悔しにくいです。",
+  "costImpression": "購入価格込みで考えると、5年総額：1800〜3000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "column-1995-watershed-r33-dc2"
+  ],
+  "relatedGuideSlugs": [
+    "guide-30year-heritage-car-ownership"
+  ],
+  "relatedCarSlugs": [],
+  "tags": [
+    "Honda",
+    "Integra",
+    "Type R",
+    "DC2",
+    "VTEC"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：500〜900万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間50〜110万円"
+  },
+  "priceUsedYenRange": "350万〜900万円（相場変動）",
+  "maintenanceCostYenPerYear": 250000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda Integra Type R DC2",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Integra Type R DC2",
+  "updateReason": "initial-import",
+  "sources": []
+}

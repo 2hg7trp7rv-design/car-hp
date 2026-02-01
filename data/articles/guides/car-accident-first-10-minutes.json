@@ -1,0 +1,60 @@
+{
+  "slug": "car-accident-first-10-minutes",
+  "title": "事故直後にやることチェックリスト｜警察・保険・証拠…順番を間違えると損する",
+  "lead": "事故直後10分でやることを順番で整理。安全確保、救護、警察連絡、記録、保険連絡まで。",
+  "type": "GUIDE",
+  "status": "published",
+  "monetizeType": null,
+  "monetizeKey": null,
+  "category": "INSURANCE",
+  "tags": [
+    "事故",
+    "事故直後",
+    "警察",
+    "110",
+    "119",
+    "証拠",
+    "ドラレコ",
+    "保険",
+    "レッカー",
+    "示談"
+  ],
+  "publishedAt": "2026-01-04",
+  "updatedAt": "2026-01-20",
+  "readMinutes": 11,
+  "heroImage": null,
+  "internalLinks": [
+    "bengoshi-hiyou-tokuyaku-guide",
+    "insurance-deductible-guide",
+    "road-service-choice-guide",
+    "tokkyu-hikisugi-chudan-guide"
+  ],
+  "relatedGuideSlugs": [
+    "bengoshi-hiyou-tokuyaku-guide",
+    "insurance-deductible-guide",
+    "road-service-choice-guide",
+    "tokkyu-hikisugi-chudan-guide"
+  ],
+  "intentTags": [
+    "emergency",
+    "accident",
+    "insurance",
+    "checklist"
+  ],
+  "seoTitle": "事故直後にやること｜警察・保険・証拠の順番チェックリスト｜CAR BOUTIQUE GUIDE",
+  "seoDescription": "事故直後10分でやることを順番で整理。安全確保、救護、警察連絡、記録、保険連絡まで。",
+  "body": "この記事は「事故直後にやることチェックリスト｜警察・保険・証拠…順番を間違えると損する」をテーマに、事故直後は焦りますが、やることはほぼ決まっています。現場で迷わない順番と、後から揉めないための記録の残し方をまとめます。\n\n## 結論\n- 事故直後は「安全確保→救護→警察→記録」の順です。示談や過失の話はその後で十分です。\n- その場で一番やってはいけないのは、【警察に連絡せずに帰ること】。小さな接触でも基本は届け出ます。\n- 写真とメモは後から効きます。落ち着いたら【位置関係・損傷・相手情報】を残します。\n\n## 手順 1 まず安全を確保する（最優先）\n- ハザード点灯\n- 可能なら安全な場所へ移動（高速道路は特に注意）\n- 二次事故を避けるため、同乗者も安全な場所へ\n\n## 手順 2 けが人がいれば救護し、119番\n- 負傷者がいる、意識がない、出血がある場合は迷わず119番\n- 自分で判断せず、救急の指示に従う\n\n## 手順 3 110番で警察へ連絡する\n- 事故の場所、車両数、けが人の有無を伝える\n- 警察への届出は、後の保険手続きでも必要になることが多い\n\n## 手順 4 証拠を残す（落ち着いてから）\n- 事故現場の全景（信号、車線、標識が入るように）\n- 車の位置関係（停止位置、衝突地点）\n- 損傷部位のアップ\n- ドラレコがあるなら保存/ロック\n\n## 手順 5 相手と確認する情報\n- 氏名、住所、連絡先\n- 車両ナンバー、勤務先（業務中の場合）\n- 相手の保険会社名・証券番号（分かる範囲で）\n\n## 手順 6 保険会社へ連絡する\n- 自分の保険会社へ事故受付（ロードサービスが必要なら同時に）\n- 過失割合の断定や口約束は避ける（判断は後で）\n\n## よくあるつまずき\n- 「小さいから」と警察に連絡せず別れる\n- その場で過失を認める/示談する\n- 写真を撮らず、後から状況を説明できない\n- レッカーや代車の手配を自己判断で進め、費用が噛み合わない\n\n## 補足（実務メモ）\n- 現場では「安全確保→連絡→記録」の順に動くとブレにくい\n- 写真は“近景”だけでなく、停車位置や交差点全体が分かる“引き”も残す\n- 相手情報は口頭だけにせず、免許証・ナンバー・保険会社名を撮影して控える\n- 後から症状が出ることもあるので、通院の開始日が遅れないよう注意\n\n## 関連記事\n- /guide/bengoshi-hiyou-tokuyaku-guide\n- /guide/insurance-deductible-guide\n- /guide/road-service-choice-guide\n- /guide/tokkyu-hikisugi-chudan-guide\n",
+  "summary": "事故直後10分でやることを順番で整理。安全確保、救護、警察連絡、記録、保険連絡まで。",
+  "relatedColumnSlugs": [],
+  "id": "guide:car-accident-first-10-minutes",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/insurance",
+  "relatedClusterIds": [],
+  "primaryQuery": "事故直後にやることチェックリスト｜警察・保険・証拠…順番を間違えると損する",
+  "updateReason": "initial-import",
+  "sources": []
+}

@@ -1,0 +1,56 @@
+{
+  "id": "col-003",
+  "slug": "usedcar-market-buy-timing",
+  "status": "published",
+  "title": "中古車相場は「下がる/上がる」予想で買うな。買い時の判断は3点で決める",
+  "summary": "中古車の買い時は相場予想ではなく、価格・個体・自分の準備の3点が揃った瞬間。待つリスクと、買い時を逃さない準備を整理する。",
+  "category": "MARKET",
+  "tags": [
+    "中古車",
+    "相場",
+    "買い時",
+    "意思決定"
+  ],
+  "intentTags": [
+    "usedcar",
+    "market",
+    "decision"
+  ],
+  "relatedGuideSlugs": [
+    "hub-usedcar",
+    "repair-history-used-car-checklist",
+    "car-budget-simulation"
+  ],
+  "targetKeyword": "中古車 相場 買い時",
+  "searchIntent": "中古車の買い時を相場予想で迷っている人が、判断を前に進めるための軸を持てるようにする。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-31",
+  "noindex": false,
+  "body": "## 結論：中古車の買い時は相場予想ではなく、自分の条件が揃った瞬間\n中古車相場は上がる下がるを言い出すとキリがありません。待っている間に在庫が消えるのが中古車です。\n\n買い時は次の3点が揃った瞬間です。\n•価格が相場の範囲に収まっている\n•状態が良く、条件に合う個体が出ている\n•自分の予算と手続きが整っている\n\n## 根拠：中古車は価格より個体差の方が大きい\n同じ年式・走行距離でも、整備記録や保管状況で別物になります。相場が数万円下がるのを待って、良い個体を逃す方が損になるケースが多いです。\n\n最近の相場は供給や新車納期の影響で動きます。けれど個人が当てるのは難しい。だから判断軸を自分側に置いた方がブレません。\n\n## 補足：季節要因は参考程度\n一般に決算期や新生活シーズンは動きやすいと言われます。ただし中古車は在庫の質がすべてなので、時期より個体で判断する方が失敗しません。\n\n## 3点の具体的な見方\n### 1 価格が相場内か\n同条件の在庫を複数サイトで見て、価格帯を掴みます。安すぎる個体は理由があります。修復歴や保証、整備の差を疑うのが安全です。\n\n### 2 条件に合う個体か\n中古車は同じ車でも状態が違います。迷うときは修復歴と整備記録の有無でふるいにかけるのが早いです。\n•修復歴の定義が曖昧\n•整備記録が出ない\n•説明がはぐらかされる\nこの時点で撤退した方が、後悔しにくいです。\n\n現車確認の型は [修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist) にまとめています。\n\n### 3 自分の準備が整っているか\n支払総額、保険、納車時期。ここが曖昧だと、良い個体が出ても決断できません。\n輸入車や高年式は諸費用が膨らみやすいので、見積書のチェックは [税金と諸費用チェックリスト](/guide/tax-and-fees-before-buying-import) を先に押さえると安全です。\n\n## 反論：相場が下がるまで待つべきでは？\n待つ価値があるのは、あなた側に余裕があるときだけです。\n•乗り換え期限がなく、時間がある\n•条件が幅広く、代替案がある\n•今の車に大きな不満がない\n\n逆に、期限がある人ほど待つのは危険です。焦ると条件を下げて買ってしまい、結局損します。\n\n## 次の行動：買い時を逃さないための準備\n•相場を掴むために、同条件の在庫を10台見る\n•修復歴と整備記録の基準を決めておく\n•支払総額と維持費の上限を先に決める\n\n### 次に読む\n•[コラム一覧](/column)\n•[修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist)\n•[維持費のざっくりシミュレーション](/guide/maintenance-cost-simulation)\n",
+  "seoTitle": "中古車の買い時はいつ？カレンダーより先に決める3つ（期限×候補×総額）",
+  "seoDescription": "中古車の買い時は「何月が安い」ではなく、期限×候補の数×総額が揃った日。季節の波を追い風にしつつ、2週間で決め切るための条件整理と店での確認ポイントをまとめた。",
+  "planPriority": 5,
+  "publishedAt": "2026-01-27T14:20:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-usedcar",
+    "/guide/repair-history-used-car-checklist",
+    "/guide/car-budget-simulation"
+  ],
+  "primaryQuery": "中古車 相場 買い時",
+  "updateReason": "seo-rewrite-2026-01-31 / 箇条書き表記を•に統一",
+  "sources": [
+    "https://221616.com/car-topics/car-selling/usedcar-price-until/",
+    "https://www.navikuru.jp/articles/etc/622/",
+    "https://autoc-one.jp/news/5038903/",
+    "https://www.nextage.jp/gensen_guide/1026/",
+    "https://www.goo-net.com/magazine/contents/buyers-guide/66220/",
+    "https://www.aba-j.or.jp/info/industry/23915/"
+  ]
+}

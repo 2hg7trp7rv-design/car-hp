@@ -1,0 +1,88 @@
+{
+  "id": "nissan-skyline-gtr-r33",
+  "slug": "nissan-skyline-gtr-r33",
+  "name": "Skyline GT-R R33",
+  "maker": "NISSAN",
+  "releaseYear": 1995,
+  "difficulty": "advanced",
+  "bodyType": "sports-coupe",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "nissan-gt-r-godzilla-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "GT-R",
+  "summary": "R32の影で誤解されたR33。剛性と高速安定性で“長く速い”GT-Rを形にした世代。",
+  "summaryLong": "R33型スカイラインGT-R（BCNR33）は、R32の圧倒的な競技性の後に登場したことで「大きい」「重い」と語られがちですが、実像は“長く速い”を成立させるための進化でした。ボディ剛性や高速域の安定性、熱のマネジメントなど、30年を超えて所有する視点ではむしろ強みが見えます。一方で個体差は大きく、改造車も多い領域。購入では走行距離よりも、冷却・潤滑・点火の整合性、下回りの錆と修復歴、足回り消耗部品の更新履歴が重要です。整った個体に出会えれば、R33は“誤解されていたGT-R”から、最も現代の道路環境に合うヘリテージへと評価が反転します。",
+  "heroImage": "/images/cars/nissan-skyline-gtr-r33-hero.jpg",
+  "mainImage": "/images/cars/nissan-skyline-gtr-r33-hero.jpg",
+  "imageUrl": "/images/cars/nissan-skyline-gtr-r33-hero.jpg",
+  "gallery": [
+    "/images/cars/nissan-skyline-gtr-r33-1.jpg",
+    "/images/cars/nissan-skyline-gtr-r33-2.jpg"
+  ],
+  "engine": "Front Inline-6 Twin Turbo (RB26DETT)",
+  "powerPs": 280,
+  "torqueNm": 368,
+  "transmission": "5MT / 4AT",
+  "drive": "AWD",
+  "fuel": "ハイオク",
+  "fuelEconomy": "（年式/仕様で変動）",
+  "priceNew": "当時：450万〜550万円（参考）",
+  "priceUsed": "800万〜2000万円（相場変動）",
+  "strengths": [
+    "高速域の安定性とボディ剛性が高く、長距離でも疲れにくいGT的資質",
+    "RB26＋四駆のトラクションで、路面状況を選ばず“速さの再現性”が高い",
+    "30年車としては部品・知見が厚く、主治医が見つかれば長く維持しやすい"
+  ],
+  "weaknesses": [
+    "個体差が大きく、改造の整合性が悪いとトラブルが連鎖しやすい",
+    "冷却・潤滑の管理が甘い個体は、熱に起因する不調が出やすい",
+    "下回りの錆やブッシュ類の劣化が走り味に直結する"
+  ],
+  "troubleTrends": "冷却系（ホース、ラジエーター）と潤滑系（オイル漏れ、油圧管理）は年数で傷みやすく、予防整備の有無で差が出ます。点火系（コイル、ハーネス）や燃料系も失火・息つきとして現れやすい領域。改造車はECU・燃調・冷却の整合性が鍵で、説明できない仕様は避けるのが無難です。",
+  "costImpression": "購入価格込みで考えると、5年総額：1800〜3000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "column-1995-watershed-r33-dc2",
+    "column-gtr-history-evolution"
+  ],
+  "relatedGuideSlugs": [
+    "guide-maintenance-rb26dett",
+    "guide-30year-heritage-car-ownership"
+  ],
+  "relatedCarSlugs": [],
+  "tags": [
+    "NISSAN",
+    "GT-R",
+    "R33",
+    "BCNR33",
+    "RB26DETT"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：1200〜2000万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間80〜160万円"
+  },
+  "priceUsedYenRange": "800万〜2000万円（相場変動）",
+  "maintenanceCostYenPerYear": 350000,
+  "type": "CAR",
+  "status": "published",
+  "title": "NISSAN Skyline GT-R R33",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Skyline GT-R R33",
+  "updateReason": "initial-import",
+  "sources": []
+}

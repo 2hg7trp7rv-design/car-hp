@@ -1,0 +1,58 @@
+{
+  "id": "col-026",
+  "slug": "obd-inspection-shaken-fail",
+  "status": "published",
+  "title": "OBD検査で車検に落ちるのは警告灯だけじゃない。よくある落とし穴",
+  "summary": "OBD検査で不合格になるのは警告灯だけじゃない。故障コードや準備状態の落とし穴と対策をまとめます。",
+  "category": "TROUBLE",
+  "tags": [
+    "DTC",
+    "OBD検査",
+    "レディネス",
+    "特定DTC",
+    "警告灯",
+    "車検"
+  ],
+  "intentTags": [
+    "shaken",
+    "trouble",
+    "maintenance"
+  ],
+  "relatedGuideSlugs": [
+    "hub-shaken",
+    "maintenance",
+    "hub-import-trouble"
+  ],
+  "targetKeyword": "OBD検査 車検 落ちる",
+  "searchIntent": "OBD検査で車検に落ちる原因や対策、事前にできる準備を知りたい。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-02-01",
+  "noindex": false,
+  "body": "## 先に答え：OBD検査は警告灯だけじゃない。記録と準備状態も見られる\nOBD検査は、スキャンツールで故障コードを読み取って判定します。メーターに警告灯が出ていなくても、故障コードが残っていたり、準備状態が整っていないと不合格になることがあります。\n\n## よくある落とし穴はこの2つ\n### 1) 警告灯は消えているのに、故障コードが残っている\n一時的に消えても、記録が残ることがあります。原因が残っていれば再発します。\n\n### 2) 故障コードを消した直後で、準備状態が未完了\nバッテリーを外した、診断でコードを消した、ECUを初期化した直後は、各システムの自己診断が終わっていないことがある。車検直前にリセットするのは逆効果になりやすいです。\n\n## 対策はシンプル\n• 車検の前に一度スキャンして状態を確認  \n• エラーが出ているなら原因を直す  \n• 直した後は、十分に走って状態を安定させる  \n• 後付け機器が原因でエラーが出るなら、取り付け方法を見直す\n\n## どうしても当日に落ちたら\n落ちた理由のコードを必ず控える。そこから修理の当たりが付けられます。\n\n輸入車で対象になる場合は [輸入車のOBD検査](/column/obd-inspection-import-start-2025) も確認しておくと無駄が減ります。",
+  "seoTitle": "OBD検査で車検に落ちる理由｜警告灯以外の落とし穴と事前対策",
+  "seoDescription": "OBD検査で不合格になるのは警告灯の点灯だけではありません。故障コードの記録や準備状態の未完了など、よくある落とし穴と、車検前にやっておくべき対策を整理。",
+  "planPriority": 2,
+  "publishedAt": "2026-01-27T12:45:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-shaken",
+    "/guide/maintenance",
+    "/guide/hub-import-trouble",
+    "/column/obd-inspection-import-start-2025"
+  ],
+  "primaryQuery": "OBD検査 車検 落ちる",
+  "updateReason": "2026-02-01: noindex→index化と全文リライト（一次情報参照・内部リンク・SEO調整）",
+  "sources": [
+    "https://www.mlit.go.jp/jidosha/jidosha_fr2_000063.html",
+    "https://www.mlit.go.jp/jidosha/jidosha_fr2_000064.html",
+    "https://www.obd.naltec.go.jp/about/",
+    "https://www.mlit.go.jp/jidosha/content/001771387.pdf",
+    "https://www.mlit.go.jp/jidosha/content/001771392.pdf"
+  ]
+}

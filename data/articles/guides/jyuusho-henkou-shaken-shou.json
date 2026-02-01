@@ -1,0 +1,67 @@
+{
+  "slug": "jyuusho-henkou-shaken-shou",
+  "title": "住所変更したら何をする？車検証・ナンバー・保険まで、やることチェックリスト",
+  "lead": "引越し後の車の住所変更は、管轄変更の有無で難易度が変わる。車検証 ナンバー 車庫証明 保険のチェックリスト。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "LIFE",
+  "tags": [
+    "住所変更",
+    "車検証",
+    "ナンバー",
+    "必要書類",
+    "保険"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-31",
+  "internalLinks": [
+    "shako-shoumei-torikata",
+    "meigi-henko-hitsuyou-shorui-futsuu",
+    "meigi-henko-hitsuyou-shorui-kei",
+    "number-change-kibou-number-guide"
+  ],
+  "body": "引越し後にやる車の手続きは、順番を間違えると地味に詰みます。ナンバー変更が絡むと現車が必要になり、平日が溶けます。ここでは最短ルートだけに絞ってまとめます。\n\n迷ったら最初にここへ。\n[名義変更・必要書類HUB](/guide/hub-paperwork)\n\n## 結論\n•車検証の住所変更は管轄の運輸支局等へ申請する  \n•管轄が変わるとナンバープレートも変わる。先に判定する  \n•車庫証明が必要になるケースがある。ナンバー変更が絡むなら早めに取る  \n•保険の住所変更もセットでやる。通知が届かないのが一番危険\n\n## まず判定すること\n### 1 住所変更だけで済むか ナンバー変更が発生するか\n•同じ管轄内の引越し→多くの場合ナンバーはそのまま  \n•管轄が変わる引越し→ナンバー交換が必要\n\n迷う場合は、運輸局や支局の住所変更案内を確認するのが確実です。\n\n### 2 普通車か軽自動車か\n•普通車→運輸支局等で変更登録。ナンバーが変わると封印が絡む  \n•軽自動車→軽自動車検査協会で住所変更。封印はないがナンバー交換は発生し得る\n\n## やることチェックリスト\n### 車検証の住所変更\n•申請書を準備  \n•住所を証する書面 住民票など 発行から3ヶ月以内が基本  \n•必要に応じて車庫証明\n\n### ナンバーが変わる場合\n•ナンバープレート前後を持参  \n•普通車は封印の都合で現車が必要になることがある  \n•希望ナンバーにするなら予約済証を先に取る\n関連: [ナンバー変更と希望ナンバー](/guide/number-change-kibou-number-guide)\n\n### 自動車保険の住所変更\n保険の住所変更が遅れると、更新通知や重要書類が届かないことがあります。車検証の変更と同じタイミングで連絡するのが安全です。\n関連: [保険HUB](/guide/insurance)\n\n## 最短で終わる順番\n•引越し先で車庫を確保  \n•管轄が変わるなら車庫証明を先に申請  \n•住民票など住所証明を取得  \n•運輸支局等で車検証の住所変更→必要ならナンバー交換  \n•最後に保険の住所変更\n\n## よくある失敗\n### ナンバー交換が必要なのに車が動かせない\n車検切れや故障で動かせないと、ナンバー交換や封印が一気に難しくなります。動かせる日を先に決めて、そこから逆算します。\n\n### 住民票にマイナンバーが載っていて出し直し\n提出先で条件が違う場合があります。取得時にマイナンバー記載なしで作ると事故が減ります。\n\n## 次に読む\n•[車庫証明の取り方](/guide/shako-shoumei-torikata)  \n•[普通車の名義変更](/guide/meigi-henko-hitsuyou-shorui-futsuu)  \n•[軽自動車の名義変更](/guide/meigi-henko-hitsuyou-shorui-kei)",
+  "monetizeKey": "insurance_compare_core",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "number-change-kibou-number-guide",
+    "shako-shoumei-torikata",
+    "meigi-henko-hitsuyou-shorui-futsuu",
+    "meigi-henko-hitsuyou-shorui-kei"
+  ],
+  "relatedColumnSlugs": [
+    "name-change-delay-risk"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "paperwork",
+    "insurance",
+    "life"
+  ],
+  "seoTitle": "住所変更したら何をする 車検証 ナンバー 車庫証明 保険のチェックリスト",
+  "seoDescription": "引越し後に必要な車の手続きを、住所変更だけ ナンバー変更ありで分岐して整理。住民票などの期限、車庫証明、希望ナンバー、保険の住所変更まで最短手順で解説。",
+  "summary": "引越し後にやる車の手続きをチェックリスト化。車検証の住所変更、管轄変更時のナンバー交換、車庫証明、保険の住所変更まで最短手順で整理。",
+  "status": "published",
+  "id": "guide:jyuusho-henkou-shaken-shou",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-paperwork",
+  "relatedClusterIds": [
+    "/guide/hub-paperwork",
+    "/guide/insurance",
+    "/guide/number-change-kibou-number-guide"
+  ],
+  "primaryQuery": "住所変更したら何をする？車検証・ナンバー・保険まで、やることチェックリスト",
+  "updateReason": "seo-rewrite-2026-01-31 hub-paperwork pillar upgrade",
+  "sources": [
+    "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/change/document/index.html",
+    "https://wwwtb.mlit.go.jp/kanto/jidou_gian/touroku/motor_regist_juusho.htm",
+    "https://www.keikenkyo.or.jp/procedures/change_address.html",
+    "https://www.zurich.co.jp/carlife/cc-vehicle-inspection-certificate/",
+    "https://www.mitsui-direct.co.jp/car/guide/howto/documents/22.html",
+    "https://www.qsha-oh.com/historia/article/vehicleinspection-addresschange-15days-have-passed/"
+  ]
+}

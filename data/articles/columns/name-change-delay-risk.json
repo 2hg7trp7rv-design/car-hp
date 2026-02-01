@@ -1,0 +1,56 @@
+{
+  "id": "col-022",
+  "slug": "name-change-delay-risk",
+  "status": "published",
+  "title": "名義変更を先延ばしにすると詰む。損するのは税金より信用",
+  "summary": "名義変更の後回しが招くトラブルを現実ベースで整理。15日ルール、税通知、保険、売却での詰みポイントと最短で片付ける手順。",
+  "category": "TROUBLE",
+  "tags": [
+    "名義変更",
+    "手続き",
+    "税金",
+    "トラブル"
+  ],
+  "intentTags": [
+    "paperwork",
+    "trouble",
+    "risk"
+  ],
+  "relatedGuideSlugs": [
+    "meigi-henko-hitsuyou-shorui-futsuu",
+    "meigi-henko-hitsuyou-shorui-kei",
+    "jyuusho-henkou-shaken-shou",
+    "shako-shoumei-torikata"
+  ],
+  "targetKeyword": "名義変更 遅れる どうなる",
+  "searchIntent": "名義変更を後回しにしがちな人が、何が起きるかを現実ベースで理解できるようにする。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-31",
+  "noindex": false,
+  "body": "名義変更を先延ばしにすると、あとで高確率で詰みます。税金の話より、事故や売却のタイミングで信用が落ちるのが痛い。\n\n## まず結論\n•名義や住所の変更は、変更があった日から15日以内が目安  \n•放置すると、罰則リスクだけでなく、保険や売却で面倒が一気に増える  \n•やることはシンプル。書類の役割分担を決めて一気に片付ける\n\n## 先延ばしで起きる現実\n### 自動車税や通知がズレる\n税金や車検の通知が旧住所 旧名義に飛び、気づかないまま延滞になることがあります。後から精算するのは手間です。\n\n### 事故のときに説明コストが増える\n保険金の請求や相手方への説明で、車検証の名義と実態が違うと確認事項が増えます。最短で終わる事故処理ほど、ここが邪魔になります。\n\n### 売却や下取りで一気に面倒になる\n名義が自分でないと、売却査定の場で追加書類が発生します。平日を追加で消費する原因になりがちです。\n\n## 最短で片付けるやり方\n•まず管轄が変わるかを確認。変わるならナンバー交換が絡む  \n•車庫証明が必要なら先に申請  \n•旧所有者 新所有者で誰が何を出すかを決めてから動く\n\n## 関連リンク\n•[普通車の名義変更 必要書類](/guide/meigi-henko-hitsuyou-shorui-futsuu)  \n•[軽自動車の名義変更 必要書類](/guide/meigi-henko-hitsuyou-shorui-kei)  \n•[住所変更したら何をする](/guide/jyuusho-henkou-shaken-shou)  \n•[名義変更・必要書類HUB](/guide/hub-paperwork)",
+  "seoTitle": "名義変更を先延ばしにすると詰む理由｜15日ルールと現実のデメリット",
+  "seoDescription": "名義変更や住所変更を放置すると、税通知のズレだけでなく、事故対応や売却で面倒が増える。15日ルールを踏まえたリスクと、最短で片付ける段取りを整理。",
+  "planPriority": 19,
+  "publishedAt": "2026-01-28T23:30:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-paperwork",
+    "/guide/meigi-henko-hitsuyou-shorui-futsuu",
+    "/guide/jyuusho-henkou-shaken-shou"
+  ],
+  "primaryQuery": "名義変更 遅れる どうなる",
+  "updateReason": "seo-rewrite-2026-01-31 hub-paperwork pillar upgrade",
+  "sources": [
+    "https://www.carseven.co.jp/magazine/news/8319/",
+    "https://www.sompo-direct.co.jp/otona/oshiete/car/light-vehicle-namechange.html",
+    "https://wwwtb.mlit.go.jp/kanto/jidou_gian/touroku/motor_regist_juusho.htm",
+    "https://wwwtb.mlit.go.jp/tohoku/qa/touroku/a10.html",
+    "https://www.qsha-oh.com/historia/article/vehicleinspection-addresschange-15days-have-passed/"
+  ]
+}

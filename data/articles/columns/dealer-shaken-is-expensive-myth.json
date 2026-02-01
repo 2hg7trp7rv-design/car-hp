@@ -1,0 +1,60 @@
+{
+  "id": "col-013",
+  "slug": "dealer-shaken-is-expensive-myth",
+  "status": "published",
+  "title": "ディーラー車検は本当に高い？見積もりの線引きで損しない",
+  "summary": "ディーラー車検が高く見える理由と、見積もりの線引きで損しないコツ。必須と任意を分けて判断する方法を解説。",
+  "category": "MAINTENANCE",
+  "tags": [
+    "車検",
+    "ディーラー",
+    "見積もり",
+    "法定費用",
+    "予防整備",
+    "純正部品",
+    "整備工場",
+    "費用"
+  ],
+  "intentTags": [
+    "shaken",
+    "maintenance",
+    "decision"
+  ],
+  "relatedGuideSlugs": [
+    "hub-shaken",
+    "maintenance",
+    "hub-consumables"
+  ],
+  "targetKeyword": "車検 ディーラー 高い",
+  "searchIntent": "ディーラー車検が高いと言われる理由や、安くする方法、他社比較のコツを知りたい。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-02-01",
+  "noindex": false,
+  "body": "## 先に答え：ディーラー車検が高く見えるのは、必須と任意が混ざるから\n車検の費用は、大きく分けると法定費用と整備費用です。法定費用はどこで受けてもほぼ同じ。差が出るのは整備費用の中身で、ディーラーは予防整備や保証、パック商品が同じ見積もりに載りやすいだけです。\n\n## 見積もりで絶対に分けてほしい3枠\nディーラーでも民間工場でも、これを分けてもらうと判断が一気に楽です。  \n• 車検を通すために必要な項目  \n• 今やった方がいい推奨項目  \n• 好みで選ぶ任意項目（コーティング等）\n\n言い方はこれで十分です。  \n> 車検に必須な項目と、推奨整備を分けて見積もりを出してください\n\n## 高くなる典型パターン\n• ブレーキ、タイヤ、バッテリーなど消耗品が一気に重なる  \n• 走行距離が少なくても年数で劣化する部品が来る  \n• パック整備が、自分の使い方だと過剰\n\n## 削りやすい所と、削ると危ない所\n### 削りやすい\n• 期限のあるコーティングや添加剤  \n• 交換時期に余裕があるワイパー等  \n• 予防でも緊急性が低い作業\n\n### 先延ばしが危ない\n• タイヤの残溝やひび割れ  \n• ブレーキの効きに関わる部分  \n• ランプ類の不点灯、光軸のズレ  \n• 警告灯が点いている状態\n\n## ディーラー車検が向く人\n• 新車保証や延長保証の範囲内  \n• 先進運転支援やハイブリッド、EVで診断やアップデートも含めたい  \n• リコールやサービスキャンペーンをまとめて見たい\n\n## 迷ったらこうする\n1) まずディーラーで見積もりを取り、必須と推奨に分けてもらう  \n2) 必須部分の金額と内容を持って、民間工場にも同条件で相談する  \n3) 最後は金額だけでなく、説明の分かりやすさで決める\n\n車検の全体像は [車検の基本](/guide/hub-shaken) にまとめています。  \n早めに動くほど得になる制度変更もあるので、 [車検は2か月前OK](/column/shaken-early-two-months) も合わせてどうぞ。",
+  "seoTitle": "ディーラー車検は高い？法定費用と整備費の分け方で損しないコツ",
+  "seoDescription": "ディーラー車検が高いと言われる理由は、車検必須と推奨整備やパックが混ざりやすいから。見積もりの内訳の分け方、削っていい所と危ない所、ディーラーが向くケースを整理。",
+  "planPriority": 25,
+  "publishedAt": "2026-01-29T04:40:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-shaken",
+    "/guide/maintenance",
+    "/guide/hub-consumables",
+    "/column/shaken-early-two-months"
+  ],
+  "primaryQuery": "車検 ディーラー 高い",
+  "updateReason": "2026-02-01: noindex→index化と全文リライト（一次情報参照・内部リンク・SEO調整）",
+  "sources": [
+    "https://www.mlit.go.jp/jidosha/content/houteihiyou.pdf",
+    "https://wwwtb.mlit.go.jp/kanto/content/000109105.pdf",
+    "https://www.yellowhat.jp/column/inspection/121/index.html",
+    "https://www.mlit.go.jp/report/press/jidosha02_hh_000645.html",
+    "https://www.obd.naltec.go.jp/"
+  ]
+}

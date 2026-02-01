@@ -1,0 +1,57 @@
+{
+  "id": "col-025",
+  "slug": "winter-battery-failure-myth",
+  "status": "published",
+  "title": "冬のバッテリー上がりは寿命だけじゃない。寒さと使い方で起こる",
+  "summary": "冬のバッテリー上がりは寿命だけが原因ではない。短距離運転や駐車監視など、やりがちなミスと予防策を解説。",
+  "category": "TROUBLE",
+  "tags": [
+    "バッテリー",
+    "冬",
+    "トラブル",
+    "予防"
+  ],
+  "intentTags": [
+    "trouble",
+    "maintenance",
+    "winter"
+  ],
+  "relatedGuideSlugs": [
+    "road-service-choice-guide",
+    "tire-replacement-cost-guide",
+    "hub-consumables",
+    "maintenance"
+  ],
+  "targetKeyword": "冬 バッテリー上がり 原因",
+  "searchIntent": "冬にバッテリーが上がりやすい理由と、事前にできる対策、上がった時の対処を知りたい。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-02-01",
+  "noindex": false,
+  "body": "## 先に答え：冬のバッテリー上がりは寿命だけじゃない。使い方で起こる\n冬に多いのは、寒さで性能が落ちることに加えて、電気を使う量が増えること。バッテリーが新しくても、条件が重なると普通に上がります。\n\n## やりがちな3つのミス\n### 1) 短距離ばかりで、充電が追いついていない\n暖房、デフロスター、シートヒーター。冬は電気を使うのに、走行が短いと充電する時間が足りません。\n\n### 2) 駐車中も電気を使う機器を付けっぱなし\nドラレコの駐車監視、セキュリティ、USB電源。便利だけど積み重なると効きます。\n\n### 3) 兆候を無視している\nセルの回りが弱い、アイドリングストップが効かない、ライトが暗い。ここで点検しておけば朝の地獄を避けられます。\n\n## 予防の現実解\n• 秋のうちにバッテリー点検、必要なら交換  \n• 乗らない期間が長いなら、定期的に走るか充電器を使う  \n• 端子の緩みや腐食をチェック  \n• 駐車監視はタイマーや電圧カットを使う\n\n## 上がってしまったとき\nジャンプスタートは車種によって注意点があります。取扱説明書の指示が最優先。  \n不安ならロードサービスを呼ぶ方が安全です。\n\nロードサービスをどう選ぶかは [ロードサービスの選び方](/guide/road-service-choice-guide) にまとめています。",
+  "seoTitle": "冬のバッテリー上がり対策｜寿命以外の原因と予防の現実解",
+  "seoDescription": "冬のバッテリー上がりは寿命だけが原因ではありません。寒さで性能が落ち、短距離運転や駐車監視などの電力消費が重なると起きます。やりがちなミス、点検のタイミング、予防策と対処を整理。",
+  "planPriority": 13,
+  "publishedAt": "2026-01-28T18:00:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/road-service-choice-guide",
+    "/guide/tire-replacement-cost-guide",
+    "/guide/hub-consumables",
+    "/guide/maintenance"
+  ],
+  "primaryQuery": "冬 バッテリー上がり 原因",
+  "updateReason": "2026-02-01: noindex→index化と全文リライト（一次情報参照・内部リンク・SEO調整）",
+  "sources": [
+    "https://www.baj.or.jp/battery/car/car05.html",
+    "https://www.webcartop.jp/2024/11/1489577/",
+    "https://www.cariot.jp/blog/2025/05/12/parking-monitoring-function-of-drive-recorder/",
+    "https://ikeep.co.jp/driverecorder-battery-over/",
+    "https://www.legarage.jp/blog/231130"
+  ]
+}

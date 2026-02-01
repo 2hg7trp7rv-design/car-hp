@@ -1,0 +1,105 @@
+{
+  "id": "honda-s2000-ap1",
+  "slug": "honda-s2000-ap1",
+  "name": "Honda S2000 (AP1)",
+  "maker": "Honda",
+  "releaseYear": 1999,
+  "difficulty": "advanced",
+  "bodyType": "roadster",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "S2000 AP1",
+  "summary": "回転で速いを真正面からやり切ったFRオープン。回した分だけ前へ出る“薄い速さ”が主役。",
+  "summaryLong": "S2000（AP1）は、高回転NAの最終章を象徴する車です。回転の立ち上がり、短いギア、そして剛性。速さの根拠が、踏み方と回転域にある。\n\nいま買う目線では、回転の快感は履歴で決まります。オイル管理、冷却、足回り、そして事故・補強の痕。回してきた個体ほど、周辺の整合が重要です。\n\n“回るから強い”のではなく、“回しても崩れないように守られてきた”個体が良い。そこが見えると、S2000は今でも運転の濃度で勝てます。",
+  "heroImage": "/images/cars/honda-s2000-ap1-hero.jpg",
+  "mainImage": "/images/cars/honda-s2000-ap1-main.jpg",
+  "imageUrl": "/images/cars/honda-s2000-ap1-hero.jpg",
+  "gallery": [
+    "/images/cars/honda-s2000-ap1-front.jpg",
+    "/images/cars/honda-s2000-ap1-side.jpg",
+    "/images/cars/honda-s2000-ap1-interior.jpg"
+  ],
+  "engine": "Front Inline-4 2.0 NA (F20C)",
+  "powerPs": 240,
+  "torqueNm": 218,
+  "transmission": "6MT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 7〜12 km/L",
+  "priceNew": "当時: 250万〜450万円台（仕様差）",
+  "priceUsed": "220万〜650万円（相場変動）",
+  "strengths": [
+    "高回転の気持ちよさがそのまま性能になる。操作に対する返答が濃い。",
+    "FRと短いギアで、速度域が低くても運転が退屈になりにくい。",
+    "剛性とバランスが整うと、回頭と立ち上がりが素直。",
+    "コミュニティと情報が厚く、整え直す道筋がある。"
+  ],
+  "weaknesses": [
+    "個体差が大きい。改造や履歴でキャラクターが別物になる。",
+    "オイル管理が甘い個体は、回転の気持ちよさが戻りにくい。",
+    "幌やシールなど経年の生活要素がストレスになりやすい。",
+    "タイヤと足の状態で乗り味が一気に変わる。"
+  ],
+  "troubleTrends": [
+    "オイル消費と漏れの有無、管理履歴は最重要です。",
+    "冷却系（ラジエーター、ホース）の更新が薄い個体は要注意です。",
+    "足回りブッシュのへたりで、直進性と反応が鈍ります。",
+    "幌とウェザーストリップ劣化は雨漏りや風切り音の原因になりやすいです。"
+  ],
+  "costImpression": "安く買った個体ほど、整合を取り戻す費用が掛かる。良個体を選ぶほど結果的に安いタイプ。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "column-high-rev-na-why-it-felt-fast"
+  ],
+  "relatedGuideSlugs": [
+    "guide-buy-high-rev-na-checklist"
+  ],
+  "relatedCarSlugs": [
+    "mazda-rx-8-se3p-type-s",
+    "honda-civic-type-r-fd2"
+  ],
+  "tags": [
+    "Honda",
+    "S2000",
+    "AP1",
+    "F20C",
+    "high-rev",
+    "NA",
+    "FR"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-high-rev-na-last-dance-heritage"
+  ],
+  "intentTags": [
+    "high-rev",
+    "NA",
+    "FR",
+    "open-top",
+    "2000s",
+    "heritage"
+  ],
+  "purchasePriceSafe": "安全ライン：320〜520万円前後（履歴と素直さ重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間35〜75万円"
+  },
+  "maintenanceCostYenPerYear": 520000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda Honda S2000 (AP1)",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Honda S2000 (AP1)",
+  "updateReason": "initial-import",
+  "sources": []
+}

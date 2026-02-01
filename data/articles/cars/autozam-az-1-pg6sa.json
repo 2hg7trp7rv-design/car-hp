@@ -1,0 +1,105 @@
+{
+  "id": "autozam-az-1-pg6sa",
+  "slug": "autozam-az-1-pg6sa",
+  "name": "Autozam AZ-1 (PG6SA)",
+  "maker": "Mazda",
+  "releaseYear": 1992,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "軽スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "AZ-1 (PG6SA)",
+  "summary": "パッケージが主役の軽スーパーカー。短い軸と軽さで、走りも物語も濃い。",
+  "summaryLong": "AZ-1は、軽スポーツの中でも“物語”が強い一台です。ガルウイング、ミッドシップ、短いホイールベース。走りも含めて玩具のように濃い。\n\nいま買う目線では、状態がすべて。骨格と錆、修復の痕、そして熱管理。ターボの周辺整合が取れていないと、楽しさより不安が勝つ。\n\n良個体は、速度が高いのではなく、体験が濃い。そこに価値があります。",
+  "heroImage": "/images/cars/autozam-az-1-pg6sa-hero.jpg",
+  "mainImage": "/images/cars/autozam-az-1-pg6sa-main.jpg",
+  "imageUrl": "/images/cars/autozam-az-1-pg6sa-hero.jpg",
+  "gallery": [
+    "/images/cars/autozam-az-1-pg6sa-front.jpg",
+    "/images/cars/autozam-az-1-pg6sa-side.jpg",
+    "/images/cars/autozam-az-1-pg6sa-interior.jpg"
+  ],
+  "engine": "Mid Inline-3 0.66 Turbo (F6A)",
+  "powerPs": 64,
+  "torqueNm": 85,
+  "transmission": "5MT",
+  "drive": "MR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 10〜15 km/L",
+  "priceNew": "当時: 160万〜210万円台（仕様差）",
+  "priceUsed": "180万〜650万円（相場変動）",
+  "strengths": [
+    "唯一無二のパッケージと物語性。",
+    "ミッドシップらしい回頭感で、操作が濃い。",
+    "軽さが動きの速さにつながる。",
+    "イベント性が高く、所有体験が強い。"
+  ],
+  "weaknesses": [
+    "個体差が大きい。修復と錆で価値が極端に割れる。",
+    "部品と整備の窓口が限られ、計画が必要。",
+    "短い軸距ゆえ、足の状態が崩れると怖さが出やすい。",
+    "ターボ周辺の熱履歴でトラブルが出やすい。"
+  ],
+  "troubleTrends": [
+    "骨格・フロア周りの修復痕と錆は最優先で確認したいです。",
+    "冷却系とターボ周辺の滲み、ホース類の状態が重要です。",
+    "足回りブッシュのへたりは挙動に直結します。",
+    "電装の後付けがある個体は切り分け難度が上がります。"
+  ],
+  "costImpression": "状態で世界が変わる。安い個体は安くないことが多い。履歴と保管環境が価値。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "column-kei-sports-packaging-why"
+  ],
+  "relatedGuideSlugs": [
+    "guide-buy-kei-sports-checklist"
+  ],
+  "relatedCarSlugs": [
+    "honda-beat-pp1",
+    "suzuki-cappuccino-ea11r"
+  ],
+  "tags": [
+    "Mazda",
+    "Autozam",
+    "AZ-1",
+    "PG6SA",
+    "kei",
+    "64ps",
+    "MR",
+    "turbo"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-kei-sports-64ps-heritage"
+  ],
+  "intentTags": [
+    "kei",
+    "lightweight",
+    "MR",
+    "1990s",
+    "heritage"
+  ],
+  "purchasePriceSafe": "安全ライン：230〜420万円前後（骨格と履歴重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間25〜55万円"
+  },
+  "maintenanceCostYenPerYear": 420000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mazda Autozam AZ-1 (PG6SA)",
+  "makerKey": "mazda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/mazda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Autozam AZ-1 (PG6SA)",
+  "updateReason": "initial-import",
+  "sources": []
+}

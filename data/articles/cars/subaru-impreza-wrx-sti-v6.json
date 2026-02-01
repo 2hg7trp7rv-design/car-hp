@@ -1,0 +1,93 @@
+{
+  "id": "subaru-impreza-wrx-sti-v6",
+  "slug": "subaru-impreza-wrx-sti-v6",
+  "name": "Subaru Impreza WRX STI Version VI (GC8)",
+  "maker": "Subaru",
+  "releaseYear": 1999,
+  "difficulty": "advanced",
+  "bodyType": "セダン",
+  "segment": "ラリー系スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "STI Version VI",
+  "summary": "ラリーの骨格を日常に落とした“濃い4WD”。熱と駆動の整合が価値。",
+  "summaryLong": "GC8のSTI Version VIは、機械の濃度が濃い4WDスポーツです。速さは駆動の整合に出る。\n\n中古では冷却と油脂、駆動系、そしてボディの錆/修復の説明。整った個体は、速度が上がるほど落ち着く。\n\nSubaru Impreza WRX STI Version VI (GC8)は「ラリー系スポーツ×セダン」の文脈で語られることが多い一台です。中古では走行距離より、整備記録と仕様の透明性を優先。初期費用を抑えすぎると後追い整備で総額が膨らみやすいので、“整った個体を高く買う”ほうが安全です。",
+  "heroImage": "/images/cars/subaru-impreza-wrx-sti-v6-hero.jpg",
+  "mainImage": "/images/cars/subaru-impreza-wrx-sti-v6-hero.jpg",
+  "imageUrl": "/images/cars/subaru-impreza-wrx-sti-v6-hero.jpg",
+  "gallery": [
+    "/images/cars/subaru-impreza-wrx-sti-v6-front.jpg",
+    "/images/cars/subaru-impreza-wrx-sti-v6-side.jpg",
+    "/images/cars/subaru-impreza-wrx-sti-v6-interior.jpg"
+  ],
+  "engine": "Front 2.0 Turbo (EJ20)",
+  "powerPs": 280,
+  "torqueNm": 353,
+  "transmission": "5MT",
+  "drive": "4WD",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜12 km/L",
+  "priceNew": "当時: 200万〜450万円台（仕様差）",
+  "priceUsed": "200万〜900万円（相場変動）",
+  "strengths": [
+    "4WDの前に進む感覚が濃い。",
+    "情報量が多く、改善の道筋がある。"
+  ],
+  "weaknesses": [
+    "熱と駆動の管理で寿命差が大きい。",
+    "錆と修復で価値が割れる。"
+  ],
+  "troubleTrends": [
+    "冷却系と油脂管理の履歴は必須です。",
+    "デフ/ハブ/シャフトの異音は要確認です。",
+    "ボディ錆（特に下回り）は重視したいです。"
+  ],
+  "costImpression": "安い個体は“駆動と熱”で追い金が出やすい。整った個体ほど結局安い。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [
+    "mitsubishi-lancer-evolution-vi-gsr",
+    "toyota-celica-gt-four"
+  ],
+  "tags": [
+    "Subaru",
+    "Impreza",
+    "GC8",
+    "STI",
+    "EJ20",
+    "4WD"
+  ],
+  "relatedHeritageSlugs": [
+    "subaru-impreza-wrx-sti-v6-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "rally",
+    "4wd",
+    "turbo"
+  ],
+  "purchasePriceSafe": "安全ライン：450〜850万円前後（履歴重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間60〜140万円"
+  },
+  "maintenanceCostYenPerYear": 900000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Subaru Subaru Impreza WRX STI Version VI (GC8)",
+  "makerKey": "subaru",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/subaru",
+  "relatedClusterIds": [],
+  "primaryQuery": "Subaru Impreza WRX STI Version VI (GC8)",
+  "updateReason": "initial-import",
+  "sources": []
+}

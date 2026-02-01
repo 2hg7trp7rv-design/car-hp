@@ -1,0 +1,55 @@
+{
+  "id": "col-021",
+  "slug": "spare-key-missing-negotiation",
+  "status": "published",
+  "title": "スペアキーなしは値引き材料？結論：「値引き」より「納車までに2本」が安全",
+  "summary": "スペアキーなしでも売却は可能。ただしキーの種類によっては減額される。先に作り直すべきかの判断、減額の確認と交渉ポイントを現実的に解説。",
+  "category": "MARKET",
+  "tags": [
+    "中古車",
+    "スペアキー",
+    "スマートキー",
+    "値引き",
+    "交渉"
+  ],
+  "intentTags": [
+    "usedcar",
+    "decision",
+    "paperwork"
+  ],
+  "relatedGuideSlugs": [
+    "hub-usedcar",
+    "hub-paperwork"
+  ],
+  "targetKeyword": "スペアキー ない 値引き",
+  "searchIntent": "スペアキーが無い中古車を検討している人が、交渉とリスクの現実を理解できるようにする。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-31",
+  "noindex": false,
+  "body": "## 結論\nスペアキーがなくても、買取も下取りも普通にできます。ただし、車種とキーの種類によっては減額されることがあります。\n\n• 減額はあり得るが、致命傷ではない  \n• 先に作り直すのは、費用が上回ることがあるので慎重に  \n• 交渉は「なぜいくら減るのか」を条件として確認する\n\n売却の準備全体は /guide/hajimete-kuruma-uru-checklist にまとめています。ここでは、キー欠品の扱いだけを現実的に整理します。\n\n---\n\n## スペアキーがないと何が困るのか\n買取店側の都合は２つです。\n\n• 次の買い手が不安に感じる（管理状態が疑われる）  \n• 再発行コストが読めない（スマートキーやイモビ付きは高い）\n\nその分を査定から引く、という発想になります。\n\n---\n\n## 先にスペアキーを作るべきか\n結論としては「査定前に作り直すのは基本おすすめしない」です。\n\n• 再発行費用が高い車種だと、減額より高くつくことがある  \n• 買取店側でまとめて手配できるケースもある  \n• まず査定を取り、減額幅を見てから判断したほうが損しにくい\n\nただし、マスターキー自体が不安（反応が悪い、割れているなど）の場合は、早めに相談したほうが安全です。\n\n---\n\n## 減額されるなら、ここを確認して交渉する\n減額が出たら、次を聞きます。\n\n• どの理由で減額なのか（欠品として扱うのか、作成前提なのか）  \n• 減額は固定なのか、条件で変わるのか  \n• 入金後に追加減額があり得るのか（契約で確認）\n\n減額を飲むかどうかは、他社の提示と並べて判断します。比較のやり方は /guide/selling-without-rush と /column/tradein-vs-buyback-prep にあります。\n\n---\n\n## キー以外で巻き返せるポイント\nスペアキーがなくても、ここが揃っていると印象が良いです。\n\n• 点検記録簿や整備明細が揃っている  \n• 取扱説明書がある  \n• 車内が清潔で、臭いが少ない\n\n売却準備のチェックは /guide/hajimete-kuruma-uru-checklist に戻れば一通り確認できます。\n\n---\n\n## よくある質問\n### スペアキーがないと売れない？\n売れます。多くの店は買い取ります。\n\n### どのくらい減額される？\n車種やキーの種類で変わります。数千円で済むこともあれば、スマートキー系は重くなることもあります。まずは２社以上で比較して、減額が妥当かを確認してください。\n",
+  "seoTitle": "スペアキーなしは値引き材料？結論：「値引き」より「納車までに2本」が安全",
+  "seoDescription": "スペアキーがない中古車は値引き材料になるが、スマートキーは作成費や納期が読みにくい。買うなら「納車までに2本」か「作成費の確定値引き」で条件を固める。",
+  "planPriority": 21,
+  "publishedAt": "2026-01-29T02:10:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-sell-prepare",
+    "/guide/hajimete-kuruma-uru-checklist",
+    "/guide/hub-usedcar"
+  ],
+  "primaryQuery": "スペアキー ない 値引き",
+  "updateReason": "seo-rewrite-2026-01-31 sell&usedcar cluster: body/sources/clusters/index (spare-key-missing-negotiation)",
+  "sources": [
+    "https://kaitori.carview.co.jp/article/knowledge-satei/155/",
+    "https://www.goo-net.com/kaitori/kaitori-satei/kaitori-knowhow/241/",
+    "https://www.goodspeed.ne.jp/kaitori/column/1901/",
+    "https://annai-center.com/kaitori/sparekey/",
+    "https://www.jaai.or.jp/images/jissiten/sateikijun240327/kagenten.pdf"
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "id": "mazda-roadster-na",
+  "slug": "mazda-roadster-na",
+  "name": "Mazda Roadster (NA)",
+  "maker": "Mazda",
+  "releaseYear": 1989,
+  "difficulty": "beginner",
+  "bodyType": "オープン",
+  "segment": "ライトスポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "NA",
+  "summary": "軽さと素直さの原点。速度が低くても“線”がきれいになるロードスターの出発点。",
+  "summaryLong": "NAロードスターは、ライトウェイトFRの原点のひとつです。速さの数字より、姿勢と操作の気持ちよさが主役。\n\n中古ではボディの錆、幌、足回りブッシュ、そしてまっすぐさ。整った個体は、日常の速度でも運転が楽しい。\n\nMazda Roadster (NA)は「ライトスポーツ×オープン」の文脈で語られることが多い一台です。中古では走行距離より、整備記録と仕様の透明性を優先。初期費用を抑えすぎると後追い整備で総額が膨らみやすいので、“整った個体を高く買う”ほうが安全です。",
+  "heroImage": "/images/cars/mazda-roadster-na-hero.jpg",
+  "mainImage": "/images/cars/mazda-roadster-na-hero.jpg",
+  "imageUrl": "/images/cars/mazda-roadster-na-hero.jpg",
+  "gallery": [
+    "/images/cars/mazda-roadster-na-front.jpg",
+    "/images/cars/mazda-roadster-na-side.jpg",
+    "/images/cars/mazda-roadster-na-interior.jpg"
+  ],
+  "engine": "Front 1.6/1.8 NA",
+  "powerPs": 120,
+  "torqueNm": 150,
+  "transmission": "5MT/4AT（仕様差）",
+  "drive": "FR",
+  "fuel": "レギュラー/ハイオク（仕様差）",
+  "fuelEconomy": "目安: 9〜14 km/L",
+  "priceNew": "当時: 160万〜260万円台（仕様差）",
+  "priceUsed": "200万〜700万円（相場変動）",
+  "strengths": [
+    "軽さがそのまま楽しさになる。",
+    "扱いやすく、日常で乗れる。",
+    "部品と情報が豊富。"
+  ],
+  "weaknesses": [
+    "錆とボディの状態で価値が大きく割れる。",
+    "幌・内装の劣化が出やすい。"
+  ],
+  "troubleTrends": [
+    "ボディの錆（特に下回り・フェンダー周り）は最重要です。",
+    "幌の状態と雨漏り痕は確認したいです。",
+    "足回りブッシュのへたりで印象が変わります。"
+  ],
+  "costImpression": "良個体ほど“軽さ”が残る。錆と骨格を優先して選ぶのが正解。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [
+    "honda-s2000-ap1",
+    "toyota-mr-s-zzw30"
+  ],
+  "tags": [
+    "Mazda",
+    "Roadster",
+    "Miata",
+    "NA",
+    "FR",
+    "lightweight",
+    "open"
+  ],
+  "relatedHeritageSlugs": [
+    "honda-s2000-ap1-heritage",
+    "toyota-mr-s-zzw30-heritage",
+    "honda-civic-type-r-ek9-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "lightweight",
+    "open",
+    "beginner"
+  ],
+  "purchasePriceSafe": "安全ライン：280〜480万円前後（錆と幌重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間25〜65万円"
+  },
+  "maintenanceCostYenPerYear": 380000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mazda Mazda Roadster (NA)",
+  "makerKey": "mazda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/mazda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Mazda Roadster (NA)",
+  "updateReason": "initial-import",
+  "sources": []
+}

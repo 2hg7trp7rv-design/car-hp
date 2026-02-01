@@ -1,0 +1,67 @@
+{
+  "id": "car-budget-simulation",
+  "slug": "car-budget-simulation",
+  "type": "GUIDE",
+  "status": "published",
+  "title": "車の予算はいくらが正解？年収別の安全ラインとシミュレーション",
+  "summary": "車の予算は年収ではなく月額総額で決める。固定費、月割り積み立て、予備費から車両価格を逆算するシミュレーション手順と失敗パターンを整理する。",
+  "seoTitle": "車の予算はいくらが正解？年収別の安全ラインと失敗しないシミュレーション",
+  "seoDescription": "車の予算を月額化して考える手順。ローン・保険・税・車検・突発費まで含めたシミュレーション。",
+  "category": "MONEY",
+  "readMinutes": 12,
+  "heroImage": null,
+  "body": "車の予算は、年収だけで決めると失敗しやすいです。同じ年収でも住居費や家族構成で余裕が違うからです。ここでは、車の予算を月額化して決め切るためのシミュレーション手順をまとめます。\n\nローン設計まで含めて考えるなら、先に [ローンHUB](/guide/hub-loan) を見ておくと話が早いです。\n\n## 結論：車の予算は月々の総額で握る\n•車両価格ではなく、毎月いくらまで出せるかを先に決める\n•年1回の出費は12で割って積み立て扱いにする\n•予備費が作れないなら、車格を下げるか購入を延期する\n\n## ステップ0 必要な数字を集める\nまずは手元の情報を集めます。ここが曖昧だと、最後に数字が崩れます。\n•手取りの月収\n•駐車場代（必要なら）\n•任意保険の概算\n•月の走行距離（燃料費の目安）\n•購入方法（ローンか一括か）\n\n## ステップ1 月額上限を決める\n一番大事なのは上限です。上限が決まると、車の条件が勝手に絞れます。\nおすすめは、先取り貯蓄と固定費を差し引いた残りから決めることです。ここを無理すると、最初の車検や故障で詰みます。\n\n## ステップ2 固定費を先に積み上げる\n固定費は戻しにくいので、最初に埋めます。\n•ローン支払い（期間と金利で大きく変わる）\n•駐車場\n•任意保険\n\nローンの金利と総支払額の見方は [車のローン金利ガイド](/guide/car-loan-interest-rate-guide) を参照してください。\n\n## ステップ3 年払いを月割りにする\nここを入れないと、家計が破綻します。年1回以上来る出費は、全部月割りにします。\n•自動車税種別割などの税金\n•車検（重量税、自賠責、整備費）\n•タイヤ、バッテリー、オイルなどの消耗品\n\nざっくりの型は [維持費のざっくりシミュレーション](/guide/maintenance-cost-simulation) にあります。\n\n## ステップ4 予備費を入れる\n予備費は、故障と事故の自己負担のためです。入れられないなら、車の価格を下げるか保証を厚くします。\n中古輸入車は予備費の重要度が上がるので、候補が輸入車なら [中古輸入車の買い方ガイド](/guide/used-import-car-buying-guide) も合わせて確認してください。\n\n## ステップ5 車両価格へ逆算する\n計算は単純です。\n月額上限 から 固定費 と 月割り積み立て と 予備費 と 燃料費 を引いた残りが、車両代に回せる枠です。\nここからローン期間を決めると、現実的な車両価格の上限が見えます。\n上限が決まったら、次は候補車を探し始めます。買い時の考え方は [中古車の買い時](/column/usedcar-market-buy-timing) も参考になります。\n\n\n## 月額を下げる調整レバー\n上限を超えたときは、車両価格を削る前にここを見直すと効きます。\n•駐車場：場所や契約形態で大きく動く。都心ではここが最大のボトルネック\n•保険：年齢条件や運転者範囲、免責、車両保険の付け方で変わる\n•走行距離：燃料費だけでなく、オイルやタイヤの消耗ペースにも効く\n•買い方：頭金、金利、期間、残クレやリースの出口条件\n\n買い方の違いは、月額が同じでも総額が変わります。比較は必ず総額で行います。\n\n## ボーナス払いは最終手段\nボーナス払いは月々を軽く見せられますが、収入が変わった瞬間に詰みます。固定費は家計の自由度を奪うので、原則は月々で完結させた方が安全です。\n\n## 年収を使うなら手取りで考える\n年収は税や社会保険で差が出ます。目安を作るなら年収ではなく手取りを基準にします。\n迷ったら、車の固定費が増えるほど生活が硬直するという前提で、まずは小さめに始めて、余裕が出たら上げる方が失敗しにくいです。\n\n\n## シミュレーションで必ず見る3つ\n•支払総額：月額が同じでも総額が大きく違うことがある\n•一発支出の月：税金や車検が重なる月でも赤字にならないか\n•最悪ケース：故障や事故の自己負担が出ても生活費を削らないか\n\n## 例1 都市部で駐車場が必要なケース\n•月額上限 60000円\n•駐車場 20000円\n•任意保険 7000円\n•燃料 8000円\n•税金と車検の月割り 8000円\n•消耗品と予備費 7000円\n残りは10000円前後です。ローンを組むなら、車両価格は無理をしない方が安全です。\n\n## 例2 駐車場代がかからないケース\n•月額上限 60000円\n•駐車場 0円\n•任意保険 7000円\n•燃料 10000円\n•税金と車検の月割り 8000円\n•消耗品と予備費 7000円\n残りは28000円前後です。車両代に回せる枠が増えるので、同じ月額でも選択肢が広がります。\n\n\n## 予算が足りないときの選択肢\n上限を超えたまま買うのは危険です。現実的な逃げ道はあります。\n•車の条件を一段落とす（サイズ、年式、グレード）\n•購入を少し遅らせて頭金と予備費を作る\n•今の車を延命して、相場と在庫を待つ\n•走行距離を抑えて維持費を下げる\n\n## よくある失敗\n•車両価格だけで決めて、税金と車検を後から払えなくなる\n•ボーナス払いに頼り、収入が変わった瞬間に崩れる\n•予備費ゼロで買い、最初の故障で手放す\n\n## 次の行動：今週やること\n•駐車場と任意保険の概算を出す\n•税金と車検を月割りで足す\n•月額上限の中で買える車両価格を決める\n•ローンとリースと残クレの違いは [ローンとリースと残クレの比較](/guide/compare-loan-lease-zancre) で確認する\n\n## 関連記事\n•/guide/maintenance-cost-simulation\n•/guide/loan-or-lump-sum\n•/guide/compare-loan-lease-zancre\n•/guide/tax-and-fees-before-buying-import\n",
+  "publishedAt": "2025-12-07T00:00:00.000Z",
+  "updatedAt": "2026-01-31",
+  "tags": [
+    "車選び",
+    "予算",
+    "年収",
+    "シミュレーション"
+  ],
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "maintenance-cost-simulation",
+    "loan-or-lump-sum",
+    "compare-loan-lease-zancre",
+    "tax-and-fees-before-buying-import"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [
+    "toyota-celsior-ls400-silence-precision-heritage"
+  ],
+  "intentTags": [
+    "money"
+  ],
+  "monetizeKey": "loan_estimate",
+  "lead": "車の予算を月額化して考える手順。ローン・保険・税・車検・突発費まで含めたシミュレーション。",
+  "internalLinks": [
+    "hub-loan",
+    "car-loan-interest-rate-guide",
+    "maintenance-cost-simulation",
+    "compare-loan-lease-zancre",
+    "used-import-car-buying-guide",
+    "tax-and-fees-before-buying-import"
+  ],
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-loan",
+  "relatedClusterIds": [
+    "/guide/hub-loan",
+    "/guide/maintenance-cost-simulation",
+    "/guide/compare-loan-lease-zancre"
+  ],
+  "primaryQuery": "車の予算はいくらが正解？年収別の安全ラインとシミュレーション",
+  "updateReason": "seo-rewrite-2026-01-31 / 箇条書き表記を•に統一",
+  "sources": [
+    "https://www.eneos.co.jp/eneos_ss/ssguide/carlife/car-maintenance-cost/",
+    "https://www.zurich.co.jp/car/useful/guide/cc-maintenance-cost/",
+    "https://221616.com/satei/blog/article/car-maintenance-cost/",
+    "https://www.hokugin.co.jp/column/life/expense-of-keeping-a-car.html",
+    "https://toyota.jp/finance/column/zanka/"
+  ],
+  "targetKeyword": "車の予算はいくらが正解？年収別の安全ラインとシミュレーション"
+}

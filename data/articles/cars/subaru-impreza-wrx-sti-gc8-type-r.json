@@ -1,0 +1,104 @@
+{
+  "id": "subaru-impreza-wrx-sti-gc8-type-r",
+  "slug": "subaru-impreza-wrx-sti-gc8-type-r",
+  "name": "Subaru Impreza WRX STI (GC8) Type R",
+  "maker": "Subaru",
+  "releaseYear": 1998,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "GC8 Type R (DCCD)",
+  "summary": "手で合わせる4WD。DCCDの余白が、路面と会話する楽しさを残した。",
+  "summaryLong": "GC8のSTI Type Rは、4WDの速さに“余白”を残した車です。DCCDは、路面や好みに合わせて中心を変えられる。制御に任せきらず、手で合わせる楽しさがある。\n\nいま買う目線では、エンジン単体だけでなく駆動とボディの素性が重要。錆、足回り、そしてDCCD周辺の状態。改造があっても思想が揃っていれば強い。\n\n軽いボディで4WDを成立させた密度は、いまでも代替が少ない。",
+  "heroImage": "/images/cars/subaru-impreza-wrx-sti-gc8-type-r-hero.jpg",
+  "mainImage": "/images/cars/subaru-impreza-wrx-sti-gc8-type-r-main.jpg",
+  "imageUrl": "/images/cars/subaru-impreza-wrx-sti-gc8-type-r-hero.jpg",
+  "gallery": [
+    "/images/cars/subaru-impreza-wrx-sti-gc8-type-r-front.jpg",
+    "/images/cars/subaru-impreza-wrx-sti-gc8-type-r-side.jpg",
+    "/images/cars/subaru-impreza-wrx-sti-gc8-type-r-interior.jpg"
+  ],
+  "engine": "Front Flat-4 2.0 Turbo (EJ20)",
+  "powerPs": 280,
+  "torqueNm": 343,
+  "transmission": "5MT",
+  "drive": "4WD",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜10 km/L",
+  "priceNew": "当時: 280万〜500万円台（仕様差）",
+  "priceUsed": "550万〜1600万円（相場変動）",
+  "strengths": [
+    "軽いボディで4WDの速さが出る。反応が速い。",
+    "DCCDで“合わせる”余白があり、上達が楽しい。",
+    "ラリー由来の足の動きで、路面が荒れても走れる。",
+    "ノーマルの思想が濃く、整うほど楽しい。"
+  ],
+  "weaknesses": [
+    "年式が古く、錆と劣化の影響が大きい。",
+    "改造個体が多く、整合が崩れると症状が追いにくい。",
+    "EJ系は熱と油の管理で差が出やすい。",
+    "保管環境と履歴で価値が極端に割れる。"
+  ],
+  "troubleTrends": [
+    "下回りの錆と修復歴は最優先で見たいです。",
+    "DCCDの動作（警告灯・違和感）と配線の状態は要チェックです。",
+    "冷却系とオイル管理の履歴が薄い個体は避けたいです。",
+    "足回りブッシュのへたりで直進性と手応えが変わります。"
+  ],
+  "costImpression": "“整った古さ”が価値。履歴が薄い個体は、戻すより探した方が早いことがある。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "column-awd-yaw-control-why-it-turns"
+  ],
+  "relatedGuideSlugs": [
+    "guide-buy-electronic-awd-checklist"
+  ],
+  "relatedCarSlugs": [
+    "mitsubishi-lancer-evolution-vi-gsr",
+    "nissan-skyline-gt-r-r34-v-spec"
+  ],
+  "tags": [
+    "Subaru",
+    "Impreza",
+    "WRX STI",
+    "GC8",
+    "EJ20",
+    "DCCD",
+    "awd"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-electronic-awd-yaw-control-heritage"
+  ],
+  "intentTags": [
+    "awd",
+    "rally",
+    "1990s",
+    "heritage",
+    "advanced"
+  ],
+  "purchasePriceSafe": "安全ライン：700〜1100万円前後（錆と履歴重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間55〜120万円"
+  },
+  "maintenanceCostYenPerYear": 820000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Subaru Subaru Impreza WRX STI (GC8) Type R",
+  "makerKey": "subaru",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/subaru",
+  "relatedClusterIds": [],
+  "primaryQuery": "Subaru Impreza WRX STI (GC8) Type R",
+  "updateReason": "initial-import",
+  "sources": []
+}

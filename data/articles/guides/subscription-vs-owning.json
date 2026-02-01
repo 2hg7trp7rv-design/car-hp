@@ -1,0 +1,55 @@
+{
+  "id": "guide-subscription-vs-owning",
+  "slug": "subscription-vs-owning",
+  "title": "サブスクか所有か。月額サービスと購入の境界線",
+  "summary": "車のサブスクと所有を比較。含まれる費用、制約、総支払で判断する方法。",
+  "category": "MONEY",
+  "tags": [
+    "サブスク",
+    "カーリース",
+    "所有",
+    "コスト比較"
+  ],
+  "publishedAt": "2025-04-10T09:00:00+09:00",
+  "updatedAt": "2026-01-20",
+  "readMinutes": 8,
+  "heroImage": "/images/guides/subscription-vs-owning.jpg",
+  "status": "published",
+  "intentTags": [
+    "money",
+    "lease"
+  ],
+  "monetizeKey": "lease_sompo_noru",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "compare-loan-lease-zancre",
+    "car-budget-simulation",
+    "maintenance-cost-simulation",
+    "loan-or-lump-sum"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [
+    "toyota-celsior-ls400-silence-precision-heritage"
+  ],
+  "body": "この記事は「サブスクか所有か。月額サービスと購入の境界線」をテーマに、購入の意思決定は「車両価格」だけで見るとズレます。毎月の総額と、支払い方法ごとの落とし穴を整理します。\n\n## 結論\n- サブスクは「月額が高い/安い」ではなく、【含まれる範囲と制約（走行距離・中途解約・原状回復）】で得失が決まります。\n- 所有（現金・ローン）は、税や車検を自分で管理する必要がある一方、【自由度が高く、長く乗るほど総額が読みやすい】です。\n- 比較は「同じ年数・同じ走行距離」で、【月額ではなく総支払】を並べます。\n\n## まず見るチェックリスト\n- 月額に含まれるもの：税金、車検、メンテ、消耗品、タイヤ、任意保険（プランにより異なる）\n- 契約条件：走行距離の上限、途中解約の条件、返却時の原状回復\n- 使い方の自由度：カスタム可否、喫煙/ペットの扱い、事故時の精算\n- “出口”：満了後に返却だけか、買い取り選択肢があるか\n\n## 手順 1 比較期間を先に決める\n迷うときは「3年」と「5年」で2パターン作ると判断しやすいです。\n- 3年：乗り換え前提（新しさ・手間の少なさを優先）\n- 5年以上：長期保有（総額・自由度を優先）\n\n## 手順 2 所有（購入）のコストを「固定費＋年1回費用」で作る\n所有は月額が見えにくいだけで、分解すれば管理できます。\n- 毎月の固定費：ローン/積立、任意保険、駐車場\n- 年に1回〜：税、車検、メンテ、タイヤ（/guide/maintenance-cost-simulation）\n- 最後に“戻り”：売却/下取りの想定（長く乗るほど読みやすい）\n\n## 手順 3 サブスクは「含まれるもの」を言葉で確認する\n同じサブスクでも中身が違います。次の項目は“含まれる/含まれない”で総額が変わります。\n- 車検・法定費用が含まれるか\n- 消耗品（オイル、ワイパー等）の範囲\n- タイヤ交換が含まれるか（サイズが大きいほど差が出る）\n- 任意保険がセットか、別で加入する前提か\n\n## 手順 4 決め手は「制約を受け入れられるか」\n### サブスクが向く人\n- 手間を減らしたい（税・車検の段取りが苦手）\n- 走行距離が読みやすい\n- 2〜3年で定期的に車を替える前提\n\n### 所有が向く人\n- 走行距離や使い方が変わりやすい（転勤、家族構成の変化）\n- カスタムや装備追加を自由にしたい\n- 5年以上乗るつもりで、総額を抑えたい\n\n## よくあるつまずき\n- 月額だけで比較して、途中解約や返却条件で割高になる\n- サブスクに保険が含まれていないのに気づかず、想定を超える\n- 所有側の税・車検を“どこかで払うもの”として先送りし、資金繰りが苦しくなる\n\n## 補足（実務メモ）\n- 予算は車両価格ではなく、税金・保険・駐車場・メンテを含めた“月の総額”で見る\n- ローン/残クレ/リース/サブスクは、金利だけでなく「所有権」「走行距離」「中途解約」「原状回復」で差が出る\n- 現金一括でも生活防衛資金は別枠で残す（故障や家計変化に弱くならない）\n\n## 関連記事\n- /guide/compare-loan-lease-zancre\n- /guide/car-budget-simulation\n- /guide/maintenance-cost-simulation\n- /guide/loan-or-lump-sum\n- /guide/road-service-choice-guide\n",
+  "seoTitle": "サブスクか所有か。月額サービスと購入の境界線｜CAR BOUTIQUE GUIDE",
+  "seoDescription": "車のサブスクと所有を比較。含まれる費用、制約、総支払で判断する方法。",
+  "lead": "車のサブスクと所有を比較。含まれる費用、制約、総支払で判断する方法。",
+  "internalLinks": [
+    "compare-loan-lease-zancre",
+    "car-budget-simulation",
+    "maintenance-cost-simulation",
+    "loan-or-lump-sum"
+  ],
+  "type": "GUIDE",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/hub-loan",
+  "relatedClusterIds": [],
+  "primaryQuery": "サブスクか所有か。月額サービスと購入の境界線",
+  "updateReason": "initial-import",
+  "sources": []
+}

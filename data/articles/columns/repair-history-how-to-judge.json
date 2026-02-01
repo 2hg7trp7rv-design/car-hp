@@ -1,0 +1,55 @@
+{
+  "id": "col-018",
+  "slug": "repair-history-how-to-judge",
+  "status": "published",
+  "title": "「修復歴あり」は一律NGではない。判断を分ける3つの線引き",
+  "summary": "修復歴の定義を踏まえて線引きをする。買わないライン、条件付きで検討できるライン、価格差の考え方と販売店に聞くべきポイントをまとめる。",
+  "category": "MARKET",
+  "tags": [
+    "修復歴",
+    "中古車",
+    "事故車",
+    "判断"
+  ],
+  "intentTags": [
+    "usedcar",
+    "decision",
+    "market"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "used-import-car-buying-guide",
+    "hub-usedcar"
+  ],
+  "targetKeyword": "修復歴あり 買ってもいい",
+  "searchIntent": "修復歴ありを避けるべきか迷う人が、線引きと確認ポイントを理解できるようにする。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-31",
+  "noindex": false,
+  "body": "## 結論：修復歴ありを一律で切るのは損。でも線引きは必要\n中古車の修復歴は、外装の板金とは別物です。骨格部位の修理や交換があると、走行安定性や安全性に影響する可能性があるからです。\n\n判断を分ける線引きは3つです。\n•骨格部位に手が入っているか\n•修理内容が説明できるか\n•価格がリスクを織り込んでいるか\n\n## 根拠：修復歴の定義を知らないと、地雷も優良物も見分けられない\n修復歴は、一般にフレームなど骨格部位の損傷と修理を指します。バンパー交換やドアの板金は、修復歴ではないこともあります。\n\nだから、修復歴ありの表示だけで判断すると、無駄に候補を捨てるか、逆に危ない個体を拾います。\n\n## 買わない方がいいライン：説明が曖昧、構造に深い損傷、価格が不自然\n次のどれかが出たら、私は基本的に見送ります。\n•どこを直したか言えない、記録が出ない\n•エアバッグ展開や浸水の話が出る\n•試乗で直進性やブレーキに違和感がある\n•相場より安い理由が説明できない\n\n## 条件付きで検討できるライン：部位と修理内容が明確で、納得できる価格\n修復歴ありでも、部位と修理内容が明確で、専門店で点検できるなら検討の余地はあります。\nただし、買うなら次の手順を踏んでください。\n•修理内容と部位を紙で出してもらう\n•現車でパネルの隙間、塗装、下回りを確認する\n•可能なら購入前点検を入れる\n\nチェック手順は [修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist) にまとめています。\n\n## 価格差の考え方：安さだけで飛びつかない\n修復歴ありは安く見えますが、売るときの査定も厳しくなりやすいです。買うなら価格差がはっきりしていること、そして履歴が透明であることが条件です。価格差が小さいなら、無理に修復歴ありを選ぶ意味は薄いです。納得して買うための材料が揃わないなら撤退します。\n\n## 反論：修復歴なしなら安心？\n修復歴なしでも、整備記録が薄い個体や、保管環境が悪い個体は普通にトラブルを抱えます。安心を買うなら、修復歴よりも履歴の透明性です。\n\n輸入車は修理費が跳ねやすいので、候補が輸入車なら [中古輸入車の買い方ガイド](/guide/used-import-car-buying-guide) もセットで見てください。\n\n## 次の行動：販売店に聞くべき3つ\n•修復した部位はどこか\n•修理は交換か修正か、記録は出るか\n•修復歴を織り込んだ価格になっているか\n\n### 次に読む\n•[コラム一覧](/column)\n•[修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist)\n•[中古輸入車の買い方ガイド](/guide/used-import-car-buying-guide)\n",
+  "seoTitle": "「修復歴あり」は一律NGではない。判断を分ける3つの線引き",
+  "seoDescription": "修復歴ありを一律で避けると損する。骨格のどこを直したか、説明と証拠が出るか、値段が見合うかで判断する。",
+  "planPriority": 9,
+  "publishedAt": "2026-01-27T16:30:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-usedcar",
+    "/guide/repair-history-used-car-checklist",
+    "/guide/used-import-car-buying-guide"
+  ],
+  "primaryQuery": "修復歴あり 買ってもいい",
+  "updateReason": "seo-rewrite-2026-01-31 / 箇条書き表記を•に統一",
+  "sources": [
+    "https://npo-jaaa.or.jp/surveyors-report/repair-history/",
+    "https://www.aftc.or.jp/content/files/pdf/aftc_info/aftcinfo_20190326.pdf",
+    "https://www.navikuru.jp/kaitori/articles/damagedcar-knowledge/365/",
+    "https://www.autobacs.com/static_html/shopping/usedcar/knowledge/base/repair.html",
+    "https://www.carseven.co.jp/magazine/news/5074/"
+  ]
+}

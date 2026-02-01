@@ -1,0 +1,104 @@
+{
+  "id": "lexus-lfa-2010",
+  "slug": "lexus-lfa-2010",
+  "name": "Lexus LFA (2010)",
+  "maker": "Lexus",
+  "releaseYear": 2010,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "スーパースポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "LFA",
+  "summary": "数字ではなく、応答と音で“体験”を完成させた日本の別解。制御時代に、感性で勝負したスーパーカー。",
+  "summaryLong": "LFAは、R35と同じ時代に、日本がもう一つの答えを出していたことを示します。速さを揃える制御ではなく、回転の立ち上がり、音、操作に対する反応で価値を作った。\n\n電子化の時代に、感性を工学で作り込む。そこがLFAの面白さです。\n\n中古での価値は市場性も大きい一方、見方は意外とシンプル。保管環境、履歴の透明度、消耗品の管理。スーパーカーだからこそ“普通の基本”が効きます。",
+  "heroImage": "/images/cars/lexus-lfa-2010-hero.jpg",
+  "mainImage": "/images/cars/lexus-lfa-2010-main.jpg",
+  "imageUrl": "/images/cars/lexus-lfa-2010-hero.jpg",
+  "gallery": [
+    "/images/cars/lexus-lfa-2010-front.jpg",
+    "/images/cars/lexus-lfa-2010-side.jpg",
+    "/images/cars/lexus-lfa-2010-interior.jpg"
+  ],
+  "engine": "Front V10 4.8 NA (1LR-GUE)",
+  "powerPs": 560,
+  "torqueNm": 480,
+  "transmission": "6AMT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 4〜7 km/L",
+  "priceNew": "当時: 3000万円台（仕様差）",
+  "priceUsed": "6000万〜1.2億円前後（相場変動）",
+  "strengths": [
+    "応答と音が作る体験が唯一無二。速度域が低くても価値がある。",
+    "工学で“感性”を作った設計の密度が高い。",
+    "FRらしい素直さがあり、速さが怖さに直結しにくい。",
+    "日本のスーパーカーとして文化的価値が強い。"
+  ],
+  "weaknesses": [
+    "市場価格が高く、保険・保管・消耗品も含めて“環境”が必要。",
+    "部品と整備の窓口が限られ、時間も含めて計画が要る。",
+    "日常性は高くない（乗降、荷室、音量）。",
+    "価値が高いぶん、履歴の不透明さがリスクになる。"
+  ],
+  "troubleTrends": [
+    "タイヤとブレーキなど消耗品の状態と交換履歴が重要です。",
+    "保管環境由来の劣化（ゴム類、内装、塗装）に差が出ます。",
+    "電子制御の警告灯履歴は必ず確認したいポイントです。",
+    "低走行でも“動かしていない劣化”が起きることがあります。"
+  ],
+  "costImpression": "買う車というより、維持するプロジェクト。履歴が揃う個体ほど、体験は揺らがない。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "column-software-defined-performance-r35"
+  ],
+  "relatedGuideSlugs": [
+    "guide-buy-early-r35-gtr-checklist"
+  ],
+  "relatedCarSlugs": [
+    "nissan-gt-r-r35-early",
+    "mitsubishi-lancer-evolution-x-final"
+  ],
+  "tags": [
+    "Lexus",
+    "LFA",
+    "V10",
+    "1LR-GUE",
+    "FR",
+    "supercar",
+    "2010s"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-software-performance-era-heritage"
+  ],
+  "intentTags": [
+    "supercar",
+    "experience",
+    "engineering",
+    "2010s",
+    "heritage"
+  ],
+  "purchasePriceSafe": "安全ライン：相場が大きく動くため、履歴重視で“良個体を逃さない”予算設計が必要",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間200〜400万円（保管・保険含め増減）"
+  },
+  "maintenanceCostYenPerYear": 2500000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Lexus Lexus LFA (2010)",
+  "makerKey": "lexus",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/lexus",
+  "relatedClusterIds": [],
+  "primaryQuery": "Lexus LFA (2010)",
+  "updateReason": "initial-import",
+  "sources": []
+}

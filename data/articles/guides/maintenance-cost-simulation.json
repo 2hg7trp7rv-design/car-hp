@@ -1,0 +1,65 @@
+{
+  "id": "guide-maintenance-cost-simulation",
+  "slug": "maintenance-cost-simulation",
+  "title": "維持費シミュレーションの基本",
+  "summary": "車の維持費を月額でブレなく出すために、固定費の月割り、変動費の実測、突発費の積立に分けて考える方法をまとめます。",
+  "category": "MONEY",
+  "tags": [
+    "維持費",
+    "保険",
+    "税金",
+    "車検",
+    "シミュレーション"
+  ],
+  "publishedAt": "2025-12-28",
+  "updatedAt": "2026-01-31",
+  "readMinutes": 6,
+  "status": "published",
+  "intentTags": [
+    "money",
+    "maintenance"
+  ],
+  "monetizeKey": "insurance_compare_core",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "car-budget-simulation",
+    "tire-replacement-cost-guide",
+    "oil-change-frequency-guide",
+    "used-import-car-buying-guide"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [
+    "toyota-celsior-ls400-silence-precision-heritage"
+  ],
+  "body": "## 結論\n維持費は、固定費を月割りして、変動費は走り方で仮置きし、突発費は積立に分ける。これが一番ブレません。\n\nまずは[メンテナンス総合](/guide/maintenance)で、自分の車に必要な維持コストの全体像だけ掴んでください。細かい金額はあとで詰めればOKです。\n\n## 危険判定\n次のどれかに当てはまるなら、今の維持費見積もりは甘い可能性が高いです。\n•ガソリン代しか計算していない\n•車検や税金をボーナス払い前提で放置している\n•任意保険はとりあえず最低限で考えている\n•タイヤやバッテリーを買い替える前提がない\n•月によって出費がブレるのが嫌なのに、積立枠がゼロ\n\n## 状況別分岐\n維持費がズレる原因は、ほぼこの3つです。自分がどこに当てはまるかで計算の重点が変わります。\n\n### 1 走り方の差\n•短距離のちょい乗りが多い→消耗品とトラブルの積立を厚めに\n•高速や長距離が多い→燃料とタイヤを厚めに\n\n### 2 置き場所の差\n•月極駐車場がある→固定費として先に確保\n•自宅駐車場→ゼロに見えるが、将来の補修や設備費が出ることもある\n\n### 3 車の性格の差\n•大径タイヤ、輸入車、スポーツ系→タイヤとブレーキの積立が効く\n•ハイブリッドや低燃費車→燃料は読めるが、年数要因の積立が必要\n\n## 応急処置\n今日できる、現実的な整え方だけ書きます。\n•固定費用の積立口座を作る（車検、税金、自賠責、重量税の月割り）\n•変動費は3か月だけ家計簿で実測して平均を取る（燃料、駐車場、洗車、消耗品）\n•突発費は最低でもタイヤ1回分を目標に積む（積立の目的を決めると崩れない）\n\n## 費用レンジ\nここでは金額の断定はしません。車種と条件で差が大きいからです。代わりに、漏れなく拾える内訳テンプレを置きます。\n\n### 固定費（ほぼ確定）\n•自動車税（種別割）\n•重量税\n•自賠責保険\n•車検（検査手数料、印紙などの法定費用）\n•任意保険（年払でも月割りで扱う）\n\n### 変動費（使い方で増減）\n•燃料（ガソリン、電気）\n•駐車場\n•高速、有料道路\n•洗車、ケミカル\n\n### 積立（ここを外すと破綻しやすい）\n•タイヤ\n•バッテリー\n•ブレーキ\n•オイル類、フィルター類\n•突発修理（センサー、足回り、エアコンなど）\n\n月額の出し方はシンプルです。\n•月額＝（固定費の年間合計÷12）＋（変動費の月平均）＋（積立の月額）\n\nもっと早く形にしたいなら、[車の予算シミュレーション](/guide/car-budget-simulation)から入るのが早いです。\n\n## 見積もりで伝える情報\n同じ車でも、条件が違うと維持費は変わります。見積もりや比較でブレないように、最低限これだけ揃えます。\n•車種、年式、グレード（タイヤサイズが分かるとなお良い）\n•年間走行距離の目安\n•主な使い方（街乗り中心、高速多めなど）\n•駐車場代の有無\n•任意保険の運転者条件、年齢条件（分かる範囲で）\n\n## よくある質問\n### Q ざっくり月いくらあれば安心？\nA 先に作るべきなのは、固定費の月割りと突発費の積立です。ここがゼロだと、どんな車でも家計が揺れます。\n\n### Q 中古車は車両価格が安いから維持費も安い？\nA 逆です。車両価格が下がっても、税金や保険や車検の法定費用は残ります。むしろ年数要因の積立が効いてきます。\n\n### Q 最初に積むならどれ？\nA 車検と税金を月割りで確保→次にタイヤの積立、の順が失敗しにくいです。\n\n## 関連リンク\n•[月いくらまでが妥当か](/column/budget-should-be-monthly-total)\n•[タイヤ交換費用の目安](/guide/tire-replacement-cost-guide)\n•[車両保険が必要な人](/column/vehicle-insurance-who-needs)\n",
+  "seoTitle": "車の維持費シミュレーションの基本｜月額の出し方",
+  "seoDescription": "維持費はガソリン代だけでは決まりません。固定費の月割り、変動費の実測、突発費の積立で、月いくら必要かをブレなく出す方法を解説します。",
+  "internalLinks": [
+    "car-budget-simulation",
+    "tire-replacement-cost-guide",
+    "oil-change-frequency-guide",
+    "used-import-car-buying-guide"
+  ],
+  "lead": "税よりブレる維持費（タイヤ・消耗品・車検整備）を月額化して見積もる方法。",
+  "type": "GUIDE",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/guide/maintenance",
+  "relatedClusterIds": [
+    "/guide/car-budget-simulation",
+    "/column/budget-should-be-monthly-total",
+    "/guide/maintenance"
+  ],
+  "primaryQuery": "車 維持費 シミュレーション",
+  "updateReason": "全面改稿（構成を再設計）/内部リンク追加/参考ソース追加/公開基準調整",
+  "sources": [
+    "https://www.eneos.co.jp/eneos_ss/ssguide/carlife/car-maintenance-cost/",
+    "https://www.zurich.co.jp/car/useful/guide/cc-maintenance-cost/",
+    "https://www.insweb.co.jp/insurance/car/maintenance-cost/",
+    "https://221616.com/satei/blog/article/car-maintenance-cost/",
+    "https://www.hokugin.co.jp/column/life/expense-of-keeping-a-car.html"
+  ]
+}

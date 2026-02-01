@@ -1,0 +1,60 @@
+{
+  "id": "col-005",
+  "slug": "tradein-vs-buyback-prep",
+  "status": "published",
+  "title": "下取りと買取、どっちが得？結論：先に「買取の上限」を作ると迷わない",
+  "summary": "下取りと買取の違いを、手間・価格・タイミングで整理。初心者が損しにくい順番（下取りで基準→買取2社比較）と、条件比較で見るべき項目をまとめた。",
+  "category": "MARKET",
+  "tags": [
+    "売却",
+    "下取り",
+    "買取",
+    "準備",
+    "一括査定",
+    "値引き",
+    "書類"
+  ],
+  "intentTags": [
+    "sell",
+    "decision",
+    "market"
+  ],
+  "relatedGuideSlugs": [
+    "hub-sell",
+    "hub-sell-prepare",
+    "hub-sell-compare",
+    "hub-sell-price"
+  ],
+  "targetKeyword": "下取り 買取 どっち",
+  "searchIntent": "下取りと買取で迷う人に、優先すべき判断軸と準備の順番を渡す。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-31",
+  "noindex": false,
+  "body": "## 結論\n下取りと買取で迷うなら、判断軸はこれだけです。\n\n• 手間を最小にしたい、次の車も同じ店で買う → 下取りが向く  \n• １円でも高く売りたい、比較ができる → 買取が向く  \n• 迷うなら、下取り見積もりを取ってから買取を２社当てるのが現実的\n\n売却が初めてなら、先に /guide/hajimete-kuruma-uru-checklist を読んで全体の段取りを掴むと失敗しません。\n\n---\n\n## 下取りが向く人\n• 乗り換えを最短で終わらせたい  \n• 手続きの窓口を一本化したい  \n• 下取り額より、納車や支払いを優先したい\n\n注意点は、下取り額が「車両値引き」と混ざって見えにくくなること。総額で判断します。\n\n---\n\n## 買取が向く人\n• 相場を見てから決めたい  \n• 価格を比較して納得して売りたい  \n• 下取りが思ったより低いので、巻き返したい\n\n買取は比較が効きます。ただし、急かされると条件で負けます。即決を避ける進め方は /guide/selling-without-rush にまとめています。\n\n---\n\n## 迷う人向け：いちばん損しにくい順番\n初心者が一番やりがちなのは「最初に買取を１社だけ行って、そこで決める」こと。比較がないと、金額も条件も判断できません。\n\nおすすめの順番はこれです。\n\n• １）ディーラーで下取り見積もりを取る（基準を作る）  \n• ２）買取を２社比較する（条件を揃える）  \n• ３）総額と条件で決める（入金日、名義変更期限、減額条件）\n\n---\n\n## 比較で必ず揃える条件\n金額だけを見ると失敗します。最低でもここは揃えます。\n\n• 入金日（いつ振り込まれるか）  \n• 名義変更の期限（いつまでに完了するか）  \n• 引き渡し後の減額条件（後から減らされないか）  \n• 税金相当額の扱い（清算か、買取価格に含むか）\n\n４月前後は税金の通知で揉めやすいので、名義変更期限は特に重要です。売り時の考え方は /guide/best-time-to-sell-car と /column/sell-timing-shaken-tax-market で整理しています。\n\n---\n\n## よくある落とし穴\n• 見積もりが口頭だけで、書面がない  \n• 手数料や引き取り費用が後出し  \n• 今日決める前提で話を進められる\n\n淡々と「比較して決めます」でOKです。気まずさより、条件のほうが重いです。\n",
+  "seoTitle": "下取りと買取どっちが得？結論：買取の見積もりを持ってディーラーに行く",
+  "seoDescription": "下取りは手間が少ない、買取は比較できる。迷ったら「買取の上限を作る→ディーラーで総額比較」で決める。書類・付属品・洗車・修理の判断もまとめて整理。",
+  "planPriority": 24,
+  "publishedAt": "2026-01-29T04:10:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-sell-compare",
+    "/guide/hajimete-kuruma-uru-checklist",
+    "/guide/selling-without-rush"
+  ],
+  "primaryQuery": "下取り 買取 どっち",
+  "updateReason": "seo-rewrite-2026-01-31 sell&usedcar cluster: body/sources/clusters/index (tradein-vs-buyback-prep)",
+  "sources": [
+    "https://www.navikuru.jp/kaitori/articles/satei-knowledge/591/",
+    "https://www.nextage.jp/sell_guide/flow/173989/",
+    "https://kaitori.carsensor.net/contents/kaitori/basics/_60074.html",
+    "https://kurumakaitori.kakaku.com/kuruma_kaitori/article01/001.html",
+    "https://web.motormagazine.co.jp/_ct/17482897",
+    "https://kaitori.carview.co.jp/article/knowledge-baikyaku/067/"
+  ]
+}

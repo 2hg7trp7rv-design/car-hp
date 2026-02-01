@@ -1,0 +1,53 @@
+{
+  "id": "col-017",
+  "slug": "import-car-hidden-costs-paperwork",
+  "status": "published",
+  "title": "輸入車の諸費用は見積もりだけでは読めない。地雷になりやすい項目",
+  "summary": "輸入車購入の諸費用は内訳が見えにくい。見積もりで地雷になりやすい項目と、削れる/削れない線引きをまとめます。",
+  "category": "MONEY",
+  "tags": [
+    "輸入車",
+    "諸費用",
+    "税金",
+    "手続き"
+  ],
+  "intentTags": [
+    "import",
+    "money",
+    "paperwork"
+  ],
+  "relatedGuideSlugs": [
+    "hub-import-trouble",
+    "hub-paperwork"
+  ],
+  "targetKeyword": "輸入車 諸費用 隠れ",
+  "searchIntent": "輸入車購入時に、見積もりに出にくい追加費用や手続きのポイントを知りたい。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-02-01",
+  "noindex": false,
+  "body": "## 先に答え：輸入車の諸費用は、見積もりの1行に圧縮されやすい\n輸入車が特別に高いというより、まとめて載せる項目が多く、内訳が見えにくいのが問題です。内訳を開かせれば、削れる所と削れない所がはっきりします。\n\n## 見積もりで見落としやすい地雷項目\n• 納車整備一式（どこまでやるのか曖昧）  \n• 法定点検と車検整備が混ざっている  \n• 保証加入や延長保証が自動で付いている  \n• コーティングや防錆などのセット  \n• 登録関係の手数料が二重に計上されている  \n• 希望ナンバー、ETCセットアップ、車庫証明の代行費用\n\n## 諸費用を聞くときの順番\n1) 法定費用はいくらか（自賠責、重量税、検査手数料など）  \n2) 登録手続きの代行費用はいくらか  \n3) 納車整備で何を交換するのか  \n4) 任意のオプションはいくらか\n\nこの聞き方でOKです。  \n> 法定費用と、手続き費用と、整備費用と、任意オプションを別々に出してください\n\n## 輸入車で後から効いてくる出費\n• タイヤサイズが大きく、交換が高い  \n• ブレーキ部品が高い、納期が長いことがある  \n• 専用診断機が必要で工賃が上がることがある\n\n買う前に、タイヤとブレーキだけは必ず相場を調べておくと失敗しにくいです。\n\n## 書類まわりで詰まらないために\n• 車検証と整備記録簿は必ず確認  \n• 並行輸入車は、灯火類や排ガスなどの適合確認が重要  \n• 保証の範囲と条件を書面で確認\n\n輸入車のトラブル回避は [輸入車の注意点](/guide/hub-import-trouble) にまとめています。  \n書類の整理は [必要書類のまとめ](/guide/hub-paperwork) も参考に。",
+  "seoTitle": "輸入車の諸費用で損しない｜見積もりで見落とす追加費用と書類の注意点",
+  "seoDescription": "輸入車購入で後から効きやすい諸費用や書類の落とし穴を整理。納車整備や保証、登録手数料の内訳の分け方、削れる項目と削れない項目、並行輸入で注意すべき確認ポイントを解説。",
+  "planPriority": 27,
+  "publishedAt": "2026-01-29T11:15:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-import-trouble",
+    "/guide/hub-paperwork"
+  ],
+  "primaryQuery": "輸入車 諸費用 隠れ",
+  "updateReason": "2026-02-01: noindex→index化と全文リライト（一次情報参照・内部リンク・SEO調整）",
+  "sources": [
+    "https://www.jetro.go.jp/ext_images/_Reports/02/2016/214d818c75416639/import10.pdf",
+    "https://www.customs.go.jp/shiryo/qa/01.htm",
+    "https://www.mlit.go.jp/jidosha/jidosha_fr1_000050.html",
+    "https://www.jama.or.jp/industry/trade/tariff/",
+    "https://haisha110.com/cars/car-import-privately/"
+  ]
+}

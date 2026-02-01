@@ -1,0 +1,104 @@
+{
+  "id": "suzuki-cappuccino-ea11r",
+  "slug": "suzuki-cappuccino-ea11r",
+  "name": "Suzuki Cappuccino (EA11R)",
+  "maker": "Suzuki",
+  "releaseYear": 1991,
+  "difficulty": "intermediate",
+  "bodyType": "roadster",
+  "segment": "軽スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "Cappuccino (EA11R)",
+  "summary": "FRで学べる軽。荷重移動が分かりやすく、軽い車の“素直さ”が一番出る。",
+  "summaryLong": "カプチーノは、軽スポーツの中でも“素直さ”が魅力です。FRの荷重移動が分かりやすく、軽さがそのまま操作へ返ってくる。\n\nいま買う目線では、錆と改造の整合が鍵です。ターボゆえ熱の履歴がある個体も多い。冷却・配管・燃料系の手当てが揃っているか。\n\n良個体は、64馬力でも思いのほか速いのではなく、思いのほか“気持ちいい”。そこが価値です。",
+  "heroImage": "/images/cars/suzuki-cappuccino-ea11r-hero.jpg",
+  "mainImage": "/images/cars/suzuki-cappuccino-ea11r-main.jpg",
+  "imageUrl": "/images/cars/suzuki-cappuccino-ea11r-hero.jpg",
+  "gallery": [
+    "/images/cars/suzuki-cappuccino-ea11r-front.jpg",
+    "/images/cars/suzuki-cappuccino-ea11r-side.jpg",
+    "/images/cars/suzuki-cappuccino-ea11r-interior.jpg"
+  ],
+  "engine": "Front Inline-3 0.66 Turbo (F6A)",
+  "powerPs": 64,
+  "torqueNm": 85,
+  "transmission": "5MT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 11〜17 km/L",
+  "priceNew": "当時: 140万〜200万円台（仕様差）",
+  "priceUsed": "120万〜420万円（相場変動）",
+  "strengths": [
+    "FRの素直さで、操る楽しさが分かりやすい。",
+    "軽さがそのまま反応になり、学べるスポーツ。",
+    "オープンとしての開放感が強い。",
+    "整った個体は日常速度でも濃い。"
+  ],
+  "weaknesses": [
+    "錆とボディ状態で価値が大きく割れる。",
+    "ターボ車ゆえ冷却・配管の履歴が重要。",
+    "オープン機構とシールの経年がストレスになりやすい。",
+    "改造個体の整合が崩れるとトラブルが続く。"
+  ],
+  "troubleTrends": [
+    "下回りの錆（特にサイド・リア周り）は最重要です。",
+    "冷却系とホース、ターボ周りの滲みは要チェックです。",
+    "幌やルーフパネル周辺の雨漏り痕は見逃しやすいです。",
+    "後付け配線や追加メーターが雑だと電装トラブルの温床になります。"
+  ],
+  "costImpression": "FRの素性は強いが、錆と熱履歴で難易度が跳ねる。ベースの真っ直ぐさが正義。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "column-kei-sports-packaging-why"
+  ],
+  "relatedGuideSlugs": [
+    "guide-buy-kei-sports-checklist"
+  ],
+  "relatedCarSlugs": [
+    "honda-beat-pp1",
+    "autozam-az-1-pg6sa"
+  ],
+  "tags": [
+    "Suzuki",
+    "Cappuccino",
+    "EA11R",
+    "kei",
+    "64ps",
+    "FR",
+    "turbo"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-kei-sports-64ps-heritage"
+  ],
+  "intentTags": [
+    "kei",
+    "lightweight",
+    "FR",
+    "1990s",
+    "heritage"
+  ],
+  "purchasePriceSafe": "安全ライン：190〜330万円前後（錆と熱履歴重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間23〜48万円"
+  },
+  "maintenanceCostYenPerYear": 340000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Suzuki Suzuki Cappuccino (EA11R)",
+  "makerKey": "suzuki",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/suzuki",
+  "relatedClusterIds": [],
+  "primaryQuery": "Suzuki Cappuccino (EA11R)",
+  "updateReason": "initial-import",
+  "sources": []
+}

@@ -1,0 +1,59 @@
+{
+  "slug": "overheat-coolant-leak-guide",
+  "title": "オーバーヒートと冷却水漏れの初動｜走る前にやるべき安全手順",
+  "lead": "オーバーヒートは無理して走るほど高くつく。冷却水漏れのサインと初動、安全な応急の考え方を整理。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "TROUBLE",
+  "tags": [
+    "オーバーヒート",
+    "冷却水",
+    "警告灯",
+    "異臭"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-31",
+  "internalLinks": [
+    "road-service-choice-guide",
+    "engine-check-light-first-response",
+    "oil-leak-first-response"
+  ],
+  "body": "オーバーヒートは、無理して走るほどダメージが大きくなります。冷却水漏れが絡むとエンジンに直撃するので、初動はスピード勝負です。\n\nトラブル系の全体像はここ。\n[輸入車トラブルHUB](/guide/hub-import-trouble)\n\n## 結論\n•安全な場所に停車して、まずエンジンを冷ます  \n•熱い状態でラジエターキャップを開けない  \n•冷却水が減っている もしくは漏れているなら無理に走らない  \n•迷うならロードサービスを呼ぶ。結果的に安く済む\n\n## よくあるサイン\n•水温計が高い位置に張り付く  \n•警告灯が点灯  \n•ボンネット周辺から蒸気 甘い匂いがする  \n•冷却水が地面に垂れている\n\n## 現場の初動\n•ハザードを点けて安全な場所へ退避  \n•エンジンを止めて、ボンネットを開けて放熱する 触れる位置だけ  \n•しばらく待ってから状況確認  \n•蒸気が強い 漏れが明らか→走行は避けてロードサービス\n\n関連: [ロードサービスの選び方](/guide/road-service-choice-guide)\n\n## 冷却水の点検と応急の考え方\n冷却水が不足している場合、水道水やミネラルウォーターで代用できるケースがあります。ただし硬水は緊急措置として考え、早めに適切な冷却水に戻す前提です。漏れや白濁がある場合は、内部損傷の可能性があるため無理をしないほうが安全です。\n\n## 走らないほうがいいケース\n•冷却水が明らかに漏れている  \n•冷却水が白濁している オイル混入の疑い  \n•エンジン警告灯も同時に出ている  \n•停車後すぐにまた水温が上がる\n\n関連: [エンジン警告灯の初動](/guide/engine-check-light-first-response)\n\n## 次に読む\n•[オイル漏れの初動](/guide/oil-leak-first-response)  \n•[ロードサービスの選び方](/guide/road-service-choice-guide)",
+  "monetizeKey": "insurance_after_accident",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "road-service-choice-guide",
+    "engine-check-light-first-response",
+    "oil-leak-first-response"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "trouble"
+  ],
+  "seoTitle": "オーバーヒート 冷却水漏れの初動｜走る前にやるべき安全手順",
+  "seoDescription": "オーバーヒートや冷却水漏れのサインと初動を整理。停車 放熱 ラジエターキャップを開けない等、安全に対応する手順と、ロードサービス判断、走らないほうがいいケース。",
+  "summary": "オーバーヒートや冷却水漏れの初動をチェックリスト化。安全確保、冷却、走らない判断、ロードサービスの使い方まで整理。",
+  "status": "published",
+  "id": "guide:overheat-coolant-leak-guide",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-import-trouble",
+  "relatedClusterIds": [
+    "/guide/hub-import-trouble",
+    "/guide/road-service-choice-guide",
+    "/guide/engine-check-light-first-response"
+  ],
+  "primaryQuery": "オーバーヒート/冷却水漏れの初動｜絶対にやってはいけないこと",
+  "updateReason": "seo-rewrite-2026-01-31 hub-import-trouble pillar upgrade",
+  "sources": [
+    "https://jaf.or.jp/common/car-trouble-qa/emergency/overheat",
+    "https://jaf.or.jp/common/kuruma-qa/category-trouble/subcategory-accident/faq304",
+    "https://jafmate.jp/car/safety_tech/article/overheat_20250128.html",
+    "https://manual.toyota.jp/toyota/yaris/2311/hev/ja_JP/contents/service/overheat.html",
+    "https://jaf.or.jp/common/car-trouble-qa/emergency/leak-liquid"
+  ]
+}

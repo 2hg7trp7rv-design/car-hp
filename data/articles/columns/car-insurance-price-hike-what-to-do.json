@@ -1,0 +1,57 @@
+{
+  "id": "col-008",
+  "slug": "car-insurance-price-hike-what-to-do",
+  "status": "published",
+  "title": "自動車保険が上がる年こそ、やるべきは「見積もり比較」より補償設計",
+  "summary": "自動車保険の値上げ局面でも損しない見直し手順。補償を固定して比較し、削っていい所と危ない所を整理します。",
+  "category": "MONEY",
+  "tags": [
+    "自動車保険",
+    "値上げ",
+    "補償",
+    "見直し"
+  ],
+  "intentTags": [
+    "insurance",
+    "money",
+    "decision"
+  ],
+  "relatedGuideSlugs": [
+    "insurance",
+    "hub-loan",
+    "maintenance-cost-simulation"
+  ],
+  "targetKeyword": "自動車保険 値上げ 対策",
+  "searchIntent": "自動車保険の保険料が上がった人が、補償を削りすぎずに保険料を抑える方法を知りたい。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-02-01",
+  "noindex": false,
+  "body": "## 先に答え：保険料が上がったら、比較の前に補償を固定する\n保険料が上がったと感じたとき、いきなり一括見積もりで最安だけを追うと、補償が削られたプランに誘導されやすいです。先にやるべきは、今の契約を材料に必要な補償を決め、同じ条件で比較できる状態に整えること。ムダと穴の両方が減ります。\n\n## まず確認する3つ\n• 対人と対物の補償額  \n基本は無制限に寄せる。ここを削って安くするのは危険です。  \n• 人身傷害の金額と適用範囲  \n自分と同乗者のケガに備える部分。生活を守る核です。  \n• 車両保険を付けるべき状態か  \nローン残がある、仕事や生活に車が必須など、修理費を自腹で払えないなら要検討。\n\n## 節約しやすいのに後悔しにくい順番\n### 1) 運転者条件と年齢条件を現実に合わせる\n家族が乗らなくなったのに条件が広いままだと、気づかないまま損します。\n\n### 2) 走行距離区分と使用目的を見直す\n通勤が減った、リモートが増えた、週末だけになった。こういう変化は保険料に効きやすいです。\n\n### 3) 車両保険は付け方を整理する\n新車や高年式、ローン残があるなら、外すより免責金額でコントロールする方が安全なことが多いです。  \n年式が古く、壊れたら修理より乗り換えが現実的なら、車両保険を外す選択肢も出ます。\n\n### 4) 特約の重複を消す\n同居家族の別契約やクレカ付帯で、弁護士費用特約などが重複することがあります。必要な方にだけ残す。\n\n## 逆に、削ると危ないところ\n• 対人と対物の補償を削る  \n• 人身傷害を極端に下げる  \n• ローンが残っているのに車両保険を切る\n\n## 見積もりを取るときのコツ\n• まず補償を一枚のメモに固定する  \n• 同じ条件で2〜3社に見積もりを取る  \n• 安い理由が補償差なら、比較の意味がない\n\n## 迷ったらここから\n補償の全体像と、削ると危険なポイントは [自動車保険の選び方](/guide/insurance) にまとめています。  \nローン残がある人は [ローンの注意点](/guide/hub-loan) も先に確認すると早いです。",
+  "seoTitle": "自動車保険が値上げでも損しない見直し手順｜補償設計と比較のコツ",
+  "seoDescription": "自動車保険の保険料が上がったときに、安さだけで選んで失敗しないための見直し手順。補償を固定して比較するコツ、削っていい所と危ない所、車両保険の判断ポイントを整理。",
+  "planPriority": 1,
+  "publishedAt": "2026-01-27T12:30:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/insurance",
+    "/guide/hub-loan",
+    "/guide/maintenance-cost-simulation"
+  ],
+  "primaryQuery": "自動車保険 値上げ 対策",
+  "updateReason": "2026-02-01: noindex→index化と全文リライト（一次情報参照・内部リンク・SEO調整）",
+  "sources": [
+    "https://www.giroj.or.jp/ratemaking/automobile/2024/06/202406_announcement.html",
+    "https://www.giroj.or.jp/ratemaking/automobile/2024/06/pdf/202406_announcement.pdf",
+    "https://www.tokiomarine-nichido.co.jp/company/release/pdf/250616_01.pdf",
+    "https://www.ms-ins.com/company/news/pdf/2025/0612_1.pdf",
+    "https://www.edsp.co.jp/news/2025/250915.html",
+    "https://faq.sonysonpo.co.jp/faq_detail.html?id=3001121",
+    "https://jaf-training.jp/column/2025-11-18-124314/"
+  ]
+}

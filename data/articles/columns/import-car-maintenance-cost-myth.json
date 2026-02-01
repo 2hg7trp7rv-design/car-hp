@@ -1,0 +1,57 @@
+{
+  "id": "col-016",
+  "slug": "import-car-maintenance-cost-myth",
+  "status": "published",
+  "title": "輸入車の維持費が高いと言われる理由。部品と工賃が重なるとき",
+  "summary": "輸入車の維持費が高くなる典型パターンと、買う前に確認すべき消耗品相場。予算を守る現実的な方法を整理。",
+  "category": "MONEY",
+  "tags": [
+    "輸入車",
+    "維持費",
+    "修理",
+    "工賃",
+    "部品"
+  ],
+  "intentTags": [
+    "import",
+    "maintenance",
+    "decision"
+  ],
+  "relatedGuideSlugs": [
+    "hub-import-trouble",
+    "maintenance",
+    "maintenance-cost-simulation"
+  ],
+  "targetKeyword": "輸入車 維持費 高い",
+  "searchIntent": "輸入車の維持費が高いと言われる理由や、実際の費用感、抑える方法を知りたい。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-02-01",
+  "noindex": false,
+  "body": "## 先に答え：輸入車が高くなるのは、部品代と工賃が同時に来たとき\n輸入車だから必ず高い、ではありません。高くなるのはパターンがあります。そこを避ければ、維持費は読みやすくなります。\n\n## 維持費が跳ねる3つの原因\n### 1) 消耗品の単価が高い\nタイヤ、ブレーキ、バッテリー。サイズや仕様で差が出ます。\n\n### 2) 部品の取り寄せで工期が伸びる\n待っている間の代車費用や、複数回入庫が地味に痛いです。\n\n### 3) 専門整備が必要で工賃が上がる\n診断機、特殊工具、作業手順が増えると工賃は上がります。\n\n## 買う前に必ず見るチェックリスト\n• タイヤサイズと銘柄の相場  \n• ブレーキパッド、ローターの相場  \n• バッテリーの型式（AGMなど）と価格  \n• 走行距離より、整備記録の有無  \n• よくある故障と対策が分かっている車種か\n\n## 維持費を抑える現実的な方法\n• 売れている車種を選ぶ（部品が流通する）  \n• 正規ディーラーと専門工場、両方の見積もりが取れる環境にする  \n• 純正にこだわりすぎず、OEMや優良部品の選択肢を持つ  \n• 予防整備はやる。壊れてからは高い\n\n## 不安なら、数字で把握する\n維持費を数字で把握するなら [維持費シミュレーション](/guide/maintenance-cost-simulation) を使うと早いです。  \n輸入車の購入判断は [輸入車の注意点](/guide/hub-import-trouble) も合わせてどうぞ。",
+  "seoTitle": "輸入車の維持費は本当に高い？高くなる原因と買う前のチェックリスト",
+  "seoDescription": "輸入車の維持費が高くなる典型パターンは部品代と工賃が同時に来ること。タイヤ・ブレーキ・バッテリー相場の見方、部品納期や診断機で増える工賃、維持費を抑える現実的な方法を解説。",
+  "planPriority": 26,
+  "publishedAt": "2026-01-29T05:10:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-import-trouble",
+    "/guide/maintenance",
+    "/guide/maintenance-cost-simulation"
+  ],
+  "primaryQuery": "輸入車 維持費 高い",
+  "updateReason": "2026-02-01: noindex→index化と全文リライト（一次情報参照・内部リンク・SEO調整）",
+  "sources": [
+    "https://www.nextage.jp/syaken_guide/cost/214866/",
+    "https://www.webcartop.jp/2018/06/243933/",
+    "https://yanase-audi.com/column/knowledge/imported-car-repair-why-expensive.html",
+    "https://gzox.com/column/foregin-car/",
+    "https://www.goo-net.com/kaitori/kaitori-satei/izihi-gimon/2534/",
+    "https://yanase-audi.com/column/knowledge/imported-car-japanese-car-running-cost.html"
+  ]
+}

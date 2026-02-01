@@ -1,0 +1,99 @@
+{
+  "id": "honda-integra-type-r-dc5",
+  "slug": "honda-integra-type-r-dc5",
+  "name": "Honda Integra Type R (DC5)",
+  "maker": "Honda",
+  "releaseYear": 2001,
+  "difficulty": "advanced",
+  "bodyType": "クーペ",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "Type R (DC5)",
+  "summary": "DC2の延長ではなく、剛性と制御で作り直したType R。足の整合が走りを決める。",
+  "summaryLong": "DC5インテグラType Rは、形式の議論を超えて“整合”で走る車です。剛性の土台、ストラット前提のジオメトリ、回して使うK20A。\n\n中古では仕様より履歴。足のブッシュとアライメント、冷却と油脂、配線の後付け品質。ここが揃う個体は、普通の速度域でも線がきれいになります。\n\n回して気持ちいいのは、整っている個体だけ。だから選び方が価値になります。",
+  "heroImage": "/images/cars/honda-integra-type-r-dc5-hero.jpg",
+  "mainImage": "/images/cars/honda-integra-type-r-dc5-hero.jpg",
+  "imageUrl": "/images/cars/honda-integra-type-r-dc5-hero.jpg",
+  "gallery": [
+    "/images/cars/honda-integra-type-r-dc5-front.jpg",
+    "/images/cars/honda-integra-type-r-dc5-side.jpg",
+    "/images/cars/honda-integra-type-r-dc5-interior.jpg"
+  ],
+  "engine": "Front 2.0 NA (K20A i-VTEC)",
+  "powerPs": 220,
+  "torqueNm": 206,
+  "transmission": "6MT",
+  "drive": "FF",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜12 km/L",
+  "priceNew": "当時: 200万〜450万円台（仕様差）",
+  "priceUsed": "200万〜900万円（相場変動）",
+  "strengths": [
+    "剛性の土台が強く、整合が揃うと線がきれい。",
+    "K20Aは回転で走れる厚みがある。",
+    "情報量が多く、改善の道筋がある。"
+  ],
+  "weaknesses": [
+    "個体差が足回りに出やすい。",
+    "改造個体が多く、整合が崩れると症状が増える。",
+    "熱と油脂管理を怠ると一気に調子を落とす。"
+  ],
+  "troubleTrends": [
+    "足回りブッシュとアライメント履歴は要確認です。",
+    "配線の後付け品質が雑だと電装トラブルが出やすいです。",
+    "冷却系の更新履歴が薄い個体は避けたいです。"
+  ],
+  "costImpression": "安い個体ほど“足と配線”で戻しが出やすい。履歴の静かな個体を拾うのが結局安い。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "technical-double-wishbone-to-strut-honda"
+  ],
+  "relatedGuideSlugs": [
+    "guide-buy-used-honda-integra-type-r-dc5"
+  ],
+  "relatedCarSlugs": [
+    "honda-civic-type-r-ep3",
+    "honda-integra-type-r-dc2"
+  ],
+  "tags": [
+    "Honda",
+    "Integra",
+    "DC5",
+    "Type R",
+    "K20A",
+    "FF"
+  ],
+  "relatedHeritageSlugs": [
+    "honda-integra-type-r-dc5-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "na",
+    "type-r",
+    "driving-feel"
+  ],
+  "purchasePriceSafe": "安全ライン：250〜520万円前後（整合重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間30〜85万円"
+  },
+  "maintenanceCostYenPerYear": 520000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda Honda Integra Type R (DC5)",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Honda Integra Type R (DC5)",
+  "updateReason": "initial-import",
+  "sources": []
+}

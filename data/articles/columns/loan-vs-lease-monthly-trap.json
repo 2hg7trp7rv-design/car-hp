@@ -1,0 +1,55 @@
+{
+  "id": "col-007",
+  "slug": "loan-vs-lease-monthly-trap",
+  "status": "published",
+  "title": "ローンとリース、月額の安さで選ぶと高くつく",
+  "summary": "ローンとリースは月額だけで比較すると危険。総支払額や条件を揃えて判断するためのチェック項目をまとめます。",
+  "category": "MONEY",
+  "tags": [
+    "ローン",
+    "リース",
+    "月額",
+    "比較"
+  ],
+  "intentTags": [
+    "loan",
+    "lease",
+    "decision"
+  ],
+  "relatedGuideSlugs": [
+    "hub-loan",
+    "lease"
+  ],
+  "targetKeyword": "カーリース ローン 比較",
+  "searchIntent": "カーリースとローンを比較して、どちらが自分に合うか知りたい。月額以外の注意点も知りたい。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-02-01",
+  "noindex": false,
+  "body": "## 先に答え：月額だけで比べると、比較しているものが違う\nローンは買う仕組み、リースは借りる仕組み。月額が安いのは当たり前で、安さの理由を分解しないと損します。\n\n## よくある月額トリック\n• ボーナス払いが入っている  \n• 頭金が大きい  \n• 走行距離制限が厳しい  \n• 契約終了時に追加精算がある  \n• 途中解約がほぼできない\n\n## 比較はこの5項目で統一する\n• 総支払額（手数料込み）  \n• 契約期間が終わったとき、車は自分のものか  \n• 走行距離と超過料金  \n• 傷や改造の扱い（原状回復の基準）  \n• 中途解約の条件\n\n## どっちが向くかの目安\n### ローンが向く\n• 長く乗る、走行距離が多い  \n• カスタムしたい  \n• 最終的に車を自分の資産として残したい\n\n### リースが向く\n• 数年で乗り換える前提  \n• 毎月の支払いと維持費を平準化したい  \n• 走行距離が読める\n\n## 残価設定ローンも同じ落とし穴がある\n月額を下げる仕組みなので、最終回の支払い、返却条件、査定基準を必ず確認。\n\nローンの考え方は [ローンの基本](/guide/hub-loan) にまとめています。  \nリースの仕組みは [カーリースの選び方](/guide/lease) も参考に。",
+  "seoTitle": "ローンとリースの違い｜月額の安さに騙されない比較ポイント5つ",
+  "seoDescription": "ローンとカーリースは仕組みが違うので月額だけで比較すると損します。総支払額、走行距離制限、原状回復、途中解約、契約終了時の扱いを揃えて判断するチェックリストを解説。",
+  "planPriority": 7,
+  "publishedAt": "2026-01-27T16:00:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-loan",
+    "/guide/lease"
+  ],
+  "primaryQuery": "カーリース ローン 比較",
+  "updateReason": "2026-02-01: noindex→index化と全文リライト（一次情報参照・内部リンク・SEO調整）",
+  "sources": [
+    "https://kinto-jp.com/magazine/20211110-2/",
+    "https://kinto-jp.com/magazine/k20241016-1/",
+    "https://www.cosmo-mycar.com/column/carlease/about-carlease/lease-owns/",
+    "https://carmo-kun.jp/column/newcar/lease-residual-value-setting-credit/",
+    "https://carlease-online.jp/column/carloan-lease-hikaku/",
+    "https://www.carlease-online.jp/story/20220503.html",
+    "https://bank.82group.jp/column-car/loan-lease.html"
+  ]
+}

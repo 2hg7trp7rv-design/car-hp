@@ -1,0 +1,60 @@
+{
+  "slug": "engine-check-light-first-response",
+  "title": "エンジン警告灯が点いたらまず何する？点灯 点滅の初動チェック",
+  "lead": "エンジン警告灯は放置しない。点灯 点滅と症状で走るか止めるかを判断し、最短で安全に片付ける初動チェック。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "TROUBLE",
+  "tags": [
+    "警告灯",
+    "チェックエンジン",
+    "トラブル",
+    "故障"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-31",
+  "internalLinks": [
+    "road-service-choice-guide",
+    "overheat-coolant-leak-guide",
+    "oil-leak-first-response"
+  ],
+  "body": "エンジン警告灯は、点いた時点で放置しないほうがいいです。原因は一つではなく、走れるように見えても重大トラブルに繋がることがあります。ここでは現場で迷わない初動だけまとめます。\n\nトラブル系の全体像はここ。\n[輸入車トラブルHUB](/guide/hub-import-trouble)\n\n## 結論\n•まず安全確保。異音 振動 パワー低下があるなら走らない  \n•警告灯の点灯 点滅だけで原因は特定できない。点検と診断が必要  \n•状況によっては走行自体が推奨されない。迷うならロードサービスが早い\n\n## すぐやるチェック\n•点灯か点滅かを見る。点滅は緊急度が上がりやすい  \n•振動 異音 排気の匂い パワー低下があるか  \n•他の警告灯が同時に点いていないか 特に赤系は優先\n\n## 点灯だけで走れる感じがするとき\n•高速走行と急加速を避ける  \n•近場の整備工場かディーラーへ最短で向かう  \n•途中で違和感が出たら無理しないで停車する\n\n## 点滅しているとき 震えるとき\n点滅や異常振動がある場合は、触媒損傷などに繋がる可能性があります。安全な場所に停車し、ロードサービスを呼ぶのが現実的です。\n関連: [ロードサービスの選び方](/guide/road-service-choice-guide)\n\n## 走るのをやめるべきサイン\n•エンジンが明らかに震える  \n•アクセルを踏んでも加速しない  \n•焦げた匂いがする  \n•水温警告など別の警告も出ている\n\n関連: [オーバーヒートと冷却水漏れの初動](/guide/overheat-coolant-leak-guide)  \n関連: [オイル漏れの初動](/guide/oil-leak-first-response)\n\n## その後に必要なこと\n整備工場では診断機でエラーを確認し、原因に合わせて修理します。警告灯が消えても再発することがあるので、履歴は点検してもらうほうが安全です。",
+  "monetizeKey": "goods_jump_starter",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "road-service-choice-guide",
+    "overheat-coolant-leak-guide",
+    "oil-leak-first-response"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "trouble",
+    "warning"
+  ],
+  "seoTitle": "エンジン警告灯が点いたら初動チェック｜点灯 点滅でやることが変わる",
+  "seoDescription": "エンジン警告灯の点灯 点滅時の安全な初動を整理。走行をやめるべきサイン、ロードサービスを呼ぶ判断、整備工場での診断の流れを解説。",
+  "summary": "エンジン警告灯の点灯 点滅時にやるべき初動をチェックリスト化。走行中止の判断とロードサービス、点検の流れまで整理。",
+  "status": "published",
+  "id": "guide:engine-check-light-first-response",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-import-trouble",
+  "relatedClusterIds": [
+    "/guide/hub-import-trouble",
+    "/guide/road-service-choice-guide",
+    "/guide/overheat-coolant-leak-guide"
+  ],
+  "primaryQuery": "エンジン警告灯が点いたらどうする？走れる/止める判断と最初の手順",
+  "updateReason": "seo-rewrite-2026-01-31 hub-import-trouble pillar upgrade",
+  "sources": [
+    "https://jaf.or.jp/common/car-trouble-qa/warning-lamp/",
+    "https://jaf.or.jp/common/car-trouble-qa/warning-lamp/yellow",
+    "https://jaf.or.jp/common/kuruma-qa/category-trouble/subcategory-accident/faq187",
+    "https://www.mlit.go.jp/jidosha/jidosha_tk3_000087.html",
+    "https://manual.toyota.jp/toyota/yaris/2311/hev/ja_JP/contents/service/warning.html"
+  ]
+}

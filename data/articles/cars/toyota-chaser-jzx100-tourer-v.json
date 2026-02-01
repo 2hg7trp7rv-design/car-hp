@@ -1,0 +1,103 @@
+{
+  "id": "toyota-chaser-jzx100-tourer-v",
+  "slug": "toyota-chaser-jzx100-tourer-v",
+  "name": "Toyota Chaser (JZX100) Tourer V",
+  "maker": "Toyota",
+  "releaseYear": 1998,
+  "difficulty": "advanced",
+  "bodyType": "sedan",
+  "segment": "スポーツセダン",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "JZX100 Tourer V",
+  "summary": "普通の顔で速い。1JZの余裕とFRセダンの器で、“毎日強い”が成立する。",
+  "summaryLong": "JZX100ツアラーVは、セダンの黄金期を代表する“日常性能”の塊です。1JZの余裕、FRのつながり、リンク足。整うと速さが落ち着きとして出る。\n\n中古では、ボディの錆/修復、足回りブッシュとアライメント、冷却と補機、配線の後付け品質が価値を決めます。改造車も多いからこそ、燃調・冷却・足の思想が揃っている個体が強い。\n\n安い個体を戻すより、履歴の静かな個体を拾った方が結果的に安いタイプ。",
+  "heroImage": "/images/cars/toyota-chaser-jzx100-tourer-v-hero.jpg",
+  "mainImage": "/images/cars/toyota-chaser-jzx100-tourer-v-main.jpg",
+  "imageUrl": "/images/cars/toyota-chaser-jzx100-tourer-v-hero.jpg",
+  "gallery": [
+    "/images/cars/toyota-chaser-jzx100-tourer-v-front.jpg",
+    "/images/cars/toyota-chaser-jzx100-tourer-v-side.jpg",
+    "/images/cars/toyota-chaser-jzx100-tourer-v-interior.jpg"
+  ],
+  "engine": "Front Inline-6 2.5 Turbo (1JZ-GTE)",
+  "powerPs": 280,
+  "torqueNm": 378,
+  "transmission": "5MT/4AT（仕様差）",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜11 km/L",
+  "priceNew": "当時: 250万〜450万円台（仕様差）",
+  "priceUsed": "220万〜900万円（相場変動）",
+  "strengths": [
+    "1JZの余裕で日常域が強い。",
+    "FR×リンク足で線がきれい。修正舵が減る。",
+    "情報量が多く、改善の道筋がある。",
+    "セダンとして使え、走りの濃度もある。"
+  ],
+  "weaknesses": [
+    "錆と修復で価値が大きく割れる。",
+    "改造個体が多く、整合が崩れると症状が追いにくい。",
+    "冷却・補機の経年で差が出やすい。",
+    "AT個体は状態で評価が分かれやすい。"
+  ],
+  "troubleTrends": [
+    "下回り錆（特にサブフレーム周り）は要注意です。",
+    "冷却系（ラジエーター/ホース/ファン）更新履歴は確認したいです。",
+    "追加配線（メーター/制御）の処理が雑だと電装トラブルの温床です。",
+    "足回りブッシュのへたりは乗り味と直進性に直結します。"
+  ],
+  "costImpression": "履歴の静かな個体ほど“普通に速い”。戻すより探す方が早いことが多い。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "column-fr-sedan-why-it-felt-right"
+  ],
+  "relatedGuideSlugs": [
+    "guide-buy-fr-turbo-sedan-checklist"
+  ],
+  "relatedCarSlugs": [
+    "nissan-skyline-er34-25gt-turbo-sedan",
+    "nissan-laurel-c35-club-s-turbo"
+  ],
+  "tags": [
+    "Toyota",
+    "Chaser",
+    "JZX100",
+    "1JZ-GTE",
+    "FR",
+    "sports-sedan"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-fr-sedan-last-golden-age-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "sedan",
+    "turbo",
+    "advanced",
+    "1990s"
+  ],
+  "purchasePriceSafe": "安全ライン：380〜650万円前後（錆と整合重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間45〜110万円"
+  },
+  "maintenanceCostYenPerYear": 760000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Toyota Toyota Chaser (JZX100) Tourer V",
+  "makerKey": "toyota",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/toyota",
+  "relatedClusterIds": [],
+  "primaryQuery": "Toyota Chaser (JZX100) Tourer V",
+  "updateReason": "initial-import",
+  "sources": []
+}

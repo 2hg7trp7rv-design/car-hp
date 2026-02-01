@@ -1,0 +1,91 @@
+{
+  "id": "mazda-rx7-sa22c",
+  "slug": "mazda-rx7-sa22c",
+  "name": "RX-7 SA22C",
+  "maker": "Mazda",
+  "releaseYear": 1978,
+  "difficulty": "advanced",
+  "bodyType": "sports-coupe",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "mazda-rx7-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "RX-7 SA22C",
+  "summary": "ロータリースポーツの入口。軽さと回転感で“違う快楽”を提示した。",
+  "summaryLong": "RX-7 SA22Cは、1978年に登場したMazdaのsports-coupeで、FRとFront Rotaryを軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+  "heroImage": "/images/cars/mazda-rx7-sa22c-hero.jpg",
+  "mainImage": "/images/cars/mazda-rx7-sa22c-main.jpg",
+  "imageUrl": "/images/cars/mazda-rx7-sa22c-main.jpg",
+  "gallery": [
+    "/images/cars/mazda-rx7-sa22c-front.jpg",
+    "/images/cars/mazda-rx7-sa22c-side.jpg",
+    "/images/cars/mazda-rx7-sa22c-interior.jpg"
+  ],
+  "engine": "Front Rotary",
+  "powerPs": 105,
+  "torqueNm": 147,
+  "transmission": "5MT / 3AT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 9〜13 km/L",
+  "priceNew": "当時：150万〜250万円（参考）",
+  "priceUsed": "250万〜900万円（相場変動）",
+  "strengths": [
+    "軽量ボディと低重心でハンドリングが鋭い",
+    "ロータリー特有の伸びとサウンド",
+    "デザインが色褪せず、所有満足度が高い",
+    "専門店文化があり、リフレッシュの道筋が立てやすい"
+  ],
+  "weaknesses": [
+    "熱管理がシビアで、劣化するとトラブルに直結しやすい",
+    "燃費は期待できない",
+    "個体差が大きく、購入時点検が重要"
+  ],
+  "troubleTrends": [
+    "冷却系/熱害（ラジエター・水路）",
+    "点火系（プラグ・コイル）",
+    "ターボ周り/ホース類の劣化"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：900〜2000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [],
+  "tags": [
+    "Mazda",
+    "sports-coupe",
+    "クラシックスポーツ",
+    "FR",
+    "5MT / 3AT",
+    "Front Rotary",
+    "ネオクラシック",
+    "ロータリー"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：500〜1200万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間70〜150万円"
+  },
+  "priceUsedYenRange": "250万〜900万円（相場変動）",
+  "maintenanceCostYenPerYear": 450000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mazda RX-7 SA22C",
+  "makerKey": "mazda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/mazda",
+  "relatedClusterIds": [],
+  "primaryQuery": "RX-7 SA22C",
+  "updateReason": "initial-import",
+  "sources": []
+}

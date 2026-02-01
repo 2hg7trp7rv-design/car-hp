@@ -1,0 +1,92 @@
+{
+  "id": "nissan-silvia-s15",
+  "slug": "nissan-silvia-s15",
+  "name": "Nissan Silvia (S15)",
+  "maker": "Nissan",
+  "releaseYear": 1999,
+  "difficulty": "advanced",
+  "bodyType": "クーペ",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "S15",
+  "summary": "FRの“教科書”。姿勢とターボの厚みで、走り方が分かりやすい。",
+  "summaryLong": "S15シルビアは、FRで走りを覚えるのに最適な性格を持つ一台です。SR20DETの厚みと、姿勢の作りやすさ。\n\n中古は改造個体が多いので、足・冷却・燃料・配線の整合が価値を決めます。\n\nNissan Silvia (S15)は「スポーツ×クーペ」の文脈で語られることが多い一台です。中古では走行距離より、整備記録と仕様の透明性を優先。初期費用を抑えすぎると後追い整備で総額が膨らみやすいので、“整った個体を高く買う”ほうが安全です。",
+  "heroImage": "/images/cars/nissan-silvia-s15-hero.jpg",
+  "mainImage": "/images/cars/nissan-silvia-s15-hero.jpg",
+  "imageUrl": "/images/cars/nissan-silvia-s15-hero.jpg",
+  "gallery": [
+    "/images/cars/nissan-silvia-s15-front.jpg",
+    "/images/cars/nissan-silvia-s15-side.jpg",
+    "/images/cars/nissan-silvia-s15-interior.jpg"
+  ],
+  "engine": "Front 2.0 Turbo (SR20DET)",
+  "powerPs": 250,
+  "torqueNm": 275,
+  "transmission": "6MT/4AT（仕様差）",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜12 km/L",
+  "priceNew": "当時: 200万〜450万円台（仕様差）",
+  "priceUsed": "200万〜900万円（相場変動）",
+  "strengths": [
+    "FRの姿勢が作りやすく、学びが多い。",
+    "部品/情報が多い。"
+  ],
+  "weaknesses": [
+    "ドリフト用途の個体が多く、消耗が進んでいることがある。",
+    "錆と骨格ダメージで価値が割れる。"
+  ],
+  "troubleTrends": [
+    "足回りの消耗とアライメントは必ず確認したいです。",
+    "冷却・燃料系の整合が崩れた個体はトラブルが出ます。",
+    "配線後付けが雑だと電装が不安定になります。"
+  ],
+  "costImpression": "“仕様”より“整合”。整った個体は静かに速い。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [
+    "honda-civic-type-r-ek9"
+  ],
+  "tags": [
+    "Nissan",
+    "Silvia",
+    "S15",
+    "SR20DET",
+    "FR",
+    "turbo"
+  ],
+  "relatedHeritageSlugs": [
+    "nissan-silvia-s15-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "fr",
+    "turbo",
+    "driving"
+  ],
+  "purchasePriceSafe": "安全ライン：420〜800万円前後（骨格と整合重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間40〜110万円"
+  },
+  "maintenanceCostYenPerYear": 780000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Nissan Silvia (S15)",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Nissan Silvia (S15)",
+  "updateReason": "initial-import",
+  "sources": []
+}

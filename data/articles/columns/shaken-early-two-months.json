@@ -1,0 +1,60 @@
+{
+  "id": "col-011",
+  "slug": "shaken-early-two-months",
+  "status": "published",
+  "title": "車検は満了2か月前までに受けても損しない。ギリギリ派ほど知るべき",
+  "summary": "車検は満了日の2か月前から受けても損しない。混雑回避の段取りと勘違いしやすいポイントをまとめます。",
+  "category": "MAINTENANCE",
+  "tags": [
+    "車検",
+    "継続検査",
+    "2か月前",
+    "予約",
+    "自賠責",
+    "誤解",
+    "段取り"
+  ],
+  "intentTags": [
+    "shaken",
+    "maintenance",
+    "decision"
+  ],
+  "relatedGuideSlugs": [
+    "hub-shaken",
+    "hub-paperwork",
+    "maintenance"
+  ],
+  "targetKeyword": "車検 2ヶ月前 損しない",
+  "searchIntent": "車検を早めに受けると損するのか知りたい。2ヶ月前ルールの適用開始時期や注意点も知りたい。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-02-01",
+  "noindex": false,
+  "body": "## 先に答え：車検は満了日の2か月前から受けても損しない\n2025年4月1日から、車検の有効期間満了日の2か月前に受けても、次回の満了日は変わらない扱いになりました。以前の1か月より余裕ができたので、混む時期を避けて段取りが組めます。\n\n## 勘違いポイント\n• 2か月より前に受けると、残り期間は短くなる  \n• 2か月以内なら、早く受けても満了日は据え置き\n\nだから、得するのはギリギリで粘ることではなく、2か月枠で混雑を避けることです。\n\n## 2か月前に動くと良いケース\n• 年末や年度末など予約が取りづらい時期  \n• 交換部品が出そうで、入荷待ちの可能性がある  \n• ヘッドライトのロービームなど、事前調整が必要になりそう  \n• OBD検査対象で、事前診断をしておきたい\n\n## スムーズに進める段取り\n1) 満了日を確認  \n2) 2か月前になったら見積もりと予約  \n3) 事前点検でリスクを潰す  \n4) 当日は必要書類を揃える\n\n車検全体の流れは [車検の基本](/guide/hub-shaken) にまとめています。  \nヘッドライトが不安なら [ロービーム検査の対策](/column/low-beam-test-headlight-prep) 、OBDが不安なら [OBD検査の落とし穴](/column/obd-inspection-shaken-fail) も合わせてどうぞ。",
+  "seoTitle": "車検は満了2か月前までOK｜いつから？2か月より前は損する注意点も解説",
+  "seoDescription": "車検は満了日の2か月前から受けても損しない制度に変更。いつから適用か、2か月より前に受けると損になる理由、混雑回避の段取り、ロービームやOBDなど近年の車検で詰まりやすい点も整理。",
+  "planPriority": 3,
+  "publishedAt": "2026-01-27T13:00:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-shaken",
+    "/guide/hub-paperwork",
+    "/guide/maintenance",
+    "/column/low-beam-test-headlight-prep",
+    "/column/obd-inspection-shaken-fail"
+  ],
+  "primaryQuery": "車検 2ヶ月前 損しない",
+  "updateReason": "2026-02-01: noindex→index化と全文リライト（一次情報参照・内部リンク・SEO調整）",
+  "sources": [
+    "https://www.mlit.go.jp/report/press/jidosha02_hh_000645.html",
+    "https://www.oaspa.or.jp/data/news/2024/12/27/2024122708272274_f.pdf",
+    "https://www.mlit.go.jp/jidosha/content/houteihiyou.pdf",
+    "https://wwwtb.mlit.go.jp/kinki/content/000329245.pdf",
+    "https://www.obd.naltec.go.jp/"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "col-009",
+  "slug": "vehicle-insurance-who-needs",
+  "status": "published",
+  "title": "車両保険は付けるべき？結論：付けない方が危ない人の条件",
+  "summary": "車両保険は買い直し資金が出せない人ほど必要。外しても成立する条件、補償範囲と免責の調整、外すなら代わりに用意すべき備えをまとめる。",
+  "category": "MONEY",
+  "tags": [
+    "車両保険",
+    "自動車保険",
+    "免責",
+    "自己負担",
+    "見直し"
+  ],
+  "intentTags": [
+    "insurance",
+    "decision"
+  ],
+  "relatedGuideSlugs": [
+    "sharyou-hoken-necessary",
+    "insurance-deductible-guide",
+    "road-service-choice-guide"
+  ],
+  "targetKeyword": "車両保険 必要か",
+  "searchIntent": "車両保険を付けるか迷う人が、付けないリスクが大きい条件を理解できるようにする。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-31",
+  "noindex": false,
+  "body": "## 結論：車両保険を外すのが危ない人は、買い直し資金が出せない人\n車両保険は、相手がいない事故や自然災害などで自分の車が壊れたときに効きます。逆に言えば、壊れたときに自分で買い直せるなら、車両保険を外しても成立します。\n\n危ないのは次のどれかに当てはまる人です。\n•ローン残債が大きい\n•生活や仕事で車が必須で、止まると詰む\n•新しめの車で車の価値がまだ高い\n•台風や雹など災害リスクが気になる地域で保管する\n\n\n外しても成立しやすいのは、次の条件が揃う人です。\n•車の時価が下がっていて、全損でも致命傷にならない\n•乗り換え資金を別で確保できている\n•通勤などで車が止まっても代替手段がある\n\n車両保険の基本と判断軸は [車両保険は必要？](/guide/sharyou-hoken-necessary) に整理しています。\n\n## 根拠：事故より多いのは小さな損傷と自然災害\nもらい事故なら相手の保険で直ることがあります。でも現実に困るのは、相手がいないケースです。\n•駐車中の当て逃げ\n•自損での接触\n•雹、台風、冠水など\n\nこういうケースは、ぶつけた相手がいないので、車両保険がないと自腹になりやすいです。必要性は車の値段より、生活への影響で決まります。\n\n## 反論：保険料が高い。外した方が得では？\n得になることもあります。ただし、外す前に2つだけ確認してください。\n•車が全損になったら、いくらで買い直す必要があるか\n•その金額を、今日すぐ出せるか\n\nここが無理なら、車両保険を外すのはハイリスクです。\n\n## 付けるならここを調整する：補償範囲と免責\n車両保険には補償範囲の違いがあります。限定型にすると保険料が下がる代わりに、単独事故などが対象外になることがあります。自分の使い方で穴がないかを確認してください。\n\n免責金額を上げると保険料は下がりやすいですが、いざ使うときに払えないと意味がありません。免責の決め方は [免責金額の決め方ガイド](/guide/insurance-deductible-guide) を参照してください。\n\n## 外すなら代わりにやるべきこと\n車両保険を外すのは、自分で保険を作るのと同じです。最低限、次のどれかを用意します。\n•いつでも出せる買い直し資金\n•事故や災害時に使える予備費の積み立て\n•代車やレンタカーで凌ぐ前提の生活設計\n\n## 次の行動：外す前にチェックする3点\n•車両保険金額と保険料のバランス（時価と見合うか）\n•ローン残債が残る期間は付けておくか\n•災害や当て逃げまで含めて、買い直し資金を用意できるか\n\n### 次に読む\n•[コラム一覧](/column)\n•[車両保険は必要？](/guide/sharyou-hoken-necessary)\n•[免責金額の決め方ガイド](/guide/insurance-deductible-guide)\n",
+  "seoTitle": "車両保険は付けるべき？結論：付けない方が危ない人の条件",
+  "seoDescription": "車両保険が必要か迷う人向け。付けた方がいい条件、外しても回る条件、補償の広さと免責（自己負担）で現実的に決めるコツを整理。",
+  "planPriority": 20,
+  "publishedAt": "2026-01-29T00:50:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/insurance",
+    "/guide/sharyou-hoken-necessary",
+    "/guide/insurance-deductible-guide"
+  ],
+  "primaryQuery": "車両保険 必要か",
+  "updateReason": "seo-rewrite-2026-01-31 / 箇条書き表記を•に統一",
+  "sources": [
+    "https://www.sonysonpo.co.jp/auto/guide/ahb005.html",
+    "https://www.hokennomadoguchi.com/columns/songai/vehicle/",
+    "https://www.insweb.co.jp/auto/vehicle_insurance.html",
+    "https://www.insweb.co.jp/car/kisochishiki/kiso/sharyouhoken-menseki.html",
+    "https://www.zurich.co.jp/car/useful/guide/cc-vehicle-insurance-amount/",
+    "https://jidoshahoken.kakaku.com/car/vehicle-insurance/"
+  ]
+}

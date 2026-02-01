@@ -1,0 +1,68 @@
+{
+  "slug": "hajimete-kuruma-uru-checklist",
+  "title": "初めて車を売る前に必ず確認したいチェックリスト｜買取・下取り・個人売買の選び方",
+  "lead": "初めての車売却をチェックリスト化。相場の掴み方、査定比較、書類と契約の注意点。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "SELL",
+  "tags": [
+    "車売却",
+    "初めての売却",
+    "下取り",
+    "買取",
+    "チェックリスト"
+  ],
+  "publishedAt": "2025-12-12",
+  "updatedAt": "2026-01-31",
+  "internalLinks": [
+    "best-time-to-sell-car",
+    "tradein-vs-buyback-prep",
+    "selling-without-rush",
+    "meigi-henko-hitsuyou-shorui-futsuu",
+    "meigi-henko-hitsuyou-shorui-kei",
+    "spare-key-missing-negotiation"
+  ],
+  "body": "## 結論\n初めての車売却は「どこに売るか」より先に、まず３つだけ確認してください。これだけで失敗の大半が消えます。\n\n• 車検証の名義（所有者と使用者が誰になっているか）\n• ローンの残債があるか（完済しないと名義変更で詰むことがある）\n• 必要書類が揃っているか（足りない場合の手当てを先にやる）\n\n売却の全体像は [売却HUB](/guide/hub-sell) にまとめています。ここでは「今日から何をすればいいか」をチェックリストに落とします。\n\n---\n\n## １日目にやること（ここが９割）\n### １）名義とローンを確認\n車検証を見て、所有者がディーラーや信販会社になっていたら、残債処理が先です。先に査定だけ取っても、契約の段階で止まります。\n\nローン周りの整理は /guide/hub-sell-loan にもまとめています。\n\n### ２）書類の有無を棚卸しする\n普通車と軽自動車で必要書類が少し違います。書類そのものの詳しいチェックは、こちらを参照してください。\n\n• 普通車：/guide/meigi-henko-hitsuyou-shorui-futsuu  \n• 軽自動車：/guide/meigi-henko-hitsuyou-shorui-kei  \n\n「あるかないか」だけ先に確認して、足りないものは早めに動くのがコツです。\n\n### ３）売却方法を決める（価格と手間のバランス）\nざっくり３択です。\n\n• 下取り：次の車と同時に話が進む。手間が最小  \n• 買取：価格を取りに行きやすい。比較がしやすい  \n• 個人売買：高く売れる可能性はあるが、手間とリスクが大きい\n\n下取りと買取で迷う人は /column/tradein-vs-buyback-prep を先に読むと、判断が早いです。\n\n---\n\n## ２〜３日目：査定を取る前のミニ準備\nやる価値があるのは「印象を落とさない」準備だけです。\n\n• 洗車と車内清掃（臭い、砂、ペット毛は減点になりやすい）\n• 付属品を揃える（スペアキー、取説、整備記録）  \n• 事故歴や修理歴はメモしておく（後で食い違うと揉める）\n\nスペアキーがない場合の現実的な対処は /column/spare-key-missing-negotiation にまとめています。\n\n---\n\n## ３〜７日目：査定と比較のやり方（初心者向け）\n初心者は「査定額」だけでなく「条件」を揃えて比較するのが重要です。\n\n### 比較で揃える条件\n• 引き渡し日（いつ車を渡すか）\n• 入金日（いつ振り込まれるか）\n• 名義変更期限（いつまでに完了させるか）\n• 税金相当額の扱い（清算するのか、買取価格に含めるのか）\n\n焦って即決しない進め方は /guide/selling-without-rush にあります。\n\n---\n\n## 契約の日に必ず見る５項目\n• 契約金額と追加費用の有無（名義変更費用や引き取り費用の扱い）\n• 減額の条件（引き渡し後に減額されないか）\n• キャンセル条件（キャンセル料、手付金）\n• 入金のタイミング（いつ、いくら）\n• 名義変更の期限と完了連絡（証明がもらえるか）\n\nここは遠慮せず、書面で確認してください。言った言わないが一番しんどいです。\n\n---\n\n## 引き渡し後にやること（やらないと地味に面倒）\n• 入金を確認する  \n• 名義変更が完了した連絡を受け取る  \n• 自動車税の通知が来たら、慌てず契約内容を確認して連絡する（４月前後は特に）\n\n「売ったのに税金の通知が来た」は、名義変更のズレで起きがちです。売るタイミングの考え方は /guide/best-time-to-sell-car と /column/sell-timing-shaken-tax-market で補足しています。\n\n---\n\n## よくある質問\n### 必要書類が一部ない。売れない？\n売れないとは限りませんが、時間が伸びます。何が足りないかで対応が違います。まずは /guide/meigi-henko-hitsuyou-shorui-futsuu（軽は /guide/meigi-henko-hitsuyou-shorui-kei）で不足書類を特定してください。\n\n### 一括査定は使った方がいい？\n合う人と合わない人がいます。電話が苦手なら、仕組みと止め方を /guide/kuruma-ikkatsu-satei-shitsukoi-real にまとめたので、先に読んでから判断してください。\n",
+  "monetizeKey": "sell_basic_checklist",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "best-time-to-sell-car",
+    "selling-without-rush",
+    "kuruma-ikkatsu-satei-shitsukoi-real",
+    "meigi-henko-hitsuyou-shorui-futsuu"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [
+    "japan-1995-golden-age-heritage"
+  ],
+  "intentTags": [
+    "sell"
+  ],
+  "seoTitle": "初めて車を売る前に必ず確認したいチェックリスト｜買取・下取り・個人売買の選び方｜CAR BOUTIQUE GUIDE",
+  "seoDescription": "初めての車売却をチェックリスト化。相場の掴み方、査定比較、書類と契約の注意点。",
+  "summary": "初めての車売却を迷わず進めるチェックリスト。名義・ローン確認、必要書類、査定の比較条件、契約書で必ず見る項目、引き渡し後の確認まで一気通貫で解説。",
+  "status": "published",
+  "id": "guide:hajimete-kuruma-uru-checklist",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-sell-prepare",
+  "relatedClusterIds": [
+    "/guide/hub-sell-prepare",
+    "/guide/best-time-to-sell-car",
+    "/column/tradein-vs-buyback-prep"
+  ],
+  "primaryQuery": "初めて車を売る前に必ず確認したいチェックリスト｜買取・下取り・個人売買の選び方",
+  "updateReason": "seo-rewrite-2026-01-31 sell&usedcar cluster: body/sources/clusters/index (hajimete-kuruma-uru-checklist)",
+  "sources": [
+    "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/about/register/index.html",
+    "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/download/pdf/inan.pdf",
+    "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/download/pdf/joto.pdf",
+    "https://www.sonysonpo.co.jp/auto/guide/agde036.html",
+    "https://www.sonysonpo.co.jp/auto/guide/agde037.html",
+    "https://kaitori.carview.co.jp/article/knowledge-baikyaku/067/",
+    "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidousyazei.html"
+  ]
+}

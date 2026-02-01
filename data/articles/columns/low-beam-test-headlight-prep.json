@@ -1,0 +1,57 @@
+{
+  "id": "col-012",
+  "slug": "low-beam-test-headlight-prep",
+  "status": "published",
+  "title": "ロービーム検査時代。ヘッドライトの黄ばみ放置が車検で詰む",
+  "summary": "ロービーム検査が厳しくなる中、車検で落ちやすい原因と事前準備。黄ばみだけでなく配光や光軸も含めて対策。",
+  "category": "MAINTENANCE",
+  "tags": [
+    "車検",
+    "ヘッドライト",
+    "黄ばみ",
+    "ロービーム"
+  ],
+  "intentTags": [
+    "shaken",
+    "maintenance",
+    "trouble"
+  ],
+  "relatedGuideSlugs": [
+    "hub-shaken",
+    "maintenance",
+    "hub-consumables"
+  ],
+  "targetKeyword": "ロービーム検査 対策",
+  "searchIntent": "ロービーム検査で車検に通るか不安な人が、事前にできる対策や落ちる原因を知りたい。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-02-01",
+  "noindex": false,
+  "body": "## 先に答え：ヘッドライトは車検直前に慌てると高くつく\nロービームでの審査が主流になると、今まで通っていた車でも落ちることがあります。原因は黄ばみだけではなく、内部の反射板やバルブの相性、光軸のズレなど。早めに確認すれば、磨きや調整で済むケースもあります。\n\n## まず知っておくこと\n• 対象車ではロービームの光度と向きが見られる  \n• 地域や時期で運用が違うことがあるので、案内は運輸局や関係団体の資料で確認  \n• レベリング装置がある車は、標準位置に戻すのが前提\n\n## 車検前に自分でできる準備\n• レンズ表面を洗って汚れを落とす  \n• レベリングダイヤルを標準位置にする  \n• トランクの重い荷物を降ろす（後ろが沈むと上向きになりやすい）  \n• 点灯色が変わっている、片側だけ暗いならバルブを揃える\n\n## 落ちやすい原因と対処\n### レンズのくもり、黄ばみ\n磨きで改善することがある。ただしコートが剥げていると再発しやすい。\n\n### 内部リフレクタの劣化\n外側を磨いても光量が出ない。ユニット交換になることもあります。\n\n### バルブやLEDの相性\n明るさがあっても配光が崩れると落ちる。車種に合ったものを選ぶ。\n\n### 光軸のズレ\n走行や振動でズレる。調整で解決することが多いです。\n\n## いちばんコスパが良いのは事前チェック\nカー用品店や整備工場で、光度と光軸を先に見てもらう。  \n車検当日に落ちると、再検査の手間が増えます。\n\n車検の段取り全体は [車検の基本](/guide/hub-shaken) にまとめています。  \nOBD検査が対象の車は別の落とし穴があるので [OBD検査で車検に落ちる理由](/column/obd-inspection-shaken-fail) も合わせてどうぞ。",
+  "seoTitle": "ロービーム検査で車検に落ちる前に｜ヘッドライトの事前準備と原因別対策",
+  "seoDescription": "ロービーム検査が厳しくなる中、車検で落ちやすい原因は黄ばみだけではありません。光軸、配光、内部リフレクタ劣化、バルブやLEDの相性まで、車検前にやるべき準備と対処を整理。",
+  "planPriority": 8,
+  "publishedAt": "2026-01-27T18:00:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-shaken",
+    "/guide/maintenance",
+    "/guide/hub-consumables",
+    "/column/obd-inspection-shaken-fail"
+  ],
+  "primaryQuery": "ロービーム検査 対策",
+  "updateReason": "2026-02-01: noindex→index化と全文リライト（一次情報参照・内部リンク・SEO調整）",
+  "sources": [
+    "https://wwwtb.mlit.go.jp/kinki/content/000329245.pdf",
+    "https://wwwtb.mlit.go.jp/chubu/gian/gijutsu/surechigaikeisoku.pdf",
+    "https://www.naspa.or.jp/assets/files/file/20240514-033109.pdf",
+    "https://gazoo.com/column/article/23/10/12/",
+    "https://www.hayataro.com/column/detail?id=6491",
+    "https://okano-jidousya.com/column/20251006/"
+  ]
+}

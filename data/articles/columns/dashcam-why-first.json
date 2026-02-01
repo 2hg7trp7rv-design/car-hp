@@ -1,0 +1,59 @@
+{
+  "id": "col-010",
+  "slug": "dashcam-why-first",
+  "status": "published",
+  "title": "ドラレコは保険の代わりではない。先に付けるべき理由と最低限の選び方",
+  "summary": "ドラレコは保険の代わりではなく、事故後の揉め事を減らす証拠。付けるべき理由と失敗しない選び方、運用の注意点をまとめます。",
+  "category": "TROUBLE",
+  "tags": [
+    "ドラレコ",
+    "事故",
+    "過失",
+    "保険",
+    "当て逃げ",
+    "あおり運転"
+  ],
+  "intentTags": [
+    "trouble",
+    "insurance",
+    "decision"
+  ],
+  "relatedGuideSlugs": [
+    "car-accident-first-10-minutes",
+    "insurance",
+    "road-service-choice-guide"
+  ],
+  "targetKeyword": "ドラレコ 必要 理由",
+  "searchIntent": "ドラレコを付けるべきか迷っている人が、事故時に役立つ理由や選び方、注意点を知りたい。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-02-01",
+  "noindex": false,
+  "body": "## 先に答え：保険はお金、ドラレコは証拠\n事故のあとに揉めるのは、過失割合と事実関係です。ドラレコは、そこを短時間で片付けるための道具。保険の代わりではありません。\n\n## ドラレコが効く場面\n• 追突、幅寄せ、車線変更の接触  \n• 交差点の信号、一時停止の有無  \n• 当て逃げ、あおり運転の記録  \n• 駐車中の接触（駐車監視を使う場合）\n\n## 最低限、外さない条件\n• 前後2カメラ もしくは 360度＋後方が分かる構成  \n• 夜に潰れない映り（ナンバーが読めるかで判断）  \n• 日時がずれない運用（時刻合わせができる）  \n• SDカードの管理が前提（消耗品と理解する）\n\n## 駐車監視を使うなら注意が増える\n駐車監視は便利ですが、バッテリーを削ります。冬は特に影響が出やすいです。  \n• 電圧カット機能やタイマー設定があるか  \n• 走行距離が短い人ほど、バッテリー上がりリスクが上がる  \n• 必要な時間だけに絞る\n\n## 付けた後にやるべきこと\n• 取付直後に昼と夜の映りを確認  \n• 月1回は映像と時刻を確認  \n• SDカードは定期的にフォーマットし、必要なら交換\n\n## 事故が起きたときの動き\nドラレコがあっても、初動を間違えると話がこじれます。  \n事故直後の動きは [事故後10分のやること](/guide/car-accident-first-10-minutes) にまとめています。  \n保険も含めて備えるなら [自動車保険の考え方](/guide/insurance) も一緒に確認すると安心です。",
+  "seoTitle": "ドラレコは保険の代わりではない｜先に付ける理由と失敗しない選び方",
+  "seoDescription": "ドラレコは事故後の揉め事を減らす証拠であって保険の代わりではありません。前後カメラや駐車監視の選び方、SDカード管理、取付後の運用、事故時の扱いまで要点を整理。",
+  "planPriority": 18,
+  "publishedAt": "2026-01-28T23:00:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/car-accident-first-10-minutes",
+    "/guide/insurance",
+    "/guide/road-service-choice-guide"
+  ],
+  "primaryQuery": "ドラレコ 必要 理由",
+  "updateReason": "2026-02-01: noindex→index化と全文リライト（一次情報参照・内部リンク・SEO調整）",
+  "sources": [
+    "https://www.npa.go.jp/safetylife/seianki/driverecorder.html",
+    "https://www.kokusen.go.jp/news/data/n-20180802_2.html",
+    "https://jafmate.jp/safety/what-would-you-do_20250307.html",
+    "https://www.mlit.go.jp/common/000114298.pdf",
+    "https://fpi-j.com/column/column5622/",
+    "https://www.blackdesign.jp/archive/single_pdf/034_JAF_24.pdf",
+    "https://www.cariot.jp/blog/2025/05/12/parking-monitoring-function-of-drive-recorder/"
+  ]
+}

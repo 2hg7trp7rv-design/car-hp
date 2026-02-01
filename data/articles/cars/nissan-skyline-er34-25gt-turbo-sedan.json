@@ -1,0 +1,104 @@
+{
+  "id": "nissan-skyline-er34-25gt-turbo-sedan",
+  "slug": "nissan-skyline-er34-25gt-turbo-sedan",
+  "name": "Nissan Skyline (ER34) 25GT Turbo Sedan",
+  "maker": "Nissan",
+  "releaseYear": 1999,
+  "difficulty": "advanced",
+  "bodyType": "sedan",
+  "segment": "スポーツセダン",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "ER34 25GT Turbo (4-door)",
+  "summary": "R34の顔で、日常をこなすFR。整うほど“静かに速い”が出るRB25の世代。",
+  "summaryLong": "ER34の4ドア25GTターボは、R34世代の“日常性能”を背負うFRセダンです。RB25の厚みと素直さは、足と整合が揃うほど静かに速い。\n\n中古では、修復歴の説明の具体性、下回り錆、足回りのへたり、そして後付け配線の品質。改造車が多いので、燃調と冷却、足の思想が揃っている個体が価値になります。\n\n“R34”の看板より、器と整合で選ぶ車です。",
+  "heroImage": "/images/cars/nissan-skyline-er34-25gt-turbo-sedan-hero.jpg",
+  "mainImage": "/images/cars/nissan-skyline-er34-25gt-turbo-sedan-main.jpg",
+  "imageUrl": "/images/cars/nissan-skyline-er34-25gt-turbo-sedan-hero.jpg",
+  "gallery": [
+    "/images/cars/nissan-skyline-er34-25gt-turbo-sedan-front.jpg",
+    "/images/cars/nissan-skyline-er34-25gt-turbo-sedan-side.jpg",
+    "/images/cars/nissan-skyline-er34-25gt-turbo-sedan-interior.jpg"
+  ],
+  "engine": "Front Inline-6 2.5 Turbo (RB25DET)",
+  "powerPs": 280,
+  "torqueNm": 333,
+  "transmission": "5MT/4AT（仕様差）",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜11 km/L",
+  "priceNew": "当時: 250万〜450万円台（仕様差）",
+  "priceUsed": "380万〜1200万円（相場変動）",
+  "strengths": [
+    "FRらしい素直さと直進性がある。",
+    "RB25は日常域の厚みが出やすい。",
+    "足が整うと線がきれいで、速さが落ち着く。",
+    "情報量が多く、整備の道筋がある。"
+  ],
+  "weaknesses": [
+    "改造個体が多く、整合が崩れると不調が連鎖する。",
+    "錆と骨格の補修で価値が割れる。",
+    "電装の後付けでトラブルが出やすい個体がある。",
+    "相場が上がり、失敗が痛い。"
+  ],
+  "troubleTrends": [
+    "追加メーター/ECU周りの配線処理は要チェックです。",
+    "冷却系と燃料系の更新履歴が薄い個体は避けたいです。",
+    "足回りブッシュとハブのへたりは挙動に直結します。",
+    "下回り錆と修復歴の説明の具体性が価値を左右します。"
+  ],
+  "costImpression": "買う前に“履歴と整合”を買う車。安い個体の戻しは高い。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "column-fr-sedan-why-it-felt-right"
+  ],
+  "relatedGuideSlugs": [
+    "guide-buy-fr-turbo-sedan-checklist"
+  ],
+  "relatedCarSlugs": [
+    "toyota-chaser-jzx100-tourer-v",
+    "nissan-laurel-c35-club-s-turbo"
+  ],
+  "tags": [
+    "Nissan",
+    "Skyline",
+    "ER34",
+    "RB25DET",
+    "FR",
+    "sports-sedan",
+    "R34"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-fr-sedan-last-golden-age-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "sedan",
+    "turbo",
+    "advanced",
+    "2000s"
+  ],
+  "purchasePriceSafe": "安全ライン：520〜850万円前後（器と整合重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間50〜120万円"
+  },
+  "maintenanceCostYenPerYear": 820000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Nissan Skyline (ER34) 25GT Turbo Sedan",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Nissan Skyline (ER34) 25GT Turbo Sedan",
+  "updateReason": "initial-import",
+  "sources": []
+}

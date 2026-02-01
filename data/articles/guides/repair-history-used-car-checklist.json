@@ -1,0 +1,54 @@
+{
+  "slug": "repair-history-used-car-checklist",
+  "title": "修復歴車はなぜ危険？中古車で後悔しないための「見抜き方チェックリスト」",
+  "lead": "中古車の修復歴の定義とチェック手順。書類・外観・試乗で見抜くポイント。",
+  "type": "GUIDE",
+  "status": "published",
+  "monetizeType": null,
+  "monetizeKey": null,
+  "category": "BUY",
+  "tags": [
+    "修復歴",
+    "事故車",
+    "中古車",
+    "現車確認",
+    "見抜き方",
+    "フレーム",
+    "購入チェック"
+  ],
+  "publishedAt": "2026-01-04",
+  "updatedAt": "2026-01-20",
+  "readMinutes": 8,
+  "heroImage": null,
+  "internalLinks": [
+    "used-import-car-buying-guide",
+    "tax-and-fees-before-buying-import",
+    "maintenance-cost-simulation"
+  ],
+  "relatedGuideSlugs": [
+    "used-import-car-buying-guide",
+    "tax-and-fees-before-buying-import",
+    "maintenance-cost-simulation"
+  ],
+  "intentTags": [
+    "buy",
+    "usedcar",
+    "checklist"
+  ],
+  "seoTitle": "修復歴車の見抜き方｜中古車チェックリストと買っていい線引き｜CAR BOUTIQUE GUIDE",
+  "seoDescription": "中古車の修復歴の定義とチェック手順。書類・外観・試乗で見抜くポイント。",
+  "body": "この記事は「修復歴車はなぜ危険？中古車で後悔しないための「見抜き方チェックリスト」」をテーマに、車の売却は“順番”で手取りが変わります。やることを先に決めておくと、連絡や交渉のストレスが減ります。\n\n## 結論\n- 「修復歴あり＝即NG」ではありませんが、定義を知らずに買うと失敗します。まずは【修復歴（骨格部位の修理/交換）】と、単なる板金を区別します。\n- 中古車は情報戦です。【修理内容の説明が曖昧な個体】や、記録が出ない個体は避けた方が安全です。\n- チェックは3段階。①書類、②外観、③試乗。ここだけ押さえておけば、大きい地雷は踏みにくくなります。\n\n## まず知っておく言葉\n- 修復歴：車の骨格（フレーム等）に損傷があり修理/交換した履歴\n- 修理歴：バンパーやドアなどの板金・交換を含む広い意味（必ずしも修復歴ではない）\n\n## チェックリスト（書類）\n- 修復歴の有無と、部位・修理内容の説明\n- 整備記録簿の有無（定期点検や交換履歴が追えるか）\n- 事故の有無、エアバッグ展開歴、浸水歴\n\n## チェックリスト（外観）\n- パネルの隙間が不自然に左右で違う\n- 塗装の色味や艶が部分的に違う\n- ボンネット/ドアの建て付けが硬い、閉まり方が違う\n- タイヤの片減り、ハンドルセンターのずれ\n\n## 手順 1 まずは「修復歴の有無」を明確にする\n- 「修復歴はありますか？」だけで終わらせず、部位と内容を聞く\n- 曖昧ならその場で決めず、別個体も検討する\n\n## 手順 2 試乗で“走りの違和感”を拾う\n- 直進性：まっすぐ走るか、ハンドルを取られないか\n- ブレーキ：振動、片効き、異音がないか\n- 異音：段差でコトコト鳴る、きしむ、風切り音が大きいなど\n\n## 手順 3 不安が残るなら購入前点検を入れる\n- 足回り、下回り、漏れ、フレーム周りなどは専門店の方が判断が早い\n- 特に輸入車は、状態が修理費に直結しやすいです（/guide/used-import-car-buying-guide）\n\n## よくあるつまずき\n- 「修理した＝修復歴」と混同して、良い個体まで除外する\n- 逆に「バンパー交換くらい」と軽く見て、骨格の損傷を見落とす\n- 記録が無い/説明が曖昧なのに、価格だけで決める\n\n## 補足（実務メモ）\n- 相場確認は“1社の提示額”で決めない。比較対象があるだけで交渉が楽になる\n- 査定前に洗車・車内清掃をしておくと、第一印象でのマイナスを避けやすい\n- 引き渡し日と入金日はセットで決める（先に車だけ渡さない）\n- 電話が負担なら、最初に「連絡方法/時間帯」を指定しておく\n- 「修復歴」は外装の小傷ではなく、骨格部位の修理/交換が基準になる（販売店に“部位”まで確認）\n\n## 関連記事\n- /guide/used-import-car-buying-guide\n- /guide/tax-and-fees-before-buying-import\n- /guide/maintenance-cost-simulation\n",
+  "summary": "中古車の修復歴の定義とチェック手順。書類・外観・試乗で見抜くポイント。",
+  "relatedColumnSlugs": [],
+  "id": "guide:repair-history-used-car-checklist",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/hub-usedcar",
+  "relatedClusterIds": [],
+  "primaryQuery": "修復歴車はなぜ危険？中古車で後悔しないための「見抜き方チェックリスト」",
+  "updateReason": "initial-import",
+  "sources": []
+}

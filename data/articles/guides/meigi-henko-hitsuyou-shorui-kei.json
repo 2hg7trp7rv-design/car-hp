@@ -1,0 +1,65 @@
+{
+  "slug": "meigi-henko-hitsuyou-shorui-kei",
+  "title": "【軽自動車】名義変更の必要書類まとめ｜普通車との違いと最短手順",
+  "lead": "軽自動車の名義変更を、必要書類と管轄 ナンバー変更の有無で最短整理。普通車との違いも一気に理解。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "SELL",
+  "tags": [
+    "名義変更",
+    "必要書類",
+    "軽自動車",
+    "譲渡",
+    "売却"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-31",
+  "internalLinks": [
+    "jyuusho-henkou-shaken-shou",
+    "shako-shoumei-torikata",
+    "meigi-henko-hitsuyou-shorui-futsuu"
+  ],
+  "body": "軽自動車の名義変更は、普通車より書類が軽い一方で、管轄とナンバーの有無でやることが変わります。先にここだけ判定すると迷いません。\n\n全体の導線はここにまとめています。\n[名義変更・必要書類HUB](/guide/hub-paperwork)\n\n## 結論\n•軽自動車の名義変更は軽自動車検査協会で手続きする  \n•住所が変わる場合は、住所を証する書面が必要。発行から3ヶ月以内が基本  \n•管轄が変わらないならナンバープレートの持参は不要  \n•代理で行くなら申請依頼書が必要。記入例を見ながらやると早い\n\n## 必要書類の全体像\n軽自動車検査協会の案内に沿って、必要になりやすいものを現実ベースで整理します。\n\n### 必須\n•自動車検査証 車検証 原本  \n•自動車検査証変更記録申請書 軽第1号様式\n\n### 住所や使用者が変わる時に必要\n•使用者の住所を証する書面 住民票の写しや印鑑登録証明書など 発行から3ヶ月以内\n\n### 管轄が変わる時に必要\n•ナンバープレート 車両番号標\n\n### 希望ナンバーや字光式にする時\n•希望番号予約済証 希望番号予約センターで取得 有効期間は1ヶ月が目安  \n•字光式車両番号指示願 字光式にする時\n\n### 代理人が手続きする時\n•申請依頼書 新使用者以外が手続きする場合\n\n## 最短の手順\n•車検証の使用の本拠の位置から、管轄が変わるかを確認  \n•住所が変わるなら住民票などを取得。発行日の期限を意識  \n•希望ナンバーを取るなら先に予約済証を取る。取得に数日かかる  \n•当日、軽自動車検査協会の窓口で申請→ナンバー交換が必要なら流れで交換まで\n\n## ありがちな落とし穴\n### 車検証の所有者が販売店やローン会社\n車検証に記録された使用者と所有者が一致しないケースでは、所有者側の同意が必要になることがあります。ここは自己判断せず、購入元に先に確認するほうが早いです。\n\n### 住民票にマイナンバーが載っている\n提出できる書面に条件が付くことがあります。取得時にマイナンバー記載なしで発行すると安全です。\n\n### 希望ナンバーの期限切れ\n予約済証には有効期間があります。受け取り日と登録申請日を同じ週に寄せると失効リスクが減ります。\n関連: [ナンバー変更と希望ナンバー](/guide/number-change-kibou-number-guide)\n\n## 次に読む\n•[普通車の名義変更](/guide/meigi-henko-hitsuyou-shorui-futsuu)  \n•[住所変更したら何をする](/guide/jyuusho-henkou-shaken-shou)  \n•[名義変更を先延ばしにするリスク](/column/name-change-delay-risk)",
+  "monetizeKey": "sell_prepare",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "meigi-henko-hitsuyou-shorui-futsuu",
+    "jyuusho-henkou-shaken-shou",
+    "number-change-kibou-number-guide",
+    "shako-shoumei-torikata"
+  ],
+  "relatedColumnSlugs": [
+    "name-change-delay-risk"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "paperwork",
+    "sell"
+  ],
+  "seoTitle": "軽自動車の名義変更 必要書類と最短手順｜管轄と希望ナンバーの注意点",
+  "seoDescription": "軽自動車検査協会で行う名義変更の必要書類を整理。住民票などの期限、管轄変更時のナンバー交換、代理申請の申請依頼書、希望ナンバー予約済証の期限もまとめて確認。",
+  "summary": "軽自動車の名義変更で必要な書類と流れを整理。管轄変更で必要になるナンバー交換や、希望ナンバー予約済証の期限、代理申請の注意点までまとめて確認。",
+  "status": "published",
+  "id": "guide:meigi-henko-hitsuyou-shorui-kei",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-paperwork",
+  "relatedClusterIds": [
+    "/guide/hub-paperwork",
+    "/guide/meigi-henko-hitsuyou-shorui-futsuu",
+    "/column/name-change-delay-risk"
+  ],
+  "primaryQuery": "【軽自動車】名義変更の必要書類まとめ｜普通車との違いと最短手順",
+  "updateReason": "seo-rewrite-2026-01-31 hub-paperwork pillar upgrade",
+  "sources": [
+    "https://www.keikenkyo.or.jp/procedures/change_name.html",
+    "https://www.keikenkyo.or.jp/form_example/list.html",
+    "https://www.keikenkyo.or.jp/procedures/request_number/",
+    "https://www.sompo-direct.co.jp/otona/oshiete/car/light-vehicle-namechange.html",
+    "https://221616.com/satei/first/kei-ownership/",
+    "https://www.goo-net.com/magazine/contents/check-point/190312/"
+  ]
+}

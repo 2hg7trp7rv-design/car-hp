@@ -1,0 +1,95 @@
+{
+  "id": "honda-civic-type-r-ek9",
+  "slug": "honda-civic-type-r-ek9",
+  "name": "Honda Civic Type R (EK9)",
+  "maker": "Honda",
+  "releaseYear": 1997,
+  "difficulty": "advanced",
+  "bodyType": "ハッチバック",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "Type R (EK9)",
+  "summary": "“軽さで走るType R”。回転と軽量ボディが、速度感の質を変える。",
+  "summaryLong": "EK9は、軽さと回転で走るType Rの象徴です。パワーより、姿勢と操作の気持ちよさが主役。\n\n中古ではボディの歪み/錆、足回りの整合、そして冷却・点火の履歴。軽い車ほど、コンディションの差が体感に出ます。\n\nHonda Civic Type R (EK9)は「スポーツ×ハッチバック」の文脈で語られることが多い一台です。中古では走行距離より、整備記録と仕様の透明性を優先。初期費用を抑えすぎると後追い整備で総額が膨らみやすいので、“整った個体を高く買う”ほうが安全です。",
+  "heroImage": "/images/cars/honda-civic-type-r-ek9-hero.jpg",
+  "mainImage": "/images/cars/honda-civic-type-r-ek9-hero.jpg",
+  "imageUrl": "/images/cars/honda-civic-type-r-ek9-hero.jpg",
+  "gallery": [
+    "/images/cars/honda-civic-type-r-ek9-front.jpg",
+    "/images/cars/honda-civic-type-r-ek9-side.jpg",
+    "/images/cars/honda-civic-type-r-ek9-interior.jpg"
+  ],
+  "engine": "Front 1.6 NA (B16B VTEC)",
+  "powerPs": 185,
+  "torqueNm": 160,
+  "transmission": "5MT",
+  "drive": "FF",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜12 km/L",
+  "priceNew": "当時: 200万〜450万円台（仕様差）",
+  "priceUsed": "200万〜900万円（相場変動）",
+  "strengths": [
+    "軽さがそのまま運転の楽しさになる。",
+    "操作系の密度が高い。"
+  ],
+  "weaknesses": [
+    "錆と骨格のダメージで価値が割れる。",
+    "個体差が大きく、整合が崩れると走りが鈍る。"
+  ],
+  "troubleTrends": [
+    "ボディの錆と修復歴の説明は最重要です。",
+    "足回りブッシュとアライメントで印象が激変します。",
+    "冷却・点火の更新履歴が薄い個体は注意です。"
+  ],
+  "costImpression": "軽さの車は“器と足”が命。履歴の静かな個体ほど濃い。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "column-honda-vtec-engine-magic"
+  ],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [
+    "nissan-silvia-s15",
+    "mazda-roadster-na"
+  ],
+  "tags": [
+    "Honda",
+    "Civic",
+    "EK9",
+    "Type R",
+    "B16B",
+    "NA"
+  ],
+  "relatedHeritageSlugs": [
+    "honda-civic-type-r-ek9-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "na",
+    "lightweight",
+    "type-r"
+  ],
+  "purchasePriceSafe": "安全ライン：450〜850万円前後（錆と整合重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間30〜95万円"
+  },
+  "maintenanceCostYenPerYear": 650000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda Honda Civic Type R (EK9)",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Honda Civic Type R (EK9)",
+  "updateReason": "initial-import",
+  "sources": []
+}

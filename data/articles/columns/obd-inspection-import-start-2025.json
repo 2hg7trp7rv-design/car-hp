@@ -1,0 +1,56 @@
+{
+  "id": "col-027",
+  "slug": "obd-inspection-import-start-2025",
+  "status": "published",
+  "title": "輸入車のOBD検査はいつから？2025年以降に対象になる車の見分け方",
+  "summary": "輸入車のOBD検査はいつから？対象かどうかの見分け方と車検前にやるべき準備を整理。",
+  "category": "TROUBLE",
+  "tags": [
+    "輸入車",
+    "OBD検査",
+    "車検",
+    "診断"
+  ],
+  "intentTags": [
+    "import",
+    "shaken",
+    "decision"
+  ],
+  "relatedGuideSlugs": [
+    "hub-shaken",
+    "hub-import-trouble",
+    "maintenance"
+  ],
+  "targetKeyword": "OBD検査 輸入車 2025",
+  "searchIntent": "輸入車の車検でOBD検査がいつから対象になるか、対象車の条件や準備を知りたい。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-02-01",
+  "noindex": false,
+  "body": "## 先に答え：輸入車のOBD検査は2025年10月から。対象かどうかは車検証で分かる\nOBD検査は、スキャンツールで車の電子装置の故障情報を読み取り、保安基準に関わる故障がないかを確認する仕組みです。輸入車は2025年10月から開始とされており、対象車なら車検証の備考欄などで確認できます。\n\n## OBD検査で見られるもの\n• ABSやESCなどの走行安全系  \n• 自動ブレーキなどの運転支援  \n• 排ガス関係\n\n対象装置は車種で違うので、まずはこの3系統だと思っておけばOKです。\n\n## 自分の車が対象かどうかの確認手順\n1) 車検証の備考欄を見る  \n2) OBD検査対象の記載があるか確認  \n3) OBD検査開始年月日が書かれていれば、その時期から対象\n\n対象なら、車検はOBD検査込みで準備した方が安全です。\n\n## 車検前にやっておくと詰みにくいこと\n• 警告灯が点いているなら先に修理  \n• バッテリー交換や故障コード消去の直後は、状態が安定するまで走っておく  \n• 後付けパーツがあるなら、診断でエラーが出ないか確認\n\nOBD検査で落ちるパターンは [OBD検査で車検に落ちる理由](/column/obd-inspection-shaken-fail) に整理しました。",
+  "seoTitle": "輸入車のOBD検査はいつから？対象車の見分け方と車検前の準備",
+  "seoDescription": "輸入車のOBD検査はいつから始まるのか。OBD検査の概要、対象車の見分け方（車検証の備考欄など）、車検前にやっておくべき準備と注意点を整理。",
+  "planPriority": 12,
+  "publishedAt": "2026-01-28T16:00:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-shaken",
+    "/guide/hub-import-trouble",
+    "/guide/maintenance",
+    "/column/obd-inspection-shaken-fail"
+  ],
+  "primaryQuery": "OBD検査 輸入車 2025",
+  "updateReason": "2026-02-01: noindex→index化と全文リライト（一次情報参照・内部リンク・SEO調整）",
+  "sources": [
+    "https://www.obd.naltec.go.jp/",
+    "https://www.obd.naltec.go.jp/about/",
+    "https://www.mlit.go.jp/jidosha/jidosha_fr2_000064.html",
+    "https://www.mlit.go.jp/jidosha/jidosha_fr2_000063.html",
+    "https://www.mlit.go.jp/jidosha/content/001771392.pdf"
+  ]
+}

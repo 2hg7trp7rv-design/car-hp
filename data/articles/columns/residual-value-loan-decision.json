@@ -1,0 +1,55 @@
+{
+  "id": "col-006",
+  "slug": "residual-value-loan-decision",
+  "status": "published",
+  "title": "残クレは悪じゃない。危険なのは“月額しか見ない”こと",
+  "summary": "残クレは月額が下がる代わりに出口と条件がある。向く人と向かない人、見積で見るべき項目、残価精算が起きやすいケースまで整理する。",
+  "category": "MONEY",
+  "tags": [
+    "残クレ",
+    "ローン",
+    "支払い",
+    "意思決定"
+  ],
+  "intentTags": [
+    "loan",
+    "decision",
+    "money"
+  ],
+  "relatedGuideSlugs": [
+    "compare-loan-lease-zancre",
+    "car-loan-interest-rate-guide",
+    "loan-or-lump-sum"
+  ],
+  "targetKeyword": "残クレ やめとけ",
+  "searchIntent": "残クレを避けるべきか迷う人が、感情ではなく契約構造で判断できるようにする。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-31",
+  "noindex": false,
+  "body": "## 結論：残クレは悪ではない。危険なのは月額だけで決めること\n残価設定ローンは、最終回に残る金額をあらかじめ仮置きして、月々の支払いを軽くする仕組みです。月額が下がる分、最終回の出口と条件がセットになります。\n\n結局のところ、残クレが向くかどうかは次の2点で決まります。\n•何年で乗り換えるつもりか\n•走行距離や車の扱い方が条件の範囲に収まるか\n\nローン全体の考え方を整理するなら [ローンHUB](/guide/hub-loan) から入ると早いです。\n\n## まず押さえる仕組み：最終回の3択と、条件付きの返却\n残クレの最後はだいたい次の3択です。\n•乗り換える\n•返却する\n•そのまま買い取る（現金または再ローン）\n\nここで見落とされがちなのが返却条件です。走行距離、内外装の状態、改造の有無など、契約で定められています。条件を外すと精算が発生します。\n\n## 向いている人：月額を下げつつ、短い周期で乗り換える\n•2年から5年で乗り換える前提\n•年間走行距離が読める\n•車をきれいに使える（小傷や汚れが少ない）\n•先の下取り価格より、月額の安定を重視したい\n\n## 向いていない人：長く乗る、距離が伸びる、使い方がハード\n•乗り潰すつもり\n•通勤や遠出で距離が増えがち\n•カスタムしたい、荷物を積む、子どもが乗るなどで傷が増えやすい\n•最終回で買い取る資金が用意できない\n\n## 反論：でも月額が安いなら得では？\n得になることもあります。ただし比較は月額ではなく、支払総額と出口の条件です。\n\n見積もりで最低限チェックするポイントは5つです。\n•実質年率と手数料\n•残価（率）が高すぎないか\n•走行距離制限と超過時の扱い\n•返却時に揉めやすい条件（傷、修復、タイヤなど）\n•最終回で買う場合の手段（現金か再ローンか）\n\n残価精算が起きやすいのは、次のようなケースです。\n•走行距離の超過\n•大きな傷や内装の破れ、強い臭い\n•社外パーツや改造の扱いが契約条件と合わない\n\n同じ車で、通常ローンと残クレとリースを並べて比較すると判断が早いです。比較用の型は [ローンとリースと残クレの比較](/guide/compare-loan-lease-zancre) にまとめています。\n\n## 次の行動：月額ではなく総額で比較表を作る\n•今の生活で許容できる月額上限を決める（車両代だけでなく保険や税金も含める）\n•同条件でローンと残クレの見積もりを取る\n•最終回で買い取る可能性があるなら、その前提で通常ローンも比較する\n•金利の見方が不安なら [車のローン金利ガイド](/guide/car-loan-interest-rate-guide) を先に読む\n\n### 次に読む\n•[ローンHUB](/guide/hub-loan)\n•[ローンとリースと残クレの比較](/guide/compare-loan-lease-zancre)\n•[ローンか一括か](/guide/loan-or-lump-sum)\n",
+  "seoTitle": "残クレはやめとけ？危険なのは“月額だけ”｜出口・総額・条件で判断する",
+  "seoDescription": "残クレ（残価設定ローン）は悪ではないが、月額だけで契約すると失敗しやすい。出口（返却/買い取り/乗り換え）、総額、走行距離・キズ等の条件を5分で整理して判断する。",
+  "planPriority": 6,
+  "publishedAt": "2026-01-27T15:00:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-loan",
+    "/guide/compare-loan-lease-zancre",
+    "/guide/car-loan-interest-rate-guide"
+  ],
+  "primaryQuery": "残クレ やめとけ",
+  "updateReason": "seo-rewrite-2026-01-31 / 箇条書き表記を•に統一",
+  "sources": [
+    "https://www.tscubic.com/column/loan/zankaloan/",
+    "https://toyota.jp/finance/column/zanka/",
+    "https://www.chibakogyo-bank.co.jp/kojin/column/carloan/zanka/",
+    "https://www.iyobank.co.jp/sp/iyomemo/car/zanka-setting/",
+    "https://car-mo.jp/mag/category/news/feature/carloan-zanka/"
+  ]
+}

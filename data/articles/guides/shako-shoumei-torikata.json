@@ -1,0 +1,67 @@
+{
+  "slug": "shako-shoumei-torikata",
+  "title": "車庫証明（保管場所証明）の取り方｜必要書類・流れ・時間がない人の現実的ルート",
+  "lead": "車庫証明を最短で取るための必要書類と流れ。図面と住所の一致で差し戻しを防ぐ。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "LIFE",
+  "tags": [
+    "車庫証明",
+    "保管場所証明",
+    "必要書類",
+    "購入",
+    "名義変更"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-31",
+  "internalLinks": [
+    "meigi-henko-hitsuyou-shorui-futsuu",
+    "meigi-henko-hitsuyou-shorui-kei",
+    "jyuusho-henkou-shaken-shou",
+    "number-change-kibou-number-guide"
+  ],
+  "body": "車庫証明は、必要な人ほど時間がありません。ここで詰まると、名義変更も住所変更も一気に止まります。最短で取るための段取りだけに絞ります。\n\n書類系の全体像はここにまとめています。\n[名義変更・必要書類HUB](/guide/hub-paperwork)\n\n## 結論\n•車庫証明は警察署で申請し、交付まで数日かかるのが一般的  \n•必要書類は申請書2通 位置図 配置図 使用権原の書面が基本  \n•交付後は証明日から概ね1ヶ月以内に運輸支局へ提出が目安  \n•急いでいる人ほど、図面と住所の一致を最優先で確認する\n\n## 車庫証明が必要かの考え方\n•普通車は原則必要  \n•軽自動車は地域によっては届出で済む場合がある  \n•引越しで管轄が変わる 名義変更で管轄が変わる など、ナンバー変更が絡むと必要になることが多い\n\n迷ったら、手続き先の案内に合わせるのが最短です。\n関連: [住所変更したら何をする](/guide/jyuusho-henkou-shaken-shou)\n\n## 必要書類チェックリスト\n一般的に求められることが多いものです。細部は都道府県警の案内で微差があります。\n\n•自動車保管場所証明申請書 2通  \n•保管場所の所在図と配置図  \n•保管場所使用権原を疎明する書面  \n•手数料 申請方法は都道府県で違う  \n•控えを受け取るための書類一式\n\n### 使用権原の書面で迷ったら\n•自分の土地や自分名義の駐車場→自認書  \n•月極や他人名義→使用承諾証明書 または賃貸借契約書の写しで代替できる場合もある\n\n## 最短の手順\n•保管場所の住所が確定してから申請する  \n•申請書と図面を作る。住所表記と車検証の表記を揃える  \n•管轄の警察署に申請  \n•交付されたら記載ミスがないかその場で確認  \n•証明日から概ね1ヶ月以内を目安に運輸支局へ提出\n\n## ありがちなやり直しポイント\n### 位置図や配置図が雑で差し戻し\n建物名 入口 向き 駐車区画など、相手が迷わない情報を入れると一発で通りやすいです。\n\n### 住所表記がバラバラ\n丁目 番地 建物名の書き方が揃っていないだけで止まることがあります。住民票 車検証 契約書の表記を合わせます。\n\n### 交付後に放置して期限目安を超える\n名義変更や住所変更の直前に取ったつもりでも、手続きがズレると期限目安を超えます。提出日から逆算して取りに行くのが安全です。\n\n## オンライン申請は使えるか\n地域と手続きによっては電子申請が使えるケースがあります。ただし入力ミスで差し戻しになると逆に遅くなるので、急ぎの人ほど窓口のほうが早い場合もあります。\n\n## 次に読む\n•[普通車の名義変更](/guide/meigi-henko-hitsuyou-shorui-futsuu)  \n•[軽自動車の名義変更](/guide/meigi-henko-hitsuyou-shorui-kei)  \n•[ナンバー変更と希望ナンバー](/guide/number-change-kibou-number-guide)",
+  "monetizeKey": "sell_prepare",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "meigi-henko-hitsuyou-shorui-futsuu",
+    "meigi-henko-hitsuyou-shorui-kei",
+    "number-change-kibou-number-guide",
+    "jyuusho-henkou-shaken-shou"
+  ],
+  "relatedColumnSlugs": [
+    "name-change-delay-risk"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "paperwork",
+    "buy",
+    "sell"
+  ],
+  "seoTitle": "車庫証明の取り方 必要書類と最短手順｜図面と期限の落とし穴を回避",
+  "seoDescription": "車庫証明 保管場所証明の取り方を、申請書 位置図 配置図 自認書 使用承諾証明書のチェックリストで解説。交付までの流れと、証明日からの期限目安、差し戻しを防ぐコツ。",
+  "summary": "車庫証明の申請に必要な書類と流れをチェックリスト化。図面や住所表記のミスで差し戻されないためのコツと、交付後の期限目安まで整理。",
+  "status": "published",
+  "id": "guide:shako-shoumei-torikata",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-paperwork",
+  "relatedClusterIds": [
+    "/guide/hub-paperwork",
+    "/guide/meigi-henko-hitsuyou-shorui-futsuu",
+    "/guide/number-change-kibou-number-guide"
+  ],
+  "primaryQuery": "車庫証明（保管場所証明）の取り方｜必要書類・流れ・時間がない人の現実的ルート",
+  "updateReason": "seo-rewrite-2026-01-31 hub-paperwork pillar upgrade",
+  "sources": [
+    "https://www.keishicho.metro.tokyo.lg.jp/kurashi/driving/shako/shinsei.html",
+    "https://www.keishicho.metro.tokyo.lg.jp/kurashi/driving/shako/shinsei/_jcr_content/mainCol1/column1/file.res/10_shinseisyo.pdf",
+    "https://www.keishicho.metro.tokyo.lg.jp/kurashi/driving/shako/shinsei/_jcr_content/mainCol1/column1/file.res/20_jininsyo.pdf",
+    "https://www.keishicho.metro.tokyo.lg.jp/kurashi/driving/shako/shinsei/_jcr_content/mainCol1/column1/file.res/30_shounakusyo.pdf",
+    "https://www.police.pref.kanagawa.jp/tetsuzuki/shako/mesf1004.html",
+    "https://www.police.pref.saitama.lg.jp/f1030/kurashi/syakoshoumei.html"
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "id": "honda-nsx-na1",
+  "slug": "honda-nsx-na1",
+  "name": "Honda NSX (NA1)",
+  "maker": "Honda",
+  "releaseYear": 1990,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "NSX NA1",
+  "summary": "速さを日常の精度で成立させたミッドシップ。派手さより“破綻しない速さ”が本体。",
+  "summaryLong": "初代NSX（NA1）は、スーパーカーの速さを日常の精度で成立させた車です。視界、操作系、熱管理、そして剛性。速いだけでなく、繰り返しても崩れにくい。\n\nいま買う目線では、馬力より“普通に使える精度”が残っているか。冷却系の更新履歴、ゴム類、足回りの整合、補修精度。ミッドシップは器が命で、歪みは体感に直結します。\n\n整った個体は静かに速い。だから中古はスペックより履歴の透明度で選びたい。",
+  "heroImage": "/images/cars/honda-nsx-na1-hero.jpg",
+  "mainImage": "/images/cars/honda-nsx-na1-main.jpg",
+  "imageUrl": "/images/cars/honda-nsx-na1-hero.jpg",
+  "gallery": [
+    "/images/cars/honda-nsx-na1-front.jpg",
+    "/images/cars/honda-nsx-na1-side.jpg",
+    "/images/cars/honda-nsx-na1-interior.jpg"
+  ],
+  "engine": "Mid V6 3.0 NA (C30A)",
+  "powerPs": 280,
+  "torqueNm": 294,
+  "transmission": "5MT/4AT（仕様差）",
+  "drive": "MR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜10 km/L",
+  "priceNew": "当時: 800万〜1200万円台（仕様差）",
+  "priceUsed": "900万〜3500万円（相場変動）",
+  "strengths": [
+    "視界と操作系が自然で、速度域が上がっても余裕が残る。",
+    "熱が収まると、繰り返しても調子が落ちにくい。",
+    "ミッドシップらしい回頭とトラクションが両立する。",
+    "作りの精度が高く、整った個体は“普通に速い”。"
+  ],
+  "weaknesses": [
+    "相場が高く、失敗が痛い。",
+    "冷却・ゴム類・ブッシュの経年で精度が落ちやすい。",
+    "補修の質で価値が大きく割れる（器の歪みは戻りにくい）。",
+    "部品と工賃が重く、計画が必要。"
+  ],
+  "troubleTrends": [
+    "冷却系（ラジエーター、ホース、ウォーターポンプ等）の更新履歴は最重要です。",
+    "ゴム類・マウント・ブッシュのへたりで手応えが濁ります。",
+    "下回りや骨格の補修痕は、精度と価値を左右します。",
+    "電装の後付けや配線補修が雑な個体は要注意です。"
+  ],
+  "costImpression": "“安い個体を戻す”のが最も高い。履歴が静かに揃った個体を買う方が合理的。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "column-midship-everyday-supercar-why"
+  ],
+  "relatedGuideSlugs": [
+    "guide-buy-midship-jdm-checklist"
+  ],
+  "relatedCarSlugs": [
+    "toyota-mr2-sw20-rev3",
+    "mazda-rx-7-fd3s-type-r"
+  ],
+  "tags": [
+    "Honda",
+    "NSX",
+    "NA1",
+    "C30A",
+    "midship",
+    "1990s",
+    "everyday-supercar"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-everyday-supercar-nsx-heritage"
+  ],
+  "intentTags": [
+    "midship",
+    "jdm",
+    "heritage",
+    "advanced",
+    "precision"
+  ],
+  "purchasePriceSafe": "安全ライン：1100〜1600万円前後（履歴と補修精度重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間70〜150万円"
+  },
+  "maintenanceCostYenPerYear": 1050000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda Honda NSX (NA1)",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Honda NSX (NA1)",
+  "updateReason": "initial-import",
+  "sources": []
+}

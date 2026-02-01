@@ -1,0 +1,66 @@
+{
+  "slug": "tire-replacement-cost-guide",
+  "title": "タイヤ交換費用の相場｜工賃・サイズ・ランフラットで何が変わる？",
+  "lead": "タイヤ交換の総額の見方と時期の目安。工賃内訳、サイズ/種類による差、節約のコツ。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "MONEY",
+  "tags": [
+    "タイヤ",
+    "交換",
+    "費用",
+    "ランフラット"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-31",
+  "internalLinks": [
+    "maintenance-cost-simulation",
+    "oil-change-frequency-guide",
+    "road-service-choice-guide",
+    "family-suv-budget-and-lifeplan"
+  ],
+  "body": "## 結論\nタイヤ交換費用は、タイヤ本体だけでは決まりません。工賃の内訳まで把握して見積もりを取れば、無駄な出費はほぼ消せます。\n\n消耗品全体の考え方は[消耗品ハブ](/guide/hub-consumables)にまとめています。タイヤはその中でも、命に直結する出費です。\n\n## 危険判定\nこの状態なら、費用より先に安全を優先してください。\n•スリップサインが出ている\n•ひび割れが目立つ、サイドが傷んでいる\n•偏摩耗している（片減りが強い）\n•製造年週が古いのに、保管状態が不明\n•空気圧が頻繁に下がる（パンクやバルブ劣化の可能性）\n\n## 状況別分岐\n見積もりがブレるポイントはここです。先に押さえると話が早いです。\n\n### 1 組み換えか、脱着か\n•組み換え→ホイールからタイヤを外して新しいタイヤを組む。バランス調整などの作業が前提になりやすい\n•脱着→ホイール付きのセットを入れ替える。作業内容が軽くなることがある\n\n### 2 サイズと銘柄\n•大径、扁平、輸入銘柄、ランフラット→タイヤ代も工賃も上がりやすい\n•同じサイズでも、静粛性やウェット性能で価格帯は別物\n\n### 3 追加費用が乗るポイント\n•バランス調整\n•ゴムバルブ交換\n•廃タイヤ処分\n•TPMS（空気圧センサー）対応\n•アライメント調整（偏摩耗がある時は検討）\n\n## 応急処置\n今日やるべきことはこれだけです。\n•空気圧を規定値に合わせる（低いまま走ると危険で、タイヤ寿命も縮む）\n•製造年週を確認して、古すぎる候補は最初から外す\n•見積もりは同じ条件で2社以上取る（内訳が出る店を優先）\n\n## 費用レンジ\n金額は店舗差が大きいので、ここでは内訳の型を固定します。これだけ揃うと、見積もり比較で迷いません。\n\n### タイヤ代\n•4本か2本か\n•新品か中古か\n•性能帯（静粛、ウェット、低燃費など）\n\n### 作業費\n•組み換え、脱着のどちらか\n•バランス調整\n•バルブ交換\n•廃タイヤ処分\n•必要に応じてアライメント\n\n安さだけで決めると、結局高くつくパターンがあります。先に[安いタイヤの落とし穴](/column/tire-cheap-dangerous-choice)を一度読んでおくと、判断が速いです。\n\n## 見積もりで伝える情報\n見積もりの精度は、最初の情報で決まります。\n•タイヤサイズ（例：205/55R16）\n•季節（夏、冬、オールシーズン）\n•ランフラットの有無\n•空気圧センサーの有無\n•ホイールの種類（純正、社外）\n\n## よくある質問\n### Q 2本だけ交換でもいい？\nA 駆動輪だけ交換する選択もあります。ただし左右差や前後差で挙動が変わるので、残り溝と劣化状態を見て決めます。\n\n### Q 製造年週が古い新品は買っていい？\nA 保管状態が良ければ使えるケースもありますが、迷うなら避ける方が安全です。表示の読み方はタイヤ側面の4桁表示で確認できます。\n\n### Q アライメントは必須？\nA 必須ではありません。ただし片減りが出ているなら、交換時に一度確認すると再発を減らせます。\n\n## 関連リンク\n•[維持費シミュレーションの基本](/guide/maintenance-cost-simulation)\n•[メンテナンス総合](/guide/maintenance)\n•[車の予算シミュレーション](/guide/car-budget-simulation)\n",
+  "monetizeKey": "shaken_rakuten",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "maintenance-cost-simulation",
+    "oil-change-frequency-guide",
+    "road-service-choice-guide",
+    "family-suv-budget-and-lifeplan"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "tire",
+    "maintenance",
+    "cost"
+  ],
+  "seoTitle": "タイヤ交換費用の目安｜内訳と見積もりの取り方",
+  "seoDescription": "タイヤ交換はタイヤ代だけでなく、組み換えやバランス調整、バルブ交換、廃タイヤ処分など工賃の内訳で差が出ます。比較のコツをまとめました。",
+  "summary": "タイヤ交換費用の内訳（タイヤ代と工賃）を整理し、見積もり比較で迷わないためのポイントと注意点をまとめます。",
+  "status": "published",
+  "id": "guide:tire-replacement-cost-guide",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/guide/maintenance",
+  "relatedClusterIds": [
+    "/column/tire-cheap-dangerous-choice",
+    "/guide/maintenance-cost-simulation",
+    "/guide/hub-consumables"
+  ],
+  "primaryQuery": "タイヤ交換 費用 目安",
+  "updateReason": "全面改稿（費用内訳と判断基準を整理）/内部リンク追加/参考ソース追加/公開基準調整",
+  "sources": [
+    "https://tokyo-tire.com/media/disadvantages-of-cheap-tires/",
+    "https://jafmate.jp/safety/accident-prevention_20210120_1205357.html",
+    "https://jafmate.jp/safety/accident-prevention_20220121_1309072.html",
+    "https://www.bridgestone.co.jp/special/tire_safety/slip_sign/",
+    "https://www.jatma.or.jp/environment/labeling/",
+    "https://www.autobacs.com/static_html/shopping/tires/knowledge/tires/dot.html",
+    "https://www.yellowhat.jp/column/tire/005/"
+  ],
+  "readMinutes": 6
+}

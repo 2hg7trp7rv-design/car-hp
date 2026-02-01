@@ -1,0 +1,64 @@
+{
+  "slug": "sharyou-hoken-necessary",
+  "title": "車両保険は必要？いらない？判断基準を“損しにくい”順に整理",
+  "lead": "車両保険を付ける/付けない判断基準。代替可能性、修理費負担、補償範囲の考え方。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "INSURANCE",
+  "tags": [
+    "車両保険",
+    "免責",
+    "自動車保険",
+    "補償"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-31",
+  "internalLinks": [
+    "insurance-deductible-guide",
+    "car-budget-simulation",
+    "road-service-choice-guide",
+    "bengoshi-hiyou-tokuyaku-guide"
+  ],
+  "body": "## 結論\n車両保険は、車の時価と家計の耐久力で決まります。迷ったら、ローン残債の有無と、買い直せる現金があるかで判断してください。\n\nまずは[自動車保険の基本](/guide/insurance)で、任意保険の全体像を押さえると迷いが減ります。\n\n## 危険判定\n次に当てはまるなら、車両保険を外すとダメージが大きい可能性があります。\n•新車、高年式で車の価値が高い\n•ローン残債がある\n•貯金で突然の買い替えを吸収できない\n•車が生活必需品で、止まると困る\n•盗難や水害などのリスクが気になる地域に住んでいる\n\n## 状況別分岐\n### 1 新車、高年式\n修理費や買い替え費が大きくなりやすいので、車両保険が効きやすいです。免責金額で保険料を調整する考え方が現実的です。\n\n### 2 低年式、時価が低い\n車両保険の上限は時価が基準になります。保険料に対して戻りが薄い場合があるので、外すか、補償範囲を絞る判断が出てきます。\n\n### 3 運転に不安がある、走行距離が多い\n自損事故や接触リスクが上がるなら、車両保険を付ける意味は増えます。逆に、主に短距離で慎重に乗るなら、免責を上げて保険料を抑える選択もあります。\n\n## 応急処置\n更新や見直し前に、これだけやれば十分です。\n•車の時価と、ローン残債を把握する\n•免責金額を確認する（小さな損害は自己負担になりやすい）\n•補償範囲を整理する（一般型、エコノミー型など）\n\n## 修理費レンジ\n車両保険は、すべての損害で得になるわけではありません。効きやすいのは、損害が大きい事故です。\n•軽微な傷→免責金額の設定次第で、結局自腹になりやすい\n•中規模の損傷→免責を超えると補償が効いてくる\n•全損クラス→時価が上限になるので、時価を前提に入る価値があるかが焦点\n\n免責の決め方は[免責金額の決め方](/guide/insurance-deductible-guide)にまとめました。\n\n## 見積もりで伝える情報\n見積もりの前提がズレると比較できません。最低限これだけ揃えます。\n•車種、年式、型式\n•購入価格、または現在の時価の目安\n•ローン残債の有無\n•年間走行距離\n•運転者の範囲と年齢条件\n•車の使用目的（通勤、レジャーなど）\n\n## よくある質問\n### Q 車両保険を外しても大丈夫な目安は？\nA 事故で車が使えなくなっても、現金で買い直せるなら外す判断は出ます。逆に、買い直しが厳しいなら、付けて保険でリスクを分散する方が現実的です。\n\n### Q 免責ゼロにすれば安心？\nA 安心は増えますが、その分保険料も上がります。家計とのバランスで決めます。\n\n### Q 災害が怖い。一般型じゃないとダメ？\nA 不安が強いなら一般型が向きます。ただし車の時価が低いなら、貯金で備える方が合理的なこともあります。\n\n## 関連リンク\n•[車両保険が必要な人](/column/vehicle-insurance-who-needs)\n•[免責金額の決め方](/guide/insurance-deductible-guide)\n•[車の維持費シミュレーション](/guide/maintenance-cost-simulation)\n",
+  "monetizeKey": "insurance_compare_core",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "insurance-deductible-guide",
+    "car-budget-simulation",
+    "road-service-choice-guide",
+    "bengoshi-hiyou-tokuyaku-guide"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "insurance",
+    "coverage"
+  ],
+  "seoTitle": "車両保険は必要？いらない？判断の基準を整理",
+  "seoDescription": "車両保険は車の時価と家計の耐久力で決まります。ローン残債、貯金、利用頻度から、付けるべき人と外せる人の考え方をまとめます。",
+  "summary": "車両保険が必要かどうかを、車の時価、ローン残債、家計の耐久力、利用頻度から判断するための基準を整理します。",
+  "readMinutes": 6,
+  "status": "published",
+  "id": "guide:sharyou-hoken-necessary",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/guide/insurance",
+  "relatedClusterIds": [
+    "/column/vehicle-insurance-who-needs",
+    "/guide/insurance-deductible-guide",
+    "/guide/insurance"
+  ],
+  "primaryQuery": "車両保険 必要 いらない",
+  "updateReason": "全面改稿（判断軸を明確化）/内部リンク追加/参考ソース追加/公開基準調整",
+  "sources": [
+    "https://www.sonysonpo.co.jp/auto/guide/ahb005.html",
+    "https://www.hokennomadoguchi.com/columns/songai/vehicle/",
+    "https://www.insweb.co.jp/auto/vehicle_insurance.html",
+    "https://www.insweb.co.jp/car/kisochishiki/kiso/sharyouhoken-menseki.html",
+    "https://www.zurich.co.jp/car/useful/guide/cc-vehicle-insurance-amount/",
+    "https://jidoshahoken.kakaku.com/car/vehicle-insurance/"
+  ]
+}

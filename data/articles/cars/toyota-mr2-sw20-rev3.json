@@ -1,0 +1,90 @@
+{
+  "id": "toyota-mr2-sw20-rev3",
+  "slug": "toyota-mr2-sw20-rev3",
+  "name": "Toyota MR2 (SW20) Rev.3",
+  "maker": "Toyota",
+  "releaseYear": 1994,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "SW20 Rev.3 (3S-GTE)",
+  "summary": "ミッドシップを現実にしたターボ。整うと速いが、崩れると難しい“器の車”。",
+  "summaryLong": "SW20のMR2（後期寄り）は、ミッドシップの速さを比較的現実的な価格帯で味わえる車です。整った個体は回頭とトラクションが気持ちいい。けれどミッドシップは器が命で、足やアライメントが崩れると難しさが前に出る。\n\nいま買う目線では、冷却と熱履歴、そして足回りの整合が価値を決めます。ターボ車ゆえ配管とホース、ラジエーター周りの更新が薄い個体は危険。\n\n“速いMR”は、整合が揃っているMRです。",
+  "heroImage": "/images/cars/toyota-mr2-sw20-rev3-hero.jpg",
+  "mainImage": "/images/cars/toyota-mr2-sw20-rev3-main.jpg",
+  "imageUrl": "/images/cars/toyota-mr2-sw20-rev3-hero.jpg",
+  "gallery": [
+    "/images/cars/toyota-mr2-sw20-rev3-front.jpg",
+    "/images/cars/toyota-mr2-sw20-rev3-side.jpg",
+    "/images/cars/toyota-mr2-sw20-rev3-interior.jpg"
+  ],
+  "engine": "Mid Inline-4 2.0 Turbo (3S-GTE)",
+  "powerPs": 245,
+  "torqueNm": 304,
+  "transmission": "5MT",
+  "drive": "MR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 7〜11 km/L",
+  "priceNew": "当時: 240万〜330万円台（仕様差）",
+  "priceUsed": "220万〜650万円（相場変動）",
+  "strengths": [
+    "ミッドシップの回頭とトラクションが手に入る。",
+    "ターボで厚みがあり、出口が強い。",
+    "車の性格がはっきりしていて、整える楽しさがある。",
+    "情報が多く、改善の道筋がある。"
+  ],
+  "weaknesses": [
+    "足やタイヤの整合が崩れると難しくなる。",
+    "熱管理が甘い個体はトラブルが出やすい。",
+    "改造車の整合が崩れると症状が追いにくい。",
+    "年式相応にゴム類の劣化が重い。"
+  ],
+  "troubleTrends": [
+    "冷却系（ラジエーター、ホース、ファン）の更新履歴は必須です。",
+    "ターボ周辺の滲み・配管状態は要チェックです。",
+    "足回りブッシュのへたりで挙動が荒れます。",
+    "下回り錆と修復歴の説明の具体性が価値を左右します。"
+  ],
+  "costImpression": "安く買って速くするより、整ったベースを維持した方が結局速い。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "column-midship-everyday-supercar-why"
+  ],
+  "relatedGuideSlugs": [
+    "guide-buy-midship-jdm-checklist"
+  ],
+  "relatedCarSlugs": [
+    "honda-nsx-na1",
+    "mazda-rx-7-fd3s-type-r"
+  ],
+  "tags": [],
+  "relatedHeritageSlugs": [
+    "japan-everyday-supercar-nsx-heritage"
+  ],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：280〜430万円前後（熱と足の整合重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間40〜95万円"
+  },
+  "maintenanceCostYenPerYear": 650000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Toyota Toyota MR2 (SW20) Rev.3",
+  "makerKey": "toyota",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/toyota",
+  "relatedClusterIds": [],
+  "primaryQuery": "Toyota MR2 (SW20) Rev.3",
+  "updateReason": "initial-import",
+  "sources": []
+}

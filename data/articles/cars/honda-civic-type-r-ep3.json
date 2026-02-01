@@ -1,0 +1,97 @@
+{
+  "id": "honda-civic-type-r-ep3",
+  "slug": "honda-civic-type-r-ep3",
+  "name": "Honda Civic Type R (EP3)",
+  "maker": "Honda",
+  "releaseYear": 2002,
+  "difficulty": "intermediate",
+  "bodyType": "ハッチバック",
+  "segment": "ホットハッチ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "Type R (EP3)",
+  "summary": "K20A世代のホットハッチ。軽さと足の整合で“回して速い”が立ち上がる。",
+  "summaryLong": "EP3シビックType Rは、K20Aの回転とハッチの軽快さで走るホットハッチです。DC5と同じエンジン世代でも、キャラクターは別。\n\n中古では足回りとボディのまっすぐさ、そして配線の後付け品質。整合が揃うと、回転の気持ちよさがそのまま走りに出ます。\n\nHonda Civic Type R (EP3)は「ホットハッチ×ハッチバック」の文脈で語られることが多い一台です。中古では走行距離より、整備記録と仕様の透明性を優先。初期費用を抑えすぎると後追い整備で総額が膨らみやすいので、“整った個体を高く買う”ほうが安全です。",
+  "heroImage": "/images/cars/honda-civic-type-r-ep3-hero.jpg",
+  "mainImage": "/images/cars/honda-civic-type-r-ep3-hero.jpg",
+  "imageUrl": "/images/cars/honda-civic-type-r-ep3-hero.jpg",
+  "gallery": [
+    "/images/cars/honda-civic-type-r-ep3-front.jpg",
+    "/images/cars/honda-civic-type-r-ep3-side.jpg",
+    "/images/cars/honda-civic-type-r-ep3-interior.jpg"
+  ],
+  "engine": "Front 2.0 NA (K20A i-VTEC)",
+  "powerPs": 215,
+  "torqueNm": 196,
+  "transmission": "6MT",
+  "drive": "FF",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜12 km/L",
+  "priceNew": "当時: 200万〜450万円台（仕様差）",
+  "priceUsed": "200万〜900万円（相場変動）",
+  "strengths": [
+    "軽快で見切りがよく、日常でも成立する。",
+    "K20Aの回転で走る体験が濃い。",
+    "情報量が多い。"
+  ],
+  "weaknesses": [
+    "足が崩れるとただ硬い車になりやすい。",
+    "改造個体が多く、整合が価値を分ける。"
+  ],
+  "troubleTrends": [
+    "足回りブッシュとアライメントは要確認です。",
+    "電装・配線の後付け品質で症状が増えます。",
+    "冷却と油脂管理の履歴が薄い個体は注意です。"
+  ],
+  "costImpression": "整った個体は満足度が高い。足が崩れた個体は戻しが必要。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "technical-double-wishbone-to-strut-honda"
+  ],
+  "relatedGuideSlugs": [
+    "guide-buy-used-honda-integra-type-r-dc5"
+  ],
+  "relatedCarSlugs": [
+    "honda-integra-type-r-dc5"
+  ],
+  "tags": [
+    "Honda",
+    "Civic",
+    "EP3",
+    "Type R",
+    "K20A",
+    "hot-hatch"
+  ],
+  "relatedHeritageSlugs": [
+    "honda-integra-type-r-dc5-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "na",
+    "type-r",
+    "daily"
+  ],
+  "purchasePriceSafe": "安全ライン：220〜420万円前後（足と履歴重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間25〜75万円"
+  },
+  "maintenanceCostYenPerYear": 480000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda Honda Civic Type R (EP3)",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Honda Civic Type R (EP3)",
+  "updateReason": "initial-import",
+  "sources": []
+}

@@ -1,0 +1,57 @@
+{
+  "id": "col-015",
+  "slug": "tire-cheap-dangerous-choice",
+  "status": "published",
+  "title": "タイヤは安いのでいい？結論：「用途無視の最安」だけはやめた方がいい",
+  "summary": "安いタイヤがダメなのではなく、用途を決めずに最安を掴むのが危ない。溝、製造年週、ウェット性能、取付の4点で判断し、総額で比較する。",
+  "category": "MAINTENANCE",
+  "tags": [
+    "タイヤ",
+    "安全",
+    "節約",
+    "消耗品"
+  ],
+  "intentTags": [
+    "consumables",
+    "safety",
+    "decision"
+  ],
+  "relatedGuideSlugs": [
+    "hub-consumables",
+    "tire-replacement-cost-guide",
+    "maintenance-cost-simulation"
+  ],
+  "targetKeyword": "タイヤ 安い 危険",
+  "searchIntent": "タイヤを安く済ませたい人が、『用途無視の最安』を避けつつ、雨の日の安全と総額（買い直し）まで含めて失敗しない選び方を理解できるようにする。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-31",
+  "noindex": false,
+  "body": "## 結論：安いタイヤでもいい。NGは用途を決めずに最安を掴むこと\nタイヤの値段で迷うのは普通です。4本になると一気に重いです。\n\nただしタイヤは、止まる・曲がる・まっすぐ走るを全部受け持つ部品です。だから安さ優先でも、最低限の線だけは切らない方がいいです。\n\n最初に見るポイントは4つだけです。\n•溝：スリップサインが出たら即交換（使用限度は残り1.6mm）\n•製造年週：新しい在庫を優先\n•ウェット性能：雨の日に乗るならここは落とさない\n•取り付け：安く買うほど取り付け先はケチらない\n\n消耗品全体の考え方を先に整理したいなら [タイヤ・バッテリー・消耗品HUB](/guide/hub-consumables) を先にどうぞ。\n\n## 根拠：差が出るのは雨の日と摩耗したとき\n乾いた路面では、どのタイヤでもそれなりに走れてしまいます。問題が出やすいのは濡れた路面です。\n\nユーザーテストでも、摩耗したタイヤは濡れた路面で制動距離が伸びやすいことが示されています。溝が減るほど水を逃がせず、止まれない側に寄ります。\n\nつまり危ないのは安いか高いかではなく、雨の日に効く性能を落としてしまう買い方です。\n\n## 反論：街乗りだけなら最安でいい？\n条件次第です。街乗りでも雨の日の交差点、急な停止、白線やマンホールは避けられません。\n\n最安に寄せても成立しやすいのは、次の条件が揃う人です。\n•走り方が穏やかで高速をほぼ使わない\n•雨の日はできるだけ乗らない\n•年間走行距離が少なく、タイヤが減りにくい\n\n逆に、ここが一つでも当てはまるなら、最安より一段上を選んだ方が結果的に安いです。\n•通勤や送迎で雨の日も乗る\n•高速道路を使う\n•ミニバンやSUVなど、人や荷物をよく載せる\n\n## 失敗しない買い方：安さと安全を両立する順番\n1) いまのタイヤの状態を確認する\nスリップサイン、ひび割れ、片減り。ここが危ないなら、銘柄より先に交換が必要です。\n\n2) サイズだけでなく規格まで合わせる\nネット購入で多い失敗が、サイズは合うのに規格が合わないパターンです。今ついているタイヤの側面を撮って、同じ表記に合わせるのが確実です。\n\n3) ラベリングでウェットの最低線を決める\n燃費だけ見てウェットを落とすと、雨の日に違和感が出やすいです。迷ったらウェットを優先して下さい。\n\n4) 総額で比較する\nタイヤ代だけでなく、組み替え工賃、バランス、廃タイヤ処分まで含めて4本の総額で比較します。相場が分からないなら、先に [タイヤ交換の費用相場と内訳](/guide/tire-replacement-cost-guide) を読んでおくと、店の提案が判断しやすくなります。\n\n## 次の行動：5分でできる前準備\n•タイヤ側面をスマホで撮る（サイズと表記）\n•溝とスリップサインを確認\n•製造年週を確認（分からなければ店で確認）\n•4本の総額見積もりを2つ取る\n\n### 次に読む\n•[コラム一覧](/column)\n•[維持費のざっくりシミュレーション](/guide/maintenance-cost-simulation)\n•[オイル交換5000km神話](/column/oil-change-5000km-myth)\n",
+  "seoTitle": "安いタイヤは危険？最安で決める前に見るべきポイント（雨・溝・年数）",
+  "seoDescription": "タイヤは安くてもOK。でも用途を無視して最安で選ぶと、雨の日の止まり方と寿命で損しやすい。溝・年数・ラベリング（ウェット）・規格・取り付けで失敗を避ける判断軸をまとめました。",
+  "publishedAt": "2026-01-28T21:00:00+09:00",
+  "planPriority": 15,
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-consumables",
+    "/guide/tire-replacement-cost-guide",
+    "/guide/maintenance-cost-simulation"
+  ],
+  "primaryQuery": "タイヤ 安い 危険",
+  "updateReason": "seo-rewrite-2026-01-31 / 箇条書き表記を•に統一",
+  "sources": [
+    "https://tokyo-tire.com/media/disadvantages-of-cheap-tires/",
+    "https://jafmate.jp/safety/accident-prevention_20210120_1205357.html",
+    "https://jafmate.jp/safety/accident-prevention_20220121_1309072.html",
+    "https://www.bridgestone.co.jp/special/tire_safety/slip_sign/",
+    "https://www.jatma.or.jp/environment/labeling/",
+    "https://www.autobacs.com/static_html/shopping/tires/knowledge/tires/dot.html",
+    "https://www.yellowhat.jp/column/tire/005/"
+  ]
+}

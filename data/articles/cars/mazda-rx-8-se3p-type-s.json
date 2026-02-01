@@ -1,0 +1,105 @@
+{
+  "id": "mazda-rx-8-se3p-type-s",
+  "slug": "mazda-rx-8-se3p-type-s",
+  "name": "Mazda RX-8 (SE3P) Type S",
+  "maker": "Mazda",
+  "releaseYear": 2003,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "Type S (6MT)",
+  "summary": "回転が“滑る”ように積み重なるロータリー。速さの形が線で、バランスが面白い。",
+  "summaryLong": "RX-8は、高回転NAをロータリーで成立させた別解です。回転が軽く、姿勢が整う。曲がる速さが先に来るタイプ。\n\n一方で、いま買う目線では“圧縮と管理”がすべてです。始動性、アイドルの安定、オイル管理、冷却。ここが揃っている個体は、回転の美しさがそのまま残る。\n\n安い個体ほど、戻すのが難しい。履歴の透明度が価値になります。",
+  "heroImage": "/images/cars/mazda-rx-8-se3p-type-s-hero.jpg",
+  "mainImage": "/images/cars/mazda-rx-8-se3p-type-s-main.jpg",
+  "imageUrl": "/images/cars/mazda-rx-8-se3p-type-s-hero.jpg",
+  "gallery": [
+    "/images/cars/mazda-rx-8-se3p-type-s-front.jpg",
+    "/images/cars/mazda-rx-8-se3p-type-s-side.jpg",
+    "/images/cars/mazda-rx-8-se3p-type-s-interior.jpg"
+  ],
+  "engine": "Front Rotary 1.3 NA (13B-MSP Renesis)",
+  "powerPs": 250,
+  "torqueNm": 216,
+  "transmission": "6MT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜10 km/L",
+  "priceNew": "当時: 250万〜350万円台（仕様差）",
+  "priceUsed": "80万〜350万円（相場変動）",
+  "strengths": [
+    "回転の連続性が独特で、音と応答が“軽い”。",
+    "重量バランスが良く、曲がる所作が自然。",
+    "4ドア風の実用性があり、生活に置けるスポーツ。",
+    "ノーマルでも設計意図が濃く、整うほど楽しい。"
+  ],
+  "weaknesses": [
+    "圧縮と管理が状態を支配する。個体差が極端。",
+    "オイル消費は前提。理解がないと維持が難しい。",
+    "熱管理が甘いと劣化が早い。",
+    "安い個体の“戻し”は計画が要る。"
+  ],
+  "troubleTrends": [
+    "始動性（特に温間再始動）とアイドルの安定は必ず確認したいです。",
+    "冷却系と点火系の更新履歴で寿命が変わります。",
+    "排気の匂い・白煙の有無など、燃焼の状態が出やすいです。",
+    "電装の警告灯履歴は切り分けの難易度に直結します。"
+  ],
+  "costImpression": "理解して買うと面白いが、理解せずに買うと痛い。履歴の見える個体を優先したい。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "column-high-rev-na-why-it-felt-fast"
+  ],
+  "relatedGuideSlugs": [
+    "guide-buy-high-rev-na-checklist"
+  ],
+  "relatedCarSlugs": [
+    "honda-s2000-ap1",
+    "honda-civic-type-r-fd2"
+  ],
+  "tags": [
+    "Mazda",
+    "RX-8",
+    "SE3P",
+    "Renesis",
+    "rotary",
+    "high-rev",
+    "FR"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-high-rev-na-last-dance-heritage"
+  ],
+  "intentTags": [
+    "rotary",
+    "high-rev",
+    "NA",
+    "FR",
+    "2000s",
+    "heritage"
+  ],
+  "purchasePriceSafe": "安全ライン：120〜220万円前後（圧縮と履歴重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間35〜80万円"
+  },
+  "maintenanceCostYenPerYear": 550000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mazda Mazda RX-8 (SE3P) Type S",
+  "makerKey": "mazda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/mazda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Mazda RX-8 (SE3P) Type S",
+  "updateReason": "initial-import",
+  "sources": []
+}

@@ -1,0 +1,54 @@
+{
+  "slug": "yunyusha-koukya-uru-kaitori-strategy",
+  "title": "輸入車・高級車をできるだけ高く売るための戦略ガイド｜ディーラー下取りだけに頼らないコツ",
+  "lead": "輸入高級車を高く売る戦略。販路選び、履歴と仕様の整理、比較と条件詰めの進め方。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "SELL",
+  "tags": [
+    "輸入車",
+    "高級車",
+    "車売却",
+    "買取",
+    "ディーラー下取り"
+  ],
+  "publishedAt": "2025-12-12",
+  "updatedAt": "2026-01-20",
+  "internalLinks": [
+    "best-time-to-sell-import-sedan",
+    "hajimete-kuruma-uru-checklist",
+    "selling-without-rush",
+    "kuruma-ikkatsu-satei-shitsukoi-real"
+  ],
+  "body": "この記事は「輸入車・高級車をできるだけ高く売るための戦略ガイド｜ディーラー下取りだけに頼らないコツ」をテーマに、車の売却は“順番”で手取りが変わります。やることを先に決めておくと、連絡や交渉のストレスが減ります。\n\n## 結論\n- 輸入高級車は「相場」より、【買い手（販路）】で価格差が出ます。得意な買取店に当てるのが最短です。\n- 高値につながりやすいのは、年式や距離だけでなく【整備履歴と仕様（オプション）】。この2つが揃うと評価が安定します。\n- やることはシンプルです。①情報を揃える ②比較する ③条件を詰める。この順番で動くと、焦って安売りしにくくなります。\n\n## 高値になりやすい要素\n- 整備記録簿が揃っている（ディーラー/専門店での履歴がある）\n- スペアキー、取説、純正パーツが揃っている\n- 人気オプションや希少仕様（内装色、装備パッケージ等）\n- 外装/内装の状態が良い（禁煙、ペット臭なし）\n\n## 手順 1 “情報の棚卸し”をする\n- 年式、距離、グレード、オプション、タイヤサイズ、修理歴を整理する\n- 可能なら整備記録の写真を残しておく（後で説明が早い）\n\n## 手順 2 買取先は「輸入車に強いところ」を混ぜる\n- 輸入車専門の買取/販売店\n- 一般的な買取店（比較の基準になる）\n- ディーラー下取り（手続きの楽さの基準）\n\n## 手順 3 “直す/直さない”は線引きする\n- 洗車・内装清掃、軽い消臭など、低コストで印象が上がるものはやる\n- 大きい整備や高額修理は、回収できないことも多いので、まず査定で相談する\n\n## 手順 4 条件は「金額以外」も揃える\n- 入金日、引き取り日、名義変更の完了時期\n- 査定後の減額条件（どんな場合に減額されるか）\n- キャンセル可否と期限\n\n## よくあるつまずき\n- 輸入車に慣れていない買取先だけで比較してしまう\n- 整備履歴やオプション情報が出せず、評価が下がる\n- その場の勢いで契約し、後から条件で揉める\n\n## 補足（実務メモ）\n- 相場確認は“1社の提示額”で決めない。比較対象があるだけで交渉が楽になる\n- 査定前に洗車・車内清掃をしておくと、第一印象でのマイナスを避けやすい\n- 引き渡し日と入金日はセットで決める（先に車だけ渡さない）\n- 電話が負担なら、最初に「連絡方法/時間帯」を指定しておく\n\n## 関連記事\n- /guide/best-time-to-sell-import-sedan\n- /guide/hajimete-kuruma-uru-checklist\n- /guide/selling-without-rush\n- /guide/kuruma-ikkatsu-satei-shitsukoi-real\n- /guide/best-time-to-sell-car\n",
+  "monetizeKey": "sell_basic_checklist",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "best-time-to-sell-import-sedan",
+    "hajimete-kuruma-uru-checklist",
+    "selling-without-rush",
+    "kuruma-ikkatsu-satei-shitsukoi-real"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [
+    "supercar-parts-bin-engineering-heritage"
+  ],
+  "intentTags": [
+    "sell"
+  ],
+  "seoTitle": "輸入車・高級車をできるだけ高く売るための戦略ガイド｜ディーラー下取りだけに頼らないコツ｜CAR BOUTIQUE GUIDE",
+  "seoDescription": "輸入高級車を高く売る戦略。販路選び、履歴と仕様の整理、比較と条件詰めの進め方。",
+  "summary": "輸入高級車を高く売る戦略。販路選び、履歴と仕様の整理、比較と条件詰めの進め方。",
+  "status": "published",
+  "id": "guide:yunyusha-koukya-uru-kaitori-strategy",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/hub-sell",
+  "relatedClusterIds": [],
+  "primaryQuery": "輸入車・高級車をできるだけ高く売るための戦略ガイド｜ディーラー下取りだけに頼らないコツ",
+  "updateReason": "initial-import",
+  "sources": []
+}

@@ -1,0 +1,55 @@
+{
+  "id": "col-023",
+  "slug": "budget-should-be-monthly-total",
+  "status": "published",
+  "title": "車の予算は「車両価格」じゃなく“月々の総額”で決めた方が失敗しない",
+  "summary": "車の予算は車両価格ではなく月々の総額で決める。固定費と一発出費を月割りにして積み上げ、上限から車両価格を逆算する。",
+  "category": "MONEY",
+  "tags": [
+    "予算",
+    "維持費",
+    "月額",
+    "ライフプラン"
+  ],
+  "intentTags": [
+    "money",
+    "decision",
+    "budget"
+  ],
+  "relatedGuideSlugs": [
+    "car-budget-simulation",
+    "maintenance-cost-simulation",
+    "car-loan-interest-rate-guide"
+  ],
+  "targetKeyword": "車 予算 月額 維持費",
+  "searchIntent": "車の予算で迷う人が、購入時点で詰まないための“総額思考”を身につけられるようにする。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-31",
+  "noindex": false,
+  "body": "## 結論：車の予算は車両価格ではなく月々の総額で決める\n車選びで一番ズレやすいのは、車両価格だけで予算を決めてしまうことです。買ったあとに毎月出ていくお金が思ったより重くなります。\n\n月々の総額は、だいたい次の足し算です。\n•ローンやリースの支払い\n•駐車場\n•任意保険\n•税金と車検の積み立て\n•メンテナンスや消耗品の積み立て\n•燃料\n\nこの総額の上限が決まってから、車両価格が決まります。逆です。\n\nまず全体像を掴むなら [車の予算シミュレーション](/guide/car-budget-simulation) を使うのが早いです。\n\n## 根拠：家計を壊すのは大きい一発と固定費の増加\n車の出費は、毎月少しずつの固定費と、年単位で来る大きい一発に分かれます。\n•固定費：ローン、駐車場、保険\n•一発：車検、税金、タイヤ、バッテリー、故障\n\n車両価格だけで組むと、一発が来たタイミングで苦しくなります。だから最初から月割りで積み立て扱いにしておく方が安全です。\n\n## 見落としがちな費用\n予算が崩れる人は、ここを忘れがちです。\n•駐車場の初期費用（契約金や更新料など）\n•任意保険の年払いと月払いの差\n•納車費用や登録代行費用\n•納車直後の消耗品交換（タイヤやバッテリーなど）\n\n## 反論：細かく考えると買えなくなる\n確かに細かすぎると疲れます。だから最初はざっくりで十分です。\n\n目安は、年に1回以上来る出費を12で割って、月額に足すだけ。\n車検や税金、消耗品の全体像は [維持費のざっくりシミュレーション](/guide/maintenance-cost-simulation) にまとめています。\n\n## 失敗しない決め方：月額上限から逆算する手順\n1) まず月にいくらまでなら出せるかを決める\n生活費と貯蓄を削らない範囲で上限を固定します。ここがブレると、車の条件もブレます。\n\n2) 固定費を先に埋める\n駐車場と保険は車両価格とは別で動きます。先に見積もって差し引きます。\n\n3) 残りを車両代に回す\n残った枠が、ローン支払いと積み立ての原資です。金利や期間で月額は変わるので、ローンの考え方は [ローンHUB](/guide/hub-loan) を参照してください。\n\n## 次の行動：今週やることは3つ\n•駐車場代と任意保険の概算を出す\n•税金と車検を月割りで足す\n•月額上限の中で、買える車両価格をシミュレーションする\n•予備費を月割りで入れておく（故障や事故の自己負担用）\n\n### 次に読む\n•[コラム一覧](/column)\n•[車の予算シミュレーション](/guide/car-budget-simulation)\n•[維持費のざっくりシミュレーション](/guide/maintenance-cost-simulation)\n",
+  "seoTitle": "車の予算は「車両価格」じゃなく“月々の総額”で決めた方が失敗しない",
+  "seoDescription": "車の支出は購入費だけじゃない。保険・税金・車検・燃料を月割りして「月々いくらまで」で握ると、買ったあとに詰まりにくい。",
+  "planPriority": 17,
+  "publishedAt": "2026-01-28T22:30:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/car-budget-simulation",
+    "/guide/maintenance-cost-simulation",
+    "/guide/hub-loan"
+  ],
+  "primaryQuery": "車 予算 月額 維持費",
+  "updateReason": "seo-rewrite-2026-01-31 / 箇条書き表記を•に統一",
+  "sources": [
+    "https://www.eneos.co.jp/eneos_ss/ssguide/carlife/car-maintenance-cost/",
+    "https://www.zurich.co.jp/car/useful/guide/cc-maintenance-cost/",
+    "https://221616.com/satei/blog/article/car-maintenance-cost/",
+    "https://www.hokugin.co.jp/column/life/expense-of-keeping-a-car.html",
+    "https://worldycar.com/car-maintenance-cost/"
+  ]
+}

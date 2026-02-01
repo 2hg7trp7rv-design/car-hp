@@ -1,0 +1,53 @@
+{
+  "slug": "oil-change-frequency-guide",
+  "title": "エンジンオイル交換頻度の目安｜短距離・輸入車・ターボで考え方は変わる",
+  "lead": "オイル交換頻度の決め方。使い方別の考え方、フィルター、点検のコツ。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "MAINTENANCE",
+  "tags": [
+    "オイル交換",
+    "メンテナンス",
+    "ターボ",
+    "輸入車"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-20",
+  "internalLinks": [
+    "maintenance-cost-simulation",
+    "oil-leak-first-response",
+    "engine-check-light-first-response",
+    "tire-replacement-cost-guide"
+  ],
+  "body": "この記事は「エンジンオイル交換頻度の目安｜短距離・輸入車・ターボで考え方は変わる」をテーマに、不具合は早めに切り分けるほど安く済みやすいです。よくある原因と、やってはいけない行動を先に押さえましょう。\n\n## 結論\n- オイル交換の正解は車種と使い方で変わります。基本は【取扱説明書（メーカー指定）】に合わせます。\n- 迷ったら「短距離が多い」「渋滞が多い」「ターボ車」「高回転をよく使う」などの条件があるときは、早めの交換が無難です。\n- 交換頻度と同じくらい大事なのが、【オイル量の点検】。減っているのに気づかず走る方が危険です。\n\n## まず整理する（オイルとフィルター）\n- エンジンオイル：劣化すると潤滑や洗浄性能が落ちる\n- オイルフィルター：汚れを捕まえる。フィルターが詰まると本来の効果が出にくい\n\n## 手順 1 自分の“使い方”を把握する\n- 片道10分以内の短距離が多い\n- 渋滞が多い、アイドリングが多い\n- 山道、高速、スポーツ走行が多い\n- ターボ車、輸入車などで指定が細かい\n\n## 手順 2 交換目安は「メーカー指定」ベースで考える\n- まずはメーカー指定の交換目安を確認する\n- 上記の“厳しい使い方”に当てはまるなら、指定より短くすることを検討する\n\n## 手順 3 オイル量は定期的に点検する\n- 走行前や給油時など、習慣にすると楽\n- 減りが早い・漏れが疑わしい場合は早めに点検（/guide/oil-leak-first-response）\n\n## よくあるつまずき\n- 「まだ走れるはず」で交換を先延ばしにする\n- 油種/粘度を適当に選ぶ（指定に合わない）\n- オイル量の点検をしない\n- 交換したつもりで、フィルターやドレン周りの締め付け不良に気づかない\n\n## 補足（実務メモ）\n- 「まだ走れる」は高くつくことがあります。迷ったらまず停止して状況確認\n- 漏れは放置すると二次被害になりやすいので、量が少なくても早めに点検へ\n- 応急処置より、レッカー/ロードサービスを使うほうが安全で安いケースが多い\n- 異常が出たときは、警告灯の色・臭い・煙・水温など“再現しない情報”をメモ\n\n## 関連記事\n- /guide/maintenance-cost-simulation\n- /guide/oil-leak-first-response\n- /guide/engine-check-light-first-response\n- /guide/tire-replacement-cost-guide\n",
+  "monetizeKey": "shaken_rakuten",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "maintenance-cost-simulation",
+    "oil-leak-first-response",
+    "engine-check-light-first-response",
+    "tire-replacement-cost-guide"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "oil",
+    "maintenance"
+  ],
+  "seoTitle": "オイル交換頻度の目安｜短距離・輸入車・ターボで変わる判断",
+  "seoDescription": "オイル交換頻度の決め方。使い方別の考え方、フィルター、点検のコツ。",
+  "summary": "オイル交換頻度の決め方。使い方別の考え方、フィルター、点検のコツ。",
+  "readMinutes": 5,
+  "status": "published",
+  "id": "guide:oil-change-frequency-guide",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/maintenance",
+  "relatedClusterIds": [],
+  "primaryQuery": "エンジンオイル交換頻度の目安｜短距離・輸入車・ターボで考え方は変わる",
+  "updateReason": "initial-import",
+  "sources": []
+}

@@ -1,0 +1,91 @@
+{
+  "id": "mazda-rx7-fc3s",
+  "slug": "mazda-rx7-fc3s",
+  "name": "RX-7 FC3S",
+  "maker": "Mazda",
+  "releaseYear": 1985,
+  "difficulty": "advanced",
+  "bodyType": "sports-coupe",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "mazda-rx7-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "FC3S",
+  "summary": "ターボ化で表情を変えた2代目。日常とスポーツの距離を詰めた。",
+  "summaryLong": "RX-7 FC3Sは、1985年に登場したMazdaのsports-coupeで、FRとFront Rotary Turboを軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+  "heroImage": "/images/cars/mazda-rx7-fc3s-hero.jpg",
+  "mainImage": "/images/cars/mazda-rx7-fc3s-main.jpg",
+  "imageUrl": "/images/cars/mazda-rx7-fc3s-main.jpg",
+  "gallery": [
+    "/images/cars/mazda-rx7-fc3s-front.jpg",
+    "/images/cars/mazda-rx7-fc3s-side.jpg",
+    "/images/cars/mazda-rx7-fc3s-interior.jpg"
+  ],
+  "engine": "Front Rotary Turbo",
+  "powerPs": 205,
+  "torqueNm": 265,
+  "transmission": "5MT / 4AT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 7〜11 km/L",
+  "priceNew": "当時：230万〜350万円（参考）",
+  "priceUsed": "250万〜800万円（相場変動）",
+  "strengths": [
+    "軽量ボディと低重心でハンドリングが鋭い",
+    "ロータリー特有の伸びとサウンド",
+    "デザインが色褪せず、所有満足度が高い",
+    "専門店文化があり、リフレッシュの道筋が立てやすい"
+  ],
+  "weaknesses": [
+    "熱管理がシビアで、劣化するとトラブルに直結しやすい",
+    "燃費は期待できない",
+    "個体差が大きく、購入時点検が重要"
+  ],
+  "troubleTrends": [
+    "冷却系/熱害（ラジエター・水路）",
+    "点火系（プラグ・コイル）",
+    "ターボ周り/ホース類の劣化"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：900〜2000万円前後規模を想定できない場合は維持途中で詰みやすい車です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [],
+  "tags": [
+    "Mazda",
+    "sports-coupe",
+    "クラシックスポーツ",
+    "FR",
+    "5MT / 4AT",
+    "Front Rotary Turbo",
+    "ネオクラシック",
+    "ロータリー"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：500〜1200万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間70〜150万円"
+  },
+  "priceUsedYenRange": "250万〜800万円（相場変動）",
+  "maintenanceCostYenPerYear": 450000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mazda RX-7 FC3S",
+  "makerKey": "mazda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/mazda",
+  "relatedClusterIds": [],
+  "primaryQuery": "RX-7 FC3S",
+  "updateReason": "initial-import",
+  "sources": []
+}

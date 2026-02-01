@@ -1,0 +1,103 @@
+{
+  "id": "toyota-aristo-jzs161-v300",
+  "slug": "toyota-aristo-jzs161-v300",
+  "name": "Toyota Aristo (JZS161) V300",
+  "maker": "Toyota",
+  "releaseYear": 1997,
+  "difficulty": "intermediate",
+  "bodyType": "sedan",
+  "segment": "スポーツセダン",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "Aristo V300 (2JZ-GTE)",
+  "summary": "“余裕の2JZ”を日常の器に載せたV300。建前の時代の強さがセダンで残る。",
+  "summaryLong": "アリストV300は、280の建前の時代の強さを“セダンの器”で受け止めた車です。2JZの余裕は、日常域の厚みとして効く。\n\nいま買う目線では、熱履歴と補機の整合。冷却、ホース、タービン周辺の滲み、燃料系、そしてATの状態。ブーストアップ車も多いので、燃調と冷却の思想が揃っているかが価値を決めます。\n\n速さを誇示しないのに速い、建前の時代らしい一台です。",
+  "heroImage": "/images/cars/toyota-aristo-jzs161-v300-hero.jpg",
+  "mainImage": "/images/cars/toyota-aristo-jzs161-v300-main.jpg",
+  "imageUrl": "/images/cars/toyota-aristo-jzs161-v300-hero.jpg",
+  "gallery": [
+    "/images/cars/toyota-aristo-jzs161-v300-front.jpg",
+    "/images/cars/toyota-aristo-jzs161-v300-side.jpg",
+    "/images/cars/toyota-aristo-jzs161-v300-interior.jpg"
+  ],
+  "engine": "Front Inline-6 3.0 Twin Turbo (2JZ-GTE)",
+  "powerPs": 280,
+  "torqueNm": 451,
+  "transmission": "4AT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜10 km/L",
+  "priceNew": "当時: 450万〜600万円台（仕様差）",
+  "priceUsed": "250万〜900万円（相場変動）",
+  "strengths": [
+    "余裕のある2JZで、日常域が強い。",
+    "セダンとして使え、長距離で疲れにくい。",
+    "情報が多く、整備と改善の道筋がある。",
+    "価格帯の選択肢が広い。"
+  ],
+  "weaknesses": [
+    "熱と補機の劣化で差が出やすい。",
+    "ATの状態で価値が大きく割れる。",
+    "改造個体の整合が崩れると症状が追いにくい。",
+    "足回りのへたりが走りの印象を濁らせる。"
+  ],
+  "troubleTrends": [
+    "冷却系（ホース類含む）の更新履歴が薄い個体は避けたいです。",
+    "タービン周辺の滲み・配管状態は要チェックです。",
+    "ATの変速ショックや油温管理の履歴は確認したいです。",
+    "追加配線（メーター/制御）の処理が雑だとトラブルになりやすいです。"
+  ],
+  "costImpression": "安い個体は“補機とAT”で追い金が出やすい。整った個体を選ぶ方が安いことが多い。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "column-280ps-agreement-why-overbuilt"
+  ],
+  "relatedGuideSlugs": [
+    "guide-buy-280ps-era-turbo-checklist"
+  ],
+  "relatedCarSlugs": [
+    "nissan-skyline-gt-r-bcnr33-v-spec",
+    "mazda-rx-7-fd3s-spirit-r"
+  ],
+  "tags": [
+    "Toyota",
+    "Aristo",
+    "JZS161",
+    "2JZ-GTE",
+    "280ps",
+    "sedan",
+    "turbo"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-280ps-gentlemens-agreement-heritage"
+  ],
+  "intentTags": [
+    "280ps",
+    "tuning",
+    "intermediate",
+    "jdm"
+  ],
+  "purchasePriceSafe": "安全ライン：320〜520万円前後（熱と補機重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間40〜95万円"
+  },
+  "maintenanceCostYenPerYear": 680000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Toyota Toyota Aristo (JZS161) V300",
+  "makerKey": "toyota",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/toyota",
+  "relatedClusterIds": [],
+  "primaryQuery": "Toyota Aristo (JZS161) V300",
+  "updateReason": "initial-import",
+  "sources": []
+}

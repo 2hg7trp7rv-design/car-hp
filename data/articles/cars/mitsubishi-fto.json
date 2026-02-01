@@ -1,0 +1,90 @@
+{
+  "id": "mitsubishi-fto",
+  "slug": "mitsubishi-fto",
+  "name": "Mitsubishi FTO",
+  "maker": "Mitsubishi",
+  "releaseYear": 1994,
+  "difficulty": "intermediate",
+  "bodyType": "クーペ",
+  "segment": "ライトスポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "FTO",
+  "summary": "派手じゃないのに“線”がきれい。90年代ライトクーペの旨味が残る。",
+  "summaryLong": "FTOは、90年代ライトクーペの旨味が残る一台です。スペックの派手さではなく、回頭性と操作の素直さが主役。\n\n中古ではボディのまっすぐさと足の整合、そして電装の健全性。個体数が限られるぶん、良個体に当たると満足度が高い。\n\nMitsubishi FTOは「ライトスポーツ×クーペ」の文脈で語られることが多い一台です。中古では走行距離より、整備記録と仕様の透明性を優先。初期費用を抑えすぎると後追い整備で総額が膨らみやすいので、“整った個体を高く買う”ほうが安全です。",
+  "heroImage": "/images/cars/mitsubishi-fto-hero.jpg",
+  "mainImage": "/images/cars/mitsubishi-fto-hero.jpg",
+  "imageUrl": "/images/cars/mitsubishi-fto-hero.jpg",
+  "gallery": [
+    "/images/cars/mitsubishi-fto-front.jpg",
+    "/images/cars/mitsubishi-fto-side.jpg",
+    "/images/cars/mitsubishi-fto-interior.jpg"
+  ],
+  "engine": "Front 2.0 NA (V6/4cyl variations)",
+  "powerPs": 180,
+  "torqueNm": 191,
+  "transmission": "5MT/4AT（仕様差）",
+  "drive": "FF",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜12 km/L",
+  "priceNew": "当時: 200万〜450万円台（仕様差）",
+  "priceUsed": "200万〜900万円（相場変動）",
+  "strengths": [
+    "サイズ感がちょうどよく、扱いやすい。",
+    "派手さの外に走りの旨味がある。"
+  ],
+  "weaknesses": [
+    "個体数が少なく、良個体探しが難しい。",
+    "部品の入手性が厳しくなる領域がある。"
+  ],
+  "troubleTrends": [
+    "内装・電装の劣化は個体差が出やすいです。",
+    "足回りブッシュのへたりで印象が変わります。",
+    "修復歴の説明の具体性は重視したいです。"
+  ],
+  "costImpression": "見つけたら“履歴と整合”で決めたい。安さより状態が価値になる。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [
+    "toyota-mr-s-zzw30"
+  ],
+  "tags": [
+    "Mitsubishi",
+    "FTO",
+    "FF",
+    "coupe",
+    "90s"
+  ],
+  "relatedHeritageSlugs": [
+    "mitsubishi-fto-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "90s",
+    "lightweight"
+  ],
+  "purchasePriceSafe": "安全ライン：120〜220万円前後（状態重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間25〜65万円"
+  },
+  "maintenanceCostYenPerYear": 400000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mitsubishi Mitsubishi FTO",
+  "makerKey": "mitsubishi",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/mitsubishi",
+  "relatedClusterIds": [],
+  "primaryQuery": "Mitsubishi FTO",
+  "updateReason": "initial-import",
+  "sources": []
+}

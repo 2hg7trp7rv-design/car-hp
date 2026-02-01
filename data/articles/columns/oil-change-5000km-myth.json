@@ -1,0 +1,58 @@
+{
+  "id": "col-014",
+  "slug": "oil-change-5000km-myth",
+  "status": "published",
+  "title": "オイル交換5000km神話。距離より“使い方”で決める方が安全",
+  "summary": "オイル交換の5000km固定は誤解。取扱説明書と使い方で交換時期を決めるための実務ポイントを整理します。",
+  "category": "MAINTENANCE",
+  "tags": [
+    "オイル交換",
+    "メンテナンス",
+    "距離",
+    "頻度"
+  ],
+  "intentTags": [
+    "maintenance",
+    "decision",
+    "consumables"
+  ],
+  "relatedGuideSlugs": [
+    "maintenance",
+    "hub-consumables",
+    "oil-change-frequency-guide",
+    "oil-leak-first-response"
+  ],
+  "targetKeyword": "オイル交換 何キロごと",
+  "searchIntent": "オイル交換の頻度で迷う人が、距離神話から抜けて合理的に決められるようにする。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-31",
+  "noindex": false,
+  "body": "## 結論\nオイル交換は、5000km固定ではありません。取扱説明書と使い方（短距離、渋滞、重い荷物など）で決めるのが正解です。\n\nまずは[メンテナンス総合](/guide/maintenance)で、オイル以外も含めた整備の全体像を押さえると判断が速くなります。\n\n## 根拠1 事実：メーカーは距離と期間で基準を出している\n多くのメーカーは、走行距離だけでなく期間でも交換の目安を示しています。\n距離が伸びない車でも、時間が経てばオイルは劣化します。\n\n一方で、走り方が厳しい条件だと、同じ車でも交換を早めた方がいいケースがあります。\nつまり、5000kmは万能ルールではなく、安全側の一つの言い方にすぎません。\n\n## 根拠2 実務：自分の交換タイミングを決める3ステップ\n迷う人は、これで決まります。\n\n### 1 取扱説明書（メンテナンスノート）を先に見る\nメーカーが出している基準が最優先です。グレードやエンジンで条件が変わることがあります。\n\n### 2 自分の使い方が厳しい条件かを判定する\n当てはまるほど、距離よりも期間を優先して短めに考えます。\n•短距離のちょい乗りが多い\n•渋滞が多い、アイドリングが多い\n•山道や高速など高負荷が多い\n•荷物が重い、人数が多い\n•暑い寒いが極端な環境で使う\n\n### 3 交換の基準を距離と期間の両方で持つ\n距離が伸びる人は距離基準、伸びない人は期間基準で管理します。どちらか一方だけだとズレます。\n\n## 根拠3 ケース：5000kmが合う人、合わない人\n### 合いやすい人\n•短距離が多い\n•渋滞が多い\n•ターボなど高負荷になりやすい車に乗っている\n\n### 合いにくい人\n•長距離中心でエンジンが十分温まる\n•走行距離が多く、メーカー基準でも問題が出ていない\n•使用環境が安定していて、メンテナンス履歴が明確\n\n## 反論への回答：店で5000kmと言われた。結局どっち？\n5000kmを勧めるのは、安全側で説明しやすいからです。悪い提案ではありません。\nただし、根拠が取扱説明書とズレているなら、まずは説明を聞いてください。\n•自分の使い方が厳しい条件に当てはまるのか\n•オイルの種類（粘度やグレード）は合っているのか\nこの2つが分かれば、納得して決められます。\n\n## 次の一手\n•次回交換日を、距離と期間の両方でメモする\n•車検や点検のタイミングと合わせて管理する\n•不安なら[オイル交換頻度の考え方](/guide/oil-change-frequency-guide)で基準を固める\n\n## 関連リンク\n•[タイヤ交換費用の目安](/guide/tire-replacement-cost-guide)\n•[維持費シミュレーションの基本](/guide/maintenance-cost-simulation)\n•[安いタイヤの落とし穴](/column/tire-cheap-dangerous-choice)\n",
+  "seoTitle": "オイル交換は5000kmが正解？距離と期間の考え方",
+  "seoDescription": "オイル交換は5000km固定ではありません。取扱説明書と使い方で決まります。距離と期間の両基準、交換を早める条件、店で言われた時の確認点を整理します。",
+  "planPriority": 14,
+  "publishedAt": "2026-01-28T19:00:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/maintenance",
+    "/guide/hub-consumables",
+    "/guide/maintenance-cost-simulation"
+  ],
+  "primaryQuery": "オイル交換 5000km 神話",
+  "updateReason": "全面改稿（結論と判断基準を明確化）/内部リンク追加/参考ソース追加/公開基準調整",
+  "sources": [
+    "https://toyota.jp/after_service/tenken/oil/",
+    "https://toyota.jp/content/dam/toyota/after_service/care/care_engine/pdf/mente_note.pdf",
+    "https://kinto-jp.com/magazine/20210901-1/",
+    "https://www.goo-net.com/magazine/carmaintenance/inspection/227430/",
+    "https://kobacamakusa01.com/topics/1488/",
+    "https://bestcarweb.jp/feature/column/471108",
+    "https://minkara.carview.co.jp/userid/766725/blog/45798276/"
+  ]
+}

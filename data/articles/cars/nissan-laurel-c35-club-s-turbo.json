@@ -1,0 +1,103 @@
+{
+  "id": "nissan-laurel-c35-club-s-turbo",
+  "slug": "nissan-laurel-c35-club-s-turbo",
+  "name": "Nissan Laurel (C35) Club S Turbo",
+  "maker": "Nissan",
+  "releaseYear": 1998,
+  "difficulty": "intermediate",
+  "bodyType": "sedan",
+  "segment": "スポーツセダン",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "C35 Club S Turbo",
+  "summary": "“地味だけど濃い”FRセダン。派手さの外に、日常性能の旨味が残る。",
+  "summaryLong": "C35ローレルは、派手さの外に“日常性能の濃度”が残るFRセダンです。ターボとFRの旨味を、落ち着いた器で味わえる。\n\n中古では、錆と足回りの整合、そして電装の後付け品質。流通台数が限られるぶん、整った個体に当たると満足度が高い。\n\n目立たない車ほど、個体差の見極めが価値になります。\n\nNissan Laurel (C35) Club S Turboは「スポーツセダン×セダン」の文脈で語られることが多い一台です。中古では走行距離より、整備記録と仕様の透明性を優先。初期費用を抑えすぎると後追い整備で総額が膨らみやすいので、“整った個体を高く買う”ほうが安全です。",
+  "heroImage": "/images/cars/nissan-laurel-c35-club-s-turbo-hero.jpg",
+  "mainImage": "/images/cars/nissan-laurel-c35-club-s-turbo-main.jpg",
+  "imageUrl": "/images/cars/nissan-laurel-c35-club-s-turbo-hero.jpg",
+  "gallery": [
+    "/images/cars/nissan-laurel-c35-club-s-turbo-front.jpg",
+    "/images/cars/nissan-laurel-c35-club-s-turbo-side.jpg",
+    "/images/cars/nissan-laurel-c35-club-s-turbo-interior.jpg"
+  ],
+  "engine": "Front Inline-6 2.5 Turbo (RB25DET)",
+  "powerPs": 280,
+  "torqueNm": 333,
+  "transmission": "4AT/5MT（希少）",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜10 km/L",
+  "priceNew": "当時: 250万〜450万円台（仕様差）",
+  "priceUsed": "220万〜650万円（相場変動）",
+  "strengths": [
+    "FRセダンの落ち着きと、ターボの厚みが両立する。",
+    "派手さがないぶん、良個体が残っていることがある。",
+    "乗り心地と走りのバランスが取りやすい。",
+    "“普通に速い”を日常で使える。"
+  ],
+  "weaknesses": [
+    "個体数が少なく、状態の良い車を探すのが難しい。",
+    "錆と劣化の影響が出やすい。",
+    "AT個体が多く、状態で評価が分かれる。",
+    "部品の入手性が厳しくなる領域がある。"
+  ],
+  "troubleTrends": [
+    "下回り錆とサブフレーム周りは要注意です。",
+    "足回りブッシュのへたりは乗り味に直結します。",
+    "配線後付けが雑だと電装トラブルが出やすいです。",
+    "冷却系の更新履歴が薄い個体は避けたいです。"
+  ],
+  "costImpression": "見つけたら早い者勝ち。整った個体は価格以上に気持ちいい。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "column-fr-sedan-why-it-felt-right"
+  ],
+  "relatedGuideSlugs": [
+    "guide-buy-fr-turbo-sedan-checklist"
+  ],
+  "relatedCarSlugs": [
+    "toyota-chaser-jzx100-tourer-v",
+    "nissan-skyline-er34-25gt-turbo-sedan"
+  ],
+  "tags": [
+    "Nissan",
+    "Laurel",
+    "C35",
+    "RB25DET",
+    "FR",
+    "sports-sedan"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-fr-sedan-last-golden-age-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "sedan",
+    "turbo",
+    "intermediate",
+    "1990s"
+  ],
+  "purchasePriceSafe": "安全ライン：280〜430万円前後（錆と足重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間35〜90万円"
+  },
+  "maintenanceCostYenPerYear": 620000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Nissan Laurel (C35) Club S Turbo",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Nissan Laurel (C35) Club S Turbo",
+  "updateReason": "initial-import",
+  "sources": []
+}

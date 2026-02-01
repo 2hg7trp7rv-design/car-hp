@@ -1,0 +1,64 @@
+{
+  "slug": "insurance-deductible-guide",
+  "title": "自動車保険の免責金額（自己負担額）の決め方｜保険料とリスクのバランス",
+  "lead": "車両保険の免責金額の考え方。保険料とのトレードオフ、設定パターン、決め方の目安。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "INSURANCE",
+  "tags": [
+    "免責",
+    "自己負担",
+    "自動車保険",
+    "車両保険"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-31",
+  "internalLinks": [
+    "sharyou-hoken-necessary",
+    "bengoshi-hiyou-tokuyaku-guide",
+    "car-accident-first-10-minutes",
+    "road-service-choice-guide"
+  ],
+  "body": "## 結論\n免責金額は、事故のときに自分が払う自己負担額です。最初に、いざという時に無理なく出せる上限を決めてから、保険料とのバランスで調整します。\n\n保険全体の考え方がまだ曖昧なら、先に[自動車保険の基本](/guide/insurance)を通しておくと早いです。\n\n## 危険判定\n免責を上げるのが向かないケースです。\n•緊急で数万円単位を出すのが厳しい\n•運転に不安がある、運転頻度が高い\n•小さな事故でも車が止まると困る\n•家族の車で、誰がどれだけ乗るか読みづらい\n\n## 状況別分岐\n### 1 免責を低めにしたい人\n小さな損害でも自己負担を減らしたいなら免責を低めにします。その代わり保険料は上がりやすいです。\n\n### 2 保険料を抑えたい人\n自己負担を許容できるなら免責を上げます。小さな損害は自腹で、という割り切りが前提です。\n\n### 3 1回目と2回目で免責が変わる契約\n同じ年に複数回使うと自己負担が増える設計があります。免責方式の違いは、更新前に必ず確認した方がいいです。\n\n## 応急処置\n迷ったら、この順で整理すると決めやすいです。\n•いざという時に出せる自己負担の上限を決める\n•その金額で、修理代が免責を超えそうな事故だけ保険を使う前提にする\n•見積もりは免責パターンを変えて2通り出す（保険料差が見える）\n\n## 修理費レンジ\n免責の影響は、損害が小さいほど大きく出ます。\n例として、免責10万円で修理費8万円なら、保険金は出ません。免責がある以上、小さな損害は自己負担になりやすいです。\n\n逆に、損害が大きい事故では、免責分だけ自己負担して残りが補償される形になります。ここを理解すると、免責の設定で迷いません。\n\n## 見積もりで伝える情報\n免責を比較するときは、条件を揃えるのが大前提です。\n•車種、年式、型式\n•車両保険のタイプ（一般型、エコノミー型など）\n•運転者の範囲と年齢条件\n•年間走行距離の目安\n•駐車環境（屋内、屋外）\n\n## よくある質問\n### Q 免責ゼロが一番いい？\nA 自己負担は減りますが保険料が上がります。家計に余裕があるなら選択肢になります。保険料を優先するなら免責を上げる方が合理的です。\n\n### Q 車対車免責ゼロって何？\nA 条件を満たす事故では免責をゼロにする特約があります。加入している保険会社の説明を必ず確認してください。\n\n### Q 免責は途中で変えられる？\nA 契約条件によります。更新時が一番整理しやすいので、まず更新のタイミングで検討するのが現実的です。\n\n## 関連リンク\n•[車両保険は必要？いらない？](/guide/sharyou-hoken-necessary)\n•[車両保険が必要な人](/column/vehicle-insurance-who-needs)\n•[維持費シミュレーションの基本](/guide/maintenance-cost-simulation)\n",
+  "monetizeKey": "insurance_saving",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "sharyou-hoken-necessary",
+    "bengoshi-hiyou-tokuyaku-guide",
+    "car-accident-first-10-minutes",
+    "road-service-choice-guide"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "insurance",
+    "saving"
+  ],
+  "seoTitle": "車両保険の免責金額の決め方｜自己負担と保険料のバランス",
+  "seoDescription": "免責金額は事故時の自己負担額。免責を上げると保険料は下がりやすい一方、小さな損害は自腹になりがちです。迷わない決め方を解説します。",
+  "summary": "免責金額の意味と、自己負担と保険料のバランスで決める手順を整理します。免責方式の違いと、見積もり比較のコツもまとめます。",
+  "status": "published",
+  "id": "guide:insurance-deductible-guide",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/guide/insurance",
+  "relatedClusterIds": [
+    "/guide/sharyou-hoken-necessary",
+    "/column/vehicle-insurance-who-needs",
+    "/guide/insurance"
+  ],
+  "primaryQuery": "免責金額 決め方 車両保険",
+  "updateReason": "全面改稿（免責の決め方を整理）/内部リンク追加/参考ソース追加/公開基準調整",
+  "sources": [
+    "https://www.sonysonpo.co.jp/auto/guide/ahb005.html",
+    "https://www.hokennomadoguchi.com/columns/songai/vehicle/",
+    "https://www.insweb.co.jp/auto/vehicle_insurance.html",
+    "https://www.insweb.co.jp/car/kisochishiki/kiso/sharyouhoken-menseki.html",
+    "https://www.zurich.co.jp/car/useful/guide/cc-vehicle-insurance-amount/",
+    "https://jidoshahoken.kakaku.com/car/vehicle-insurance/"
+  ],
+  "readMinutes": 6
+}

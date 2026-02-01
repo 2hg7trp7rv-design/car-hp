@@ -1,0 +1,103 @@
+{
+  "id": "mitsubishi-gto-z15a-active-aero",
+  "slug": "mitsubishi-gto-z15a-active-aero",
+  "name": "Mitsubishi GTO (Z15A) Active Aero",
+  "maker": "Mitsubishi",
+  "releaseYear": 1990,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "グランドツアラー",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "GTO Z15A (Active Aero)",
+  "summary": "空力で姿勢を守るという別解。重い車が速い理由を、外側から作った。",
+  "summaryLong": "GTOのアクティブエアロは、足回りの外側で姿勢を守るという発想です。速度が上がるほど効く領域だから、体感は地味でも効果は大きい。重い車が速い理由を、空力で支える。\n\nいま買う目線では、動くことが価値。アクチュエータ、配線、スイッチ類、そして保管環境。動かないと“ただ重いクーペ”になる。\n\n手間がかかるぶん、整った個体は唯一無二の濃度が残ります。",
+  "heroImage": "/images/cars/mitsubishi-gto-z15a-active-aero-hero.jpg",
+  "mainImage": "/images/cars/mitsubishi-gto-z15a-active-aero-main.jpg",
+  "imageUrl": "/images/cars/mitsubishi-gto-z15a-active-aero-hero.jpg",
+  "gallery": [
+    "/images/cars/mitsubishi-gto-z15a-active-aero-front.jpg",
+    "/images/cars/mitsubishi-gto-z15a-active-aero-side.jpg",
+    "/images/cars/mitsubishi-gto-z15a-active-aero-interior.jpg"
+  ],
+  "engine": "Front V6 3.0 Twin Turbo (6G72) / NA (仕様差)",
+  "powerPs": 280,
+  "torqueNm": 427,
+  "transmission": "5MT/4AT（仕様差）",
+  "drive": "4WD/FF（仕様差）",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 5〜9 km/L",
+  "priceNew": "当時: 200万〜500万円台（仕様差）",
+  "priceUsed": "150万〜700万円（相場変動）",
+  "strengths": [
+    "空力で姿勢を手当てする“別の速さの作り方”。",
+    "高速域の安定感が強く、GTとしての芯がある。",
+    "90年代の過剰装備感がヘリテージとして面白い。",
+    "整うと“分からないのに速い”が成立する。"
+  ],
+  "weaknesses": [
+    "電動/油圧機構が多く、整備の難易度が高い。",
+    "年式相応に配線・樹脂・ゴム類の劣化が重い。",
+    "重い車体ゆえ、足回りのへたりが走りに直結する。",
+    "部品の入手性と工賃が読みにくい。"
+  ],
+  "troubleTrends": [
+    "アクティブエアロの作動確認（動くか、異音がないか）は必須です。",
+    "後付け配線や補修痕が雑だと電装トラブルになりやすいです。",
+    "冷却系とオイル滲みは古いターボでは要注意です。",
+    "下回り錆とサブフレーム周りの状態が価値を左右します。"
+  ],
+  "costImpression": "安く買うと“動かす”費用が重い。動く個体は高いが、戻すより安いことがある。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "column-4ws-hicas-how-it-feels"
+  ],
+  "relatedGuideSlugs": [
+    "guide-buy-4ws-active-chassis-checklist"
+  ],
+  "relatedCarSlugs": [
+    "honda-prelude-bb4-4ws",
+    "nissan-skyline-r32-super-hicas"
+  ],
+  "tags": [
+    "Mitsubishi",
+    "GTO",
+    "Z15A",
+    "active-aero",
+    "4WD",
+    "1990s"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-4ws-active-chassis-heritage"
+  ],
+  "intentTags": [
+    "active-aero",
+    "grand-tourer",
+    "1990s",
+    "heritage",
+    "advanced"
+  ],
+  "purchasePriceSafe": "安全ライン：260〜520万円前後（作動と保管環境重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間40〜95万円"
+  },
+  "maintenanceCostYenPerYear": 720000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mitsubishi Mitsubishi GTO (Z15A) Active Aero",
+  "makerKey": "mitsubishi",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-01-30",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/mitsubishi",
+  "relatedClusterIds": [],
+  "primaryQuery": "Mitsubishi GTO (Z15A) Active Aero",
+  "updateReason": "initial-import",
+  "sources": []
+}

@@ -1,0 +1,60 @@
+{
+  "id": "col-004",
+  "slug": "sell-timing-shaken-tax-market",
+  "status": "published",
+  "title": "車を売るタイミングは季節より「車検・税金・相場」で決める",
+  "summary": "売り時は季節より出費イベント。車検を通す前後の考え方、4月前後の税金と名義変更の地雷、相場を当てに行かない判断基準を短く整理。",
+  "category": "MARKET",
+  "tags": [
+    "売却",
+    "タイミング",
+    "車検",
+    "税金",
+    "相場"
+  ],
+  "intentTags": [
+    "sell",
+    "market",
+    "decision"
+  ],
+  "relatedGuideSlugs": [
+    "hub-sell",
+    "hub-sell-compare",
+    "hub-sell-prepare",
+    "hub-sell-price",
+    "hub-shaken"
+  ],
+  "targetKeyword": "車 売る タイミング 車検 税金",
+  "searchIntent": "売却タイミングで迷う人が、感覚ではなく条件で判断できるようにする。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-31",
+  "noindex": false,
+  "body": "## 結論\n売り時は「季節」より「出費イベント」で決まります。相場の波はありますが、あなたが払う予定のコスト（車検・税金・修理）を先に潰したほうが、結局トータルで得しやすいです。\n\n• 車検が近いなら、通す前に査定を取って比較  \n• ４月前後は税金の扱いで揉めやすいので、名義変更期限を契約に入れる  \n• 相場のピークを当てようとするより、条件の良い売り方を選ぶほうが効く\n\n売り時の全体像は /guide/best-time-to-sell-car にまとめています。ここでは、車検・税金・相場をまとめて整理します。\n\n---\n\n## １）車検：通す前に必ず比較\n車検を通すかどうかで迷うときは、まず現状の査定を取ります。\n\n• 車検費用が軽いなら、車検残がある方が安心材料になることがある  \n• 車検費用が重いなら、通しても回収できずに損になることもある  \n• どちらにしても、見積もりと査定を並べると判断が早い\n\n---\n\n## ２）税金：４月前後は「名義変更のズレ」が地雷\n売却そのものより、名義変更が遅れてトラブルになるケースが多いです。\n\n• 売却が３月末でも、名義変更が４月１日を跨ぐと税金の通知が手元に届くことがある  \n• 名義変更だけでは行政の月割還付は発生しない（廃車や一時抹消は別）  \n• 税金相当額は実務では清算されることがあるので、契約で決めておく\n\n初めての人向けに、契約時の確認項目を /guide/hajimete-kuruma-uru-checklist にまとめています。\n\n---\n\n## ３）相場：波はある。でも当てに行かない\n相場は動きます。ただ、一般ユーザーがタイミングだけで勝つのは難しいです。\n\n• 同じ車種でも、グレードと色、装備、状態で差が出る  \n• 人気装備や状態の良さは、季節より強い  \n• １〜２週間の差で、相場より交渉条件のほうが効くことが多い\n\nやるべきは「今の相場を査定で把握し、条件で取りに行く」です。\n\n---\n\n## 迷ったらこの判断\n• ３か月以内に車検、タイヤ、修理が来る → 先に査定  \n• ４月前後に売る → 名義変更期限と税金の扱いを契約に入れる  \n• 相場が気になる → まず２社比較。相場は結果で見える\n\n無理に即決しない進め方は /guide/selling-without-rush にあります。\n",
+  "seoTitle": "車を売るタイミング｜車検・自動車税・相場で損しない決め方",
+  "seoDescription": "車を売るタイミングは季節より、車検を通すか／4月1日の自動車税／いまの相場で決める。普通車と軽で税の扱いが違う点も含めて、迷わない手順をまとめた。",
+  "planPriority": 11,
+  "publishedAt": "2026-01-28T12:30:00+09:00",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [
+    "/guide/hub-sell-price",
+    "/guide/best-time-to-sell-car",
+    "/guide/hajimete-kuruma-uru-checklist"
+  ],
+  "primaryQuery": "車 売る タイミング 車検 税金",
+  "updateReason": "seo-rewrite-2026-01-31 sell&usedcar cluster: body/sources/clusters/index (sell-timing-shaken-tax-market)",
+  "sources": [
+    "https://kaitori.carview.co.jp/article/knowledge-baikyaku/067/",
+    "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidousyazei.html",
+    "https://www.pref.shizuoka.jp/kurashikankyo/zei/kenzeigaiyou/1002344/1011818.html",
+    "https://www.pref.osaka.lg.jp/o050160/osakajidoshazei/kanpukin/index.html",
+    "https://www.goo-net.com/kaitori/kaitori-satei/kaitori-knowhow/330/",
+    "https://kaitori.carsensor.net/contents/kaitori/basics/_63864.html",
+    "https://www.nextage.jp/sell_guide/junbi/114925/"
+  ]
+}
