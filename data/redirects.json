@@ -1,0 +1,237 @@
+[
+  {
+    "source": "/cars/autozam-az-1",
+    "destination": "/cars/autozam-az-1-pg6sa",
+    "permanent": true
+  },
+  {
+    "source": "/cars/ferrari-275-gtb",
+    "destination": "/cars/ferrari-275-gtb4",
+    "permanent": true
+  },
+  {
+    "source": "/cars/honda-s2000-ap2",
+    "destination": "/cars/honda-s2000-ap1",
+    "permanent": true
+  },
+  {
+    "source": "/cars/lexus-lfa",
+    "destination": "/cars/lexus-lfa-2010",
+    "permanent": true
+  },
+  {
+    "source": "/cars/mazda-rx-7-fd3s-spirit-r",
+    "destination": "/cars/mazda-rx7-fd3s",
+    "permanent": true
+  },
+  {
+    "source": "/cars/mazda-rx-7-fd3s-type-r",
+    "destination": "/cars/mazda-rx7-fd3s",
+    "permanent": true
+  },
+  {
+    "source": "/cars/mitsubishi-lancer-evolution",
+    "destination": "/cars/mitsubishi-lancer-evolution-ix-gsr",
+    "permanent": true
+  },
+  {
+    "source": "/cars/mitsubishi-lancer-evolution-x-final",
+    "destination": "/cars/mitsubishi-lancer-evolution-x-gsr",
+    "permanent": true
+  },
+  {
+    "source": "/cars/nissan-fairlady-z-rz34",
+    "destination": "/cars/nissan-z-rz34",
+    "permanent": true
+  },
+  {
+    "source": "/cars/nissan-gtr-r35-nismo",
+    "destination": "/cars/nissan-gtr-r35",
+    "permanent": true
+  },
+  {
+    "source": "/cars/nissan-skyline-gt-r-bcnr33-v-spec",
+    "destination": "/cars/nissan-skyline-gtr-r33",
+    "permanent": true
+  },
+  {
+    "source": "/cars/nissan-skyline-gt-r-bnr34",
+    "destination": "/cars/nissan-skyline-gtr-r34",
+    "permanent": true
+  },
+  {
+    "source": "/cars/nissan-skyline-gt-r-r34",
+    "destination": "/cars/nissan-skyline-gtr-r34",
+    "permanent": true
+  },
+  {
+    "source": "/cars/nissan-skyline-gt-r-r34-v-spec",
+    "destination": "/cars/nissan-skyline-gtr-r34",
+    "permanent": true
+  },
+  {
+    "source": "/cars/subaru-impreza-wrx-sti",
+    "destination": "/cars/subaru-impreza-wrx-sti-v6",
+    "permanent": true
+  },
+  {
+    "source": "/cars/suzuki-cara",
+    "destination": "/cars/autozam-az-1-pg6sa",
+    "permanent": true
+  },
+  {
+    "source": "/cars/toyota-supra-jza80",
+    "destination": "/cars/toyota-supra-jza80-rz",
+    "permanent": true
+  },
+  {
+    "source": "/column/column-25-year-rule-us-import",
+    "destination": "/guide/hub-paperwork",
+    "permanent": true
+  },
+  {
+    "source": "/column/column-no-garage-storage",
+    "destination": "/guide/maintenance",
+    "permanent": true
+  },
+  {
+    "source": "/column/maintenance-airbag-warning-light",
+    "destination": "/guide/hub-import-trouble",
+    "permanent": true
+  },
+  {
+    "source": "/column/maintenance-brake-pedal-spongy",
+    "destination": "/guide/maintenance",
+    "permanent": true
+  },
+  {
+    "source": "/column/maintenance-car-pulls-one-side",
+    "destination": "/guide/maintenance",
+    "permanent": true
+  },
+  {
+    "source": "/column/maintenance-engine-oil-consumption",
+    "destination": "/guide/maintenance",
+    "permanent": true
+  },
+  {
+    "source": "/column/maintenance-exhaust-leak-noise",
+    "destination": "/guide/maintenance",
+    "permanent": true
+  },
+  {
+    "source": "/column/maintenance-hybrid-battery-warning",
+    "destination": "/guide/hub-import-trouble",
+    "permanent": true
+  },
+  {
+    "source": "/column/maintenance-timing-chain-rattle",
+    "destination": "/guide/maintenance",
+    "permanent": true
+  },
+  {
+    "source": "/column/maintenance-window-regulator",
+    "destination": "/guide/maintenance",
+    "permanent": true
+  },
+  {
+    "source": "/column/technical-double-wishbone-to-strut-honda",
+    "destination": "/guide/maintenance",
+    "permanent": true
+  },
+  {
+    "source": "/guide/battery-warning-light-first-response",
+    "destination": "/guide/hub-import-trouble",
+    "permanent": true
+  },
+  {
+    "source": "/guide/budget-import-sedan-annual-income",
+    "destination": "/cars/segments/premium-sedan",
+    "permanent": true
+  },
+  {
+    "source": "/guide/car-interior-cleaner-erabikata-amazon",
+    "destination": "/guide/maintenance",
+    "permanent": true
+  },
+  {
+    "source": "/guide/car-wont-start-triage",
+    "destination": "/guide/hub-import-trouble",
+    "permanent": true
+  },
+  {
+    "source": "/guide/company-car-tax-tips",
+    "destination": "/guide/hub-paperwork",
+    "permanent": true
+  },
+  {
+    "source": "/guide/daily-maintenance-checklist",
+    "destination": "/guide/maintenance",
+    "permanent": true
+  },
+  {
+    "source": "/guide/dashcam-parking-mode-battery-drain",
+    "destination": "/guide/maintenance",
+    "permanent": true
+  },
+  {
+    "source": "/guide/fluid-leak-identification",
+    "destination": "/guide/maintenance",
+    "permanent": true
+  },
+  {
+    "source": "/guide/guide-buy-280ps-era-turbo-checklist",
+    "destination": "/guide/hub-usedcar",
+    "permanent": true
+  },
+  {
+    "source": "/guide/guide-buy-kei-sports-checklist",
+    "destination": "/guide/hub-usedcar",
+    "permanent": true
+  },
+  {
+    "source": "/guide/how-to-avoid-regret-after-selling",
+    "destination": "/guide/hub-sell",
+    "permanent": true
+  },
+  {
+    "source": "/guide/power-steering-warning-triage",
+    "destination": "/guide/hub-import-trouble",
+    "permanent": true
+  },
+  {
+    "source": "/guide/purosangue-vs-urus-dbx-bentayga",
+    "destination": "/cars/segments/premium-suv",
+    "permanent": true
+  },
+  {
+    "source": "/guide/sensha-coating-erabikata-amazon",
+    "destination": "/guide/hub-consumables",
+    "permanent": true
+  },
+  {
+    "source": "/guide/smartkey-not-working-first-response",
+    "destination": "/guide/hub-import-trouble",
+    "permanent": true
+  },
+  {
+    "source": "/guide/tire-puncture-first-response",
+    "destination": "/guide/maintenance",
+    "permanent": true
+  },
+  {
+    "source": "/guide/warning-lights-danger-level",
+    "destination": "/guide/hub-import-trouble",
+    "permanent": true
+  },
+  {
+    "source": "/heritage/mazda-rx7-heritage",
+    "destination": "/heritage/mazda-rx7-fd3s-subtraction-engineering-heritage",
+    "permanent": true
+  },
+  {
+    "source": "/heritage/nissan-fairlady-z-heritage",
+    "destination": "/heritage/nissan-fairlady-z-lineage-heritage",
+    "permanent": true
+  }
+]

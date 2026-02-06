@@ -1,0 +1,50 @@
+{
+  "slug": "tokkyu-hikisugi-chudan-guide",
+  "title": "等級の引き継ぎ・中断の考え方｜乗り換え/一時的に車を手放すときに損しない",
+  "lead": "自動車保険の等級引き継ぎと中断証明書。乗り換え・一時中断・家族への切替の注意点。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "INSURANCE",
+  "tags": [
+    "等級",
+    "中断",
+    "乗り換え",
+    "自動車保険"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-20",
+  "internalLinks": [
+    "sharyou-hoken-necessary",
+    "bengoshi-hiyou-tokuyaku-guide",
+    "car-accident-first-10-minutes"
+  ],
+  "body": "この記事は「等級の引き継ぎ・中断の考え方｜乗り換え/一時的に車を手放すときに損しない」をテーマに、自賠責と任意、免責、特約。判断を誤ると「必要なときに足りない」か「不要な支払いが増える」になりがちです。基準を整理します。\n\n## 結論\n- 自動車保険の等級（ノンフリート等級）は、基本的に【「同じ人が契約を続ける」】ことで引き継がれます。\n- 乗り換えで間が空かないなら通常の切り替えでOK。車に乗らない期間ができるなら、【中断証明書】で等級を保管できる場合があります。\n- ルールは契約内容や保険会社で差が出るので、迷ったら先に【保険会社へ確認】してから解約・切替します。\n\n## シーン別の考え方（まずここ）\n- 車を買い替える：同じ契約者で「車両入替（切替）」が基本\n- しばらく車を持たない：中断証明書の対象か確認（保管期間に上限がある）\n- 家族の車に切り替える：同居の配偶者/親族など、条件を満たせば等級を引き継げる場合がある\n\n## 手順 1 乗り換えの場合は「解約」ではなく「車両入替」を相談する\n- 新しい車の納車日を決める\n- 保険会社に「車両入替したい」と伝える\n- 等級や補償内容がどう変わるかを確認する\n\n## 手順 2 車に乗らない期間ができるなら中断証明書を検討する\n- 車を手放す/廃車にする/海外赴任など、条件に当てはまるか確認する\n- 証明書を発行してもらい、保管する（再開時に必要）\n- 再開できる期限（目安：数年〜10年など）は契約で異なります\n\n## 手順 3 家族で引き継ぐ場合に確認すること\n- 引き継ぎ先：配偶者、同居の親族など（範囲は保険会社のルールに従う）\n- 記名被保険者（主に運転する人）の扱い\n- 引き継ぎ後の補償や保険料（年齢条件や運転者限定で大きく変わります）\n\n## よくあるつまずき\n- 先に解約してしまい、引き継ぎや中断の手続きがややこしくなる\n- 「家族なら誰でも引き継げる」と思い込み、条件に合わず等級がリセットされる\n- 中断証明書を取らずに期間が空き、等級が使えなくなる\n\n## 補足（実務メモ）\n- 「自分の過失が大きい事故」ほど、任意保険の厚みが効く（対物・車両・弁護士特約など）\n- 免責は“保険を使うハードル”を上げる代わりに、保険料を下げる方向に働きやすい\n- 等級は一度落ちると戻すのに時間がかかるため、使いどころを見極める\n- 中断証明は「等級を最大10年保存できる」扱いのことが多い（条件は保険会社で確認）\n\n## 関連記事\n- /guide/sharyou-hoken-necessary\n- /guide/bengoshi-hiyou-tokuyaku-guide\n- /guide/car-accident-first-10-minutes\n",
+  "monetizeKey": "insurance_compare_core",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "sharyou-hoken-necessary",
+    "bengoshi-hiyou-tokuyaku-guide",
+    "car-accident-first-10-minutes"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "insurance",
+    "sell"
+  ],
+  "seoTitle": "等級の引き継ぎ・中断｜売却/乗り換えで損しない",
+  "seoDescription": "自動車保険の等級引き継ぎと中断証明書。乗り換え・一時中断・家族への切替の注意点。",
+  "summary": "自動車保険の等級引き継ぎと中断証明書。乗り換え・一時中断・家族への切替の注意点。",
+  "status": "published",
+  "id": "guide:tokkyu-hikisugi-chudan-guide",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/insurance",
+  "relatedClusterIds": [],
+  "primaryQuery": "等級の引き継ぎ・中断の考え方｜乗り換え/一時的に車を手放すときに損しない",
+  "updateReason": "initial-import",
+  "sources": []
+}

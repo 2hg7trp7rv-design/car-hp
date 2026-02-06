@@ -1,0 +1,91 @@
+{
+  "id": "ferrari-308-gtb",
+  "slug": "ferrari-308-gtb",
+  "name": "フェラーリ 308GTB",
+  "maker": "FERRARI",
+  "releaseYear": 1975,
+  "difficulty": "advanced",
+  "bodyType": "クーペ",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "308GTB",
+  "summary": "赤いウェッジシェイプのボディで、『ミドシップフェラーリ』のイメージを決定づけたV8クーペです。",
+  "summaryLong": "フェラーリ 308GTBは、2.9L V8エンジンをミドシップに搭載した2ドアクーペで、テレビドラマや映画にも多数登場したことで、『赤いミドシップフェラーリ』というイメージを世界中に広めたモデルです。鋭く落ちたノーズとウェッジシェイプのボディラインは、70〜80年代スーパーカーの象徴的スタイルでありながら、現代の目で見ても十分に魅力的です。ディーノから続く『コンパクトなミドシップスポーツ』の系譜を受け継ぎつつ、量販V8フェラーリとしてのポジションを確立しました。",
+  "heroImage": "/images/cars/ferrari-308-gtb-hero.jpg",
+  "mainImage": "/images/cars/ferrari-308-gtb-hero.jpg",
+  "imageUrl": "/images/cars/ferrari-308-gtb-hero.jpg",
+  "gallery": [
+    "/images/cars/ferrari-308-gtb-front.jpg",
+    "/images/cars/ferrari-308-gtb-side.jpg",
+    "/images/cars/ferrari-308-gtb-interior.jpg"
+  ],
+  "engine": "2.9L V8 DOHC",
+  "powerPs": 240,
+  "torqueNm": 260,
+  "transmission": "5速MT",
+  "drive": "MR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "約5〜7km/L（実用域目安）",
+  "priceNew": "当時：$25,000〜$35,000（参考）",
+  "priceUsed": "1500万〜3500万円（状態/仕様）",
+  "strengths": [
+    "コンパクトなミドシップレイアウトで、ワインディングでも扱いやすいサイズ感です。",
+    "キャブレター仕様のサウンドとレスポンスは、アナログなスポーツカーらしさに溢れています。",
+    "ウェッジシェイプのスタイリングは、いかにも『スーパーカー』らしい存在感があります。",
+    "現代のフェラーリほど過激ではなく、クラシックとしては比較的付き合いやすいキャラクターです。"
+  ],
+  "weaknesses": [
+    "年式相応にサビや電装トラブルのリスクがあり、個体差が大きいモデルです。",
+    "エアコンや遮音性は現代基準では不足しており、夏場の街乗りには工夫が必要です。",
+    "ミドシップゆえの整備性の悪さがあり、メンテナンスには手間とコストがかかります。",
+    "すでにクラシックとしての評価が高まっており、『気軽にいじる』という感覚では扱いにくくなりつつあります。"
+  ],
+  "troubleTrends": [
+    "ボディやフレームの腐食は要注意ポイントで、下回りやフェンダー内の錆びチェックが重要です。",
+    "キャブレターのセッティング不良による始動性・アイドリング不調が起こりやすいです。",
+    "電装系の接触不良やメーター類のトラブルは定番で、過去の対策状況を確認したい部分です。",
+    "冷却系・燃料系のホース類は、年式的に予防交換が前提と考えたほうが安心です。"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で資金計画が苦しくなりやすい車です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [],
+  "tags": [
+    "FERRARI",
+    "フェラーリ",
+    "308GTB",
+    "ミドシップ",
+    "V8",
+    "クラシックカー",
+    "スーパーカー"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "oldtimer"
+  ],
+  "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+  },
+  "maintenanceCostYenPerYear": 450000,
+  "type": "CAR",
+  "status": "published",
+  "title": "FERRARI フェラーリ 308GTB",
+  "makerKey": "ferrari",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/ferrari",
+  "relatedClusterIds": [],
+  "primaryQuery": "フェラーリ 308GTB",
+  "updateReason": "tone-fix-2026-02-01",
+  "sources": []
+}

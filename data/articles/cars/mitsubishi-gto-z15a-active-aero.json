@@ -1,0 +1,122 @@
+{
+  "id": "mitsubishi-gto-z15a-active-aero",
+  "slug": "mitsubishi-gto-z15a-active-aero",
+  "name": "GTO (Z15A) Active Aero",
+  "maker": "Mitsubishi",
+  "releaseYear": 1990,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "グランドツアラー",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "GTO Z15A (Active Aero)",
+  "summary": "空力で姿勢を守るという別解。重い車が速い理由を、外側から作った。",
+  "summaryLong": "GTOのアクティブエアロは、足回りの外側で姿勢を守るという発想です。速度が上がるほど効く領域だから、体感は地味でも効果は大きい。重い車が速い理由を、空力で支える。\n\nいま買う目線では、動くことが価値。アクチュエータ、配線、スイッチ類、そして保管環境。動かないと“ただ重いクーペ”になる。\n\n手間がかかるぶん、整った個体は唯一無二の濃度が残ります。\n\n購入候補を見に行くときは、エアロの動作確認を“最初に”お願いすると判断が早いです。『動かないけど直せる』は、現実には時間とお金が溶けやすい。だからこそ、作動と整備履歴が揃った個体を基準にしてください。\n\n速い/遅いよりも、「装備が生きているか」で面白さが決まります。試乗できるなら、エアロ作動の有無だけでなく、ブレーキの安心感と直進性までセットで確認しておくと、買ってからの後悔が減ります。\n",
+  "body": "## 結論\nGTOアクティブエアロは「90年代の過剰装備が好き」かつ「動く個体を選べる」人向けです。買うなら、まず“エアロがちゃんと動く”個体。これが前提です。\n\n## 向く人 / 向かない人\n向く/向かないは上の箇条書き通り。重いクーペなので、維持に余裕がないと楽しむ前に疲れます。\n\n## 買う前のチェック\n- アクティブエアロの作動確認（速度に応じた動作の有無、異音、警告）。ここは絶対。\n- 電装の後付け。配線が雑だと不具合が連鎖します。\n- 冷却とオイル滲み。古いターボは熱と漏れが出やすい。\n- 足回りのへたり。重さがあるので、ブッシュが死ぬと乗り味が一気に荒れます。\n- 下回り錆とサブフレーム周り。保管環境がそのまま出ます。\n\n## 弱点と故障\n弱点は「機構が多い」こと。動かないエアロは価値が半減するし、直すと工数がかかります。逆に整っている個体は、現代の車にはない“別解の速さ”が残っています。\n\n## 維持費の目安\n燃費は良くないです。さらに、電動/油圧系のトラブルは一発が重くなりがちです。年平均で見るより、突発出費に耐えられる予備費があるかで判断してください。\n\n## 中古で買うなら\n価格だけで選ばず、作動確認と整備記録を最優先に。購入時に高い個体は、戻すより安いことが多いです。見に行く前に、作動状況と交換履歴を電話で聞くくらいがちょうどいいです。\n\n## 比較\n同年代の“90年代多機能”ならプレリュード4WSやR32のHICASも方向性が近いです。ただ、GTOはGTとして重さと高速安定に寄った味付けです。\n\n## 関連リンク\n- [修復歴・事故歴の見方（チェックリスト）](/guide/repair-history-used-car-checklist)\n- [維持費のざっくり試算](/guide/maintenance-cost-simulation)\n- [オーバーヒート/冷却トラブルの判断](/guide/overheat-coolant-leak-guide)\n- [修復歴は“ある/なし”より中身](/column/repair-history-how-to-judge)\n- [安いタイヤは結局高くつく](/column/tire-cheap-dangerous-choice)\n- [280ps協定の時代背景](/heritage/japan-280ps-gentlemens-agreement-heritage)",
+  "costImpression": "安く買うと“動かす”費用が重い。動く個体は高いが、戻すより安いことがある。",
+  "heroImage": "/images/cars/mitsubishi-gto-z15a-active-aero-hero.jpg",
+  "mainImage": "/images/cars/mitsubishi-gto-z15a-active-aero-main.jpg",
+  "imageUrl": "/images/cars/mitsubishi-gto-z15a-active-aero-hero.jpg",
+  "gallery": [
+    "/images/cars/mitsubishi-gto-z15a-active-aero-front.jpg",
+    "/images/cars/mitsubishi-gto-z15a-active-aero-side.jpg",
+    "/images/cars/mitsubishi-gto-z15a-active-aero-interior.jpg"
+  ],
+  "engine": "Front V6 3.0 Twin Turbo (6G72) / NA (仕様差)",
+  "powerPs": 280,
+  "torqueNm": 427,
+  "transmission": "5MT/4AT（仕様差）",
+  "drive": "4WD/FF（仕様差）",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 5〜9 km/L",
+  "priceNew": "当時: 200万〜500万円台（仕様差）",
+  "priceUsed": "150万〜700万円（相場変動）",
+  "purchasePriceSafe": "安全ライン：260〜520万円前後（作動と保管環境重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間40〜95万円"
+  },
+  "maintenanceCostYenPerYear": 720000,
+  "strengths": [
+    "空力で姿勢を手当てする“別の速さの作り方”。",
+    "高速域の安定感が強く、GTとしての芯がある。",
+    "90年代の過剰装備感がヘリテージとして面白い。",
+    "整うと“分からないのに速い”が成立する。"
+  ],
+  "weaknesses": [
+    "電動/油圧機構が多く、整備の難易度が高い。",
+    "年式相応に配線・樹脂・ゴム類の劣化が重い。",
+    "重い車体ゆえ、足回りのへたりが走りに直結する。",
+    "部品の入手性と工賃が読みにくい。"
+  ],
+  "troubleTrends": [
+    "アクティブエアロの作動確認（動くか、異音がないか）は必須です。",
+    "後付け配線や補修痕が雑だと電装トラブルになりやすいです。",
+    "冷却系とオイル滲みは古いターボでは要注意です。",
+    "下回り錆とサブフレーム周りの状態が価値を左右します。"
+  ],
+  "bestFor": [
+    "90年代の“過剰装備”が好きで、機構を含めて楽しめる人。",
+    "高速域の安定感を重視し、GTとして乗りたい人。",
+    "作動確認と整備記録を最優先にして個体を選べる人。"
+  ],
+  "notFor": [
+    "維持をできるだけ軽くしたい人（燃費・消耗品・工賃が重い）。",
+    "電装や機構のトラブルに時間を使いたくない人。",
+    "安い個体を買って“後で何とかする”前提の人。"
+  ],
+  "maintenanceNotes": [
+    "アクティブエアロの作動確認は絶対条件。動かないと価値が変わります。",
+    "冷却とオイル滲みは古いターボの基本チェック。履歴が薄い個体は避けたいです。",
+    "足回りのへたりは重い車ほど効きます。段差の収まりと直進性で判断。"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "honda-prelude-bb4-4ws",
+    "nissan-skyline-r32-super-hicas"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "overheat-coolant-leak-guide"
+  ],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge",
+    "tire-cheap-dangerous-choice"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-280ps-gentlemens-agreement-heritage"
+  ],
+  "tags": [
+    "Mitsubishi",
+    "GTO",
+    "Z15A",
+    "active-aero",
+    "4WD",
+    "1990s"
+  ],
+  "intentTags": [
+    "active-aero",
+    "grand-tourer",
+    "1990s",
+    "heritage",
+    "advanced"
+  ],
+  "type": "CAR",
+  "status": "published",
+  "title": "Mitsubishi GTO (Z15A) Active Aero",
+  "makerKey": "mitsubishi",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/mitsubishi",
+  "relatedClusterIds": [],
+  "primaryQuery": "Mitsubishi GTO (Z15A) Active Aero",
+  "updateReason": "car-overhaul-2026-02-01_v6",
+  "sources": []
+}

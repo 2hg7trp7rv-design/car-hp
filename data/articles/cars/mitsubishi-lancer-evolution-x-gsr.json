@@ -1,0 +1,120 @@
+{
+  "id": "mitsubishi-lancer-evolution-x-gsr",
+  "slug": "mitsubishi-lancer-evolution-x-gsr",
+  "name": "Lancer Evolution X GSR",
+  "maker": "Mitsubishi",
+  "releaseYear": 2007,
+  "difficulty": "intermediate",
+  "bodyType": "セダン",
+  "segment": "スポーツセダン",
+  "grade": null,
+  "engine": "Front Inline-4 2.0 Turbo (4B11T)",
+  "drive": "4WD",
+  "transmission": "5MT/6MT/TC-SST（仕様差）",
+  "fuel": "ハイオク",
+  "powerPs": 295,
+  "torqueNm": 366,
+  "fuelEconomy": "目安: 6〜11 km/L",
+  "summary": "四駆の安心感を日常に落とし込んだスポーツセダン。速さより、路面が荒れても崩れない“余裕”が持ち味。",
+  "summaryLong": "ランサーエボリューションX GSRは、速さだけで語るより「どんな路面でも落ち着く」ほうが先に来る車です。雨の日でも、ちょっと荒れた道でも、ハンドルが変に忙しくならない。\n\n中古でいちばん差が出るのは、改造歴と整備の姿勢です。パワーが上がっている個体ほど、熱と駆動系に負担が乗りやすい。逆に、ノーマル寄りで油脂類の管理が丁寧な個体は、走行距離が伸びていても“芯”が残っていることが多いです。\n\n迷ったら、記録簿が厚い個体を基準にして、そこから装備や仕様で選ぶ。エボXは、その順番で失敗しにくいです。",
+  "costImpression": "消耗品はスポーツ寄り。安く買って戻すより、履歴が整った個体を基準にしたい。",
+  "heroImage": "/images/cars/placeholder.jpg",
+  "mainImage": "/images/cars/placeholder.jpg",
+  "relatedNewsIds": [],
+  "tags": [
+    "Mitsubishi",
+    "Lancer Evolution",
+    "Evo X",
+    "GSR",
+    "4WD",
+    "sports-sedan"
+  ],
+  "intentTags": [
+    "sports-sedan",
+    "4wd",
+    "tuning",
+    "usedcar-check"
+  ],
+  "relatedCarSlugs": [
+    "mitsubishi-lancer-evolution-ix-gsr",
+    "subaru-impreza-wrx-sti-v6",
+    "mitsubishi-lancer-evolution-vi-gsr"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "overheat-coolant-leak-guide"
+  ],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge",
+    "tire-cheap-dangerous-choice"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-evo-impreza-15year-war-heritage"
+  ],
+  "strengths": [
+    "四駆の安心感が強く、雨や荒れた路面でもペースが乱れにくい。",
+    "セダンとしての実用性があり、普段使いと走りを両立しやすい。",
+    "アフターパーツや情報が多く、状態の把握がしやすい。",
+    "同世代の中でも操舵感が素直で、運転が忙しくなりにくい。"
+  ],
+  "weaknesses": [
+    "改造歴の影響を受けやすく、当たり外れが大きい。",
+    "熱が入ると不調が出る個体があり、冷却の状態が価値を左右する。",
+    "駆動系の油脂管理を怠ると修理が高額になりやすい。",
+    "タイヤ・ブレーキなど消耗品の出費が想定より重くなりがち。"
+  ],
+  "troubleTrends": [
+    "冷却系の状態（水温の安定、漏れ跡、ファンの動作）は必ず確認したいです。",
+    "駆動系オイルの交換履歴が薄い個体は、後でまとめて出費になりやすいです。",
+    "足回りブッシュのへたりは直進性と乗り心地に出ます。片減りもセットで確認。",
+    "改造の説明が曖昧な個体は避けるほうが安全です。"
+  ],
+  "bestFor": [
+    "雨の日でも安心して走れるスポーツセダンが欲しい人。",
+    "走りと日常性を両立し、1台で完結させたい人。",
+    "整備履歴を重視して“良い個体”を探せる人。"
+  ],
+  "notFor": [
+    "維持費をできるだけ軽くしたい人（消耗品がスポーツ寄り）。",
+    "改造や前オーナーの履歴を追いかけるのが苦手な人。",
+    "短距離移動ばかりで、車の良さを引き出しにくい使い方の人。"
+  ],
+  "maintenanceNotes": [
+    "整備履歴が命。油脂類の交換サイクルが見える個体を基準にしたいです。",
+    "冷却の状態は最優先。夏場の水温安定と漏れ跡の有無で差が出ます。",
+    "足回りのへたりは体感できるので、試乗で直進性と段差の収まりを確認。"
+  ],
+  "lengthMm": null,
+  "widthMm": null,
+  "heightMm": null,
+  "wheelbaseMm": null,
+  "weightKg": null,
+  "priceNew": "当時：350万〜500万円（参考）",
+  "priceUsed": "250万〜650万円（相場変動）",
+  "zeroTo100": null,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mitsubishi Lancer Evolution X GSR",
+  "makerKey": "mitsubishi",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/mitsubishi",
+  "relatedClusterIds": [],
+  "primaryQuery": "Lancer Evolution X GSR",
+  "updateReason": "car-overhaul-2026-02-01_v8",
+  "sources": [],
+  "body": "## 結論\nエボX GSRは「四駆の安心感が欲しいけど、セダンとして普通に使いたい」人に向きます。速さはもちろんですが、路面が濡れてもペースが乱れにくいところが本当の魅力です。\n\n中古は個体差が大きいので、まずはノーマル寄りで整備履歴がはっきりした個体を基準にしてください。迷うなら、同じメーカーの他車種も含めて俯瞰すると選びやすいです。[三菱の車種一覧](/cars/makers/mitsubishi)\n\n## 向く人 / 向かない人\n向く人は「走りたい日も、普通に移動したい日もある人」。向かない人は「維持費と手間をできるだけ軽くしたい人」です。エボXは日常性が高い一方で、消耗品はスポーツ寄りの出費になります。\n\n## 買う前のチェック\n- 改造の有無と中身。吸排気だけなのか、制御まで触っているのか。説明が曖昧なら避けたほうが安全です。\n- 駆動系の油脂管理。デフやトランスファーなど、交換履歴が見える個体が安心です。\n- 冷却のコンディション。水温が安定しているか、漏れ跡がないか。夏場に弱い個体は後で効きます。\n- 足回りのへたり。直進性、段差の収まり、タイヤの片減りは一度で判断できます。\n- 下回りの錆と補修痕。雪国歴があるなら特に、配管や固定部の状態を見ておきたいです。\n\nチェックの型は、まず[修復歴・事故歴のチェックリスト](/guide/repair-history-used-car-checklist)に沿って一通り揃えると、抜け漏れが減ります。\n\n\n## 弱点と故障\n弱点は「熱」と「負荷の履歴」です。スポーツ走行やチューニングの履歴がある個体は、エンジン周りだけでなく駆動系やブレーキにも負担が積み上がります。逆に、丁寧に使われてきた個体はトラブルが少なく、同じ車とは思えないくらい扱いやすいです。\n\n## 維持費の目安\n維持費は、タイヤ・ブレーキ・油脂類が中心です。年平均で見るより、まとめて交換が来るタイミングに備えられるかで判断してください。燃料はハイオク前提で、短距離中心だと数字より伸びません。\n\n## 中古で買うなら\n価格が安い理由がはっきりしている個体を選ぶのがコツです。安いから買って戻す、はこの車だと高くつきやすいです。\n\n購入前に、整備記録と交換履歴の写真を見せてもらえるか。ここをお願いして嫌がる店や個体は、最初から候補から外して大丈夫です。\n\n## 比較\nエボIXはより素直で荒々しい方向、エボXは日常性と安定感が強い方向です。ライバルとしてはWRX STI系も含めて、車の“落ち着き方”を比べると失敗しにくいです。\n\n## 関連リンク\n- [修復歴・事故歴の見方（チェックリスト）](/guide/repair-history-used-car-checklist)\n- [維持費のざっくり試算](/guide/maintenance-cost-simulation)\n- [オーバーヒート/冷却トラブルの判断](/guide/overheat-coolant-leak-guide)\n- [修復歴は“ある/なし”より中身](/column/repair-history-how-to-judge)\n- [安いタイヤは結局高くつく](/column/tire-cheap-dangerous-choice)\n- [エボ vs インプの時代背景](/heritage/japan-evo-impreza-15year-war-heritage)",
+  "purchasePriceSafe": "安全ライン：320〜520万円前後（改造より履歴重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間40〜95万円"
+  },
+  "maintenanceCostYenPerYear": 720000
+}

@@ -1,0 +1,120 @@
+{
+  "id": "mazda-rx7-fc3s",
+  "slug": "mazda-rx7-fc3s",
+  "name": "RX-7 FC3S",
+  "maker": "Mazda",
+  "releaseYear": 1985,
+  "difficulty": "advanced",
+  "bodyType": "クーペ",
+  "segment": "スポーツ",
+  "heritageRefs": [
+    "mazda-rx7-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "FC3S",
+  "summary": "ロータリーターボを“現実的に”楽しむならFC。状態で別物になるので確認が大事。",
+  "summaryLong": "FC3Sはロータリーターボの魅力を、FDほど尖らせずに味わえるバランス型です。サイズ感も現代の交通でも扱いやすい。ただし個体の改造率が高く、熱管理と整備履歴でコンディションが決まります。買う前に「圧縮」「冷却」「点火」を確認できるかが勝負です。",
+  "heroImage": "/images/cars/mazda-rx7-fc3s-hero.jpg",
+  "mainImage": "/images/cars/mazda-rx7-fc3s-main.jpg",
+  "imageUrl": "/images/cars/mazda-rx7-fc3s-main.jpg",
+  "gallery": [
+    "/images/cars/mazda-rx7-fc3s-front.jpg",
+    "/images/cars/mazda-rx7-fc3s-side.jpg",
+    "/images/cars/mazda-rx7-fc3s-interior.jpg"
+  ],
+  "engine": "Front Rotary Turbo",
+  "powerPs": 205,
+  "torqueNm": 265,
+  "transmission": "5MT / 4AT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 7〜11 km/L",
+  "priceNew": "当時：230万〜350万円（参考）",
+  "priceUsed": "250万〜800万円（相場変動）",
+  "strengths": [
+    "ロータリーターボらしい伸びと音を味わえる",
+    "FDよりサイズと価格が現実的で、普段の扱いもラク",
+    "素直なFRで、走りの方向性を作りやすい"
+  ],
+  "weaknesses": [
+    "熱管理を外すと一気にダメージが出やすい",
+    "改造率が高く、個体差がとにかく大きい",
+    "燃費は良くない。維持費も“趣味枠”で考える必要がある"
+  ],
+  "troubleTrends": [
+    "始動性の悪化・圧縮低下（コンディション差が出やすい）",
+    "冷却系の弱りによるオーバーヒート",
+    "点火系（コイル/プラグ/配線）由来の失火・息継ぎ",
+    "タービン/ブースト周りの劣化や漏れ"
+  ],
+  "costImpression": "ロータリーは“熱と点火”にお金がかかります。安い個体を買うより、整っている個体に最初から寄せた方がラクです。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "oil-change-5000km-myth",
+    "usedcar-warranty-needed"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "overheat-coolant-leak-guide",
+    "oil-change-frequency-guide"
+  ],
+  "relatedCarSlugs": [
+    "mazda-rx7-fd3s",
+    "nissan-fairlady-z-z32",
+    "toyota-supra-jza80-rz"
+  ],
+  "tags": [
+    "Mazda",
+    "sports-coupe",
+    "クラシックスポーツ",
+    "FR",
+    "5MT / 4AT",
+    "Front Rotary Turbo",
+    "ネオクラシック",
+    "ロータリー"
+  ],
+  "relatedHeritageSlugs": [
+    "mazda-rx7-fd3s-subtraction-engineering-heritage"
+  ],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：250万〜450万円（圧縮・冷却・整備履歴を優先）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間70〜150万円（圧縮/冷却/点火の状態で上下）"
+  },
+  "priceUsedYenRange": "250万〜800万円（相場変動）",
+  "maintenanceCostYenPerYear": 1100000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mazda RX-7 FC3S",
+  "makerKey": "mazda",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "マツダ RX-7（FC3S）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/mazda",
+  "relatedClusterIds": [],
+  "primaryQuery": "RX-7 FC3S",
+  "updateReason": "car-index-upgrade-2026-02-01",
+  "sources": [],
+  "bestFor": [
+    "ロータリーターボのフィーリングを、現実的なサイズで楽しみたい",
+    "購入前に圧縮測定や整備履歴の確認をきちんとやれる",
+    "多少の維持費込みで“趣味車”として割り切れる"
+  ],
+  "notFor": [
+    "短距離移動ばかりで、暖機を気にせず使いたい",
+    "燃費や維持費を最優先にしたい",
+    "改造車の見極めに自信がない（ショップ同行なし）"
+  ],
+  "maintenanceNotes": [
+    "冷却系と点火系はロータリーの生命線。履歴が見えないなら予算を先に確保。",
+    "“ブースト上げてます”系の個体は、制御と燃調まで含めて評価する。",
+    "定期的にしっかり距離を走らせる方が調子が安定しやすい。"
+  ],
+  "body": "## 結論\nFC3Sは、ロータリーターボを“現実的に”楽しめるちょうどいいRX-7です。FDほど尖っていないぶん、サイズ感も含めて日常に寄せやすい。\n\n一方で、同じ「FC」でも中身は別物になりやすい車でもあります。改造の方向性と、熱管理（冷却）・点火・圧縮の状態でコンディションが決まります。買う前にここを確認できるかが、満足度を左右します。\n\n## 向く人 / 向かない人\n向く人\n- ロータリーターボのフィーリングを味わいたい\n- 購入前に圧縮測定や整備履歴の確認をきちんとやれる\n\n向かない人\n- 近所の短距離ばかりで、暖機や調子の管理をしたくない\n- 維持費や燃費を最優先にしたい\n\n## 買う前のチェック\n- 圧縮：数値が揃っているか。測定記録があると安心\n- 冷却：水回り（ラジエーター/ホース）の状態、ファンの作動\n- 点火：失火や息継ぎの有無。コイル周りの履歴\n- 改造の質：燃調や制御まで“セットで整っているか”\n- 下回り/錆：とくにサイドシル周りは要チェック\n\n## 弱点と故障\nロータリーは「熱」と「点火」を外すと、症状が分かりやすく出ます。\n\n- 熱が上がりやすい/水温が不安定 → 冷却系の弱り、エア噛み → 費用感：数万〜十数万円\n- 始動が悪い/アイドリングが落ち着かない → 圧縮低下、点火系不良 → 費用感：数万〜（重いと桁が変わる）\n- ブーストの立ち上がりが鈍い → 配管漏れ、タービン劣化 → 費用感：数万〜数十万円\n\n## 維持費の目安\n状態が良い個体でも、年間70〜150万円は見ておくと安心です。特に冷却や点火は「不調が出てから」だと高くつきやすいので、予防整備の考え方が合います。\n\n熱トラブルの初動を知っておくだけでも被害が変わるので、[オーバーヒート/冷却水漏れの初動](/guide/overheat-coolant-leak-guide)は一度目を通しておくと安心です。\n\n## 中古で買うなら\n“距離が少ない”より、直近で何をやったかです。圧縮測定の記録が残っている個体は、それだけで評価が上がります。\n\n改造車は悪ではありませんが、燃調や制御まで含めて整っていないと後から地獄を見ます。判断が難しいなら、[修復歴チェックリスト](/guide/repair-history-used-car-checklist)＋ショップ同行のセットが安全です。\n\n## 比較\n- RX-7（FD3S）：軽さと鋭さは別格。価格も維持の濃さも上がる。\n- フェアレディZ（Z32）：同世代のGT寄り。トルク感は強いが、整備のクセも濃い。\n- スープラ（JZA80 RZ）：直6の安心感。重量感は増えるが、長距離のラクさは強い。\n\n## 関連リンク\n- [修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist)\n- [オーバーヒート/冷却水漏れの初動](/guide/overheat-coolant-leak-guide)\n- [オイル交換の頻度と考え方](/guide/oil-change-frequency-guide)\n- [オイル交換「5,000km神話」](/column/oil-change-5000km-myth)\n- [中古車保証は必要？](/column/usedcar-warranty-needed)\n- [FD3Sが“削ぎ落とし”で速くなった話](/heritage/mazda-rx7-fd3s-subtraction-engineering-heritage)\n"
+}

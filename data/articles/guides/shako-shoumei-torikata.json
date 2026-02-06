@@ -1,0 +1,54 @@
+{
+  "slug": "shako-shoumei-torikata",
+  "title": "車庫証明（保管場所証明）の取り方｜必要書類・流れ・時間がない人の現実的ルート",
+  "lead": "車庫証明の取り方を手順で整理。管轄確認、配置図、申請から交付までの注意点。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "LIFE",
+  "tags": [
+    "車庫証明",
+    "保管場所証明",
+    "必要書類",
+    "購入",
+    "名義変更"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-20",
+  "internalLinks": [
+    "meigi-henko-hitsuyou-shorui-futsuu",
+    "meigi-henko-hitsuyou-shorui-kei",
+    "jyuusho-henkou-shaken-shou",
+    "number-change-kibou-number-guide"
+  ],
+  "body": "この記事は「車庫証明（保管場所証明）の取り方｜必要書類・流れ・時間がない人の現実的ルート」をテーマに、書類手続きは“段取り”が8割です。取得タイミングと記入の注意点を先に押さえると、二度手間が減ります。\n\n## 結論\n- 車庫証明（自動車保管場所証明書）は、普通車の登録で必要になることが多い書類です。まずは【管轄の警察署】を確認します。\n- つまずきやすいのは「保管場所の使用権限」「配置図/所在図」「記入ミス」。先に必要情報を揃えるとスムーズです。\n- 申請→現地確認→交付まで数日かかることがあるため、【納車や名義変更の予定から逆算】して動きます。\n\n## 申請前チェックリスト\n- 保管場所の住所（駐車場の所在地）\n- 使用権限：自己所有か、賃貸なら使用承諾書など\n- 配置図/所在図：駐車場までの地図、駐車区画の寸法\n- 車の情報：車名、型式、車台番号、使用者住所など\n\n## 手順 1 管轄の警察署を確認する\n- 保管場所（駐車場）の所在地を管轄する警察署が窓口です\n- 申請書類の入手方法（窓口/サイト）と受付時間を確認します\n\n## 手順 2 必要書類を作成する\n- 申請書類一式を記入\n- 所在図/配置図を作成（区画の寸法や出入口など、求められる項目を確認）\n- 賃貸駐車場の場合は使用承諾書を準備\n\n## 手順 3 申請→交付→登録へ\n- 申請時に手数料を支払い、受付票を受け取る\n- 現地確認の後、交付日に証明書を受け取る\n- 名義変更や新規登録の手続きへ（/guide/meigi-henko-hitsuyou-shorui-futsuu）\n\n## よくあるつまずき\n- 駐車区画の寸法が不足していてやり直しになる\n- 住所表記が住民票と一致せず再提出になる\n- 承諾書の名義・期間が合わない\n- 予定を詰めすぎて交付待ちで納車に間に合わない\n\n## 補足（実務メモ）\n- 申請先は「管轄」で決まる。先に管轄を確認すると二度手間が減る\n- 住民票・印鑑証明などは有効期限が短い扱いになることがあるため、取得は申請直前が安全\n- 引越しで管轄が変わると、ナンバー変更や封印が絡む場合がある\n- 住所表記（丁目・番地・建物名）を車検証側に合わせると差戻しが起きにくい\n- 車庫証明は申請してすぐ出ない。標準的には数日かかるため、納車・名変の予定から逆算する\n\n## 関連記事\n- /guide/meigi-henko-hitsuyou-shorui-futsuu\n- /guide/meigi-henko-hitsuyou-shorui-kei\n- /guide/jyuusho-henkou-shaken-shou\n- /guide/number-change-kibou-number-guide\n",
+  "monetizeKey": "sell_prepare",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "meigi-henko-hitsuyou-shorui-futsuu",
+    "meigi-henko-hitsuyou-shorui-kei",
+    "jyuusho-henkou-shaken-shou",
+    "number-change-kibou-number-guide"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "paperwork",
+    "buy",
+    "sell"
+  ],
+  "seoTitle": "車庫証明の取り方｜必要書類・流れ・時間がないときの進め方",
+  "seoDescription": "車庫証明の取り方を手順で整理。管轄確認、配置図、申請から交付までの注意点。",
+  "summary": "車庫証明の取り方を手順で整理。管轄確認、配置図、申請から交付までの注意点。",
+  "status": "published",
+  "id": "guide:shako-shoumei-torikata",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide",
+  "relatedClusterIds": [],
+  "primaryQuery": "車庫証明（保管場所証明）の取り方｜必要書類・流れ・時間がない人の現実的ルート",
+  "updateReason": "initial-import",
+  "sources": []
+}

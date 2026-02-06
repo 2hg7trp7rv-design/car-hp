@@ -1,0 +1,90 @@
+{
+  "id": "nissan-fairlady-z-z33",
+  "slug": "nissan-fairlady-z-z33",
+  "name": "Fairlady Z Z33",
+  "maker": "Nissan",
+  "releaseYear": 2002,
+  "difficulty": "intermediate",
+  "bodyType": "sports-coupe",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "nissan-fairlady-z-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "Fairlady Z Z33",
+  "summary": "Zの復権を担った世代。素直なFRスポーツとしての基礎を整えた。",
+  "summaryLong": "Fairlady Z Z33は、2002年に登場したNissanのsports-coupeで、FRとFront V6を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+  "heroImage": "/images/cars/nissan-fairlady-z-z33-hero.jpg",
+  "mainImage": "/images/cars/nissan-fairlady-z-z33-main.jpg",
+  "imageUrl": "/images/cars/nissan-fairlady-z-z33-main.jpg",
+  "gallery": [
+    "/images/cars/nissan-fairlady-z-z33-front.jpg",
+    "/images/cars/nissan-fairlady-z-z33-side.jpg",
+    "/images/cars/nissan-fairlady-z-z33-interior.jpg"
+  ],
+  "engine": "Front V6",
+  "powerPs": 280,
+  "torqueNm": 363,
+  "transmission": "6MT / 5AT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 8〜11 km/L",
+  "priceNew": "当時：300万〜450万円（参考）",
+  "priceUsed": "150万〜450万円（相場変動）",
+  "strengths": [
+    "デザインとキャラクターが明確で、所有満足度が高い",
+    "運転のフィードバックが濃く、操る楽しさがある",
+    "コミュニティ/情報が一定量あり、維持の道筋を作れる",
+    "相場が安定しやすく、資産性を期待できる場合がある"
+  ],
+  "weaknesses": [
+    "年式・個体差による当たり外れが大きい",
+    "部品の供給/価格が年々厳しくなる場合がある",
+    "日常用途では燃費・乗り心地の割り切りが必要"
+  ],
+  "troubleTrends": [
+    "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+    "電装系（センサー/配線）の経年",
+    "冷却系のメンテ不足"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：500〜1000万円前後規模を想定できない場合は維持途中で資金計画が苦しくなりやすい車です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [],
+  "tags": [
+    "Nissan",
+    "sports-coupe",
+    "クラシックスポーツ",
+    "FR",
+    "6MT / 5AT",
+    "Front V6",
+    "ヤングタイマー"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：300〜800万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間40〜80万円"
+  },
+  "priceUsedYenRange": "150万〜450万円（相場変動）",
+  "maintenanceCostYenPerYear": 300000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Fairlady Z Z33",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Fairlady Z Z33",
+  "updateReason": "tone-fix-2026-02-01",
+  "sources": []
+}

@@ -1,0 +1,118 @@
+{
+  "id": "honda-civic-type-r-ek9",
+  "slug": "honda-civic-type-r-ek9",
+  "name": "Civic Type R (EK9)",
+  "maker": "Honda",
+  "releaseYear": 1997,
+  "difficulty": "advanced",
+  "bodyType": "ハッチバック",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "Type R (EK9)",
+  "summary": "“軽さで走るType R”。回転と軽量ボディが、速度感の質を変える。",
+  "summaryLong": "EK9は、軽さと回転で走るType Rの象徴です。パワーより、姿勢と操作の気持ちよさが主役。\n\n中古ではボディの歪み/錆、足回りの整合、そして冷却・点火の履歴。軽い車ほど、コンディションの差が体感に出ます。\n\nHonda Civic Type R (EK9)は「スポーツ×ハッチバック」の文脈で語られることが多い一台です。中古では走行距離より、整備記録と仕様の透明性を優先。初期費用を抑えすぎると後追い整備で総額が膨らみやすいので、“整った個体を高く買う”ほうが安全です。",
+  "heroImage": "/images/cars/honda-civic-type-r-ek9-hero.jpg",
+  "mainImage": "/images/cars/honda-civic-type-r-ek9-hero.jpg",
+  "imageUrl": "/images/cars/honda-civic-type-r-ek9-hero.jpg",
+  "gallery": [
+    "/images/cars/honda-civic-type-r-ek9-front.jpg",
+    "/images/cars/honda-civic-type-r-ek9-side.jpg",
+    "/images/cars/honda-civic-type-r-ek9-interior.jpg"
+  ],
+  "engine": "Front 1.6 NA (B16B VTEC)",
+  "powerPs": 185,
+  "torqueNm": 160,
+  "transmission": "5MT",
+  "drive": "FF",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜12 km/L",
+  "priceNew": "当時: 200万〜450万円台（仕様差）",
+  "priceUsed": "200万〜900万円（相場変動）",
+  "strengths": [
+    "軽さがそのまま運転の楽しさになる。",
+    "操作系の密度が高い。"
+  ],
+  "weaknesses": [
+    "錆と骨格のダメージで価値が割れる。",
+    "個体差が大きく、整合が崩れると走りが鈍る。"
+  ],
+  "troubleTrends": [
+    "ボディの錆と修復歴の説明は最重要です。",
+    "足回りブッシュとアライメントで印象が激変します。",
+    "冷却・点火の更新履歴が薄い個体は注意です。"
+  ],
+  "costImpression": "軽さの車は“器と足”が命。履歴の静かな個体ほど濃い。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge",
+    "spare-key-missing-negotiation",
+    "oil-change-5000km-myth"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "how-to-choose-first-sports-car"
+  ],
+  "relatedCarSlugs": [
+    "nissan-silvia-s15",
+    "mazda-roadster-na"
+  ],
+  "tags": [
+    "Honda",
+    "Civic",
+    "EK9",
+    "Type R",
+    "B16B",
+    "NA"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-high-rev-na-last-dance-heritage",
+    "japan-1999-peak-analog-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "na",
+    "lightweight",
+    "type-r"
+  ],
+  "purchasePriceSafe": "安全ライン：450〜850万円前後（錆と整合重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間30〜95万円"
+  },
+  "maintenanceCostYenPerYear": 630000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda Civic Type R (EK9)",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Honda Civic Type R (EK9)",
+  "updateReason": "car-major-overhaul-2026-02-01",
+  "sources": [],
+  "body": "## 結論\nEK9は、軽さと回転で気持ちよく走るタイプRです。速さの数字というより、操作の手応えが濃い。いま買うなら「古い名車」ではなく「状態の良い素材」を探す感覚が近いです。\n\n中古市場は個体差が極端です。純正度が高い個体、整備履歴が読みやすい個体は高い。逆に、価格が手頃でも改造の背景が不明だったり、直進性や骨格に疑いがあると、取り戻すのに時間とお金がかかります。\n\n結論としては、錆と骨格、そして仕様の透明度。ここを最優先で選ぶのが近道です。\n\n## 向く人 / 向かない人\nEK9は「速さより手触り」を求める人向けです。最新の快適装備や静粛性を前提にすると、どうしても不満が出ます。趣味車として割り切れるかが分かれ目です。\n\n## 買う前のチェック\n### いちばん大事なのはボディ\nEK9はここがすべてです。エンジンや足は後から直せますが、ボディの歪みや錆は戻りにくい。だから先に厳しく見ます。\nこの年代の車は、ボディがすべてです。錆や補修の質が悪いと、どれだけ機関を直しても気持ちよく走りません。\n\n- 下回り、フロア、フェンダー周りの錆\n- 事故歴や骨格補修の痕\n- ドアの建て付け、パネルの隙間、左右差\n\n### 次に「回す車の基礎体力」\n回転を使う車は、油脂と冷却の管理がそのまま寿命です。\n\n- オイル滲み、にじみの場所\n- 冷却系の更新履歴（ホース、サーモ等）\n- エンジンの始動性、アイドリングの安定\n\n### 走りの違和感\n見た目がきれいでも、走りで正体が出ます。短い試乗でも、違和感がある個体はだいたい何かを抱えています。\n- 直進でフラつく、ハンドルが取られる\n- 段差で足が暴れる、収まりが遅い\n- ブレーキの振動や鳴きが強い\n\n## 弱点と故障\n### 錆と補修の質\n錆は見えるところより、見えないところが怖いです。軽い表面錆ならまだしも、構造に入っていると修理が大変。費用だけでなく、作業期間も覚悟が必要になります。\n\n### 消耗品の総入れ替えが前提になりやすい\nブッシュ、マウント、ゴム類。ここが新しい個体ほど、乗った瞬間に価値が分かります。逆に、ここが古いと「名車のはずなのに疲れる」という状態になりやすいです。\n\n### 改造内容の当たり外れ\n改造車は良い悪いではなく、意図と質です。配線の雑さ、ボルトの使い方、取り付けの歪み。こういう部分はトラブルの入口になります。\n\n## 維持費\n維持費の目安は年間30〜95万円。幅が広いのは、状態と使い方で差が出やすいからです。タイヤ、ブレーキ、油脂は走るほど増えます。趣味車として「直す楽しみ」も含めて計画しておくと後悔しにくいです。\n\n## 中古で買うなら\n- まずは純正度と整備記録の揃い方で候補を絞る\n- 安さより、錆と骨格の安心感を買う\n- 迷う個体は [修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist) で一度手順に落とす\n\nEK9は買って終わりではなく、買ってから整えて完成する車です。最初の個体選びで、後の総額と楽しさが決まります。\n\nもし予算が限られているなら、最初は完璧を目指さなくていいです。ただし土台だけは妥協しない。錆と骨格、そして整備履歴。この3点が揃っていれば、あとは自分のペースで整えていけます。\n\n## 比較\n同系統ならDC2はより硬質でストイック、EK9は軽さと回転の気持ちよさ。FRの気分が欲しいならロードスター（NA）という選択肢も強いです。\n\n## 関連リンク\n購入判断に直結するガイドと、落とし穴を潰すコラムを置いてあります。",
+  "bestFor": [
+    "軽さと回転の気持ちよさが最優先。操作の手応えが濃い車が好き。",
+    "古い名車を「整えながら乗る」前提がある。維持の手間も含めて楽しめる。",
+    "純正度や整備履歴を重視して、個体差を丁寧に見極めるつもりがある。"
+  ],
+  "notFor": [
+    "快適装備や静粛性がないと日常でつらい。趣味車として割り切れない。",
+    "錆や補修の質に神経質になりたくない。古い車の不確実性がストレスになる。",
+    "安さ優先で買って、後から直していく計画を立てられない。"
+  ],
+  "maintenanceNotes": [
+    "錆と骨格は後から取り返しにくい。まず土台を優先して選ぶ。",
+    "ゴム類やブッシュは年式相応に来る。リフレッシュすると走りの気持ちよさが戻る。",
+    "改造車は意図と質。配線や取り付けの雑さはトラブルの入口になりやすい。"
+  ]
+}

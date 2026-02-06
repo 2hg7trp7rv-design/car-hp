@@ -1,0 +1,92 @@
+{
+  "id": "ferrari-125-s",
+  "slug": "ferrari-125-s",
+  "name": "フェラーリ 125 S",
+  "maker": "FERRARI",
+  "releaseYear": 1947,
+  "difficulty": "advanced",
+  "bodyType": "オープンカー",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "125 S",
+  "summary": "フェラーリというメーカーの原点となった、1.5L V12搭載の小さなオープンスポーツです。",
+  "summaryLong": "フェラーリ 125 Sは、エンツォ・フェラーリが自らの名を冠したメーカーとして初めて世に送り出したモデルです。わずか1.5LのV12エンジンをフロントに搭載し、軽量なオープンボディと組み合わせることで、当時としては非常に高いパフォーマンスを発揮しました。台数も使用期間もごく限られた実験的なモデルですが、ここで培われたV12エンジンの思想やシャシー設計のノウハウが、その後のすべてのフェラーリに受け継がれていきます。現在、実車に触れられる機会はほぼありませんが、『フェラーリ＝V12スポーツ』というイメージのスタート地点として、ブランド史を語るうえで欠かせない存在です。",
+  "heroImage": "/images/cars/ferrari-125-s-hero.jpg",
+  "mainImage": "/images/cars/ferrari-125-s-hero.jpg",
+  "imageUrl": "/images/cars/ferrari-125-s-hero.jpg",
+  "gallery": [
+    "/images/cars/ferrari-125-s-front.jpg",
+    "/images/cars/ferrari-125-s-side.jpg",
+    "/images/cars/ferrari-125-s-interior.jpg"
+  ],
+  "engine": "1.5L V12",
+  "powerPs": 118,
+  "torqueNm": 120,
+  "transmission": "5速MT相当（実車は非同期式のレーシング仕様）",
+  "drive": "FR",
+  "fuel": "ガソリン",
+  "fuelEconomy": "参考値なし（ヒストリックレーサー）",
+  "priceNew": "当時：$5,000〜$10,000（参考）",
+  "priceUsed": "50億〜150億円（取引例少）",
+  "strengths": [
+    "フェラーリというメーカーの出発点となった歴史的価値があります。",
+    "小排気量V12という独自のエンジンコンセプトを最初に形にしたモデルです。",
+    "軽量オープンボディとV12の組み合わせによる、原始的でダイレクトな走りが魅力です。",
+    "ヒストリックイベントでの注目度は圧倒的で、存在そのものが語れる一台です。"
+  ],
+  "weaknesses": [
+    "実車の現存数が極めて少なく、一般的な中古車マーケットには一切出てきません。",
+    "部品の再生産やレストアには高度な専門知識が必要で、維持コストは想像を超えるレベルです。",
+    "快適装備や安全装備は皆無に等しく、通常のロードカーとしての使用は現実的ではありません。",
+    "保管環境・輸送・保険など、あらゆる面でコレクション前提の運用になります。"
+  ],
+  "troubleTrends": [
+    "実動個体はヒストリックレース用に徹底的なレストアが入っているケースが多く、オリジナル性の判断が難しいです。",
+    "古いV12エンジン特有のオイル漏れや冷却系トラブルには常に注意が必要です。",
+    "長期保管時の燃料系・ブレーキ系の固着やゴム類の劣化は避けられず、定期的なオーバーホールが前提です。",
+    "車両そのものが文化財クラスであるため、トラブル対応も含めて信頼できるスペシャリストの存在が不可欠です。"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で資金計画が苦しくなりやすい車です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [],
+  "tags": [
+    "FERRARI",
+    "フェラーリ",
+    "125 S",
+    "クラシックカー",
+    "V12",
+    "FR",
+    "レーシングカー"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "oldtimer"
+  ],
+  "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+  },
+  "priceUsedYenRange": "（希少）要相談/取引事例級",
+  "maintenanceCostYenPerYear": 450000,
+  "type": "CAR",
+  "status": "published",
+  "title": "FERRARI フェラーリ 125 S",
+  "makerKey": "ferrari",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/ferrari",
+  "relatedClusterIds": [],
+  "primaryQuery": "フェラーリ 125 S",
+  "updateReason": "tone-fix-2026-02-01",
+  "sources": []
+}

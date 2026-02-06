@@ -1,0 +1,117 @@
+{
+  "id": "toyota-celsior-ucf10",
+  "slug": "toyota-celsior-ucf10",
+  "name": "Celsior (UCF10/UCF11) / Lexus LS400",
+  "maker": "Toyota",
+  "releaseYear": 1989,
+  "difficulty": "intermediate",
+  "bodyType": "セダン",
+  "segment": "ラグジュアリーセダン",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "UCF10/11",
+  "summary": "初代セルシオ（LS400）は、静粛性と精度を“源流から”作り込むことで、高級車の基準を塗り替えた1台です。速さよりも質感で驚かせた設計が、いまも語り継がれます。",
+  "summaryLong": "初代セルシオ（UCF10/11、海外名LS400）は、静粛性・振動・操作感・組み付け精度といった“体感の品質”を、遮音材や演出でごまかさず、発生源から潰す思想で作られました。\n\nV8の1UZ-FEは、数字以上に回転の滑らかさと振動の少なさが印象に残るエンジンです。ドアの閉まり方、スイッチの節度、ボディのチリの揃い方など、細部の積み上げが「高級車とは何か」を工学の領域へ引き寄せました。\n\n古い個体になるほど、静粛性や乗り味は“整備と部品状態”で差が出ます。冷却系、ゴム・ブッシュ類、足回りの状態が整っている個体は、当時の狙いだった「巡航の静けさ」と「濁りの少ない乗り味」が残りやすいです。",
+  "body": "## 結論\n初代セルシオは「速さ」ではなく「静けさと丁寧さ」で買う車です。迷ったら、価格よりも“足回りと冷却系が一度ちゃんと手当てされている個体”を選ぶ方が失敗しにくいです。\n\n## 向く人 / 向かない人\n上の「向く/向かない」がピンと来るなら相性は良いです。逆に、燃費や維持コストを最優先したい人は、同じ金額でもっと新しい車の方が幸せになりやすいです。\n\n## 買う前のチェック\n- 冷間始動〜アイドリングが落ち着くまでの振動/異音。ここが荒い個体は“静けさ”が戻りにくいです。\n- 冷却系の履歴（ラジエーター、ホース、ポンプ周り）。滲みや甘い修理跡は要注意。\n- 足回り：段差でのゴトゴト、直進時のフワつき。ブッシュのへたりはセルシオらしさを削ります。\n- ATの変速ショックと、N→Dでの違和感。試乗で必ず確認。\n- 電装：窓・ミラー・シート・メーター周りを全部動かす。小さな不調が積み重なる車種です。\n- 下回り：錆とオイル滲み。保管環境がそのまま出ます。\n\n## 弱点と故障\n大きな故障というより、「年式なりの劣化」が積み重なって乗り味を濁らせます。冷却系、ゴム類、足回りを一度リセットできるかが勝負どころです。静粛性に直結するので、ここを後回しにすると“ただ重いセダン”になります。\n\n## 維持費の目安\n燃料・税金に加えて、最初の1〜2年は“取り戻し整備”の予算が必要になりやすいです。年間のランニングだけで見ず、初期費用として数十万円〜を見積もっておくと気持ちが楽になります。\n\n## 中古で買うなら\n「安いから買う」より、「整備記録が濃いから買う」が正解に近い車です。候補が出たら、冷却系と足回りの交換履歴を優先して見てください。内装の状態も満足度を左右します（直すと意外と出費になる領域）。\n\n## 比較\n同じ“重厚な時代の高級車”なら、W140系Sクラスは別の方向の重さがあります。アリストV300は速さの味付けが濃く、セルシオの静けさとは狙いが違います。\n\n## 関連リンク\n- [修復歴・事故歴の見方（チェックリスト）](/guide/repair-history-used-car-checklist)\n- [維持費のざっくり試算](/guide/maintenance-cost-simulation)\n- [予算の決め方（総額で考える）](/guide/car-budget-simulation)\n- [低走行＝当たりとは限らない](/column/usedcar-low-mileage-trap)\n- [修復歴は“ある/なし”より中身](/column/repair-history-how-to-judge)\n- [初代セルシオが作った基準](/heritage/toyota-celsior-ls400-silence-precision-heritage)",
+  "costImpression": "状態の良い個体ほど、購入後の“取り戻し整備”が少なく済みます。目先の価格より、整備履歴と足回り・冷却系の状態を優先したほうが総額は安定しやすいです。",
+  "heroImage": "/images/cars/placeholder.jpg",
+  "mainImage": "/images/cars/placeholder.jpg",
+  "imageUrl": "/images/cars/placeholder.jpg",
+  "gallery": [
+    "/images/cars/placeholder.jpg"
+  ],
+  "engine": "1UZ-FE 4.0L V8 DOHC 32V",
+  "powerPs": 260,
+  "torqueNm": 353,
+  "transmission": "4AT",
+  "drive": "FR",
+  "fuel": "ガソリン",
+  "fuelEconomy": "実用域で6〜9km/L前後",
+  "priceNew": "当時：500〜700万円台（市場・仕様で差）",
+  "priceUsed": "現在：80〜250万円前後（状態で大きく変動）",
+  "purchasePriceSafe": "安全ライン：120〜250万円前後（状態優先）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間30〜60万円（状態で変動）"
+  },
+  "maintenanceCostYenPerYear": 400000,
+  "strengths": [
+    "静粛性と振動の少なさが、年式を超えて分かりやすい",
+    "巡航時の落ち着きと直進安定性が高い",
+    "操作系の節度や作り込みが、体感品質として残りやすい",
+    "長距離を淡々と走る用途で強い"
+  ],
+  "weaknesses": [
+    "年式相応にゴム・樹脂部品の劣化が出る（放置個体は要注意）",
+    "足回りの消耗で“静けさ”が崩れやすい（ブッシュ・ダンパー）",
+    "燃費は現代基準では良くない",
+    "内装の状態（革・木目・スイッチ）で満足度が分かれやすい"
+  ],
+  "troubleTrends": [
+    "冷却系（ラジエーター、ホース、ウォーターポンプ周り）は予防整備が重要",
+    "足回りブッシュやボールジョイントの消耗で、乗り味と静粛性が落ちる",
+    "電装の軽微な不調は個体差が大きく、整備履歴で差が出る",
+    "ATの変速ショックはオイル管理と状態確認が必須"
+  ],
+  "bestFor": [
+    "静かな長距離移動が多く、乗り味の“濁りの少なさ”を重視したい人。",
+    "見た目の派手さより、ドアを閉めた瞬間の質感で満足したい人。",
+    "古い高級車のコンディション管理を楽しめる人（整備記録を追える人）。"
+  ],
+  "notFor": [
+    "燃費や税金を最優先したい人。",
+    "刺激や加速を最優先したい人（スポーツ用途メイン）。",
+    "消耗品やゴム類を“そのまま”で乗りたい人。"
+  ],
+  "maintenanceNotes": [
+    "冷却系は“予防整備が効く”領域。ホース・ラジエーター・ポンプ周りの履歴で安心感が変わります。",
+    "足回りのブッシュが整うと、静粛性と直進性が一段戻ります。ここをケチるとセルシオらしさが出にくいです。",
+    "電装は小さな不調が積み重なりやすいです。スイッチ類・窓・ミラー等の動作確認を、買う前に全部やるのが基本です。"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "mercedes-benz-s-class-w140",
+    "toyota-aristo-jzs161-v300",
+    "bmw-530i-g30"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "car-budget-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "repair-history-how-to-judge"
+  ],
+  "relatedHeritageSlugs": [
+    "toyota-celsior-ls400-silence-precision-heritage"
+  ],
+  "tags": [
+    "Toyota",
+    "Lexus",
+    "Celsior",
+    "LS400",
+    "UCF10",
+    "1UZ-FE",
+    "V8",
+    "Luxury"
+  ],
+  "intentTags": [],
+  "type": "CAR",
+  "status": "published",
+  "title": "Toyota Celsior (UCF10/UCF11) / Lexus LS400",
+  "makerKey": "toyota",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/toyota",
+  "relatedClusterIds": [],
+  "primaryQuery": "Toyota Celsior (UCF10/UCF11) / Lexus LS400",
+  "updateReason": "car-overhaul-2026-02-01_v6",
+  "sources": []
+}

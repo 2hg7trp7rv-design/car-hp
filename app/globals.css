@@ -1,0 +1,694 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Global Design Rules (CBJ Rebrand)
+  - 白背景 / 濃いグレー文字
+  - 日本語: 明朝（Serif）
+  - アクセント: Tiffany Blue（リンクhover / 細いラインのみ）
+
+  NOTE:
+  既存のTailwind設定が参照しているCSS変数（--font-montserrat / --font-bodoni）を
+  Noto Serif JP に寄せて互換を維持します。
+*/
+
+:root {
+  color-scheme: light;
+
+  /* Fonts (Tailwind互換) */
+  --font-montserrat: "Noto Serif JP";
+  --font-bodoni: "Noto Serif JP";
+  --font-manrope: "Noto Serif JP";
+
+  /* Brand tokens */
+  --cb-tiffany: 10 186 181; /* #0ABAB5 */
+  --cb-porcelain: 255 255 255; /* #FFFFFF */
+  --cb-ink: 34 34 34; /* #222222 */
+
+  /* Premium typography (LP / Home 用)
+     - 日本語は既存の Noto Serif JP にフォールバックさせる
+     - 既存ページの見た目を壊さないため、デフォルトは従来のまま
+  */
+  --cb-font-display: "Playfair Display";
+  --cb-font-sans: "Inter";
+  --cb-font-editorial: "Cormorant Garamond";
+}
+
+/* ----------------------------------------
+   Premium typography helpers
+----------------------------------------- */
+
+.cb-font-display {
+  font-family: var(--cb-font-display), var(--font-montserrat), ui-serif, serif;
+  letter-spacing: 0.02em;
+}
+
+.cb-font-sans {
+  font-family: var(--cb-font-sans), ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    "Noto Sans JP", sans-serif;
+}
+
+.cb-font-editorial {
+  font-family: var(--cb-font-editorial), var(--font-montserrat), ui-serif, serif;
+}
+
+/* ----------------------------------------
+   Base
+----------------------------------------- */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: rgb(var(--cb-porcelain));
+    color: rgb(var(--cb-ink));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.03em;
+  }
+
+  /* Selection（アクセントは使わない） */
+  ::selection {
+    background: rgba(34, 34, 34, 0.12);
+    color: rgb(var(--cb-ink));
+  }
+
+  /* Links: defaultは主張しない。hoverでのみアクセント */
+  a {
+    color: inherit;
+    text-decoration: none;
+    text-underline-offset: 0.24em;
+    text-decoration-thickness: 1px;
+  }
+
+  a:hover {
+    color: rgb(var(--cb-tiffany));
+    text-decoration: underline;
+    text-decoration-color: rgb(var(--cb-tiffany));
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid rgba(var(--cb-tiffany), 0.55);
+    outline-offset: 4px;
+  }
+}
+
+/* ----------------------------------------
+   Background helpers
+   - 既存ページで使われている bg-site / bg-atmosphere を“白”に収束させる
+----------------------------------------- */
+
+.bg-site,
+.bg-atmosphere {
+  background-color: rgb(var(--cb-porcelain));
+  background-image: none !important;
+}
+
+/* ----------------------------------------
+   Typography
+----------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+.serif-heading,
+.page-title {
+  font-family: var(--font-montserrat), ui-serif, serif;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+}
+
+p,
+li,
+.font-body {
+  font-family: var(--font-montserrat), ui-serif, serif;
+  line-height: 2.0;
+  letter-spacing: 0.04em;
+}
+
+/* セクションラベル（小さな大文字ラベル） */
+.section-label {
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+
+/* ----------------------------------------
+   Article body (COLUMN / GUIDE / HERITAGE)
+----------------------------------------- */
+
+.article-body p {
+  margin-top: 1.35rem;
+}
+
+.article-body p:first-of-type {
+  margin-top: 0.6rem;
+}
+
+.article-body h2 {
+  margin-top: 2.7rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+}
+
+.article-body h3 {
+  margin-top: 1.9rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.article-body-heritage p {
+  margin-top: 1.4rem;
+}
+
+.article-body-heritage p:first-of-type {
+  margin-top: 0.75rem;
+}
+
+.article-body-heritage h2 {
+  margin-top: 2.7rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+}
+
+.article-body-heritage h3 {
+  margin-top: 1.9rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+/* ----------------------------------------
+   Drop caps（先頭ジャンボ1文字）
+   - アクセント色は使わない（文字色で統一）
+----------------------------------------- */
+
+.first-letter-float {
+  text-indent: 0;
+}
+
+.first-letter-span {
+  float: left;
+  margin-right: 12px;
+  margin-top: -6px;
+  margin-bottom: -2px;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 3.4rem;
+  line-height: 0.85;
+  font-weight: 500;
+  color: rgb(var(--cb-ink));
+}
+
+@media (min-width: 640px) {
+  .first-letter-span {
+    font-size: 3.8rem;
+  }
+}
+
+.heritage-dropcap {
+  text-indent: 0;
+}
+
+.heritage-dropcap::first-letter {
+  float: left;
+  margin-right: 12px;
+  margin-top: -6px;
+  margin-bottom: -2px;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 3.4rem;
+  line-height: 0.85;
+  font-weight: 500;
+  color: rgb(var(--cb-ink));
+}
+
+@media (min-width: 640px) {
+  .heritage-dropcap::first-letter {
+    font-size: 3.8rem;
+  }
+}
+
+/* ----------------------------------------
+   Heritage highlight（波線アンダーライン = “細いライン”扱い）
+----------------------------------------- */
+
+.heritage-highlight-wave {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: rgba(var(--cb-tiffany), 0.95);
+  text-decoration-thickness: 1.4px;
+  text-underline-offset: 0.18em;
+}
+
+@supports not (text-decoration-thickness: 1px) {
+  .heritage-highlight-wave {
+    text-decoration-thickness: 2px;
+  }
+}
+
+/* ----------------------------------------
+   Layout helpers
+----------------------------------------- */
+
+.page-shell {
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .page-shell {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-shell {
+    padding-inline: 2rem;
+  }
+}
+
+.page-section {
+  padding-block: 3.5rem;
+}
+
+@media (min-width: 1024px) {
+  .page-section {
+    padding-block: 5rem;
+  }
+}
+
+.page-section-lg {
+  padding-block: 5rem;
+}
+
+@media (min-width: 1024px) {
+  .page-section-lg {
+    padding-block: 7.5rem;
+  }
+}
+
+/* ----------------------------------------
+   Home utilities
+----------------------------------------- */
+
+@layer components {
+  .vertical-rl {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  .home-section-no {
+    font-size: clamp(96px, 18vw, 260px);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: rgba(34, 34, 34, 0.1);
+  }
+
+  /* Safe area helpers (iOS notch) */
+  .safe-area-top {
+    top: calc(env(safe-area-inset-top) + 1rem) !important;
+  }
+  .safe-area-right {
+    right: calc(env(safe-area-inset-right) + 1rem) !important;
+  }
+  .safe-area-left {
+    left: calc(env(safe-area-inset-left) + 1rem) !important;
+  }
+  .safe-area-bottom {
+    bottom: calc(env(safe-area-inset-bottom) + 1rem) !important;
+  }
+}
+
+/* ----------------------------------------
+   Scrollbar（アクセントは使わず、グレーで静かに）
+----------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 34, 34, 0.22);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 34, 34, 0.32);
+}
+
+/* --- Home intro splash -------------------------------------------------- */
+/*
+  要望: トップページのヒーロー画像を最初に全面表示し、ふわっと消えて通常トップへ。
+  - JSなし: CSSアニメーションのみ
+  - 低負荷: opacity / transform のみ
+*/
+.home-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: #0b0b0b;
+  animation: cb-home-splash 1600ms ease-out forwards;
+}
+
+.home-splash__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transform: scale(1.015);
+  animation: cb-home-splash-img 650ms ease-out forwards;
+}
+
+.home-splash__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0), rgba(0, 0, 0, 0));
+}
+
+@keyframes cb-home-splash {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes cb-home-splash-img {
+  0% {
+    opacity: 0;
+    transform: scale(1.015);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-splash {
+    display: none;
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------
+   CBJ Interactive Content Components
+   - Designed for dark detail pages (black background / white text)
+   - High-end: subtle borders, minimal motion, readable tap targets
+------------------------------------------------------------ */
+
+/* 1) Interactive checklist */
+.cbj-checklist {
+  margin: 1.2rem 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.cbj-check-item {
+  position: relative;
+}
+
+/* Keep the input accessible while visually hiding it */
+.cbj-check-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.cbj-check-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  cursor: pointer;
+  padding: 12px 12px;
+  border-radius: 14px;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cbj-check-label:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+}
+
+.cbj-check-input:focus-visible + .cbj-check-label {
+  outline: 2px solid rgba(10, 186, 181, 0.65);
+  outline-offset: 3px;
+}
+
+.cbj-check-box {
+  width: 22px;
+  height: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 4px;
+  flex-shrink: 0;
+  position: relative;
+  top: 3px;
+  transition: background-color 140ms ease, border-color 140ms ease, transform 140ms ease;
+}
+
+.cbj-check-input:checked + .cbj-check-label .cbj-check-box {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.95);
+  transform: translateY(1px);
+}
+
+.cbj-check-input:checked + .cbj-check-label .cbj-check-box::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 11px;
+  border: solid #0b0b0b;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.cbj-check-text {
+  min-width: 0;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.75;
+  font-size: 0.98rem;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    "Noto Sans JP", sans-serif;
+}
+
+.cbj-check-input:checked + .cbj-check-label .cbj-check-text {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: line-through;
+  text-decoration-color: rgba(255, 255, 255, 0.28);
+  text-decoration-thickness: 1px;
+}
+
+.cbj-check-cards {
+  margin: 0.65rem 0 0 3rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.cbj-check-card {
+  max-width: 42rem;
+}
+
+/* 2) Horizontal scroll comparison/spec table */
+.cbj-table-wrapper {
+  margin: 2.75rem 0;
+}
+
+.cbj-scroll-hint {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    "Noto Sans JP", sans-serif;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-align: center;
+  margin: 0 0 0.65rem;
+  letter-spacing: 0.14em;
+}
+
+.cbj-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: rgba(0, 0, 0, 0.18);
+}
+
+.cbj-spec-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.cbj-spec-table th,
+.cbj-spec-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  line-height: 1.55;
+  vertical-align: top;
+}
+
+.cbj-spec-table thead th {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+}
+
+.cbj-spec-table tbody th {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.68);
+  background-color: rgba(0, 0, 0, 0.28);
+  white-space: nowrap;
+}
+
+.cbj-spec-table tbody tr:last-child th,
+.cbj-spec-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* 3) Pull quote */
+.cbj-pullquote {
+  margin: 3rem 0;
+  padding: 1.1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+  text-align: center;
+}
+
+.cbj-pullquote-text {
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", serif;
+  font-size: 1.45rem;
+  line-height: 1.85;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 0.05em;
+  margin: 0;
+  white-space: pre-line;
+}
+
+@media (max-width: 768px) {
+  .cbj-pullquote-text {
+    font-size: 1.22rem;
+  }
+}
+
+/* 4) Glossary tooltip (CSS-only) */
+.cbj-tooltip {
+  position: relative;
+  border-bottom: 1px dotted rgba(170, 170, 170, 0.75);
+  cursor: help;
+  color: inherit;
+  padding: 0 0.05em;
+}
+
+.cbj-tooltip:focus {
+  outline: none;
+}
+
+.cbj-tooltip:focus-visible {
+  outline: 2px solid rgba(10, 186, 181, 0.55);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.cbj-tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: 140%;
+  left: 50%;
+  transform: translateX(-50%) translateY(2px);
+  width: min(260px, 80vw);
+  padding: 12px 12px;
+  background-color: rgba(15, 15, 15, 0.95);
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  letter-spacing: 0.04em;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.cbj-tooltip:hover::after,
+.cbj-tooltip:focus::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Touch devices: show tooltip below the term to reduce clipping in cards */
+@media (hover: none) {
+  .cbj-tooltip::after {
+    bottom: auto;
+    top: 140%;
+    transform: translateX(-50%) translateY(-2px);
+  }
+  .cbj-tooltip:hover::after,
+  .cbj-tooltip:focus::after {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cbj-tooltip::after,
+  .cbj-check-label,
+  .cbj-check-box {
+    transition: none;
+  }
+}

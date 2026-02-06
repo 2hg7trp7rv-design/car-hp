@@ -1,0 +1,118 @@
+{
+  "id": "ferrari-purosangue",
+  "slug": "ferrari-purosangue",
+  "name": "フェラーリ プロサングエ",
+  "maker": "FERRARI",
+  "releaseYear": 2022,
+  "difficulty": "advanced",
+  "bodyType": "SUV/クロスオーバー",
+  "segment": "プレミアムSUV",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "プロサングエ",
+  "summary": "フェラーリ初の4ドアに近いパッケージを持つプレミアムSUVで、自然吸気V12を搭載した異色モデルです。",
+  "summaryLong": "フェラーリ プロサングエは、ブランド初の本格的なSUV的パッケージを持つモデルでありながら、6.5L自然吸気V12エンジンをフロントに搭載するという、フェラーリらしいこだわりを貫いた一台です。後席へのアクセスを考慮した観音開きドアや高いアイポイントにより、日常使いの実用性を確保しつつも、サウンドと加速はまさにフェラーリそのもの。悪路走破性を極端に重視するのではなく、『どんなシーンでもフェラーリらしいドライビングを楽しめる4シーター』として開発されています。",
+  "heroImage": "/images/cars/ferrari-purosangue-hero.jpg",
+  "mainImage": "/images/cars/ferrari-purosangue-hero.jpg",
+  "imageUrl": "/images/cars/ferrari-purosangue-hero.jpg",
+  "gallery": [
+    "/images/cars/ferrari-purosangue-front.jpg",
+    "/images/cars/ferrari-purosangue-side.jpg",
+    "/images/cars/ferrari-purosangue-rear.jpg"
+  ],
+  "engine": "6.5L V12 自然吸気",
+  "powerPs": 725,
+  "torqueNm": 716,
+  "transmission": "8速DCT",
+  "drive": "4WD",
+  "fuel": "ハイオク",
+  "fuelEconomy": "約5〜8km/L（実用域目安）",
+  "priceNew": "$402,050 → 約6310万円（1USD=¥156.9換算）",
+  "priceUsed": "7780万〜8900万円（国内相場）",
+  "strengths": [
+    "自然吸気V12を搭載したSUVという、他にない組み合わせが魅力です。",
+    "4人が快適に乗れるキャビンと実用的なラゲッジを備えます。",
+    "オンロード性能重視で、高速道路やワインディングもフェラーリらしい仕上がりです。",
+    "家族や友人と“フェラーリの世界観”を共有できるモデルです。"
+  ],
+  "weaknesses": [
+    "車重と車高の面で、低いスポーツモデルほどのサーキット適性はありません。",
+    "ボディサイズが大きく、都市部や狭い道では取り回しに気を使います。",
+    "V12＋4WD＋重量級ゆえ、消耗品と燃費のコストは高めです。",
+    "新しいモデルのため、長期的な相場や持病傾向はまだ未知数です。"
+  ],
+  "troubleTrends": [
+    "最新電子制御サスや4WDシステムは、警告灯点灯時に専門診断が必須です。",
+    "重量級かつ高出力のため、ブレーキやタイヤの交換サイクルが早くなりがちです。",
+    "電子制御のソフトウェア更新や不具合対応など、従来と異なる維持が必要です。",
+    "長期耐久性の典型例は今後蓄積されていく段階です。"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で資金計画が苦しくなりやすい車です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "budget-should-be-monthly-total",
+    "import-car-hidden-costs-paperwork"
+  ],
+  "relatedGuideSlugs": [
+    "family-suv-budget-and-lifeplan",
+    "maintenance-cost-simulation",
+    "used-import-car-buying-guide"
+  ],
+  "relatedCarSlugs": [
+    "ferrari-roma",
+    "ferrari-sf90-stradale",
+    "ferrari-812-superfast"
+  ],
+  "tags": [
+    "FERRARI",
+    "フェラーリ",
+    "プロサングエ",
+    "V12",
+    "4WD",
+    "SUV",
+    "プレミアムSUV"
+  ],
+  "relatedHeritageSlugs": [
+    "ferrari-suv-turning-point-purosangue"
+  ],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+  },
+  "maintenanceCostYenPerYear": 450000,
+  "type": "CAR",
+  "status": "published",
+  "title": "FERRARI フェラーリ プロサングエ",
+  "makerKey": "ferrari",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "フェラーリ プロサングエ",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/ferrari",
+  "relatedClusterIds": [],
+  "primaryQuery": "フェラーリ プロサングエ 維持費 中古 注意点",
+  "updateReason": "cars-index-upgrade-2026-02-01",
+  "sources": [],
+  "body": "## 結論\nFerrari Purosangueは、SUVという形を借りて「走らせた時にフェラーリであること」を最優先した車です。荷物や乗員を運べるのに、運転している側の満足度が高い。そこに価値を感じるなら、唯一無二です。\n一方で、SUVの便利さを求めて買うと、維持費と気疲れが割に合わない可能性があります。普段の使い方が合うかがすべてです。\n\n## 向く人 / 向かない人\n### 向く人\n- 家族や荷物の事情があっても、運転の楽しさを諦めたくない\n- 長距離や高速が多く、車の良さを使い切れる\n- 維持費を含めて、車にお金を使う優先順位が高い\n\n### 向かない人\n- 実用優先で、維持費に明確な上限がある\n- 近距離だけで乗ることが多く、置きっぱなしになりやすい\n- 取り回しや駐車のストレスを極力減らしたい\n\n## 買う前のチェック\n### まずは生活側の条件を整理\n購入前に、車庫と保険の条件を決めておくと後悔が減ります。\n- 出入りのしやすい駐車環境か\n- 乗る頻度と距離はどれくらいか\n- タイヤとブレーキの消耗を許容できるか\n\n### 個体を見る時のポイント\n- タイヤの減り方と銘柄（交換コストのイメージが付く）\n- ブレーキと足回りの状態\n- 内装の傷みは、使われ方の癖が出る\n\n## 弱点と故障\nまだ新しいモデルでも、運用の癖は出ます。\n- 車重がある分、タイヤとブレーキの負担が大きい\n- 近距離ばかりだと、コンディションが上がりにくい\n- 電装系の更新や改良情報は、早めに追っておくと安心\n\n## 維持費\n維持費の感覚は、スポーツカーというよりラグジュアリーの側に寄ります。\n- 固定費（保険、ガレージ）が大きい\n- 消耗品（タイヤ、ブレーキ）の単価が高い\n- 点検や整備は、信頼できる窓口を先に作る\n\n## 中古で買うなら\n中古は、相場より履歴です。新しい車ほど、履歴がそのまま価値になります。\n- 点検記録と、改善対応の履歴\n- オプション構成が自分の使い方に合うか\n- 乗り方が荒くないか（内外装とタイヤでだいたい分かる）\n\n## 比較\n- /cars/ferrari-roma は、軽さと雰囲気で選ぶフェラーリの入り口\n- /cars/ferrari-sf90-stradale は、速さに振り切った別世界\n- /cars/ferrari-812-superfast は、同じ系譜でも性格がまったく違う\n\n## 関連リンク\n- /guide/family-suv-budget-and-lifeplan\n- /guide/maintenance-cost-simulation\n- /column/budget-should-be-monthly-total\n- /heritage/ferrari-suv-turning-point-purosangue\n",
+  "bestFor": [
+    "家族や荷物の事情があっても運転の楽しさを諦めたくない人",
+    "長距離や高速が多く車の良さを使い切れる人",
+    "維持費を含めて車にお金を使う優先順位が高い人"
+  ],
+  "notFor": [
+    "実用優先で維持費に明確な上限がある人",
+    "近距離だけで乗ることが多く置きっぱなしになりやすい人",
+    "取り回しや駐車のストレスを極力減らしたい人"
+  ],
+  "maintenanceNotes": [
+    "車重があるぶんタイヤとブレーキの消耗は早めに見積もる",
+    "固定費（保険、ガレージ）を含めて年単位で予算化する",
+    "点検や改良情報を追える窓口を先に作る"
+  ]
+}

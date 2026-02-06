@@ -1,0 +1,119 @@
+{
+  "id": "lexus-is-f-use20",
+  "slug": "lexus-is-f-use20",
+  "name": "IS F (USE20)",
+  "maker": "Lexus",
+  "releaseYear": 2007,
+  "difficulty": "intermediate",
+  "bodyType": "セダン",
+  "segment": "スポーツセダン",
+  "grade": null,
+  "engine": "Front V8 5.0 NA（年式で差）",
+  "drive": "FR",
+  "transmission": "8AT",
+  "fuel": "ハイオク",
+  "powerPs": 423,
+  "torqueNm": 505,
+  "fuelEconomy": "目安: 5〜9 km/L",
+  "summary": "NA V8の気配をセダンで楽しめる一台。静かに走れて、踏むと一気に色が変わるのがIS Fの面白さ。",
+  "summaryLong": "IS F（USE20）は、セダンとしての使いやすさを残しながら、V8の濃さをしっかり味わえる車です。普段は静かで、踏んだときだけ空気が変わる。その切り替わりが、この車の価値になっています。\n\n中古で見る順番は、走行距離よりも「消耗品の使われ方」と「整備の丁寧さ」です。ブレーキやタイヤに強い負荷がかかる車なので、交換履歴が薄い個体は購入後に一気に出費が来やすい。逆に、記録簿が揃っていて、街乗り中心で雑に扱われていない個体は狙い目です。\n\nセダンのまま、気配だけ本気。そのバランスに惹かれるなら、IS Fは長く付き合えるタイプです。",
+  "costImpression": "消耗品のレンジがスポーツ寄り。安さより、履歴とブレーキ周りの状態が価値になります。",
+  "heroImage": "/images/cars/placeholder.jpg",
+  "mainImage": "/images/cars/placeholder.jpg",
+  "relatedNewsIds": [],
+  "tags": [
+    "Lexus",
+    "IS F",
+    "USE20",
+    "sports-sedan",
+    "v8",
+    "fr"
+  ],
+  "intentTags": [
+    "sports-sedan",
+    "v8",
+    "usedcar-check"
+  ],
+  "relatedCarSlugs": [
+    "toyota-chaser-jzx100-tourer-v",
+    "toyota-aristo-jzs161-v300",
+    "bmw-530i-g30"
+  ],
+  "relatedGuideSlugs": [
+    "car-budget-simulation",
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "tire-cheap-dangerous-choice",
+    "usedcar-warranty-needed"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-software-performance-era-heritage"
+  ],
+  "strengths": [
+    "セダンとして普通に使えるのに、踏むとV8の濃さが出る。",
+    "直進安定性が高く、長距離が疲れにくい。",
+    "キャラクターがはっきりしていて、所有満足度が高い。",
+    "中古でも情報が多く、整備の道筋を立てやすい。"
+  ],
+  "weaknesses": [
+    "ブレーキ・タイヤなど消耗品の出費が大きい。",
+    "前オーナーの乗り方で差が出やすく、個体の見極めが重要。",
+    "短距離中心だと燃費が伸びにくく、街乗りだけだと重さが出る。",
+    "改造の取り付けが雑だと、細かな不具合が積み上がりやすい。"
+  ],
+  "troubleTrends": [
+    "ブレーキローターやパッドの状態は必ず見たいです。段付きやひびは要注意。",
+    "タイヤの片減りは足回りの整合のサイン。アライメントが崩れている個体があります。",
+    "油脂類の管理が薄い個体は、購入後にまとめて出費になりやすいです。",
+    "吸排気などの後付けは、配線や固定の質でトラブルが変わります。"
+  ],
+  "bestFor": [
+    "セダンの実用性を残しつつ、NA V8の気配を楽しみたい人。",
+    "通勤も週末も1台でこなしたい人。",
+    "整備記録と消耗品の状態を見て、納得して選べる人。"
+  ],
+  "notFor": [
+    "維持費をできるだけ軽くしたい人（消耗品が重い）。",
+    "車に手をかける時間や、点検の手間を取りたくない人。",
+    "短距離ばかりで、燃費や重さにストレスを感じやすい人。"
+  ],
+  "maintenanceNotes": [
+    "ブレーキとタイヤは“車のキャラ”そのもの。残量と交換履歴を必ず確認。",
+    "オイル管理が丁寧な個体は、長く安心して乗れます。記録簿の有無は重要です。",
+    "足回りの整合は試乗で分かります。直進性と段差の収まりで判断。"
+  ],
+  "lengthMm": null,
+  "widthMm": null,
+  "heightMm": null,
+  "wheelbaseMm": null,
+  "weightKg": null,
+  "priceNew": "当時：700万〜900万円（参考）",
+  "priceUsed": "300万〜650万円（相場変動）",
+  "zeroTo100": null,
+  "type": "CAR",
+  "status": "published",
+  "title": "Lexus IS F (USE20)",
+  "makerKey": "lexus",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/lexus",
+  "relatedClusterIds": [],
+  "primaryQuery": "IS F (USE20)",
+  "updateReason": "car-overhaul-2026-02-01_v8",
+  "sources": [],
+  "body": "## 結論\nIS Fは「セダンのまま、NA V8の気配を楽しみたい」人に向きます。派手に見せなくても、踏んだ瞬間に空気が変わる。そこがこの車の美味しいところです。\n\n中古は“走行距離が少ない”より、“整備がサボられていない”が大事です。迷ったら、まずは[レクサスの車種一覧](/cars/makers/lexus)で相場感と選択肢を掴むと判断が早くなります。\n\n## 向く人 / 向かない人\n向くのは、普段は落ち着いて乗りたいけど、たまに音と加速で気分を上げたい人。向かないのは、維持費をできるだけ軽くしたい人です。消耗品のレンジがスポーツ寄りで、ここは割り切りが必要です。\n\n## 買う前のチェック\n- ブレーキとタイヤの状態。ローターの段付き、ひび、片減りはそのまま乗り方が出ます。\n- 整備記録。オイル管理と消耗品の交換履歴が見える個体が安心です。\n- 下回りと足回り。ブッシュのへたりやアライメントのズレは、乗り味に直結します。\n- 改造の有無。吸排気だけでも、取り付けの質で後のトラブルが変わります。\n- 内装と電装。シートやスイッチ類の状態は、距離より扱い方が出ます。\n\n購入後の出費が不安なら、先に[予算を先に固める（シミュレーション）](/guide/car-budget-simulation)で上限を決めておくと、個体の見方がブレません。\n\n\n## 弱点と故障\n弱点は「消耗品の出費がまとめて来やすい」ことです。走れるからこそ、前オーナーがどれだけ踏んでいたかで差が出ます。\n\n大きな故障だけを怖がるより、ブレーキ・タイヤ・足回りを“今の状態で買う”感覚で見たほうが、後悔が減ります。\n\n## 維持費の目安\n燃料はハイオク、タイヤとブレーキは太くて重い。ここがベースです。年平均よりも、次の車検までにどれだけ消耗品が来るかをイメージしておくと、家計へのダメージが読みやすいです。\n\n## 中古で買うなら\n相場より安い個体は、だいたい理由があります。説明が具体的で、整備記録が残っている個体を基準にすると失敗しにくいです。\n\n購入前に、ブレーキ・タイヤ・足回りの残量を数字で出してもらえるか。ここを聞くだけで、売り方の誠実さが見えます。\n\n## 比較\n同じスポーツセダンでも、IS Fは“速さより気配”が魅力です。昔のJDMスポーツセダン（チェイサーやアリスト）と比べると、落ち着き方が現代的で、長距離が楽です。\n\n## 関連リンク\n- [予算を先に固める（シミュレーション）](/guide/car-budget-simulation)\n- [修復歴・事故歴の見方（チェックリスト）](/guide/repair-history-used-car-checklist)\n- [維持費のざっくり試算](/guide/maintenance-cost-simulation)\n- [安いタイヤは結局高くつく](/column/tire-cheap-dangerous-choice)\n- [中古車保証は必要か](/column/usedcar-warranty-needed)\n- [2000年代の“ソフトウェア性能”の話](/heritage/japan-software-performance-era-heritage)",
+  "purchasePriceSafe": "安全ライン：360〜620万円前後（消耗品と履歴重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間45〜110万円"
+  },
+  "maintenanceCostYenPerYear": 780000
+}

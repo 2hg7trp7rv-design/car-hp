@@ -1,0 +1,26 @@
+{
+  "sell_basic_checklist": {
+    "partner": "sell",
+    "primaryLabel": "一括査定で買取相場をまとめて見る",
+    "primaryUrl": "https://demo.carboutique.jp/aff/car-sell/ikkatsu",
+    "disclosure": "PR"
+  },
+  "sell_import_highclass": {
+    "partner": "sell",
+    "primaryLabel": "輸入車に強い買取サービスで相場を見る",
+    "primaryUrl": "https://demo.carboutique.jp/aff/car-sell/import",
+    "disclosure": "PR"
+  },
+  "sell_loan_remains": {
+    "partner": "sell",
+    "primaryLabel": "ローン残債あり前提で相場を確認する",
+    "primaryUrl": "https://demo.carboutique.jp/aff/car-sell/loan-remain",
+    "disclosure": "PR"
+  },
+  "insurance_compare": {
+    "partner": "insurance",
+    "primaryLabel": "複数社の見積を一括で比較する",
+    "primaryUrl": "https://demo.carboutique.jp/aff/insurance/compare",
+    "disclosure": "PR"
+  }
+}

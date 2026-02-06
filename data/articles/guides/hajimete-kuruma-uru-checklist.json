@@ -1,0 +1,54 @@
+{
+  "slug": "hajimete-kuruma-uru-checklist",
+  "title": "初めて車を売る前に必ず確認したいチェックリスト｜買取・下取り・個人売買の選び方",
+  "lead": "初めての車売却をチェックリスト化。相場の掴み方、査定比較、書類と契約の注意点。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "SELL",
+  "tags": [
+    "車売却",
+    "初めての売却",
+    "下取り",
+    "買取",
+    "チェックリスト"
+  ],
+  "publishedAt": "2025-12-12",
+  "updatedAt": "2026-01-20",
+  "internalLinks": [
+    "best-time-to-sell-car",
+    "selling-without-rush",
+    "kuruma-ikkatsu-satei-shitsukoi-real",
+    "meigi-henko-hitsuyou-shorui-futsuu"
+  ],
+  "body": "この記事は「初めて車を売る前に必ず確認したいチェックリスト｜買取・下取り・個人売買の選び方」をテーマに、売却は情報戦というより段取り勝負です。必要書類・比較の取り方・トラブル回避の要点をまとめます。\n\n## 結論\n- 初めての売却で損しやすいのは「相場を知らずに即決」することです。【相場→比較→期限】の順に進めるとブレません。\n- 査定前にやることは多くありません。【書類と付属品の準備】ができれば、査定額が安定します。\n- 迷ったら、契約はその場で決めず、【条件（入金日・キャンセル・減額条件）】を一度持ち帰るのが安全です。\n\n## 事前チェックリスト（最低限）\n- 走行距離、年式、グレード、事故/修理歴のメモ\n- 付属品：スペアキー、取扱説明書、整備記録簿、純正パーツ\n- 書類：車検証、自賠責保険証明書、（普通車なら）印鑑証明など\n- 次の足：買い替えか、手放して終わりか（代車が必要か）\n\n## 2〜3週間の進め方\n### STEP 1 期限を決める\n- いつまでに引き渡すか（次の車の納車日、引っ越し、税のタイミングなど）\n- 期限が決まると「強い営業に流される」リスクが減ります\n\n### STEP 2 相場を確認する\n- 同じ年式/距離/グレードの相場感をつかむ\n- オプションや整備履歴で差が出やすい車種は、情報を揃えてから査定へ\n\n### STEP 3 査定は複数で比較する\n- 1社だけだと相場が分からず、安くても判断できない\n- 一括査定が不安なら、連絡手段や希望時間を指定する（/guide/kuruma-ikkatsu-satei-shitsukoi-real）\n\n### STEP 4 条件を確認して契約する\n- 入金日、名義変更の時期、キャンセル条件、減額条件（再査定の扱い）\n- “口約束”で終わらせず、契約書に反映されているか確認する\n\n## よくあるつまずき\n- 相場を見ずに即決して後悔する\n- 書類や付属品が揃っておらず、減額や手続き遅れになる\n- 契約条件を読まず、入金や名義変更で揉める\n\n## 補足（実務メモ）\n- 同時査定は3社前後に絞ると、比較できて連絡負担も増えにくい\n- 連絡可能な時間帯を先に伝えるだけでも、電話のストレスが減る\n- 契約は「キャンセル条件」「減額条件（後日減額）」を口頭ではなく書面で確認\n- 整備記録簿・純正パーツ・スペアキーは、輸入車/高級車ほど査定に効きやすい\n- 強引な勧誘やキャンセル条件で揉めたら、消費者ホットライン「188」など第三者窓口に早めに相談\n\n\n## 関連記事\n- /guide/best-time-to-sell-car\n- /guide/selling-without-rush\n- /guide/kuruma-ikkatsu-satei-shitsukoi-real\n- /guide/meigi-henko-hitsuyou-shorui-futsuu\n",
+  "monetizeKey": "sell_basic_checklist",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "best-time-to-sell-car",
+    "selling-without-rush",
+    "kuruma-ikkatsu-satei-shitsukoi-real",
+    "meigi-henko-hitsuyou-shorui-futsuu"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [
+    "japan-1995-golden-age-heritage"
+  ],
+  "intentTags": [
+    "sell"
+  ],
+  "seoTitle": "初めて車を売る前に必ず確認したいチェックリスト｜買取・下取り・個人売買の選び方｜CAR BOUTIQUE GUIDE",
+  "seoDescription": "初めての車売却をチェックリスト化。相場の掴み方、査定比較、書類と契約の注意点。",
+  "summary": "初めての車売却をチェックリスト化。相場の掴み方、査定比較、書類と契約の注意点。",
+  "status": "published",
+  "id": "guide:hajimete-kuruma-uru-checklist",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/hub-sell",
+  "relatedClusterIds": [],
+  "primaryQuery": "初めて車を売る前に必ず確認したいチェックリスト｜買取・下取り・個人売買の選び方",
+  "updateReason": "initial-import",
+  "sources": []
+}

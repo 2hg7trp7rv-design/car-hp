@@ -1,0 +1,52 @@
+{
+  "slug": "number-change-kibou-number-guide",
+  "title": "ナンバー変更・希望ナンバーの流れ｜管轄・費用・必要書類をまとめて理解する",
+  "lead": "希望ナンバーの取り方を手順で整理。抽選/先着、申込から交付・取付までの流れ。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "LIFE",
+  "tags": [
+    "ナンバー変更",
+    "希望ナンバー",
+    "住所変更",
+    "必要書類"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-20",
+  "internalLinks": [
+    "jyuusho-henkou-shaken-shou",
+    "meigi-henko-hitsuyou-shorui-futsuu",
+    "meigi-henko-hitsuyou-shorui-kei",
+    "shako-shoumei-torikata"
+  ],
+  "body": "この記事は「ナンバー変更・希望ナンバーの流れ｜管轄・費用・必要書類をまとめて理解する」をテーマに、書類手続きは“段取り”が8割です。取得タイミングと記入の注意点を先に押さえると、二度手間が減ります。\n\n## 結論\n- 希望ナンバーは、番号によって「一般希望（先着）」と「抽選対象」があります。まずは希望番号がどちらかを確認します。\n- 手続きは、申込→入金→交付→取付の順。【引っ越しや名義変更の予定】があるなら、日程を合わせると二度手間が減ります。\n- つまずきやすいのは「必要書類」と「予約日」。先に管轄の窓口/案内を確認してから動くとスムーズです。\n\n## 先に確認するチェックリスト\n- 普通車か軽自動車か（窓口・扱いが異なる）\n- 希望番号が抽選対象か（人気番号は抽選になる）\n- 変更理由：引っ越しでナンバーが変わるタイミングに合わせるか、単独で変えるか\n- 自分で取付に行くか、業者に依頼するか\n\n## 手順 1 希望番号を決める（抽選か確認）\n- 希望ナンバーの申込サイトなどで、抽選対象かどうかを確認します\n- 抽選対象の場合は、申込期間と当選発表日を確認します\n\n## 手順 2 申込して入金する\n- 車両情報や使用者情報を入力し、申込を行います\n- 交付手数料等を入金します（金額は地域・種類で異なります）\n\n## 手順 3 交付予約日に受け取って取付する\n- 交付予約日にナンバーを受け取ります\n- 取付は窓口で行う場合と、持ち帰って依頼する場合があります（封印が必要な車種等は手順が異なることがあります）\n\n## よくあるつまずき\n- 抽選対象だと知らずに、急ぎの予定に間に合わない\n- 引っ越しや名義変更とタイミングがズレて二度手間になる\n- 必要書類が足りず、窓口でやり直しになる\n\n## 補足（実務メモ）\n- 必要書類は「本人確認」「使用の本拠」「所有者/使用者の一致」の3点を揃えるイメージ\n- 申請書の記入は、空欄を残さないより“誤記しない”ことを優先（不明は窓口で確認）\n- 委任状を使う場合は、押印の種類や書き方で差戻しになりやすいので注意\n- 受付時間が短い窓口もあるため、行く前に営業時間と必要物を再確認\n\n## 関連記事\n- /guide/jyuusho-henkou-shaken-shou\n- /guide/meigi-henko-hitsuyou-shorui-futsuu\n- /guide/meigi-henko-hitsuyou-shorui-kei\n- /guide/shako-shoumei-torikata\n",
+  "monetizeKey": "sell_prepare",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "jyuusho-henkou-shaken-shou",
+    "meigi-henko-hitsuyou-shorui-futsuu",
+    "meigi-henko-hitsuyou-shorui-kei",
+    "shako-shoumei-torikata"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "paperwork",
+    "life"
+  ],
+  "seoTitle": "ナンバー変更・希望ナンバーの流れ｜管轄・費用・必要書類",
+  "seoDescription": "希望ナンバーの取り方を手順で整理。抽選/先着、申込から交付・取付までの流れ。",
+  "summary": "希望ナンバーの取り方を手順で整理。抽選/先着、申込から交付・取付までの流れ。",
+  "status": "published",
+  "id": "guide:number-change-kibou-number-guide",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide",
+  "relatedClusterIds": [],
+  "primaryQuery": "ナンバー変更・希望ナンバーの流れ｜管轄・費用・必要書類をまとめて理解する",
+  "updateReason": "initial-import",
+  "sources": []
+}
