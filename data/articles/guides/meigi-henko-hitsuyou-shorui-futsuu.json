@@ -1,0 +1,54 @@
+{
+  "slug": "meigi-henko-hitsuyou-shorui-futsuu",
+  "title": "【普通車】名義変更（移転登録）の必要書類まとめ｜売却・譲渡で詰まらないチェックリスト",
+  "lead": "普通車の名義変更に必要な書類と流れ。旧/新所有者それぞれの準備ポイント。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "SELL",
+  "tags": [
+    "名義変更",
+    "必要書類",
+    "普通車",
+    "移転登録",
+    "譲渡",
+    "売却"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-20",
+  "internalLinks": [
+    "shako-shoumei-torikata",
+    "jyuusho-henkou-shaken-shou",
+    "meigi-henko-hitsuyou-shorui-kei",
+    "number-change-kibou-number-guide"
+  ],
+  "body": "この記事は「【普通車】名義変更（移転登録）の必要書類まとめ｜売却・譲渡で詰まらないチェックリスト」をテーマに、書類手続きは“段取り”が8割です。取得タイミングと記入の注意点を先に押さえると、二度手間が減ります。\n\n## 結論\n- 普通車の名義変更（移転登録）は、【旧所有者・新所有者・車両の書類】が揃っていれば手続き自体はシンプルです。\n- つまずきやすいのは「印鑑証明の期限」「車庫証明」「委任状/譲渡証明書の記入ミス」です。\n- 不安なら、先に管轄の運輸支局の案内を確認し、必要書類をチェックしてから動くと二度手間が減ります。\n\n## 必要書類（普通車の移転登録）\n### 旧所有者が用意することが多いもの\n- 印鑑証明書（発行からの期限に注意）\n- 実印\n- 譲渡証明書\n- 委任状（代理人が手続きをする場合）\n\n### 新所有者が用意することが多いもの\n- 印鑑証明書（発行からの期限に注意）\n- 実印\n- 車庫証明（保管場所証明書。地域により要否が異なる場合があります）\n- 住所確認書類（住民票など。条件により）\n\n### 車両に付随するもの\n- 車検証\n- 自賠責保険証明書\n- 納税証明書（必要となる場合があります）\n- ナンバープレート（変更がある場合）\n\n## 手順 1 まず「誰が手続きをするか」を決める\n- ディーラーや買取店が代行する場合は、必要書類を渡すだけで済むことが多い\n- 自分で行く場合は、管轄の運輸支局（陸運局）で手続きをします\n\n## 手順 2 書類の有効期限と記入ミスを潰す\n- 印鑑証明は期限があります（一般に3か月など。運輸支局の案内に従う）\n- 委任状/譲渡証明書は、氏名・住所・印影・車台番号などの記入に注意\n\n## 手順 3 車庫証明が必要なら先に取得する\n普通車は車庫証明が必要になることが多いです。\n- /guide/shako-shoumei-torikata を先に確認\n\n## よくあるミス\n- 印鑑証明の期限切れでやり直し\n- 住所が車検証と違うのに、住所変更手続きを忘れる（/guide/jyuusho-henkou-shaken-shou）\n- 車庫証明が間に合わず、名義変更が遅れる\n\n## 補足（実務メモ）\n- 必要書類は「本人確認」「使用の本拠」「所有者/使用者の一致」の3点を揃えるイメージ\n- 申請書の記入は、空欄を残さないより“誤記しない”ことを優先（不明は窓口で確認）\n- 委任状を使う場合は、押印の種類や書き方で差戻しになりやすいので注意\n- 受付時間が短い窓口もあるため、行く前に営業時間と必要物を再確認\n\n## 関連記事\n- /guide/shako-shoumei-torikata\n- /guide/jyuusho-henkou-shaken-shou\n- /guide/meigi-henko-hitsuyou-shorui-kei\n- /guide/number-change-kibou-number-guide\n",
+  "monetizeKey": "sell_prepare",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "shako-shoumei-torikata",
+    "jyuusho-henkou-shaken-shou",
+    "meigi-henko-hitsuyou-shorui-kei",
+    "number-change-kibou-number-guide"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "paperwork",
+    "sell"
+  ],
+  "seoTitle": "普通車の名義変更（移転登録）｜必要書類と手順チェックリスト",
+  "seoDescription": "普通車の名義変更に必要な書類と流れ。旧/新所有者それぞれの準備ポイント。",
+  "summary": "普通車の名義変更に必要な書類と流れ。旧/新所有者それぞれの準備ポイント。",
+  "status": "published",
+  "id": "guide:meigi-henko-hitsuyou-shorui-futsuu",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/hub-sell",
+  "relatedClusterIds": [],
+  "primaryQuery": "【普通車】名義変更（移転登録）の必要書類まとめ｜売却・譲渡で詰まらないチェックリスト",
+  "updateReason": "initial-import",
+  "sources": []
+}

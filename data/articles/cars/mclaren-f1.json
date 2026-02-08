@@ -1,0 +1,105 @@
+{
+  "id": "mclaren-f1",
+  "slug": "mclaren-f1",
+  "name": "F1",
+  "maker": "McLaren",
+  "releaseYear": 1992,
+  "difficulty": "intermediate",
+  "bodyType": "クーペ",
+  "segment": "スーパーカー",
+  "grade": null,
+  "engine": null,
+  "drive": null,
+  "transmission": null,
+  "fuel": null,
+  "powerPs": null,
+  "torqueNm": null,
+  "fuelEconomy": null,
+  "summary": "McLaren F1は、90年代のスーパーカーとして名前が挙がりやすいクーペです。",
+  "summaryLong": "McLaren F1は、センターシートの3座という発想がそのままキャラクターになっている、90年代の象徴的な一台です。加速や最高速の話はもちろんですが、実際に欲しくなる理由はもっと感情的で、『一度でいいから、あの席に座って走りたい』というタイプの憧れ。中古の世界ではオークション級の相場が当たり前なので、安さを探すより、履歴が厚い個体を選ぶのが結局いちばん安いです。整備記録、消耗品の更新、保管環境。この三つが揃っているかが価値を決めます。買ってからの安心は、車そのものより主治医と段取りで作る車です。",
+  "costImpression": "維持費は距離より保管と整備で変わります。保険、保管、消耗品、予防整備を含めて年間予算に余力を残しておくのが現実的です。",
+  "heroImage": "/images/cars/placeholder.jpg",
+  "mainImage": "/images/cars/placeholder.jpg",
+  "relatedNewsIds": [],
+  "tags": [
+    "McLaren",
+    "クーペ",
+    "スーパーカー"
+  ],
+  "intentTags": [],
+  "relatedCarSlugs": [
+    "ferrari-f40",
+    "lexus-lfa-2010",
+    "lamborghini-diablo-vt-60"
+  ],
+  "relatedGuideSlugs": [
+    "used-import-car-buying-guide",
+    "maintenance-cost-simulation",
+    "repair-history-used-car-checklist"
+  ],
+  "relatedColumnSlugs": [
+    "import-car-hidden-costs-paperwork",
+    "usedcar-low-mileage-trap"
+  ],
+  "relatedHeritageSlugs": [
+    "mclaren-f1-three-seater-heritage"
+  ],
+  "strengths": [
+    "キャラクターがはっきりしている",
+    "走りと雰囲気の両立",
+    "ファンが多く情報が探しやすい"
+  ],
+  "weaknesses": [
+    "年式相応にコンディション差が大きい",
+    "部品・整備の難易度は個体で変わる",
+    "維持費は想定より上がりやすい"
+  ],
+  "troubleTrends": [
+    "消耗品の管理状況を要確認",
+    "電装系・ゴム類の劣化に注意",
+    "改造歴がある個体は内容を精査"
+  ],
+  "bestFor": [
+    "保管と整備も含めて所有体験として楽しめる人",
+    "個体の履歴と、診られる主治医をセットで用意できる人",
+    "距離よりコンディションを優先して選べる人"
+  ],
+  "notFor": [
+    "週末に思い立って乗りたいだけで、準備と点検はしたくない人",
+    "維持や部品手配の現実を軽く見ている人",
+    "近くに信頼できる専門店がなく、トラブル時に動けない人"
+  ],
+  "maintenanceNotes": [
+    "走らせない期間が長いほど、ゴム類や電装の不調が出やすい",
+    "記録簿だけでなく、消耗品の更新履歴が線で続いている個体を優先",
+    "タイヤやブレーキは距離より年数と保管環境で差が出る"
+  ],
+  "lengthMm": null,
+  "widthMm": null,
+  "heightMm": null,
+  "wheelbaseMm": null,
+  "weightKg": null,
+  "priceNew": "当時：$815,000前後（1USD=¥156.9換算で約1.28億円）",
+  "priceUsed": "25億〜45億円（オークション級）",
+  "zeroTo100": null,
+  "type": "CAR",
+  "status": "published",
+  "title": "McLaren F1",
+  "makerKey": "mclaren",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": null,
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "マクラーレン F1",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/mclaren",
+  "relatedClusterIds": [],
+  "primaryQuery": "マクラーレン F1 中古 注意点",
+  "updateReason": "cars-index-upgrade-2026-02-01",
+  "sources": [],
+  "purchasePriceSafe": "安全ライン：相場はオークション級。車両価格とは別に、保管環境と整備枠を先に確保できる人向け。",
+  "body": "## 結論\nMcLaren F1は、スペック表を眺めている時間より「どうやって状態を守るか」を考えている時間のほうが長くなる車です。ここが刺さる人にとっては、所有体験そのものが最高の贅沢になります。\n逆に、乗る前の準備や段取りを面倒に感じるなら、別のスーパーカーのほうが幸せになりやすいです。F1は、買った瞬間がゴールではなく、買ってからの毎日がスタートです。\n\n## 向く人 / 向かない人\n### 向く人\n- 「走る」だけでなく「保管と整備」も趣味として楽しめる\n- 個体の履歴と、診られるショップをセットで手当てできる\n- 走行距離の少なさより、コンディションの良さを優先できる\n\n### 向かない人\n- 週末に思い立って乗りたいだけで、準備と点検は極力したくない\n- 価格のインパクトに比べ、維持や部品手配の現実を軽く見ている\n- 近くに信頼できる専門店がなく、トラブル時に動けない\n\n## 買う前のチェック\n### まず見る順番\nこのクラスは、外装より先に書類と履歴です。状態の差は、だいたいここに出ます。\n- 整備記録と交換履歴（ゴム類、ホース、シール、冷却、電装）\n- 事故歴よりも「修復の質」と「その後の管理」\n- 後付けや変更点は、純正部品が残っているかまで確認\n\n### 試乗で拾いたい違和感\n試乗は速さを味わう時間というより、違和感探しの時間です。軽い違和感ほど、後で大きくなります。\n- アイドリングの安定\n- 熱が入った後のフィーリング変化\n- 電装の挙動（警告灯、スイッチ類、空調）\n\n## 弱点と故障\n年式を考えると、怖いのは派手な故障というより「放置と劣化の積み重ね」です。\n- 長期保管で起きやすい電装・燃料系の不調\n- ゴム類やシールの痩せによる漏れ\n- 冷却まわりの不安は、走る前に潰しておきたい\n\n## 維持費\n維持費は走行距離より、保管環境と整備方針で上下します。\n- ガレージ環境（湿気、温度、バッテリー管理）\n- タイヤとブレーキは年数でも差が出る\n- 部品待ちや海外手配の時間コストも含めて考える\n\n## 中古で買うなら\n### 安い個体が安い理由を、先に掴む\nこのクラスは、買った後の巻き返し整備で総額が膨らみやすいです。価格よりも、コンディションの説明が具体的な個体を選びたいところです。\n\n### できれば避けたいパターン\n- 履歴が薄い、または保管状況が曖昧\n- 変更点が多いのに、戻せる部品が残っていない\n- 直近の整備が点ではなく、線で続いていない\n\n## 比較\nF1は、刺激の種類が独特です。乱暴さや音の派手さではなく、密度と集中力の方向に振れています。\n- /cars/ferrari-f40 は、体力と気合いで乗る方向の濃さ\n- /cars/lexus-lfa-2010 は、音と回転で気分を上げる方向の濃さ\n- /cars/lamborghini-diablo-vt-60 は、存在感と儀式で乗る方向の濃さ\n\n## 関連リンク\n- /guide/used-import-car-buying-guide\n- /guide/maintenance-cost-simulation\n- /column/import-car-hidden-costs-paperwork\n- /heritage/mclaren-f1-three-seater-heritage\n"
+}

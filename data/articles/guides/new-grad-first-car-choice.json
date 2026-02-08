@@ -1,0 +1,54 @@
+{
+  "id": "new-grad-first-car-choice",
+  "slug": "new-grad-first-car-choice",
+  "type": "GUIDE",
+  "status": "published",
+  "title": "新社会人の初めての車選び｜軽とコンパクトの選び方（維持費の目安付き）",
+  "summary": "新社会人の1台目の選び方。月額上限、保険、状態、支払い方法まで現実的にまとめます。",
+  "seoTitle": "新社会人の車選び！軽自動車vsコンパクトカー維持費比較とおすすめ",
+  "seoDescription": "新社会人の1台目の選び方。月額上限、保険、状態、支払い方法まで現実的にまとめます。",
+  "category": "BUY",
+  "readMinutes": 5,
+  "heroImage": null,
+  "body": "この記事は「新社会人の初めての車選び｜軽とコンパクトの選び方（維持費の目安付き）」をテーマに、購入の意思決定は「車両価格」だけで見るとズレます。毎月の総額と、支払い方法ごとの落とし穴を整理します。\n\n## 結論\n- 新社会人の1台目は、背伸びより【固定費を小さくして余白を残す】方が後悔しにくいです。\n- 本体価格より、保険・駐車場・税・車検まで含めた「毎月いくら」を先に決めます。\n- 迷ったら、性能より先に【安全装備と状態（整備履歴）】を優先すると失敗が減ります。\n\n## 先に押さえる前提\n- 通勤で使うか：毎日/週末だけ/ほぼ使わない\n- 置き場：自宅駐車場の有無、月極の相場\n- 年間走行：距離が増えるほど燃料と消耗品が効く\n- 住環境：雪道、坂道、狭い道が多いか\n\n## 手順 1 予算は「月額」で決める\n- /guide/car-budget-simulation の考え方で、車に回せる上限を決める\n- 若年層は任意保険が高くなることがあるので、早めに見積を取る（/guide/sharyou-hoken-necessary）\n\n## 手順 2 「維持しやすい車」を優先する\n- サイズが小さいほど駐車が楽で、タイヤなど消耗品の出費も抑えやすい\n- 新しめ年式の方が安全装備が充実していることが多い\n- 見た目より、視界と取り回し（自宅駐車場で困らないか）を重視する\n\n## 手順 3 中古なら「状態チェック」を最優先にする\n- 修復歴の考え方は /guide/repair-history-used-car-checklist を先に確認\n- 整備記録簿、取扱説明書、スペアキーが揃っているか\n- 走行距離だけで判断せず、タイヤ・ブレーキなど消耗品の残りも見る\n\n## 手順 4 支払いは“身軽さ”を残す\n- 長期ローンは月々が軽くなる一方、途中で動きづらくなる\n- 迷うなら、まずは3年〜5年で見直せる設計にする（/guide/loan-or-lump-sum）\n\n## よくあるつまずき\n- 月々の支払いだけで決めて、保険・駐車場で想定を超える\n- 中古で状態を見ずに買い、納車直後に消耗品で出費が増える\n- 取り回しを軽視して、結局乗らなくなる\n\n## 補足（実務メモ）\n- 月々の支払いが同じでも、総支払額と“出口（返却/買い取り/乗り換え）”が違う\n- 走行距離が多い人ほど、走行距離制限があるプランは不利になりやすい\n- 中途解約の違約金は想定外の痛手になりやすいので、ライフイベントが近いなら短期契約に注意\n\n## 関連記事\n- /guide/car-budget-simulation\n- /guide/maintenance-cost-simulation\n- /guide/loan-or-lump-sum\n- /guide/repair-history-used-car-checklist\n- /guide/self-gas-station-beginner-mistake\n",
+  "publishedAt": "2025-12-13T09:00:00.000Z",
+  "updatedAt": "2026-01-20",
+  "tags": [
+    "車選び",
+    "初心者",
+    "軽自動車",
+    "維持費"
+  ],
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "car-budget-simulation",
+    "maintenance-cost-simulation",
+    "loan-or-lump-sum",
+    "repair-history-used-car-checklist"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [
+    "japan-1995-golden-age-heritage"
+  ],
+  "intentTags": [
+    "buy"
+  ],
+  "monetizeKey": "car_search_conditions",
+  "lead": "新社会人の1台目の選び方。月額上限、保険、状態、支払い方法まで現実的にまとめます。",
+  "internalLinks": [
+    "car-budget-simulation",
+    "maintenance-cost-simulation",
+    "loan-or-lump-sum",
+    "repair-history-used-car-checklist"
+  ],
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/hub-usedcar",
+  "relatedClusterIds": [],
+  "primaryQuery": "新社会人の初めての車選び｜軽とコンパクトの選び方（維持費の目安付き）",
+  "updateReason": "initial-import",
+  "sources": []
+}

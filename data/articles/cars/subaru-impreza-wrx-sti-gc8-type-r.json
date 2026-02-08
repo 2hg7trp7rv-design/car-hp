@@ -1,0 +1,125 @@
+{
+  "id": "subaru-impreza-wrx-sti-gc8-type-r",
+  "slug": "subaru-impreza-wrx-sti-gc8-type-r",
+  "name": "Impreza WRX STI (GC8) Type R",
+  "maker": "Subaru",
+  "releaseYear": 1998,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "GC8 Type R (DCCD)",
+  "summary": "ラリーの匂いが残る4WDターボ。中古は素性と冷却、足回りの履歴が重要。",
+  "summaryLong": "GC8 インプレッサ WRX STI タイプRは、ラリーの空気をそのまま公道に持ち込んだような、濃度の高い4WDターボです。中古では競技ユースや改造歴が多く、エンジン以上に『ボディと駆動系の履歴』を重く見た方がいい。冷却・オイル管理が甘い個体は後で出費が増えます。ノーマルに近い状態で、点検記録が読める車を起点にすると、楽しく長く乗れます。 整備体制まで含めて選びたい。",
+  "heroImage": "/images/cars/subaru-impreza-wrx-sti-gc8-type-r-hero.jpg",
+  "mainImage": "/images/cars/subaru-impreza-wrx-sti-gc8-type-r-main.jpg",
+  "imageUrl": "/images/cars/subaru-impreza-wrx-sti-gc8-type-r-hero.jpg",
+  "gallery": [
+    "/images/cars/subaru-impreza-wrx-sti-gc8-type-r-front.jpg",
+    "/images/cars/subaru-impreza-wrx-sti-gc8-type-r-side.jpg",
+    "/images/cars/subaru-impreza-wrx-sti-gc8-type-r-interior.jpg"
+  ],
+  "engine": "Front Flat-4 2.0 Turbo (EJ20)",
+  "powerPs": 280,
+  "torqueNm": 343,
+  "transmission": "5MT",
+  "drive": "4WD",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜10 km/L",
+  "priceNew": "当時: 280万〜500万円台（仕様差）",
+  "priceUsed": "550万〜1600万円（相場変動）",
+  "strengths": [
+    "軽いボディで4WDの速さが出る。反応が速い。",
+    "DCCDで“合わせる”余白があり、上達が楽しい。",
+    "ラリー由来の足の動きで、路面が荒れても走れる。",
+    "ノーマルの思想が濃く、整うほど楽しい。"
+  ],
+  "weaknesses": [
+    "年式が古く、錆と劣化の影響が大きい。",
+    "改造個体が多く、整合が崩れると症状が追いにくい。",
+    "EJ系は熱と油の管理で差が出やすい。",
+    "保管環境と履歴で価値が極端に割れる。"
+  ],
+  "troubleTrends": [
+    "下回りの錆と修復歴は最優先で見たいです。",
+    "DCCDの動作（警告灯・違和感）と配線の状態は要チェックです。",
+    "冷却系とオイル管理の履歴が薄い個体は避けたいです。",
+    "足回りブッシュのへたりで直進性と手応えが変わります。"
+  ],
+  "costImpression": "“整った古さ”が価値。履歴が薄い個体は、戻すより探した方が早いことがある。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "dealer-shaken-is-expensive-myth"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "engine-check-light-first-response"
+  ],
+  "relatedCarSlugs": [
+    "mitsubishi-lancer-evolution-vi-gsr",
+    "subaru-impreza-wrx-sti-v6",
+    "nissan-skyline-gtr-r32"
+  ],
+  "tags": [
+    "Subaru",
+    "Impreza",
+    "WRX STI",
+    "GC8",
+    "EJ20",
+    "DCCD",
+    "awd"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-evo-impreza-15year-war-heritage"
+  ],
+  "intentTags": [
+    "awd",
+    "rally",
+    "1990s",
+    "heritage",
+    "advanced"
+  ],
+  "purchasePriceSafe": "安全ライン：700〜1100万円前後（錆と履歴重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間55〜120万円"
+  },
+  "maintenanceCostYenPerYear": 880000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Subaru Impreza WRX STI (GC8) Type R",
+  "makerKey": "subaru",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "スバル インプレッサ WRX STI（GC8 Type R）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/subaru",
+  "relatedClusterIds": [],
+  "primaryQuery": "Subaru Impreza WRX STI (GC8) Type R",
+  "updateReason": "data-align-2026-02-01",
+  "sources": [],
+  "bestFor": [
+    "四駆ターボの安心感と加速を、昔ながらの手応えで楽しみたい人",
+    "足回りや冷却のリフレッシュを前提に、長く乗りたい人",
+    "路面状況を問わず走れる『用途の広さ』も欲しい人"
+  ],
+  "notFor": [
+    "燃費や静粛性を最優先したい人",
+    "改造歴の説明が曖昧な個体でも勢いで買ってしまいがちな人",
+    "点検できるショップが近くにない環境の人"
+  ],
+  "maintenanceNotes": [
+    "冷却系（ラジエーター、ホース類）は年式で弱る。予防整備が効く",
+    "ターボ車は油脂管理が寿命に直結。交換履歴がある個体を優先",
+    "足回りは消耗品が多い。異音と直進性で状態が出る",
+    "下回りの錆とボディの歪みは後から効く。購入時に見切る"
+  ],
+  "body": "## 結論\nGC8は、スペックの数字より『素性』です。素性が良い個体は、普通に走っていても落ち着きが違う。そこが揃うと、速さも安心感も手に入ります。\n\n## 向く人 / 向かない人\n雨の日や路面が荒れた道でも、四駆ターボの安心感は強いです。ただし、古さゆえの手間は避けられません。楽しさの対価として受け取れる人向きです。\n\n## 買う前のチェック\nまずボディ。歪み、錆、下回りのダメージ。次に冷却と油脂の履歴。試乗では、ブーストの立ち上がりが不自然でないか、異音、振動、真っ直ぐ走るかを確認します。改造はある前提なので、施工の丁寧さと思想が見えるかがポイントです。\n\n### 競技ユースの痕跡を探す\n- ボディのスポット増しや補強の有無。良し悪しより思想が重要\n- 下回りのヒット跡。ラリー系はここが荒れやすい\n- 変速と駆動系の音。四駆は違和感が出た時の切り分けが大変\n- 冷却系の手当。追加メーターやオイルクーラーの有無も参考\n\n## 弱点と故障\nターボ車は熱との付き合いです。冷却が弱ると、細かな不調が連鎖しやすい。足回りの劣化も乗り味に直結します。小さな違和感が出た時に、すぐ手を打てる体制を作れるかが大切です。\n\n## 維持費\n維持費は、年式と走り方で振れます。油脂類と消耗品に加えて、足回りのリフレッシュが入る年は跳ねる。毎月の固定費ではなく、イベント単位で予算を置くと現実的です。\n\n### 四駆ターボは消耗品の消費が早い\nタイヤ4本、ブレーキ、油脂類。ここは割り切った方が楽です。逆に、基礎が整えば季節や路面を選ばず走れるのは大きな価値。\n\n## 中古で買うなら\n派手な仕様に惹かれても、最初の一台は素性が読める個体がおすすめです。純正寄り、履歴が明確、下回りがきれい。この三つが揃うと、後からの選択が楽になります。\n\n### ノーマルに近い個体が少ない\n候補が見つかったら、迷っている間に売れることもあります。決め手は完璧さではなく、疑問点が説明できるかどうか。説明ができない車は、後でも説明できません。\n\n### 改造の有無より、整合性\nラリー系は手が入っている車も多いですが、大事なのは説明のつく改造かどうか。施工店、目的、部品の選び方が一貫している車は扱いやすい。反対に、場当たりのパーツ寄せ集めはトラブルの起点が増えます。\n\n### 個体選びの要点\n- 下回りとボディの傷。競技ユースはここに出やすい\n- 冷却と油脂管理。温度に手当がある車は信頼しやすい\n- 駆動系の音。四駆は違和感が出た時の修理が重い\n- タイヤ4本が揃っているか。日頃の管理が見えます\n\n## 比較\n同時代のライバルであるエボ、そしてGT-R系の四駆ターボ。GC8は『軽さとラリーの匂い』が魅力です。用途がツーリング中心か、走り中心かで向きが変わります。\n\n## 関連リンク\n"
+}

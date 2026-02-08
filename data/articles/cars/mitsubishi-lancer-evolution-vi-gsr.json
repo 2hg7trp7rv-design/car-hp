@@ -1,0 +1,126 @@
+{
+  "id": "mitsubishi-lancer-evolution-vi-gsr",
+  "slug": "mitsubishi-lancer-evolution-vi-gsr",
+  "name": "Lancer Evolution VI GSR",
+  "maker": "Mitsubishi",
+  "releaseYear": 1999,
+  "difficulty": "advanced",
+  "bodyType": "sedan",
+  "segment": "スポーツセダン",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "Evo VI GSR (AYC/ACD)",
+  "summary": "硬派な四駆ターボ。中古は駆動と冷却、改造の質を見抜けるかが要点。",
+  "summaryLong": "ランサーエボリューションVI GSRは、四駆ターボの中でも反応が速く、路面を掴む感じが濃い一台です。中古での難所は、過去の走り方が車に残りやすいこと。足回り、駆動系、冷却のメンテ履歴が曖昧だと、購入後にまとめて直すことになります。走行距離より、整備記録と現車の素直さを優先し、まずは『基準の個体』を作るのが近道です。 まずは素直に走る基礎を作るのが近道です。 冷却と油脂類を先に整えると、出費の波が穏やかになります。",
+  "heroImage": "/images/cars/mitsubishi-lancer-evolution-vi-gsr-hero.jpg",
+  "mainImage": "/images/cars/mitsubishi-lancer-evolution-vi-gsr-main.jpg",
+  "imageUrl": "/images/cars/mitsubishi-lancer-evolution-vi-gsr-hero.jpg",
+  "gallery": [
+    "/images/cars/mitsubishi-lancer-evolution-vi-gsr-front.jpg",
+    "/images/cars/mitsubishi-lancer-evolution-vi-gsr-side.jpg",
+    "/images/cars/mitsubishi-lancer-evolution-vi-gsr-interior.jpg"
+  ],
+  "engine": "Front Inline-4 2.0 Turbo (4G63)",
+  "powerPs": 280,
+  "torqueNm": 373,
+  "transmission": "5MT",
+  "drive": "4WD",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜10 km/L",
+  "priceNew": "当時: 280万〜500万円台（仕様差）",
+  "priceUsed": "350万〜1200万円（相場変動）",
+  "strengths": [
+    "電子制御デフで姿勢を作り、出口で速い。",
+    "足と制御が揃うと、路面が荒れても破綻しにくい。",
+    "運転が上手くなるほど、制御の“整え方”が分かる。",
+    "ラリー由来の骨格感で、走りの密度が濃い。"
+  ],
+  "weaknesses": [
+    "制御系・油脂管理を無視すると高くつく。",
+    "改造車が多く、整合が崩れると症状が追いにくい。",
+    "熱と錆で下回りが痛みやすい個体がある。",
+    "部品の入手性と工賃が上がりやすい。"
+  ],
+  "troubleTrends": [
+    "AYC/ACDの警告灯履歴と、油脂交換の履歴は最重要です。",
+    "センサーや配線の後付け修理痕は慎重に見たいです。",
+    "駆動系の異音・振動は症状の切り分けが難しいことがあります。",
+    "下回りの錆（特に降雪地域）は価値を大きく左右します。"
+  ],
+  "costImpression": "安く買って“治す”より、整った個体を選んだ方が結果的に安いタイプ。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "dealer-shaken-is-expensive-myth"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "engine-check-light-first-response"
+  ],
+  "relatedCarSlugs": [
+    "subaru-impreza-wrx-sti-gc8-type-r",
+    "mitsubishi-lancer-evolution-ix-gsr",
+    "nissan-skyline-gtr-r32"
+  ],
+  "tags": [
+    "Mitsubishi",
+    "Lancer Evolution",
+    "Evo VI",
+    "4G63",
+    "AYC",
+    "ACD",
+    "awd"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-evo-impreza-15year-war-heritage"
+  ],
+  "intentTags": [
+    "awd",
+    "electronic-diff",
+    "rally",
+    "1990s",
+    "heritage",
+    "advanced"
+  ],
+  "purchasePriceSafe": "安全ライン：550〜900万円前後（制御履歴と下回り重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間55〜110万円"
+  },
+  "maintenanceCostYenPerYear": 820000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mitsubishi Lancer Evolution VI GSR",
+  "makerKey": "mitsubishi",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "三菱 ランサーエボリューションVI（GSR）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/mitsubishi",
+  "relatedClusterIds": [],
+  "primaryQuery": "Mitsubishi Lancer Evolution VI GSR",
+  "updateReason": "data-align-2026-02-01",
+  "sources": [],
+  "bestFor": [
+    "四駆ターボの加速と安定感を、昔ながらの硬派さで楽しみたい人",
+    "整備とリフレッシュを前提に、長く付き合う覚悟がある人",
+    "走る場所や路面を選ばず遊べる車が欲しい人"
+  ],
+  "notFor": [
+    "静粛性や快適性を最優先したい人",
+    "改造歴の説明が曖昧でも勢いで買ってしまいがちな人",
+    "維持の相談ができるショップが近くにない人"
+  ],
+  "maintenanceNotes": [
+    "駆動系のオイル管理は要。履歴がない個体は前提を厳しめに",
+    "冷却系の弱りはトラブルの呼び水。予防整備で差が出る",
+    "足回りは消耗品が多い。直進性と異音で状態が出る",
+    "ボディの歪みと下回りの錆は価値を大きく左右する"
+  ],
+  "body": "## 結論\nエボVIは、状態が良い個体ほど『普通に走るだけで速い』です。逆に、粗い個体はどこかに必ず違和感が出ます。買う前に、違和感を拾って原因を想像できるかが大事です。\n\n## 向く人 / 向かない人\n四駆ターボの安心感と、硬派な走りが好きな人向けです。快適性や燃費を主役にするなら、別の車の方が向いています。\n\n## 買う前のチェック\n駆動と冷却の履歴を確認します。試乗では、加速時の振動、変速の癖、異音、直進性。改造があるなら、施工の丁寧さと整備の筋が通っているかを見てください。\n\n### 試乗で違和感が出やすいポイント\n- 加速時の息継ぎやノッキング感。燃料系や点火系の手当が必要なことがあります\n- 駆動系の異音。四駆の唸りや振動は放置すると高くつきます\n- 足回りの追従性。跳ねるならダンパーやブッシュが終わっているサイン\n- 水温の安定。渋滞で上がる個体は要注意\n\n## 弱点と故障\nトラブルは、熱と駆動に集まりやすい。小さな漏れや異音を放置すると、後でまとめて来ます。兆候が出たら早めに診断して、悪化させない運用が向いています。\n\n## 維持費\n維持費は、年式と使い方で振れます。油脂類、ブッシュ類、タイヤ、ブレーキ。走りを混ぜるほど一気に上がる。イベント単位で積み上げて、予算を前に置くのが現実的です。\n\n### 予防整備の優先順位\n冷却と油脂類、次に足回り、最後にチューニング。順番を守るだけで、出費の波が穏やかになります。\n\n## 中古で買うなら\n派手な仕様より、素性の良い個体を選ぶ方が結果的に速いです。履歴が明確、下回りがきれい、内外装の雰囲気が整っている。そういう車は、手を入れても無駄が少ない。\n\n### 過度なパワーアップは一旦置く\n中古でまず欲しいのは、素直に走る基礎。パワーは後から足せますが、歪みと疲労は後から消せません。\n\n### 走りの痕跡は消えません\nエボは高負荷で使われることが多く、熱が入った履歴が車に残ります。ブレーキ、タイヤ、足回りの消耗が揃っているかを見て、過去の使われ方を推測。違和感がある個体は、購入後の立て直しに時間が掛かります。\n\n### 迷いを減らす判断軸\n- 水温が安定するか。渋滞で上がる車は避ける\n- 駆動系の唸りや振動。小さくても放置しない\n- 足回りの追従性。跳ねる個体は基礎が崩れています\n- パワーより素性。まず素直に走る車から始める\n\n\n補足として、エボは同じ年式でもオーナーの使い方で状態が大きく変わります。迷う二台があるなら、足回りと駆動の素直さが残っている方を選ぶと、立て直しの費用が読めます。\n\n## 比較\nインプレッサと迷うなら、乗り味の方向性で決める。エボは硬派で前に出る。インプはしなやかさが刺さる人もいる。GT-R系は別格の世界。予算と用途で現実的な線を引いてください。\n\n## 関連リンク\n"
+}
