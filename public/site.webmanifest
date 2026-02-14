@@ -1,0 +1,21 @@
+{
+  "name": "CAR BOUTIQUE",
+  "short_name": "CAR BOUTIQUE",
+  "description": "時代を超える価値を、整理する。CAR BOUTIQUE JOURNAL",
+  "start_url": "/start",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

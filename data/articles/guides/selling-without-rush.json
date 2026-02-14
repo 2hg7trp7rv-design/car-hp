@@ -1,0 +1,54 @@
+{
+  "id": "guide-selling-without-rush",
+  "slug": "selling-without-rush",
+  "title": "急がず売るための段取り",
+  "summary": "焦らされずに車を売るための段取り。期限と下限の決め方、条件確認、交渉のコツ。",
+  "category": "SELL",
+  "tags": [
+    "売却",
+    "相場",
+    "査定",
+    "比較",
+    "下取り"
+  ],
+  "publishedAt": "2025-12-28",
+  "updatedAt": "2026-01-20",
+  "readMinutes": 6,
+  "status": "published",
+  "intentTags": [
+    "sell"
+  ],
+  "monetizeKey": "sell_basic_checklist",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "hajimete-kuruma-uru-checklist",
+    "best-time-to-sell-car",
+    "kuruma-ikkatsu-satei-shitsukoi-real",
+    "yunyusha-koukya-uru-kaitori-strategy"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [
+    "japan-1995-golden-age-heritage"
+  ],
+  "body": "この記事は「急がず売るための段取り」をテーマに、車の売却は“順番”で手取りが変わります。やることを先に決めておくと、連絡や交渉のストレスが減ります。\n\n## 結論\n- 「今日決めてくれれば上げます」は、売る側の判断を鈍らせる常套句です。焦らないために、先に【期限と下限】を決めておきます。\n- 価格交渉の前にやるべきは比較です。【複数査定＋条件確認】ができれば、無理に粘らなくても納得しやすくなります。\n- 迷ったら、口頭ではなく【書面（契約書）】で条件を確認する。ここが一番トラブルを減らします。\n\n## 焦らないための準備\n- 手放す期限（いつ引き渡すか）\n- 下限ライン（これ以下なら売らない）\n- 代車や次の車の段取り\n- 書類と付属品の準備（/guide/hajimete-kuruma-uru-checklist）\n\n## 手順 1 比較の“型”を作る\n- 査定は最低でも2〜3社で比較する\n- 同じ条件で比べるため、年式/距離/修理歴/付属品を事前にメモして渡す\n\n## 手順 2 連絡と訪問の主導権を握る\n- 一括査定を使う場合は、連絡方法と希望時間を最初に伝える（/guide/kuruma-ikkatsu-satei-shitsukoi-real）\n- その場で決めないことを宣言しておく（例：「比較して明日までに返事します」）\n\n## 手順 3 条件を確認してから金額を見る\n- 入金日、名義変更の時期、キャンセル条件、減額条件（再査定の扱い）\n- “高い”より、条件が明確な方がトラブルになりにくい\n\n## よくあるつまずき\n- 期限がないまま動き、営業の勢いに流される\n- 金額だけ見て契約し、入金日や減額条件で揉める\n- 比較せずに即決し、後から相場を知って後悔する\n\n## 補足（実務メモ）\n- 同時査定は3社前後に絞ると、比較できて連絡負担も増えにくい\n- 連絡可能な時間帯を先に伝えるだけでも、電話のストレスが減る\n- 契約は「キャンセル条件」「減額条件（後日減額）」を口頭ではなく書面で確認\n- 整備記録簿・純正パーツ・スペアキーは、輸入車/高級車ほど査定に効きやすい\n- 強引な勧誘やキャンセル条件で揉めたら、消費者ホットライン「188」など第三者窓口に早めに相談\n\n\n## 関連記事\n- /guide/hajimete-kuruma-uru-checklist\n- /guide/best-time-to-sell-car\n- /guide/kuruma-ikkatsu-satei-shitsukoi-real\n- /guide/yunyusha-koukya-uru-kaitori-strategy\n",
+  "seoTitle": "急がず売るための段取り｜焦って安売りしない売却手順（保存版）",
+  "seoDescription": "焦らされずに車を売るための段取り。期限と下限の決め方、条件確認、交渉のコツ。",
+  "lead": "焦らされずに車を売るための段取り。期限と下限の決め方、条件確認、交渉のコツ。",
+  "internalLinks": [
+    "hajimete-kuruma-uru-checklist",
+    "best-time-to-sell-car",
+    "kuruma-ikkatsu-satei-shitsukoi-real",
+    "yunyusha-koukya-uru-kaitori-strategy"
+  ],
+  "type": "GUIDE",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/hub-sell",
+  "relatedClusterIds": [],
+  "primaryQuery": "急がず売るための段取り",
+  "updateReason": "initial-import",
+  "sources": []
+}

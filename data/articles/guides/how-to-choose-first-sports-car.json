@@ -1,0 +1,53 @@
+{
+  "id": "guide-how-to-choose-first-sports-car",
+  "slug": "how-to-choose-first-sports-car",
+  "title": "初めてのスポーツカーで後悔しないための選び方｜予算と用途から決める",
+  "summary": "初めてのスポーツカー選び。用途と維持費を先に決め、状態チェックと試乗で外さないコツ。",
+  "category": "BUY",
+  "tags": [
+    "スポーツカー",
+    "初めての1台",
+    "購入ガイド"
+  ],
+  "publishedAt": "2025-04-25T09:00:00+09:00",
+  "updatedAt": "2026-01-20",
+  "readMinutes": 5,
+  "heroImage": "/images/guides/how-to-choose-first-sports-car.jpg",
+  "status": "published",
+  "intentTags": [
+    "buy"
+  ],
+  "monetizeKey": "car_search_conditions",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "car-budget-simulation",
+    "maintenance-cost-simulation",
+    "repair-history-used-car-checklist",
+    "used-import-car-buying-guide"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [
+    "japan-1995-golden-age-heritage"
+  ],
+  "body": "この記事は「初めてのスポーツカーで後悔しないための選び方｜予算と用途から決める」をテーマに、憧れだけで選ぶと後から維持がきつくなりがちです。買う前に確認したい現実的なチェックポイントをまとめます。\n\n## 結論\n- 初めてのスポーツカーは「最高の1台」を狙うより、【維持できて、ちゃんと乗れる1台】を選ぶ方が満足します。\n- 判断は本体価格だけでなく、【保険・タイヤ・整備】まで含めた総額で。特にタイヤと保険は想定より差が出ます。\n- 中古なら、走りの性能より先に【状態（修復歴・改造・整備記録）】を優先すると失敗しにくいです。\n\n## まず決める3つの前提\n- 何に使うか：通勤もする／週末だけ／サーキットも視野\n- 何を優先するか：操作感／加速／音／見た目／維持の安さ\n- どこまで妥協できるか：2シーター、荷室、車高、乗り心地\n\n## 手順 1 予算は「買うお金」ではなく「持つお金」で組む\n- /guide/car-budget-simulation で、月々と年1回の支払いを分けて考える\n- タイヤ・ブレーキはスポーツ走行をしなくても消耗が早い車種があります\n- 任意保険は条件によって大きく変わります（/guide/sharyou-hoken-necessary）\n\n## 手順 2 キャラクターは“得意な道”で選ぶ\n- FR：操作感が分かりやすい。雪や雨の日の安心はタイヤ次第\n- MR：反応が鋭い。慣れるまで癖が出ることがある\n- 4WD：安定感が高い。車重と維持費が増えやすい\n- AT/MT：毎日乗るなら混雑路での負担も想定する\n\n## 手順 3 中古は「状態チェック」を最優先にする\n- 修復歴の考え方と見方は /guide/repair-history-used-car-checklist を先に確認\n- 改造車は“当たり外れ”が大きい。純正戻しの可否、車検対応、部品の入手性を確認\n- 整備記録簿がある車は、説明がつきやすく売るときも有利になりやすい\n\n## 手順 4 迷ったら「乗って確かめる」\n同じスペックでも、座ったときの視界・ペダル位置・音・振動は合う合わないがあります。\n- 目線の高さ、乗り降りのしやすさ（腰や膝に来るか）\n- 低速の扱いやすさ（街中でストレスがないか）\n- 冷却や警告灯のクセ（点検履歴があるか）\n\n## よくあるつまずき\n- 本体価格だけで決め、保険とタイヤで家計が崩れる\n- 走行距離だけ見て状態を見ない（修復歴、改造、消耗品）\n- “憧れの仕様”を優先して、日常で乗らなくなる\n\n## 補足（実務メモ）\n- 見た目やスペックより、日常でストレスが出ないポイント（視界、乗り降り、荷室）が大事\n- 試乗は短時間でも、段差・狭い道・駐車を試すと相性が分かりやすい\n- 中古で買うなら、状態の良さは“整備記録と扱い方”に出やすい\n\n## 関連記事\n- /guide/car-budget-simulation\n- /guide/maintenance-cost-simulation\n- /guide/repair-history-used-car-checklist\n- /guide/used-import-car-buying-guide\n- /guide/sharyou-hoken-necessary\n",
+  "lead": "初めてのスポーツカー選び。用途と維持費を先に決め、状態チェックと試乗で外さないコツ。",
+  "seoTitle": "初めてのスポーツカーで後悔しないための選び方｜予算と用途から決める｜GUIDE",
+  "seoDescription": "初めてのスポーツカー選び。用途と維持費を先に決め、状態チェックと試乗で外さないコツ。",
+  "internalLinks": [
+    "car-budget-simulation",
+    "maintenance-cost-simulation",
+    "repair-history-used-car-checklist",
+    "used-import-car-buying-guide"
+  ],
+  "type": "GUIDE",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/hub-usedcar",
+  "relatedClusterIds": [],
+  "primaryQuery": "初めてのスポーツカーで後悔しないための選び方｜予算と用途から決める",
+  "updateReason": "initial-import",
+  "sources": []
+}

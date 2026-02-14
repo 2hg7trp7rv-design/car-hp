@@ -1,0 +1,26 @@
+PATCH_NOTES_wave7
+
+Goal
+- Raise typographic and surface consistency so text reads as a designed object on every page.
+
+What changed
+1) Typography baseline
+- Headings and body text: tuned tracking/leading and added modern wrapping (balance/pretty) in globals.css.
+- Added small “text-as-design” token classes (eyebrow/meta/title/lead).
+
+2) Porcelain surface unification
+- Added a subtle grain + highlight layer for Porcelain panels via the new `.porcelain-panel` helper.
+- Applied `.porcelain-panel` to all major Porcelain wrappers (indexes, utilities, internal dashboards, taxonomy pages).
+
+3) Breadcrumb polish
+- Breadcrumb now uses the sans stack and a quieter separator to reduce visual noise.
+
+4) Micro copy / placeholders
+- Home CTA “Car Index” -> “Enter Cars”.
+- Content row thumbnail fallback label -> “ARCHIVE” (no more random initials).
+
+Safety checks
+- scripts/guardrails.mjs: OK
+- scripts/content-audit.mjs: OK
+- scripts/generate-sitemaps.mjs: OK
+- scripts/generate-robots.mjs + verify-robots.mjs: OK

@@ -1,0 +1,100 @@
+{
+  "id": "nissan-skyline-gt-r-bcnr33-v-spec",
+  "slug": "nissan-skyline-gt-r-bcnr33-v-spec",
+  "name": "Skyline GT-R (BCNR33) V·spec",
+  "maker": "Nissan",
+  "releaseYear": 1995,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "R33 V·spec",
+  "summary": "280の建前の裏で、余裕の設計を積んだRB26世代。整うほど静かに速い。",
+  "summaryLong": "R33 GT-R V·specは、280の建前の時代に“余裕の設計”を積んだ象徴です。RB26の強さは、数字より繰り返しの調子に出る。足と駆動が整うと、速さが静かになる。\n\n中古では改造の有無より整合。冷却と燃料、点火、配線、そして駆動系。追加メーターやECUが入っていても、思想が揃っていれば強い。\n\n価格が上がるほど、履歴が買いやすくなるタイプ。安い個体は“戻し”が重くなりがちです。",
+  "heroImage": "/images/cars/nissan-skyline-gt-r-bcnr33-v-spec-hero.jpg",
+  "mainImage": "/images/cars/nissan-skyline-gt-r-bcnr33-v-spec-main.jpg",
+  "imageUrl": "/images/cars/nissan-skyline-gt-r-bcnr33-v-spec-hero.jpg",
+  "gallery": [
+    "/images/cars/nissan-skyline-gt-r-bcnr33-v-spec-front.jpg",
+    "/images/cars/nissan-skyline-gt-r-bcnr33-v-spec-side.jpg",
+    "/images/cars/nissan-skyline-gt-r-bcnr33-v-spec-interior.jpg"
+  ],
+  "engine": "Front Inline-6 2.6 Twin Turbo (RB26DETT)",
+  "powerPs": 280,
+  "torqueNm": 368,
+  "transmission": "5MT",
+  "drive": "4WD",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 5〜9 km/L",
+  "priceNew": "当時: 300万〜800万円台（仕様差）",
+  "priceUsed": "650万〜2000万円（相場変動）",
+  "strengths": [
+    "余裕のある設計で、調子が揃うと強い。",
+    "駆動と足が整うと、速さが落ち着きとして出る。",
+    "情報量が多く、改善の道筋がある。",
+    "ヘリテージ価値が高く、所有体験が強い。"
+  ],
+  "weaknesses": [
+    "相場が高く、失敗が痛い。",
+    "改造個体が多く、整合が崩れると不調が連鎖する。",
+    "駆動系・冷却系のコストが重い。",
+    "保管環境で錆と内装劣化が出やすい。"
+  ],
+  "troubleTrends": [
+    "冷却系（ラジエーター、ホース、ファン）更新履歴は最重要です。",
+    "燃料系（ポンプ/レギュレータ）と点火系の更新履歴が薄い個体は要注意です。",
+    "配線の後付けが雑だと電装トラブルの温床になります。",
+    "下回りの錆と修復歴の説明の具体性が価値を左右します。"
+  ],
+  "costImpression": "買う前に履歴を買う車。安い個体の“戻し”は計画が要る。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [
+    "toyota-aristo-jzs161-v300",
+    "mazda-rx-7-fd3s-spirit-r"
+  ],
+  "tags": [
+    "Nissan",
+    "Skyline GT-R",
+    "R33",
+    "RB26",
+    "280ps",
+    "jdm",
+    "turbo"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-280ps-gentlemens-agreement-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "280ps",
+    "tuning",
+    "advanced",
+    "iconic"
+  ],
+  "purchasePriceSafe": "安全ライン：900〜1400万円前後（履歴と整合重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間70〜150万円"
+  },
+  "maintenanceCostYenPerYear": 980000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Skyline GT-R (BCNR33) V·spec",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Nissan Skyline GT-R (BCNR33) V·spec",
+  "updateReason": "name-normalize-2026-02-01",
+  "sources": []
+}

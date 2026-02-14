@@ -1,0 +1,122 @@
+{
+  "id": "nissan-laurel-c35-club-s-turbo",
+  "slug": "nissan-laurel-c35-club-s-turbo",
+  "name": "Laurel (C35) Club S Turbo",
+  "maker": "Nissan",
+  "releaseYear": 1998,
+  "difficulty": "intermediate",
+  "bodyType": "sedan",
+  "segment": "スポーツセダン",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "C35 Club S Turbo",
+  "summary": "“地味だけど濃い”FRセダン。派手さの外に、日常性能の旨味が残る。",
+  "summaryLong": "C35ローレルは、“地味だけど濃い”が刺さるFRターボセダンです。派手な看板がない分、個体差を見抜ければ満足度が高い。\n\n中古で見るべきは、錆と足回りの整合、そして電装の後付け品質。流通台数が限られるぶん、整った個体に当たると“普通に速い”が日常で成立します。\n\n目立たない車ほど、個体差の見極めが価値になります。\n\n特にAT車は、変速の癖と油温管理が体感に出やすいです。試乗できるなら渋滞〜高速まで一度繋げて、変速ショックと滑り感を確認してください。小さな違和感を無視すると、後で大きな出費になりやすい車です。\n\n情報が多い車種ではない分、店選びも重要です。説明が具体的で、整備の方針がはっきりしているところから買うと、ローレルは“静かに速い”まま長く付き合えます。\n\n候補が見つかったら、同じ店で“2台目のローレル”も見せてもらうと判断が早いです。比較すると、良い個体は空気感が違います。\n",
+  "body": "## 結論\nC35ローレルは、“地味だけど濃い”が刺さる人には最高です。派手な看板がない分、個体差を見抜ければコスパが出ます。買うなら錆と足、そして電装の整理された個体を優先してください。\n\n## 向く人 / 向かない人\n上の箇条書きで相性は判断できます。逆に「希少車は怖い」「情報が多い車で安心したい」人は、同系統でも流通量の多い車種の方がラクです。\n\n## 買う前のチェック\n- 下回り錆と、保管環境の説明。ここが悪いと後から一気に来ます。\n- 足回りブッシュのへたり。段差での収まりと直進性に出ます。\n- 冷却の履歴。古いRB系は熱に弱い個体もあるので、更新履歴は見たいです。\n- 追加配線の整理。ローレルは“後付け”が雑だと電装の悩みが増えます。\n- ATの状態（AT個体が多い）。変速ショックが強い個体は見送り推奨。\n\n## 弱点と故障\n弱点は「古さ」と「希少性」が重なるところ。部品が出る/出ないより、まずはベースが良い個体を選ぶことが大事です。錆と足を外すだけで、車の印象がかなり変わります。\n\n## 維持費の目安\n普段の維持費は意外と普通に見えますが、希少車は“まとめて直すタイミング”が必ず来ます。初期費用に余裕がないと、良さが出る前に疲れます。\n\n## 中古で買うなら\nおすすめは「整備記録が揃っている」「手を入れた理由が説明できる」個体。逆に、何となく弄ってある車は避けたいです。ここは看板車種ほど“適当に弄られた個体”が残りやすいので。\n\n## 比較\nJZX100ツアラーVは情報と流通量が強い。ER34はR34世代の器。ローレルはその二つより地味ですが、落ち着いた速さが残ります。\n\n## 関連リンク\n- [修復歴・事故歴の見方（チェックリスト）](/guide/repair-history-used-car-checklist)\n- [維持費のざっくり試算](/guide/maintenance-cost-simulation)\n- [中古車の購入予算を総額で決める](/guide/car-budget-simulation)\n- [低走行の罠](/column/usedcar-low-mileage-trap)\n- [修復歴は“ある/なし”より中身](/column/repair-history-how-to-judge)\n- [アナログのピーク（90年代末）](/heritage/japan-1999-peak-analog-heritage)",
+  "costImpression": "見つけたら早い者勝ち。整った個体は価格以上に気持ちいい。",
+  "heroImage": "/images/cars/nissan-laurel-c35-club-s-turbo-hero.jpg",
+  "mainImage": "/images/cars/nissan-laurel-c35-club-s-turbo-main.jpg",
+  "imageUrl": "/images/cars/nissan-laurel-c35-club-s-turbo-hero.jpg",
+  "gallery": [
+    "/images/cars/nissan-laurel-c35-club-s-turbo-front.jpg",
+    "/images/cars/nissan-laurel-c35-club-s-turbo-side.jpg",
+    "/images/cars/nissan-laurel-c35-club-s-turbo-interior.jpg"
+  ],
+  "engine": "Front Inline-6 2.5 Turbo (RB25DET)",
+  "powerPs": 280,
+  "torqueNm": 333,
+  "transmission": "4AT/5MT（希少）",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜10 km/L",
+  "priceNew": "当時: 250万〜450万円台（仕様差）",
+  "priceUsed": "220万〜650万円（相場変動）",
+  "purchasePriceSafe": "安全ライン：280〜430万円前後（錆と足重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間35〜90万円"
+  },
+  "maintenanceCostYenPerYear": 620000,
+  "strengths": [
+    "FRセダンの落ち着きと、ターボの厚みが両立する。",
+    "派手さがないぶん、良個体が残っていることがある。",
+    "乗り心地と走りのバランスが取りやすい。",
+    "“普通に速い”を日常で使える。"
+  ],
+  "weaknesses": [
+    "個体数が少なく、状態の良い車を探すのが難しい。",
+    "錆と劣化の影響が出やすい。",
+    "AT個体が多く、状態で評価が分かれる。",
+    "部品の入手性が厳しくなる領域がある。"
+  ],
+  "troubleTrends": [
+    "下回り錆とサブフレーム周りは要注意です。",
+    "足回りブッシュのへたりは乗り味に直結します。",
+    "配線後付けが雑だと電装トラブルが出やすいです。",
+    "冷却系の更新履歴が薄い個体は避けたいです。"
+  ],
+  "bestFor": [
+    "派手さより、落ち着いた速さを日常で使いたい人。",
+    "希少車の個体差を見抜いて、良個体を引くのが楽しい人。",
+    "ターボ×FRの“厚み”を、セダンの器で味わいたい人。"
+  ],
+  "notFor": [
+    "情報量が多い車種で安心したい人（流通台数が少ない）。",
+    "錆や改造の確認に時間を使いたくない人。",
+    "とにかく維持を軽くしたい人。"
+  ],
+  "maintenanceNotes": [
+    "下回り錆は価値に直結。リフトでの確認ができると理想です。",
+    "足回りブッシュのへたりは乗り味に直結。段差での収まりと直進性で判断。",
+    "後付け配線の質がトラブルの入口。散らかっている個体は避けたいです。"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "toyota-chaser-jzx100-tourer-v",
+    "nissan-skyline-er34-25gt-turbo-sedan"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "car-budget-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "repair-history-how-to-judge"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-1999-peak-analog-heritage"
+  ],
+  "tags": [
+    "Nissan",
+    "Laurel",
+    "C35",
+    "RB25DET",
+    "FR",
+    "sports-sedan"
+  ],
+  "intentTags": [
+    "jdm",
+    "sedan",
+    "turbo",
+    "intermediate",
+    "1990s"
+  ],
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Laurel (C35) Club S Turbo",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Nissan Laurel (C35) Club S Turbo",
+  "updateReason": "car-overhaul-2026-02-01_v6",
+  "sources": []
+}

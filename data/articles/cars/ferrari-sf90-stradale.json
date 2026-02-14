@@ -1,0 +1,118 @@
+{
+  "id": "ferrari-sf90-stradale",
+  "slug": "ferrari-sf90-stradale",
+  "name": "フェラーリ SF90ストラダーレ",
+  "maker": "FERRARI",
+  "releaseYear": 2019,
+  "difficulty": "advanced",
+  "bodyType": "クーペ",
+  "segment": "ハイパーカー",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "SF90ストラダーレ",
+  "summary": "プラグインハイブリッドシステムと4WDを採用した、新世代フラッグシップハイパーカーです。",
+  "summaryLong": "フェラーリ SF90ストラダーレは、V8ターボエンジンと3基の電気モーターを組み合わせたプラグインハイブリッドハイパーカーで、システム総出力は1,000ps級に達します。前輪を電気モーターで駆動することで4WD化されており、低速から高速まで圧倒的なトラクションと加速性能を発揮します。EV走行モードも備えており、市街地を静かに走ることも可能です。ラ フェラーリで培われたハイブリッド技術をさらに発展させ、量産フラッグシップとして展開したモデルです。",
+  "heroImage": "/images/cars/ferrari-sf90-stradale-hero.jpg",
+  "mainImage": "/images/cars/ferrari-sf90-stradale-hero.jpg",
+  "imageUrl": "/images/cars/ferrari-sf90-stradale-hero.jpg",
+  "gallery": [
+    "/images/cars/ferrari-sf90-stradale-front.jpg",
+    "/images/cars/ferrari-sf90-stradale-side.jpg",
+    "/images/cars/ferrari-sf90-stradale-rear.jpg"
+  ],
+  "engine": "4.0L V8 ツインターボ + モーター（PHEV）",
+  "powerPs": 1000,
+  "torqueNm": 800,
+  "transmission": "8速DCT",
+  "drive": "4WD",
+  "fuel": "ハイオク＋電気",
+  "fuelEconomy": "PHEVのため走行パターンに大きく依存",
+  "priceNew": "当時：5200万〜6500万円（参考）",
+  "priceUsed": "6000万〜1.2億円（相場変動）",
+  "strengths": [
+    "PHEVにより圧倒的な加速性能と実用的なEV走行を両立しています。",
+    "4WD化により、路面状況を選ばず高いトラクションを発揮します。",
+    "電子制御と協調しながら、非常に高い速度域まで安心してアプローチできます。",
+    "最新世代のHMIで、体験が“現代フェラーリ”として完成しています。"
+  ],
+  "weaknesses": [
+    "システムが複雑で、長期維持（高電圧部品）の不確実性は残ります。",
+    "性能が高すぎて、公道では実力の一部しか体感できません。",
+    "高電圧系統のメンテは専用設備が必要で、費用が高額になり得ます。",
+    "従来の自然吸気モデルに比べ、メカニカルな荒々しさは薄れます。"
+  ],
+  "troubleTrends": [
+    "高電圧バッテリーやインバーターなど、PHEV特有の部位は長期耐久性を注視すべきです。",
+    "ソフトウェア起因の不具合やアップデート対応など、従来と違う維持が必要です。",
+    "重量と性能により、タイヤ・ブレーキの消耗は非常に早い傾向があります。",
+    "将来的なバッテリー関連費用が不透明な点は、購入前に織り込む必要があります。"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で資金計画が苦しくなりやすい車です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "hybrid-ev-used-battery-anxiety",
+    "import-car-hidden-costs-paperwork"
+  ],
+  "relatedGuideSlugs": [
+    "used-import-car-buying-guide",
+    "maintenance-cost-simulation",
+    "car-loan-interest-rate-guide"
+  ],
+  "relatedCarSlugs": [
+    "lamborghini-temerario",
+    "nissan-gtr-r35",
+    "ferrari-roma"
+  ],
+  "tags": [
+    "FERRARI",
+    "フェラーリ",
+    "SF90ストラダーレ",
+    "ハイブリッド",
+    "4WD",
+    "ハイパーカー"
+  ],
+  "relatedHeritageSlugs": [
+    "ferrari-v8-mid-engine-lineage-heritage"
+  ],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+  },
+  "priceUsedYenRange": "5200万〜7800万円（相場変動）",
+  "maintenanceCostYenPerYear": 450000,
+  "type": "CAR",
+  "status": "published",
+  "title": "FERRARI フェラーリ SF90ストラダーレ",
+  "makerKey": "ferrari",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "フェラーリ SF90 ストラダーレ",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/ferrari",
+  "relatedClusterIds": [],
+  "primaryQuery": "フェラーリ SF90 ストラダーレ 維持費 中古 注意点",
+  "updateReason": "cars-index-upgrade-2026-02-01",
+  "sources": [],
+  "body": "## 結論\nFerrari SF90 Stradaleは、ハイブリッドを「燃費のため」ではなく「速さと反応のため」に使った車です。速いのに扱える。ここが最大の魅力です。\nただし、仕組みが複雑なぶん、買い方と維持の姿勢が合わないと急にしんどくなります。所有するなら、保証とサポート体制を含めて考えるのが現実的です。\n\n## 向く人 / 向かない人\n### 向く人\n- スーパーカーでも、街中での扱いやすさを重視する\n- ハイブリッドの運用や電装の管理を、面倒と思わない\n- 走る頻度が高く、コンディションを維持できる\n\n### 向かない人\n- 年に数回しか乗らず、長期保管が多い\n- ピュアなNAの音とレスポンスが最優先\n- サポートの薄い環境で、個体差の大きい中古を買う\n\n## 買う前のチェック\n### 個体より先に、買い方を決める\n- 保証の有無と、整備窓口を確認\n- 記録簿だけでなく、ソフトウェア更新や改良履歴が追えるか\n- 使い方（短距離連発、長期保管）が多いなら、その対策を考える\n\n### 試乗で見る\n- 低速域の違和感がないか\n- モード切替時の挙動が素直か\n- 警告灯やメッセージの履歴がないか\n\n## 弱点と故障\n複雑な車ほど、弱点は一点ではなく連鎖で出ます。\n- 高電圧系は放置が苦手。乗る頻度が低いとリスクが上がる\n- 熱管理が甘い個体は、症状が繰り返しやすい\n- 電装の不具合は小さいサインから始まるので、早めに拾う\n\n## 維持費\n- 消耗品より、点検と保証の設計が効く\n- タイヤとブレーキは高負荷前提で、交換が早いことがある\n- 予算は、年単位で余裕を持たせるほうが精神的に楽\n\n## 中古で買うなら\n### 走行距離より、使われ方\n低走行だから安心、とは限りません。適度に動かされ、整備が続いている個体のほうが安定しやすいです。\n- 点検記録が毎年残っているか\n- バッテリー管理の考え方が見えるか\n- 変更点があるなら、理由と整備の説明ができるか\n\n## 比較\n- /cars/lamborghini-temerario は、同じ電動化でも別方向の設計思想\n- /cars/nissan-gtr-r35 は、実用と速さのバランスが違う\n- /cars/ferrari-roma は、日常性の方向に寄せた別解\n\n## 関連リンク\n- /guide/used-import-car-buying-guide\n- /guide/maintenance-cost-simulation\n- /column/hybrid-ev-used-battery-anxiety\n- /heritage/ferrari-v8-mid-engine-lineage-heritage\n",
+  "bestFor": [
+    "速さだけでなく街中の扱いやすさも重視する人",
+    "ハイブリッドの運用や電装の管理を面倒と思わない人",
+    "走る頻度が高くコンディションを維持できる人"
+  ],
+  "notFor": [
+    "年に数回しか乗らず長期保管が多い人",
+    "ピュアなNAの音とレスポンスが最優先の人",
+    "サポートの薄い環境で中古を買う人"
+  ],
+  "maintenanceNotes": [
+    "高電圧系は放置が苦手。乗る頻度が低いなら管理方法を決める",
+    "ソフトウェア更新や改良履歴が追える個体を優先",
+    "消耗品だけでなく保証と点検の設計が効く"
+  ]
+}

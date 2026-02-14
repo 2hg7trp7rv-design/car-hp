@@ -1,0 +1,100 @@
+{
+  "id": "mazda-rx-7-fd3s-spirit-r",
+  "slug": "mazda-rx-7-fd3s-spirit-r",
+  "name": "RX-7 (FD3S) Spirit R",
+  "maker": "Mazda",
+  "releaseYear": 2002,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "FD3S Spirit R",
+  "summary": "建前の280に到達した“最終形”。熱と管理で成立する速さが、いま価値になる。",
+  "summaryLong": "FD3SのSpirit Rは、建前としての280に到達した“終盤の答え”です。軽さと空力、ロータリーの回転で速さを作る。ただし成立条件は熱と管理。\n\n中古では、温間再始動の素直さ、冷却、点火、燃料、そして改造の整合。ここが揃う個体は薄く速い。\n\n建前の時代の車は、履歴がすべて。分かって買うと最高だが、分からずに買うと高い。",
+  "heroImage": "/images/cars/mazda-rx-7-fd3s-spirit-r-hero.jpg",
+  "mainImage": "/images/cars/mazda-rx-7-fd3s-spirit-r-main.jpg",
+  "imageUrl": "/images/cars/mazda-rx-7-fd3s-spirit-r-hero.jpg",
+  "gallery": [
+    "/images/cars/mazda-rx-7-fd3s-spirit-r-front.jpg",
+    "/images/cars/mazda-rx-7-fd3s-spirit-r-side.jpg",
+    "/images/cars/mazda-rx-7-fd3s-spirit-r-interior.jpg"
+  ],
+  "engine": "Front Rotary 1.3 Twin Turbo (13B-REW)",
+  "powerPs": 280,
+  "torqueNm": 314,
+  "transmission": "5MT/6MT（仕様差）",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 5〜9 km/L",
+  "priceNew": "当時: 320万〜420万円台（仕様差）",
+  "priceUsed": "700万〜1800万円（相場変動）",
+  "strengths": [
+    "軽さと姿勢で速さが出る。体感が濃い。",
+    "成立すると“薄く速い”が戻る。",
+    "情報量が多く、整備と改善の道筋がある。",
+    "ヘリテージ価値が高い。"
+  ],
+  "weaknesses": [
+    "熱と管理で寿命が大きく変わる。",
+    "改造車が多く、整合が崩れるとトラブルが連鎖する。",
+    "燃費と維持費は覚悟が必要。",
+    "安い個体の“戻し”は計画が要る。"
+  ],
+  "troubleTrends": [
+    "温間再始動の素直さ、アイドルの安定は必ず確認したいです。",
+    "冷却系と点火系の更新履歴が薄い個体は要注意です。",
+    "燃料臭・白煙など燃焼の状態が出やすいです。",
+    "後付け配線が雑だと電装トラブルの温床になります。"
+  ],
+  "costImpression": "理解して買うと最高だが、理解せずに買うと高い。履歴が見える個体を選びたい。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [
+    "nissan-skyline-gt-r-bcnr33-v-spec",
+    "toyota-aristo-jzs161-v300"
+  ],
+  "tags": [
+    "Mazda",
+    "RX-7",
+    "FD3S",
+    "Spirit R",
+    "13B-REW",
+    "280ps",
+    "rotary"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-280ps-gentlemens-agreement-heritage"
+  ],
+  "intentTags": [
+    "280ps",
+    "tuning",
+    "advanced",
+    "jdm",
+    "heritage"
+  ],
+  "purchasePriceSafe": "安全ライン：900〜1300万円前後（熱と履歴重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間60〜140万円"
+  },
+  "maintenanceCostYenPerYear": 920000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mazda RX-7 (FD3S) Spirit R",
+  "makerKey": "mazda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/mazda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Mazda RX-7 (FD3S) Spirit R",
+  "updateReason": "name-normalize-2026-02-01",
+  "sources": []
+}

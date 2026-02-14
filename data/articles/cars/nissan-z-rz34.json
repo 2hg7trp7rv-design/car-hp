@@ -1,0 +1,121 @@
+{
+  "id": "nissan-z-rz34",
+  "slug": "nissan-z-rz34",
+  "name": "Z",
+  "maker": "Nissan",
+  "releaseYear": 2022,
+  "difficulty": "intermediate",
+  "bodyType": "sports-coupe",
+  "segment": "プレミアムスポーツ",
+  "heritageRefs": [
+    "nissan-fairlady-z-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "RZ34",
+  "summary": "現代の王道FRスポーツ。中古は熱と油脂、足回りの状態で差が出る。",
+  "summaryLong": "フェアレディZ(RZ34)は、現代のスポーツカーとして素直で、日常の範囲でもパワーを使い切れないくらい余裕があります。中古で見るべきは、走行距離よりも『熱の入り方』と『慣らし・油脂類の扱い』。短距離ばかりの個体はコンディションが出やすいので、履歴が読める車を優先すると安心です。維持費は一般車より上がる前提ですが、基準さえ作れば長く乗れます。",
+  "body": "## 結論\nRZ34は、現代のスポーツカーとしては『分かりやすい良さ』があります。中古で失敗しやすいのは、勢いで買って、消耗品の前提に後から気づくこと。購入前に、年間コストの見え方を一度整理しておくと安心です。\n\n## 向く人 / 向かない人\n普段のドライブが主で、たまに走りも楽しむ人に向きます。逆に、家族用途や積載を前提にするなら、別カテゴリが現実的です。\n\n## 買う前のチェック\n油脂と整備の履歴、そして試乗での違和感チェックが基本です。低速域のつながり、変速の癖、足回りの異音、直進性。ここで気になる点がある車は、後でじわじわ効いてきます。\n\n### 熱の使われ方を読む\n- 走行会や高負荷走行の痕跡。タイヤとブレーキの減り方がヒントになります\n- 冷間時の異音、温間時の油温。短距離ばかりの車は調子を落としがち\n- 内装の擦れ。走行距離より使われ方の方が出やすい\n- 下回りの擦り。段差で当てているとアライメントが狂うことがあります\n\n## 弱点と故障\nターボ車は熱との付き合いが避けられません。冷却の弱りは、小さな不調を呼びやすい。乗り方が短距離中心なら、メンテの前提を少し厳しめに置いてください。\n\n## 維持費\n維持費は、タイヤとブレーキで雰囲気が変わります。走りを混ぜるほどコストは上がる。毎月の固定費というより、イベント（車検、タイヤ、ブレーキ）で積み上げると現実に近いです。\n\n### 走りを楽しむなら消耗品は前提\nスポーツタイヤとブレーキは、楽しさの一部として割り切る。逆にここをケチると、車の良さが出ません。\n\n## 中古で買うなら\n安い個体ほど、安い理由を確認してください。修復歴だけではなく、下回りの傷、ホイールの傷、内装の消耗から使われ方を推理する。履歴が揃った個体は、価格差以上に価値があります。\n\n### 最初の整備で基準を作る\n納車後に油脂類と消耗品を一度揃えておくと、その後の変化に気づきやすくなります。中古スポーツはこの基準づくりが効きます。\n\n### 新しさゆえの落とし穴\n新しい車でも、短距離ばかりの使用やメンテ不足で調子を落とすことがあります。点検記録があるか、オイル交換の頻度が適切か、保証が引き継げるか。中古で安心して買うためのチェックは、古い車よりむしろ重要です。\n\n### 個体選びのコツ\n- 熱が入った痕跡を見る。タイヤとブレーキが分かりやすい\n- 下回りの擦りを確認。段差で当てるとアライメントが狂います\n- 慣らしと油脂管理。早い段階の扱い方が寿命に効きます\n- まず基準を作る。納車後に油脂類を揃えると変化に気づけます\n\n\nもう一つのポイントは、保証の引き継ぎと点検窓口です。新しい車ほど電子制御が多く、診断できる環境があるかで安心感が変わります。買う時点で、どこに持ち込むかまで決めておくと迷いが減ります。\n\n## 比較\nGRスープラは現代的で軽快。GT-Rは別格の速さ。JZA80は文化。Zは王道のFRスポーツとしてのバランスが魅力です。『どの軸を主役にするか』で選ぶと迷いが減ります。\n\n## 関連リンク\n",
+  "costImpression": "現代スポーツとして、消耗品（タイヤ・ブレーキ）にちゃんとコストが出ます。年間の枠を作っておくと、気持ち良く楽しめます。",
+  "heroImage": "/images/cars/nissan-z-rz34-hero.jpg",
+  "mainImage": "/images/cars/nissan-z-rz34-main.jpg",
+  "imageUrl": "/images/cars/nissan-z-rz34-main.jpg",
+  "gallery": [
+    "/images/cars/nissan-z-rz34-front.jpg",
+    "/images/cars/nissan-z-rz34-side.jpg",
+    "/images/cars/nissan-z-rz34-interior.jpg"
+  ],
+  "engine": "Front V6 Twin Turbo",
+  "powerPs": 405,
+  "torqueNm": 475,
+  "transmission": "6MT / 9AT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 8〜11 km/L",
+  "priceNew": "現行：550万〜700万円（グレード）",
+  "priceUsed": "550万〜900万円（相場変動）",
+  "priceUsedYenRange": "550万〜900万円（相場変動）",
+  "purchasePriceSafe": "安全ライン：300〜800万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間40〜80万円"
+  },
+  "maintenanceCostYenPerYear": 600000,
+  "strengths": [
+    "デザインとキャラクターが明確で、所有満足度が高い",
+    "運転のフィードバックが濃く、操る楽しさがある",
+    "コミュニティ/情報が一定量あり、維持の道筋を作れる",
+    "相場が安定しやすく、資産性を期待できる場合がある"
+  ],
+  "weaknesses": [
+    "年式・個体差による当たり外れが大きい",
+    "部品の供給/価格が年々厳しくなる場合がある",
+    "日常用途では燃費・乗り心地の割り切りが必要"
+  ],
+  "troubleTrends": [
+    "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+    "電装系（センサー/配線）の経年",
+    "冷却系のメンテ不足"
+  ],
+  "bestFor": [
+    "新しめのスポーツカーで、安心感と走りの両方を欲しい人",
+    "FRの気持ち良さを、普段のドライブでも楽しみたい人",
+    "車両価格だけでなく、消耗品まで含めて予算を組める人"
+  ],
+  "notFor": [
+    "後席や積載を重視したい人",
+    "維持費はコンパクト並みを想定している人",
+    "改造前提で最初から限界まで攻めたい人"
+  ],
+  "maintenanceNotes": [
+    "ターボ車は油脂管理が寿命に直結。交換履歴がある個体を優先",
+    "冷却系のメンテは軽視しない。短距離メインほど負担が出る",
+    "タイヤとブレーキは走り方で一気に変わる",
+    "足回りの異音や直進性で状態が出る。試乗は丁寧に"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "toyota-gr-supra-rz",
+    "nissan-gtr-r35",
+    "toyota-supra-jza80-rz"
+  ],
+  "relatedGuideSlugs": [
+    "how-to-choose-first-sports-car",
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "loan-vs-lease-monthly-trap",
+    "dealer-shaken-is-expensive-myth"
+  ],
+  "relatedHeritageSlugs": [
+    "nissan-skyline-2000gtr-hakosuka-heritage"
+  ],
+  "tags": [
+    "Nissan",
+    "sports-coupe",
+    "プレミアムスポーツ",
+    "FR",
+    "6MT / 9AT",
+    "Front V6 Twin Turbo",
+    "モダンクラシック",
+    "ハイパフォーマンス"
+  ],
+  "intentTags": [],
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Z",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "日産 フェアレディZ（RZ34）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Nissan Z",
+  "updateReason": "car-major-overhaul-2026-02-01",
+  "sources": []
+}

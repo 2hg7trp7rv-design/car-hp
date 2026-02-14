@@ -1,0 +1,115 @@
+{
+  "id": "bmw-530i-g30",
+  "slug": "bmw-530i-g30",
+  "name": "530i (G30)",
+  "maker": "BMW",
+  "releaseYear": 2017,
+  "difficulty": "intermediate",
+  "bodyType": "セダン",
+  "segment": "プレミアムセダン",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "530i",
+  "summary": "G30型5シリーズの2.0Lターボ（530i）。スポーツ性と快適性、最新装備のバランスが“ちょうど良い”王道プレミアムセダンです。",
+  "summaryLong": "530i（G30）は、5シリーズの中でも扱いやすさと完成度の高さで評価される中核グレードです。上級セダンとしての静粛性・乗り心地をベースに、FRらしい自然な操舵感と、必要十分以上の加速力を両立。街中では滑らかに、長距離では疲れにくく、ワインディングでは“重さを感じさせない”身のこなしを見せます。\n\n選び方の要点は「装備とコンディション」。年式や仕様で運転支援・快適装備の差が出やすく、車両の当たり外れは整備履歴に強く依存します。理想は、消耗品と油脂類の管理が丁寧で、電子装備が正常に動作する個体。そうした1台に当たれば、G30の“完成された日常性”を長く味わえるはずです。",
+  "heroImage": "/images/cars/bmw-530i-g30-hero.jpg",
+  "mainImage": "/images/cars/bmw-530i-g30-hero.jpg",
+  "imageUrl": "/images/cars/bmw-530i-g30-hero.jpg",
+  "gallery": [
+    "/images/cars/bmw-530i-g30-front.jpg",
+    "/images/cars/bmw-530i-g30-side.jpg",
+    "/images/cars/bmw-530i-g30-interior.jpg"
+  ],
+  "engine": "2.0L 直4ターボ",
+  "powerPs": 252,
+  "torqueNm": 350,
+  "transmission": "8速AT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "実用域で10〜14km/L前後",
+  "priceNew": "800万〜1200万円（年式/グレード）",
+  "priceUsed": "250万〜800万円（年式/状態）",
+  "strengths": [
+    "サイズ感と快適性のバランスが良く、日常からロングまで守備範囲が広いです。",
+    "直進安定性・静粛性が高く、高速巡航が得意です。",
+    "8速ATとの相性が良く、滑らかで上質な走りをします。",
+    "装備の当たり個体なら、運転支援や快適装備の満足度が高いです。"
+  ],
+  "weaknesses": [
+    "装備差・個体差が出やすく、購入時の見極めが重要です。",
+    "電子装備が多く、細かな不具合が“地味にストレス”になりやすいです。",
+    "タイヤ・ブレーキ等の消耗品がプレミアムレンジで、交換費用がかさみがちです。",
+    "短距離中心の乗り方だと本来の良さ（巡航性・静粛性）が活きにくいです。"
+  ],
+  "troubleTrends": [
+    "電装・センサー系の軽微なエラー（警告灯、誤作動）は発生源の切り分けが重要です。",
+    "足回りブッシュやアライメントのズレで、乗り味が悪化している個体があります。",
+    "冷却系・樹脂パーツ・ホース類は経年で弱りやすく、予防整備の有無が差になります。",
+    "前オーナーの整備姿勢（記録簿、定期交換）がそのままコンディションに反映されます。"
+  ],
+  "costImpression": "静かで快適なぶん、消耗品と細かな不具合のケアにお金がかかります。価格より履歴で選ぶのが安全です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "import-car-maintenance-cost-myth",
+    "usedcar-warranty-needed"
+  ],
+  "relatedGuideSlugs": [
+    "used-import-car-buying-guide",
+    "maintenance-cost-simulation",
+    "car-loan-interest-rate-guide"
+  ],
+  "relatedCarSlugs": [
+    "lexus-is-f-use20",
+    "toyota-celsior-ucf10",
+    "mercedes-benz-s-class-w140"
+  ],
+  "tags": [
+    "BMW",
+    "5シリーズ",
+    "G30",
+    "530i"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-software-performance-era-heritage"
+  ],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：320〜780万円前後（履歴と装備の健全性重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間45〜90万円"
+  },
+  "maintenanceCostYenPerYear": 700000,
+  "type": "CAR",
+  "status": "published",
+  "title": "BMW 530i (G30)",
+  "makerKey": "bmw",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/bmw",
+  "relatedClusterIds": [],
+  "primaryQuery": "BMW 530i (G30)",
+  "updateReason": "car-overhaul-2026-02-01_v8",
+  "sources": [],
+  "body": "## 結論\n530i（G30）は「静かに移動して、たまに気持ちよく走れれば十分」という人に合うプレミアムセダンです。尖ったキャラより、完成度の高さで満足するタイプ。\n\n中古で怖いのは、距離よりも“整備の遅れ”と“装備不良”です。警告灯が点いたり消えたりするような個体は、買ってからの手間が増えやすい。迷ったら、まずは[BMWの車種一覧](/cars/makers/bmw)で相場感を掴み、そこから履歴で絞るのが安全です。\n\n## 向く人 / 向かない人\n向くのは、長距離をよく走る人、静粛性と操舵感のバランスを求める人。向かないのは、維持費を国産並みに抑えたい人や、シンプルな車が好きな人です。\n\n## 買う前のチェック\n- 整備記録と交換履歴。油脂類と消耗品が計画的に替えられているか。\n- 電装の動作確認。ナビ、各種スイッチ、警告灯、運転支援などは一通り触りたいです。\n- 冷却とオイルの滲み。漏れ跡があるなら、どこまで手当て済みか。\n- 足回りのへたり。直進性、段差の収まり、ブレーキ時の姿勢で分かります。\n- タイヤの種類と状態。ランフラットのままか、履歴がどうかで乗り味もコストも変わります。\n\n輸入セダンは“後で直せばいい”が危険です。見る順番は[輸入車を中古で買うときの基本](/guide/used-import-car-buying-guide)に沿って揃えると、判断が楽になります。\n\n\n## 弱点と故障\n弱点は、細かな不具合が“地味にストレス”になりやすいことです。走る・止まるの大故障より、センサー系や装備の不調が積み上がる。\n\nだからこそ、履歴がはっきりした個体を選ぶ価値があります。G30はベースが良いので、整っている車は本当に快適です。\n\n## 維持費の目安\n維持費は、タイヤ・ブレーキ・バッテリーなどの基本メニューがプレミアムレンジです。年平均だけでなく、次の車検までに何が来るかを想像しておくと楽になります。\n\n## 中古で買うなら\nおすすめは、記録簿が揃っていて、装備が正常に動作する個体です。価格よりも、履歴と状態。\n\n可能なら保証の有無も確認してください。国産の感覚で“後で直せばいい”にすると、予定が狂いやすいです。\n\n## 比較\nスポーツ寄りならIS F、静けさ寄りならセルシオやW140など、方向性で選び分けができます。530iはその中間で、日常と長距離のバランスが強みです。\n\n## 関連リンク\n- [輸入車を中古で買うときの基本](/guide/used-import-car-buying-guide)\n- [維持費のざっくり試算](/guide/maintenance-cost-simulation)\n- [ローン金利の見方（失敗しない前提）](/guide/car-loan-interest-rate-guide)\n- [輸入車の整備費は高い？の誤解](/column/import-car-maintenance-cost-myth)\n- [中古車保証は必要か](/column/usedcar-warranty-needed)\n- [2000年代以降の“ソフトウェア性能”の話](/heritage/japan-software-performance-era-heritage)",
+  "bestFor": [
+    "静粛性と安定感のあるセダンで、長距離も楽に走りたい人。",
+    "日常の使いやすさと“たまに気持ちいい”の両立が欲しい人。",
+    "整備記録を重視して個体を選べる人。"
+  ],
+  "notFor": [
+    "維持費を国産並みに抑えたい人。",
+    "電子装備の細かな不具合がストレスになりやすい人。",
+    "短距離中心で、車の良さを引き出しにくい使い方の人。"
+  ],
+  "maintenanceNotes": [
+    "電装系の動作確認は必須。警告灯や支援装備の誤作動は後で効きます。",
+    "冷却とオイルの滲みは要チェック。漏れ跡があるなら、手当て済みか確認。",
+    "タイヤとブレーキはコストの芯。残量と交換履歴で予算が立てやすくなります。"
+  ]
+}

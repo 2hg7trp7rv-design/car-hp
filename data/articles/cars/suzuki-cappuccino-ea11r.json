@@ -1,0 +1,125 @@
+{
+  "id": "suzuki-cappuccino-ea11r",
+  "slug": "suzuki-cappuccino-ea11r",
+  "name": "Cappuccino (EA11R)",
+  "maker": "Suzuki",
+  "releaseYear": 1991,
+  "difficulty": "intermediate",
+  "bodyType": "roadster",
+  "segment": "軽スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "Cappuccino (EA11R)",
+  "summary": "軽オープンの古典。中古は錆と足回り、ゴム類の状態が全て。",
+  "summaryLong": "カプチーノ(EA11R)は、軽自動車サイズとは思えないほど、ステアリングと車体の反応がダイレクトなオープンスポーツです。中古では何よりも錆とボディの状態が最優先。距離が少なくても、保管環境で差が出ます。ターボや冷却、ゴム類の劣化も避けられないので、購入後に一度リセット整備する前提で考えると気持ちが楽。軽い車体を生かした走りを求めるなら、今でも強い選択肢です。 錆の少ないボディを選べれば、機関の整備は後から追いつきます。 場合によっては幌とウェザーストリップの状態が、満足度を大きく左右します。",
+  "heroImage": "/images/cars/suzuki-cappuccino-ea11r-hero.jpg",
+  "mainImage": "/images/cars/suzuki-cappuccino-ea11r-main.jpg",
+  "imageUrl": "/images/cars/suzuki-cappuccino-ea11r-hero.jpg",
+  "gallery": [
+    "/images/cars/suzuki-cappuccino-ea11r-front.jpg",
+    "/images/cars/suzuki-cappuccino-ea11r-side.jpg",
+    "/images/cars/suzuki-cappuccino-ea11r-interior.jpg"
+  ],
+  "engine": "Front Inline-3 0.66 Turbo (F6A)",
+  "powerPs": 64,
+  "torqueNm": 85,
+  "transmission": "5MT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 11〜17 km/L",
+  "priceNew": "当時: 140万〜200万円台（仕様差）",
+  "priceUsed": "120万〜420万円（相場変動）",
+  "strengths": [
+    "FRの素直さで、操る楽しさが分かりやすい。",
+    "軽さがそのまま反応になり、学べるスポーツ。",
+    "オープンとしての開放感が強い。",
+    "整った個体は日常速度でも濃い。"
+  ],
+  "weaknesses": [
+    "錆とボディ状態で価値が大きく割れる。",
+    "ターボ車ゆえ冷却・配管の履歴が重要。",
+    "オープン機構とシールの経年がストレスになりやすい。",
+    "改造個体の整合が崩れるとトラブルが続く。"
+  ],
+  "troubleTrends": [
+    "下回りの錆（特にサイド・リア周り）は最重要です。",
+    "冷却系とホース、ターボ周りの滲みは要チェックです。",
+    "幌やルーフパネル周辺の雨漏り痕は見逃しやすいです。",
+    "後付け配線や追加メーターが雑だと電装トラブルの温床になります。"
+  ],
+  "costImpression": "FRの素性は強いが、錆と熱履歴で難易度が跳ねる。ベースの真っ直ぐさが正義。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "dealer-shaken-is-expensive-myth"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "how-to-choose-first-sports-car"
+  ],
+  "relatedCarSlugs": [
+    "honda-beat-pp1",
+    "autozam-az-1-pg6sa",
+    "daihatsu-copen-l880k"
+  ],
+  "tags": [
+    "Suzuki",
+    "Cappuccino",
+    "EA11R",
+    "kei",
+    "64ps",
+    "FR",
+    "turbo"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-kei-sports-abc-heritage"
+  ],
+  "intentTags": [
+    "kei",
+    "lightweight",
+    "FR",
+    "1990s",
+    "heritage"
+  ],
+  "purchasePriceSafe": "安全ライン：190〜330万円前後（錆と熱履歴重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間23〜48万円"
+  },
+  "maintenanceCostYenPerYear": 340000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Suzuki Cappuccino (EA11R)",
+  "makerKey": "suzuki",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "スズキ カプチーノ（EA11R）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/suzuki",
+  "relatedClusterIds": [],
+  "primaryQuery": "Suzuki Cappuccino (EA11R)",
+  "updateReason": "name-normalize-2026-02-01",
+  "sources": [],
+  "bestFor": [
+    "軽いオープンで、ゆっくり走っても楽しい車が欲しい人",
+    "年式相応のリフレッシュを前提に、育てていきたい人",
+    "雨漏りやゴム類のメンテも含めて楽しめる人"
+  ],
+  "notFor": [
+    "静粛性と快適性を最優先したい人",
+    "錆や雨漏りのリスクに強いストレスを感じる人",
+    "維持の相談ができる店が近くにない人"
+  ],
+  "maintenanceNotes": [
+    "錆とボディの素性が最重要。後から直しにくい",
+    "ゴム類と幌周りは消耗品。雨漏りの痕跡は必ず確認",
+    "足回りのリフレッシュで乗り味が大きく変わる",
+    "小排気量ターボでも油脂管理は重要。履歴がある個体を優先"
+  ],
+  "body": "## 結論\nカプチーノは、状態が良い個体ほど『軽さ』がそのまま気持ち良さになります。逆に、錆や歪みがあると、軽さが不安に変わる。中古はボディの素性が第一です。\n\n## 向く人 / 向かない人\n速さより、風と軽さを楽しむ車です。古い車の手間を受け入れられる人には最高。快適性だけを求めるなら不向きです。\n\n## 買う前のチェック\n下回り、錆、ボディのチリ。雨漏りの痕跡。試乗では、直進性、段差での収束、異音を確認します。屋根の開閉やパッキンの状態も、想像以上に満足度に効きます。\n\n### 錆チェックは場所を決めて見る\n- フロアとサイドシル、特にジャッキポイント周辺\n- トランク床やスペアタイヤ周りの湿り\n- ドア下やフェンダー内側の塗装の浮き\n- 幌やウェザーストリップの劣化。雨漏りは錆を加速させます\n\n## 弱点と故障\n年式が古い分、弱点は『経年』です。ゴム類、ホース類、ブッシュ類。ここを押さえると、車が一段落ち着きます。\n\n## 維持費\n維持費は、年式由来のリフレッシュで波が出ます。毎年均すより、イベントとしてまとめて手を入れる方が気持ちが楽です。\n\n### 小さな不具合を放置しない\n軽い異音や水温のブレを放っておくと、部品点数が少ない車ほど一気に悪化します。早めに直す方が安い、典型的なタイプです。\n\n## 中古で買うなら\n見た目より下回り。錆が少なく、素性が読める個体を選ぶ。そこにお金を使う方が、結果的に安く楽しいです。\n\n### 迷ったらボディ優先\n機関は後から直せても、錆と歪みは戻りません。同じ価格なら、距離よりボディが綺麗な方を選ぶ価値があります。\n\n### 錆の少ない車は、結果的に安い\n塗装が綺麗でも、下回りが錆だらけだと修理のゴールが見えません。迷う二台があるなら、距離よりボディが健全な方を選ぶ価値があります。\n\n### 錆と雨漏りの見方\n- フロアとサイドシル、特にジャッキポイント周辺\n- トランク床やスペアタイヤ周りの湿り\n- ドア下やフェンダー内側の塗装の浮き\n- 幌とウェザーストリップの劣化。雨漏りは錆を加速させます\n- 室内の匂いとマット下。乾いていても痕跡は残ります\n\n### 直しやすい個体の条件\n機関は後から直せても、錆と歪みは戻りません。中古で狙うなら、ボディが良くて、改造が少なく、整備記録が断片でも残っている車。こういう個体は、結果的に早く仕上がって長く楽しめます。\n\n\nさらに、幌とウェザーストリップの状態も重要です。雨漏りがあるとフロアが湿って錆が進みます。幌が綺麗で水の侵入が少ない車は、それだけで価値があると考えて良いです。\n\n## 比較\nビートは高回転NA、AZ-1は個性派、コペンは比較的新しい。カプチーノは『軽いFRオープン』の古典として刺さります。\n\n## 関連リンク\n"
+}

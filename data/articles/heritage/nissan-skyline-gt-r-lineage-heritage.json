@@ -1,0 +1,100 @@
+{
+  "id": "heritage_nissan_skyline_gtr_lineage",
+  "slug": "nissan-skyline-gt-r-lineage-heritage",
+  "type": "HERITAGE",
+  "status": "published",
+  "kind": "CAR",
+  "maker": "NISSAN",
+  "brandName": "Skyline GT-R",
+  "title": "スカイラインGT-Rの系譜",
+  "titleJa": "スカイラインGT-Rの系譜",
+  "seoTitle": null,
+  "seoDescription": null,
+  "createdAt": "2026-02-02",
+  "publishedAt": "2026-02-02",
+  "updatedAt": "2026-02-02",
+  "heroTitle": null,
+  "heroCaption": "ハコスカからR35まで。GT-Rが何を積み上げてきたのかを、世代ごとに整理する。",
+  "heroImage": null,
+  "heroTone": null,
+  "highlights": [],
+  "sections": [
+    {
+      "id": "hakosuka",
+      "title": "原点 KPGC10",
+      "summary": "勝つためのGT-R。シンプルさと軽さが価値の出発点。",
+      "carSlugs": [
+        "nissan-skyline-2000gtr-kpgc10"
+      ]
+    },
+    {
+      "id": "kenmeri",
+      "title": "幻 KPGC110",
+      "summary": "台数の少なさが価値を作る世代。中古は素性と書類が全て。",
+      "carSlugs": [
+        "nissan-skyline-2000gtr-kpgc110"
+      ]
+    },
+    {
+      "id": "r32to34",
+      "title": "復活 R32〜R34",
+      "summary": "性能で世界を驚かせた時代。中古は使われ方と整備の質で差が出る。",
+      "carSlugs": [
+        "nissan-skyline-gtr-r32",
+        "nissan-skyline-gt-r-r33",
+        "nissan-skyline-gtr-r34"
+      ]
+    },
+    {
+      "id": "r35",
+      "title": "再定義 R35",
+      "summary": "スカイラインの名を離れて、GT-RがGT-Rになった。速さの作法も変わる。",
+      "carSlugs": [
+        "nissan-gtr-r35"
+      ]
+    }
+  ],
+  "body": "【序章】GT-Rは何がすごいのか\nGT-Rのすごさは、単に速いことではありません。速さの作り方が、時代ごとに変わっていること。そして、その変化がはっきりと世代ごとに刻まれていることです。\n\n古い世代は、軽さとシンプルさが魅力になります。新しい世代は、整備の体制と運用が価値になります。中古で見ているのは車そのものですが、実は背景まで含めて選んでいる。GT-Rはそういう車です。\n\n【第1章】原点 KPGC10\nハコスカGT-Rは、勝つための車でした。余計なものが少なく、手当てした分だけ良くなります。\n- [日産 スカイライン 2000GT-R（KPGC10）](/cars/nissan-skyline-2000gtr-kpgc10)\n\n中古での最優先は、錆と板金の履歴です。機関は直せても、錆は後からほど高くつきます。ここはZや他の旧車とも共通です。\n\n【第2章】幻 KPGC110\nKPGC110は、台数の少なさがそのまま価値になります。だから、状態だけでなく素性と書類が重要です。\n- [日産 スカイライン 2000GT-R（KPGC110）](/cars/nissan-skyline-2000gtr-kpgc110)\n\n見た目が良くても、来歴が曖昧な車は避けた方が安全です。逆に、記録が揃っている個体は、安心して守れます。\n\n【第3章】復活 R32〜R34\nR32でGT-Rは復活し、R33で熟成し、R34で一つの到達点を作ります。この時代のGT-Rは、性能で世界を驚かせました。\n- [日産 スカイラインGT-R（R32）](/cars/nissan-skyline-gtr-r32)\n- [日産 スカイラインGT-R（R33）](/cars/nissan-skyline-gt-r-r33)\n- [日産 スカイラインGT-R（R34）](/cars/nissan-skyline-gtr-r34)\n\n中古では「使われ方」が価値を左右します。サーキットやドリフトの歴がある個体は、それが悪いわけではありません。ただし、直し方と整備の質が伴っているかを見ないと危ないです。\n\n【第4章】再定義 R35\nR35でGT-Rは、スカイラインの名を離れました。速さの作り方が変わり、維持の作法も変わります。\n- [日産 GT-R（R35）](/cars/nissan-gtr-r35)\n\nここからは、整備の体制と情報が価値になります。性能が高い車ほど、予防整備の価値も高い。買って終わりではなく、買ってからが長い車です。\n\n【まとめ】中古でGT-Rを選ぶ時の基準\n- 旧車は錆と板金の履歴が最優先\n- 現代のGT-Rは整備履歴と運用が最優先\n- 迷ったら、基礎が整っている個体を選ぶ。結果的に安く、速く、楽しい\n\nGT-Rは、世代によって悩み方が変わる車です。自分の使い方と体制に合う世代を選んでください。\n",
+  "tags": [
+    "Nissan",
+    "Skyline GT-R",
+    "KPGC10",
+    "KPGC110",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "Lineage"
+  ],
+  "intentTags": [
+    "heritage",
+    "lineage",
+    "history",
+    "engineering",
+    "deep-dive"
+  ],
+  "relatedCarSlugs": [
+    "nissan-skyline-2000gtr-kpgc10",
+    "nissan-skyline-2000gtr-kpgc110",
+    "nissan-skyline-gtr-r32",
+    "nissan-skyline-gt-r-r33",
+    "nissan-skyline-gtr-r34",
+    "nissan-gtr-r35"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "how-to-choose-first-sports-car"
+  ],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge"
+  ],
+  "summary": "ハコスカからR35まで。スカイラインGT-Rが世代ごとに何を変え、何を積み上げてきたのか。中古での見極め視点も含めて、系譜として整理する。",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/heritage",
+  "relatedClusterIds": [],
+  "primaryQuery": "スカイラインGT-R 系譜 KPGC10 KPGC110 R32 R33 R34 R35",
+  "updateReason": "heritage-add-2026-02-02",
+  "sources": []
+}

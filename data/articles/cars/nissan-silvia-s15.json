@@ -1,0 +1,120 @@
+{
+  "id": "nissan-silvia-s15",
+  "slug": "nissan-silvia-s15",
+  "name": "Silvia (S15)",
+  "maker": "Nissan",
+  "releaseYear": 1999,
+  "difficulty": "advanced",
+  "bodyType": "クーペ",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "S15",
+  "summary": "FRターボの定番。中古は改造と酷使の影響を見抜けるかが全て。",
+  "summaryLong": "S15 シルビアは、軽さとFRらしい素直さが魅力で、今も走り好きに選ばれ続ける車種です。中古ではドリフトや改造歴が多く、見た目以上に『骨格と足回りの状態』で差が出ます。安い個体を拾って直すより、歪みのないボディと、きちんと整備されたエンジンを優先した方が結果的に安い。ノーマル近い個体を起点に、必要な範囲だけ手を入れる方が楽しみやすいです。 骨格の綺麗さが最優先。",
+  "heroImage": "/images/cars/nissan-silvia-s15-hero.jpg",
+  "mainImage": "/images/cars/nissan-silvia-s15-hero.jpg",
+  "imageUrl": "/images/cars/nissan-silvia-s15-hero.jpg",
+  "gallery": [
+    "/images/cars/nissan-silvia-s15-front.jpg",
+    "/images/cars/nissan-silvia-s15-side.jpg",
+    "/images/cars/nissan-silvia-s15-interior.jpg"
+  ],
+  "engine": "Front 2.0 Turbo (SR20DET)",
+  "powerPs": 250,
+  "torqueNm": 275,
+  "transmission": "6MT/4AT（仕様差）",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜12 km/L",
+  "priceNew": "当時: 200万〜450万円台（仕様差）",
+  "priceUsed": "200万〜900万円（相場変動）",
+  "strengths": [
+    "FRらしい素直な挙動で、運転の上達が体感しやすい",
+    "軽さが武器。パワーより『気持ち良さ』が残りやすい",
+    "アフターパーツが豊富で、直し方と作り方の選択肢が多い",
+    "中古の玉数が多く、条件を揃えて比較しやすい"
+  ],
+  "weaknesses": [
+    "改造・酷使・事故歴の見極めが難しい（症状: 真っ直ぐ走らない/原因: 歪みや足回り/費用: 数万円〜大きく変動）",
+    "ターボ周りや冷却の弱りは熱で連鎖しやすい（症状: パワー感が薄い/原因: ホースや補機/費用: 数万円〜）"
+  ],
+  "troubleTrends": [
+    "足回りブッシュ・マウントの劣化で乗り味が荒れやすい",
+    "デフ周りの異音やオイル漏れは早期発見が効く",
+    "配線加工が雑な個体は電装トラブルが出やすい"
+  ],
+  "costImpression": "“仕様”より“整合”。整った個体は静かに速い。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "dealer-shaken-is-expensive-myth"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "how-to-choose-first-sports-car",
+    "maintenance-cost-simulation"
+  ],
+  "relatedCarSlugs": [
+    "nissan-skyline-er34-25gt-turbo-sedan",
+    "toyota-chaser-jzx100-tourer-v",
+    "honda-s2000-ap1"
+  ],
+  "tags": [
+    "Nissan",
+    "Silvia",
+    "S15",
+    "SR20DET",
+    "FR",
+    "turbo"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-1999-peak-analog-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "fr",
+    "turbo",
+    "driving"
+  ],
+  "purchasePriceSafe": "安全ライン：420〜800万円前後（骨格と整合重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間40〜110万円"
+  },
+  "maintenanceCostYenPerYear": 780000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Silvia (S15)",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "日産 シルビア（S15）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Nissan Silvia (S15)",
+  "updateReason": "name-normalize-2026-02-01",
+  "sources": [],
+  "bestFor": [
+    "FRターボを、軽さと素直さで楽しみたい人",
+    "改造の内容を読み解ける、または信頼できる店がある人",
+    "走りの趣味と維持をセットで楽しめる人"
+  ],
+  "notFor": [
+    "純正のまま静かに乗りたい人",
+    "事故歴や改造歴が曖昧な個体にストレスを感じる人",
+    "維持費と手間を最小にしたい人"
+  ],
+  "maintenanceNotes": [
+    "ボディの素性（歪み、下回り、錆）が最重要。後から直しにくい",
+    "冷却と油脂の管理が寿命を左右する。履歴がある個体を優先",
+    "足回りのリフレッシュは『別の車』になるほど効く",
+    "配線加工の丁寧さで電装トラブルの確率が変わる"
+  ],
+  "body": "## 結論\nS15は、当たりを引ければ最高。外すと、時間とお金が溶ける車です。安い個体ほど、安い理由を言語化してから買う。これが本当に大事です。\n\n## 向く人 / 向かない人\n運転の練習にも、趣味にも、懐が深い。反対に、維持を単なるコストと感じる人には向きません。『直して良くなる』余地がある車なので、そこを楽しめるかどうかです。\n\n## 買う前のチェック\nまずボディ。下回りの傷、フレームの歪み、錆。次に改造の質。配線、配管、ホースバンドの使い方など、仕上げで差が出ます。試乗では、直進性、段差での収束、ブーストの立ち上がり、異音を確認してください。\n\n### ドリフト歴の見分け方\n- タイヤの内外減りや、アーム類の変更。セッティングが極端な車は癖が出ます\n- リア周りの異音や振動。デフとドラシャの疲労が出やすい\n- ボディのチリとドアの閉まり。軽い歪みでもFRは素直さが落ちます\n- 配線の後付け。追加メーターや点火系の取り回しを確認\n\n## 弱点と故障\nトラブルは『酷使の痕跡』として出ます。足回りが落ち着かない、ブレーキが抜ける、エンジンが熱に弱い。症状の正体は一つではなく、複合のことが多い。だからこそ、素性が良い個体を選ぶ価値があります。\n\n## 維持費\n維持費は、改造内容と走り方で変わります。油脂、タイヤ、ブレーキに加えて、足回りのリフレッシュが入ると波が出る。イベント単位で積み上げておくと、気持ちが折れません。\n\n### 走るより先にリフレッシュ\nブッシュ、マウント、冷却、油脂類。ここを整えるだけで、同じS15でも別の車に感じることがあります。\n\n## 中古で買うなら\nできれば、信頼できる店が販売している車を狙うのが近道です。『何が入っていて、何が入っていないか』が明確な個体は、買ってからの選択も速い。\n\n### 目的を先に決める\n街乗りで軽快に楽しむのか、サーキットを見据えるのか。目的が曖昧だと、車の選び方も整備もブレて費用が増えます。\n\n### 直す前提でも、直しやすい個体を\n安いS15をベースにする場合でも、歪みと錆が少ない車を選ぶのが最重要です。エンジンや足は後から変えられますが、骨格が崩れていると何をしても気持ち良くなりません。まずは真っ直ぐ走る個体を起点にするのが近道です。\n\n### 迷いを減らす見方\n- リア周りの異音と振動。デフとドラシャの疲労が出ます\n- ボディのチリと塗装。歪みや補修の質が見えます\n- 配線の取り回し。追加メーター周りが雑なら避ける\n- 目的を決めてから買う。街乗りとドリフトでは必要が違います\n\n\n最後に、購入時は見た目のカスタムより、配線と配管の丁寧さを重視したいです。雑な取り回しの車は小トラブルが連鎖しやすい。細部が綺麗な個体ほど、結果的に安心して踏めます。\n\n## 比較\n同時代のFRターボや、ツアラー系のセダン、そしてS2000のようなNAスポーツ。S15は軽さと扱いやすさが武器です。用途がドリフト寄りか、ツーリング寄りかで選ぶ車が変わります。\n\n## 関連リンク\n"
+}

@@ -1,0 +1,120 @@
+{
+  "id": "honda-civic-type-r-ep3",
+  "slug": "honda-civic-type-r-ep3",
+  "name": "Civic Type R (EP3)",
+  "maker": "Honda",
+  "releaseYear": 2002,
+  "difficulty": "intermediate",
+  "bodyType": "ハッチバック",
+  "segment": "ホットハッチ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "Type R (EP3)",
+  "summary": "実用も走りも欲しい人のType R。ミッションと足回り、錆のチェックが要点。",
+  "summaryLong": "EP3は「家の車」と「趣味車」の間に置けるType Rです。K20の回す楽しさはそのままに、ハッチバックで普段使いもできる。ただし年式的に、足回りのリフレッシュとミッションのフィーリング確認は必須。ボディの錆も個体差が出ます。",
+  "heroImage": "/images/cars/honda-civic-type-r-ep3-hero.jpg",
+  "mainImage": "/images/cars/honda-civic-type-r-ep3-hero.jpg",
+  "imageUrl": "/images/cars/honda-civic-type-r-ep3-hero.jpg",
+  "gallery": [
+    "/images/cars/honda-civic-type-r-ep3-front.jpg",
+    "/images/cars/honda-civic-type-r-ep3-side.jpg",
+    "/images/cars/honda-civic-type-r-ep3-interior.jpg"
+  ],
+  "engine": "Front 2.0 NA (K20A i-VTEC)",
+  "powerPs": 215,
+  "torqueNm": 196,
+  "transmission": "6MT",
+  "drive": "FF",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜12 km/L",
+  "priceNew": "当時: 200万〜450万円台（仕様差）",
+  "priceUsed": "200万〜900万円（相場変動）",
+  "strengths": [
+    "ハッチバックで実用性が高いのに、走りはしっかりType R",
+    "K20の高回転フィールが楽しい",
+    "パーツも情報も多く、仕上げていく楽しさがある"
+  ],
+  "weaknesses": [
+    "年式的に足回りのリフレッシュ前提になりやすい",
+    "ミッションの当たり外れが満足度に直結する",
+    "錆や内装のヤレなど、個体差が出る"
+  ],
+  "troubleTrends": [
+    "ミッションの違和感（入り/鳴き）",
+    "エンジンマウントやブッシュ劣化による振動・異音",
+    "下回り・リア周りの錆",
+    "足回りのヘタり（ショック/アーム類）"
+  ],
+  "costImpression": "維持の中心は足回りと消耗品。買う前に“気持ちよく乗れる状態”かを見極めるのがコスパ的に強いです。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "usedcar-100k-km-myth",
+    "tire-cheap-dangerous-choice"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "tire-replacement-cost-guide"
+  ],
+  "relatedCarSlugs": [
+    "honda-civic-type-r-ek9",
+    "honda-civic-type-r-fd2",
+    "honda-integra-type-r-dc5"
+  ],
+  "tags": [
+    "Honda",
+    "Civic",
+    "EP3",
+    "Type R",
+    "K20A",
+    "hot-hatch"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-high-rev-na-last-dance-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "na",
+    "type-r",
+    "daily"
+  ],
+  "purchasePriceSafe": "安全ライン：180万〜320万円（ミッション/足回り/錆を確認）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間35〜80万円（足回り・クラッチで上下）"
+  },
+  "maintenanceCostYenPerYear": 550000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda Civic Type R (EP3)",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "ホンダ シビック Type R（EP3）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Honda Civic Type R (EP3)",
+  "updateReason": "car-index-upgrade-2026-02-01",
+  "sources": [],
+  "bestFor": [
+    "走りも欲しいけど、日常性も捨てたくない",
+    "高回転NAの気持ちよさが好き",
+    "前オーナーの整備内容まで含めて見て選べる"
+  ],
+  "notFor": [
+    "乗り心地の硬さが苦手",
+    "ミッションの違和感に敏感で、妥協したくない",
+    "錆チェックを面倒に感じる"
+  ],
+  "maintenanceNotes": [
+    "足回り（ブッシュ/ショック）を一度整えると、EP3の良さが一気に出ます。",
+    "ミッションは試乗が大事。特に冷間/温間でフィールが変わる個体は注意。",
+    "消耗品の予算を先に決めておくと、買った後の満足度が高い。"
+  ],
+  "body": "## 結論\nEP3は「走りたいけど、普段も使いたい」人に刺さるType Rです。K20を回して走れる楽しさはちゃんとありつつ、ハッチバックなので生活にも寄せられます。\n\n一方で年式的に、足回りのリフレッシュとミッションのフィール確認は避けて通れません。ここを曖昧にすると、買った後に“なんか気持ちよくない”状態が続きやすいです。シートとポジションが合うかも、試乗で必ず確認してください。\n\n## 向く人 / 向かない人\n向く人\n- 高回転NAが好きで、週末に気持ちよく走りたい\n- 走りと実用の両方を1台でやりたい\n\n向かない人\n- 乗り心地の硬さが苦手\n- ミッションの違和感に妥協したくない\n\n## 買う前のチェック\n- ミッションのフィール：入りの渋さ、鳴き、冷間/温間の変化\n- 足回り：ショックの抜け、ブッシュ劣化、異音\n- 錆：下回りとリア周り。見えないところほど差が出る\n- クラッチ：重さ、滑り、ジャダー\n- 整備履歴：消耗品を“ちゃんと”やっているか\n\n## 弱点と故障\nEP3は、乗ってすぐ分かる弱点が多いタイプです。\n\n- ギアが入りにくい/鳴く → シンクロやオイル、個体差 → 費用感：数万〜（重いと大きい）\n- 段差でゴトゴト/直進が落ち着かない → ブッシュ・ショックの劣化 → 費用感：10万〜30万円\n- 車体の振動が増えた → マウント類の劣化 → 費用感：数万〜\n\n## 維持費の目安\n目安は年間35〜80万円。中心は足回りと消耗品です。タイヤは費用の体感が大きいので、[タイヤ交換の費用感](/guide/tire-replacement-cost-guide)を先に見ておくと、予算が組みやすいです。\n\n## 中古で買うなら\n距離や年式より、「ちゃんと手が入っているか」です。足回りのリフレッシュや、ミッションオイルの管理が丁寧な個体は、同じEP3でも乗った瞬間に分かります。\n\n修復歴や事故歴の見方は、[修復歴チェックリスト](/guide/repair-history-used-car-checklist)を一度挟むと精度が上がります。\n\n## 比較\n- シビックType R（EK9）：より軽くて尖った感覚。実用性はEP3が上。\n- シビックType R（FD2）：ボディ剛性と速さ。価格帯も上がりやすい。\n- インテグラType R（DC5）：よりスポーツ寄り。乗り味は硬派。\n\n## 関連リンク\n- [修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist)\n- [維持費シミュレーション](/guide/maintenance-cost-simulation)\n- [タイヤ交換の費用感](/guide/tire-replacement-cost-guide)\n- [10万kmは本当に多い？](/column/usedcar-100k-km-myth)\n- [安いタイヤは危ない？](/column/tire-cheap-dangerous-choice)\n- [高回転NAが“最後に咲いた”時代](/heritage/japan-high-rev-na-last-dance-heritage)\n"
+}

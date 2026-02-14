@@ -1,0 +1,91 @@
+{
+  "id": "ferrari-dino-246-gt",
+  "slug": "ferrari-dino-246-gt",
+  "name": "ディーノ 246GT",
+  "maker": "FERRARI",
+  "releaseYear": 1969,
+  "difficulty": "advanced",
+  "bodyType": "クーペ",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "246GT",
+  "summary": "小さなV6ミドシップで『小さなフェラーリ』のイメージを作り上げた、ディーノブランドの代表モデルです。",
+  "summaryLong": "ディーノ 246GTは、2.4L V6エンジンをミドシップに搭載した2シータークーペで、フェラーリ本体ではなくサブブランド的な『Dino』として展開されたモデルです。V12ではなくV6、フロントエンジンではなくミドシップという構成は、当時のフェラーリとしては大胆なチャレンジでしたが、そのコンパクトなサイズと軽快なハンドリングから『小さなフェラーリ』として多くのファンを獲得しました。今日では、フェラーリのバッジが付いていなかった時代のモデルでありながら、クラシックフェラーリの一員として高く評価されています。",
+  "heroImage": "/images/cars/ferrari-dino-246-gt-hero.jpg",
+  "mainImage": "/images/cars/ferrari-dino-246-gt-hero.jpg",
+  "imageUrl": "/images/cars/ferrari-dino-246-gt-hero.jpg",
+  "gallery": [
+    "/images/cars/ferrari-dino-246-gt-front.jpg",
+    "/images/cars/ferrari-dino-246-gt-rear.jpg",
+    "/images/cars/ferrari-dino-246-gt-interior.jpg"
+  ],
+  "engine": "2.4L V6 DOHC",
+  "powerPs": 195,
+  "torqueNm": 226,
+  "transmission": "5速MT",
+  "drive": "MR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "約5〜7km/L（実用域目安）",
+  "priceNew": "当時：$14,000〜$20,000（参考）",
+  "priceUsed": "4500万〜1.2億円（状態/履歴）",
+  "strengths": [
+    "コンパクトなボディとミドシップレイアウトにより、軽快で素直なハンドリングを楽しめます。",
+    "V6らしい鋭いレスポンスと高回転の伸びが魅力で、『回して楽しい』エンジンです。",
+    "ボディラインが非常に美しく、デザインアイコンとしての価値も高いモデルです。",
+    "V12モデルよりも取り回しや視界が良く、クラシックフェラーリとしては扱いやすい部類です。"
+  ],
+  "weaknesses": [
+    "クラシック人気の高まりにより、かつての『小さなフェラーリ』という価格感はすでに失われつつあります。",
+    "ミドシップ特有の整備性の悪さがあり、エンジン周りの作業には手間とコストがかかります。",
+    "エアコンや遮音性は現代基準では乏しく、夏場の街乗りにはかなり割り切りが必要です。",
+    "サビ対策やボディ剛性の面で、年式なりの弱点を抱えている個体も少なくありません。"
+  ],
+  "troubleTrends": [
+    "ボディ・フレームの腐食は要注意ポイントで、過去の板金・レストア履歴の確認が重要です。",
+    "冷却系のトラブルや電装系の接触不良は、旧車フェラーリとして典型的な症状です。",
+    "足回りのブッシュやステアリング系のガタは、走りの質感に直結します。",
+    "オリジナル状態をどこまで保っているかで、将来の価値が大きく変わります。"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で資金計画が苦しくなりやすい車です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [],
+  "tags": [
+    "FERRARI",
+    "フェラーリ",
+    "ディーノ",
+    "ミドシップ",
+    "V6",
+    "クラシックカー",
+    "スポーツカー"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "oldtimer"
+  ],
+  "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+  },
+  "maintenanceCostYenPerYear": 450000,
+  "type": "CAR",
+  "status": "published",
+  "title": "FERRARI ディーノ 246GT",
+  "makerKey": "ferrari",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/ferrari",
+  "relatedClusterIds": [],
+  "primaryQuery": "ディーノ 246GT",
+  "updateReason": "tone-fix-2026-02-01",
+  "sources": []
+}

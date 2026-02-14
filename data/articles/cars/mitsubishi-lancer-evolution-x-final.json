@@ -1,0 +1,100 @@
+{
+  "id": "mitsubishi-lancer-evolution-x-final",
+  "slug": "mitsubishi-lancer-evolution-x-final",
+  "name": "Lancer Evolution X (final)",
+  "maker": "Mitsubishi",
+  "releaseYear": 2015,
+  "difficulty": "advanced",
+  "bodyType": "sedan",
+  "segment": "スポーツセダン",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "Evolution X (late/final)",
+  "summary": "ラリーの文法を、制御の時代へ着地させた最後のエボ。荒さと整合が同居する“折衷の完成”。",
+  "summaryLong": "エボXは、機械の文化が制御へ移る過程をそのまま刻んだ車です。AWDと過給で速いのは当然として、どこまで整えるか、どこに荒さを残すか——その揺れが個性になった。\n\nいま買う目線では、改造の有無より“思想の揃い方”。冷却、燃料、点火、足、駆動。ここが同じ方向へ向いている個体は、速さも信頼性も出る。\n\n終わったから価値があるのではなく、終わり方が時代の変化を示している。だからエボXは、いま読めるヘリテージです。",
+  "heroImage": "/images/cars/mitsubishi-lancer-evolution-x-final-hero.jpg",
+  "mainImage": "/images/cars/mitsubishi-lancer-evolution-x-final-main.jpg",
+  "imageUrl": "/images/cars/mitsubishi-lancer-evolution-x-final-hero.jpg",
+  "gallery": [
+    "/images/cars/mitsubishi-lancer-evolution-x-final-front.jpg",
+    "/images/cars/mitsubishi-lancer-evolution-x-final-side.jpg",
+    "/images/cars/mitsubishi-lancer-evolution-x-final-interior.jpg"
+  ],
+  "engine": "Front Inline-4 Turbo (4B11T)",
+  "powerPs": 300,
+  "torqueNm": 422,
+  "transmission": "6MT/6DCT",
+  "drive": "AWD",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 5〜9 km/L",
+  "priceNew": "当時: 400万〜500万円台（仕様差）",
+  "priceUsed": "350万〜900万円（相場変動）",
+  "strengths": [
+    "AWDと制御で、悪条件でも速さを揃えやすい。",
+    "整った個体は、踏める安心感が大きい。",
+    "情報と知見が蓄積されており、主治医が見つかれば強い。",
+    "“最後のエボ”として物語性がある。"
+  ],
+  "weaknesses": [
+    "荒く使われた個体が多く、個体差が大きい。",
+    "足と駆動の消耗が走りに直結し、修理も高額になりがち。",
+    "電装や後付け配線が雑だと、トラブルが追いにくい。",
+    "快適性は現代基準で割り切りが必要。"
+  ],
+  "troubleTrends": [
+    "DCT車は変速の違和感、油温管理、学習状態を必ず確認したいです。",
+    "ハブ・ベアリング・ブッシュのへたりは試乗で出やすいです。",
+    "冷却系の更新履歴が薄い個体は、熱で連鎖的に弱ります。",
+    "改造車は配線と燃料系の整合が最重要です。"
+  ],
+  "costImpression": "“作りの太さ”より“履歴の透明さ”。整合が取れた個体は強いが、雑な個体は底なしになりやすい。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [
+    "nissan-gt-r-r35-early",
+    "lexus-lfa-2010"
+  ],
+  "tags": [
+    "Mitsubishi",
+    "Lancer",
+    "EvolutionX",
+    "4B11T",
+    "AWD",
+    "turbo",
+    "2010s"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-software-performance-era-heritage"
+  ],
+  "intentTags": [
+    "AWD",
+    "turbo",
+    "electronics",
+    "heritage",
+    "sedan"
+  ],
+  "purchasePriceSafe": "安全ライン：450〜700万円前後（履歴と整合重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間45〜95万円"
+  },
+  "maintenanceCostYenPerYear": 650000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mitsubishi Lancer Evolution X (final)",
+  "makerKey": "mitsubishi",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/mitsubishi",
+  "relatedClusterIds": [],
+  "primaryQuery": "Mitsubishi Lancer Evolution X (final)",
+  "updateReason": "name-normalize-2026-02-01",
+  "sources": []
+}
