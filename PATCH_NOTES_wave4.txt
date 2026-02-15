@@ -1,0 +1,27 @@
+CBJ Masterpiece Wave4 - Notes
+
+Goal
+- Preserve the "Stage (dark exhibition space) + Porcelain (white archive shelf)" concept across every reachable route,
+  including internal dashboards, without sacrificing practical web usability.
+
+What was missing / fixed
+1) Internal routes were broken after switching the global canvas to Stage
+   - app/_internal/* pages had light-only layout assumptions and became hard to read.
+   - Fixed by wrapping each internal page with DetailFixedBackground + Porcelain panel.
+
+2) Brand / publisher consistency for structured data
+   - lib/seo/jsonld.ts had a CAR BOUTIQUE special-case which could silently omit publisher url/logo.
+   - Fixed to always attach publisher url/logo by default.
+
+3) Color-scheme consistency (browser-native controls)
+   - Stage is dark by default now (color-scheme: dark).
+   - Added .porcelain { color-scheme: light; } so white panels keep native UI consistent.
+   - Applied "porcelain" class to key white panels across pages.
+
+4) Remaining "CAR BOUTIQUE" strings in fallback/legacy UI components
+   - Updated to CAR BOUTIQUE JOURNAL (HeroSection / HomeNavDrawer / MobileMenu / SiteHeader).
+
+Validation
+- scripts/guardrails.mjs: PASS
+- scripts/content-audit.mjs: PASS
+- sitemaps / robots generation: PASS

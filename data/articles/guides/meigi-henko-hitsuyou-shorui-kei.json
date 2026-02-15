@@ -1,0 +1,51 @@
+{
+  "slug": "meigi-henko-hitsuyou-shorui-kei",
+  "title": "【軽自動車】名義変更の必要書類まとめ｜普通車との違いと最短手順",
+  "lead": "軽自動車の名義変更に必要な書類と注意点。保管場所届出の要否も整理。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "SELL",
+  "tags": [
+    "名義変更",
+    "必要書類",
+    "軽自動車",
+    "譲渡",
+    "売却"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-20",
+  "internalLinks": [
+    "jyuusho-henkou-shaken-shou",
+    "shako-shoumei-torikata",
+    "meigi-henko-hitsuyou-shorui-futsuu"
+  ],
+  "body": "この記事は「【軽自動車】名義変更の必要書類まとめ｜普通車との違いと最短手順」をテーマに、車の手続きは「どこに出すか（管轄）」で詰まりやすいです。必要書類の集め方と、差戻しを避けるコツを整理します。\n\n## 結論\n- 軽自動車の名義変更は、普通車と比べて印鑑関連が簡略なケースもありますが、【管轄（軽自動車検査協会）と保管場所の扱い】がポイントです。\n- つまずきやすいのは「住所が車検証と違う」「保管場所届出の要否」「書類の記入ミス」です。\n- 先に、手続きをする人（自分/代行）と、必要な保管場所書類を決めてから準備するとスムーズです。\n\n## 必要書類（軽自動車の名義変更の例）\n※地域や状況で変わることがあるため、最終的には管轄の案内に従ってください。\n- 車検証\n- 申請依頼書（代理申請の場合）\n- 新使用者の住所確認書類（住民票など）\n- 認印（必要な場合）\n- ナンバープレート（変更がある場合）\n\n## 保管場所（車庫）の扱いに注意\n- 軽自動車は「車庫証明が不要」でも、地域によっては【保管場所届出】が必要になることがあります。\n- 普通車は /guide/shako-shoumei-torikata の通り車庫証明が必要になることが多いです。\n\n## 手順 1 まず「住所変更の有無」を確認する\n- 住所が車検証と違う場合、住所変更が先になることがあります（/guide/jyuusho-henkou-shaken-shou）\n\n## 手順 2 必要書類を揃えて、軽自動車検査協会へ\n- 書類の記入ミスがあるとやり直しになりやすいので、車台番号や住所は写し間違えない\n\n## よくあるミス\n- 住所の不一致を放置して手続きが止まる\n- 保管場所届出の要否を確認せず二度手間になる\n\n## 補足（実務メモ）\n- 申請先は「管轄」で決まる。先に管轄を確認すると二度手間が減る\n- 住民票・印鑑証明などは有効期限が短い扱いになることがあるため、取得は申請直前が安全\n- 引越しで管轄が変わると、ナンバー変更や封印が絡む場合がある\n- 住所表記（丁目・番地・建物名）を車検証側に合わせると差戻しが起きにくい\n\n## 関連記事\n- /guide/jyuusho-henkou-shaken-shou\n- /guide/shako-shoumei-torikata\n- /guide/meigi-henko-hitsuyou-shorui-futsuu\n",
+  "monetizeKey": "sell_prepare",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "jyuusho-henkou-shaken-shou",
+    "shako-shoumei-torikata",
+    "meigi-henko-hitsuyou-shorui-futsuu"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "paperwork",
+    "sell"
+  ],
+  "seoTitle": "軽自動車の名義変更｜必要書類と普通車との違い",
+  "seoDescription": "軽自動車の名義変更に必要な書類と注意点。保管場所届出の要否も整理。",
+  "summary": "軽自動車の名義変更に必要な書類と注意点。保管場所届出の要否も整理。",
+  "status": "published",
+  "id": "guide:meigi-henko-hitsuyou-shorui-kei",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/hub-sell",
+  "relatedClusterIds": [],
+  "primaryQuery": "【軽自動車】名義変更の必要書類まとめ｜普通車との違いと最短手順",
+  "updateReason": "initial-import",
+  "sources": []
+}

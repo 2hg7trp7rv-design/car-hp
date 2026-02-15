@@ -1,0 +1,100 @@
+{
+  "id": "heritage_nissan_fairlady_z_lineage",
+  "slug": "nissan-fairlady-z-lineage-heritage",
+  "type": "HERITAGE",
+  "status": "published",
+  "kind": "CAR",
+  "maker": "NISSAN",
+  "brandName": "Fairlady Z",
+  "title": "フェアレディZの系譜",
+  "titleJa": "フェアレディZの系譜",
+  "seoTitle": null,
+  "seoDescription": null,
+  "createdAt": "2026-02-02",
+  "publishedAt": "2026-02-02",
+  "updatedAt": "2026-02-02",
+  "heroTitle": null,
+  "heroCaption": "S30からRZ34まで。ZがZであり続けた理由を、世代ごとの変化で追う。",
+  "heroImage": null,
+  "heroTone": null,
+  "highlights": [],
+  "sections": [
+    {
+      "id": "z-origin",
+      "title": "原点 S30",
+      "summary": "Zの出発点。軽さと素直さが、その後の全世代の土台になった。",
+      "carSlugs": [
+        "nissan-fairlady-z-s30"
+      ]
+    },
+    {
+      "id": "z-80s-90s",
+      "title": "GT化 Z31〜Z32",
+      "summary": "快適さと速さの両立へ。技術が積み上がるほど、中古は状態の見極めが重要になる。",
+      "carSlugs": [
+        "nissan-fairlady-z-z31",
+        "nissan-fairlady-z-z32"
+      ]
+    },
+    {
+      "id": "z-restart",
+      "title": "再起 Z33〜Z34",
+      "summary": "走りの土台を作り直した世代。中古は整備履歴と使われ方が価値を決める。",
+      "carSlugs": [
+        "nissan-fairlady-z-z33",
+        "nissan-fairlady-z-z34"
+      ]
+    },
+    {
+      "id": "z-now",
+      "title": "現代の答え RZ34",
+      "summary": "Zらしさを残しつつ現代化。予算も維持も別段階なので、選び方が変わる。",
+      "carSlugs": [
+        "nissan-z-rz34"
+      ]
+    }
+  ],
+  "body": "【序章】ZがZであり続ける理由\nフェアレディZは、世代が変わっても芯がブレにくい車です。FRの姿勢、ロングノーズの見た目、運転して気持ちいい距離感。技術が進んでも、結局はそこに戻ってきます。\n\nただし中古で見るべきポイントは世代ごとに変わります。古い世代は錆と経年、比較的新しい世代は整備履歴と使われ方。この違いを押さえると、選び方が一気に楽になります。\n\n> Zは、スペックの勝負というより、乗り方と整え方で価値が決まる車だ。\n\n【第1章】原点 S30\nS30の良さは、軽さと素直さです。今の基準で見れば不便なところも多いですが、基本がシンプルなので、手当てした分だけ気持ちよくなります。\n\n中古で大事なのは、ボディの錆と板金の履歴。機関は直せても、錆は後からほど高くつきます。\n- 下回りの錆と直し方\n- 水回りと燃料系の状態\n- 配線や電装のまとまり\n\nS30の話はこちらでも詳しく触れています。\n- [日産 フェアレディZ（S30）](/cars/nissan-fairlady-z-s30)\n\n【第2章】GT化 Z31〜Z32\nZ31は、買うというよりベース選びの色が濃い世代です。錆と経年の総和をどう扱うかで、楽しさが決まります。\n- [日産 フェアレディZ（Z31）](/cars/nissan-fairlady-z-z31)\n\nZ32は技術が増えた分、良い個体の気持ちよさも増えました。その代わり、状態の見極めはシビアになります。過去にどこまで手が入っているかが重要です。\n- [日産 フェアレディZ（Z32）](/cars/nissan-fairlady-z-z32)\n\nこのあたりから、Zは快適さと速さを両立する方向に舵を切ります。中古では「直す順番」を間違えると泥沼になりやすいので、まず燃料と冷却、次に足回り、最後に見た目。これが基本です。\n\n【第3章】再起 Z33〜Z34\nZ33は、Zの土台を作り直した世代です。V6のトルク感とFRのバランスが分かりやすく、いま買っても楽しい。ただし中古は個体差が大きいので、年式より整備履歴と使われ方を見てください。\n- [日産 フェアレディZ（Z33）](/cars/nissan-fairlady-z-z33)\n\nZ34は、基本の良さを保ったまま、日常の使いやすさを上げています。予算が許すなら現実的な選択肢になりやすい世代です。\n- [日産 フェアレディZ（Z34）](/cars/nissan-fairlady-z-z34)\n\nこの世代の中古は、車両の状態だけでなく、改造の質も重要になります。パーツのブランドではなく、取り付けの丁寧さと整備記録。ここを見れば判断しやすいです。\n\n【第4章】現代の答え RZ34\nRZ34は、Zらしさを残しつつ、現代の装備と性能に引き上げた世代です。速さも装備も別段階なので、予算の作り方も変わります。\n- [日産 Z（RZ34）](/cars/nissan-z-rz34)\n\n中古で選ぶなら、過走行か低走行かより、どう使われ、どう整備されてきたか。ここはZの全世代に共通です。\n\n【まとめ】中古でZを選ぶ時の考え方\n- 古い世代は錆と板金の履歴が最優先\n- 新しい世代は整備履歴と使われ方が最優先\n- 迷ったら、基礎が整っている個体を選ぶ。結果的に安く、楽しい\n\nZは、手間も含めて好きになれる車です。自分の使い方に合う世代を選んで、長く楽しんでください。\n",
+  "tags": [
+    "Nissan",
+    "Fairlady Z",
+    "S30",
+    "Z31",
+    "Z32",
+    "Z33",
+    "Z34",
+    "RZ34",
+    "Lineage"
+  ],
+  "intentTags": [
+    "heritage",
+    "lineage",
+    "history",
+    "engineering",
+    "deep-dive"
+  ],
+  "relatedCarSlugs": [
+    "nissan-fairlady-z-s30",
+    "nissan-fairlady-z-z31",
+    "nissan-fairlady-z-z32",
+    "nissan-fairlady-z-z33",
+    "nissan-fairlady-z-z34",
+    "nissan-z-rz34"
+  ],
+  "relatedGuideSlugs": [
+    "how-to-choose-first-sports-car",
+    "repair-history-used-car-checklist"
+  ],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge"
+  ],
+  "summary": "S30からRZ34まで。フェアレディZが世代ごとに何を変え、何を守ってきたのか。中古で失敗しない視点も含めて、系譜として整理する。",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/heritage",
+  "relatedClusterIds": [],
+  "primaryQuery": "フェアレディZ 系譜 S30 Z31 Z32 Z33 Z34 RZ34",
+  "updateReason": "heritage-add-2026-02-02",
+  "sources": []
+}

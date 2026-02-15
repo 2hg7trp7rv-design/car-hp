@@ -1,0 +1,120 @@
+{
+  "id": "nissan-fairlady-z-z34",
+  "slug": "nissan-fairlady-z-z34",
+  "name": "Fairlady Z Z34",
+  "maker": "Nissan",
+  "releaseYear": 2008,
+  "difficulty": "intermediate",
+  "bodyType": "sports-coupe",
+  "segment": "プレミアムスポーツ",
+  "heritageRefs": [
+    "nissan-fairlady-z-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "Fairlady Z Z34",
+  "summary": "現代Zの骨格を固めた世代。熟成の延長線で語られるモデル。",
+  "summaryLong": "Fairlady Z Z34は、2008年に登場したNissanのsports-coupeで、FRとFront V6を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+  "body": "## 結論\nZ34は、フェアレディZの中でも「現代的に使える最後のZ」に近い立ち位置です。90年代の色気より、パワーと剛性で押していくタイプ。日常の移動から週末のワインディングまで、守備範囲が広いのが魅力です。\n\n中古で見るべきは、状態と素性です。スポーツカーなので改造車もありますが、改造の意図と質で価値が分かれます。ノーマルに近い個体ほど、ベースが分かりやすいので判断が早いです。\n\n結論としては、直進性が素直で、足とブレーキの整合が取れている個体を選ぶ。これがZ34で失敗しないコツです。\n\n## 向く人 / 向かない人\nZ34は、スポーツカーを「普段も使いたい」人に向きます。逆に、軽さや繊細さを最優先するなら別の選択肢が合うこともあります。走りの味付けが自分の好みに合うかは試乗で決めたいです。\n\n## 買う前のチェック\n### 直進性と足の収まり\nZ34はパワーと車重があるので、足の状態が体感に出やすいです。走りの印象で状態を判断しやすい車でもあります。\n- 直進でハンドルが取られないか\n- 段差での収まりが自然か\n- タイヤの片減り\n\n### 履歴の読みやすさ\n- 整備記録の有無\n- ブレーキ周り、足回りの交換履歴\n- 改造内容の説明が具体的か\n\n迷う個体は [修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist) を基準に、情報を整理すると判断が速くなります。\n\n## 弱点と故障\n### 足回りの経年\nスポーツカーは足が要です。ブッシュやダンパーが弱ると、走りが雑になります。整っている個体は、街乗りでも姿勢がきれいで疲れにくいです。\n\n### ブレーキとタイヤ\n車重とパワーがあるので、タイヤとブレーキは消耗が出ます。交換が近いなら、その費用を前提に価格と相談するのが現実的です。\n\n### 改造の当たり外れ\n雑な改造は後から戻すのが大変です。買うなら丁寧に作られた個体か、ノーマルに近い個体が安全です。\n\n## 維持費\n維持費の目安は年間40〜80万円。走り方次第でタイヤとブレーキが上振れします。維持費は平均より、上振れを許容できるかで考えると納得しやすいです。\n\n## 中古で買うなら\n- まずはノーマルに近い個体で相場観を作る\n- 直進性と足の収まりで状態を判断する\n- 改造車は施工の質と履歴が説明できるものを選ぶ\n\nZ34は、良個体だと「普通に速い」。この普通の強さが魅力です。\n\n購入後にまずやるなら、油脂類の一新とブレーキフルード。次にアライメント確認。これだけで走りの印象が整うことがあります。\n\n## 比較\n現行Z（RZ34）は世界観が近く、最新の楽しさがあります。逆に、軽さと素直さならロードスター（NA）やMR-S（ZZW30）。パワーと安定感ならGRスープラ（A90）と比べると、自分が欲しい方向が見えます。\n\n## 関連リンク\n購入判断に役立つガイドと、落とし穴を潰すコラムをまとめています。",
+  "costImpression": "維持費はタイヤとブレーキが主役です。走り方で上限が伸びるので、購入時に“年間の枠”を決めておくと安心です。",
+  "heroImage": "/images/cars/nissan-fairlady-z-z34-hero.jpg",
+  "mainImage": "/images/cars/nissan-fairlady-z-z34-main.jpg",
+  "imageUrl": "/images/cars/nissan-fairlady-z-z34-main.jpg",
+  "gallery": [
+    "/images/cars/nissan-fairlady-z-z34-front.jpg",
+    "/images/cars/nissan-fairlady-z-z34-side.jpg",
+    "/images/cars/nissan-fairlady-z-z34-interior.jpg"
+  ],
+  "engine": "Front V6",
+  "powerPs": 336,
+  "torqueNm": 366,
+  "transmission": "6MT / 7AT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 7〜10 km/L",
+  "priceNew": "当時：380万〜600万円（参考）",
+  "priceUsed": "250万〜650万円（相場変動）",
+  "priceUsedYenRange": "250万〜650万円（相場変動）",
+  "purchasePriceSafe": "安全ライン：300〜800万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間40〜80万円"
+  },
+  "maintenanceCostYenPerYear": 600000,
+  "strengths": [
+    "デザインとキャラクターが明確で、所有満足度が高い",
+    "運転のフィードバックが濃く、操る楽しさがある",
+    "コミュニティ/情報が一定量あり、維持の道筋を作れる",
+    "相場が安定しやすく、資産性を期待できる場合がある"
+  ],
+  "weaknesses": [
+    "年式・個体差による当たり外れが大きい",
+    "部品の供給/価格が年々厳しくなる場合がある",
+    "日常用途では燃費・乗り心地の割り切りが必要"
+  ],
+  "troubleTrends": [
+    "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+    "電装系（センサー/配線）の経年",
+    "冷却系のメンテ不足"
+  ],
+  "bestFor": [
+    "スポーツカーを普段も使いたい。走りと実用のバランスが欲しい。",
+    "ノーマルに近い個体や、丁寧な改造車を状態で見極めたい。",
+    "タイヤとブレーキの消耗も含めて維持費を計画できる。"
+  ],
+  "notFor": [
+    "軽さや繊細さを最優先したい。重さが気になるタイプ。",
+    "改造や補修の説明が曖昧でも気にしない。素性の良さを重視できない。",
+    "維持費の上振れがストレスになる。消耗品にお金を使えない。"
+  ],
+  "maintenanceNotes": [
+    "足回りの状態で価値が分かれる。直進性と収まりで判断しやすい車。",
+    "タイヤとブレーキの消耗で上振れする年がある。平均より上振れ前提で考える。",
+    "購入後は油脂類の一新とアライメント確認から。基礎整備で印象が整いやすい。"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "nissan-z-rz34",
+    "toyota-gr-supra-rz",
+    "nissan-fairlady-z-z32"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "how-to-choose-first-sports-car"
+  ],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge",
+    "tire-cheap-dangerous-choice",
+    "dealer-shaken-is-expensive-myth"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-software-performance-era-heritage"
+  ],
+  "tags": [
+    "Nissan",
+    "sports-coupe",
+    "プレミアムスポーツ",
+    "FR",
+    "6MT / 7AT",
+    "Front V6",
+    "モダンクラシック"
+  ],
+  "intentTags": [],
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Fairlady Z Z34",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Fairlady Z Z34",
+  "updateReason": "car-major-overhaul-2026-02-01",
+  "sources": []
+}

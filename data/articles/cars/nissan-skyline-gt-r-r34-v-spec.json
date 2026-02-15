@@ -1,0 +1,97 @@
+{
+  "id": "nissan-skyline-gt-r-r34-v-spec",
+  "slug": "nissan-skyline-gt-r-r34-v-spec",
+  "name": "Skyline GT-R (R34) V·spec",
+  "maker": "Nissan",
+  "releaseYear": 1999,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "R34 V·spec (ATTESA E-TS Pro)",
+  "summary": "直進の強さを、ヨー制御で曲がりへ持ち込む。速いのに落ち着く4WDの答え。",
+  "summaryLong": "R34 GT-Rの4WDは、ただのトラクション装置ではありません。前後配分と制御の滑らかさで姿勢を整え、速さを“落ち着き”として出す。直線の強さが、コーナー出口の確信に変わる。\n\nいま買う目線では、価格以上に“履歴の透明度”が価値です。駆動系・制御系のメンテ、センサーや配線、ブレーキと足回りの整合。改造車も多いからこそ、思想が揃っている個体が強い。\n\n数字で語られがちだが、本質は速さの作り方の上品さにあります。",
+  "heroImage": "/images/cars/nissan-skyline-gt-r-r34-v-spec-hero.jpg",
+  "mainImage": "/images/cars/nissan-skyline-gt-r-r34-v-spec-main.jpg",
+  "imageUrl": "/images/cars/nissan-skyline-gt-r-r34-v-spec-hero.jpg",
+  "gallery": [
+    "/images/cars/nissan-skyline-gt-r-r34-v-spec-front.jpg",
+    "/images/cars/nissan-skyline-gt-r-r34-v-spec-side.jpg",
+    "/images/cars/nissan-skyline-gt-r-r34-v-spec-interior.jpg"
+  ],
+  "engine": "Front Inline-6 2.6 Twin Turbo (RB26DETT)",
+  "powerPs": 280,
+  "torqueNm": 392,
+  "transmission": "6MT",
+  "drive": "4WD",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 5〜9 km/L",
+  "priceNew": "当時: 280万〜500万円台（仕様差）",
+  "priceUsed": "900万〜2500万円（相場変動）",
+  "strengths": [
+    "速いのに落ち着く。姿勢の作り方が上品。",
+    "4WDでも曲がりの確信が出やすい。",
+    "情報量が多く、整備と改善の道筋がある。",
+    "ヘリテージ価値が高く、所有体験が強い。"
+  ],
+  "weaknesses": [
+    "相場が高く、失敗が痛い。",
+    "改造個体が多く、整合が崩れると不調が連鎖する。",
+    "駆動系・制御系の部品と工賃が重い。",
+    "保管環境で錆・内装劣化が出やすい。"
+  ],
+  "troubleTrends": [
+    "4WD制御に関わる警告灯履歴と診断記録は確認したいです。",
+    "配線の後付け（メーター類）でトラブルが出やすい個体があります。",
+    "ブッシュ・足回りのへたりは挙動に直結します。",
+    "下回りの錆と修復歴の説明の具体性が価値を左右します。"
+  ],
+  "costImpression": "買う前に履歴を買う車。整った個体は高いが、戻す費用はもっと高い。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [
+    "mitsubishi-lancer-evolution-vi-gsr",
+    "subaru-impreza-wrx-sti-gc8-type-r"
+  ],
+  "tags": [
+    "Nissan",
+    "Skyline GT-R",
+    "R34",
+    "RB26",
+    "ATTESA",
+    "awd"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "awd",
+    "jdm",
+    "heritage",
+    "advanced",
+    "iconic"
+  ],
+  "purchasePriceSafe": "安全ライン：1100〜1800万円前後（履歴と整合重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間70〜140万円"
+  },
+  "maintenanceCostYenPerYear": 980000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Skyline GT-R (R34) V·spec",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Nissan Skyline GT-R (R34) V·spec",
+  "updateReason": "name-normalize-2026-02-01",
+  "sources": []
+}

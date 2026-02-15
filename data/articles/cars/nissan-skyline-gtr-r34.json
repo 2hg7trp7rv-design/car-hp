@@ -1,0 +1,123 @@
+{
+  "id": "nissan-skyline-gtr-r34",
+  "slug": "nissan-skyline-gtr-r34",
+  "name": "Skyline GT-R R34",
+  "maker": "Nissan",
+  "releaseYear": 1999,
+  "difficulty": "intermediate",
+  "bodyType": "sports-coupe",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "nissan-gt-r-godzilla-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "Skyline GT-R R34",
+  "summary": "憧れのRB26。中古は素性と改造履歴、錆と下回りの状態で決まる。",
+  "summaryLong": "R34 スカイラインGT-Rは、RB26と四駆システムの組み合わせを、より洗練されたボディにまとめた象徴的な存在です。中古相場は高く、安い理由がはっきり出やすい車種でもあります。改造歴が濃い個体が多いので、修復歴の有無だけでなく、下回りの傷、歪み、熱が入った痕跡、書類の透明性まで総合で判断。『買う予算』より『守る予算』を重視した方が、結局満足度が高い。 写真より現車の細部で差が出ます。 迷ったら、配線や配管の丁寧さが残っている個体を優先すると失敗しにくいです。",
+  "body": "## 結論\nR34は、憧れの熱量が高いぶん、判断が甘くなりやすい車です。結論はシンプルで、素性が良い個体を買って、最初に基準を作る。これだけで維持の難易度が変わります。\n\n## 向く人 / 向かない人\n『欲しい』の気持ちが強い人ほど、整備の前提も一緒に受け入れられるかを確認してください。理想の一台に育てたい人には最高。一方で、手間を掛けたくない人には負担が大きいです。\n\n## 買う前のチェック\n下回り、錆、歪み、修復の痕跡。次に油脂と冷却の履歴。試乗では、異音、振動、直進性、ブーストの立ち上がりの自然さを確認します。改造があるなら、配線や配管の仕上げに目を向けてください。雑さは後で必ず効きます。\n\n### 改造歴の読み方\n- 何が純正で、何が交換されているかを紙で把握できるか\n- ECUや燃料系の変更があるなら、施工店やセッティング情報が追えるか\n- 追加メーターの配線が綺麗か。雑だと電装トラブルの起点になります\n- 下回りの傷とフレームの波打ち。修復歴なしでも荒れている車はあります\n\n## 弱点と故障\n古い四駆ターボは、熱と負担が積み上がります。兆候は小さくても、放置すると連鎖する。水温や油温の管理ができていたか、整備の思想が見えるかが重要です。\n\n## 維持費\n維持費は、消耗品の単価とイベントの頻度で決まります。毎年一定にするのではなく、車検、タイヤ、ブレーキ、足回りのリフレッシュを見える化して予算を前に置く。これが現実的です。\n\n### 部品と工賃の前提を変える\nR34は部品の相場も作業工賃も昔の感覚では見積もれません。購入前に、よく出る整備の見積もりを一度取っておくと、予算の現実が見えます。\n\n## 中古で買うなら\n相場の安さは魅力ですが、安い理由を自分の言葉で説明できないなら危険です。購入時に妥協するなら、後で整備で取り返せる部分だけ。ボディの素性は妥協しない。\n\n### 相場は高いが、良い個体は安い\n価格が高く見えても、整備履歴と素性が整っている車は、結果的にトータルが安くなりやすい。安い個体を直して追いつくのは難易度が高めです。\n\n### 見るべきは仕上げの丁寧さ\nR34は価格よりも、整備と施工の丁寧さが差になります。配線、ホース、クランプ、下回りの処理。ここが綺麗な個体は、過去の扱い方も丁寧なことが多い。写真だけで判断せず、現車で細部を見た方が失敗が減ります。\n\n### 個体選びのポイント\n- 改造は一覧にできるか。何が変わっているかが分からない車は避ける\n- 記録簿の一貫性。点検の間隔が揃っている車が安心\n- 下回りのダメージ。修復歴なしでも荒れている個体があります\n- 電装の後付けは丁寧か。雑な配線はトラブルの起点になります\n\n## 比較\nR32やR33は似ていても、雰囲気と相場の前提が違います。R35は『速さを日常で使う』方向。R34は『手応えと物語』を買う方向。欲しい軸で選ぶのが一番早いです。\n\n## 関連リンク\n",
+  "costImpression": "仕上げにお金がかかる車です。タイヤ・ブレーキはもちろん、ボディと電装の状態で“落ち着き”が変わります。",
+  "heroImage": "/images/cars/nissan-skyline-gtr-r34-hero.jpg",
+  "mainImage": "/images/cars/nissan-skyline-gtr-r34-main.jpg",
+  "imageUrl": "/images/cars/nissan-skyline-gtr-r34-main.jpg",
+  "gallery": [
+    "/images/cars/nissan-skyline-gtr-r34-front.jpg",
+    "/images/cars/nissan-skyline-gtr-r34-side.jpg",
+    "/images/cars/nissan-skyline-gtr-r34-interior.jpg"
+  ],
+  "engine": "Front Inline-6 Twin Turbo",
+  "powerPs": 280,
+  "torqueNm": 392,
+  "transmission": "6MT / 4AT",
+  "drive": "AWD",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜9 km/L",
+  "priceNew": "当時：500万〜650万円（参考）",
+  "priceUsed": "1200万〜4500万円（相場変動）",
+  "priceUsedYenRange": "1200万〜4500万円（相場変動）",
+  "purchasePriceSafe": "安全ライン：1200〜2000万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間80〜150万円"
+  },
+  "maintenanceCostYenPerYear": 1150000,
+  "strengths": [
+    "加速の太さとトラクション性能が高い",
+    "チューニング/補修パーツの情報量が多い",
+    "高速巡航でも安定感が高く、ロングツーリングに強い",
+    "コミュニティが大きく、相場/整備ノウハウが集まりやすい"
+  ],
+  "weaknesses": [
+    "足回りやブッシュ類のリフレッシュが前提",
+    "保険料や税金、消耗品が高めになりやすい",
+    "改造歴/履歴次第でリスクが大きく変わる"
+  ],
+  "troubleTrends": [
+    "タービン/配管・負圧ホースの劣化",
+    "4WD/駆動系オイル管理",
+    "電装（メーター/ハーネス）の経年"
+  ],
+  "bestFor": [
+    "RB26と4WDターボの世界観を、長く維持して楽しみたい人",
+    "改造や整備履歴を読み解ける、または相談できる店がある人",
+    "車両価格だけでなく、初年度整備まで含めて予算を組める人"
+  ],
+  "notFor": [
+    "買ったらそのまま乗りたい。整備に時間を掛けたくない人",
+    "相場の安さを最優先して選びたい人",
+    "改造歴の不明な個体でも『雰囲気』で決めてしまう人"
+  ],
+  "maintenanceNotes": [
+    "錆とボディの歪みは後から取り返しがつかない。購入時に見切る",
+    "油脂管理と冷却系の整備履歴が価値を決める",
+    "駆動系は負担が大きい。異音と振動の兆候を拾う",
+    "改造の質で維持の難易度が変わる。雑な配線や配管は避ける"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "nissan-skyline-gtr-r32",
+    "nissan-skyline-gtr-r33",
+    "nissan-gtr-r35"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "how-to-choose-first-sports-car"
+  ],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "usedcar-warranty-needed"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-1999-peak-analog-heritage"
+  ],
+  "tags": [
+    "Nissan",
+    "sports-coupe",
+    "クラシックスポーツ",
+    "AWD",
+    "6MT / 4AT",
+    "Front Inline-6 Twin Turbo",
+    "ヤングタイマー",
+    "JDM",
+    "名車",
+    "GT-R"
+  ],
+  "intentTags": [],
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Skyline GT-R R34",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "日産 スカイライン GT-R（R34）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Skyline GT-R R34",
+  "updateReason": "data-align-2026-02-01",
+  "sources": []
+}
