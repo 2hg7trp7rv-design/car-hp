@@ -1,0 +1,92 @@
+{
+  "id": "ferrari-365-gtb4-daytona",
+  "slug": "ferrari-365-gtb4-daytona",
+  "name": "フェラーリ 365GTB/4 デイトナ",
+  "maker": "FERRARI",
+  "releaseYear": 1968,
+  "difficulty": "advanced",
+  "bodyType": "クーペ",
+  "segment": "クラシックGT",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "365GTB/4",
+  "summary": "大排気量V12とロングノーズボディを組み合わせた、フロントエンジンGT時代の頂点といえるモデルです。",
+  "summaryLong": "フェラーリ 365GTB/4、通称『デイトナ』は、4.4L V12エンジンをフロントに搭載した2ドアクーペで、クラシックフェラーリV12フロントエンジンGTの象徴的存在です。アメリカ市場での人気も高く、力強い加速と高速巡航性能に優れた長距離グランドツアラーとして高く評価されました。ロングノーズ・ショートデッキの堂々としたスタイリングは、現代の目で見ても迫力十分で、『最後の大排気量フロントV12フェラーリ』としてコレクターから絶大な支持を集めています。",
+  "heroImage": "/images/cars/ferrari-365-gtb4-daytona-hero.jpg",
+  "mainImage": "/images/cars/ferrari-365-gtb4-daytona-hero.jpg",
+  "imageUrl": "/images/cars/ferrari-365-gtb4-daytona-hero.jpg",
+  "gallery": [
+    "/images/cars/ferrari-365-gtb4-daytona-front.jpg",
+    "/images/cars/ferrari-365-gtb4-daytona-rear.jpg",
+    "/images/cars/ferrari-365-gtb4-daytona-interior.jpg"
+  ],
+  "engine": "4.4L V12 DOHC",
+  "powerPs": 352,
+  "torqueNm": 431,
+  "transmission": "5速MT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "約3〜5km/L（実用域目安）",
+  "priceNew": "当時：$20,000〜$30,000（参考）",
+  "priceUsed": "1.5億〜3.0億円（個体差大）",
+  "strengths": [
+    "大排気量V12ならではの厚いトルクと伸びやかな加速を味わえます。",
+    "高速巡航性能に優れ、グランドツアラーとして長距離移動を得意とします。",
+    "デイトナらしいロングノーズの迫力あるスタイリングは、現在でも強い存在感を放ちます。",
+    "クラシックフェラーリV12フロントエンジンの集大成として、コレクション価値が非常に高いモデルです。"
+  ],
+  "weaknesses": [
+    "車両サイズが大きく、街中や日本の細い道では取り回しに気を遣います。",
+    "燃費や消耗品コストを含め、維持費はフラッグシップGT相当の水準です。",
+    "重めのクラッチとMT操作が必要で、渋滞路中心の使用には向きません。",
+    "レストア済みかどうか、どのレベルで手が入っているかによって、乗り味と価値が大きく変わります。"
+  ],
+  "troubleTrends": [
+    "V12エンジンのオイル漏れや冷却系の不具合は定番で、長距離走行前の点検が欠かせません。",
+    "高重量車ゆえ、ブレーキ・足回りの負担が大きく、定期的なオーバーホールが必要です。",
+    "電装系の接触不良やメーター類のトラブルは、旧車として典型的な症状です。",
+    "ボディ・フレームの腐食や過去の事故歴・補修歴の有無によって、価値が大きく変動します。"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で資金計画が苦しくなりやすい車です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [],
+  "tags": [
+    "FERRARI",
+    "フェラーリ",
+    "デイトナ",
+    "V12",
+    "FR",
+    "GT",
+    "クラシックカー"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "oldtimer"
+  ],
+  "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+  },
+  "priceUsedYenRange": "4500万〜1.2億円（相場変動）",
+  "maintenanceCostYenPerYear": 450000,
+  "type": "CAR",
+  "status": "published",
+  "title": "FERRARI フェラーリ 365GTB/4 デイトナ",
+  "makerKey": "ferrari",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/ferrari",
+  "relatedClusterIds": [],
+  "primaryQuery": "フェラーリ 365GTB/4 デイトナ",
+  "updateReason": "tone-fix-2026-02-01",
+  "sources": []
+}

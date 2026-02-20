@@ -1,0 +1,109 @@
+{
+  "id": "toyota-corolla-levin-ae86",
+  "slug": "toyota-corolla-levin-ae86",
+  "name": "Corolla Levin (AE86)",
+  "maker": "Toyota",
+  "releaseYear": 1983,
+  "difficulty": "intermediate",
+  "bodyType": "クーペ",
+  "segment": "クラシックスポーツ",
+  "grade": null,
+  "engine": null,
+  "drive": null,
+  "transmission": null,
+  "fuel": null,
+  "powerPs": null,
+  "torqueNm": null,
+  "fuelEconomy": null,
+  "summary": "軽さとFRの素直さで「運転が上手くなる」名車。ただし、個体差は大きい。",
+  "summaryLong": "AE86は速さより「手応え」で選ぶ車です。軽いFRとシンプルな構成で、街の速度域でも反応が分かりやすい。一方で旧車なので、錆や配線、燃料系の状態で“別の車”になるレベルで差が出ます。買うなら距離より整備記録とボディを優先。",
+  "costImpression": "「安い旧車」ではなく、状態にお金を払う車です。最初に良い個体を選ぶほど、後からの出費が読みやすくなります。",
+  "heroImage": "/images/cars/placeholder.jpg",
+  "mainImage": "/images/cars/placeholder.jpg",
+  "relatedNewsIds": [],
+  "tags": [
+    "Toyota",
+    "クーペ",
+    "スポーツ"
+  ],
+  "intentTags": [],
+  "relatedCarSlugs": [
+    "mazda-roadster-na",
+    "toyota-mr2-sw20-rev3",
+    "nissan-silvia-s15"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "oil-change-frequency-guide"
+  ],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "repair-history-how-to-judge"
+  ],
+  "relatedHeritageSlugs": [
+    "toyota-ae86-slow-car-fast-heritage"
+  ],
+  "strengths": [
+    "軽さとFRの素直さで、速度域が低くても運転が楽しい",
+    "情報と部品の流通が多く、ショップの選択肢も広い",
+    "「車の動き」を学びやすいベーシックさ"
+  ],
+  "weaknesses": [
+    "錆とボディ状態で価値も乗り味も大きく変わる",
+    "年式相応に電装・ゴム類の劣化が出やすい",
+    "相場が上がり、予算の組み方を間違えると苦しくなる"
+  ],
+  "troubleTrends": [
+    "下回り・フロア・ストラット周りの錆/腐食",
+    "燃料系（タンク/ホース）と始動性の不安定",
+    "足回りブッシュ劣化によるフラつき・異音"
+  ],
+  "bestFor": [
+    "週末に運転そのものを楽しみたい（峠/ワインディング中心）",
+    "多少の手間も含めて旧車ライフを楽しめる",
+    "将来価値より「自分が好きか」で選べる"
+  ],
+  "notFor": [
+    "毎日使いで“止まらない”ことを最優先したい",
+    "買ってすぐノーメンテで走り続けたい",
+    "ボディや錆の話に気が重くなる"
+  ],
+  "maintenanceNotes": [
+    "錆対策は「出てから」より「出る前」。下回りと水の通り道を定期チェック。",
+    "電装は後付け配線が鬼門。雑な配線は早めに整理すると安心。",
+    "ブッシュやマウント類は一度リセットすると走りが別物になります。"
+  ],
+  "lengthMm": null,
+  "widthMm": null,
+  "heightMm": null,
+  "wheelbaseMm": null,
+  "weightKg": null,
+  "priceNew": "当時：130万〜170万円（参考）",
+  "priceUsed": "250万〜700万円（相場変動）",
+  "zeroTo100": null,
+  "type": "CAR",
+  "status": "published",
+  "title": "Toyota Corolla Levin (AE86)",
+  "makerKey": "toyota",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "トヨタ カローラレビン（AE86）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/toyota",
+  "relatedClusterIds": [],
+  "primaryQuery": "Corolla Levin (AE86)",
+  "updateReason": "car-index-upgrade-2026-02-01",
+  "sources": [],
+  "purchasePriceSafe": "安全ライン：350万〜550万円（錆・骨格・整備履歴優先）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間40〜100万円＋数年に1回の大きめ整備を見込む"
+  },
+  "maintenanceCostYenPerYear": 700000,
+  "body": "## 結論\nAE86は「速い車」ではなく、「速く走っている気分にさせる車」です。軽さとFRの素直さがあるので、街の速度域でも車の反応がはっきり分かります。\n\nただし2026年の相場感だと、もう“旧車の入口”ではありません。安さだけで選ぶと、最初の1年で整備費が車両価格を超えることもあります。買うなら、距離よりもボディ（錆・骨格）と整備履歴を優先したほうが結果的に安く済みます。\n\n## 向く人 / 向かない人\n向く人\n- 週末に運転を楽しみたい（峠/ワインディング中心）\n- 整備やショップ選びも含めて“趣味”として付き合える\n\n向かない人\n- 毎日の足として、トラブルゼロを最優先したい\n- 旧車の錆や電装の話がストレスになる\n\n## 買う前のチェック\n- 下回りの錆：フロア、サイドシル、ストラット周りは最重要\n- ボディ骨格：修復歴の説明が具体的か（写真・計測の有無）\n- 燃料系：タンク/配管の状態、燃料臭、始動性とアイドリングの安定\n- 電装・配線：後付け配線が雑だと、原因不明の不調を呼びやすい\n- 足回り：ブッシュ、ショック、異音（段差/低速旋回）\n\n## 弱点と故障\nAE86は“壊れやすい”というより、年式ゆえに劣化が出る車です。症状→原因→費用感のイメージだけでも持っておくと、買う前の判断が早くなります。\n\n- 始動が重い/失火気味 → 燃料系・点火系の劣化、配線改造 → 費用感：数万円〜（状態次第で上振れ）\n- 直進が落ち着かない/段差でコツコツ → ブッシュ・アライメント・脚の組み方 → 費用感：10万〜30万円\n- 雨で車内が湿る/カビ臭い → シール劣化、錆、ドレン詰まり → 費用感：数万円〜（板金に入ると別物）\n\n## 維持費の目安\n税金や保険よりも、消耗品と劣化部品が主役です。目安としては年間40〜100万円を置き、数年に1回は大きめの整備（足回り一式、錆の手当てなど）が来る前提で資金計画を組むと安心です。\n\n「月々いくらまでなら気持ちよく維持できるか」は、先に[維持費シミュレーション](/guide/maintenance-cost-simulation)で当てておくとブレません。\n\n## 中古で買うなら\n走行距離より、整備記録の厚さです。同じ価格帯でも「実施済み」なのか「これから」なのかで総額が変わります。\n\n修復歴の見方は慣れが必要なので、購入前に[修復歴チェックリスト](/guide/repair-history-used-car-checklist)だけは一度通しておくのがおすすめです。\n\n## 比較\n- マツダ ロードスター（NA）：同じ“軽さ”でも、オープンの気持ちよさが武器。錆は同様に要注意。\n- トヨタ MR2（SW20 Rev3）：ミッドシップの面白さ。走りの濃さは増えるが、熱や整備の癖も増える。\n- 日産 シルビア（S15）：より現代的な速さ。AE86より価格帯は上がりやすいが、日常性は高め。\n\n## 関連リンク\n- [修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist)\n- [維持費シミュレーション](/guide/maintenance-cost-simulation)\n- [オイル交換の頻度と考え方](/guide/oil-change-frequency-guide)\n- [中古車「低走行の罠」](/column/usedcar-low-mileage-trap)\n- [修復歴の“見抜き方”](/column/repair-history-how-to-judge)\n- [AE86が“遅いのに速い”と言われる理由](/heritage/toyota-ae86-slow-car-fast-heritage)\n"
+}

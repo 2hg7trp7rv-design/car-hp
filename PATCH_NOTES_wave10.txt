@@ -1,0 +1,32 @@
+Wave10: 「文字もデザイン」仕上げ（タイポの文法を全ページで揃える）
+
+狙い
+- Stage（暗い展示空間）上の本文を、ページごとに微妙に違う見え方にしない
+- Porcelain（白い資料棚）内の色・タイポが「slateの汎用UI」に見える問題を消す
+- GUIDE/COLUMNの本文構造が弱い記事でも、最低限「章の入口」が出るようにする
+
+主な変更
+1) Stage本文タイポをトークン化
+- app/globals.css に .cb-stage-body / .cb-stage-body-strong を追加
+- CARS/GUIDE/COLUMN/HERITAGE 詳細の本文（TextWithInternalLinkCards）を .cb-stage-body に統一
+- letter-spacing を 0.08em → 0.06em に寄せて、読みやすさと上品さを両立（Stage本文のみ）
+
+2) GUIDE/COLUMN 詳細の“章の入口”を必ず出す
+- H2が無い記事でも、先頭に「本文」H2を自動挿入して CHAPTER が成立するように調整
+- COLUMNのul表示を、他ページと同じ「Tiffanyドット＋2.05行間」に統一
+
+3) 文章の呼吸（句点での改行）を GUIDE/COLUMN にも適用
+- 句点「。」ごとに軽い改行を入れて、長文の圧を減らす（TextWithInternalLinkCards は pre-line 対応済み）
+
+4) Porcelain内のslate色を撤去（#222の濃淡に統一）
+- GUIDE一覧 / HUB群 / COMPARE UI / LEGAL / NEWS を中心に、text-slate系・bg-slate系を #222ベースへ置換
+- “同じ白パネルなのにページごとに色味が違う”状態を解消
+
+5) 細部
+- HERITAGE一覧のページネーションを PREV/NEXT 表記に統一
+
+実行チェック（ローカル）
+- node scripts/guardrails.mjs  : OK
+- node scripts/content-audit.mjs: OK (errors=0, warnings=0)
+- node scripts/generate-sitemaps.mjs: OK
+- node scripts/generate-robots.mjs + verify: OK

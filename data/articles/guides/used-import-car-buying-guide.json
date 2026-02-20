@@ -1,0 +1,54 @@
+{
+  "id": "used-import-car-buying-guide",
+  "slug": "used-import-car-buying-guide",
+  "type": "GUIDE",
+  "status": "published",
+  "title": "中古輸入車の買い方ガイド｜予算の決め方と現車チェックの基本",
+  "summary": "中古輸入車を失敗せずに買うためのチェック。整備履歴、保証、修復歴、初年度費用まで。",
+  "seoTitle": "中古輸入車の買い方完全ガイド｜失敗しないためのチェックリスト",
+  "seoDescription": "中古輸入車を失敗せずに買うためのチェック。整備履歴、保証、修復歴、初年度費用まで。",
+  "category": "BUY",
+  "readMinutes": 5,
+  "heroImage": null,
+  "body": "この記事は「中古輸入車の買い方ガイド｜予算の決め方と現車チェックの基本」をテーマに、購入の意思決定は「車両価格」だけで見るとズレます。毎月の総額と、支払い方法ごとの落とし穴を整理します。\n\n## 結論\n- 中古輸入車は「当たり外れ」より、【情報が揃っている個体を選べるか】で失敗が決まります。\n- 価格差の理由はだいたい3つ。【整備履歴・保証の有無・修復歴/状態】です。安い理由が説明できない個体は避けます。\n- 迷ったら、購入前に【第三者点検（購入前点検）】を入れると、後からの出費を減らしやすくなります。\n\n## まず確認するポイント\n- 整備記録簿：どこで、何を、いつ交換したか\n- 保証：期間と対象範囲（消耗品扱いの除外に注意）\n- 修復歴：定義と見方（/guide/repair-history-used-car-checklist）\n- 消耗品：タイヤ、ブレーキ、バッテリーの残量（ここが弱いと納車直後に出費）\n- 電装/警告灯：軽微に見えて診断費用が出やすい領域\n\n## 手順 1 「欲しい仕様」を先に言語化する\n中古は在庫の中から選ぶため、条件が曖昧だと比較がぶれます。\n- 必須条件：ボディ/駆動/グレード、絶対に欲しい装備（例：ADAS、サンルーフ）\n- できれば：色、内装、ホイール\n- 妥協点：年式と走行距離のどちらを優先するか\n\n## 手順 2 「安い理由」を説明できる個体だけ残す\n- 記録簿が欠けている、保証がない、消耗品が限界、など理由が明確なら判断できる\n- 納車整備は「一式」ではなく交換部品と工賃の内訳を確認\n- 修復歴の有無と部位を明確にしてもらう\n\n## 手順 3 購入前点検で不安を潰す\n- 可能なら第三者や別工場で点検（OBD診断、漏れ、下回り、電装、足回り）\n- 試乗で確認：変速ショック、異音、直進性、ブレーキの振動、警告灯\n- 気になる症状は「直りますか？」より「原因と見積」を出してもらう\n\n## 手順 4 初年度の出費を織り込む\n- 任意保険、税金、車検の時期は必ず事前に確認（/guide/tax-and-fees-before-buying-import）\n- タイヤ/バッテリー/ブレーキは納車整備に含まれないこともある（/guide/tire-replacement-cost-guide）\n- 不安ならロードサービスを検討（/guide/road-service-choice-guide）\n\n## よくあるつまずき\n- 「安いから」で即決し、納車直後に消耗品でまとまった出費\n- 保証の“対象外”を読まず、安心料だけ払ってしまう\n- 改造車を買い、車検・部品・修理先で苦労する\n- スペアキーや取説、記録簿が揃っていないまま買う\n\n## 補足（実務メモ）\n- 月々の支払いが同じでも、総支払額と“出口（返却/買い取り/乗り換え）”が違う\n- 走行距離が多い人ほど、走行距離制限があるプランは不利になりやすい\n- 中途解約の違約金は想定外の痛手になりやすいので、ライフイベントが近いなら短期契約に注意\n\n## 関連記事\n- /guide/tax-and-fees-before-buying-import\n- /guide/maintenance-cost-simulation\n- /guide/repair-history-used-car-checklist\n- /guide/sharyou-hoken-necessary\n- /guide/road-service-choice-guide\n",
+  "publishedAt": "2025-12-07T00:00:00.000Z",
+  "updatedAt": "2026-01-20",
+  "tags": [
+    "輸入車",
+    "中古車",
+    "買い方",
+    "チェックリスト"
+  ],
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "tax-and-fees-before-buying-import",
+    "maintenance-cost-simulation",
+    "repair-history-used-car-checklist",
+    "sharyou-hoken-necessary"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [
+    "supercar-parts-bin-engineering-heritage"
+  ],
+  "intentTags": [
+    "buy"
+  ],
+  "monetizeKey": "car_search_conditions",
+  "lead": "中古輸入車を失敗せずに買うためのチェック。整備履歴、保証、修復歴、初年度費用まで。",
+  "internalLinks": [
+    "tax-and-fees-before-buying-import",
+    "maintenance-cost-simulation",
+    "repair-history-used-car-checklist",
+    "sharyou-hoken-necessary"
+  ],
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/hub-usedcar",
+  "relatedClusterIds": [],
+  "primaryQuery": "中古輸入車の買い方ガイド｜予算の決め方と現車チェックの基本",
+  "updateReason": "initial-import",
+  "sources": []
+}

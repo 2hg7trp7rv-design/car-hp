@@ -1,0 +1,125 @@
+{
+  "id": "lexus-lfa-2010",
+  "slug": "lexus-lfa-2010",
+  "name": "LFA (2010)",
+  "maker": "Lexus",
+  "releaseYear": 2010,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "スーパースポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "LFA",
+  "summary": "国産スーパーカーの頂点。中古は履歴と保管環境、専門性のある整備体制が前提。",
+  "summaryLong": "LFAは、国産スーパーカーの中でも別格の工芸品に近く、走りだけでなく『保管と維持』まで含めて楽しむ車種です。中古ではメーターの数字より、管理履歴とコンディションの一貫性がすべて。タイヤや油脂類の管理、バッテリー、保管環境の差がそのまま状態に出ます。専門拠点と付き合えるか、部品と作業のリードタイムを受け入れられるかも購入条件。整った個体は、音と回転の気持ち良さが強烈です。",
+  "heroImage": "/images/cars/lexus-lfa-2010-hero.jpg",
+  "mainImage": "/images/cars/lexus-lfa-2010-main.jpg",
+  "imageUrl": "/images/cars/lexus-lfa-2010-hero.jpg",
+  "gallery": [
+    "/images/cars/lexus-lfa-2010-front.jpg",
+    "/images/cars/lexus-lfa-2010-side.jpg",
+    "/images/cars/lexus-lfa-2010-interior.jpg"
+  ],
+  "engine": "Front V10 4.8 NA (1LR-GUE)",
+  "powerPs": 560,
+  "torqueNm": 480,
+  "transmission": "6AMT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 4〜7 km/L",
+  "priceNew": "当時: 3000万円台（仕様差）",
+  "priceUsed": "6000万〜1.2億円前後（相場変動）",
+  "strengths": [
+    "応答と音が作る体験が唯一無二。速度域が低くても価値がある。",
+    "工学で“感性”を作った設計の密度が高い。",
+    "FRらしい素直さがあり、速さが怖さに直結しにくい。",
+    "日本のスーパーカーとして文化的価値が強い。"
+  ],
+  "weaknesses": [
+    "市場価格が高く、保険・保管・消耗品も含めて“環境”が必要。",
+    "部品と整備の窓口が限られ、時間も含めて計画が要る。",
+    "日常性は高くない（乗降、荷室、音量）。",
+    "価値が高いぶん、履歴の不透明さがリスクになる。"
+  ],
+  "troubleTrends": [
+    "タイヤとブレーキなど消耗品の状態と交換履歴が重要です。",
+    "保管環境由来の劣化（ゴム類、内装、塗装）に差が出ます。",
+    "電子制御の警告灯履歴は必ず確認したいポイントです。",
+    "低走行でも“動かしていない劣化”が起きることがあります。"
+  ],
+  "costImpression": "買う車というより、維持するプロジェクト。履歴が揃う個体ほど、体験は揺らがない。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "import-car-maintenance-cost-myth",
+    "loan-vs-lease-monthly-trap"
+  ],
+  "relatedGuideSlugs": [
+    "used-import-car-buying-guide",
+    "tax-and-fees-before-buying-import",
+    "maintenance-cost-simulation"
+  ],
+  "relatedCarSlugs": [
+    "ferrari-458-italia",
+    "ferrari-f40",
+    "mclaren-f1"
+  ],
+  "tags": [
+    "Lexus",
+    "LFA",
+    "V10",
+    "1LR-GUE",
+    "FR",
+    "supercar",
+    "2010s"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-high-rev-na-last-dance-heritage"
+  ],
+  "intentTags": [
+    "supercar",
+    "experience",
+    "engineering",
+    "2010s",
+    "heritage"
+  ],
+  "purchasePriceSafe": "安全ライン：相場が大きく動くため、履歴重視で“良個体を逃さない”予算設計が必要",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間200〜400万円（保管・保険含め増減）"
+  },
+  "maintenanceCostYenPerYear": 3000000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Lexus LFA (2010)",
+  "makerKey": "lexus",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "レクサス LFA（2010）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/lexus",
+  "relatedClusterIds": [],
+  "primaryQuery": "Lexus LFA (2010)",
+  "updateReason": "car-major-overhaul-2026-02-01",
+  "sources": [],
+  "bestFor": [
+    "希少性と体験価値を、長期保有で楽しみたい人",
+    "保管環境と整備体制をセットで用意できる人",
+    "車両価格より、維持と価値保全を重視できる人"
+  ],
+  "notFor": [
+    "日常の足として頻繁に使いたい人",
+    "予防整備や部品の待ち時間にストレスを感じる人",
+    "購入後の維持を『なるべく安く』で考えたい人"
+  ],
+  "maintenanceNotes": [
+    "履歴と保管環境が価値。距離より『どう保たれたか』を見る",
+    "専門性のある整備ルートを確保できるかが購入条件",
+    "消耗品の単価と納期は別世界。イベント前提で考える",
+    "電装や樹脂部品も年式で劣化する。予防整備で差が出る"
+  ],
+  "body": "## 結論\nLFAは、スペックより体験の車です。中古は走行距離で判断しがちですが、重要なのは履歴と保管環境。整備体制を確保できるなら、価値も体験も長持ちします。\n\n## 向く人 / 向かない人\n日常でガンガン乗るより、特別な日に丁寧に扱う人向けです。予防整備や部品待ちを含めて、所有を楽しめるかが分かれ目になります。\n\n## 買う前のチェック\n記録の厚みを見ます。点検の頻度、保管の仕方、消耗品の交換履歴。試乗できるなら、違和感の有無よりも『整っている雰囲気』を確認してください。整備の筋が良い車は、細部に出ます。\n\n### 管理状態を確認する質問\n- バッテリー管理と始動頻度。長期保管の扱い方を確認\n- タイヤの製造年と状態。距離が少なくても時間で劣化します\n- 油脂類の交換サイクル。走らせない車ほど劣化しやすい\n- 作業を任せている拠点。引き継げるかどうかが重要です\n\n## 弱点と故障\n希少車の弱点は、壊れやすさより『直しにくさ』です。部品と専門性、納期。だからこそ、壊してから考えるのではなく、壊さない運用と予防整備が前提になります。\n\n## 維持費\n維持費は、イベントとして波が出ます。消耗品の単価も、通常車と比較になりません。毎年均すより、予算を厚めに確保しておく方が精神的に安定します。\n\n### 走らせる前に整える時間\n納車直後に全開で走るより、段階的に慣らして状態を確認する方が安全です。部品の手配も含めて、時間がコストになる車種です。\n\n## 中古で買うなら\n価格差は『履歴と保管環境の差』として現れることが多いです。安い個体ほど理由があります。理由を言語化できないなら、買わない方が安全です。\n\n### 個体差より『管理差』\n台数が少ないからこそ、管理の差がそのまま状態に出ます。走行距離の数字より、保管環境と履歴の一貫性を重視したいです。\n\n### 契約書と保険まで含めて準備\nLFAは車両価格だけで判断すると、維持の現実を見誤ります。保険、保管、輸送、点検の体制。ここまで整えて初めて、安心して走らせられる。見積もりを一度、具体的に出してから買うのが安全です。\n\n### 管理履歴の読み方\n- 走らせているか、保管中心か。どちらでも管理の質が重要\n- タイヤの製造年。距離が少なくても時間で劣化します\n- 油脂類の交換履歴。走らない車ほど劣化しやすい\n- 作業の窓口が引き継げるか。主治医の有無が価値になります\n\n### 迷いを減らす考え方\n車は買えても、体制が買えないと楽しめません。購入前に、保管場所と工場と保険を具体化し、走らせる頻度までイメージできたら、判断のブレが消えます。\n\n## 比較\n同価格帯のフェラーリ系は性能とキャラが強い。LFAは日本的な精密さと物語性が魅力です。何を買いたいかで結論が変わります。\n\n## 関連リンク\n"
+}

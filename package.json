@@ -1,0 +1,46 @@
+{
+  "name": "car-boutique",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "sitemap:gen": "node scripts/generate-sitemaps.mjs",
+    "robots:gen": "node scripts/generate-robots.mjs",
+    "prebuild": "node scripts/guardrails.mjs && node scripts/content-audit.mjs && node scripts/verify-internal-links.mjs && node scripts/generate-sitemaps.mjs && node scripts/verify-sitemaps.mjs && node scripts/generate-public-assets.mjs && node scripts/generate-robots.mjs && node scripts/verify-robots.mjs",
+    "guardrails": "node scripts/guardrails.mjs",
+    "verify:robots": "node scripts/verify-robots.mjs",
+    "verify:sitemaps": "node scripts/verify-sitemaps.mjs",
+    "assets:gen": "node scripts/generate-public-assets.mjs",
+    "verify:links": "node scripts/verify-internal-links.mjs"
+  },
+  "dependencies": {
+    "next": "14.2.35",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "@vercel/analytics": "1.3.1",
+    "@vercel/speed-insights": "1.3.1",
+    "@studio-freight/lenis": "1.0.0",
+    "@radix-ui/react-slot": "1.2.4",
+    "class-variance-authority": "0.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.16.5",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.1",
+    "autoprefixer": "10.4.20",
+    "@eslint/eslintrc": "3.1.0",
+    "@eslint/js": "8.57.1",
+    "eslint": "8.57.1",
+    "eslint-config-next": "14.2.35",
+    "postcss": "8.4.41",
+    "tailwindcss": "3.4.10",
+    "typescript": "5.5.4"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}

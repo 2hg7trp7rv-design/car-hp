@@ -1,0 +1,110 @@
+{
+  "id": "honda-s660-jw5",
+  "slug": "honda-s660-jw5",
+  "name": "S660 (JW5)",
+  "maker": "Honda",
+  "releaseYear": 2015,
+  "difficulty": "intermediate",
+  "bodyType": "軽オープン",
+  "segment": "軽スポーツ",
+  "grade": null,
+  "engine": null,
+  "drive": null,
+  "transmission": null,
+  "fuel": null,
+  "powerPs": null,
+  "torqueNm": null,
+  "fuelEconomy": null,
+  "summary": "小さくてもミッドシップ。速さより、動きの気持ちよさで選ぶ軽スポーツ。",
+  "summaryLong": "S660は“速い軽”ではなく、“気持ちいい軽”です。ミッドシップらしい回頭性と、屋根を開けて走る楽しさが大きい。一方で中古はカスタム率が高く、足回りや冷却の状態でコンディション差が出ます。買う前に「熱」「足」「屋根」を見ておくと失敗しにくいです。",
+  "costImpression": "軽としては維持しやすいですが、趣味車なので“状態が良い個体”に寄せるほど満足度が上がります。",
+  "heroImage": "/images/cars/placeholder.jpg",
+  "mainImage": "/images/cars/placeholder.jpg",
+  "relatedNewsIds": [],
+  "tags": [
+    "Honda",
+    "軽オープン",
+    "軽スポーツ"
+  ],
+  "intentTags": [],
+  "relatedCarSlugs": [
+    "honda-beat-pp1",
+    "suzuki-cappuccino-ea11r",
+    "autozam-az-1-pg6sa"
+  ],
+  "relatedGuideSlugs": [
+    "how-to-choose-first-sports-car",
+    "maintenance-cost-simulation",
+    "tire-replacement-cost-guide"
+  ],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "tire-cheap-dangerous-choice"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-kei-sports-abc-heritage"
+  ],
+  "strengths": [
+    "ミッドシップらしい回頭性で、運転がとにかく楽しい",
+    "屋根を開けて走れる“軽”という贅沢",
+    "サイズが小さく、狭い道でも扱いやすい"
+  ],
+  "weaknesses": [
+    "積載性は割り切りが必要",
+    "中古はカスタム率が高く、個体差が出やすい",
+    "軽でもタイヤやブレーキは“走り方次第”で減る"
+  ],
+  "troubleTrends": [
+    "冷却系の状態差（熱ダレ/水温管理）",
+    "足回りの異音（ブッシュ/アライメント）",
+    "ルーフ/シール周りの劣化",
+    "クラッチ・ミッションの消耗（使われ方で差）"
+  ],
+  "bestFor": [
+    "速さより、コーナーの気持ちよさを重視したい",
+    "オープンで走る時間をちゃんと作れる",
+    "小さい車に合わせた使い方（積載など）に割り切れる"
+  ],
+  "notFor": [
+    "荷物を積む前提の1台にしたい",
+    "高速長距離をメインにしたい",
+    "改造車の見極めが面倒"
+  ],
+  "maintenanceNotes": [
+    "軽スポーツでも熱は気にしたい。冷却の履歴がある個体は安心。",
+    "足回りは“硬ければ良い”ではありません。街乗りで破綻していないか確認。",
+    "屋根のシールや作動は地味に効くので、購入前に必ず触って確認。"
+  ],
+  "lengthMm": null,
+  "widthMm": null,
+  "heightMm": null,
+  "wheelbaseMm": null,
+  "weightKg": null,
+  "priceNew": "当時：200万〜250万円（参考）",
+  "priceUsed": "150万〜280万円（相場変動）",
+  "zeroTo100": null,
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda S660 (JW5)",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "ホンダ S660（JW5）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "S660 (JW5)",
+  "updateReason": "car-index-upgrade-2026-02-01",
+  "sources": [],
+  "purchasePriceSafe": "安全ライン：180万〜260万円（熱対策・足回り・屋根の状態優先）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間30〜60万円（消耗品＋予防整備）"
+  },
+  "maintenanceCostYenPerYear": 450000,
+  "body": "## 結論\nS660は“速い軽”というより、“気持ちいい軽スポーツ”です。ミッドシップらしい回頭性があって、コーナーの入り口で車がスッと向きを変える。\n\n中古はカスタム率が高いので、足回りのセットや冷却の状態でコンディション差が出ます。買う前に「熱」「足」「屋根」を見ておくと、失敗しにくいです。\n\n屋根を開けるか閉めるかで、同じ道でも気分が変わるのがS660のいいところです。反面、短距離の繰り返しや渋滞ばかりだと熱がたまりやすいので、乗り方の工夫もセットだと考えてください。\n\n## 向く人 / 向かない人\n向く人\n- 速さより、コーナーの気持ちよさを重視したい\n- オープンで走る時間をちゃんと作れる\n\n向かない人\n- 荷物を積む前提の1台にしたい\n- 高速長距離がメインになりそう\n\n## 買う前のチェック\n- 冷却/熱：水温の動き、過去の対策や履歴\n- 足回り：異音、街乗りでの突き上げ、タイヤの偏摩耗\n- ルーフ：開閉のスムーズさ、シールの状態\n- 改造の内容：ただ硬いだけの脚、無理な吸排気になっていないか\n- 使われ方：サーキット多めだと消耗も早い\n\n## 弱点と故障\nS660は大きなトラブルより、“使われ方”で差が出やすいです。\n\n- 熱ダレっぽい/水温が高め → 冷却の弱り、対策不足 → 費用感：数万〜十数万円\n- 段差でコトコト → ブッシュ/脚のセッティング → 費用感：数万〜\n- 屋根の雨漏りや風切り → シール劣化、調整 → 費用感：数万〜\n\n## 維持費の目安\n目安は年間30〜60万円。軽なので税金は軽いですが、走り方によってタイヤとブレーキが意外と効いてきます。\n\nまずは[はじめてのスポーツカーの選び方](/guide/how-to-choose-first-sports-car)で、生活との相性を整理してから決めると失敗しにくいです。\n\n## 中古で買うなら\n“低走行”より、今の状態です。低走行でも放置気味だとゴム類が先に来ることがあります。\n\n迷ったら、[中古車「低走行の罠」](/column/usedcar-low-mileage-trap)のパターンに当てはまらないか確認しておくのがおすすめです。\n\n## 比較\n- ビート（PP1）：より素朴で軽い。整備の手間は増えるが、味は濃い。\n- カプチーノ（EA11R）：FRターボの軽さ。屋根のスタイルは違うが、楽しさは近い。\n- AZ-1（PG6SA）：濃さは最上級。割り切りも最上級。\n\n## 関連リンク\n- [はじめてのスポーツカーの選び方](/guide/how-to-choose-first-sports-car)\n- [維持費シミュレーション](/guide/maintenance-cost-simulation)\n- [タイヤ交換の費用感](/guide/tire-replacement-cost-guide)\n- [中古車「低走行の罠」](/column/usedcar-low-mileage-trap)\n- [安いタイヤは危ない？](/column/tire-cheap-dangerous-choice)\n- [軽スポーツABCが面白かった時代](/heritage/japan-kei-sports-abc-heritage)\n"
+}

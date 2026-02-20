@@ -1,0 +1,123 @@
+{
+  "id": "nissan-skyline-2000gtr-kpgc10",
+  "slug": "nissan-skyline-2000gtr-kpgc10",
+  "name": "Skyline GT-R KPGC10",
+  "maker": "Nissan",
+  "releaseYear": 1969,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "nissan-gt-r-godzilla-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "Skyline GT-R KPGC10",
+  "summary": "GT-Rの出発点。レース由来の思想が市販車へ落ちた時代の象徴。",
+  "summaryLong": "ハコスカGT-R（KPGC10）は、GT-Rの出発点というより、レースの空気がそのまま市販車に落ちた“境目”の車です。数字は控えめでも、軽さと回転の質で“走っている濃さ”が残ります。\n\n中古で怖いのは性能ではなく、ボディの錆と過去の補修の質です。フロアやサイド、ストラット周りはもちろん、合わせや塗装の仕上げで価値が割れます。だからこそ、出どころと説明が透明な個体を基準にしたいです。\n\n維持は簡単ではありません。けれど、専門店と付き合い、予防整備の枠を作れるなら、現代の車では得られない“手応え”が手元に残ります。",
+  "body": "## 結論\nハコスカGT-Rは、速いから買う車ではなく「この時代の空気と作り」を買う車です。買うべきかで迷ったら、価格より“出どころと板金の質”を優先してください。\n\n## 向く人 / 向かない人\n上の「向く/向かない」で半分決まります。クラシックは、購入の瞬間より、その後の付き合い方で満足度が決まります。\n\n## 買う前のチェック\n- まずボディ。錆、補修痕、パネルの合わせ、塗装の質。ここが悪いと終わりが見えません。\n- 書類と説明の透明性。どこを直し、どこがオリジナルか。言葉で説明できない個体は避けたいです。\n- 冷却系と燃料系の“一周”が終わっているか。滲みがあるなら予算を見積もる。\n- 電装（ハーネス/スイッチ/メーター）の動作。地味に効きます。\n- 足回りとブレーキ。止まる/曲がるの基準を現代に寄せられるか。\n\n## 弱点と故障\nこの車の弱点は、性能というより“時間”です。錆、ゴム、配線、そして過去の修理の質。症状は単発ではなく、関連して出ることがあります。だからこそ「安い個体を買って直す」より「最初から良いベースを選ぶ」のが現実的です。\n\n## 維持費の目安\n年間コストは走行距離より、整備の方針で変わります。乗るなら、定期点検＋予防整備の枠を作る。乗らないなら、保管とメンテの最低ラインを守る。どちらにしても“放置が一番高い”です。\n\n## 中古で買うなら\n専門店の在庫や、履歴が追える個体が強いです。オリジナル度を気にするなら、その基準（どこまで許容するか）を先に決めてから探してください。基準がないと、価格と状態の判断がブレます。\n\n## 比較\n同じ時代の国産クラシックを見たいなら、ケンメリGT-RやS30Zが候補になります。ハコスカGT-Rは“レース直結の匂い”が濃く、そこに価値を感じる人は戻れません。\n\n## 関連リンク\n- [修復歴・事故歴の見方（チェックリスト）](/guide/repair-history-used-car-checklist)\n- [中古で失敗しないための予算の組み方](/guide/car-budget-simulation)\n- [修復歴は“ある/なし”より中身](/column/repair-history-how-to-judge)\n- [低走行の罠](/column/usedcar-low-mileage-trap)\n- [ハコスカGT-Rの系譜](/heritage/nissan-skyline-2000gtr-hakosuka-heritage)",
+  "costImpression": "維持費だけでなく、保管環境と“手をかける時間”がコストです。安い個体を買って直すより、素性が分かる個体を選ぶ方が結局早いです。",
+  "heroImage": "/images/cars/nissan-skyline-2000gtr-kpgc10-hero.jpg",
+  "mainImage": "/images/cars/nissan-skyline-2000gtr-kpgc10-main.jpg",
+  "imageUrl": "/images/cars/nissan-skyline-2000gtr-kpgc10-main.jpg",
+  "gallery": [
+    "/images/cars/nissan-skyline-2000gtr-kpgc10-front.jpg",
+    "/images/cars/nissan-skyline-2000gtr-kpgc10-side.jpg",
+    "/images/cars/nissan-skyline-2000gtr-kpgc10-interior.jpg"
+  ],
+  "engine": "Front Inline-6 2.0 DOHC (S20)",
+  "powerPs": 160,
+  "torqueNm": 177,
+  "transmission": "5MT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜10 km/L",
+  "priceNew": "当時：162万円前後（参考）",
+  "priceUsed": "3000万〜1.2億円（相場変動）",
+  "priceUsedYenRange": "3000万〜1.2億円（相場変動）",
+  "purchasePriceSafe": "安全ライン：3500万〜6500万円前後（出どころと板金の質重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間80〜150万円"
+  },
+  "maintenanceCostYenPerYear": 900000,
+  "strengths": [
+    "時代のレース由来のフィードバックが濃く、運転そのものが濃い。",
+    "軽さと回転の気持ち良さがあり、数値以上に“走っている感”がある。",
+    "価値の下支えが強く、状態次第では資産性も期待できる。",
+    "専門店・コミュニティがあり、維持の道筋を作りやすい。"
+  ],
+  "weaknesses": [
+    "錆と板金の質で価値が大きく割れます。",
+    "部品と工賃が読みにくく、想定外の出費が出やすいです。",
+    "オリジナル度の確認に手間がかかります。",
+    "日常で乗るには気を遣う領域（暑さ/騒音/安全性）が残ります。"
+  ],
+  "troubleTrends": [
+    "ボディの錆（フロア/サイド/ストラット周り）は最優先で確認。",
+    "電装の経年（ハーネス/スイッチ/メーター）は“地味に効く”ポイントです。",
+    "燃料系（タンク/ホース）の経年は、匂い・滲みで現れます。",
+    "冷却系の滲み・漏れは一周する前提で計画を。"
+  ],
+  "bestFor": [
+    "クラシックを“文化として”楽しみ、手をかける時間も含めて所有したい人。",
+    "オリジナル度や履歴の価値を理解して、納得して買える人。",
+    "専門店と付き合いながら、長期でコンディションを作りたい人。"
+  ],
+  "notFor": [
+    "とにかく速さの性能だけを求める人（目的が違います）。",
+    "保管環境や点検の手間を用意できない人。",
+    "“買ってすぐ毎日使いたい”人。"
+  ],
+  "maintenanceNotes": [
+    "ボディの錆と補修の質が最重要。ここを外すと終わりが見えません。",
+    "電装・燃料・冷却は“予防整備が効く”領域。放置が一番高くつきます。",
+    "ブレーキと足回りは現代基準に寄せられるかで安心感が変わります。"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "nissan-skyline-2000gtr-kpgc110",
+    "nissan-fairlady-z-s30",
+    "toyota-corolla-levin-ae86"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "car-budget-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge",
+    "usedcar-low-mileage-trap"
+  ],
+  "relatedHeritageSlugs": [
+    "nissan-skyline-2000gtr-hakosuka-heritage"
+  ],
+  "tags": [
+    "Nissan",
+    "クラシックスポーツ",
+    "FR",
+    "5MT",
+    "Front Inline-6",
+    "クラシック",
+    "JDM",
+    "名車",
+    "GT-R",
+    "Hakosuka"
+  ],
+  "intentTags": [],
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Skyline GT-R KPGC10",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Skyline GT-R KPGC10",
+  "updateReason": "car-overhaul-2026-02-01_v6",
+  "sources": []
+}

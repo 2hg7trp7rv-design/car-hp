@@ -1,0 +1,53 @@
+{
+  "slug": "tire-replacement-cost-guide",
+  "title": "タイヤ交換費用の相場｜工賃・サイズ・ランフラットで何が変わる？",
+  "lead": "タイヤ交換の総額の見方と時期の目安。工賃内訳、サイズ/種類による差、節約のコツ。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "MONEY",
+  "tags": [
+    "タイヤ",
+    "交換",
+    "費用",
+    "ランフラット"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-20",
+  "internalLinks": [
+    "maintenance-cost-simulation",
+    "oil-change-frequency-guide",
+    "road-service-choice-guide",
+    "family-suv-budget-and-lifeplan"
+  ],
+  "body": "この記事は「タイヤ交換費用の相場｜工賃・サイズ・ランフラットで何が変わる？」をテーマに、警告灯や液漏れは、対応を間違えると故障が拡大します。まずは“走っていいか/止めるべきか”の判断軸と、現場でできる初動をまとめます。\n\n## 結論\n- タイヤ交換費用は、タイヤ代だけでなく【工賃（脱着・組替・バランス）】まで含めた総額で見ます。\n- 価格差が出る主因は、サイズ（インチ）と種類（ランフラット、スポーツ系、SUV用など）です。\n- 迷ったら、まずは「今のサイズ」「用途」「いつまで乗るか」を決めてから見積を取るとブレません。\n\n## 費用の内訳（見積で見るポイント）\n- タイヤ本体（1本×4）\n- 脱着・組替・バランス調整\n- バルブ/ゴム部品交換（必要に応じて）\n- 廃タイヤ処分料\n- アライメント調整（症状がある場合や偏摩耗時に検討）\n\n## 交換時期の目安\n- 溝：スリップサインが出たら法的にNG（安全のためは早めが安心）\n- 劣化：ひび割れ、硬化、ゴムの剥離\n- 症状：偏摩耗、ハンドルのブレ、雨の日に滑りやすい\n\n## 手順 1 まず今の「サイズ」と「規格」を確認する\nタイヤの側面（サイドウォール）に表示があります。\n- サイズ例：215/55R17\n- ロードインデックス（荷重）、速度記号（必要に応じて）\n\n## 手順 2 用途に合わせて種類を選ぶ\n- 街乗り中心：静粛性とウェット性能を重視\n- 長距離/高速：耐摩耗と直進安定性を重視\n- スポーツ走行：グリップ重視（消耗も早くなりやすい）\n- 雪が降る地域：冬タイヤやチェーンの準備も含めて計画する\n\n## 手順 3 見積は「総額」と「4本交換か」を揃えて比較する\n- 4本交換が基本（前後のグリップ差が出ると安全性が落ちることがあります）\n- 2本交換なら、前後のどちらに付けるか、残り2本の状態もセットで判断\n- 工賃や処分料が別になっている場合は、合計で比較する\n\n## よくあるつまずき\n- タイヤ代だけで判断し、工賃込みの総額が想定より高い\n- サイズ/規格を間違えて購入し、付けられない\n- 偏摩耗の原因（空気圧やアライメント）を放置して早く減る\n\n## 補足（実務メモ）\n- 警告灯が赤/点滅、異音や焦げ臭、振動があるなら「走らない」が基本\n- オーバーヒートや液漏れ時にキャップを開けるのは危険（やけどリスク）\n- オイル交換は距離だけでなく期間でも管理。短距離のチョイ乗り中心は早めが安心\n- タイヤは溝だけでなく製造年週・ひび割れも見る（見た目が綺麗でも劣化は進む）\n\n## 関連記事\n- /guide/maintenance-cost-simulation\n- /guide/oil-change-frequency-guide\n- /guide/road-service-choice-guide\n- /guide/family-suv-budget-and-lifeplan\n- /guide/how-to-choose-first-sports-car\n",
+  "monetizeKey": "shaken_rakuten",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "maintenance-cost-simulation",
+    "oil-change-frequency-guide",
+    "road-service-choice-guide",
+    "family-suv-budget-and-lifeplan"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "tire",
+    "maintenance",
+    "cost"
+  ],
+  "seoTitle": "タイヤ交換費用の相場｜工賃・サイズ・ランフラットの違い",
+  "seoDescription": "タイヤ交換の総額の見方と時期の目安。工賃内訳、サイズ/種類による差、節約のコツ。",
+  "summary": "タイヤ交換の総額の見方と時期の目安。工賃内訳、サイズ/種類による差、節約のコツ。",
+  "status": "published",
+  "id": "guide:tire-replacement-cost-guide",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/hub-loan",
+  "relatedClusterIds": [],
+  "primaryQuery": "タイヤ交換費用の相場｜工賃・サイズ・ランフラットで何が変わる？",
+  "updateReason": "initial-import",
+  "sources": []
+}

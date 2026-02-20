@@ -1,0 +1,54 @@
+{
+  "id": "self-gas-station-beginner-mistake",
+  "slug": "self-gas-station-beginner-mistake",
+  "type": "GUIDE",
+  "status": "published",
+  "title": "セルフ給油の注意点｜油種の間違いを防ぐコツ（軽油は軽用ではない）",
+  "summary": "セルフ給油のよくあるミスと安全な手順。燃料の入れ間違い時の正しい初動も。",
+  "seoTitle": "セルフ給油の注意点｜油種の間違いを防ぐコツ（保存版）",
+  "seoDescription": "セルフ給油のよくあるミスと安全な手順。燃料の入れ間違い時の正しい初動も。",
+  "category": "BUY",
+  "readMinutes": 6,
+  "heroImage": null,
+  "body": "この記事は「セルフ給油の注意点｜油種の間違いを防ぐコツ（軽油は軽用ではない）」をテーマに、不具合は早めに切り分けるほど安く済みやすいです。よくある原因と、やってはいけない行動を先に押さえましょう。\n\n## 結論\n- セルフ給油で一番怖いのは「量」より【燃料の入れ間違い（ガソリン/軽油）】です。\n- 初めては手順を固定すると安全です。【停止→静電気除去→油種確認→給油→戻して確認】の順で迷いません。\n- もし入れ間違えたら、【エンジンをかけずに】スタッフとロードサービスへ。自分で何とかしようとしないのが正解です。\n\n## よくあるミス（最初に知っておく）\n- 燃料の入れ間違い（ガソリン車に軽油、ディーゼル車にガソリン）\n- 油種ボタンを押し間違える（急いでいると起きやすい）\n- 静電気除去を忘れる\n- 給油後にキャップを締め忘れる/半締め（警告灯が点くことも）\n\n## 手順 1 まず「自分の燃料」を確認する\n- ガソリン（レギュラー/ハイオク）か、軽油（ディーゼル）か\n- 給油口のフタの裏や取扱説明書に表示があることが多い\n迷う場合は、無理に進めずスタッフに確認する方が安全です。\n\n## 手順 2 給油前の固定手順（ここだけ覚える）\n- エンジン停止、サイドブレーキ、火気厳禁\n- 静電気除去シートに触れてから作業する\n- 油種の表示をもう一度確認する\n\n## 手順 3 給油のコツ\n- ノズルをしっかり差し込んでからレバーを握る\n- 自動停止で止まったら継ぎ足ししない（あふれやすい）\n- 給油中はその場を離れない\n\n## 手順 4 給油後の確認\n- ノズルを戻す\n- キャップを確実に締め、フタが閉まるか確認する\n- レシートや領収書が必要なら忘れず受け取る\n\n## 入れ間違いをしたら\n- 給油を止めて、【エンジンをかけない】\n- スタッフへ申告し、指示に従う\n- ロードサービス/整備工場に連絡（抜き取り作業が必要になることがあります）\n\n## 補足（実務メモ）\n- 警告灯が赤/点滅、異音や焦げ臭、振動があるなら「走らない」が基本\n- オーバーヒートや液漏れ時にキャップを開けるのは危険（やけどリスク）\n- オイル交換は距離だけでなく期間でも管理。短距離のチョイ乗り中心は早めが安心\n- タイヤは溝だけでなく製造年週・ひび割れも見る（見た目が綺麗でも劣化は進む）\n- 軽自動車＝軽油ではありません。入れ間違いを防ぐため、給油前に必ず油種表示を確認\n- 静電気除去シートに触れてから給油すると、引火リスクを下げられる\n- 誤給油が疑わしいときはエンジンをかけず、ロードサービスへ連絡\n\n## 関連記事\n- /guide/road-service-choice-guide\n- /guide/engine-check-light-first-response\n- /guide/oil-change-frequency-guide\n- /guide/car-accident-first-10-minutes\n",
+  "publishedAt": "2025-12-13T09:00:00.000Z",
+  "updatedAt": "2026-01-20",
+  "tags": [
+    "初心者",
+    "給油",
+    "トラブル",
+    "注意喚起"
+  ],
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "road-service-choice-guide",
+    "engine-check-light-first-response",
+    "oil-change-frequency-guide",
+    "car-accident-first-10-minutes"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [
+    "japan-1995-golden-age-heritage"
+  ],
+  "intentTags": [
+    "buy"
+  ],
+  "monetizeKey": "car_search_conditions",
+  "lead": "セルフ給油のよくあるミスと安全な手順。燃料の入れ間違い時の正しい初動も。",
+  "internalLinks": [
+    "road-service-choice-guide",
+    "engine-check-light-first-response",
+    "oil-change-frequency-guide",
+    "car-accident-first-10-minutes"
+  ],
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/hub-usedcar",
+  "relatedClusterIds": [],
+  "primaryQuery": "セルフ給油の注意点｜油種の間違いを防ぐコツ（軽油は軽用ではない）",
+  "updateReason": "initial-import",
+  "sources": []
+}
