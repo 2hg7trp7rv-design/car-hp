@@ -1,0 +1,1098 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Global Design Rules (CBJ Rebrand)
+  - 白背景 / 濃いグレー文字
+  - 日本語: 明朝（Serif）
+  - アクセント: Tiffany Blue（リンクhover / 細いラインのみ）
+
+  NOTE:
+  既存のTailwind設定が参照しているCSS変数（--font-montserrat / --font-bodoni）を
+  Noto Serif JP に寄せて互換を維持します。
+*/
+
+:root {
+  color-scheme: dark;
+
+  /* Fonts (Tailwind互換)
+     - UI / 英文: Inter
+     - 日本語: Noto Serif JP（可読性を優先し、筆記体はイントロのみに限定）
+  */
+  --font-montserrat: "Inter", "Noto Serif JP", system-ui, -apple-system, BlinkMacSystemFont;
+  --font-bodoni: "Cormorant Garamond", "Noto Serif JP", ui-serif, serif;
+  --font-manrope: "Inter", "Noto Serif JP", system-ui, -apple-system, BlinkMacSystemFont;
+
+  /* Brand tokens */
+  --cb-tiffany: 10 186 181; /* #0ABAB5 */
+  --cb-porcelain: 255 255 255; /* #FFFFFF */
+  --cb-ink: 34 34 34; /* #222222 */
+
+  /* Intro (handwriting only) */
+  --cb-font-script: "Parisienne", "Allura";
+
+  /* Premium typography (LP / Home 用)
+     - 日本語は既存の Noto Serif JP にフォールバックさせる
+     - 既存ページの見た目を壊さないため、デフォルトは従来のまま
+  */
+  --cb-font-display: "Playfair Display", "Cormorant Garamond", "Noto Serif JP";
+  --cb-font-sans: "Inter", "Noto Serif JP";
+  --cb-font-editorial: "Cormorant Garamond", "Noto Serif JP";
+}
+
+/* Color-scheme override for Porcelain panels */
+.porcelain {
+  color-scheme: light;
+}
+
+/* Skip link (keyboard) */
+.cb-skip-link {
+  position: fixed;
+  left: 12px;
+  top: 12px;
+  z-index: 1000;
+  transform: translateY(-160%);
+  padding: 10px 14px;
+  border-radius: 9999px;
+  border: 1px solid rgba(34, 34, 34, 0.14);
+  background: rgba(255, 255, 255, 0.92);
+  color: rgba(34, 34, 34, 0.92);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  box-shadow: 0 14px 35px rgba(0,0,0,0.22);
+  backdrop-filter: blur(10px);
+  transition: transform 180ms ease;
+}
+.cb-skip-link:focus {
+  transform: translateY(0);
+}
+
+
+/* Porcelain panel (Stage上の白い資料棚) */
+.porcelain-panel {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.porcelain-panel::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.06) 0 1px, rgba(0,0,0,0) 1px 2px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 1px, rgba(0,0,0,0) 1px 3px);
+  transform: rotate(7deg);
+  filter: blur(0.2px);
+  z-index: 0;
+}
+
+.porcelain-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 35% 18%, rgba(10,186,181,0.10) 0%, rgba(0,0,0,0) 55%);
+  z-index: 0;
+}
+
+.porcelain-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+/* ----------------------------------------
+   Premium typography helpers
+----------------------------------------- */
+
+.cb-font-display {
+  font-family: var(--cb-font-display), var(--font-montserrat), ui-serif, serif;
+  letter-spacing: 0.02em;
+}
+
+.cb-font-sans {
+  font-family: var(--cb-font-sans), ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    "Noto Sans JP", sans-serif;
+}
+
+.cb-font-editorial {
+  font-family: var(--cb-font-editorial), var(--font-montserrat), ui-serif, serif;
+}
+
+/* ----------------------------------------
+   Base
+----------------------------------------- */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      transition-delay: 0ms !important;
+    }
+  }
+
+  body {
+    background-color: rgb(var(--cb-porcelain));
+    color: rgb(var(--cb-ink));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Script fonts become hard to read with wide tracking; keep it tighter. */
+    letter-spacing: 0.015em;
+  }
+
+  /* Selection（アクセントは使わない） */
+  ::selection {
+    background: rgba(34, 34, 34, 0.12);
+    color: rgb(var(--cb-ink));
+  }
+
+  /* Links: defaultは主張しない。hoverでのみアクセント */
+  a {
+    color: inherit;
+    text-decoration: none;
+    text-underline-offset: 0.24em;
+    text-decoration-thickness: 1px;
+  }
+
+  a:hover {
+    color: rgb(var(--cb-tiffany));
+    text-decoration: none;
+  }
+
+  
+  /* Porcelain panels keep classic underline for usability */
+  .porcelain a:hover {
+    text-decoration: underline;
+    text-decoration-color: rgb(var(--cb-tiffany));
+  }
+
+a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid rgba(var(--cb-tiffany), 0.55);
+    outline-offset: 4px;
+  }
+}
+
+/* ----------------------------------------
+   Background helpers
+   - 既存ページで使われている bg-site / bg-atmosphere を“白”に収束させる
+----------------------------------------- */
+
+.bg-site,
+.bg-atmosphere {
+  background-color: rgb(var(--cb-porcelain));
+  background-image: none !important;
+}
+
+/* ----------------------------------------
+   Typography
+----------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+.serif-heading,
+.page-title {
+  font-family: var(--font-montserrat), ui-serif, serif;
+  letter-spacing: 0.035em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+p,
+li,
+.font-body {
+  font-family: var(--font-montserrat), ui-serif, serif;
+  line-height: 2.05;
+  letter-spacing: 0.02em;
+  text-wrap: pretty;
+}
+
+
+/* セクションラベル（小さな大文字ラベル） */
+.section-label {
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+
+
+/* ----------------------------------------
+   Text as Design (tokens)
+----------------------------------------- */
+
+.cb-eyebrow {
+  font-family: var(--cb-font-sans), ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    "Noto Sans JP", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: inherit;
+  opacity: 0.72;
+}
+
+.cb-meta {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  opacity: 0.62;
+}
+
+.cb-title-display {
+  font-family: var(--cb-font-display), var(--font-montserrat), ui-serif, serif;
+  letter-spacing: 0.04em;
+  line-height: 1.06;
+}
+
+.cb-title {
+  font-family: var(--font-montserrat), ui-serif, serif;
+  letter-spacing: 0.06em;
+  line-height: 1.25;
+}
+
+.cb-lead {
+  font-size: 13px;
+  line-height: 1.95;
+  letter-spacing: 0.04em;
+  opacity: 0.78;
+}
+
+
+/* ----------------------------------------
+   Stage Typography (text as design)
+   - Dark exhibition pages
+----------------------------------------- */
+
+.cb-stage-body {
+  font-size: 15px;
+  line-height: 2.05;
+  letter-spacing: 0.06em;
+  text-wrap: pretty;
+}
+
+.cb-stage-body-strong strong {
+  color: rgba(255,255,255,0.95);
+}
+
+.cb-stage-body-strong em {
+  color: rgba(255,255,255,0.92);
+}
+
+
+/* ----------------------------------------
+   Stage: chapter plate + headings (text as design)
+----------------------------------------- */
+
+.cb-stage-chapter{
+  border-radius: 1.75rem;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.15);
+  padding: 28px 28px;
+  backdrop-filter: blur(12px);
+}
+
+@media (min-width: 640px){
+  .cb-stage-chapter{
+    padding: 32px 36px;
+  }
+}
+
+.cb-stage-chapterTop{
+  padding: 28px 28px;
+}
+
+@media (min-width: 640px){
+  .cb-stage-chapterTop{
+    padding: 32px 36px;
+  }
+}
+
+.cb-stage-chapterLabel{
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.65);
+}
+
+.cb-stage-chapterTitle{
+  margin-top: 12px;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 22px;
+  line-height: 1.35;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,1);
+  text-wrap: pretty;
+}
+
+@media (min-width: 640px){
+  .cb-stage-chapterTitle{
+    font-size: 26px;
+  }
+}
+
+.cb-stage-chapterSummary{
+  margin-top: 14px;
+  max-width: 52rem;
+  font-size: 13px;
+  line-height: 1.9;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.85);
+  text-wrap: pretty;
+}
+
+.cb-stage-h3{
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.9;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,1);
+  text-wrap: pretty;
+}
+
+/* reduce tracking slightly on very small screens */
+@media (max-width: 380px) {
+  .cb-stage-body {
+    letter-spacing: 0.05em;
+  }
+}
+
+
+
+/* ----------------------------------------
+   Article body (COLUMN / GUIDE / HERITAGE)
+----------------------------------------- */
+
+.article-body p {
+  margin-top: 1.35rem;
+}
+
+.article-body p:first-of-type {
+  margin-top: 0.6rem;
+}
+
+.article-body h2 {
+  margin-top: 2.7rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+}
+
+.article-body h3 {
+  margin-top: 1.9rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.article-body-heritage p {
+  margin-top: 1.4rem;
+}
+
+.article-body-heritage p:first-of-type {
+  margin-top: 0.75rem;
+}
+
+.article-body-heritage h2 {
+  margin-top: 2.7rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+}
+
+.article-body-heritage h3 {
+  margin-top: 1.9rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+/* ----------------------------------------
+   Drop caps（先頭ジャンボ1文字）
+   - アクセント色は使わない（文字色で統一）
+----------------------------------------- */
+
+.first-letter-float {
+  text-indent: 0;
+}
+
+.first-letter-span {
+  float: left;
+  margin-right: 12px;
+  margin-top: -6px;
+  margin-bottom: -2px;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 3.4rem;
+  line-height: 0.85;
+  font-weight: 500;
+  color: rgb(var(--cb-ink));
+}
+
+@media (min-width: 640px) {
+  .first-letter-span {
+    font-size: 3.8rem;
+  }
+}
+
+.heritage-dropcap {
+  text-indent: 0;
+}
+
+.heritage-dropcap::first-letter {
+  float: left;
+  margin-right: 12px;
+  margin-top: -6px;
+  margin-bottom: -2px;
+  font-family: var(--font-montserrat), ui-serif, serif;
+  font-size: 3.4rem;
+  line-height: 0.85;
+  font-weight: 500;
+  color: rgb(var(--cb-ink));
+}
+
+@media (min-width: 640px) {
+  .heritage-dropcap::first-letter {
+    font-size: 3.8rem;
+  }
+}
+
+/* ----------------------------------------
+   Heritage highlight（波線アンダーライン = “細いライン”扱い）
+----------------------------------------- */
+
+.heritage-highlight-wave {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: rgba(var(--cb-tiffany), 0.95);
+  text-decoration-thickness: 1.4px;
+  text-underline-offset: 0.18em;
+}
+
+@supports not (text-decoration-thickness: 1px) {
+  .heritage-highlight-wave {
+    text-decoration-thickness: 2px;
+  }
+}
+
+/* ----------------------------------------
+   Layout helpers
+----------------------------------------- */
+
+.page-shell {
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .page-shell {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-shell {
+    padding-inline: 2rem;
+  }
+}
+
+.page-section {
+  padding-block: 3.5rem;
+}
+
+@media (min-width: 1024px) {
+  .page-section {
+    padding-block: 5rem;
+  }
+}
+
+.page-section-lg {
+  padding-block: 5rem;
+}
+
+@media (min-width: 1024px) {
+  .page-section-lg {
+    padding-block: 7.5rem;
+  }
+}
+
+/* ----------------------------------------
+   Home utilities
+----------------------------------------- */
+
+@layer components {
+  .vertical-rl {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  .home-section-no {
+    font-size: clamp(96px, 18vw, 260px);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: rgba(34, 34, 34, 0.1);
+  }
+
+  /* Safe area helpers (iOS notch) */
+  .safe-area-top {
+    top: calc(env(safe-area-inset-top) + 1rem) !important;
+  }
+  .safe-area-right {
+    right: calc(env(safe-area-inset-right) + 1rem) !important;
+  }
+  .safe-area-left {
+    left: calc(env(safe-area-inset-left) + 1rem) !important;
+  }
+  .safe-area-bottom {
+    bottom: calc(env(safe-area-inset-bottom) + 1rem) !important;
+  }
+}
+
+/* ----------------------------------------
+   Scrollbar（アクセントは使わず、グレーで静かに）
+----------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 34, 34, 0.22);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 34, 34, 0.32);
+}
+
+/* --- Home intro splash -------------------------------------------------- */
+/*
+  要望: トップページのヒーロー画像を最初に全面表示し、ふわっと消えて通常トップへ。
+  - JSなし: CSSアニメーションのみ
+  - 低負荷: opacity / transform のみ
+*/
+.home-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: #0b0b0b;
+  animation: cb-home-splash 1600ms ease-out forwards;
+}
+
+.home-splash__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transform: scale(1.015);
+  animation: cb-home-splash-img 650ms ease-out forwards;
+}
+
+.home-splash__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0), rgba(0, 0, 0, 0));
+}
+
+@keyframes cb-home-splash {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes cb-home-splash-img {
+  0% {
+    opacity: 0;
+    transform: scale(1.015);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-splash {
+    display: none;
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------
+   CBJ Interactive Content Components
+   - Designed for dark detail pages (black background / white text)
+   - High-end: subtle borders, minimal motion, readable tap targets
+------------------------------------------------------------ */
+
+/* 1) Interactive checklist */
+.cbj-checklist {
+  margin: 1.2rem 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.cbj-check-item {
+  position: relative;
+}
+
+/* Keep the input accessible while visually hiding it */
+.cbj-check-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.cbj-check-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  cursor: pointer;
+  min-height: var(--cb-tap, 44px);
+  padding: 12px 12px;
+  border-radius: 14px;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cbj-check-label:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+}
+
+.cbj-check-input:focus-visible + .cbj-check-label {
+  outline: 2px solid rgba(10, 186, 181, 0.65);
+  outline-offset: 3px;
+}
+
+.cbj-check-box {
+  width: 22px;
+  height: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 4px;
+  flex-shrink: 0;
+  position: relative;
+  top: 3px;
+  transition: background-color 140ms ease, border-color 140ms ease, transform 140ms ease;
+}
+
+.cbj-check-input:checked + .cbj-check-label .cbj-check-box {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.95);
+  transform: translateY(1px);
+}
+
+.cbj-check-input:checked + .cbj-check-label .cbj-check-box::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 11px;
+  border: solid #0b0b0b;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.cbj-check-text {
+  min-width: 0;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.75;
+  font-size: 0.98rem;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    "Noto Sans JP", sans-serif;
+}
+
+.cbj-check-input:checked + .cbj-check-label .cbj-check-text {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: line-through;
+  text-decoration-color: rgba(255, 255, 255, 0.28);
+  text-decoration-thickness: 1px;
+}
+
+.cbj-check-cards {
+  margin: 0.65rem 0 0 3rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.cbj-check-card {
+  max-width: 42rem;
+}
+
+/* 2) Horizontal scroll comparison/spec table */
+.cbj-table-wrapper {
+  margin: 2.75rem 0;
+}
+
+.cbj-scroll-hint {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    "Noto Sans JP", sans-serif;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-align: center;
+  margin: 0 0 0.65rem;
+  letter-spacing: 0.14em;
+}
+
+.cbj-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: rgba(0, 0, 0, 0.18);
+}
+
+.cbj-spec-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.cbj-spec-table th,
+.cbj-spec-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  line-height: 1.55;
+  vertical-align: top;
+}
+
+.cbj-spec-table thead th {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+}
+
+.cbj-spec-table tbody th {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.68);
+  background-color: rgba(0, 0, 0, 0.28);
+  white-space: nowrap;
+}
+
+.cbj-spec-table tbody tr:last-child th,
+.cbj-spec-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* 3) Pull quote */
+.cbj-pullquote {
+  margin: 3rem 0;
+  padding: 1.1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+  text-align: center;
+}
+
+.cbj-pullquote-text {
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", serif;
+  font-size: 1.45rem;
+  line-height: 1.85;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 0.05em;
+  margin: 0;
+  white-space: pre-line;
+}
+
+@media (max-width: 768px) {
+  .cbj-pullquote-text {
+    font-size: 1.22rem;
+  }
+}
+
+/* 4) Glossary tooltip (CSS-only) */
+.cbj-tooltip {
+  position: relative;
+  border-bottom: 1px dotted rgba(170, 170, 170, 0.75);
+  cursor: help;
+  color: inherit;
+  padding: 0 0.05em;
+}
+
+.cbj-tooltip:focus {
+  outline: none;
+}
+
+.cbj-tooltip:focus-visible {
+  outline: 2px solid rgba(10, 186, 181, 0.55);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.cbj-tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: 140%;
+  left: 50%;
+  transform: translateX(-50%) translateY(2px);
+  width: min(260px, 80vw);
+  padding: 12px 12px;
+  background-color: rgba(15, 15, 15, 0.95);
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  letter-spacing: 0.04em;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.cbj-tooltip:hover::after,
+.cbj-tooltip:focus::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Touch devices: show tooltip below the term to reduce clipping in cards */
+@media (hover: none) {
+  .cbj-tooltip::after {
+    bottom: auto;
+    top: 140%;
+    transform: translateX(-50%) translateY(-2px);
+  }
+  .cbj-tooltip:hover::after,
+  .cbj-tooltip:focus::after {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cbj-tooltip::after,
+  .cbj-check-label,
+  .cbj-check-box {
+    transition: none;
+  }
+}
+
+
+/* ----------------------------------------
+   CBJ Design System v1
+   Purpose
+   - Readability: line length / heading hierarchy / spacing normalization
+   - Usability: consistent touch targets & interaction states
+   - Accessibility: contrast, focus visibility, and keyboard operability
+   Notes
+   - Keep the existing atmosphere. Upgrade with rules, not decoration.
+----------------------------------------- */
+
+:root {
+  /* Tap target baseline (mobile) */
+  --cb-tap: 44px;
+
+  /* --- Color tokens (semantic) ---
+     Keep existing brand tokens (cb-tiffany / cb-porcelain / cb-ink) as primitives.
+     Use semantic tokens below in new UI to avoid one-off colors.
+  */
+  --cb-color-bg: var(--cb-porcelain);
+  --cb-color-surface: 255 255 255;
+  --cb-color-text: var(--cb-ink);
+  --cb-color-muted: 102 102 102;
+  --cb-color-border: 0 0 0;
+  --cb-color-border-alpha: 0.12;
+  --cb-color-accent: var(--cb-tiffany);
+  --cb-color-accent-alpha: 0.18;
+  --cb-color-danger: 220 38 38;
+  --cb-color-warning: 245 158 11;
+  --cb-color-success: 34 197 94;
+
+  /* --- Typography tokens --- */
+  --cb-prose-width: 68ch;
+  --cb-prose-width-wide: 74ch;
+  --cb-leading-body: 2.05;
+  --cb-leading-tight: 1.2;
+  --cb-tracking-body: 0.02em;
+  --cb-tracking-label: 0.18em;
+
+  /* --- Radius / shadow tokens --- */
+  --cb-radius-s: 10px;
+  --cb-radius-m: 12px;
+  --cb-radius-l: 18px;
+  --cb-shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.04);
+  --cb-shadow-card: 0 20px 40px -10px rgba(34, 34, 34, 0.08);
+
+  /* --- Motion tokens --- */
+  --cb-ease-standard: cubic-bezier(0.23, 1, 0.32, 1);
+  --cb-dur-fast: 150ms;
+  --cb-dur-normal: 250ms;
+  --cb-dur-slow: 400ms;
+
+  /* --- Spacing scale (8px-based with a 4px starter) --- */
+  --cb-space-1: 4px;
+  --cb-space-2: 8px;
+  --cb-space-3: 12px;
+  --cb-space-4: 16px;
+  --cb-space-5: 20px;
+  --cb-space-6: 24px;
+  --cb-space-7: 32px;
+  --cb-space-8: 40px;
+  --cb-space-9: 48px;
+  --cb-space-10: 64px;
+}
+
+.cb-prose {
+  --cb-prose-max: var(--cb-prose-width);
+}
+
+.cb-prose-wide {
+  --cb-prose-max: var(--cb-prose-width-wide);
+}
+
+.cb-prose-block {
+  max-width: var(--cb-prose-max, var(--cb-prose-width));
+  margin-inline: auto;
+}
+
+.cb-tap {
+  min-height: var(--cb-tap);
+  min-width: var(--cb-tap);
+}
+
+/* Reading column helpers */
+.cb-prose :is(p, li) {
+  line-height: var(--cb-leading-body);
+  letter-spacing: var(--cb-tracking-body);
+}
+
+/* Component primitives (minimal; meant to be composed with Tailwind utilities) */
+.cb-card {
+  border-radius: var(--cb-radius-m);
+  box-shadow: var(--cb-shadow-soft);
+}
+
+.cb-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--cb-color-border), var(--cb-color-border-alpha));
+  padding: 0.4em 0.75em;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.cb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  border-radius: 999px;
+  padding: 0.65em 1.05em;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: var(--cb-tracking-label);
+  transition: transform var(--cb-dur-fast) var(--cb-ease-standard),
+    background-color var(--cb-dur-normal) var(--cb-ease-standard),
+    border-color var(--cb-dur-normal) var(--cb-ease-standard),
+    color var(--cb-dur-normal) var(--cb-ease-standard);
+}
+
+.cb-btn:active {
+  transform: translateY(1px);
+}
+
+.cb-btn--ghost {
+  background: transparent;
+  border: 1px solid rgba(var(--cb-color-border), 0.18);
+}
+
+.cb-btn--ghost:hover {
+  border-color: rgba(var(--cb-color-accent), 0.55);
+  color: rgb(var(--cb-color-accent));
+}
+
+.cb-input {
+  border-radius: var(--cb-radius-s);
+  border: 1px solid rgba(var(--cb-color-border), 0.16);
+  padding: 0.7em 0.9em;
+  line-height: 1.35;
+  transition: border-color var(--cb-dur-normal) var(--cb-ease-standard),
+    box-shadow var(--cb-dur-normal) var(--cb-ease-standard);
+}
+
+.cb-input:focus-visible {
+  border-color: rgba(var(--cb-color-accent), 0.55);
+  box-shadow: 0 0 0 3px rgba(var(--cb-color-accent), 0.16);
+}
+
+/* Form controls need a visible focus state even when utilities reset outline. */
+:where(input, select, textarea, summary):focus-visible {
+  outline: 2px solid rgba(var(--cb-tiffany), 0.55) !important;
+  outline-offset: 4px;
+}
+
+/* Prevent anchor jumps / focus moves from hiding under fixed overlays (WCAG 2.4.11). */
+html {
+  scroll-padding-top: 96px;
+  scroll-padding-bottom: 96px;
+}
+
+/* Better tap highlight on iOS without changing the visual design. */
+:where(a, button, input, select, textarea, summary) {
+  -webkit-tap-highlight-color: rgba(var(--cb-tiffany), 0.18);
+}

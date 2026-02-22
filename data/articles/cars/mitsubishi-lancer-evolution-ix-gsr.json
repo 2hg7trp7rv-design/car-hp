@@ -1,0 +1,110 @@
+{
+  "id": "mitsubishi-lancer-evolution-ix-gsr",
+  "slug": "mitsubishi-lancer-evolution-ix-gsr",
+  "name": "Lancer Evolution IX GSR",
+  "maker": "Mitsubishi",
+  "releaseYear": 2005,
+  "difficulty": "intermediate",
+  "bodyType": "セダン",
+  "segment": "スポーツセダン",
+  "grade": null,
+  "engine": null,
+  "drive": null,
+  "transmission": null,
+  "fuel": null,
+  "powerPs": null,
+  "torqueNm": null,
+  "fuelEconomy": null,
+  "summary": "4G63の熟成。速さは分かりやすいが、油圧AWDと改造の見極めが要点。",
+  "summaryLong": "エボIXは4G63の完成形に近い世代で、速さが分かりやすいスポーツセダンです。踏めば速い、曲がれば曲がる。ただし中古は改造率が高く、油圧制御（ACD/AYC）や駆動系の状態で維持の難易度が変わります。買う前に「駆動系の作動」「冷却」「下回り」「整備履歴」を優先して確認したいです。",
+  "costImpression": "速さの代償として、消耗も出ます。予防整備を前提にすると、結果的に気持ちよく乗れます。",
+  "heroImage": "/images/cars/placeholder.jpg",
+  "mainImage": "/images/cars/placeholder.jpg",
+  "relatedNewsIds": [],
+  "tags": [
+    "Mitsubishi",
+    "セダン",
+    "スポーツセダン"
+  ],
+  "intentTags": [],
+  "relatedCarSlugs": [
+    "mitsubishi-lancer-evolution-vi-gsr",
+    "subaru-impreza-wrx-sti-v6",
+    "subaru-impreza-wrx-sti-gc8-type-r"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "overheat-coolant-leak-guide"
+  ],
+  "relatedColumnSlugs": [
+    "usedcar-market-buy-timing",
+    "repair-history-how-to-judge"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-evo-impreza-15year-war-heritage"
+  ],
+  "strengths": [
+    "踏めば速い、曲がれば曲がる。分かりやすい速さがある",
+    "スポーツセダンなので日常性も残せる",
+    "パーツと情報が豊富で、好みに寄せやすい"
+  ],
+  "weaknesses": [
+    "改造率が高く、個体差が大きい",
+    "油圧AWDなど“面倒を見るポイント”が増える",
+    "消耗品コストが積み上がりやすい"
+  ],
+  "troubleTrends": [
+    "ACD/AYCなど油圧系の不調・警告",
+    "冷却系の弱りによる水温トラブル",
+    "足回りの消耗（ブッシュ/ショック）",
+    "タービン/排気系の劣化"
+  ],
+  "bestFor": [
+    "とにかく速い四駆ターボを、セダンで持ちたい",
+    "改造内容や整備履歴を“読み解いて”選べる",
+    "維持費込みで趣味車として割り切れる"
+  ],
+  "notFor": [
+    "燃費や静粛性を優先したい",
+    "油圧AWDのメンテが不安",
+    "安さ最優先で買いたい"
+  ],
+  "maintenanceNotes": [
+    "油圧AWD（ACD/AYC）は作動と履歴が大事。違和感がある個体は避ける。",
+    "冷却とオイル管理は基本。熱が入る車なので予防整備が合う。",
+    "タイヤは4本セット管理。予算を先に決めておくと楽。"
+  ],
+  "lengthMm": null,
+  "widthMm": null,
+  "heightMm": null,
+  "wheelbaseMm": null,
+  "weightKg": null,
+  "priceNew": "当時：350万〜450万円（参考）",
+  "priceUsed": "400万〜900万円（相場変動）",
+  "zeroTo100": null,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mitsubishi Lancer Evolution IX GSR",
+  "makerKey": "mitsubishi",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "三菱 ランサーエボリューション IX（GSR）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/mitsubishi",
+  "relatedClusterIds": [],
+  "primaryQuery": "Lancer Evolution IX GSR",
+  "updateReason": "car-index-upgrade-2026-02-01",
+  "sources": [],
+  "purchasePriceSafe": "安全ライン：550万〜900万円（駆動系・整備履歴優先）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間70〜150万円（駆動系/足回りで上下）"
+  },
+  "maintenanceCostYenPerYear": 1100000,
+  "body": "## 結論\nエボIXは、4G63が熟成した世代のスポーツセダンです。踏めば速い、曲がれば曲がる。速さが分かりやすい。\n\nただし中古は改造率が高く、油圧AWD（ACD/AYC）や駆動系の状態で維持の難易度が変わります。買う前に「駆動系の作動」「冷却」「下回り」「整備履歴」を優先して確認するのが安全です。\n\n## 向く人 / 向かない人\n向く人\n- とにかく速い四駆ターボを、セダンで持ちたい\n- 整備履歴と改造内容を含めて、状態で選べる\n\n向かない人\n- 燃費や静粛性を優先したい\n- 安さ最優先で買いたい\n\n## 買う前のチェック\n- ACD/AYCの作動：警告灯や違和感。履歴があると安心\n- 駆動系：ミッション/デフの異音、クラッチの状態\n- 冷却：水温の安定、ラジエーター/ホースの状態\n- 足回り：ショック、ブッシュ、偏摩耗\n- 改造の質：ただパワーを上げただけの個体は避けたい\n\n## 弱点と故障\n速い車ほど、弱点も“はっきり”出ます。\n\n- 警告灯が点く/作動が変 → 油圧系（ACD/AYC）やセンサー → 費用感：数万〜（内容次第で上振れ）\n- 水温が不安定 → 冷却系の弱り → 費用感：数万〜十数万円\n- 段差でゴトゴト/直進が落ち着かない → ブッシュ/脚の劣化 → 費用感：10万〜30万円\n\n## 維持費の目安\n目安は年間70〜150万円。タイヤは4本セットで減るので、まとめて予算を置いておくとラクです。ブレーキの効きやジャダー（振動）は試乗でかなり分かります。街乗りでも出る個体があるので、そこで妥協すると後で痛いです。\n\n維持の枠を先に決めるなら、[維持費シミュレーション](/guide/maintenance-cost-simulation)で上限を作ってから探すのがおすすめです。\n\n## 中古で買うなら\n距離より、整備履歴と“使われ方”です。サーキットやパワーアップ前提の個体は、消耗も前提になります。\n\n修復歴の見方は[修復歴チェックリスト](/guide/repair-history-used-car-checklist)で基準を作ってから見ると、判断がぶれません。\n\n## 比較\n- エボVI（GSR）：より競技寄りの濃さ。味は濃いが、維持のクセも濃い。\n- WRX STI（V6）：同じラリー系。操作感の好みで分かれる。\n- WRX STI GC8 Type R：より尖った割り切り。満足度も割り切りも強い。\n\n## 関連リンク\n- [修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist)\n- [維持費シミュレーション](/guide/maintenance-cost-simulation)\n- [オーバーヒート/冷却水漏れの初動](/guide/overheat-coolant-leak-guide)\n- [中古車の買い時](/column/usedcar-market-buy-timing)\n- [修復歴の“見抜き方”](/column/repair-history-how-to-judge)\n- [エボとインプが戦った15年](/heritage/japan-evo-impreza-15year-war-heritage)\n"
+}

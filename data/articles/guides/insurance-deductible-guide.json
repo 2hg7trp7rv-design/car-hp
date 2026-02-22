@@ -1,0 +1,52 @@
+{
+  "slug": "insurance-deductible-guide",
+  "title": "自動車保険の免責金額（自己負担額）の決め方｜保険料とリスクのバランス",
+  "lead": "車両保険の免責金額の考え方。保険料とのトレードオフ、設定パターン、決め方の目安。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "INSURANCE",
+  "tags": [
+    "免責",
+    "自己負担",
+    "自動車保険",
+    "車両保険"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-20",
+  "internalLinks": [
+    "sharyou-hoken-necessary",
+    "bengoshi-hiyou-tokuyaku-guide",
+    "car-accident-first-10-minutes",
+    "road-service-choice-guide"
+  ],
+  "body": "この記事は「自動車保険の免責金額（自己負担額）の決め方｜保険料とリスクのバランス」をテーマに、保険は用語が難しく見えますが、見るべきポイントはシンプルです。免責・特約・等級の「損しない考え方」を噛み砕いてまとめます。\n\n## 結論\n- 免責金額は「保険を使うときに自分で払う金額」です。免責を上げるほど保険料は下がりやすく、下げるほど保険料は上がりやすくなります。\n- 迷ったら、【“急に支払える上限”】で決めるのが現実的です。免責分を払えないと、結局保険を使えません。\n- 古い車や車両価値が低い車は、免責を下げても得になりにくいことがあります（保険料と見合うかを必ず確認）。\n\n## 先に確認するチェックリスト\n- 車両保険を付けるか（/guide/sharyou-hoken-necessary）\n- 車両価値（保険金額）と、保険料の差\n- 免責の設定パターン（例：0-10、5-10 など。契約で異なります）\n- 自己資金：急な修理費として出せる上限\n- 使い方：狭い駐車場、家族利用、雪道など（小さな事故の確率）\n\n## 手順 1 「保険を使うのはどの規模の事故か」を決める\n小さな擦り傷なら自費、事故や大きい修理だけ保険、という考え方ができます。\n- 自費で払える金額はどこまでか\n- その金額を超えたら保険を使うのか\n\n## 手順 2 免責を“保険を使うライン”に合わせる\n- 免責が高い：小さな修理は自費で、事故レベルだけ保険\n- 免責が低い：小さな修理でも保険を使いやすい（保険料は上がりやすい）\n\n## 手順 3 「1回目/2回目」で扱いが変わるかを見る\n免責は「事故1回目は0円、2回目から10万円」など、複数段の設定になっていることがあります。\n- 何回目の事故から免責が増えるか\n- 免責は毎回かかるか\n\n## よくあるつまずき\n- 免責0を選んで保険料が上がり、結局家計が苦しくなる\n- 免責を高くしすぎて、修理費を払えず保険を使えない\n- 車両価値が低いのに車両保険を厚くし、コストに見合わない\n\n## 補足（実務メモ）\n- 免責金額は「少額修理を保険で出すかどうか」に効く。小さな修理は自己負担のほうが結果的に得なことも\n- 弁護士費用特約は“もらい事故”などで頼れる一方、使える範囲は契約条件で違う\n- 車を手放す/しばらく乗らないなら、中断証明で等級を保存できる（期限や条件は要確認）\n\n## 関連記事\n- /guide/sharyou-hoken-necessary\n- /guide/bengoshi-hiyou-tokuyaku-guide\n- /guide/car-accident-first-10-minutes\n- /guide/road-service-choice-guide\n",
+  "monetizeKey": "insurance_saving",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "sharyou-hoken-necessary",
+    "bengoshi-hiyou-tokuyaku-guide",
+    "car-accident-first-10-minutes",
+    "road-service-choice-guide"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "insurance",
+    "saving"
+  ],
+  "seoTitle": "自動車保険の免責金額の決め方｜保険料と自己負担",
+  "seoDescription": "車両保険の免責金額の考え方。保険料とのトレードオフ、設定パターン、決め方の目安。",
+  "summary": "車両保険の免責金額の考え方。保険料とのトレードオフ、設定パターン、決め方の目安。",
+  "status": "published",
+  "id": "guide:insurance-deductible-guide",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/insurance",
+  "relatedClusterIds": [],
+  "primaryQuery": "自動車保険の免責金額（自己負担額）の決め方｜保険料とリスクのバランス",
+  "updateReason": "initial-import",
+  "sources": []
+}

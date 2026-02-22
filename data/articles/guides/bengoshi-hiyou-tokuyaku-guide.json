@@ -1,0 +1,52 @@
+{
+  "slug": "bengoshi-hiyou-tokuyaku-guide",
+  "title": "弁護士費用特約は付けるべき？使える範囲・向いている人の判断",
+  "lead": "もらい事故など交渉が重い場面で役立つ弁護士費用特約。使える場面、上限、注意点を整理。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "INSURANCE",
+  "tags": [
+    "弁護士費用特約",
+    "自動車保険",
+    "もらい事故",
+    "示談"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-20",
+  "internalLinks": [
+    "car-accident-first-10-minutes",
+    "insurance-deductible-guide",
+    "sharyou-hoken-necessary",
+    "tokkyu-hikisugi-chudan-guide"
+  ],
+  "body": "この記事は「弁護士費用特約は付けるべき？使える範囲・向いている人の判断」をテーマに、保険は用語が難しく見えますが、見るべきポイントはシンプルです。免責・特約・等級の「損しない考え方」を噛み砕いてまとめます。\n\n## 結論\n- 弁護士費用特約は、示談交渉や訴訟などで発生する【弁護士費用・法律相談費用】を補償する特約です。\n- 特に効くのは、いわゆる“もらい事故”（過失0に近い事故）などで、相手方との交渉が負担になるケースです。\n- 付けるか迷うなら、まずは【他の保険（火災保険など）で付帯していないか】を確認し、重複を避けたうえで判断します。\n\n## 弁護士費用特約が役に立ちやすい場面\n- 過失割合や賠償額で揉めている\n- 相手が無保険・対応が遅いなどで交渉が進まない\n- 後遺障害の認定、休業損害、治療費の扱いなどで不安がある\n- 相手方保険会社とのやり取りが精神的に負担\n\n## 先に確認するチェックリスト\n- 補償の上限額（例：弁護士費用は数百万円、相談費用は数万円〜など。契約で異なります）\n- 対象となる事故の範囲（自動車事故限定型/日常生活も含む型など）\n- 対象者（本人だけか、家族も対象か）\n- 免責（支払対象外）となるケース\n\n## 手順 1 事故直後は「連絡→確認」の順にする\n- まずは事故対応（/guide/car-accident-first-10-minutes）\n- 保険会社へ連絡し、「弁護士費用特約を使いたい」旨を伝える\n- 先に弁護士へ相談する場合も、後で補償対象になるかは必ず保険会社に確認する\n\n## 手順 2 弁護士の選び方（迷ったら紹介を使う）\n- 保険会社の紹介制度を使うと、手続きがスムーズになりやすい\n- 自分で探す場合は「交通事故案件に慣れているか」を確認する\n- 費用の見通し（着手金・報酬・実費）を事前に言葉で合わせる\n\n## よくある誤解・つまずき\n- 「過失0だと使えない」と思い込む（実際は、過失が小さい被害事故ほど交渉の助けになることが多い）\n- 上限額や対象外の範囲を確認せず、後で自己負担が出る\n- 家族の契約で既に付いているのに、重複して付けてしまう\n\n## 補足（実務メモ）\n- 「自分の過失が大きい事故」ほど、任意保険の厚みが効く（対物・車両・弁護士特約など）\n- 免責は“保険を使うハードル”を上げる代わりに、保険料を下げる方向に働きやすい\n- 等級は一度落ちると戻すのに時間がかかるため、使いどころを見極める\n\n## 関連記事\n- /guide/car-accident-first-10-minutes\n- /guide/insurance-deductible-guide\n- /guide/sharyou-hoken-necessary\n- /guide/tokkyu-hikisugi-chudan-guide\n",
+  "monetizeKey": "insurance_compare_core",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "car-accident-first-10-minutes",
+    "insurance-deductible-guide",
+    "sharyou-hoken-necessary",
+    "tokkyu-hikisugi-chudan-guide"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "insurance",
+    "accident"
+  ],
+  "seoTitle": "弁護士費用特約は付けるべき？使える範囲と判断",
+  "seoDescription": "もらい事故など交渉が重い場面で役立つ弁護士費用特約。使える場面、上限、注意点を整理。",
+  "summary": "もらい事故など交渉が重い場面で役立つ弁護士費用特約。使える場面、上限、注意点を整理。",
+  "status": "published",
+  "id": "guide:bengoshi-hiyou-tokuyaku-guide",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/insurance",
+  "relatedClusterIds": [],
+  "primaryQuery": "弁護士費用特約は付けるべき？使える範囲・向いている人の判断",
+  "updateReason": "initial-import",
+  "sources": []
+}

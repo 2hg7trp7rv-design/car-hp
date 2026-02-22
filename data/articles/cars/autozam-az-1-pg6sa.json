@@ -1,0 +1,126 @@
+{
+  "id": "autozam-az-1-pg6sa",
+  "slug": "autozam-az-1-pg6sa",
+  "name": "Autozam AZ-1 (PG6SA)",
+  "maker": "Mazda",
+  "releaseYear": 1992,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "軽スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "AZ-1 (PG6SA)",
+  "summary": "軽の超個性派。中古は錆と内装、ドアやゴム類の状態が命。",
+  "summaryLong": "AZ-1(PG6SA)は、軽の枠にミッドシップとガルウィングを詰め込んだ、ほぼ企画勝ちの車種です。中古では希少性ゆえに『選べる個体が少ない』のが最大の難所。だからこそ、錆、雨漏り、ヒンジ周り、内装の欠品など、現車での確認が大切です。機関は軽の延長で整備できますが、外装部品の確保が難しいケースもある。状態が良い個体に出会えれば、所有体験は唯一無二です。 欠品の有無で難易度が変わります。",
+  "heroImage": "/images/cars/autozam-az-1-pg6sa-hero.jpg",
+  "mainImage": "/images/cars/autozam-az-1-pg6sa-main.jpg",
+  "imageUrl": "/images/cars/autozam-az-1-pg6sa-hero.jpg",
+  "gallery": [
+    "/images/cars/autozam-az-1-pg6sa-front.jpg",
+    "/images/cars/autozam-az-1-pg6sa-side.jpg",
+    "/images/cars/autozam-az-1-pg6sa-interior.jpg"
+  ],
+  "engine": "Mid Inline-3 0.66 Turbo (F6A)",
+  "powerPs": 64,
+  "torqueNm": 85,
+  "transmission": "5MT",
+  "drive": "MR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 10〜15 km/L",
+  "priceNew": "当時: 160万〜210万円台（仕様差）",
+  "priceUsed": "180万〜650万円（相場変動）",
+  "strengths": [
+    "唯一無二のパッケージと物語性。",
+    "ミッドシップらしい回頭感で、操作が濃い。",
+    "軽さが動きの速さにつながる。",
+    "イベント性が高く、所有体験が強い。"
+  ],
+  "weaknesses": [
+    "個体差が大きい。修復と錆で価値が極端に割れる。",
+    "部品と整備の窓口が限られ、計画が必要。",
+    "短い軸距ゆえ、足の状態が崩れると怖さが出やすい。",
+    "ターボ周辺の熱履歴でトラブルが出やすい。"
+  ],
+  "troubleTrends": [
+    "骨格・フロア周りの修復痕と錆は最優先で確認したいです。",
+    "冷却系とターボ周辺の滲み、ホース類の状態が重要です。",
+    "足回りブッシュのへたりは挙動に直結します。",
+    "電装の後付けがある個体は切り分け難度が上がります。"
+  ],
+  "costImpression": "状態で世界が変わる。安い個体は安くないことが多い。履歴と保管環境が価値。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "dealer-shaken-is-expensive-myth"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "how-to-choose-first-sports-car"
+  ],
+  "relatedCarSlugs": [
+    "honda-beat-pp1",
+    "suzuki-cappuccino-ea11r",
+    "honda-s660-jw5"
+  ],
+  "tags": [
+    "Mazda",
+    "Autozam",
+    "AZ-1",
+    "PG6SA",
+    "kei",
+    "64ps",
+    "MR",
+    "turbo"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-kei-sports-abc-heritage"
+  ],
+  "intentTags": [
+    "kei",
+    "lightweight",
+    "MR",
+    "1990s",
+    "heritage"
+  ],
+  "purchasePriceSafe": "安全ライン：230〜420万円前後（骨格と履歴重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間25〜55万円"
+  },
+  "maintenanceCostYenPerYear": 420000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mazda Autozam AZ-1 (PG6SA)",
+  "makerKey": "mazda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": null,
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "マツダ AZ-1（PG6SA）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/mazda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Autozam AZ-1 (PG6SA)",
+  "updateReason": "initial-import",
+  "sources": [],
+  "bestFor": [
+    "実用より『所有の体験』を重視したい人",
+    "古い軽スポーツの維持を、趣味として楽しめる人",
+    "錆や部品供給の難しさも含めて付き合える人"
+  ],
+  "notFor": [
+    "快適性や積載を最優先したい人",
+    "維持の相談ができる店が近くにない人",
+    "見た目だけで選び、素性を確認しないまま買ってしまう人"
+  ],
+  "maintenanceNotes": [
+    "錆とボディの素性は最重要。後から直しにくい",
+    "ガルウィング周りのゴム類と開閉の調子は満足度に直結",
+    "足回りのリフレッシュで走りの印象が変わる",
+    "年式由来の電装トラブルは予防が効く"
+  ],
+  "body": "## 結論\nAZ-1は、スペックで買う車ではありません。所有したときの体験を買う車です。だからこそ中古は、見た目より素性。錆と内装、ドア周りの状態を最優先にしてください。\n\n## 向く人 / 向かない人\n実用を求めるほど苦しくなります。趣味として割り切れる人には最高。古い車の手間を引き受けられるかが分かれ目です。\n\n## 買う前のチェック\n下回り、錆、ボディのチリ。ドアの開閉、ゴムの状態、雨漏りの痕跡。試乗では、直進性と異音を確認します。個体差が大きいので、違和感が少ない車を選ぶのが正解です。\n\n### AZ-1はボディチェックが主役\n- ドアヒンジと開閉のスムーズさ。ガタがあると修理が大変です\n- 雨漏りの痕跡。ルーフ周りとフロアの湿りを確認\n- 外装の割れや欠品。部品探しが難しい場合があります\n- 下回りの錆と、補修痕。保管環境が読めます\n\n## 弱点と故障\n弱点は経年です。ゴム類、電装、ブッシュ。小さな不調を放置すると、満足度が落ちやすい。早めに整える前提で考えてください。\n\n## 維持費\n維持費は、部品の探しやすさで変わります。毎年一定ではなく、イベントとして波が出る。予算を前に置くと気持ちが楽です。\n\n### 整備はできても、部品は別問題\n機関は軽の延長で対応できますが、外装や内装は状態勝負。購入前に欠品を洗い出し、許容できる範囲を決めておくと迷いが減ります。\n\n## 中古で買うなら\n状態重視で選ぶ。安さで選ぶと、後で取り返すのが難しい車です。可能なら、専門性のある店から買うのが近道です。\n\n### 迷うなら買わない判断も強い\n希少車は『次がない』と言われがちですが、状態が悪い車を掴むと次も何もなくなります。惚れた上で、状態に納得できる個体だけを狙いたいです。\n\n### 欠品の洗い出しが肝\nAZ-1は、機関よりも部品の欠品が悩みになります。購入前に、内装の小物、外装のモール、純正部品の有無を確認。欠品が多いほど、あとで探す時間がコストになります。\n\n### 迷いを減らす現車チェック\n- ドアヒンジと開閉のスムーズさ。ガタがあると修理が大変\n- 雨漏りの痕跡。ルーフ周りとフロアの湿りを確認\n- 外装の割れや欠品。補修の質も含めて見る\n- 下回りの錆と補修痕。保管環境が読めます\n- 付属品の有無。工具やマニュアルが残っているか\n\n### 高くても状態の良い個体が得\n希少車は『安い理由』が修理費に直結します。機関は整備で追いついても、外装と内装は時間が掛かりやすい。だからこそ、状態の良い個体ほど総額は安くなりやすいです。\n\n\nAZ-1はドア周りの状態が価値を左右します。開閉のスムーズさ、異音、ヒンジのガタ。ここが健康な個体は、保管も丁寧なことが多いので、優先してチェックしたいです。\n\n## 比較\n同じ軽スポーツでも、ビートやカプチーノは走りの方向が違います。AZ-1は『体験』の車。欲しいものが走りなのか、所有感なのかで答えが変わります。\n\n## 関連リンク\n"
+}

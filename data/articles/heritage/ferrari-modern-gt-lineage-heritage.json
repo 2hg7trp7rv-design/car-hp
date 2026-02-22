@@ -1,0 +1,58 @@
+{
+  "id": "heritage-ferrari-modern-gt-lineage",
+  "slug": "ferrari-modern-gt-lineage-heritage",
+  "type": "HERITAGE",
+  "status": "published",
+  "kind": "BRAND",
+  "maker": "Ferrari",
+  "brandName": "Ferrari",
+  "title": "フェラーリの現代GT：派手さより「普段使いの余裕」を選ぶ時代",
+  "titleJa": "フェラーリの現代GT：派手さより「普段使いの余裕」を選ぶ時代",
+  "seoTitle": null,
+  "seoDescription": null,
+  "createdAt": "2026-02-01",
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "heroTitle": "強さは、静かなほうが長持ちする。",
+  "heroCaption": "GTの価値は、速さより使える時間。フェラーリが近年積み上げている方向性を整理する。",
+  "heroImage": "/images/heritage/hero_default.jpg",
+  "heroImageCredit": "",
+  "heroTone": "dark",
+  "eraLabel": "2000s–2020s",
+  "keyModels": [
+    "California",
+    "Portofino",
+    "Roma"
+  ],
+  "highlights": [
+    "GTは見た目の派手さより、乗る頻度を増やすための設計へ",
+    "電子制御は速さのためだけではなく、疲れにくさのために使われる",
+    "中古では装備の差が体験を変える。内装と電装は軽視しない",
+    "ミッドシップと迷う人ほど、用途の棚卸しが効く"
+  ],
+  "summary": "近年のフェラーリGTは、非日常を日常へ寄せるための技術を積み上げている。派手さより余裕、限界より再現性。ミッドシップと迷ったときの考え方も含めて整理する。",
+  "body": "【序章：GTは弱くなったのではなく、使える時間を増やした】\nGTを選ぶ人は、速さに興味がないわけではありません。\nむしろ速いことは前提で、どの場面で気持ちよく使えるかを重視しています。\n\nミッドシップは、特別な時間を濃くしてくれる。\n一方でGTは、特別な時間を増やしてくれる。\nどちらが上という話ではなく、生活の中での置き方が違います。\n\n【第1章：現代GTの価値は、疲れにくさと余裕】\n疲れにくい車は退屈、という時代がありました。\nしかし現代のGTは、退屈ではなく余裕です。\n余裕があるから、踏める瞬間が増える。\n踏める瞬間が増えるから、楽しさが増える。\n\n電子制御も同じです。\n速さのためだけではなく、疲れにくさのために使われる。\n結果として、ドライバーは無理をしなくても気持ちいい。\n\n【第2章：中古では、内装と電装の完成度が満足度を左右する】\nGTは、乗る時間が長い車です。\nだから中古では、内装の質感と操作系の状態が満足度を左右します。\n警告灯が出ていないだけでは足りません。\n過去にどう診断し、どう直したか。ここまで見えると安心材料になります。\n\n【第3章：ミッドシップと迷うなら、用途の棚卸しが先】\n迷い方はシンプルです。\n月に何回、どんな道を走るのか。\n一人で乗るのか、同乗者がいるのか。\n高速が多いのか、街中が多いのか。\n\nこの棚卸しができると、GTの価値は急に現実になります。\n派手さではなく、使える頻度を買う。\nそれが現代GTの選び方です。\n\n【終章：強さは静かなほうが長持ちする】\nGTは、所有の満足をじわじわ増やすタイプの車です。\n派手な刺激が薄いぶん、飽きにくい。\nそしてコンディションが整うほど、踏んだときの強さが立ち上がります。\n\nフェラーリのGTは、非日常を日常へ寄せるための答えです。\nあなたの生活に、その答えが合うかどうか。\nそこだけを見て選べば、後悔は減ります。",
+  "tags": [
+    "ferrari",
+    "gt",
+    "roma"
+  ],
+  "relatedCarSlugs": [
+    "ferrari-roma",
+    "ferrari-812-superfast"
+  ],
+  "relatedGuideSlugs": [],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "ferrari",
+    "gt",
+    "daily"
+  ],
+  "publicState": "noindex",
+  "parentPillarId": "/heritage",
+  "relatedClusterIds": [],
+  "primaryQuery": "フェラーリ GT ローマ",
+  "updateReason": "heritage-scaffold-2026-02-01",
+  "sources": []
+}

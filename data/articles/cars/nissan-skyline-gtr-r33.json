@@ -1,0 +1,118 @@
+{
+  "id": "nissan-skyline-gtr-r33",
+  "slug": "nissan-skyline-gtr-r33",
+  "name": "Skyline GT-R R33",
+  "maker": "Nissan",
+  "releaseYear": 1995,
+  "difficulty": "advanced",
+  "bodyType": "sports-coupe",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "nissan-gt-r-godzilla-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "GT-R",
+  "summary": "R32の影で誤解されたR33。剛性と高速安定性で“長く速い”GT-Rを形にした世代。",
+  "summaryLong": "R33型スカイラインGT-R（BCNR33）は、R32の圧倒的な競技性の後に登場したことで「大きい」「重い」と語られがちですが、実像は“長く速い”を成立させるための進化でした。ボディ剛性や高速域の安定性、熱のマネジメントなど、30年を超えて所有する視点ではむしろ強みが見えます。一方で個体差は大きく、改造車も多い領域。購入では走行距離よりも、冷却・潤滑・点火の整合性、下回りの錆と修復歴、足回り消耗部品の更新履歴が重要です。整った個体に出会えれば、R33は“誤解されていたGT-R”から、最も現代の道路環境に合うヘリテージへと評価が反転します。",
+  "body": "## 結論\nR33 GT-Rは、GT-Rの中でも「落ち着き」と「太さ」で語られやすい世代です。サイズも質量も増えたぶん、高速域での安定感や余裕が出る。尖った速さというより、速さを抱え込む感じがあります。\n\n中古市場では、R32同様に個体差が激しいです。整備の密度、錆、補修の質、改造の意図。同じR33でも、乗り味がまるで違います。だからこそ、安さより履歴の透明度で選ぶのが安全です。\n\n結論としては、器の状態と整合。ここが揃った個体が、いちばん長く楽しめます。\n\n## 向く人 / 向かない人\nR33は、GT-Rを「落ち着いた速さ」で楽しみたい人向けです。古い車の不確実性を許容できない人や、維持費を読めないことがストレスになる人には向きません。\n\n## 買う前のチェック\n### まずは錆と骨格\nまずは器です。器が良い個体ほど、走りの印象も維持費も読みやすくなります。\n- 下回り、フロア、フェンダー周りの錆\n- 補修歴の説明が具体的か\n- 直進性とステアリングセンター\n\n迷う場合は [修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist) の手順で、情報を整理してから判断すると失敗しにくいです。\n\n### 改造の質\nR33も改造車は多いです。パーツの銘柄と施工の質が説明できる個体を優先したいです。\n\n### 駆動系と足\n- 異音、振動、段差での収まり\n- ブレーキの安定感\n- デフや駆動系の違和感\n\n## 弱点と故障\n### 経年のリフレッシュが前提\nゴム類、ホース類、ブッシュ。ここを整えると、走りの芯が戻ります。逆に、ここが古いと「重いだけ」に感じやすいです。\n\n### 補修の質で乗り味が割れる\n古いGT-Rは器がすべてです。事故歴の有無だけでなく、補修の質と説明の透明度を優先したいです。\n\n### 雑な改造はコストになる\n雑な改造は、後から戻すのが大変です。買うなら丁寧に作られた個体か、ノーマルに近い個体が安全です。\n\n## 維持費\n維持費の目安は年間80〜160万円。状態が良い個体ほど、維持費は読みやすくなります。維持費は平均より上振れを許容できるかで考えると現実的です。\n\n## 中古で買うなら\n- 錆と骨格で候補を絞る\n- 改造車は施工の質と履歴が説明できるものを選ぶ\n- 価格が安い理由が言語化できない個体は避ける\n\nR33は、整った個体ほど落ち着いて速い。その余裕が魅力です。\n\n購入後にまずやるなら、油脂類の一新と、足回りの点検。古いGT-Rは、基礎の整備をやるほど価値が体感で戻ってきます。\n\n## 比較\nR32は軽さと鋭さ、R33は落ち着き、R34は完成度と価格。方向性で選ぶと迷いにくいです。直線の迫力より全体の濃さで選ぶなら、スープラ（JZA80）とも比較できます。\n\n## 関連リンク\n購入前点検の型と、維持費の考え方をまとめた記事に繋げています。",
+  "costImpression": "R33は距離を走れる器がありますが、その分“足と冷却”が整っていることが前提です。駆動オイルの管理まで含めて、最初の整備予算を確保したいです。",
+  "heroImage": "/images/cars/nissan-skyline-gtr-r33-hero.jpg",
+  "mainImage": "/images/cars/nissan-skyline-gtr-r33-hero.jpg",
+  "imageUrl": "/images/cars/nissan-skyline-gtr-r33-hero.jpg",
+  "gallery": [
+    "/images/cars/nissan-skyline-gtr-r33-1.jpg",
+    "/images/cars/nissan-skyline-gtr-r33-2.jpg"
+  ],
+  "engine": "Front Inline-6 Twin Turbo (RB26DETT)",
+  "powerPs": 280,
+  "torqueNm": 368,
+  "transmission": "5MT / 4AT",
+  "drive": "AWD",
+  "fuel": "ハイオク",
+  "fuelEconomy": "（年式/仕様で変動）",
+  "priceNew": "当時：450万〜550万円（参考）",
+  "priceUsed": "800万〜2000万円（相場変動）",
+  "priceUsedYenRange": "800万〜2000万円（相場変動）",
+  "purchasePriceSafe": "安全ライン：1200〜2000万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間80〜160万円"
+  },
+  "maintenanceCostYenPerYear": 1200000,
+  "strengths": [
+    "高速域の安定性とボディ剛性が高く、長距離でも疲れにくいGT的資質",
+    "RB26＋四駆のトラクションで、路面状況を選ばず“速さの再現性”が高い",
+    "30年車としては部品・知見が厚く、主治医が見つかれば長く維持しやすい"
+  ],
+  "weaknesses": [
+    "個体差が大きく、改造の整合性が悪いとトラブルが連鎖しやすい",
+    "冷却・潤滑の管理が甘い個体は、熱に起因する不調が出やすい",
+    "下回りの錆やブッシュ類の劣化が走り味に直結する"
+  ],
+  "troubleTrends": [
+    "ホース・樹脂部品など冷却系の年式劣化は早めに手当てする",
+    "ブッシュ類・足回りのリフレッシュで直進性と乗り味が戻る",
+    "駆動系は負担が大きい。異音と振動の兆候を拾う"
+  ],
+  "bestFor": [
+    "GT-Rを落ち着いた速さで楽しみたい。高速域の安定感や余裕が好き。",
+    "履歴と整合で個体差を見極めるつもりがある。器を優先できる。",
+    "維持費の上振れを許容して、基礎から整える覚悟がある。"
+  ],
+  "notFor": [
+    "古い車の不確実性がストレスになる。確実性を最優先したい。",
+    "説明が曖昧な改造車でも気にしない。施工の質を見極められない。",
+    "維持費を平均値でしか考えられない。上振れを許容できない。"
+  ],
+  "maintenanceNotes": [
+    "まずは錆と骨格。器が良い個体ほど、走りと維持費が読みやすい。",
+    "改造は丁寧さが価値。雑な改造は後から戻すコストになる。",
+    "購入後は油脂類の一新と足回り点検から。基礎整備が体感で戻る。"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "nissan-skyline-gtr-r34",
+    "nissan-skyline-gtr-r32",
+    "toyota-supra-jza80-rz"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "how-to-choose-first-sports-car"
+  ],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge",
+    "oil-change-5000km-myth",
+    "dealer-shaken-is-expensive-myth"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-1995-golden-age-heritage",
+    "japan-280ps-gentlemens-agreement-heritage",
+    "jdm-280ps-happy-lie-heritage"
+  ],
+  "tags": [
+    "NISSAN",
+    "GT-R",
+    "R33",
+    "BCNR33",
+    "RB26DETT"
+  ],
+  "intentTags": [],
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Skyline GT-R R33",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Skyline GT-R R33",
+  "updateReason": "car-major-overhaul-2026-02-01",
+  "sources": []
+}

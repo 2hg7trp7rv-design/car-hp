@@ -1,0 +1,120 @@
+{
+  "id": "lotus-elise-s2",
+  "slug": "lotus-elise-s2",
+  "name": "Elise (S2)",
+  "maker": "Lotus",
+  "releaseYear": 2001,
+  "difficulty": "intermediate",
+  "bodyType": "オープン",
+  "segment": "ライトウェイト",
+  "grade": null,
+  "engine": "Mid 1.8 NA（年式でローバー/トヨタ系など差）",
+  "drive": "MR",
+  "transmission": "5MT/6MT（仕様差）",
+  "fuel": "ハイオク",
+  "powerPs": 190,
+  "torqueNm": 180,
+  "fuelEconomy": "目安: 8〜14 km/L",
+  "summary": "軽さが主役のライトウェイト。速さより、曲がる感覚の濃さで選ばれる車です。",
+  "summaryLong": "エリーゼ（S2）は、軽い車が曲がるときの気持ちよさを、いちばん分かりやすく教えてくれるタイプです。パワーを振り回すより、姿勢がスッと整っていく。そこに価値があります。\n\n中古で怖いのは、距離よりも「過去の当て方」と「冷却まわりの弱り」です。外装が綺麗でも、骨格や冷却が傷んでいると満足度が落ちやすい。逆に、専門店で面倒を見られてきた個体は、年式が古くても“軽さの芯”が残っています。\n\n快適性は割り切り。だからこそ、ハマる人には、これ以上ない週末の相棒になります。",
+  "costImpression": "安さより“まっすぐな個体”。冷却と足の整合が揃うと満足度が跳ねます。",
+  "heroImage": "/images/cars/placeholder.jpg",
+  "mainImage": "/images/cars/placeholder.jpg",
+  "relatedNewsIds": [],
+  "tags": [
+    "Lotus",
+    "Elise",
+    "S2",
+    "lightweight",
+    "mr",
+    "open"
+  ],
+  "intentTags": [
+    "lightweight",
+    "sports",
+    "import",
+    "weekend"
+  ],
+  "relatedCarSlugs": [
+    "honda-s2000-ap1",
+    "mazda-roadster-na",
+    "toyota-mr-s-zzw30"
+  ],
+  "relatedGuideSlugs": [
+    "used-import-car-buying-guide",
+    "tax-and-fees-before-buying-import",
+    "maintenance-cost-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "import-car-hidden-costs-paperwork",
+    "usedcar-warranty-needed"
+  ],
+  "relatedHeritageSlugs": [
+    "supercar-parts-bin-engineering-heritage"
+  ],
+  "strengths": [
+    "軽さが武器で、速度に頼らず気持ちよく走れる。",
+    "舵の入りが自然で、運転のフィードバックが濃い。",
+    "サイズが小さく、狭い道でも取り回しが良い。",
+    "状態が良い個体は、週末の満足度が非常に高い。"
+  ],
+  "weaknesses": [
+    "快適性と静粛性は割り切りが必要。",
+    "輸入車ゆえ、部品と工賃の読みづらさがある。",
+    "事故歴や修理の質で乗り味が大きく変わる。",
+    "雨漏りや内装の傷みがストレスになりやすい。"
+  ],
+  "troubleTrends": [
+    "冷却系の弱りは必ず確認したいです。水温が安定しない個体は避けたい。",
+    "足回りのガタや異音は軽い車ほど露骨に出ます。段差でチェック。",
+    "幌や固定部の劣化は、雨の日の満足度を下げます。",
+    "サーキット用途の改造がある個体は、消耗の度合いもセットで見ます。"
+  ],
+  "bestFor": [
+    "軽い車の曲がり方が好きで、運転の濃度を重視する人。",
+    "週末用として割り切って楽しめる人。",
+    "履歴を追って、状態の良い個体を探せる人。"
+  ],
+  "notFor": [
+    "静かで快適な移動を優先したい人。",
+    "雨の日も含めて毎日1台で回したい人。",
+    "輸入車の部品手配や整備の手間を取りたくない人。"
+  ],
+  "maintenanceNotes": [
+    "冷却の状態が最重要。水温の安定と漏れ跡は必ず確認。",
+    "足回りの整合は試乗で分かります。直進性と段差の収まりをチェック。",
+    "幌や内装の傷みは生活ストレスに直結。買う前に触って確認。"
+  ],
+  "lengthMm": null,
+  "widthMm": null,
+  "heightMm": null,
+  "wheelbaseMm": null,
+  "weightKg": null,
+  "priceNew": "当時：500万〜700万円（参考）",
+  "priceUsed": "350万〜700万円（相場変動）",
+  "zeroTo100": null,
+  "type": "CAR",
+  "status": "published",
+  "title": "Lotus Elise (S2)",
+  "makerKey": "lotus",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/lotus",
+  "relatedClusterIds": [],
+  "primaryQuery": "Elise (S2)",
+  "updateReason": "car-overhaul-2026-02-01_v8",
+  "sources": [],
+  "body": "## 結論\nエリーゼS2は「軽い車の曲がり方が好き」な人に向きます。加速の数字より、ハンドルを切った瞬間の“スッと向く感じ”がご褒美になる車です。\n\n中古は、外装の綺麗さより中身です。迷ったら、まずは[ロータスの車種一覧](/cars/makers/lotus)で相場と仕様の幅を把握して、そこから状態で選んでください。\n\n## 向く人 / 向かない人\n向くのは、週末に走りを味わいたい人、運転の濃度を重視する人。向かないのは、静粛性や快適装備を期待する人、雨の日も毎日使いたい人です。\n\n## 買う前のチェック\n- 事故歴の有無と修理の質。外装より、骨格と取付の整合を見たいです。\n- 冷却の状態。水温が安定しているか、漏れ跡がないか。ここが弱いと楽しむ前に整備が始まります。\n- 足回りの整合。直進性、段差の収まり、異音。軽い車ほどズレが分かります。\n- 内装と幌（ソフトトップ）。雨漏りや固定部の傷みはストレスになります。\n- 追加パーツ。ロールバーや足回り変更など、用途が見える改造は“消耗”も一緒に付いてきます。\n\n輸入車の中古は、最初に確認する順番だけで失敗率が下がります。[輸入車を中古で買うときの基本](/guide/used-import-car-buying-guide)を一度通してから現車を見るのがおすすめです。\n\n\n## 弱点と故障\n弱点は「軽さの代償」です。静粛性や乗り心地は割り切りが必要で、日常の段差で疲れる人もいます。\n\nそれでも、状態の良い個体は、速度に頼らず気持ちよくなれる。ここがエリーゼの強さです。\n\n## 維持費の目安\n維持費は、消耗品自体は特別高くないこともありますが、輸入車ゆえに部品手配と工賃の読みづらさがあります。年平均で見るより、まとまった整備が来たときに耐えられるかで判断してください。\n\n## 中古で買うなら\nおすすめは、専門店で履歴が追える個体です。台数が限られるので、条件を絞りすぎるより、良いベースを掴むほうが結果的に安くつきます。\n\n購入前に、冷却と下回りの写真、整備記録の有無を確認。ここで判断が早くなります。\n\n## 比較\n同じ“軽さの楽しさ”ならロードスターやS2000、MR-Sも候補になります。エリーゼは、さらにシンプルでダイレクトな方向。日常性を取るか、濃度を取るかで選び分けると納得感が出ます。\n\n## 関連リンク\n- [輸入車を中古で買うときの基本](/guide/used-import-car-buying-guide)\n- [輸入前にかかる税金・費用](/guide/tax-and-fees-before-buying-import)\n- [維持費のざっくり試算](/guide/maintenance-cost-simulation)\n- [輸入車の“隠れコスト”と手続き](/column/import-car-hidden-costs-paperwork)\n- [中古車保証は必要か](/column/usedcar-warranty-needed)\n- [部品流用で作られる名車の話](/heritage/supercar-parts-bin-engineering-heritage)",
+  "purchasePriceSafe": "安全ライン：420〜720万円前後（履歴と冷却重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間35〜85万円"
+  },
+  "maintenanceCostYenPerYear": 600000
+}

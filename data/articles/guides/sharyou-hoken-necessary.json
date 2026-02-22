@@ -1,0 +1,53 @@
+{
+  "slug": "sharyou-hoken-necessary",
+  "title": "車両保険は必要？いらない？判断基準を“損しにくい”順に整理",
+  "lead": "車両保険を付ける/付けない判断基準。代替可能性、修理費負担、補償範囲の考え方。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "INSURANCE",
+  "tags": [
+    "車両保険",
+    "免責",
+    "自動車保険",
+    "補償"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-01-20",
+  "internalLinks": [
+    "insurance-deductible-guide",
+    "car-budget-simulation",
+    "road-service-choice-guide",
+    "bengoshi-hiyou-tokuyaku-guide"
+  ],
+  "body": "この記事は「車両保険は必要？いらない？判断基準を“損しにくい”順に整理」をテーマに、自賠責と任意、免責、特約。判断を誤ると「必要なときに足りない」か「不要な支払いが増える」になりがちです。基準を整理します。\n\n## 結論\n- 車両保険は「付けるのが正解」でも「外すのが正解」でもありません。【自分が事故後にどう困るか】で決まります。\n- 判断は2つだけ。①車が使えなくなったときに【すぐ買い替えられるか】、②修理費を【自分で払えるか】。\n- 付ける場合は、補償範囲（一般/限定など）と免責の組み合わせで、過不足なく調整できます。\n\n## 付けた方がいいケース\n- ローン残債が大きく、全損すると家計がきつい\n- 生活や仕事で車が必須で、すぐ代替できない\n- 駐車環境が厳しい、運転する人が複数いるなど、小さな事故の確率が高い\n- 盗難や水害などのリスクが気になる地域/使い方\n\n## 付けなくても成立しやすいケース\n- 車両価値が低く、保険料と見合いにくい\n- 代替手段があり、車が無い期間があっても困らない\n- 修理費や買い替え費用を、貯蓄で吸収できる\n\n## 手順 1 車両価値と家計の“耐性”を確認する\n- 車両保険金額（車の価値の目安）\n- 全損/大きい修理が起きたら、どのくらいの自己負担まで耐えられるか\n\n## 手順 2 補償範囲を決める（広くするほど高くなる）\n- 自損事故も含めて守りたいか\n- ぶつけるより盗難や当て逃げが怖いか\n- 「何が一番怖いか」で選ぶと、支払いに納得しやすいです。\n\n## 手順 3 免責で調整する\n- 免責は“保険を使うときに自分で払う金額”です（/guide/insurance-deductible-guide）\n- 小さな修理は自費で良いなら免責を上げ、事故でも自己負担が厳しいなら免責を下げる\n\n## よくあるつまずき\n- 何となく付けて保険料が膨らみ、他の固定費を圧迫する\n- 外した後に事故が起き、買い替え資金が足りなくなる\n- 免責設定を理解せず、いざという時に使いづらい\n\n## 補足（実務メモ）\n- 「自分の過失が大きい事故」ほど、任意保険の厚みが効く（対物・車両・弁護士特約など）\n- 免責は“保険を使うハードル”を上げる代わりに、保険料を下げる方向に働きやすい\n- 等級は一度落ちると戻すのに時間がかかるため、使いどころを見極める\n\n## 関連記事\n- /guide/insurance-deductible-guide\n- /guide/car-budget-simulation\n- /guide/road-service-choice-guide\n- /guide/bengoshi-hiyou-tokuyaku-guide\n",
+  "monetizeKey": "insurance_compare_core",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "insurance-deductible-guide",
+    "car-budget-simulation",
+    "road-service-choice-guide",
+    "bengoshi-hiyou-tokuyaku-guide"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "insurance",
+    "coverage"
+  ],
+  "seoTitle": "車両保険は必要？いらない？判断基準と免責の決め方（保存版）",
+  "seoDescription": "車両保険を付ける/付けない判断基準。代替可能性、修理費負担、補償範囲の考え方。",
+  "summary": "車両保険を付ける/付けない判断基準。代替可能性、修理費負担、補償範囲の考え方。",
+  "readMinutes": 5,
+  "status": "published",
+  "id": "guide:sharyou-hoken-necessary",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/insurance",
+  "relatedClusterIds": [],
+  "primaryQuery": "車両保険は必要？いらない？判断基準を“損しにくい”順に整理",
+  "updateReason": "initial-import",
+  "sources": []
+}

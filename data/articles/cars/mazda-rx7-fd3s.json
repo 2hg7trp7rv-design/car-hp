@@ -1,0 +1,121 @@
+{
+  "id": "mazda-rx7-fd3s",
+  "slug": "mazda-rx7-fd3s",
+  "name": "RX-7 FD3S",
+  "maker": "Mazda",
+  "releaseYear": 1991,
+  "difficulty": "advanced",
+  "bodyType": "sports-coupe",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "mazda-rx7-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "RX-7 FD3S",
+  "summary": "ロータリーの魅力は濃い。中古は圧縮と冷却、改造履歴を見抜けるかが勝負。",
+  "summaryLong": "FD3S RX-7は、ロータリーならではの軽さとレスポンスで、今でも代わりが見つかりにくい存在です。中古での難しさは『個体差が大きい』こと。圧縮や冷却、改造履歴の読み解きで、当たり外れの差が大きくなります。選ぶ基準は、走行距離よりも整備記録と温度管理。専門ショップに相談できる体制を作れれば、独特の走りの濃さを長く味わえます。",
+  "body": "## 結論\nFDは、コンディションがすべてです。安い個体を引いてしまうと、車両価格の差が一瞬で消えます。反対に、圧縮・冷却・履歴が揃っている個体は、独特の回り方と軽さをずっと味わえます。\n\n## 向く人 / 向かない人\nこの車は『気分で乗る』より、『調子を保つために乗る』方が向いています。短距離だけの運用や放置が続くと、細かい不調が積み上がりやすい。週末にまとまった距離を走らせられる人の方が相性が良いです。\n\n## 買う前のチェック\n最重要は圧縮と冷却の状態。数値が取れないなら、履歴と現状から推理して、前提を厳しめに置く。試乗では始動性、アイドリングの安定、暖機後の吹け、白煙や異臭、油脂の滲みを確認します。\n\n改造は当たり前の世界です。だからこそ、何がどこまで触られているかを言語化できない個体は避ける。配管や配線の雑さ、追加メーターの取り付けなど、仕上げの質を見てください。\n\n### 現車確認で優先する順番\n- まずは冷却。ラジエーター周りの状態と、ファンがきちんと働くか\n- 次に始動性と吹け上がり。クセは個体差のヒントになります\n- ターボや配管の状態。後付け部品が多いほど、漏れやすいポイントも増える\n- 最後に錆とボディ。ここが崩れていると、直しても戻りません\n\n## 弱点と故障\nFDは『熱』と『密閉』の話に集約されます。冷却が崩れると一気に連鎖するし、ゴムやホースが弱ると小さな漏れが大きなトラブルに繋がる。兆候が小さいうちに手を打てるかが勝負です。\n\n## 維持費\n維持費は、想定よりも『波』が出ます。調子が良い個体は日常の油脂と消耗品で済む一方、まとまった整備が入る年は跳ねます。毎年一定に慣らすより、イベントごとに積み上げて予算を確保するのが現実的です。\n\n### ロータリーは予防整備で差がつく\n壊れてから直すより、温度とオイルの管理で壊さない方が安い。購入後に一度、油脂類とホース類をリセットできる前提で考えると計画が立てやすいです。\n\n## 中古で買うなら\n最初の一台は、純正寄りで履歴がクリアな個体が安心です。値段よりも、過去のオーナーがどんな思想で維持してきたかを見てください。ショップの記録、部品の選び方、仕上げの丁寧さ。そこが読める個体は、買ってからも読みやすい。\n\n### 安い個体ほど『理由』が複数ある\n相場より安い車は、冷却、始動、錆、改造のどれかではなく、複数が重なっていることも珍しくありません。安さで飛びつくより、疑問が残らない個体を選ぶ方が長い目で得です。\n\n### 買う前に相談先を決める\nFDは、個体を選んでから主治医を探すと遠回りになりがちです。圧縮や冷却のチェックを含めて相談できる専門店があるなら、その店が見やすい条件で車を探す方が早い。車の希少性より、整備体制の希少性が効きます。\n\n### 初年度にやっておきたい整備の考え方\n- まず冷却とホース類。温度が安定しないと全てが崩れます\n- 次に油脂類。どれがいつ交換されたか不明ならリセット前提\n- その次に点火と燃料。小さな不調の原因が多い領域です\n- チューニングは最後。基礎が整ってからの方が結局早い\n\n## 比較\n同じスポーツでも、S2000のようなNA高回転とは別の方向性です。FDは『軽さとターボの鋭さ』。アナログ感を求めるなら先代、万能感なら別車種、といった具合に、欲しい感触で選ぶと迷いが減ります。\n\n## 関連リンク\n",
+  "costImpression": "ロータリーは熱管理と“圧縮の健康診断”が全てです。購入後の刷新（冷却・ホース類・点火）まで含めて予算を組むと、結果的に安く済みます。",
+  "heroImage": "/images/cars/mazda-rx7-fd3s-hero.jpg",
+  "mainImage": "/images/cars/mazda-rx7-fd3s-main.jpg",
+  "imageUrl": "/images/cars/mazda-rx7-fd3s-main.jpg",
+  "gallery": [
+    "/images/cars/mazda-rx7-fd3s-front.jpg",
+    "/images/cars/mazda-rx7-fd3s-side.jpg",
+    "/images/cars/mazda-rx7-fd3s-interior.jpg"
+  ],
+  "engine": "Front Rotary Twin Turbo",
+  "powerPs": 280,
+  "torqueNm": 314,
+  "transmission": "5MT / 4AT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 5〜9 km/L",
+  "priceNew": "当時：380万〜520万円（参考）",
+  "priceUsed": "350万〜1200万円（相場変動）",
+  "priceUsedYenRange": "350万〜1200万円（相場変動）",
+  "purchasePriceSafe": "安全ライン：500〜1200万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間70〜150万円"
+  },
+  "maintenanceCostYenPerYear": 1100000,
+  "strengths": [
+    "軽量ボディと低重心でハンドリングが鋭い",
+    "ロータリー特有の伸びとサウンド",
+    "デザインが色褪せず、所有満足度が高い",
+    "専門店文化があり、リフレッシュの道筋が立てやすい"
+  ],
+  "weaknesses": [
+    "熱管理がシビアで、劣化するとトラブルに直結しやすい",
+    "燃費は期待できない",
+    "個体差が大きく、購入時点検が重要"
+  ],
+  "troubleTrends": [
+    "冷却系/熱害（ラジエター・水路）",
+    "点火系（プラグ・コイル）",
+    "ターボ周り/ホース類の劣化"
+  ],
+  "bestFor": [
+    "ロータリーの特性を理解し、手間も含めて楽しめる人",
+    "週末中心で『調子を維持する運用』ができる人",
+    "購入前にショップや部品供給の当てを作れる人"
+  ],
+  "notFor": [
+    "通勤の短距離だけで使いたい人",
+    "故障は絶対に嫌、予定外の出費に強いストレスを感じる人",
+    "改造車の見極めができず、履歴が曖昧な個体を選びがちな人"
+  ],
+  "maintenanceNotes": [
+    "冷却は命。水温と油温の管理履歴は価値そのもの",
+    "圧縮とオイル管理の前提が崩れると、修理が一気に重くなる",
+    "ホース類や樹脂部品は年式で確実に弱る。予防整備で差が出る",
+    "ターボ周りは改造の影響が出やすい。純正寄りほど判断が楽"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "mazda-rx7-fc3s",
+    "mazda-rx8-se3p",
+    "honda-s2000-ap1"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "engine-check-light-first-response",
+    "maintenance-cost-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "dealer-shaken-is-expensive-myth"
+  ],
+  "relatedHeritageSlugs": [
+    "mazda-rx7-fd3s-subtraction-engineering-heritage"
+  ],
+  "tags": [
+    "Mazda",
+    "sports-coupe",
+    "クラシックスポーツ",
+    "FR",
+    "5MT / 4AT",
+    "Front Rotary Twin Turbo",
+    "ヤングタイマー",
+    "ロータリー"
+  ],
+  "intentTags": [],
+  "type": "CAR",
+  "status": "published",
+  "title": "Mazda RX-7 FD3S",
+  "makerKey": "mazda",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "マツダ RX-7（FD3S）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/mazda",
+  "relatedClusterIds": [],
+  "primaryQuery": "RX-7 FD3S",
+  "updateReason": "data-align-2026-02-01",
+  "sources": []
+}

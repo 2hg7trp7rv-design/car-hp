@@ -1,0 +1,90 @@
+{
+  "id": "toyota-celica-xx-2000gt",
+  "slug": "toyota-celica-xx-2000gt",
+  "name": "Celica XX 2000GT",
+  "maker": "Toyota",
+  "releaseYear": 1978,
+  "difficulty": "advanced",
+  "bodyType": "gt-coupe",
+  "segment": "プレミアムスポーツ",
+  "heritageRefs": [
+    "toyota-supra-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "Celica XX 2000GT",
+  "summary": "“スープラ以前”を形作ったGT。直6FRの文脈を始めた世代。",
+  "summaryLong": "Celica XX 2000GTは、1978年に登場したToyotaのgt-coupeで、FRとFront Inline-6を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+  "heroImage": "/images/cars/toyota-celica-xx-2000gt-hero.jpg",
+  "mainImage": "/images/cars/toyota-celica-xx-2000gt-main.jpg",
+  "imageUrl": "/images/cars/toyota-celica-xx-2000gt-main.jpg",
+  "gallery": [
+    "/images/cars/toyota-celica-xx-2000gt-front.jpg",
+    "/images/cars/toyota-celica-xx-2000gt-side.jpg",
+    "/images/cars/toyota-celica-xx-2000gt-interior.jpg"
+  ],
+  "engine": "Front Inline-6",
+  "powerPs": 145,
+  "torqueNm": 173,
+  "transmission": "5MT / 4AT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 8〜12 km/L",
+  "priceNew": "当時：200万〜300万円（参考）",
+  "priceUsed": "250万〜900万円（相場変動）",
+  "strengths": [
+    "デザインとキャラクターが明確で、所有満足度が高い",
+    "運転のフィードバックが濃く、操る楽しさがある",
+    "コミュニティ/情報が一定量あり、維持の道筋を作れる",
+    "相場が安定しやすく、資産性を期待できる場合がある"
+  ],
+  "weaknesses": [
+    "年式・個体差による当たり外れが大きい",
+    "部品の供給/価格が年々厳しくなる場合がある",
+    "日常用途では燃費・乗り心地の割り切りが必要"
+  ],
+  "troubleTrends": [
+    "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+    "電装系（センサー/配線）の経年",
+    "冷却系のメンテ不足"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：900〜2000万円前後規模を想定できない場合は維持途中で資金計画が苦しくなりやすい車です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [],
+  "tags": [
+    "Toyota",
+    "gt-coupe",
+    "プレミアムスポーツ",
+    "FR",
+    "5MT / 4AT",
+    "Front Inline-6",
+    "ネオクラシック"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：500〜1200万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間70〜150万円"
+  },
+  "priceUsedYenRange": "250万〜900万円（相場変動）",
+  "maintenanceCostYenPerYear": 450000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Toyota Celica XX 2000GT",
+  "makerKey": "toyota",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/toyota",
+  "relatedClusterIds": [],
+  "primaryQuery": "Celica XX 2000GT",
+  "updateReason": "tone-fix-2026-02-01",
+  "sources": []
+}

@@ -1,0 +1,120 @@
+{
+  "id": "mazda-roadster-na",
+  "slug": "mazda-roadster-na",
+  "name": "Roadster (NA)",
+  "maker": "Mazda",
+  "releaseYear": 1989,
+  "difficulty": "beginner",
+  "bodyType": "オープン",
+  "segment": "ライトスポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "NA",
+  "summary": "軽さと素直さの原点。速度が低くても“線”がきれいになるロードスターの出発点。",
+  "summaryLong": "NAロードスターは、ライトウェイトFRの原点のひとつです。速さの数字より、姿勢と操作の気持ちよさが主役。\n\n中古ではボディの錆、幌、足回りブッシュ、そしてまっすぐさ。整った個体は、日常の速度でも運転が楽しい。\n\nMazda Roadster (NA)は「ライトスポーツ×オープン」の文脈で語られることが多い一台です。中古では走行距離より、整備記録と仕様の透明性を優先。初期費用を抑えすぎると後追い整備で総額が膨らみやすいので、“整った個体を高く買う”ほうが安全です。",
+  "heroImage": "/images/cars/mazda-roadster-na-hero.jpg",
+  "mainImage": "/images/cars/mazda-roadster-na-hero.jpg",
+  "imageUrl": "/images/cars/mazda-roadster-na-hero.jpg",
+  "gallery": [
+    "/images/cars/mazda-roadster-na-front.jpg",
+    "/images/cars/mazda-roadster-na-side.jpg",
+    "/images/cars/mazda-roadster-na-interior.jpg"
+  ],
+  "engine": "Front 1.6/1.8 NA",
+  "powerPs": 120,
+  "torqueNm": 150,
+  "transmission": "5MT/4AT（仕様差）",
+  "drive": "FR",
+  "fuel": "レギュラー/ハイオク（仕様差）",
+  "fuelEconomy": "目安: 9〜14 km/L",
+  "priceNew": "当時: 160万〜260万円台（仕様差）",
+  "priceUsed": "200万〜700万円（相場変動）",
+  "strengths": [
+    "軽さがそのまま楽しさになる。",
+    "扱いやすく、日常で乗れる。",
+    "部品と情報が豊富。"
+  ],
+  "weaknesses": [
+    "錆とボディの状態で価値が大きく割れる。",
+    "幌・内装の劣化が出やすい。"
+  ],
+  "troubleTrends": [
+    "ボディの錆（特に下回り・フェンダー周り）は最重要です。",
+    "幌の状態と雨漏り痕は確認したいです。",
+    "足回りブッシュのへたりで印象が変わります。"
+  ],
+  "costImpression": "良個体ほど“軽さ”が残る。錆と骨格を優先して選ぶのが正解。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge",
+    "tire-cheap-dangerous-choice",
+    "oil-change-5000km-myth"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "how-to-choose-first-sports-car"
+  ],
+  "relatedCarSlugs": [
+    "honda-s2000-ap1",
+    "toyota-mr-s-zzw30"
+  ],
+  "tags": [
+    "Mazda",
+    "Roadster",
+    "Miata",
+    "NA",
+    "FR",
+    "lightweight",
+    "open"
+  ],
+  "relatedHeritageSlugs": [
+    "mazda-roadster-na-lightweight-heritage",
+    "japan-1999-peak-analog-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "lightweight",
+    "open",
+    "beginner"
+  ],
+  "purchasePriceSafe": "安全ライン：280〜480万円前後（錆と幌重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間25〜65万円"
+  },
+  "maintenanceCostYenPerYear": 450000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mazda Roadster (NA)",
+  "makerKey": "mazda",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/mazda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Mazda Roadster (NA)",
+  "updateReason": "car-major-overhaul-2026-02-01",
+  "sources": [],
+  "body": "## 結論\nNAロードスターは、軽さと素直さで勝負するライトスポーツです。速度が低くても運転が楽しい。うまく説明できなくても、ステアリングを切った瞬間に納得するタイプの車です。\n\n中古で大事なのは、走行距離よりもボディと屋根。錆、幌、雨漏り痕。この3つは価値と安心感を直撃します。ここが良い個体は、多少高くても結果的に安く付きます。\n\n結論としては「錆が少なく、幌が健康で、足が整っている個体」。これを買うのが正解です。\n\n## 向く人 / 向かない人\nロードスターは、移動を楽しみに変えたい人向けです。逆に、静粛性や広さを求めると合いません。趣味として割り切れるほど満足度が上がります。\n\n## 買う前のチェック\n### ボディの錆は最優先\n- 下回り、フロア、フェンダー周り\n- ジャッキアップポイント周辺\n- パネルの隙間やドアの建て付け\n\n錆は軽く見える個体でも、内部で進んでいることがあります。ここは購入前点検で見てもらう価値があります。\n\n### 幌と雨漏り\n幌の状態は、見た目の印象以上に生活のしやすさに効きます。雨の日に乗らない人でも、保管環境の差がここに出ます。\n- 幌の破れ、くたびれ\n- ウェザーストリップの状態\n- 室内のカビ臭、シート下の湿り\n\n幌は消耗品です。交換前提なら、その費用を最初から織り込んでおくと判断がぶれません。\n\n### 足回りと直進性\n- 直進でふらつかないか\n- 段差での収まり\n- タイヤの片減り\n\n## 弱点と故障\n### 錆と補修の質\nNAはボディが価値です。錆が深いと修理は大変で、戻っても「気持ちよさ」が戻らないことがあります。ここは最初に厳しく見ていいポイントです。\n\n### 幌まわりの経年\n幌の劣化は見た目だけでなく、雨漏りや風切り音に繋がります。状態が悪いなら、交換前提で価格と相談するのが現実的です。\n\n### ゴム類とブッシュ\nブッシュが新しい個体は、軽さがそのまま気持ちよさになります。逆にブッシュが古いと、ロードスターの美味しい部分が薄れます。\n\n## 維持費\n維持費の目安は年間25〜65万円。大きく跳ねるのは、幌の交換や足回りのリフレッシュを入れるタイミングです。費用を平均で見るより、まとまった整備が来る前提で資金を組むと楽です。\n\n## 中古で買うなら\nロードスターは「保管環境」が出やすい車です。青空駐車だったのか、屋根下だったのか。室内の状態と幌の劣化で、だいたい雰囲気が分かります。\n- まずは錆と幌で候補を絞る\n- 走行距離より、整備記録と保管状態を見る\n- 迷う個体は [修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist) に沿って整理する\n\n軽い車は、整っているほど楽しい。だからロードスターは「整っている個体を高く買う」が効くジャンルです。\n\n購入後にまずやるなら、油脂類の一新とアライメント確認。これだけで走りの印象が変わることがあります。細かい部分を直す前に、まず基礎を整えるのが近道です。\n\n## 比較\nオープンの楽しさならビートやカプチーノも魅力ですが、NAはバランスの良さが強みです。より鋭い回転と高い速度域が欲しいならS2000（AP1）、ミッドシップの気分ならMR-S（ZZW30）を比べると選びやすいです。\n\n## 関連リンク\n購入前点検や維持費の考え方を、次のリンクで深掘りできます。",
+  "bestFor": [
+    "速度より運転の気持ちよさ。軽さと素直さで満足したい。",
+    "オープンで走る時間そのものを楽しみたい。移動を趣味にしたい。",
+    "錆と幌を最優先で見て、良個体を探す覚悟がある。"
+  ],
+  "notFor": [
+    "静粛性や広さがないと日常でつらい。趣味車として割り切れない。",
+    "ボディの状態を見極めるのが面倒。購入前点検にお金をかけたくない。",
+    "雨漏りや幌の劣化を許容できない。屋外保管の予定しかない。"
+  ],
+  "maintenanceNotes": [
+    "錆は価値を直撃する。見える錆より、内部の進行や補修の質が重要。",
+    "幌は消耗品。状態が悪いなら交換費用を前提に価格と相談する。",
+    "軽い車ほど基礎整備が効く。油脂類の一新とアライメント確認から始めると満足度が上がる。"
+  ]
+}
