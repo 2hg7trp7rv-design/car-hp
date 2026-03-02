@@ -1,0 +1,126 @@
+{
+  "id": "honda-s2000-ap1",
+  "slug": "honda-s2000-ap1",
+  "name": "S2000 (AP1)",
+  "maker": "Honda",
+  "releaseYear": 1999,
+  "difficulty": "advanced",
+  "bodyType": "roadster",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "S2000 AP1",
+  "summary": "高回転NAとオープンの贅沢。中古は幌と足回り、油脂の管理が要。",
+  "summaryLong": "S2000(AP1)は、オープンカーの気持ち良さと、ホンダらしい高回転NAを両立した稀なスポーツです。中古で重要なのは、屋根の状態と足回りの消耗、そして『適切なオイル管理』。走行距離が少なくても放置期間が長い個体は、ゴム類と油脂類が弱りがちです。整備の基準を一度作れば、普段の移動がそのまま特別な時間になります。",
+  "heroImage": "/images/cars/honda-s2000-ap1-hero.jpg",
+  "mainImage": "/images/cars/honda-s2000-ap1-main.jpg",
+  "imageUrl": "/images/cars/honda-s2000-ap1-hero.jpg",
+  "gallery": [
+    "/images/cars/honda-s2000-ap1-front.jpg",
+    "/images/cars/honda-s2000-ap1-side.jpg",
+    "/images/cars/honda-s2000-ap1-interior.jpg"
+  ],
+  "engine": "Front Inline-4 2.0 NA (F20C)",
+  "powerPs": 240,
+  "torqueNm": 218,
+  "transmission": "6MT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 7〜12 km/L",
+  "priceNew": "当時: 250万〜450万円台（仕様差）",
+  "priceUsed": "220万〜650万円（相場変動）",
+  "strengths": [
+    "高回転の気持ちよさがそのまま性能になる。操作に対する返答が濃い。",
+    "FRと短いギアで、速度域が低くても運転が退屈になりにくい。",
+    "剛性とバランスが整うと、回頭と立ち上がりが素直。",
+    "コミュニティと情報が厚く、整え直す道筋がある。"
+  ],
+  "weaknesses": [
+    "個体差が大きい。改造や履歴でキャラクターが別物になる。",
+    "オイル管理が甘い個体は、回転の気持ちよさが戻りにくい。",
+    "幌やシールなど経年の生活要素がストレスになりやすい。",
+    "タイヤと足の状態で乗り味が一気に変わる。"
+  ],
+  "troubleTrends": [
+    "オイル消費と漏れの有無、管理履歴は最重要です。",
+    "冷却系（ラジエーター、ホース）の更新が薄い個体は要注意です。",
+    "足回りブッシュのへたりで、直進性と反応が鈍ります。",
+    "幌とウェザーストリップ劣化は雨漏りや風切り音の原因になりやすいです。"
+  ],
+  "costImpression": "安く買った個体ほど、整合を取り戻す費用が掛かる。良個体を選ぶほど結果的に安いタイプ。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "usedcar-warranty-needed"
+  ],
+  "relatedGuideSlugs": [
+    "how-to-choose-first-sports-car",
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation"
+  ],
+  "relatedCarSlugs": [
+    "mazda-roadster-na",
+    "nissan-silvia-s15",
+    "honda-integra-type-r-dc5"
+  ],
+  "tags": [
+    "Honda",
+    "S2000",
+    "AP1",
+    "F20C",
+    "high-rev",
+    "NA",
+    "FR"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-high-rev-na-last-dance-heritage"
+  ],
+  "intentTags": [
+    "high-rev",
+    "NA",
+    "FR",
+    "open-top",
+    "2000s",
+    "heritage"
+  ],
+  "purchasePriceSafe": "安全ライン：320〜520万円前後（履歴と素直さ重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間35〜75万円"
+  },
+  "maintenanceCostYenPerYear": 520000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda S2000 (AP1)",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "ホンダ S2000（AP1）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Honda S2000 (AP1)",
+  "updateReason": "name-normalize-2026-02-01",
+  "sources": [],
+  "bestFor": [
+    "高回転NAの気持ち良さを、オープンで味わいたい人",
+    "週末のドライブやワインディングが主目的の人",
+    "古さを含めて、丁寧に維持する覚悟がある人"
+  ],
+  "notFor": [
+    "静粛性や乗り心地を最優先したい人",
+    "雨天や荷物の多い使い方が多い人",
+    "幌や足回りのメンテにお金を掛けたくない人"
+  ],
+  "maintenanceNotes": [
+    "幌（開閉、雨漏り、擦れ）とゴム類は消耗品として考える",
+    "オイル管理と油脂交換の履歴がある個体は安心感が違う",
+    "足回りの異音や収束の悪さは、ブッシュ類の劣化を疑う",
+    "ミッションの入りやクラッチの繋がりは試乗で必ず確認"
+  ],
+  "body": "## 結論\nS2000は、走りの気持ち良さがコンディションに直結する車です。中古は『幌が新しいか』よりも、油脂と足回りがちゃんと整えられているか。そこが揃うと、軽い入力で車がスッと向きを変えてくれます。\n\n## 向く人 / 向かない人\n毎日使うより、週末にまとまった距離を走ってリセットする運用が向いています。オープンの気持ち良さと引き換えに、静粛性や積載は割り切りが必要です。\n\n## 買う前のチェック\n幌の状態はもちろん、開閉のスムーズさ、雨漏りの痕跡、ガラス周りのゴムの劣化を確認します。試乗では、ステアリングセンター、段差での収束、ミッションの入り、デフの唸りなどを丁寧に。違和感が少ない個体は、たいてい整備も筋が良いです。\n\n### オープンカーならではの確認\n- 幌の擦れ、裂け、雨漏り。フロアの湿りは匂いより先に確認\n- 幌骨やラッチの動き。渋いと調整や部品が必要になる\n- 足回りのコツコツ音。路面の荒れで出やすい\n- 試乗では高回転まで一気に回さず、つながりと振動を確認\n\n## 弱点と故障\n古いスポーツは、足回りの劣化が乗り味に直撃します。異音が出る前でも、ブッシュやマウントが弱ると『落ち着かない』印象になります。気持ち良さが欲しい車だからこそ、ここはケチらない方が結局幸せです。\n\n## 維持費\n維持費は、幌と足回りで波が出ます。毎年均すのではなく、交換イベントを先に見える化して予算を置く。そうすると、突然の出費に振り回されません。\n\n### 放置期間が長い車に注意\n走行距離が少なくても、ゴム類や油脂類は時間で劣化します。購入後の最初はリフレッシュ整備に寄せて予算を確保すると安心です。\n\n## 中古で買うなら\n低走行の美車に惹かれますが、長期間動かされていない個体は別のリスクがあります。距離よりも、定期的に走って整備されてきたか。記録と現車の雰囲気で判断するのがおすすめです。\n\n### どんな使い方だったかを読む\nサーキット中心か、ツーリング中心か、保管は屋内か。S2000は使われ方が状態に直結するので、オーナーの話と記録の一貫性を重視したいです。\n\n### 価格差は幌と足回りの差になりやすい\nS2000は、走行距離より保管環境で状態が変わります。幌が綺麗で、足回りのガタが少ない車は高く見えても、直す費用で逆転しやすい。逆に、外装だけ綺麗な車は後からじわじわ出費が増えます。\n\n### 買う時の優先順位\n- 幌と雨漏りの痕跡。フロアの湿りは必ず確認\n- 足回りの異音。段差で鳴るなら交換前提\n- オイル管理の履歴。交換頻度が読める車が安心\n- 目的に合う仕様か。街乗りなら過度な足回りは不要\n\n## 比較\n同じオープンでもロードスターは軽さが売り、S2000は回転の伸びが売り。FRクーペと迷うなら、開放感が必要かどうかで結論が出ます。\n\n## 関連リンク\n"
+}

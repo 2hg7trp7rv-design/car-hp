@@ -1,0 +1,92 @@
+{
+  "id": "ferrari-250-gto",
+  "slug": "ferrari-250-gto",
+  "name": "フェラーリ 250GTO",
+  "maker": "FERRARI",
+  "releaseYear": 1962,
+  "difficulty": "advanced",
+  "bodyType": "クーペ",
+  "segment": "クラシックGT",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "250GTO",
+  "summary": "クラシックGTの頂点とされる、レースホモロゲーション用の伝説的なV12クーペです。",
+  "summaryLong": "フェラーリ 250GTOは、GTレースで勝つために作られたホモロゲーションモデルで、クラシックフェラーリの中でも別格の存在として扱われています。3.0L V12エンジンをフロントに搭載し、空力を意識した流麗なクーペボディと組み合わせることで、高速サーキットから公道ラリーまで幅広いシーンで活躍しました。生産台数はわずか数十台程度と言われ、その希少性とレース実績から、オークションではしばしば『世界で最も高額なクラシックカー』としてニュースになるモデルです。",
+  "heroImage": "/images/cars/ferrari-250-gto-hero.jpg",
+  "mainImage": "/images/cars/ferrari-250-gto-hero.jpg",
+  "imageUrl": "/images/cars/ferrari-250-gto-hero.jpg",
+  "gallery": [
+    "/images/cars/ferrari-250-gto-front.jpg",
+    "/images/cars/ferrari-250-gto-side.jpg",
+    "/images/cars/ferrari-250-gto-rear.jpg"
+  ],
+  "engine": "3.0L V12",
+  "powerPs": 300,
+  "torqueNm": 294,
+  "transmission": "5速MT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "約4〜6km/L（実用域目安）",
+  "priceNew": "当時：$18,000〜$25,000（参考）",
+  "priceUsed": "70億〜140億円（オークション級）",
+  "strengths": [
+    "GTレースで数多くの勝利を挙げた、伝説的な競争力を持つモデルです。",
+    "V12エンジンと軽量ボディにより、クラシックカーとは思えない鋭いパフォーマンスを発揮します。",
+    "スタイリング・サウンド・レース実績のすべてが高いレベルで揃った、アイコン的存在です。",
+    "クラシックカーとしての投資価値・文化財としての価値が極めて高いモデルです。"
+  ],
+  "weaknesses": [
+    "実車は超コレクターズアイテムであり、通常のオーナーが入手することは事実上不可能です。",
+    "事故や損傷時のダメージは金銭では測れず、精神的負担も非常に大きくなります。",
+    "純正度・オリジナル性の判定がシビアで、履歴管理が徹底されていない個体は評価が大きく下がります。",
+    "レースで使われてきた個体が多く、コンディション維持には高度なメンテナンス体制が必要です。"
+  ],
+  "troubleTrends": [
+    "ヒストリックレースでの酷使により、フレームやボディにストレスが溜まっている個体もあります。",
+    "V12エンジンは高回転型で負荷が大きく、オーバーホールの頻度も高くなりがちです。",
+    "過去の修復歴や再ボディ、レストア内容によって、オリジナル性の評価が大きく変わります。",
+    "レース仕様ゆえに快適性や静粛性はほぼ無く、一般道での使用には大きな割り切りが必要です。"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で資金計画が苦しくなりやすい車です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [],
+  "tags": [
+    "FERRARI",
+    "フェラーリ",
+    "250GTO",
+    "クラシックカー",
+    "V12",
+    "FR",
+    "ホモロゲーション"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "oldtimer"
+  ],
+  "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+  },
+  "priceUsedYenRange": "400億円〜（取引事例級）",
+  "maintenanceCostYenPerYear": 1200000,
+  "type": "CAR",
+  "status": "published",
+  "title": "FERRARI フェラーリ 250GTO",
+  "makerKey": "ferrari",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/ferrari",
+  "relatedClusterIds": [],
+  "primaryQuery": "フェラーリ 250GTO",
+  "updateReason": "tone-fix-2026-02-01",
+  "sources": []
+}

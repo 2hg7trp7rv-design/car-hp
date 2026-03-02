@@ -1,0 +1,121 @@
+{
+  "id": "toyota-gr-supra-rz",
+  "slug": "toyota-gr-supra-rz",
+  "name": "GR Supra RZ",
+  "maker": "Toyota",
+  "releaseYear": 2019,
+  "difficulty": "intermediate",
+  "bodyType": "sports-coupe",
+  "segment": "プレミアムスポーツ",
+  "heritageRefs": [
+    "toyota-supra-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "RZ",
+  "summary": "現代的な速さと扱いやすさ。中古は履歴と『輸入車っぽい維持』の理解が大事。",
+  "summaryLong": "GRスープラ RZは、現代のFRスポーツとして扱いやすく、日常の延長で速さを楽しめる一台です。一方で中身は輸入車的なメンテナンス感覚に近い部分もあり、履歴が曖昧な個体は後からじわじわ効いてきます。中古で選ぶなら、改造よりも『ノーマルに近い整備履歴』と『冷間始動からの音・振動』を優先。過度に安い個体を追うより、基準を作りやすいコンディションを選ぶ方が結果的に得です。",
+  "body": "## 結論\nGRスープラは『速いのに難しくない』のが魅力です。中古での落とし穴は、車両価格だけ見て安心してしまうこと。整備履歴が見える個体を選び、油脂類と消耗品を前提にすると、気持ち良く長く付き合えます。\n\n## 向く人 / 向かない人\n体感としては、スーパーカーの緊張感よりも、日常寄りのスポーツ。ロードノイズや視界など、好き嫌いは出ますが、運転が上手くなくても楽しめる懐の深さがあります。\n\n## 買う前のチェック\nまずは履歴と診断。警告灯が消えていても、過去ログやメンテの手抜きがあると後で効きます。試乗では、低速域のギクシャク、変速の違和感、足回りの異音、ブレーキのタッチを確認。タイヤの減り方が左右で違う個体は、アライメントや足回りに何かが隠れていることがあります。\n\n### 試乗で確認したい感触\n- 冷間始動直後のアイドリングと異音。温まった後だけ良い個体は注意\n- 変速のつながりと低速域のギクシャク。違和感は学習だけで片付かないことも\n- 足回りのコツコツ音。段差で鳴るなら消耗を疑う\n- 警告灯やエラー履歴が点検記録に残っているか\n\n## 弱点と故障\n現代車は『壊れると突然』になりやすい。電装とセンサー系の不調は、原因が一発で特定できないこともあります。安易に部品交換を繰り返す前に、診断できる店を確保できるかが大切です。\n\n## 維持費\n日常の維持費は、オイル、タイヤ、ブレーキで見え方が決まります。乗り方が穏やかなら落ち着きますが、スポーツ走行を混ぜると一気に上がる。走行距離と用途（街乗り中心か、長距離も走るか）で見積もると現実に近いです。\n\n### 維持費は国産スポーツより少しだけ輸入車寄り\n油脂類の種類や作業工賃、部品の手配などで体感が変わります。短期で安く乗るより、良い個体を長めに維持する方が結果的に安定しやすいです。\n\n## 中古で買うなら\n安い個体ほど『何を我慢する価格か』を言語化してください。修復歴の有無だけではなく、下回り、ホイールの傷、ボディのチリ、内装の消耗などから、過去の使われ方を推理する。可能なら第三者点検を入れると、判断が速くなります。\n\n### ノーマルに近い車が強い\n吸排気や足回りの変更自体は悪ではありません。ただし、セッティングの意図が読めないなら、純正に近い状態で基準を作ってから手を入れる方が後悔しません。\n\n### 保証と修理窓口を現実的に\n電子制御が多い車は、故障そのものより切り分けが面倒です。保証の有無だけでなく、どこで診断してもらえるかを確認。近くに対応できる工場があると、結果的に維持費も時間も節約できます。\n\n### 個体選びのコツ\n- 冷間始動の音と振動を重視。温まってからだけ良い車は避ける\n- 純正に近い方が基準を作りやすい。後から手を入れる方が迷いが少ない\n- タイヤとブレーキの減り方を見る。走り方の履歴が読みやすい\n- 記録簿の一貫性。点検間隔がバラバラなら前提を厳しめに\n\n## 比較\n同価格帯で迷うのはZや、先代スープラなど。現代の扱いやすさを取るならGRスープラ。より濃いキャラクターやアナログ感を求めるなら、別の車が刺さることもあります。\n\n## 関連リンク\n",
+  "costImpression": "新しいスポーツカーですが、消耗品は想像より高めです。車両価格だけでなく、タイヤ・ブレーキ・保険まで含めて“年間いくら”で考えると迷いが減ります。",
+  "heroImage": "/images/cars/toyota-gr-supra-rz-hero.jpg",
+  "mainImage": "/images/cars/toyota-gr-supra-rz-main.jpg",
+  "imageUrl": "/images/cars/toyota-gr-supra-rz-main.jpg",
+  "gallery": [
+    "/images/cars/toyota-gr-supra-rz-front.jpg",
+    "/images/cars/toyota-gr-supra-rz-side.jpg",
+    "/images/cars/toyota-gr-supra-rz-interior.jpg"
+  ],
+  "engine": "Front Inline-6 Turbo",
+  "powerPs": 387,
+  "torqueNm": 500,
+  "transmission": "8AT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 10〜14 km/L",
+  "priceNew": "現行：700万〜900万円（仕様）",
+  "priceUsed": "550万〜800万円（相場変動）",
+  "priceUsedYenRange": "550万〜800万円（相場変動）",
+  "purchasePriceSafe": "安全ライン：300〜800万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間40〜80万円"
+  },
+  "maintenanceCostYenPerYear": 600000,
+  "strengths": [
+    "直6ターボの伸びと高速域の余裕",
+    "シャシー剛性が高く、チューニング耐性も高い",
+    "部品/ノウハウが豊富で弄り方の幅が広い",
+    "グランドツアラーとして快適性も確保"
+  ],
+  "weaknesses": [
+    "年式・個体差による当たり外れが大きい",
+    "部品の供給/価格が年々厳しくなる場合がある",
+    "日常用途では燃費・乗り心地の割り切りが必要"
+  ],
+  "troubleTrends": [
+    "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+    "電装系（センサー/配線）の経年",
+    "冷却系のメンテ不足"
+  ],
+  "bestFor": [
+    "現代の安全装備と快適性を残したまま、スポーツカーを楽しみたい人",
+    "車の状態をデータと履歴で判断できる人",
+    "週末メインでも、たまに長距離も走る使い方をしたい人"
+  ],
+  "notFor": [
+    "後席や積載を重視したい人",
+    "維持費は国産コンパクト並みを想定している人",
+    "改造前提で最初から限界まで攻めたい人"
+  ],
+  "maintenanceNotes": [
+    "オイル交換は先延ばしにしない。短距離メインほどサイクルを詰める",
+    "冷却系と樹脂部品は年式より『使われ方』で差が出る",
+    "タイヤとブレーキはスポーツ走行をすると一気に効いてくる",
+    "電装の警告灯は放置せず、ログ確認できる環境があると安心"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "nissan-z-rz34",
+    "toyota-supra-jza80-rz",
+    "nissan-gtr-r35"
+  ],
+  "relatedGuideSlugs": [
+    "how-to-choose-first-sports-car",
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "loan-vs-lease-monthly-trap"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-software-performance-era-heritage"
+  ],
+  "tags": [
+    "Toyota",
+    "sports-coupe",
+    "プレミアムスポーツ",
+    "FR",
+    "8AT",
+    "Front Inline-6 Turbo",
+    "モダンクラシック",
+    "2JZ"
+  ],
+  "intentTags": [],
+  "type": "CAR",
+  "status": "published",
+  "title": "Toyota GR Supra RZ",
+  "makerKey": "toyota",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "トヨタ GRスープラ（RZ）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/toyota",
+  "relatedClusterIds": [],
+  "primaryQuery": "GR Supra RZ",
+  "updateReason": "car-major-overhaul-2026-02-01",
+  "sources": []
+}

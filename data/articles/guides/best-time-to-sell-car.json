@@ -1,0 +1,55 @@
+{
+  "id": "best-time-to-sell-car",
+  "slug": "best-time-to-sell-car",
+  "type": "GUIDE",
+  "status": "published",
+  "title": "クルマを売るベストタイミングはいつ？乗り換え時期と高く売るコツ",
+  "summary": "車検・大きい整備・走行距離の節目を基準に、損しにくい売り時と2〜3週間の段取りをまとめます。",
+  "seoTitle": "車を売るベストタイミングはいつ？年式・走行距離・車検から考える後悔しない売り時",
+  "seoDescription": "車検・大きい整備・走行距離の節目を基準に、損しにくい売り時と2〜3週間の段取りをまとめます。",
+  "category": "MONEY",
+  "readMinutes": 14,
+  "heroImage": null,
+  "body": "この記事は「クルマを売るベストタイミングはいつ？乗り換え時期と高く売るコツ」をテーマに、売却は情報戦というより段取り勝負です。必要書類・比較の取り方・トラブル回避の要点をまとめます。\n\n## 結論\n- 迷ったら「次の大きい出費（車検・タイヤ・修理）」の前が売り時になりやすいです。\n- 高く売りたい場合でも、やることは同じ。【相場を確認して、比較して、期限を決める】だけです。\n- “売り時”は1日で決まりません。2〜3週間の段取りを作ると、焦って安売りしにくくなります。\n\n## 売り時を決める判断軸\n- 車検が近い：通す前に「車検+整備の見積」と「今売った場合の差」を比べる\n- 走行距離の節目：距離が増えるほど査定が落ちやすいポイントがある\n- 大きい整備が近い：タイヤ、バッテリー、足回りなど“まとまった出費”の前\n- 型落ち：フルモデルチェンジやマイナーチェンジで相場が動くことがある\n- 税のタイミング：軽自動車などは調整が効きにくいので、手放す時期で負担が変わることがある\n\n## 2〜3週間で動く段取り\n### STEP 1 相場を把握する\n- 同じ車種・年式・走行距離の相場を確認する\n- 装備（ナビ、ADAS、サンルーフ等）が評価されるかを見る\n\n### STEP 2 査定を「比較」できる形にする\n- 最低でも2社（できれば3社）で査定し、同じ条件で比べる\n- その場で即決せず、期限を区切って持ち帰る\n\n### STEP 3 査定前に“整備”より“情報”を揃える\n修理して完璧にするより、説明材料を揃える方が効くことが多いです。\n- 整備記録簿、取扱説明書、スペアキー\n- 修理歴や不具合は隠さず、伝え方を用意する\n\n### STEP 4 引き渡し日を決めて交渉する\n- 「いつまでに手放すか」を先に決める\n- 期限があると、相手のペースで決めづらくなります\n\n## よくあるつまずき\n- 車検を通してから売れば得だと思い込み、費用が回収できない\n- 1社で即決してしまい、比較せずに安く手放す\n- 期限を決めずに先延ばしし、相場が落ちたタイミングで売る\n\n## 補足（実務メモ）\n- 相場確認は“1社の提示額”で決めない。比較対象があるだけで交渉が楽になる\n- 査定前に洗車・車内清掃をしておくと、第一印象でのマイナスを避けやすい\n- 引き渡し日と入金日はセットで決める（先に車だけ渡さない）\n- 電話が負担なら、最初に「連絡方法/時間帯」を指定しておく\n\n## 関連記事\n- /guide/hajimete-kuruma-uru-checklist\n- /guide/selling-without-rush\n- /guide/kuruma-ikkatsu-satei-shitsukoi-real\n- /guide/meigi-henko-hitsuyou-shorui-futsuu\n- /guide/best-time-to-sell-import-sedan\n",
+  "publishedAt": "2025-12-07T00:00:00.000Z",
+  "updatedAt": "2026-01-20",
+  "tags": [
+    "車売却",
+    "買取",
+    "下取り",
+    "乗り換え"
+  ],
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "hajimete-kuruma-uru-checklist",
+    "selling-without-rush",
+    "kuruma-ikkatsu-satei-shitsukoi-real",
+    "meigi-henko-hitsuyou-shorui-futsuu"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [
+    "toyota-celsior-ls400-silence-precision-heritage"
+  ],
+  "intentTags": [
+    "money",
+    "sell"
+  ],
+  "monetizeKey": "sell_basic_checklist",
+  "lead": "車検・大きい整備・走行距離の節目を基準に、損しにくい売り時と2〜3週間の段取りをまとめます。",
+  "internalLinks": [
+    "hajimete-kuruma-uru-checklist",
+    "selling-without-rush",
+    "kuruma-ikkatsu-satei-shitsukoi-real",
+    "meigi-henko-hitsuyou-shorui-futsuu"
+  ],
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/hub-loan",
+  "relatedClusterIds": [],
+  "primaryQuery": "クルマを売るベストタイミングはいつ？乗り換え時期と高く売るコツ",
+  "updateReason": "initial-import",
+  "sources": []
+}

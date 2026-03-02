@@ -1,0 +1,16 @@
+Wave9 Masterpiece – Notes
+
+Goal: Treat every piece of text/UI as part of the artwork, while preserving the site's practical utility.
+
+What changed:
+1) Breadcrumbs unified across remaining catalog/utility pages using the shared <Breadcrumb> component.
+   - Removed ad-hoc breadcrumb <nav> blocks (slate palette) from Cars taxonomy pages, News pages, and Start.
+2) Typography tokens applied to headers where missing (cb-eyebrow / cb-title-display / cb-lead).
+3) Porcelain palette tightened: removed lingering slate text colors in the edited pages to keep a single 'paper' language.
+4) Car compare candidates: compare-add action is now a quiet overlay inside the card (no floating button outside the layout).
+
+Checks executed:
+- node scripts/guardrails.mjs: OK
+- node scripts/content-audit.mjs: OK (errors=0, warnings=0)
+- node scripts/generate-sitemaps.mjs: OK
+- node scripts/generate-robots.mjs + verify-robots.mjs: OK

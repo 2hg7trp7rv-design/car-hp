@@ -1,0 +1,24 @@
+PATCH_NOTES (WAVE 17) — Seed Poster System (Cards)
+
+Goal
+- Fill the "no local hero images available" gap without adding heavy assets.
+- Improve perceived polish in list views (Cars / Guides / Columns) while keeping Core Web Vitals stable.
+
+Changes
+- Added deterministic SVG poster generator:
+  - lib/seed.ts (FNV-1a hash + stable unit random)
+  - components/visual/SeedPoster.tsx (unique IDs per instance via React useId)
+- Cards:
+  - components/cars/CarCard.tsx
+    - If the local hero image path is missing in public-assets manifest, render SeedPoster instead of leaving the top area blank.
+  - components/guide/GuideCard.tsx
+    - Added SeedPoster thumbnail (guide variant).
+  - components/column/ColumnCard.tsx
+    - Added SeedPoster thumbnail (column variant).
+
+Notes
+- Posters are inline SVG (no additional network requests).
+- Decorative by default (aria-hidden). Card text remains the primary accessible label.
+
+Risk
+- Low. No routing/SEO generation logic changed. Prebuild scripts pass.

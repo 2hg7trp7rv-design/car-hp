@@ -1,0 +1,110 @@
+{
+  "id": "mazda-rx8-se3p",
+  "slug": "mazda-rx8-se3p",
+  "name": "RX-8 (SE3P)",
+  "maker": "Mazda",
+  "releaseYear": 2003,
+  "difficulty": "intermediate",
+  "bodyType": "クーペ",
+  "segment": "スポーツ",
+  "grade": null,
+  "engine": null,
+  "drive": null,
+  "transmission": null,
+  "fuel": null,
+  "powerPs": null,
+  "torqueNm": null,
+  "fuelEconomy": null,
+  "summary": "4座スポーツとしては貴重。乗り方と点火/圧縮の状態で、満足度が大きく変わる。",
+  "summaryLong": "RX-8は「4人乗れて回る」ロータリースポーツです。観音開きの後席も意外と実用的で、走りだけに寄りすぎないのが魅力。ただしロータリーは短距離・冷間始動ばかりだと調子を崩しやすい。買う前に点火系と圧縮、冷却の履歴が見える個体を選ぶのがコツです。",
+  "costImpression": "価格は手頃でも、ロータリーの“当たり前の整備”を前提にすると安心です。短距離メインの使い方には向きません。",
+  "heroImage": "/images/cars/placeholder.jpg",
+  "mainImage": "/images/cars/placeholder.jpg",
+  "relatedNewsIds": [],
+  "tags": [
+    "Mazda",
+    "クーペ",
+    "スポーツ"
+  ],
+  "intentTags": [],
+  "relatedCarSlugs": [
+    "honda-s2000-ap1",
+    "nissan-fairlady-z-z34",
+    "mazda-rx7-fd3s"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "oil-change-frequency-guide",
+    "overheat-coolant-leak-guide"
+  ],
+  "relatedColumnSlugs": [
+    "oil-change-5000km-myth",
+    "usedcar-low-mileage-trap"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-high-rev-na-last-dance-heritage"
+  ],
+  "strengths": [
+    "4座＋観音開きで、スポーツのわりに使い勝手が良い",
+    "高回転のフィーリングが唯一無二",
+    "FRのバランスで、コーナーの気持ちよさがある"
+  ],
+  "weaknesses": [
+    "短距離メインだとコンディションを崩しやすい",
+    "点火/圧縮に予算を置けないと満足しにくい",
+    "燃費とオイル管理は割り切りが必要"
+  ],
+  "troubleTrends": [
+    "始動性の悪化（圧縮/点火系が絡むことが多い）",
+    "点火系（コイル/プラグ）起因の失火・息継ぎ",
+    "冷却系トラブルによる水温上昇",
+    "排気系（触媒）ダメージ"
+  ],
+  "bestFor": [
+    "4座スポーツで“回す楽しさ”も欲しい",
+    "短距離ばかりではなく、定期的にしっかり走れる",
+    "点火系や圧縮の確認を購入前にやれる"
+  ],
+  "notFor": [
+    "近所の買い物中心で、冷間始動ばかりになりそう",
+    "燃費やオイル消費が気になって楽しめなくなる",
+    "整備履歴の薄い個体を安さで選びたい"
+  ],
+  "maintenanceNotes": [
+    "点火系（コイル/プラグ）はRX-8の肝。履歴が無いなら最初に予算を置く。",
+    "短距離だけの使い方は避け、定期的に温まる距離を走らせる。",
+    "冷却と排気（触媒）はダメージが出ると高いので、予防と早期対応が重要。"
+  ],
+  "lengthMm": null,
+  "widthMm": null,
+  "heightMm": null,
+  "wheelbaseMm": null,
+  "weightKg": null,
+  "priceNew": "当時：250万〜350万円（グレード）",
+  "priceUsed": "60万〜200万円（相場変動）",
+  "zeroTo100": null,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mazda RX-8 (SE3P)",
+  "makerKey": "mazda",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "マツダ RX-8（SE3P）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/mazda",
+  "relatedClusterIds": [],
+  "primaryQuery": "RX-8 (SE3P)",
+  "updateReason": "car-index-upgrade-2026-02-01",
+  "sources": [],
+  "purchasePriceSafe": "安全ライン：90万〜170万円（点火系・圧縮・整備履歴を優先）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間50〜120万円（点火/圧縮/触媒で上下）"
+  },
+  "maintenanceCostYenPerYear": 850000,
+  "body": "## 結論\nRX-8は「4人乗れて回る」ロータリースポーツです。観音開きの後席があるぶん、走りだけに寄りすぎず、日常にも寄せられるのが魅力です。\n\nただしロータリーは、短距離・冷間始動ばかりだと調子を崩しやすい傾向があります。買う前に点火系と圧縮、冷却の履歴が見える個体を選ぶ。これがRX-8で失敗しにくいコツです。\n\n## 向く人 / 向かない人\n向く人\n- 4座スポーツで“回す楽しさ”も欲しい\n- 短距離だけではなく、定期的にしっかり走れる\n\n向かない人\n- 近所の買い物中心で、冷間始動ばかりになりそう\n- 燃費やオイル消費が気になって楽しめなくなる\n\n## 買う前のチェック\n- 点火系：コイル/プラグの交換履歴。失火の有無\n- 圧縮：測定記録があるか。数値が揃っているか\n- 冷却：水回りの状態、ファン作動、過去のオーバーヒート歴\n- 排気：触媒まわりの詰まり・異音（状態次第で高額）\n- 使われ方：短距離中心の“放置気味”個体は避けたい\n\n## 弱点と故障\nRX-8は“点火が弱る→燃え残る→負担が増える”の連鎖が起きやすいです。\n\n- 失火・息継ぎ → コイル/プラグ劣化 → 費用感：数万〜十数万円\n- 始動性が悪い → 圧縮低下、点火不良 → 費用感：数万〜（重いと桁が変わる）\n- 水温が不安定 → 冷却系の弱り → 費用感：数万〜十数万円\n\n## 維持費の目安\n目安は年間50〜120万円。安く見える個体でも、点火系の“初期リセット”を前提にしておくと安心です。\n\nオイル管理の考え方は、[オイル交換の頻度と考え方](/guide/oil-change-frequency-guide)を先に読んでおくと、買った後に迷いが減ります。\n\n## 中古で買うなら\n距離よりも、「直近で動いていたか」「点火系の履歴があるか」です。低走行でも放置気味だと、余計に手がかかることがあります。\n\n迷ったら、[中古車「低走行の罠」](/column/usedcar-low-mileage-trap)のパターンに当てはまらないかだけでも確認しておくと安心です。\n\n## 比較\n- S2000（AP1）：NA高回転の気持ちよさ。2座に割り切れるなら選びやすい。\n- フェアレディZ（Z34）：トルクで走るタイプ。維持のクセはRX-8より読みやすい。\n- RX-7（FD3S）：鋭さは別格。価格と維持の濃さも一段上。\n\n## 関連リンク\n- [修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist)\n- [オイル交換の頻度と考え方](/guide/oil-change-frequency-guide)\n- [オーバーヒート/冷却水漏れの初動](/guide/overheat-coolant-leak-guide)\n- [オイル交換「5,000km神話」](/column/oil-change-5000km-myth)\n- [中古車「低走行の罠」](/column/usedcar-low-mileage-trap)\n- [高回転NAが“最後に咲いた”時代](/heritage/japan-high-rev-na-last-dance-heritage)\n"
+}

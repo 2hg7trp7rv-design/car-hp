@@ -1,0 +1,120 @@
+{
+  "id": "honda-integra-type-r-dc5",
+  "slug": "honda-integra-type-r-dc5",
+  "name": "Integra Type R (DC5)",
+  "maker": "Honda",
+  "releaseYear": 2001,
+  "difficulty": "advanced",
+  "bodyType": "クーペ",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "Type R (DC5)",
+  "summary": "DC2の延長ではなく、剛性と制御で作り直したType R。足の整合が走りを決める。",
+  "summaryLong": "DC5インテグラType Rは、形式の議論を超えて“整合”で走る車です。剛性の土台、ストラット前提のジオメトリ、回して使うK20A。\n\n中古では仕様より履歴。足のブッシュとアライメント、冷却と油脂、配線の後付け品質。ここが揃う個体は、普通の速度域でも線がきれいになります。\n\n回して気持ちいいのは、整っている個体だけ。だから選び方が価値になります。",
+  "heroImage": "/images/cars/honda-integra-type-r-dc5-hero.jpg",
+  "mainImage": "/images/cars/honda-integra-type-r-dc5-hero.jpg",
+  "imageUrl": "/images/cars/honda-integra-type-r-dc5-hero.jpg",
+  "gallery": [
+    "/images/cars/honda-integra-type-r-dc5-front.jpg",
+    "/images/cars/honda-integra-type-r-dc5-side.jpg",
+    "/images/cars/honda-integra-type-r-dc5-interior.jpg"
+  ],
+  "engine": "Front 2.0 NA (K20A i-VTEC)",
+  "powerPs": 220,
+  "torqueNm": 206,
+  "transmission": "6MT",
+  "drive": "FF",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜12 km/L",
+  "priceNew": "当時: 200万〜450万円台（仕様差）",
+  "priceUsed": "200万〜900万円（相場変動）",
+  "strengths": [
+    "剛性の土台が強く、整合が揃うと線がきれい。",
+    "K20Aは回転で走れる厚みがある。",
+    "情報量が多く、改善の道筋がある。"
+  ],
+  "weaknesses": [
+    "個体差が足回りに出やすい。",
+    "改造個体が多く、整合が崩れると症状が増える。",
+    "熱と油脂管理を怠ると一気に調子を落とす。"
+  ],
+  "troubleTrends": [
+    "足回りブッシュとアライメント履歴は要確認です。",
+    "配線の後付け品質が雑だと電装トラブルが出やすいです。",
+    "冷却系の更新履歴が薄い個体は避けたいです。"
+  ],
+  "costImpression": "安い個体ほど“足と配線”で戻しが出やすい。履歴の静かな個体を拾うのが結局安い。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge",
+    "oil-change-5000km-myth",
+    "dealer-shaken-is-expensive-myth"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "how-to-choose-first-sports-car"
+  ],
+  "relatedCarSlugs": [
+    "honda-civic-type-r-ep3",
+    "honda-integra-type-r-dc2"
+  ],
+  "tags": [
+    "Honda",
+    "Integra",
+    "DC5",
+    "Type R",
+    "K20A",
+    "FF"
+  ],
+  "relatedHeritageSlugs": [
+    "honda-integra-type-r-dc5-heritage",
+    "japan-high-rev-na-last-dance-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "na",
+    "type-r",
+    "driving-feel"
+  ],
+  "purchasePriceSafe": "安全ライン：250〜520万円前後（整合重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間30〜85万円"
+  },
+  "maintenanceCostYenPerYear": 580000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda Integra Type R (DC5)",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Honda Integra Type R (DC5)",
+  "updateReason": "car-major-overhaul-2026-02-01",
+  "sources": [],
+  "body": "## 結論\nDC5は、タイプRの中でも「剛性と回転の気持ちよさ」が分かりやすい一台です。しっかりした器の上で、エンジンを上まで使い切れる。走りの気持ちよさに対して、日常の扱いやすさも残っています。\n\n中古で見るべきは、スペックより整合です。足回り、ブレーキ、冷却、そしてミッション。ここが噛み合っている個体は、運転した瞬間に分かります。逆に、安さ優先で選ぶと、後からまとめて整備が必要になりがちです。\n\n結論としては「直して乗る」前提でもいいが、直す内容が読みやすい個体を買う。これが失敗しない近道です。\n\n## 向く人 / 向かない人\nDC5は「気持ちよく回して走る」人に向きます。短距離だけの街乗りや、静粛性最優先だと魅力が出にくいです。週末に走りを楽しめる環境があると化けます。\n\n## 買う前のチェック\n### 履歴を先に揃える\n- オイル交換の頻度と銘柄の傾向\n- 冷却系の更新履歴\n- ブレーキ周りの交換履歴\n- クラッチ、ミッションオイルの履歴\n\n整備記録が薄い個体は、現車で拾える情報が限られます。まずは候補から外してもいいです。\n\n### 現車で見るポイント\nDC5は「走り方の癖」が残りやすい車です。乗れば分かる情報が多いので、現車確認は丁寧にやる価値があります。\n- 直進性とハンドルセンター\n- シフトの入り、違和感の有無\n- 段差での足の収まり、異音\n- 下回りの擦りとオイル滲み\n\n## 弱点と故障\n弱点はあるけれど、分かりやすい弱点でもあります。買う前に把握しておくと、購入後の計画が立てやすいです。\n### ミッションとクラッチ\n走り方が反映されやすい部分です。シフトフィールが重い、入りが渋い、ギア鳴りがする。こういう違和感は放置しない方がいいです。軽い整備で収まることもありますが、深いと費用感が一気に上がります。\n\n### 冷却と油脂\n回す車は油脂の管理が命です。オイル滲みがある個体は、原因と場所を見極めたい。冷却系の更新履歴があると、購入後の不安が減ります。\n\n### 足回りの整合\nブッシュ、ダンパー、アライメント。ここが崩れると、ただ硬いだけの車になります。逆に整っているDC5は、街乗りでも姿勢がきれいで疲れにくいです。\n\n## 維持費\n維持費の目安は年間30〜85万円。タイヤとブレーキの消耗で上振れします。走る距離が短くても、年式相応のゴム類は確実に来るので、維持費は余裕を持って見ておくのが正解です。\n\n## 中古で買うなら\n- まずは純正に近い個体を基準に相場観を作る\n- 改造車は、パーツの銘柄と施工の質が説明できるものを選ぶ\n- 不安がある個体は [修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist) で整理してから決める\n\nDC5は「買ってからの整備で完成する」車でもあります。最初に土台が良い個体を掴むと、整備は前向きな投資になります。\n\n逆に、土台が弱い個体は、何をしても満足度が上がりにくいです。走りを楽しむ車ほど、最初の選び方がそのまま体験になります。\n\n## 比較\n同じホンダ系ならFD2は使い勝手とバランス、DC5は剛性と回転感。別世界の気分が欲しいなら、S2000（AP1）のオープンとFRも候補です。\n\n## 関連リンク\n点検の手順や、維持費の考え方をまとめた記事に繋げています。",
+  "bestFor": [
+    "剛性の高いボディで、回転を使い切る気持ちよさを味わいたい。",
+    "週末に走りを楽しみたいが、日常の扱いやすさも残したい。",
+    "整備履歴を見て、土台の良い個体を選ぶつもりがある。"
+  ],
+  "notFor": [
+    "短距離の街乗りだけで満足したい。走りの魅力が出にくい環境だと持て余しやすい。",
+    "維持費の上振れが怖い。消耗品と年式相応の整備にお金を使えない。",
+    "雑な改造車でも買ってしまいがち。仕様の透明度を重視できない。"
+  ],
+  "maintenanceNotes": [
+    "ミッションとクラッチの違和感は放置しない。試乗で渋さがある個体は慎重に。",
+    "油脂と冷却の管理が価値を左右する。履歴が読みやすい個体ほど安心して回せる。",
+    "足回りの整合が取れたDC5は、街乗りでも姿勢がきれいで疲れにくい。"
+  ]
+}

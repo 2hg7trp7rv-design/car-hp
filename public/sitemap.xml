@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemaps/sitemap.xsl"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://carboutiquejournal.com/sitemaps/sitemap-static.xml</loc>
+    <lastmod>2026-03-02</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://carboutiquejournal.com/sitemaps/sitemap-cars.xml</loc>
+    <lastmod>2026-03-02</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://carboutiquejournal.com/sitemaps/sitemap-makers.xml</loc>
+    <lastmod>2026-03-02</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://carboutiquejournal.com/sitemaps/sitemap-body-types.xml</loc>
+    <lastmod>2026-03-02</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://carboutiquejournal.com/sitemaps/sitemap-segments.xml</loc>
+    <lastmod>2026-03-02</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://carboutiquejournal.com/sitemaps/sitemap-guides.xml</loc>
+    <lastmod>2026-03-02</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://carboutiquejournal.com/sitemaps/sitemap-columns.xml</loc>
+    <lastmod>2026-03-02</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://carboutiquejournal.com/sitemaps/sitemap-heritage.xml</loc>
+    <lastmod>2026-03-02</lastmod>
+  </sitemap>
+</sitemapindex>

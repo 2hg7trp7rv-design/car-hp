@@ -1,0 +1,20 @@
+PATCH_NOTES_wave8.txt
+
+Goal: push “text as design” and ensure every page (including error/404/internal tools) fits the Stage (dark exhibition) + Porcelain (white archive shelf) language.
+
+1) Error / 404 pages redesigned as part of the exhibition
+- app/not-found.tsx: moved from generic slate/teal template to Stage + Porcelain panel.
+- app/error.tsx: same; keeps reset and digest while matching the site’s typographic tokens.
+
+2) Utility pages typography consistency
+- app/search/page.tsx: header rewritten to use the text-as-design tokens (cb-eyebrow / cb-lead) and harmonized title scale.
+- app/compare/page.tsx: removed the custom breadcrumb <nav> and switched to the shared Breadcrumb component; tightened the typographic scale and border colors.
+
+3) Missing-image “blank” prevention polish
+- components/content/ContentGridCard.tsx placeholder text changed to “ARCHIVE” to match the row cards.
+
+4) Internal tools pages palette cleanup
+- app/_internal/* pages: replaced leftover slate palette classes with the unified porcelain palette to avoid “different site” feel even in internal dashboards.
+
+5) Regenerated audit outputs
+- public/_internal/audit.json and src/generated/audit.generated.json were refreshed after running scripts/content-audit.mjs.

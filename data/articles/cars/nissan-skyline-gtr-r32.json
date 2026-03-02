@@ -1,0 +1,125 @@
+{
+  "id": "nissan-skyline-gtr-r32",
+  "slug": "nissan-skyline-gtr-r32",
+  "name": "Skyline GT-R R32",
+  "maker": "Nissan",
+  "releaseYear": 1989,
+  "difficulty": "intermediate",
+  "bodyType": "sports-coupe",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "nissan-gt-r-godzilla-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "Skyline GT-R R32",
+  "summary": "復活のR。四駆×ターボで“勝つための公道車”を確立した。",
+  "summaryLong": "Skyline GT-R R32は、1989年に登場したNissanのsports-coupeで、AWDとFront Inline-6 Twin Turboを軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+  "body": "## 結論\nR32 GT-Rは、90年代JDMの中心にいた存在です。古い車なのに速い、ではなく、古い車だからこそ濃い。いま買うなら「名車」より「個体」を買う感覚が必要になります。\n\n中古は個体差が極端です。改造歴、補修歴、錆、そして整備の密度。同じR32でも、走りの印象がまるで違うことがあります。価格が上がっている今は、安さで入るより、履歴の透明度で選ぶ方が安全です。\n\n結論としては、器の状態と履歴の濃さ。この2つが揃った個体を選ぶのが正解です。\n\n## 向く人 / 向かない人\nR32は、古い車を「整えながら乗る」人に向きます。日常の足として便利に使いたい人や、故障の不確実性がストレスになる人には向きません。\n\n## 買う前のチェック\n### まずはボディと錆\n- 下回り、フロア、フェンダー周りの錆\n- 事故歴や骨格補修の説明\n- パネルの隙間、左右差\n\nここはR32の価値の土台です。迷うなら [修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist) で手順に落として判断すると安全です。\n\n### 次に「改造の質」\nこの年代のGT-Rは、ノーマルより改造車の方が多いこともあります。だから改造を嫌うより、どう作られているかを見る方が現実的です。\n改造は珍しくありません。大事なのは意図と質です。\n\n- 配線の処理が丁寧か\n- 取り付けの歪みや雑さがないか\n- 車検の考え方が一貫しているか\n\n### 駆動系と足回り\n- 直進性とブレーキの安定感\n- 異音、振動、段差での収まり\n- デフや駆動系の違和感\n\n## 弱点と故障\n### 経年の消耗品が重い\nゴム類、ホース類、ブッシュ。ここは年式相応に来ます。まとめて整えると費用感が大きくなりますが、一度整うと「走りの芯」が戻りやすいです。\n\n### 補修の質で価値が割れる\n古い車ほど、過去の修理の質が走りに出ます。説明が曖昧な個体は、安くても避けた方が結果的に早いです。\n\n### 改造歴の当たり外れ\n雑な改造はトラブルの入口になります。逆に、丁寧な改造は価値です。見極めが難しい場合は、専門店での点検を前提にした方が安心です。\n\n## 維持費\n維持費の目安は年間80〜150万円。状態が良い個体ほど、維持費は読みやすくなります。安い個体ほど上振れしやすいので、維持費は余裕を持って計画したいです。\n\n## 中古で買うなら\n- まずは錆と骨格で候補を絞る\n- 改造車は、施工内容と履歴が説明できるものを選ぶ\n- 価格が安い理由が言語化できない個体は避ける\n\nR32は、買った瞬間より、整った瞬間に価値が分かる車です。\n\n買ってすぐにやるなら、油脂類の総入れ替えと、冷却系の点検。これだけで「とりあえず安心して乗れる」状態に近づきます。そこから足回りやブッシュを整えると、走りの芯が戻ります。\n\n## 比較\n同じGT-RならR33は大きさと落ち着き、R34は完成度と価格の世界。直線の迫力より全体の濃さで選ぶなら、スープラ（JZA80）やRX-7（FD3S）とも比較すると方向性が見えてきます。\n\n## 関連リンク\n購入前点検と、維持費の考え方をリンク先で補強できます。",
+  "costImpression": "古いGT-Rは、最初に“基準に戻す”出費が来ます（足、冷却、ゴム類）。安さで選ぶより、整っている個体を買う方が結局早いです。",
+  "heroImage": "/images/cars/nissan-skyline-gtr-r32-hero.jpg",
+  "mainImage": "/images/cars/nissan-skyline-gtr-r32-main.jpg",
+  "imageUrl": "/images/cars/nissan-skyline-gtr-r32-main.jpg",
+  "gallery": [
+    "/images/cars/nissan-skyline-gtr-r32-front.jpg",
+    "/images/cars/nissan-skyline-gtr-r32-side.jpg",
+    "/images/cars/nissan-skyline-gtr-r32-interior.jpg"
+  ],
+  "engine": "Front Inline-6 Twin Turbo",
+  "powerPs": 280,
+  "torqueNm": 353,
+  "transmission": "5MT / 4AT",
+  "drive": "AWD",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜9 km/L",
+  "priceNew": "当時：400万〜500万円（参考）",
+  "priceUsed": "600万〜2000万円（相場変動）",
+  "priceUsedYenRange": "600万〜2000万円（相場変動）",
+  "purchasePriceSafe": "安全ライン：1200〜2000万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間80〜150万円"
+  },
+  "maintenanceCostYenPerYear": 1150000,
+  "strengths": [
+    "加速の太さとトラクション性能が高い",
+    "チューニング/補修パーツの情報量が多い",
+    "高速巡航でも安定感が高く、ロングツーリングに強い",
+    "コミュニティが大きく、相場/整備ノウハウが集まりやすい"
+  ],
+  "weaknesses": [
+    "足回りやブッシュ類のリフレッシュが前提",
+    "保険料や税金、消耗品が高めになりやすい",
+    "改造歴/履歴次第でリスクが大きく変わる"
+  ],
+  "troubleTrends": [
+    "タービン/配管・負圧ホースの劣化",
+    "4WD/駆動系オイル管理",
+    "電装（メーター/ハーネス）の経年"
+  ],
+  "bestFor": [
+    "90年代JDMの濃さを、整えながら味わいたい。文化としてのGT-Rが好き。",
+    "ノーマルや丁寧な改造車を、履歴と整合で見極めるつもりがある。",
+    "維持費の上振れを許容して、土台から整える覚悟がある。"
+  ],
+  "notFor": [
+    "故障や不確実性がストレスになる。日常の足として確実性を求める。",
+    "改造や補修の説明が曖昧でも気にしない。個体差を見極めるのが苦手。",
+    "維持費を平均値でしか考えられない。上振れを許容できない。"
+  ],
+  "maintenanceNotes": [
+    "錆と骨格は価値の土台。まず器で落としてから機関を見る。",
+    "改造は意図と質。雑な改造は後からコストになる。",
+    "購入後は油脂類の一新と冷却系の点検から。基礎整備が価値を戻す。"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "nissan-skyline-gtr-r34",
+    "toyota-supra-jza80-rz",
+    "mazda-rx7-fd3s"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "how-to-choose-first-sports-car"
+  ],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge",
+    "oil-change-5000km-myth",
+    "dealer-shaken-is-expensive-myth"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-1995-golden-age-heritage",
+    "japan-280ps-gentlemens-agreement-heritage",
+    "jdm-280ps-happy-lie-heritage"
+  ],
+  "tags": [
+    "Nissan",
+    "sports-coupe",
+    "クラシックスポーツ",
+    "AWD",
+    "5MT / 4AT",
+    "Front Inline-6 Twin Turbo",
+    "ネオクラシック",
+    "JDM",
+    "名車",
+    "GT-R"
+  ],
+  "intentTags": [],
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Skyline GT-R R32",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Skyline GT-R R32",
+  "updateReason": "car-major-overhaul-2026-02-01",
+  "sources": []
+}

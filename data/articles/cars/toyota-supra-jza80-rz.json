@@ -1,0 +1,121 @@
+{
+  "id": "toyota-supra-jza80-rz",
+  "slug": "toyota-supra-jza80-rz",
+  "name": "Supra JZA80 RZ",
+  "maker": "Toyota",
+  "releaseYear": 1993,
+  "difficulty": "advanced",
+  "bodyType": "sports-coupe",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "toyota-supra-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "RZ",
+  "summary": "2JZの名声は本物。中古は改造の濃さと素性の見極めで決まる。",
+  "summaryLong": "JZA80 スープラ RZは、2JZの余裕と大きめのボディが生む高速域の安定感が魅力です。中古では相場が広く、改造歴も多いので、年式や距離より『何がどこまで手が入っているか』の読み解きが重要。冷却や燃料系、足回りの基礎が崩れている個体は、後から立て直すのに時間と費用が掛かります。まずは素性が分かる一台を選ぶと、結果的に遠回りしません。 方向性の揃った個体を狙うと楽です。",
+  "body": "## 結論\nJZA80は、買う前より買った後に差が出ます。素性が良い個体は、普通に走るだけで安心感がある。逆に、雑な改造や酷使の痕跡がある車は、直しても直しても落ち着きません。\n\n## 向く人 / 向かない人\n文化も含めて楽しめる人向けです。純正のまま静かに乗りたい人には、選択肢として難しいことが多い。『触られている前提』で判断できるかがポイントです。\n\n## 買う前のチェック\nボディの歪み、下回りの傷、錆。次に改造の質。配線や配管の仕上げ、追加メーターの取り付け、燃料系の扱いなどを見てください。試乗では、熱が入った後の調子、異音、振動、真っ直ぐ走るかを確認します。\n\n### チューニング個体の注意点\n- 過給圧や燃料系に手が入っているなら、セッティングの履歴があるか\n- 排気温や水温の管理がされているか。追加メーターの有無だけでなく設置の質も見る\n- 変速のフィーリング。ATでもMTでも、違和感は早めに拾う\n- 車重があるのでブレーキと足回りの状態はシビアに確認\n\n## 弱点と故障\n弱点は車種固有というより、使われ方の影響が大きいです。高出力化されている個体は、冷却と油脂の前提が変わる。だからこそ、どんな用途で作られてきたかを聞いて、その用途が自分と一致するかを確認するのが大切です。\n\n## 維持費\n維持費は、仕様と走り方で変動します。純正寄りなら落ち着きますが、パワーを上げるほど消耗品のペースが上がる。毎月の固定費というより、イベント単位で積み上げる感覚が合います。\n\n### 予算は『大物が来る前提』で\n年式的に、ゴム類と冷却、足回りのリフレッシュは避けられません。買ってから慌てるより、最初の一年で一度整える計画を組むと楽です。\n\n## 中古で買うなら\n最初の一台は、できるだけ履歴がクリアで、素性が読める個体がおすすめです。値段よりも、過去のオーナーがどう維持してきたか。そこが見える車は、買ってからも読みやすいです。\n\n### ノーマル然としたチューニングが強い\n見た目が派手な車より、基礎が整っていて必要な箇所だけアップデートされている車が扱いやすい。書類と現車の整合性が取れているかを重視したいです。\n\n### チューニング方針が読める車が良い\nJZA80はパーツが多く、前オーナーの思想が車に残ります。街乗り重視か、サーキット重視か。冷却と燃料の手当がその思想に合っているか。方向性が揃っている車はトラブルも少なく、乗っていても迷いが減ります。\n\n### 初年度の計画を立てる\n- まず油脂類と冷却を整える。年式的にここは避けられません\n- 次に足回り。車重があるので基礎が崩れると怖い\n- ブレーキは甘く見ない。消耗の差が走り方の差です\n- パワーアップは最後。基礎が整ってからの方が結果が出ます\n\n\n追加で見るなら燃料系の状態です。年式的にホースやポンプ周りが弱っていると、高負荷時の不調に繋がります。全開を楽しみたい車ほど、燃料と冷却に手当が入っているかを確認したい。\n\n## 比較\nGRスープラやZは現代的な扱いやすさ。R34は物語性。JZA80は『文化と余白』が魅力です。どこに価値を置くかで答えが変わります。\n\n## 関連リンク\n",
+  "costImpression": "相場より大事なのは“素性”です。購入後に一度リフレッシュ（冷却・ゴム・足）できる余裕があるかで、満足度が決まります。",
+  "heroImage": "/images/cars/toyota-supra-jza80-rz-hero.jpg",
+  "mainImage": "/images/cars/toyota-supra-jza80-rz-main.jpg",
+  "imageUrl": "/images/cars/toyota-supra-jza80-rz-main.jpg",
+  "gallery": [
+    "/images/cars/toyota-supra-jza80-rz-front.jpg",
+    "/images/cars/toyota-supra-jza80-rz-side.jpg",
+    "/images/cars/toyota-supra-jza80-rz-interior.jpg"
+  ],
+  "engine": "Front Inline-6 Twin Turbo",
+  "powerPs": 280,
+  "torqueNm": 451,
+  "transmission": "6MT / 4AT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜10 km/L",
+  "priceNew": "当時：450万〜550万円（参考）",
+  "priceUsed": "500万〜1700万円（相場変動）",
+  "priceUsedYenRange": "500万〜1700万円（相場変動）",
+  "purchasePriceSafe": "安全ライン：500〜1200万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間70〜150万円"
+  },
+  "maintenanceCostYenPerYear": 1100000,
+  "strengths": [
+    "直6ターボの伸びと高速域の余裕",
+    "シャシー剛性が高く、チューニング耐性も高い",
+    "部品/ノウハウが豊富で弄り方の幅が広い",
+    "グランドツアラーとして快適性も確保"
+  ],
+  "weaknesses": [
+    "年式・個体差による当たり外れが大きい",
+    "部品の供給/価格が年々厳しくなる場合がある",
+    "日常用途では燃費・乗り心地の割り切りが必要"
+  ],
+  "troubleTrends": [
+    "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+    "電装系（センサー/配線）の経年",
+    "冷却系のメンテ不足"
+  ],
+  "bestFor": [
+    "2JZの世界観を、自分のペースで育てて楽しみたい人",
+    "改造車の見極めができる、または相談できる店がある人",
+    "車両価格とは別に、初年度整備の予算を確保できる人"
+  ],
+  "notFor": [
+    "純正のまま静かに乗りたい人",
+    "改造歴が曖昧でも勢いで買ってしまいがちな人",
+    "維持費と手間を最小にしたい人"
+  ],
+  "maintenanceNotes": [
+    "改造の影響が大きい車種。内容を説明できる個体を優先",
+    "冷却系と油脂管理が寿命に直結。履歴が価値になる",
+    "足回りとボディの素性（歪み、錆）は後から直しにくい",
+    "高出力化個体は消耗品の前提が変わる。用途で線引きする"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "toyota-gr-supra-rz",
+    "nissan-skyline-gtr-r34",
+    "nissan-z-rz34"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "how-to-choose-first-sports-car",
+    "maintenance-cost-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "usedcar-warranty-needed"
+  ],
+  "relatedHeritageSlugs": [
+    "jdm-280ps-happy-lie-heritage"
+  ],
+  "tags": [
+    "Toyota",
+    "sports-coupe",
+    "クラシックスポーツ",
+    "FR",
+    "6MT / 4AT",
+    "Front Inline-6 Twin Turbo",
+    "ヤングタイマー",
+    "2JZ"
+  ],
+  "intentTags": [],
+  "type": "CAR",
+  "status": "published",
+  "title": "Toyota Supra JZA80 RZ",
+  "makerKey": "toyota",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "トヨタ スープラ（JZA80 RZ）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/toyota",
+  "relatedClusterIds": [],
+  "primaryQuery": "Supra JZA80 RZ",
+  "updateReason": "data-align-2026-02-01",
+  "sources": []
+}

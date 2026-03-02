@@ -1,0 +1,23 @@
+CBJ Masterpiece Wave11
+
+変更ファイル一覧（行数差分）
+- app/globals.css: 820 -> 891 (+71)
+- app/guide/[slug]/page.tsx: 1023 -> 1023 (0)
+- app/column/[slug]/page.tsx: 603 -> 603 (0)
+- app/heritage/[slug]/page.tsx: 645 -> 645 (0)
+- app/cars/[slug]/page.tsx: 1099 -> 1094 (-5)
+
+生成物（再生成）
+- public/_internal/audit.json
+- public/robots.txt
+- public/sitemap.xml
+- public/sitemaps/sitemap-body-types.xml
+- public/sitemaps/sitemap-cars.xml
+- public/sitemaps/sitemap-columns.xml
+- public/sitemaps/sitemap-guides.xml
+- public/sitemaps/sitemap-heritage.xml
+- public/sitemaps/sitemap-makers.xml
+- public/sitemaps/sitemap-news.xml
+- public/sitemaps/sitemap-segments.xml
+- public/sitemaps/sitemap-static.xml
+- src/generated/audit.generated.json

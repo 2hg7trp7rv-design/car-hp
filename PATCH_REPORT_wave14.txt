@@ -1,0 +1,18 @@
+PATCH REPORT — WAVE 14
+
+Status
+- Home KV now ships WebP first (PNG fallback).
+- Heavy exhibit background assets re-encoded (major byte reduction).
+- Background images marked decoding=async and high fetch priority.
+- public-assets manifest updated.
+
+Risk
+- Low.
+  - All production filenames remain valid (no route changes).
+  - PNG fallback kept for browsers without WebP support.
+  - Originals preserved outside /public (docs/_asset_originals).
+
+Action (post-deploy checks)
+- Open: / (Home), /cars, /guide, /column, /compare, /search
+- Confirm KV visuals look unchanged.
+- Confirm network transfer size for KV images is smaller (DevTools or any header inspector).

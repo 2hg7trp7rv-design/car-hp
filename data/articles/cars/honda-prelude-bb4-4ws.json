@@ -1,0 +1,124 @@
+{
+  "id": "honda-prelude-bb4-4ws",
+  "slug": "honda-prelude-bb4-4ws",
+  "name": "Prelude (BB4) 4WS",
+  "maker": "Honda",
+  "releaseYear": 1992,
+  "difficulty": "intermediate",
+  "bodyType": "coupe",
+  "segment": "クーペ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "Prelude BB4 (4WS)",
+  "summary": "4WSが“線のきれいさ”を作るクーペ。速さより、気持ちよさの整い方が価値。",
+  "summaryLong": "プレリュードの4WSは、小回りの道具というより“高速域の不安を消す”ための仕掛けとして効きます。向きの立ち上がりが整うと、ステアの修正が減り、線がきれいになる。\n\nいま買う目線では、4WS機構の健全性が価値です。油圧/リンクの状態、警告灯や違和感、足回りブッシュとアライメント。ここが揃う個体は、古さより先に“整った手応え”が来る。\n\nスペックで語られにくいが、体験で残る車です。",
+  "heroImage": "/images/cars/honda-prelude-bb4-4ws-hero.jpg",
+  "mainImage": "/images/cars/honda-prelude-bb4-4ws-main.jpg",
+  "imageUrl": "/images/cars/honda-prelude-bb4-4ws-hero.jpg",
+  "gallery": [
+    "/images/cars/honda-prelude-bb4-4ws-front.jpg",
+    "/images/cars/honda-prelude-bb4-4ws-side.jpg",
+    "/images/cars/honda-prelude-bb4-4ws-interior.jpg"
+  ],
+  "engine": "Front Inline-4 2.2 NA (H22A)",
+  "powerPs": 200,
+  "torqueNm": 212,
+  "transmission": "5MT",
+  "drive": "FF",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 7〜13 km/L",
+  "priceNew": "当時: 200万〜500万円台（仕様差）",
+  "priceUsed": "150万〜900万円（相場変動）",
+  "strengths": [
+    "4WSが線のきれいさを作り、修正舵が減る。",
+    "FFでも姿勢が整うと運転が上手くなったように感じる。",
+    "回すと気持ちいいNAで、街でも濃度が出る。",
+    "当時の企画としての尖りが面白い。"
+  ],
+  "weaknesses": [
+    "4WS機構の不調は症状の切り分けが難しいことがある。",
+    "年式相応にブッシュや配管の劣化が進みやすい。",
+    "事故歴や骨格の歪みがあると良さが戻りにくい。",
+    "部品入手性が年々厳しくなりやすい。"
+  ],
+  "troubleTrends": [
+    "4WSの警告灯履歴と、リンク/配管の滲みは要チェックです。",
+    "足回りブッシュのへたりで直進性と手応えが変わります。",
+    "ステア周りの異音や戻りの重さは違和感として出やすいです。",
+    "下回りの錆（特に配管周り）は価値を左右します。"
+  ],
+  "costImpression": "安い個体ほど“機構を戻す”費用が重い。機構が生きているベースを優先したい。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge",
+    "dealer-shaken-is-expensive-myth"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "oil-leak-first-response"
+  ],
+  "relatedCarSlugs": [
+    "nissan-skyline-r32-super-hicas",
+    "mitsubishi-gto-z15a-active-aero",
+    "honda-integra-type-r-dc2"
+  ],
+  "tags": [
+    "Honda",
+    "Prelude",
+    "BB4",
+    "4WS",
+    "FF",
+    "1990s",
+    "chassis-tech"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-1995-golden-age-heritage"
+  ],
+  "intentTags": [
+    "handling",
+    "4ws",
+    "1990s",
+    "heritage",
+    "intermediate"
+  ],
+  "purchasePriceSafe": "安全ライン：220〜420万円前後（機構と足の整合重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間28〜75万円"
+  },
+  "maintenanceCostYenPerYear": 520000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda Prelude (BB4) 4WS",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Honda Prelude (BB4) 4WS",
+  "updateReason": "car-overhaul-2026-02-01_v8",
+  "sources": [],
+  "body": "## 結論\nBB4プレリュードの4WSは、数値の速さより「線のきれいさ」で気持ちよくなる車です。4WSが生きている個体に当たると、修正舵が減って“運転が整う”感覚がはっきり出ます。\n\n中古でいちばん大事なのは、4WS機構と足回りの整合です。ここが崩れていると、ただ古いクーペになります。迷ったら、まずは[ホンダの車種一覧](/cars/makers/honda)で他の候補も含めて見比べると判断が早いです。\n\n## 向く人 / 向かない人\n向くのは、ハンドリングの気持ちよさを求める人。向かないのは、古い機構ものに手間をかけたくない人です。4WSは“生きていれば最高”ですが、弱っていると判断が難しくなります。\n\n## 買う前のチェック\n- 4WSの警告灯が点かないか。点灯履歴の有無も含めて確認したいです。\n- 低速〜中速での違和感。急に切れ込む、戻りが不自然、左右で手応えが違うなどは要注意。\n- 足回りブッシュとアライメント。直進性と段差の収まりで大きく差が出ます。\n- 下回りの錆と配管。機構ものは配管の状態が価値を左右します。\n- 事故歴の説明の具体性。骨格が歪むと“線のきれいさ”は戻りにくいです。\n\n事故歴や骨格の話は、口頭より書面と写真で確認したいです。[修復歴・事故歴のチェックリスト](/guide/repair-history-used-car-checklist)を使うと会話が早くなります。\n\n\n## 弱点と故障\n弱点は、4WSの状態が見えにくいことです。動いているかどうかだけでなく、動きが自然か、整合が取れているか。\n\nだからこそ、良い個体に当たると唯一無二です。FFでも姿勢が整って、運転がラクに感じる。そこがプレリュード4WSの価値です。\n\n## 維持費の目安\n年式的に、足回りとゴム類は一巡している前提で考えるのが安全です。タイミングベルトなど“定期メニュー”をまとめてやるタイミングも来やすいので、購入直後の整備費は余裕を持って見てください。\n\n## 中古で買うなら\nおすすめは、4WSが正常に動作していて、足回りが整っている個体です。安い個体を買って戻すより、整ったベースを基準にしたほうが結果的に気持ちよく乗れます。\n\n購入前に、4WSの状態と、直近で替えた足回り部品（ブッシュ、ショック等）の履歴を聞いてください。ここで説明が具体的な個体は信頼しやすいです。\n\n## 比較\n同年代の機構ものならR32のHICASやGTOのアクティブエアロが方向性として近いです。ただ、プレリュードは速さより“線の整い方”に振った味付けです。\n\n## 関連リンク\n- [修復歴・事故歴の見方（チェックリスト）](/guide/repair-history-used-car-checklist)\n- [維持費のざっくり試算](/guide/maintenance-cost-simulation)\n- [オイル漏れを見つけたときの初動](/guide/oil-leak-first-response)\n- [修復歴は“ある/なし”より中身](/column/repair-history-how-to-judge)\n- [ディーラー車検は高い？の誤解](/column/dealer-shaken-is-expensive-myth)\n- [1995年前後の“濃い時代”](/heritage/japan-1995-golden-age-heritage)",
+  "bestFor": [
+    "ハンドリングの気持ちよさを最優先にしたい人。",
+    "機構ものの面白さを含めて楽しめる人。",
+    "状態を見て“良い個体”を探せる人。"
+  ],
+  "notFor": [
+    "古い車に手間をかけたくない人。",
+    "静粛性や最新装備を求める人。",
+    "安い個体を買って後から直す前提の人。"
+  ],
+  "maintenanceNotes": [
+    "4WSの警告灯と違和感は最優先でチェック。動きが自然かまで見たいです。",
+    "足回りブッシュとアライメントで別の車になります。直進性で判断。",
+    "下回りの錆と配管の状態は、機構ものでは価値に直結します。"
+  ]
+}

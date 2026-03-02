@@ -1,0 +1,14 @@
+HOTFIX: Disable Next.js Middleware temporarily
+
+Why:
+- Vercel is experiencing a platform incident where deployments that include Middleware Functions can fail during "Deploying outputs".
+
+What changed:
+- middleware.ts -> middleware.disabled.ts (code preserved; middleware not deployed)
+- Added vercel.json with trailingSlash:false to keep canonical URL behavior without middleware.
+
+To re-enable:
+- Rename middleware.disabled.ts back to middleware.ts
+
+Important:
+- Enforce primary domain + www->non-www redirects in Vercel Project Settings -> Domains.

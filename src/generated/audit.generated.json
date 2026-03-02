@@ -1,0 +1,4125 @@
+{
+  "generatedAt": "2026-03-02T00:37:59.031Z",
+  "summary": {
+    "totals": {
+      "CAR": 111,
+      "GUIDE": 36,
+      "COLUMN": 28,
+      "HERITAGE": 30
+    },
+    "all": {
+      "total": 205,
+      "index": 111
+    },
+    "errorCount": 0,
+    "warningCount": 0
+  },
+  "errors": [],
+  "warnings": [],
+  "items": [
+    {
+      "type": "CAR",
+      "slug": "aston-martin-db7-vantage",
+      "id": "aston-martin-db7-vantage",
+      "title": "Aston Martin DB7 Vantage",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/aston-martin-db7-vantage",
+      "file": "data/articles/cars/aston-martin-db7-vantage.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 441,
+        "bodyLen": 0,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "autozam-az-1-pg6sa",
+      "id": "autozam-az-1-pg6sa",
+      "title": "Mazda Autozam AZ-1 (PG6SA)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/autozam-az-1-pg6sa",
+      "file": "data/articles/cars/autozam-az-1-pg6sa.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2028,
+        "bodyLen": 1252,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "autozam-az-1",
+      "id": "autozam-az-1",
+      "title": "Mazda Autozam AZ-1",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/autozam-az-1",
+      "file": "data/articles/cars/autozam-az-1.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 439,
+        "bodyLen": 0,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "bmw-530i-g30",
+      "id": "bmw-530i-g30",
+      "title": "BMW 530i (G30)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/bmw-530i-g30",
+      "file": "data/articles/cars/bmw-530i-g30.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2482,
+        "bodyLen": 1372,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "daihatsu-copen-l880k",
+      "id": "daihatsu-copen-l880k",
+      "title": "Daihatsu Copen (L880K)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/daihatsu-copen-l880k",
+      "file": "data/articles/cars/daihatsu-copen-l880k.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2031,
+        "bodyLen": 1373,
+        "strengthsCount": 3,
+        "concernsCount": 7,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-125-s",
+      "id": "ferrari-125-s",
+      "title": "FERRARI フェラーリ 125 S",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-125-s",
+      "file": "data/articles/cars/ferrari-125-s.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 948,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-166-mm",
+      "id": "ferrari-166-mm",
+      "title": "FERRARI フェラーリ 166 MM",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-166-mm",
+      "file": "data/articles/cars/ferrari-166-mm.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 945,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-250-gt-swb",
+      "id": "ferrari-250-gt-swb",
+      "title": "Ferrari 250 GT SWB",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-250-gt-swb",
+      "file": "data/articles/cars/ferrari-250-gt-swb.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 597,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-250-gto",
+      "id": "ferrari-250-gto",
+      "title": "FERRARI フェラーリ 250GTO",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-250-gto",
+      "file": "data/articles/cars/ferrari-250-gto.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 893,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-275-gtb",
+      "id": "ferrari-275-gtb",
+      "title": "Ferrari 275 GTB",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-275-gtb",
+      "file": "data/articles/cars/ferrari-275-gtb.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 592,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-275-gtb4",
+      "id": "ferrari-275-gtb4",
+      "title": "FERRARI フェラーリ 275GTB/4",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-275-gtb4",
+      "file": "data/articles/cars/ferrari-275-gtb4.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 915,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-308-gtb",
+      "id": "ferrari-308-gtb",
+      "title": "FERRARI フェラーリ 308GTB",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-308-gtb",
+      "file": "data/articles/cars/ferrari-308-gtb.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 899,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-348-tb",
+      "id": "ferrari-348-tb",
+      "title": "Ferrari 348 TB",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-348-tb",
+      "file": "data/articles/cars/ferrari-348-tb.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 429,
+        "bodyLen": 0,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-360-modena",
+      "id": "ferrari-360-modena",
+      "title": "FERRARI フェラーリ 360モデナ",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-360-modena",
+      "file": "data/articles/cars/ferrari-360-modena.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 876,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-365-gtb4-daytona",
+      "id": "ferrari-365-gtb4-daytona",
+      "title": "FERRARI フェラーリ 365GTB/4 デイトナ",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-365-gtb4-daytona",
+      "file": "data/articles/cars/ferrari-365-gtb4-daytona.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 864,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-458-italia",
+      "id": "ferrari-458-italia",
+      "title": "FERRARI フェラーリ 458イタリア",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-458-italia",
+      "file": "data/articles/cars/ferrari-458-italia.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 795,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-488-gtb",
+      "id": "ferrari-488-gtb",
+      "title": "FERRARI フェラーリ 488GTB",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-488-gtb",
+      "file": "data/articles/cars/ferrari-488-gtb.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 729,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-512-bb",
+      "id": "ferrari-512-bb",
+      "title": "FERRARI フェラーリ 512BB",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-512-bb",
+      "file": "data/articles/cars/ferrari-512-bb.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 893,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-550-maranello",
+      "id": "ferrari-550-maranello",
+      "title": "Ferrari 550 Maranello",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-550-maranello",
+      "file": "data/articles/cars/ferrari-550-maranello.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 599,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-812-superfast",
+      "id": "ferrari-812-superfast",
+      "title": "FERRARI フェラーリ 812スーパーファスト",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-812-superfast",
+      "file": "data/articles/cars/ferrari-812-superfast.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 761,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-dino-246-gt",
+      "id": "ferrari-dino-246-gt",
+      "title": "FERRARI ディーノ 246GT",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-dino-246-gt",
+      "file": "data/articles/cars/ferrari-dino-246-gt.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 911,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-f40",
+      "id": "ferrari-f40",
+      "title": "FERRARI フェラーリ F40",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/ferrari-f40",
+      "file": "data/articles/cars/ferrari-f40.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2139,
+        "bodyLen": 1096,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-f430",
+      "id": "ferrari-f430",
+      "title": "FERRARI フェラーリ F430",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-f430",
+      "file": "data/articles/cars/ferrari-f430.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 907,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-f50",
+      "id": "ferrari-f50",
+      "title": "FERRARI フェラーリ F50",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-f50",
+      "file": "data/articles/cars/ferrari-f50.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 869,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-la-ferrari",
+      "id": "ferrari-la-ferrari",
+      "title": "FERRARI フェラーリ ラ フェラーリ",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-la-ferrari",
+      "file": "data/articles/cars/ferrari-la-ferrari.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 899,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-purosangue",
+      "id": "ferrari-purosangue",
+      "title": "FERRARI フェラーリ プロサングエ",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/ferrari-purosangue",
+      "file": "data/articles/cars/ferrari-purosangue.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2203,
+        "bodyLen": 1195,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-roma",
+      "id": "ferrari-roma",
+      "title": "FERRARI フェラーリ ローマ",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-roma",
+      "file": "data/articles/cars/ferrari-roma.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 775,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-sf90-stradale",
+      "id": "ferrari-sf90-stradale",
+      "title": "FERRARI フェラーリ SF90ストラダーレ",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/ferrari-sf90-stradale",
+      "file": "data/articles/cars/ferrari-sf90-stradale.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2141,
+        "bodyLen": 1148,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "ferrari-testarossa",
+      "id": "ferrari-testarossa",
+      "title": "FERRARI フェラーリ テスタロッサ",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/ferrari-testarossa",
+      "file": "data/articles/cars/ferrari-testarossa.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 851,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "honda-beat-pp1",
+      "id": "honda-beat-pp1",
+      "title": "Honda Beat (PP1)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/honda-beat-pp1",
+      "file": "data/articles/cars/honda-beat-pp1.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2037,
+        "bodyLen": 1210,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "honda-civic-type-r-ek9",
+      "id": "honda-civic-type-r-ek9",
+      "title": "Honda Civic Type R (EK9)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/honda-civic-type-r-ek9",
+      "file": "data/articles/cars/honda-civic-type-r-ek9.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2289,
+        "bodyLen": 1512,
+        "strengthsCount": 2,
+        "concernsCount": 5,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 3,
+        "relatedHeritageCount": 2
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "honda-civic-type-r-ep3",
+      "id": "honda-civic-type-r-ep3",
+      "title": "Honda Civic Type R (EP3)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/honda-civic-type-r-ep3",
+      "file": "data/articles/cars/honda-civic-type-r-ep3.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2026,
+        "bodyLen": 1357,
+        "strengthsCount": 3,
+        "concernsCount": 7,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "honda-civic-type-r-fd2",
+      "id": "honda-civic-type-r-fd2",
+      "title": "Honda Civic Type R (FD2)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/honda-civic-type-r-fd2",
+      "file": "data/articles/cars/honda-civic-type-r-fd2.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2733,
+        "bodyLen": 1730,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 3,
+        "relatedHeritageCount": 2
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "honda-integra-type-r-dc2",
+      "id": "honda-integra-type-r-dc2",
+      "title": "Honda Integra Type R DC2",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/honda-integra-type-r-dc2",
+      "file": "data/articles/cars/honda-integra-type-r-dc2.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2107,
+        "bodyLen": 1290,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "honda-integra-type-r-dc5",
+      "id": "honda-integra-type-r-dc5",
+      "title": "Honda Integra Type R (DC5)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/honda-integra-type-r-dc5",
+      "file": "data/articles/cars/honda-integra-type-r-dc5.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2193,
+        "bodyLen": 1412,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 3,
+        "relatedHeritageCount": 2
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "honda-nsx-na1",
+      "id": "honda-nsx-na1",
+      "title": "Honda NSX (NA1)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/honda-nsx-na1",
+      "file": "data/articles/cars/honda-nsx-na1.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2130,
+        "bodyLen": 1230,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 3,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "honda-nsx-na2",
+      "id": "honda-nsx-na2",
+      "title": "Honda NSX (NA2)",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/honda-nsx-na2",
+      "file": "data/articles/cars/honda-nsx-na2.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 431,
+        "bodyLen": 0,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "honda-nsx-r-na1",
+      "id": "honda-nsx-r-na1",
+      "title": "Honda NSX-R (NA1)",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/honda-nsx-r-na1",
+      "file": "data/articles/cars/honda-nsx-r-na1.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 435,
+        "bodyLen": 0,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "honda-prelude-bb4-4ws",
+      "id": "honda-prelude-bb4-4ws",
+      "title": "Honda Prelude (BB4) 4WS",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/honda-prelude-bb4-4ws",
+      "file": "data/articles/cars/honda-prelude-bb4-4ws.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2250,
+        "bodyLen": 1441,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "honda-s2000-ap1",
+      "id": "honda-s2000-ap1",
+      "title": "Honda S2000 (AP1)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/honda-s2000-ap1",
+      "file": "data/articles/cars/honda-s2000-ap1.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2034,
+        "bodyLen": 1198,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "honda-s2000-ap2",
+      "id": "honda-s2000-ap2",
+      "title": "Honda S2000 (AP2)",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/honda-s2000-ap2",
+      "file": "data/articles/cars/honda-s2000-ap2.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 437,
+        "bodyLen": 0,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "honda-s660-jw5",
+      "id": "honda-s660-jw5",
+      "title": "Honda S660 (JW5)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/honda-s660-jw5",
+      "file": "data/articles/cars/honda-s660-jw5.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2039,
+        "bodyLen": 1379,
+        "strengthsCount": 3,
+        "concernsCount": 7,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "lamborghini-diablo-vt-60",
+      "id": "lamborghini-diablo-vt-60",
+      "title": "Lamborghini Diablo VT 6.0",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/lamborghini-diablo-vt-60",
+      "file": "data/articles/cars/lamborghini-diablo-vt-60.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2027,
+        "bodyLen": 1323,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "lamborghini-temerario",
+      "id": "lamborghini-temerario",
+      "title": "Lamborghini Temerario",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/lamborghini-temerario",
+      "file": "data/articles/cars/lamborghini-temerario.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2482,
+        "bodyLen": 1215,
+        "strengthsCount": 4,
+        "concernsCount": 7,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "lexus-is-f-use20",
+      "id": "lexus-is-f-use20",
+      "title": "Lexus IS F (USE20)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/lexus-is-f-use20",
+      "file": "data/articles/cars/lexus-is-f-use20.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2375,
+        "bodyLen": 1371,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "lexus-lfa-2010",
+      "id": "lexus-lfa-2010",
+      "title": "Lexus LFA (2010)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/lexus-lfa-2010",
+      "file": "data/articles/cars/lexus-lfa-2010.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2060,
+        "bodyLen": 1185,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "lexus-lfa",
+      "id": "lexus-lfa",
+      "title": "Lexus LFA",
+      "status": "published",
+      "publicState": "redirect",
+      "url": "/cars/lexus-lfa",
+      "file": "data/articles/cars/lexus-lfa.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 423,
+        "bodyLen": 0,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "lotus-elise-s2",
+      "id": "lotus-elise-s2",
+      "title": "Lotus Elise (S2)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/lotus-elise-s2",
+      "file": "data/articles/cars/lotus-elise-s2.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2200,
+        "bodyLen": 1342,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "lotus-esprit-v8",
+      "id": "lotus-esprit-v8",
+      "title": "Lotus Esprit V8",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/lotus-esprit-v8",
+      "file": "data/articles/cars/lotus-esprit-v8.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2065,
+        "bodyLen": 1346,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "lotus-exige-s2",
+      "id": "lotus-exige-s2",
+      "title": "Lotus Exige (S2)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/lotus-exige-s2",
+      "file": "data/articles/cars/lotus-exige-s2.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2242,
+        "bodyLen": 1289,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "mazda-roadster-na",
+      "id": "mazda-roadster-na",
+      "title": "Mazda Roadster (NA)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/mazda-roadster-na",
+      "file": "data/articles/cars/mazda-roadster-na.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2199,
+        "bodyLen": 1432,
+        "strengthsCount": 3,
+        "concernsCount": 5,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 3,
+        "relatedHeritageCount": 2
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "mazda-rx-7-fd3s-spirit-r",
+      "id": "mazda-rx-7-fd3s-spirit-r",
+      "title": "Mazda RX-7 (FD3S) Spirit R",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/mazda-rx-7-fd3s-spirit-r",
+      "file": "data/articles/cars/mazda-rx-7-fd3s-spirit-r.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 524,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "mazda-rx-7-fd3s-type-r",
+      "id": "mazda-rx-7-fd3s-type-r",
+      "title": "Mazda RX-7 (FD3S) Type R",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/mazda-rx-7-fd3s-type-r",
+      "file": "data/articles/cars/mazda-rx-7-fd3s-type-r.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 553,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "mazda-rx-8-se3p-type-s",
+      "id": "mazda-rx-8-se3p-type-s",
+      "title": "Mazda RX-8 (SE3P) Type S",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/mazda-rx-8-se3p-type-s",
+      "file": "data/articles/cars/mazda-rx-8-se3p-type-s.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2025,
+        "bodyLen": 1275,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "mazda-rx7-fc3s",
+      "id": "mazda-rx7-fc3s",
+      "title": "Mazda RX-7 FC3S",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/mazda-rx7-fc3s",
+      "file": "data/articles/cars/mazda-rx7-fc3s.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2240,
+        "bodyLen": 1499,
+        "strengthsCount": 3,
+        "concernsCount": 7,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "mazda-rx7-fd3s",
+      "id": "mazda-rx7-fd3s",
+      "title": "Mazda RX-7 FD3S",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/mazda-rx7-fd3s",
+      "file": "data/articles/cars/mazda-rx7-fd3s.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2156,
+        "bodyLen": 1427,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "mazda-rx7-sa22c",
+      "id": "mazda-rx7-sa22c",
+      "title": "Mazda RX-7 SA22C",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/mazda-rx7-sa22c",
+      "file": "data/articles/cars/mazda-rx7-sa22c.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2072,
+        "bodyLen": 1373,
+        "strengthsCount": 3,
+        "concernsCount": 7,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "mazda-rx8-se3p",
+      "id": "mazda-rx8-se3p",
+      "title": "Mazda RX-8 (SE3P)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/mazda-rx8-se3p",
+      "file": "data/articles/cars/mazda-rx8-se3p.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2061,
+        "bodyLen": 1363,
+        "strengthsCount": 3,
+        "concernsCount": 7,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "mclaren-f1",
+      "id": "mclaren-f1",
+      "title": "McLaren F1",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/mclaren-f1",
+      "file": "data/articles/cars/mclaren-f1.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2174,
+        "bodyLen": 1411,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "mercedes-benz-s-class-w140",
+      "id": "mercedes-benz-s-class-w140",
+      "title": "Mercedes-Benz S-Class (W140)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/mercedes-benz-s-class-w140",
+      "file": "data/articles/cars/mercedes-benz-s-class-w140.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2069,
+        "bodyLen": 1259,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "mitsubishi-fto",
+      "id": "mitsubishi-fto",
+      "title": "Mitsubishi FTO",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/mitsubishi-fto",
+      "file": "data/articles/cars/mitsubishi-fto.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2152,
+        "bodyLen": 1342,
+        "strengthsCount": 4,
+        "concernsCount": 7,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "mitsubishi-gto-z15a-active-aero",
+      "id": "mitsubishi-gto-z15a-active-aero",
+      "title": "Mitsubishi GTO (Z15A) Active Aero",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/mitsubishi-gto-z15a-active-aero",
+      "file": "data/articles/cars/mitsubishi-gto-z15a-active-aero.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2071,
+        "bodyLen": 1036,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "mitsubishi-lancer-evolution-ix-gsr",
+      "id": "mitsubishi-lancer-evolution-ix-gsr",
+      "title": "Mitsubishi Lancer Evolution IX GSR",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/mitsubishi-lancer-evolution-ix-gsr",
+      "file": "data/articles/cars/mitsubishi-lancer-evolution-ix-gsr.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2031,
+        "bodyLen": 1377,
+        "strengthsCount": 3,
+        "concernsCount": 7,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "mitsubishi-lancer-evolution-vi-gsr",
+      "id": "mitsubishi-lancer-evolution-vi-gsr",
+      "title": "Mitsubishi Lancer Evolution VI GSR",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/mitsubishi-lancer-evolution-vi-gsr",
+      "file": "data/articles/cars/mitsubishi-lancer-evolution-vi-gsr.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2044,
+        "bodyLen": 1194,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "mitsubishi-lancer-evolution-x-final",
+      "id": "mitsubishi-lancer-evolution-x-final",
+      "title": "Mitsubishi Lancer Evolution X (final)",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/mitsubishi-lancer-evolution-x-final",
+      "file": "data/articles/cars/mitsubishi-lancer-evolution-x-final.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 627,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "mitsubishi-lancer-evolution-x-gsr",
+      "id": "mitsubishi-lancer-evolution-x-gsr",
+      "title": "Mitsubishi Lancer Evolution X GSR",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/mitsubishi-lancer-evolution-x-gsr",
+      "file": "data/articles/cars/mitsubishi-lancer-evolution-x-gsr.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2443,
+        "bodyLen": 1451,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "mitsubishi-lancer-evolution",
+      "id": "mitsubishi-lancer-evolution",
+      "title": "Mitsubishi Lancer Evolution (I–X)",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/mitsubishi-lancer-evolution",
+      "file": "data/articles/cars/mitsubishi-lancer-evolution.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 469,
+        "bodyLen": 0,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-fairlady-z-rz34",
+      "id": "nissan-fairlady-z-rz34",
+      "title": "Nissan Fairlady Z RZ34",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/nissan-fairlady-z-rz34",
+      "file": "data/articles/cars/nissan-fairlady-z-rz34.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 622,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-fairlady-z-s30",
+      "id": "nissan-fairlady-z-s30",
+      "title": "Nissan Fairlady Z S30",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/nissan-fairlady-z-s30",
+      "file": "data/articles/cars/nissan-fairlady-z-s30.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2145,
+        "bodyLen": 1339,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-fairlady-z-z31",
+      "id": "nissan-fairlady-z-z31",
+      "title": "Nissan Fairlady Z Z31",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/nissan-fairlady-z-z31",
+      "file": "data/articles/cars/nissan-fairlady-z-z31.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 605,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-fairlady-z-z32",
+      "id": "nissan-fairlady-z-z32",
+      "title": "Nissan Fairlady Z Z32",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/nissan-fairlady-z-z32",
+      "file": "data/articles/cars/nissan-fairlady-z-z32.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2161,
+        "bodyLen": 1267,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 3,
+        "relatedHeritageCount": 2
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-fairlady-z-z33",
+      "id": "nissan-fairlady-z-z33",
+      "title": "Nissan Fairlady Z Z33",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/nissan-fairlady-z-z33",
+      "file": "data/articles/cars/nissan-fairlady-z-z33.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 599,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-fairlady-z-z34",
+      "id": "nissan-fairlady-z-z34",
+      "title": "Nissan Fairlady Z Z34",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/nissan-fairlady-z-z34",
+      "file": "data/articles/cars/nissan-fairlady-z-z34.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2121,
+        "bodyLen": 1255,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 3,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-gt-r-r35-early",
+      "id": "nissan-gt-r-r35-early",
+      "title": "Nissan GT-R (R35) early",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/nissan-gt-r-r35-early",
+      "file": "data/articles/cars/nissan-gt-r-r35-early.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2055,
+        "bodyLen": 1134,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-gtr-r35-nismo",
+      "id": "nissan-gtr-r35-nismo",
+      "title": "Nissan GT-R NISMO (R35)",
+      "status": "published",
+      "publicState": "redirect",
+      "url": "/cars/nissan-gtr-r35-nismo",
+      "file": "data/articles/cars/nissan-gtr-r35-nismo.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 455,
+        "bodyLen": 0,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-gtr-r35",
+      "id": "nissan-gtr-r35",
+      "title": "Nissan GT-R R35",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/nissan-gtr-r35",
+      "file": "data/articles/cars/nissan-gtr-r35.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2351,
+        "bodyLen": 1577,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-laurel-c35-club-s-turbo",
+      "id": "nissan-laurel-c35-club-s-turbo",
+      "title": "Nissan Laurel (C35) Club S Turbo",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/nissan-laurel-c35-club-s-turbo",
+      "file": "data/articles/cars/nissan-laurel-c35-club-s-turbo.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2037,
+        "bodyLen": 1044,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-r390-gt1-road-car",
+      "id": "nissan-r390-gt1-road-car",
+      "title": "Nissan R390 GT1 Road Car",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/nissan-r390-gt1-road-car",
+      "file": "data/articles/cars/nissan-r390-gt1-road-car.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 453,
+        "bodyLen": 0,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-silvia-s15",
+      "id": "nissan-silvia-s15",
+      "title": "Nissan Silvia (S15)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/nissan-silvia-s15",
+      "file": "data/articles/cars/nissan-silvia-s15.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2065,
+        "bodyLen": 1278,
+        "strengthsCount": 4,
+        "concernsCount": 5,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-skyline-2000gtr-kpgc10",
+      "id": "nissan-skyline-2000gtr-kpgc10",
+      "title": "Nissan Skyline GT-R KPGC10",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/nissan-skyline-2000gtr-kpgc10",
+      "file": "data/articles/cars/nissan-skyline-2000gtr-kpgc10.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2063,
+        "bodyLen": 1067,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 2,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-skyline-2000gtr-kpgc110",
+      "id": "nissan-skyline-2000gtr-kpgc110",
+      "title": "Nissan Skyline GT-R KPGC110",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/nissan-skyline-2000gtr-kpgc110",
+      "file": "data/articles/cars/nissan-skyline-2000gtr-kpgc110.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 597,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-skyline-er34-25gt-turbo-sedan",
+      "id": "nissan-skyline-er34-25gt-turbo-sedan",
+      "title": "Nissan Skyline (ER34) 25GT Turbo Sedan",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/nissan-skyline-er34-25gt-turbo-sedan",
+      "file": "data/articles/cars/nissan-skyline-er34-25gt-turbo-sedan.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2006,
+        "bodyLen": 1069,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-skyline-gt-r-bcnr33-v-spec",
+      "id": "nissan-skyline-gt-r-bcnr33-v-spec",
+      "title": "Nissan Skyline GT-R (BCNR33) V·spec",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/nissan-skyline-gt-r-bcnr33-v-spec",
+      "file": "data/articles/cars/nissan-skyline-gt-r-bcnr33-v-spec.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 576,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-skyline-gt-r-bnr34",
+      "id": "nissan-skyline-gt-r-bnr34",
+      "title": "Nissan Skyline GT-R (BNR34)",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/nissan-skyline-gt-r-bnr34",
+      "file": "data/articles/cars/nissan-skyline-gt-r-bnr34.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 451,
+        "bodyLen": 0,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-skyline-gt-r-r34-v-spec",
+      "id": "nissan-skyline-gt-r-r34-v-spec",
+      "title": "Nissan Skyline GT-R (R34) V·spec",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/nissan-skyline-gt-r-r34-v-spec",
+      "file": "data/articles/cars/nissan-skyline-gt-r-r34-v-spec.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 586,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-skyline-gt-r-r34",
+      "id": "nissan-skyline-gt-r-r34",
+      "title": "Nissan Skyline GT-R (R34)",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/nissan-skyline-gt-r-r34",
+      "file": "data/articles/cars/nissan-skyline-gt-r-r34.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 447,
+        "bodyLen": 0,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-skyline-gtr-r32",
+      "id": "nissan-skyline-gtr-r32",
+      "title": "Nissan Skyline GT-R R32",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/nissan-skyline-gtr-r32",
+      "file": "data/articles/cars/nissan-skyline-gtr-r32.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2231,
+        "bodyLen": 1347,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 3,
+        "relatedHeritageCount": 3
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-skyline-gtr-r33",
+      "id": "nissan-skyline-gtr-r33",
+      "title": "Nissan Skyline GT-R R33",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/nissan-skyline-gtr-r33",
+      "file": "data/articles/cars/nissan-skyline-gtr-r33.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2192,
+        "bodyLen": 1229,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 3,
+        "relatedHeritageCount": 3
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-skyline-gtr-r34",
+      "id": "nissan-skyline-gtr-r34",
+      "title": "Nissan Skyline GT-R R34",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/nissan-skyline-gtr-r34",
+      "file": "data/articles/cars/nissan-skyline-gtr-r34.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2052,
+        "bodyLen": 1240,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-skyline-r32-super-hicas",
+      "id": "nissan-skyline-r32-super-hicas",
+      "title": "Nissan Skyline (R32) Super HICAS",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/nissan-skyline-r32-super-hicas",
+      "file": "data/articles/cars/nissan-skyline-r32-super-hicas.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 559,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "nissan-z-rz34",
+      "id": "nissan-z-rz34",
+      "title": "Nissan Z",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/nissan-z-rz34",
+      "file": "data/articles/cars/nissan-z-rz34.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2028,
+        "bodyLen": 1288,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "subaru-impreza-wrx-sti-gc8-type-r",
+      "id": "subaru-impreza-wrx-sti-gc8-type-r",
+      "title": "Subaru Impreza WRX STI (GC8) Type R",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/subaru-impreza-wrx-sti-gc8-type-r",
+      "file": "data/articles/cars/subaru-impreza-wrx-sti-gc8-type-r.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2025,
+        "bodyLen": 1186,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "subaru-impreza-wrx-sti-v6",
+      "id": "subaru-impreza-wrx-sti-v6",
+      "title": "Subaru Impreza WRX STI Version VI (GC8)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/subaru-impreza-wrx-sti-v6",
+      "file": "data/articles/cars/subaru-impreza-wrx-sti-v6.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2048,
+        "bodyLen": 1360,
+        "strengthsCount": 3,
+        "concernsCount": 7,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "subaru-impreza-wrx-sti",
+      "id": "subaru-impreza-wrx-sti",
+      "title": "Subaru Impreza WRX STI",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/subaru-impreza-wrx-sti",
+      "file": "data/articles/cars/subaru-impreza-wrx-sti.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 447,
+        "bodyLen": 0,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "suzuki-alto-works-ha36s",
+      "id": "suzuki-alto-works-ha36s",
+      "title": "Suzuki Alto Works (HA36S)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/suzuki-alto-works-ha36s",
+      "file": "data/articles/cars/suzuki-alto-works-ha36s.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2065,
+        "bodyLen": 1313,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "suzuki-cappuccino-ea11r",
+      "id": "suzuki-cappuccino-ea11r",
+      "title": "Suzuki Cappuccino (EA11R)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/suzuki-cappuccino-ea11r",
+      "file": "data/articles/cars/suzuki-cappuccino-ea11r.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2028,
+        "bodyLen": 1174,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "suzuki-cara",
+      "id": "suzuki-cara",
+      "title": "Suzuki Cara",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/suzuki-cara",
+      "file": "data/articles/cars/suzuki-cara.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 425,
+        "bodyLen": 0,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "toyota-aristo-jzs161-v300",
+      "id": "toyota-aristo-jzs161-v300",
+      "title": "Toyota Aristo (JZS161) V300",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/toyota-aristo-jzs161-v300",
+      "file": "data/articles/cars/toyota-aristo-jzs161-v300.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2022,
+        "bodyLen": 1120,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "toyota-celica-gt-four",
+      "id": "toyota-celica-gt-four",
+      "title": "Toyota Celica GT-Four (ST205 era)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/toyota-celica-gt-four",
+      "file": "data/articles/cars/toyota-celica-gt-four.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2026,
+        "bodyLen": 1097,
+        "strengthsCount": 4,
+        "concernsCount": 5,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "toyota-celica-xx-2000gt",
+      "id": "toyota-celica-xx-2000gt",
+      "title": "Toyota Celica XX 2000GT",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/toyota-celica-xx-2000gt",
+      "file": "data/articles/cars/toyota-celica-xx-2000gt.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 604,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "toyota-celsior-ucf10",
+      "id": "toyota-celsior-ucf10",
+      "title": "Toyota Celsior (UCF10/UCF11) / Lexus LS400",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/toyota-celsior-ucf10",
+      "file": "data/articles/cars/toyota-celsior-ucf10.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2318,
+        "bodyLen": 1201,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "toyota-chaser-jzx100-tourer-v",
+      "id": "toyota-chaser-jzx100-tourer-v",
+      "title": "Toyota Chaser (JZX100) Tourer V",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/toyota-chaser-jzx100-tourer-v",
+      "file": "data/articles/cars/toyota-chaser-jzx100-tourer-v.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2037,
+        "bodyLen": 1120,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "toyota-corolla-levin-ae86",
+      "id": "toyota-corolla-levin-ae86",
+      "title": "Toyota Corolla Levin (AE86)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/toyota-corolla-levin-ae86",
+      "file": "data/articles/cars/toyota-corolla-levin-ae86.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2270,
+        "bodyLen": 1586,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "toyota-gr-gt",
+      "id": "toyota-gr-gt",
+      "title": "Toyota GR GT（開発中プロトタイプ）",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/toyota-gr-gt",
+      "file": "data/articles/cars/toyota-gr-gt.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 1200,
+        "bodyLen": 0,
+        "strengthsCount": 5,
+        "concernsCount": 7,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "toyota-gr-supra-rz",
+      "id": "toyota-gr-supra-rz",
+      "title": "Toyota GR Supra RZ",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/toyota-gr-supra-rz",
+      "file": "data/articles/cars/toyota-gr-supra-rz.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2090,
+        "bodyLen": 1332,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "toyota-mr-s-zzw30",
+      "id": "toyota-mr-s-zzw30",
+      "title": "Toyota MR-S (ZZW30)",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/toyota-mr-s-zzw30",
+      "file": "data/articles/cars/toyota-mr-s-zzw30.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2046,
+        "bodyLen": 1304,
+        "strengthsCount": 2,
+        "concernsCount": 5,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 1,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 3,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "toyota-mr2-sw20-rev3",
+      "id": "toyota-mr2-sw20-rev3",
+      "title": "Toyota MR2 (SW20) Rev.3",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/toyota-mr2-sw20-rev3",
+      "file": "data/articles/cars/toyota-mr2-sw20-rev3.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2344,
+        "bodyLen": 1488,
+        "strengthsCount": 4,
+        "concernsCount": 8,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 2,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 3,
+        "relatedHeritageCount": 2
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "toyota-supra-a70-25gt-ttr",
+      "id": "toyota-supra-a70-25gt-ttr",
+      "title": "Toyota Supra A70 2.5GT Twin Turbo R",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/toyota-supra-a70-25gt-ttr",
+      "file": "data/articles/cars/toyota-supra-a70-25gt-ttr.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 592,
+        "bodyLen": 0,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "toyota-supra-a70-turbo-a",
+      "id": "toyota-supra-a70-turbo-a",
+      "title": "Toyota Supra A70 Turbo A",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/toyota-supra-a70-turbo-a",
+      "file": "data/articles/cars/toyota-supra-a70-turbo-a.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2035,
+        "bodyLen": 1081,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 3,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "toyota-supra-jza80-rz",
+      "id": "toyota-supra-jza80-rz",
+      "title": "Toyota Supra JZA80 RZ",
+      "status": "published",
+      "publicState": "index",
+      "url": "/cars/toyota-supra-jza80-rz",
+      "file": "data/articles/cars/toyota-supra-jza80-rz.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 2070,
+        "bodyLen": 1339,
+        "strengthsCount": 4,
+        "concernsCount": 6,
+        "bestForCount": 3,
+        "notForCount": 3,
+        "maintenanceNotesCount": 4,
+        "relatedCarsCount": 3,
+        "relatedGuidesCount": 3,
+        "relatedColumnsCount": 2,
+        "relatedHeritageCount": 1
+      }
+    },
+    {
+      "type": "CAR",
+      "slug": "toyota-supra-jza80",
+      "id": "toyota-supra-jza80",
+      "title": "Toyota Supra (JZA80)",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/cars/toyota-supra-jza80",
+      "file": "data/articles/cars/toyota-supra-jza80.json",
+      "issues": [],
+      "metrics": {
+        "contentLen": 437,
+        "bodyLen": 0,
+        "strengthsCount": 3,
+        "concernsCount": 6,
+        "bestForCount": 0,
+        "notForCount": 0,
+        "maintenanceNotesCount": 0,
+        "relatedCarsCount": 0,
+        "relatedGuidesCount": 0,
+        "relatedColumnsCount": 0,
+        "relatedHeritageCount": 0
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "bengoshi-hiyou-tokuyaku-guide",
+      "id": "guide:bengoshi-hiyou-tokuyaku-guide",
+      "title": "弁護士費用特約は付けるべき？使える範囲・向いている人の判断",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/bengoshi-hiyou-tokuyaku-guide",
+      "file": "data/articles/guides/bengoshi-hiyou-tokuyaku-guide.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1200,
+        "headings": 8
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "best-time-to-sell-car",
+      "id": "best-time-to-sell-car",
+      "title": "クルマを売るベストタイミングはいつ？乗り換え時期と高く売るコツ",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/best-time-to-sell-car",
+      "file": "data/articles/guides/best-time-to-sell-car.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1247,
+        "headings": 10
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "best-time-to-sell-import-sedan",
+      "id": "guide-best-time-to-sell-import-sedan",
+      "title": "輸入セダンを一番おいしいタイミングで手放すには",
+      "status": "published",
+      "publicState": "index",
+      "url": "/guide/best-time-to-sell-import-sedan",
+      "file": "data/articles/guides/best-time-to-sell-import-sedan.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2715,
+        "headings": 24
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "car-accident-first-10-minutes",
+      "id": "guide:car-accident-first-10-minutes",
+      "title": "事故直後にやることチェックリスト｜警察・保険・証拠…順番を間違えると損する",
+      "status": "published",
+      "publicState": "index",
+      "url": "/guide/car-accident-first-10-minutes",
+      "file": "data/articles/guides/car-accident-first-10-minutes.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2812,
+        "headings": 26
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "car-budget-simulation",
+      "id": "car-budget-simulation",
+      "title": "車の予算はいくらが正解？年収別の安全ラインとシミュレーション",
+      "status": "published",
+      "publicState": "index",
+      "url": "/guide/car-budget-simulation",
+      "file": "data/articles/guides/car-budget-simulation.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2694,
+        "headings": 14
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "car-loan-interest-rate-guide",
+      "id": "guide:car-loan-interest-rate-guide",
+      "title": "マイカーローン金利の目安｜総支払と月々をズラして考えないための基礎",
+      "status": "published",
+      "publicState": "index",
+      "url": "/guide/car-loan-interest-rate-guide",
+      "file": "data/articles/guides/car-loan-interest-rate-guide.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2691,
+        "headings": 19
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "compare-loan-lease-zancre",
+      "id": "compare-loan-lease-zancre",
+      "title": "残クレ・リース・通常ローンどれが得？メリット・デメリット徹底比較",
+      "status": "published",
+      "publicState": "index",
+      "url": "/guide/compare-loan-lease-zancre",
+      "file": "data/articles/guides/compare-loan-lease-zancre.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 3005,
+        "headings": 22
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "engine-check-light-first-response",
+      "id": "guide:engine-check-light-first-response",
+      "title": "エンジン警告灯が点いたらどうする？走れる/止める判断と最初の手順",
+      "status": "published",
+      "publicState": "index",
+      "url": "/guide/engine-check-light-first-response",
+      "file": "data/articles/guides/engine-check-light-first-response.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2759,
+        "headings": 21
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "family-suv-budget-and-lifeplan",
+      "id": "guide-family-suv-budget-and-lifeplan",
+      "title": "子育てファミリーがSUVを選ぶときの「教育費とクルマ費」のバランス",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/family-suv-budget-and-lifeplan",
+      "file": "data/articles/guides/family-suv-budget-and-lifeplan.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1617,
+        "headings": 9
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "hajimete-kuruma-uru-checklist",
+      "id": "guide:hajimete-kuruma-uru-checklist",
+      "title": "初めて車を売る前に必ず確認したいチェックリスト｜買取・下取り・個人売買の選び方",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/hajimete-kuruma-uru-checklist",
+      "file": "data/articles/guides/hajimete-kuruma-uru-checklist.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1231,
+        "headings": 10
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "how-to-choose-first-sports-car",
+      "id": "guide-how-to-choose-first-sports-car",
+      "title": "初めてのスポーツカーで後悔しないための選び方｜予算と用途から決める",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/how-to-choose-first-sports-car",
+      "file": "data/articles/guides/how-to-choose-first-sports-car.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1385,
+        "headings": 9
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "insurance-deductible-guide",
+      "id": "guide:insurance-deductible-guide",
+      "title": "自動車保険の免責金額（自己負担額）の決め方｜保険料とリスクのバランス",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/insurance-deductible-guide",
+      "file": "data/articles/guides/insurance-deductible-guide.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1165,
+        "headings": 8
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "jyuusho-henkou-shaken-shou",
+      "id": "guide:jyuusho-henkou-shaken-shou",
+      "title": "住所変更したら何をする？車検証・ナンバー・保険まで、やることチェックリスト",
+      "status": "published",
+      "publicState": "index",
+      "url": "/guide/jyuusho-henkou-shaken-shou",
+      "file": "data/articles/guides/jyuusho-henkou-shaken-shou.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2765,
+        "headings": 21
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "kuruma-ikkatsu-satei-shitsukoi-real",
+      "id": "guide:kuruma-ikkatsu-satei-shitsukoi-real",
+      "title": "車買取一括査定は本当に電話がしつこい？実際に申し込んで分かったリアルと上手な付き合い方",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/kuruma-ikkatsu-satei-shitsukoi-real",
+      "file": "data/articles/guides/kuruma-ikkatsu-satei-shitsukoi-real.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1169,
+        "headings": 9
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "loan-or-lump-sum",
+      "id": "guide-loan-or-lump-sum",
+      "title": "ローンか一括か迷ったときの判断基準",
+      "status": "published",
+      "publicState": "index",
+      "url": "/guide/loan-or-lump-sum",
+      "file": "data/articles/guides/loan-or-lump-sum.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2834,
+        "headings": 18
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "loan-vs-lease-luxury-sedan",
+      "id": "guide-loan-vs-lease-luxury-sedan",
+      "title": "ローンかリースか。ラグジュアリーセダンの支払い比較",
+      "status": "published",
+      "publicState": "index",
+      "url": "/guide/loan-vs-lease-luxury-sedan",
+      "file": "data/articles/guides/loan-vs-lease-luxury-sedan.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2813,
+        "headings": 20
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "maintenance-cost-simulation",
+      "id": "guide-maintenance-cost-simulation",
+      "title": "維持費シミュレーションの基本",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/maintenance-cost-simulation",
+      "file": "data/articles/guides/maintenance-cost-simulation.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1123,
+        "headings": 8
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "meigi-henko-hitsuyou-shorui-futsuu",
+      "id": "guide:meigi-henko-hitsuyou-shorui-futsuu",
+      "title": "【普通車】名義変更（移転登録）の必要書類まとめ｜売却・譲渡で詰まらないチェックリスト",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/meigi-henko-hitsuyou-shorui-futsuu",
+      "file": "data/articles/guides/meigi-henko-hitsuyou-shorui-futsuu.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1255,
+        "headings": 11
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "meigi-henko-hitsuyou-shorui-kei",
+      "id": "guide:meigi-henko-hitsuyou-shorui-kei",
+      "title": "【軽自動車】名義変更の必要書類まとめ｜普通車との違いと最短手順",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/meigi-henko-hitsuyou-shorui-kei",
+      "file": "data/articles/guides/meigi-henko-hitsuyou-shorui-kei.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1031,
+        "headings": 8
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "new-grad-first-car-choice",
+      "id": "new-grad-first-car-choice",
+      "title": "新社会人の初めての車選び｜軽とコンパクトの選び方（維持費の目安付き）",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/new-grad-first-car-choice",
+      "file": "data/articles/guides/new-grad-first-car-choice.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1258,
+        "headings": 9
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "number-change-kibou-number-guide",
+      "id": "guide:number-change-kibou-number-guide",
+      "title": "ナンバー変更・希望ナンバーの流れ｜管轄・費用・必要書類をまとめて理解する",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/number-change-kibou-number-guide",
+      "file": "data/articles/guides/number-change-kibou-number-guide.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1086,
+        "headings": 8
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "oil-change-frequency-guide",
+      "id": "guide:oil-change-frequency-guide",
+      "title": "エンジンオイル交換頻度の目安｜短距離・輸入車・ターボで考え方は変わる",
+      "status": "published",
+      "publicState": "index",
+      "url": "/guide/oil-change-frequency-guide",
+      "file": "data/articles/guides/oil-change-frequency-guide.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2788,
+        "headings": 22
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "oil-leak-first-response",
+      "id": "guide:oil-leak-first-response",
+      "title": "オイル漏れを見つけたら最初にやること｜危険サインと応急判断",
+      "status": "published",
+      "publicState": "index",
+      "url": "/guide/oil-leak-first-response",
+      "file": "data/articles/guides/oil-leak-first-response.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2887,
+        "headings": 21
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "overheat-coolant-leak-guide",
+      "id": "guide:overheat-coolant-leak-guide",
+      "title": "オーバーヒート/冷却水漏れの初動｜絶対にやってはいけないこと",
+      "status": "published",
+      "publicState": "index",
+      "url": "/guide/overheat-coolant-leak-guide",
+      "file": "data/articles/guides/overheat-coolant-leak-guide.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2713,
+        "headings": 21
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "repair-history-used-car-checklist",
+      "id": "guide:repair-history-used-car-checklist",
+      "title": "修復歴車はなぜ危険？中古車で後悔しないための「見抜き方チェックリスト」",
+      "status": "published",
+      "publicState": "index",
+      "url": "/guide/repair-history-used-car-checklist",
+      "file": "data/articles/guides/repair-history-used-car-checklist.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2665,
+        "headings": 20
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "road-service-choice-guide",
+      "id": "guide:road-service-choice-guide",
+      "title": "ロードサービス比較｜JAF・保険付帯・クレカの違いと選び方【2026年版】",
+      "status": "published",
+      "publicState": "index",
+      "url": "/guide/road-service-choice-guide",
+      "file": "data/articles/guides/road-service-choice-guide.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 3553,
+        "headings": 24
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "self-gas-station-beginner-mistake",
+      "id": "self-gas-station-beginner-mistake",
+      "title": "セルフ給油の注意点｜油種の間違いを防ぐコツ（軽油は軽用ではない）",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/self-gas-station-beginner-mistake",
+      "file": "data/articles/guides/self-gas-station-beginner-mistake.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1264,
+        "headings": 9
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "selling-without-rush",
+      "id": "guide-selling-without-rush",
+      "title": "急がず売るための段取り",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/selling-without-rush",
+      "file": "data/articles/guides/selling-without-rush.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1122,
+        "headings": 8
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "shako-shoumei-torikata",
+      "id": "guide:shako-shoumei-torikata",
+      "title": "車庫証明（保管場所証明）の取り方｜必要書類・流れ・時間がない人の現実的ルート",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/shako-shoumei-torikata",
+      "file": "data/articles/guides/shako-shoumei-torikata.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1160,
+        "headings": 8
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "sharyou-hoken-necessary",
+      "id": "guide:sharyou-hoken-necessary",
+      "title": "車両保険は必要？いらない？判断基準を“損しにくい”順に整理",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/sharyou-hoken-necessary",
+      "file": "data/articles/guides/sharyou-hoken-necessary.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1148,
+        "headings": 9
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "subscription-vs-owning",
+      "id": "guide-subscription-vs-owning",
+      "title": "サブスクか所有か。月額サービスと購入の境界線",
+      "status": "published",
+      "publicState": "index",
+      "url": "/guide/subscription-vs-owning",
+      "file": "data/articles/guides/subscription-vs-owning.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2730,
+        "headings": 20
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "tax-and-fees-before-buying-import",
+      "id": "guide-tax-and-fees-before-buying-import",
+      "title": "見積もりだけでは分からない「輸入車の税金・諸費用」チェックリスト",
+      "status": "published",
+      "publicState": "index",
+      "url": "/guide/tax-and-fees-before-buying-import",
+      "file": "data/articles/guides/tax-and-fees-before-buying-import.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2921,
+        "headings": 16
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "tire-replacement-cost-guide",
+      "id": "guide:tire-replacement-cost-guide",
+      "title": "タイヤ交換費用の相場｜工賃・サイズ・ランフラットで何が変わる？",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/tire-replacement-cost-guide",
+      "file": "data/articles/guides/tire-replacement-cost-guide.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1278,
+        "headings": 9
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "tokkyu-hikisugi-chudan-guide",
+      "id": "guide:tokkyu-hikisugi-chudan-guide",
+      "title": "等級の引き継ぎ・中断の考え方｜乗り換え/一時的に車を手放すときに損しない",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/tokkyu-hikisugi-chudan-guide",
+      "file": "data/articles/guides/tokkyu-hikisugi-chudan-guide.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1169,
+        "headings": 8
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "used-import-car-buying-guide",
+      "id": "used-import-car-buying-guide",
+      "title": "中古輸入車の買い方ガイド｜予算の決め方と現車チェックの基本",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/used-import-car-buying-guide",
+      "file": "data/articles/guides/used-import-car-buying-guide.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1483,
+        "headings": 9
+      }
+    },
+    {
+      "type": "GUIDE",
+      "slug": "yunyusha-koukya-uru-kaitori-strategy",
+      "id": "guide:yunyusha-koukya-uru-kaitori-strategy",
+      "title": "輸入車・高級車をできるだけ高く売るための戦略ガイド｜ディーラー下取りだけに頼らないコツ",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/guide/yunyusha-koukya-uru-kaitori-strategy",
+      "file": "data/articles/guides/yunyusha-koukya-uru-kaitori-strategy.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1193,
+        "headings": 9
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "budget-should-be-monthly-total",
+      "id": "col-023",
+      "title": "車の予算は「車両価格」じゃなく“月々の総額”で決めた方が失敗しない",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/budget-should-be-monthly-total",
+      "file": "data/articles/columns/budget-should-be-monthly-total.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2330,
+        "headings": 14
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "car-insurance-price-hike-what-to-do",
+      "id": "col-008",
+      "title": "自動車保険が上がる年こそ、やるべきは「見積もり比較」より補償設計",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/car-insurance-price-hike-what-to-do",
+      "file": "data/articles/columns/car-insurance-price-hike-what-to-do.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2722,
+        "headings": 14
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "dashcam-why-first",
+      "id": "col-010",
+      "title": "ドラレコは“保険の代わり”ではない。先に付けるべき理由",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/dashcam-why-first",
+      "file": "data/articles/columns/dashcam-why-first.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2576,
+        "headings": 11
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "dealer-shaken-is-expensive-myth",
+      "id": "col-013",
+      "title": "ディーラー車検は高い？結論：見積もりの「線引き」を決めれば損しない",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/dealer-shaken-is-expensive-myth",
+      "file": "data/articles/columns/dealer-shaken-is-expensive-myth.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2638,
+        "headings": 11
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "hybrid-ev-used-battery-anxiety",
+      "id": "col-020",
+      "title": "ハイブリッド/EV中古の不安は“電池”より「保証と診断」で潰せる",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/hybrid-ev-used-battery-anxiety",
+      "file": "data/articles/columns/hybrid-ev-used-battery-anxiety.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2140,
+        "headings": 8
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "import-car-hidden-costs-paperwork",
+      "id": "col-017",
+      "title": "輸入車の諸費用は見積もりで分からない。“地雷”になりやすい項目",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/import-car-hidden-costs-paperwork",
+      "file": "data/articles/columns/import-car-hidden-costs-paperwork.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2426,
+        "headings": 11
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "import-car-maintenance-cost-myth",
+      "id": "col-016",
+      "title": "輸入車は維持費が高い？結論：高くなるのは「部品」と「工賃」が重なるとき",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/import-car-maintenance-cost-myth",
+      "file": "data/articles/columns/import-car-maintenance-cost-myth.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2155,
+        "headings": 10
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "loan-vs-lease-monthly-trap",
+      "id": "col-007",
+      "title": "ローン vs リース：月額が安い方を選ぶと高くつく",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/loan-vs-lease-monthly-trap",
+      "file": "data/articles/columns/loan-vs-lease-monthly-trap.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2776,
+        "headings": 16
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "low-beam-test-headlight-prep",
+      "id": "col-012",
+      "title": "ロービーム検査時代：ヘッドライトの黄ばみ放置が車検で詰む",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/low-beam-test-headlight-prep",
+      "file": "data/articles/columns/low-beam-test-headlight-prep.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2128,
+        "headings": 6
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "name-change-delay-risk",
+      "id": "col-022",
+      "title": "名義変更を先延ばしにすると詰む。損するのは税金より“信用”",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/name-change-delay-risk",
+      "file": "data/articles/columns/name-change-delay-risk.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2480,
+        "headings": 12
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "obd-inspection-import-start-2025",
+      "id": "col-027",
+      "title": "輸入車もOBD検査の対象。自分の車が対象かは車検証の“備考欄”で分かる",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/obd-inspection-import-start-2025",
+      "file": "data/articles/columns/obd-inspection-import-start-2025.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 3029,
+        "headings": 16
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "obd-inspection-shaken-fail",
+      "id": "col-026",
+      "title": "OBD検査で車検に落ちるのは『警告灯』だけじゃない。よくある落とし穴は2つ",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/obd-inspection-shaken-fail",
+      "file": "data/articles/columns/obd-inspection-shaken-fail.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2758,
+        "headings": 14
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "oil-change-5000km-myth",
+      "id": "col-014",
+      "title": "オイル交換5000km神話。距離より“使い方”で決める方が安全",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/oil-change-5000km-myth",
+      "file": "data/articles/columns/oil-change-5000km-myth.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2549,
+        "headings": 14
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "personal-import-cheap-or-not",
+      "id": "col-024",
+      "title": "個人輸入は安い？結論：安いのは車両価格で、詰むのは手続きと整備",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/personal-import-cheap-or-not",
+      "file": "data/articles/columns/personal-import-cheap-or-not.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2351,
+        "headings": 8
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "repair-history-how-to-judge",
+      "id": "col-018",
+      "title": "「修復歴あり」は一律NGではない。判断を分ける3つの線引き",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/repair-history-how-to-judge",
+      "file": "data/articles/columns/repair-history-how-to-judge.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2415,
+        "headings": 15
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "residual-value-loan-decision",
+      "id": "col-006",
+      "title": "残クレは悪じゃない。危険なのは“月額しか見ない”こと",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/residual-value-loan-decision",
+      "file": "data/articles/columns/residual-value-loan-decision.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 3378,
+        "headings": 20
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "sell-timing-shaken-tax-market",
+      "id": "col-004",
+      "title": "車を売るタイミングは季節より「車検・税金・相場」で決める",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/sell-timing-shaken-tax-market",
+      "file": "data/articles/columns/sell-timing-shaken-tax-market.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2457,
+        "headings": 10
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "shaken-early-two-months",
+      "id": "col-011",
+      "title": "車検はギリギリが得？今は「2か月前OK」で最適解が変わっている",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/shaken-early-two-months",
+      "file": "data/articles/columns/shaken-early-two-months.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2538,
+        "headings": 13
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "spare-key-missing-negotiation",
+      "id": "col-021",
+      "title": "スペアキーなしは値引き材料？結論：「値引き」より「納車までに2本」が安全",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/spare-key-missing-negotiation",
+      "file": "data/articles/columns/spare-key-missing-negotiation.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1985,
+        "headings": 12
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "tire-cheap-dangerous-choice",
+      "id": "col-015",
+      "title": "タイヤは安いのでいい？結論：「用途無視の最安」だけはやめた方がいい",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/tire-cheap-dangerous-choice",
+      "file": "data/articles/columns/tire-cheap-dangerous-choice.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 3429,
+        "headings": 22
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "tradein-vs-buyback-prep",
+      "id": "col-005",
+      "title": "下取りと買取、どっちが得？結論：先に「買取の上限」を作ると迷わない",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/tradein-vs-buyback-prep",
+      "file": "data/articles/columns/tradein-vs-buyback-prep.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2138,
+        "headings": 13
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "usedcar-100k-km-myth",
+      "id": "col-001",
+      "title": "走行距離10万kmの中古車はやめとけ？距離より大事な3つの見方",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/usedcar-100k-km-myth",
+      "file": "data/articles/columns/usedcar-100k-km-myth.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2165,
+        "headings": 9
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "usedcar-low-mileage-trap",
+      "id": "col-002",
+      "title": "低走行の中古車は当たり？「買っていい低走行」と「避けたい低走行」を分ける基準",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/usedcar-low-mileage-trap",
+      "file": "data/articles/columns/usedcar-low-mileage-trap.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2253,
+        "headings": 10
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "usedcar-market-buy-timing",
+      "id": "col-003",
+      "title": "中古車相場は「下がる/上がる」予想で買うな。買い時の判断は3点で決める",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/usedcar-market-buy-timing",
+      "file": "data/articles/columns/usedcar-market-buy-timing.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2903,
+        "headings": 15
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "usedcar-market-high-2026-spring",
+      "id": "col-028",
+      "title": "中古車相場が高い年に『待つ』は正解じゃない。買い方を変えろ",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/usedcar-market-high-2026-spring",
+      "file": "data/articles/columns/usedcar-market-high-2026-spring.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2924,
+        "headings": 14
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "usedcar-warranty-needed",
+      "id": "col-019",
+      "title": "中古車の保証って必要？結論：「壊れたら困る人」は付けた方がいい",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/usedcar-warranty-needed",
+      "file": "data/articles/columns/usedcar-warranty-needed.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2376,
+        "headings": 12
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "vehicle-insurance-who-needs",
+      "id": "col-009",
+      "title": "車両保険は付けるべき？結論：付けない方が危ない人の条件",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/vehicle-insurance-who-needs",
+      "file": "data/articles/columns/vehicle-insurance-who-needs.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2521,
+        "headings": 15
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "winter-battery-failure-myth",
+      "id": "col-025",
+      "title": "冬のバッテリー上がりは寿命だけじゃない。やりがちな3つのミス",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/winter-battery-failure-myth",
+      "file": "data/articles/columns/winter-battery-failure-myth.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 2385,
+        "headings": 12
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "ferrari-f40-honest-speed-heritage",
+      "id": "heritage-ferrari-f40-honest-speed",
+      "title": "【完全保存版】贅沢を捨てたフェラーリ。F40が示した「速さの作り方」",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/ferrari-f40-honest-speed-heritage",
+      "file": "data/articles/heritage/ferrari-f40-honest-speed-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 3919,
+        "chapters": 7,
+        "headings": 5
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "ferrari-hybrid-hypercar-turning-point-heritage",
+      "id": "heritage_ferrari_hybrid_hypercar_turning_point",
+      "title": "フェラーリがハイブリッドで変わった瞬間",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/ferrari-hybrid-hypercar-turning-point-heritage",
+      "file": "data/articles/heritage/ferrari-hybrid-hypercar-turning-point-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 964,
+        "chapters": 5,
+        "headings": 0
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "ferrari-modern-gt-lineage-heritage",
+      "id": "heritage-ferrari-modern-gt-lineage",
+      "title": "フェラーリの現代GT：派手さより「普段使いの余裕」を選ぶ時代",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/ferrari-modern-gt-lineage-heritage",
+      "file": "data/articles/heritage/ferrari-modern-gt-lineage-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 801,
+        "chapters": 5,
+        "headings": 0
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "ferrari-suv-turning-point-purosangue",
+      "id": "heritage-ferrari-suv-turning-point-purosangue",
+      "title": "【完全保存版】“SUVを嫌った”フェラーリが方針転換した理由。プロサングエに込めたV12の贖罪",
+      "status": "published",
+      "publicState": "index",
+      "url": "/heritage/ferrari-suv-turning-point-purosangue",
+      "file": "data/articles/heritage/ferrari-suv-turning-point-purosangue.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 6280,
+        "chapters": 9,
+        "headings": 0
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "ferrari-v12-front-engine-lineage-heritage",
+      "id": "heritage-ferrari-v12-front-lineage",
+      "title": "フェラーリV12フロントの系譜：GTが「速さの品格」を守り続けた理由",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/ferrari-v12-front-engine-lineage-heritage",
+      "file": "data/articles/heritage/ferrari-v12-front-engine-lineage-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1078,
+        "chapters": 5,
+        "headings": 0
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "ferrari-v8-mid-engine-lineage-heritage",
+      "id": "heritage-ferrari-v8-lineage-308-488",
+      "title": "【完全保存版】308から488へ。フェラーリV8ミッドシップが「速さの意味」を塗り替えた40年",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/ferrari-v8-mid-engine-lineage-heritage",
+      "file": "data/articles/heritage/ferrari-v8-mid-engine-lineage-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 4237,
+        "chapters": 6,
+        "headings": 5
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "honda-integra-type-r-dc5-heritage",
+      "id": "heritage-honda-integra-type-r-dc5",
+      "title": "【完全保存版】「過去」を捨てて、最強になった。インテグラType R (DC5) が証明した、FFスポーツの新しい物理学",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/honda-integra-type-r-dc5-heritage",
+      "file": "data/articles/heritage/honda-integra-type-r-dc5-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 4641,
+        "chapters": 6,
+        "headings": 5
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "honda-nsx-everyday-supercar-heritage",
+      "id": "heritage-everyday-supercar-nsx",
+      "title": "【完全保存版】フェラーリを“旧世代”にした日。初代NSXが世界に突きつけた「快適なスーパーカー」という革命",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/honda-nsx-everyday-supercar-heritage",
+      "file": "data/articles/heritage/honda-nsx-everyday-supercar-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 4654,
+        "chapters": 7,
+        "headings": 6
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "japan-1995-golden-age-heritage",
+      "id": "heritage-1995-watershed-r33-dc2",
+      "title": "【完全保存版】1995年、速さは「快感」と「信頼」に分裂した。R33 GT-RとDC2インテグラが示した、二つの正義",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/japan-1995-golden-age-heritage",
+      "file": "data/articles/heritage/japan-1995-golden-age-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 4120,
+        "chapters": 5,
+        "headings": 4
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "japan-1999-peak-analog-heritage",
+      "id": "heritage-1999-peak-analog",
+      "title": "【完全保存版】1999年、日本車は「神の領域」に達した。S2000, R34, S15, Evo VIが告げたアナログ時代の完結",
+      "status": "published",
+      "publicState": "index",
+      "url": "/heritage/japan-1999-peak-analog-heritage",
+      "file": "data/articles/heritage/japan-1999-peak-analog-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 6009,
+        "chapters": 7,
+        "headings": 12
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "japan-2002-new-baseline-heritage",
+      "id": "heritage-2002-new-baseline",
+      "title": "【完全保存版】2002年、日本のスポーツカーは「死」に瀕し、そして「再生」した。Z33とDC5が示した、21世紀の速さの基準",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/japan-2002-new-baseline-heritage",
+      "file": "data/articles/heritage/japan-2002-new-baseline-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 4084,
+        "chapters": 5,
+        "headings": 6
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "japan-280ps-gentlemens-agreement-heritage",
+      "id": "heritage-280ps-agreement-truth",
+      "title": "【完全保存版】280馬力という名の「幸福な嘘」。なぜ90年代の日本車は、世界最強の“未完成品”であり続けたのか",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/japan-280ps-gentlemens-agreement-heritage",
+      "file": "data/articles/heritage/japan-280ps-gentlemens-agreement-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 4700,
+        "chapters": 7,
+        "headings": 3
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "japan-evo-impreza-15year-war-heritage",
+      "id": "heritage-japan-evo-impreza-15year-war",
+      "title": "【完全保存版】ランエボとインプレッサ、15年間の「聖戦」。毎年“進化”することを強要された、公道の戦闘機たちの記録",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/japan-evo-impreza-15year-war-heritage",
+      "file": "data/articles/heritage/japan-evo-impreza-15year-war-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 5303,
+        "chapters": 7,
+        "headings": 3
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "japan-high-rev-na-last-dance-heritage",
+      "id": "heritage-high-rev-na-last-dance",
+      "title": "【完全保存版】9000回転の絶叫。S2000、RX-8、FD2シビックが奏でた「内燃機関のラストダンス」",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/japan-high-rev-na-last-dance-heritage",
+      "file": "data/articles/heritage/japan-high-rev-na-last-dance-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 4860,
+        "chapters": 6,
+        "headings": 6
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "japan-kei-sports-abc-heritage",
+      "id": "heritage-kei-sports-64ps",
+      "title": "【完全保存版】世界最小のスーパーカーたち。AZ-1、ビート、カプチーノが駆け抜けた「64馬力の狂乱」",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/japan-kei-sports-abc-heritage",
+      "file": "data/articles/heritage/japan-kei-sports-abc-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 4996,
+        "chapters": 6,
+        "headings": 8
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "japan-software-performance-era-heritage",
+      "id": "heritage-software-performance-era",
+      "title": "【完全保存版】2007年、速さは「物理」から「演算」へ。R35 GT-RとエボXが切り開いた、ソフトウェア・パフォーマンスの黎明",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/japan-software-performance-era-heritage",
+      "file": "data/articles/heritage/japan-software-performance-era-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 4498,
+        "chapters": 6,
+        "headings": 5
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "jdm-280ps-happy-lie-heritage",
+      "id": "heritage-jdm-280ps-happy-lie",
+      "title": "The Happy Lie Called 280PS: Why 90s JDM Became the World's Strongest “Raw Material”",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/jdm-280ps-happy-lie-heritage",
+      "file": "data/articles/heritage/jdm-280ps-happy-lie-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 3779,
+        "chapters": 10,
+        "headings": 0
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "lamborghini-diablo-vt60-fearful-speed-heritage",
+      "id": "heritage-lamborghini-diablo-vt60-fearful-speed",
+      "title": "【完全保存版】90年代の怪物。ディアブロVT6.0が残した「怖い速さ」",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/lamborghini-diablo-vt60-fearful-speed-heritage",
+      "file": "data/articles/heritage/lamborghini-diablo-vt60-fearful-speed-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 3682,
+        "chapters": 7,
+        "headings": 5
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "lamborghini-v10-to-hybrid-turning-point-temerario",
+      "id": "heritage-lamborghini-v10-to-hybrid-turning-point-temerario",
+      "title": "『V10との決別』は敗北ではない。ランボルギーニ・テメラリオが選んだ10,000回転という狂気と、その真意",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/lamborghini-v10-to-hybrid-turning-point-temerario",
+      "file": "data/articles/heritage/lamborghini-v10-to-hybrid-turning-point-temerario.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 4376,
+        "chapters": 8,
+        "headings": 5
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "mazda-roadster-na-lightweight-heritage",
+      "id": "heritage-mazda-roadster-na-miata-effect",
+      "title": "【完全保存版】ライトウェイトを救った日。初代ロードスターが再発明した「オープンの快楽」",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/mazda-roadster-na-lightweight-heritage",
+      "file": "data/articles/heritage/mazda-roadster-na-lightweight-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 3313,
+        "chapters": 8,
+        "headings": 6
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "mazda-rx7-fd3s-subtraction-engineering-heritage",
+      "id": "heritage-mazda-rx7-fd3s-zero-strategy",
+      "title": "【完全保存版】“孤高”の代償。RX-7 (FD3S) が貫いた「引き算」のエンジニアリングと、ロータリーという名の美しい呪縛",
+      "status": "published",
+      "publicState": "index",
+      "url": "/heritage/mazda-rx7-fd3s-subtraction-engineering-heritage",
+      "file": "data/articles/heritage/mazda-rx7-fd3s-subtraction-engineering-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 6387,
+        "chapters": 8,
+        "headings": 6
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "mclaren-f1-three-seater-heritage",
+      "id": "heritage-mclaren-f1-three-seater",
+      "title": "【完全保存版】運転席は真ん中にあった。マクラーレンF1が示した「速さの設計図」",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/mclaren-f1-three-seater-heritage",
+      "file": "data/articles/heritage/mclaren-f1-three-seater-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 4310,
+        "chapters": 6,
+        "headings": 5
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "mercedes-benz-s-class-w140-heritage",
+      "id": "heritage-mercedes-w140-overengineering",
+      "title": "【完全保存版】重さは、誇りだった。W140型Sクラスが体現した「最後のオーバーエンジニアリング」",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/mercedes-benz-s-class-w140-heritage",
+      "file": "data/articles/heritage/mercedes-benz-s-class-w140-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 3735,
+        "chapters": 6,
+        "headings": 5
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "nissan-fairlady-z-lineage-heritage",
+      "id": "heritage_nissan_fairlady_z_lineage",
+      "title": "フェアレディZの系譜",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/nissan-fairlady-z-lineage-heritage",
+      "file": "data/articles/heritage/nissan-fairlady-z-lineage-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1432,
+        "chapters": 6,
+        "headings": 0
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "nissan-skyline-2000gtr-hakosuka-heritage",
+      "id": "heritage-nissan-hakosuka-gtr-origin",
+      "title": "【完全保存版】神話はここから始まった。ハコスカGT‑Rが刻んだ「勝つための設計」",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/nissan-skyline-2000gtr-hakosuka-heritage",
+      "file": "data/articles/heritage/nissan-skyline-2000gtr-hakosuka-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 3793,
+        "chapters": 8,
+        "headings": 6
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "nissan-skyline-gt-r-lineage-heritage",
+      "id": "heritage_nissan_skyline_gtr_lineage",
+      "title": "スカイラインGT-Rの系譜",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/nissan-skyline-gt-r-lineage-heritage",
+      "file": "data/articles/heritage/nissan-skyline-gt-r-lineage-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 1204,
+        "chapters": 6,
+        "headings": 0
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "supercar-parts-bin-engineering-heritage",
+      "id": "heritage-supercar-parts-bin-engineering",
+      "title": "【完全保存版】1億円の車に、なぜカローラの部品が？スーパーカーが愛した「量産部品（パーツビン）」の流用美学",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/supercar-parts-bin-engineering-heritage",
+      "file": "data/articles/heritage/supercar-parts-bin-engineering-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 4830,
+        "chapters": 6,
+        "headings": 5
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "toyota-ae86-slow-car-fast-heritage",
+      "id": "heritage-toyota-ae86-slowcarfast",
+      "title": "【完全保存版】遅いのに、名車。AE86が教えた「運転」という快楽",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/toyota-ae86-slow-car-fast-heritage",
+      "file": "data/articles/heritage/toyota-ae86-slow-car-fast-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 3387,
+        "chapters": 8,
+        "headings": 6
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "toyota-celsior-ls400-silence-precision-heritage",
+      "id": "heritage-toyota-celsior-ls400-silence-precision",
+      "title": "【完全保存版】世界を変えた「静寂」。初代セルシオがドイツ車に突きつけた“源流の精度”という名の暴力",
+      "status": "published",
+      "publicState": "noindex",
+      "url": "/heritage/toyota-celsior-ls400-silence-precision-heritage",
+      "file": "data/articles/heritage/toyota-celsior-ls400-silence-precision-heritage.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 5673,
+        "chapters": 7,
+        "headings": 3
+      }
+    },
+    {
+      "type": "HERITAGE",
+      "slug": "toyota-flagship-gt-turning-point-gr-gt",
+      "id": "heritage-toyota-gr-gt-flagship-gt",
+      "title": "【完全保存版】トヨタはなぜ再び旗艦GTを作るのか。GR GTが背負う「式年遷宮」とV8ハイブリッドの必然",
+      "status": "published",
+      "publicState": "index",
+      "url": "/heritage/toyota-flagship-gt-turning-point-gr-gt",
+      "file": "data/articles/heritage/toyota-flagship-gt-turning-point-gr-gt.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 6048,
+        "chapters": 9,
+        "headings": 0
+      }
+    }
+  ]
+}
