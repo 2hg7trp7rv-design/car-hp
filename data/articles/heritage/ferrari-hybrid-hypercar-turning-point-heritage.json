@@ -1,0 +1,81 @@
+{
+  "id": "heritage_ferrari_hybrid_hypercar_turning_point",
+  "slug": "ferrari-hybrid-hypercar-turning-point-heritage",
+  "type": "HERITAGE",
+  "status": "published",
+  "kind": "BRAND",
+  "maker": "FERRARI",
+  "brandName": "Ferrari",
+  "title": "フェラーリがハイブリッドで変わった瞬間",
+  "titleJa": "フェラーリがハイブリッドで変わった瞬間",
+  "seoTitle": null,
+  "seoDescription": null,
+  "createdAt": "2026-02-02",
+  "publishedAt": "2026-02-02",
+  "updatedAt": "2026-02-02",
+  "heroTitle": null,
+  "heroCaption": "ラフェラーリからSF90まで。電動化が性能の言語になった分岐点を整理する。",
+  "heroImage": null,
+  "heroTone": null,
+  "highlights": [],
+  "sections": [
+    {
+      "id": "why-hybrid",
+      "title": "なぜハイブリッドなのか",
+      "summary": "燃費のためだけではない。加速と応答を作るための電動化。",
+      "carSlugs": []
+    },
+    {
+      "id": "laferrari",
+      "title": "ラフェラーリが示した答え",
+      "summary": "ハイブリッドを特別な価値に変えた一台。管理の思想もここで変わった。",
+      "carSlugs": [
+        "ferrari-la-ferrari"
+      ]
+    },
+    {
+      "id": "sf90",
+      "title": "SF90で日常に降りてきた",
+      "summary": "複合システムが普通になった時、中古で見るべき視点も変わる。",
+      "carSlugs": [
+        "ferrari-sf90-stradale"
+      ]
+    }
+  ],
+  "body": "【序章】ハイブリッドはエコのためだけではない\nスーパーカーの世界でハイブリッドが意味を持ったのは、燃費を良くするためではありません。加速の立ち上がり、応答、トラクション。そこを別の次元に押し上げるための電動化でした。\n\nただし、性能が上がるほど管理の難しさも増えます。中古で大事なのは、スペックより運用の履歴。どんな環境で保管され、どんな頻度で動かされ、どこが手を入れてきたか。ここが価値を作ります。\n\n> 電動化は、速さの道具であると同時に、管理の思想を変えた。\n\n【第1章】技術の持ち込みと、価値の作り方\nレース由来の技術は、速さだけでなく、ブランドの文脈にもなります。ハイブリッドも同じで、単なる機構ではなく、その車がどう扱われてきたかが価値の一部になります。\n\n中古で見るべきは次の3点です。\n- 書類と履歴の揃い方（整備記録、点検内容、付属品）\n- 保管環境と運用（長期放置か、定期的に動かしているか）\n- 小さな違和感の扱い（軽い警告を放置していないか）\n\n【第2章】ラフェラーリが示した答え\nラフェラーリは、フェラーリがハイブリッドを価値に変えた象徴です。速さだけではなく、コンディション管理が前提になる車でもあります。\n- [フェラーリ ラフェラーリ](/cars/ferrari-la-ferrari)\n\n中古で怖いのは、距離が少ないのに運用が悪い個体です。放置は一見きれいに見えても、別のリスクを抱えます。管理の記録が揃うほど安心して楽しめます。\n\n【第3章】SF90で日常に降りてきた\nSF90は、複合システムが特別ではなくなった時代の答えです。速さの作り方が変わった分、見るべきポイントも変わります。\n- [フェラーリ SF90ストラダーレ](/cars/ferrari-sf90-stradale)\n\n中古では、消耗品の状態と、整備の受け皿が重要です。良い車ほど、予防整備が前提で動いています。\n\n【まとめ】中古でハイブリッド・スーパーカーを見る視点\n- 書類と履歴が価値。揃っているほど不安が減る\n- 保管環境と運用がコンディションを作る\n- 予防整備が効く。後回しにしない個体を選ぶ\n\nハイブリッドは、速さの道具であると同時に、所有の作法そのものを変えました。そこまで含めて選ぶと、後悔が減ります。\n",
+  "tags": [
+    "Ferrari",
+    "Hybrid",
+    "LaFerrari",
+    "SF90",
+    "Hypercar",
+    "Technology"
+  ],
+  "intentTags": [
+    "heritage",
+    "history",
+    "engineering",
+    "deep-dive"
+  ],
+  "relatedCarSlugs": [
+    "ferrari-la-ferrari",
+    "ferrari-sf90-stradale",
+    "ferrari-812-superfast"
+  ],
+  "relatedGuideSlugs": [
+    "maintenance-cost-simulation",
+    "tax-and-fees-before-buying-import"
+  ],
+  "relatedColumnSlugs": [
+    "import-car-hidden-costs-paperwork"
+  ],
+  "summary": "ハイブリッドは燃費のためだけではない。フェラーリが電動化を性能の言語に変えた分岐点を、ラフェラーリとSF90を軸に整理する。",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/heritage",
+  "relatedClusterIds": [],
+  "primaryQuery": "フェラーリ ハイブリッド ラフェラーリ SF90 変化",
+  "updateReason": "heritage-add-2026-02-02",
+  "sources": []
+}

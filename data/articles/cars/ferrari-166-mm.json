@@ -1,0 +1,92 @@
+{
+  "id": "ferrari-166-mm",
+  "slug": "ferrari-166-mm",
+  "name": "フェラーリ 166 MM",
+  "maker": "FERRARI",
+  "releaseYear": 1948,
+  "difficulty": "advanced",
+  "bodyType": "オープンカー",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "166 MM",
+  "summary": "ル・マンやミッレミリアで優勝し、フェラーリの名を世界に知らしめた初期レーシングロードカーです。",
+  "summaryLong": "フェラーリ 166 MMは、2.0L V12エンジンを搭載したオープン2シーターで、ル・マン24時間レースやミッレミリアといった耐久レースでの勝利によって、フェラーリというブランドを一気に世界へ知らしめたモデルです。ナンバープレートを付けて公道も走れるロードカーでありながら、そのままレースに出場して優勝を狙えるパッケージは、まさに『レースで勝てるロードカー』というフェラーリのスタイルを象徴しています。エレガントなカロッツェリア製ボディと、小さなV12が高回転まで伸びていくフィーリングは、クラシックフェラーリの原型そのものと言える存在です。",
+  "heroImage": "/images/cars/ferrari-166-mm-hero.jpg",
+  "mainImage": "/images/cars/ferrari-166-mm-hero.jpg",
+  "imageUrl": "/images/cars/ferrari-166-mm-hero.jpg",
+  "gallery": [
+    "/images/cars/ferrari-166-mm-front.jpg",
+    "/images/cars/ferrari-166-mm-side.jpg",
+    "/images/cars/ferrari-166-mm-interior.jpg"
+  ],
+  "engine": "2.0L V12",
+  "powerPs": 140,
+  "torqueNm": 170,
+  "transmission": "5速MT",
+  "drive": "FR",
+  "fuel": "ガソリン",
+  "fuelEconomy": "約4〜6km/L（実用域目安）",
+  "priceNew": "当時：$10,000〜$20,000（参考）",
+  "priceUsed": "20億〜60億円（オークション次第）",
+  "strengths": [
+    "ル・マンやミッレミリアでの勝利という、圧倒的なレース実績を持つモデルです。",
+    "小さなV12が高回転まで伸びる、クラシックフェラーリならではのフィーリングを味わえます。",
+    "オープンボディのため、エキゾーストサウンドと風を全身で感じながら走ることができます。",
+    "フェラーリ初期のカロッツェリアデザインを堪能できる、芸術作品としての価値も高いクルマです。"
+  ],
+  "weaknesses": [
+    "現代の視点で見るとブレーキ・タイヤ・安全装備の性能は非常に限られており、走行には大きな注意が必要です。",
+    "パーツ供給やメンテナンスはごく限られた専門工房に依存するため、維持の難易度は極めて高いです。",
+    "車両価格が高額なうえ、クラッシュ時のダメージは金銭で測れないレベルになります。",
+    "公道走行は可能でも、快適性や信頼性は現代車の感覚とはまったく別物です。"
+  ],
+  "troubleTrends": [
+    "V12エンジンのオイル管理や冷却系の不調は、大きなトラブルに直結するため入念な点検が必須です。",
+    "古い配線や電装品の接触不良は定番で、レストア時にどこまで刷新されているかが重要です。",
+    "ボディ・フレームの腐食や過去の補修履歴によって、車両価値が大きく変わります。",
+    "ヒストリックレースで酷使された個体も多く、履歴の正確な把握が重要です。"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で資金計画が苦しくなりやすい車です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [],
+  "tags": [
+    "FERRARI",
+    "フェラーリ",
+    "166 MM",
+    "クラシックカー",
+    "V12",
+    "FR",
+    "耐久レース"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "oldtimer"
+  ],
+  "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+  },
+  "priceUsedYenRange": "（希少）要相談/取引事例級",
+  "maintenanceCostYenPerYear": 450000,
+  "type": "CAR",
+  "status": "published",
+  "title": "FERRARI フェラーリ 166 MM",
+  "makerKey": "ferrari",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/ferrari",
+  "relatedClusterIds": [],
+  "primaryQuery": "フェラーリ 166 MM",
+  "updateReason": "tone-fix-2026-02-01",
+  "sources": []
+}

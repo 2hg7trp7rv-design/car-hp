@@ -1,0 +1,30 @@
+Wave 19 — EXHIBITION “Route Ticket” pages
+
+Goal
+- Make EXHIBITION a real “showpiece” / guided entry, not just a static list.
+- Add a stable, low-risk feature that improves UX and IA (information architecture) without introducing index/SEO accidents.
+
+What changed
+1) New route detail pages
+   - Added /exhibition/route/[id]
+   - Pre-rendered via generateStaticParams (one page per curated route id).
+   - Shows the fixed reading order as a “ticket”, including duration + steps.
+
+2) Progress tracking (client-only, local)
+   - Added RouteProgress client component.
+   - Stores visited steps per route in localStorage (device-only).
+   - Adds “continue from next unvisited” + “reset” controls.
+
+3) Exhibition page CTA update
+   - Route cards now include a “ルートを見る” button that links to /exhibition/route/{id}
+   - Keeps the original “この順で読む” (direct to first step) CTA.
+
+4) Sitemaps
+   - scripts/generate-sitemaps.mjs now includes /exhibition/route/{id} pages into static sitemap.
+
+5) Site map page
+   - /site-map now lists EXHIBITION ROUTES for discoverability (page remains noindex).
+
+Notes
+- No removal of existing features; everything is additive.
+- No new query-based pages were added (avoids crawl/index explosion).

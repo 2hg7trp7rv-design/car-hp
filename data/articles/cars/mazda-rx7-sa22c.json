@@ -1,0 +1,120 @@
+{
+  "id": "mazda-rx7-sa22c",
+  "slug": "mazda-rx7-sa22c",
+  "name": "RX-7 SA22C",
+  "maker": "Mazda",
+  "releaseYear": 1978,
+  "difficulty": "advanced",
+  "bodyType": "クーペ",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "mazda-rx7-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "RX-7 SA22C",
+  "summary": "初代RX-7。軽さとシンプルさが魅力だが、錆と年式による劣化は覚悟が必要。",
+  "summaryLong": "SA22Cは初代RX-7。軽い車体にロータリーという組み合わせで、今の車では出ない“薄い走り”の楽しさがあります。ただし、現実は年式との戦いです。錆、燃料系、電装…どこを見落とすかで、納車後の難易度が跳ねます。買うならボディと基本整備が整っている個体から。",
+  "heroImage": "/images/cars/mazda-rx7-sa22c-hero.jpg",
+  "mainImage": "/images/cars/mazda-rx7-sa22c-main.jpg",
+  "imageUrl": "/images/cars/mazda-rx7-sa22c-main.jpg",
+  "gallery": [
+    "/images/cars/mazda-rx7-sa22c-front.jpg",
+    "/images/cars/mazda-rx7-sa22c-side.jpg",
+    "/images/cars/mazda-rx7-sa22c-interior.jpg"
+  ],
+  "engine": "Front Rotary",
+  "powerPs": 105,
+  "torqueNm": 147,
+  "transmission": "5MT / 3AT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 9〜13 km/L",
+  "priceNew": "当時：150万〜250万円（参考）",
+  "priceUsed": "250万〜900万円（相場変動）",
+  "strengths": [
+    "初代らしい軽さとシンプルさで、走りがとにかく素直",
+    "クラシックとしての所有感が強い",
+    "弄る・直す・乗るの全部が趣味になる"
+  ],
+  "weaknesses": [
+    "錆と年式劣化（ゴム/電装/内装）の影響が大きい",
+    "燃料系のコンディションで始動性が変わりやすい",
+    "部品と整備の手間は“増える前提”で考える必要がある"
+  ],
+  "troubleTrends": [
+    "下回り・ストラット周りなどの錆/腐食",
+    "燃料系（キャブ/ホース/タンク）の不調による始動性悪化",
+    "冷却系の弱りによる水温上昇",
+    "点火系の劣化による失火"
+  ],
+  "costImpression": "“クラシックの楽しさ”と引き換えに、整備の手間と時間が増えます。コンディションの良さは最優先です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "usedcar-100k-km-myth",
+    "repair-history-how-to-judge"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "overheat-coolant-leak-guide"
+  ],
+  "relatedCarSlugs": [
+    "mazda-rx7-fc3s",
+    "mazda-rx7-fd3s",
+    "toyota-corolla-levin-ae86"
+  ],
+  "tags": [
+    "Mazda",
+    "sports-coupe",
+    "クラシックスポーツ",
+    "FR",
+    "5MT / 3AT",
+    "Front Rotary",
+    "ネオクラシック",
+    "ロータリー"
+  ],
+  "relatedHeritageSlugs": [
+    "mazda-rx7-fd3s-subtraction-engineering-heritage"
+  ],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：300万〜600万円（ボディと基本整備が整った個体）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間70〜160万円（錆/燃料系/電装の状態で上下）"
+  },
+  "priceUsedYenRange": "250万〜900万円（相場変動）",
+  "maintenanceCostYenPerYear": 1150000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mazda RX-7 SA22C",
+  "makerKey": "mazda",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "マツダ RX-7（SA22C）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/mazda",
+  "relatedClusterIds": [],
+  "primaryQuery": "RX-7 SA22C",
+  "updateReason": "car-index-upgrade-2026-02-01",
+  "sources": [],
+  "bestFor": [
+    "軽いクラシックスポーツを、整備込みで楽しみたい",
+    "古い車の“当たり外れ”を受け入れられる",
+    "週末メインで、保管環境も確保できる"
+  ],
+  "notFor": [
+    "日常の足として毎日使いたい",
+    "錆や電装トラブルの可能性に気持ちが持っていかれる",
+    "部品探しやショップ探しをしたくない"
+  ],
+  "maintenanceNotes": [
+    "まずは錆。ボディが弱い個体は、何をしても追いつきません。",
+    "燃料系と電装は“旧車あるある”。最初に整理すると安定します。",
+    "冷却と点火はロータリーの基本。予防整備の考え方が合います。"
+  ],
+  "body": "## 結論\nSA22Cは初代RX-7。軽さとシンプルさがそのまま魅力になっていて、今の車では味わいにくい“薄い走り”があります。\n\nただし、現実は年式との戦いです。錆、燃料系、電装…見落としがあると納車後の難易度が一気に跳ねます。買うなら「ボディが強い」「基本整備が一通り済んでいる」個体から。ここを外さないのが正解です。\n\n## 向く人 / 向かない人\n向く人\n- クラシックスポーツを、整備込みで楽しめる\n- 週末メインで、保管環境も確保できる\n\n向かない人\n- 日常の足として毎日使いたい\n- 部品探しやショップ探しをしたくない\n\n## 買う前のチェック\n- 錆：下回り、ストラット周り、フロアは最優先\n- 燃料系：始動性、燃料臭、ホース/タンクの状態\n- 冷却：水温の上がり方、ホース類の劣化\n- 電装：後付け配線の整理具合。雑だと不調が連鎖しやすい\n- 改造の方向性：無理のある仕様は“後始末”が高くつく\n\n## 弱点と故障\nSA22Cは、症状が出る理由がわりと素直です。原因の当たりをつけられると、判断が早くなります。\n\n- 始動が不安定/ガソリン臭い → 燃料ホース劣化、タンク周り → 費用感：数万〜\n- 水温が上がりやすい → 冷却系の弱り、詰まり → 費用感：数万〜十数万円\n- 失火・息継ぎ → 点火系の劣化、配線 → 費用感：数万〜\n\n## 維持費の目安\n目安は年間70〜160万円。これは“古さ”のぶんです。税金や保険より、錆の手当てや燃料系・電装の整理が効いてきます。\n\nまずは家計の上限を決めてから車探しをしたいなら、[維持費シミュレーション](/guide/maintenance-cost-simulation)で先に枠を作っておくのが安全です。\n\n## 中古で買うなら\n走行距離より、直近でやった整備とボディの状態です。距離が少なくても、長期間動かしていない個体は燃料系のトラブルが出やすい。\n\n判断の軸は、まず[修復歴チェックリスト](/guide/repair-history-used-car-checklist)で作るとブレません。\n\n## 比較\n- RX-7（FC3S）：同じロータリーでも現実的。日常寄りにしやすい。\n- RX-7（FD3S）：性能は別格だが、価格も維持も一段上。\n- AE86：同じ“軽さの楽しさ”。ロータリーよりシンプルだが、錆と個体差は同じく要注意。\n\n## 関連リンク\n- [修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist)\n- [維持費シミュレーション](/guide/maintenance-cost-simulation)\n- [オーバーヒート/冷却水漏れの初動](/guide/overheat-coolant-leak-guide)\n- [10万kmは本当に多い？](/column/usedcar-100k-km-myth)\n- [修復歴の“見抜き方”](/column/repair-history-how-to-judge)\n- [FD3Sが“削ぎ落とし”で速くなった話](/heritage/mazda-rx7-fd3s-subtraction-engineering-heritage)\n"
+}

@@ -1,0 +1,18 @@
+PATCH REPORT — WAVE 12
+
+Scope
+- Progressive enhancement hardening for /search.
+- Ensure query-param driven SSR on /compare is not optimized away.
+
+Risk assessment
+- Low risk to indexable pages (changes are isolated to /search and /compare, both noindex).
+- /search now performs server-side work per request; internal index is memoized in lib/search (indexPromise), so repeated requests on the same server instance do not rebuild.
+
+Failure modes + mitigations
+- If server-side search snapshot fails (unexpected data read error): page still renders; SearchClient falls back to API fetch when JS is available.
+- If JS is disabled: GET form submission provides search functionality; SSR snapshot ensures a non-empty page even without API.
+
+Validation checklist
+- Build-time scripts unaffected (no new script hooks).
+- NOINDEX + canonical=/search remains.
+- No new internal links are created to /search?q=...; only user-entered.

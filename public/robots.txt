@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_internal/
+
+# NOTE:
+# /search, /compare はページ側で noindex を返す。
+# robots.txt で Disallow すると、noindex を読めずに URL だけが残るケースがあるためブロックしない。
+
+Sitemap: https://carboutiquejournal.com/sitemap.xml

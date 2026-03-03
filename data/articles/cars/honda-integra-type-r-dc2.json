@@ -1,0 +1,116 @@
+{
+  "id": "honda-integra-type-r-dc2",
+  "slug": "honda-integra-type-r-dc2",
+  "name": "Integra Type R DC2",
+  "maker": "Honda",
+  "releaseYear": 1995,
+  "difficulty": "intermediate",
+  "bodyType": "sports-coupe",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "nissan-gt-r-godzilla-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "Type R",
+  "summary": "走りは今も鮮烈。中古は錆と足回り、改造履歴を読めるかで勝敗が決まる。",
+  "summaryLong": "DC2 インテグラ タイプRは、NA高回転と軽い車体が生む、前輪駆動の名作です。中古では年式が古く、性能よりも『ボディと足回りの基礎体力』が肝になります。ブッシュ類、ハブ、マウント、冷却系など、消耗と経年が積み重なる箇所は多め。改造車が多いので、修復歴だけでなく、歪みや錆、履歴の透明性まで含めて判断すると失敗しにくい。",
+  "body": "## 結論\nDC2は、買った瞬間より『整った瞬間』が一番うれしい車です。派手なチューニングより、素性の良さと足回りの健全さ。そこが揃うと、ステアリングを切った分だけ車が反応してくれます。\n\n## 向く人 / 向かない人\n速さだけでなく、操作に対する返事の良さを楽しめる人向けです。反対に、静かさや乗り心地だけを求めるなら、他の選択肢の方が幸せになりやすい。\n\n## 買う前のチェック\n最初に見るのは、下回りとボディの状態です。錆、歪み、パネルのチリ、溶接跡。次に足回りのリフレッシュ履歴。試乗では、直進性、段差での収束、ミッションの入り、異音を確認してください。\n\n改造車が多いジャンルなので、『どこまで触られているか』を説明できる個体が安心です。説明が曖昧な車は、後から整備の前提が崩れます。\n\n### ボディと足回りは最優先\n- ドアの閉まり方やチリの揃い方。軽い歪みは乗り味に出ます\n- 下回りの錆。ジャッキポイント付近は特に確認\n- ハブやベアリングの音。試乗でゴー音が出る個体は要注意\n- マウントやブッシュの劣化。加減速で揺れるなら交換前提です\n\n## 弱点と故障\n年式が古い分、トラブルは派手ではなくても連鎖します。ゴム類の劣化、冷却の弱り、ベアリングやブッシュの消耗。兆候が小さいうちに手を打てるかで、維持の難易度が変わります。\n\n## 維持費\n本体は軽くても、維持は『年式』が支配します。壊れたら直すより、壊れる前に交換する方が結果的に安いことも多い。年間コストは、リフレッシュをどの年にまとめるかで変動します。\n\n### 部品は『純正にこだわり過ぎない』\n純正が手に入りにくい箇所は、信頼できる社外部品で補う発想も現実的です。大事なのは、基礎を整えてからチューニングに進む順番。\n\n## 中古で買うなら\n極端に低走行でも、長期間動いていない個体は要注意です。距離よりも、定期的に動かされて整備されてきたか。記録があるか。そこに価値があります。\n\n### 速さより素性\nパワーアップ済みの車は魅力的に見えますが、素性が読めないと不安が増えます。最初の一台は、ノーマルに近く、記録簿が揃った個体から始めるのが無難です。\n\n### 初年度はリフレッシュに寄せる\n古いタイプRは、走りを楽しむ前に『基礎の戻し』が必要な車が多い。足回りのブッシュとハブ、エンジンマウント、冷却。ここを最初に整えると、以降の整備は小さく済みます。買う時点で完璧を求めるより、リセットできる個体を選ぶのが現実的です。\n\n### 迷いを減らすチェック\n- ボディと下回りが健全か。ここが崩れている車は直しても戻りません\n- 変速の違和感は厳しめに。シンクロやリンクの消耗が出ます\n- 内装の欠品も見る。扱われ方の荒さが出やすい\n- 改造は説明がつくか。施工店と目的が追える車を選ぶ\n\n## 比較\n同じホンダのタイプRでも、世代で乗り味は違います。より軽快なFWDの楽しさを求めるならDC2。ボディ剛性や安心感を求めるなら新しい世代。欲しい感触を先に決めると選びやすいです。\n\n## 関連リンク\n",
+  "costImpression": "買った後に効くのは、足回りとブレーキ、そしてボディの素性です。安さ優先より、整備の筋が通った個体を選ぶと、維持の判断がぐっと楽になります。",
+  "heroImage": "/images/cars/honda-integra-type-r-dc2-hero.jpg",
+  "mainImage": "/images/cars/honda-integra-type-r-dc2-hero.jpg",
+  "imageUrl": "/images/cars/honda-integra-type-r-dc2-hero.jpg",
+  "gallery": [
+    "/images/cars/honda-integra-type-r-dc2-1.jpg",
+    "/images/cars/honda-integra-type-r-dc2-2.jpg"
+  ],
+  "engine": "Front Inline-4 NA (B18C VTEC)",
+  "powerPs": 200,
+  "torqueNm": 186,
+  "transmission": "5MT",
+  "drive": "FF",
+  "fuel": "ハイオク",
+  "fuelEconomy": "（年式/仕様で変動）",
+  "priceNew": "当時：200万〜250万円（参考）",
+  "priceUsed": "350万〜900万円（相場変動）",
+  "priceUsedYenRange": "350万〜900万円（相場変動）",
+  "purchasePriceSafe": "安全ライン：500〜900万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間50〜110万円"
+  },
+  "maintenanceCostYenPerYear": 800000,
+  "strengths": [
+    "軽さと反応の速さで、ドライバーの入力がそのまま挙動に返ってくる",
+    "機械式LSDとVTECの組み合わせが、速度域を問わず濃い体験を作る",
+    "構造が比較的シンプルで、整備の優先順位が立てやすい"
+  ],
+  "weaknesses": [
+    "ボディの歪み・修復歴の影響が大きく、個体差が体験差になる",
+    "足回りブッシュやマウントの劣化で“軽さ”が負債に変わる",
+    "改造車は燃調・足回りの整合性次第でトラブルが増える"
+  ],
+  "troubleTrends": [
+    "ブッシュ類・マウント類の劣化で、乗り味と直進性が崩れやすい",
+    "ハブベアリングやドラシャ周りは異音が出る前の点検が効く",
+    "冷却系とゴム類は年式で弱る。漏れ跡があれば前提を厳しめに置く"
+  ],
+  "bestFor": [
+    "高回転NAの手応えを、FWDで味わい尽くしたい人",
+    "年式相応のリフレッシュを前提に、長く育てたい人",
+    "改造や修復の履歴を言語化して判断できる人"
+  ],
+  "notFor": [
+    "静かで快適な移動を最優先したい人",
+    "古い車のゴム類や錆対策に手間を掛けたくない人",
+    "履歴が曖昧でも『名車だから』で買ってしまいがちな人"
+  ],
+  "maintenanceNotes": [
+    "足回りのリフレッシュ（ブッシュ、マウント、ベアリング）が価値になる",
+    "冷却系とホース類の予防整備で、安心感が一段上がる",
+    "クラッチやミッションは乗られ方で差が出る。試乗で違和感を拾う",
+    "錆は後から効く。下回りとボディの状態は妥協しない"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "honda-civic-type-r-ek9",
+    "honda-integra-type-r-dc5",
+    "honda-civic-type-r-fd2"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "how-to-choose-first-sports-car",
+    "maintenance-cost-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "dealer-shaken-is-expensive-myth"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-high-rev-na-last-dance-heritage"
+  ],
+  "tags": [
+    "Honda",
+    "Integra",
+    "Type R",
+    "DC2",
+    "VTEC"
+  ],
+  "intentTags": [],
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda Integra Type R DC2",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "ホンダ インテグラ タイプR（DC2）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Integra Type R DC2",
+  "updateReason": "car-major-overhaul-2026-02-01",
+  "sources": []
+}

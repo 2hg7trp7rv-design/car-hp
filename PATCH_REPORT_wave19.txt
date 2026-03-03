@@ -1,0 +1,12 @@
+Wave 19 — Files changed / added
+
+Updated
+- app/exhibition/page.tsx
+- app/site-map/page.tsx
+- scripts/generate-sitemaps.mjs
+
+Added
+- app/exhibition/route/[id]/page.tsx
+- components/exhibit/RouteProgress.tsx
+- PATCH_NOTES_wave19.txt
+- PATCH_REPORT_wave19.txt

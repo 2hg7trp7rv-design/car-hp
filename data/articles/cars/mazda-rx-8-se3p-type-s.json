@@ -1,0 +1,124 @@
+{
+  "id": "mazda-rx-8-se3p-type-s",
+  "slug": "mazda-rx-8-se3p-type-s",
+  "name": "RX-8 (SE3P) Type S",
+  "maker": "Mazda",
+  "releaseYear": 2003,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "Type S (6MT)",
+  "summary": "回転が“滑る”ように積み重なるロータリー。速さの形が線で、バランスが面白い。",
+  "summaryLong": "RX-8は、高回転NAをロータリーで成立させた別解です。回転が軽く、姿勢が整う。曲がる速さが先に来るタイプ。\n\n一方で、いま買う目線では“圧縮と管理”がすべてです。始動性、アイドルの安定、オイル管理、冷却。ここが揃っている個体は、回転の美しさがそのまま残る。\n\n安い個体ほど、戻すのが難しい。履歴の透明度が価値になります。",
+  "heroImage": "/images/cars/mazda-rx-8-se3p-type-s-hero.jpg",
+  "mainImage": "/images/cars/mazda-rx-8-se3p-type-s-main.jpg",
+  "imageUrl": "/images/cars/mazda-rx-8-se3p-type-s-hero.jpg",
+  "gallery": [
+    "/images/cars/mazda-rx-8-se3p-type-s-front.jpg",
+    "/images/cars/mazda-rx-8-se3p-type-s-side.jpg",
+    "/images/cars/mazda-rx-8-se3p-type-s-interior.jpg"
+  ],
+  "engine": "Front Rotary 1.3 NA (13B-MSP Renesis)",
+  "powerPs": 250,
+  "torqueNm": 216,
+  "transmission": "6MT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜10 km/L",
+  "priceNew": "当時: 250万〜350万円台（仕様差）",
+  "priceUsed": "80万〜350万円（相場変動）",
+  "strengths": [
+    "回転の連続性が独特で、音と応答が“軽い”。",
+    "重量バランスが良く、曲がる所作が自然。",
+    "4ドア風の実用性があり、生活に置けるスポーツ。",
+    "ノーマルでも設計意図が濃く、整うほど楽しい。"
+  ],
+  "weaknesses": [
+    "圧縮と管理が状態を支配する。個体差が極端。",
+    "オイル消費は前提。理解がないと維持が難しい。",
+    "熱管理が甘いと劣化が早い。",
+    "安い個体の“戻し”は計画が要る。"
+  ],
+  "troubleTrends": [
+    "始動性（特に温間再始動）とアイドルの安定は必ず確認したいです。",
+    "冷却系と点火系の更新履歴で寿命が変わります。",
+    "排気の匂い・白煙の有無など、燃焼の状態が出やすいです。",
+    "電装の警告灯履歴は切り分けの難易度に直結します。"
+  ],
+  "costImpression": "理解して買うと面白いが、理解せずに買うと痛い。履歴の見える個体を優先したい。 購入後は点火系と油脂を一度揃えると、維持が読みやすくなります。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "oil-change-5000km-myth",
+    "usedcar-100k-km-myth"
+  ],
+  "relatedGuideSlugs": [
+    "oil-change-frequency-guide",
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation"
+  ],
+  "relatedCarSlugs": [
+    "honda-s2000-ap1",
+    "honda-civic-type-r-fd2"
+  ],
+  "tags": [
+    "Mazda",
+    "RX-8",
+    "SE3P",
+    "Renesis",
+    "rotary",
+    "high-rev",
+    "FR"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-high-rev-na-last-dance-heritage"
+  ],
+  "intentTags": [
+    "rotary",
+    "high-rev",
+    "NA",
+    "FR",
+    "2000s",
+    "heritage"
+  ],
+  "purchasePriceSafe": "安全ライン：120〜220万円前後（圧縮と履歴重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間35〜80万円"
+  },
+  "maintenanceCostYenPerYear": 550000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mazda RX-8 (SE3P) Type S",
+  "makerKey": "mazda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "マツダ RX-8（SE3P）Type S",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/mazda",
+  "relatedClusterIds": [],
+  "primaryQuery": "RX-8 Type S 中古 注意点",
+  "updateReason": "cars-index-upgrade-2026-02-01",
+  "sources": [],
+  "body": "## 結論\nRX-8 Type Sは、ロータリーを日常で楽しみたい人にとって、今でも魅力が残っている一台です。燃費や手間は正直に受け止める必要がありますが、その代わりに得られる回転の気持ちよさは独特です。\n買う前に押さえるべきは、外装より中身。圧縮と点火系、そして整備の癖を掴めれば、変に怖がる必要はありません。\n\n## 向く人 / 向かない人\n### 向く人\n- 回して乗る楽しさを優先したい\n- オイル管理や点検を習慣にできる\n- 多少の手間込みで、運転の気持ちよさを取りにいける\n\n### 向かない人\n- 近距離中心でエンジンを回さない\n- 燃費と維持費を最優先する\n- 点検を人任せにして、状態変化に無関心\n\n## 買う前のチェック\n### ここだけは先に見る\n- 始動性（冷間と温間で差が出ないか）\n- アイドリングの安定\n- 点火系（プラグ、コイル）の履歴\n- 圧縮の測定履歴があると安心\n\n### 試乗で感じる違和感\n- 回転の上がり方が重い\n- 低速で息つきがある\n- 排気の匂いが強い\nこういう小さな違和感ほど、買った後の整備に繋がります。\n\n### 現物確認で効く質問\n購入前に、ここだけは聞いておくと安心材料になります。\n- オイルの補充頻度（どのくらい減るか）\n- 点火系をいつ交換したか（プラグとコイル）\n- 最近の燃費より、直近で調子が崩れた時にどう直したか\n\n\n## 弱点と故障\n- 点火系は体感に直結する。調子が悪いとすぐ分かる\n- 油脂と冷却の管理が甘いと、症状が連鎖しやすい\n- 放置期間が長い個体は、調子が戻るまで時間がかかることがある\n\n## 維持費\n- 燃料代だけでなく、油脂と消耗品も含めて考える\n- 予防整備を先にやると、結果的に安くつくことが多い\n- 車検や保険を含め、年単位の総額で見ておく\n\n## 中古で買うなら\n### 距離より履歴\n低走行でも放置されていると状態は落ちます。逆に、距離が多くても整備が続いていれば安定していることがあります。\n- 記録簿が揃っている\n- 点火系や冷却系の更新が追えている\n- 過去の不具合と対処が説明できる\n\n購入後は、まず基準づくり。オイル、点火系、冷却の状態を一度揃えると、以降は変化が分かりやすくなり、余計な出費を減らしやすくなります。\n\n## 比較\n- /cars/mazda-rx8-se3p は、同じRX-8でも前提が違うことがある\n- /cars/mazda-rx7-fd3s は、ロータリーの性格がさらに尖る方向\n- /cars/honda-s2000-ap1 は、同じ時代のスポーツとして比較しやすい\n\n## 関連リンク\n- /guide/oil-change-frequency-guide\n- /guide/repair-history-used-car-checklist\n- /column/oil-change-5000km-myth\n- /heritage/japan-high-rev-na-last-dance-heritage\n",
+  "bestFor": [
+    "回して乗る楽しさを優先したい人",
+    "オイル管理や点検を習慣にできる人",
+    "多少の手間込みで運転の気持ちよさを取りにいける人"
+  ],
+  "notFor": [
+    "近距離中心でエンジンを回さない人",
+    "燃費と維持費を最優先する人",
+    "点検を人任せにして状態変化に無関心な人"
+  ],
+  "maintenanceNotes": [
+    "オイルと冷却の管理をルール化する",
+    "点火系（プラグ、コイル）の履歴を重視",
+    "圧縮や始動性の変化を早めに拾う"
+  ]
+}

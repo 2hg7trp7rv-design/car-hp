@@ -1,0 +1,123 @@
+{
+  "id": "nissan-skyline-er34-25gt-turbo-sedan",
+  "slug": "nissan-skyline-er34-25gt-turbo-sedan",
+  "name": "Skyline (ER34) 25GT Turbo Sedan",
+  "maker": "Nissan",
+  "releaseYear": 1999,
+  "difficulty": "advanced",
+  "bodyType": "sedan",
+  "segment": "スポーツセダン",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "ER34 25GT Turbo (4-door)",
+  "summary": "R34の顔で、日常をこなすFR。整うほど“静かに速い”が出るRB25の世代。",
+  "summaryLong": "ER34の4ドア25GTターボは、R34世代の“日常性能”を背負うFRセダンです。RB25の厚みと素直さは、足と整合が揃うほど静かに速い。\n\n中古では、修復歴の説明の具体性、下回り錆、足回りのへたり、そして後付け配線の品質。改造車が多いので、燃調と冷却、足の思想が揃っている個体が価値になります。\n\n“R34”の看板より、器と整合で選ぶ車です。\n\n相場が上がっている今は、無理に安い個体を掴むより、説明が通る個体を高く買った方が結果的に早いことが多いです。買ってから“戻す”のに時間がかかると、魅力に辿り着く前に疲れてしまいます。\n\n同じR34でも、4ドアは「生活の中で使える」ことが強みです。だからこそ、ボディと足が整っている個体を選ぶと満足度が高い。見た目より、乗った瞬間の落ち着きで判断してください。\n",
+  "body": "## 結論\nER34の4ドアターボは、「R34の顔が好き」だけで買うと失敗します。買うなら、錆と修復、そして改造の整合がクリアな個体を選ぶ。ここで8割決まります。\n\n## 向く人 / 向かない人\n向く/向かないは上の箇条書きの通り。迷う人は、次のチェック項目を見て“許せない地雷”があるかで決めると早いです。\n\n## 買う前のチェック\n- 下回り錆と骨格の説明。曖昧な個体は避けたいです。\n- 追加配線（メーター/ECU/オーディオ）が整理されているか。配線の雑さは不調の入口です。\n- 冷却と燃料の更新履歴。古いターボはここが生命線。\n- 足回り：直進性、段差の収まり、ハブ周りのガタ感。整うほど“線”がきれいになります。\n- MT/AT問わず、違和感がないか。試乗で拾える範囲を拾ってください。\n\n## 弱点と故障\n弱点は“RBだから”というより“個体差”です。改造の質、配線、冷却、そしてボディ。ここが崩れていると不調が連鎖します。逆に整っている個体は、ただ乗っていて気持ち良いです。\n\n## 維持費の目安\nタイヤ・ブレーキ・オイル類は当然として、古いターボは“更新の波”が来ます。年間コストの平均だけでなく、数十万円単位の出費が不定期に来る前提で予備費を持つのが安全です。\n\n## 中古で買うなら\nポイントは「説明が具体的な店/個体」を選ぶこと。修復の場所や理由、改造内容、交換履歴がスッと出てこない個体は避けたいです。相場が高い今は、失敗のダメージが大きいので。\n\n## 比較\n同系統ならJZX100ツアラーVは少し古い分、素の味が濃い。C35ローレルはもう少し落ち着いたGT寄り。ER34はその間で、“R34らしさ”を日常で使えるのが魅力です。\n\n## 関連リンク\n- [修復歴・事故歴の見方（チェックリスト）](/guide/repair-history-used-car-checklist)\n- [維持費のざっくり試算](/guide/maintenance-cost-simulation)\n- [中古車の購入予算を総額で決める](/guide/car-budget-simulation)\n- [修復歴は“ある/なし”より中身](/column/repair-history-how-to-judge)\n- [低走行の罠](/column/usedcar-low-mileage-trap)\n- [アナログのピーク（90年代末）](/heritage/japan-1999-peak-analog-heritage)",
+  "costImpression": "買う前に“履歴と整合”を買う車。安い個体の戻しは高い。",
+  "heroImage": "/images/cars/nissan-skyline-er34-25gt-turbo-sedan-hero.jpg",
+  "mainImage": "/images/cars/nissan-skyline-er34-25gt-turbo-sedan-main.jpg",
+  "imageUrl": "/images/cars/nissan-skyline-er34-25gt-turbo-sedan-hero.jpg",
+  "gallery": [
+    "/images/cars/nissan-skyline-er34-25gt-turbo-sedan-front.jpg",
+    "/images/cars/nissan-skyline-er34-25gt-turbo-sedan-side.jpg",
+    "/images/cars/nissan-skyline-er34-25gt-turbo-sedan-interior.jpg"
+  ],
+  "engine": "Front Inline-6 2.5 Turbo (RB25DET)",
+  "powerPs": 280,
+  "torqueNm": 333,
+  "transmission": "5MT/4AT（仕様差）",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜11 km/L",
+  "priceNew": "当時: 250万〜450万円台（仕様差）",
+  "priceUsed": "380万〜1200万円（相場変動）",
+  "purchasePriceSafe": "安全ライン：520〜850万円前後（器と整合重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間50〜120万円"
+  },
+  "maintenanceCostYenPerYear": 820000,
+  "strengths": [
+    "FRらしい素直さと直進性がある。",
+    "RB25は日常域の厚みが出やすい。",
+    "足が整うと線がきれいで、速さが落ち着く。",
+    "情報量が多く、整備の道筋がある。"
+  ],
+  "weaknesses": [
+    "改造個体が多く、整合が崩れると不調が連鎖する。",
+    "錆と骨格の補修で価値が割れる。",
+    "電装の後付けでトラブルが出やすい個体がある。",
+    "相場が上がり、失敗が痛い。"
+  ],
+  "troubleTrends": [
+    "追加メーター/ECU周りの配線処理は要チェックです。",
+    "冷却系と燃料系の更新履歴が薄い個体は避けたいです。",
+    "足回りブッシュとハブのへたりは挙動に直結します。",
+    "下回り錆と修復歴の説明の具体性が価値を左右します。"
+  ],
+  "bestFor": [
+    "R34世代の雰囲気が好きで、実用も捨てたくない人。",
+    "ターボ×FRを“日常で気持ちよく”使いたい人。",
+    "錆・修復・配線のチェックに時間を使える人。"
+  ],
+  "notFor": [
+    "とにかく買ってすぐ安心して乗りたい人。",
+    "改造の整合や配線の確認が面倒な人。",
+    "維持コストをできるだけ軽くしたい人。"
+  ],
+  "maintenanceNotes": [
+    "下回り錆と骨格の説明は最優先。曖昧な個体は避けたいです。",
+    "配線品質は不調の入口。追加メーター/制御がある個体は特に確認。",
+    "冷却と燃料の更新履歴が、古いターボの安心感を決めます。"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "toyota-chaser-jzx100-tourer-v",
+    "nissan-laurel-c35-club-s-turbo"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "car-budget-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge",
+    "usedcar-low-mileage-trap"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-1999-peak-analog-heritage"
+  ],
+  "tags": [
+    "Nissan",
+    "Skyline",
+    "ER34",
+    "RB25DET",
+    "FR",
+    "sports-sedan",
+    "R34"
+  ],
+  "intentTags": [
+    "jdm",
+    "sedan",
+    "turbo",
+    "advanced",
+    "2000s"
+  ],
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Skyline (ER34) 25GT Turbo Sedan",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Nissan Skyline (ER34) 25GT Turbo Sedan",
+  "updateReason": "car-overhaul-2026-02-01_v6",
+  "sources": []
+}
