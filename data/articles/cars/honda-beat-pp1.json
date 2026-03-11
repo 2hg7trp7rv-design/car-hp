@@ -1,0 +1,125 @@
+{
+  "id": "honda-beat-pp1",
+  "slug": "honda-beat-pp1",
+  "name": "Beat (PP1)",
+  "maker": "Honda",
+  "releaseYear": 1991,
+  "difficulty": "intermediate",
+  "bodyType": "roadster",
+  "segment": "軽スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "Beat (PP1)",
+  "summary": "軽ミッドシップの楽しさ。中古は錆と足回り、幌周りの状態が鍵。",
+  "summaryLong": "ビート(PP1)は、軽規格の中にミッドシップを入れた異色作で、速度より『気持ち良さ』が価値になる一台です。中古では年式が古く、機関よりもボディと内装、幌の状態がコンディションを左右します。冷却や燃料系、ゴム類も経年で弱りやすいので、履歴が読める車を選び、購入後に基準整備を入れるのが前提。うまく当たると、毎回の移動がイベントになります。 内装や小物が揃っている車は、扱われ方も丁寧なことが多いです。 ミッドシップは冷却の癖が出やすいので、水温の安定も気にしておくと安心です。",
+  "heroImage": "/images/cars/honda-beat-pp1-hero.jpg",
+  "mainImage": "/images/cars/honda-beat-pp1-main.jpg",
+  "imageUrl": "/images/cars/honda-beat-pp1-hero.jpg",
+  "gallery": [
+    "/images/cars/honda-beat-pp1-front.jpg",
+    "/images/cars/honda-beat-pp1-side.jpg",
+    "/images/cars/honda-beat-pp1-interior.jpg"
+  ],
+  "engine": "Mid Inline-3 0.66 NA (E07A)",
+  "powerPs": 64,
+  "torqueNm": 60,
+  "transmission": "5MT",
+  "drive": "MR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 10〜16 km/L",
+  "priceNew": "当時: 140万〜190万円台（仕様差）",
+  "priceUsed": "120万〜450万円（相場変動）",
+  "strengths": [
+    "MRの荷重で曲がりが自然。速度域が低くても楽しい。",
+    "軽さが反応の良さに直結し、操作の返答が速い。",
+    "コミュニティと情報があり、整え直す道筋がある。",
+    "日常速度でも“走り”が成立する。"
+  ],
+  "weaknesses": [
+    "錆と骨格の状態で価値が大きく割れる。",
+    "オープンゆえ雨漏り・シール劣化など生活要素が重い。",
+    "経年でゴム類が弱ると乗り味が濁る。",
+    "部品確保と作業の難易度が上がっている。"
+  ],
+  "troubleTrends": [
+    "フロア／サイドシル／リア周りの錆は最優先で見たいです。",
+    "幌・ウェザーストリップ劣化による雨漏り痕は要チェックです。",
+    "足回りブッシュのへたりで直進性と反応が変わります。",
+    "冷却系とホース類の更新履歴が薄い個体は要注意です。"
+  ],
+  "costImpression": "安い個体ほど、器の修復が重い。錆の少ないベースが最重要。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "dealer-shaken-is-expensive-myth"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "how-to-choose-first-sports-car"
+  ],
+  "relatedCarSlugs": [
+    "suzuki-cappuccino-ea11r",
+    "autozam-az-1-pg6sa",
+    "honda-s660-jw5"
+  ],
+  "tags": [
+    "Honda",
+    "Beat",
+    "PP1",
+    "kei",
+    "64ps",
+    "MR",
+    "roadster"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-kei-sports-abc-heritage"
+  ],
+  "intentTags": [
+    "kei",
+    "lightweight",
+    "MR",
+    "1990s",
+    "heritage"
+  ],
+  "purchasePriceSafe": "安全ライン：200〜320万円前後（錆と骨格重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間22〜45万円"
+  },
+  "maintenanceCostYenPerYear": 320000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda Beat (PP1)",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "ホンダ ビート（PP1）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Honda Beat (PP1)",
+  "updateReason": "name-normalize-2026-02-01",
+  "sources": [],
+  "bestFor": [
+    "速さより『操作して楽しい』を重視する人",
+    "年式相応のリフレッシュを前提に、長く育てたい人",
+    "軽スポーツの文化も含めて楽しみたい人"
+  ],
+  "notFor": [
+    "快適性と静粛性を最優先したい人",
+    "錆や雨漏りのリスクに強いストレスを感じる人",
+    "維持の相談ができる店が近くにない人"
+  ],
+  "maintenanceNotes": [
+    "錆とボディの素性は最重要。後から直しにくい",
+    "幌とゴム類は消耗品。雨漏りの痕跡は必ず確認",
+    "足回りのリフレッシュで乗り味が大きく変わる",
+    "年式由来の電装トラブルは予防が効く"
+  ],
+  "body": "## 結論\nビートは、状態が良い個体ほど『軽さ』と『ミッドシップ感』がそのまま気持ち良さになります。中古は、錆と足回りの健全さを最優先にしてください。\n\n## 向く人 / 向かない人\n速度より、操作して楽しいを重視する人向けです。古い車の手間を受け入れられるなら最高。快適性だけを求めるなら不向きです。\n\n## 買う前のチェック\n下回りと錆、ボディのチリ、幌周りの状態。試乗では、直進性、段差での収束、異音を確認します。小さな違和感が積み上がると、楽しさが薄れます。\n\n### ミッドシップ軽のチェックポイント\n- 冷却水の状態と、渋滞時の水温の安定\n- 幌の状態と雨漏り。フロアの湿りは必ず確認\n- シフトの入り。リンク機構のガタが出ると気持ち良さが落ちます\n- 内装の欠品。小物が揃っているかで扱われ方が分かる\n\n## 弱点と故障\n弱点は経年です。ゴム類、ブッシュ類、電装。ここを整えると、車が一段落ち着きます。\n\n## 維持費\n維持費は、年式由来のリフレッシュで波が出ます。毎年均すより、イベントとしてまとめて手を入れる方が気持ちが楽です。\n\n### 予防整備は『ゴム類』から\nホース、ブッシュ、マウント。ここを整えると、走りも乗り心地も一段上がります。年式の古い軽スポーツは、この順番が効きます。\n\n## 中古で買うなら\n外装の艶より、下回りの健全さ。素性が良い個体は高いですが、後からの手当てが少なく、結果的に安く済むことも多いです。\n\n### 乗り味は個体差が大きい\n同じビートでも、足回りのリフレッシュ具合で別物に感じます。試乗できるなら、段差と旋回での反応を必ず確認したいです。\n\n### 整備の入り方で価格差が出る\nビートは部品点数が限られる分、どこをリフレッシュしたかが重要です。冷却、燃料、ゴム類、足回り。整備が入っている車は高いですが、買ってから追いつくより早くて安いこともあります。\n\n### 中古で見たいポイント\n- 幌と雨漏りの痕跡。フロアの湿りは必ず確認\n- 冷却水の状態。渋滞で水温が安定するか\n- シフトの入り。リンクのガタがあると楽しさが落ちます\n- 内装の欠品。小物が揃っている車は扱いが丁寧なことが多い\n- 足回りの異音。段差で鳴るなら交換前提\n\n### 迷ったら試乗の印象を信じる\n同じビートでも、足回りのリフレッシュ具合で別物に感じます。軽い段差での収まり、低速の扱いやすさ、エンジンの始動性。ここが素直な車ほど、買ってからの整備も小さく済みます。\n\n\n最後に、冷却の履歴が分かる車は安心です。ホースやラジエーターの交換歴、ファンの作動、渋滞で水温が安定するか。ここが整っている個体は、日常でも気兼ねなく乗れます。\n\n## 比較\nカプチーノはFRターボ、AZ-1は個性派ミッド、S660は新しさ。ビートは『高回転NAの軽ミッド』という唯一感で選ぶ車です。\n\n## 関連リンク\n"
+}

@@ -1,0 +1,55 @@
+{
+  "id": "guide-maintenance-cost-simulation",
+  "slug": "maintenance-cost-simulation",
+  "title": "維持費シミュレーションの基本",
+  "summary": "税よりブレる維持費（タイヤ・消耗品・車検整備）を月額化して見積もる方法。",
+  "category": "MONEY",
+  "tags": [
+    "維持費",
+    "保険",
+    "税金",
+    "車検",
+    "シミュレーション"
+  ],
+  "publishedAt": "2025-12-28",
+  "updatedAt": "2026-01-20",
+  "readMinutes": 6,
+  "status": "published",
+  "intentTags": [
+    "money",
+    "maintenance"
+  ],
+  "monetizeKey": "insurance_compare_core",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "car-budget-simulation",
+    "tire-replacement-cost-guide",
+    "oil-change-frequency-guide",
+    "used-import-car-buying-guide"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [
+    "toyota-celsior-ls400-silence-precision-heritage"
+  ],
+  "body": "この記事は「維持費シミュレーションの基本」をテーマに、警告灯や液漏れは、対応を間違えると故障が拡大します。まずは“走っていいか/止めるべきか”の判断軸と、現場でできる初動をまとめます。\n\n## 結論\n- 維持費は「税金」より、【タイヤ・消耗品・車検前後の整備】でブレやすいです。\n- シミュレーションは、項目を“月額化”して積み立て扱いにすると現実に近づきます。\n- 迷ったら、まずは「最低限（必ず出る）」と「突発（起きたら大きい）」を分けて考えます。\n\n## 維持費の内訳（最低限）\n- 定期：エンジンオイル、フィルター、ワイパー、点検\n- 周期が長い：タイヤ（/guide/tire-replacement-cost-guide）、バッテリー、ブレーキ\n- 年1回〜：税金、車検、自賠責\n- 突発：警告灯、センサー類、オイル漏れ、冷却水漏れ（/guide/oil-leak-first-response /guide/overheat-coolant-leak-guide）\n\n## 手順 1 “年に必ず出る”費用を月額に変換する\n- 税金や車検は「年額/12」で積み立て扱いにする\n- 保険や駐車場も、年払いなら月額換算して見える化する\n\n## 手順 2 “数年に1回”の費用を平均化する\n- タイヤやバッテリーは、次の交換までの年数で割って「年間平均」を出す\n- 走行距離が多い人は、年数より「距離」で早まる想定を入れる\n\n## 手順 3 “突発枠”を別に作る\n- いきなり起きるトラブル（警告灯、漏れ、過熱など）のために、毎月少しだけ予備費を確保する\n- 予備費があると「無理に走って悪化させる」判断を避けやすくなります\n\n## よくあるつまずき\n- 税金しか見ず、タイヤや車検のタイミングで家計が崩れる\n- 消耗品の残量を見ずに買い、納車直後にまとめて出費する\n- “突発費は起きない前提”で予算を組む\n\n## 補足（実務メモ）\n- 「まだ走れる」は高くつくことがあります。迷ったらまず停止して状況確認\n- 漏れは放置すると二次被害になりやすいので、量が少なくても早めに点検へ\n- 応急処置より、レッカー/ロードサービスを使うほうが安全で安いケースが多い\n- 異常が出たときは、警告灯の色・臭い・煙・水温など“再現しない情報”をメモ\n\n## 関連記事\n- /guide/car-budget-simulation\n- /guide/tire-replacement-cost-guide\n- /guide/oil-change-frequency-guide\n- /guide/used-import-car-buying-guide\n",
+  "seoTitle": "維持費シミュレーションの基本｜月額上限の作り方",
+  "seoDescription": "税よりブレる維持費（タイヤ・消耗品・車検整備）を月額化して見積もる方法。",
+  "internalLinks": [
+    "car-budget-simulation",
+    "tire-replacement-cost-guide",
+    "oil-change-frequency-guide",
+    "used-import-car-buying-guide"
+  ],
+  "lead": "税よりブレる維持費（タイヤ・消耗品・車検整備）を月額化して見積もる方法。",
+  "type": "GUIDE",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/guide/hub-loan",
+  "relatedClusterIds": [],
+  "primaryQuery": "維持費シミュレーションの基本",
+  "updateReason": "initial-import",
+  "sources": []
+}

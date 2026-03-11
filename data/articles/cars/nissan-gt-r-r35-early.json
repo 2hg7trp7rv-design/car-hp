@@ -1,0 +1,124 @@
+{
+  "id": "nissan-gt-r-r35-early",
+  "slug": "nissan-gt-r-r35-early",
+  "name": "GT-R (R35) early",
+  "maker": "Nissan",
+  "releaseYear": 2007,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "スーパースポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "GT-R R35 (early)",
+  "summary": "速さを“再現可能”にした日本車。才能ではなく、統合制御で速いという価値観を量産に落とした。",
+  "summaryLong": "初期R35 GT-Rは、国産ハイパフォーマンスの作り方を切り替えた象徴です。速さの理由が、エンジンだけではなく、発進・変速・駆動配分・姿勢制御の“セット”にある。\n\n乗ると、速さが均一で、怖さが丸い。これが好きかどうかで評価が割れた。けれど今となっては、世界の速さがこの方向へ進んだことが分かる。\n\nいま買う目線では、性能より履歴。DCTやデフ、冷却、電装の整合が取れていない個体は、速さが出ないだけでなく、違和感が積み重なる。逆に整った個体は、今でも“速さの基準”として成立します。",
+  "heroImage": "/images/cars/nissan-gt-r-r35-early-hero.jpg",
+  "mainImage": "/images/cars/nissan-gt-r-r35-early-main.jpg",
+  "imageUrl": "/images/cars/nissan-gt-r-r35-early-hero.jpg",
+  "gallery": [
+    "/images/cars/nissan-gt-r-r35-early-front.jpg",
+    "/images/cars/nissan-gt-r-r35-early-side.jpg",
+    "/images/cars/nissan-gt-r-r35-early-interior.jpg"
+  ],
+  "engine": "Front V6 3.8 Twin Turbo (VR38DETT)",
+  "powerPs": 480,
+  "torqueNm": 588,
+  "transmission": "6DCT",
+  "drive": "AWD",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 5〜9 km/L",
+  "priceNew": "当時: 700万〜1000万円台（仕様差）",
+  "priceUsed": "450万〜1200万円（相場変動）",
+  "strengths": [
+    "統合制御で、誰でも速さを再現しやすい（路面と天候に強い）。",
+    "高速域の安定と巡航余裕が大きく、ツーリング適性が高い。",
+    "ソフトで性格が変わるため、整備とセットアップで伸びしろがある。",
+    "世界基準の性能を国産で体験できる。"
+  ],
+  "weaknesses": [
+    "駆動・変速・電装のどれかが崩れると、違和感が大きい。",
+    "整備は専門性が高く、店と主治医選びが重要。",
+    "熱管理の履歴が性能と寿命を左右しやすい。",
+    "タイヤ・ブレーキなど消耗品コストが高い。"
+  ],
+  "troubleTrends": [
+    "DCTの挙動（温間時のショック、異音、学習状態）は試乗で確認したいです。",
+    "デフ周りの滲み、異音、作動の違和感は要チェックです。",
+    "冷却系（ラジエーター、配管、オイルクーラー）の手当て履歴で差が出ます。",
+    "バッテリー電圧や配線の乱れが電子制御に影響することがあります。"
+  ],
+  "costImpression": "“安く買う”と“安く乗る”が噛み合いにくい車。履歴の良い個体を選ぶほど、結果的に安い。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "tire-cheap-dangerous-choice",
+    "usedcar-low-mileage-trap"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "tire-replacement-cost-guide",
+    "maintenance-cost-simulation"
+  ],
+  "relatedCarSlugs": [
+    "lexus-lfa-2010",
+    "mitsubishi-lancer-evolution-x-final"
+  ],
+  "tags": [
+    "Nissan",
+    "GT-R",
+    "R35",
+    "VR38DETT",
+    "AWD",
+    "DCT",
+    "2000s"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-software-performance-era-heritage"
+  ],
+  "intentTags": [
+    "performance",
+    "AWD",
+    "electronics",
+    "2000s",
+    "heritage",
+    "touring"
+  ],
+  "purchasePriceSafe": "安全ライン：650〜950万円前後（整備履歴と主治医重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間70〜140万円"
+  },
+  "maintenanceCostYenPerYear": 950000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan GT-R (R35) early",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "日産 GT-R（R35）前期",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "R35 前期 中古 選び方",
+  "updateReason": "cars-index-upgrade-2026-02-01",
+  "sources": [],
+  "body": "## 結論\nR35の前期は、価格と楽しさのバランスで見るとまだ魅力が残っている世代です。ただし、前期は前期で「どこが消耗しているか」が読みやすいので、買う前の見立てが大事です。\nおすすめは、改造の有無より「整備の説明ができる個体」。速い車ほど、履歴がはっきりしているかが安心に直結します。\n\n## 向く人 / 向かない人\n### 向く人\n- R35に乗りたいが、価格の現実も踏まえて前期を狙う\n- 整備履歴を見て、個体差を読み解ける\n- タイヤやブレーキの出費を前提に、維持計画を立てられる\n\n### 向かない人\n- 短距離のチョイ乗りが中心で、暖気や冷却が面倒\n- 改造歴のある個体を、知識なしで勢いで買ってしまう\n- 消耗品の費用を想定しておらず、出費がストレスになる\n\n## 買う前のチェック\n### 見る順番\n- 記録簿と油脂の履歴（ミッション、デフ、トランスファー）\n- タイヤの揃い方（銘柄、サイズ、減り方）\n- 下回りの傷みや、段差での擦り跡\n\n### よくある個体差\n- サーキット歴や強いチューニング歴がある車は、説明が厚いほど安心\n- 街乗りだけでも、メンテが薄い車は状態が落ちやすい\n\n## 弱点と故障\n前期は、熱と油脂がテーマになりやすいです。だからこそ履歴が効きます。\n- 駆動系は油脂管理の影響が大きい\n- 熱が入った時に症状が出ることがあるので、温間時の挙動を確認\n- 点火系やセンサー類は、早めに交換されていると安心材料\n\n## 維持費\n- タイヤとブレーキは、走り方で一気に変わる\n- 保険と税、消耗品を足した年間の総額で考える\n- 納車後に一度点検して、交換サイクルを先に作る\n\n## 中古で買うなら\n### 結局は整備の説明力\n前期は台数が多い分、選べます。選べる時に、説明の厚い個体を選ぶのが一番安全です。\n- 記録簿が揃っている\n- 消耗品の交換が追えている\n- 不具合が出た時に、どう直したか説明できる\n\n## 比較\n- /cars/nissan-gtr-r35 は、世代をまたいで考える時の基準になる\n- /cars/nissan-gtr-r35-nismo は、走りに寄せた別解\n- /cars/nissan-z-rz34 は、同じ日産でも楽しみ方の方向が違う\n\n## 関連リンク\n- /guide/repair-history-used-car-checklist\n- /guide/tire-replacement-cost-guide\n- /column/tire-cheap-dangerous-choice\n- /heritage/japan-software-performance-era-heritage\n",
+  "bestFor": [
+    "R35に乗りたいが価格の現実も踏まえて前期を狙う人",
+    "整備履歴を見て個体差を読み解ける人",
+    "消耗品コストを前提に維持計画を立てられる人"
+  ],
+  "notFor": [
+    "短距離のチョイ乗りが中心で暖気や冷却が面倒な人",
+    "改造歴のある個体を知識なしで勢いで買ってしまう人",
+    "消耗品の費用を想定しておらず出費がストレスになる人"
+  ],
+  "maintenanceNotes": [
+    "油脂の履歴（ミッション、デフ、トランスファー）を重視",
+    "タイヤの揃い方が荒い個体は理由を確認する",
+    "納車後に点検して交換サイクルを先に作る"
+  ]
+}

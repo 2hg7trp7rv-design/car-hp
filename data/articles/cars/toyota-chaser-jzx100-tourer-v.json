@@ -1,0 +1,122 @@
+{
+  "id": "toyota-chaser-jzx100-tourer-v",
+  "slug": "toyota-chaser-jzx100-tourer-v",
+  "name": "Chaser (JZX100) Tourer V",
+  "maker": "Toyota",
+  "releaseYear": 1998,
+  "difficulty": "advanced",
+  "bodyType": "sedan",
+  "segment": "スポーツセダン",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "JZX100 Tourer V",
+  "summary": "普通の顔で速い。1JZの余裕とFRセダンの器で、“毎日強い”が成立する。",
+  "summaryLong": "JZX100ツアラーVは、セダンの黄金期を代表する“日常性能”の塊です。1JZの余裕、FRのつながり、リンク足。整うと速さが落ち着きとして出る。\n\n中古では、ボディの錆/修復、足回りブッシュとアライメント、冷却と補機、配線の後付け品質が価値を決めます。改造車も多いからこそ、燃調・冷却・足の思想が揃っている個体が強い。\n\n安い個体を戻すより、履歴の静かな個体を拾った方が結果的に安いタイプ。\n\nドリフト用途で酷使された個体も混じるので、デフやメンバー周りの状態、タイヤの減り方も見ておくと安心です。『真っ直ぐ走る』『真っ直ぐ止まる』が当たり前にできる個体ほど、ツアラーVの良さがそのまま出ます。",
+  "body": "## 結論\nJZX100ツアラーVは、速いから買うというより「毎日使える速さが欲しい人の最適解」です。買うなら、錆と修復、そして改造の整合がクリアな個体を優先してください。\n\n## 向く人 / 向かない人\n向く/向かないは上の箇条書きで判断できます。悩むポイントは大体「錆」と「改造の質」なので、次のチェックを通せるかで決めると迷いが減ります。\n\n## 買う前のチェック\n- 下回り・サブフレーム周りの錆。見える場所だけでなく、リフトで確認できると理想。\n- 修復歴の説明が具体的か（どこをどう直したか）。曖昧なら避けたいです。\n- 足回り：直進性、段差の収まり、アライメントの違和感。ここが整うと“普通に速い”になります。\n- 冷却：水温が暴れないか、電動ファンの動き、ホースの滲み。\n- 追加配線：メーター・オーディオ・制御の付け方。配線が散らかっている個体は後が長いです。\n\n## 弱点と故障\nこの車の弱点は「古さ」そのものより「過去の手が入った跡」です。熱、配線、足、ボディ。この4点の整合が崩れていると、直しても直しても落ち着きません。逆に、筋の通った個体は、セダンなのに線がきれいです。\n\n## 維持費の目安\n普段のランニングに加えて、“戻し整備”の予算が必要になりやすいです。とくに足回りと冷却は、ケチると満足度が落ちます。最初の1年を厚めに見ておくのがコツです。\n\n## 中古で買うなら\n安い個体を買って仕上げるより、履歴の静かな個体を高く買う方が結果的に安いことが多いです。改造車を狙うなら、燃調・冷却・足の方向性が揃っているかと、記録が残っているかが最低条件です。\n\n## 比較\n同じ系統ならER34 25GTターボは“R34の器”が魅力。ローレルC35はもう少し地味に、落ち着いた味。ツアラーVはその中で、一番バランスが良いと感じる人が多いです。\n\n## 関連リンク\n- [修復歴・事故歴の見方（チェックリスト）](/guide/repair-history-used-car-checklist)\n- [維持費のざっくり試算](/guide/maintenance-cost-simulation)\n- [購入予算を総額で組む](/guide/car-budget-simulation)\n- [修復歴は“ある/なし”より中身](/column/repair-history-how-to-judge)\n- [低走行の罠](/column/usedcar-low-mileage-trap)\n- [アナログのピーク（90年代末）](/heritage/japan-1999-peak-analog-heritage)",
+  "costImpression": "履歴の静かな個体ほど“普通に速い”。戻すより探す方が早いことが多い。",
+  "heroImage": "/images/cars/toyota-chaser-jzx100-tourer-v-hero.jpg",
+  "mainImage": "/images/cars/toyota-chaser-jzx100-tourer-v-main.jpg",
+  "imageUrl": "/images/cars/toyota-chaser-jzx100-tourer-v-hero.jpg",
+  "gallery": [
+    "/images/cars/toyota-chaser-jzx100-tourer-v-front.jpg",
+    "/images/cars/toyota-chaser-jzx100-tourer-v-side.jpg",
+    "/images/cars/toyota-chaser-jzx100-tourer-v-interior.jpg"
+  ],
+  "engine": "Front Inline-6 2.5 Turbo (1JZ-GTE)",
+  "powerPs": 280,
+  "torqueNm": 378,
+  "transmission": "5MT/4AT（仕様差）",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜11 km/L",
+  "priceNew": "当時: 250万〜450万円台（仕様差）",
+  "priceUsed": "220万〜900万円（相場変動）",
+  "purchasePriceSafe": "安全ライン：380〜650万円前後（錆と整合重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間45〜110万円"
+  },
+  "maintenanceCostYenPerYear": 760000,
+  "strengths": [
+    "1JZの余裕で日常域が強い。",
+    "FR×リンク足で線がきれい。修正舵が減る。",
+    "情報量が多く、改善の道筋がある。",
+    "セダンとして使え、走りの濃度もある。"
+  ],
+  "weaknesses": [
+    "錆と修復で価値が大きく割れる。",
+    "改造個体が多く、整合が崩れると症状が追いにくい。",
+    "冷却・補機の経年で差が出やすい。",
+    "AT個体は状態で評価が分かれやすい。"
+  ],
+  "troubleTrends": [
+    "下回り錆（特にサブフレーム周り）は要注意です。",
+    "冷却系（ラジエーター/ホース/ファン）更新履歴は確認したいです。",
+    "追加配線（メーター/制御）の処理が雑だと電装トラブルの温床です。",
+    "足回りブッシュのへたりは乗り味と直進性に直結します。"
+  ],
+  "bestFor": [
+    "「毎日使える速さ」をセダンで欲しい人。",
+    "多少の手入れは前提で、良個体を見抜いて長く乗りたい人。",
+    "ターボ×FRの味を、過剰に派手じゃない器で楽しみたい人。"
+  ],
+  "notFor": [
+    "とにかく“買ってすぐ安心して乗りたい”人。",
+    "錆・修復歴・改造内容の確認に時間をかけたくない人。",
+    "燃費や税金を最優先したい人。"
+  ],
+  "maintenanceNotes": [
+    "下回り錆の有無で“残り寿命”が変わります。リフトで確認できるなら最優先。",
+    "冷却と配線の整理が、ターボ車の安定感を決めます。",
+    "足回りは満足度に直結。ブッシュやダンパーの状態で別の車になります。"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "nissan-skyline-er34-25gt-turbo-sedan",
+    "nissan-laurel-c35-club-s-turbo"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "car-budget-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge",
+    "usedcar-low-mileage-trap"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-1999-peak-analog-heritage"
+  ],
+  "tags": [
+    "Toyota",
+    "Chaser",
+    "JZX100",
+    "1JZ-GTE",
+    "FR",
+    "sports-sedan"
+  ],
+  "intentTags": [
+    "jdm",
+    "sedan",
+    "turbo",
+    "advanced",
+    "1990s"
+  ],
+  "type": "CAR",
+  "status": "published",
+  "title": "Toyota Chaser (JZX100) Tourer V",
+  "makerKey": "toyota",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/toyota",
+  "relatedClusterIds": [],
+  "primaryQuery": "Toyota Chaser (JZX100) Tourer V",
+  "updateReason": "car-overhaul-2026-02-01_v6",
+  "sources": []
+}

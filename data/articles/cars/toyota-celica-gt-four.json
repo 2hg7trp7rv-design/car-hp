@@ -1,0 +1,118 @@
+{
+  "id": "toyota-celica-gt-four",
+  "slug": "toyota-celica-gt-four",
+  "name": "Celica GT-Four (ST205 era)",
+  "maker": "Toyota",
+  "releaseYear": 1994,
+  "difficulty": "advanced",
+  "bodyType": "クーペ",
+  "segment": "ラリー系スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "GT-Four",
+  "summary": "ラリーの文脈を持つ4WDターボ。熱と駆動の整合で“強さ”が残る。",
+  "summaryLong": "セリカGT-Four（ST205）は、4WDターボを“道具”として成立させた時代の濃度を残した一台です。ラリーのイメージが強いですが、実際は熱と駆動の整合が取れているほど、普通の速度域でも車の芯が見えてきます。\n\n中古で一番差が出るのは、冷却系と駆動系の履歴です。ホース類やラジエーター周りの滲み、デフやトランスファーのオイル管理、そして足回りのブッシュ。ここが揃うと、重い4WDでも動きが軽く感じられます。\n\n逆に、安く買って後で仕上げると、直す箇所が連続して“終わりが見えにくい”ことがあります。走行距離より、整備記録と仕様の透明性を優先し、最初の1年は予備費を厚めに見ておくのが安全です。\n\n4WDはタイヤと足のコンディションが走りに直結します。変なアライメントや片減りがある個体は、駆動系も含めて何かを抱えていることがあるので、タイヤの減り方まで見ておくと安心です。\n",
+  "body": "## 結論\nST205世代のGT-Fourは「ラリーの文脈が好きで、4WDターボを維持できる人向け」です。買うなら、改造の有無より、駆動と冷却が整っている個体を優先してください。\n\n## 向く人 / 向かない人\n上の箇条書きで“刺さる”なら向いています。逆に、維持をできるだけ軽くしたい人や、部品探しに時間を使いたくない人には向きません。\n\n## 買う前のチェック\n- 駆動系の異音（低速の切り返し、加減速での唸り）。4WDはここが出やすい。\n- 冷却系の履歴。水温が安定しているか、滲みがないかは最優先。\n- ボディの錆と修復歴。ラリー系は下回りの状態が特に重要です。\n- 足回り：直進性と段差の収まり。古い4WDは足が死ぬと全体がぼやけます。\n- タービン周辺の滲み・配管。雑な補修がある個体は避けたいです。\n\n## 弱点と故障\n弱点は「熱」と「駆動」です。ターボ車としての熱管理に加えて、デフや駆動のオイル管理が効きます。症状は“走ると出る”タイプが多いので、書類だけで決めず、試乗で違和感を拾えると安心です。\n\n## 維持費の目安\n普段の維持費に加えて、4WD由来のオイル類、足回り、冷却が重なります。安い個体ほど“後からまとめて来る”ので、最初の1年は予備費を厚めにしておくのが現実的です。\n\n## 中古で買うなら\nおすすめは「素性が分かる個体」。改造車は悪ではないですが、誰が何のために弄ったかが見えないと怖いです。整備記録、仕様の説明、部品の情報が揃っている個体を選んでください。\n\n## 比較\n同じ“ラリーの濃度”なら、インプレッサWRX STIやランエボが候補になります。GT-Fourはその二つよりも“GT寄り”で、速さが落ち着きとして出やすいです。\n\n## 関連リンク\n- [修復歴・事故歴の見方（チェックリスト）](/guide/repair-history-used-car-checklist)\n- [維持費のざっくり試算](/guide/maintenance-cost-simulation)\n- [オーバーヒート/冷却トラブルの判断](/guide/overheat-coolant-leak-guide)\n- [修復歴は“ある/なし”より中身](/column/repair-history-how-to-judge)\n- [安いタイヤは結局高くつく](/column/tire-cheap-dangerous-choice)\n- [エボとインプの15年戦争](/heritage/japan-evo-impreza-15year-war-heritage)",
+  "costImpression": "整った個体は高く見えても安い。戻しが必要な個体は覚悟が要る。",
+  "heroImage": "/images/cars/toyota-celica-gt-four-hero.jpg",
+  "mainImage": "/images/cars/toyota-celica-gt-four-hero.jpg",
+  "imageUrl": "/images/cars/toyota-celica-gt-four-hero.jpg",
+  "gallery": [
+    "/images/cars/toyota-celica-gt-four-front.jpg",
+    "/images/cars/toyota-celica-gt-four-side.jpg",
+    "/images/cars/toyota-celica-gt-four-interior.jpg"
+  ],
+  "engine": "Front 2.0 Turbo (3S-GTE)",
+  "powerPs": 255,
+  "torqueNm": 304,
+  "transmission": "5MT",
+  "drive": "4WD",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜12 km/L",
+  "priceNew": "当時: 200万〜450万円台（仕様差）",
+  "priceUsed": "200万〜900万円（相場変動）",
+  "purchasePriceSafe": "安全ライン：380〜650万円前後（履歴重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間55〜130万円"
+  },
+  "maintenanceCostYenPerYear": 850000,
+  "strengths": [
+    "ラリー由来の4WDターボで、路面を問わず姿勢が作りやすい。",
+    "速さだけでなく、GT寄りの落ち着きも残る。",
+    "今の車にはない“メカ感”が濃い。",
+    "整った個体は、走らせた時の安心感が強い。"
+  ],
+  "weaknesses": [
+    "熱と補機の経年で差が出やすい。",
+    "部品供給と整備の難易度が上がっている。"
+  ],
+  "troubleTrends": [
+    "冷却系の更新履歴は必須です。",
+    "駆動系の異音・振動は要チェックです。",
+    "錆と修復歴の説明の具体性が価値を左右します。"
+  ],
+  "bestFor": [
+    "ラリーの文脈が好きで、4WDターボを手入れしながら乗りたい人。",
+    "雨や路面の悪い環境でも、安定感のあるスポーツを求める人。",
+    "改造の有無より、素性と整備記録を重視できる人。"
+  ],
+  "notFor": [
+    "維持をできるだけ軽くしたい人。",
+    "部品探しや専門店との付き合いに時間を使いたくない人。",
+    "“買ってすぐ安心して乗りたい”人（個体差が大きい）。"
+  ],
+  "maintenanceNotes": [
+    "冷却系は最優先。水温の安定と、滲みの有無で候補を絞れます。",
+    "4WDは駆動のオイル管理が効きます。異音や違和感は試乗で拾いたいです。",
+    "ボディの錆と修復歴は価値に直結します。下回り確認は必須です。"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "subaru-impreza-wrx-sti-v6",
+    "mitsubishi-lancer-evolution-vi-gsr"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "overheat-coolant-leak-guide"
+  ],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge",
+    "tire-cheap-dangerous-choice"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-evo-impreza-15year-war-heritage"
+  ],
+  "tags": [
+    "Toyota",
+    "Celica",
+    "GT-Four",
+    "ST205",
+    "3S-GTE",
+    "4WD"
+  ],
+  "intentTags": [
+    "jdm",
+    "rally",
+    "4wd",
+    "turbo"
+  ],
+  "type": "CAR",
+  "status": "published",
+  "title": "Toyota Celica GT-Four (ST205 era)",
+  "makerKey": "toyota",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/toyota",
+  "relatedClusterIds": [],
+  "primaryQuery": "Toyota Celica GT-Four (ST205 era)",
+  "updateReason": "car-overhaul-2026-02-01_v6",
+  "sources": []
+}

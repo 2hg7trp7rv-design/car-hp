@@ -1,0 +1,20 @@
+PATCH_REPORT (WAVE 17) — What to verify after deploy
+
+1) List pages
+- /cars : every card has a visual top block (image if exists, poster otherwise).
+- /guide : cards have a poster thumbnail.
+- /column : cards have a poster thumbnail.
+
+2) Performance sanity
+- No new external requests for images/fonts should appear.
+- Scrolling in lists should stay smooth (poster is pure SVG).
+
+3) Accessibility
+- Poster is decorative (should not add extra SR noise).
+- Focus/keyboard navigation remains unchanged.
+
+Rollback
+- Revert WAVE 17 files:
+  - components/visual/SeedPoster.tsx
+  - lib/seed.ts
+  - card changes in CarCard/GuideCard/ColumnCard

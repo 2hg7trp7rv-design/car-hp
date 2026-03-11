@@ -1,0 +1,120 @@
+{
+  "id": "subaru-impreza-wrx-sti-v6",
+  "slug": "subaru-impreza-wrx-sti-v6",
+  "name": "Impreza WRX STI Version VI (GC8)",
+  "maker": "Subaru",
+  "releaseYear": 1999,
+  "difficulty": "advanced",
+  "bodyType": "セダン",
+  "segment": "ラリー系スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "STI Version VI",
+  "summary": "GC8最終盤のSTI。状態と改造の見極めがすべて。駆動系と冷却は重点。",
+  "summaryLong": "WRX STI V6はGC8世代の最終盤。ラリー由来の四駆ターボの立ち上がりと、現代の車より“機械っぽい”操作感が魅力です。ただし中古は改造率が高く、状態差が極端。買う前に「冷却」「オイル漏れ」「ミッション/デフ」「錆」の4点を見て、整備履歴が厚い個体を選ぶのが基本です。",
+  "heroImage": "/images/cars/subaru-impreza-wrx-sti-v6-hero.jpg",
+  "mainImage": "/images/cars/subaru-impreza-wrx-sti-v6-hero.jpg",
+  "imageUrl": "/images/cars/subaru-impreza-wrx-sti-v6-hero.jpg",
+  "gallery": [
+    "/images/cars/subaru-impreza-wrx-sti-v6-front.jpg",
+    "/images/cars/subaru-impreza-wrx-sti-v6-side.jpg",
+    "/images/cars/subaru-impreza-wrx-sti-v6-interior.jpg"
+  ],
+  "engine": "Front 2.0 Turbo (EJ20)",
+  "powerPs": 280,
+  "torqueNm": 353,
+  "transmission": "5MT",
+  "drive": "4WD",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜12 km/L",
+  "priceNew": "当時: 200万〜450万円台（仕様差）",
+  "priceUsed": "200万〜900万円（相場変動）",
+  "strengths": [
+    "ラリー由来の四駆ターボで、立ち上がりが気持ちいい",
+    "現代車より“機械っぽい”操作感がある",
+    "パーツと情報が豊富で、好みに寄せやすい"
+  ],
+  "weaknesses": [
+    "改造率が高く、個体差がとにかく大きい",
+    "駆動系や足回りの消耗が避けられない",
+    "燃費・タイヤ・保険などランニングが重くなりやすい"
+  ],
+  "troubleTrends": [
+    "オイル漏れ/滲み（年式由来）",
+    "冷却系の弱りによる水温トラブル",
+    "ミッション/デフ周りの消耗・異音",
+    "足回りブッシュ劣化によるフラつき"
+  ],
+  "costImpression": "走れば走るほど消耗品も動きます。維持費は“ターボ四駆の趣味車”として構えておくと気持ちが楽です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "usedcar-100k-km-myth",
+    "repair-history-how-to-judge"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "overheat-coolant-leak-guide",
+    "maintenance-cost-simulation"
+  ],
+  "relatedCarSlugs": [
+    "mitsubishi-lancer-evolution-vi-gsr",
+    "subaru-impreza-wrx-sti-gc8-type-r",
+    "mitsubishi-lancer-evolution-ix-gsr"
+  ],
+  "tags": [
+    "Subaru",
+    "Impreza",
+    "GC8",
+    "STI",
+    "EJ20",
+    "4WD"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-evo-impreza-15year-war-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "rally",
+    "4wd",
+    "turbo"
+  ],
+  "purchasePriceSafe": "安全ライン：450万〜850万円（整備履歴・駆動系の状態重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間60〜140万円（消耗＋予防整備）"
+  },
+  "maintenanceCostYenPerYear": 900000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Subaru Impreza WRX STI Version VI (GC8)",
+  "makerKey": "subaru",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "スバル インプレッサ WRX STI（V6）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/subaru",
+  "relatedClusterIds": [],
+  "primaryQuery": "Subaru Impreza WRX STI Version VI (GC8)",
+  "updateReason": "car-index-upgrade-2026-02-01",
+  "sources": [],
+  "bestFor": [
+    "ラリー系の四駆ターボが好きで、機械っぽい操作感を求める",
+    "整備履歴と改造内容を含めて“状態で選べる”",
+    "維持費込みで趣味車として割り切れる"
+  ],
+  "notFor": [
+    "燃費や静粛性を優先したい",
+    "改造車の見極めが苦手（ショップ同行なし）",
+    "トラブルの可能性がストレスになる"
+  ],
+  "maintenanceNotes": [
+    "冷却とオイル管理は最優先。滲みや漏れは“普通”として早めに潰す。",
+    "駆動系（ミッション/デフ）は使われ方で差が出る。試乗と履歴が重要。",
+    "足回りとブッシュを整えると、まっすぐ走る安心感が戻ります。"
+  ],
+  "body": "## 結論\nWRX STI V6はGC8世代の最終盤。ラリー由来の四駆ターボの立ち上がりと、現代車より“機械っぽい”操作感が魅力です。\n\nただし中古は改造率が高く、状態差が極端です。買う前に「冷却」「オイル漏れ」「ミッション/デフ」「錆」の4点を見て、整備履歴が厚い個体を選ぶ。ここが基本になります。\n\n## 向く人 / 向かない人\n向く人\n- ラリー系の四駆ターボが好きで、操作感を楽しみたい\n- 状態と履歴で選べる（ショップにも頼れる）\n\n向かない人\n- 燃費や静粛性を優先したい\n- トラブルの可能性がストレスになる\n\n## 買う前のチェック\n- 冷却：水回りの交換履歴、オーバーヒート歴\n- オイル漏れ：滲みの量と場所。放置されていないか\n- 駆動系：ミッションの入り、デフの異音、クラッチの状態\n- 改造の内容：過給や足の仕様が“整っているか”\n- 錆：下回り、リア周り、ストラット付近\n\n## 弱点と故障\n年式と使われ方で差が出やすいです。症状のイメージを持っておくと判断が早い。\n\n- 水温が不安定 → 冷却系の弱り → 費用感：数万〜十数万円\n- ギアが入りにくい/異音 → ミッションや駆動系の消耗 → 費用感：数万〜（重いと大きい）\n- 直進が落ち着かない → ブッシュ/脚の劣化 → 費用感：10万〜30万円\n\n## 維持費の目安\n目安は年間60〜140万円。四駆ターボはタイヤも含めて消耗品が動きます。予防整備を前提にした方が結果的に安く済みやすいです。\n\n家計の枠を先に決めるなら、[維持費シミュレーション](/guide/maintenance-cost-simulation)で“上限”を作ってから車探しをすると判断がぶれません。\n\n## 中古で買うなら\n走行距離より、整備履歴の厚さ。改造車は悪ではありませんが、仕様が雑だと後から戻す費用が大きいです。\n\n修復歴の見方は、[修復歴チェックリスト](/guide/repair-history-used-car-checklist)を一度挟んでおくのがおすすめです。\n\n## 比較\n- ランサーエボリューションVI（GSR）：同じラリー系でも、エボは硬派な速さ。\n- インプレッサWRX STI GC8 Type R：より“競技寄り”。割り切りが強い。\n- ランサーエボリューションIX（GSR）：熟成された速さ。維持も含めて予算は上がりやすい。\n\n## 関連リンク\n- [修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist)\n- [オーバーヒート/冷却水漏れの初動](/guide/overheat-coolant-leak-guide)\n- [維持費シミュレーション](/guide/maintenance-cost-simulation)\n- [10万kmは本当に多い？](/column/usedcar-100k-km-myth)\n- [修復歴の“見抜き方”](/column/repair-history-how-to-judge)\n- [エボとインプが戦った15年](/heritage/japan-evo-impreza-15year-war-heritage)\n"
+}

@@ -1,0 +1,28 @@
+CBJ V2 — WAVE 18 (Status as Exhibition)
+
+Goal
+- Make 404/500/error states feel like part of the exhibition (not a broken product).
+- Preserve recoverability: always offer a next action (Home / Exhibition / Canvas / Index + Search).
+- Keep it fully progressive: works without JS.
+
+What changed
+- Added a reusable StatusPanel component with a deterministic SeedPoster (“status poster”).
+- Upgraded the global 404 and global error pages to use StatusPanel and offer recovery paths.
+- Added app/global-error.tsx to catch errors thrown in the root layout/template (Next.js convention).
+- Added segment-level not-found pages for dynamic routes:
+  - /cars/[slug]
+  - /guide/[slug]
+  - /column/[slug]
+  - /heritage/[slug]
+  - /news/[id]
+- Upgraded segment error pages (CARS / GUIDE / COLUMN / HERITAGE / NEWS) to use StatusPanel.
+
+Why this is correct
+- Users hit 404/500. Awwwards-level sites treat those states as part of the narrative AND make it easy to recover.
+- We keep the brand language consistent (“archive / exhibition / canvas”) while staying explicit about what happened.
+- Search is exposed directly on 404/not-found states to avoid dead ends.
+- We avoid “soft 404”: Next returns proper 404 status when notFound() is used, which is important for crawl hygiene.
+
+Notes
+- No new dependencies.
+- No sitemap generation changes required.
