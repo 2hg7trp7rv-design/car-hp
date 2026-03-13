@@ -1,0 +1,119 @@
+{
+  "id": "mitsubishi-fto",
+  "slug": "mitsubishi-fto",
+  "name": "FTO",
+  "maker": "Mitsubishi",
+  "releaseYear": 1994,
+  "difficulty": "intermediate",
+  "bodyType": "クーペ",
+  "segment": "ライトスポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "FTO",
+  "summary": "派手じゃないのに“線”がきれい。90年代ライトクーペの旨味が残る。",
+  "summaryLong": "FTOは、90年代ライトクーペの旨味が残る一台です。スペックの派手さではなく、回頭性と操作の素直さが主役。\n\n中古ではボディのまっすぐさと足の整合、そして電装の健全性。個体数が限られるぶん、良個体に当たると満足度が高い。\n\nMitsubishi FTOは「ライトスポーツ×クーペ」の文脈で語られることが多い一台です。中古では走行距離より、整備記録と仕様の透明性を優先。初期費用を抑えすぎると後追い整備で総額が膨らみやすいので、“整った個体を高く買う”ほうが安全です。",
+  "heroImage": "/images/cars/mitsubishi-fto-hero.jpg",
+  "mainImage": "/images/cars/mitsubishi-fto-hero.jpg",
+  "imageUrl": "/images/cars/mitsubishi-fto-hero.jpg",
+  "gallery": [
+    "/images/cars/mitsubishi-fto-front.jpg",
+    "/images/cars/mitsubishi-fto-side.jpg",
+    "/images/cars/mitsubishi-fto-interior.jpg"
+  ],
+  "engine": "Front 2.0 NA (V6/4cyl variations)",
+  "powerPs": 180,
+  "torqueNm": 191,
+  "transmission": "5MT/4AT（仕様差）",
+  "drive": "FF",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜12 km/L",
+  "priceNew": "当時: 200万〜450万円台（仕様差）",
+  "priceUsed": "200万〜900万円（相場変動）",
+  "strengths": [
+    "サイズ感がちょうどよく、街でも扱いやすい。",
+    "素直なハンドリングで、線がきれいに走る。",
+    "派手さより“旨味”が残る90年代クーペ。",
+    "良い個体に当たると満足度が高い。"
+  ],
+  "weaknesses": [
+    "個体数が少なく、条件を絞りすぎると失敗しやすい。",
+    "年式相応に内装・電装の疲れが出やすい。",
+    "部品の入手性が厳しくなる領域がある。",
+    "足回りのへたりで印象が大きく変わる。"
+  ],
+  "troubleTrends": [
+    "内装・電装の劣化は個体差が出やすいです。",
+    "足回りブッシュのへたりで印象が変わります。",
+    "修復歴の説明の具体性は重視したいです。"
+  ],
+  "costImpression": "見つけたら“履歴と整合”で決めたい。安さより状態が価値になる。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "usedcar-100k-km-myth",
+    "tire-cheap-dangerous-choice"
+  ],
+  "relatedGuideSlugs": [
+    "how-to-choose-first-sports-car",
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation"
+  ],
+  "relatedCarSlugs": [
+    "honda-integra-type-r-dc2",
+    "honda-prelude-bb4-4ws",
+    "nissan-silvia-s15"
+  ],
+  "tags": [
+    "Mitsubishi",
+    "FTO",
+    "FF",
+    "coupe",
+    "90s"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-1999-peak-analog-heritage"
+  ],
+  "intentTags": [
+    "jdm",
+    "90s",
+    "lightweight"
+  ],
+  "purchasePriceSafe": "安全ライン：150〜260万円前後（整合と電装重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間25〜70万円"
+  },
+  "maintenanceCostYenPerYear": 480000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Mitsubishi FTO",
+  "makerKey": "mitsubishi",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/mitsubishi",
+  "relatedClusterIds": [],
+  "primaryQuery": "Mitsubishi FTO",
+  "updateReason": "car-overhaul-2026-02-01_v8",
+  "sources": [],
+  "body": "## 結論\nFTOは「90年代の小さめクーペが好き」で、いまの速さより運転の軽さを求める人に向きます。派手さは薄いけど、線がきれいに走るタイプ。\n\n台数が少ないので、条件を絞りすぎるより“状態の良さ”を最優先にしたほうが成功しやすいです。迷ったら、同じメーカーの中での立ち位置も含めて見てください。[三菱の車種一覧](/cars/makers/mitsubishi)\n\n## 向く人 / 向かない人\n向くのは、軽快さとサイズ感を重視する人。向かないのは、部品供給や個体数の少なさが不安になる人です。FTOは“良い個体に当たれば最高”の比率が高い車です。\n\n## 買う前のチェック\n- まっすぐ走るか。直進性とハンドルセンター。事故歴や足のズレが出ます。\n- 足回りのへたり。段差の収まり、異音、タイヤの片減りは一発で分かります。\n- 電装と内装。スイッチ類、窓、メーター。古いクーペはここに疲れが出やすいです。\n- 冷却とオイルの滲み。年式的に、漏れ跡があるなら手当ての有無を確認。\n- 改造の有無。足回り変更や外装交換は、作り込みの質で価値が変わります。\n\nスポーツカー初心者なら、まず[初めてのスポーツカー選び](/guide/how-to-choose-first-sports-car)で優先順位を整理してから個体を見ると、判断がラクになります。\n\n\n## 弱点と故障\n弱点は「個体が限られる」ことです。欲しい条件に固執すると、状態が悪い個体を掴みやすい。\n\nだから、FTOは“状態を買う”が基本です。まっすぐで、足が整っていて、電装が元気。これが揃うと満足度が高いです。\n\n## 維持費の目安\n維持費は年式相応です。足回りやゴム類を一巡させる前提で見ておくと安心。消耗品は高級車ほどではありませんが、部品の入手性で時間がかかる場合があります。\n\n## 中古で買うなら\nおすすめは、記録簿が残っていて、修復歴の説明が具体的な個体です。安い個体を買って戻すより、整った個体を基準にしたほうが結果的に安くつくことが多いです。\n\n台数が限られるからこそ、焦って決めないこと。数台見て、手応えが素直な個体だけ残すくらいがちょうどいいです。\n\n## 比較\n同じライトスポーツならインテグラType Rはより尖り、プレリュードは機構で味付け。FTOはその中間で、素直さと軽快さが魅力です。\n\n## 関連リンク\n- [初めてのスポーツカー選び](/guide/how-to-choose-first-sports-car)\n- [修復歴・事故歴の見方（チェックリスト）](/guide/repair-history-used-car-checklist)\n- [維持費のざっくり試算](/guide/maintenance-cost-simulation)\n- [走行距離10万kmの誤解](/column/usedcar-100k-km-myth)\n- [安いタイヤは結局高くつく](/column/tire-cheap-dangerous-choice)\n- [1999年前後の“アナログのピーク”](/heritage/japan-1999-peak-analog-heritage)",
+  "bestFor": [
+    "90年代ライトクーペの軽快さを楽しみたい人。",
+    "状態を見て、条件より個体の良さで決められる人。",
+    "大きなパワーより、扱いやすさを重視する人。"
+  ],
+  "notFor": [
+    "部品供給や個体数の少なさが不安で、安心を優先したい人。",
+    "維持に手間をかけたくない人（年式的に予防整備は必要）。",
+    "パワーや速さの数字を最優先にする人。"
+  ],
+  "maintenanceNotes": [
+    "直進性と足回りの整合は最重要。片減りと段差の収まりで判断。",
+    "電装と内装の動作確認は必須。小さな不具合がストレスになります。",
+    "冷却とオイル滲みは年式相応に出ます。漏れ跡と手当ての履歴を確認。"
+  ]
+}

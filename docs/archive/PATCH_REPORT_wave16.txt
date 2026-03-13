@@ -1,0 +1,41 @@
+PATCH REPORT — WAVE 16
+
+Status
+- Home hero: pointer tracking is scoped to the hero element (no global pointermove).
+- Search: state updates that can trigger heavy list renders are moved into a transition.
+- Search/Compare: a11y status announcements (aria-live) added.
+- Hamburger menu: active link now exposes aria-current.
+
+Why this is correct (high level)
+- INP is sensitive to long tasks and heavy rerenders triggered by interactions.
+  The changes reduce global event pressure and lower the urgency of heavy UI updates.
+- aria-live regions improve usability for assistive tech users without changing visual layout.
+
+Risk
+- Low to Medium
+  - Home parallax: behavior changes slightly (now only responds when pointer is within hero).
+    This is intentional and improves performance.
+  - Search transition: results may update a fraction later under load (intended tradeoff).
+
+Action (post-deploy checks)
+1) Home
+- Move the cursor inside the hero:
+  - Parallax reacts.
+- Move cursor outside:
+  - Parallax resets.
+- On mobile:
+  - Parallax remains disabled.
+
+2) Search
+- Type quickly:
+  - Input remains responsive, results update smoothly.
+- Confirm screen-reader status changes:
+  - "検索中…" then result count.
+
+3) Compare
+- Add/remove cars:
+  - Status should reflect the number of selected cars.
+
+4) Menu
+- Open hamburger menu:
+  - Current page link should have aria-current="page".

@@ -1,0 +1,91 @@
+{
+  "id": "ferrari-275-gtb4",
+  "slug": "ferrari-275-gtb4",
+  "name": "フェラーリ 275GTB/4",
+  "maker": "FERRARI",
+  "releaseYear": 1966,
+  "difficulty": "advanced",
+  "bodyType": "クーペ",
+  "segment": "クラシックGT",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "275GTB/4",
+  "summary": "クラシックV12フロントエンジンGTの完成形と称される、美しい2ドアクーペです。",
+  "summaryLong": "フェラーリ 275GTB/4は、3.3L V12エンジンとトランスアクスルレイアウトを採用したフロントエンジンGTで、クラシックフェラーリの中でも特に完成度が高いと評されるモデルです。ロングノーズ・ショートデッキの美しいプロポーションに加え、4カムV12が高回転まで滑らかに回るフィーリングは、まさに『グランドツアラーの理想形』と言ってよいレベルです。レース活動で培われたメカニズムを持ちながら、長距離ツーリングでも疲れにくい乗り味を両立しており、サーキットとロードの中間に位置するフェラーリの魅力を凝縮した一台です。",
+  "heroImage": "/images/cars/ferrari-275-gtb4-hero.jpg",
+  "mainImage": "/images/cars/ferrari-275-gtb4-hero.jpg",
+  "imageUrl": "/images/cars/ferrari-275-gtb4-hero.jpg",
+  "gallery": [
+    "/images/cars/ferrari-275-gtb4-front.jpg",
+    "/images/cars/ferrari-275-gtb4-rear.jpg",
+    "/images/cars/ferrari-275-gtb4-interior.jpg"
+  ],
+  "engine": "3.3L V12 DOHC（4カム）",
+  "powerPs": 300,
+  "torqueNm": 294,
+  "transmission": "5速MT（トランスアクスル）",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "約4〜6km/L（実用域目安）",
+  "priceNew": "当時：$14,000〜$20,000（参考）",
+  "priceUsed": "3.0億〜7.0億円（個体/履歴で変動）",
+  "strengths": [
+    "ロングノーズ・ショートデッキの典型的なGTプロポーションが非常に美しいモデルです。",
+    "4カムV12のスムーズで伸びやかなフィーリングを味わえる数少ないフェラーリの一つです。",
+    "トランスアクスルレイアウトにより、FRとして自然でバランスの良いハンドリングを実現しています。",
+    "クラシックフェラーリの中でも、スポーツ性と快適性のバランスが非常に優れています。"
+  ],
+  "weaknesses": [
+    "クラシックフェラーリの中でも人気が高く、車両価格はすでにコレクターズレンジです。",
+    "V12＋トランスアクスル構造ゆえ、メンテナンス作業は手間とコストがかかります。",
+    "現代基準の安全装備・快適装備は期待できず、長距離ツーリングにも割り切りが必要です。",
+    "大掛かりなレストア履歴の有無によって、車両の価値が大きく変動します。"
+  ],
+  "troubleTrends": [
+    "V12エンジンのオイル漏れや冷却系トラブルは定番で、予防整備を前提とした運用が望まれます。",
+    "古い配線や電装系のトラブルが、始動性や信頼性に影響することがあります。",
+    "トランスアクスルのギアボックス・デフのオーバーホール費用は高額になりがちです。",
+    "足回りのブッシュやショックの劣化により、乗り味が大きく変わるため、足回りの状態確認が重要です。"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で資金計画が苦しくなりやすい車です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [],
+  "relatedGuideSlugs": [],
+  "relatedCarSlugs": [],
+  "tags": [
+    "FERRARI",
+    "フェラーリ",
+    "275GTB/4",
+    "クラシックカー",
+    "V12",
+    "FR",
+    "GT"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "oldtimer"
+  ],
+  "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+  },
+  "maintenanceCostYenPerYear": 450000,
+  "type": "CAR",
+  "status": "published",
+  "title": "FERRARI フェラーリ 275GTB/4",
+  "makerKey": "ferrari",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "noindex",
+  "parentPillarId": "/cars/makers/ferrari",
+  "relatedClusterIds": [],
+  "primaryQuery": "フェラーリ 275GTB/4",
+  "updateReason": "tone-fix-2026-02-01",
+  "sources": []
+}

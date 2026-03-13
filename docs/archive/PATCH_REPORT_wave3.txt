@@ -1,0 +1,35 @@
+CBJ Masterpiece Wave3 - Report
+
+Changed files (vs car-hp-masterpiece-wave2-full.zip):
+
+1) app/layout.tsx
+   - Lines: 163 -> 168  (+5)
+   - Change: body default canvas switched to dark stage (bg #07080a / text white)
+
+2) app/start/page.tsx
+   - Lines: 207 -> 209  (+2)
+   - Change: wrapped breadcrumb + header + all content inside porcelain panel to avoid dark-text-on-dark background
+
+3) app/site-map/page.tsx
+   - Lines: 294 -> 296  (+2)
+   - Change: wrapped header + all sections inside porcelain panel (Stage + Porcelain 2-layer rule)
+
+4) app/contact/page.tsx
+   - Lines: 331 -> 160  (-171)
+   - Change: rebuilt as Stage + Porcelain (removed legacy light-gradient layout). Keeps contact functionality.
+
+5) app/guide/hub-sell-compare/page.tsx
+   - Lines: 213 -> 215  (+2)
+   - Change: wrapped page in porcelain panel to avoid dark-text-on-dark background
+
+6) app/guide/hub-sell-loan/page.tsx
+   - Lines: 197 -> 199  (+2)
+   - Change: wrapped page in porcelain panel to avoid dark-text-on-dark background
+
+7) app/news/[id]/page.tsx
+   - Lines: 743 -> 743  (+0)
+   - Change: fixed JSON-LD Organization name typo: "CAR BOUTIQUE JOURNAL JOURNAL" -> "CAR BOUTIQUE JOURNAL"
+
+Checks:
+- scripts/guardrails.mjs: PASS
+- scripts/content-audit.mjs: PASS

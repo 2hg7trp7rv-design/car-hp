@@ -1,0 +1,30 @@
+WAVE 14 — PERFORMANCE (LCP) / IMAGE OPTIMIZATION
+
+Goal
+- Cut LCP weight on the most-visited entry points (Home + hub/detail pages).
+- Do it without changing layout/UX, and without removing any functionality.
+
+Changes
+1) Home hero KV (kv-home.png / kv-home-m.png)
+- Added WebP variants:
+  - /public/images/exhibit/kv-home.webp
+  - /public/images/exhibit/kv-home-m.webp
+- Updated HomeMasterpiece <picture> to prefer WebP with PNG fallback.
+- Added width/height + fetchPriority=high to stabilize CLS and improve LCP fetch priority.
+
+2) Exhibit large background KVs (hub/detail pages)
+- Re-encoded the large WebP assets to dramatically smaller WebP files (quality=80),
+  keeping the same filenames so all existing routes keep working:
+  - kv-cars.webp, kv-makers.webp, kv-compare.webp, kv-search.webp,
+    kv-sitemap.webp, kv-bodytypes.webp, kv-start.webp, kv-segments.webp
+- Stored originals under docs/_asset_originals/exhibit/*.orig.webp (NOT public) for rollback/inspection.
+
+3) DetailFixedBackground
+- Added decoding="async" + fetchPriority="high" to the fixed hero <img>.
+
+4) Public asset manifest
+- Updated data/_internal/public-assets.json to include the new WebP assets.
+
+Notes
+- This wave targets “weight on the wire” first (Core Web Vitals: LCP/INP/CLS).
+- Visual impact should be negligible (PSNR ~ 39–43dB vs originals).

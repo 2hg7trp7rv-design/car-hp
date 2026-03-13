@@ -1,0 +1,123 @@
+{
+  "id": "toyota-aristo-jzs161-v300",
+  "slug": "toyota-aristo-jzs161-v300",
+  "name": "Aristo (JZS161) V300",
+  "maker": "Toyota",
+  "releaseYear": 1997,
+  "difficulty": "intermediate",
+  "bodyType": "sedan",
+  "segment": "スポーツセダン",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "Aristo V300 (2JZ-GTE)",
+  "summary": "“余裕の2JZ”を日常の器に載せたV300。建前の時代の強さがセダンで残る。",
+  "summaryLong": "アリストV300は、280の建前の時代の強さを“セダンの器”で受け止めた車です。2JZの余裕は、日常域の厚みとして効く。\n\nいま買う目線では、熱履歴と補機の整合。冷却、ホース、タービン周辺の滲み、燃料系、そしてATの状態。ブーストアップ車も多いので、燃調と冷却の思想が揃っているかが価値を決めます。\n\n速さを誇示しないのに速い、建前の時代らしい一台です。\n\n迷うなら、まずはノーマル寄りの個体を選んで基準を知るのが安全です。速さは後から足せますが、素性と整備の筋は後から買えません。",
+  "body": "## 結論\nアリストV300は「速いセダンが欲しい」より、「余裕のある2JZを日常で使いたい」人向けです。買うなら、ブーストや配線が“きれいに管理されている個体”を選ぶのが最短です。\n\n## 向く人 / 向かない人\n向く/向かないは上の箇条書きの通り。迷う人は、次の「買う前のチェック」で自分が許せない地雷があるかを先に確認してから判断してください。\n\n## 買う前のチェック\n- 冷却の履歴と現状（ホース、ラジエーター周りの滲み）。熱が入る車はここが肝です。\n- タービン周辺のオイル滲み／配管の状態。雑な補修があると後が長い。\n- ATの変速と、加速時の滑り感。違和感がある個体は見送り推奨。\n- 追加メーターや制御の配線処理。配線が雑だと不調が連鎖しがちです。\n- 足回りの直進性と制動。ブレーキ・タイヤが“速さの受け皿”です。\n\n## 弱点と故障\n弱点はだいたい「熱」と「整合」です。ターボ周りの補機、冷却、配線、そしてAT。ここが整っていないと、症状が点で出ずに“連鎖”で出ます。逆に、整備の筋が通っている個体は普通に乗れて普通に速いです。\n\n## 維持費の目安\n普段のランニングだけでなく、購入直後に一度“基準に戻す”費用が出やすいです。走り方によってタイヤ・ブレーキの上限も伸びます。最初から余裕を見ておくと、焦って妥協しなくて済みます。\n\n## 中古で買うなら\n「フルノーマル」か「思想が揃った改造車」か。中途半端が一番つらいです。候補が改造車なら、燃調・冷却・足の方向性が一致しているか、そして記録が残っているかを必ず確認してください。\n\n## 比較\n似た文脈のJZX100ツアラーVは、少し軽くて素直。ER34 25GTターボは“R34の器”が好きな人向け。アリストはその二つよりGT寄りで、余裕が前に出ます。\n\n## 関連リンク\n- [修復歴・事故歴の見方（チェックリスト）](/guide/repair-history-used-car-checklist)\n- [維持費のざっくり試算](/guide/maintenance-cost-simulation)\n- [ターボ車の予算感の作り方](/guide/car-budget-simulation)\n- [修復歴は“ある/なし”より中身](/column/repair-history-how-to-judge)\n- [中古の走行距離、見方を間違えると損する](/column/usedcar-100k-km-myth)\n- [280ps協定の時代背景](/heritage/japan-280ps-gentlemens-agreement-heritage)",
+  "costImpression": "安い個体は“補機とAT”で追い金が出やすい。整った個体を選ぶ方が安いことが多い。",
+  "heroImage": "/images/cars/toyota-aristo-jzs161-v300-hero.jpg",
+  "mainImage": "/images/cars/toyota-aristo-jzs161-v300-main.jpg",
+  "imageUrl": "/images/cars/toyota-aristo-jzs161-v300-hero.jpg",
+  "gallery": [
+    "/images/cars/toyota-aristo-jzs161-v300-front.jpg",
+    "/images/cars/toyota-aristo-jzs161-v300-side.jpg",
+    "/images/cars/toyota-aristo-jzs161-v300-interior.jpg"
+  ],
+  "engine": "Front Inline-6 3.0 Twin Turbo (2JZ-GTE)",
+  "powerPs": 280,
+  "torqueNm": 451,
+  "transmission": "4AT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜10 km/L",
+  "priceNew": "当時: 450万〜600万円台（仕様差）",
+  "priceUsed": "250万〜900万円（相場変動）",
+  "purchasePriceSafe": "安全ライン：320〜520万円前後（熱と補機重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間40〜95万円"
+  },
+  "maintenanceCostYenPerYear": 680000,
+  "strengths": [
+    "余裕のある2JZで、日常域が強い。",
+    "セダンとして使え、長距離で疲れにくい。",
+    "情報が多く、整備と改善の道筋がある。",
+    "価格帯の選択肢が広い。"
+  ],
+  "weaknesses": [
+    "熱と補機の劣化で差が出やすい。",
+    "ATの状態で価値が大きく割れる。",
+    "改造個体の整合が崩れると症状が追いにくい。",
+    "足回りのへたりが走りの印象を濁らせる。"
+  ],
+  "troubleTrends": [
+    "冷却系（ホース類含む）の更新履歴が薄い個体は避けたいです。",
+    "タービン周辺の滲み・配管状態は要チェックです。",
+    "ATの変速ショックや油温管理の履歴は確認したいです。",
+    "追加配線（メーター/制御）の処理が雑だとトラブルになりやすいです。"
+  ],
+  "bestFor": [
+    "ターボの余裕を、セダンの落ち着きで使いたい人。",
+    "弄るなら燃調・冷却・足を“整合”で作れる人。",
+    "高速移動や長距離で疲れにくい速さが欲しい人。"
+  ],
+  "notFor": [
+    "燃費や維持費を最優先したい人。",
+    "改造歴や履歴の確認が面倒で、“買ってすぐ安心して乗りたい”人。",
+    "MTで操りたいが、AT前提がストレスになる人。"
+  ],
+  "maintenanceNotes": [
+    "熱管理（冷却・オイル）が体感以上に重要です。履歴が薄い個体は“買わない”が正解になりやすいです。",
+    "ATの状態確認は必須。違和感があれば、直すより個体を変える方が早いことが多いです。",
+    "配線品質はトラブルの入口。追加メーター/制御の配線は、見える範囲だけでもチェックします。"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "toyota-chaser-jzx100-tourer-v",
+    "nissan-skyline-er34-25gt-turbo-sedan",
+    "nissan-laurel-c35-club-s-turbo"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "car-budget-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge",
+    "usedcar-100k-km-myth"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-280ps-gentlemens-agreement-heritage"
+  ],
+  "tags": [
+    "Toyota",
+    "Aristo",
+    "JZS161",
+    "2JZ-GTE",
+    "280ps",
+    "sedan",
+    "turbo"
+  ],
+  "intentTags": [
+    "280ps",
+    "tuning",
+    "intermediate",
+    "jdm"
+  ],
+  "type": "CAR",
+  "status": "published",
+  "title": "Toyota Aristo (JZS161) V300",
+  "makerKey": "toyota",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/toyota",
+  "relatedClusterIds": [],
+  "primaryQuery": "Toyota Aristo (JZS161) V300",
+  "updateReason": "car-overhaul-2026-02-01_v6",
+  "sources": []
+}

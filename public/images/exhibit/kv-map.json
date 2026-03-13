@@ -1,0 +1,128 @@
+{
+  "source": "montage_21.jpg (3x7 tiles)",
+  "excluded_tile": 19,
+  "kv_count": 20,
+  "kv": [
+    {
+      "kv": "01",
+      "tile_idx": 1,
+      "desktop": "/images/exhibit/kv-01.webp",
+      "mobile": "/images/exhibit/kv-01-m.webp"
+    },
+    {
+      "kv": "02",
+      "tile_idx": 2,
+      "desktop": "/images/exhibit/kv-02.webp",
+      "mobile": "/images/exhibit/kv-02-m.webp"
+    },
+    {
+      "kv": "03",
+      "tile_idx": 3,
+      "desktop": "/images/exhibit/kv-03.webp",
+      "mobile": "/images/exhibit/kv-03-m.webp"
+    },
+    {
+      "kv": "04",
+      "tile_idx": 4,
+      "desktop": "/images/exhibit/kv-04.webp",
+      "mobile": "/images/exhibit/kv-04-m.webp"
+    },
+    {
+      "kv": "05",
+      "tile_idx": 5,
+      "desktop": "/images/exhibit/kv-05.webp",
+      "mobile": "/images/exhibit/kv-05-m.webp"
+    },
+    {
+      "kv": "06",
+      "tile_idx": 6,
+      "desktop": "/images/exhibit/kv-06.webp",
+      "mobile": "/images/exhibit/kv-06-m.webp"
+    },
+    {
+      "kv": "07",
+      "tile_idx": 7,
+      "desktop": "/images/exhibit/kv-07.webp",
+      "mobile": "/images/exhibit/kv-07-m.webp"
+    },
+    {
+      "kv": "08",
+      "tile_idx": 8,
+      "desktop": "/images/exhibit/kv-08.webp",
+      "mobile": "/images/exhibit/kv-08-m.webp"
+    },
+    {
+      "kv": "09",
+      "tile_idx": 9,
+      "desktop": "/images/exhibit/kv-09.webp",
+      "mobile": "/images/exhibit/kv-09-m.webp"
+    },
+    {
+      "kv": "10",
+      "tile_idx": 10,
+      "desktop": "/images/exhibit/kv-10.webp",
+      "mobile": "/images/exhibit/kv-10-m.webp"
+    },
+    {
+      "kv": "11",
+      "tile_idx": 11,
+      "desktop": "/images/exhibit/kv-11.webp",
+      "mobile": "/images/exhibit/kv-11-m.webp"
+    },
+    {
+      "kv": "12",
+      "tile_idx": 12,
+      "desktop": "/images/exhibit/kv-12.webp",
+      "mobile": "/images/exhibit/kv-12-m.webp"
+    },
+    {
+      "kv": "13",
+      "tile_idx": 13,
+      "desktop": "/images/exhibit/kv-13.webp",
+      "mobile": "/images/exhibit/kv-13-m.webp"
+    },
+    {
+      "kv": "14",
+      "tile_idx": 14,
+      "desktop": "/images/exhibit/kv-14.webp",
+      "mobile": "/images/exhibit/kv-14-m.webp"
+    },
+    {
+      "kv": "15",
+      "tile_idx": 15,
+      "desktop": "/images/exhibit/kv-15.webp",
+      "mobile": "/images/exhibit/kv-15-m.webp"
+    },
+    {
+      "kv": "16",
+      "tile_idx": 16,
+      "desktop": "/images/exhibit/kv-16.webp",
+      "mobile": "/images/exhibit/kv-16-m.webp"
+    },
+    {
+      "kv": "17",
+      "tile_idx": 17,
+      "desktop": "/images/exhibit/kv-17.webp",
+      "mobile": "/images/exhibit/kv-17-m.webp"
+    },
+    {
+      "kv": "18",
+      "tile_idx": 18,
+      "desktop": "/images/exhibit/kv-18.webp",
+      "mobile": "/images/exhibit/kv-18-m.webp"
+    },
+    {
+      "kv": "19",
+      "tile_idx": 20,
+      "desktop": "/images/exhibit/kv-19.webp",
+      "mobile": "/images/exhibit/kv-19-m.webp"
+    },
+    {
+      "kv": "20",
+      "tile_idx": 21,
+      "desktop": "/images/exhibit/kv-20.webp",
+      "mobile": "/images/exhibit/kv-20-m.webp"
+    }
+  ],
+  "note": "kv-XX.webp is desktop (1600x1000), kv-XX-m.webp is mobile/thumbnail (1200x750)."
+}

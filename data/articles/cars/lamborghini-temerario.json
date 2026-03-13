@@ -1,0 +1,123 @@
+{
+  "id": "lamborghini-temerario",
+  "slug": "lamborghini-temerario",
+  "name": "Temerario",
+  "maker": "Lamborghini",
+  "releaseYear": 2024,
+  "difficulty": "advanced",
+  "bodyType": "クーペ",
+  "segment": "スーパースポーツ / HPEV",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "HPEV（V8 biturbo＋3モーター）",
+  "summary": "テメラリオは、ウラカンの後継として登場したランボルギーニの新世代ミッドシップ。NA V10を終わらせつつ、10,000rpmまで回る新開発V8ツインターボ＋3モーターで“回転で走る快感”を次の時代へ繋げます。",
+  "summaryLong": "テメラリオ（Temerario）は、ランボルギーニが2024年に発表したミッドシップ・スーパースポーツで、ウラカンの後継に当たります。\n\n最大の話題は、これまでのNA V10ではなく、新開発4.0L V8ツインターボ＋3基のモーターというハイブリッドへ舵を切ったこと。それでも“ランボらしさ”を捨てたわけではなく、V8は量産スーパースポーツとしては異例の10,000rpmまで回る設計で、回転の伸びと高揚感を中心に据えています。\n\nシステム最高出力は920CV（約920ps）。0-100km/h加速は2.7秒、最高速は343km/hと公表されています。ハイブリッドは「静かに走るため」というより、ターボの過渡応答や駆動の緻密さを“運転の気持ちよさ”に変えるための道具、という思想が読み取れます。\n\n※価格・導入時期・仕様（グレード、装備、認証値）は市場で差があります。国内向けの確定情報は都度の公式発表を参照してください。",
+  "heroImage": "/images/cars/placeholder.jpg",
+  "mainImage": "/images/cars/placeholder.jpg",
+  "imageUrl": "/images/cars/placeholder.jpg",
+  "gallery": [
+    "/images/cars/placeholder.jpg"
+  ],
+  "engine": "4.0L V8ツインターボ＋3モーター（HPEV）",
+  "powerPs": 920,
+  "torqueNm": 730,
+  "transmission": "8速DCT",
+  "drive": "AWD",
+  "fuel": "PHEV（V8ツインターボ＋3モーター）",
+  "fuelEconomy": "未公表（市場・認証で差）",
+  "priceNew": "未公表（市場・仕様で差）",
+  "priceUsed": "未設定（新型）",
+  "strengths": [
+    "10,000rpmまで回る高回転型V8＋モーターで、“回して速い”の快感を作り直している。",
+    "ハイブリッドを「過渡応答の改善」「駆動の精密化」に使い、踏んだ瞬間の反応を狙っている。",
+    "ウラカン後継として、日常の快適性とスーパースポーツの刺激の両立をテーマにしている。",
+    "新世代の電動化ラインアップ（HPEV）の中核として、今後の派生展開も期待できる。"
+  ],
+  "weaknesses": [
+    "NA V10の“音の質感”を最優先する人には、方向性が合わない可能性がある。",
+    "ハイブリッドは構造が複雑で、長期保有では熱管理・電装系を含むメンテ計画が重要になりやすい。",
+    "購入費用・維持費はスーパースポーツ級。保険、タイヤ/ブレーキ、消耗品コストを前提にしたい。",
+    "地域や仕様で装備・認証値・納期が変わるため、確定情報を待って判断する必要がある。"
+  ],
+  "troubleTrends": [
+    "新型のため、固有の“定番トラブル”はまだ見えにくい（初期ロットの情報収集が重要）。",
+    "高出力ハイブリッドは熱が性能と信頼性を左右しやすい。冷却系・補機類の扱いは慎重に。",
+    "タイヤ/ブレーキは高性能前提で、消耗が早くコストが大きくなりやすい。"
+  ],
+  "costImpression": "価格は市場・仕様で大きく変わります。購入費用だけでなく、保険・タイヤ/ブレーキ・消耗品・定期点検を含めた総額で考えるのが安全です。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "loan-vs-lease-monthly-trap",
+    "import-car-hidden-costs-paperwork"
+  ],
+  "relatedGuideSlugs": [
+    "car-budget-simulation",
+    "loan-or-lump-sum",
+    "tax-and-fees-before-buying-import"
+  ],
+  "relatedCarSlugs": [
+    "ferrari-sf90-stradale",
+    "nissan-gtr-r35",
+    "lamborghini-diablo-vt-60"
+  ],
+  "tags": [
+    "Lamborghini",
+    "Temerario",
+    "ウラカン後継",
+    "V8",
+    "ツインターボ",
+    "ハイブリッド",
+    "HPEV",
+    "10,000rpm",
+    "スーパーカー",
+    "新型車"
+  ],
+  "relatedHeritageSlugs": [
+    "lamborghini-v10-to-hybrid-turning-point-temerario"
+  ],
+  "intentTags": [
+    "新型車",
+    "比較",
+    "購入検討",
+    "スーパーカー",
+    "ハイブリッド"
+  ],
+  "purchasePriceSafe": "未設定（新型）",
+  "maintenanceSimulation": null,
+  "maintenanceCostYenPerYear": null,
+  "zeroTo100": 2.7,
+  "type": "CAR",
+  "status": "published",
+  "title": "Lamborghini Temerario",
+  "makerKey": "lamborghini",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": null,
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "ランボルギーニ テメラリオ",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/lamborghini",
+  "relatedClusterIds": [],
+  "primaryQuery": "ランボルギーニ テメラリオ 購入前 注意点",
+  "updateReason": "cars-index-upgrade-2026-02-01",
+  "sources": [],
+  "body": "## 結論\nLamborghini Temerarioは、ウラカン後継としての期待を背負いながら、電動化を前提に「踏んだ瞬間の反応」を作り直した車です。NA V10の音が好きかどうかで気持ちは揺れますが、最終的には自分がどの快感を優先するかです。\n買う前にやることは、車の情報より、自分の使い方の整理。納期や仕様を待つ間にここを詰めると、選択が楽になります。\n\n## 向く人 / 向かない人\n### 向く人\n- 速さだけでなく、日常の扱いやすさも欲しい\n- 新型の情報を追いながら、仕様や納期を調整できる\n- ハイブリッドの特性を理解して、運用を合わせられる\n\n### 向かない人\n- 音とフィーリングが昔のランボでないと満足できない\n- 初期ロットの未知数を避けたい\n- ガレージ、保険、サポート体制がまだ固まっていない\n\n## 買う前のチェック\n### 新型で一番大事なのは情報源\n数字より、どこから情報を取るかです。\n- 公式発表と、国内導入仕様の差を確認\n- 保証とサポートの窓口を先に押さえる\n- 乗り方（短距離連発、長期保管）が多いなら、その対策を考える\n\n### オプションの決め方\n迷ったら、あとで変えにくい部分から決めます。足回りやホイールサイズは、乗り味だけでなく維持費にも効きます。\n\n## 弱点と故障\n新型は定番が見えません。だからこそ「不具合が出た時にどう動けるか」が大事です。\n- ハイブリッドは冷却と電装が鍵。熱がすべてを左右する\n- ソフトウェア更新の履歴が、将来の安心に直結する\n- タイヤとブレーキは高負荷前提。消耗は早めに見ておく\n\n## 維持費\n購入費用だけでなく、周辺の固定費が効きます。\n- 保険、ガレージ、消耗品のセットで考える\n- 大径タイヤとブレーキの交換周期を見積もる\n- 長期保管するなら、バッテリー管理も計画に入れる\n\n## 中古で買うなら\n最初の中古が出てきた時は、相場より履歴です。初期の対策が済んだ個体は強いです。\n- 初期の改良やリコール対応が終わっているか\n- 走行距離より、使われ方と保管環境\n- オプション構成が自分の使い方に合うか\n\n## 比較\n- /cars/ferrari-sf90-stradale は、ハイブリッドの速さを突き詰めた別解\n- /cars/nissan-gtr-r35 は、実用と速さを両立する違う哲学\n- /cars/lamborghini-diablo-vt-60 は、同じランボでも儀式の濃さが別物\n\n## 関連リンク\n- /guide/car-budget-simulation\n- /guide/loan-or-lump-sum\n- /column/loan-vs-lease-monthly-trap\n- /heritage/lamborghini-v10-to-hybrid-turning-point-temerario\n",
+  "bestFor": [
+    "速さだけでなく日常の扱いやすさも欲しい人",
+    "新型の情報を追いながら仕様や納期を調整できる人",
+    "ハイブリッドの特性を理解して運用を合わせられる人"
+  ],
+  "notFor": [
+    "音とフィーリングが昔のランボでないと満足できない人",
+    "初期ロットの未知数を避けたい人",
+    "保管や保険など周辺条件がまだ固まっていない人"
+  ],
+  "maintenanceNotes": [
+    "新型は定番が見えないので、保証とサポート窓口を重視",
+    "短距離連発や長期保管が多いなら、バッテリー管理を計画",
+    "タイヤとブレーキの消耗は早めに見積もっておく"
+  ]
+}

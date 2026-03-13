@@ -1,0 +1,119 @@
+{
+  "id": "nissan-fairlady-z-s30",
+  "slug": "nissan-fairlady-z-s30",
+  "name": "Fairlady Z S30",
+  "maker": "Nissan",
+  "releaseYear": 1969,
+  "difficulty": "advanced",
+  "bodyType": "sports-coupe",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "nissan-fairlady-z-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "Fairlady Z S30",
+  "summary": "Zの原点。直6FRスポーツを“手が届く夢”にした世代。",
+  "summaryLong": "Fairlady Z S30は、1969年に登場したNissanのsports-coupeで、FRとFront Inline-6を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+  "heroImage": "/images/cars/nissan-fairlady-z-s30-hero.jpg",
+  "mainImage": "/images/cars/nissan-fairlady-z-s30-main.jpg",
+  "imageUrl": "/images/cars/nissan-fairlady-z-s30-main.jpg",
+  "gallery": [
+    "/images/cars/nissan-fairlady-z-s30-front.jpg",
+    "/images/cars/nissan-fairlady-z-s30-side.jpg",
+    "/images/cars/nissan-fairlady-z-s30-interior.jpg"
+  ],
+  "engine": "Front Inline-6",
+  "powerPs": 151,
+  "torqueNm": 198,
+  "transmission": "5MT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 7〜12 km/L",
+  "priceNew": "当時：150万〜250万円（参考）",
+  "priceUsed": "450万〜2500万円（相場変動）",
+  "strengths": [
+    "デザインとキャラクターが明確で、所有満足度が高い",
+    "運転のフィードバックが濃く、操る楽しさがある",
+    "コミュニティ/情報が一定量あり、維持の道筋を作れる",
+    "相場が安定しやすく、資産性を期待できる場合がある"
+  ],
+  "weaknesses": [
+    "年式・個体差による当たり外れが大きい",
+    "部品の供給/価格が年々厳しくなる場合がある",
+    "日常用途では燃費・乗り心地の割り切りが必要"
+  ],
+  "troubleTrends": [
+    "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+    "電装系（センサー/配線）の経年",
+    "冷却系のメンテ不足"
+  ],
+  "costImpression": "安く買うと整備が先に始まりやすい車。錆と履歴がはっきりした個体を基準にしたいです。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "repair-history-how-to-judge"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "oil-leak-first-response",
+    "overheat-coolant-leak-guide"
+  ],
+  "relatedCarSlugs": [
+    "nissan-fairlady-z-z32",
+    "mazda-rx7-sa22c",
+    "toyota-supra-a70-turbo-a"
+  ],
+  "tags": [
+    "Nissan",
+    "sports-coupe",
+    "クラシックスポーツ",
+    "FR",
+    "5MT",
+    "Front Inline-6",
+    "クラシック"
+  ],
+  "relatedHeritageSlugs": [
+    "nissan-skyline-2000gtr-hakosuka-heritage"
+  ],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：650〜1300万円前後（錆と履歴重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間70〜160万円"
+  },
+  "priceUsedYenRange": "450万〜2500万円（相場変動）",
+  "maintenanceCostYenPerYear": 1000000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Fairlady Z S30",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Fairlady Z S30",
+  "updateReason": "car-overhaul-2026-02-01_v8",
+  "sources": [],
+  "body": "## 結論\nS30フェアレディZは「古い車を、手間ごと楽しめる」人に向きます。状態が良い個体は驚くほど軽やかですが、普通に買うと整備が先に始まりやすい。\n\n最初の一台としては難度高めです。買うなら専門店、点検前提。迷ったら、[日産の車種一覧](/cars/makers/nissan)で他の世代のZも含めて並べてみると、自分が欲しい“濃さ”が分かります。\n\n## 向く人 / 向かない人\n向くのは、ガレージや保管環境を用意できて、メンテに時間と予算を割ける人。向かないのは、毎日の足としてトラブルなく使いたい人です。S30は、生活の道具というより趣味の道具に近いです。\n\n## 買う前のチェック\n- 錆。フロア、フレーム、下回りは最優先です。錆は“雰囲気”ではなくコストになります。\n- 事故歴と骨格の整合。ドアの閉まりやパネルのチリは、違和感があれば深掘り。\n- 配線と電装。追加メーターや後付けが多い個体は、配線の質を見たいです。\n- 冷却と燃料系。ホース、配管、タンク周り。古い車はここからトラブルが始まりやすいです。\n- 足回りとブレーキ。直進性、ブレーキの安心感、異音。古さはここに出ます。\n\n古い車は、修復歴の有無より“どこをどう直したか”が重要です。[修復歴・事故歴のチェックリスト](/guide/repair-history-used-car-checklist)の項目をそのまま聞くと、相手の説明の精度が分かります。\n\n\n## 弱点と故障\n弱点は「錆」と「前オーナーの手の入れ方」です。良い意味でも悪い意味でも、履歴が車に残ります。\n\nだからこそ、履歴が追える個体は強い。レストア済みでも、どこまでやっているかが具体的なら判断できます。\n\n## 維持費の目安\n維持費は“突発”が来やすいです。年平均ではなく、まとまった整備の波に耐えられるかで判断してください。\n\n## 中古で買うなら\nおすすめは、錆と骨格の説明が具体的で、整備記録が残る個体です。走行距離より、保管と整備の質。\n\n購入前に、下回り写真と作業明細を見せてもらえるか。ここで誠実さが分かります。\n\n## 比較\n同じZでもZ32以降は日常性が上がります。S30は“文化としての古いスポーツ”を取りに行く車。RX-7（SA）や当時のGT-R系と比べても、濃さの種類が違います。\n\n## 関連リンク\n- [修復歴・事故歴の見方（チェックリスト）](/guide/repair-history-used-car-checklist)\n- [オイル漏れを見つけたときの初動](/guide/oil-leak-first-response)\n- [オーバーヒート/冷却トラブルの判断](/guide/overheat-coolant-leak-guide)\n- [低走行車は本当に得か](/column/usedcar-low-mileage-trap)\n- [修復歴は“ある/なし”より中身](/column/repair-history-how-to-judge)\n- [箱スカGT-Rの時代背景](/heritage/nissan-skyline-2000gtr-hakosuka-heritage)",
+  "bestFor": [
+    "古いスポーツカーを、手間ごと楽しめる人。",
+    "保管環境と予備費を用意できる人。",
+    "レストアや整備履歴を見て、納得して買える人。"
+  ],
+  "notFor": [
+    "毎日の足として、トラブルなく使いたい人。",
+    "整備に時間を割けず、ショップ任せが前提の人。",
+    "購入後の追加出費に余裕がない人。"
+  ],
+  "maintenanceNotes": [
+    "錆は最優先。フロアとフレーム周りは妥協しないほうが安全です。",
+    "配線と後付けの質は重要。雑な配線はトラブルの連鎖になります。",
+    "冷却と燃料系は予防整備で差が出ます。漏れ跡と交換履歴を確認。"
+  ]
+}

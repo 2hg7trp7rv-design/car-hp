@@ -1,0 +1,124 @@
+{
+  "id": "honda-nsx-na1",
+  "slug": "honda-nsx-na1",
+  "name": "NSX (NA1)",
+  "maker": "Honda",
+  "releaseYear": 1990,
+  "difficulty": "advanced",
+  "bodyType": "coupe",
+  "segment": "スポーツ",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "NSX NA1",
+  "summary": "速さを日常の精度で成立させたミッドシップ。派手さより“破綻しない速さ”が本体。",
+  "summaryLong": "初代NSX（NA1）は、スーパーカーの速さを日常の精度で成立させた車です。視界、操作系、熱管理、そして剛性。速いだけでなく、繰り返しても崩れにくい。\n\nいま買う目線では、馬力より“普通に使える精度”が残っているか。冷却系の更新履歴、ゴム類、足回りの整合、補修精度。ミッドシップは器が命で、歪みは体感に直結します。\n\n整った個体は静かに速い。だから中古はスペックより履歴の透明度で選びたい。",
+  "heroImage": "/images/cars/honda-nsx-na1-hero.jpg",
+  "mainImage": "/images/cars/honda-nsx-na1-main.jpg",
+  "imageUrl": "/images/cars/honda-nsx-na1-hero.jpg",
+  "gallery": [
+    "/images/cars/honda-nsx-na1-front.jpg",
+    "/images/cars/honda-nsx-na1-side.jpg",
+    "/images/cars/honda-nsx-na1-interior.jpg"
+  ],
+  "engine": "Mid V6 3.0 NA (C30A)",
+  "powerPs": 280,
+  "torqueNm": 294,
+  "transmission": "5MT/4AT（仕様差）",
+  "drive": "MR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜10 km/L",
+  "priceNew": "当時: 800万〜1200万円台（仕様差）",
+  "priceUsed": "900万〜3500万円（相場変動）",
+  "strengths": [
+    "視界と操作系が自然で、速度域が上がっても余裕が残る。",
+    "熱が収まると、繰り返しても調子が落ちにくい。",
+    "ミッドシップらしい回頭とトラクションが両立する。",
+    "作りの精度が高く、整った個体は“普通に速い”。"
+  ],
+  "weaknesses": [
+    "相場が高く、失敗が痛い。",
+    "冷却・ゴム類・ブッシュの経年で精度が落ちやすい。",
+    "補修の質で価値が大きく割れる（器の歪みは戻りにくい）。",
+    "部品と工賃が重く、計画が必要。"
+  ],
+  "troubleTrends": [
+    "冷却系（ラジエーター、ホース、ウォーターポンプ等）の更新履歴は最重要です。",
+    "ゴム類・マウント・ブッシュのへたりで手応えが濁ります。",
+    "下回りや骨格の補修痕は、精度と価値を左右します。",
+    "電装の後付けや配線補修が雑な個体は要注意です。"
+  ],
+  "costImpression": "“安い個体を戻す”のが最も高い。履歴が静かに揃った個体を買う方が合理的。",
+  "relatedNewsIds": [],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge",
+    "oil-change-5000km-myth",
+    "spare-key-missing-negotiation"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "how-to-choose-first-sports-car"
+  ],
+  "relatedCarSlugs": [
+    "toyota-mr2-sw20-rev3",
+    "mazda-rx-7-fd3s-type-r"
+  ],
+  "tags": [
+    "Honda",
+    "NSX",
+    "NA1",
+    "C30A",
+    "midship",
+    "1990s",
+    "everyday-supercar"
+  ],
+  "relatedHeritageSlugs": [
+    "honda-nsx-everyday-supercar-heritage"
+  ],
+  "intentTags": [
+    "midship",
+    "jdm",
+    "heritage",
+    "advanced",
+    "precision"
+  ],
+  "purchasePriceSafe": "安全ライン：1100〜1600万円前後（履歴と補修精度重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間70〜150万円"
+  },
+  "maintenanceCostYenPerYear": 1100000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda NSX (NA1)",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "Honda NSX (NA1)",
+  "updateReason": "car-major-overhaul-2026-02-01",
+  "sources": [],
+  "body": "## 結論\n初代NSX（NA1）は、速さを日常の精度で成立させたミッドシップです。派手さより、破綻しない速さ。視界、操作系、熱管理、そして剛性。ここが揃っている個体ほど、静かに価値が伝わってきます。\n\n中古で大事なのは、馬力や装備より「普通に使える精度」が残っているか。冷却系の更新履歴、ゴム類、足回りの整合、補修精度。ミッドシップは器が命なので、歪みや雑な補修は体感に直結します。\n\n結論としては、履歴の透明度が高い個体を選ぶ。これがいちばん合理的です。\n\n## 向く人 / 向かない人\nNSXは、速さだけでなく「精度」を楽しめる人向けです。逆に、維持費を最小化したい人には向きません。状態の良さを保つこと自体を楽しめるかがポイントです。\n\n## 買う前のチェック\n### 履歴がすべて\n- 冷却系の更新履歴（ラジエーター、ホース、ポンプ等）\n- オイル漏れの有無と場所\n- 足回りのリフレッシュ歴（ブッシュ、ダンパー）\n- 補修歴の説明が具体的か\n\n迷う個体は [修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist) の手順で、情報を整理してから判断したいです。\n\n### 現車で見る\nNSXは「違和感が少ない個体」が価値です。気になる点が出たときに、理由を説明できる個体かどうかも重要です。\n- 直進性とブレーキの安定感\n- 段差での異音、収まり\n- 冷間時と暖機後でのフィーリング差\n\n## 弱点と故障\n### 冷却系の更新不足\n冷却が弱いと、安心して踏めません。更新履歴が薄い個体は、購入後にまとめて整備が必要になりやすいです。\n\n### ゴム類とブッシュの経年\nここが弱ると、NSXの「精度」が濁ります。逆に、ここが整っている個体は、街乗りでも姿勢がきれいで疲れにくいです。\n\n### 補修の質\n器の歪みは戻りにくい領域です。事故歴の有無だけでなく、補修の質と説明の透明度を優先したいです。\n\n## 維持費\n維持費の目安は年間70〜150万円。部品と工賃が重いので、平均値よりも上振れを許容できるかで考える方が現実的です。安い個体を買って後で戻すと、結果的に一番高く付きます。\n\n## 中古で買うなら\n- 履歴が揃った個体を優先する\n- 価格だけで決めず、補修精度と整合を買う\n- 不安が残るなら購入前点検に入れる\n\nNSXは、整った個体ほど「普通に速い」。その普通が、いまは贅沢です。\n\n購入後にやる整備の順番を決めておくと、精神的に楽です。油脂類と冷却、次に足回り、最後に細かい快適装備。まず安心して踏める状態を作るのが先です。\n\n## 比較\nミッドシップの入門ならMR2（SW20）、違う方向の濃さならRX-7（FD3S）。NSXは「精度」で勝負する車なので、比較は世界観で決めると迷いにくいです。\n\n## 関連リンク\n維持費の考え方や、購入前点検の型をリンク先で整理できます。",
+  "bestFor": [
+    "派手さより精度。破綻しない速さと操作の気持ちよさが好き。",
+    "維持費や手間も含めて、良い状態を保つこと自体を楽しめる。",
+    "整備履歴と補修精度を重視して、個体差を丁寧に見極めるつもりがある。"
+  ],
+  "notFor": [
+    "維持費を最小化したい。上振れがストレスになる。",
+    "過去の補修や改造の説明が曖昧でも気にしない。器の精度を重視できない。",
+    "買ってすぐに手間をかけたくない。整備計画を立てるのが苦手。"
+  ],
+  "maintenanceNotes": [
+    "冷却系の更新履歴は最重要。ここが薄いと安心して踏めない。",
+    "ゴム類とブッシュが整っている個体ほど、NSXの価値である精度が残る。",
+    "安い個体を後から戻すと総額が膨らみやすい。履歴の透明度を買うのが合理的。"
+  ]
+}

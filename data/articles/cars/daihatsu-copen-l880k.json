@@ -1,0 +1,110 @@
+{
+  "id": "daihatsu-copen-l880k",
+  "slug": "daihatsu-copen-l880k",
+  "name": "Copen (L880K)",
+  "maker": "Daihatsu",
+  "releaseYear": 2002,
+  "difficulty": "intermediate",
+  "bodyType": "軽オープン",
+  "segment": "軽スポーツ",
+  "grade": null,
+  "engine": null,
+  "drive": null,
+  "transmission": null,
+  "fuel": null,
+  "powerPs": null,
+  "torqueNm": null,
+  "fuelEconomy": null,
+  "summary": "オープンの楽しさを日常に持ち込める軽。ルーフ機構と錆チェックが肝。",
+  "summaryLong": "L880Kコペンは「毎日乗れるオープン」という強みがあります。軽い車体で、屋根を開けた時の気持ちよさが分かりやすい。一方でルーフ機構があるぶん、メンテ無しで放置された個体はトラブルが出やすいです。買う前に屋根の作動とシール、下回りの錆を必ず確認。",
+  "costImpression": "維持は軽い部類ですが、ルーフ周りは“動かして保つ”感覚。状態の良い個体ほど気持ちよく付き合えます。",
+  "heroImage": "/images/cars/placeholder.jpg",
+  "mainImage": "/images/cars/placeholder.jpg",
+  "relatedNewsIds": [],
+  "tags": [
+    "Daihatsu",
+    "軽オープン",
+    "軽スポーツ"
+  ],
+  "intentTags": [],
+  "relatedCarSlugs": [
+    "honda-s660-jw5",
+    "suzuki-cappuccino-ea11r",
+    "honda-beat-pp1"
+  ],
+  "relatedGuideSlugs": [
+    "how-to-choose-first-sports-car",
+    "maintenance-cost-simulation",
+    "repair-history-used-car-checklist"
+  ],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "repair-history-how-to-judge"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-kei-sports-abc-heritage"
+  ],
+  "strengths": [
+    "オープンの気持ちよさを日常に持ち込める",
+    "サイズが小さく、街でも扱いやすい",
+    "情報とパーツが多く、仕上げやすい"
+  ],
+  "weaknesses": [
+    "ルーフ機構があるぶん、放置個体はトラブルが出やすい",
+    "年式的にブッシュや足回りのリフレッシュ前提になりやすい",
+    "ボディ剛性は走り方次第で気になることがある"
+  ],
+  "troubleTrends": [
+    "ルーフ作動不良・シール劣化（雨漏り/異音）",
+    "冷却系やオイル漏れなど年式由来のトラブル",
+    "足回りブッシュ劣化による異音・フラつき",
+    "下回りの錆"
+  ],
+  "bestFor": [
+    "オープンを日常で楽しみたい（近距離〜中距離中心）",
+    "軽スポーツの“ちょうどいい”楽しさが欲しい",
+    "屋根のメンテも含めて丁寧に乗れる"
+  ],
+  "notFor": [
+    "屋根のトラブルが怖くて触りたくない",
+    "高速長距離をメインにしたい",
+    "放置気味で乗りたい"
+  ],
+  "maintenanceNotes": [
+    "ルーフは動かして保つ。作動が渋い個体は、放置歴を疑う。",
+    "下回りの錆は早めに手当て。軽でもここは逃げられない。",
+    "足回りのブッシュを整えると、コペンの軽快さが戻ります。"
+  ],
+  "lengthMm": null,
+  "widthMm": null,
+  "heightMm": null,
+  "wheelbaseMm": null,
+  "weightKg": null,
+  "priceNew": "当時：120万〜180万円（グレード）",
+  "priceUsed": "70万〜200万円（相場変動）",
+  "zeroTo100": null,
+  "type": "CAR",
+  "status": "published",
+  "title": "Daihatsu Copen (L880K)",
+  "makerKey": "daihatsu",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": "ダイハツ コペン（L880K）",
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/daihatsu",
+  "relatedClusterIds": [],
+  "primaryQuery": "Copen (L880K)",
+  "updateReason": "car-index-upgrade-2026-02-01",
+  "sources": [],
+  "purchasePriceSafe": "安全ライン：90万〜160万円（ルーフ作動・錆・整備履歴を優先）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間30〜70万円（ルーフ/足回りで上下）"
+  },
+  "maintenanceCostYenPerYear": 500000,
+  "body": "## 結論\nL880Kコペンは、「毎日乗れるオープン」という強みが分かりやすい軽スポーツです。屋根を開けた瞬間に価値が出る車で、速度域が高くなくても満足度があります。\n\n一方で、ルーフ機構があるぶん放置個体はトラブルが出やすい。買う前に“屋根がちゃんと動くか”と“下回りの錆”を確認できるかが勝負です。屋根のグリスアップやシールの手入れを、趣味のメンテとして受け入れられると満足度が上がります。逆に、屋根をほとんど開けないなら、コペンの良さを半分捨てることになります。\n\n## 向く人 / 向かない人\n向く人\n- オープンを日常で楽しみたい\n- 軽スポーツのちょうどいい楽しさが欲しい\n\n向かない人\n- 屋根のトラブルが怖くて触りたくない\n- 放置気味で乗りたい\n\n## 買う前のチェック\n- ルーフ作動：動きのスムーズさ、異音、途中で止まらないか\n- シール：雨漏り跡、ウェザーの硬化\n- 下回りの錆：フロア、サイド、サス取り付け部\n- 足回り：ブッシュ、ショック、タイヤ偏摩耗\n- 整備履歴：ルーフ周りの手当てが記録に残っているか\n\n## 弱点と故障\nコペンは“ルーフが元気か”が体験価値に直結します。\n\n- 屋根が渋い/途中で止まる → 機構の劣化、整備不足 → 費用感：数万〜（状態次第で上振れ）\n- 雨漏り/風切り → シール劣化、調整 → 費用感：数万〜\n- 段差でコトコト → ブッシュや脚の劣化 → 費用感：数万〜十数万円\n\n## 維持費の目安\n目安は年間30〜70万円。軽なので税金は軽いですが、屋根や足回りの手当てがあるぶん、ゼロにはなりません。\n\n維持費の上限を決めてから探すなら、[維持費シミュレーション](/guide/maintenance-cost-simulation)で枠を作るのが早いです。\n\n## 中古で買うなら\n低走行でも放置されている個体は避けたいです。屋根は“動かして保つ”感覚があるので、定期的に使われている車の方が状態が良いことが多い。\n\n購入前の判断軸は、[修復歴チェックリスト](/guide/repair-history-used-car-checklist)で先に作っておくと迷いません。\n\n## 比較\n- S660（JW5）：ミッドシップの気持ちよさ。積載はさらに割り切り。\n- カプチーノ（EA11R）：FRターボの軽さ。より“走り寄り”。\n- ビート（PP1）：味は濃い。整備の濃さも増える。\n\n## 関連リンク\n- [はじめてのスポーツカーの選び方](/guide/how-to-choose-first-sports-car)\n- [維持費シミュレーション](/guide/maintenance-cost-simulation)\n- [修復歴の見抜き方チェックリスト](/guide/repair-history-used-car-checklist)\n- [中古車「低走行の罠」](/column/usedcar-low-mileage-trap)\n- [修復歴の“見抜き方”](/column/repair-history-how-to-judge)\n- [軽スポーツABCが面白かった時代](/heritage/japan-kei-sports-abc-heritage)\n"
+}

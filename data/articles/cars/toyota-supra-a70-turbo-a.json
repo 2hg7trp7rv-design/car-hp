@@ -1,0 +1,120 @@
+{
+  "id": "toyota-supra-a70-turbo-a",
+  "slug": "toyota-supra-a70-turbo-a",
+  "name": "Supra A70 Turbo A",
+  "maker": "Toyota",
+  "releaseYear": 1988,
+  "difficulty": "advanced",
+  "bodyType": "gt-coupe",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "toyota-supra-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "Supra A70 Turbo A",
+  "summary": "ホモロゲーションの物語を背負った特別なA70。",
+  "summaryLong": "A70スープラ Turbo Aは、ホモロゲーションの文脈を背負った“特別なA70”です。ただ、買う判断は結局「個体の状態」と「自分が何を求めるか」。希少性に惹かれて買うほど、説明の透明性と整備の質が価値になります。\n\n古い直6ターボGTなので、冷却、ゴム類、電装、ボディの錆がテーマ。パワーを追う前に、まず基準に戻す。これができるかどうかで、満足度が大きく変わります。\n\nTurbo Aは希少性が前に出ますが、乗る目的なら“良いA70”の延長でもあります。こだわりの軸（オリジナル重視か、乗って楽しむか）を先に決め、基準に合う個体を探すと判断がブレません。\n\nTurbo Aは希少性が強いぶん、「乗って楽しむ」か「保有して守る」かで正解が変わります。後者ならオリジナル度と書類、前者なら状態と整備の筋。どちらに寄せるかを先に決めて探すのがおすすめです。\n",
+  "body": "## 結論\nTurbo Aは“特別なA70”ですが、買う判断は結局「個体の状態」と「自分が何を求めるか」です。ホモロゲーションの物語に惹かれ、古い直6ターボを手入れしながら乗りたいなら買う価値があります。\n\n## 向く人 / 向かない人\n向く/向かないは上の箇条書きで判断できます。ここで迷うなら、Turbo Aにこだわらず、状態の良いA70 / JZA80を含めて探す方が現実的です。\n\n## 買う前のチェック\n- まず“本当にTurbo Aとして説明が揃っているか”。希少車は書類と説明の透明性が価値です。\n- 冷却系の履歴と現状。古いターボはここが弱い。\n- ゴム/樹脂（ホース・ブッシュ）と電装の状態。年式の差がそのまま出ます。\n- 足回りの収まり。重いGTは足が死ぬと全てが鈍く感じます。\n- 錆と修復歴。安易な板金の跡は後で効きます。\n\n## 弱点と故障\n弱点は“古いターボGTの王道”です。熱、ゴム、電装、そしてボディ。パワーを上げる前に、まず基準に戻す。これができないと、乗り味がずっと落ち着きません。\n\n## 維持費の目安\n走らせ方次第ですが、消耗品の単価は今のスポーツカーより高いこともあります。特に最初の1〜2年は、手当てしたい箇所が連続しがちです。初期費用込みで計画を組むのが安全です。\n\n## 中古で買うなら\nTurbo Aにこだわるなら、「説明が細かい個体」を選んでください。こだわりが薄いなら、同年代のA70やJZA80も比較しながら“状態の良さ”で決める方が満足度は高くなりやすいです。\n\n## 比較\n同じ直6ターボGTならJZA80、そしてZ32も候補。A70は“80年代のGTの重さ”があり、そこが好きかどうかで評価が変わります。\n\n## 関連リンク\n- [修復歴・事故歴の見方（チェックリスト）](/guide/repair-history-used-car-checklist)\n- [維持費のざっくり試算](/guide/maintenance-cost-simulation)\n- [中古車の購入予算を総額で決める](/guide/car-budget-simulation)\n- [低走行の罠](/column/usedcar-low-mileage-trap)\n- [修復歴は“ある/なし”より中身](/column/repair-history-how-to-judge)\n- [280ps協定の時代背景](/heritage/japan-280ps-gentlemens-agreement-heritage)",
+  "costImpression": "希少車は“維持費”より、個体の素性と説明の透明性がコストです。安い個体を買って整えるより、履歴が追える個体を選ぶ方が結局早いことが多いです。",
+  "heroImage": "/images/cars/toyota-supra-a70-turbo-a-hero.jpg",
+  "mainImage": "/images/cars/toyota-supra-a70-turbo-a-main.jpg",
+  "imageUrl": "/images/cars/toyota-supra-a70-turbo-a-main.jpg",
+  "gallery": [
+    "/images/cars/toyota-supra-a70-turbo-a-front.jpg",
+    "/images/cars/toyota-supra-a70-turbo-a-side.jpg",
+    "/images/cars/toyota-supra-a70-turbo-a-interior.jpg"
+  ],
+  "engine": "Front Inline-6 3.0 Turbo (7M-GTE)",
+  "powerPs": 270,
+  "torqueNm": 343,
+  "transmission": "5MT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜9 km/L",
+  "priceNew": "当時：500万〜600万円（参考）",
+  "priceUsed": "700万〜2000万円（相場変動）",
+  "priceUsedYenRange": "700万〜2000万円（相場変動）",
+  "purchasePriceSafe": "安全ライン：500〜1200万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間70〜150万円"
+  },
+  "maintenanceCostYenPerYear": 450000,
+  "strengths": [
+    "直6ターボの伸びと高速域の余裕",
+    "シャシー剛性が高く、チューニング耐性も高い",
+    "部品/ノウハウが豊富で弄り方の幅が広い",
+    "グランドツアラーとして快適性も確保"
+  ],
+  "weaknesses": [
+    "年式・個体差による当たり外れが大きい",
+    "部品の供給/価格が年々厳しくなる場合がある",
+    "日常用途では燃費・乗り心地の割り切りが必要"
+  ],
+  "troubleTrends": [
+    "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+    "電装系（センサー/配線）の経年",
+    "冷却系のメンテ不足"
+  ],
+  "bestFor": [
+    "ホモロゲーションの物語に惹かれ、希少車を“資料込み”で楽しめる人。",
+    "古い直6ターボGTを、基準に戻しながら育てたい人。",
+    "数値より、80年代GTの重さや雰囲気が好きな人。"
+  ],
+  "notFor": [
+    "希少性より、コスパや実用性を最優先したい人。",
+    "整備記録の確認や個体差の見極めに時間を使いたくない人。",
+    "買ってすぐ“ノートラブル”を期待したい人。"
+  ],
+  "maintenanceNotes": [
+    "冷却系の履歴が薄い個体は避けたいです。古いターボは熱が全てです。",
+    "ゴム/樹脂（ホース・ブッシュ）と電装は年式差が出ます。購入直後に一周する前提で計画を。",
+    "錆と板金の質は価値に直結。下回り確認は必須です。"
+  ],
+  "relatedNewsIds": [],
+  "relatedCarSlugs": [
+    "toyota-supra-jza80-rz",
+    "nissan-fairlady-z-z32",
+    "mazda-rx7-fc3s"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation",
+    "car-budget-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap",
+    "repair-history-how-to-judge"
+  ],
+  "relatedHeritageSlugs": [
+    "japan-280ps-gentlemens-agreement-heritage"
+  ],
+  "tags": [
+    "Toyota",
+    "Supra",
+    "A70",
+    "Turbo A",
+    "7M-GTE",
+    "FR",
+    "5MT",
+    "classic-gt"
+  ],
+  "intentTags": [],
+  "type": "CAR",
+  "status": "published",
+  "title": "Toyota Supra A70 Turbo A",
+  "makerKey": "toyota",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/toyota",
+  "relatedClusterIds": [],
+  "primaryQuery": "Supra A70 Turbo A",
+  "updateReason": "car-overhaul-2026-02-01_v6",
+  "sources": []
+}

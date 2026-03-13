@@ -1,0 +1,120 @@
+{
+  "id": "lotus-exige-s2",
+  "slug": "lotus-exige-s2",
+  "name": "Exige (S2)",
+  "maker": "Lotus",
+  "releaseYear": 2004,
+  "difficulty": "intermediate",
+  "bodyType": "クーペ",
+  "segment": "ライトウェイト",
+  "grade": null,
+  "engine": "Mid 1.8（NA/SCなど仕様差）",
+  "drive": "MR",
+  "transmission": "6MT（仕様差）",
+  "fuel": "ハイオク",
+  "powerPs": 220,
+  "torqueNm": 215,
+  "fuelEconomy": "目安: 7〜12 km/L",
+  "summary": "エリーゼの軽さに“攻める前提”の締まりを足したクーペ。走りの濃度を最優先にする人向け。",
+  "summaryLong": "エキシージ（S2）は、エリーゼの軽さを土台に、もう一段“走る前提”に寄せた車です。クーペボディの安心感と、足回りの締まり方が、同じ速度でも濃く感じさせます。\n\n中古では、サーキット歴や足回り改造の内容で状態が大きく変わります。見た目が派手な個体ほど、消耗が進んでいることもある。逆に、用途がはっきりしていて、整備が追える個体は、驚くほど気持ちよく走ります。\n\n日常性はさらに割り切り。それでも、走りの“濃度”だけを取りに行くなら、この車は強いです。",
+  "costImpression": "走るほどコストが増える車。履歴と消耗品交換が揃う個体が結局いちばん安い。",
+  "heroImage": "/images/cars/placeholder.jpg",
+  "mainImage": "/images/cars/placeholder.jpg",
+  "relatedNewsIds": [],
+  "tags": [
+    "Lotus",
+    "Exige",
+    "S2",
+    "lightweight",
+    "mr",
+    "coupe"
+  ],
+  "intentTags": [
+    "track",
+    "lightweight",
+    "import",
+    "sports"
+  ],
+  "relatedCarSlugs": [
+    "lotus-elise-s2",
+    "honda-s2000-ap1",
+    "toyota-mr2-sw20-rev3"
+  ],
+  "relatedGuideSlugs": [
+    "used-import-car-buying-guide",
+    "tax-and-fees-before-buying-import",
+    "maintenance-cost-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "import-car-maintenance-cost-myth",
+    "usedcar-warranty-needed"
+  ],
+  "relatedHeritageSlugs": [
+    "supercar-parts-bin-engineering-heritage"
+  ],
+  "strengths": [
+    "軽さに加えてクーペの安心感があり、攻めたときの情報量が濃い。",
+    "ステアと姿勢変化が分かりやすく、運転が上達したように感じやすい。",
+    "速度に頼らず気持ちよくなれるタイプのスポーツカー。",
+    "用途が合えば、満足度が非常に高い。"
+  ],
+  "weaknesses": [
+    "快適性は割り切りが必要で、街乗り中心だと疲れやすい。",
+    "サーキット歴がある個体が多く、状態の見極めが重要。",
+    "輸入車ゆえに部品と工賃の読みづらさがある。",
+    "タイヤ・ブレーキなど消耗品コストが積み上がりやすい。"
+  ],
+  "troubleTrends": [
+    "冷却とオイル管理が甘い個体は避けたいです。熱が入る車なので差が出ます。",
+    "ブレーキ周りの状態は必ず確認。ローター、パッド、フルードの履歴が見えると安心。",
+    "足回り改造がある個体は、取付の質と整合が重要。直進性で判断。",
+    "下回りのヒット痕や曲がりは致命傷。リフトアップで見たいです。"
+  ],
+  "bestFor": [
+    "走りの濃度を最優先にして車を選びたい人。",
+    "サーキットやワインディングなど、使い方がはっきりしている人。",
+    "消耗品と整備の履歴を見て、納得して個体を選べる人。"
+  ],
+  "notFor": [
+    "快適な移動を優先したい人。",
+    "維持費をできるだけ軽くしたい人（走るほどコストが増える）。",
+    "中古車の履歴を追うのが苦手で、状態の見極めに自信がない人。"
+  ],
+  "maintenanceNotes": [
+    "サーキット歴の有無と、直近の消耗品交換（タイヤ・ブレーキ）は最優先で確認。",
+    "冷却とオイル管理が大事。水温の癖や漏れ跡は見逃したくないです。",
+    "足回りの整合は直進性で分かります。まっすぐ走るか、まず確認。"
+  ],
+  "lengthMm": null,
+  "widthMm": null,
+  "heightMm": null,
+  "wheelbaseMm": null,
+  "weightKg": null,
+  "priceNew": "当時：700万〜1000万円（参考）",
+  "priceUsed": "500万〜900万円（相場変動）",
+  "zeroTo100": null,
+  "type": "CAR",
+  "status": "published",
+  "title": "Lotus Exige (S2)",
+  "makerKey": "lotus",
+  "createdAt": null,
+  "publishedAt": "2026-02-01",
+  "updatedAt": "2026-02-01",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/lotus",
+  "relatedClusterIds": [],
+  "primaryQuery": "Exige (S2)",
+  "updateReason": "car-overhaul-2026-02-01_v8",
+  "sources": [],
+  "body": "## 結論\nエキシージS2は「走りの濃度を最優先にしたい」人に向きます。軽さに加えて、クーペとしての安心感があるぶん、同じ速度でも“攻められる感覚”が残ります。\n\n中古は、用途と整備履歴で別物です。まずは[ロータスの車種一覧](/cars/makers/lotus)で仕様の幅を把握して、そこから状態で絞るのが近道です。\n\n## 向く人 / 向かない人\n向くのは、走りの時間を優先できる人。向かないのは、毎日の移動や快適性を重視する人です。エキシージは“我慢してでも走りたい”側の車です。\n\n## 買う前のチェック\n- サーキット歴の有無。走行会レベルでも、消耗は確実に積み上がります。\n- 足回り改造の中身。ブランドより、取付と整合、そしてセットアップの意図が見えるか。\n- 冷却とオイルの状態。熱の入り方が違うので、管理が甘い個体はリスクが上がります。\n- ブレーキ。ローターとキャリパー周りの状態、フルード管理は必須。\n- 下回り。ヒット痕、曲がり、アライメントのズレ。まっすぐ走るかは最重要です。\n\n用途が濃い個体ほどチェック項目が増えます。確認の型は[輸入車を中古で買うときの基本](/guide/used-import-car-buying-guide)にまとめています。\n\n\n## 弱点と故障\n弱点は「用途が濃い個体が多い」ことです。距離が少なくても、踏まれている個体は疲れている。\n\n逆に、整備が追えて、消耗品が計画的に交換されている個体は、抜群に気持ちいい。エキシージはその差がはっきり出ます。\n\n## 維持費の目安\nタイヤ・ブレーキ・油脂類の頻度が高くなりがちです。走るほどコストが増えるので、年平均だけでなく“走り方”まで含めて予算を組んでください。\n\n## 中古で買うなら\nおすすめは、用途がはっきりしていて、整備の記録が残る個体です。見た目の派手さより、履歴が透明な車。\n\n購入前に、直近の消耗品交換（タイヤ、ブレーキ、オイル）と、冷却のメンテ状況を確認すると判断が早いです。\n\n## 比較\nエリーゼS2は日常とのバランスも残りますが、エキシージS2は走りに寄ります。S2000やMR2などと比べると、速度に頼らず“曲がる気持ちよさ”が強いです。\n\n## 関連リンク\n- [輸入車を中古で買うときの基本](/guide/used-import-car-buying-guide)\n- [輸入前にかかる税金・費用](/guide/tax-and-fees-before-buying-import)\n- [維持費のざっくり試算](/guide/maintenance-cost-simulation)\n- [輸入車の整備費は高い？の誤解](/column/import-car-maintenance-cost-myth)\n- [中古車保証は必要か](/column/usedcar-warranty-needed)\n- [部品流用で作られる名車の話](/heritage/supercar-parts-bin-engineering-heritage)",
+  "purchasePriceSafe": "安全ライン：520〜920万円前後（履歴と消耗品重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間45〜110万円"
+  },
+  "maintenanceCostYenPerYear": 780000
+}
