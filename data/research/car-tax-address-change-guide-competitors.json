@@ -1,0 +1,122 @@
+{
+  "slug": "car-tax-address-change-guide",
+  "createdAt": "2026-04-17",
+  "competitorCount": 30,
+  "queries": [
+    "自動車税 住所変更 引っ越し",
+    "自動車税 納付書 旧住所",
+    "自動車税 送付先変更"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/faq/index.html"
+    },
+    {
+      "url": "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/change/document/index.html"
+    },
+    {
+      "url": "https://www.pref.niigata.lg.jp/site/zeimu/20210820syuzei-jidosyazei-jusyohenko.html"
+    },
+    {
+      "url": "https://www.pref.shiga.lg.jp/ippan/kurashi/zeikin/324632.html"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/30981.htm"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/79517.htm"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/258618.htm"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/257752.htm"
+    },
+    {
+      "url": "https://www.pref.gifu.lg.jp/page/6523.html"
+    },
+    {
+      "url": "https://www.pref.hiroshima.lg.jp/site/zei/1237271840415.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidousyajuhen.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidoushayokuaru.html"
+    },
+    {
+      "url": "https://web.pref.hyogo.lg.jp/kk22/pa04_000000058.html"
+    },
+    {
+      "url": "https://www.pref.shimane.lg.jp/life/zei/ken/oshirase/jyuuhenn.html"
+    },
+    {
+      "url": "https://www.mlit.go.jp/report/press/jidosha06_hh_000125.html"
+    },
+    {
+      "url": "https://wwwtb.mlit.go.jp/kyushu/gyoumu/jidousya_k/file10_01.htm"
+    },
+    {
+      "url": "https://www.carcon.co.jp/column/article/2019041711/"
+    },
+    {
+      "url": "https://www.carcon.co.jp/column/article/2019061701/"
+    },
+    {
+      "url": "https://www.carcon.co.jp/column/article/20200304/"
+    },
+    {
+      "url": "https://www.carseven.co.jp/guide/news/10061/"
+    },
+    {
+      "url": "https://www.carseven.co.jp/guide/news/10213/"
+    },
+    {
+      "url": "https://www.wecars.co.jp/column/inspection/procedure/017.html"
+    },
+    {
+      "url": "https://www.nextage.jp/sell_guide/zeikin/415691/"
+    },
+    {
+      "url": "https://www.mitsui-direct.co.jp/car/guide/howto/documents/22.html"
+    },
+    {
+      "url": "https://www.insweb.co.jp/car/kisochishiki/kiso/shakensyo-addresschange.html"
+    },
+    {
+      "url": "https://www.tepco.co.jp/ep/private/moving/va/car.html"
+    },
+    {
+      "url": "https://www.tourokukanri.co.jp/notes/note10.html"
+    },
+    {
+      "url": "https://kobac.sakoda-g.co.jp/index.php?i=28031"
+    },
+    {
+      "url": "https://auto-pal.co.jp/column/3501/"
+    },
+    {
+      "url": "https://www.egmkt.co.jp/column/consumer/731/"
+    }
+  ],
+  "commonTakeaways": [
+    "多くの記事は住民票だけでは足りない点と15日以内の変更登録を説明している。",
+    "今年分の納付書が旧住所へ行く理由は4月1日基準まで踏み込まない記事が多い。",
+    "県税側の送付先変更を案内しても、車検証変更とは別手続きだと明確に分けていない記事が多い。"
+  ],
+  "gapsFound": [
+    "普通車の税窓口と登録窓口を混同しやすく、手順の分岐が弱い。",
+    "転送で去年届いたケースや4月上旬変更の実務が薄い。"
+  ],
+  "changesApplied": [
+    "車検証変更と県税の送付先変更を分けて、引っ越し時期で読む順を再設計した。",
+    "4月1日と発送時期のズレを timeline で整理した。",
+    "転送終了、他県ナンバー、所有者別のケースを1本でまとめて詰まりどころを潰した。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}

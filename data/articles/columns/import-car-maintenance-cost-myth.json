@@ -1,0 +1,267 @@
+{
+  "id": "col-016",
+  "slug": "import-car-maintenance-cost-myth",
+  "status": "published",
+  "title": "輸入車の維持費が上がるとき。部品と工賃が重なる場面を知る。",
+  "summary": "輸入車＝高いは雑。維持費が跳ねるのは「部品」「工賃」「原因探し」が重なるとき。買う前に見る順番と、整備先で詰まらない考え方をまとめた。",
+  "category": "MONEY",
+  "tags": [
+    "輸入車",
+    "維持費",
+    "修理",
+    "工賃",
+    "部品"
+  ],
+  "intentTags": [
+    "import",
+    "maintenance",
+    "decision"
+  ],
+  "relatedGuideSlugs": [
+    "hub-import-trouble",
+    "maintenance"
+  ],
+  "targetKeyword": "輸入車 維持費 高い",
+  "searchIntent": "輸入車の維持費が不安な人が、費用が跳ねる仕組みと回避策を理解できるようにする。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-29",
+  "noindex": false,
+  "seoTitle": "輸入車の維持費が高くなるとき。部品代と工賃の重なり方。",
+  "seoDescription": "輸入車の維持費が高いのは“輸入車だから”ではない。部品代・工賃・原因探しで費用が跳ねるポイントと、買う前に確認すべきことを整理。",
+  "planPriority": 26,
+  "publishedAt": "2026-01-29",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [],
+  "primaryQuery": "輸入車 維持費 高い",
+  "updateReason": "初版公開",
+  "sources": [
+    "https://yanase-audi.com/column/knowledge/imported-car-repair-parts-expensive.html",
+    "https://toprank.jp/magazine/general/foreign-car-repairs-241225/",
+    "https://www.webcartop.jp/2023/08/1165043/",
+    "https://yanase-audi.com/column/knowledge/official-import-grey-import-difference.html",
+    "https://www.gaisha-oh.com/soken/foreign-car-maintenance-choice/"
+  ],
+  "heroImage": "/images/cbj/columns/import-car-maintenance-cost-myth.jpg",
+  "thumbnail": "/images/cbj/columns/import-car-maintenance-cost-myth.jpg",
+  "displayTag": "輸入車",
+  "layoutVariant": "decision-v1",
+  "actionBox": {
+    "title": "買う前に整備の受け皿を先に決める",
+    "body": "維持費の怖さは、金額そのものより「どこにも頼めず止まること」です。候補車を絞る前に、見てもらえる工場と部品の入り方だけ確認してください。その一手で、買ったあとに困る確率が大きく下がります。",
+    "actions": [
+      {
+        "label": "輸入車トラブルHUBを見る",
+        "href": "/guide/hub-import-trouble"
+      },
+      {
+        "label": "ディーラー車検の見積もり線引きを見る",
+        "href": "/column/dealer-shaken-is-expensive-myth"
+      },
+      {
+        "label": "メンテナンスの全体像を見る",
+        "href": "/guide/maintenance"
+      }
+    ]
+  },
+  "readMinutes": 6,
+  "lead": "輸入車の維持費は、国産車より一律に高いわけではありません。跳ねやすいのは「部品代」「工賃」「診断の手間」が同時に重なる場面です。買う前に整備の受け皿と定番トラブルを押さえておけば、想定外の出費はかなり減らせます。",
+  "eyebrowLabel": "維持費",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "特集",
+      "href": "/column"
+    },
+    {
+      "label": "輸入車の維持費が上がるとき。部品と工賃が重なる場面を知る。"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "輸入車・整備判断編集チーム"
+  },
+  "keyPoints": [
+    "維持費が跳ねるのは、部品代・工賃・診断時間が同時に重なるとき",
+    "正規輸入か並行輸入か、整備先があるかで難易度が大きく変わる",
+    "買う前に工場と保証の受け皿を決めるだけで、後からの詰まり方がかなり変わる"
+  ],
+  "checkpoints": [
+    "近所にそのメーカーや車種を見られる工場があるか",
+    "定番故障と直近交換歴を販売店が説明できるか",
+    "並行輸入なら部品の取り寄せルートと納期が見えているか",
+    "保証で何が対象外になるかを購入前に確認しているか",
+    "突然の修理に備える予備費を別枠で持てるか"
+  ],
+  "faq": [
+    {
+      "question": "輸入車は必ず維持費が高くなりますか。",
+      "answer": "必ずではありません。高くなりやすいのは、流通量が少ない車種で部品が高い、作業が長い、診断に時間がかかる条件が重なるときです。"
+    },
+    {
+      "question": "正規輸入車と並行輸入車で維持費は変わりますか。",
+      "answer": "変わりやすいです。並行輸入は部品供給や整備の受け皿で差が出やすく、納期や診断の手間が増えるぶん総額が読みにくくなります。"
+    },
+    {
+      "question": "買う前に一番先に確認するべきことは何ですか。",
+      "answer": "車そのものより、買ったあとに面倒を見てくれる工場があるかです。整備先が決まっていないと、軽い不調でも止まりやすくなります。"
+    },
+    {
+      "question": "維持費を抑えるには社外品だけで考えて大丈夫ですか。",
+      "answer": "部品だけで決めるのは危険です。社外品やOEM、リビルトが使えるかは車種と作業内容で差があるので、工場と相談しながら選ぶ方が安全です。"
+    }
+  ],
+  "relatedColumnSlugs": [
+    "obd-inspection-import-start-2025",
+    "dealer-shaken-is-expensive-myth",
+    "import-car-hidden-costs-paperwork"
+  ],
+  "detailSections": [
+    {
+      "id": "cost-structure",
+      "title": "維持費の正体は「部品代＋工賃＋診断」",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "輸入車の整備代は、国産車と別の計算式で決まるわけではありません。基本は部品代と工賃です。そこへ原因の切り分けに掛かる診断時間が乗ると、体感として一気に高く見えます。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "定番の消耗品交換は、金額の予測がまだ立てやすい",
+            "警告灯や電子制御の不調は、まず原因探しから入るので伸びやすい",
+            "部品待ちが長いと、修理代以上に「車が使えない時間」が痛い"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "輸入車で詰まりやすい場面は、[輸入車トラブルHUB](/guide/hub-import-trouble) に先にまとめています。買う前に一度読むと、維持費の見え方がかなり変わります。"
+        }
+      ]
+    },
+    {
+      "id": "three-cost-drivers",
+      "title": "高くなりやすいのは3つが重なるとき",
+      "blocks": [
+        {
+          "type": "decisionCards",
+          "title": "費用が跳ねやすいパターン",
+          "cards": [
+            {
+              "badge": "部品",
+              "title": "部品代と納期が重い",
+              "body": "流通量が少ない車種や並行輸入車は、純正しか選べない、国内在庫が薄い、納期が読みにくい、が重なりやすいです。"
+            },
+            {
+              "badge": "工賃",
+              "title": "作業時間が長い",
+              "body": "エンジンルームの詰まり方や専用工具の有無で、同じ交換でも時間が伸びます。工場の慣れで差が出やすい部分です。"
+            },
+            {
+              "badge": "診断",
+              "title": "原因の切り分けに時間がかかる",
+              "body": "電子制御の不調は当てずっぽうが効きません。テスターだけでは終わらず、現車確認まで含めて費用が増えることがあります。"
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "info",
+          "title": "怖いのは「突然来る」こと",
+          "body": "高い時は高いです。ただ、読み筋があるかどうかでダメージは変わります。候補車の定番不具合と部品事情を先に知っておくと、急な出費に振り回されにくくなります。"
+        }
+      ]
+    },
+    {
+      "id": "ask-before-buy",
+      "title": "買う前に販売店と整備先へ聞くこと",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "見積もりの数字より先に、販売店と整備先へ次を聞けるかで難易度が変わります。答えが曖昧なまま契約すると、買ったあとに全部こちらへ返ってきます。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "整備記録簿はあるか。直近で交換した消耗品は何か",
+            "その車種の定番トラブルと、すでに対策済みか",
+            "中古保証はどこまで対象で、何が対象外か",
+            "並行輸入なら部品ルートと納期を説明できるか",
+            "診断はどの段階で見積もりを出すか"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "整備先への電話で十分です",
+          "body": "「このメーカーや車種は入っていますか」「故障診断はどう進めますか」だけでも、受け皿の有無はかなり見えます。買ったあとに探すより、先に聞く方が圧倒的にラクです。"
+        }
+      ]
+    },
+    {
+      "id": "official-vs-grey",
+      "title": "正規輸入車と並行輸入車で差が出るところ",
+      "blocks": [
+        {
+          "type": "comparisonTable",
+          "title": "維持費の読みやすさを分ける要素",
+          "headers": [
+            "項目",
+            "正規輸入車",
+            "並行輸入車"
+          ],
+          "rows": [
+            [
+              "部品と情報",
+              "国内流通や情報が比較的揃いやすい",
+              "車種や年代で部品と情報の差が大きい"
+            ],
+            [
+              "保証・整備窓口",
+              "説明や受け皿が見えやすい",
+              "店ごとの差が大きく、断られることもある"
+            ],
+            [
+              "購入前の確認",
+              "記録簿と保証条件が軸",
+              "納期・改善履歴・整備先まで確認が必要"
+            ]
+          ],
+          "note": "並行輸入が悪いという話ではなく、買う前に確認する項目が増える、という理解が正確です。"
+        },
+        {
+          "type": "paragraph",
+          "text": "同じ「輸入車」でも、サポートの受けやすさはかなり違います。安く買えたとしても、納期や修理の受け皿で後から逆転することがあります。"
+        }
+      ]
+    },
+    {
+      "id": "final-judgment",
+      "title": "最後は「車両価格」ではなく「止まらず維持できるか」で決める",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "輸入車の維持費で本当に痛いのは、単発の金額よりも「突然使えなくなる」ことです。レア仕様や流通の薄い車ほど、安く買えても後で高くなりやすい。逆に、メジャーな車種で整備先が決まるなら、維持費はコントロールしやすくなります。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "買う前に工場を1つ決める",
+            "定番トラブルを3つだけ把握する",
+            "保証と部品納期を確認する",
+            "突然の修理用に予備費を持つ"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,427 @@
+{
+  "slug": "kei-tax-cannot-pay-guide",
+  "title": "軽自動車税が払えないとき。分割納付、猶予、車検前の考え方を整理する。",
+  "lead": "軽自動車税を納期限までに一括で払えないときは、普通車と違って市区町村の納税担当へ戻るのが基本です。軽は軽JNKSや車検用納税証明の話も混ざりやすいので、払えない相談と車検の確認を分けて考えた方が詰まりません。分割納付や猶予をどう見るかを先に整理します。",
+  "type": "GUIDE",
+  "monetizeType": null,
+  "category": "LIFE",
+  "tags": [
+    "軽自動車税",
+    "払えない",
+    "納税相談",
+    "徴収猶予",
+    "換価の猶予",
+    "分割納付"
+  ],
+  "publishedAt": "2026-04-24",
+  "updatedAt": "2026-04-25",
+  "internalLinks": [
+    "kei-tax-late-fee-only-guide",
+    "kei-tax-collection-notice-guide",
+    "kei-tax-late-payment-guide",
+    "kei-tax-demand-letter-guide",
+    "car-tax-cannot-pay-guide",
+    "kei-tax-payment-method-guide",
+    "kei-tax-payment-reflection-guide",
+    "kei-tax-payment-slip-reissue-guide",
+    "kei-tax-notice-not-arrived-2026",
+    "kei-tax-certificate-reissue-guide",
+    "shaken-required-documents-guide",
+    "kei-tax-account-transfer-guide",
+    "kei-tax-seizure-warning-guide"
+  ],
+  "body": "",
+  "monetizeKey": null,
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "kei-tax-late-fee-only-guide",
+    "kei-tax-collection-notice-guide",
+    "kei-tax-late-payment-guide",
+    "kei-tax-demand-letter-guide",
+    "car-tax-cannot-pay-guide",
+    "kei-tax-payment-method-guide",
+    "kei-tax-payment-reflection-guide",
+    "kei-tax-payment-slip-reissue-guide",
+    "kei-tax-notice-not-arrived-2026",
+    "kei-tax-certificate-reissue-guide",
+    "shaken-required-documents-guide",
+    "kei-tax-account-transfer-guide",
+    "kei-tax-seizure-warning-guide"
+  ],
+  "relatedColumnSlugs": [
+    "sell-timing-shaken-tax-market",
+    "name-change-delay-risk",
+    "shaken-early-two-months"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "tax",
+    "paperwork",
+    "money",
+    "inspection"
+  ],
+  "seoTitle": "軽自動車税が払えないとき。分割納付、猶予、車検前の考え方。",
+  "seoDescription": "軽自動車税を一括で払えないときに、どこへ相談するか、分割納付の考え方、徴収猶予と換価の猶予、車検が近いときの見方まで整理する実務ガイドです。",
+  "summary": "軽自動車税を一括で払えないときに、市区町村への相談、徴収猶予と換価の猶予、分割納付の考え方、車検が近いときの注意点を整理する実務ガイドです。",
+  "readMinutes": 8,
+  "status": "published",
+  "id": "guide:kei-tax-cannot-pay-guide",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-paperwork",
+  "relatedClusterIds": [],
+  "primaryQuery": "軽自動車税 払えない",
+  "updateReason": "市税としての相談先、猶予制度、車検前の見方を軽自動車向けに整理した。",
+  "sources": [
+    "https://www.city.okayama.jp/kurashi/0000004042.html",
+    "https://www.city.himeji.lg.jp/kurashi/0000007903.html",
+    "https://www.city.sennan.lg.jp/kakuka/soumu/zeimuka/kazeikakari/zeikin/1455067992265.html",
+    "https://www.city.shikokuchuo.ehime.jp/soshiki/11/2117.html",
+    "https://www.city.okayama.jp/kurashi/0000045122.html",
+    "https://www.city.utsunomiya.lg.jp/kurashi/zeikin/oshirase/1036522/1036690.html",
+    "https://www.city.kyoto.lg.jp/gyozai/page/0000270746.html",
+    "https://www.keikenkyo.or.jp/inspection/continuation.html",
+    "https://www.keikenkyo.or.jp/Portals/0/files/inspection/continuation/0000057801.pdf",
+    "https://www.eltax.lta.go.jp/special/sonota-shinsei/"
+  ],
+  "heroImage": "/images/cbj/display-tags/guides/paperwork-1.jpg",
+  "thumbnail": "/images/cbj/display-tags/guides/paperwork-1.jpg",
+  "displayTag": "手続き",
+  "layoutVariant": "decision-v1",
+  "eyebrowLabel": "手続き",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "名義変更・必要書類",
+      "href": "/guide/hub-paperwork"
+    },
+    {
+      "label": "軽自動車税が払えないとき。分割納付、猶予、車検前の考え方を整理する。"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "手続き・維持費ガイド編集チーム"
+  },
+  "keyPoints": [
+    "軽自動車税は市区町村税です。払えないときの入口は、課税した自治体の納税担当になります。",
+    "市税の猶予制度では、徴収猶予や換価の猶予が案内されており、猶予期間中に分けて納める計画になることがあります。",
+    "岡山市などの案内では、猶予期間は原則1年以内で、各月の分割納付計画や、事情があれば最長2年までの延長が示されています。",
+    "軽は軽JNKSの話が混ざりやすいですが、「払えない相談」と「車検で納付確認が取れるか」は別で見た方が安全です。",
+    "納期限を過ぎてからでも相談はできますが、無言で長引かせるほど督促や差押えの話に近づきます。"
+  ],
+  "checkpoints": [
+    "課税した市区町村がどこか分かるか",
+    "まだ納期限前か、すでに納期限後か",
+    "車検予定日が近いか",
+    "納付書の有無と、手元で確認できる年度が分かるか",
+    "家計の回復見込みや、事情を説明する材料があるか"
+  ],
+  "faq": [
+    {
+      "question": "軽自動車税が払えないとき、どこへ相談すればいいですか。",
+      "answer": "軽自動車税は市区町村税なので、課税した自治体の納税課や収納課が基本の相談先です。県税事務所ではありません。"
+    },
+    {
+      "question": "軽も分割で払える可能性はありますか。",
+      "answer": "自治体ごとに運用は違いますが、市税の猶予制度や納付計画の相談対象になることがあります。自己判断で遅らせるより、先に相談した方が安全です。"
+    },
+    {
+      "question": "納期限を過ぎたあとでも相談できますか。",
+      "answer": "相談自体はできます。ただし納期限後は延滞金や督促の話が入りやすくなるので、気づいた時点で連絡した方が整理しやすいです。"
+    },
+    {
+      "question": "軽JNKSがあるなら、払えなくても車検は何とかなりますか。",
+      "answer": "そうは決めつけない方が安全です。軽JNKSは納付確認の仕組みであって、払えない相談そのものとは別です。車検日が近いなら、市税窓口と検査側の両方へ確認します。"
+    },
+    {
+      "question": "猶予が認められたら、延滞金は全部なくなりますか。",
+      "answer": "自治体案内では、全部または一部が免除される場合があるという書き方が多いです。必ず全額なくなる前提で考えない方が安全です。"
+    },
+    {
+      "question": "相談中に分割納付計画どおり払えなくなったらどうなりますか。",
+      "answer": "自治体案内では、許可決定書の計画どおりに納付がないと猶予が取り消される場合があります。苦しくなった時点で再相談した方が傷が浅く済みます。"
+    }
+  ],
+  "actionBox": {
+    "title": "今すぐやるべきこと",
+    "body": "まずは 課税した自治体、納期限前か後か、車検予定日 を先に固定してください。軽はこの3点で相談先と優先順位がかなり変わります。",
+    "actions": [
+      {
+        "label": "すでに納期限を過ぎている人は、払い忘れ後の実務と延滞の見方を先に確認する。",
+        "href": "/guide/kei-tax-late-payment-guide"
+      },
+      {
+        "label": "車検が近い人は、軽JNKSの反映と紙が要る場面を先に整理する。",
+        "href": "/guide/kei-tax-payment-reflection-guide"
+      }
+    ]
+  },
+  "detailSections": [
+    {
+      "id": "conclusion",
+      "title": "先に結論｜軽は「市税の相談」と「車検の確認」を分ける",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車税が払えないときは、普通車の感覚で県税窓口を探すと遠回りになります。軽自動車税は市区町村税なので、最初の入口は課税した自治体の収納課や納税課です。しかも軽は軽JNKSや車検用納税証明の話が混ざりやすいので、払えない相談と、検査日までに納付確認が取れるかの話をいったん分けた方が整理しやすいです。"
+        },
+        {
+          "type": "decisionCards",
+          "cards": [
+            {
+              "badge": "納期限前",
+              "title": "まだ納期限前の人",
+              "body": "払えないと分かった時点で自治体の納税担当へ相談した方が選択肢を残しやすいです。",
+              "items": [
+                "課税した自治体を確認する",
+                "納付書を手元に置く",
+                "いつから払えるかを考えておく"
+              ]
+            },
+            {
+              "badge": "納期限後",
+              "title": "すでに納期限を過ぎた人",
+              "body": "延滞金や督促の話も入りやすくなるので、放置ではなく相談へ切り替えます。",
+              "items": [
+                "今の納付書が使えるか確認する",
+                "再発行の要否を聞く",
+                "相談窓口を固定する"
+              ]
+            },
+            {
+              "badge": "車検直前",
+              "title": "車検が近い人",
+              "body": "軽JNKSがあるぶん、払えない相談と納付確認を混ぜない方が安全です。",
+              "items": [
+                "車検日を先に固定する",
+                "紙証明の要否を確認する",
+                "反映までの日数も見る"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "最初に分けるだけで迷いにくくなる",
+          "body": "軽でいちばん混ざりやすいのは、納付相談、納付書再発行、車検確認の3つです。まずは「今ほしいのは何か」を切ると話が早くなります。"
+        }
+      ]
+    },
+    {
+      "id": "office",
+      "title": "相談先｜軽は市区町村の納税担当。納期限は納付書記載で見る",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車税は市税なので、相談先は自治体ごとに違います。納税課、収納課、納税案内センター、区役所税務課など、入口の名前もばらばらです。多くの自治体では軽自動車税の納期限を5月末で案内していますが、まずは手元の納付書に書かれた納期限を優先して見た方が安全です。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "今の状態",
+            "まず聞く先",
+            "そこで確認すること"
+          ],
+          "rows": [
+            [
+              "納期限前",
+              "市区町村の納税担当",
+              "相談窓口、必要書類、猶予申請の入口"
+            ],
+            [
+              "納期限後",
+              "市区町村の納税担当",
+              "今の納付書が使えるか、延滞金、再発行の要否"
+            ],
+            [
+              "車検が近い",
+              "市区町村と検査側",
+              "軽JNKS反映、紙証明、検査日までの見通し"
+            ]
+          ]
+        },
+        {
+          "type": "flow",
+          "steps": [
+            {
+              "title": "課税した自治体を確認する",
+              "body": "住所地ではなく、課税元の自治体を固定します。"
+            },
+            {
+              "title": "納期限と年度を確認する",
+              "body": "今年度分か過年度分かで窓口の案内が変わることがあります。"
+            },
+            {
+              "title": "事情と支払い見通しを伝える",
+              "body": "いつから払えるか、車検が近いかまで一緒に伝えた方が早いです。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "grace",
+      "title": "猶予制度｜軽も市税として「徴収猶予」と「換価の猶予」がある",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "市税の案内でも、災害、病気、事業の休廃止、生活維持が難しくなる事情などがあるときは、徴収猶予や換価の猶予を申請できると整理されています。岡山市の案内では、猶予期間は原則1年以内、猶予期間中の各月に分割して納付するのが原則で、やむを得ない理由があれば最長2年まで延長できる場合があるとされています。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "制度",
+            "主な使いどころ",
+            "認められると",
+            "見方"
+          ],
+          "rows": [
+            [
+              "徴収猶予",
+              "災害、病気、休廃業などで一時に納められない",
+              "納付時期を遅らせられる場合がある",
+              "必要書類や事情説明が要ることがある"
+            ],
+            [
+              "換価の猶予",
+              "一括納付で生活維持が厳しい",
+              "差押え財産の売却などが猶予される場合がある",
+              "未納が消える制度ではない"
+            ],
+            [
+              "分割納付計画",
+              "猶予期間中に完納を目指す",
+              "毎月の支払い計画になることがある",
+              "計画どおり払えないと取消の対象になる場合がある"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "市税側で見落としやすい点",
+          "items": [
+            "猶予期間は原則1年以内とする自治体が多い",
+            "100万円を超える場合は追加書類や担保の話が出ることがある",
+            "計画どおり納付がないと猶予が取り消される場合がある"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inspection",
+      "title": "車検に近いとき｜軽JNKSがあっても「相談中」と「納付確認」は別",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽は軽JNKSがあるので、つい「相談さえ進めば車検もそのまま通る」と思いがちですが、ここは別で見た方が安全です。軽JNKSは継続検査での納付確認の仕組みで、払えない事情の相談窓口ではありません。車検日が近い人は、市税窓口で今の納付状況をどう扱うかを確認しつつ、検査側にも必要な書類や確認方法を聞いた方が詰まりません。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "払えない相談と車検の準備は同時に動くことがある",
+            "軽JNKSの確認は納付済み情報の話として分けて考える",
+            "検査日が近いほど紙証明の要否を先に確認する",
+            "「相談中だから大丈夫」と自己判断しない"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "車検直前の人へ",
+          "body": "納期限後の軽は、納付書再発行や反映待ちまで重なることがあります。払えない相談だけで終わらせず、検査日までの動きも一緒に決めた方が安全です。"
+        }
+      ]
+    },
+    {
+      "id": "risk",
+      "title": "放置のリスク｜督促が来てからでは説明が増える",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車税が払えないときに避けたいのは、相談せずに待ち続けることです。納期限後は延滞金や督促の話に入り、車検が近い車では納付確認の説明まで増えます。自治体ごとの運用差もあるので、あとで一気に片づけようとすると余計に時間がかかります。"
+        },
+        {
+          "type": "caseStudy",
+          "cases": [
+            {
+              "title": "ケース1｜今月だけ厳しい",
+              "intro": "資金不足は一時的だが、納期限の一括だけ難しい人です。",
+              "rows": [
+                {
+                  "label": "まずやること",
+                  "value": "自治体の納税担当へ相談し、入口と必要書類を確認する"
+                },
+                {
+                  "label": "見落としやすい点",
+                  "value": "気まずさから待つほど、延滞や再発行の話が増えやすい"
+                }
+              ]
+            },
+            {
+              "title": "ケース2｜しばらく家計が厳しい",
+              "intro": "失業や病気で、短期の完納も見通しづらい人です。",
+              "rows": [
+                {
+                  "label": "まずやること",
+                  "value": "収支と事情を整理し、猶予制度の対象になりそうかを相談する"
+                },
+                {
+                  "label": "見落としやすい点",
+                  "value": "分割納付計画どおりに払えなくなる可能性まで見ておく"
+                }
+              ]
+            },
+            {
+              "title": "ケース3｜車検が近い",
+              "intro": "相談だけでなく、継続検査までに何を整えるかが大事な人です。",
+              "rows": [
+                {
+                  "label": "まずやること",
+                  "value": "自治体と検査側の両方へ確認し、必要なら日程も見直す"
+                },
+                {
+                  "label": "見落としやすい点",
+                  "value": "軽JNKSの話だけで安心してしまうこと"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "title": "最後に整理｜軽は「どの自治体か」を固定すると動きやすい",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車税で迷ったら、まず市区町村税であることに戻ってください。払えない事情があるときは、課税した自治体、納期限前か後か、車検日が近いか。この3点を固定すると、相談だけで足りるのか、再発行や反映確認も同時に要るのかが見えます。軽は自治体差があるぶん、最初の整理が効きます。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "軽は市区町村税なので、課税元の自治体へ戻る",
+            "納期限前か後かで相談の重さが変わる",
+            "車検が近いなら軽JNKSや紙証明も別で確認する",
+            "計画どおり払えないときは再相談する",
+            "放置せず、まず相談へ切り替える"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "slug": "kei-tax-certificate-reissue-guide",
+  "createdAt": "2026-04-17",
+  "competitorCount": 30,
+  "queries": [
+    "軽自動車税 納税証明書 再発行",
+    "軽JNKS 納税証明書 紛失",
+    "軽自動車税 車検 納税証明書 再交付"
+  ],
+  "competitors": [
+    {
+      "url": "https://hiyama-cars.hatenadiary.jp/entry/20260329/1774739671"
+    },
+    {
+      "url": "https://www.nextage.jp/syaken_guide/document/377514/"
+    },
+    {
+      "url": "https://www.takakuureru.com/magazine/17840"
+    },
+    {
+      "url": "https://www.mitsui-direct.co.jp/car/guide/mycar_guide/new/lightcar-tax/"
+    },
+    {
+      "url": "https://www.sompo-direct.co.jp/otona/oshiete/car/car-inspection-tax-payment-certificate.html"
+    },
+    {
+      "url": "https://www.city.funabashi.lg.jp/kurashi/zei/001/04/p076782.html"
+    },
+    {
+      "url": "https://www.city.hachioji.tokyo.jp/kurashi/zeikin/002/004/p012240.html"
+    },
+    {
+      "url": "https://www.city.kato.lg.jp/kakukanogoannai/soumuzaiseibu/zeimuka/juminzeikakari/kei/16338.html"
+    },
+    {
+      "url": "https://www.town.haebaru.lg.jp/soshiki/6/2925.html"
+    },
+    {
+      "url": "https://www.city.uto.lg.jp/article/view/1003/15210.html"
+    },
+    {
+      "url": "https://www.town.itakura.gunma.jp/cont/s007000/d007010/20260106090325.html"
+    },
+    {
+      "url": "https://www.city.asahi.lg.jp/soshiki/6/27155.html"
+    },
+    {
+      "url": "https://www.city.hadano.kanagawa.jp/soshiki/2/1011/3/1613.html"
+    },
+    {
+      "url": "https://www.city.kikuchi.lg.jp/article/view/1032/16822.html"
+    },
+    {
+      "url": "https://www.city.motomiya.lg.jp/soshiki/45/keiji-nouzeisyomei.html"
+    },
+    {
+      "url": "https://www.city.tsukuba.lg.jp/soshikikarasagasu/zaimubunozeika/gyomuannai/2/1/27143.html"
+    },
+    {
+      "url": "https://www.city.kita.lg.jp/living/tax/1001956/1001957.html"
+    },
+    {
+      "url": "https://www.city.machida.tokyo.jp/kurashi/tax/shizeinofu/nofu/qr.html"
+    },
+    {
+      "url": "https://www.city.funabashi.lg.jp/kurashi/zei/001/02/p114007.html"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/zeikin/nouzei-soudan/nouzei-houhou/kotei-nouhu/smartphone/smartphoneeL-QR.html"
+    },
+    {
+      "url": "https://www.haisya110.com/blog/2026/03/01/1011"
+    },
+    {
+      "url": "https://www.wecars.co.jp/column/inspection/knowhow/013.html"
+    },
+    {
+      "url": "https://www.insweb.co.jp/car/kisochishiki/kiso/jidoushazei-haraiwasure.html"
+    },
+    {
+      "url": "https://www.carcon.co.jp/column/article/201909112/"
+    },
+    {
+      "url": "https://carnext.jp/magazine/article/forgot_car_tax/"
+    },
+    {
+      "url": "https://www.goo-net.com/kaitori/kaitori-satei/kuruma-gimon/1482/"
+    },
+    {
+      "url": "https://www.sbisonpo.co.jp/car/column/column142.html"
+    },
+    {
+      "url": "https://yoyaku.eneos-mobilineer.com/4876/"
+    },
+    {
+      "url": "https://www.sonysonpo.co.jp/auto/guide/agde307.html"
+    },
+    {
+      "url": "https://www.town.shirahama.wakayama.jp/soshiki/zeimu/kazei/gyomu/keijidousha/3467.html"
+    }
+  ],
+  "commonTakeaways": [
+    "軽JNKSの原則不要だけを強調し、紙が必要になる例外や発行先の自治体差まで掘らない記事が多い。",
+    "普通車と軽を一括説明し、市区町村税であることや使用の本拠の位置の違いが薄い記事が多い。",
+    "キャッシュレス納付直後や督促状で払った場合の扱いが弱い。"
+  ],
+  "gapsFound": [
+    "軽JNKSで足りる場面と、再交付が必要な場面を最初に分ける記事が少ない。",
+    "使用の本拠の位置と発行自治体の関係、車検用と車検以外用の差を一緒に整理した記事が少ない。"
+  ],
+  "changesApplied": [
+    "軽だけに絞り、軽JNKSの例外を起点に構成した。",
+    "市区町村窓口と使用の本拠の位置を軸に再交付の考え方を整理した。",
+    "既存の軽税記事、車検記事との内部リンクを追加した。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}

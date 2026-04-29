@@ -1,0 +1,123 @@
+{
+  "slug": "kei-tax-stop-guide",
+  "createdAt": "2026-04-19",
+  "competitorCount": 30,
+  "queries": [
+    "軽自動車税 税止め",
+    "軽自動車税 県外 名義変更 旧市区町村 納付書",
+    "軽自動車 税止め 代行 4月1日"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.keikenkyo.or.jp/information/knowledge/taxes_qa.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/scrapped/return.html"
+    },
+    {
+      "url": "https://www.city.himeji.lg.jp/kurashi/0000028871.html"
+    },
+    {
+      "url": "https://www.city.sosa.lg.jp/page/page005486.html"
+    },
+    {
+      "url": "https://www.city.misato.lg.jp/soshiki/zaimu/shiminzei/3/12706.html"
+    },
+    {
+      "url": "https://www.city.sanuki.lg.jp/soshiki/zeimu/gyomu/1/2/501.html"
+    },
+    {
+      "url": "https://www.city.akashi.lg.jp/zaimu/zeisei_ka/kurashi/zekin/kejidosha/ke.html"
+    },
+    {
+      "url": "https://www.city.suwa.lg.jp/soshiki/4/78536.html"
+    },
+    {
+      "url": "https://www.city.hashima.lg.jp/1269.html"
+    },
+    {
+      "url": "https://www.city.yachiyo.lg.jp/soshiki/20/76910.html"
+    },
+    {
+      "url": "https://www.city.komatsushima.lg.jp/docs/722568.html"
+    },
+    {
+      "url": "https://www.city.funabashi.lg.jp/faq/kurashi/zei/004/p043595.html"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/zeikin/nouzei-soudan/nouzei-houhou/kotei-nouhu/smartphone/smartphoneeL-QR.html"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000649247.html"
+    },
+    {
+      "url": "https://www.city.kobe.lg.jp/a35943/kurashi/todokede/zeikin/jidousya/kei-shubetsuwari.html"
+    },
+    {
+      "url": "https://www.city.tamano.lg.jp/soshiki/5/2363.html"
+    },
+    {
+      "url": "https://www.city.kurashiki.okayama.jp/19425.htm"
+    },
+    {
+      "url": "https://www.city.kyoto.lg.jp/gyozai/page/0000299189.html"
+    },
+    {
+      "url": "https://www.city.tama.lg.jp/kurashi/1001741/1001757/1001760/1001765.html"
+    },
+    {
+      "url": "https://www.city.suzuka.lg.jp/life/benri/15376.html"
+    },
+    {
+      "url": "https://www.city.sumida.lg.jp/kurashi/zeikin/keijidoushazei/keijidoushazei_nouzei.html"
+    },
+    {
+      "url": "https://www.city.yoshinogawa.lg.jp/docs/2010100600213/"
+    },
+    {
+      "url": "https://www.city.saga.lg.jp/main/77615.html"
+    },
+    {
+      "url": "https://www.city.kawagoe.saitama.jp/kurashi/zeikin/keijidoshazei/keijidosha_zeidome.html"
+    },
+    {
+      "url": "https://www.city.hiratsuka.kanagawa.jp/zeimu/page-c_02006.html"
+    },
+    {
+      "url": "https://www.city.kashiwa.lg.jp/zeimu/kurashi/zekin/keijidoshazei/keijidosha-zeidome.html"
+    },
+    {
+      "url": "https://www.city.niihama.lg.jp/soshiki/shiminzei/zeidome.html"
+    },
+    {
+      "url": "https://www.city.minoh.lg.jp/siminzei/keijidosha-zeidome.html"
+    },
+    {
+      "url": "https://www.city.higashiosaka.lg.jp/0000030000.html"
+    },
+    {
+      "url": "https://www.city.takarazuka.hyogo.jp/kurashi/zei/1025595/1045818.html"
+    }
+  ],
+  "commonTakeaways": [
+    "市区町村の案内は税止めの必要性や提出書類を説明するが、代行申告があるときの不要条件と4月1日基準を同時に整理したページは少ない。",
+    "軽自動車検査協会の案内は届いてしまう理由を説明するが、旧自治体へどう確認するかまでは自治体ページに分散している。",
+    "県内変更は不要とする自治体がある一方、県外変更では自己申告が必要になりやすい差が、横断整理されていない。"
+  ],
+  "gapsFound": [
+    "旧自治体と新自治体の二重通知を「税止め不足」と「4月1日基準」に分けて説明するページが少ない。",
+    "代行申告を頼んだ場合に自分で重ねて申告すべきかの整理が弱い。",
+    "旧自治体へ出す書類の典型例を横断的にまとめたページが少ない。"
+  ],
+  "changesApplied": [
+    "県外変更か、代行申告の有無か、4月1日までに完了したかの3軸で軽の税止めを整理した。",
+    "自己申告が必要になりやすい場面と、不要になりやすい場面を表で切り分けた。",
+    "旧市区町村から通知が来たときの見方を、税止め不足と当年度分課税に分けて書いた。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}

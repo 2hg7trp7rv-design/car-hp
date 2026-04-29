@@ -1,0 +1,122 @@
+{
+  "slug": "car-tax-certificate-reissue-guide",
+  "createdAt": "2026-04-17",
+  "competitorCount": 30,
+  "queries": [
+    "自動車税 納税証明書 再発行",
+    "車検 納税証明書 紛失 普通車",
+    "自動車税 納税証明書 県税事務所 郵送"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.nextage.jp/buy_guide/info/257547/"
+    },
+    {
+      "url": "https://www.takakuureru.com/magazine/17840"
+    },
+    {
+      "url": "https://www.takakuureru.com/magazine/20167"
+    },
+    {
+      "url": "https://www.haishaou.com/blog/tax/reissue-tax-certificate/"
+    },
+    {
+      "url": "https://d-plus.com/dplus-magazine/vehicle-tax-payment-certificate/"
+    },
+    {
+      "url": "https://www.sonysonpo.co.jp/auto/guide/agde307.html"
+    },
+    {
+      "url": "https://www.sompo-direct.co.jp/otona/oshiete/car/car-inspection-tax-payment-certificate.html"
+    },
+    {
+      "url": "https://www.zurich.co.jp/car/useful/guide/cc-car-tax-nonpayment/"
+    },
+    {
+      "url": "https://www.sbisonpo.co.jp/car/column/column142.html"
+    },
+    {
+      "url": "https://www.wecars.co.jp/column/inspection/knowhow/013.html"
+    },
+    {
+      "url": "https://www.pref.aichi.jp/soshiki/zeimu/0000067578.html"
+    },
+    {
+      "url": "https://www.pref.aichi.jp/soshiki/zeimu/0000067677.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/176.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/200.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/aramashi/jnks.html"
+    },
+    {
+      "url": "https://www.pref.saitama.lg.jp/a0209/z-kurashiindex/z-nouzeisyoumei-b.html"
+    },
+    {
+      "url": "https://www.pref.shizuoka.jp/kurashikankyo/zei/nouzei/1011801.html"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a004/001.html"
+    },
+    {
+      "url": "https://www.pref.okinawa.jp/kurashikankyo/zeikin/1003710/1003711.html"
+    },
+    {
+      "url": "https://www.pref.miyagi.jp/soshiki/zeimu/download-syoumei.html"
+    },
+    {
+      "url": "https://www.pref.gifu.lg.jp/page/14263.html"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/30415.htm"
+    },
+    {
+      "url": "https://web.pref.hyogo.lg.jp/kk22/shoumeiyuusou.html"
+    },
+    {
+      "url": "https://www.pref.ishikawa.lg.jp/zei/tetsuzuki/nouzei/kenzeinouzei.html"
+    },
+    {
+      "url": "https://www.pref.mie.lg.jp/ZEIMU/HP/89078000001_000010002.htm"
+    },
+    {
+      "url": "https://www.carcon.co.jp/column/article/201909112/"
+    },
+    {
+      "url": "https://carnext.jp/magazine/article/forgot_car_tax/"
+    },
+    {
+      "url": "https://www.insweb.co.jp/car/kisochishiki/kiso/jidoushazei-haraiwasure.html"
+    },
+    {
+      "url": "https://www.goo-net.com/kaitori/kaitori-satei/kuruma-gimon/1482/"
+    },
+    {
+      "url": "https://kinto-jp.com/magazine/k20230411-1/"
+    }
+  ],
+  "commonTakeaways": [
+    "紛失時の再発行窓口だけを説明し、車検用と一般用の違いまで分けない記事が多い。",
+    "普通車と軽を同じ説明でまとめ、県税窓口と市区町村窓口の違いが弱い記事が多い。",
+    "納付直後の反映待ちや、業者依頼時に紙を求められる実務の整理が薄い。"
+  ],
+  "gapsFound": [
+    "車検用と一般用の分岐を最初に置き、売却や所有権解除まで含めて整理した記事が少ない。",
+    "eL-QRやスマホ決済後の確認待ちと、郵送請求で必要になる書類を同時に整理した記事が少ない。"
+  ],
+  "changesApplied": [
+    "普通車だけに絞り、県税事務所と自動車税事務所の使い分けを軸にした。",
+    "車検用と一般用の違いを先に切り分けた。",
+    "既存の税クラスタ、車検クラスタとの内部リンクを追加した。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}
