@@ -1,0 +1,84 @@
+import { GlassCard } from "@/components/GlassCard";
+import { cn } from "@/lib/utils";
+
+export type FaqItem = {
+  q: string;
+  a: string;
+};
+
+export type FaqListProps = {
+  title: string;
+  description?: string;
+  items: FaqItem[];
+  theme?: "light" | "dark";
+  className?: string;
+};
+
+export function FaqList(props: FaqListProps) {
+  const { title, description, items, theme = "light", className } = props;
+  const isDark = theme === "dark";
+
+  const headText = isDark ? "text-[var(--text-primary)]" : "text-[var(--text-primary)]";
+  const subText = isDark ? "text-[var(--text-tertiary)]" : "text-[var(--text-secondary)]";
+  const mutedText = isDark ? "text-[var(--text-tertiary)]" : "text-[var(--text-secondary)]";
+  const border = isDark ? "border-white/10" : "border-[rgba(14,12,10,0.12)]";
+
+  return (
+    <GlassCard
+      padding="none"
+      magnetic={false}
+      className={cn(
+        "overflow-hidden",
+        "rounded-[20px]",
+        "border",
+        border,
+        isDark ? "bg-[var(--surface-1)]" : "bg-[rgba(228,219,207,0.42)]",
+        className,
+      )}
+    >
+      <div className="p-6">
+        <h3 className={cn("cb-sans-heading text-lg", headText)}>{title}</h3>
+        {description ? (
+          <p className={cn("mt-2 text-[12px] leading-relaxed", mutedText)}>{description}</p>
+        ) : null}
+
+        <div className="mt-4 space-y-3">
+          {items.map((item, idx) => (
+            <details
+              key={`${item.q}-${idx}`}
+              className={cn(
+                "rounded-[20px]",
+                "border",
+                isDark ? "border-[var(--border-default)] bg-transparent" : "border-[var(--border-default)] bg-transparent",
+                "px-4 py-3",
+              )}
+            >
+              <summary
+                className={cn(
+                  "cursor-pointer list-none",
+                  "select-none",
+                  "flex items-start justify-between gap-3",
+                  headText,
+                  "text-[13px] font-semibold",
+                )}
+              >
+                <span className="leading-relaxed">{item.q}</span>
+                <span className={cn("mt-0.5 text-[11px] font-normal", mutedText)}>
+                  開く
+                </span>
+              </summary>
+
+              <div className={cn("mt-3 text-[12px] leading-relaxed", subText)}>
+                {item.a.split("\n").map((line, i) => (
+                  <p key={i} className={cn(i > 0 ? "mt-2" : "")}>{line}</p>
+                ))}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </GlassCard>
+  );
+}
+
+export default FaqList;

@@ -1,0 +1,29 @@
+WAVE 13 — SECURITY HEADERS / CSP (Report-Only)
+
+Goal
+- Raise baseline technical quality (Awwwards-ready) without breaking UX.
+- Add hardened HTTP response headers + CSP in Report-Only mode first.
+
+Changes
+- next.config.mjs
+  - Add security headers for all routes:
+    - HSTS (prod only)
+    - X-Frame-Options: DENY
+    - X-Content-Type-Options: nosniff
+    - Referrer-Policy: strict-origin-when-cross-origin
+    - Permissions-Policy (deny-by-default)
+    - Cross-Origin-Opener-Policy: same-origin-allow-popups
+    - Cross-Origin-Resource-Policy: same-site
+    - X-XSS-Protection: 0
+    - X-DNS-Prefetch-Control: on
+    - X-Permitted-Cross-Domain-Policies: none
+    - CSP: Report-Only by default (switchable with CSP_ENFORCE=1)
+  - Keep existing cache + content-type headers for robots/sitemaps.
+
+- app/api/csp-report/route.ts
+  - Add CSP report endpoint (report-uri).
+  - Returns 204; stores nothing (safe default).
+
+Notes
+- CSP is Report-Only by default to avoid breaking Next.js runtime (inline scripts/styles may exist).
+- When ready, set Vercel env CSP_ENFORCE=1 to switch to enforcing header.

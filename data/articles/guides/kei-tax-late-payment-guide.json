@@ -1,0 +1,478 @@
+{
+  "slug": "kei-tax-late-payment-guide",
+  "title": "軽自動車税を払い忘れたとき。納期限後の払い方、延滞金、車検への影響を順に整理する。",
+  "lead": "軽自動車税の払い忘れでややこしいのは、普通車と同じ感覚で調べてしまうことです。軽は市区町村課税で、4月1日基準、月割なし、車検では軽JNKSの反映待ちも絡みます。納期限後に何を確認し、どこで払うかを順に整理します。",
+  "type": "GUIDE",
+  "monetizeType": null,
+  "category": "LIFE",
+  "tags": [
+    "軽自動車税",
+    "払い忘れ",
+    "納期限後",
+    "軽JNKS",
+    "納税証明書",
+    "延滞金"
+  ],
+  "publishedAt": "2026-04-17",
+  "updatedAt": "2026-04-25",
+  "internalLinks": [
+    "car-tax-late-fee-only-guide",
+    "kei-tax-late-fee-only-guide",
+    "kei-tax-payment-slip-reissue-guide",
+    "kei-tax-demand-letter-guide",
+    "kei-tax-notice-not-arrived-2026",
+    "car-tax-late-payment-guide",
+    "car-tax-notice-not-arrived-2026",
+    "jyuusho-henkou-shaken-shou",
+    "meigi-henko-hitsuyou-shorui-kei",
+    "shaken-required-documents-guide",
+    "kei-tax-payment-method-guide",
+    "car-tax-payment-method-guide",
+    "kei-tax-certificate-reissue-guide",
+    "car-tax-certificate-reissue-guide",
+    "kei-tax-account-transfer-guide",
+    "kei-tax-address-change-guide",
+    "kei-tax-payment-reflection-guide",
+    "kei-tax-cannot-pay-guide",
+    "kei-tax-seizure-warning-guide"
+  ],
+  "body": "",
+  "monetizeKey": null,
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "car-tax-late-fee-only-guide",
+    "kei-tax-late-fee-only-guide",
+    "kei-tax-payment-slip-reissue-guide",
+    "kei-tax-demand-letter-guide",
+    "kei-tax-notice-not-arrived-2026",
+    "car-tax-late-payment-guide",
+    "car-tax-notice-not-arrived-2026",
+    "jyuusho-henkou-shaken-shou",
+    "meigi-henko-hitsuyou-shorui-kei",
+    "shaken-required-documents-guide",
+    "kei-tax-payment-method-guide",
+    "car-tax-payment-method-guide",
+    "kei-tax-certificate-reissue-guide",
+    "car-tax-certificate-reissue-guide",
+    "kei-tax-account-transfer-guide",
+    "kei-tax-address-change-guide",
+    "kei-tax-payment-reflection-guide",
+    "kei-tax-cannot-pay-guide",
+    "kei-tax-seizure-warning-guide"
+  ],
+  "relatedColumnSlugs": [
+    "shaken-early-two-months",
+    "name-change-delay-risk",
+    "sell-timing-shaken-tax-market"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "tax",
+    "paperwork",
+    "money",
+    "inspection"
+  ],
+  "seoTitle": "軽自動車税を払い忘れたとき。納期限後の払い方、延滞金、車検への影響。",
+  "seoDescription": "軽自動車税を払い忘れたときに、納期限後でも今の納付書で払えるか、コンビニやスマホ決済は使えるか、延滞金、軽JNKSと車検用納税証明の注意点まで整理する実務ガイドです。",
+  "summary": "軽自動車税を払い忘れたときに、納期限後の払い方、延滞金、軽JNKS、車検用納税証明の注意点を整理する実務ガイドです。",
+  "readMinutes": 8,
+  "status": "published",
+  "id": "guide:kei-tax-late-payment-guide",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-paperwork",
+  "relatedClusterIds": [],
+  "primaryQuery": "軽自動車税 払い忘れ",
+  "updateReason": "2026年度の納期限目安と、納期限後の支払い方、軽JNKSと車検用納税証明の注意をまとめた。",
+  "sources": [
+    "https://www.city.utsunomiya.lg.jp/kurashi/zeikin/oshirase/1036522/1036690.html",
+    "https://www.city.utsunomiya.lg.jp/kurashi/zeikin/keijidoushazei/1003647.html",
+    "https://www.city.hitachinaka.lg.jp/kurashi/zeikin/1004319/1004322.html",
+    "https://www.city.hitachinaka.lg.jp/kurashi/zeikin/1004416/1004419.html",
+    "https://www.city.takamatsu.kagawa.jp/smph/kurashi/kurashi/tax/shoumei/shoumei/syoumeishinnsei/nouzei_kjnks.html",
+    "https://www.city.takamatsu.kagawa.jp/smph/kurashi/kurashi/tax/shoumei/shoumei/syoumeishinnsei/shoumeishinnsei.html",
+    "https://www.city.kyoto.lg.jp/gyozai/page/0000001729.html",
+    "https://www.city.kyoto.lg.jp/gyozai/page/0000270746.html",
+    "https://www.city.kyoto.lg.jp/gyozai/page/0000108883.html"
+  ],
+  "heroImage": "/images/cbj/display-tags/guides/paperwork-2.jpg",
+  "thumbnail": "/images/cbj/display-tags/guides/paperwork-2.jpg",
+  "displayTag": "手続き",
+  "layoutVariant": "decision-v1",
+  "eyebrowLabel": "手続き",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "名義変更・必要書類",
+      "href": "/guide/hub-paperwork"
+    },
+    {
+      "label": "軽自動車税を払い忘れたとき。納期限後の払い方、延滞金、車検への影響を順に整理する。"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "手続き・維持費ガイド編集チーム"
+  },
+  "keyPoints": [
+    "軽自動車税は市区町村課税です。納期限後の問い合わせ先も普通車の県税窓口ではなく、課税している自治体側になります。",
+    "4月1日時点で所有していれば、その年度分は年額課税です。4月2日以降に廃車や名義変更をしても、当年度分が軽くなるわけではありません。",
+    "納期限後は、金融機関や収税窓口では払えても、コンビニやスマホ決済は使えなくなる自治体があります。今の納付書の利用条件を先に見ます。",
+    "車検では軽JNKSで納税確認が電子化されていますが、納付直後、未納あり、中古車購入直後、名義変更直後、引っ越し直後は紙の納税証明書が要ることがあります。",
+    "払えない事情があるなら、督促を待つより税担当へ早めに相談した方が安全です。"
+  ],
+  "checkpoints": [
+    "課税している市区町村はどこか",
+    "手元の納付書が残っているか",
+    "コンビニやスマホ決済の期限が切れていないか",
+    "車検予定日が近いか、名義変更や引っ越しをした直後か",
+    "過年度分の未納が残っていないか"
+  ],
+  "faq": [
+    {
+      "question": "軽自動車税も、納期限を少し過ぎただけならコンビニで払えますか。",
+      "answer": "自治体差はありますが、納期限後はコンビニやスマホ決済が使えず、金融機関や収税窓口での納付へ切り替わる案内があります。まず納付書の取扱条件を確認します。"
+    },
+    {
+      "question": "軽は4月に廃車したので、今年の分は払わなくていいですか。",
+      "answer": "軽自動車税は4月1日基準の年額課税で、月割還付がありません。4月2日以降の廃車や名義変更でも、その年度分は残ります。"
+    },
+    {
+      "question": "納付したのに車検で止まりました。なぜですか。",
+      "answer": "軽JNKSで原則は電子確認できますが、納付後すぐ、未納がある車、中古車購入直後、名義変更直後、引っ越し直後などは紙の納税証明書が必要になることがあります。"
+    },
+    {
+      "question": "納付書をなくした場合も、すぐ再発行できますか。",
+      "answer": "自治体の税担当へ相談すれば、再発行案内につながる例があります。納期限後はコンビニやスマホ決済の再利用条件が変わることがあるので、再発行後の支払い場所も合わせて確認した方が安全です。"
+    },
+    {
+      "question": "スマホ決済で払えば早いですか。",
+      "answer": "車検が近いなら一概に早いとは言えません。スマホ決済は領収証書が出ず、納税証明書の発行反映まで日数がかかる案内があります。"
+    },
+    {
+      "question": "前の年の未納があると、今回だけ払えば車検に通りますか。",
+      "answer": "そこは危険です。未納が残っていると、今回分だけ払っても車検用の納税確認で詰まることがあります。過年度分まで整理して確認する必要があります。"
+    }
+  ],
+  "actionBox": {
+    "title": "今すぐやるべきこと",
+    "body": "まずは 課税自治体、納付書の有無、車検予定日、未納の有無 を並べてください。軽はこの4点で対処がかなり変わります。",
+    "actions": [
+      {
+        "label": "軽自動車税の納付書が来ないとき。4月1日基準、住所変更、車検用納税証明の注意点を整理する。",
+        "href": "/guide/kei-tax-notice-not-arrived-2026"
+      },
+      {
+        "label": "住所変更のあと、車で済ませる手続き。車検証・ナンバー・保険の順番。",
+        "href": "/guide/jyuusho-henkou-shaken-shou"
+      }
+    ]
+  },
+  "detailSections": [
+    {
+      "title": "先に結論｜軽は『課税自治体』『納付書』『車検』を先に分ける",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車税を払い忘れたときは、普通車の自動車税と同じ感覚で動かない方が安全です。軽は市区町村課税で、納期限後の支払い場所も、車検での納税確認も自治体運用が絡みます。最初に見るのは、どの自治体が課税しているか、納付書が手元にあるか、車検が近いかの3点です。"
+        },
+        {
+          "type": "decisionCards",
+          "cards": [
+            {
+              "badge": "まず利用条件を確認",
+              "title": "納付書が手元にある人",
+              "body": "金融機関や収税窓口でそのまま払える場合がありますが、コンビニやスマホ決済は期限切れになることがあります。",
+              "items": [
+                "納付書の指定期限を確認する",
+                "支払い場所を選び直す",
+                "車検が近いかも併せて見る"
+              ]
+            },
+            {
+              "badge": "再発行へ",
+              "title": "納付書がない人",
+              "body": "旧住所送付や紛失の可能性があるので、自治体の税担当へ連絡し、再発行と送付先の確認を進めます。",
+              "items": [
+                "税担当へ連絡する",
+                "旧住所のままか確認する",
+                "再発行後の納付方法を聞く"
+              ]
+            },
+            {
+              "badge": "証明書を意識",
+              "title": "車検が近い人",
+              "body": "軽JNKSがあっても、納付直後や登録変更直後は紙の納税証明書が必要になることがあります。",
+              "items": [
+                "車検予定日を確認する",
+                "紙の証明が要る場面を確認する",
+                "納付方法を確実さ優先で選ぶ"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "軽で先に外したい勘違い",
+          "body": "軽は県税ではありません。まず『どこの市区町村税か』を見ないと、問い合わせ先からずれます。"
+        }
+      ]
+    },
+    {
+      "title": "4月1日基準と年額課税｜期限後に調べる前に押さえる前提",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車税は毎年4月1日現在の所有者等に年額で課税されます。4月2日以降に廃車や名義変更をしたとしても、当年度分が月割で軽くなるわけではありません。払い忘れの相談でも、この前提を見落としていると『もう手放したから払わなくていいはず』と誤解しやすいです。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "確認項目",
+            "軽自動車税での見方",
+            "詰まりやすい点"
+          ],
+          "rows": [
+            [
+              "課税基準日",
+              "毎年4月1日",
+              "4月2日以降の変更では当年度分は動かない"
+            ],
+            [
+              "年度途中の扱い",
+              "年額課税",
+              "普通車の月割還付と混同しやすい"
+            ],
+            [
+              "課税主体",
+              "市区町村",
+              "普通車と窓口が違う"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "ここを混ぜない",
+          "body": "普通車の自動車税と軽自動車税は、窓口も月割の考え方も別です。払い忘れ対応も同じには見ない方が早いです。"
+        }
+      ]
+    },
+    {
+      "title": "納期限後はどこで払うか｜金融機関は可でも、コンビニとスマホは止まることがある",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "納期限を過ぎた後の支払いで注意したいのは、納付場所が一段減ることです。自治体のQ&Aでは、金融機関や収税窓口なら期限後でも納付できる一方で、コンビニやスマホ決済は納期限後に使えないと案内する例があります。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "支払い方",
+            "納期限後の使いやすさ",
+            "見ておく点"
+          ],
+          "rows": [
+            [
+              "金融機関・収税窓口",
+              "比較的対応しやすい",
+              "延滞金が反映された額かも確認する"
+            ],
+            [
+              "コンビニ",
+              "使えない自治体がある",
+              "納期限後不可の案内があるか確認する"
+            ],
+            [
+              "スマホ決済",
+              "使えない自治体がある",
+              "領収証書が出ず、証明書反映待ちがある"
+            ]
+          ],
+          "note": "同じ軽自動車税でも自治体差があります。手元の納付書案内と税担当の説明を優先します。"
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "ここで止まりやすい人",
+          "body": "『納付書があるからコンビニで払えるはず』と思い込むと、店頭で止まります。期限後は窓口納付へ切り替わる前提で見た方が安全です。"
+        }
+      ]
+    },
+    {
+      "title": "納付書がないとき｜再発行だけでなく送付先も確認する",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "納付書をなくしたときや、旧住所へ送られて届いていないときは、再発行を頼むだけでは足りないことがあります。軽は市区町村課税なので、課税している自治体の税担当へ連絡し、今後の送付先や住所情報も合わせて確認した方が再発を防ぎやすいです。"
+        },
+        {
+          "type": "flow",
+          "steps": [
+            {
+              "title": "1. 課税自治体を確認する",
+              "body": "車検証や過去の納付先を見て、どの市区町村の税かを確定します。"
+            },
+            {
+              "title": "2. 納付書の再発行を相談する",
+              "body": "再発行の可否と、納期限後に使える納付方法を一緒に確認します。"
+            },
+            {
+              "title": "3. 送付先や住所のズレを直す",
+              "body": "旧住所送付が原因なら、翌年も同じことが起きやすいので、そこまで直した方が安全です。"
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "info",
+          "title": "再発行で聞きたいこと",
+          "body": "コンビニ可否、スマホ決済可否、車検が近い場合の納税証明の取り方。この3つまで聞いておくと後が楽です。"
+        }
+      ]
+    },
+    {
+      "title": "車検が近いとき｜軽JNKSでも紙の納税証明が要る場面が残る",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車の継続検査では、軽JNKSにより原則として紙の納税証明書提示が省略できます。ただし、納付後すぐ、過去も含めて未納がある場合、中古車購入直後、名義変更直後、他市区町村から引っ越した直後などは、紙の証明が必要になると案内されています。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "状況",
+            "納税確認の見方",
+            "先にやること"
+          ],
+          "rows": [
+            [
+              "通常の継続車検",
+              "軽JNKSで電子確認されやすい",
+              "未納がないかを確認する"
+            ],
+            [
+              "納付直後の車検",
+              "紙の証明が必要になることがある",
+              "納税証明書の発行条件を確認する"
+            ],
+            [
+              "名義変更・引っ越し直後",
+              "紙の証明が必要になることがある",
+              "車検証と記録事項を用意する"
+            ],
+            [
+              "過年度未納あり",
+              "電子確認で止まりやすい",
+              "未納分まで整理して納める"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "軽で多い詰まり方",
+          "body": "今年分だけ払って安心し、過去の未納や名義変更直後の事情を見落とすと、車検で止まりやすいです。"
+        }
+      ]
+    },
+    {
+      "title": "スマホ決済は便利でも、車検直前には向かないことがある",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "スマホ決済は移動せず払える反面、領収証書が出ず、納税証明書の反映まで日数がかかる案内があります。軽の車検が迫っている時期は、便利さより、証明書を確保しやすい支払い方を優先した方が安心です。"
+        },
+        {
+          "type": "caseStudy",
+          "cases": [
+            {
+              "title": "ケース1｜納期限を数日過ぎたが車検は来月",
+              "intro": "支払い場所を確認して完納を急げば、電子反映を待つ余地があります。",
+              "rows": [
+                {
+                  "label": "先に確認",
+                  "value": "コンビニやスマホ決済の可否"
+                },
+                {
+                  "label": "優先行動",
+                  "value": "使える窓口で完納する"
+                }
+              ]
+            },
+            {
+              "title": "ケース2｜今週中に車検を受けたい",
+              "intro": "支払いだけでなく、紙の納税証明書をどう取るかを同時に確認しないと危険です。",
+              "rows": [
+                {
+                  "label": "先に確認",
+                  "value": "軽JNKSで足りるか、紙証明が要るか"
+                },
+                {
+                  "label": "優先行動",
+                  "value": "税担当へ確認し、確実な納付方法を選ぶ"
+                }
+              ]
+            },
+            {
+              "title": "ケース3｜名義変更したばかり",
+              "intro": "納付済みでも、名義変更直後は紙の証明が必要になることがあります。",
+              "rows": [
+                {
+                  "label": "先に確認",
+                  "value": "車検証と記録事項の用意"
+                },
+                {
+                  "label": "優先行動",
+                  "value": "証明発行窓口の条件を確認する"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "急ぎのときの考え方",
+          "body": "軽JNKSがあるから何でも即時反映される、とまでは見ない方が安全です。納付直後と登録変更直後は別物です。"
+        }
+      ]
+    },
+    {
+      "title": "最後に整理｜軽は『年額課税』『自治体課税』『軽JNKS』をセットで見る",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車税の払い忘れは、普通車と混ぜて考えると判断を誤りやすいです。年額課税なので月割前提で考えないこと、課税主体は市区町村であること、車検では軽JNKSがあっても紙の納税証明が必要な場面が残ること。この3つを押さえると、納期限後でも整理しやすくなります。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "まず課税自治体と納付書の状態を確認する",
+            "納期限後は窓口納付へ切り替わる前提で見る",
+            "車検が近いなら紙の納税証明の要否を先に確認する",
+            "未納が残るなら今年分だけで済んだと思い込まない"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "覚えておきたい線引き",
+          "body": "軽の払い忘れでいちばん危ないのは、普通車と同じつもりで動くことです。自治体、年額課税、軽JNKS。この3語で整理するとぶれにくいです。"
+        }
+      ]
+    }
+  ]
+}

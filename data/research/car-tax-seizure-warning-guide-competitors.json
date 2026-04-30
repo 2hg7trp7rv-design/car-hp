@@ -1,0 +1,104 @@
+{
+  "slug": "car-tax-seizure-warning-guide",
+  "createdAt": "2026-04-25",
+  "competitorCount": 30,
+  "queries": [
+    "自動車税 差押予告通知",
+    "自動車税 差押予告書",
+    "自動車税 財産調査 車 差押"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.pref.saitama.lg.jp/b0203/kawaguchi-stoptainou.html"
+    },
+    {
+      "url": "https://www.pref.iwate.jp/kensei/zei/nouzei/1011243.html"
+    },
+    {
+      "url": "https://www.pref.mie.lg.jp/ZEIMU/HP/305920179370001.htm"
+    },
+    {
+      "url": "https://www.pref.yamanashi.jp/kenzei-cb/kenzei_tainouseiri_1.html"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/8851.htm"
+    },
+    {
+      "url": "https://www.pref.gifu.lg.jp/bid/462685.html"
+    },
+    {
+      "url": "https://www.pref.ishikawa.lg.jp/kanazei/kanazawa-tirelock20141201.html"
+    },
+    {
+      "url": "https://www.pref.wakayama.lg.jp/prefg/010500/lock_2307.html"
+    },
+    {
+      "url": "https://www.pref.mie.lg.jp/TOPICS/m0008300089.htm"
+    },
+    {
+      "url": "https://www.pref.fukuoka.lg.jp/contents/yuyo.html"
+    },
+    {
+      "url": "https://www.pref.miyagi.jp/soshiki/zeimu/faq-nouzei.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/169.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/tainouseiri.html"
+    },
+    {
+      "url": "https://www.pref.kagoshima.jp/ab07/2025tokusoku.html"
+    },
+    {
+      "url": "https://www.pref.aichi.jp/soshiki/zeimu/0000051636.html"
+    },
+    {
+      "url": "https://www.pref.ibaraki.jp/somu/zeimu/kikaku/qa/nouzeiqa15.html"
+    },
+    {
+      "url": "https://www.pref.nagano.lg.jp/zeimu/kurashi/kenze/nozei/nozei/taio.html"
+    },
+    {
+      "url": "https://www.pref.tochigi.lg.jp/b07/life/zeikin/zeikin/tainou.html"
+    },
+    {
+      "url": "https://www.pref.gunma.jp/page/135761.html"
+    },
+    {
+      "url": "https://www.pref.fukushima.lg.jp/sec/01115d/nozei.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/detail-39593.html"
+    },
+    {
+      "url": "https://www.pref.shizuoka.jp/kurashikankyo/zei/kenzei/1048647.html"
+    },
+    {
+      "url": "https://www.pref.hyogo.lg.jp/kk22/pa04_000000021.html"
+    },
+    {
+      "url": "https://www.pref.niigata.lg.jp/sec/zeimu/1356842342352.html"
+    },
+    {
+      "url": "https://www.pref.hiroshima.lg.jp/site/zei/nouzei.html"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a004/004.html"
+    },
+    {
+      "url": "https://www.pref.saitama.lg.jp/a0209/z-kurashiindex/z-3.html"
+    },
+    {
+      "url": "https://www.pref.miyagi.jp/soshiki/zeimu/index-payeasy.html"
+    },
+    {
+      "url": "https://www.pref.kyoto.jp/zeimu/11600001.html"
+    },
+    {
+      "url": "https://www.pref.fukuoka.lg.jp/contents/kentaizei.html"
+    }
+  ],
+  "contentDecision": "普通車は都道府県税として、県税事務所への連絡、差押予告書が必須ではない点、預金や給与を含む財産調査、車両タイヤロックと公売までを整理する方針。",
+  "note": "公式案内を中心に、差押予告、財産調査、タイヤロック、相談導線の切り分けを確認。公開ページ生成対象ではない。"
+}

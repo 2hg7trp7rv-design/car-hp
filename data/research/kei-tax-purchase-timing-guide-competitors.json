@@ -1,0 +1,123 @@
+{
+  "slug": "kei-tax-purchase-timing-guide",
+  "createdAt": "2026-04-23",
+  "competitorCount": 30,
+  "queries": [
+    "軽自動車税 買った年 いつから",
+    "軽自動車税 4月2日以後 取得 買い替え",
+    "軽自動車税 納税義務なし 車検用 証明"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.city.yonago.lg.jp/4264.htm"
+    },
+    {
+      "url": "https://www.city.kariya.lg.jp/faq/q_kurashi/q_zeikin/1002187/1002197.html"
+    },
+    {
+      "url": "https://www.city.ikoma.lg.jp/faq/faq_detail.php?co=cat&frmCd=1-5-0-0-0&frmId=454"
+    },
+    {
+      "url": "https://www.city.gujo.gifu.jp/faq/cat658/2-2.html"
+    },
+    {
+      "url": "https://www.city.oita.oita.jp/o034/kurashi/zekin/1455756603289.html"
+    },
+    {
+      "url": "https://www.city.hiroshima.lg.jp/living/zei/1006010/1025590/1019085.html"
+    },
+    {
+      "url": "https://www.city.uto.lg.jp/article/view/1227/11031.html"
+    },
+    {
+      "url": "https://www.city.kurayoshi.lg.jp/1957.htm"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/information/knowledge/taxes_qa.html"
+    },
+    {
+      "url": "https://www.city.kariya.lg.jp/faq/q_kurashi/q_todokede/1002096/1002112.html"
+    },
+    {
+      "url": "https://www.city.shibata.lg.jp/kurashi/zei/zeikin/keijidoushazei/1017683/1017721.html"
+    },
+    {
+      "url": "https://www.city.uto.lg.jp/article/view/1228/11031.html"
+    },
+    {
+      "url": "https://www.city.tamana.lg.jp/q/aview/277/2047.html"
+    },
+    {
+      "url": "https://www.city.tsuyama.lg.jp/article?articleId=65b38d855677ea07dd03abfc"
+    },
+    {
+      "url": "https://www.city.minamata.lg.jp/kiji003242/index.html"
+    },
+    {
+      "url": "https://www.city.funabashi.lg.jp/faq/kurashi/zei/004/p043595.html"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/zeikin/keijidousha/keijidoushazei.html"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000649247.html"
+    },
+    {
+      "url": "https://www.city.kobe.lg.jp/a47946/kurashi/tax/zei/shingi/zeisyoumei/keinouhu.html"
+    },
+    {
+      "url": "https://www.city.himeji.lg.jp/kurashi/0000007157.html"
+    },
+    {
+      "url": "https://www.city.sosa.lg.jp/page/page000834.html"
+    },
+    {
+      "url": "https://www.city.misato.lg.jp/soshiki/shiminzeika/shiminzei/1635.html"
+    },
+    {
+      "url": "https://www.city.sanuki.kagawa.jp/life/tax/keijido"
+    },
+    {
+      "url": "https://www.city.nagoya.jp/kurashi/category/19-11-10-3-1-0-0-0-0-0.html"
+    },
+    {
+      "url": "https://www.city.utsunomiya.lg.jp/kurashi/zeikin/shi/1003618.html"
+    },
+    {
+      "url": "https://www.city.shibushi.lg.jp/soshiki/7/1915.html"
+    },
+    {
+      "url": "https://www.city.kyoto.lg.jp/gyozai/page/0000199729.html"
+    },
+    {
+      "url": "https://www.city.kyoto.lg.jp/gyozai/page/0000199790.html"
+    },
+    {
+      "url": "https://www.city.koshi.lg.jp/kiji00322914/index.html"
+    },
+    {
+      "url": "https://www.city.munakata.lg.jp/kiji0031310/index.html"
+    }
+  ],
+  "commonTakeaways": [
+    "多くの自治体案内は、軽自動車税を4月1日時点の所有者または所有者とみなされる人へ年額で課税すると整理している。",
+    "4月2日以後に取得した軽はその年度課税なし、4月2日以後に手放した軽はその年度分が残るという説明が中心。",
+    "買い替えで前の軽に課税が残り、新しい軽にその年度課税がない並びをFAQで説明する自治体が多い。",
+    "車検が近いときは「納税義務なし」の証明発行を案内する自治体がある。"
+  ],
+  "gapsFound": [
+    "4月2日以後取得の軽と、4月1日に持っていた前の軽を一つの記事で整理した例が少ない。",
+    "買い替え時の「前の車に年額、後の車は翌年度から」を本文で整理したページが少ない。",
+    "納税義務なし証明の見方まで含めた実務記事が少ない。"
+  ],
+  "changesApplied": [
+    "軽を買った年の税金を「新しい軽」「前の軽」「車検が近い」の3つに分けて整理した。",
+    "買い替えで起きる並びを本文と表で説明した。",
+    "納税義務なし証明を別論点で入れた。"
+  ],
+  "qualityChecks": [
+    "軽自動車のみ扱う",
+    "市区町村案内中心で構成",
+    "購入後その年度の課税と証明に限定"
+  ]
+}

@@ -1,0 +1,11 @@
+CBJ Masterpiece Sitewide Patch (Wave 1)
+
+このZIPは「上書き用パッチ」です。
+展開後、そのままリポジトリ直下に上書きしてください（同名ファイル置換）。
+
+目的（今回反映）
+- サイトの“人格”をトップの作品コンセプトに合わせて統一（メタ/JSON-LD/フッター/メニュー）
+- TIME ARCHIVE の年代抽出を強化し、年代表示の破綻を防止
+- ArchiveEntrance の枠線をダークUI前提へ寄せて統一
+
+変更ファイルは PATCH_REPORT.txt を参照。

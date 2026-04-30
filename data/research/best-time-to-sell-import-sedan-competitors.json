@@ -1,0 +1,121 @@
+{
+  "slug": "best-time-to-sell-import-sedan",
+  "createdAt": "2026-02-04",
+  "competitorCount": 30,
+  "queries": [
+    "輸入車 セダン 売り時 いつ 車検前 4月 自動車税 還付",
+    "外車 売却 タイミング 車検 モデルチェンジ 税金 4月1日",
+    "売却後 自動車税 納付書 届いた 名義変更 遅れ 対処"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.nextage.jp/sell_guide/info/156464/"
+    },
+    {
+      "url": "https://www.navikuru.jp/kaitori/articles/satei-knowledge/350/"
+    },
+    {
+      "url": "https://www.goo-net.com/kaitori/kaitori-satei/satei-knowhow/1699/"
+    },
+    {
+      "url": "https://www.carseven.co.jp/magazine/news/5658/"
+    },
+    {
+      "url": "https://ucarpac.com/sell/useful/imported-car/"
+    },
+    {
+      "url": "https://oikura.jp/magazine/car45960/"
+    },
+    {
+      "url": "https://www.gaisha-oh.com/soken/sell-your-car-in-april/"
+    },
+    {
+      "url": "https://www.gaisha-oh.com/soken/what-month-to-sell-a-car/"
+    },
+    {
+      "url": "https://www.gaisha-oh.com/soken/18277/"
+    },
+    {
+      "url": "https://www.gaisha-oh.com/guide/article/timing-buy-new-car/"
+    },
+    {
+      "url": "https://www.nextage.jp/sell_guide/zeikin/173979/"
+    },
+    {
+      "url": "https://www.nextage.jp/sell_guide/zeikin/161777/"
+    },
+    {
+      "url": "https://www.nextage.jp/sell_guide/zeikin/184951/"
+    },
+    {
+      "url": "https://www.nextage.jp/gensen_guide/1006/"
+    },
+    {
+      "url": "https://kaitori.carview.co.jp/article/knowledge-baikyaku/067/"
+    },
+    {
+      "url": "https://kaitori.carview.co.jp/article/knowledge-baikyaku/tax-notice-for-sold-car/"
+    },
+    {
+      "url": "https://221616.com/guide/first-time/who-pays-cartax/"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/216.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/170.html"
+    },
+    {
+      "url": "https://www.goo-net.com/kaitori/knowledge/money/027.html"
+    },
+    {
+      "url": "https://carnext.jp/magazine/article/automobile_tax_name_change/"
+    },
+    {
+      "url": "https://ctn-net.jp/kaitori/car/column/car-purchase-april/"
+    },
+    {
+      "url": "https://www.haisya.co.jp/column/column010.html"
+    },
+    {
+      "url": "https://www.haishaou.com/blog/tax/jidoshazei/"
+    },
+    {
+      "url": "https://www.haishaou.com/blog/tax/april_tax/"
+    },
+    {
+      "url": "https://www.goo-net.com/kaitori/kaitori-satei/kuruma-gimon/1813/"
+    },
+    {
+      "url": "https://www.navikuru.jp/kaitori/articles/satei-knowledge/349/"
+    },
+    {
+      "url": "https://yanase-audi.com/column/knowledge/vehicle-inspection-purchase-profitloss.html"
+    },
+    {
+      "url": "https://www.libertynet.jp/blog/2024/11/07/r61107-01/"
+    },
+    {
+      "url": "https://www.jpuc.or.jp/consultation/article/66065469818f96f13908b372/"
+    }
+  ],
+  "commonTakeaways": [
+    "売り時は季節よりも、車検や高額整備など『次の出費イベント』を軸にする説明が多い。",
+    "4月1日課税と、名義変更が年度末に間に合わないリスクは繰り返し出る。抹消登録の月割還付と名義変更のみの扱いも頻出。",
+    "輸入車は再販ルートで評価が割れやすく、専門店やオークション型を比較に混ぜる提案が多い。"
+  ],
+  "gapsFound": [
+    "導入が『この記事は』始まりで型が揃い、文章の癖としてAI臭さが出やすい。",
+    "4月1日と税の扱いは、公的FAQや大手の整理に寄せて誤解が出ない書き方にする必要がある。"
+  ],
+  "changesApplied": [
+    "導入をテンプレから外し、『次の出費＋4月1日』を先に提示する形に差し替え。",
+    "競合30本のURLログを追加。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 2530,
+    "starts_with_kijiwa": true
+  }
+}
