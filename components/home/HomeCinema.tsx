@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -75,6 +75,15 @@ function buildSequenceImages(entries: HomeEntry[]) {
   return images.slice(0, 10);
 }
 
+// Split text into characters for animation
+function splitChars(text: string) {
+  return text.split("").map((char, i) => (
+    <span key={i} className={styles.char} style={{ transitionDelay: `${i * 0.03}s` }}>
+      {char}
+    </span>
+  ));
+}
+
 export function HomeCinema({
   latestCars,
   latestHeritage,
@@ -84,6 +93,8 @@ export function HomeCinema({
   const rootRef = useRef<HTMLElement | null>(null);
   const heroRef = useRef<HTMLElement | null>(null);
   const sequenceRef = useRef<HTMLElement | null>(null);
+  const [loaderDone, setLoaderDone] = useState(false);
+  const [heroRevealed, setHeroRevealed] = useState(false);
   const [activeFrame, setActiveFrame] = useState(0);
 
   const entries = useMemo(
@@ -115,6 +126,32 @@ export function HomeCinema({
     ? featured?.imageSrc ?? FALLBACK_IMAGES[0]
     : FALLBACK_IMAGES[0];
 
+  // Loader sequence
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+    if (prefersReducedMotion) {
+      setLoaderDone(true);
+      setHeroRevealed(true);
+      return;
+    }
+
+    // Start loader exit after 2s
+    const loaderTimer = setTimeout(() => {
+      setLoaderDone(true);
+    }, 2000);
+
+    // Reveal hero text after loader exits
+    const heroTimer = setTimeout(() => {
+      setHeroRevealed(true);
+    }, 2800);
+
+    return () => {
+      clearTimeout(loaderTimer);
+      clearTimeout(heroTimer);
+    };
+  }, []);
+
   // GSAP scroll animations
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -125,47 +162,33 @@ export function HomeCinema({
       const hero = heroRef.current;
       if (hero) {
         const imageWrap = hero.querySelector(`.${styles.heroImageWrap}`);
-        const copy = hero.querySelector(`.${styles.heroCopy}`);
+        const title = hero.querySelector(`.${styles.heroTitle}`);
 
         if (imageWrap) {
           gsap.to(imageWrap, {
-            scale: 1.12,
-            opacity: 0.4,
+            scale: 1.15,
+            opacity: 0.3,
             scrollTrigger: {
               trigger: hero,
               start: "top top",
               end: "bottom top",
-              scrub: 0.6,
+              scrub: 0.8,
             },
           });
         }
 
-        if (copy) {
-          gsap.to(copy, {
-            y: -150,
+        if (title) {
+          gsap.to(title, {
+            y: -200,
             opacity: 0,
             scrollTrigger: {
               trigger: hero,
-              start: "30% top",
-              end: "90% top",
-              scrub: 0.4,
+              start: "20% top",
+              end: "80% top",
+              scrub: 0.5,
             },
           });
         }
-      }
-
-      // Featured parallax
-      const featuredImg = document.querySelector(`.${styles.featuredImageLayer}`);
-      if (featuredImg) {
-        gsap.to(featuredImg, {
-          y: -60,
-          scrollTrigger: {
-            trigger: featuredImg,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.8,
-          },
-        });
       }
 
       // Sequence scroll
@@ -190,19 +213,32 @@ export function HomeCinema({
   }, [sequenceImages.length]);
 
   return (
-    <main ref={rootRef} className={styles.homeCinema}>
+    <main ref={rootRef} className={styles.root}>
+      {/* Film Grain Overlay */}
+      <div className={styles.grain} aria-hidden="true">
+        <svg>
+          <filter id="grain">
+            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#grain)" />
+        </svg>
+      </div>
+
       {/* Loader */}
-      <div className={styles.preHeroLoader} aria-hidden="true">
-        <span>AUTOMOTIVE EDITORIAL</span>
-        <b>
-          <span>CAR</span>
-          <span>BOUTIQUE</span>
-          <span>JOURNAL</span>
-        </b>
+      <div className={`${styles.loader} ${loaderDone ? styles.loaderExit : ""}`} aria-hidden="true">
+        <div className={styles.loaderInner}>
+          <span className={styles.loaderKicker}>AUTOMOTIVE EDITORIAL</span>
+          <div className={styles.loaderTitle}>
+            <span>CAR</span>
+            <span>BOUTIQUE</span>
+            <span>JOURNAL</span>
+          </div>
+          <div className={styles.loaderLine} />
+        </div>
       </div>
 
       {/* Hero */}
-      <section ref={heroRef} className={styles.heroSection} aria-labelledby="hero-title">
+      <section ref={heroRef} className={styles.hero} aria-labelledby="hero-title">
         <div className={styles.heroSticky}>
           <div className={styles.heroImageWrap}>
             <img
@@ -212,70 +248,66 @@ export function HomeCinema({
               loading="eager"
             />
             <div className={styles.heroVeil} />
-            <div className={styles.heroGrain} aria-hidden="true" />
           </div>
 
-          <div className={styles.heroCopy}>
+          <div className={`${styles.heroContent} ${heroRevealed ? styles.heroRevealed : ""}`}>
+            <span className={styles.heroKicker}>AUTOMOTIVE EDITORIAL — 2026</span>
             <h1 id="hero-title" className={styles.heroTitle}>
-              <span className={styles.heroTitleLine}>CAR</span>
-              <span className={styles.heroTitleLine}>BOUTIQUE</span>
-              <span className={styles.heroTitleLine}>JOURNAL</span>
+              <span className={styles.heroLine}>{splitChars("CAR")}</span>
+              <span className={styles.heroLine}>{splitChars("BOUTIQUE")}</span>
+              <span className={styles.heroLine}>{splitChars("JOURNAL")}</span>
             </h1>
           </div>
 
-          <div className={styles.heroLabel} aria-hidden="true">
-            AUTOMOTIVE EDITORIAL — 2026
-          </div>
-
-          <div className={styles.heroCorner} aria-hidden="true">
-            VOL.001
-          </div>
+          <span className={styles.heroCorner}>VOL.001</span>
         </div>
       </section>
 
       {/* Featured */}
-      <section className={styles.featuredSection}>
-        <div className={styles.featuredBackdrop} aria-hidden="true" />
-        <div className={styles.featuredImageLayer}>
+      <section className={styles.featured}>
+        <div className={styles.featuredImage}>
           <img
             src={isRealImage(featured?.imageSrc) ? featured?.imageSrc ?? heroImage : heroImage}
             alt=""
             loading="lazy"
           />
         </div>
-        <div className={styles.featuredTextLayer}>
-          <p className={styles.monoKicker}>FEATURED</p>
+        <div className={styles.featuredContent}>
+          <span className={styles.kicker}>FEATURED</span>
           <h2>{featured?.title ?? "FEATURED"}</h2>
           {featured && (
-            <Link href={featured.href} className={styles.cinemaLink}>
-              READ →
+            <Link href={featured.href} className={styles.featuredLink}>
+              READ
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </Link>
           )}
         </div>
       </section>
 
       {/* Number List */}
-      <section className={styles.numberDriftSection}>
-        <div className={styles.numberIntro}>
-          <p className={styles.monoKicker}>LATEST</p>
-          <h2>最新記事</h2>
-        </div>
-        <div className={styles.numberList}>
-          {numberItems.map((item, i) => (
-            <Link key={item.href} href={item.href} className={styles.numberRow}>
-              <span className={styles.number}>{String(i + 1).padStart(2, "0")}</span>
-              <span className={styles.numberMain}>
-                <span>{item.title}</span>
-                <small>{item.meta || item.category}</small>
-              </span>
-              <span className={styles.rowArrow}>→</span>
-            </Link>
-          ))}
+      <section className={styles.numbers}>
+        <div className={styles.numbersInner}>
+          <div className={styles.numbersHeader}>
+            <span className={styles.kicker}>LATEST</span>
+            <h2>最新記事</h2>
+          </div>
+          <div className={styles.numbersList}>
+            {numberItems.map((item, i) => (
+              <Link key={item.href} href={item.href} className={styles.numberRow}>
+                <span className={styles.numberIndex}>{String(i + 1).padStart(2, "0")}</span>
+                <span className={styles.numberTitle}>{item.title}</span>
+                <span className={styles.numberMeta}>{item.meta || item.category}</span>
+                <span className={styles.numberArrow}>→</span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Sequence */}
-      <section ref={sequenceRef} className={styles.sequenceSection}>
+      <section ref={sequenceRef} className={styles.sequence}>
         <div className={styles.sequenceSticky}>
           <div className={styles.sequenceFrames}>
             {sequenceImages.map((src, i) => (
@@ -284,16 +316,16 @@ export function HomeCinema({
                 src={src}
                 alt=""
                 loading={i === 0 ? "eager" : "lazy"}
-                className={i === activeFrame ? styles.sequenceFrameActive : styles.sequenceFrame}
+                className={`${styles.sequenceFrame} ${i === activeFrame ? styles.active : ""}`}
               />
             ))}
           </div>
           <div className={styles.sequenceCopy}>
-            <p className={styles.monoKicker}>GALLERY</p>
+            <span className={styles.kicker}>GALLERY</span>
             <h2>車種<br />ギャラリー</h2>
-            <div className={styles.frameMeter}>
+            <div className={styles.meter}>
               {sequenceImages.map((_, i) => (
-                <span key={i} className={i === activeFrame ? styles.frameMeterActive : undefined} />
+                <span key={i} className={i === activeFrame ? styles.meterActive : ""} />
               ))}
             </div>
           </div>
@@ -301,24 +333,26 @@ export function HomeCinema({
       </section>
 
       {/* Index */}
-      <section className={styles.indexSection}>
-        <div className={styles.indexLead}>
-          <p className={styles.monoKicker}>BROWSE</p>
-          <h2>車種を探す</h2>
-        </div>
-        <div className={styles.indexGrid}>
-          <Link href="/cars/makers" className={styles.indexCard}>
-            <span>01</span>
-            <strong>メーカー別</strong>
-          </Link>
-          <Link href="/cars/body-types" className={styles.indexCard}>
-            <span>02</span>
-            <strong>ボディタイプ別</strong>
-          </Link>
-          <Link href="/cars/segments" className={styles.indexCard}>
-            <span>03</span>
-            <strong>価格帯別</strong>
-          </Link>
+      <section className={styles.index}>
+        <div className={styles.indexInner}>
+          <div className={styles.indexHeader}>
+            <span className={styles.kicker}>BROWSE</span>
+            <h2>車種を探す</h2>
+          </div>
+          <div className={styles.indexGrid}>
+            <Link href="/cars/makers" className={styles.indexCard}>
+              <span>01</span>
+              <strong>メーカー別</strong>
+            </Link>
+            <Link href="/cars/body-types" className={styles.indexCard}>
+              <span>02</span>
+              <strong>ボディタイプ別</strong>
+            </Link>
+            <Link href="/cars/segments" className={styles.indexCard}>
+              <span>03</span>
+              <strong>価格帯別</strong>
+            </Link>
+          </div>
         </div>
       </section>
     </main>
