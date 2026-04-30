@@ -1,0 +1,123 @@
+{
+  "slug": "kei-tax-ownership-release-guide",
+  "createdAt": "2026-04-19",
+  "competitorCount": 30,
+  "queries": [
+    "軽自動車 ローン完済 所有権解除 税金",
+    "軽自動車 ローン完済 名義 自動で変わらない",
+    "軽自動車税 所有権留保 使用者 買主"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/change_name.html"
+    },
+    {
+      "url": "https://www.k-oss.keikenkyo.or.jp/portal/beginner/yougoshuu/index.html"
+    },
+    {
+      "url": "https://faq.hfc.honda.co.jp/faq/show/26350?site_domain=customer"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/form_example/list.html"
+    },
+    {
+      "url": "https://www.keikenkyo-faq.jp/"
+    },
+    {
+      "url": "https://www.keikenkyo-faq.jp/category02/inport-23/"
+    },
+    {
+      "url": "https://www.keikenkyo-faq.jp/category02/inport-22/"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/scrapped/change_owner.html"
+    },
+    {
+      "url": "https://www.city.okayama.jp/kurashi/0000005248.html"
+    },
+    {
+      "url": "https://www.city.himeji.lg.jp/kurashi/0000000689.html"
+    },
+    {
+      "url": "https://www.city.iwata.shizuoka.jp/faq/kurashi_tetsuzuki/zeikin/1005188/1000938.html"
+    },
+    {
+      "url": "https://www.city.setouchi.lg.jp/soshiki/10/3757.html"
+    },
+    {
+      "url": "https://www.town.shinonsen.hyogo.jp/page/?mode=detail&page_id=a01068ebdc90d4b8c21bb0f73c4d0355"
+    },
+    {
+      "url": "https://www.city.susaki.lg.jp/life/detail.php?hdnKey=5561"
+    },
+    {
+      "url": "https://www.city.inzai.lg.jp/faq/faq_detail.php?co=cat&frmCd=1-9-0-0-0&frmId=133"
+    },
+    {
+      "url": "https://www.city.ikoma.lg.jp/faq/faq_detail.php?frmId=454"
+    },
+    {
+      "url": "https://www.city.kawaguchi.lg.jp/soshiki/01050/080/2/47888.html"
+    },
+    {
+      "url": "https://www.city.joso.lg.jp/kurashi_gyousei/kurashi/zeikin/keijidousha_tax/light_vehicle_tax_question.html"
+    },
+    {
+      "url": "https://www.city.takarazuka.hyogo.jp/1060679/1060695/1061546/1000496.html"
+    },
+    {
+      "url": "https://www.city.hashima.lg.jp/1269.html"
+    },
+    {
+      "url": "https://faq1.city.komatsu.lg.jp/faq/detail.aspx?id=907"
+    },
+    {
+      "url": "https://www.city.funabashi.lg.jp/faq/kurashi/zei/004/p043595.html"
+    },
+    {
+      "url": "https://www.city.funabashi.lg.jp/kurashi/zei/001/04/p076782.html"
+    },
+    {
+      "url": "https://www.city.tama.lg.jp/kurashi/zei/keijidousha/1014422.html"
+    },
+    {
+      "url": "https://www.city.suzuka.lg.jp/kurashi/zei/1002096/1002101.html"
+    },
+    {
+      "url": "https://www.city.sumida.lg.jp/kurashi/zeikin/car/keijnks.html"
+    },
+    {
+      "url": "https://www.city.ayabe.lg.jp/0000001221.html"
+    },
+    {
+      "url": "https://www.city.yonago.lg.jp/47554.htm"
+    },
+    {
+      "url": "https://www.city.kobe.lg.jp/a35984/kurashi/tax/kei/index.html"
+    },
+    {
+      "url": "https://www.city.joetsu.niigata.jp/soshiki/zeimu/lifeguide-tax-minicar-tax-q-a.html"
+    }
+  ],
+  "commonTakeaways": [
+    "軽自動車検査協会と自治体の案内は、所有権留保時に買主課税になることは示していても、完済後の所有権解除と4月1日基準を一緒に整理していないことが多い。",
+    "金融会社の案内は、手続き方法の変更点は書いていても、税金や通知先の見方まではつないでいない。",
+    "軽は使用の本拠の位置と通知先のズレが起きやすいのに、名義整理と住所整理を同時に確認する視点が弱い。"
+  ],
+  "gapsFound": [
+    "軽で完済しただけでは名義が変わらず、その年度の税も途中で切り替わらないことを一枚で整理したページが少ない。",
+    "会社ごとに手続き方法が違うことと、申請依頼書の扱いを同じ記事で見られるページが少ない。",
+    "売却前に所有権解除をやる意味と、税だけ見たい人の優先度の違いが整理されていない。"
+  ],
+  "changesApplied": [
+    "軽は完済、方法確認、軽自動車検査協会での名義変更完了の3段階で整理した。",
+    "軽自動車税は所有権留保時に買主側で見る点と、4月1日基準を先頭で固定した。",
+    "金融会社ごとの違いと、住所や使用の本拠のズレを別問題として分けて書いた。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}

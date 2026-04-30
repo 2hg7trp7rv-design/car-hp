@@ -1,0 +1,435 @@
+{
+  "slug": "car-tax-cannot-pay-guide",
+  "title": "自動車税が払えないとき。分割納付、猶予、差押え前にやることを整理する。",
+  "lead": "自動車税を納期限までに一括で払えないときは、ただ延ばすより先に相談先を固定した方が早いです。普通車の自動車税は都道府県税なので、話す相手は市役所ではなく県税事務所です。分割での納付計画や猶予制度が使えるかは事情ごとに変わるので、順番だけ先に整理します。",
+  "type": "GUIDE",
+  "monetizeType": null,
+  "category": "LIFE",
+  "tags": [
+    "自動車税",
+    "払えない",
+    "納税相談",
+    "徴収猶予",
+    "換価の猶予",
+    "分割納付"
+  ],
+  "publishedAt": "2026-04-24",
+  "updatedAt": "2026-04-25",
+  "internalLinks": [
+    "car-tax-late-fee-only-guide",
+    "car-tax-collection-notice-guide",
+    "car-tax-late-payment-guide",
+    "car-tax-demand-letter-guide",
+    "kei-tax-cannot-pay-guide",
+    "car-tax-payment-method-guide",
+    "car-tax-payment-reflection-guide",
+    "car-tax-payment-slip-reissue-guide",
+    "car-tax-notice-not-arrived-2026",
+    "car-tax-certificate-reissue-guide",
+    "shaken-required-documents-guide",
+    "car-tax-account-transfer-guide",
+    "car-tax-seizure-warning-guide"
+  ],
+  "body": "",
+  "monetizeKey": null,
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "car-tax-late-fee-only-guide",
+    "car-tax-collection-notice-guide",
+    "car-tax-late-payment-guide",
+    "car-tax-demand-letter-guide",
+    "kei-tax-cannot-pay-guide",
+    "car-tax-payment-method-guide",
+    "car-tax-payment-reflection-guide",
+    "car-tax-payment-slip-reissue-guide",
+    "car-tax-notice-not-arrived-2026",
+    "car-tax-certificate-reissue-guide",
+    "shaken-required-documents-guide",
+    "car-tax-account-transfer-guide",
+    "car-tax-seizure-warning-guide"
+  ],
+  "relatedColumnSlugs": [
+    "sell-timing-shaken-tax-market",
+    "name-change-delay-risk",
+    "shaken-early-two-months"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "tax",
+    "paperwork",
+    "money",
+    "inspection"
+  ],
+  "seoTitle": "自動車税が払えないとき。分割納付、猶予、差押え前にやること。",
+  "seoDescription": "自動車税を一括で払えないときに、どこへ相談するか、分割納付の考え方、徴収猶予と換価の猶予、車検が近いときの注意点まで整理する実務ガイドです。",
+  "summary": "自動車税を一括で払えないときに、県税事務所への相談、徴収猶予と換価の猶予、分割納付の考え方、車検が近いときの注意点を整理する実務ガイドです。",
+  "readMinutes": 8,
+  "status": "published",
+  "id": "guide:car-tax-cannot-pay-guide",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-paperwork",
+  "relatedClusterIds": [],
+  "primaryQuery": "自動車税 払えない",
+  "updateReason": "県税としての相談先、猶予制度、分割納付の考え方を普通車向けに整理した。",
+  "sources": [
+    "https://www.pref.fukuoka.lg.jp/contents/yuyo.html",
+    "https://www.pref.ibaraki.jp/somu/zeimu/kikaku/qa/nouzeiqa15.html",
+    "https://www.pref.okayama.jp/page/465571.html",
+    "https://www.pref.hiroshima.lg.jp/uploaded/attachment/616870.pdf",
+    "https://www.eltax.lta.go.jp/special/sonota-shinsei/",
+    "https://www.eltax.lta.go.jp/news/03047",
+    "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/entaikin.html",
+    "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidoushayokuaru.html",
+    "https://www.pref.okayama.jp/page/308373.html",
+    "https://www.pref.okayama.jp/page/422479.html"
+  ],
+  "heroImage": "/images/cbj/display-tags/guides/paperwork-1.jpg",
+  "thumbnail": "/images/cbj/display-tags/guides/paperwork-1.jpg",
+  "displayTag": "手続き",
+  "layoutVariant": "decision-v1",
+  "eyebrowLabel": "手続き",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "名義変更・必要書類",
+      "href": "/guide/hub-paperwork"
+    },
+    {
+      "label": "自動車税が払えないとき。分割納付、猶予、差押え前にやることを整理する。"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "手続き・維持費ガイド編集チーム"
+  },
+  "keyPoints": [
+    "普通車の自動車税は都道府県税です。払えないときの相談先は市役所ではなく県税事務所になります。",
+    "分割で払いたいと伝えれば自動で通るわけではありませんが、猶予制度や納付計画の相談先は早いほど選択肢が残ります。",
+    "県税の案内では、災害、病気、事業の休廃止、生活維持が難しくなる事情などで、徴収猶予や換価の猶予が認められる場合があります。",
+    "猶予が認められた期間は、延滞金の全部または一部が免除されたり、差押えや換価が猶予されたりする案内があります。",
+    "車検が近い人は、払えない相談と納付確認を同じ話にしない方が安全です。検査日が迫るほど、納税証明や反映日数も一緒に見ます。"
+  ],
+  "checkpoints": [
+    "まだ納期限前か、すでに納期限を過ぎているか",
+    "今月だけ厳しいのか、しばらく一括納付が難しいのか",
+    "車検予定日が近いか",
+    "納付書の有無と、どの都道府県の税かが分かるか",
+    "相談時に説明できる事情や、収支の見通しがあるか"
+  ],
+  "faq": [
+    {
+      "question": "自動車税が払えないとき、まずどこへ連絡すればいいですか。",
+      "answer": "普通車の自動車税は都道府県税なので、管轄の県税事務所や県民局税務部が基本の相談先です。市役所で完結するとは限りません。"
+    },
+    {
+      "question": "分割で払いたいと言えば、必ず分割にしてもらえますか。",
+      "answer": "一律に約束されているものではありません。事情や収支、納期限の状態を見ながら、猶予制度や納付計画を相談する流れになります。"
+    },
+    {
+      "question": "納期限を過ぎてから相談しても遅いですか。",
+      "answer": "遅すぎるとまでは言えませんが、放置より先に相談した方が安全です。納期限後は延滞金や督促の話が入るので、早い方が整理しやすくなります。"
+    },
+    {
+      "question": "差押えはすぐ始まりますか。",
+      "answer": "すぐにそうなるとは限りませんが、未納を黙って長引かせるほど督促や滞納処分の話に近づきます。払えない事情があるなら無言のままにしない方がいいです。"
+    },
+    {
+      "question": "車検が近いのですが、相談中ならそのまま通せますか。",
+      "answer": "そこは別で確認した方が安全です。相談中であることと、継続検査で納付確認が取れることは同じではありません。車検日が近い人は、県税窓口と検査側の両方で確認します。"
+    },
+    {
+      "question": "電子申請だけで済ませられますか。",
+      "answer": "県によっては電子申請やeLTAXを案内していますが、事情説明や添付書類が必要になることがあります。急ぎなら窓口や電話相談も並行した方が早いです。"
+    }
+  ],
+  "actionBox": {
+    "title": "今すぐやるべきこと",
+    "body": "まずは 納期限前か後か、管轄の県税事務所、車検予定日 を先に固定してください。この3点が固まると、相談だけ先か、納付方法変更も必要かが見えます。",
+    "actions": [
+      {
+        "label": "すでに納期限を過ぎている人は、払い忘れ後の実務を先に整理する。",
+        "href": "/guide/car-tax-late-payment-guide"
+      },
+      {
+        "label": "車検が近い人は、払った後の反映と納税証明の見方を先に確認する。",
+        "href": "/guide/car-tax-payment-reflection-guide"
+      }
+    ]
+  },
+  "detailSections": [
+    {
+      "id": "conclusion",
+      "title": "先に結論｜普通車は「県税の相談」に早く切り替える",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "自動車税が払えないときは、まず延滞金の数字を追いかけるより、「いま一括で払えない事情をどこへ伝えるか」を決めた方が早いです。普通車の自動車税は都道府県税なので、相談先は市役所ではなく県税事務所です。納期限前か後か、今月だけ厳しいのか、病気や失業でしばらく難しいのか、車検が近いのか。この分け方を最初にしておくと話が早くなります。"
+        },
+        {
+          "type": "decisionCards",
+          "cards": [
+            {
+              "badge": "納期限前",
+              "title": "まだ納期限前の人",
+              "body": "払えないと分かった時点で県税窓口へ相談した方が、後手になりにくいです。",
+              "items": [
+                "納付書を手元に置く",
+                "管轄の県税事務所を確認する",
+                "いつから払えるかを考えておく"
+              ]
+            },
+            {
+              "badge": "納期限後",
+              "title": "すでに納期限を過ぎた人",
+              "body": "延滞金や督促の話が入るので、放置ではなく相談へ切り替えます。",
+              "items": [
+                "今の納付書が使えるか確認する",
+                "延滞金の有無を聞く",
+                "再発行が要るかを見る"
+              ]
+            },
+            {
+              "badge": "車検直前",
+              "title": "車検が近い人",
+              "body": "払えない相談と納付確認は別で動きます。検査日が近いなら同時に見ます。",
+              "items": [
+                "車検日を先に固定する",
+                "紙の納税証明が必要か確認する",
+                "反映日数も確認する"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "ここで混同しない",
+          "body": "「払えない」と「払い忘れた」は似ていますが、実務では少し違います。前者は相談と猶予の話、後者は期限後の納付手順の話が中心です。"
+        }
+      ]
+    },
+    {
+      "id": "office",
+      "title": "相談先｜普通車は県税事務所。納付書がなくても話は始められる",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "普通車の自動車税は県税なので、最初の相談先は都道府県の税窓口です。納付書番号が分かると話は早いですが、手元に紙がなくても、ナンバーや氏名、住所、車検証の情報で進められる場面はあります。県によっては窓口、郵送、電子申請を用意しているので、急ぎなら電話で入口を確かめる方が無難です。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "今の状態",
+            "まず聞く先",
+            "そこで確認すること"
+          ],
+          "rows": [
+            [
+              "納期限前",
+              "県税事務所",
+              "相談窓口、必要書類、猶予申請の可否"
+            ],
+            [
+              "納期限後",
+              "県税事務所",
+              "今の納付書が使えるか、延滞金、再発行の要否"
+            ],
+            [
+              "車検が近い",
+              "県税事務所と検査側",
+              "納付確認の反映日数、紙証明の要否"
+            ]
+          ]
+        },
+        {
+          "type": "flow",
+          "steps": [
+            {
+              "title": "納付書や車検証を確認する",
+              "body": "税目、都道府県、ナンバー、納期限が分かるだけでも相談しやすくなります。"
+            },
+            {
+              "title": "管轄の県税事務所を調べる",
+              "body": "都道府県サイトの案内や県民局税務部のページで入口を固定します。"
+            },
+            {
+              "title": "事情と支払い見通しを伝える",
+              "body": "今月だけ厳しいのか、数か月単位で難しいのかを言葉にした方が話が進みます。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "grace",
+      "title": "猶予制度｜「徴収猶予」と「換価の猶予」をざっくり分ける",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "県税の案内では、一時に納められない事情があるときの制度として、徴収猶予と換価の猶予が案内されています。名前だけだと分かりにくいですが、災害、盗難、病気、事業の休廃止や著しい損失などがあって、いま一括で納めるのが厳しいときに相談する制度です。生活や事業の維持を大きく崩すおそれがあるときは、差押えや換価を急がせない考え方もあります。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "制度",
+            "主な使いどころ",
+            "認められると",
+            "見方"
+          ],
+          "rows": [
+            [
+              "徴収猶予",
+              "災害、病気、休廃業などで一時に納められない",
+              "納付時期を延ばせる場合がある",
+              "まず事情を説明して申請の要否を確認する"
+            ],
+            [
+              "換価の猶予",
+              "一括納付で生活や事業維持が厳しい",
+              "差押え財産の売却などが猶予される場合がある",
+              "未納が消える制度ではない"
+            ],
+            [
+              "納付計画",
+              "一括が難しいが完納意思はある",
+              "猶予期間中に分けて納める形になることがある",
+              "勝手に自己流で払わず相談して決める"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "制度で見落としやすい点",
+          "items": [
+            "猶予期間は原則1年以内と案内する県が多い",
+            "金額や期間によっては担保が必要になることがある",
+            "猶予が認められると延滞金の全部または一部が免除される案内がある"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "risk",
+      "title": "放置のリスク｜延滞金、督促、差押えは「無言」で重くなる",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "払えないときに避けたいのは、払えない事情そのものより、何も言わずに時間だけ過ぎることです。納期限を過ぎれば延滞金の話が入り、督促や滞納処分の案内へ進みやすくなります。普通車は車検や売却の説明でも納付状況が絡むので、あとでまとめて説明しようとすると余計に整理しづらくなります。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "延滞金の対象になることがある",
+            "督促や催告が届くことがある",
+            "事情説明が遅れるほど選べる手段が減りやすい",
+            "車検や売却時の確認も後ろ倒しになる"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "自己流の一部納付は先に確認する",
+          "body": "善意で一部だけ先に払いたくなる場面もありますが、どう扱うかは窓口ごとに確認した方が安全です。後で相談し直す前提なら、先に電話一本入れた方が整理しやすくなります。"
+        }
+      ]
+    },
+    {
+      "id": "cases",
+      "title": "ケースで整理｜今月だけ厳しい、失業した、車検が近い",
+      "blocks": [
+        {
+          "type": "caseStudy",
+          "cases": [
+            {
+              "title": "ケース1｜今月だけ資金が薄い",
+              "intro": "入金予定はあるが、納期限の一括が難しい人です。",
+              "rows": [
+                {
+                  "label": "今の状態",
+                  "value": "短期の資金不足で、一括納付だけが厳しい"
+                },
+                {
+                  "label": "まずやること",
+                  "value": "県税窓口へ連絡し、相談の入口と必要書類を確認する"
+                },
+                {
+                  "label": "見落としやすい点",
+                  "value": "納期限を少し過ぎるだけでも、延滞金や督促の話は動き始める"
+                }
+              ]
+            },
+            {
+              "title": "ケース2｜失業や病気でしばらく厳しい",
+              "intro": "家計の回復時期が読みにくく、事情説明が必要な人です。",
+              "rows": [
+                {
+                  "label": "今の状態",
+                  "value": "一括だけでなく、すぐの完納も難しい"
+                },
+                {
+                  "label": "まずやること",
+                  "value": "収支の見通しと事情を整理し、猶予制度の対象になりそうかを相談する"
+                },
+                {
+                  "label": "見落としやすい点",
+                  "value": "必要書類や証明の準備に時間がかかることがある"
+                }
+              ]
+            },
+            {
+              "title": "ケース3｜車検が近い",
+              "intro": "支払いの相談だけでなく、検査日までに何を整えるかが重要な人です。",
+              "rows": [
+                {
+                  "label": "今の状態",
+                  "value": "未納の相談と、継続検査の納付確認が同時進行になる"
+                },
+                {
+                  "label": "まずやること",
+                  "value": "県税窓口と検査側の両方へ確認し、必要なら車検日も組み直す"
+                },
+                {
+                  "label": "見落としやすい点",
+                  "value": "相談中だから納付確認も自動で通るとは限らない"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "title": "最後に整理｜普通車は「払えない」と気づいた時点で県税へ相談する",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "普通車の自動車税で迷ったら、まず都道府県税であることに戻ってください。払えない事情があるときの出発点は、県税事務所へ相談して、いまの状態が納期限前なのか後なのか、猶予制度の話になるのか、車検確認も一緒に見るべきなのかを切り分けることです。ここが決まると、延滞金の不安も、分割で払えるかの不安も、聞く順番が見えます。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "普通車は県税なので相談先を間違えない",
+            "納期限前か後かを先に固定する",
+            "車検が近いなら納付確認も別で見る",
+            "事情説明に使う収支や資料を整理してから連絡する",
+            "無言のままにせず、まず相談へ切り替える"
+          ]
+        }
+      ]
+    }
+  ]
+}

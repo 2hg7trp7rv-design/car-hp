@@ -1,0 +1,123 @@
+{
+  "slug": "car-tax-stop-guide",
+  "createdAt": "2026-04-19",
+  "competitorCount": 30,
+  "queries": [
+    "自動車税 税止め 普通車",
+    "自動車税 県外 名義変更 旧都道府県 納付書",
+    "自動車税 廃車したのに 通知 旧県"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/169.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/170.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/233.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/234.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/216.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/242.html"
+    },
+    {
+      "url": "https://www.pref.tochigi.lg.jp/b07/life/zeikin/zeikin/car_qa.html"
+    },
+    {
+      "url": "https://www.pref.miyagi.jp/soshiki/zeimu/jushohenkoui.html"
+    },
+    {
+      "url": "https://www.pref.ishikawa.lg.jp/zei/qa/a11.html"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/257752.htm"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/258617.htm"
+    },
+    {
+      "url": "https://www.pref.saitama.lg.jp/a0209/z-kurashiindex/z-2-6.html"
+    },
+    {
+      "url": "https://www.pref.kochi.lg.jp/doc/2019092700154/"
+    },
+    {
+      "url": "https://www.pref.kochi.lg.jp/doc/2024122600144/"
+    },
+    {
+      "url": "https://www.pref.niigata.lg.jp/sec/zeimu/car.html"
+    },
+    {
+      "url": "https://www.pref.gifu.lg.jp/page/5579.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidousyazei.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidoushayokuaru.html"
+    },
+    {
+      "url": "https://www.pref.fukuoka.lg.jp/contents/shubetsuwari.html"
+    },
+    {
+      "url": "https://www.pref.hiroshima.lg.jp/site/zei/1237271840415.html"
+    },
+    {
+      "url": "https://www.pref.fukushima.lg.jp/sec/01115d/zeimu11.html"
+    },
+    {
+      "url": "https://web.pref.hyogo.lg.jp/kk22/pa04_000000021.html"
+    },
+    {
+      "url": "https://web.pref.hyogo.lg.jp/kk22/nouzei.html"
+    },
+    {
+      "url": "https://www.pref.hokkaido.lg.jp/sm/zim/address/index.html"
+    },
+    {
+      "url": "https://www.pref.kagawa.lg.jp/zeimu/zeikin/jidosha.html"
+    },
+    {
+      "url": "https://www.pref.yamaguchi.lg.jp/soshiki/5/12414.html"
+    },
+    {
+      "url": "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/faq/index.html"
+    },
+    {
+      "url": "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/transfer/document/index.html"
+    },
+    {
+      "url": "https://www.jaf.or.jp/common/kuruma-qa/category-procedure/subcategory-registration/faq013"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/735906.html"
+    }
+  ],
+  "commonTakeaways": [
+    "都道府県の案内は4月1日基準や移転登録・抹消登録の制度説明はあるが、「税止め」という実務語でまとめたページは少ない。",
+    "住所変更届と登録変更の違いは説明されていても、今年分の課税と翌年度の通知対策を一枚で分けているページが少ない。",
+    "車検用納税証明がどの都道府県で必要になる年かまで一緒に整理したページが少ない。"
+  ],
+  "gapsFound": [
+    "旧都道府県から通知が来る理由を、4月1日基準、未完了、送付先変更だけの三層で整理したページが少ない。",
+    "普通車の税止めを formal な制度名ではなく実務上の呼び方として整理したページが少ない。",
+    "業者へ任せたときに契約日ではなく登録完了日を確認すべき点が弱い。"
+  ],
+  "changesApplied": [
+    "今年分の課税と、翌年度へ旧都道府県の課税関係を残さない実務を分けて構成した。",
+    "送付先変更、移転登録、抹消登録、自動車税申告の違いを一つの比較表にまとめた。",
+    "車検が近い人向けに、どの都道府県の納税証明を見る年かも同じ記事で整理した。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}

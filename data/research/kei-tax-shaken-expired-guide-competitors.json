@@ -1,0 +1,122 @@
+{
+  "slug": "kei-tax-shaken-expired-guide",
+  "createdAt": "2026-04-18",
+  "competitorCount": 30,
+  "queries": [
+    "車検切れ 軽自動車税",
+    "軽自動車 車検切れ 税金 一時使用中止",
+    "車検切れ 軽 廃車 4月1日"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.city.yamato.lg.jp/gyosei/soshik/45/yokuarushitsumon_kaitoshu/shitumonkei/12427.html"
+    },
+    {
+      "url": "https://www.city.funabashi.lg.jp/faq/kurashi/zei/004/p043595.html"
+    },
+    {
+      "url": "https://www.city.gamagori.lg.jp/unit/zeimu/keijiqa.html"
+    },
+    {
+      "url": "https://www.city.yokkaichi.lg.jp/www/contents/1001000000584/index.html"
+    },
+    {
+      "url": "https://www.city.himeji.lg.jp/faq/faq_detail.php?frmId=1015"
+    },
+    {
+      "url": "https://www4.city.kanazawa.lg.jp/soshikikarasagasu/shisanzeika/gyomuannai/1/3_1/yokuarutoiawase/keiji_kazeinitsuite/24305.html"
+    },
+    {
+      "url": "https://www.city.joso.lg.jp/kurashi_gyousei/kurashi/zeikin/keijidousha_tax/light_vehicle_tax_question.html"
+    },
+    {
+      "url": "https://www.city.shiki.lg.jp/soshiki/9/6640.html"
+    },
+    {
+      "url": "https://www.town.ibaraki-yachiyo.lg.jp/sp/page/page011046.html"
+    },
+    {
+      "url": "https://www.city.kobe.lg.jp/a35984/kurashi/tax/kei/index.html"
+    },
+    {
+      "url": "https://www.city.kawaguchi.lg.jp/soshiki/01050/080/2/47888.html"
+    },
+    {
+      "url": "https://www.city.yamato.lg.jp/gyosei/soshik/45/yokuarushitsumon_kaitoshu/shitumonkei/12429.html"
+    },
+    {
+      "url": "https://www.city.akishima.lg.jp/faq/f-kurashi/1006955/1006970/1006981.html"
+    },
+    {
+      "url": "https://www.city.hokota.lg.jp/page/page000627.html"
+    },
+    {
+      "url": "https://www.city.maibara.lg.jp/soshiki/chikishinko/zeimu/jidosha/14811.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/information/knowledge/taxes_qa.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/scrapped/"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/scrapped/return.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/scrapped/dismantling.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/scrapped/notification_dismantling.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/change_name.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/inspection/knowledge.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/inspection/used_vehicle.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/inspection/continuation.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/form_example/list.html"
+    },
+    {
+      "url": "https://www.city.ikoma.lg.jp/faq/faq_detail.php?co=cat&frmCd=1-5-0-0-0&frmId=456"
+    },
+    {
+      "url": "https://www.city.tottori.lg.jp/uploaded/attachment/4236.pdf"
+    },
+    {
+      "url": "https://www.city.gyoda.lg.jp/soshiki/soumubu/zeimu/faq_kurashi/zeikin/keijidoshazei/1178.html"
+    },
+    {
+      "url": "https://www.city.joso.lg.jp/kurashi_gyousei/kurashi/zeikin/keijidousha_tax/light_vehicle_tax_question.html"
+    }
+  ],
+  "commonTakeaways": [
+    "多くの説明は「4月1日基準」「車検切れでも課税」で終わり、一時使用中止と再使用の流れまで書いていない。",
+    "普通車との違いとして月割還付なしを説明しても、4月2日以後の見え方まで整理が浅い。",
+    "業者へ依頼した日と手続き完了日が違う点を、税の実務に落としていない記事が多い。"
+  ],
+  "gapsFound": [
+    "一時使用中止後に戻すときが継続検査ではなく中古車新規検査になる点が抜けやすい。",
+    "壊れて動かない、私有地保管、車検切れを同じ理由で説明しているだけで、止め方の分岐が弱い。"
+  ],
+  "changesApplied": [
+    "軽自動車税を4月1日基準と一時使用中止で整理し直し、普通車ルールを持ち込まない構成にした。",
+    "廃車・一時使用中止・再使用の三つを分け、継続検査と中古車新規検査の違いまでつないだ。",
+    "業者依頼と完了日のズレを1節で整理し、4月1日前後の読み違いを減らした。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}

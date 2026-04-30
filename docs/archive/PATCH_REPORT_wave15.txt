@@ -1,0 +1,28 @@
+PATCH REPORT — WAVE 15
+
+Status
+- Google Fonts <link> loader removed from runtime.
+- Fonts are self-hosted and optimized via next/font/google.
+- Handwriting fonts are not preloaded to avoid LCP impact.
+- Tailwind font-family keys remain stable via CSS variable mapping.
+
+Risk
+- Medium (font changes always affect rendering).
+  - Biggest risk: subset/type definition mismatch for some JP fonts in Next.
+    We chose a strict-safe subset config. If any JP glyph falls back to system fonts,
+    switch Noto Serif JP to local self-hosted WOFF2 in the next wave.
+
+Action (post-deploy checks)
+1) Visual QA
+- Home + any long Japanese article page:
+  - Confirm Japanese text uses the intended serif (not system fallback).
+  - Confirm headings keep the same hierarchy and spacing.
+
+2) Network QA
+- Confirm no requests to:
+  - fonts.googleapis.com
+  - fonts.gstatic.com
+  (use DevTools or any header/network inspector)
+
+3) CLS / LCP sanity
+- First load on mobile: verify there is no “text jump” after render.

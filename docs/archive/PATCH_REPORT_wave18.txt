@@ -1,0 +1,19 @@
+WAVE 18 — Files added
+- PATCH_NOTES_wave18.txt
+- PATCH_REPORT_wave18.txt
+- app/cars/[slug]/not-found.tsx
+- app/column/[slug]/not-found.tsx
+- app/global-error.tsx
+- app/guide/[slug]/not-found.tsx
+- app/heritage/[slug]/not-found.tsx
+- app/news/[id]/not-found.tsx
+- components/system/StatusPanel.tsx
+
+WAVE 18 — Files modified
+- app/cars/error.tsx
+- app/column/error.tsx
+- app/error.tsx
+- app/guide/error.tsx
+- app/heritage/error.tsx
+- app/news/error.tsx
+- app/not-found.tsx

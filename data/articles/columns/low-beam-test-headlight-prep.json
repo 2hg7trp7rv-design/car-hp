@@ -1,0 +1,243 @@
+{
+  "id": "col-012",
+  "slug": "low-beam-test-headlight-prep",
+  "status": "published",
+  "title": "ロービーム検査時代。ヘッドライトの黄ばみは車検前に先に整える。",
+  "summary": "ヘッドライトは点けばOKじゃない。ロービームで見る流れが進み、黄ばみ・曇り・中の劣化で不合格になりやすい。直前に詰まないための確認と、対策の順番をまとめた。",
+  "category": "MAINTENANCE",
+  "tags": [
+    "車検",
+    "ヘッドライト",
+    "黄ばみ",
+    "ロービーム"
+  ],
+  "intentTags": [
+    "shaken",
+    "maintenance",
+    "trouble"
+  ],
+  "relatedGuideSlugs": [
+    "hub-shaken",
+    "hub-consumables",
+    "maintenance"
+  ],
+  "targetKeyword": "ヘッドライト 黄ばみ 車検",
+  "searchIntent": "ヘッドライトの黄ばみや光量不足を軽視している人が、車検落ちのリスクと対策の優先順位を理解できるようにする。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-27",
+  "noindex": false,
+  "seoTitle": "ヘッドライトの黄ばみと車検。ロービーム検査前に見たいポイント。",
+  "seoDescription": "ヘッドライトは点けばOKではなく、明るさと向きで不合格になることがある。ロービーム検査の流れ（地域差あり）、落ちやすい原因、安い順の対策、10分チェックをまとめた。",
+  "planPriority": 8,
+  "publishedAt": "2026-01-27",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [],
+  "primaryQuery": "ヘッドライト 黄ばみ 車検",
+  "updateReason": "初版公開",
+  "sources": [
+    "https://wwwtb.mlit.go.jp/kinki/content/000330517.pdf",
+    "https://www.ipf.co.jp/support/syaken/syaken_20240808.pdf",
+    "https://www.autobacs.com/static_html/srv/syaken/article/3053/",
+    "https://www.goo-net.com/magazine/carmaintenance/inspection/254975/"
+  ],
+  "heroImage": "",
+  "thumbnail": "",
+  "displayTag": "手続き",
+  "layoutVariant": "decision-v1",
+  "actionBox": {
+    "title": "車検の1〜2か月前にロービームを先に確認する",
+    "body": "ヘッドライトは、直前に気づくほど高い話へ飛びやすいです。まずはロービームの明るさと向きだけを先に見てもらって、磨きで済むのか、球なのか、ユニットなのかを切り分けてください。",
+    "actions": [
+      {
+        "label": "車検HUBを見る",
+        "href": "/guide/hub-shaken"
+      },
+      {
+        "label": "消耗品HUBを見る",
+        "href": "/guide/hub-consumables"
+      },
+      {
+        "label": "車検を2か月前から動く考え方を見る",
+        "href": "/column/shaken-early-two-months"
+      }
+    ]
+  },
+  "readMinutes": 5,
+  "lead": "ヘッドライトは点いていれば終わりではありません。ロービームでの検査が前提になってきた今は、黄ばみや曇り、反射板の劣化がそのまま車検の詰まりどころになります。高い部品交換へ飛ぶ前に、安い順から整える考え方をまとめます。",
+  "eyebrowLabel": "ヘッドライト",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "特集",
+      "href": "/column"
+    },
+    {
+      "label": "ロービーム検査時代。ヘッドライトの黄ばみは車検前に先に整える。"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "車検・整備編集チーム"
+  },
+  "keyPoints": [
+    "黄ばみや曇りは見た目だけではなく、ロービーム検査で不合格につながる",
+    "落ちる原因は球切れより、レンズ表面・反射板・光軸や電圧のズレが多い",
+    "対策は洗う→磨く→球→調整の順で進めると無駄な出費が減る"
+  ],
+  "checkpoints": [
+    "左右で明るさや色味が大きく違わないか",
+    "レンズ表面に黄ばみや曇りが出ていないか",
+    "内側の曇りや結露、反射板劣化の兆候がないか",
+    "車内の光軸ダイヤルが0に戻っているか",
+    "車検の1〜2か月前にロービームを見てもらえるか"
+  ],
+  "faq": [
+    {
+      "question": "ヘッドライトは点いていれば車検に通りますか。",
+      "answer": "通るとは限りません。車検では「見える光」も見られるので、黄ばみや曇りで光が弱かったり散ったりすると不合格になりえます。"
+    },
+    {
+      "question": "磨けば必ず直りますか。",
+      "answer": "表面劣化なら改善しますが、内側の曇りや反射板劣化は磨いても戻りません。その場合はユニット修理や交換の検討が必要です。"
+    },
+    {
+      "question": "バルブ交換だけで何とかなりますか。",
+      "answer": "球が原因なら効きますが、レンズや光軸が悪いと改善しません。まずはどこが弱いかを切り分ける方が先です。"
+    },
+    {
+      "question": "いつ見てもらうのがいいですか。",
+      "answer": "車検直前ではなく1〜2か月前です。磨きや部品交換が必要でも、順番を選べる余裕が残ります。"
+    }
+  ],
+  "relatedColumnSlugs": [
+    "shaken-early-two-months",
+    "dealer-shaken-is-expensive-myth",
+    "obd-inspection-shaken-fail"
+  ],
+  "detailSections": [
+    {
+      "id": "yellowing-risk",
+      "title": "ヘッドライトの黄ばみは、見た目より先に車検で詰まる",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "ヘッドライトは点いてさえいれば大丈夫と思われがちですが、ロービームで必要な明るさと向きが出ていないと検査で引っかかります。黄ばみや曇りは夜道だけでなく車検でも結果として出ます。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "表面の黄ばみやくもりで光が弱くなる",
+            "散った光でカットラインが曖昧になる",
+            "片側だけ暗いと左右差で不安定になる"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "low-beam-era",
+      "title": "ロービームで通る状態を前提に準備する",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "近年はロービームでの検査を前提に考える方が安全です。地域差や周知期間の扱いはありますが、CBJでは「ロービームが弱い車は通りにくい」と考えて準備するのを基準にします。"
+        },
+        {
+          "type": "callout",
+          "tone": "info",
+          "title": "古い感覚で「ハイビームで何とかなる」を残さない",
+          "body": "今はロービームで見える状態を先に作る方が確実です。直前に慌てて光源だけ変えるより、レンズと光軸を先に確認する方が事故が減ります。"
+        }
+      ]
+    },
+    {
+      "id": "common-causes",
+      "title": "落ちる原因は「球」より先に、レンズと中身が多い",
+      "blocks": [
+        {
+          "type": "decisionCards",
+          "title": "よくある原因",
+          "cards": [
+            {
+              "badge": "表面",
+              "title": "レンズ面の黄ばみ・くもり",
+              "body": "表面劣化は光量低下の典型です。まず洗浄と研磨で改善する余地があります。"
+            },
+            {
+              "badge": "内部",
+              "title": "反射板や内側の劣化",
+              "body": "内側のくもりやリフレクター劣化は、表面を磨いても戻りません。ここまで進むとユニット側の判断が必要です。"
+            },
+            {
+              "badge": "周辺",
+              "title": "バルブ・光軸・電圧のズレ",
+              "body": "相性の悪いバルブや電圧低下、光軸のズレでも暗く見えます。ライトだけを犯人にしない方が安全です。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prep-order",
+      "title": "対策の順番は「洗う→磨く→球→調整」",
+      "blocks": [
+        {
+          "type": "flow",
+          "steps": [
+            {
+              "title": "まず洗う",
+              "body": "表面の汚れを落として、単なる汚れと劣化を分けます。"
+            },
+            {
+              "title": "黄ばみが強いなら研磨とコーティング",
+              "body": "磨くだけだと戻りやすいので、表面保護まで考える方が長持ちします。"
+            },
+            {
+              "title": "バルブや電圧を確認する",
+              "body": "ハロゲンの劣化や電圧不足で暗く見えることがあります。"
+            },
+            {
+              "title": "光軸と向きを点検する",
+              "body": "車内ダイヤルやレベリングも含めて、最終的な向きを整えます。"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "この順番を飛ばしていきなりユニット交換へ行くと、無駄な出費になりやすいです。"
+        }
+      ]
+    },
+    {
+      "id": "home-check",
+      "title": "家でできる確認と、工場へ伝える一言",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "夜に壁へ照らして左右の明るさを見比べる",
+            "光の境目がボヤけていないかを見る",
+            "レンズ表面のザラつきや曇りを触って確認する",
+            "内側の結露や曇りがないかを見る",
+            "光軸ダイヤルが0に戻っているか確認する"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "工場へはこう伝えると早い",
+          "body": "「車検が近いので、ロービームの明るさと向きだけ先に見てほしいです」と言えば十分です。目的が明確だと、無駄に高いメニューへ飛びにくくなります。"
+        }
+      ]
+    }
+  ]
+}
