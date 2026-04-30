@@ -1006,3 +1006,20 @@ a {
 
 .section-gap-lg { margin-top: 144px; }
 .section-gap-xl { margin-top: 216px; }
+
+/* ============================================================
+   Cinematic Hero Ken Burns Animation
+   ============================================================ */
+
+@keyframes ken-burns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-ken-burns {
+  animation: ken-burns 8s ease-out forwards;
+}
