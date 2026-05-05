@@ -1,0 +1,279 @@
+{
+  "id": "col-013",
+  "slug": "dealer-shaken-is-expensive-myth",
+  "status": "published",
+  "title": "ディーラー車検が高く見えるとき。見積もりの線引きを先に決める。",
+  "summary": "ディーラー車検が高く見えるのは、法定費用ではなく整備方針と部品選びが違うから。必須／安心／様子見の線引きで、損しない選び方を整理。",
+  "category": "MAINTENANCE",
+  "tags": [
+    "車検",
+    "ディーラー",
+    "見積もり",
+    "法定費用",
+    "予防整備",
+    "純正部品",
+    "整備工場",
+    "費用"
+  ],
+  "intentTags": [
+    "shaken",
+    "maintenance",
+    "decision"
+  ],
+  "relatedGuideSlugs": [
+    "hub-shaken",
+    "maintenance",
+    "hub-consumables"
+  ],
+  "targetKeyword": "ディーラー車検 高い",
+  "searchIntent": "ディーラー車検が高い理由（費用差の正体）と、ディーラーが向く人／向かない人、見積もりの線引きで失敗しないコツを渡す。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-29",
+  "noindex": false,
+  "seoTitle": "ディーラー車検が高く見える理由。見積もりの線引きと考え方。",
+  "seoDescription": "ディーラー車検が高いのは法定費用ではなく、整備方針と部品選びの差。必須／安心／様子見で線引きして、ディーラーでも民間でも損しない選び方をまとめます。",
+  "planPriority": 25,
+  "publishedAt": "2026-01-29",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [],
+  "primaryQuery": "ディーラー車検 高い",
+  "updateReason": "初版公開",
+  "sources": [
+    "https://www.mlit.go.jp/jidosha/kensatoroku/sikumi/houteihiyou.pdf",
+    "https://www.mlit.go.jp/jidosha/ninshoutoshiteinochigai.html",
+    "https://jaf.or.jp/common/kuruma-qa/category-construction/subcategory-structure/faq037",
+    "https://www.yellowhat.jp/column/inspection/121/index.html",
+    "https://www.yellowhat.jp/column/inspection/016/index.html"
+  ],
+  "heroImage": "/images/cbj/columns/dealer-shaken-is-expensive-myth.jpg",
+  "thumbnail": "/images/cbj/columns/dealer-shaken-is-expensive-myth.jpg",
+  "displayTag": "維持費",
+  "layoutVariant": "decision-v1",
+  "actionBox": {
+    "title": "見積もりを「必須・安心・様子見」に分けてもらう",
+    "body": "ディーラーを使うかどうかより先に、見積もりの中身を三段階に分けてもらってください。法定費用は固定、迷うのは整備方針です。期限とリスクを説明できる店ほど、結果的に損しにくくなります。",
+    "actions": [
+      {
+        "label": "車検HUBを見る",
+        "href": "/guide/hub-shaken"
+      },
+      {
+        "label": "車検を2か月前から動く考え方を見る",
+        "href": "/column/shaken-early-two-months"
+      },
+      {
+        "label": "OBD検査の落とし穴を見る",
+        "href": "/column/obd-inspection-shaken-fail"
+      }
+    ]
+  },
+  "readMinutes": 6,
+  "lead": "ディーラー車検が高く見える理由は、法定費用ではなく整備方針と部品選びです。通すだけでなく、次の2年も見据えて先回りの整備が入りやすいから総額が膨らむ。必要・安心・様子見の線引きを決めれば、価格差の見え方はかなり変わります。",
+  "eyebrowLabel": "ディーラー車検",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "特集",
+      "href": "/column"
+    },
+    {
+      "label": "ディーラー車検が高く見えるとき。見積もりの線引きを先に決める。"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "車検・整備編集チーム"
+  },
+  "keyPoints": [
+    "差が出るのは法定費用ではなく、基本料と追加整備・部品の考え方",
+    "ディーラーは予防整備と純正部品で総額が厚くなりやすい",
+    "見積もりを「必須・安心・様子見」に分けるだけで判断しやすくなる"
+  ],
+  "checkpoints": [
+    "法定費用と店側費用を分けて見ているか",
+    "追加整備を必須・安心・様子見に分けて説明してもらえるか",
+    "純正以外の選択肢があるか、ないかを明確に聞いているか",
+    "車が止まると困る度合いを自分で把握しているか",
+    "認証工場・指定工場・ディーラーの違いをざっくり理解しているか"
+  ],
+  "faq": [
+    {
+      "question": "法定費用はディーラーだと高くなりますか。",
+      "answer": "法定費用そのものは基本的にどこで受けても大きくは変わりません。差が出るのは基本料や追加整備、部品の方です。"
+    },
+    {
+      "question": "勧められた部品交換は断れますか。",
+      "answer": "断れる項目はあります。ただし車検に通らないものや安全に直結するものもあるので、「やらないと何が起きるか」「いつまで持つか」をセットで聞く方が安全です。"
+    },
+    {
+      "question": "認証工場と指定工場は何が違いますか。",
+      "answer": "指定工場は工場内で検査まで完結できる点が大きな違いです。ただし良し悪しは資格だけでは決まらず、説明の丁寧さと見積もりの透明性が重要です。"
+    },
+    {
+      "question": "安い車検の方が得ですか。",
+      "answer": "車の状態が良く、最低限で通す方針が合っているなら得になることがあります。逆に状態が読めない車では、後からまとめて出費が来て逆転しやすいです。"
+    }
+  ],
+  "relatedColumnSlugs": [
+    "shaken-early-two-months",
+    "obd-inspection-shaken-fail",
+    "low-beam-test-headlight-prep"
+  ],
+  "detailSections": [
+    {
+      "id": "cost-breakdown",
+      "title": "ディーラー車検が高く見える前に、まず3つへ分ける",
+      "blocks": [
+        {
+          "type": "comparisonTable",
+          "title": "車検費用の見方",
+          "headers": [
+            "区分",
+            "中身",
+            "どこで差が出るか"
+          ],
+          "rows": [
+            [
+              "法定費用",
+              "税金・自賠責・印紙代",
+              "基本はどこでも大差が出にくい"
+            ],
+            [
+              "車検基本料",
+              "点検・検査・書類の手数料",
+              "店の運営と体制で差が出る"
+            ],
+            [
+              "追加整備・部品交換",
+              "状態と整備方針で増減",
+              "ここが「高い」の正体になりやすい"
+            ]
+          ],
+          "note": "ディーラーの高さを語る前に、法定費用と整備方針を分けるだけで腹落ちしやすくなります。"
+        },
+        {
+          "type": "paragraph",
+          "text": "「ディーラーが高い」の正体は、法定費用ではなく2と3が厚くなりやすいことです。"
+        }
+      ]
+    },
+    {
+      "id": "why-expensive",
+      "title": "総額が厚くなりやすい3つの理由",
+      "blocks": [
+        {
+          "type": "decisionCards",
+          "cards": [
+            {
+              "badge": "予防整備",
+              "title": "次の2年を見込んで先回り交換が入りやすい",
+              "body": "通すだけでなく、次の車検までのトラブルを減らす前提で提案されるため、まだ使える部品も前倒しで交換しやすいです。"
+            },
+            {
+              "badge": "純正部品",
+              "title": "部品代が上がりやすい",
+              "body": "純正部品が基本になるため、社外品やリビルトの選択肢が少なく、総額が膨らみやすくなります。"
+            },
+            {
+              "badge": "体制",
+              "title": "情報・診断・保証の範囲が広い",
+              "body": "メーカー情報や診断機、整備保証まで含めて「面倒が少ない」方向に振るぶん、料金にも反映されます。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "who-should-use-dealer",
+      "title": "ディーラー向きの人と、他店でも十分な人",
+      "blocks": [
+        {
+          "type": "decisionCards",
+          "title": "向き不向きを分ける軸",
+          "cards": [
+            {
+              "badge": "向いている",
+              "title": "新しめの車・保証継続・止まると困る人",
+              "items": [
+                "保証や点検パックが絡む",
+                "仕事や育児で止まると困る",
+                "説明を聞いて優先順位を付ける自信がない"
+              ]
+            },
+            {
+              "badge": "他店でも可",
+              "title": "年式が古めで、整備の優先順位を自分で決めたい人",
+              "items": [
+                "付き合いのある工場がある",
+                "費用重視だが説明は欲しい",
+                "交換推奨を全部飲むつもりはない"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "どちらが正しいではなく、あなたの生活にとって「止まると困る度合い」で考える方が外しません。"
+        }
+      ]
+    },
+    {
+      "id": "line-drawing",
+      "title": "見積もりの線引きは「必須・安心・様子見」で十分",
+      "blocks": [
+        {
+          "type": "flow",
+          "steps": [
+            {
+              "title": "車検に通すために必須",
+              "body": "外すと通らない、または安全に関わる項目。ここは原則後回しにしない。"
+            },
+            {
+              "title": "今やると安心",
+              "body": "次の2年で困りやすいが、時期を相談できる項目。"
+            },
+            {
+              "title": "まだ様子見でOK",
+              "body": "期限や距離の目安を聞いたうえで後回しにできる項目。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "やらないと何が起きるか",
+            "最低でもいつまでに必要か",
+            "純正以外の選択肢があるか",
+            "今回やると安いのか、いつでも同じか"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final-choice",
+      "title": "最後は「安さ」ではなく、止まると困る度合いで決める",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "安い車検が悪いわけではありません。ただ、状態が読めない車や遠出が多い人が最低限へ寄せると、後からまとめて出費が来て逆転することがあります。"
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "価格比較の前に条件比較を揃える",
+          "body": "同じ整備範囲、同じ保証条件で比べないと、安い高いの意味が崩れます。見積もりを持ち帰って、同条件で比較していいか聞くと判断しやすくなります。"
+        }
+      ]
+    }
+  ]
+}

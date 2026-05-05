@@ -1,0 +1,426 @@
+{
+  "slug": "shaken-required-documents-guide",
+  "title": "車検に必要なものは何？車検証・自賠責・納税証明、普通車と軽の違いを整理する。",
+  "lead": "車検で迷いやすいのは、店に任せる場合とユーザー車検、自動車税と軽自動車税、紙の証明と電子確認が一枚に混ざるからです。最初に分けるべきは、普通車か軽か、納税直後や引っ越し直後か、自賠責の期間が次の車検まで足りているかです。そこが分かれば、当日に足りない書類で止まるリスクはかなり減ります。",
+  "type": "GUIDE",
+  "monetizeType": null,
+  "category": "LIFE",
+  "tags": [
+    "車検",
+    "必要書類",
+    "自賠責保険",
+    "納税証明書",
+    "普通車",
+    "軽自動車"
+  ],
+  "publishedAt": "2026-04-16",
+  "updatedAt": "2026-04-25",
+  "internalLinks": [
+    "kei-tax-late-fee-only-guide",
+    "car-tax-late-fee-only-guide",
+    "kei-tax-certificate-reissue-guide",
+    "car-tax-certificate-reissue-guide",
+    "kei-tax-april-first-deadline-guide",
+    "kei-tax-demand-letter-guide",
+    "car-tax-demand-letter-guide",
+    "kei-tax-payment-slip-reissue-guide",
+    "car-tax-payment-slip-reissue-guide",
+    "shaken-cost-breakdown-guide",
+    "jibaiseki-premium-guide",
+    "car-weight-tax-guide",
+    "car-tax-notice-not-arrived-2026",
+    "kei-tax-notice-not-arrived-2026",
+    "jyuusho-henkou-shaken-shou",
+    "car-tax-payment-method-guide",
+    "car-tax-purchase-timing-guide",
+    "kei-tax-purchase-timing-guide",
+    "car-tax-cannot-pay-guide",
+    "kei-tax-cannot-pay-guide",
+    "car-tax-seizure-warning-guide",
+    "kei-tax-seizure-warning-guide"
+  ],
+  "body": "",
+  "monetizeKey": null,
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "kei-tax-late-fee-only-guide",
+    "car-tax-late-fee-only-guide",
+    "kei-tax-certificate-reissue-guide",
+    "car-tax-certificate-reissue-guide",
+    "kei-tax-april-first-deadline-guide",
+    "kei-tax-demand-letter-guide",
+    "car-tax-demand-letter-guide",
+    "kei-tax-payment-slip-reissue-guide",
+    "car-tax-payment-slip-reissue-guide",
+    "shaken-cost-breakdown-guide",
+    "jibaiseki-premium-guide",
+    "car-weight-tax-guide",
+    "car-tax-notice-not-arrived-2026",
+    "kei-tax-notice-not-arrived-2026",
+    "jyuusho-henkou-shaken-shou",
+    "car-tax-payment-method-guide",
+    "car-tax-purchase-timing-guide",
+    "kei-tax-purchase-timing-guide",
+    "car-tax-cannot-pay-guide",
+    "kei-tax-cannot-pay-guide",
+    "car-tax-seizure-warning-guide",
+    "kei-tax-seizure-warning-guide"
+  ],
+  "relatedColumnSlugs": [
+    "shaken-early-two-months",
+    "dealer-shaken-is-expensive-myth",
+    "obd-inspection-shaken-fail",
+    "sell-timing-shaken-tax-market"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "paperwork",
+    "inspection",
+    "tax"
+  ],
+  "seoTitle": "車検に必要なものは何？車検証・自賠責・納税証明、普通車と軽の違いを整理する。",
+  "seoDescription": "車検に必要なものを、普通車と軽自動車の違い、車検証・自賠責・納税証明、軽JNKS、納付直後の例外、店依頼とユーザー車検の違いまで整理する実務ガイドです。",
+  "summary": "車検に必要なものを、普通車と軽の違い、車検証・自賠責・納税証明、納付直後の例外、店依頼とユーザー車検の違いまで整理する実務ガイドです。",
+  "readMinutes": 7,
+  "status": "published",
+  "id": "guide:shaken-required-documents-guide",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-paperwork",
+  "relatedClusterIds": [],
+  "primaryQuery": "車検 必要なもの",
+  "updateReason": "毎年の車検需要に合わせて、普通車と軽の必要書類、納税証明の電子化、自賠責と2か月前受検の注意点を decision-v1 で整理しました。",
+  "sources": [
+    "https://www.naltec.go.jp/business/inspection/howto/documents.html",
+    "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/inspection/document/index.html",
+    "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/about/inspect/self/index.html",
+    "https://www.keikenkyo.or.jp/inspection/continuation.html",
+    "https://www.keikenkyo.or.jp/Portals/0/files/inspection/continuation/0000057801.pdf",
+    "https://www.mlit.go.jp/report/press/jidosha02_hh_000645.html",
+    "https://www.oss.mlit.go.jp/portal/beginner/tetsuduki-shurui/index.html"
+  ],
+  "heroImage": "/images/cbj/display-tags/guides/paperwork-2.jpg",
+  "thumbnail": "/images/cbj/display-tags/guides/paperwork-2.jpg",
+  "displayTag": "手続き",
+  "layoutVariant": "decision-v1",
+  "eyebrowLabel": "手続き",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "名義変更・必要書類",
+      "href": "/guide/hub-paperwork"
+    },
+    {
+      "label": "車検に必要なものは何？車検証・自賠責・納税証明、普通車と軽の違いを整理する。"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "手続き・維持費ガイド編集チーム"
+  },
+  "keyPoints": [
+    "最初に分けるべきは、普通車か軽か、店依頼かユーザー車検かです。必要書類と窓口が少し変わります。",
+    "普通車の自動車税納税証明書は継続検査窓口では原則不要ですが、納付直後など地方税システムに反映前は紙が必要になることがあります。",
+    "軽は軽JNKSで納税確認できれば原則不要ですが、納付したばかり、中古車購入直後、他市区町村へ引っ越した直後、過去未納がある車では紙の納税証明が必要になる場合があります。",
+    "自賠責は、次の車検まで切れない保険期間が必要です。更新分だけでなく、現在有効な証明の扱いも先に確認した方が安全です。",
+    "満了2か月前から受けても有効期間を失わないので、納税や書類確認は早めに片づけた方が詰まりにくいです。"
+  ],
+  "checkpoints": [
+    "普通車か軽自動車か",
+    "車検証の有効期間満了日",
+    "自賠責の現在分と更新分の保険期間",
+    "納付直後・中古購入直後・引っ越し直後ではないか",
+    "店に任せるか、ユーザー車検か"
+  ],
+  "faq": [
+    {
+      "question": "普通車でも、自動車税の納税証明書は持って行った方がいいですか。",
+      "answer": "登録自動車の継続検査窓口では原則不要です。ただし、納付した直後など地方税のシステムに反映されていない場合は、従来どおり紙の証明書が必要になることがあります。支払ってすぐ受けるなら、納税通知書に付いた証明書を手元に置いておく方が安全です。"
+    },
+    {
+      "question": "軽自動車は、紙の納税証明書が完全に不要になったのですか。",
+      "answer": "完全に不要ではありません。軽JNKSで納付情報が確認できれば原則不要ですが、納付したばかり、中古車購入直後、他市区町村へ引っ越した直後、過去未納がある車では、紙の納税証明書が必要になる場合があります。"
+    },
+    {
+      "question": "自賠責は、新しい証明書だけ見れば足りますか。",
+      "answer": "次の車検まで切れない保険期間が前提です。普通車の継続検査案内では、新しい保険証と古い保険証の両方を用意するよう案内されています。軽でも、現在の保険期間が残っている場合は当該証明書を持参するよう案内されています。"
+    },
+    {
+      "question": "満了2か月前に受けると、残りの有効期間を損しますか。",
+      "answer": "現行ルールでは、有効期間満了日の2か月前から満了日までの間に受ければ、残存する有効期間を失わずに更新できます。年度末や連休前に予約が詰まりやすい人ほど、早めに動いた方が安全です。"
+    },
+    {
+      "question": "店に任せる車検なら、自分では何も確認しなくていいですか。",
+      "answer": "そこまでは言えません。申請書や重量税納付書などを店側が用意することは多いですが、車検証の所在、有効期限、自賠責の保険期間、納税直後かどうかまでは自分で先に確認しておいた方が、当日の差し戻しを防ぎやすいです。"
+    }
+  ],
+  "actionBox": {
+    "title": "今すぐやるべきこと",
+    "body": "まずは 普通車か軽か、車検証の有効期限、自賠責の現在分と更新分、納税直後や引っ越し直後ではないか を確認してください。ここが揃うと、紙が必要か、店へ何を渡すかがかなり明確になります。",
+    "actions": [
+      {
+        "label": "車検費用はいくらかかる？法定費用と整備費用を分けて見る。",
+        "href": "/guide/shaken-cost-breakdown-guide"
+      },
+      {
+        "label": "軽自動車税の納付書が来ないとき。4月1日基準、住所変更、車検用納税証明の注意点を整理する。",
+        "href": "/guide/kei-tax-notice-not-arrived-2026"
+      }
+    ]
+  },
+  "detailSections": [
+    {
+      "title": "先に結論｜最初に分けるのは「普通車か軽か」と「店依頼かユーザー車検か」",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "車検で必要なものが分かりにくいのは、普通車と軽で税の確認方法が少し違い、さらに店に任せる場合とユーザー車検で、自分が当日用意する書類の範囲も変わるからです。最初にそこを分けるだけで、何を手元で確認し、何を店や窓口側に任せるかが整理しやすくなります。"
+        },
+        {
+          "type": "decisionCards",
+          "cards": [
+            {
+              "title": "登録自動車（普通車）",
+              "body": "継続検査窓口では自動車税納税証明書が原則不要です。ただし、納付直後など反映前は紙が必要になることがあります。",
+              "items": [
+                "車検証の原本",
+                "自賠責の保険期間",
+                "納税直後かどうか"
+              ],
+              "badge": "普通車"
+            },
+            {
+              "title": "軽自動車",
+              "body": "軽JNKSで確認できれば納税証明は原則不要ですが、納付したばかりや引っ越し直後などは紙が必要になる場合があります。",
+              "items": [
+                "車検証の原本",
+                "軽自動車税の納付状況",
+                "引っ越し直後かどうか"
+              ],
+              "badge": "軽"
+            },
+            {
+              "title": "店に依頼する人",
+              "body": "申請書や印紙類は店が案内・用意することが多いですが、車検証と自賠責の所在確認は自分で先に済ませた方が詰まりません。",
+              "items": [
+                "車検証の所在",
+                "自賠責の期間",
+                "納税直後の有無"
+              ],
+              "badge": "店依頼"
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "最初の分け方",
+          "body": "『必要書類を全部暗記する』より、まず 普通車か軽か、店依頼かユーザー車検か を決めた方が早いです。必要な紙の種類がそこでかなり絞れます。"
+        }
+      ]
+    },
+    {
+      "title": "まず手元で確認するもの｜車検証、有効期限、自賠責の期間",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "どの受け方でも、先に確認したいのは車検証の原本と有効期間満了日、自賠責の保険期間です。書類が見つからないのか、期間が足りないのか、税の確認で止まりそうなのかを最初に分けると、店への連絡や再発行の順番が決めやすくなります。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "自動車検査証（車検証）の原本。コピーではなく原本を前提に考える。",
+            "有効期間満了日。まず車検切れに近いかどうかを確認する。",
+            "現在有効な自賠責保険（共済）証明書。更新前の証明が残っているかを見る。",
+            "次の車検までをカバーする自賠責の更新分。店依頼でも期間の確認は自分でしておく。",
+            "納税したばかりかどうか。税の電子確認が反映前だと紙が必要になる場合がある。"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "先に詰まりやすい場所",
+          "body": "書類の種類より、『有効期限』『納付したばかり』『更新分の保険期間』で止まるケースが多いです。紙があるかどうかだけで判断しない方が安全です。"
+        }
+      ]
+    },
+    {
+      "title": "普通車の継続検査｜納税証明は原則不要でも例外がある",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "登録自動車の継続検査では、国交省ポータルと自動車技術総合機構の案内で、車検証、点検整備記録簿、自賠責、各種申請書類が基本として整理されています。自動車税納税証明書は継続検査窓口で原則不要ですが、納付直後などで地方税システムに反映していないときは、従来どおり紙の証明が必要になることがあります。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "車検証（原本）",
+            "点検整備記録簿",
+            "自賠責保険（共済）証明書",
+            "継続検査申請書、自動車検査票、自動車重量税納付書",
+            "自動車税納税証明書（継続検査窓口では原則不要だが、例外時は必要）"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "普通車で紙が必要になりやすい場面",
+          "body": "納税後すぐに車検を受けるときです。地方税のシステムに反映されるまで相応の日数を要することがあり、確認できない場合は紙の納税証明書の提示が必要になります。"
+        }
+      ]
+    },
+    {
+      "title": "軽自動車の継続検査｜軽JNKSで原則不要でも、紙が要る場面が残る",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車検査協会の案内では、継続検査に車検証、軽自動車税納税証明書、継続検査申請書、重量税納付書、検査票、自賠責、点検整備記録簿などが並びます。一方で、軽JNKSに納付情報が登録されていれば、納税証明書の提示は原則不要です。ただし、例外はまだ残っています。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "車検証（原本）",
+            "軽自動車税納税証明書（軽JNKSで確認できれば原則不要）",
+            "継続検査申請書（軽専用第2号様式）",
+            "自動車重量税納付書",
+            "軽自動車検査票",
+            "自賠責保険（共済）証明書",
+            "点検整備記録簿"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "軽で紙の納税証明が必要になりやすい場面",
+          "body": "納付したばかり、中古車を買った直後、他の市区町村へ引っ越した直後、過去の未納がある車です。軽JNKSで確認できないと、紙の納税証明書が必要になる場合があります。"
+        }
+      ]
+    },
+    {
+      "title": "納税証明と自賠責で詰まりやすいポイント",
+      "blocks": [
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "項目",
+            "原則",
+            "詰まりやすい場面"
+          ],
+          "rows": [
+            [
+              "登録自動車の自動車税納税証明",
+              "継続検査窓口では原則不要",
+              "納付直後で地方税システムに未反映のとき"
+            ],
+            [
+              "軽自動車税納税証明",
+              "軽JNKSで確認できれば原則不要",
+              "納付したばかり・中古購入直後・引っ越し直後・過去未納"
+            ],
+            [
+              "自賠責証明",
+              "次の車検まで切れない保険期間が必要",
+              "更新分だけ見て現行分の扱いを忘れると止まりやすい"
+            ],
+            [
+              "点検整備記録簿",
+              "事前に用意しておく方が話が早い",
+              "後回しにすると店選びや当日の段取りが読みにくくなる"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "迷ったときの優先順位",
+          "body": "税の紙を探す前に、まず 納付直後かどうか、自賠責が次の車検まで足りるか を見てください。ここを外すと、書類が揃っていても受検日が動くことがあります。"
+        }
+      ]
+    },
+    {
+      "title": "店に任せる車検とユーザー車検｜自分で用意する範囲が違う",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "必要書類の見え方は、店に任せるか、自分で継続検査を受けるかで変わります。普通車の案内では、検査当日用の申請書類や重量税納付書は窓口近くで入手でき、指定整備工場で保安基準適合証を提出した場合は現車の持ち込み提示が省略されます。つまり、店依頼では『ユーザーが探す紙』より『ユーザーが先に確認して渡す情報』の方が重要です。"
+        },
+        {
+          "type": "flow",
+          "steps": [
+            {
+              "title": "店に依頼する",
+              "body": "車検証の所在、自賠責の期間、納税直後かどうかを先に伝えます。申請書や納付書は店側が案内することが多いです。"
+            },
+            {
+              "title": "指定整備工場で進める",
+              "body": "保安基準適合証が使える場合、運輸支局等への現車持ち込みが省略される運用があります。段取りは楽でも、元の書類確認は省けません。"
+            },
+            {
+              "title": "ユーザー車検で進める",
+              "body": "予約、申請書類、印紙類、税と保険の確認を自分で揃えます。書類の不足がそのまま当日の差し戻しにつながりやすい進め方です。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "2か月前から受けられる今の段取り｜書類確認は早めの方が有利",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "現行ルールでは、有効期間満了日の2か月前から満了日までの間に受けても、残存する有効期間を失わずに更新できます。だから、納税や自賠責の確認は『満了直前でまとめて』より、早めに切り分けた方が安全です。特に納付直後の反映待ちや、引っ越し直後の軽は時間差が出やすいので、予約より前に確認しておく意味があります。"
+        },
+        {
+          "type": "flow",
+          "steps": [
+            {
+              "title": "有効期限を見る",
+              "body": "まず車検証で満了日を確認します。2か月前に入っているなら、予約を前倒ししても有効期間は失いません。"
+            },
+            {
+              "title": "税と保険の状態を確認する",
+              "body": "納付したばかりか、自賠責の更新分が次の車検まで足りるかを見ます。ここが不安なら紙の証明も確保しておきます。"
+            },
+            {
+              "title": "店か窓口へ渡す情報を揃える",
+              "body": "普通車か軽か、納付直後かどうかを先に伝えると、必要書類の案内が具体的になります。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "当日までのチェックリスト",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "車検証の原本があるか。",
+            "満了日がいつかを把握しているか。",
+            "自賠責の現在分と更新分の保険期間を確認したか。",
+            "普通車なら納付直後か、軽なら軽JNKSで止まりそうな条件がないか。",
+            "店依頼かユーザー車検かで、自分が当日持つ紙の範囲を整理したか。",
+            "書類に不安があるなら、満了直前ではなく2か月前ルールを使って前倒しで動けるか。"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "最後に見るべきこと",
+          "body": "紙の枚数より、期限と反映待ちの有無を見てください。車検証・自賠責・納税状況の3点が揃えば、当日の手戻りはかなり減ります。"
+        }
+      ]
+    }
+  ]
+}

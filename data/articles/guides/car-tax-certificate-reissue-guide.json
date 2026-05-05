@@ -1,0 +1,404 @@
+{
+  "type": "GUIDE",
+  "monetizeType": null,
+  "category": "LIFE",
+  "publishedAt": "2026-04-17",
+  "updatedAt": "2026-04-25",
+  "monetizeKey": null,
+  "relatedCarSlugs": [],
+  "intentTags": [
+    "tax",
+    "paperwork",
+    "money",
+    "inspection"
+  ],
+  "readMinutes": 7,
+  "status": "published",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-paperwork",
+  "relatedClusterIds": [],
+  "displayTag": "手続き",
+  "layoutVariant": "decision-v1",
+  "eyebrowLabel": "手続き",
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "手続き・維持費ガイド編集チーム"
+  },
+  "slug": "car-tax-certificate-reissue-guide",
+  "title": "自動車税の納税証明書をなくしたとき。再発行の窓口、車検に間に合わせる考え方を整理する。",
+  "lead": "普通車の車検では自動車税の納税証明書が原則不要になっていますが、納付直後、業者へ車検を依頼するとき、所有権解除や名義変更で一般用証明が要るときは、紙が必要になることがあります。なくしたときに最初に分けるべきのは、車検用か、車検以外用か、納付したばかりかの3点です。",
+  "tags": [
+    "自動車税",
+    "納税証明書",
+    "再発行",
+    "車検",
+    "県税事務所",
+    "所有権解除",
+    "名義変更"
+  ],
+  "internalLinks": [
+    "car-tax-late-fee-only-guide",
+    "car-tax-demand-letter-guide",
+    "car-tax-payment-slip-reissue-guide",
+    "car-tax-payment-method-guide",
+    "car-tax-late-payment-guide",
+    "car-tax-notice-not-arrived-2026",
+    "shaken-required-documents-guide",
+    "car-tax-refund-guide",
+    "jyuusho-henkou-shaken-shou",
+    "kei-tax-certificate-reissue-guide",
+    "kei-tax-payment-method-guide",
+    "car-tax-account-transfer-guide",
+    "car-tax-address-change-guide",
+    "car-tax-shaken-expired-guide",
+    "car-tax-payment-reflection-guide",
+    "car-tax-double-payment-guide",
+    "car-tax-seizure-warning-guide"
+  ],
+  "relatedGuideSlugs": [
+    "car-tax-late-fee-only-guide",
+    "car-tax-demand-letter-guide",
+    "car-tax-payment-slip-reissue-guide",
+    "car-tax-payment-method-guide",
+    "car-tax-late-payment-guide",
+    "car-tax-notice-not-arrived-2026",
+    "shaken-required-documents-guide",
+    "car-tax-refund-guide",
+    "jyuusho-henkou-shaken-shou",
+    "kei-tax-certificate-reissue-guide",
+    "kei-tax-payment-method-guide",
+    "car-tax-account-transfer-guide",
+    "car-tax-address-change-guide",
+    "car-tax-shaken-expired-guide",
+    "car-tax-payment-reflection-guide",
+    "car-tax-double-payment-guide",
+    "car-tax-seizure-warning-guide"
+  ],
+  "relatedColumnSlugs": [
+    "sell-timing-shaken-tax-market",
+    "name-change-delay-risk",
+    "shaken-early-two-months"
+  ],
+  "relatedHeritageSlugs": [],
+  "seoTitle": "自動車税の納税証明書をなくしたとき。再発行の窓口と車検直前の考え方。",
+  "seoDescription": "自動車税の納税証明書をなくしたときに、県税事務所や自動車税事務所での再発行、郵送申請、納付直後の注意、車検以外用証明との違いまで整理する実務ガイドです。",
+  "summary": "自動車税の納税証明書をなくしたときに、車検用か一般用かを分け、再発行の窓口、郵送申請、納付直後の注意点まで整理する実務ガイドです。",
+  "id": "guide:car-tax-certificate-reissue-guide",
+  "primaryQuery": "自動車税 納税証明書 再発行",
+  "updateReason": "2026年春時点の都道府県案内をもとに、車検用と一般用の違い、県税事務所での請求方法、納付直後の注意を整理した。",
+  "sources": [
+    "https://www.pref.aichi.jp/soshiki/zeimu/0000067578.html",
+    "https://www.pref.aichi.jp/soshiki/zeimu/0000067677.html",
+    "https://www.pref.chiba.lg.jp/zeimu/aramashi/jnks.html",
+    "https://www.pref.chiba.lg.jp/zeimu/faq/176.html",
+    "https://www.pref.chiba.lg.jp/zeimu/faq/200.html",
+    "https://www.pref.saitama.lg.jp/a0209/z-kurashiindex/z-nouzeisyoumei-b.html",
+    "https://www.pref.shizuoka.jp/kurashikankyo/zei/nouzei/1011801.html",
+    "https://www.pref.kanagawa.jp/zei/kenzei/a004/001.html"
+  ],
+  "heroImage": "/images/cbj/display-tags/guides/paperwork-1.jpg",
+  "thumbnail": "/images/cbj/display-tags/guides/paperwork-1.jpg",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "名義変更・必要書類",
+      "href": "/guide/hub-paperwork"
+    },
+    {
+      "label": "自動車税の支払い方法はどう選ぶ？コンビニ・クレジットカード・スマホ決済の違いを整理する。"
+    }
+  ],
+  "keyPoints": [
+    "普通車の車検では納税証明書の提示は原則不要ですが、納付直後や業者へ依頼する場面では紙を求められることがあります。まず「本当に紙が要るか」を分けた方が早いです。",
+    "再発行や交付申請の窓口は、都道府県の県税事務所や自動車税事務所が基本です。県庁本庁では受け付けない県もあります。",
+    "車検用と車検以外用では扱いが違います。売却、廃車、名義変更、所有権解除では一般用証明が必要になる県があります。",
+    "郵送請求に対応する県は多いですが、返信用封筒、申請書、車検証コピー、最近納付した人の領収証原本などが必要になる案内があります。",
+    "eL-QRやスマホ決済、クレジットカードで納付した直後は確認に日数がかかることがあります。車検を急ぐなら、支払い方法と証明書の段取りをセットで考えた方が安全です。"
+  ],
+  "checkpoints": [
+    "必要なのが車検用か、車検以外用か",
+    "納付してから日が浅いか",
+    "車検予定日が近いか",
+    "手元に車検証コピーや領収証があるか",
+    "申請先が県税事務所か自動車税事務所か"
+  ],
+  "faq": [
+    {
+      "question": "普通車の車検なら、もう納税証明書は完全に不要ですか。",
+      "answer": "完全に不要とは言い切れません。継続検査窓口では原則不要ですが、納付直後など電子確認がまだ通らないときや、車検を業者へ依頼する場面では紙の提示を求められることがあります。"
+    },
+    {
+      "question": "再発行はどこで頼めますか。",
+      "answer": "都道府県の県税事務所や自動車税事務所が基本です。県庁本庁では受け付けない案内もあるため、ナンバーを管轄する窓口を先に確認した方が安全です。"
+    },
+    {
+      "question": "郵送でも取れますか。",
+      "answer": "郵送請求に対応する県は多いです。申請書、返信用封筒、車検証コピー、最近納付した場合の領収証原本などを求める例があります。"
+    },
+    {
+      "question": "スマホ決済で払った直後でも、すぐ証明書は出ますか。",
+      "answer": "すぐ出るとは限りません。eL-QRやスマホ決済、クレジットカード納付は、都道府県側で確認できるまで数日かかる案内があります。急ぐなら窓口へ事前確認した方が安全です。"
+    },
+    {
+      "question": "売却や所有権解除にも、車検用の証明書で足りますか。",
+      "answer": "足りないことがあります。県の案内では、売却、廃車、名義変更、所有権解除などは車検用とは別の一般用証明を確認するよう分けています。提出先へ必要種類を先に聞く方が確実です。"
+    },
+    {
+      "question": "手数料は必ず無料ですか。",
+      "answer": "一律ではありません。車検用と一般用で扱いが分かれる県があるため、申請先の案内を確認してください。郵送なら返信用切手なども別途必要です。"
+    }
+  ],
+  "actionBox": {
+    "title": "今すぐやるべきこと",
+    "body": "まずは 「車検用か」「車検以外用か」「納付直後か」 を分けてください。この3点で、必要な証明書の種類も、窓口で求められるものも変わります。",
+    "actions": [
+      {
+        "label": "自動車税の支払い方法はどう選ぶ？コンビニ・クレジットカード・スマホ決済の違いを整理する。",
+        "href": "/guide/car-tax-payment-method-guide"
+      },
+      {
+        "label": "車検に必要なものは何？車検証・自賠責・納税証明、普通車と軽の違いを整理する。",
+        "href": "/guide/shaken-required-documents-guide"
+      }
+    ]
+  },
+  "detailSections": [
+    {
+      "title": "先に結論｜最初に分けるのは「車検用か」「一般用か」「納付直後か」",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "納税証明書をなくしたときに、いきなり再発行窓口だけを調べると遠回りになりやすいです。普通車は、継続検査窓口では紙が原則不要になっている一方で、納付直後や業者依頼、売却や所有権解除などでは紙が必要になることがあります。最初に「何のための証明か」を分けた方が早いです。"
+        },
+        {
+          "type": "decisionCards",
+          "cards": [
+            {
+              "badge": "まず要否確認",
+              "title": "車検で使いたい人",
+              "body": "継続検査窓口では原則不要ですが、納付直後や業者提出では紙が要ることがあります。急ぎなら再発行より先に依頼先へ確認する方が早いです。",
+              "items": [
+                "車検日が近いか確認する",
+                "業者提出か自分で受検か確認する",
+                "紙が必要なら車検用証明を請求する"
+              ]
+            },
+            {
+              "badge": "種類が違う",
+              "title": "売却・名義変更・所有権解除で使いたい人",
+              "body": "車検用ではなく、一般用の納税証明書が必要になる県があります。提出先に必要種類を先に聞くと戻りにくいです。",
+              "items": [
+                "提出先へ用途を伝える",
+                "一般用か確認する",
+                "必要年度も確認する"
+              ]
+            },
+            {
+              "badge": "納付直後は別",
+              "title": "最近払ったばかりの人",
+              "body": "電子確認に日数がかかる案内があります。郵送請求でも領収証原本や納付書控えを求められることがあります。",
+              "items": [
+                "領収証を探す",
+                "納付方法を思い出す",
+                "窓口へ確認してから動く"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "先に外したくないこと",
+          "body": "「紛失したから再発行する」だけで進めると、車検用を取るべき人が一般用を調べたり、その逆になったりします。用途を固定すると動きが速くなります。"
+        }
+      ]
+    },
+    {
+      "title": "申請先の基本｜普通車は県税事務所・自動車税事務所を見る",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "普通車の自動車税は都道府県税です。そのため、再発行や交付申請の窓口は市区町村ではなく、県税事務所や自動車税事務所が基本になります。県によっては県庁本庁で扱わず、事務所窓口に限定している案内もあります。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "使いたい場面",
+            "見る先",
+            "先に確認したいこと"
+          ],
+          "rows": [
+            [
+              "車検で紙が必要",
+              "県税事務所・自動車税事務所",
+              "車検用証明の請求方法、窓口か郵送か"
+            ],
+            [
+              "売却・廃車・名義変更・所有権解除",
+              "県税事務所の一般用証明案内",
+              "一般用か、必要年度はどれか"
+            ],
+            [
+              "県外へ引っ越した後に必要",
+              "旧登録県の県税窓口",
+              "旧ナンバー情報や車台番号が分かるか"
+            ],
+            [
+              "納付直後で急ぐ",
+              "県税窓口へ電話確認",
+              "領収証原本や納付書控えが要るか"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "旧ナンバーが必要なことがある",
+          "body": "県外転出後の請求では、以前の県ナンバーが分からないと交付できない案内があります。車検証コピーや登録事項が分かるものを先に探すと詰まりにくいです。"
+        }
+      ]
+    },
+    {
+      "title": "必要なもの｜申請書、車検証コピー、返信用封筒、領収証を意識する",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "普通車の納税証明書は、窓口でも郵送でも、何を証明したいかが分かる書類を求められます。県ごとに細かな違いはありますが、申請書、車検証コピー、返信用封筒、最近納付した人の領収証原本あたりが軸です。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "車検用なら、自動車税納税証明書交付申請書（継続検査用）を使う案内が多い。",
+            "郵送では、返信用封筒と切手、日中連絡が取れる電話番号の記載を求める県がある。",
+            "電子車検証の世代では、車検証コピーの代わりに自動車検査証記録事項のコピーを案内する県がある。",
+            "納付直後なら、領収証原本や納付書控えの同封・持参を求める案内がある。",
+            "一般用証明では、用途、必要年度、本人確認書類、委任状が加わることがある。"
+          ]
+        },
+        {
+          "type": "flow",
+          "steps": [
+            {
+              "title": "用途を決める",
+              "body": "車検用か、売却や所有権解除などの一般用かを先に確定します。"
+            },
+            {
+              "title": "必要書類を揃える",
+              "body": "申請書、車検証コピー、領収証、返信用封筒などを揃えます。"
+            },
+            {
+              "title": "窓口か郵送を決める",
+              "body": "急ぐなら窓口、遠方や平日が厳しいなら郵送を軸に考えます。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "納付直後の注意｜eL-QR・スマホ決済・クレジットカードは反映待ちがある",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "いちばん詰まりやすいのは、払った事実と証明書の発行可能時点を同じだと思ってしまうことです。都道府県の案内では、スマホ決済やクレジットカード、eL-QRでの納付後は、運輸支局側や県側で確認できるまで数日から2週間前後かかる例が出ています。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "支払い方",
+            "起きやすいこと",
+            "急ぐときの考え方"
+          ],
+          "rows": [
+            [
+              "金融機関・コンビニ窓口",
+              "紙の領収証が残りやすい",
+              "車検や証明書を急ぐなら最も読みやすい"
+            ],
+            [
+              "スマホ決済・eL-QR",
+              "確認反映まで日数がかかることがある",
+              "証明書がすぐ出ない前提で動く"
+            ],
+            [
+              "クレジットカード",
+              "確認はオンラインだが即時とは限らない",
+              "急ぎ用途なら窓口納付の方が安全なことがある"
+            ],
+            [
+              "市町村窓口での支払い",
+              "県側確認まで長めの案内がある県もある",
+              "普通車では県税窓口へ事前確認した方が早い"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "急ぐ人の考え方",
+          "body": "車検が目前なら、再発行だけでなく「今の支払い方で確認が通るか」を先に見た方が安全です。紙の領収証と証明書の残り方まで含めて考えると戻りが減ります。"
+        }
+      ]
+    },
+    {
+      "title": "車検以外用を見落とさない｜売却・所有権解除は別物として扱う",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "普通車では、車検用納税証明書の話だけで終わらないことがあります。県の案内では、売却、廃車、名義変更、所有権解除などは一般用の納税証明書を見るよう分けている例があります。ローン会社やディーラーへ出すなら、車検用と同じと決めつけない方が安全です。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "提出先が求める証明の名称を聞く。",
+            "必要年度が今年度だけか、過去年度も要るか確認する。",
+            "代理人提出なら委任状が必要か確認する。",
+            "オンライン申請の対象が一般用だけの県もあるので、車検用と混ぜない。"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "車検用だけを追うと足りないことがある",
+          "body": "名義変更や所有権解除で止まりやすいのは、税を払っているかではなく、提出先が欲しい形式の証明を出せるかです。用途を聞いてから動く方が確実です。"
+        }
+      ]
+    },
+    {
+      "title": "最後に整理｜普通車は「県税」「用途」「納付直後」の3語で考える",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "自動車税の納税証明書をなくしたときは、普通車は都道府県税だという前提に戻ると整理しやすいです。車検用か一般用か、納付したばかりか、窓口か郵送か。この順番で分けると、再発行や交付申請がぶれにくくなります。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "普通車の窓口は県税事務所・自動車税事務所が基本。",
+            "車検用と一般用は別物として考える。",
+            "納付直後は領収証原本や納付書控えを残す。",
+            "車検を急ぐなら、業者提出かどうかも含めて確認する。"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "迷ったときの戻り先",
+          "body": "普通車で一番効くのは、「県税」「何に使う証明か」「払ってから何日か」の3点です。ここに戻ると、必要書類も窓口も見失いにくくなります。"
+        }
+      ]
+    }
+  ],
+  "body": ""
+}

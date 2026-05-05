@@ -1,0 +1,122 @@
+{
+  "slug": "kei-tax-name-change-guide",
+  "createdAt": "2026-04-18",
+  "competitorCount": 30,
+  "queries": [
+    "軽自動車税 名義変更 誰が払う",
+    "軽自動車税 4月1日 名義変更",
+    "軽自動車税 税止め 名義変更"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.keikenkyo.or.jp/information/knowledge/taxes_qa.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/change_name.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/change_address.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/scrapped/return.html"
+    },
+    {
+      "url": "https://www.city.kobe.lg.jp/a35984/kurashi/tax/kei/index.html"
+    },
+    {
+      "url": "https://www.city.joetsu.niigata.jp/soshiki/zeimu/lifeguide-tax-minicar-tax-q-a.html"
+    },
+    {
+      "url": "https://www.city.kariya.lg.jp/faq/q_kurashi/q_zeikin/1002187/1002190.html"
+    },
+    {
+      "url": "https://www.city.tottori.lg.jp/page/1923.html"
+    },
+    {
+      "url": "https://www.city.tottori.lg.jp/page/1927.html"
+    },
+    {
+      "url": "https://www.city.kurayoshi.lg.jp/8692.htm"
+    },
+    {
+      "url": "https://www.city.himeji.lg.jp/kurashi/0000028871.html"
+    },
+    {
+      "url": "https://www.city.hashima.lg.jp/1269.html"
+    },
+    {
+      "url": "https://www.city.ikoma.lg.jp/faq/faq_detail.php?frmId=454"
+    },
+    {
+      "url": "https://faq1.city.komatsu.lg.jp/faq/detail.aspx?id=907"
+    },
+    {
+      "url": "https://www.city.funabashi.lg.jp/kurashi/zei/001/04/p076782.html"
+    },
+    {
+      "url": "https://www.city.funabashi.lg.jp/faq/kurashi/zei/004/p043595.html"
+    },
+    {
+      "url": "https://www.city.miyawaka.lg.jp/kiji003443774/index.html"
+    },
+    {
+      "url": "https://www.city.tamano.lg.jp/soshiki/4/2453.html"
+    },
+    {
+      "url": "https://www.city.tamano.lg.jp/soshiki/4/2451.html"
+    },
+    {
+      "url": "https://www.city.tama.lg.jp/kurashi/zei/keijidousha/1014422.html"
+    },
+    {
+      "url": "https://www.city.suzuka.lg.jp/kurashi/zei/1002096/1002101.html"
+    },
+    {
+      "url": "https://www.city.sumida.lg.jp/kurashi/zeikin/car/keijnks.html"
+    },
+    {
+      "url": "https://www.city.ayabe.lg.jp/0000001221.html"
+    },
+    {
+      "url": "https://www.city.yonago.lg.jp/47554.htm"
+    },
+    {
+      "url": "https://www.city.yonago.lg.jp/47553.htm"
+    },
+    {
+      "url": "https://www.city.saitama.lg.jp/001/153/004/004/p117068.html"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/zeikin/nouzei-soudan/nouzei-houhou/kotei-nouhu/smartphone/smartphoneeL-QR.html"
+    },
+    {
+      "url": "https://www.town.minamiechizen.lg.jp/kurasi/101/113/p011379.html"
+    },
+    {
+      "url": "https://www.city.asahi.lg.jp/soshiki/6/27155.html"
+    }
+  ],
+  "commonTakeaways": [
+    "4月1日基準と月割なしの説明は多いが、税止めまで含めた実務導線が弱い。",
+    "新所有者に納付書が来ない年があることを、異常ではなく制度どおりと説明していない記事が多い。",
+    "名義変更直後の車検用納税証明までつなげていない記事が多い。"
+  ],
+  "gapsFound": [
+    "県外変更時の税止め自己申告を落としている説明が目立つ。",
+    "旧所有者と新所有者の精算と、税の課税先を混同しやすい。"
+  ],
+  "changesApplied": [
+    "4月1日基準、月割なし、税止め、新所有者へ納付書が来ないケースを一続きで整理した。",
+    "車検が近い人向けに、名義変更後の証明確認までつないだ。",
+    "軽の書類ガイド、納付書未着、証明書再発行へ内部リンクを配置した。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}

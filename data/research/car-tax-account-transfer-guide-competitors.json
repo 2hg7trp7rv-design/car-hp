@@ -1,0 +1,122 @@
+{
+  "slug": "car-tax-account-transfer-guide",
+  "createdAt": "2026-04-17",
+  "competitorCount": 30,
+  "queries": [
+    "自動車税 口座振替",
+    "自動車税 自動引き落とし 納税証明書",
+    "自動車税 口座振替 車検"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidoushayokuaru.html"
+    },
+    {
+      "url": "https://www.pref.aichi.jp/soshiki/zeimu/kouzahurikae.html"
+    },
+    {
+      "url": "https://www.pref.aichi.jp/soshiki/zeimu/0000079830.html"
+    },
+    {
+      "url": "https://www.pref.kyoto.jp/zeimu/11600035.html"
+    },
+    {
+      "url": "https://www.pref.kyoto.jp/zeimu/kouzahurikaehaisi.html"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a004/b001/005.html"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a010/049.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/438581.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/705457.html"
+    },
+    {
+      "url": "https://www.payment.eltax.lta.go.jp/pbuser?id=kb_article_view&sysparm_article=KB0010793"
+    },
+    {
+      "url": "https://www.nextage.jp/buy_guide/zeikin/1030568/"
+    },
+    {
+      "url": "https://carnext.jp/magazine/article/forgot_car_tax/"
+    },
+    {
+      "url": "https://www.insweb.co.jp/car/kisochishiki/kiso/jidoushazei-haraiwasure.html"
+    },
+    {
+      "url": "https://www.zurich.co.jp/car/useful/guide/cc-car-tax-nonpayment/"
+    },
+    {
+      "url": "https://www.sbisonpo.co.jp/car/column/column142.html"
+    },
+    {
+      "url": "https://www.lifecard.co.jp/media/how-to-use/column-0157.html"
+    },
+    {
+      "url": "https://www.smbc-card.com/nyukai/magazine/tips/automobile-tax.jsp"
+    },
+    {
+      "url": "https://www.cr.mufg.jp/mycard/benefit/20031/index.html"
+    },
+    {
+      "url": "https://www.rakuten-card.co.jp/minna-money/credit-card/use/article_2310_80340/"
+    },
+    {
+      "url": "https://media.aupay.wallet.auone.jp/articles/1647"
+    },
+    {
+      "url": "https://www.aeonbank.co.jp/column/creditcard/aeoncard/jidoshazei/"
+    },
+    {
+      "url": "https://www.hanamaru870.net/column/automotive-tax-expired-where-to-pay/"
+    },
+    {
+      "url": "https://www.shakenkan.co.jp/guide/tax-delay-money/"
+    },
+    {
+      "url": "https://www.haishaou.com/blog/tax/reissue-tax-certificate/"
+    },
+    {
+      "url": "https://d-plus.com/dplus-magazine/vehicle-tax-payment-certificate/"
+    },
+    {
+      "url": "https://www.sonysonpo.co.jp/auto/guide/agde307.html"
+    },
+    {
+      "url": "https://www.sompo-direct.co.jp/otona/oshiete/car/car-inspection-tax-payment-certificate.html"
+    },
+    {
+      "url": "https://www.wecars.co.jp/column/inspection/knowhow/013.html"
+    },
+    {
+      "url": "https://www.pref.saitama.lg.jp/a0209/z-kurashiindex/z-smartphone-payment.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/204.html"
+    }
+  ],
+  "commonTakeaways": [
+    "自動車税の口座振替そのものを丁寧に説明する記事は少なく、支払い方法全体の一部として軽く触れる記事が多い。",
+    "口座振替後の納税証明書郵送廃止や、通帳記帳で確認する流れまで整理した記事は少ない。",
+    "車検直前にどこまで余裕を見るべきかは、一般論で済ませている記事が多い。"
+  ],
+  "gapsFound": [
+    "都道府県差が大きいことを最初に置き、未対応県の存在まで含めて整理した記事が少ない。",
+    "地方税お支払サイトの口座振替と、県の毎年自動引落しを分けて説明する記事が少ない。"
+  ],
+  "changesApplied": [
+    "普通車だけに絞り、県ごとの差を最初の論点にした。",
+    "通帳確認、納税証明書の郵送廃止、車検反映日数をひとつの記事でつないだ。",
+    "乗り換え時の再手続きや車1台ごとの扱いまで入れた。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}

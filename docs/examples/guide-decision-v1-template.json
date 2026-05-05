@@ -1,0 +1,194 @@
+{
+  "id": "guide-sample-decision-v1",
+  "slug": "sample-guide-slug",
+  "type": "GUIDE",
+  "status": "published",
+  "publicState": "index",
+  "parentPillarId": "/guide",
+  "relatedClusterIds": [],
+  "primaryQuery": "記事の主要検索語",
+  "updateReason": "本文・比較表・出典を更新しました。",
+  "sources": [
+    "https://example.com/source-1",
+    "https://example.com/source-2",
+    "https://example.com/source-3"
+  ],
+  "title": "記事タイトル",
+  "summary": "一覧カードやSEOで使う短い要約。",
+  "seoTitle": "記事タイトル｜CAR BOUTIQUE JOURNAL",
+  "seoDescription": "検索結果用の説明文。",
+  "category": "MAINTENANCE",
+  "displayTag": "維持費",
+  "publishedAt": "2026-03-31",
+  "updatedAt": "2026-03-31",
+  "readMinutes": 8,
+  "heroImage": "/images/guides/sample-guide/hero.jpg",
+  "thumbnail": "/images/guides/sample-guide/hero.jpg",
+  "lead": "記事冒頭の導入文。この記事が何を解決するかを最初に短く書く。",
+  "layoutVariant": "decision-v1",
+  "eyebrowLabel": "維持費",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "メンテ用品",
+      "href": "/guide/maintenance"
+    },
+    {
+      "label": "記事タイトル"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "編集部"
+  },
+  "keyPoints": [
+    "要点1",
+    "要点2",
+    "要点3"
+  ],
+  "checkpoints": [
+    "確認ポイント1",
+    "確認ポイント2",
+    "確認ポイント3"
+  ],
+  "faq": [
+    {
+      "question": "よくある質問1",
+      "answer": "回答1"
+    },
+    {
+      "question": "よくある質問2",
+      "answer": "回答2"
+    }
+  ],
+  "actionBox": {
+    "title": "今すぐやるべきこと",
+    "body": "最後に読者へ促す短い文。",
+    "actions": [
+      {
+        "label": "関連ガイドへ",
+        "href": "/guide/related-guide"
+      },
+      {
+        "label": "一覧へ",
+        "href": "/guide"
+      }
+    ]
+  },
+  "detailSections": [
+    {
+      "title": "1. 最初に結論",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "冒頭で最初の判断を示す本文。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "ポイント1",
+            "ポイント2"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "2. 比較・判断",
+      "blocks": [
+        {
+          "type": "comparisonTable",
+          "title": "比較表",
+          "headers": [
+            "項目",
+            "A",
+            "B"
+          ],
+          "rows": [
+            [
+              "項目1",
+              "内容A",
+              "内容B"
+            ],
+            [
+              "項目2",
+              "内容A",
+              "内容B"
+            ]
+          ],
+          "note": "表の補足。"
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "注意点",
+          "body": "ここに注意点を入れる。",
+          "items": [
+            "注意1",
+            "注意2"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "3. タイプ別の見方",
+      "blocks": [
+        {
+          "type": "decisionCards",
+          "title": "タイプ別診断",
+          "cards": [
+            {
+              "badge": "タイプA",
+              "title": "街乗り中心",
+              "body": "おすすめの考え方。",
+              "items": [
+                "補足1",
+                "補足2"
+              ]
+            },
+            {
+              "badge": "タイプB",
+              "title": "遠出が多い",
+              "body": "おすすめの考え方。",
+              "items": [
+                "補足1",
+                "補足2"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "caseStudy",
+          "cases": [
+            {
+              "title": "ケース1",
+              "intro": "具体例の導入文。",
+              "rows": [
+                {
+                  "label": "結果",
+                  "value": "こうなる"
+                },
+                {
+                  "label": "費用",
+                  "value": "0円",
+                  "note": "概算"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relatedGuideSlugs": [
+    "road-service-choice-guide",
+    "oil-change-frequency-guide"
+  ]
+}

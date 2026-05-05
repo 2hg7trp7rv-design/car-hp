@@ -1,0 +1,123 @@
+{
+  "slug": "car-tax-ownership-release-guide",
+  "createdAt": "2026-04-19",
+  "competitorCount": 30,
+  "queries": [
+    "ローン完済 所有権解除 自動車税 普通車",
+    "ローン完済 名義 自動で変わらない 普通車",
+    "所有権留保 自動車税 使用者 普通車"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/transfer/document/index.html"
+    },
+    {
+      "url": "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/faq/index.html"
+    },
+    {
+      "url": "https://faq.toyota-finance.co.jp/faq/show/26726?site_domain=credit"
+    },
+    {
+      "url": "https://faq.toyota-finance.co.jp/faq/show/3350?site_domain=credit"
+    },
+    {
+      "url": "https://www.honda.co.jp/HFC/about/inquiry/customer_meigi/"
+    },
+    {
+      "url": "https://faq.hfc.honda.co.jp/faq/show/9180?site_domain=customer"
+    },
+    {
+      "url": "https://faq.hfc.honda.co.jp/faq/show/5782?site_domain=customer"
+    },
+    {
+      "url": "https://www.pref.saitama.lg.jp/b0216/jz-jizei/index.html"
+    },
+    {
+      "url": "https://www.pref.gifu.lg.jp/page/5579.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidousyazei.html"
+    },
+    {
+      "url": "https://www.pref.fukuoka.lg.jp/contents/shubetsuwari.html"
+    },
+    {
+      "url": "https://www.pref.hiroshima.lg.jp/site/zei/1237271840415.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/170.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/194.html"
+    },
+    {
+      "url": "https://www.pref.shiga.lg.jp/ippan/kurashi/zeikin/310259.html"
+    },
+    {
+      "url": "https://www.pref.ishikawa.lg.jp/zei/qa/a11.html"
+    },
+    {
+      "url": "https://www.pref.fukushima.lg.jp/sec/01115d/zeimu11.html"
+    },
+    {
+      "url": "https://www.pref.niigata.lg.jp/sec/zeimu/car.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/735906.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/422479.html"
+    },
+    {
+      "url": "https://www.pref.hokkaido.lg.jp/sm/zim/address/index.html"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/79517.htm"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/30981.htm"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidoushayokuaru.html"
+    },
+    {
+      "url": "https://web.pref.hyogo.lg.jp/kk22/nouzei.html"
+    },
+    {
+      "url": "https://www.pref.tochigi.lg.jp/b07/life/zeikin/zeikin/car_qa.html"
+    },
+    {
+      "url": "https://www.pref.akita.lg.jp/pages/archive/77190"
+    },
+    {
+      "url": "https://www.pref.yamaguchi.lg.jp/soshiki/5/12414.html"
+    },
+    {
+      "url": "https://www.jaf.or.jp/common/kuruma-qa/category-procedure/subcategory-registration/faq013"
+    },
+    {
+      "url": "https://www.honda.co.jp/HFC/about/inquiry/company_meigi/"
+    }
+  ],
+  "commonTakeaways": [
+    "金融会社の案内は、完済後も名義が自動では変わらないことは明確でも、自動車税までつないで説明するページは少ない。",
+    "都道府県の税案内は、所有権留保時に使用者課税になる説明はあるが、完済後の所有権解除と4月1日基準を同じ文脈で整理していない。",
+    "必要書類の案内はMLITや金融会社に分散しており、税だけ気になる読者がどこまで進めればよいか分かりにくい。"
+  ],
+  "gapsFound": [
+    "完済しただけでは名義が変わらないことと、その年度の税が途中で切り替わらないことを一枚で整理したページが少ない。",
+    "売却前に所有権解除をやる意味と、税だけを見たい人の優先度の違いが整理されていない。",
+    "通知先のズレが所有権解除とは別問題だと明示するページが少ない。"
+  ],
+  "changesApplied": [
+    "完済、解除書類受領、移転登録完了の3段階で普通車の所有権解除を整理した。",
+    "普通車は所有権留保時にローン中から使用者課税である点を先頭に固定した。",
+    "税だけを見たい人と売却前に名義整理したい人で、優先度の違いを分けて書いた。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}

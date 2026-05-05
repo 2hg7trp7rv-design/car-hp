@@ -1,0 +1,293 @@
+{
+  "id": "guide-maintenance-cost-simulation",
+  "slug": "maintenance-cost-simulation",
+  "title": "維持費シミュレーションの基本。",
+  "summary": "税よりブレる維持費（タイヤ・消耗品・車検整備）を月額化して見積もる方法。",
+  "category": "MONEY",
+  "tags": [
+    "維持費",
+    "保険",
+    "税金",
+    "車検",
+    "シミュレーション"
+  ],
+  "publishedAt": "2025-12-28",
+  "updatedAt": "2026-04-01",
+  "readMinutes": 6,
+  "status": "published",
+  "intentTags": [
+    "money",
+    "maintenance"
+  ],
+  "monetizeKey": "insurance_compare_core",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "car-budget-simulation",
+    "tire-replacement-cost-guide",
+    "oil-change-frequency-guide",
+    "used-import-car-buying-guide",
+    "oil-leak-first-response",
+    "overheat-coolant-leak-guide"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [
+    "toyota-celsior-ls400-silence-precision-heritage"
+  ],
+  "body": "",
+  "seoTitle": "維持費シミュレーションの基本。月額上限の作り方。",
+  "seoDescription": "税よりブレる維持費（タイヤ・消耗品・車検整備）を月額化して見積もる方法。",
+  "internalLinks": [
+    "car-budget-simulation",
+    "tire-replacement-cost-guide",
+    "oil-change-frequency-guide",
+    "used-import-car-buying-guide"
+  ],
+  "lead": "税よりブレる維持費（タイヤ・消耗品・車検整備）を月額化して見積もる方法。",
+  "type": "GUIDE",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "noindex",
+  "parentPillarId": "/guide/hub-loan",
+  "relatedClusterIds": [],
+  "primaryQuery": "維持費シミュレーションの基本",
+  "updateReason": "decision-v1 のFAQと主役ブロックを個別に見直しました。",
+  "sources": [
+    "https://www.mlit.go.jp/",
+    "https://www.nta.go.jp/",
+    "https://jaf.or.jp/"
+  ],
+  "heroImage": "/images/cbj/display-tags/guides/maintenance-1.jpg",
+  "thumbnail": "/images/cbj/display-tags/guides/maintenance-1.jpg",
+  "displayTag": "維持費",
+  "layoutVariant": "decision-v1",
+  "eyebrowLabel": "維持費",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "維持費シミュレーションの基本。"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "購入計画・維持費ガイド編集チーム"
+  },
+  "keyPoints": [
+    "維持費は「税金」より、【タイヤ・消耗品・車検前後の整備】でブレやすいです。",
+    "シミュレーションは、項目を“月額化”して積み立て扱いにすると現実に近づきます。",
+    "迷ったら、まずは「最低限（必ず出る）」と「突発（起きたら大きい）」を分けて考えます。"
+  ],
+  "checkpoints": [
+    "定期：エンジンオイル、フィルター、ワイパー、点検",
+    "周期が長い：タイヤ（/guide/tire-replacement-cost-guide）、バッテリー、ブレーキ",
+    "年1回〜：税金、車検、自賠責",
+    "突発：警告灯、センサー類、オイル漏れ、冷却水漏れ（/guide/oil-leak-first-response /guide/overheat-coolant-leak-guide）"
+  ],
+  "faq": [
+    {
+      "question": "維持費で一番ぶれやすいのは何？",
+      "answer": "タイヤ、バッテリー、足回り、警告灯対応などの消耗品と突発修理です。税金は読めても、この部分を軽く見ると想定より苦しくなりやすいです。"
+    },
+    {
+      "question": "古い車はどこを厚めに見ておくべき？",
+      "answer": "タイヤ、ブレーキ、バッテリー、ゴム部品、センサー類など、年数で一気に重なりやすいところです。安く買えた分、維持で返す形にならないようバッファを厚めに取ります。"
+    },
+    {
+      "question": "車検費用はいつから積み立てるべき？",
+      "answer": "納車直後から月割りで考える方が楽です。直前でまとめて確保しようとすると、他の出費と重なって資金繰りが崩れやすくなります。"
+    },
+    {
+      "question": "燃料代はどう見積もればいい？",
+      "answer": "カタログ燃費ではなく、通勤・送迎・高速の使い方でざっくり月間走行距離を置いて考える方が現実に近いです。迷うなら少し厳しめに置いた方が安全です。"
+    }
+  ],
+  "actionBox": {
+    "title": "今すぐやるべきこと",
+    "body": "まずは 定期：エンジンオイル、フィルター、ワイパー、点検、周期が長い：タイヤ（/guide/tire-replacement-cost-guide）、バッテリー、ブレーキ、年1回〜：税金、車検、自賠責 を順番に確認してください。迷ったら関連ガイドで条件を切り分けてから動くと、判断がぶれにくくなります。",
+    "actions": [
+      {
+        "label": "車の予算はいくらが自然か。年収別の安全ラインを試算する。",
+        "href": "/guide/car-budget-simulation"
+      },
+      {
+        "label": "タイヤ交換費用の相場。工賃・サイズ・ランフラットで変わること。",
+        "href": "/guide/tire-replacement-cost-guide"
+      }
+    ]
+  },
+  "detailSections": [
+    {
+      "title": "最初に見る早見表｜維持費の箱",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "維持費は税金だけ見ても足りません。どの費目が毎月・毎年・数年ごとに効くかを分けると、積立額の考え方がはっきりします。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "費目",
+            "出る頻度",
+            "見積もり方の考え方"
+          ],
+          "rows": [
+            [
+              "オイル・点検",
+              "短い周期",
+              "年の走行距離と使い方で早めに見積もる"
+            ],
+            [
+              "税金・車検",
+              "年1回〜数年ごと",
+              "月割りで積立に変換する"
+            ],
+            [
+              "タイヤ・バッテリー",
+              "数年ごと",
+              "残量ではなく交換時期の前倒しも想定する"
+            ],
+            [
+              "突発修理",
+              "不定期",
+              "ゼロで置かず、別枠でバッファを作る"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "先に押さえること",
+          "body": "維持費の失敗は、必ず出る費用より「起きたときに大きい費用」をゼロで置くところから始まりやすいです。"
+        }
+      ]
+    },
+    {
+      "title": "維持費の内訳（最低限）",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "定期：エンジンオイル、フィルター、ワイパー、点検",
+            "周期が長い：タイヤ（/guide/tire-replacement-cost-guide）、バッテリー、ブレーキ",
+            "年1回〜：税金、車検、自賠責",
+            "突発：警告灯、センサー類、オイル漏れ、冷却水漏れ（/guide/oil-leak-first-response /guide/overheat-coolant-leak-guide）"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "手順 1 “年に必ず出る”費用を月額に変換する",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "税金や車検は「年額/12」で積み立て扱いにする",
+            "保険や駐車場も、年払いなら月額換算して見える化する"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "手順 2 “数年に1回”の費用を平均化する",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "タイヤやバッテリーは、次の交換までの年数で割って「年間平均」を出す",
+            "走行距離が多い人は、年数より「距離」で早まる想定を入れる"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "手順 3 “突発枠”を別に作る",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "いきなり起きるトラブル（警告灯、漏れ、過熱など）のために、毎月少しだけ予備費を確保する",
+            "予備費があると「無理に走って悪化させる」判断を避けやすくなります"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "よくあるつまずき",
+      "blocks": [
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "よくあるつまずき",
+          "body": "- 税金しか見ず、タイヤや車検のタイミングで家計が崩れる - 消耗品の残量を見ずに買い、納車直後にまとめて出費する - “突発費は起きない前提”で予算を組む",
+          "items": [
+            "税金しか見ず、タイヤや車検のタイミングで家計が崩れる",
+            "消耗品の残量を見ずに買い、納車直後にまとめて出費する",
+            "“突発費は起きない前提”で予算を組む"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "購入前に確認しておきたいこと",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "「まだ走れる」は高くつくことがあります。迷ったらまず停止して状況確認",
+            "漏れは放置すると二次被害になりやすいので、量が少なくても早めに点検へ",
+            "応急処置より、レッカー/ロードサービスを使うほうが安全で安いケースが多い",
+            "異常が出たときは、警告灯の色・臭い・煙・水温など“再現しない情報”をメモ"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "迷ったときの進め方",
+      "blocks": [
+        {
+          "type": "flow",
+          "steps": [
+            {
+              "title": "前提を確認する",
+              "body": "まずは 定期：エンジンオイル、フィルター、ワイパー、点検、周期が長い：タイヤ（/guide/tire-replacement-cost-guide）、バッテリー、ブレーキ を確認し、比較条件を揃えます。"
+            },
+            {
+              "title": "動く順番を決める",
+              "body": "費用・必要書類・期限のうち、後戻りしにくいものから片付けると判断が安定します。"
+            },
+            {
+              "title": "関連ガイドで不足を補う",
+              "body": "一つの記事だけで決めきれない場合は、関連ガイドを使って条件を切り分けてから決めます。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "まとめ",
+      "blocks": [
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "判断のポイント",
+          "body": "維持費は「税金」より、【タイヤ・消耗品・車検前後の整備】でブレやすいです。 シミュレーションは、項目を“月額化”して積み立て扱いにすると現実に近づきます。 迷ったら、条件を先に揃えてから比較するのが安全です。",
+          "items": [
+            "定期：エンジンオイル、フィルター、ワイパー、点検",
+            "周期が長い：タイヤ（/guide/tire-replacement-cost-guide）、バッテリー、ブレーキ",
+            "年1回〜：税金、車検、自賠責",
+            "突発：警告灯、センサー類、オイル漏れ、冷却水漏れ（/guide/oil-leak-first-response /guide/overheat-coolant-leak-guide）"
+          ]
+        }
+      ]
+    }
+  ]
+}
