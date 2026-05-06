@@ -1,0 +1,459 @@
+{
+  "slug": "car-tax-late-payment-guide",
+  "title": "自動車税を払い忘れたとき。納期限後の払い方、延滞金、車検への影響を順に整理する。",
+  "lead": "自動車税を払い忘れた直後は、今ある納付書で払えるのか、再発行が要るのか、車検に間に合うのかで迷いやすいです。2026年度は6月1日納期限の案内が多く、納期限後は延滞金や納税証明の扱いが変わります。最初に分けるべき点だけを順に整理します。",
+  "type": "GUIDE",
+  "monetizeType": null,
+  "category": "LIFE",
+  "tags": [
+    "自動車税",
+    "払い忘れ",
+    "納期限後",
+    "延滞金",
+    "納税証明書",
+    "車検"
+  ],
+  "publishedAt": "2026-04-17",
+  "updatedAt": "2026-04-25",
+  "internalLinks": [
+    "kei-tax-late-fee-only-guide",
+    "car-tax-late-fee-only-guide",
+    "car-tax-payment-slip-reissue-guide",
+    "car-tax-demand-letter-guide",
+    "car-tax-notice-not-arrived-2026",
+    "kei-tax-late-payment-guide",
+    "car-tax-refund-guide",
+    "car-weight-tax-guide",
+    "shaken-required-documents-guide",
+    "jyuusho-henkou-shaken-shou",
+    "car-tax-payment-method-guide",
+    "kei-tax-payment-method-guide",
+    "car-tax-certificate-reissue-guide",
+    "kei-tax-certificate-reissue-guide",
+    "car-tax-account-transfer-guide",
+    "car-tax-address-change-guide",
+    "car-tax-payment-reflection-guide",
+    "car-tax-cannot-pay-guide",
+    "car-tax-seizure-warning-guide"
+  ],
+  "body": "",
+  "monetizeKey": null,
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "kei-tax-late-fee-only-guide",
+    "car-tax-late-fee-only-guide",
+    "car-tax-payment-slip-reissue-guide",
+    "car-tax-demand-letter-guide",
+    "car-tax-notice-not-arrived-2026",
+    "kei-tax-late-payment-guide",
+    "car-tax-refund-guide",
+    "car-weight-tax-guide",
+    "shaken-required-documents-guide",
+    "jibaiseki-premium-guide",
+    "car-tax-payment-method-guide",
+    "kei-tax-payment-method-guide",
+    "car-tax-certificate-reissue-guide",
+    "kei-tax-certificate-reissue-guide",
+    "car-tax-account-transfer-guide",
+    "car-tax-address-change-guide",
+    "car-tax-payment-reflection-guide",
+    "car-tax-cannot-pay-guide",
+    "car-tax-seizure-warning-guide"
+  ],
+  "relatedColumnSlugs": [
+    "sell-timing-shaken-tax-market",
+    "name-change-delay-risk",
+    "shaken-early-two-months"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "tax",
+    "paperwork",
+    "money",
+    "inspection"
+  ],
+  "seoTitle": "自動車税を払い忘れたとき。納期限後の払い方、延滞金、車検への影響。",
+  "seoDescription": "自動車税を払い忘れたときに、今の納付書が使えるか、再発行が必要か、延滞金や督促はどうなるか、車検が近いときの納税証明の注意点まで順に整理する実務ガイドです。",
+  "summary": "自動車税を払い忘れたときに、納期限後の払い方、納付書の再発行、延滞金、車検用納税証明の注意点を順に整理する実務ガイドです。",
+  "readMinutes": 8,
+  "status": "published",
+  "id": "guide:car-tax-late-payment-guide",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-paperwork",
+  "relatedClusterIds": [],
+  "primaryQuery": "自動車税 払い忘れ",
+  "updateReason": "2026年度の納期限目安と、納期限後の支払い方、車検時の納税確認の注意をまとめた。",
+  "sources": [
+    "https://www.pref.osaka.lg.jp/o070050/koho/kohoportal/202604/tp2.html",
+    "https://www.pref.hiroshima.lg.jp/site/zei/1170294173427.html",
+    "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidoushayokuaru.html",
+    "https://www.pref.osaka.lg.jp/faq/o050040/faq_000356.html",
+    "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/entaikin.html",
+    "https://www.pref.okayama.jp/page/308373.html",
+    "https://www.pref.okayama.jp/page/422479.html",
+    "https://www.pref.kagawa.lg.jp/zeimu/zeikin/q_and_a/qa013.html",
+    "https://www.pref.kagawa.lg.jp/zeimu/zeikin/jidosha.html",
+    "https://www.pref.kagawa.lg.jp/zeimu/zeikin/q_and_a/qa016.html"
+  ],
+  "heroImage": "/images/cbj/display-tags/guides/paperwork-1.jpg",
+  "thumbnail": "/images/cbj/display-tags/guides/paperwork-1.jpg",
+  "displayTag": "手続き",
+  "layoutVariant": "decision-v1",
+  "eyebrowLabel": "手続き",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "名義変更・必要書類",
+      "href": "/guide/hub-paperwork"
+    },
+    {
+      "label": "自動車税を払い忘れたとき。納期限後の払い方、延滞金、車検への影響を順に整理する。"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "手続き・維持費ガイド編集チーム"
+  },
+  "keyPoints": [
+    "納期限を過ぎた直後に見るべきなのは、今の納付書がそのまま使えるか、再発行が要るか、車検が近いかの3点です。ここを分けると、次の行動が決まります。",
+    "納期限後は延滞金がかかる可能性があり、放置が長引くと督促や差押えの対象になります。忘れたこと自体より、放置の方が重くなります。",
+    "コンビニやキャッシュレスは納付書の取扱期限に左右されます。期限を過ぎた納付書は使えず、金融機関窓口や再発行での対応になる県が多いです。",
+    "車検が近いなら支払方法も変えた方が安全です。納付直後や納期限後の納付では、納税情報が反映するまで紙の納税証明書が必要になることがあります。",
+    "払えない事情があるなら、督促を待つより先に県税事務所へ相談した方が傷が浅く済みます。"
+  ],
+  "checkpoints": [
+    "手元の納付書が残っているか、紛失したか",
+    "コンビニやキャッシュレスの利用期限が切れていないか",
+    "車検予定日が近いか",
+    "旧住所に送られていないか、住所変更が済んでいるか",
+    "過去年度分の未納が残っていないか"
+  ],
+  "faq": [
+    {
+      "question": "納期限を1日過ぎただけでも、もう大ごとですか。",
+      "answer": "すぐに差押えになるわけではありませんが、納期限後は延滞金の対象になり得ます。短い遅れでも、まずは支払える状態に戻す方が先です。"
+    },
+    {
+      "question": "納付書が手元にあれば、コンビニでそのまま払えますか。",
+      "answer": "県ごとに扱いは違いますが、コンビニやキャッシュレスは納付書のバーコードや取扱期限に左右されます。納期限を過ぎた納付書は使えないことがあり、その場合は金融機関窓口か再発行になります。"
+    },
+    {
+      "question": "納付書をなくしました。どうすればいいですか。",
+      "answer": "都道府県の自動車税窓口やコールセンターで再発行を受けられる例があります。旧住所へ送られている場合は、再発行だけでなく住所変更の届出も合わせた方が早いです。"
+    },
+    {
+      "question": "払った直後に車検へ行っても大丈夫ですか。",
+      "answer": "余裕があるとは言い切れません。納付情報が運輸支局側に反映するまで日数がかかるため、すぐに車検を受けるなら、紙の納税証明書を確保しやすい現金納付を勧める案内が複数あります。"
+    },
+    {
+      "question": "延滞金も一緒に払う必要がありますか。",
+      "answer": "納期限後の納付では、延滞金が発生しているかを含めて確認した方が安全です。再発行された納付書や案内書面に延滞金が反映される運用があります。"
+    },
+    {
+      "question": "お金が足りないときは、とりあえず放置して後でまとめて払えばいいですか。",
+      "answer": "その考え方は危険です。納期限後も納められない事情があるなら、県税事務所へ早めに相談するよう案内している自治体があります。放置は督促や滞納処分の話につながります。"
+    }
+  ],
+  "actionBox": {
+    "title": "今すぐやるべきこと",
+    "body": "まずは 納付書の有無、車検予定日、旧住所のままになっていないか を確認してください。納期限後の実務は、この3点でほぼ分岐します。",
+    "actions": [
+      {
+        "label": "自動車税の納付書が来ないとき。4月1日基準、住所変更、軽との違いを先に整理する。",
+        "href": "/guide/car-tax-notice-not-arrived-2026"
+      },
+      {
+        "label": "車検で必要な書類を先に整理する。納税証明が要る場面もここで確認する。",
+        "href": "/guide/shaken-required-documents-guide"
+      }
+    ]
+  },
+  "detailSections": [
+    {
+      "title": "先に結論｜最初に見るのは『納付書』『車検』『再発行』の3点",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "自動車税を払い忘れたときは、延滞金の細かい計算から入るより、今ある納付書で支払えるか、車検が近いか、納付書をなくしていないかを先に分けた方が早いです。納期限後の実務はこの3つで動き方がかなり変わります。"
+        },
+        {
+          "type": "decisionCards",
+          "cards": [
+            {
+              "badge": "そのまま払える可能性あり",
+              "title": "納付書が手元にある人",
+              "body": "まずは納付書の取扱期限を見ます。金融機関窓口で払えるケースと、バーコード期限切れで使えないケースがあります。",
+              "items": [
+                "バーコードや利用期限を確認する",
+                "キャッシュレス可否を確認する",
+                "使えなければ再発行へ進む"
+              ]
+            },
+            {
+              "badge": "早めに連絡",
+              "title": "納付書をなくした人",
+              "body": "再発行を頼める窓口があるので、放置より先に連絡した方が早いです。旧住所送付なら住所変更も合わせます。",
+              "items": [
+                "都道府県の税窓口へ連絡する",
+                "旧住所送付かも確認する",
+                "再発行後の支払方法を決める"
+              ]
+            },
+            {
+              "badge": "支払方法を選ぶ",
+              "title": "車検が近い人",
+              "body": "納付情報の反映待ちがあるため、すぐに車検なら紙の納税証明書を確保しやすい方法を選ぶ方が安全です。",
+              "items": [
+                "現金納付を優先する",
+                "納税証明の要否を確認する",
+                "納付直後のOSS利用は慎重に考える"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "先に整理したいこと",
+          "body": "『忘れたこと』より『どの状態で忘れていたか』が大事です。納付書あり、納付書なし、車検直前では対処が違います。"
+        }
+      ]
+    },
+    {
+      "title": "納期限後に何が起きるか｜延滞金、督促、放置の重さ",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "納期限を過ぎると、まず気にしたいのは延滞金です。自治体の案内では、納期限の翌日から納付日までの日数に応じて延滞金がかかるとされ、納めない状態が続くと督促や差押えに進む可能性も明記されています。『数日遅れただけだから放っておく』は避けた方が安全です。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "納期限後は延滞金の対象になり得る",
+            "催告や督促が届くことがある",
+            "さらに放置すると滞納処分の対象になり得る",
+            "納められない事情があるなら早めの相談が前提になる"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "ここでの失敗",
+          "body": "忘れていたこと自体より、督促が来るまで何もしない方が後で重くなります。納期限を過ぎたと気づいた時点で動いた方がいいです。"
+        }
+      ]
+    },
+    {
+      "title": "今の納付書が使えるか｜コンビニ・キャッシュレス・金融機関の違い",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "納期限後でも、すべての支払方法が同じように使えるわけではありません。県税の案内では、クレジットカードや地方税お支払サイトなどの利用期間が納付書ごとに決まっており、期間を過ぎたら金融機関等の窓口で現金納付へ切り替える運用が見られます。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "支払い方",
+            "納期限後の使いやすさ",
+            "見ておく点"
+          ],
+          "rows": [
+            [
+              "金融機関・税窓口",
+              "比較的対応しやすい",
+              "納付書が使えるか、再発行が要るかを確認する"
+            ],
+            [
+              "コンビニ",
+              "納付書の取扱期限しだい",
+              "バーコードや指定期限を過ぎると使えないことがある"
+            ],
+            [
+              "地方税お支払サイト・スマホ決済",
+              "利用期間の制限がある",
+              "納期限後は不可、または延滞金反映後の新しい納付書が必要になることがある"
+            ]
+          ],
+          "note": "実際の扱いは都道府県で差があります。迷うときは納付書面の案内と県税窓口を優先します。"
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "よくある読み違い",
+          "body": "納付書が手元にあることと、そのまま全部の支払い方法で使えることは同じではありません。特にコンビニとキャッシュレスは期限確認が先です。"
+        }
+      ]
+    },
+    {
+      "title": "納付書がない、旧住所へ行った｜再発行と住所変更を一緒に進める",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "納付書をなくしたときや、旧住所へ送られて届いていないときは、再発行だけでなく住所変更も合わせて進めた方が手戻りが減ります。大阪府のFAQのように、自動車税はコールセンター経由で再発行請求できる案内もあります。納期限後の再発行では、延滞金がかかることがある点まで一緒に説明されることが多いです。"
+        },
+        {
+          "type": "flow",
+          "steps": [
+            {
+              "title": "1. 届いていない理由を切り分ける",
+              "body": "紛失か、旧住所送付か、そもそも発送先の登録ズレかを確認します。"
+            },
+            {
+              "title": "2. 税窓口へ再発行を依頼する",
+              "body": "都道府県の税事務所や自動車税コールセンターに連絡し、現在の支払い方法も合わせて確認します。"
+            },
+            {
+              "title": "3. 住所変更が未了なら同時に直す",
+              "body": "再来年も同じことを起こしやすいので、再発行だけで終わらせない方が安全です。"
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "info",
+          "title": "再発行のときに聞くこと",
+          "body": "使える納付方法、延滞金の扱い、車検が近い場合の納税証明の取り方まで一緒に確認すると二度手間が減ります。"
+        }
+      ]
+    },
+    {
+      "title": "車検が近いときはここが変わる｜納税証明が要る場面を先に見る",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "今は運輸支局側で納税情報を電子確認できる仕組みがありますが、納付直後や納期限後の納付では反映まで時間がかかります。自治体や県税の案内では、すぐに車検を受けるなら金融機関窓口やコンビニ等で現金納付し、紙の納税証明書を確保するよう勧める例が見られます。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "状況",
+            "優先したい支払い方",
+            "理由"
+          ],
+          "rows": [
+            [
+              "車検まで日数がある",
+              "使える方法ならどれでも可",
+              "電子反映を待てる余地がある"
+            ],
+            [
+              "納付後すぐに車検",
+              "現金納付を優先",
+              "紙の納税証明書を確保しやすい"
+            ],
+            [
+              "納期限後に納付して車検も近い",
+              "税窓口へ確認しながら進める",
+              "反映遅れと納税証明の要否が重なりやすい"
+            ]
+          ],
+          "note": "OSS利用時も、納付済みでもシステム反映待ちで証明書提示が必要になる案内があります。"
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "急ぎのときの落とし穴",
+          "body": "キャッシュレスは便利ですが、納税証明書がすぐ出ないことがあります。車検が近いなら、便利さより確実さを優先した方が安全です。"
+        }
+      ]
+    },
+    {
+      "title": "払えないとき｜督促を待つより先に相談した方がいい",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "手続き上いちばん避けたいのは、払えないのに何も言わない状態です。自治体は、納期限までに納税できない事情があるときは早めに相談するよう案内しています。分割の可否や扱いは一律ではありませんが、放置より相談の方が選べる手段が残ります。"
+        },
+        {
+          "type": "caseStudy",
+          "cases": [
+            {
+              "title": "ケース1｜1週間遅れに気づいた",
+              "intro": "納付書が手元にあり、車検も先なら、まず使える支払い方法を確認して早めに完納するのが基本です。",
+              "rows": [
+                {
+                  "label": "先に確認",
+                  "value": "コンビニやキャッシュレスの利用期限"
+                },
+                {
+                  "label": "優先行動",
+                  "value": "その日のうちに完納へ動く"
+                }
+              ]
+            },
+            {
+              "title": "ケース2｜納付書をなくし、車検も近い",
+              "intro": "再発行と納税証明の段取りを一緒に確認しないと、支払いだけ済んで車検で詰まることがあります。",
+              "rows": [
+                {
+                  "label": "先に確認",
+                  "value": "再発行窓口と証明書の取り方"
+                },
+                {
+                  "label": "優先行動",
+                  "value": "税窓口へ電話しながら進める"
+                }
+              ]
+            },
+            {
+              "title": "ケース3｜今月は払えない",
+              "intro": "放置ではなく、事情を伝えて相談する入口を作った方が後で動きやすいです。",
+              "rows": [
+                {
+                  "label": "先に確認",
+                  "value": "いくら不足しているか、いつなら払えるか"
+                },
+                {
+                  "label": "優先行動",
+                  "value": "県税事務所へ早めに相談する"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "相談するときに伝えること",
+          "body": "車の登録番号、納税通知書の有無、いつまでにいくら払えるか、車検の予定日。この4点があると話が進みやすいです。"
+        }
+      ]
+    },
+    {
+      "title": "最後に整理｜『払う』『証明を取る』『住所を直す』を混ぜない",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "自動車税の払い忘れは、税額そのものより、やることを混ぜてしまう方がこじれます。支払いを済ませること、車検で納税証明が必要かを見ること、旧住所なら登録を直すこと。この3つを分けて考えると、納期限後でも落ち着いて片づけやすくなります。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "まず支払い経路を確定する",
+            "車検が近いなら納税証明の段取りを見る",
+            "旧住所や紛失なら再発行と住所変更を同時に進める",
+            "払えない事情があるなら放置せず相談する"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "覚えておきたい線引き",
+          "body": "納期限後の一番の問題は、支払方法が変わることと、車検が近いと納税証明の扱いが変わることです。そこだけ外さなければ、大崩れしにくいです。"
+        }
+      ]
+    }
+  ]
+}

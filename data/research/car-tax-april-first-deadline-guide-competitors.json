@@ -1,0 +1,123 @@
+{
+  "slug": "car-tax-april-first-deadline-guide",
+  "createdAt": "2026-04-20",
+  "competitorCount": 30,
+  "queries": [
+    "自動車税 4月1日まで 名義変更 廃車",
+    "自動車税 3月31日 住所変更 納付書",
+    "自動車税 4月1日 売却 旧所有者"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.pref.gifu.lg.jp/page/5579.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/169.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/170.html"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a001/b014/index.html"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a001/b014/002.html"
+    },
+    {
+      "url": "https://www.pref.kumamoto.jp/soshiki/17/50805.html"
+    },
+    {
+      "url": "https://www.pref.mie.lg.jp/ZIZEI/HP/24969025045.htm"
+    },
+    {
+      "url": "https://www.pref.hokkaido.lg.jp/sm/zim/address/index.html"
+    },
+    {
+      "url": "https://www.pref.nagasaki.lg.jp/doc/45379.html"
+    },
+    {
+      "url": "https://www.pref.saitama.lg.jp/b0216/jz-jizei/index.html"
+    },
+    {
+      "url": "https://www.pref.miyagi.jp/soshiki/zeimu/jdousya.html"
+    },
+    {
+      "url": "https://www.pref.miyagi.jp/soshiki/zeimu/jushohenkoui.html"
+    },
+    {
+      "url": "https://www.pref.ehime.jp/page/1658.html"
+    },
+    {
+      "url": "https://www.pref.gunma.jp/page/19693.html"
+    },
+    {
+      "url": "https://www.pref.fukuoka.lg.jp/contents/jidoushajuusho.html"
+    },
+    {
+      "url": "https://www.pref.ibaraki.jp/somu/zeimu/fuka/jidousha/sofusaki.html"
+    },
+    {
+      "url": "https://www.pref.akita.lg.jp/pages/archive/77190"
+    },
+    {
+      "url": "https://web.pref.hyogo.lg.jp/kk22/pa04_000000021.html"
+    },
+    {
+      "url": "https://www.pref.iwate.jp/kensei/zei/gaiyou/jidousha/1011204.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidousyazei.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidoushayokuaru.html"
+    },
+    {
+      "url": "https://www.pref.niigata.lg.jp/site/zeimu/20210820syuzei-jidosyazei-jusyohenko.html"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/257752.htm"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/258617.htm"
+    },
+    {
+      "url": "https://www.pref.kochi.lg.jp/doc/2019092700154/"
+    },
+    {
+      "url": "https://www.pref.kochi.lg.jp/doc/2024122600144/"
+    },
+    {
+      "url": "https://www.pref.tochigi.lg.jp/b07/life/zeikin/zeikin/car_qa.html"
+    },
+    {
+      "url": "https://www.pref.ishikawa.lg.jp/zei/qa/a11.html"
+    },
+    {
+      "url": "https://www.pref.kagawa.lg.jp/zeimu/qa/jidosha/jidosha_index.html"
+    },
+    {
+      "url": "https://www.pref.yamanashi.jp/zeimu/qa/jidousha_qa.html"
+    }
+  ],
+  "commonTakeaways": [
+    "多くの公式案内は、4月1日午前0時現在の所有者または使用者に課税される点を先に示している。",
+    "3月31日までに移転登録や抹消登録が終わっていないと、その年度は旧名義側に課税される説明が多い。",
+    "住所変更は住民票の異動と別で、納税通知書は車検証住所へ送る説明が目立つ。",
+    "4月1日後の抹消は月割還付に触れる一方、移転登録だけでは還付が出ない整理が多い。"
+  ],
+  "gapsFound": [
+    "名義変更、廃車、住所変更を同じ記事で横断して整理したページが少ない。",
+    "依頼日ではなく登録完了日を見るべき点が弱いページが多い。",
+    "その年度の課税、通知の送り先、還付の3論点を分けて説明している例が少ない。"
+  ],
+  "changesApplied": [
+    "4月1日までに終わっているかで読む decisionCards を入れた。",
+    "名義変更・廃車・住所変更を一つの判断軸で整理した。",
+    "4月1日後の抹消還付と、住所変更の送付先問題を別段で説明した。"
+  ],
+  "qualityChecks": [
+    "公式案内中心で構成",
+    "普通車のみ扱う",
+    "4月1日前後の実務に絞る"
+  ]
+}

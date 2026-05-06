@@ -1,0 +1,104 @@
+{
+  "slug": "kei-tax-seizure-warning-guide",
+  "createdAt": "2026-04-25",
+  "competitorCount": 30,
+  "queries": [
+    "軽自動車税 差押予告通知",
+    "軽自動車税 差押予告書",
+    "軽自動車税 タイヤロック 車検"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.city.yonago.lg.jp/6335.htm"
+    },
+    {
+      "url": "https://www.city.uji.kyoto.jp/soshiki/44/16063.html"
+    },
+    {
+      "url": "https://www.town.chiyoda.gunma.jp/zeimukaikei/syunou/post-615.html"
+    },
+    {
+      "url": "https://www.city.hofu.yamaguchi.jp/soshiki/11/taiyarock.html"
+    },
+    {
+      "url": "https://www.town.ono.fukushima.jp/soshiki/4/taiyarokku.html"
+    },
+    {
+      "url": "https://www.city.uruma.lg.jp/1003004000/contents/3110.html"
+    },
+    {
+      "url": "https://www.town.yugawara.kanagawa.jp/soshiki/16/2026.html"
+    },
+    {
+      "url": "https://www.city.amagasaki.hyogo.jp/kurashi/zei/028nouzeitop/1041684.html"
+    },
+    {
+      "url": "https://www.city.maniwa.lg.jp/soshiki/8/1551.html"
+    },
+    {
+      "url": "https://www.city.soma.fukushima.jp/shinososhiki/zeimuka/zeikin/16604.html"
+    },
+    {
+      "url": "https://www.city.soma.fukushima.jp/shinososhiki/zeimuka/zeikin/1/16654.html"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000527660.html"
+    },
+    {
+      "url": "https://www.city.himeji.lg.jp/kurashi/0000028871.html"
+    },
+    {
+      "url": "https://www.city.tsukumi.oita.jp/soshiki/17/10907.html"
+    },
+    {
+      "url": "https://www.city.okayama.jp/kurashi/0000004042.html"
+    },
+    {
+      "url": "https://www.city.kobe.lg.jp/a35984/kurashi/tax/kei/index.html"
+    },
+    {
+      "url": "https://www.city.joetsu.niigata.jp/soshiki/zeimu/lifeguide-tax-minicar-tax-q-a.html"
+    },
+    {
+      "url": "https://www.city.ota.gunma.jp/page/1058089.html"
+    },
+    {
+      "url": "https://www.city.kodaira.tokyo.jp/kurashi/002/002759.html"
+    },
+    {
+      "url": "https://www.city.setagaya.lg.jp/02053/255.html"
+    },
+    {
+      "url": "https://www.city.edogawa.tokyo.jp/e014/kurashi/zeikin/juminzei/osamekata/osamenai/index.html"
+    },
+    {
+      "url": "https://www.city.koto.lg.jp/060601/kurashi/zekin/nofu/5128.html"
+    },
+    {
+      "url": "https://www.city.saitama.lg.jp/001/153/004/003/p032313.html"
+    },
+    {
+      "url": "https://www.city.hachioji.tokyo.jp/kurashi/zeikin/ag569/ak002/ak005/p012212.html"
+    },
+    {
+      "url": "https://www.city.shibuya.tokyo.jp/kurashi/kobai/keiji/syomei.html"
+    },
+    {
+      "url": "https://www.city.hitachinaka.lg.jp/kurashi/zeikin/1004319/1004322.html"
+    },
+    {
+      "url": "https://www.city.taito.lg.jp/kurashi/zeikin/zeikin/nozei/madoguchi.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/information/knowledge/taxes_qa.html"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/zeikin/nouzei-soudan/nouzei-houhou/kotei-nouhu/smartphone/smartphoneeL-QR.html"
+    },
+    {
+      "url": "https://www.city.fukagawa.lg.jp/cms/section/zeimuzaisei/ik75k400000046lf.html"
+    }
+  ],
+  "contentDecision": "軽は市区町村税として、旧自治体や税止め、軽JNKS、タイヤロック、移管先相談を普通車と分けて整理する方針。",
+  "note": "公式案内を中心に、差押予告、財産調査、タイヤロック、相談導線の切り分けを確認。公開ページ生成対象ではない。"
+}

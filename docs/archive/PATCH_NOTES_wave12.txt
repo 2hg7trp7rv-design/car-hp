@@ -1,0 +1,27 @@
+WAVE 12 — SEARCH SSR / Progressive Enhancement (noindex tool hardening)
+
+Goal
+- Make /search usable even when JavaScript fails or is disabled.
+- Remove the “候補を読み込み中…” dead-end (client-only suggestions) by supplying an SSR snapshot.
+- Keep SEO safe: /search remains NOINDEX with canonical fixed to /search.
+
+What changed
+- /app/search/page.tsx
+  - Force-dynamic rendering (searchParams-dependent output).
+  - Server-side snapshot generation:
+    - q.length>1 → SSR results via lib/search.searchSite
+    - q.length<=1 → SSR suggestions via lib/search.getSearchIndex
+  - Pass SSR snapshot to SearchClient so HTML remains meaningful without JS.
+
+- /app/search/search-client.tsx
+  - Accept SSR snapshot props (initialResults / initialSuggestions / initialTookMs).
+  - On first render, skip initial API fetch when SSR snapshot exists (prevents redundant work + avoids “loading only” HTML).
+  - Wrap UI in a GET <form> with JS-on submit prevented (SPA behavior), while JS-off naturally submits.
+  - Add <noscript> submit guidance.
+
+- /app/compare/page.tsx
+  - Force-dynamic rendering to ensure ?cars=... SSR is respected (shareable compare URLs).
+
+Notes
+- Nothing was removed; functionality is layered via additive SSR snapshots.
+- /search stays a tool page: noindex + canonical=/search to prevent query-param indexing.

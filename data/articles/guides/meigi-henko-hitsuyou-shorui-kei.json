@@ -1,0 +1,315 @@
+{
+  "slug": "meigi-henko-hitsuyou-shorui-kei",
+  "title": "軽自動車の名義変更に必要な書類。普通車との違いと最短手順。",
+  "lead": "軽自動車の名義変更に必要な書類と注意点。保管場所届出の要否も整理。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "SELL",
+  "tags": [
+    "名義変更",
+    "必要書類",
+    "軽自動車",
+    "譲渡",
+    "売却"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-04-01",
+  "internalLinks": [
+    "jyuusho-henkou-shaken-shou",
+    "shako-shoumei-torikata",
+    "meigi-henko-hitsuyou-shorui-futsuu",
+    "kei-tax-name-change-guide",
+    "kei-tax-owner-user-guide",
+    "kei-tax-ownership-release-guide"
+  ],
+  "body": "",
+  "monetizeKey": "sell_prepare",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "jyuusho-henkou-shaken-shou",
+    "shako-shoumei-torikata",
+    "meigi-henko-hitsuyou-shorui-futsuu",
+    "kei-tax-name-change-guide",
+    "kei-tax-owner-user-guide",
+    "kei-tax-ownership-release-guide"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "paperwork",
+    "sell"
+  ],
+  "seoTitle": "軽自動車の名義変更に必要な書類。普通車との違いと最短手順。",
+  "seoDescription": "軽自動車の名義変更に必要な書類と注意点。保管場所届出の要否も整理。",
+  "summary": "軽自動車の名義変更に必要な書類と注意点。保管場所届出の要否も整理。",
+  "status": "published",
+  "id": "guide:meigi-henko-hitsuyou-shorui-kei",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "noindex",
+  "parentPillarId": "/guide/hub-sell",
+  "relatedClusterIds": [],
+  "primaryQuery": "【軽自動車】名義変更の必要書類まとめ｜普通車との違いと最短手順",
+  "updateReason": "decision-v1 のFAQと主役ブロックを個別に見直しました。",
+  "sources": [
+    "https://www.mlit.go.jp/",
+    "https://www.npa.go.jp/",
+    "https://www.keikenkyo.or.jp/",
+    "https://www.jpuc.or.jp/",
+    "https://www.kokusen.go.jp/"
+  ],
+  "heroImage": "/images/cbj/display-tags/guides/sell-2.jpg",
+  "thumbnail": "/images/cbj/display-tags/guides/sell-2.jpg",
+  "displayTag": "手続き",
+  "layoutVariant": "decision-v1",
+  "eyebrowLabel": "手続き",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "軽自動車の名義変更に必要な書類。普通車との違いと最短手順。"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "売却・乗り換えガイド編集チーム"
+  },
+  "keyPoints": [
+    "軽自動車の名義変更は、普通車と比べて印鑑関連が簡略なケースもありますが、【管轄（軽自動車検査協会）と保管場所の扱い】がポイントです。",
+    "つまずきやすいのは「住所が車検証と違う」「保管場所届出の要否」「書類の記入ミス」です。",
+    "先に、手続きをする人（自分/代行）と、必要な保管場所書類を決めてから準備するとスムーズです。"
+  ],
+  "checkpoints": [
+    "車検証",
+    "申請依頼書（代理申請の場合）",
+    "新使用者の住所確認書類（住民票など）",
+    "認印（必要な場合）",
+    "ナンバープレート（変更がある場合）"
+  ],
+  "faq": [
+    {
+      "question": "軽自動車の名義変更はどこへ行く？",
+      "answer": "基本は軽自動車検査協会です。普通車と窓口が違うので、最初にそこを取り違えないことが大事です。"
+    },
+    {
+      "question": "軽でも車庫証明は必要？",
+      "answer": "地域や条件で扱いが異なります。不要と決めつけず、保管場所届出の要否を管轄案内で確認した方が安全です。"
+    },
+    {
+      "question": "住民票はどの場面で必要？",
+      "answer": "新使用者の住所確認が必要なときに使うことがあります。住所変更を伴う名義変更では特に準備しておくと止まりにくいです。"
+    },
+    {
+      "question": "普通車との一番大きい違いは？",
+      "answer": "印鑑や保管場所の扱いが比較的簡略になる点です。ただし、その分「何が不要で何が必要か」を事前に確認しないと逆に混乱しやすいです。"
+    }
+  ],
+  "actionBox": {
+    "title": "今すぐやるべきこと",
+    "body": "まずは 車検証、申請依頼書（代理申請の場合）、新使用者の住所確認書類（住民票など） を順番に確認してください。迷ったら関連ガイドで条件を切り分けてから動くと、判断がぶれにくくなります。",
+    "actions": [
+      {
+        "label": "住所変更のあと、車で済ませる手続き。車検証・ナンバー・保険の順番。",
+        "href": "/guide/jyuusho-henkou-shaken-shou"
+      },
+      {
+        "label": "車庫証明の取り方。必要書類・流れ・時間がない人の現実的な進め方。",
+        "href": "/guide/shako-shoumei-torikata"
+      }
+    ]
+  },
+  "detailSections": [
+    {
+      "title": "先に比較｜軽自動車と普通車の違い",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車の名義変更は、普通車と同じ感覚で進めると書類の考え方がズレやすいです。窓口と必要書類の違いを最初に整理します。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "項目",
+            "軽自動車",
+            "普通車"
+          ],
+          "rows": [
+            [
+              "主な窓口",
+              "軽自動車検査協会",
+              "運輸支局"
+            ],
+            [
+              "印鑑まわり",
+              "簡略な扱いになるケースがある",
+              "実印・印鑑証明が重くなりやすい"
+            ],
+            [
+              "保管場所",
+              "届出の要否を地域で確認",
+              "車庫証明が必要になる場面が多い"
+            ],
+            [
+              "つまずきやすい点",
+              "住所変更の有無、保管場所届出",
+              "印鑑証明の期限、譲渡証明書"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "先に押さえること",
+          "body": "軽は簡単そうに見えて、住所と保管場所の扱いで止まりやすいです。普通車との違いを先に押さえる方が早いです。"
+        }
+      ]
+    },
+    {
+      "title": "必要書類（軽自動車の名義変更の例）",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "※地域や状況で変わることがあるため、最終的には管轄の案内に従ってください。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "車検証",
+            "申請依頼書（代理申請の場合）",
+            "新使用者の住所確認書類（住民票など）",
+            "認印（必要な場合）",
+            "ナンバープレート（変更がある場合）"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "保管場所（車庫）の扱いに注意",
+      "blocks": [
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "保管場所（車庫）の扱いに注意",
+          "body": "- 軽自動車は「車庫証明が不要」でも、地域によっては【保管場所届出】が必要になることがあります。 - 普通車は /guide/shako-shoumei-torikata の通り車庫証明が必要になることが多いです。",
+          "items": [
+            "軽自動車は「車庫証明が不要」でも、地域によっては【保管場所届出】が必要になることがあります。",
+            "普通車は /guide/shako-shoumei-torikata の通り車庫証明が必要になることが多いです。"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "手順 1 まず「住所変更の有無」を確認する",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "住所が車検証と違う場合、住所変更が先になることがあります（/guide/jyuusho-henkou-shaken-shou）"
+        }
+      ]
+    },
+    {
+      "title": "手順 2 必要書類を揃えて、軽自動車検査協会へ",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "書類の記入ミスがあるとやり直しになりやすいので、車台番号や住所は写し間違えない"
+        }
+      ]
+    },
+    {
+      "title": "よくあるミス",
+      "blocks": [
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "よくあるミス",
+          "body": "- 住所の不一致を放置して手続きが止まる - 保管場所届出の要否を確認せず二度手間になる",
+          "items": [
+            "住所の不一致を放置して手続きが止まる",
+            "保管場所届出の要否を確認せず二度手間になる"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "購入前に確認しておきたいこと",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "申請先は「管轄」で決まる。先に管轄を確認すると二度手間が減る",
+            "住民票・印鑑証明などは有効期限が短い扱いになることがあるため、取得は申請直前が安全",
+            "引越しで管轄が変わると、ナンバー変更や封印が絡む場合がある",
+            "住所表記（丁目・番地・建物名）を車検証側に合わせると差戻しが起きにくい"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "迷ったときの進め方",
+      "blocks": [
+        {
+          "type": "flow",
+          "steps": [
+            {
+              "title": "前提を確認する",
+              "body": "まずは 車検証、申請依頼書（代理申請の場合） を確認し、比較条件を揃えます。"
+            },
+            {
+              "title": "動く順番を決める",
+              "body": "費用・必要書類・期限のうち、後戻りしにくいものから片付けると判断が安定します。"
+            },
+            {
+              "title": "関連ガイドで不足を補う",
+              "body": "一つの記事だけで決めきれない場合は、関連ガイドを使って条件を切り分けてから決めます。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "まとめ",
+      "blocks": [
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "判断のポイント",
+          "body": "軽自動車の名義変更は、普通車と比べて印鑑関連が簡略なケースもありますが、【管轄（軽自動車検査協会）と保管場所の扱い】がポイントです。 つまずきやすいのは「住所が車検証と違う」「保管場所届出の要否」「書類の記入ミス」です。 迷ったら、条件を先に揃えてから比較するのが安全です。",
+          "items": [
+            "車検証",
+            "申請依頼書（代理申請の場合）",
+            "新使用者の住所確認書類（住民票など）",
+            "認印（必要な場合）"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "判断を安定させるメモ",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車の名義変更に必要な書類。普通車との違いと最短手順。では、単に項目を覚えるよりも、先に条件を揃えてから順番に判断する方が失敗を減らせます。特に、費用・必要書類・期限・比較条件の4つは途中で戻りにくいので、最初にメモへ落としてから進めると、作業が分断されても判断がぶれません。急いで結論を出すより、どこで迷うのかを言葉にしてから動く方が、結果として余計な出費ややり直しを避けやすくなります。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "費用・必要書類・期限・比較条件を先にメモにする",
+            "迷ったら一度持ち帰り、関連ガイドで条件を切り分ける",
+            "その場で即決せず、比較条件が揃ってから判断する"
+          ]
+        }
+      ]
+    }
+  ],
+  "readMinutes": 6
+}

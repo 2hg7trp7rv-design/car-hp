@@ -1,0 +1,180 @@
+{
+  "id": "column-sample-decision-v1",
+  "slug": "sample-column-slug",
+  "type": "COLUMN",
+  "status": "published",
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [],
+  "primaryQuery": "記事の主要検索語",
+  "updateReason": "初版公開",
+  "sources": [
+    "https://example.com/source-1",
+    "https://example.com/source-2",
+    "https://example.com/source-3"
+  ],
+  "title": "記事タイトル",
+  "summary": "一覧カード用の短い要約。",
+  "seoTitle": "記事タイトル｜CAR BOUTIQUE JOURNAL",
+  "seoDescription": "検索結果用の説明文。",
+  "category": "TECHNICAL",
+  "displayTag": "輸入車",
+  "publishedAt": "2026-04-11",
+  "updatedAt": "2026-04-11",
+  "readMinutes": 5,
+  "lead": "冒頭で判断軸を短く出す導入文。",
+  "layoutVariant": "decision-v1",
+  "eyebrowLabel": "個人輸入",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "特集",
+      "href": "/column"
+    },
+    {
+      "label": "記事タイトル"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "輸入車・購入判断編集チーム"
+  },
+  "keyPoints": [
+    "要点1",
+    "要点2",
+    "要点3"
+  ],
+  "checkpoints": [
+    "確認ポイント1",
+    "確認ポイント2",
+    "確認ポイント3"
+  ],
+  "faq": [
+    {
+      "question": "よくある質問1",
+      "answer": "回答1"
+    },
+    {
+      "question": "よくある質問2",
+      "answer": "回答2"
+    }
+  ],
+  "actionBox": {
+    "title": "今すぐやること",
+    "body": "最後に読者へ促す短い文。",
+    "actions": [
+      {
+        "label": "関連ガイドへ",
+        "href": "/guide/related-guide"
+      }
+    ]
+  },
+  "detailSections": [
+    {
+      "title": "1. 最初に判断軸を置く",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "冒頭で最初の判断を示す本文。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "ポイント1",
+            "ポイント2"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "2. 費用と条件を分けて見る",
+      "blocks": [
+        {
+          "type": "comparisonTable",
+          "title": "比較表",
+          "headers": [
+            "項目",
+            "A",
+            "B"
+          ],
+          "rows": [
+            [
+              "項目1",
+              "内容A",
+              "内容B"
+            ],
+            [
+              "項目2",
+              "内容A",
+              "内容B"
+            ]
+          ],
+          "note": "表の補足。"
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "注意点",
+          "body": "ここに注意点を入れる。",
+          "items": [
+            "注意1",
+            "注意2"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "3. タイプ別に割り切る",
+      "blocks": [
+        {
+          "type": "decisionCards",
+          "title": "タイプ別診断",
+          "cards": [
+            {
+              "badge": "タイプA",
+              "title": "街乗り中心",
+              "body": "おすすめの考え方。",
+              "items": [
+                "補足1",
+                "補足2"
+              ]
+            },
+            {
+              "badge": "タイプB",
+              "title": "遠出が多い",
+              "body": "おすすめの考え方。",
+              "items": [
+                "補足1",
+                "補足2"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "flow",
+          "steps": [
+            {
+              "title": "段取り1",
+              "body": "最初にやること。"
+            },
+            {
+              "title": "段取り2",
+              "body": "次にやること。"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relatedGuideSlugs": [
+    "road-service-choice-guide"
+  ],
+  "targetKeyword": "記事の主要KW",
+  "searchIntent": "比較・判断",
+  "articleType": "decision",
+  "planPriority": 99
+}

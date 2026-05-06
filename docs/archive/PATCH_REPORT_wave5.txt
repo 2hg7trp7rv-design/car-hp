@@ -1,0 +1,27 @@
+CBJ Masterpiece Wave5 - Change Report
+
+Changed files (path: old_lines -> new_lines (delta))
+- README.md: 123 -> 123 (+0)
+- app/globals.css: 701 -> 707 (+6)
+- data/articles/guides/best-time-to-sell-import-sedan.json: 67 -> 67 (+0)
+- data/articles/guides/car-accident-first-10-minutes.json: 70 -> 70 (+0)
+- data/articles/guides/hajimete-kuruma-uru-checklist.json: 54 -> 54 (+0)
+- data/articles/guides/how-to-choose-first-sports-car.json: 53 -> 53 (+0)
+- data/articles/guides/kuruma-ikkatsu-satei-shitsukoi-real.json: 52 -> 52 (+0)
+- data/articles/guides/loan-or-lump-sum.json: 63 -> 63 (+0)
+- data/articles/guides/loan-vs-lease-luxury-sedan.json: 63 -> 63 (+0)
+- data/articles/guides/repair-history-used-car-checklist.json: 63 -> 63 (+0)
+- data/articles/guides/road-service-choice-guide.json: 56 -> 56 (+0)
+- data/articles/guides/subscription-vs-owning.json: 67 -> 67 (+0)
+- data/articles/guides/tax-and-fees-before-buying-import.json: 65 -> 65 (+0)
+- data/articles/guides/yunyusha-koukya-uru-kaitori-strategy.json: 54 -> 54 (+0)
+- data/articles/heritage/japan-1995-golden-age-heritage.json: 145 -> 145 (+0)
+- data/articles/heritage/mazda-rx7-fd3s-subtraction-engineering-heritage.json: 143 -> 143 (+0)
+- lib/seo/serp.ts: 256 -> 256 (+0)
+- public/_internal/audit.json: 4125 -> 4125 (+0)
+- src/generated/audit.generated.json: 4125 -> 4125 (+0)
+- tsconfig.json: 39 -> 39 (+0)
+
+Added files (path: lines)
+- PATCH_NOTES_wave5.txt: 26 lines
+- PATCH_REPORT_wave5.txt: 27 lines

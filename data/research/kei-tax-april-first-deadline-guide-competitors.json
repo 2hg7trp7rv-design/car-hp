@@ -1,0 +1,123 @@
+{
+  "slug": "kei-tax-april-first-deadline-guide",
+  "createdAt": "2026-04-20",
+  "competitorCount": 30,
+  "queries": [
+    "軽自動車税 4月1日まで 名義変更 廃車",
+    "軽自動車税 4月1日 住所変更 旧自治体",
+    "軽自動車税 4月2日 廃車 還付"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.keikenkyo.or.jp/information/knowledge/taxes_qa.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/change_address.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/change_name.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/scrapped/return.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/scrapped/notification_dismantling.html"
+    },
+    {
+      "url": "https://www.city.uto.lg.jp/article/view/1228/11031.html"
+    },
+    {
+      "url": "https://www.city.tamana.lg.jp/q/aview/277/2047.html"
+    },
+    {
+      "url": "https://www.city.kagoshima.lg.jp/soumu/zeimu/shiminzei/kurashi/zekin/ke/qa.html"
+    },
+    {
+      "url": "https://www.town.kosa.lg.jp/q/aview/101/263.html"
+    },
+    {
+      "url": "https://www.city.yatsushiro.lg.jp/kiji00362/index.html"
+    },
+    {
+      "url": "https://www.vill.yamae.lg.jp/kiji003616/index.html"
+    },
+    {
+      "url": "https://www.city.ikoma.lg.jp/faq/faq_detail.php?co=cat&frmCd=1-5-0-0-0&frmId=515"
+    },
+    {
+      "url": "https://www.city.ikoma.lg.jp/faq/faq_detail.php?co=cat&frmCd=1-5-0-0-0&frmId=481"
+    },
+    {
+      "url": "https://www.city.shibushi.lg.jp/soshiki/7/1915.html"
+    },
+    {
+      "url": "https://www.city.kyoto.lg.jp/gyozai/page/0000199729.html"
+    },
+    {
+      "url": "https://www.city.munakata.lg.jp/kiji0031310/index.html"
+    },
+    {
+      "url": "https://www.city.koshi.lg.jp/kiji00322914/index.html"
+    },
+    {
+      "url": "https://www.city.funabashi.lg.jp/kurashi/zei/001/04/p076782.html"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/zeikin/keijidousha/keijidoushazei.html"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000649247.html"
+    },
+    {
+      "url": "https://www.city.kobe.lg.jp/a47946/kurashi/tax/zei/shingi/zeisyoumei/keinouhu.html"
+    },
+    {
+      "url": "https://www.city.himeji.lg.jp/kurashi/0000007157.html"
+    },
+    {
+      "url": "https://www.city.sosa.lg.jp/page/page000834.html"
+    },
+    {
+      "url": "https://www.city.misato.lg.jp/soshiki/shiminzeika/shiminzei/1635.html"
+    },
+    {
+      "url": "https://www.city.sanuki.kagawa.jp/life/tax/keijido"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/zeikin/nouzei-soudan/nouzei-houhou/kotei-nouhu/smartphone/smartphoneeL-QR.html"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000554722.html"
+    },
+    {
+      "url": "https://www.city.kyoto.lg.jp/gyozai/page/0000199790.html"
+    },
+    {
+      "url": "https://www.city.nagoya.jp/kurashi/category/19-11-10-3-1-0-0-0-0-0.html"
+    },
+    {
+      "url": "https://www.city.utsunomiya.lg.jp/kurashi/zeikin/shi/1003618.html"
+    }
+  ],
+  "commonTakeaways": [
+    "4月1日時点の所有者に課税、または使用の本拠の位置がある市区町村で課税される説明が多い。",
+    "4月1日までに名義変更や廃車が済んでいないと旧名義へ納付書が届く案内が中心。",
+    "住民票の異動だけでは住所変更が終わらない点を強調する自治体が多い。",
+    "4月2日以後の廃車に月割還付がない説明は多いが、税止めや旧ナンバー通知まで一緒に整理したページは少ない。"
+  ],
+  "gapsFound": [
+    "4月1日までの完了有無、税止め、旧自治体課税を一つの記事でまとめた例が少ない。",
+    "旧ナンバーで届く納付書の説明がFAQだけで埋もれているケースが多い。",
+    "一時使用中止を4月1日対策として結びつけた整理が弱い。"
+  ],
+  "changesApplied": [
+    "4月1日までに終わったかどうかで軽の判断を先頭に整理した。",
+    "税止めと旧自治体課税を別論点として差し込んだ。",
+    "還付なしと旧ナンバー通知の読み方をFAQではなく本文でも扱った。"
+  ],
+  "qualityChecks": [
+    "軽自動車のみ扱う",
+    "2026年春の公式案内中心",
+    "4月1日実務に限定"
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "slug": "kei-tax-payment-method-guide",
+  "createdAt": "2026-04-17",
+  "competitorCount": 30,
+  "queries": [
+    "軽自動車税 支払い方法 クレジットカード スマホ決済",
+    "軽自動車税 eL-QR 車検 納税証明",
+    "軽自動車税 軽JNKS 支払い方法"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.mitsui-direct.co.jp/car/guide/mycar_guide/new/lightcar-tax/"
+    },
+    {
+      "url": "https://www.saisoncard.co.jp/credictionary/card/article294.html"
+    },
+    {
+      "url": "https://www.rakuten-card.co.jp/minna-money/credit-card/use/article_2310_80340/"
+    },
+    {
+      "url": "https://media.aupay.wallet.auone.jp/articles/1647"
+    },
+    {
+      "url": "https://www.city.katsushika.lg.jp/kurashi/1000047/1001466/1031451.html"
+    },
+    {
+      "url": "https://www.city.adachi.tokyo.jp/noze/kurashi/zekin/nofu-atm.html"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/zeikin/nouzei-soudan/nouzei-houhou/kotei-nouhu/smartphone/smartphoneeL-QR.html"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/zeikin/nouzei-soudan/nouzei-houhou/kotei-nouhu/smartphone/smartphonebarcode.html"
+    },
+    {
+      "url": "https://www.city.nagoya.jp/kurashi/zeikin/1011989/1011991.html"
+    },
+    {
+      "url": "https://www.city.chiba.jp/zaiseikyoku/zeimu/nozei/shizeinoufubasho.html"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000370805.html"
+    },
+    {
+      "url": "https://www.city.shinjuku.lg.jp/hoken/zeimu01_000001_00026.html"
+    },
+    {
+      "url": "https://www.city.matsudo.chiba.jp/kurashi/zeikin_top/nouhu/292401205.html"
+    },
+    {
+      "url": "https://www.city.funabashi.lg.jp/kurashi/zei/001/02/p114007.html"
+    },
+    {
+      "url": "https://www.city.machida.tokyo.jp/kurashi/tax/shizeinofu/nofu/qr.html"
+    },
+    {
+      "url": "https://www.city.kawasaki.jp/230/soshiki/3-7-2-0-0.html"
+    },
+    {
+      "url": "https://www.city.nagoya.jp/kurashi/zeikin/1012153/1037358/1042201.html"
+    },
+    {
+      "url": "https://www.city.chiba.jp/zaiseikyoku/zeimu/nozei/credit.html"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000649232.html"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000649244.html"
+    },
+    {
+      "url": "https://www.zenginkyo.or.jp/article/tag-f/19883/"
+    },
+    {
+      "url": "https://www.pay-easy.jp/localtax/"
+    },
+    {
+      "url": "https://pay.rakuten.co.jp/topics/invoice-payment/"
+    },
+    {
+      "url": "https://www.lifecard.co.jp/media/how-to-use/column-0157.html"
+    },
+    {
+      "url": "https://www.cr.mufg.jp/mycard/benefit/20031/index.html"
+    },
+    {
+      "url": "https://www.smbc-card.com/nyukai/magazine/tips/automobile-tax.jsp"
+    },
+    {
+      "url": "https://www.pref.okinawa.jp/kurashikankyo/zeikin/1003660/1003670/1023844/1023896.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/paypay.html"
+    },
+    {
+      "url": "https://www.pref.saitama.lg.jp/a0209/z-kurashiindex/z-smartphone-payment.html"
+    },
+    {
+      "url": "https://www.pref.oita.jp/site/zei/peyb.html"
+    }
+  ],
+  "commonTakeaways": [
+    "軽自動車税の支払方法記事は自治体ページ寄りかカード会社寄りに割れ、軽JNKSと車検実務までつながっていないことが多い。",
+    "バーコード方式から eL-QR 方式への移行を横断して整理した記事は少ない。",
+    "普通車と軽の違いを本文で十分に分けず、納税証明の扱いが曖昧な記事が多い。"
+  ],
+  "gapsFound": [
+    "軽だけに絞り、自治体差と軽JNKSを同時に整理した記事が少ない。",
+    "車検直前にどの支払方法を避けるべきかまで踏み込んだ記事が少ない。"
+  ],
+  "changesApplied": [
+    "軽だけに絞り、支払方法を自治体差、証明、車検時期で比較した。",
+    "既存の軽自動車税記事から新規記事へつながる導線を追加した。",
+    "URLログを30件追加した。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}

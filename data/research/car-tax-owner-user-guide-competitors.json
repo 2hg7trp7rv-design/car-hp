@@ -1,0 +1,122 @@
+{
+  "slug": "car-tax-owner-user-guide",
+  "createdAt": "2026-04-19",
+  "competitorCount": 30,
+  "queries": [
+    "自動車税 所有者 使用者 どっち",
+    "自動車税 ローン中 誰が払う",
+    "自動車税 家族名義 使用者 誰に来る"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.pref.saitama.lg.jp/b0216/jz-jizei/index.html"
+    },
+    {
+      "url": "https://www.pref.gifu.lg.jp/page/5579.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidousyazei.html"
+    },
+    {
+      "url": "https://www.pref.fukuoka.lg.jp/contents/shubetsuwari.html"
+    },
+    {
+      "url": "https://www.pref.hiroshima.lg.jp/site/zei/1237271840415.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/170.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/194.html"
+    },
+    {
+      "url": "https://www.pref.shiga.lg.jp/ippan/kurashi/zeikin/310259.html"
+    },
+    {
+      "url": "https://www.pref.ishikawa.lg.jp/zei/qa/a11.html"
+    },
+    {
+      "url": "https://www.pref.fukushima.lg.jp/sec/01115d/zeimu11.html"
+    },
+    {
+      "url": "https://www.pref.niigata.lg.jp/sec/zeimu/car.html"
+    },
+    {
+      "url": "https://www.pref.gifu.lg.jp/page/292459.html"
+    },
+    {
+      "url": "https://www.pref.aomori.lg.jp/soshiki/zaimu/zeimu/024_09jidousha_index.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/173.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/735906.html"
+    },
+    {
+      "url": "https://www.pref.hokkaido.lg.jp/sm/zim/address/index.html"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/79517.htm"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/30981.htm"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidoushayokuaru.html"
+    },
+    {
+      "url": "https://web.pref.hyogo.lg.jp/kk22/nouzei.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/422479.html"
+    },
+    {
+      "url": "https://www.pref.tochigi.lg.jp/b07/life/zeikin/zeikin/car_qa.html"
+    },
+    {
+      "url": "https://www.pref.akita.lg.jp/pages/archive/77190"
+    },
+    {
+      "url": "https://www.pref.yamaguchi.lg.jp/soshiki/5/12414.html"
+    },
+    {
+      "url": "https://www.pref.shiga.lg.jp/ippan/kurashi/zeikin/324632.html"
+    },
+    {
+      "url": "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/transfer/index.html"
+    },
+    {
+      "url": "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/transfer/document/index.html"
+    },
+    {
+      "url": "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/about/register/index.html"
+    },
+    {
+      "url": "https://wwwtb.mlit.go.jp/hokkaido/touroku/03_situgi_outou/situgi_outou.html"
+    },
+    {
+      "url": "https://www.mlit.go.jp/jidosha/jidosha_tk6_000021.html"
+    }
+  ],
+  "commonTakeaways": [
+    "都道府県案内は4月1日基準と所有権留保の説明はあるが、家族名義や家族利用に引き寄せた整理までは弱い。",
+    "通知先の説明は住所変更ページに分散しやすく、だれに課税されるかの説明と一緒に読めないことが多い。",
+    "ローン中の車で「所有者欄が信販会社でも使用者課税」という要点は書かれていても、家族名義との違いまで並べていないページが多い。"
+  ],
+  "gapsFound": [
+    "所有者と使用者が違う場面を、ローン中、家族名義、売却前後で一枚に整理したページが少ない。",
+    "通知先が車検証の登録情報に基づくことは別ページに散っており、納税義務者の説明とつながっていない。"
+  ],
+  "changesApplied": [
+    "普通車は原則所有者、所有権留保があると使用者という分かれ目を先頭で固定した。",
+    "家族名義や法人名義では自動で使用者課税にならないことを明確に切り出した。",
+    "通知先の見方を住所変更や売却前後の文脈までつなげた。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}
