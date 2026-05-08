@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_internal/
+
+Sitemap: https://carboutiquejournal.com/sitemap.xml

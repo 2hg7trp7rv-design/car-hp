@@ -1,0 +1,16 @@
+PATCH NOTES (wave6)
+
+Goal:
+- Treat every page as a single continuous artwork.
+- Text is part of the design, so we avoid 'unfinished' UI states.
+
+What was missing (from screen recording):
+1) Full-width white band (NEXT STORY) breaking Stage.
+2) Large blank thumbnail areas on related cards when images are missing.
+3) Menu overlay briefly stacking over route loading.
+
+What we changed:
+- Heritage detail: Next story now stays inside Stage and is presented as a Porcelain panel.
+- Global loading UI: replaced skeleton grid with minimal 'curtain' style indicator.
+- Hamburger menu: closes immediately on link click.
+- Content cards: improved placeholder visuals + added safe fallback images where data is missing.

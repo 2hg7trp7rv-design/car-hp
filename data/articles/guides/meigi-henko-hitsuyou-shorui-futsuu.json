@@ -1,0 +1,342 @@
+{
+  "slug": "meigi-henko-hitsuyou-shorui-futsuu",
+  "title": "名義変更に必要な書類。普通車の場合、売却・譲渡の前に揃えるもの。",
+  "lead": "普通車の名義変更に必要な書類と流れ。旧/新所有者それぞれの準備ポイント。",
+  "type": "GUIDE",
+  "monetizeType": "direct",
+  "category": "SELL",
+  "tags": [
+    "名義変更",
+    "必要書類",
+    "普通車",
+    "移転登録",
+    "譲渡",
+    "売却"
+  ],
+  "publishedAt": "2026-01-01",
+  "updatedAt": "2026-04-01",
+  "internalLinks": [
+    "shako-shoumei-torikata",
+    "jyuusho-henkou-shaken-shou",
+    "meigi-henko-hitsuyou-shorui-kei",
+    "number-change-kibou-number-guide",
+    "car-tax-name-change-guide",
+    "car-tax-owner-user-guide",
+    "car-tax-ownership-release-guide"
+  ],
+  "body": "",
+  "monetizeKey": "sell_prepare",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "shako-shoumei-torikata",
+    "jyuusho-henkou-shaken-shou",
+    "meigi-henko-hitsuyou-shorui-kei",
+    "number-change-kibou-number-guide",
+    "car-tax-name-change-guide",
+    "car-tax-owner-user-guide",
+    "car-tax-ownership-release-guide"
+  ],
+  "relatedColumnSlugs": [],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "paperwork",
+    "sell"
+  ],
+  "seoTitle": "名義変更に必要な書類。普通車の場合、売却・譲渡の前に揃えるもの。",
+  "seoDescription": "普通車の名義変更に必要な書類と流れ。旧/新所有者それぞれの準備ポイント。",
+  "summary": "普通車の名義変更に必要な書類と流れ。旧/新所有者それぞれの準備ポイント。",
+  "status": "published",
+  "id": "guide:meigi-henko-hitsuyou-shorui-futsuu",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "noindex",
+  "parentPillarId": "/guide/hub-sell",
+  "relatedClusterIds": [],
+  "primaryQuery": "【普通車】名義変更（移転登録）の必要書類まとめ｜売却・譲渡で詰まらないチェックリスト",
+  "updateReason": "decision-v1 のFAQと主役ブロックを個別に見直しました。",
+  "sources": [
+    "https://www.mlit.go.jp/",
+    "https://www.npa.go.jp/",
+    "https://www.keikenkyo.or.jp/",
+    "https://www.jpuc.or.jp/",
+    "https://www.kokusen.go.jp/"
+  ],
+  "heroImage": "/images/cbj/display-tags/guides/sell-1.jpg",
+  "thumbnail": "/images/cbj/display-tags/guides/sell-1.jpg",
+  "displayTag": "手続き",
+  "layoutVariant": "decision-v1",
+  "eyebrowLabel": "手続き",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "名義変更に必要な書類。普通車の場合、売却・譲渡の前に揃えるもの。"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "売却・乗り換えガイド編集チーム"
+  },
+  "keyPoints": [
+    "普通車の名義変更（移転登録）は、【旧所有者・新所有者・車両の書類】が揃っていれば手続き自体はシンプルです。",
+    "つまずきやすいのは「印鑑証明の期限」「車庫証明」「委任状/譲渡証明書の記入ミス」です。",
+    "不安なら、先に管轄の運輸支局の案内を確認し、必要書類をチェックしてから動くと二度手間が減ります。"
+  ],
+  "checkpoints": [
+    "印鑑証明書（発行からの期限に注意）",
+    "実印",
+    "譲渡証明書",
+    "委任状（代理人が手続きをする場合）",
+    "車庫証明（保管場所証明書。地域により要否が異なる場合があります）"
+  ],
+  "faq": [
+    {
+      "question": "印鑑証明はいつ取ればいい？",
+      "answer": "期限管理が必要なので、早すぎず遅すぎずが基本です。発行時期の条件は実際の窓口案内で確認し、他の書類と揃えて取る方が無駄がありません。"
+    },
+    {
+      "question": "ローン中の車でも名義変更できる？",
+      "answer": "所有権留保があると、そのままでは進めにくいことがあります。まずローン会社や販売店に所有権の状態を確認し、必要な解除手続きがあるかを見ます。"
+    },
+    {
+      "question": "車庫証明はどのタイミングで取る？",
+      "answer": "新所有者側で必要になるなら、記入ミスや配置図の準備も含めて早めに動く方が安全です。名義変更当日に慌てると全体が止まりやすいです。"
+    },
+    {
+      "question": "代理申請なら何を追加で見る？",
+      "answer": "委任状などの代理申請書類と、印鑑・住所情報の整合が重要です。誰が窓口へ行くかを最初に決めるだけで、準備する書類が明確になります。"
+    }
+  ],
+  "actionBox": {
+    "title": "今すぐやるべきこと",
+    "body": "まずは 印鑑証明書（発行からの期限に注意）、実印、譲渡証明書 を順番に確認してください。迷ったら関連ガイドで条件を切り分けてから動くと、判断がぶれにくくなります。",
+    "actions": [
+      {
+        "label": "車庫証明の取り方。必要書類・流れ・時間がない人の現実的な進め方。",
+        "href": "/guide/shako-shoumei-torikata"
+      },
+      {
+        "label": "住所変更のあと、車で済ませる手続き。車検証・ナンバー・保険の順番。",
+        "href": "/guide/jyuusho-henkou-shaken-shou"
+      }
+    ]
+  },
+  "detailSections": [
+    {
+      "title": "先に整理｜普通車の名義変更で誰が何を出すか",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "普通車の名義変更は、書類の種類より「旧所有者・新所有者・車両側」に分けると整理しやすくなります。期限物を先に洗うのがコツです。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "区分",
+            "主な書類",
+            "詰まりやすい点"
+          ],
+          "rows": [
+            [
+              "旧所有者",
+              "印鑑証明、譲渡証明書、委任状など",
+              "印鑑証明の期限や実印の扱い"
+            ],
+            [
+              "新所有者",
+              "印鑑証明、委任状、車庫証明など",
+              "住所のつながりと車庫証明の準備"
+            ],
+            [
+              "車両側",
+              "車検証、納税関連書類など",
+              "ローンや所有権留保が残っていないか"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "先に押さえること",
+          "body": "「誰が何を出すか」が曖昧なまま進めると、書類は揃っていても当日止まりやすいです。代理申請の有無も先に決めておくと楽です。"
+        }
+      ]
+    },
+    {
+      "title": "必要書類（普通車の移転登録）",
+      "blocks": [
+        {
+          "type": "decisionCards",
+          "cards": [
+            {
+              "title": "旧所有者が用意することが多いもの",
+              "body": null,
+              "items": [
+                "印鑑証明書（発行からの期限に注意）",
+                "実印",
+                "譲渡証明書",
+                "委任状（代理人が手続きをする場合）"
+              ]
+            },
+            {
+              "title": "新所有者が用意することが多いもの",
+              "body": null,
+              "items": [
+                "印鑑証明書（発行からの期限に注意）",
+                "実印",
+                "車庫証明（保管場所証明書。地域により要否が異なる場合があります）",
+                "住所確認書類（住民票など。条件により）"
+              ]
+            },
+            {
+              "title": "車両に付随するもの",
+              "body": null,
+              "items": [
+                "車検証",
+                "自賠責保険証明書",
+                "納税証明書（必要となる場合があります）",
+                "ナンバープレート（変更がある場合）"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "手順 1 まず「誰が手続きをするか」を決める",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "ディーラーや買取店が代行する場合は、必要書類を渡すだけで済むことが多い",
+            "自分で行く場合は、管轄の運輸支局（陸運局）で手続きをします"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "手順 2 書類の有効期限と記入ミスを潰す",
+      "blocks": [
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "手順 2 書類の有効期限と記入ミスを潰す",
+          "body": "- 印鑑証明は期限があります（一般に3か月など。運輸支局の案内に従う） - 委任状/譲渡証明書は、氏名・住所・印影・車台番号などの記入に注意",
+          "items": [
+            "印鑑証明は期限があります（一般に3か月など。運輸支局の案内に従う）",
+            "委任状/譲渡証明書は、氏名・住所・印影・車台番号などの記入に注意"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "手順 3 車庫証明が必要なら先に取得する",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "普通車は車庫証明が必要になることが多いです。"
+        },
+        {
+          "type": "paragraph",
+          "text": "/guide/shako-shoumei-torikata を先に確認"
+        }
+      ]
+    },
+    {
+      "title": "よくあるミス",
+      "blocks": [
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "よくあるミス",
+          "body": "- 印鑑証明の期限切れでやり直し - 住所が車検証と違うのに、住所変更手続きを忘れる（/guide/jyuusho-henkou-shaken-shou） - 車庫証明が間に合わず、名義変更が遅れる",
+          "items": [
+            "印鑑証明の期限切れでやり直し",
+            "住所が車検証と違うのに、住所変更手続きを忘れる（/guide/jyuusho-henkou-shaken-shou）",
+            "車庫証明が間に合わず、名義変更が遅れる"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "購入前に確認しておきたいこと",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "必要書類は「本人確認」「使用の本拠」「所有者/使用者の一致」の3点を揃えるイメージ",
+            "申請書の記入は、空欄を残さないより“誤記しない”ことを優先（不明は窓口で確認）",
+            "委任状を使う場合は、押印の種類や書き方で差戻しになりやすいので注意",
+            "受付時間が短い窓口もあるため、行く前に営業時間と必要物を再確認"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "迷ったときの進め方",
+      "blocks": [
+        {
+          "type": "flow",
+          "steps": [
+            {
+              "title": "前提を確認する",
+              "body": "まずは 印鑑証明書（発行からの期限に注意）、実印 を確認し、比較条件を揃えます。"
+            },
+            {
+              "title": "動く順番を決める",
+              "body": "費用・必要書類・期限のうち、後戻りしにくいものから片付けると判断が安定します。"
+            },
+            {
+              "title": "関連ガイドで不足を補う",
+              "body": "一つの記事だけで決めきれない場合は、関連ガイドを使って条件を切り分けてから決めます。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "まとめ",
+      "blocks": [
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "判断のポイント",
+          "body": "普通車の名義変更（移転登録）は、【旧所有者・新所有者・車両の書類】が揃っていれば手続き自体はシンプルです。 つまずきやすいのは「印鑑証明の期限」「車庫証明」「委任状/譲渡証明書の記入ミス」です。 迷ったら、条件を先に揃えてから比較するのが安全です。",
+          "items": [
+            "印鑑証明書（発行からの期限に注意）",
+            "実印",
+            "譲渡証明書",
+            "委任状（代理人が手続きをする場合）"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "判断を安定させるメモ",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "名義変更に必要な書類。普通車の場合、売却・譲渡の前に揃えるもの。では、単に項目を覚えるよりも、先に条件を揃えてから順番に判断する方が失敗を減らせます。特に、費用・必要書類・期限・比較条件の4つは途中で戻りにくいので、最初にメモへ落としてから進めると、作業が分断されても判断がぶれません。急いで結論を出すより、どこで迷うのかを言葉にしてから動く方が、結果として余計な出費ややり直しを避けやすくなります。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "費用・必要書類・期限・比較条件を先にメモにする",
+            "迷ったら一度持ち帰り、関連ガイドで条件を切り分ける",
+            "その場で即決せず、比較条件が揃ってから判断する"
+          ]
+        }
+      ]
+    }
+  ],
+  "readMinutes": 6
+}

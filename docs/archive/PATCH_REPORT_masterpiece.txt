@@ -1,0 +1,8 @@
+Changed files & line diff
+
+app/layout.tsx: 163 -> 162 (-1)
+lib/seo/serp.ts: 255 -> 255 (+0)
+components/layout/SiteFooter.tsx: 96 -> 146 (+50)
+components/layout/HamburgerMenu.tsx: 201 -> 206 (+5)
+components/experience/archive-entrance.module.css: 122 -> 122 (+0)
+app/page.tsx: 95 -> 111 (+16)

@@ -1,0 +1,257 @@
+{
+  "id": "col-026",
+  "slug": "obd-inspection-shaken-fail",
+  "status": "published",
+  "title": "OBD検査で車検に落ちるのは『警告灯』だけじゃない。よくある落とし穴は2つ。",
+  "summary": "OBD検査は警告灯だけでは判断できない。注意点は「特定DTCの現在故障」と「レディネス未完了」。端子まわりの通信エラーも含め、車検前の準備を整理。",
+  "category": "TROUBLE",
+  "tags": [
+    "DTC",
+    "OBD検査",
+    "レディネス",
+    "特定DTC",
+    "警告灯",
+    "車検"
+  ],
+  "intentTags": [
+    "shaken",
+    "trouble",
+    "maintenance"
+  ],
+  "relatedGuideSlugs": [
+    "hub-shaken",
+    "maintenance",
+    "hub-import-trouble"
+  ],
+  "targetKeyword": "OBD検査 車検 落ちる",
+  "searchIntent": "OBD検査で車検に落ちる理由と、直前にやってはいけない行動を知りたい人向け。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-27",
+  "noindex": false,
+  "seoTitle": "OBD検査で車検に落ちるのは警告灯だけじゃない。よくある落とし穴は2つ。",
+  "seoDescription": "OBD検査で車検に落ちやすいのは、警告灯そのものより「特定DTCの現在故障」と「レディネス未完了」。直前のリセットや端子まわりで詰まない準備を整理。",
+  "planPriority": 2,
+  "publishedAt": "2026-01-27",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [],
+  "primaryQuery": "OBD検査 車検 落ちる",
+  "updateReason": "初版公開",
+  "sources": [
+    "https://www.mlit.go.jp/jidosha/jidosha_OBD_user.html",
+    "https://www.obd.naltec.go.jp/about/",
+    "https://www.obd.naltec.go.jp/wp-content/uploads/%E7%89%B9%E5%AE%9ADTC%E7%85%A7%E4%BC%9A%E3%82%A2%E3%83%97%E3%83%AA%E3%80%90Windows%E3%80%91%E6%93%8D%E4%BD%9C%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB.pdf",
+    "https://www.obd.naltec.go.jp/wp-content/uploads/OBD%E6%A4%9C%E6%9F%BB%E7%B5%90%E6%9E%9C%E5%8F%82%E7%85%A7%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E6%93%8D%E4%BD%9C%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB.pdf",
+    "https://www.mlit.go.jp/jidosha/content/OBDkensa-regulations_set.pdf"
+  ],
+  "heroImage": "",
+  "thumbnail": "",
+  "displayTag": "手続き",
+  "layoutVariant": "decision-v1",
+  "actionBox": {
+    "title": "車検直前のリセットに賭けず、先に点検する",
+    "body": "OBD検査で痛いのは、不合格そのものより再入庫と予定の崩れです。警告灯やバッテリー不安があるなら、車検の1〜2週間前に一度点検して、原因を直してから本番へ入る方が安全です。",
+    "actions": [
+      {
+        "label": "車検HUBを見る",
+        "href": "/guide/hub-shaken"
+      },
+      {
+        "label": "輸入車OBD検査の入口を見る",
+        "href": "/column/obd-inspection-import-start-2025"
+      },
+      {
+        "label": "メンテナンス判断を見る",
+        "href": "/guide/maintenance"
+      }
+    ]
+  },
+  "readMinutes": 6,
+  "lead": "OBD検査は「警告灯が消えていれば終わり」ではありません。注意したいのは、特定DTCの現在故障が残っていることと、レディネスが未完了のまま受検すること。当日の通信エラーや端子まわりの手戻りも含めて、落ち方のパターンを整理します。",
+  "eyebrowLabel": "OBD検査",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "特集",
+      "href": "/column"
+    },
+    {
+      "label": "OBD検査で車検に落ちるのは『警告灯』だけじゃない。よくある落とし穴は2つ。"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "車検・整備編集チーム"
+  },
+  "keyPoints": [
+    "OBD検査は警告灯の有無だけでなく、特定DTCやレディネスも見られる",
+    "過去故障履歴そのものより、現在故障と未完了状態の方が不合格に直結しやすい",
+    "直前のコード消去やバッテリー作業は、当日の手戻りを増やしやすい"
+  ],
+  "checkpoints": [
+    "警告灯が点いているまま受検しようとしていないか",
+    "直前にエラーを消したり、バッテリーを外したりしていないか",
+    "OBD端子に機器を挿したままにしていないか",
+    "警告灯や不調が出た時点で事前点検を入れているか",
+    "不合格後の再入庫や代車の段取りを想定しているか"
+  ],
+  "faq": [
+    {
+      "question": "警告灯が消えていれば、OBD検査は大丈夫ですか。",
+      "answer": "それだけでは足りません。特定DTCの現在故障やレディネス未完了が残っていると、不合格や手戻りにつながることがあります。"
+    },
+    {
+      "question": "過去の故障履歴が残っているだけで落ちますか。",
+      "answer": "公式マニュアル上、過去の故障履歴があるだけで結果へ影響しない扱いがあります。問題になりやすいのは現在故障として検出される特定DTCです。"
+    },
+    {
+      "question": "バッテリー交換直後は避けた方がいいですか。",
+      "answer": "直後はレディネスが未完了になりやすいので、受検直前は避ける方が安全です。やむを得ず作業した場合は、工場へ事前に相談した方が確実です。"
+    },
+    {
+      "question": "不合格になったらどうなりますか。",
+      "answer": "修理と再確認が必要です。費用よりも予約の取り直しや代車不足など、時間面のダメージが大きくなりやすい点に注意が必要です。"
+    }
+  ],
+  "relatedColumnSlugs": [
+    "obd-inspection-import-start-2025",
+    "dealer-shaken-is-expensive-myth",
+    "low-beam-test-headlight-prep"
+  ],
+  "detailSections": [
+    {
+      "id": "what-obd-checks",
+      "title": "OBD検査は「警告灯を見るだけ」ではない",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "OBD検査では、車のコンピューターと通信して、保安基準に関わる情報を確認します。人間でいう健康診断のようなもので、ランプの有無だけで終わる話ではありません。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "特定DTCの現在故障が出ていないか",
+            "レディネスが未完了のままになっていないか",
+            "安全系の警告表示が出ていないか",
+            "通信が正常にできるか"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "車検全体の流れを先に押さえたいなら、[車検HUB](/guide/hub-shaken) から見ておくと、OBD検査だけを怖がりすぎずに済みます。"
+        }
+      ]
+    },
+    {
+      "id": "two-main-pitfalls",
+      "title": "不合格や手戻りに直結しやすいのは2つ",
+      "blocks": [
+        {
+          "type": "decisionCards",
+          "title": "まず疑うべきポイント",
+          "cards": [
+            {
+              "badge": "現在故障",
+              "title": "特定DTCの現在故障が残っている",
+              "body": "過去の履歴だけではなく、現在故障として検出される特定DTCが残っていると不適合になりやすいです。ランプを消すだけでは解決しません。"
+            },
+            {
+              "badge": "未完了",
+              "title": "レディネスが未完了のまま受検する",
+              "body": "バッテリーを外した直後やコード消去直後は、自己診断がやり直しになります。準備中のまま本番へ入ると手戻りが起きます。"
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "「履歴が残っているだけ」で脅しすぎない",
+          "body": "公式マニュアルでは、過去故障履歴があるだけで結果に影響しない扱いも示されています。問題になりやすいのは、現在故障や未完了状態です。"
+        }
+      ]
+    },
+    {
+      "id": "same-day-mistakes",
+      "title": "当日にやりがちなミスで手戻りが増える",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "不合格を招きやすいのは、直前に慌てて触ることです。特に車検前日のリセットや、端子まわりの放置は、結果より先に段取りを壊します。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "警告灯を消しただけで受検する",
+            "バッテリー交換や電圧低下を受検直前まで放置する",
+            "OBD端子にドラレコや追加メーターを挿したままにする",
+            "当日初めて「対象車かどうか」を確認する"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "通信エラーも時間を奪う",
+          "body": "端子の接続不良や通信エラーは、再実施で解決することもあります。ただし当日に起きると予約枠と生活の段取りが崩れやすいので、先に潰しておく方が安全です。"
+        }
+      ]
+    },
+    {
+      "id": "after-fail",
+      "title": "不合格後に痛いのは費用より時間",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "OBD検査で引っかかると、原因の確認、修理、再確認が必要になります。怖いのは一回の請求額より、予約の取り直しや代車不足で予定が崩れることです。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "再入庫の予約を取り直す必要がある",
+            "診断に時間が掛かると、他の整備も後ろへずれる",
+            "代車が出ないと通勤や送迎の計画が崩れる"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pre-inspection-plan",
+      "title": "車検前にやる準備はこの順で十分",
+      "blocks": [
+        {
+          "type": "flow",
+          "steps": [
+            {
+              "title": "対象車かどうかを先に確定する",
+              "body": "車検証の備考欄や整備工場の判定で、そもそも検査が必要かを確認します。"
+            },
+            {
+              "title": "警告灯や不調があるなら事前点検へ回す",
+              "body": "消すだけで済ませず、原因を直す前提で入庫した方が結果的に早いです。"
+            },
+            {
+              "title": "バッテリーや電圧不安を直前まで引っ張らない",
+              "body": "交換や電源断の直後は、レディネス未完了が起きやすいです。"
+            },
+            {
+              "title": "OBD端子まわりを片付ける",
+              "body": "後付け機器があるなら、抜けるかどうかを先に確認しておきます。"
+            },
+            {
+              "title": "再入庫が必要になった時の余白も持つ",
+              "body": "繁忙期は一発で終わらない前提で、日程と代車の余裕を見ておくと詰まりにくいです。"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

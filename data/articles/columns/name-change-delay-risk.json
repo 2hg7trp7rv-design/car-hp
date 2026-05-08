@@ -1,0 +1,250 @@
+{
+  "id": "col-022",
+  "slug": "name-change-delay-risk",
+  "status": "published",
+  "title": "名義変更を後回しにすると何がずれるか。税金より先に信用が傷む。",
+  "summary": "名義変更を後回しにすると、税金の通知や事故・違反の連絡が前の名義人に飛び、信用と時間が溶ける。4月1日と15日ルールだけは押さえて早めに片付けたい。",
+  "category": "TROUBLE",
+  "tags": [
+    "名義変更",
+    "手続き",
+    "税金",
+    "トラブル"
+  ],
+  "intentTags": [
+    "paperwork",
+    "trouble",
+    "risk"
+  ],
+  "relatedGuideSlugs": [
+    "hub-paperwork",
+    "insurance"
+  ],
+  "targetKeyword": "名義変更 遅れる どうなる",
+  "searchIntent": "名義変更を後回しにしがちな人が、何が起きるかを現実ベースで理解できるようにする。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-28",
+  "noindex": false,
+  "seoTitle": "名義変更を後回しにすると何がずれるか。税金と信用のリスク。",
+  "seoDescription": "名義変更を後回しにすると、税金の通知・事故/違反の連絡・保険や売却で面倒が連鎖。特に4月1日と15日ルールは要注意。",
+  "planPriority": 19,
+  "publishedAt": "2026-01-28",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [],
+  "primaryQuery": "名義変更 遅れる どうなる",
+  "updateReason": "初版公開",
+  "sources": [
+    "https://wwwtb.mlit.go.jp/kanto/content/000298995.pdf",
+    "https://www.keikenkyo.or.jp/procedures/change_name.html",
+    "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidousyazei.html",
+    "https://www.city.minato.tokyo.jp/zeimu/kurashi/zekin/keiji/syubetsu.html"
+  ],
+  "heroImage": "",
+  "thumbnail": "",
+  "displayTag": "手続き",
+  "layoutVariant": "decision-v1",
+  "actionBox": {
+    "title": "車検証の所有者・使用者を今すぐ確認する",
+    "body": "名義変更は、書類が揃っているうちにやるのが一番ラクです。車検証を開いて所有者・使用者を確認し、誰が手続きを進めるかだけでも今日決めてください。遅れるほど、前の名義人との関係まで悪くなりやすいです。",
+    "actions": [
+      {
+        "label": "手続き・書類HUBを見る",
+        "href": "/guide/hub-paperwork"
+      },
+      {
+        "label": "車を売るタイミングを見る",
+        "href": "/column/sell-timing-shaken-tax-market"
+      },
+      {
+        "label": "自動車保険ガイドを見る",
+        "href": "/guide/insurance"
+      }
+    ]
+  },
+  "readMinutes": 6,
+  "lead": "名義変更を後回しにすると、得する人はほぼいません。税金の通知、事故や違反の連絡、保険や売却の書類確認が前の名義人へ飛び、こちらの手間より先に相手の信用を削ります。4月1日と15日ルールだけは押さえて、早めに片付ける方が安全です。",
+  "eyebrowLabel": "名義変更",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "特集",
+      "href": "/column"
+    },
+    {
+      "label": "名義変更を後回しにすると何がずれるか。税金より先に信用が傷む。"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "売却・手続き編集チーム"
+  },
+  "keyPoints": [
+    "名義変更を遅らせると、税金・事故・違反の連絡が前の名義人へ飛びやすい",
+    "普通車の移転登録や変更登録は原則15日以内を意識した方が安全",
+    "4月1日をまたぐと税金通知のズレが起きやすく、信頼関係が一気に悪くなる"
+  ],
+  "checkpoints": [
+    "車検証の所有者と使用者が現状と一致しているか",
+    "名義変更を誰が進めるか決まっているか",
+    "3月末までに済ませるべき案件がないか",
+    "前所有者と必要書類のやり取り手段が残っているか",
+    "保険や売却で追加確認が入る前に片付ける意識があるか"
+  ],
+  "faq": [
+    {
+      "question": "15日を過ぎたらすぐ大きな罰則がありますか。",
+      "answer": "まず起きやすいのは、税金や通知、書類のやり取りがこじれることです。罰則の話より、実務の損失と信用コストの方が先に表面化します。"
+    },
+    {
+      "question": "普通車と軽自動車で考え方は違いますか。",
+      "answer": "手続き先は違いますが、後回しで通知や税金のズレが起きる構図は共通です。4月1日基準も意識した方が安全です。"
+    },
+    {
+      "question": "販売店がやると言っているなら放置で大丈夫ですか。",
+      "answer": "必要書類が揃わないと止まるので、任せきりは危険です。誰が何を出すかだけは自分でも把握しておいた方が安全です。"
+    },
+    {
+      "question": "税金だけ後で精算すれば済む話ではないですか。",
+      "answer": "実際は納付書が前の名義人へ届き、説明や振込、書類の再依頼が発生します。税額より人間関係と時間の損失が大きくなりやすいです。"
+    }
+  ],
+  "relatedColumnSlugs": [
+    "sell-timing-shaken-tax-market",
+    "tradein-vs-buyback-prep",
+    "import-car-hidden-costs-paperwork"
+  ],
+  "detailSections": [
+    {
+      "id": "why-delay-hurts",
+      "title": "名義変更を後回しにすると、まず人に迷惑が飛ぶ",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "名義変更を放置すると、困るのは自分だけではありません。税金の通知や事故・違反の連絡が、まず前の名義人へ飛びます。そこで説明とやり取りが発生し、信用を削るのが一番痛いところです。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "税金の納付書が前の名義人へ届く",
+            "事故や違反の連絡で前の人が巻き込まれる",
+            "必要書類の再依頼で関係が悪くなる"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "april-and-15days",
+      "title": "4月1日と15日ルールだけは先に押さえる",
+      "blocks": [
+        {
+          "type": "timeline",
+          "title": "実務で覚えるポイント",
+          "items": [
+            {
+              "label": "変更が起きたらすぐ",
+              "title": "原則15日以内を意識する",
+              "body": "普通車の移転登録や変更登録は、後回しにしない前提で進める方が安全です。"
+            },
+            {
+              "label": "3月末まで",
+              "title": "4月1日をまたぐ案件は優先する",
+              "body": "この時期を超えると、その年度の税金通知が旧名義側へ飛びやすくなります。"
+            },
+            {
+              "label": "4月1日以降",
+              "title": "税金と通知のズレが表面化しやすい",
+              "body": "あとで精算できても、前の名義人とのやり取りコストは戻りません。"
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "損するのは税額より信用",
+          "body": "「後で払えばいい」で済ませると、忙しい時期に前の名義人へ説明負担を押し付けることになります。ここが関係悪化の入口です。"
+        }
+      ]
+    },
+    {
+      "id": "tax-accident-risk",
+      "title": "税金だけでなく、事故や違反の連絡でも面倒が増える",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "名義が前の人のままだと、税金だけでなく違反や事故の場面でも「まず前の人へ連絡」が起きえます。法的な話へ寄せすぎる前に、連絡と説明の手間が増えることを主語にした方が現実的です。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "駐車違反などの通知が前の名義人へ届く",
+            "事故時に「この車の関係者」として連絡される",
+            "こちらが説明する前に、前の人が対応を迫られる"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "insurance-and-sale",
+      "title": "保険や次の売却でも「書類が足りない」で止まりやすい",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "名義のズレは、保険や売却のタイミングで一気に効いてきます。普段は静かでも、いざ何かしようとした時に書類が足りず止まるのが典型です。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "保険手続きで追加確認が入る",
+            "次に売る時に自分名義ではなく手続きが止まる",
+            "ローン会社や販売店が所有者のままと気づくのが遅れる"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "売却や乗り換えの時期が近いなら、[車を売るタイミング](/column/sell-timing-shaken-tax-market) と一緒に見ておくと、税金と手続きのズレをまとめて整理できます。"
+        }
+      ]
+    },
+    {
+      "id": "do-today",
+      "title": "今日やることはこの順で十分",
+      "blocks": [
+        {
+          "type": "flow",
+          "steps": [
+            {
+              "title": "車検証で所有者・使用者を確認する",
+              "body": "まず現状把握です。ズレていないかを見ます。"
+            },
+            {
+              "title": "誰が進めるか決める",
+              "body": "自分、販売店、行政書士のどれかを先に決めるだけでも止まりにくくなります。"
+            },
+            {
+              "title": "必要書類の連絡を取る",
+              "body": "前所有者とつながるうちに、書類の段取りを作ります。"
+            },
+            {
+              "title": "4月1日をまたぐか確認する",
+              "body": "税金通知のズレが起きる時期なら優先度を上げます。"
+            },
+            {
+              "title": "手順が不安ならHUBで全体像を見る",
+              "body": "名義変更の流れそのものは [手続き・書類HUB](/guide/hub-paperwork) で先に整理できます。"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

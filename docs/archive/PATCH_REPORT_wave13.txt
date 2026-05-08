@@ -1,0 +1,13 @@
+PATCH REPORT — WAVE 13
+
+Status
+- Added security headers + CSP Report-Only.
+- Added CSP report endpoint.
+
+Risk
+- Low (Report-Only does not block). Enforce requires deliberate env flip.
+
+Action
+- Deploy.
+- (Optional) Verify headers with a curl/inspector.
+- Leave CSP in Report-Only for 24–72h, then enforce only after reviewing violations.
