@@ -1,0 +1,301 @@
+{
+  "id": "col-017",
+  "slug": "import-car-hidden-costs-paperwork",
+  "status": "published",
+  "title": "輸入車の諸費用は見積もりだけでは読めない。見落としやすい項目。",
+  "summary": "輸入車は車両価格より、諸費用と書類の前提で総額がズレる。見積を4つに分けて、一式の内訳を潰し、納車整備と保証の条件まで確認してから決める。",
+  "category": "MONEY",
+  "tags": [
+    "輸入車",
+    "諸費用",
+    "税金",
+    "手続き"
+  ],
+  "intentTags": [
+    "import",
+    "money",
+    "paperwork"
+  ],
+  "relatedGuideSlugs": [
+    "hub-paperwork",
+    "hub-usedcar",
+    "hub-import-trouble"
+  ],
+  "targetKeyword": "輸入車 諸費用 いくら",
+  "searchIntent": "輸入車の購入で総額が読めず不安な人が、見落としやすい費用項目を把握できるようにする。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-29",
+  "noindex": false,
+  "seoTitle": "輸入車の見積で損しない。諸費用の内訳・書類チェック・交渉ポイント。",
+  "seoDescription": "輸入車の見積は「法定費用／手続き代行／納車まわり／不明な上乗せ」に分けて確認。諸費用一式の内訳、書類の前提条件、納車整備と保証の範囲を押さえて、乗り出し総額で損しない判断軸を作る。",
+  "planPriority": 27,
+  "publishedAt": "2026-01-29",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [],
+  "primaryQuery": "輸入車 諸費用 いくら",
+  "updateReason": "初版公開",
+  "sources": [
+    "https://www.customs.go.jp/tetsuzuki/c-answer/imtsukan/1109_jr.htm",
+    "https://www.mlit.go.jp/jidosha/jidosha_fr1_000076.html",
+    "https://www.naltec.go.jp/research/approval/cncl/index.html"
+  ],
+  "heroImage": "/images/cbj/columns/import-car-hidden-costs-paperwork.jpg",
+  "thumbnail": "/images/cbj/columns/import-car-hidden-costs-paperwork.jpg",
+  "displayTag": "輸入車",
+  "layoutVariant": "decision-v1",
+  "actionBox": {
+    "title": "今の候補見積をその場で分解する",
+    "body": "法定費用、代行費用、納車まわり、不明な上乗せの4つに分けるだけで、比較の精度はかなり上がります。内訳が出ない見積は、その時点で比較対象として弱いです。",
+    "actions": [
+      {
+        "label": "必要書類の流れを見る",
+        "href": "/guide/hub-paperwork"
+      },
+      {
+        "label": "個人輸入の総額リスクを見る",
+        "href": "/column/personal-import-cheap-or-not"
+      },
+      {
+        "label": "維持費の現実を見る",
+        "href": "/column/import-car-maintenance-cost-myth"
+      }
+    ]
+  },
+  "readMinutes": 5,
+  "lead": "輸入車の見積は、車両価格だけでは判断できません。総額を左右するのは、法定費用そのものより、代行費用、納車まわり、書類、保証、整備条件の置き方です。見積を4つに分けて、内訳が曖昧な項目を潰しながら、購入前に確認すべき質問まで整理します。",
+  "eyebrowLabel": "見積・費用",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "特集",
+      "href": "/column"
+    },
+    {
+      "label": "輸入車の諸費用は見積もりだけでは読めない。見落としやすい項目。"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "輸入車・購入判断編集チーム"
+  },
+  "keyPoints": [
+    "輸入車は車両価格より、諸費用と書類の前提で総額がズレる",
+    "見積を4つに分けて、一式の内訳を潰す",
+    "納車整備と保証の条件まで確認してから決める"
+  ],
+  "checkpoints": [
+    "見積の「諸費用一式」を項目別に分解できるか",
+    "法定費用の計算条件が明記されているか",
+    "登録や車検がスムーズに通る前提が確認できるか",
+    "納車整備と保証の範囲が書面で見えるか",
+    "追加整備が出たときの連絡ルールがあるか"
+  ],
+  "faq": [
+    {
+      "question": "諸費用は全部値引き交渉できますか。",
+      "answer": "法定費用は削れない枠が多く、動かせるのは代行費用、納車まわり、保証や付帯サービス側です。まず値引きより、内訳が見える状態を作る方が重要です。"
+    },
+    {
+      "question": "並行輸入車の見積で特に注意すべき点は何ですか。",
+      "answer": "登録や車検がスムーズに通る前提、必要書類の有無、灯火類やメーター表示の仕様、納車整備と保証の条件です。ここが曖昧だと、購入後に総額が崩れやすくなります。"
+    },
+    {
+      "question": "保証やメンテナンスパックは外した方が得ですか。",
+      "answer": "内容が薄ければ不要ですが、輸入車は外すと危ない場合もあります。対象範囲、免責、納車整備の中身まで見て判断すべきです。"
+    }
+  ],
+  "relatedColumnSlugs": [
+    "personal-import-cheap-or-not",
+    "import-car-maintenance-cost-myth"
+  ],
+  "detailSections": [
+    {
+      "id": "estimate-overview",
+      "title": "輸入車の見積は紙の外まで見る",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "輸入車の見積は、車両価格だけ見ても意味がありません。効いてくるのは「乗り出し総額」と、見積の紙の外に隠れている手間と費用です。"
+        },
+        {
+          "type": "paragraph",
+          "text": "書類まわりの全体像があやふやなら、先に必要書類の流れを押さえておくと判断が早くなります。あとで戻ってきて構いません。"
+        }
+      ]
+    },
+    {
+      "id": "estimate-breakdown",
+      "title": "見積の内訳は4つに分ける",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "見積の中身は、ざっくり4つに分けると判断がぶれにくくなります。"
+        },
+        {
+          "type": "decisionCards",
+          "title": "見積で切り分ける4項目",
+          "cards": [
+            {
+              "title": "法定費用（削れない）",
+              "body": "税金や保険料など、基本的に値引きできない枠。"
+            },
+            {
+              "title": "手続き代行（削れる）",
+              "body": "登録・車庫証明などの代行手数料。自分でやる選択肢がある。"
+            },
+            {
+              "title": "納車まわり（要不要を判断）",
+              "body": "納車費用、整備パック、コーティングなど。"
+            },
+            {
+              "title": "不明な上乗せ（要確認）",
+              "body": "よく分からないセットや不明瞭な一式。"
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "一番まずい状態",
+          "body": "「諸費用一式」でまとめられて内訳が消えている状態です。輸入車は書類・保証・整備の前提で出費が上下するので、内訳が見えないまま判子を押すのは危険です。"
+        }
+      ]
+    },
+    {
+      "id": "fixed-vs-optional-costs",
+      "title": "削れない費用と選べる費用を分ける",
+      "blocks": [
+        {
+          "type": "decisionCards",
+          "title": "費用の性質を先に分ける",
+          "cards": [
+            {
+              "title": "削れないお金",
+              "items": [
+                "税金（条件で変動する）",
+                "自賠責（期間差が出る）",
+                "重量税（車種・条件で変動）",
+                "リサイクル関連（預託・残額の確認）",
+                "登録に必要な印紙代・ナンバー代"
+              ]
+            },
+            {
+              "title": "選べるお金",
+              "items": [
+                "登録手続き代行・車庫証明代行",
+                "納車費用・陸送費",
+                "保証やメンテナンスパック",
+                "コーティング・防錆・クリーニング"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "判断の軸",
+          "body": "「手間をお金で買う」のか、「自分でやって節約する」のかを、見積の段階で先に決めるのが大事です。"
+        }
+      ]
+    },
+    {
+      "id": "paperwork-and-assumptions",
+      "title": "書類と前提条件が総額を崩しやすい",
+      "blocks": [
+        {
+          "type": "decisionCards",
+          "title": "買う前に詰めるべきポイント",
+          "cards": [
+            {
+              "title": "登録・車検がスムーズに通る前提か",
+              "items": [
+                "ライトの仕様が国内前提か",
+                "メーター表示が国内で使えるか",
+                "必要書類が揃っているか"
+              ]
+            },
+            {
+              "title": "見積の前提条件が書かれているか",
+              "items": [
+                "納車整備の範囲",
+                "消耗品の扱い",
+                "保証の範囲と免責",
+                "追加整備が出た場合の事前連絡ルール"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "買う前に答えが必要なところ",
+          "body": "並行輸入は「登録できる」と「スムーズに登録できる」が別物です。ここが曖昧だと、購入後に追加書類や追加作業が出て総額が崩れます。"
+        }
+      ]
+    },
+    {
+      "id": "questions-for-seller",
+      "title": "販売店に確認しておく質問",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "この「諸費用」の内訳を、項目ごとに出せますか。",
+            "法定費用（税金・保険料）は、どういう条件で計算していますか。",
+            "手続き代行は、何をどこまでやってくれる料金ですか。",
+            "納車整備の範囲を一覧で見せてもらえますか。",
+            "保証で対象外になる例だけ先に教えてください。"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "聞き方のコツ",
+          "body": "交渉ではなく確認として淡々と聞く方が、相手の説明の質が見えやすくなります。答えが曖昧な店は、その時点で比較候補を落として構いません。"
+        }
+      ]
+    },
+    {
+      "id": "how-to-compare-quotes",
+      "title": "総額で損しない比較の進め方",
+      "blocks": [
+        {
+          "type": "flow",
+          "title": "比較の順番",
+          "steps": [
+            {
+              "title": "総額と内訳の両方をもらう",
+              "body": "一式表示のまま進めない。"
+            },
+            {
+              "title": "法定費用は金額の根拠だけ確認する",
+              "body": "値引き交渉の主戦場ではありません。"
+            },
+            {
+              "title": "代行・納車・保証は使い方に合わせて取捨選択する",
+              "body": "削ること自体が目的にならないようにする。"
+            },
+            {
+              "title": "同条件で2〜3社比較する",
+              "body": "総額だけでなく整備と保証の中身も見る。"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "焦って決めると、輸入車はだいたい損します。内訳が見える状態にしてから決めるのが先です。"
+        }
+      ]
+    }
+  ]
+}

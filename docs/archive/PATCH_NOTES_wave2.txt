@@ -1,0 +1,18 @@
+CBJ MASTERPIECE WAVE2 - NOTES
+
+Goal:
+- Keep "WEBサイトとしての役割" (検索/比較/ニュース/法務/サイトマップ等) を残しつつ、
+  全ページを「展示空間(暗いStage) + 白い資料棚(Porcelain)」の二層構造で統一。
+
+What changed (high level):
+- Index / Hub / Utility pages were moved onto Stage (DetailFixedBackground) and wrapped with Porcelain panels so
+  text/controls remain readable while the site's atmosphere stays consistent.
+- Major surfaces keep Guardrails (D.⑨) intact (no /search or /compare in major nav files).
+- Brand strings in key visible pages were normalized toward "CAR BOUTIQUE JOURNAL".
+
+Checks:
+- scripts/guardrails.mjs: PASS
+- scripts/content-audit.mjs: PASS
+- scripts/generate-sitemaps.mjs: PASS
+- scripts/generate-robots.mjs + verify-robots.mjs: PASS
+- TypeScript syntax (parse-only): PASS

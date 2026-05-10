@@ -1,0 +1,13 @@
+CBJ Masterpiece Wave11
+
+目的
+章入口カード（CHAPTERプレート）の余白・タイポ・見出し階層を全詳細ページで完全に規格化し、文字そのものが造形として成立する状態へ寄せる。
+
+主な変更
+1) app/globals.css に Stage用の章入口トークンを追加（cb-stage-chapter / cb-stage-chapterTop / cb-stage-chapterLabel / cb-stage-chapterTitle / cb-stage-chapterSummary / cb-stage-h3）。
+2) GUIDE / COLUMN / HERITAGE 詳細のCHAPTERプレートをトークンへ置換。
+3) CARS 詳細の各CHAPTER見出しを横並び→縦積みに変更し、他の詳細ページと同一の章入口文法へ統一。
+4) H3見出し（小見出し）の字間・行間を cb-stage-h3 に統一。
+
+確認
+- guardrails / content-audit / sitemaps / robots を実行しPASS（生成物は再生成済み）。

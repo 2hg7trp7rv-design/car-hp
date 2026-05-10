@@ -1,0 +1,122 @@
+{
+  "slug": "car-tax-shaken-expired-guide",
+  "createdAt": "2026-04-18",
+  "competitorCount": 30,
+  "queries": [
+    "車検切れ 自動車税",
+    "車検切れ 納付書 来ない 普通車",
+    "一時抹消 自動車税 車検切れ"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.pref.gifu.lg.jp/page/292459.html"
+    },
+    {
+      "url": "https://www.pref.tokushima.lg.jp/sp/FAQ/docs/00036054/"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/248.html"
+    },
+    {
+      "url": "https://www.pref.tochigi.lg.jp/b07/life/zeikin/zeikin/car_qa.html"
+    },
+    {
+      "url": "https://www.pref.akita.lg.jp/pages/archive/77190"
+    },
+    {
+      "url": "https://www.pref.gifu.lg.jp/page/5579.html"
+    },
+    {
+      "url": "https://web.pref.hyogo.lg.jp/kk22/pa04_000000021.html"
+    },
+    {
+      "url": "https://www.pref.yamaguchi.lg.jp/soshiki/5/12414.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/170.html"
+    },
+    {
+      "url": "https://www.pref.niigata.lg.jp/sec/zeimu/car.html"
+    },
+    {
+      "url": "https://www.pref.fukuoka.lg.jp/contents/shubetsuwari.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidoushayokuaru.html"
+    },
+    {
+      "url": "https://www.pref.tochigi.lg.jp/b58/index.html"
+    },
+    {
+      "url": "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/scrapp/"
+    },
+    {
+      "url": "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/scrapp/document/index.html"
+    },
+    {
+      "url": "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/about/register/erase/index.html"
+    },
+    {
+      "url": "https://www.jidoushatouroku-portal.mlit.go.jp/"
+    },
+    {
+      "url": "https://www.oss.mlit.go.jp/"
+    },
+    {
+      "url": "https://www.oss.mlit.go.jp/portal/beginner/tetsuduki-shurui/index.html"
+    },
+    {
+      "url": "https://www.oss.mlit.go.jp/portal/beginner/shinsei-nagare/index.html"
+    },
+    {
+      "url": "https://wwwtb.mlit.go.jp/hokkaido/touroku/03_situgi_outou/situgi_outou.html"
+    },
+    {
+      "url": "https://wwwtb.mlit.go.jp/hokkaido/touroku/01_sinnsei/10_sonota/04_rinzi_unkou/rinzi_unkou_01.html"
+    },
+    {
+      "url": "https://www.mlit.go.jp/jidosha/jidosha_tk6_000021.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/aramashi/jnks.html"
+    },
+    {
+      "url": "https://www.pref.gifu.lg.jp/page/6523.html"
+    },
+    {
+      "url": "https://www.pref.niigata.lg.jp/site/zeimu/20210820syuzei-jidosyazei-jusyohenko.html"
+    },
+    {
+      "url": "https://www.pref.shiga.lg.jp/ippan/kurashi/zeikin/324632.html"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/79517.htm"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/258618.htm"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/257752.htm"
+    }
+  ],
+  "commonTakeaways": [
+    "多くの説明は「車検切れでも課税される」で終わり、納付書が来ないケースまで掘っていない。",
+    "一時抹消と永久抹消の違いは触れても、再び乗るときの段取りまでつながっていない。",
+    "車検切れと自動車重量税、自賠責、仮ナンバーの関係を別問題として整理していない記事が多い。"
+  ],
+  "gapsFound": [
+    "納付書が来ない県の差止め運用と、単純な住所問題を混ぜやすい。",
+    "4月1日後の抹消で1年分通知が来る理由を、月割課税まで含めて説明していない。"
+  ],
+  "changesApplied": [
+    "車検切れでも自動車税が動く条件を、登録の有無で読む構成に組み直した。",
+    "納付書が来る場合と来ない場合を分け、一時抹消・永久抹消・再び乗る流れまで1本でつないだ。",
+    "税だけでは走れない点を明確にし、検査と保険の段取りに内部リンクをつないだ。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}

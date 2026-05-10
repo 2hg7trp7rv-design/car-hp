@@ -1,0 +1,19 @@
+Wave9 Masterpiece – Patch Report
+Generated: 2026-02-07 20:03:43
+
+Changed files (+/- lines) relative to Wave8 full repo:
+- PATCH_NOTES_wave9.txt: 0 -> 16 (+16)
+- PATCH_REPORT_wave9.txt: 0 -> 25 (+25)
+- app/cars/[slug]/page.tsx: 1104 -> 1099 (-5)
+- app/cars/body-types/[bodyType]/page.tsx: 348 -> 335 (-13)
+- app/cars/body-types/page.tsx: 208 -> 199 (-9)
+- app/cars/makers/[maker]/page.tsx: 359 -> 346 (-13)
+- app/cars/makers/page.tsx: 217 -> 208 (-9)
+- app/cars/segments/[segment]/page.tsx: 345 -> 332 (-13)
+- app/cars/segments/page.tsx: 200 -> 191 (-9)
+- app/news/[id]/page.tsx: 742 -> 730 (-12)
+- app/news/page.tsx: 868 -> 860 (-8)
+- app/site-map/page.tsx: 295 -> 298 (+3)
+- app/start/page.tsx: 208 -> 203 (-5)
+- public/_internal/audit.json: 4125 -> 4125 (+0)
+- src/generated/audit.generated.json: 4125 -> 4125 (+0)

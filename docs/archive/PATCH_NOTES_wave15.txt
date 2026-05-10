@@ -1,0 +1,28 @@
+WAVE 15 — TYPOGRAPHY / FONT OPTIMIZATION (SELF-HOST)
+
+Goal
+- Remove runtime requests to Google Fonts (fonts.googleapis.com / fonts.gstatic.com).
+- Keep the existing typography tokens and visual hierarchy intact.
+- Reduce FOIT/FOUT risk and stabilize layout (CLS) by using Next.js font optimization.
+
+Changes
+1) Self-host fonts via next/font/google
+- Added: app/fonts.ts
+  - Inter (UI)
+  - Playfair Display (display)
+  - Cormorant Garamond (editorial)
+  - Noto Serif JP (Japanese serif)
+  - Parisienne / Allura (handwriting intro; preload disabled)
+
+2) RootLayout
+- Removed the <link> based Google Fonts loader from app/layout.tsx.
+- Applied font CSS variables on <html> via fontVariables.
+
+3) CSS variable mapping (Tailwind compatibility)
+- Updated app/globals.css to map Tailwind’s existing font variables
+  (--font-montserrat / --font-bodoni / --font-manrope)
+  to next/font provided variables.
+
+Notes
+- For Noto Serif JP, weights are intentionally limited (400/600/700).
+  If QA reveals missing intermediate weights, add them explicitly.

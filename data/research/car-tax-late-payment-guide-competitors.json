@@ -1,0 +1,121 @@
+{
+  "slug": "car-tax-late-payment-guide",
+  "createdAt": "2026-04-17",
+  "competitorCount": 30,
+  "queries": [
+    "自動車税 払い忘れ 納期限後 どこで払う",
+    "自動車税 延滞金 車検 納税証明書",
+    "自動車税 納付書 再発行 紛失 期限後"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.hanamaru870.net/column/automotive-tax-expired-where-to-pay/"
+    },
+    {
+      "url": "https://www.rakuten-card.co.jp/minna-money/topic/article_2112_00016/"
+    },
+    {
+      "url": "https://www.shakenkan.co.jp/guide/tax-delay-money/"
+    },
+    {
+      "url": "https://www.zurich.co.jp/car/useful/guide/cc-car-tax-nonpayment/"
+    },
+    {
+      "url": "https://www.sbisonpo.co.jp/car/column/column142.html"
+    },
+    {
+      "url": "https://www.nextage.jp/buy_guide/info/203845/"
+    },
+    {
+      "url": "https://www.nextage.jp/buy_guide/info/205841/"
+    },
+    {
+      "url": "https://carnext.jp/magazine/article/forgot_car_tax/"
+    },
+    {
+      "url": "https://www.insweb.co.jp/car/kisochishiki/kiso/jidoushazei-haraiwasure.html"
+    },
+    {
+      "url": "https://media.aupay.wallet.auone.jp/articles/4166"
+    },
+    {
+      "url": "https://www.carcon.co.jp/column/article/201909112/"
+    },
+    {
+      "url": "https://www.k-cafe.com/information/news/12433/"
+    },
+    {
+      "url": "https://www.kobac-j.jp/news/20260312-607/"
+    },
+    {
+      "url": "https://www.e-design.net/ande/guide/column/may/"
+    },
+    {
+      "url": "https://www.cosmo-mycar.com/column/carlease/203/"
+    },
+    {
+      "url": "https://green-osaka.com/sh-knowhow/saimuseiri/unpaid-automobile-tax.html"
+    },
+    {
+      "url": "https://www.hanamaru870.net/column/automobile-tax-seizure/"
+    },
+    {
+      "url": "https://dime.jp/genre/1371973/"
+    },
+    {
+      "url": "https://www.goo-net.com/kaitori/kaitori-satei/kuruma-gimon/1482/"
+    },
+    {
+      "url": "https://moneiro.jp/media/article/automobile-tax-timig"
+    },
+    {
+      "url": "https://www.takakuureru.com/magazine/13385"
+    },
+    {
+      "url": "https://www.sompo-direct.co.jp/otona/oshiete/car/car-inspection-tax-payment-certificate.html"
+    },
+    {
+      "url": "https://www.sakura-shaken.jp/case/nozeishomei.html"
+    },
+    {
+      "url": "https://kinto-jp.com/magazine/k20230411-1/"
+    },
+    {
+      "url": "https://www.nextage.jp/buy_guide/info/257547/"
+    },
+    {
+      "url": "https://carnext.jp/magazine/article/car_tax_installment/"
+    },
+    {
+      "url": "https://www.takakuureru.com/magazine/20167"
+    },
+    {
+      "url": "https://eneos-cl.com/column/20230331-04/"
+    },
+    {
+      "url": "https://www.wecars.co.jp/column/inspection/knowhow/013.html"
+    },
+    {
+      "url": "https://www.goo-net.com/kaitori/kaitori-satei/kuruma-gimon/1841/"
+    }
+  ],
+  "commonTakeaways": [
+    "期限後は延滞金、督促、差押えの順で不安をあおる記事が多いが、実際の支払経路の整理は薄い。",
+    "コンビニやスマホ決済がいつまで使えるか、車検が近い場合の納税証明の動線まで書いている記事は少ない。",
+    "普通車と軽自動車税を混ぜた説明が多く、窓口の違いが曖昧になりやすい。"
+  ],
+  "gapsFound": [
+    "納付書が手元にある人、なくした人、車検が近い人を分けていない記事が多い。",
+    "納期限後の車検実務を公的案内ベースで詰めていない記事が多い。"
+  ],
+  "changesApplied": [
+    "普通車だけに絞り、納付書の利用期限、再発行、車検直前の納税証明の段取りまで順番で整理した。",
+    "競合30本のURLログを追加した。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}

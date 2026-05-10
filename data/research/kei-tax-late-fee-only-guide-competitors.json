@@ -1,0 +1,124 @@
+{
+  "slug": "kei-tax-late-fee-only-guide",
+  "createdAt": "2026-04-24",
+  "competitorCount": 30,
+  "queries": [
+    "軽自動車税 延滞金だけ",
+    "軽自動車税 延滞金 納付書 後日",
+    "軽自動車税 延滞金 軽JNKS"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.city.nerima.tokyo.jp/kurashi/zei/nofu/okure/06613381120141224.html"
+    },
+    {
+      "url": "https://www.city.tama.lg.jp/kurashi/zei/nouzei/1001801.html"
+    },
+    {
+      "url": "https://www.city.setagaya.lg.jp/02053/255.html"
+    },
+    {
+      "url": "https://www.city.edogawa.tokyo.jp/e014/kurashi/zeikin/juminzei/osamekata/osamenai/index.html"
+    },
+    {
+      "url": "https://www.city.kuki.lg.jp/faq/kurashi/faq_zeikin/1006677/1002406.html"
+    },
+    {
+      "url": "https://www.city.shibuya.tokyo.jp/kurashi/kobai/keiji/syomei.html"
+    },
+    {
+      "url": "https://www.city.hitachinaka.lg.jp/kurashi/zeikin/1004319/1004322.html"
+    },
+    {
+      "url": "https://www.city.tokyo-nakano.lg.jp/kurashi/zeikin/keijidosyazei/keijidosyazei.html"
+    },
+    {
+      "url": "https://www.city.taito.lg.jp/kurashi/zeikin/zeikin/nozei/madoguchi.html"
+    },
+    {
+      "url": "https://www.city.koto.lg.jp/060601/kurashi/zekin/nofu/5128.html"
+    },
+    {
+      "url": "https://www.city.saitama.lg.jp/001/153/004/003/p032313.html"
+    },
+    {
+      "url": "https://www.city.hachioji.tokyo.jp/kurashi/zeikin/ag569/ak002/ak005/p012212.html"
+    },
+    {
+      "url": "https://www.city.nakano.tokyo.jp/kurashi/zeikin/keijidosyazei/keijidosyazei.html"
+    },
+    {
+      "url": "https://www.city.soma.fukushima.jp/shinososhiki/zeimuka/zeikin/16604.html"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000649247.html"
+    },
+    {
+      "url": "https://www.city.himeji.lg.jp/kurashi/0000028871.html"
+    },
+    {
+      "url": "https://www.city.tsukumi.oita.jp/soshiki/17/10907.html"
+    },
+    {
+      "url": "https://www.city.okayama.jp/kurashi/0000004042.html"
+    },
+    {
+      "url": "https://www.city.kobe.lg.jp/a35984/kurashi/tax/kei/index.html"
+    },
+    {
+      "url": "https://www.city.joetsu.niigata.jp/soshiki/zeimu/lifeguide-tax-minicar-tax-q-a.html"
+    },
+    {
+      "url": "https://www.city.uruma.lg.jp/1003004000/faq/p000002.html"
+    },
+    {
+      "url": "https://www.city.ota.gunma.jp/page/1058089.html"
+    },
+    {
+      "url": "https://www.city.kodaira.tokyo.jp/kurashi/002/002759.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/information/knowledge/taxes_qa.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/information/knowledge/taxes.html"
+    },
+    {
+      "url": "https://www.eltax.lta.go.jp/special/sonota-shinsei/"
+    },
+    {
+      "url": "https://www.payment.eltax.lta.go.jp/pbuser?id=kb_article_view&sysparm_article=KB0010180"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/paypay.html"
+    },
+    {
+      "url": "https://www.pref.gunma.jp/page/135761.html"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a004/004.html"
+    }
+  ],
+  "commonTakeaways": [
+    "市区町村案内では、期限後納付により延滞金が発生した場合、後日差額延滞金納付書を送る例がある。",
+    "延滞金は納付日で確定し、1,000円未満は加算されない扱いを示す自治体がある。",
+    "軽は督促状や再発行納付書で納付した場合、車検用納税証明書が付かず、別途交付が必要になる例がある。",
+    "軽JNKSは原則紙証明不要だが、納付直後・過去未納などでは紙証明が必要になる。"
+  ],
+  "gapsFound": [
+    "「延滞金だけ後から来た」検索意図で、軽JNKSや車検用納税証明まで接続したページが少ない。",
+    "市区町村税としての確認先、後日納付書、証明書発行が別々の自治体ページに分散している。",
+    "普通車と軽をまとめると、相談先と車検証明の扱いが混ざりやすい。"
+  ],
+  "changesApplied": [
+    "軽を市区町村税として整理し、自治体の収納担当への確認導線を明示した。",
+    "後日差額延滞金納付書と1,000円未満の扱いを独立セクションにした。",
+    "軽JNKS、督促状・再発行納付書、車検用納税証明の例外を同じ記事で整理した。"
+  ],
+  "qualityChecks": [
+    "公式案内中心で構成",
+    "軽のみ扱う",
+    "自治体差がある部分は断定しない",
+    "軽JNKSと紙証明の例外を明示"
+  ]
+}
