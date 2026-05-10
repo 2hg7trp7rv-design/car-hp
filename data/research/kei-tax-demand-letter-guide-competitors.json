@@ -1,0 +1,124 @@
+{
+  "slug": "kei-tax-demand-letter-guide",
+  "createdAt": "2026-04-24",
+  "competitorCount": 30,
+  "queries": [
+    "軽自動車税 督促状",
+    "軽自動車税 払ったのに 督促状",
+    "軽自動車税 督促状 車検"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.city.uji.kyoto.jp/soshiki/44/16063.html"
+    },
+    {
+      "url": "https://www.city.itabashi.tokyo.jp/faq/tetsuduki/zei/kuminzei/1023463.html"
+    },
+    {
+      "url": "https://www.city.nara.lg.jp/soshiki/15/248022.html"
+    },
+    {
+      "url": "https://www.city.gujo.gifu.jp/faq/cat658/post-15.html"
+    },
+    {
+      "url": "https://www.city.arao.lg.jp/kurashi/zeikin/kei-jidosha/11629.html"
+    },
+    {
+      "url": "https://www.city.ota.gunma.jp/page/1058089.html"
+    },
+    {
+      "url": "https://www.city.choshi.chiba.jp/kurashi/page0601_00044.html"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000527660.html"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000649247.html"
+    },
+    {
+      "url": "https://www.city.kato.lg.jp/kakukanogoannai/soumuzaiseibu/zeimuka/11647.html"
+    },
+    {
+      "url": "https://www.city.soma.fukushima.jp/shinososhiki/zeimuka/zeikin/14969.html"
+    },
+    {
+      "url": "https://www.city.tsukumi.oita.jp/soshiki/17/10907.html"
+    },
+    {
+      "url": "https://www.city.hachioji.tokyo.jp/kurashi/zeikin/002/004/p012240.html"
+    },
+    {
+      "url": "https://www.city.uto.lg.jp/article/view/1003/15210.html"
+    },
+    {
+      "url": "https://www.city.yamatokoriyama.lg.jp/soshiki/zeimuka/zeikin/nouhu/17158.html"
+    },
+    {
+      "url": "https://www.city.fukuyama.hiroshima.jp/soshiki/nozei/347832.html"
+    },
+    {
+      "url": "https://www.city.fukuyama.hiroshima.jp/soshiki/nozei/3545.html"
+    },
+    {
+      "url": "https://www.city.susono.shizuoka.jp/soshiki/12/zeimu/2/2/3729.html"
+    },
+    {
+      "url": "https://www.city.hirakata.osaka.jp/0000008056.html"
+    },
+    {
+      "url": "https://www.city.muko.kyoto.jp/soshiki/14/3316.html"
+    },
+    {
+      "url": "https://www.city.yonago.lg.jp/6335.htm"
+    },
+    {
+      "url": "https://www.city.maizuru.kyoto.jp/kurashi/0000000603.html"
+    },
+    {
+      "url": "https://www.city.higashihiroshima.lg.jp/soshiki/zaimu/5/index.html"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000649244.html"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000522720.html"
+    },
+    {
+      "url": "https://www.city.nagato.yamaguchi.jp/soshiki/6/66533.html"
+    },
+    {
+      "url": "https://www.city.kai.yamanashi.jp/page/3644.html"
+    },
+    {
+      "url": "https://www.city.minato.tokyo.jp/nouzeisokushin/kuse/kocho/faq/zekin/170.html"
+    },
+    {
+      "url": "https://www.city.takasaki.gunma.jp/page/2671.html"
+    },
+    {
+      "url": "https://www.city.tochigi.lg.jp/soshiki/16/15596.html"
+    }
+  ],
+  "commonTakeaways": [
+    "公式案内は、軽の督促状を市区町村税として扱い、発送時期や督促手数料、納付場所の自治体差を前提にしている。",
+    "納期限後に払った人へ行き違いで督促状が届く説明は多いが、差額の督促に触れるページは限られる。",
+    "督促状や催告状で払ったあとの車検用納税証明書の扱いは、自治体差が大きい。",
+    "軽JNKSで原則不要になっても、納付直後や名義・住所変更直後は紙が必要になる案内が多い。"
+  ],
+  "gapsFound": [
+    "督促状の支払いと、車検証明の取り方を分けて整理したページが少ない。",
+    "自治体差が大きいことを最初に明示せず、全国共通のように書くページが多い。",
+    "広域徴収機構への移管で相談先が変わる話まで触れるページが少ない。"
+  ],
+  "changesApplied": [
+    "軽を市区町村税として扱い、自治体差が出る項目を先に整理した。",
+    "行き違いの見分け方に差額の督促チェックを追加した。",
+    "督促状で払った直後の車検証明を、軽JNKSの例外と合わせて整理した。"
+  ],
+  "qualityChecks": [
+    "公式案内中心で構成",
+    "軽のみ扱う",
+    "自治体差を前提に断定を避ける",
+    "車検用納税証明の話を独立整理"
+  ]
+}

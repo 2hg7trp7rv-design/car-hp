@@ -1,0 +1,16 @@
+PATCH REPORT (wave6)
+
+Changed files (line count old -> new):
+- app/heritage/[slug]/page.tsx: 643 -> 644 (+1)
+- components/content/ContentGridCard.tsx: 48 -> 62 (+14)
+- components/content/ContentRowCard.tsx: 124 -> 140 (+16)
+- app/column/[slug]/page.tsx: 589 -> 591 (+2)
+- app/loading.tsx: 31 -> 35 (+4)
+- components/layout/HamburgerMenu.tsx: 206 -> 207 (+1)
+
+Key fixes:
+- Remove full-width white 'NEXT STORY' section; keep Stage and wrap in Porcelain panel.
+- Replace heavy loading skeleton with minimal Stage loading indicator.
+- Close HamburgerMenu immediately on navigation click to avoid overlay over loading.
+- Improve ContentGridCard/ContentRowCard image placeholders (no blank white blocks).
+- Ensure related cards have fallback images and Porcelain styling on Stage.

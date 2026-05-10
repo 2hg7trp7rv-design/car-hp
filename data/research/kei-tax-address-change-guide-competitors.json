@@ -1,0 +1,122 @@
+{
+  "slug": "kei-tax-address-change-guide",
+  "createdAt": "2026-04-17",
+  "competitorCount": 30,
+  "queries": [
+    "軽自動車税 住所変更 引っ越し",
+    "軽自動車税 納付書 旧住所",
+    "軽自動車税 送付先変更"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/change_address.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/"
+    },
+    {
+      "url": "https://www.city.himeji.lg.jp/faq/faq_detail.php?frmId=1441"
+    },
+    {
+      "url": "https://www.city.kyoto.lg.jp/gyozai/page/0000277896.html"
+    },
+    {
+      "url": "https://www.city.tamano.lg.jp/soshiki/4/2451.html"
+    },
+    {
+      "url": "https://www.city.tama.lg.jp/kurashi/zei/keijidousha/1014422.html"
+    },
+    {
+      "url": "https://www.city.suzuka.lg.jp/kurashi/zei/1002096/1002101.html"
+    },
+    {
+      "url": "https://www.city.sumida.lg.jp/kurashi/zeikin/car/keijnks.html"
+    },
+    {
+      "url": "https://www.city.ayabe.lg.jp/0000001221.html"
+    },
+    {
+      "url": "https://www.city.yonago.lg.jp/47554.htm"
+    },
+    {
+      "url": "https://www.city.yonago.lg.jp/47553.htm"
+    },
+    {
+      "url": "https://www.city.saitama.lg.jp/001/153/004/004/p117068.html"
+    },
+    {
+      "url": "https://www.city.honjo.lg.jp/soshiki/soumu/syuunou/tantoujouhou/16362.html"
+    },
+    {
+      "url": "https://www.city.aisai.lg.jp/0000011275.html"
+    },
+    {
+      "url": "https://www.city.kyotanabe.lg.jp/0000022169.html"
+    },
+    {
+      "url": "https://www.city.kato.lg.jp/kakukanogoannai/soumuzaiseibu/zeimuka/juminzeikakari/kei/16338.html"
+    },
+    {
+      "url": "https://www.city.kurayoshi.lg.jp/8692.htm"
+    },
+    {
+      "url": "https://www.city.kurayoshi.lg.jp/8670.htm"
+    },
+    {
+      "url": "https://www.carcon.co.jp/column/article/2019061701/"
+    },
+    {
+      "url": "https://www.carcon.co.jp/column/article/20190809/"
+    },
+    {
+      "url": "https://www.carcon.co.jp/column/article/20200304/"
+    },
+    {
+      "url": "https://www.atm-car.co.jp/column/?id=1759024338"
+    },
+    {
+      "url": "https://www.mitsui-direct.co.jp/car/guide/howto/documents/22.html"
+    },
+    {
+      "url": "https://www.wecars.co.jp/column/inspection/procedure/017.html"
+    },
+    {
+      "url": "https://www.egmkt.co.jp/column/consumer/731/"
+    },
+    {
+      "url": "https://www.insweb.co.jp/car/kisochishiki/kiso/shakensyo-addresschange.html"
+    },
+    {
+      "url": "https://www.nextage.jp/sell_guide/zeikin/415691/"
+    },
+    {
+      "url": "https://auto-pal.co.jp/column/3501/"
+    },
+    {
+      "url": "https://www.carseven.co.jp/guide/news/10213/"
+    },
+    {
+      "url": "https://www.carseven.co.jp/guide/news/10061/"
+    }
+  ],
+  "commonTakeaways": [
+    "多くの記事は軽自動車検査協会での住所変更を案内するが、課税自治体の見方まで深掘りしない。",
+    "使用の本拠の位置と住民票の違いを丁寧に整理していない記事が多い。",
+    "軽JNKSの例外と住所変更を同時に扱う記事は少ない。"
+  ],
+  "gapsFound": [
+    "送付先変更の自治体差が大きいのに、全国共通のように書く記事が目立つ。",
+    "旧自治体から納付書が届く理由と税止め確認の説明が足りない。"
+  ],
+  "changesApplied": [
+    "使用の本拠の位置、課税自治体、送付先変更の自治体差を主軸に再設計した。",
+    "軽JNKSで引っ越し直後が例外になる点を、車検が近い読者向けに前倒しで配置した。",
+    "旧自治体課税、送付先変更不可、転送頼みの3ケースに分けて実務を整理した。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}

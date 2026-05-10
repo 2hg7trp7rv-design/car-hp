@@ -1,0 +1,293 @@
+{
+  "id": "col-001",
+  "slug": "usedcar-100k-km-myth",
+  "status": "published",
+  "title": "走行距離10万kmの中古車を見るとき、距離より大事な3つの見方。",
+  "summary": "10万kmは即NGじゃない。整備の記録と使われ方、買ったあとに掛かるお金が見えるかで判断する。",
+  "category": "MARKET",
+  "tags": [
+    "中古車",
+    "走行距離",
+    "10万km",
+    "整備記録",
+    "購入判断"
+  ],
+  "intentTags": [
+    "usedcar",
+    "decision",
+    "maintenance"
+  ],
+  "relatedGuideSlugs": [
+    "hub-usedcar",
+    "maintenance",
+    "hub-consumables"
+  ],
+  "targetKeyword": "走行距離 10万km 中古車",
+  "searchIntent": "10万km超えの中古車を避けるべきか迷っている人が、判断軸を持てるようにする。",
+  "articleType": "COLUMN",
+  "createdAt": "2026-01-27T12:00:00+09:00",
+  "updatedAt": "2026-01-29",
+  "noindex": false,
+  "seoTitle": "走行距離10万kmの中古車を見るとき、距離より大事な3つの見方。",
+  "seoDescription": "10万kmは即NGじゃない。整備の記録と使われ方、買ったあとに掛かるお金が見えるかで判断する。",
+  "planPriority": 22,
+  "publishedAt": "2026-01-29",
+  "type": "COLUMN",
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "index",
+  "parentPillarId": "/column",
+  "relatedClusterIds": [],
+  "primaryQuery": "走行距離 10万km 中古車",
+  "updateReason": "初版公開",
+  "sources": [
+    "https://www.carsensor.net/contents/editor/category_849/_62132.html",
+    "https://www.goo-net.com/magazine/contents/check-point/73455/",
+    "https://www.orixcar.jp/ucar/story/20201103.html",
+    "https://www.nextage.jp/buy_guide/info/246004/",
+    "https://carnext.jp/magazine/article/car_100000_km_timing_belt/",
+    "https://221616.com/guide/first-time/10k-ride/"
+  ],
+  "heroImage": "/images/cbj/columns/usedcar-100k-km-myth.jpg",
+  "thumbnail": "/images/cbj/columns/usedcar-100k-km-myth.jpg",
+  "displayTag": "中古車",
+  "layoutVariant": "decision-v1",
+  "actionBox": {
+    "title": "記録・整備見積・店の説明、この3点で線を引く",
+    "body": "10万kmだからではなく、「記録が出るか」「必要整備を見積もれるか」「面倒な質問に答える店か」で候補を絞ってください。その3点が揃わない個体は、距離以前に見送りが安全です。",
+    "actions": [
+      {
+        "label": "修復歴ありの判断軸を見る",
+        "href": "/column/repair-history-how-to-judge"
+      },
+      {
+        "label": "中古車保証の考え方を見る",
+        "href": "/column/usedcar-warranty-needed"
+      },
+      {
+        "label": "月額総額で予算を握る考え方を見る",
+        "href": "/column/budget-should-be-monthly-total"
+      }
+    ]
+  },
+  "readMinutes": 5,
+  "lead": "中古車の10万kmは、数字だけで即NGと切ると外しやすい節目です。大事なのは、どう使われてきたか、整備の記録が残るか、買ったあとに掛かるお金が見積もれているかの3点です。距離より大事な線引きを整理します。",
+  "eyebrowLabel": "走行距離",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "特集",
+      "href": "/column"
+    },
+    {
+      "label": "走行距離10万kmの中古車を見るとき、距離より大事な3つの見方。"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "中古車・購入判断編集チーム"
+  },
+  "keyPoints": [
+    "10万kmは即NGではなく、整備記録と使われ方が見える車なら普通に候補になる",
+    "怖いのは距離より、説明が曖昧・警告灯・試乗不可など「それ以外が雑」な個体",
+    "買う前に、10万km前後で掛かりやすい整備を総額へ織り込むのが重要"
+  ],
+  "checkpoints": [
+    "点検記録簿や整備明細が見られ、内容まで読めるか",
+    "10万km前後で来やすい整備や消耗品の費用を見積もれているか",
+    "短距離中心か長距離中心かなど、使われ方の説明がつくか",
+    "警告灯、ブレーキのクセ、下回りのサビなど現車確認で怪しい点がないか",
+    "保証の範囲と、買ったあとに追加で必要な費用を総額で見ているか"
+  ],
+  "faq": [
+    {
+      "question": "10万kmを超えた中古車は、やはり寿命が近いですか。",
+      "answer": "一律には言えません。最近の車は整備次第で普通に走れますが、記録が薄い個体や必要整備が見えない個体は距離以上に危険です。"
+    },
+    {
+      "question": "低走行車の方が必ず安全ですか。",
+      "answer": "必ずしもそうではありません。放置やちょい乗り中心で状態が落ちている低走行車もあるので、距離だけで逆転はできません。"
+    },
+    {
+      "question": "10万km前後で一番先に見るべきことは何ですか。",
+      "answer": "整備記録です。何を交換して、何がまだ残っているのかが読めると、買った後の出費をかなり見通しやすくなります。"
+    },
+    {
+      "question": "短期で乗り換える予定でも10万km車はありですか。",
+      "answer": "短期乗り換えには向きにくいです。相場が伸びにくく売却時の値段も期待しづらいので、長く乗る前提の方が噛み合いやすいです。"
+    }
+  ],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge",
+    "usedcar-warranty-needed",
+    "usedcar-low-mileage-trap"
+  ],
+  "detailSections": [
+    {
+      "id": "10万kmが怖く見えるのは-車が突然終わるからじゃない",
+      "title": "10万kmが怖く見えるのは、車が突然終わるからじゃない",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "10万kmって、数字がキリがいいので「そろそろ寿命？」みたいに見えやすいです。実際はそれより、中古車としては“節目”になりやすいのが本当のところ。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "10万kmを超えると、相場がガクッと落ちやすい（＝買う側にはチャンスが出る）",
+            "ただし、売るときは値段が伸びにくい（＝短期で乗り換える人には向きにくい）"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "だから最初に考えるべきは、「この車を何年くらい乗りたいか」「最後は乗りつぶす前提か」です。ここが決まると、10万kmの怖さは一気に現実的になります。"
+        }
+      ]
+    },
+    {
+      "id": "距離だけで切ると外す-大事なのは-使われ方",
+      "title": "距離だけで切ると外す。大事なのは“使われ方”",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "同じ10万kmでも、車の疲れ方はバラバラです。分かりやすいのが“短距離の繰り返し”と“長めの距離”の違いです。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "近所の買い物や送迎みたいな短距離が多いと、車が温まり切る前に止まるので負担が溜まりやすい",
+            "逆に、高速道路などで一定の速度で走っていた距離は、距離の割にコンディションが良いこともあります"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "距離は「消耗の目安」にはなります。でも「状態の保証」にはなりません。ここを勘違いすると、低走行でも手が掛かる個体を掴みます。"
+        }
+      ]
+    },
+    {
+      "id": "10万kmでも-買っていい-車の条件は-実はシンプル",
+      "title": "10万kmでも“買っていい”車の条件は、実はシンプル",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "判断を難しくしないために、条件は3つに絞ります。これが揃わないなら、距離以前に一旦見送っていいです。"
+        },
+        {
+          "type": "callout",
+          "tone": "info",
+          "title": "1）整備の記録が残っている（内容が見える）",
+          "body": "点検記録簿や整備の明細が出てくる車は、それだけで評価が上がります。理由は単純で、「何が交換されて、何が残っているか」が読めるからです。 逆に“記録はあります”と言われても、中身が薄いことがあります。見るのは「実際に何をやったか」です。"
+        },
+        {
+          "type": "callout",
+          "tone": "info",
+          "title": "2）10万km前後で掛かりやすい整備が、見積もれている",
+          "body": "車種によっては、10万km前後で「まとめて整備が来る」ことがあります。代表例がタイミングベルト系（車種による）などです。 ここで大事なのは、交換済みかどうかだけじゃなく、買ったあとに掛かる費用を“先に見積もってあるか”です。安く買っても、すぐに大きい出費が来たら意味がないので。"
+        },
+        {
+          "type": "callout",
+          "tone": "info",
+          "title": "3）売る店が“面倒な確認”から逃げない",
+          "body": "「整備の記録を見せてください」「試乗できますか」「下回り（サビ）は見れますか」みたいな質問に、ちゃんと答える店。ここはかなり重要です。 車自体が当たりでも、説明が雑だと、買ったあとに揉める確率が上がります。"
+        }
+      ]
+    },
+    {
+      "id": "逆に-10万kmじゃなくても避けた方がいいパターン",
+      "title": "逆に、10万kmじゃなくても避けた方がいいパターン",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "距離の多い少ないより、こっちの方が危ないです。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "記録が出ない／説明が曖昧（“前オーナーが〜”で終わる）",
+            "メーター周りに警告灯が点いている、点いた形跡がある",
+            "走ってみると、まっすぐ走らない／ブレーキで変なクセが出る",
+            "タイヤが極端に安いものに替わっている（お金の掛け方が読める）"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "「走行距離は正直」でも、「それ以外が雑」な車は普通にあります。"
+        }
+      ]
+    },
+    {
+      "id": "それでも10万kmは怖い-への答え",
+      "title": "「それでも10万kmは怖い」への答え",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "怖いのは自然です。だから無理に背伸びしなくていいです。"
+        },
+        {
+          "type": "paragraph",
+          "text": "壊れたときに仕事や生活が止まるなら、保証の付け方を先に考える"
+        },
+        {
+          "type": "paragraph",
+          "text": "→ /column/usedcar-warranty-needed"
+        },
+        {
+          "type": "paragraph",
+          "text": "修理や消耗品の出費が怖いなら、“車両価格”ではなく月々の総額で予算を握る"
+        },
+        {
+          "type": "paragraph",
+          "text": "→ /column/budget-should-be-monthly-total"
+        },
+        {
+          "type": "paragraph",
+          "text": "10万kmを買うかどうかは、根性じゃなくて「備えの設計」で決まります。"
+        }
+      ]
+    },
+    {
+      "id": "次にやること-店で聞く7つの質問-これだけで外しにくくなる",
+      "title": "次にやること：店で聞く7つの質問（これだけで外しにくくなる）",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "見に行く前に、電話やメッセージで聞いてOKです。答えが渋いなら、現車を見る前に見送れます。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "点検記録簿（整備記録）は見せてもらえる？（直近2〜3年分）",
+            "直近で交換した消耗品は？（タイヤ／バッテリー／ブレーキなど）",
+            "10万km前後で必要になりやすい整備は済んでいる？（車種によるので“何を”でOK）",
+            "オイル漏れや下回りのサビは指摘されていない？",
+            "試乗はできる？できないなら理由は？",
+            "保証は付く？対象範囲と免責（自己負担）は？",
+            "総額はいくら？「追加で必須の費用」が残っていない？"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "ここまで聞ければ、「10万kmだから危ない」ではなく、「この1台が買っていいか」で判断できます。"
+        },
+        {
+          "type": "paragraph",
+          "text": "次に読むなら、この3本がおすすめです。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "/column/repair-history-how-to-judge（修復歴の判断軸）",
+            "/column/usedcar-warranty-needed（保証を付けるべき人）",
+            "/column/spare-key-missing-negotiation（スペアキー無しの交渉ポイント）"
+          ]
+        }
+      ]
+    }
+  ]
+}

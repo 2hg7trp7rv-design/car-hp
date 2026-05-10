@@ -1,0 +1,124 @@
+{
+  "slug": "car-tax-late-fee-only-guide",
+  "createdAt": "2026-04-24",
+  "competitorCount": 30,
+  "queries": [
+    "自動車税 延滞金だけ",
+    "自動車税 延滞金 納付書 後日",
+    "自動車税 延滞金 車検"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a004/004.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/paypay.html"
+    },
+    {
+      "url": "https://www.pref.gunma.jp/page/135761.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/177.html"
+    },
+    {
+      "url": "https://www.pref.saitama.lg.jp/a0209/z-kurashiindex/z-3.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/entaikin.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidoushayokuaru.html"
+    },
+    {
+      "url": "https://www.pref.miyagi.jp/soshiki/zeimu/faq-nouzei.html"
+    },
+    {
+      "url": "https://www.pref.miyagi.jp/soshiki/zeimu/index-payeasy.html"
+    },
+    {
+      "url": "https://www.pref.kagoshima.jp/ab07/2025tokusoku.html"
+    },
+    {
+      "url": "https://www.pref.fukuoka.lg.jp/contents/yuyo.html"
+    },
+    {
+      "url": "https://www.pref.ibaraki.jp/somu/zeimu/kikaku/qa/nouzeiqa15.html"
+    },
+    {
+      "url": "https://www.city.misato.lg.jp/soshiki/zaimu/shuno/3/3535.html"
+    },
+    {
+      "url": "https://www.city.setagaya.lg.jp/02053/255.html"
+    },
+    {
+      "url": "https://www.city.koto.lg.jp/060601/kurashi/zekin/nofu/5128.html"
+    },
+    {
+      "url": "https://www.city.edogawa.tokyo.jp/e014/kurashi/zeikin/juminzei/osamekata/osamenai/index.html"
+    },
+    {
+      "url": "https://www.payment.eltax.lta.go.jp/pbuser?id=kb_article_view&sysparm_article=KB0010180"
+    },
+    {
+      "url": "https://www.eltax.lta.go.jp/special/sonota-shinsei/"
+    },
+    {
+      "url": "https://www.city.nerima.tokyo.jp/kurashi/zei/nofu/okure/06613381120141224.html"
+    },
+    {
+      "url": "https://www.city.tama.lg.jp/kurashi/zei/nouzei/1001801.html"
+    },
+    {
+      "url": "https://www.city.kuki.lg.jp/faq/kurashi/faq_zeikin/1006677/1002406.html"
+    },
+    {
+      "url": "https://www.city.shibuya.tokyo.jp/kurashi/kobai/keiji/syomei.html"
+    },
+    {
+      "url": "https://www.city.hitachinaka.lg.jp/kurashi/zeikin/1004319/1004322.html"
+    },
+    {
+      "url": "https://www.city.tokyo-nakano.lg.jp/kurashi/zeikin/keijidosyazei/keijidosyazei.html"
+    },
+    {
+      "url": "https://www.city.taito.lg.jp/kurashi/zeikin/zeikin/nozei/madoguchi.html"
+    },
+    {
+      "url": "https://www.city.hachioji.tokyo.jp/kurashi/zeikin/ag569/ak002/ak005/p012212.html"
+    },
+    {
+      "url": "https://www.city.saitama.lg.jp/001/153/004/003/p032313.html"
+    },
+    {
+      "url": "https://www.city.misato.lg.jp/soshiki/zaimu/shuno/3/3535.html"
+    },
+    {
+      "url": "https://www.city.kodaira.tokyo.jp/kurashi/002/002759.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/information/knowledge/taxes_qa.html"
+    }
+  ],
+  "commonTakeaways": [
+    "公式案内では、納期限後に払うと延滞金が加算され、手元の納付書だけでは不足する可能性があると説明されている。",
+    "督促状に記載された延滞金は計算日時点の額であり、その後に納付すると不足分の延滞金納付書が後日届く例がある。",
+    "スマホ決済では納付書に印字された額だけが納付対象になり、延滞金が印字されていなければまとめて払えない案内がある。",
+    "延滞金を含む前年度以前の未納があると、車検用納税証明や電子確認に影響する可能性がある。"
+  ],
+  "gapsFound": [
+    "「本税は払ったのに延滞金だけ来た」検索意図を、督促状や払い忘れ記事から独立して扱うページが少ない。",
+    "延滞金の後日納付書、スマホ決済の印字額、車検用証明への影響が別ページに散っている。",
+    "普通車と軽自動車税で相談先が違う点を同時に説明すると読み手が迷いやすい。"
+  ],
+  "changesApplied": [
+    "普通車を都道府県税として整理し、県税事務所・自動車税事務所への確認導線を入れた。",
+    "督促状の計算日より後に納付した場合の不足分延滞金を独立セクション化した。",
+    "車検が近い人向けに、延滞金を含む完納確認と紙証明の要否を入れた。"
+  ],
+  "qualityChecks": [
+    "公式案内中心で構成",
+    "普通車のみ扱う",
+    "延滞金の自己計算を断定しない",
+    "車検前の完納確認を明示"
+  ]
+}

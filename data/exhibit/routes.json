@@ -1,0 +1,67 @@
+[
+  {
+    "id": "entrance-3min",
+    "title": "Entrance in 3 minutes",
+    "duration": "約3分",
+    "lead": "迷ったらこの順番。目的→候補→総額→維持の誤解→文脈、で“判断材料”だけを集めます。",
+    "steps": [
+      { "href": "/start", "label": "START（目的から入る）" },
+      { "href": "/cars", "label": "CARS（候補を広げる）" },
+      { "href": "/guide/hub-usedcar", "label": "中古車検索HUB（条件を固める）" },
+      { "href": "/column/oil-change-5000km-myth", "label": "オイル交換 5000km神話（維持の誤解を潰す）" },
+      { "href": "/heritage/mazda-roadster-na-lightweight-heritage", "label": "NAロードスター（軽さの文脈）" }
+    ]
+  },
+  {
+    "id": "decision-canvas-buy",
+    "title": "Decision Canvas (Buy)",
+    "duration": "約3分",
+    "lead": "比較する前に“判断軸”を固定して、迷いを作らない順番にします。予算→難易度→候補→総額の順で詰めます。",
+    "steps": [
+      { "href": "/canvas", "label": "CANVAS（判断軸を固定）" },
+      { "href": "/cars", "label": "CARS（候補を見る）" },
+      { "href": "/guide/hub-usedcar", "label": "中古車検索HUB（条件の現実）" },
+      { "href": "/guide/car-budget-simulation", "label": "予算シミュレーション（総額を崩す）" },
+      { "href": "/column/import-car-hidden-costs-paperwork", "label": "輸入車の隠れコスト（落とし穴）" }
+    ]
+  },
+  {
+    "id": "sell-smart",
+    "title": "Sell smart",
+    "duration": "約4分",
+    "lead": "売却で損が出る原因は“比較しない / 期限が無い / 直してから売る”の3つ。段取りだけ先に固めます。",
+    "steps": [
+      { "href": "/guide/hub-sell", "label": "売却HUB（全体像）" },
+      { "href": "/guide/hub-sell-prepare", "label": "売却準備HUB（書類・段取り）" },
+      { "href": "/guide/hub-sell-compare", "label": "売却比較HUB（同条件で比較）" },
+      { "href": "/guide/hub-sell-price", "label": "売却相場HUB（相場を掴む）" },
+      { "href": "/column/sell-timing-shaken-tax-market", "label": "売り時：車検/税/相場（判断軸）" },
+      { "href": "/guide/best-time-to-sell-car", "label": "売るベストタイミング（実務まとめ）" }
+    ]
+  },
+  {
+    "id": "trouble-triage",
+    "title": "Trouble triage",
+    "duration": "約3分",
+    "lead": "“いま困っている”人向け。症状→初動→やってはいけないこと、だけを短距離で。",
+    "steps": [
+      { "href": "/guide/hub-import-trouble", "label": "トラブルHUB（症状の入口）" },
+      { "href": "/guide/engine-check-light-first-response", "label": "チェックランプ：最初の対応" },
+      { "href": "/guide/car-accident-first-10-minutes", "label": "事故：最初の10分" },
+      { "href": "/column/obd-inspection-shaken-fail", "label": "OBD車検：落ちる理由" }
+    ]
+  },
+  {
+    "id": "heritage-corridor",
+    "title": "Heritage corridor",
+    "duration": "約5分",
+    "lead": "年代→規制→設計思想→現代の選び方へ。車の“意味”を先に掴むルート。",
+    "steps": [
+      { "href": "/heritage", "label": "HERITAGE（系譜の入口）" },
+      { "href": "/heritage/japan-1995-golden-age-heritage", "label": "1995：黄金期" },
+      { "href": "/heritage/japan-280ps-gentlemens-agreement-heritage", "label": "280馬力協定" },
+      { "href": "/heritage/honda-nsx-everyday-supercar-heritage", "label": "NSX：日常のスーパーカー" },
+      { "href": "/cars/makers/honda", "label": "HONDAの車種DB" }
+    ]
+  }
+]
