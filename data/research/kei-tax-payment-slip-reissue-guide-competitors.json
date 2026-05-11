@@ -1,0 +1,122 @@
+{
+  "slug": "kei-tax-payment-slip-reissue-guide",
+  "createdAt": "2026-04-19",
+  "competitorCount": 30,
+  "queries": [
+    "軽自動車税 納付書 再発行",
+    "軽自動車税 納期限過ぎた 納付書",
+    "軽自動車税 納付書 紛失 車検"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000649247.html"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000584486.html"
+    },
+    {
+      "url": "https://faq.city.kobe.lg.jp/faq/show/2058?back=front%2Fcategory%3Asearch&category_id=21&commit=&keyword=%E7%B4%8D%E4%BB%98%E6%9B%B8%E3%82%92%E7%B4%9B%E5%A4%B1&page=1&site_domain=default&site_id=1&sort=sort_keyword&sort_order=desc"
+    },
+    {
+      "url": "https://faq.city.kobe.lg.jp/faq/show/2136?back=front%2Fcategory%3Asearch&category_id=21&commit=&keyword=%E7%B4%8D%E6%9C%9F%E9%99%90%E3%82%92%E9%81%8E%E3%81%8E%E3%81%A6&page=1&site_domain=default&site_id=1&sort=sort_keyword&sort_order=desc"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/konan/kurashi/koseki_zei_hoken/zeikin/nofu_sodan/shizeinouhusyo.html"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/zeikin/shizei-shomei/keijisyomei.html"
+    },
+    {
+      "url": "https://www.city.tottori.lg.jp/page/2011.html"
+    },
+    {
+      "url": "https://www.city.nagoya.jp/kurashi/zeikin/1037356/1034720/1011966/1033708.html"
+    },
+    {
+      "url": "https://faq.city.nagoya.jp/faq/detail.aspx?id=1915"
+    },
+    {
+      "url": "https://www.town.sayo.lg.jp/cms-sypher/www/info/detail.jsp?id=10613"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/faq/kukyoku/somu/choshu-taisaku/01234567.html"
+    },
+    {
+      "url": "https://www.city.nagoya.jp/kurashi/zeikin/1037356/1034720/1011966/1033972.html"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000540596.html"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000005852.html"
+    },
+    {
+      "url": "https://faq.city.kobe.lg.jp/faq/show/234?site_domain=default"
+    },
+    {
+      "url": "https://faq.city.kobe.lg.jp/faq/show/3929?site_domain=default"
+    },
+    {
+      "url": "https://www.city.hikone.lg.jp/kakuka/somubu/6/syuruishikumi/keijidousyazei/28684.html"
+    },
+    {
+      "url": "https://www.city.funabashi.lg.jp/kurashi/zei/001/04/p076782.html"
+    },
+    {
+      "url": "https://www.city.funabashi.lg.jp/faq/kurashi/zei/004/p043595.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/procedures/change_address.html"
+    },
+    {
+      "url": "https://www.keikenkyo.or.jp/information/knowledge/taxes_qa.html"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/faq/kukyoku/somu/somu-seimu/20230209151557778.html"
+    },
+    {
+      "url": "https://www.city.yokohama.lg.jp/faq/kukyoku/somu/somu-seimu/20230209153630313.html"
+    },
+    {
+      "url": "https://www.town.minamiechizen.lg.jp/kurasi/101/113/p011379.html"
+    },
+    {
+      "url": "https://www.city.kobe.lg.jp/a16422/nouzei/noufu_qa.html"
+    },
+    {
+      "url": "https://www.city.nagoya.jp/kurashi/zeikin/1037356/1034720/1011966/1033708.html"
+    },
+    {
+      "url": "https://www.city.tottori.lg.jp/page/2011.html"
+    },
+    {
+      "url": "https://www.payment.eltax.lta.go.jp/pbuser"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000649244.html"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000006373.html"
+    }
+  ],
+  "commonTakeaways": [
+    "自治体ごとに申請入口が違い、しかも軽JNKSや車検用証明の説明が別ページに分かれていて読み手が迷いやすい。",
+    "納期限後でも取扱期限までは今ある紙が使える、という情報がFAQに埋もれている例が多い。",
+    "再発行納付書で払った後、車検用納税証明書が別に必要になる例外まで一枚で説明しているページは少ない。"
+  ],
+  "gapsFound": [
+    "納付書の再発行と車検用納税証明書の再交付が混ざり、読者が『どの紙が必要か』を見失いやすい。",
+    "オンライン申請の対象年度や本人限定など、実務で詰まる条件が断片的にしか見えない。"
+  ],
+  "changesApplied": [
+    "未納か既納か、納付書か証明書かを最初に切り分けた。",
+    "電話・オンライン・区役所の違いを入口ベースで整理した。",
+    "車検直前の例外まで含めて、再発行納付書だけで終わらない場面を明示した。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}

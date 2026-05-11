@@ -1,0 +1,32 @@
+WAVE 16 — INP + ACCESSIBILITY HARDENING
+
+Goal
+- Improve interaction responsiveness (INP) by reducing high-frequency work on the main thread.
+- Strengthen accessibility without changing the site’s visual tone.
+
+Changes
+1) Home hero pointer parallax (INP)
+- Updated: components/home/HomeMasterpiece.tsx
+  - pointermove listener is now attached to the hero element (not window).
+  - Disabled automatically for:
+    - prefers-reduced-motion
+    - coarse pointer (touch)
+  - getBoundingClientRect is cached and refreshed at a small interval to reduce overhead.
+  - Parallax resets on pointerleave.
+
+2) Search UI responsiveness + a11y status (INP + a11y)
+- Updated: app/search/search-client.tsx
+  - Heavy result updates are wrapped in React transition (useTransition) to keep input responsive.
+  - Added a screen-reader status region (aria-live) for:
+    - searching / error / result-count / suggestions.
+
+3) Compare page a11y status
+- Updated: app/compare/compare-client.tsx
+  - Added an aria-live status region announcing selected cars count.
+
+4) Global menu a11y
+- Updated: components/layout/HamburgerMenu.tsx
+  - Adds aria-current="page" on the active destination.
+
+Notes
+- These changes are additive and do not alter content, routing, or indexing strategy.

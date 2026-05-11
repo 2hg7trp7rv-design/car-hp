@@ -1,0 +1,29 @@
+Wave3 Notes
+
+Goal
+- Keep the website usable (search/compare/sitemap/contact etc.) without breaking the "site as an artwork" rule.
+- Enforce the 2-layer system everywhere:
+  Stage = dark, fixed, quiet
+  Porcelain = white panel where practical UI lives
+
+What was missing in Wave2
+1) START / SITE MAP
+- They were already on the Stage (DetailFixedBackground) but breadcrumb + hero header were still light-theme text (slate-900).
+- Result: parts of the page could be unreadable and the "one-work" continuity broke.
+
+2) CONTACT
+- Still used the previous light-gradient/landing pattern and extra background layers.
+- Result: the site suddenly felt like a different product.
+
+3) SELL branches (hub-sell-compare / hub-sell-loan)
+- Same issue as START: stage background + dark text outside porcelain.
+
+4) NEWS detail JSON-LD
+- Organization name had a duplicated word: "CAR BOUTIQUE JOURNAL JOURNAL".
+
+What Wave3 did
+- Wrapped START / SITE MAP / hub-sell-compare / hub-sell-loan content in a porcelain panel.
+- Rebuilt CONTACT as Stage + Porcelain while keeping the form functionality.
+- Fixed the NEWS JSON-LD typo.
+- Switched the global body canvas to the Stage (bg #07080a) to avoid iOS overscroll white flashes.
+

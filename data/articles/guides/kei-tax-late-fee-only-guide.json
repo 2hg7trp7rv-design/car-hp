@@ -1,0 +1,444 @@
+{
+  "type": "GUIDE",
+  "monetizeType": null,
+  "category": "LIFE",
+  "publishedAt": "2026-04-24",
+  "updatedAt": "2026-04-25",
+  "body": "",
+  "monetizeKey": null,
+  "relatedCarSlugs": [],
+  "relatedColumnSlugs": [
+    "sell-timing-shaken-tax-market",
+    "name-change-delay-risk",
+    "shaken-early-two-months"
+  ],
+  "relatedHeritageSlugs": [],
+  "intentTags": [
+    "paperwork",
+    "tax",
+    "maintenance-cost",
+    "inspection"
+  ],
+  "createdAt": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-paperwork",
+  "relatedClusterIds": [],
+  "heroImage": "/images/cbj/display-tags/guides/paperwork-1.jpg",
+  "thumbnail": "/images/cbj/display-tags/guides/paperwork-1.jpg",
+  "displayTag": "手続き",
+  "layoutVariant": "decision-v1",
+  "eyebrowLabel": "手続き",
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "手続き・維持費ガイド編集チーム"
+  },
+  "slug": "kei-tax-late-fee-only-guide",
+  "title": "軽自動車税の延滞金だけ請求されたとき。後日納付書、軽JNKS、納税証明を整理する。",
+  "lead": "軽自動車税の本税を払ったあとに、延滞金だけの納付書が届くと、もう払ったのに何を払うのか、軽JNKSや車検用納税証明に影響するのかが分かりにくくなります。軽は市区町村税なので、まずは課税した自治体、本税の支払日、延滞金納付書の対象を分けて確認します。",
+  "tags": [
+    "軽自動車税",
+    "延滞金",
+    "延滞金納付書",
+    "軽JNKS",
+    "納税証明書",
+    "車検"
+  ],
+  "internalLinks": [
+    "kei-tax-demand-letter-guide",
+    "kei-tax-collection-notice-guide",
+    "kei-tax-late-payment-guide",
+    "kei-tax-payment-method-guide",
+    "kei-tax-payment-reflection-guide",
+    "kei-tax-payment-slip-reissue-guide",
+    "kei-tax-cannot-pay-guide",
+    "kei-tax-certificate-reissue-guide",
+    "shaken-required-documents-guide",
+    "car-tax-late-fee-only-guide",
+    "kei-tax-seizure-warning-guide"
+  ],
+  "relatedGuideSlugs": [
+    "kei-tax-demand-letter-guide",
+    "kei-tax-collection-notice-guide",
+    "kei-tax-late-payment-guide",
+    "kei-tax-payment-method-guide",
+    "kei-tax-payment-reflection-guide",
+    "kei-tax-payment-slip-reissue-guide",
+    "kei-tax-cannot-pay-guide",
+    "kei-tax-certificate-reissue-guide",
+    "shaken-required-documents-guide",
+    "car-tax-late-fee-only-guide",
+    "kei-tax-seizure-warning-guide"
+  ],
+  "seoTitle": "軽自動車税の延滞金だけ請求されたとき。後日納付書と軽JNKSの見方。",
+  "seoDescription": "軽自動車税の本税を払った後に延滞金だけ請求されたとき、後日納付書が届く理由、1,000円未満の扱い、軽JNKSと車検用納税証明への影響を整理します。",
+  "summary": "軽自動車税の本税を払った後に延滞金だけ請求されたときに、後日納付書が届く理由、1,000円未満の扱い、軽JNKSと車検用納税証明への影響を整理する実務ガイドです。",
+  "readMinutes": 8,
+  "status": "published",
+  "id": "guide:kei-tax-late-fee-only-guide",
+  "titleJa": "軽自動車税の延滞金だけ請求されたとき。後日納付書、軽JNKS、納税証明を整理する。",
+  "primaryQuery": "軽自動車税 延滞金だけ",
+  "updateReason": "税クラスタ拡張。督促状・催告書・払い忘れ記事から派生する「延滞金だけ後から請求された」検索意図を独立化。",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "名義変更・必要書類",
+      "href": "/guide/hub-paperwork"
+    },
+    {
+      "label": "軽自動車税の延滞金だけ請求されたとき。後日納付書、軽JNKS、納税証明を整理する。"
+    }
+  ],
+  "keyPoints": [
+    "軽自動車税は市区町村税です。延滞金だけの納付書が届いたら、まず課税した自治体の税窓口を確認します。",
+    "納期限後に払うと、支払日で延滞金が確定し、後から差額延滞金や延滞金納付書が届くことがあります。",
+    "軽自動車税の延滞金は、2026年中は納期限後1か月以内が年2.8％、1か月経過後が年9.1％と案内する自治体があります。",
+    "延滞金が1,000円未満なら加算されない扱いが基本ですが、届いた納付書に印字がある場合は自治体へ確認します。",
+    "督促状や再発行納付書で払った場合、車検用納税証明が付かず、軽JNKS反映待ちや紙証明の取得が必要になることがあります。"
+  ],
+  "checkpoints": [
+    "本税をいつ、どの納付書で払ったか分かるか",
+    "後日届いた紙が延滞金だけなのか、督促・催告の続きなのか",
+    "車検予定日が近く、軽JNKS反映待ちにならないか",
+    "督促状や再発行納付書で払ったため、車検用証明書が付いていないか",
+    "軽の名義変更や住所変更直後で、過去未納の確認が必要になっていないか"
+  ],
+  "faq": [
+    {
+      "question": "軽自動車税を払ったのに、延滞金だけの納付書が届きました。なぜですか。",
+      "answer": "納期限後に本税を払った場合、支払日で延滞金が確定し、後日、延滞金だけの納付書が届くことがあります。まず本税の支払日と届いた紙の対象年度を確認します。"
+    },
+    {
+      "question": "軽自動車税の延滞金は1,000円未満なら不要ですか。",
+      "answer": "延滞金が1,000円未満なら加算されない扱いが基本です。ただし、納付書が届いている場合は、金額や対象年度を自治体に確認してから判断します。"
+    },
+    {
+      "question": "軽自動車税の本税を督促状で払いました。延滞金だけ後から来ますか。",
+      "answer": "督促状や期限後の納付では、支払日までの延滞金が後から確定し、差額延滞金の納付書が送られることがあります。"
+    },
+    {
+      "question": "延滞金だけ残ると軽JNKSで車検確認できませんか。",
+      "answer": "過去の未納がある場合や納付直後は、軽JNKSで確認できないことがあります。車検が近い場合は、市区町村で完納確認と紙の車検用納税証明の要否を確認します。"
+    },
+    {
+      "question": "督促状や再発行納付書で払った場合、納税証明書は付いていますか。",
+      "answer": "自治体によっては、督促状や再発行納付書で払った場合に車検用納税証明書が付いていないと案内しています。必要なら窓口で交付を受けます。"
+    },
+    {
+      "question": "延滞金だけ払えないときはどこに相談しますか。",
+      "answer": "軽自動車税は市区町村税なので、課税した自治体の納税課や収納担当が相談先です。放置せず、支払える時期や車検予定日を伝えます。"
+    }
+  ],
+  "actionBox": {
+    "title": "軽は自治体と車検日を先に固定する",
+    "body": "延滞金だけの紙が来たら、課税した市区町村、本税の支払日、車検予定日を並べて確認してください。軽JNKSで確認できるか、紙証明が要るかまで同時に見ます。",
+    "actions": [
+      {
+        "label": "督促状から来た人は、前段の流れを確認する。",
+        "href": "/guide/kei-tax-demand-letter-guide"
+      },
+      {
+        "label": "車検用証明が必要な人は、再発行の考え方を見る。",
+        "href": "/guide/kei-tax-certificate-reissue-guide"
+      }
+    ]
+  },
+  "sources": [
+    "https://www.city.nerima.tokyo.jp/kurashi/zei/nofu/okure/06613381120141224.html",
+    "https://www.city.tama.lg.jp/kurashi/zei/nouzei/1001801.html",
+    "https://www.city.setagaya.lg.jp/02053/255.html",
+    "https://www.city.edogawa.tokyo.jp/e014/kurashi/zeikin/juminzei/osamekata/osamenai/index.html",
+    "https://www.city.kuki.lg.jp/faq/kurashi/faq_zeikin/1006677/1002406.html",
+    "https://www.city.shibuya.tokyo.jp/kurashi/kobai/keiji/syomei.html",
+    "https://www.city.hitachinaka.lg.jp/kurashi/zeikin/1004319/1004322.html",
+    "https://www.city.tokyo-nakano.lg.jp/kurashi/zeikin/keijidosyazei/keijidosyazei.html",
+    "https://www.city.taito.lg.jp/kurashi/zeikin/zeikin/nozei/madoguchi.html",
+    "https://www.city.koto.lg.jp/060601/kurashi/zekin/nofu/5128.html"
+  ],
+  "detailSections": [
+    {
+      "id": "conclusion",
+      "title": "先に結論｜軽は「本税を払った後に確定した延滞金」かを先に見る",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車税の本税を払ったあとに延滞金だけの納付書が届いた場合、まず見るのは、本税を納期限後に払っていないかです。軽自動車税は市区町村税なので、届いた紙の発行元は市区町村になります。軽自動車検査協会に聞く前に、課税した自治体、本税の支払日、延滞金の対象年度を確認します。"
+        },
+        {
+          "type": "decisionCards",
+          "cards": [
+            {
+              "title": "納期限後に本税を払った",
+              "badge": "後日確定",
+              "body": "納付日で延滞金が確定し、後から延滞金納付書が届くことがあります。",
+              "items": [
+                "本税の支払日を見る",
+                "対象年度を見る",
+                "市区町村の発行元を確認する"
+              ]
+            },
+            {
+              "title": "督促状や再発行納付書で払った",
+              "badge": "証明注意",
+              "body": "車検用納税証明が付いていないことがあり、別で証明を取る必要が出ます。",
+              "items": [
+                "領収印を見る",
+                "証明欄の有無を見る",
+                "軽JNKS反映を確認する"
+              ]
+            },
+            {
+              "title": "車検が近い",
+              "badge": "軽JNKS",
+              "body": "納付直後や過去未納がある場合は、軽JNKSで確認できないことがあります。",
+              "items": [
+                "車検日を伝える",
+                "紙証明が必要か聞く",
+                "延滞金まで完納する"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "軽は市区町村税",
+          "body": "軽自動車税の延滞金だけの紙は、市区町村の税窓口で確認します。名義変更や検査の手続き窓口と、税の確認先を混ぜないことが大切です。"
+        }
+      ]
+    },
+    {
+      "id": "late-fee",
+      "title": "延滞金の仕組み｜納付日までの日数で決まり、後日納付書になることがある",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車税は、納期限までに納めなかった場合、納期限の翌日から実際に納めた日までの日数に応じて延滞金が加算されます。2026年中の自治体案内では、納期限後1か月以内は年2.8％、1か月経過後は年9.1％という率が示されています。納付日で額が確定するため、先に本税だけ払ってから延滞金納付書が届く流れが起きます。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "状況",
+            "起きること",
+            "確認先"
+          ],
+          "rows": [
+            [
+              "納期限後に本税を払った",
+              "支払日までの延滞金が後で確定する",
+              "課税した市区町村"
+            ],
+            [
+              "督促状に「延滞金要す」とある",
+              "納付日で確定し、1,000円を超えれば後日納付書になることがある",
+              "収納担当や納税課"
+            ],
+            [
+              "延滞金が1,000円未満",
+              "加算されない扱いが基本",
+              "届いた紙がないか確認する"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "延滞金は、納付日が遅れるほど増えやすくなります。",
+            "ただし、軽の税額では短期間なら1,000円未満で加算されないこともあります。",
+            "年によって率が変わるため、自治体の最新案内を基準にします。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "after-slip",
+      "title": "後日納付書が届いたとき｜差額延滞金か、まだ本税が残っているかを分ける",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "練馬区は、期限後の納付で延滞金が発生した場合、後日に差額延滞金納付書を送ると案内しています。多摩市も、延滞金は納付した日で金額が確定し、確定した延滞金が1,000円を超える場合は後日延滞金納付書が届くと案内しています。つまり、軽で「本税は払ったのにまた紙が来た」という場面は、差額延滞金の可能性があります。"
+        },
+        {
+          "type": "flow",
+          "steps": [
+            {
+              "title": "本税の領収日を確認する",
+              "body": "納期限後の支払いなら、延滞金だけ後から来る可能性があります。"
+            },
+            {
+              "title": "紙のタイトルと対象年度を見る",
+              "body": "差額延滞金なのか、本税を含む督促なのかを見分けます。"
+            },
+            {
+              "title": "金額が1,000円以上かを見る",
+              "body": "延滞金が1,000円未満なら加算されない扱いが基本ですが、紙が届いていれば確認します。"
+            },
+            {
+              "title": "不明なら自治体へ確認する",
+              "body": "軽自動車税は市区町村税なので、課税した自治体の収納担当へ聞きます。"
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "本税の二重払いとは限らない",
+          "body": "延滞金だけの納付書は、本税を二重に請求している紙ではなく、本税を遅れて払ったことで後から確定した差額を請求する紙であることがあります。"
+        }
+      ]
+    },
+    {
+      "id": "payment-method",
+      "title": "支払い方｜期限後はコンビニ・スマホが使えない自治体もある",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車税は自治体ごとに納付書の扱いが分かれます。ひたちなか市は、納期限後でも金融機関や収税課窓口なら納付できる一方、コンビニやスマホでの納付はできず、希望する場合は納付書再発行が必要と案内しています。延滞金だけの紙も、期限やバーコード、eL-QRの表示を先に確認した方が安全です。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "納付方法",
+            "期限後の注意",
+            "車検が近いとき"
+          ],
+          "rows": [
+            [
+              "金融機関・自治体窓口",
+              "期限後でも扱えることがある",
+              "領収印や証明発行の扱いを聞きやすい"
+            ],
+            [
+              "コンビニ",
+              "納付書の期限やバーコードで使えないことがある",
+              "使えない場合は再発行や窓口へ切り替える"
+            ],
+            [
+              "スマホ決済・eL-QR",
+              "自治体や紙の表示で扱いが分かれる",
+              "領収証が出ない場合、紙証明の要否を確認する"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "期限後は、便利な支払い方法ほど使える条件を先に見る必要があります。",
+            "延滞金だけの紙は、普通の納税通知書と同じ扱いとは限りません。",
+            "車検が近い人は、支払い方法より証明の出し方を優先します。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inspection",
+      "title": "軽JNKSと車検｜延滞金を含む未納や納付直後は紙証明が必要になることがある",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽JNKSにより車検時の紙の納税証明書は原則不要になっていますが、納付直後、中古車購入直後、引っ越し直後、過去の未納がある場合などは紙の提示が必要になることがあります。久喜市は、督促状や再発行納付書で納付した場合は車検用納税証明書が付いていないため、窓口で交付を受けるよう案内しています。渋谷区も、過去にさかのぼり延滞金を含む滞納がない場合のみ証明書を発行できると案内しています。"
+        },
+        {
+          "type": "caseStudy",
+          "cases": [
+            {
+              "title": "ケース1｜延滞金だけを今日払って、数日後に車検",
+              "intro": "軽JNKS反映が間に合わない可能性があります。",
+              "rows": [
+                {
+                  "label": "まずやること",
+                  "value": "市区町村へ、紙の車検用納税証明が必要か確認する"
+                },
+                {
+                  "label": "見落としやすい点",
+                  "value": "オンライン納付では領収証が出ないことがあります"
+                }
+              ]
+            },
+            {
+              "title": "ケース2｜督促状や再発行納付書で払った",
+              "intro": "納付書の右側に車検用証明が付いていないことがあります。",
+              "rows": [
+                {
+                  "label": "まずやること",
+                  "value": "領収印を持って窓口で証明発行できるか確認する"
+                },
+                {
+                  "label": "見落としやすい点",
+                  "value": "軽JNKSだけで済むと思っても、反映待ちがあります"
+                }
+              ]
+            },
+            {
+              "title": "ケース3｜過去分の延滞金が残っていた",
+              "intro": "過去未納がある車は紙証明や軽JNKSで詰まりやすくなります。",
+              "rows": [
+                {
+                  "label": "まずやること",
+                  "value": "過年度分を含めて未納がないか確認する"
+                },
+                {
+                  "label": "見落としやすい点",
+                  "value": "本税ではなく延滞金だけが残っていることがあります"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "not-pay",
+      "title": "払えない・納得できないとき｜市区町村の収納担当へ、支払日と車検日を伝える",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "延滞金だけだから後回しでよい、という見方は危険です。軽自動車税は市区町村税なので、延滞金の確認や納税相談は課税した自治体へ行います。金額に納得できないときは、本税の支払日、納付書番号、対象年度を伝えて照会します。払えない事情があるなら、車検予定日も一緒に伝えると、証明や反映の話まで進めやすくなります。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "本税の領収証や決済履歴を用意する",
+            "延滞金納付書の番号と発行日を控える",
+            "車検予定日が近いなら必ず伝える",
+            "名義変更直後や引っ越し直後なら、その時期も伝える"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "問い合わせの軸",
+          "body": "「軽自動車税の本税は何月何日に払いました。延滞金だけの納付書が来ましたが、軽JNKSや車検用納税証明に影響するか確認したいです」と伝えると整理しやすくなります。"
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "title": "最後に整理｜軽は「自治体」「納付日」「軽JNKS」の3点で見る",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車税の延滞金だけが後から来たときは、市区町村税として確認先を固定し、本税の納付日で延滞金が後から確定したのかを見ます。次に、納付書がそのまま使えるか、車検が近いなら軽JNKSや紙証明が必要かを確認します。この順番なら、延滞金だけの紙に振り回されず、車検前の詰まりも減らせます。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "軽の延滞金は課税自治体へ確認する",
+            "本税を納期限後に払ったなら、延滞金だけ後から来ることがある",
+            "1,000円未満なら加算されない扱いが基本だが、紙が来たら確認する",
+            "車検が近いなら、軽JNKS反映と紙証明を同時に見る"
+          ]
+        }
+      ]
+    }
+  ]
+}

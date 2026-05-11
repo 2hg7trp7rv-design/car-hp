@@ -1,0 +1,14 @@
+{
+  "siteName": "CAR BOUTIQUE JOURNAL",
+  "siteUrl": "https://carboutiquejournal.com",
+  "defaultLocale": "ja-JP",
+  "defaultOgImage": "/images/og/default.jpg",
+  "publisherName": "CAR BOUTIQUE JOURNAL",
+  "publisherLogoUrl": "/images/brand/logo-square.png",
+  "twitterCard": "summary_large_image",
+  "twitterSite": "@carboutique",
+  "brandTone": {
+    "avoidHardSell": true,
+    "heritageNoAffiliate": true
+  }
+}

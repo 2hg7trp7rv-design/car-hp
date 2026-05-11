@@ -1,0 +1,123 @@
+{
+  "slug": "car-tax-purchase-timing-guide",
+  "createdAt": "2026-04-23",
+  "competitorCount": 30,
+  "queries": [
+    "自動車税 買った年 いつから",
+    "自動車税 新規登録 月割 中古車 購入",
+    "自動車税 県外移転 新所有者 翌年度から"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.pref.miyagi.jp/soshiki/zeimu/jdousya.html"
+    },
+    {
+      "url": "https://www.pref.gifu.lg.jp/page/5579.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/234.html"
+    },
+    {
+      "url": "https://www.pref.tokushima.lg.jp/FAQ/docs/00035842/"
+    },
+    {
+      "url": "https://www.pref.toyama.jp/1107/kurashi/seikatsu/zeikin/kenzei/m01-00/m01-20.html"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/257752.htm"
+    },
+    {
+      "url": "https://www.pref.miyagi.jp/soshiki/zeimu/a.html"
+    },
+    {
+      "url": "https://www.pref.nagasaki.lg.jp/bunrui/kurashi-kankyo/zeikin/kenzeijoho/kenzeisyurui/zidousyazeisyubetuwari/"
+    },
+    {
+      "url": "https://www.pref.saitama.lg.jp/b0216/jz-jizei/index.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidousyazei.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidoushayokuaru.html"
+    },
+    {
+      "url": "https://www.pref.kagawa.lg.jp/zeimu/qa/jidosha/jidosha_index.html"
+    },
+    {
+      "url": "https://www.pref.yamanashi.jp/zeimu/qa/jidousha_qa.html"
+    },
+    {
+      "url": "https://www.pref.tochigi.lg.jp/b07/life/zeikin/zeikin/car_qa.html"
+    },
+    {
+      "url": "https://www.pref.mie.lg.jp/ZIZEI/HP/24969025045.htm"
+    },
+    {
+      "url": "https://www.pref.kumamoto.jp/soshiki/17/50805.html"
+    },
+    {
+      "url": "https://www.pref.ehime.jp/page/1658.html"
+    },
+    {
+      "url": "https://www.pref.gunma.jp/page/19693.html"
+    },
+    {
+      "url": "https://www.pref.fukuoka.lg.jp/contents/jidoushajuusho.html"
+    },
+    {
+      "url": "https://www.pref.ibaraki.jp/somu/zeimu/fuka/jidousha/sofusaki.html"
+    },
+    {
+      "url": "https://www.pref.akita.lg.jp/pages/archive/77190"
+    },
+    {
+      "url": "https://web.pref.hyogo.lg.jp/kk22/pa04_000000021.html"
+    },
+    {
+      "url": "https://www.pref.iwate.jp/kensei/zei/gaiyou/jidousha/1011204.html"
+    },
+    {
+      "url": "https://www.pref.niigata.lg.jp/site/zeimu/20210820syuzei-jidosyazei-jusyohenko.html"
+    },
+    {
+      "url": "https://www.pref.ishikawa.lg.jp/zei/qa/a11.html"
+    },
+    {
+      "url": "https://www.pref.kochi.lg.jp/doc/2019092700154/"
+    },
+    {
+      "url": "https://www.pref.kochi.lg.jp/doc/2024122600144/"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/169.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/170.html"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a001/b014/index.html"
+    }
+  ],
+  "commonTakeaways": [
+    "公式案内は、普通車の自動車税を4月1日時点の所有者または使用者に1年分課税すると整理している。",
+    "年度途中の新規登録は登録翌月から月割で課税する説明が多い。",
+    "年度途中の移転登録は、同県内でも県外移転でも、その年度の納税義務が4月1日時点の側に残る案内が多い。",
+    "車検が近いときは、4月1日時点の都道府県で納付確認を見る案内が目立つ。"
+  ],
+  "gapsFound": [
+    "新規登録と移転登録を同じ「買った」文脈で整理したページが少ない。",
+    "課税済み中古車と一時抹消明け中古車の違いが弱いページが多い。",
+    "車検が近い普通車で、どこの都道府県の納付確認を見るかまで書いたページが少ない。"
+  ],
+  "changesApplied": [
+    "買った年の普通車を「新規登録」「中古車の移転登録」「県外移転」で分けて整理した。",
+    "その年度に県税へ払う場面と、売買条件の精算だけの場面を切り分けた。",
+    "車検が近いときの納付確認先まで本文に入れた。"
+  ],
+  "qualityChecks": [
+    "公式案内中心で構成",
+    "普通車のみ扱う",
+    "購入後のその年度の課税タイミングに限定"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "hubs": [
+    {
+      "id": "hub-usedcar",
+      "slug": "hub-usedcar",
+      "title": "中古車の探し方",
+      "summary": "相場・個体差・チェックの型。迷いを減らすためのHUB。",
+      "internalOnly": true,
+      "priority": 100
+    },
+    {
+      "id": "hub-loan",
+      "slug": "hub-loan",
+      "title": "ローンと支払い設計",
+      "summary": "金利・残債・乗換え。判断の“順序”を整えるHUB。",
+      "internalOnly": true,
+      "priority": 90
+    },
+    {
+      "id": "hub-sell",
+      "slug": "hub-sell",
+      "title": "売却と乗り換え",
+      "summary": "相場の掴み方・査定の出し方・手放し方の型をまとめるHUB。",
+      "internalOnly": true,
+      "priority": 95
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+CBJ Masterpiece Wave5 - Notes
+
+Goal
+- Tighten the “one-work” consistency further by removing the last brand mismatches in content metadata,
+  and refining interaction styling so Stage stays silent while Porcelain keeps usability.
+
+What was missing / fixed
+1) Remaining old-brand strings inside content JSON (SEO titles / image credits)
+   - GUIDE seoTitle fields contained “CAR BOUTIQUE GUIDE” which could leak into page titles.
+   - Replaced with “GUIDE” to keep titles consistent with the sitewide brand template.
+   - Heritage heroImageCredit “Photo: CAR BOUTIQUE (archive)” updated to “CAR BOUTIQUE JOURNAL (archive)”.
+
+2) Link hover behavior: Stage vs Porcelain
+   - Global hover underline was visually noisy on Stage.
+   - Stage: hover = color shift only (no underline).
+   - Porcelain panels: hover = underline maintained for usability.
+
+3) Small housekeeping
+   - README / tsconfig display updated to CAR BOUTIQUE JOURNAL.
+
+Validation (local scripts)
+- scripts/guardrails.mjs: PASS
+- scripts/content-audit.mjs: PASS
+- scripts/generate-sitemaps.mjs: PASS
+- scripts/generate-robots.mjs + scripts/verify-robots.mjs: PASS
