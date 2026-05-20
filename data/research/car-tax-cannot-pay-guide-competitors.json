@@ -1,0 +1,123 @@
+{
+  "slug": "car-tax-cannot-pay-guide",
+  "createdAt": "2026-04-24",
+  "competitorCount": 30,
+  "queries": [
+    "自動車税 払えない",
+    "自動車税 分割納付 相談",
+    "自動車税 徴収猶予 県税"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.pref.fukuoka.lg.jp/contents/yuyo.html"
+    },
+    {
+      "url": "https://www.pref.ibaraki.jp/somu/zeimu/kikaku/qa/nouzeiqa15.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/465571.html"
+    },
+    {
+      "url": "https://www.pref.hiroshima.lg.jp/uploaded/attachment/616870.pdf"
+    },
+    {
+      "url": "https://www.pref.yamagata.jp/documents/1281/r6_kuraken25.pdf"
+    },
+    {
+      "url": "https://www.pref.miyazaki.lg.jp/documents/22428/22428_20200907114335-1.pdf"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/308373.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/422479.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/entaikin.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidoushayokuaru.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o070050/koho/kohoportal/202604/tp2.html"
+    },
+    {
+      "url": "https://www.pref.hiroshima.lg.jp/site/zei/1170294173427.html"
+    },
+    {
+      "url": "https://www.pref.hiroshima.lg.jp/site/zei/1237271840415.html"
+    },
+    {
+      "url": "https://www.pref.saitama.lg.jp/b0216/jz-jizei/index.html"
+    },
+    {
+      "url": "https://www.pref.gifu.lg.jp/page/5579.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/169.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/170.html"
+    },
+    {
+      "url": "https://www.pref.kagawa.lg.jp/zeimu/zeikin/jidosha.html"
+    },
+    {
+      "url": "https://www.pref.kagawa.lg.jp/zeimu/zeikin/q_and_a/qa013.html"
+    },
+    {
+      "url": "https://www.pref.kagawa.lg.jp/zeimu/zeikin/q_and_a/qa016.html"
+    },
+    {
+      "url": "https://www.pref.miyagi.jp/soshiki/zeimu/jdousya.html"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a001/b014/index.html"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/257752.htm"
+    },
+    {
+      "url": "https://www.pref.niigata.lg.jp/site/zeimu/20210820syuzei-jidosyazei-jusyohenko.html"
+    },
+    {
+      "url": "https://www.pref.tochigi.lg.jp/b07/life/zeikin/zeikin/car_qa.html"
+    },
+    {
+      "url": "https://www.pref.yamanashi.jp/zeimu/qa/jidousha_qa.html"
+    },
+    {
+      "url": "https://www.pref.kumamoto.jp/soshiki/17/50805.html"
+    },
+    {
+      "url": "https://www.pref.ehime.jp/page/1658.html"
+    },
+    {
+      "url": "https://www.eltax.lta.go.jp/special/sonota-shinsei/"
+    },
+    {
+      "url": "https://www.eltax.lta.go.jp/news/03047"
+    }
+  ],
+  "commonTakeaways": [
+    "公式案内は、普通車の自動車税で一括納付が難しいときの入口を県税事務所や県民局税務部に置いている。",
+    "猶予制度は徴収猶予と換価の猶予に分けて説明するページが多い。",
+    "猶予期間は原則1年以内、延滞金の全部または一部免除、差押えや換価の猶予をセットで案内するページが目立つ。",
+    "車検直前の人向けに、納付相談と納税確認を分けて説明しているページは少ない。"
+  ],
+  "gapsFound": [
+    "県税窓口へ何を持って相談するかまで具体的に書いたページが少ない。",
+    "「払い忘れた」と「払えない」を切り分けていないページが多い。",
+    "車検が近い人の動き方まで一続きで整理したページが少ない。"
+  ],
+  "changesApplied": [
+    "普通車を県税相談へ戻し、県税事務所が入口だと最初に固定した。",
+    "徴収猶予と換価の猶予をざっくり比較できる表を入れた。",
+    "車検直前のケースを別立てで整理し、納付確認を別に見る流れを明記した。"
+  ],
+  "qualityChecks": [
+    "公式案内中心で構成",
+    "普通車のみ扱う",
+    "分割納付の可否を断定しない"
+  ]
+}

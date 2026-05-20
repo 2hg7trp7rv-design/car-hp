@@ -1,0 +1,124 @@
+{
+  "slug": "car-tax-collection-notice-guide",
+  "createdAt": "2026-04-24",
+  "competitorCount": 30,
+  "queries": [
+    "自動車税 催告書",
+    "自動車税 催告書 払った",
+    "自動車税 催告書 どうする"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.pref.miyagi.jp/soshiki/zeimu/faq-nouzei.html"
+    },
+    {
+      "url": "https://www.pref.miyagi.jp/soshiki/zeimu/faq-kenzei.html"
+    },
+    {
+      "url": "https://www.pref.miyagi.jp/soshiki/zeimu/index-payeasy.html"
+    },
+    {
+      "url": "https://www.pref.miyagi.jp/soshiki/zeimu/convenience.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/tainouseiri.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/entaikin.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidoushayokuaru.html"
+    },
+    {
+      "url": "https://www.pref.fukuoka.lg.jp/contents/yuyo.html"
+    },
+    {
+      "url": "https://www.pref.ibaraki.jp/somu/zeimu/kikaku/qa/nouzeiqa15.html"
+    },
+    {
+      "url": "https://www.pref.kagoshima.jp/ab07/2025tokusoku.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/169.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/170.html"
+    },
+    {
+      "url": "https://www.pref.saitama.lg.jp/b0216/jz-jizei/index.html"
+    },
+    {
+      "url": "https://www.pref.gifu.lg.jp/page/5579.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/422479.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/465571.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/308373.html"
+    },
+    {
+      "url": "https://www.pref.hiroshima.lg.jp/uploaded/attachment/616870.pdf"
+    },
+    {
+      "url": "https://www.pref.hiroshima.lg.jp/site/zei/1237271840415.html"
+    },
+    {
+      "url": "https://www.pref.hiroshima.lg.jp/site/zei/1170294173427.html"
+    },
+    {
+      "url": "https://www.pref.hiroshima.lg.jp/site/zei/jidoshazeimatome.html"
+    },
+    {
+      "url": "https://www.pref.kagawa.lg.jp/zeimu/zeikin/jidosha.html"
+    },
+    {
+      "url": "https://www.pref.tochigi.lg.jp/b07/life/zeikin/zeikin/car_qa.html"
+    },
+    {
+      "url": "https://www.pref.yamanashi.jp/zeimu/qa/jidousha_qa.html"
+    },
+    {
+      "url": "https://www.pref.ehime.jp/page/1658.html"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/257752.htm"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a001/b014/index.html"
+    },
+    {
+      "url": "https://www.payment.eltax.lta.go.jp/pbuser?id=kb_article_view&sysparm_article=KB0010180"
+    },
+    {
+      "url": "https://www.eltax.lta.go.jp/special/sonota-shinsei/"
+    },
+    {
+      "url": "https://www.city.osaka.lg.jp/zaisei/page/0000649247.html"
+    }
+  ],
+  "commonTakeaways": [
+    "公式案内は、督促のあとも未納が続くと納税の催告を行い、それでも完納されない場合は差押えなどの滞納処分に進む流れを示すものが多い。",
+    "催告書が届いても、収納反映の遅れによる行き違いが起こり得る点をFAQで明記する県がある。",
+    "催告書や督促状でもPay-easyや窓口納付に対応する案内がある一方、期限切れ後は再発行や窓口確認に切り替わる例がある。",
+    "払えない事情がある人向けに、徴収猶予や納税相談への導線を別ページで案内する自治体が多い。"
+  ],
+  "gapsFound": [
+    "催告書を受け取った日に何を優先確認するかを一続きで整理したページが少ない。",
+    "行き違い、期限切れ納付書、相談の要否が別々のページに散っている。",
+    "車検が近い人向けの動き方まで一気通貫で説明したページが少ない。"
+  ],
+  "changesApplied": [
+    "普通車を県税の催告として整理し、「もう払った」「まだ未納」「払えない」の3分岐を最初に置いた。",
+    "催告書の紙で払えるかと、期限切れ後の再発行を分けて整理した。",
+    "車検が近い人向けに、納付確認と紙証明の見方を別立てで入れた。"
+  ],
+  "qualityChecks": [
+    "公式案内中心で構成",
+    "普通車のみ扱う",
+    "催告書と督促状の違いを誇張しない",
+    "差押え前の相談導線を残す"
+  ]
+}

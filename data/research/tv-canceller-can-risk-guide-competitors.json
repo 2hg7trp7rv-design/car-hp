@@ -1,0 +1,51 @@
+{
+  "slug": "tv-canceller-can-risk-guide",
+  "createdAt": "2026-05-20",
+  "competitorCount": 10,
+  "queries": [
+    "TVキャンセラー 危険性",
+    "TVキャンセラー 保証",
+    "中古車 TVキャンセラー 装着歴"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.iso.org/standard/86384.html",
+      "notes": "CANの標準規格の基礎。"
+    },
+    {
+      "url": "https://www.iso.org/standard/67244.html",
+      "notes": "高速CANの基礎。"
+    },
+    {
+      "url": "https://www.bosch-mobility.com/en/solutions/vehicle-computer/central-gateway/",
+      "notes": "現代車のゲートウェイ構成。"
+    },
+    {
+      "url": "https://manual.toyota.jp/pdf/raize/raize_mm_202103.pdf",
+      "notes": "走行中制限のある純正マルチメディアの考え方。"
+    },
+    {
+      "url": "https://lexus.jp/models/lbx/features/equipment/",
+      "notes": "現代のインフォテインメント機能の連携性。"
+    }
+  ],
+  "commonTakeaways": [
+    "TVキャンセラーの便利さだけを説明する情報は多いが、通信の整合性や中古車装着歴まで掘る記事は少ない。",
+    "保証が必ず消えると断定する記事が多いが、実際には原因切り分けと判断の問題として整理する方が正確。",
+    "読者が必要なのは恐怖の強調ではなく、今の自分がどのフェーズにいるかを判断できる材料。"
+  ],
+  "gapsFound": [
+    "納車直後と中古車の論点を分けていない記事が多い。",
+    "物理型とコーディング型を同列に語り、違いが曖昧な記事が多い。"
+  ],
+  "changesApplied": [
+    "時系列の4ステップを入れ、症状が進む流れを可視化した。",
+    "状況別カードで、納車直後と中古車の違いを整理した。",
+    "整備工場へ見せるメモを追加し、読後の行動を明確にした。"
+  ],
+  "qualityChecks": [
+    "匿名取材を装わず、公開情報ベースで書いた。",
+    "保証失効や重大故障を断定しすぎない表現へ修正した。",
+    "図表と本文の役割が重複しないように構成した。"
+  ]
+}

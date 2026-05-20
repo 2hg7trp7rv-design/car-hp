@@ -1,0 +1,119 @@
+{
+  "id": "nissan-skyline-2000gtr-kpgc110",
+  "slug": "nissan-skyline-2000gtr-kpgc110",
+  "name": "Skyline GT-R KPGC110",
+  "maker": "Nissan",
+  "releaseYear": 1973,
+  "difficulty": "intermediate",
+  "bodyType": "coupe",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "nissan-gt-r-godzilla-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "Skyline GT-R KPGC110",
+  "summary": "短命ゆえに伝説化した世代。空白を含めてGT-R史を語る一台。",
+  "summaryLong": "Skyline GT-R KPGC110は、1973年に登場したNissanのcoupeで、FRとFront Inline-6を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+  "heroImage": "",
+  "mainImage": "",
+  "imageUrl": "",
+  "gallery": [],
+  "engine": "Front Inline-6",
+  "powerPs": 160,
+  "torqueNm": 177,
+  "transmission": "5MT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 6〜10 km/L",
+  "priceNew": "当時：200万〜250万円（参考）",
+  "priceUsed": "5000万〜1.6億円（相場変動）",
+  "strengths": [
+    "加速の太さとトラクション性能が高い",
+    "チューニング/補修パーツの情報量が多い",
+    "高速巡航でも安定感が高く、ロングツーリングに強い",
+    "コミュニティが大きく、相場/整備ノウハウが集まりやすい"
+  ],
+  "weaknesses": [
+    "足回りやブッシュ類のリフレッシュが前提",
+    "保険料や税金、消耗品が高めになりやすい",
+    "改造歴/履歴次第でリスクが大きく変わる"
+  ],
+  "troubleTrends": [
+    "タービン/配管・負圧ホースの劣化",
+    "4WD/駆動系オイル管理",
+    "電装（メーター/ハーネス）の経年"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：1800〜3000万円前後規模を想定できない場合は維持途中で資金計画が苦しくなりやすい車です。",
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "used-import-car-buying-guide"
+  ],
+  "relatedCarSlugs": [
+    "nissan-skyline-2000gtr-kpgc10",
+    "nissan-skyline-gtr-r32",
+    "nissan-skyline-gt-r-r34"
+  ],
+  "tags": [
+    "Nissan",
+    "coupe",
+    "クラシックスポーツ",
+    "FR",
+    "5MT",
+    "Front Inline-6",
+    "ネオクラシック",
+    "JDM",
+    "名車",
+    "GT-R"
+  ],
+  "relatedHeritageSlugs": [
+    "nissan-skyline-2000gtr-hakosuka-heritage",
+    "nissan-skyline-gt-r-lineage-heritage"
+  ],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：1200〜2000万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間80〜150万円"
+  },
+  "priceUsedYenRange": "5000万〜1.6億円（相場変動）",
+  "maintenanceCostYenPerYear": 300000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Skyline GT-R KPGC110。",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-05-17",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Skyline GT-R KPGC110",
+  "updateReason": "heritage-final-return-link-update",
+  "sources": [
+    "https://en.wikipedia.org/wiki/Nissan_Skyline",
+    "https://www.caranddriver.com/news/g71176003/best-of-nissan-heritage-collection-japan/"
+  ],
+  "body": "## 結論\n日産 スカイライン 2000GT-R KPGC110は、速さだけで評価する車ではありません。S20型直列6気筒を積んだ最後の初期GT-Rであり、販売台数が極端に少なく、レースで実績を重ねる前に時代が変わってしまった存在です。ハコスカGT-Rの後継でありながら、ケンメリGT-Rは神話の続編というより、途切れた系譜の象徴として読むべき車です。\n\n中古で見るなら、走行性能よりも真正性、個体の来歴、改造履歴、レストアの質が中心になります。現代のGT-Rのように速さを楽しむ車ではなく、GT-Rという名前が一度途切れる直前に何を残したのかを知るためのページです。\n\n## 向く人 / 向かない人\n### 向く人\n- ハコスカGT-RからR32 GT-Rまでの空白を理解したい人\n- S20搭載車の真正性や来歴を重視して読む人\n- 速さよりもGT-R系譜の意味を知りたい人\n\n### 向かない人\n- 現代的な速さや扱いやすさを求める人\n- 普段使いできる旧車スポーツを探している人\n- 書類やレストア履歴の確認を軽く考える人\n\n## 買う前のチェック\nKPGC110で最初に見るべきなのは、外観よりも車両の素性です。GT-R仕様への改造車、外装だけの再現車、部品の組み替えが混ざりやすいため、車台番号、エンジン、書類、過去の整備記録を確認する必要があります。\n\nハコスカGT-Rと同じS20を持つからといって、評価軸まで同じではありません。KPGC110は販売数が少なく、当時の競技実績も限られます。そのため、価値は走りの結果より、希少性とGT-Rの断絶を示す歴史性にあります。\n\n## 弱点・故障\n旧車として見るべき部分は多いです。ボディの錆、フロア、ピラー、サイドシル、足まわり取付部、燃料系、電装、内装部品の状態は必ず確認します。S20エンジンは専門性が高く、通常の旧車整備と同じ感覚では維持できません。\n\nまた、オリジナル部品の有無が価値に直結します。外装、内装、エンジン補機、足まわり、ホイール、メーターなどは、単に動くかどうかではなく、どこまで当時の姿を保っているかが重要です。\n\n## 維持費\n維持費は修理費よりも、正しい状態を維持する費用が重くなります。部品の入手、専門店への依頼、保管環境、旧車保険、レストア履歴の継続管理まで含めて考える必要があります。\n\n買った後に走らせるより、買う前の調査にお金と時間をかける車です。安い個体には理由があります。見た目がきれいでも、素性が曖昧なら避けるべきです。\n\n## 中古で狙うなら\n現実的な購入候補としては、専門店、履歴が明確な個体、長く所有されてきた車両を優先します。価格だけで選ぶ車ではありません。GT-R仕様、エンジン載せ替え、外装再現車を本物と同じ目線で見ないことが重要です。\n\nKPGC110を狙う人は、ハコスカGT-R、R32 GT-R、R34 GT-Rも同時に読むべきです。系譜の中でどこが連続し、どこが断絶しているかを見ると、この車の価値が数字ではなく文脈で理解できます。\n\n## 比較対象\n比較対象は、スカイライン2000GT-R KPGC10、R32 GT-R、R34 GT-Rです。KPGC10は実戦でGT-R像を作った車、KPGC110は短く終わった後継、R32は16年後にGT-Rを再定義した車です。\n\n現代の速さで選ぶならR32以降、旧車としての競技実績ならKPGC10、希少性と断絶の象徴を読むならKPGC110です。購入よりも理解の順番が大切な車です。\n\n## 関連リンク\nこの車は、ハコスカGT-R、スカイラインGT-R系譜、R32 GT-Rと一緒に読むことで意味が出ます。単独の名車としてではなく、GT-Rという名前が一度止まり、後に復活するまでの空白として整理します。\n\n## 関連するGT-Rの系譜\nこの車を単体で見るだけでは、GT-Rの役割は見えにくいです。ハコスカ、ケンメリ、R32、R33、R34、R35がそれぞれ違う方法で速さを作った流れを知ると、この世代の意味がはっきりします。\n\n## 関連するHERITAGE\nケンメリGT-Rは短命だからこそ、ハコスカから続いたS20世代の終点としてHERITAGE側と合わせて読む意味がある。\n",
+  "bestFor": [
+    "ハコスカGT-RとR32 GT-Rの間にある空白を理解したい人",
+    "S20搭載車の真正性や来歴を重視する人",
+    "速さよりGT-R系譜の歴史性を読みたい人"
+  ],
+  "notFor": [
+    "現代的な速さや扱いやすさを求める人",
+    "普段使いしやすい旧車スポーツを探している人",
+    "書類やオリジナル性確認を省きたい人"
+  ],
+  "maintenanceNotes": [
+    "車台番号、S20エンジン、書類、レストア履歴を必ず確認します。",
+    "錆、外装部品、内装部品、足まわり取付部の状態が価値に直結します。",
+    "GT-R仕様車や部品組み替え車を、本物と同じ前提で見ないことが重要です。"
+  ]
+}

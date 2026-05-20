@@ -1,0 +1,120 @@
+{
+  "id": "nissan-skyline-r32-super-hicas",
+  "slug": "nissan-skyline-r32-super-hicas",
+  "name": "Skyline (R32) Super HICAS",
+  "maker": "Nissan",
+  "releaseYear": 1991,
+  "difficulty": "advanced",
+  "bodyType": "sedan",
+  "segment": "スポーツセダン",
+  "heritageRefs": [],
+  "category": "",
+  "grade": "R32 (Super HICAS)",
+  "summary": "後輪舵でヨーを整える“落ち着いた速さ”。効いている個体ほど違和感が消える。",
+  "summaryLong": "スーパーHICASは、派手に曲げるというより向きの立ち上がりを整える仕組みです。効き方が滑らかだと、車が落ち着く。速さに落ち着きが出る。\n\nいま買う目線では、制御と足の整合がすべて。センサーや配線の補修痕、警告灯履歴、そしてブッシュ。ここが崩れると違和感が前に出る。\n\n“効いているほど分からない”という価値を、中古で拾えるかが勝負になります。",
+  "heroImage": "",
+  "mainImage": "",
+  "imageUrl": "",
+  "gallery": [],
+  "engine": "Front Inline-6 2.0/2.5 Turbo (RB系・仕様差)",
+  "powerPs": 180,
+  "torqueNm": 240,
+  "transmission": "5MT/AT（仕様差）",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 7〜13 km/L",
+  "priceNew": "当時: 200万〜500万円台（仕様差）",
+  "priceUsed": "150万〜900万円（相場変動）",
+  "strengths": [
+    "姿勢が整うと、FRらしい素直さが一段上がる。",
+    "高速域の落ち着きが増え、線がきれいになる。",
+    "世代としてのヘリテージ感があり、情報も多い。",
+    "足と整合が揃うと、走りが落ち着いて速い。"
+  ],
+  "weaknesses": [
+    "機構が死ぬと違和感が出る。症状の切り分けが難しい。",
+    "年式が古く、錆と劣化の影響が大きい。",
+    "改造個体の整合が崩れると不調が連鎖する。",
+    "部品と工賃が読みにくい。"
+  ],
+  "troubleTrends": [
+    "HICAS警告灯の履歴と診断記録は確認したいです。",
+    "配線の後付けや補修が雑だと電装トラブルが出やすいです。",
+    "リア周りのブッシュへたりは挙動に直結します。",
+    "下回り錆（特にサブフレーム周り）は要注意です。"
+  ],
+  "costImpression": "“効いているほど分からない”を維持するには整合が必要。履歴の透明度が価値。",
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "used-import-car-buying-guide"
+  ],
+  "relatedCarSlugs": [
+    "nissan-skyline-gtr-r32",
+    "nissan-skyline-gt-r-bcnr33-v-spec",
+    "nissan-skyline-gt-r-r34"
+  ],
+  "tags": [
+    "Nissan",
+    "Skyline",
+    "R32",
+    "Super HICAS",
+    "FR",
+    "1990s"
+  ],
+  "relatedHeritageSlugs": [
+    "nissan-skyline-gt-r-lineage-heritage",
+    "japan-software-performance-era-heritage"
+  ],
+  "intentTags": [
+    "hicas",
+    "handling",
+    "1990s",
+    "heritage",
+    "advanced"
+  ],
+  "purchasePriceSafe": "安全ライン：250〜480万円前後（錆と電装・足の整合重視）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間35〜85万円"
+  },
+  "maintenanceCostYenPerYear": 620000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Skyline (R32) Super HICAS。",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-05-17",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Nissan Skyline (R32) Super HICAS",
+  "updateReason": "R32 Super HICASの後輪操舵、維持、改造判断、関連導線を追記。",
+  "sources": [
+    "https://en.wikipedia.org/wiki/HICAS",
+    "https://en.wikipedia.org/wiki/Nissan_Skyline"
+  ],
+  "body": "## 結論\n日産 スカイライン R32 Super HICASは、GT-Rそのものではなく、R32時代の日産が後輪操舵で何を狙っていたかを知るための車です。Super HICASは駐車支援のための装備ではなく、高速域や旋回中の姿勢を整えるための後輪操舵システムでした。読むべきポイントは、R32 GT-Rの速さではなく、80年代末から90年代初頭の日産が電子制御でスポーツカーをどう変えようとしたかです。\n\n中古で見るなら、HICASが残っているか、キャンセルされているか、足まわりとの整合が取れているかが重要です。改造文化の中ではHICASキャンセルも珍しくありませんが、CBJではまず純正思想を理解したうえで判断します。\n\n## 向く人 / 向かない人\n### 向く人\n- R32世代の電子制御と操舵思想を知りたい人\n- GT-Rだけでなく通常スカイラインの技術背景を見たい人\n- HICAS付き個体を残すか、キャンセルするか判断したい人\n\n### 向かない人\n- 単純なFRの動きを求める人\n- 足まわりやアライメント調整を軽く考える人\n- 改造済み個体の履歴確認を省きたい人\n\n## 買う前のチェック\nR32 Super HICASで最初に見るのは、HICAS本体だけではありません。ラック、リンク、ブッシュ、センサー、油圧または制御系、アライメント、タイヤの摩耗、足まわり交換履歴をまとめて確認します。\n\nHICASが残っている個体は、純正としての動きが出ているかを見る必要があります。キャンセル済みの個体は、単に外しただけなのか、足まわり全体を組み直しているのかを確認します。どちらが正解かではなく、整合が取れているかが重要です。\n\n## 弱点・故障\n弱点は、後輪操舵システム単体よりも、古くなった足まわりと組み合わさったときの違和感です。ブッシュの劣化、アームのガタ、ステアリングラック、油圧系、アライメント不良があると、HICASの動きが不自然に感じられます。\n\nまた、チューニング車ではHICASキャンセルが入っていることがあります。キャンセル自体が悪いわけではありませんが、ロックバーや補正部品、アライメントの詰め方を見ないと、ただ不安定なだけの個体になります。\n\n## 維持費\n維持費は、エンジンよりも足まわりと電装の古さに出やすいです。HICAS関連部品、ブッシュ、ダンパー、タイヤ、アライメント調整をまとめて見る必要があります。部品供給が厳しい部分もあるため、修理できる店を先に探しておくべきです。\n\nR32 GT-Rほどの価格帯ではなくても、年式を考えれば旧車管理です。安く買って後から足まわりを直すより、最初から動きが自然な個体を選ぶ方が結果的に安く済むことがあります。\n\n## 中古で狙うなら\n中古で狙うなら、HICASの有無、キャンセル履歴、足まわり交換履歴、事故修復、錆、内装劣化を確認します。R32は人気が高く、見た目だけGT-R風に寄せた個体や、走り優先で純正機能が外された個体もあります。\n\n純正思想を味わいたいならHICASが正しく機能する個体、サーキットや改造前提ならキャンセル後の完成度を重視します。どちらも半端な個体を避けるのが重要です。\n\n## 比較対象\n比較対象は、R32 GT-R、R33 GT-R、R34 GT-R、そして三菱GTOのアクティブエアロやホンダ プレリュード4WSです。R32 Super HICASはパワーではなく、電子制御や四輪操舵の時代感で比較すると見え方が変わります。\n\nGT-Rを買う前に、R32世代の日産が何を考えていたかを知るページとして読むと、スカイラインGT-R系譜の理解が深くなります。\n\n## 関連リンク\nR32 Super HICASは、R32 GT-R、R33、R34だけでなく、日本のソフトウェア性能時代や1990年代スポーツカーの背景と一緒に読むべき車です。HICASの有無だけで判断せず、当時の電子制御の流れで見ると価値が分かります。",
+  "bestFor": [
+    "R32世代の日産電子制御を理解したい人",
+    "HICAS付き個体を残すか判断したい人",
+    "GT-R以外のスカイライン技術背景を知りたい人"
+  ],
+  "notFor": [
+    "単純なFRの動きを求める人",
+    "足まわりとアライメント調整を軽く考える人",
+    "改造履歴の確認を省きたい人"
+  ],
+  "maintenanceNotes": [
+    "HICAS本体だけでなく、ブッシュ、リンク、アライメント、タイヤ摩耗をセットで確認します。",
+    "キャンセル済み個体は、ロックバーや足まわり設定が適切かを見ます。",
+    "古い電子制御は診断できる整備先を先に確保するべきです。"
+  ]
+}

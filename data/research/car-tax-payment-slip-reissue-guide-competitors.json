@@ -1,0 +1,122 @@
+{
+  "slug": "car-tax-payment-slip-reissue-guide",
+  "createdAt": "2026-04-19",
+  "competitorCount": 30,
+  "queries": [
+    "自動車税 納付書 再発行",
+    "自動車税 納税通知書 紛失",
+    "自動車税 納期限過ぎた 納付書 再発行"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.pref.osaka.lg.jp/faq/o050040/faq_000356.html"
+    },
+    {
+      "url": "https://www.pref.aichi.jp/soshiki/zeimu/0000036716.html"
+    },
+    {
+      "url": "https://www.pref.fukui.lg.jp/doc/zeimu/zeimu03.html"
+    },
+    {
+      "url": "https://www.pref.fukushima.lg.jp/sec/01115d/zeimu11.html"
+    },
+    {
+      "url": "https://www.pref.aichi.jp/soshiki/zeimu/0000017937.html"
+    },
+    {
+      "url": "https://www.pref.kyoto.jp/zeimu/r7nouutsuu.html"
+    },
+    {
+      "url": "https://www.pref.hiroshima.lg.jp/site/zei/1237271840415.html"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/287705.htm"
+    },
+    {
+      "url": "https://web.pref.hyogo.lg.jp/kk22/smartphoneapp.html"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a004/001.html"
+    },
+    {
+      "url": "https://www.pref.kyoto.jp/zeimu/11600046.html"
+    },
+    {
+      "url": "https://www.pref.akita.lg.jp/pages/archive/77190"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/jidoushayokuaru.html"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a010/015.html"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a010/053.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/176.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/200.html"
+    },
+    {
+      "url": "https://www.pref.gifu.lg.jp/page/292459.html"
+    },
+    {
+      "url": "https://www.pref.niigata.lg.jp/site/zeimu/20210820syuzei-jidosyazei-jusyohenko.html"
+    },
+    {
+      "url": "https://www.pref.saitama.lg.jp/b0216/jz-jizei/index.html"
+    },
+    {
+      "url": "https://www.pref.yamaguchi.lg.jp/soshiki/5/12451.html"
+    },
+    {
+      "url": "https://www.pref.gunma.jp/page/135803.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/654642.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/329173.html"
+    },
+    {
+      "url": "https://www.pref.kagoshima.jp/ab07/faq/kurashi-kankyo/zei/faq_11.html"
+    },
+    {
+      "url": "https://www.pref.shimane.lg.jp/life/zei/ken/nozei/credit/faq.html"
+    },
+    {
+      "url": "https://www.pref.shimane.lg.jp/life/zei/ken/nozei/smartphone/faq.html"
+    },
+    {
+      "url": "https://www.pref.yamanashi.jp/kenzei-cb/jidosha_nozeikakunin.html"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/308737.htm"
+    },
+    {
+      "url": "https://www.payment.eltax.lta.go.jp/pbuser"
+    }
+  ],
+  "commonTakeaways": [
+    "県ごとに『再発行』『送付』『窓口でその場納付』『通知書自体は再発行しない』の書き方が分かれ、読者が止まりやすい。",
+    "納期限と取扱期限の違い、コンビニやアプリがいつまで使えるかが別ページに散っていることが多い。",
+    "納付書の再発行と納税証明書の再交付が混ざり、車検直前の読者が誤読しやすい。"
+  ],
+  "gapsFound": [
+    "県差があること自体は分かっても、読後に何を確認すればよいかまで落としていないページが多い。",
+    "eL-QRや地方税お支払サイトの説明はあっても、紙をなくした場面では結局番号が要ることまで明言されていない。"
+  ],
+  "changesApplied": [
+    "通知未着、紙の紛失、納税証明書の混同を最初に切り分けた。",
+    "県ごとの差を『意味』で読み替え、行動に落とし込んだ。",
+    "納期限後は取扱期限、再発行、延滞金の順で見る構成にした。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}

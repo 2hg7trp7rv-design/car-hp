@@ -1,0 +1,1 @@
+export { HeritageCinematicMotion } from "./HeritageCinematicMotion";

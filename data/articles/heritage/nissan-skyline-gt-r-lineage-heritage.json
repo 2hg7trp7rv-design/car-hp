@@ -1,0 +1,378 @@
+{
+  "id": "heritage_nissan_skyline_gtr_lineage",
+  "slug": "nissan-skyline-gt-r-lineage-heritage",
+  "type": "HERITAGE",
+  "status": "published",
+  "kind": "CAR",
+  "maker": "NISSAN",
+  "brandName": "Skyline GT-R",
+  "title": "スカイラインGT-Rの系譜。速さの作り方を変え続けた日産の象徴。",
+  "titleJa": "スカイラインGT-Rの系譜。速さの作り方を変え続けた日産の象徴。",
+  "seoTitle": "スカイラインGT-Rの系譜。速さの作り方を変え続けた日産の象徴。 | CAR BOUTIQUE JOURNAL",
+  "seoDescription": "ハコスカGT-RからR35まで。スカイラインGT-Rがレース、電子制御、四輪駆動、カルチャーの中でどう日産の象徴になったのかを辿る。",
+  "createdAt": "2026-02-02",
+  "publishedAt": "2026-02-02",
+  "updatedAt": "2026-05-17",
+  "heroTitle": "SKYLINE GT-R",
+  "heroCaption": "速さの作り方を変え続けた、日産の象徴。",
+  "heroImage": "",
+  "heroTone": null,
+  "highlights": [],
+  "sections": [
+    {
+      "id": "origin-1969",
+      "title": "1969 — 勝つために生まれたスカイライン",
+      "summary": "GT-Rの原点は、レースの心臓を持った市販車だった。",
+      "image": "/images/cbj/display-tags/heritage/japan-lineage-1.jpg",
+      "carSlugs": [
+        "nissan-skyline-2000gtr-kpgc10",
+        "nissan-skyline-2000gtr-kpgc110",
+        "nissan-skyline-gtr-r32",
+        "nissan-skyline-gtr-r33",
+        "nissan-skyline-gtr-r34",
+        "nissan-gtr-r35"
+      ],
+      "guideSlugs": [],
+      "columnSlugs": []
+    },
+    {
+      "id": "silence-1973",
+      "title": "1973 — ケンメリが残した短い余白",
+      "summary": "GT-Rの名前は、一度途切れたことで重くなった。",
+      "image": "/images/cbj/display-tags/heritage/japan-lineage-2.jpg",
+      "carSlugs": [
+        "nissan-skyline-2000gtr-kpgc10",
+        "nissan-skyline-2000gtr-kpgc110",
+        "nissan-skyline-gtr-r32",
+        "nissan-skyline-gtr-r33",
+        "nissan-skyline-gtr-r34",
+        "nissan-gtr-r35"
+      ],
+      "guideSlugs": [],
+      "columnSlugs": []
+    },
+    {
+      "id": "r32-1989",
+      "title": "1989 — R32が速さを作り直す",
+      "summary": "GT-Rは、電子制御と四輪駆動で復活した。",
+      "image": "/images/cbj/display-tags/heritage/japan-lineage-1.jpg",
+      "carSlugs": [
+        "nissan-skyline-2000gtr-kpgc10",
+        "nissan-skyline-2000gtr-kpgc110",
+        "nissan-skyline-gtr-r32",
+        "nissan-skyline-gtr-r33",
+        "nissan-skyline-gtr-r34",
+        "nissan-gtr-r35"
+      ],
+      "guideSlugs": [],
+      "columnSlugs": []
+    },
+    {
+      "id": "r33-r34",
+      "title": "R33とR34 — 速さを広げ、記号へ変える",
+      "summary": "GT-Rは、所有者だけの車ではなくなった。",
+      "image": "/images/cbj/display-tags/heritage/japan-lineage-2.jpg",
+      "carSlugs": [
+        "nissan-skyline-2000gtr-kpgc10",
+        "nissan-skyline-2000gtr-kpgc110",
+        "nissan-skyline-gtr-r32",
+        "nissan-skyline-gtr-r33",
+        "nissan-skyline-gtr-r34",
+        "nissan-gtr-r35"
+      ],
+      "guideSlugs": [],
+      "columnSlugs": []
+    },
+    {
+      "id": "r35-2007",
+      "title": "2007 — R35がスカイラインを離れる",
+      "summary": "GT-Rは、GT-Rだけで世界と向き合う車になった。",
+      "image": "/images/cbj/display-tags/heritage/japan-lineage-1.jpg",
+      "carSlugs": [
+        "nissan-skyline-2000gtr-kpgc10",
+        "nissan-skyline-2000gtr-kpgc110",
+        "nissan-skyline-gtr-r32",
+        "nissan-skyline-gtr-r33",
+        "nissan-skyline-gtr-r34",
+        "nissan-gtr-r35"
+      ],
+      "guideSlugs": [],
+      "columnSlugs": []
+    },
+    {
+      "id": "symbol",
+      "title": "なぜGT-Rは特別なのか",
+      "summary": "GT-Rは、日産が速さをどう考えてきたかを映す名前である。",
+      "image": "/images/cbj/display-tags/heritage/japan-lineage-2.jpg",
+      "carSlugs": [
+        "nissan-skyline-2000gtr-kpgc10",
+        "nissan-skyline-2000gtr-kpgc110",
+        "nissan-skyline-gtr-r32",
+        "nissan-skyline-gtr-r33",
+        "nissan-skyline-gtr-r34",
+        "nissan-gtr-r35"
+      ],
+      "guideSlugs": [],
+      "columnSlugs": []
+    }
+  ],
+  "body": "# SKYLINE GT-R\n\nGT-Rは、最初から電子制御の怪物だったわけではない。\n\n始まりは、スカイラインという実用車の中に生まれた、勝つための特別なグレードだった。\n\nセダンの姿を持ちながら、レースで勝つためのエンジンを積む。\n量産車の形をしていながら、週末のサーキットで名前を残す。\nその二面性が、GT-Rの原点である。\n\nGT-Rの歴史は、速さそのものの歴史ではない。\n速さの作り方が変わっていく歴史である。\n\nハコスカでは、軽さと高回転の直列6気筒で勝った。\nケンメリでは、時代に押し戻されるように短く途切れた。\nR32では、四輪駆動と電子制御を使い、グループAを支配する車になった。\nR33では、その速さをより大きく、安定したものへ広げた。\nR34では、GT-Rという名前がゲームや映像の中で世代を超える記号になった。\nR35では、スカイラインの名を離れ、GT-Rだけで世界と向き合う車になった。\n\nGT-Rが特別なのは、ひとつの世代だけが強かったからではない。\nスカイラインという日常の名前から生まれ、レースで鍛えられ、電子制御で再定義され、最後にはスカイラインから独立した。\nその全体が、GT-Rという名前を重くした。\n\n## 1. 1969 — 勝つために生まれたスカイライン\n\nGT-Rの物語は、1969年の初代スカイライン2000GT-Rから始まる。\n\nこの車は、当時の日産が「速いクーペ」を作りたかっただけの車ではない。\n背景には、プリンス自動車から続くスカイラインのレース活動があった。\nスカイラインは、もともと高級セダンとして生まれた名前である。\nそこにレースの記憶が重なり、GT-Rという特別な記号が生まれた。\n\n初代GT-Rに積まれたS20型エンジンは、レーシングカーR380の流れを思わせる直列6気筒DOHCだった。\nいまの感覚で見れば、160psという数字だけで驚くほどではない。\nしかし当時の国産車としては特別だった。\n\n大切なのは、数字よりも成り立ちである。\n\nGT-Rは、ただ速そうな見た目を持った車ではなかった。\nレースで勝つための心臓を、市販車のボディに入れた車だった。\nそこにGT-Rの性格が決まっている。\n\n最初のGT-Rは、豪華さで人を惹きつけたわけではない。\n快適さを広げるための車でもない。\n勝つために必要なものを載せ、余計なものを削ぎ落とした。\n\nスカイラインという日常的な名前の中に、急に競技の温度が入る。\nこの違和感が、GT-Rの始まりだった。\n\n### 初代GT-Rの意味\n\n| 要素 | 意味 |\n|---|---|\n| スカイライン | 実用車・セダンを起点にした名前 |\n| S20型直列6気筒DOHC | レースの思想を市販車へ持ち込んだ心臓 |\n| FR | 当時のスポーツセダンとして自然な駆動方式 |\n| レースでの活躍 | GT-Rという名前を最初に重くした理由 |\n\n> CARD / KPGC10\n> GT-Rは、最初から専用スーパースポーツとして生まれたわけではない。\n> スカイラインという日常の名前に、レースの心臓を入れたところから始まった。\n\n初代GT-Rが作ったのは、単なる速い車の記憶ではない。\n\n市販車であること。\nレースで勝つこと。\nその二つが同じ名前の中にあること。\n\nこの矛盾を抱えたまま、GT-Rは次の世代へ進む。\n\n## 2. 1973 — ケンメリが残した短い余白\n\n二代目GT-R、KPGC110型はいわゆるケンメリGT-Rとして知られている。\n\nただし、この世代はGT-Rの成功物語というより、途切れた物語として記憶されている。\n1973年という時代が大きかった。\n排出ガス規制、オイルショック、スポーツカーを取り巻く空気の変化。\n初代のようにレースで名前を積み上げる前に、ケンメリGT-Rは短い時間で市場から消えていく。\n\nそれでも、ケンメリGT-Rは無意味な世代ではない。\nむしろ、GT-Rという名前に「失われた時間」を作った。\n\nハコスカで強く始まった名前が、ケンメリで続かなかった。\nその断絶が、後の復活を大きく見せる。\n\nもしGT-Rが途切れずに続いていたら、R32の登場はここまで劇的にはならなかったかもしれない。\nケンメリは、勝利の章ではない。\nだが、GT-Rという名前が一度沈黙した章として重要である。\n\n### ケンメリGT-Rの位置づけ\n\n| 視点 | 内容 |\n|---|---|\n| 役割 | 初代GT-Rの後継として登場 |\n| 時代背景 | 排出ガス規制とオイルショックの影響を受けた |\n| 記憶 | 活躍よりも希少性と断絶で語られる |\n| 意味 | R32復活の重さを作った空白 |\n\n> CARD / KPGC110\n> ケンメリGT-Rは、勝利の記憶よりも「途切れたGT-R」として残った。\n> その空白が、後の復活を特別なものにした。\n\nGT-Rはここで長い沈黙に入る。\n次に名前が戻ってくるまで、約16年。\n\nそして1989年、GT-Rはまったく違う速さの作り方で帰ってくる。\n\n## 3. 1989 — R32が速さを作り直す\n\n1989年、R32スカイラインGT-Rが登場する。\n\nここでGT-Rは、原点回帰をしながら、同時に別物になった。\n\n直列6気筒。\nレースを見据えた開発。\nスカイラインの名を背負うこと。\nそこは初代とつながっている。\n\nしかし、速さの作り方は大きく変わった。\nR32が使ったのは、RB26DETT、アテーサE-TS、スーパーHICAS、そしてグループAを強く意識したパッケージだった。\nFRだけで力を受け止めるのではなく、四輪駆動と電子制御で路面をつかむ。\n\nGT-Rはここで、腕とエンジンだけの車から、システムで速さを作る車へ変わった。\n\nこの変化が大きい。\n\nR32は、懐かしさでGT-Rを復活させた車ではない。\n勝つために、当時の日産が持っていた技術を集中させた車だった。\n結果として、R32は国内外のレースや映像文化の中で、GT-Rの名を一気に現代へ引き戻した。\n\n### R32が変えたもの\n\n| 軸 | 内容 |\n|---|---|\n| エンジン | RB26DETTで高出力の土台を作った |\n| 駆動 | アテーサE-TSで四輪を使って加速する車になった |\n| 操舵感 | HICASによって高い速度域での安定性を狙った |\n| レース | グループAを強く意識した存在になった |\n| 名前 | GT-Rを現代の怪物として復活させた |\n\n> CARD / BNR32\n> R32は、GT-Rを懐古ではなく技術で復活させた。\n> ここでGT-Rは、電子制御と四輪駆動で速さを作る名前になった。\n\nR32で、GT-Rは完全に戻った。\nただし、それは初代のコピーではない。\n\nハコスカが軽さと高回転で勝った車なら、R32はシステムで勝った車だった。\nこの変化によって、GT-Rは次の時代の速さを背負う名前になる。\n\n## 4. R33とR34 — 速さを広げ、記号へ変える\n\nR33とR34は、R32の後を受けた世代である。\n\nこの二つを軽く扱うと、GT-Rの流れは雑になる。\nR32があまりに強いため、R33は大きくなった車として語られやすい。\nR34は最後のスカイラインGT-Rとして神格化されやすい。\n\nだが、GT-Rの歴史として見るなら、役割はもう少し違う。\n\nR33は、R32が作った速さをより安定したものへ広げた世代だった。\nボディは大きくなり、性格は少しGT寄りになる。\nそれは単純な弱体化ではない。\nGT-Rが、狭い競技のためだけではなく、高速域や長距離まで含めて速さを扱う車になっていく過程だった。\n\nR34は、その流れをもう一度濃く見せた。\nより締まった印象のボディ、RB26DETT、6速MT、そしてMFDに象徴される情報の見せ方。\nR34は、GT-Rを「機械としての速さ」だけでなく、「画面の中でも分かる速さ」へ変えた。\n\nこの世代で、GT-Rはゲームや映像の中でも強い名前になっていく。\n実車を買えない人でも、R34の姿を知っている。\n運転したことがなくても、GT-Rという名前に特別な響きを感じる。\n\nGT-Rはここで、所有者だけの車ではなくなる。\n\n### R33とR34の役割\n\n| 世代 | GT-R史での意味 |\n|---|---|\n| R33 | R32の速さを大きなボディと高速安定性へ広げた |\n| R34 | 最後のスカイラインGT-Rとして、映像文化の中でも記号化した |\n\n> CARD / R34\n> R34は、最後のスカイラインGT-Rとして記憶される。\n> それは性能だけでなく、ゲームや映像の中で世代を超えて見られ続けたからだ。\n\nR34のあと、スカイラインGT-Rは終わる。\n\nGT-Rの名前は残る。\nしかし、その前に付いていた「スカイライン」は消える。\n\n次の章で、GT-Rは自分の名前だけで世界と向き合うことになる。\n\n## 5. 2007 — R35がスカイラインを離れる\n\n2007年、R35 GT-Rが登場する。\n\nこの車は、スカイラインGT-Rではない。\n日産GT-Rである。\n\nここでGT-Rは、もう一度大きく意味を変えた。\nスカイラインという系譜から離れ、GT-Rという名前だけで立つ車になった。\n\nR35は、R32のようなグループAのための車ではない。\nR34のようなスカイラインの最終進化でもない。\nVR38DETT、DCT、四輪駆動、電子制御、空力、巨大なブレーキ。\nあらゆる要素を統合し、世界の高性能車と同じ土俵で戦うための車だった。\n\nR35で、GT-Rは国産スポーツの枠を超えた。\n\nそれまでのGT-Rは、スカイラインという名前の中にあった。\nセダンやクーペの系譜を背負いながら、特別なグレードとして存在していた。\nR35は、その前提を外した。\n\nGT-Rだけで成立する。\nGT-Rだけで世界と比べられる。\nGT-Rだけでブランドになる。\n\nこの変化は、歓迎だけではなかった。\nスカイラインの名が外れたことで、距離を感じた人もいる。\nMTではなくなったことに違和感を持つ人もいた。\n大きく、重く、高価になったことも、かつてのGT-R像とは違っていた。\n\nそれでもR35は、GT-Rという名前を現代へ延ばした。\n\n### GT-Rが変えてきた速さ\n\n| 時代 | 速さの作り方 |\n|---|---|\n| KPGC10 | 軽さと高回転の直列6気筒で勝つ |\n| KPGC110 | 時代に押され、名前が短く途切れる |\n| R32 | 四輪駆動と電子制御で支配する |\n| R33 | 速さを高速安定性へ広げる |\n| R34 | 最後のスカイラインGT-Rとして記号化する |\n| R35 | スカイラインを離れ、GT-R単独で世界へ向かう |\n\nR35は、古いGT-Rの再現ではない。\nGT-Rという名前が、現代の性能車として生き残るための答えだった。\n\n## 6. なぜGT-Rは特別なのか\n\nGT-Rは、日産のすべてではない。\n\nフェアレディZのように、親しみやすいスポーツカーではない。\nシルビアのように、若者の手元で育った車でもない。\nスカイラインそのもののように、生活と性能を長くつないできた名前でもない。\n\nそれでも、GT-Rは日産の象徴である。\n\n理由は、GT-Rが日産の「勝つための技術」をもっとも分かりやすく見せてきた車だからだ。\n\nハコスカでは、レースの心臓を市販車へ載せた。\nケンメリでは、名前が時代に押し戻された。\nR32では、電子制御と四輪駆動で勝ち方を変えた。\nR33では、速さの幅を広げた。\nR34では、GT-Rを世代を超える記号にした。\nR35では、スカイラインを離れて、GT-Rだけで世界と向き合った。\n\nGT-Rは、いつも同じ車ではなかった。\n時代ごとに、速さの作り方を変えてきた。\n\nだからGT-Rは強い。\nただ古い伝説を守ってきた名前ではない。\n勝つために姿を変え続けた名前である。\n\nスカイラインの中に生まれ、スカイラインを超えていった名前。\nGT-Rとは、日産が速さをどう考えてきたかを映す車である。\n\n## 7. 横串で見るGT-Rの本質\n\nGT-Rの系譜を世代ごとの強さだけで見ると、話は分かりやすいが浅くなる。\n\nハコスカはレースで勝った。\nケンメリは希少になった。\nR32はグループAを支配した。\nR34は世界中の映像文化で記号になった。\nR35はスカイラインを離れて世界の高性能車と並んだ。\n\nそれぞれの話は正しい。\nただ、GT-Rという名前の芯はそこだけではない。\n\nGT-Rは、日産が時代ごとに「勝つための方法」を変えてきた記録である。\n\n最初のGT-Rは、軽い車体にS20型を積み、レースで勝つための市販車として成立した。そこでは、エンジン、回転、車体の軽さ、そしてドライバーの腕が前に出る。\nR32以降のGT-Rは、同じ直列6気筒でも意味が違う。RB26DETTに加え、アテーサE-TSやHICASを使い、車全体をシステムとして速くする方向へ変わった。\nR35では、さらに考え方が変わる。スカイラインの一部ではなく、GT-Rだけで世界の性能車と比べられる車になった。\n\nだからGT-Rは、単に長く続いた名車ではない。\n同じ名前のまま、速さの作り方を何度も変えた車である。\n\nここが、フェアレディZとの大きな違いでもある。Zは、現実に近いスポーツカーを残し続けた名前だった。GT-Rは、日産がその時代に持つ技術で勝ちに行く名前だった。\nこの違いを知ると、ZとGT-Rは同じ日産スポーツでも、まったく別の役割を持っていたことが分かる。\n\n## 8. 次に読むべきGT-R\n\nGT-Rの流れを知るだけなら、このページだけで全体像はつかめる。\nただし、買う、維持する、個体を見るという段階では、世代ごとの事情が大きく変わる。\n\nハコスカGT-Rは、性能よりも真正性、来歴、レストアの質を見る車である。\nケンメリGT-Rは、短命だったからこそ、台数、書類、部品の整合性が価値を左右する。\nR32 GT-Rは、RB26DETT、改造履歴、錆、冷却、駆動系の整備履歴を見ずに判断できない。\nR33 GT-Rは、R32より大きいことを欠点として終わらせず、高速安定性と使い方の違いで見る必要がある。\nR34 GT-Rは、人気が強すぎるぶん、価格と状態の見極めが最も難しい。\nR35 GT-Rは、電子制御、DCT、冷却、タイヤ、ブレーキ、保証履歴まで含めて見る車である。\n\nつまり、GT-Rの系譜を読む意味は、名車の名前を並べることではない。\nどの世代が、どの時代の課題に対して、どんな方法で速さを作ったのかを知ることにある。\nそのうえで個別のCarsページへ進むと、各世代の注意点が見えやすくなる。\n\n> CARD / 次に読むGT-R\n> まず全体像を知るならこのHERITAGE。\n> 個体選びへ進むなら、KPGC10、KPGC110、R32、R33、R34、R35のCarsページを順に読む。\n",
+  "tags": [
+    "Nissan",
+    "Skyline GT-R",
+    "KPGC10",
+    "KPGC110",
+    "R32",
+    "R33",
+    "R34",
+    "R35",
+    "Lineage"
+  ],
+  "intentTags": [
+    "heritage",
+    "lineage",
+    "history",
+    "engineering",
+    "deep-dive"
+  ],
+  "relatedCarSlugs": [
+    "nissan-skyline-2000gtr-kpgc10",
+    "nissan-skyline-2000gtr-kpgc110",
+    "nissan-skyline-gtr-r32",
+    "nissan-skyline-gtr-r33",
+    "nissan-skyline-gtr-r34",
+    "nissan-gtr-r35"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "how-to-choose-first-sports-car"
+  ],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge"
+  ],
+  "summary": "ハコスカからR35まで。GT-Rが時代ごとに速さの作り方を変え、日産の象徴になっていった流れを辿る。",
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "index",
+  "parentPillarId": "/heritage",
+  "relatedClusterIds": [],
+  "primaryQuery": "スカイライン GT-R 歴史",
+  "updateReason": "heritage-hub-rewrite-skyline-gtr-lineage",
+  "sources": [
+    "https://en.wikipedia.org/wiki/Nissan_S20_engine",
+    "https://en.wikipedia.org/wiki/Nissan_Skyline_GT-R",
+    "https://en.wikipedia.org/wiki/Nissan_Skyline",
+    "https://en.wikipedia.org/wiki/Nissan_GT-R",
+    "https://www.roadandtrack.com/news/a65899889/the-r35-nissan-gtr-is-finally-dead-after-18-years/"
+  ],
+  "thumbnail": "",
+  "displayTag": "日本名車の系譜",
+  "cinematicHeritage": {
+    "eyebrow": "HERITAGE / 系譜",
+    "title": "SKYLINE GT-R",
+    "subtitle": "ハコスカからR35まで。GT-Rが速さの作り方をどう変えてきたのかを辿る。",
+    "heroImage": "/images/cbj/display-tags/heritage/japan-lineage-2.jpg",
+    "timelineTitle": "1969—2007 / GT-R Lineage",
+    "timelineLead": "GT-Rは、最初から電子制御の怪物だったわけではない。スカイラインの中に生まれ、レースで名を重くし、電子制御で復活し、最後にはスカイラインの名を離れて世界と向き合った。",
+    "showChronicleLead": false,
+    "showChronicleGenerations": false,
+    "generations": [
+      {
+        "code": "KPGC10",
+        "years": "1969-1972",
+        "name": "Hakosuka GT-R",
+        "title": "勝つために生まれたスカイライン",
+        "lead": "レースの思想を市販車へ持ち込み、GT-Rという名前の原点を作った。",
+        "body": "スカイラインという日常的な名前に、競技の温度が入った最初の世代。",
+        "image": "/images/cbj/display-tags/heritage/japan-lineage-1.jpg"
+      },
+      {
+        "code": "KPGC110",
+        "years": "1973",
+        "name": "Kenmeri GT-R",
+        "title": "短く途切れたGT-R",
+        "lead": "勝利よりも断絶として記憶され、後の復活を特別にした。",
+        "body": "時代背景に押し戻され、GT-Rの名前は長い沈黙へ入る。",
+        "image": "/images/cbj/display-tags/heritage/japan-lineage-2.jpg"
+      },
+      {
+        "code": "BNR32",
+        "years": "1989-1994",
+        "name": "R32 GT-R",
+        "title": "電子制御で復活した怪物",
+        "lead": "RB26DETT、アテーサE-TS、HICAS。GT-Rはシステムで速さを作る車になった。",
+        "body": "懐古ではなく技術で復活した世代。",
+        "image": "/images/cbj/display-tags/heritage/japan-lineage-1.jpg"
+      },
+      {
+        "code": "BCNR33",
+        "years": "1995-1998",
+        "name": "R33 GT-R",
+        "title": "速さを広げた世代",
+        "lead": "R32の速さを、高速安定性とGT性へ広げた。",
+        "body": "大きくなったこと自体が、速さの幅を広げる試みだった。",
+        "image": "/images/cbj/display-tags/heritage/japan-lineage-2.jpg"
+      },
+      {
+        "code": "BNR34",
+        "years": "1999-2002",
+        "name": "R34 GT-R",
+        "title": "最後のスカイラインGT-R",
+        "lead": "実車だけでなく、ゲームや映像の中でもGT-Rを世代の記号にした。",
+        "body": "最後のスカイラインGT-Rとして、名前の重さを決定づけた。",
+        "image": "/images/cbj/display-tags/heritage/japan-lineage-1.jpg"
+      },
+      {
+        "code": "R35",
+        "years": "2007-",
+        "name": "Nissan GT-R",
+        "title": "スカイラインを離れたGT-R",
+        "lead": "GT-Rだけで世界と向き合うため、スカイラインの名を外した。",
+        "body": "古いGT-Rの再現ではなく、GT-Rを現代の性能車として残す答えだった。",
+        "image": "/images/cbj/display-tags/heritage/japan-lineage-2.jpg"
+      }
+    ],
+    "chapters": [
+      {
+        "id": "origin-1969",
+        "kicker": "ORIGIN / 01",
+        "title": "1969 — 勝つために生まれたスカイライン",
+        "subtitle": "GT-Rの原点は、レースの心臓を持った市販車だった。",
+        "body": [
+          "GT-Rは、ただ速そうな見た目を持った車ではなかった。レースで勝つための心臓を、市販車のボディに入れた車だった。",
+          "市販車であること。レースで勝つこと。その二つが同じ名前の中にあること。この矛盾を抱えたまま、GT-Rは始まった。"
+        ],
+        "theme": "paper",
+        "image": "/images/cbj/display-tags/heritage/japan-lineage-1.jpg",
+        "specs": [
+          {
+            "label": "原点",
+            "value": "KPGC10"
+          },
+          {
+            "label": "エンジン",
+            "value": "S20 直列6気筒DOHC"
+          },
+          {
+            "label": "駆動",
+            "value": "FR"
+          }
+        ]
+      },
+      {
+        "id": "silence-1973",
+        "kicker": "CHAPTER / 02",
+        "title": "1973 — ケンメリが残した短い余白",
+        "subtitle": "GT-Rの名前は、一度途切れたことで重くなった。",
+        "body": [
+          "ケンメリGT-Rは、勝利の記憶よりも途切れたGT-Rとして残った。排出ガス規制とオイルショックの時代に押し戻され、名前は長い沈黙に入る。",
+          "その断絶が、R32の復活を劇的にした。"
+        ],
+        "theme": "dark",
+        "image": "/images/cbj/display-tags/heritage/japan-lineage-2.jpg"
+      },
+      {
+        "id": "r32-1989",
+        "kicker": "CHAPTER / 03",
+        "title": "1989 — R32が速さを作り直す",
+        "subtitle": "GT-Rは、電子制御と四輪駆動で復活した。",
+        "body": [
+          "R32は、懐かしさでGT-Rを復活させた車ではない。勝つために、当時の日産が持っていた技術を集中させた車だった。",
+          "ハコスカが軽さと高回転で勝った車なら、R32はシステムで勝った車だった。"
+        ],
+        "theme": "paper",
+        "image": "/images/cbj/display-tags/heritage/japan-lineage-1.jpg",
+        "specs": [
+          {
+            "label": "中核",
+            "value": "RB26DETT"
+          },
+          {
+            "label": "駆動",
+            "value": "ATTESA E-TS"
+          },
+          {
+            "label": "性格",
+            "value": "Group Aを意識"
+          }
+        ]
+      },
+      {
+        "id": "r33-r34",
+        "kicker": "CHAPTER / 04",
+        "title": "R33とR34 — 速さを広げ、記号へ変える",
+        "subtitle": "GT-Rは、所有者だけの車ではなくなった。",
+        "body": [
+          "R33はR32の速さをより大きく、安定したものへ広げた。R34は最後のスカイラインGT-Rとして、実車だけでなくゲームや映像の中でも記号になった。",
+          "実車を買えない人でも、R34の姿を知っている。GT-Rという名前は、ここで世代を超えて届き始める。"
+        ],
+        "theme": "mist",
+        "image": "/images/cbj/display-tags/heritage/japan-lineage-2.jpg"
+      },
+      {
+        "id": "r35-2007",
+        "kicker": "CHAPTER / 05",
+        "title": "2007 — R35がスカイラインを離れる",
+        "subtitle": "GT-Rは、GT-Rだけで世界と向き合う車になった。",
+        "body": [
+          "R35はスカイラインGT-Rではない。日産GT-Rである。ここでGT-Rは、スカイラインという系譜から離れ、GT-Rという名前だけで立つ車になった。",
+          "古いGT-Rの再現ではない。GT-Rという名前が現代の性能車として生き残るための答えだった。"
+        ],
+        "theme": "dark",
+        "image": "/images/cbj/display-tags/heritage/japan-lineage-1.jpg"
+      },
+      {
+        "id": "symbol",
+        "kicker": "CLOSING / 06",
+        "title": "なぜGT-Rは特別なのか",
+        "subtitle": "GT-Rは、日産が速さをどう考えてきたかを映す名前である。",
+        "body": [
+          "GT-Rは、いつも同じ車ではなかった。時代ごとに、速さの作り方を変えてきた。",
+          "スカイラインの中に生まれ、スカイラインを超えていった名前。GT-Rとは、日産が速さをどう考えてきたかを映す車である。"
+        ],
+        "theme": "paper",
+        "image": "/images/cbj/display-tags/heritage/japan-lineage-2.jpg"
+      }
+    ],
+    "guideLabel": "GUIDE",
+    "guideTitle": "GT-Rを中古で見るなら",
+    "guideLead": "世代ごとに見るべき場所は大きく変わる。古いGT-Rは錆と修復歴、R32以降は改造歴と駆動系、R35は電子制御と整備履歴を見る。",
+    "guideCards": [
+      {
+        "badge": "旧世代",
+        "title": "錆と修復歴を最優先",
+        "text": "KPGC10/KPGC110は車両の歴史そのものを見る。機関より先にボディ状態と修復歴を確認する。",
+        "tone": "paper"
+      },
+      {
+        "badge": "第二世代",
+        "title": "改造歴を切り離さない",
+        "text": "R32/R33/R34はRB26や駆動系だけでなく、過去のチューニングと戻し方を確認する。",
+        "tone": "black"
+      },
+      {
+        "badge": "R35",
+        "title": "現代の高性能車として見る",
+        "text": "診断履歴、DCT、電子制御、正規整備履歴、タイヤとブレーキの消耗を確認する。",
+        "tone": "gold"
+      }
+    ],
+    "closing": [
+      "GT-Rは、いつも同じ速さを守ってきた名前ではない。",
+      "勝つために、時代ごとに速さの作り方を変えてきた名前である。",
+      "スカイラインの中に生まれ、スカイラインを超えていった。GT-Rとは、日産が速さをどう考えてきたかを映す車である。"
+    ],
+    "showFinalNav": true,
+    "showRelated": true
+  },
+  "lead": "GT-Rは、最初から電子制御の怪物だったわけではない。スカイラインの中に生まれ、レースで名を重くし、最後にはスカイラインを離れて世界と向き合った。",
+  "readingTimeMinutes": 16,
+  "relatedHeritageSlugs": [
+    "nissan-skyline-2000gtr-hakosuka-heritage",
+    "japan-280ps-gentlemens-agreement-heritage",
+    "japan-software-performance-era-heritage",
+    "nissan-fairlady-z-lineage-heritage"
+  ],
+  "heritageType": "hub",
+  "pillarInsight": "スカイラインGT-Rの本質は世代ごとの最高速競争ではなく、日産がレースで勝つための方法を、直列6気筒FRから電子制御四輪駆動、そして独立したR35へと変え続けたことにある。"
+}

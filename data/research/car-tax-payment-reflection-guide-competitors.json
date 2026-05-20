@@ -1,0 +1,122 @@
+{
+  "slug": "car-tax-payment-reflection-guide",
+  "createdAt": "2026-04-18",
+  "competitorCount": 30,
+  "queries": [
+    "自動車税 払ったのに 車検 確認できない",
+    "自動車税 納付後 すぐ 車検 反映",
+    "OSS 自動車税 状況照会 未確認"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.pref.okayama.jp/page/308373.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/422479.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/438581.html"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a010/015.html"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a004/001.html"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a004/b001/003.html"
+    },
+    {
+      "url": "https://www.pref.ehime.jp/page/1657.html"
+    },
+    {
+      "url": "https://www.pref.ehime.jp/page/1658.html"
+    },
+    {
+      "url": "https://www.pref.yamanashi.jp/kenzei-cb/jidosha_nozeikakunin.html"
+    },
+    {
+      "url": "https://www.pref.saitama.lg.jp/a0209/z-kurashiindex/z-nouzeisyoumei-qa.html"
+    },
+    {
+      "url": "https://www.pref.saitama.lg.jp/a0209/z-kurashiindex/z-nouzeisyoumei-b.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/aramashi/jnks.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/176.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/200.html"
+    },
+    {
+      "url": "https://www.pref.shizuoka.jp/kurashikankyo/zei/nouzei/1011801.html"
+    },
+    {
+      "url": "https://www.pref.nagasaki.jp/bunrui/kurashi-kankyo/zeikin/osirase-ken/jnks/"
+    },
+    {
+      "url": "https://www.pref.kagoshima.jp/ab07/kurashi-kankyo/zei/info/270701jnks.html"
+    },
+    {
+      "url": "https://www.pref.kagoshima.jp/ab07/kurashi-kankyo/zei/info/2104-2204souhuhaishi.html"
+    },
+    {
+      "url": "https://www.pref.miyagi.jp/soshiki/zeimu/nozeisyomeidensika.html"
+    },
+    {
+      "url": "https://www.pref.aichi.jp/soshiki/zeimu/0000067578.html"
+    },
+    {
+      "url": "https://www.pref.aichi.jp/soshiki/zeimu/0000067677.html"
+    },
+    {
+      "url": "https://www.oss.mlit.go.jp/portal/beginner/faq/index.html"
+    },
+    {
+      "url": "https://www.oss.mlit.go.jp/portal/beginner/shinsei-nagare/joukyoushoukai/index.html?s=33"
+    },
+    {
+      "url": "https://www.oss.mlit.go.jp/portal/beginner/shinsei-nagare/joukyoushoukai/index.html?s=9"
+    },
+    {
+      "url": "https://www.oss.mlit.go.jp/portal/beginner/shinsei-nagare/shinsei/zei-tesuuryou/index.html?s=5"
+    },
+    {
+      "url": "https://www.oss.mlit.go.jp/portal/beginner/shinsei-nagare/shinsei/zei-tesuuryou/index.html?s=17"
+    },
+    {
+      "url": "https://www.payment.eltax.lta.go.jp/pbuser"
+    },
+    {
+      "url": "https://www.payment.eltax.lta.go.jp/pbuser?id=kb_article_view&sysparm_article=KB0010004"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/000001.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050040/zei/alacarte/clejito.html"
+    }
+  ],
+  "commonTakeaways": [
+    "多くの案内は『納付直後は紙が要る』までで止まり、支払方法ごとの差やOSSの未確認表示までつないでいない。",
+    "県ごとの反映目安がばらつくため、全国一律の断定は危ないが、その整理をしていない記事が多い。",
+    "多重納付を避けるためのOSSの見方が弱く、払ったあとに再度ボタンを押すリスクが拾われにくい。"
+  ],
+  "gapsFound": [
+    "納期限後の納付で紙の納税証明書が長く必要になるケースが、通常時と混ぜて説明されやすい。",
+    "急ぎ車検で『何を先に固定するか』が弱く、読後の次行動が曖昧な記事が多い。"
+  ],
+  "changesApplied": [
+    "支払方法、車検日、OSS利用の3点で先に分ける構成にした。",
+    "県差のある反映日数を例示ベースで整理し、全国一律の断定を避けた。",
+    "OSSの状況照会と多重納付防止を、車検実務の流れに組み込んだ。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}
