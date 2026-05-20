@@ -1,0 +1,107 @@
+{
+  "id": "aston-martin-db7-vantage",
+  "slug": "aston-martin-db7-vantage",
+  "name": "DB7 Vantage",
+  "maker": "Aston Martin",
+  "releaseYear": 1999,
+  "difficulty": "intermediate",
+  "bodyType": "クーペ",
+  "segment": "GT",
+  "grade": null,
+  "engine": "Front V12",
+  "drive": "FR",
+  "transmission": "6MT / 5AT",
+  "fuel": "ハイオク",
+  "powerPs": 426,
+  "torqueNm": 542,
+  "fuelEconomy": "目安: 4〜7 km/L",
+  "summary": "Aston Martin DB7 Vantageは、90年代のGTとして名前が挙がりやすいクーペです。",
+  "summaryLong": "Aston Martin DB7 Vantageは、90年代のGTとして名前が挙がりやすいクーペです。スペックの数字よりも、\"どういう気分で乗るクルマか\"がはっきりしているタイプ。\n\n中古で見る順番は、(1)整備記録 (2)消耗品の更新履歴 (3)改造/後付けの質。年式が進んだ個体ほど「放置」と「保管」で差が出るので、錆・ゴム類・電装の状態は先に確認したいポイントです。\n\n価格が安い個体ほど、買ってからの“巻き返し整備”で総額が膨らみがちです。状態の良い個体を高く買うほうが、結果的に早く安心して楽しめます。",
+  "costImpression": "購入価格込みで考えると、5年総額は購入価格＋400万〜900万円規模を見込むと安全です。冷却、電装、内装、足まわりが重なると一気に出費が増えます。",
+  "heroImage": "",
+  "mainImage": "",
+  "tags": [
+    "Aston Martin",
+    "クーペ",
+    "GT"
+  ],
+  "intentTags": [],
+  "relatedCarSlugs": [
+    "ferrari-550-maranello",
+    "ferrari-roma",
+    "mercedes-benz-s-class-w140"
+  ],
+  "relatedGuideSlugs": [
+    "used-import-car-buying-guide",
+    "tax-and-fees-before-buying-import"
+  ],
+  "relatedColumnSlugs": [
+    "import-car-maintenance-cost-myth"
+  ],
+  "relatedHeritageSlugs": [
+    "supercar-parts-bin-engineering-heritage",
+    "mercedes-benz-s-class-w140-heritage"
+  ],
+  "strengths": [
+    "キャラクターがはっきりしている",
+    "走りと雰囲気の両立",
+    "ファンが多く情報が探しやすい"
+  ],
+  "weaknesses": [
+    "年式相応にコンディション差が大きい",
+    "部品・整備の難易度は個体で変わる",
+    "維持費は想定より上がりやすい"
+  ],
+  "troubleTrends": [
+    "消耗品の管理状況を要確認",
+    "電装系・ゴム類の劣化に注意",
+    "改造歴がある個体は内容を精査"
+  ],
+  "bestFor": [
+    "クラシックに寄りすぎない英国GTを楽しみたい人",
+    "速さより造形、雰囲気、長距離の余裕を重視する人",
+    "整備履歴と専門店選びを前提に個体を選べる人"
+  ],
+  "notFor": [
+    "最新のスポーツカー並みの剛性感や電子制御を求める人",
+    "維持費を国産スポーツカー感覚で見たい人",
+    "電装や内装の経年対応を避けたい人"
+  ],
+  "maintenanceNotes": [
+    "V12まわりの熱、冷却系、ホース類、点火系の履歴を確認する",
+    "AT/MTに関係なく、変速ショックやクラッチ周辺の違和感を見る",
+    "内装レザー、ウッド、スイッチ類は補修費が雰囲気と価値に直結する"
+  ],
+  "lengthMm": null,
+  "widthMm": null,
+  "heightMm": null,
+  "wheelbaseMm": null,
+  "weightKg": null,
+  "priceNew": "当時：1600万〜2200万円（参考）",
+  "priceUsed": "250万〜800万円（状態で変動）",
+  "zeroTo100": null,
+  "type": "CAR",
+  "status": "published",
+  "title": "Aston Martin DB7 Vantage。",
+  "makerKey": "aston-martin",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-05-17",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/aston-martin",
+  "relatedClusterIds": [],
+  "primaryQuery": "DB7 Vantage",
+  "updateReason": "heritage-final-return-link-update",
+  "sources": [
+    "https://en.wikipedia.org/wiki/Aston_Martin_DB7"
+  ],
+  "imageUrl": "",
+  "gallery": [],
+  "body": "## 要点\nAston Martin DB7 Vantageは、速さだけで選ぶ車ではありません。見るべきなのは、1990年代のアストンが、手作業の雰囲気と量産GTの現実をどう両立しようとしたかです。DB7の直列6気筒からV12へ移ったVantageは、見た目の優雅さに対して中身はかなり重いGTです。Ferrari 550 Maranelloほどスポーツに振らず、Mercedes-Benz S-Class W140ほど快適一辺倒でもない。その中間にある、英国的な余白が魅力です。\n\n## 何が特別か\nDB7 Vantageの価値は、V12を積んだから急にスーパーカーになったことではありません。むしろ、DB7らしい細いピラー、長いボンネット、柔らかい曲面を残したまま、余裕あるGTに仕立てたことに意味があります。数字だけなら同時代のフェラーリやポルシェにもっと鋭い車があります。それでもDB7 Vantageが残るのは、速さより“降りたあとに振り返りたくなる雰囲気”が強いからです。\n\n## 向く人 / 向かない人\n向くのは、移動そのものをゆっくり味わいたい人です。アクセルを踏み切るより、長いボンネット越しに道を眺める時間に価値を感じる人には合います。向かないのは、最新車の完成度や国産車並みの気楽さを期待する人です。DB7 Vantageは古い英国GTなので、完璧な道具として扱うより、癖を含めて付き合う車です。\n\n## 買う前のチェック\n最初に見るべきは、外装の輝きではなく履歴です。V12、冷却系、点火系、電装、エアコン、内装の補修履歴が見えるか。ここが曖昧な個体は、安く買っても後から巻き返し整備が大きくなります。輸入GTの基本確認は[輸入車を中古で買うときの基本](/guide/used-import-car-buying-guide)に沿って見ると、雰囲気に流されにくくなります。\n\n確認したい項目は、冷却水漏れ、ホース類、ラジエター、オルタネーター、点火系、ATの変速ショック、MTならクラッチの重さとつながり方、内装レザーとスイッチ類です。内装の劣化は走行性能と関係ありませんが、DB7の場合は車の価値そのものに効きます。\n\n## 弱点・故障\n弱点は、走れなくなる大故障より、古い高級GTらしい細かな不調が重なりやすいことです。冷却、点火、電装、エアコン、内装スイッチ、レザー補修が積み重なると、購入価格以上に気持ちを削られます。DB7 Vantageは雰囲気で買いたくなる車ですが、雰囲気を維持するにも整備費が必要です。\n\n## 維持の現実\n維持費は“古い高級GT”として見るべきです。消耗品だけでなく、内装、電装、冷却、足まわりがまとめて来ることがあります。安い個体を買うなら、購入後すぐに整備費を別枠で持つ必要があります。税金や輸入車特有の費用感は[輸入前にかかる税金・費用](/guide/tax-and-fees-before-buying-import)も合わせて確認したいところです。\n\n## 中古で買うなら\nおすすめは、外装の美しさより整備履歴と内装の状態が揃った個体です。DB7は安い個体を買って直すより、最初から履歴のある車を選ぶ方が結果的に安全です。長期保管車は、低走行でも燃料、冷却、電装、ゴム類を疑って見る必要があります。\n\n## 比較で見る\nFerrari 550 Maranelloは、同じFRの大排気量GTでも、より走りの輪郭がはっきりしています。Ferrari Romaは現代的で扱いやすい一方、DB7のような手触りは薄い。DB7 Vantageを選ぶなら、性能表ではなく“少し古い英国GTにしかない時間”を買うという判断になります。\n\n## 関連リンク\n- [輸入車を中古で買うときの基本](/guide/used-import-car-buying-guide)\n- [輸入前にかかる税金・費用](/guide/tax-and-fees-before-buying-import)\n- [輸入車の整備費は高い？の誤解](/column/import-car-maintenance-cost-myth)\n- [Ferrari 550 Maranello](/cars/ferrari-550-maranello)\n- [Ferrari Roma](/cars/ferrari-roma)\n- [部品流用で作られる名車の話](/heritage/supercar-parts-bin-engineering-heritage)\n\n## 関連するHERITAGE\n少量生産スポーツカーを理解するには、専用部品の多さだけでなく、どこを流用し、どこを専用設計にしたかという部品選択の思想も見ておきたい。\n",
+  "maintenanceCostYenPerYear": 700000
+}

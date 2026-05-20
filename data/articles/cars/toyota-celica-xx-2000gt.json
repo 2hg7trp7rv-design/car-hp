@@ -1,0 +1,115 @@
+{
+  "id": "toyota-celica-xx-2000gt",
+  "slug": "toyota-celica-xx-2000gt",
+  "name": "Celica XX 2000GT",
+  "maker": "Toyota",
+  "releaseYear": 1978,
+  "difficulty": "advanced",
+  "bodyType": "gt-coupe",
+  "segment": "プレミアムスポーツ",
+  "heritageRefs": [
+    "toyota-supra-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "Celica XX 2000GT",
+  "summary": "“スープラ以前”を形作ったGT。直6FRの文脈を始めた世代。",
+  "summaryLong": "Celica XX 2000GTは、1978年に登場したToyotaのgt-coupeで、FRとFront Inline-6を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+  "heroImage": "",
+  "mainImage": "",
+  "imageUrl": "",
+  "gallery": [],
+  "engine": "Front Inline-6",
+  "powerPs": 145,
+  "torqueNm": 173,
+  "transmission": "5MT / 4AT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 8〜12 km/L",
+  "priceNew": "当時：200万〜300万円（参考）",
+  "priceUsed": "250万〜900万円（相場変動）",
+  "strengths": [
+    "デザインとキャラクターが明確で、所有満足度が高い",
+    "運転のフィードバックが濃く、操る楽しさがある",
+    "コミュニティ/情報が一定量あり、維持の道筋を作れる",
+    "相場が安定しやすく、資産性を期待できる場合がある"
+  ],
+  "weaknesses": [
+    "年式・個体差による当たり外れが大きい",
+    "部品の供給/価格が年々厳しくなる場合がある",
+    "日常用途では燃費・乗り心地の割り切りが必要"
+  ],
+  "troubleTrends": [
+    "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+    "電装系（センサー/配線）の経年",
+    "冷却系のメンテ不足"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：900〜2000万円前後規模を想定できない場合は維持途中で資金計画が苦しくなりやすい車です。",
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "used-import-car-buying-guide"
+  ],
+  "relatedCarSlugs": [
+    "toyota-supra-a70-25gt-ttr",
+    "toyota-supra-a70-turbo-a",
+    "toyota-supra-jza80-rz"
+  ],
+  "tags": [
+    "Toyota",
+    "gt-coupe",
+    "プレミアムスポーツ",
+    "FR",
+    "5MT / 4AT",
+    "Front Inline-6",
+    "ネオクラシック"
+  ],
+  "relatedHeritageSlugs": [
+    "toyota-supra-history-heritage",
+    "toyota-flagship-gt-turning-point-gr-gt"
+  ],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：500〜1200万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間70〜150万円"
+  },
+  "priceUsedYenRange": "250万〜900万円（相場変動）",
+  "maintenanceCostYenPerYear": 450000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Toyota Celica XX 2000GT。",
+  "makerKey": "toyota",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-05-17",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/toyota",
+  "relatedClusterIds": [],
+  "primaryQuery": "Celica XX 2000GT",
+  "updateReason": "セリカXX 2000GTをトヨタ直6FR GTの前史として増強。",
+  "sources": [
+    "https://en.wikipedia.org/wiki/Toyota_Supra"
+  ],
+  "body": "## 結論\nトヨタ セリカXX 2000GTは、A70スープラ以前の直列6気筒GTとして読むべき車です。名前はセリカを冠しますが、性格は軽快なスペシャリティカーというより、ロングノーズのFRグランドツアラーに近い存在です。現代のGRスープラやA70スープラを知る前に、トヨタが直6FRクーペをどう育てたかを見る入口になります。\n\n2000GTは1G系直列6気筒を積む日本向けの位置づけが重要です。大排気量の北米Supraだけを見ると見落としますが、日本市場では税制、サイズ、日常性、GT性のバランスが価値でした。\n\n## 向く人 / 向かない人\n### 向く人\n- A70スープラ以前のトヨタ直6GTを知りたい人\n- 速さよりも80年代の雰囲気とFRクーペの形を重視する人\n- 旧車として、錆や部品供給まで含めて向き合える人\n\n### 向かない人\n- 現代的な加速性能を求める人\n- チューニングベースとして大きな出力を期待する人\n- 内外装部品の入手難を避けたい人\n\n## 買う前のチェック\nセリカXXで最初に見るのは、エンジンよりもボディと内装です。年式を考えると、錆、雨漏り、ウェザーストリップ、サンルーフ周辺、フロア、足まわり取付部を確認します。外装部品や内装部品は、機械部品より探しにくい場合があります。\n\nまた、2000GTは速さを求めるグレードというより、直6GTの雰囲気を楽しむ車です。A70 2.5GT Twin Turbo Rのような明確な高性能モデルとは別の価値として見ます。\n\n## 弱点・故障\n弱点は旧車としての経年劣化です。錆、燃料系、冷却系、電装、内装割れ、メーター、エアコン、足まわりブッシュを確認します。1G系エンジンは丈夫な印象で語られることもありますが、今は車齢そのものが問題になります。\n\nチューニングや載せ替えで楽しむ個体もありますが、オリジナルに近い2000GTを探すなら、改造履歴が少なく、整備履歴が残る個体を選ぶ方が安心です。\n\n## 維持費\n維持費は燃費や税金よりも、旧車部品と整備先の確保が中心です。消耗品はまだ道があっても、外装、内装、専用品は時間がかかります。安く買ってから部品探しを始めると、想定より長く動かせない期間が出ます。\n\n車検、タイヤ、油脂、冷却系、ブレーキ、電装を一度に整えると、購入価格とは別にまとまった予算が必要です。\n\n## 中古で狙うなら\n狙うなら、改造の少ない個体、錆の少ない個体、内装が残る個体、整備履歴が分かる個体を優先します。エンジンの調子だけでなく、ドアやハッチの開閉、ゴム類、ライト類、メーターまわりを見ます。\n\nA70スープラやA80スープラほどの性能を期待すると違います。セリカXXは、トヨタ直6FRクーペの始点として所有する意味がある車です。\n\n## 比較対象\n比較対象は、A70スープラ 2.5GT Twin Turbo R、A70 Turbo A、A80スープラ、そしてトヨタ セリカGT-FOURです。セリカXXは、スープラへ続くFR GTの源流として見ます。速さならA70以降、歴史の起点ならセリカXXです。\n\nトヨタのスポーツ系譜を読むなら、セリカXXからA70、A80、GRスープラ、GR GTへ進む流れで見ると分かりやすくなります。\n\n## 関連リンク\nセリカXXは、A70スープラ、A80スープラ、トヨタ・スープラ史、GR GTのような現代フラッグシップとつなげて読むと意味が出ます。単独の旧車ではなく、トヨタ直6FR GTの前史として扱います。",
+  "bestFor": [
+    "A70スープラ以前のトヨタ直6FRを知りたい人",
+    "80年代のロングノーズGTの雰囲気を重視する人",
+    "旧車として錆や部品供給まで向き合える人"
+  ],
+  "notFor": [
+    "現代的な加速性能を求める人",
+    "大きなチューニング余地を最優先する人",
+    "外装や内装部品の入手難を避けたい人"
+  ],
+  "maintenanceNotes": [
+    "錆、雨漏り、内装、ゴム類、電装を重点的に見ます。",
+    "外装内装部品は機械部品より探しにくい場合があります。",
+    "A70やA80とは違い、性能よりコンディション優先で選ぶ車です。"
+  ]
+}

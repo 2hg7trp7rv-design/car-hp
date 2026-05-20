@@ -1,0 +1,117 @@
+{
+  "id": "toyota-supra-a70-25gt-ttr",
+  "slug": "toyota-supra-a70-25gt-ttr",
+  "name": "Supra A70 2.5GT Twin Turbo R",
+  "maker": "Toyota",
+  "releaseYear": 1990,
+  "difficulty": "advanced",
+  "bodyType": "gt-coupe",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "toyota-supra-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "Supra A70 2.5GT Twin",
+  "summary": "ツインターボ化で“走りのスープラ”へ加速した過渡期の代表。",
+  "summaryLong": "Supra A70 2.5GT Twin Turbo Rは、1990年に登場したToyotaのgt-coupeで、FRとFront Inline-6を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+  "heroImage": "",
+  "mainImage": "",
+  "imageUrl": "",
+  "gallery": [],
+  "engine": "Front Inline-6",
+  "powerPs": 280,
+  "torqueNm": 363,
+  "transmission": "5MT / 4AT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 7〜11 km/L",
+  "priceNew": "当時：380万〜450万円（参考）",
+  "priceUsed": "300万〜900万円（相場変動）",
+  "strengths": [
+    "直6ターボの伸びと高速域の余裕",
+    "シャシー剛性が高く、チューニング耐性も高い",
+    "部品/ノウハウが豊富で弄り方の幅が広い",
+    "グランドツアラーとして快適性も確保"
+  ],
+  "weaknesses": [
+    "年式・個体差による当たり外れが大きい",
+    "部品の供給/価格が年々厳しくなる場合がある",
+    "日常用途では燃費・乗り心地の割り切りが必要"
+  ],
+  "troubleTrends": [
+    "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+    "電装系（センサー/配線）の経年",
+    "冷却系のメンテ不足"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：900〜2000万円前後規模を想定できない場合は維持途中で資金計画が苦しくなりやすい車です。",
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "used-import-car-buying-guide"
+  ],
+  "relatedCarSlugs": [
+    "toyota-supra-a70-turbo-a",
+    "toyota-supra-jza80-rz",
+    "toyota-gr-supra-rz"
+  ],
+  "tags": [
+    "Toyota",
+    "gt-coupe",
+    "クラシックスポーツ",
+    "FR",
+    "5MT / 4AT",
+    "Front Inline-6",
+    "ヤングタイマー",
+    "2JZ"
+  ],
+  "relatedHeritageSlugs": [
+    "toyota-supra-history-heritage",
+    "toyota-flagship-gt-turning-point-gr-gt"
+  ],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：500〜1200万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間70〜150万円"
+  },
+  "priceUsedYenRange": "300万〜900万円（相場変動）",
+  "maintenanceCostYenPerYear": 450000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Toyota Supra A70 2.5GT Twin Turbo R。",
+  "makerKey": "toyota",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-05-17",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/toyota",
+  "relatedClusterIds": [],
+  "primaryQuery": "Supra A70 2.5GT Twin Turbo R",
+  "updateReason": "A70 2.5GT Twin Turbo Rの1JZ-GTE、購入判断、維持、系譜導線を追記。",
+  "sources": [
+    "https://en.wikipedia.org/wiki/Toyota_Supra",
+    "https://de.wikipedia.org/wiki/Toyota_Supra"
+  ],
+  "body": "## 結論\nトヨタ スープラ A70 2.5GT Twin Turbo Rは、A70の中でも特に走りの密度が高い日本向けモデルです。2.5Lの1JZ-GTE、R154系5速MT、専用足まわりや装備を持ち、A80スープラへ向かう前の直6ターボGTとして重要な位置にあります。A70をただの旧型スープラとして見ると、このグレードの意味を見落とします。\n\n買う価値があるのは、A80よりクラシックで、セリカXXより明確に高性能な直6FRターボを探す人です。逆に、維持の軽さや部品供給の安心感を最優先する人には向きません。\n\n## 向く人 / 向かない人\n### 向く人\n- 1JZ-GTE搭載のA70を、A80前夜のスープラとして味わいたい人\n- 直6ターボ、FR、5速MTの組み合わせを重視する人\n- 整備履歴と改造履歴を細かく確認できる人\n\n### 向かない人\n- A80の性能や部品環境をそのまま期待する人\n- 安く買ってすぐ安心して乗りたい人\n- 旧車の電装、冷却、内装劣化を避けたい人\n\n## 買う前のチェック\nA70 2.5GT Twin Turbo Rで最初に見るのは、改造履歴とボディ状態です。1JZ-GTEはチューニング人気が高く、ブーストアップ、吸排気、足まわり、LSD、クラッチ交換歴がある個体も多くなります。内容が分かる改造ならまだ判断できますが、履歴が曖昧な個体は避けたいところです。\n\nまた、Tバーやボディまわりの雨漏り、内装割れ、メーター、エアコン、冷却系、燃料系も重要です。A70はA80より古く、車体の疲れが走りに出やすい世代です。\n\n## 弱点・故障\n弱点は、エンジン単体よりも周辺部品と車体の古さです。冷却系、タービン周辺、燃料ポンプ、電装、エアコン、パワステ、足まわりブッシュ、クラッチ、デフ、ミッションを確認します。\n\n1JZ-GTEだから丈夫とだけ考えるのは危険です。年式相応の配線、ゴム、センサー類、過去改造の処理が悪ければ、購入後に細かい修理が続きます。\n\n## 維持費\n維持費は、国産旧車スポーツとしては軽くありません。タイヤ、ブレーキ、クラッチ、冷却系、油脂、燃料代、旧車部品を考えると、購入後の初期整備費を別に用意するべきです。\n\nただし、フェラーリや輸入スーパーカーのような特殊費用ではなく、信頼できる整備先と部品ルートを作れるかが大きい車です。A80やGRスープラと違い、年式由来の修理が中心になります。\n\n## 中古で狙うなら\n狙うなら、純正に近い個体、改造内容が明確な個体、冷却系と足まわりが整っている個体を優先します。見た目がきれいでも、下まわり、フロア、サスペンション取付部、エンジンルームの処理を見ます。\n\n安い個体は、外装、内装、電装、足まわりのどこかに理由があることが多いです。A70は買ってから直す車ではなく、直す前提の予算を持って選ぶ車です。\n\n## 比較対象\n比較対象は、A70 Turbo A、A80スープラ、GRスープラ RZ、セリカXX 2000GTです。セリカXXは前史、A70 Twin Turbo Rは直6ターボGTの濃い世代、A80は完成度と性能の飛躍、GRスープラは現代の再解釈です。\n\nA70 2.5GT Twin Turbo Rは、A80ほど完成されていないからこそ、旧車としての手触りと高性能の中間にあります。\n\n## 関連リンク\nA70を読むなら、セリカXX、A80スープラ、GRスープラ、トヨタ・スープラ史をまとめて見るのが自然です。単独の旧車としてではなく、トヨタ直6FRターボの途中点として整理します。",
+  "bestFor": [
+    "1JZ-GTE搭載A70をA80前夜のスープラとして味わいたい人",
+    "直6ターボ、FR、5速MTの組み合わせを重視する人",
+    "改造履歴と整備履歴を確認して選べる人"
+  ],
+  "notFor": [
+    "A80と同じ性能や部品環境を期待する人",
+    "安く買ってすぐ安心して乗りたい人",
+    "旧車の電装や冷却系トラブルを避けたい人"
+  ],
+  "maintenanceNotes": [
+    "改造履歴、冷却系、タービン周辺、燃料系、クラッチ、デフを確認します。",
+    "Tバーやボディの雨漏り、錆、内装劣化も重視します。",
+    "安い個体は購入後の初期整備費を別に見ておくべきです。"
+  ]
+}

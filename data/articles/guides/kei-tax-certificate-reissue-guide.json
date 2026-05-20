@@ -1,0 +1,426 @@
+{
+  "type": "GUIDE",
+  "monetizeType": null,
+  "category": "LIFE",
+  "publishedAt": "2026-04-17",
+  "updatedAt": "2026-04-25",
+  "monetizeKey": null,
+  "relatedCarSlugs": [],
+  "intentTags": [
+    "tax",
+    "paperwork",
+    "money",
+    "inspection"
+  ],
+  "readMinutes": 7,
+  "status": "published",
+  "createdAt": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": "",
+  "publicState": "index",
+  "parentPillarId": "/guide/hub-paperwork",
+  "relatedClusterIds": [],
+  "displayTag": "手続き",
+  "layoutVariant": "decision-v1",
+  "eyebrowLabel": "手続き",
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "手続き・維持費ガイド編集チーム"
+  },
+  "slug": "kei-tax-certificate-reissue-guide",
+  "title": "軽自動車税の納税証明書をなくしたとき。再発行の窓口、軽JNKSと紙が要る場面を整理する。",
+  "lead": "軽自動車は軽JNKSの電子確認があるため、車検で紙の納税証明書が原則不要になっています。ただし、納付直後、中古車購入直後、引っ越し直後、過去未納がある車では、紙が必要になることがあります。なくしたときは、まず本当に紙が要るのか、要るならどの市区町村で取り直すかを分けると整理しやすいです。",
+  "tags": [
+    "軽自動車税",
+    "納税証明書",
+    "再発行",
+    "軽JNKS",
+    "車検",
+    "市区町村",
+    "再交付"
+  ],
+  "internalLinks": [
+    "kei-tax-late-fee-only-guide",
+    "kei-tax-payment-slip-reissue-guide",
+    "kei-tax-demand-letter-guide",
+    "kei-tax-payment-method-guide",
+    "kei-tax-late-payment-guide",
+    "kei-tax-notice-not-arrived-2026",
+    "shaken-required-documents-guide",
+    "jyuusho-henkou-shaken-shou",
+    "car-tax-certificate-reissue-guide",
+    "car-tax-payment-method-guide",
+    "kei-tax-account-transfer-guide",
+    "kei-tax-address-change-guide",
+    "kei-tax-shaken-expired-guide",
+    "kei-tax-name-change-guide",
+    "kei-tax-payment-reflection-guide",
+    "kei-tax-double-payment-guide",
+    "kei-tax-purchase-timing-guide",
+    "kei-tax-seizure-warning-guide"
+  ],
+  "relatedGuideSlugs": [
+    "kei-tax-late-fee-only-guide",
+    "kei-tax-payment-slip-reissue-guide",
+    "kei-tax-demand-letter-guide",
+    "kei-tax-payment-method-guide",
+    "kei-tax-late-payment-guide",
+    "kei-tax-notice-not-arrived-2026",
+    "shaken-required-documents-guide",
+    "jyuusho-henkou-shaken-shou",
+    "car-tax-certificate-reissue-guide",
+    "car-tax-payment-method-guide",
+    "kei-tax-account-transfer-guide",
+    "kei-tax-address-change-guide",
+    "kei-tax-shaken-expired-guide",
+    "kei-tax-name-change-guide",
+    "kei-tax-payment-reflection-guide",
+    "kei-tax-double-payment-guide",
+    "kei-tax-purchase-timing-guide",
+    "kei-tax-seizure-warning-guide"
+  ],
+  "relatedColumnSlugs": [
+    "sell-timing-shaken-tax-market",
+    "name-change-delay-risk",
+    "shaken-early-two-months"
+  ],
+  "relatedHeritageSlugs": [],
+  "seoTitle": "軽自動車税の納税証明書をなくしたとき。再発行窓口と軽JNKSの例外。",
+  "seoDescription": "軽自動車税の納税証明書をなくしたときに、軽JNKSで紙が不要な場面、紙が要る例外、再発行の窓口、キャッシュレス納付直後の注意点まで整理する実務ガイドです。",
+  "summary": "軽自動車税の納税証明書をなくしたときに、軽JNKSの例外、市区町村での再発行、車検直前の注意を整理する実務ガイドです。",
+  "id": "guide:kei-tax-certificate-reissue-guide",
+  "primaryQuery": "軽自動車税 納税証明書 再発行",
+  "updateReason": "2026年春時点の各市区町村案内をもとに、軽JNKSで紙が不要な場面と再交付が必要な例外を整理した。",
+  "sources": [
+    "https://www.city.funabashi.lg.jp/kurashi/zei/001/04/p076782.html",
+    "https://www.city.hachioji.tokyo.jp/kurashi/zeikin/002/004/p012240.html",
+    "https://www.city.kato.lg.jp/kakukanogoannai/soumuzaiseibu/zeimuka/juminzeikakari/kei/16338.html",
+    "https://www.town.haebaru.lg.jp/soshiki/6/2925.html",
+    "https://www.city.uto.lg.jp/article/view/1003/15210.html",
+    "https://www.town.itakura.gunma.jp/cont/s007000/d007010/20260106090325.html",
+    "https://www.city.asahi.lg.jp/soshiki/6/27155.html"
+  ],
+  "heroImage": "/images/cbj/display-tags/guides/paperwork-2.jpg",
+  "thumbnail": "/images/cbj/display-tags/guides/paperwork-2.jpg",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "名義変更・必要書類",
+      "href": "/guide/hub-paperwork"
+    },
+    {
+      "label": "軽自動車税の支払い方法はどう選ぶ？コンビニ・クレジットカード・スマホ決済の違いを整理する。"
+    }
+  ],
+  "keyPoints": [
+    "軽自動車は軽JNKSで車検時の紙の納税証明書が原則不要ですが、納付直後、中古車購入直後、引っ越し直後、過去未納がある車では紙が必要になることがあります。",
+    "必要なら、発行窓口は都道府県ではなく市区町村です。しかも、車検証の「使用の本拠の位置」にある自治体を見る方がずれにくいです。",
+    "自治体によっては、キャッシュレス納付後すぐは納税確認ができず、証明書が即発行できない案内があります。急ぐ人は支払い方から見直した方が安全です。",
+    "納税通知書の右側がそのまま車検用証明になることがありますが、督促状や再発行納付書で払った領収書は車検用証明として使えない案内もあります。",
+    "郵送やオンライン申請に対応する自治体もありますが、窓口、必要書類、本人確認の扱いは自治体差があるので、自分の自治体ページ確認が前提です。"
+  ],
+  "checkpoints": [
+    "本当に紙の納税証明書が必要か",
+    "納付してから日が浅いか",
+    "中古車購入、名義変更、引っ越し直後ではないか",
+    "車検証の使用の本拠の位置はどの市区町村か",
+    "支払い方法がスマホ決済や口座振替ではないか"
+  ],
+  "faq": [
+    {
+      "question": "軽は軽JNKSがあるのに、どうして紙が必要になるのですか。",
+      "answer": "軽JNKSへ納付情報がまだ登録されていない場合や、中古車購入直後、他市区町村への引っ越し直後、過去の未納がある車では、紙の証明書が必要になることがあります。"
+    },
+    {
+      "question": "再発行の窓口はどこですか。",
+      "answer": "市区町村の税務窓口が基本です。軽自動車税は市区町村税なので、普通車のように県税事務所へ行く話ではありません。"
+    },
+    {
+      "question": "どの自治体に頼めばいいですか。",
+      "answer": "車検証の「使用の本拠の位置」にある市区町村を見る方がずれにくいです。同じナンバーでも、使用の本拠の位置が他市なら発行先が変わる案内があります。"
+    },
+    {
+      "question": "スマホ決済で払った直後でも、すぐ証明書はもらえますか。",
+      "answer": "すぐ出ないことがあります。自治体案内では、軽JNKSへの反映や自治体側の確認に日数がかかるため、急ぎなら窓口納付を勧める例があります。"
+    },
+    {
+      "question": "督促状や再発行納付書で払った領収書は、そのまま車検用証明になりますか。",
+      "answer": "ならない案内があります。軽JNKSで確認できないときに紙が必要なら、別途「軽自動車税納税証明書（車検用）」の申請が必要になる自治体があります。"
+    },
+    {
+      "question": "手数料はかかりますか。",
+      "answer": "自治体差があります。車検用と車検以外用で手数料が分かれる案内もあるため、自分の自治体ページを先に確認した方が安全です。"
+    }
+  ],
+  "actionBox": {
+    "title": "今すぐやるべきこと",
+    "body": "まずは 「紙が本当に要るか」「どの市区町村で取るか」「最近払ったばかりか」 を確認してください。軽は普通車と窓口も考え方も違います。",
+    "actions": [
+      {
+        "label": "軽自動車税の支払い方法はどう選ぶ？コンビニ・クレジットカード・スマホ決済の違いを整理する。",
+        "href": "/guide/kei-tax-payment-method-guide"
+      },
+      {
+        "label": "軽自動車税を払い忘れたとき。納期限後の払い方、延滞金、車検への影響を順に整理する。",
+        "href": "/guide/kei-tax-late-payment-guide"
+      }
+    ]
+  },
+  "detailSections": [
+    {
+      "title": "先に結論｜軽は「紙が本当に要るか」を先に分ける",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車税の納税証明書をなくしたとき、普通車の感覚で「まず再発行」と進めると遠回りです。軽は軽JNKSにより、車検では紙の提示が原則不要になっています。そのため、最初に見るべきなのは紛失そのものより、本当に紙が必要な状態かどうかです。"
+        },
+        {
+          "type": "decisionCards",
+          "cards": [
+            {
+              "badge": "原則不要",
+              "title": "通常の継続検査で、納付から時間がある人",
+              "body": "軽JNKSで確認できれば、紙の納税証明書を持ち込まなくても進む場面が多いです。まずは再発行の前に、本当に必要かを確認します。",
+              "items": [
+                "納付済みか確認する",
+                "過去未納がないか見る",
+                "車検依頼先へ確認する"
+              ]
+            },
+            {
+              "badge": "紙が要る例外",
+              "title": "納付直後・中古車購入直後・引っ越し直後の人",
+              "body": "軽JNKSにまだ反映していないと紙が必要になることがあります。ここでは再発行や車検用証明の申請を考えます。",
+              "items": [
+                "納付方法を思い出す",
+                "使用の本拠の位置を確認する",
+                "自治体窓口へ確認する"
+              ]
+            },
+            {
+              "badge": "支払い方まで見る",
+              "title": "スマホ決済や口座振替で急ぐ人",
+              "body": "納税確認がすぐ取れず、証明書が即発行できないことがあります。紙が必要な予定なら、支払い方から見直した方が安全です。",
+              "items": [
+                "通帳や納付履歴を確認する",
+                "発行可否を電話確認する",
+                "必要なら窓口納付へ切り替える"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "軽で先に見るべきこと",
+          "body": "紛失の問題より、「軽JNKSで足りるか」「紙が必要な例外か」の切り分けが先です。ここを外すと、取りに行かなくていい紙を探し続けがちです。"
+        }
+      ]
+    },
+    {
+      "title": "紙が必要になる場面｜軽JNKSでも例外が残る",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽JNKSがあっても、すべての軽自動車で即時に紙不要になるわけではありません。自治体案内では、納付直後、中古車購入直後、他市区町村へ引っ越した直後、過去の未納がある車などで、紙の納税証明書が必要になる場合があると明記されています。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "状態",
+            "起きやすいこと",
+            "どう見るか"
+          ],
+          "rows": [
+            [
+              "納付したばかり",
+              "軽JNKSへ未反映",
+              "急ぐなら紙証明の要否を自治体へ確認する"
+            ],
+            [
+              "中古車購入直後",
+              "今年度の課税自治体が今の市区町村でないことがある",
+              "前所有者時代の未納も含めて確認する"
+            ],
+            [
+              "引っ越し直後",
+              "使用の本拠の位置と発行自治体がずれやすい",
+              "車検証記載の住所地を確認する"
+            ],
+            [
+              "過去未納あり",
+              "軽JNKSで確認できないことがある",
+              "未納解消と証明申請を分けて進める"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "郵送廃止の自治体が増えている",
+          "body": "軽JNKSの拡大に合わせて、キャッシュレス納付者への車検用納税証明書の郵送を廃止した自治体が増えています。届かないこと自体が異常とは限りません。"
+        }
+      ]
+    },
+    {
+      "title": "申請先の基本｜軽は市区町村、しかも「使用の本拠の位置」を見る",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車税は市区町村税なので、証明書の発行窓口も市区町村です。普通車のように都道府県の税事務所を見る話ではありません。さらに、どの市区町村かを決めるときは、ナンバーだけでなく車検証の「使用の本拠の位置」を確認した方がずれにくいです。"
+        },
+        {
+          "type": "flow",
+          "steps": [
+            {
+              "title": "車検証を見る",
+              "body": "使用の本拠の位置がどの市区町村かを確認します。"
+            },
+            {
+              "title": "自治体ページを開く",
+              "body": "軽自動車税納税証明書（車検用）か、車検以外用かを分けて確認します。"
+            },
+            {
+              "title": "窓口・郵送・オンラインを選ぶ",
+              "body": "急ぐなら窓口、平日が難しいなら郵送やオンライン対応の有無を見ます。"
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "同じナンバーでも発行先が違うことがある",
+          "body": "八王子市の案内のように、「八王子ナンバーでも使用の本拠の位置が他市なら、その自治体へ」としている例があります。ナンバーだけで決めない方が安全です。"
+        }
+      ]
+    },
+    {
+      "title": "必要なもの｜車検用と車検以外用で扱いが分かれる",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽の納税証明書は、車検用か車検以外用かで必要事項や手数料が分かれる自治体があります。車検用は比較的シンプルでも、車検以外用では本人確認や使用目的、年度指定が必要になることがあります。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "車検用では、申請者氏名、住所、電話番号、納税義務者氏名、車両番号、使用目的程度を求める自治体がある。",
+            "車検用は本人確認書類が不要とする自治体もあるが、一般用では必要とする案内がある。",
+            "法人申請では、一般用のみ代表者印や委任状を求め、車検用は不要とする案内もある。",
+            "手数料は車検用と一般用で分かれることがある。",
+            "郵送では、返信用封筒や便箋記載での申請を受ける自治体がある。"
+          ]
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "証明の種類",
+            "見やすい特徴",
+            "注意点"
+          ],
+          "rows": [
+            [
+              "車検用",
+              "継続検査申請のためと明記する自治体が多い",
+              "紙自体が不要な場面もある"
+            ],
+            [
+              "車検以外用",
+              "年度や用途の指定が必要になりやすい",
+              "本人確認や手数料を確認する"
+            ],
+            [
+              "郵送申請",
+              "平日に行けない人向き",
+              "到着まで日数がかかる"
+            ],
+            [
+              "オンライン申請",
+              "対応自治体なら便利",
+              "紙が届くまで時間がかかることがある"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "title": "納付直後の注意｜キャッシュレスと口座振替は確認待ちが残る",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車税の納税証明書で特に詰まりやすいのは、キャッシュレス納付や口座振替の直後です。自治体案内では、納めたことの確認ができないと、すぐには車検用証明を発行できないとする例があります。急ぐ人は支払い方まで含めて考えた方が安全です。"
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "納付方法",
+            "起きやすいこと",
+            "急ぐときの考え方"
+          ],
+          "rows": [
+            [
+              "金融機関・コンビニ窓口",
+              "領収印付きの右側証明が使える場合がある",
+              "車検を急ぐなら最も読みやすい"
+            ],
+            [
+              "スマホ決済",
+              "納税確認がすぐ取れず証明書が発行できないことがある",
+              "急ぎなら避ける判断もある"
+            ],
+            [
+              "口座振替",
+              "通帳記帳で確認を求める自治体がある",
+              "通帳を持って窓口確認する"
+            ],
+            [
+              "督促状・再発行納付書での支払い",
+              "領収書がそのまま車検用証明にならない例がある",
+              "別途車検用証明を請求する"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "軽で急ぐ人のコツ",
+          "body": "「払えばすぐ紙が出る」とは見ない方が安全です。車検が近いときは、支払方法、軽JNKSへの反映、紙証明の発行条件を一緒に確認してください。"
+        }
+      ]
+    },
+    {
+      "title": "最後に整理｜軽は「軽JNKS」「市区町村」「反映待ち」の3語で考える",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "軽自動車税の納税証明書をなくしたときは、軽JNKSで足りるか、市区町村のどこで取るか、納付したばかりではないか。この3点で整理すると迷いにくいです。普通車と違って県税窓口ではなく、市区町村税の実務として見る方がぶれません。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "軽はまず紙が本当に必要かを確認する。",
+            "必要なら、車検証の使用の本拠の位置がある市区町村を見る。",
+            "納付直後や引っ越し直後は紙の例外になりやすい。",
+            "スマホ決済や口座振替は確認待ちを前提に考える。"
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "迷ったときの戻り先",
+          "body": "軽でぶれにくいのは、「軽JNKSで足りるか」「どの市区町村か」「最近払ったばかりか」の3点です。ここへ戻ると、再交付の要否が見えやすくなります。"
+        }
+      ]
+    }
+  ],
+  "body": ""
+}

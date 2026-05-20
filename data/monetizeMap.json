@@ -1,0 +1,26 @@
+{
+  "sell_basic_checklist": {
+    "partner": "sell",
+    "primaryLabel": "一括査定で買取相場をまとめて見る",
+    "primaryUrl": "https://kaitori.carsensor.net/",
+    "disclosure": "PR"
+  },
+  "sell_import_highclass": {
+    "partner": "sell",
+    "primaryLabel": "輸入車に強い買取サービスで相場を見る",
+    "primaryUrl": "https://kaitori.carsensor.net/",
+    "disclosure": "PR"
+  },
+  "sell_loan_remain": {
+    "partner": "sell",
+    "primaryLabel": "ローン残債あり前提で相場を確認する",
+    "primaryUrl": "https://kaitori.carsensor.net/",
+    "disclosure": "PR"
+  },
+  "insurance_compare_core": {
+    "partner": "insurance",
+    "primaryLabel": "複数社の見積を一括で比較する",
+    "primaryUrl": "https://px.a8.net/svt/ejp?a8mat=45KB4U+633JEA+2PS+15RZIP",
+    "disclosure": "PR"
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "id": "nissan-fairlady-z-z33",
+  "slug": "nissan-fairlady-z-z33",
+  "name": "Fairlady Z Z33",
+  "maker": "Nissan",
+  "releaseYear": 2002,
+  "difficulty": "intermediate",
+  "bodyType": "sports-coupe",
+  "segment": "クラシックスポーツ",
+  "heritageRefs": [
+    "nissan-fairlady-z-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "Fairlady Z Z33",
+  "summary": "Zの復権を担った世代。素直なFRスポーツとしての基礎を整えた。",
+  "summaryLong": "Fairlady Z Z33は、2002年に登場したNissanのsports-coupeで、FRとFront V6を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+  "heroImage": "",
+  "mainImage": "",
+  "imageUrl": "",
+  "gallery": [],
+  "engine": "Front V6",
+  "powerPs": 280,
+  "torqueNm": 363,
+  "transmission": "6MT / 5AT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 8〜11 km/L",
+  "priceNew": "当時：300万〜450万円（参考）",
+  "priceUsed": "150万〜450万円（相場変動）",
+  "strengths": [
+    "デザインとキャラクターが明確で、所有満足度が高い",
+    "運転のフィードバックが濃く、操る楽しさがある",
+    "コミュニティ/情報が一定量あり、維持の道筋を作れる",
+    "相場が安定しやすく、資産性を期待できる場合がある"
+  ],
+  "weaknesses": [
+    "年式・個体差による当たり外れが大きい",
+    "部品の供給/価格が年々厳しくなる場合がある",
+    "日常用途では燃費・乗り心地の割り切りが必要"
+  ],
+  "troubleTrends": [
+    "ゴム/樹脂類（ホース・ブッシュ）の劣化",
+    "電装系（センサー/配線）の経年",
+    "冷却系のメンテ不足"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：500〜1000万円前後規模を想定できない場合は維持途中で資金計画が苦しくなりやすい車です。",
+  "relatedColumnSlugs": [
+    "usedcar-100k-km-myth"
+  ],
+  "relatedGuideSlugs": [
+    "how-to-choose-first-sports-car",
+    "repair-history-used-car-checklist"
+  ],
+  "relatedCarSlugs": [
+    "nissan-fairlady-z-z31",
+    "nissan-fairlady-z-z34",
+    "nissan-z-rz34"
+  ],
+  "tags": [
+    "Nissan",
+    "sports-coupe",
+    "クラシックスポーツ",
+    "FR",
+    "6MT / 5AT",
+    "Front V6",
+    "ヤングタイマー"
+  ],
+  "relatedHeritageSlugs": [
+    "nissan-fairlady-z-lineage-heritage",
+    "japan-2002-new-baseline-heritage"
+  ],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：300〜800万円前後",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間40〜80万円"
+  },
+  "priceUsedYenRange": "150万〜450万円（相場変動）",
+  "maintenanceCostYenPerYear": 300000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Nissan Fairlady Z Z33。",
+  "makerKey": "nissan",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-05-17",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/nissan",
+  "relatedClusterIds": [],
+  "primaryQuery": "Fairlady Z Z33",
+  "updateReason": "Fairlady Z系譜HERITAGEとの相互リンクを追加し、Z世代間の文脈を補強。",
+  "sources": [
+    "https://en.wikipedia.org/wiki/Nissan_350Z",
+    "https://zh.wikipedia.org/wiki/%E6%97%A5%E7%94%A2Z%E7%B3%BB%E5%88%97"
+  ],
+  "bestFor": [
+    "現実的に乗れるFRスポーツとしてZを楽しみたい人",
+    "S30やZ32より維持の道筋を立てやすい世代を選びたい人",
+    "VQエンジンの太いトルクと素直なFRを重視する人"
+  ],
+  "notFor": [
+    "軽さや繊細さを最優先する人",
+    "安いスポーツカーとして整備を後回しにしたい人",
+    "内装や足まわりの疲れを見ずに価格だけで選ぶ人"
+  ],
+  "maintenanceNotes": [
+    "初期型/中期/後期でエンジン特性と相場が変わる",
+    "クラッチ、デフ、足まわり、ブッシュ、冷却系を確認する",
+    "改造車は吸排気・車高調・ホイールの作り込みを見る"
+  ],
+  "body": "## 要点\nFairlady Z Z33は、Zを再び現実的なFRスポーツとして戻した世代です。S30のような旧車趣味でもなく、Z32のようなハイテクGTでもなく、VQ35とFR、2シーターという分かりやすい構成でZを再出発させました。いま中古で見るなら、安さより“どれだけ丁寧に使われてきたか”が大事です。\n\n## Zの中での役割\nZ31とZ32はGT色が強く、特にZ32は当時の日産技術を詰め込んだ高性能車でした。Z33はそこから一度シンプルな方向へ戻した車です。大排気量NA V6、FR、6MTという構成は、現代のRZ34にもつながります。Z33を選ぶ意味は、最新の速さではなく、まだ手が届く範囲でZらしいFR感を味わえることです。\n\n## 向く人 / 向かない人\n向くのは、初めて本格的なFRスポーツを所有したい人です。向かないのは、軽量で繊細なスポーツカーを期待する人。Z33は太いトルクと安定感が魅力ですが、軽快さではロードスターやS2000とは別物です。重さを欠点と見るか、安心感と見るかで評価が分かれます。\n\n## 買う前のチェック\n見るべきは、クラッチ、ミッション、デフ、足まわり、冷却、オイル管理、修復歴です。改造車が多いため、吸排気や車高調のブランドより、取り付けの質、アライメント、異音、タイヤの片減りを見ます。初めてのスポーツカーとして見るなら、[初めてのスポーツカー選び](/guide/how-to-choose-first-sports-car)で優先順位を整理してから個体を見ると失敗しにくくなります。\n\n## 弱点・故障\n弱点は、頑丈に見えるぶん荒く使われた個体が混ざることです。クラッチ、デフ、ミッション、足まわり、オイル管理、冷却の状態で差が出ます。特に車高調、太いホイール、吸排気変更がある個体は、見た目より取り付けと整合を見ます。\n\n## 維持の現実\nZ33はスーパーカーではありませんが、スポーツカーとしての消耗はあります。タイヤ、ブレーキ、クラッチ、油脂類は安いセダン感覚では見ない方がいいです。安い個体ほど、内装、足まわり、冷却、改造戻しに費用がかかることがあります。走行距離だけで判断せず、[10万km中古車の誤解](/column/usedcar-100k-km-myth)のように履歴で見るのが安全です。\n\n## 中古で買うなら\nおすすめは、ノーマル寄りで履歴が追える6MT、または整備内容が明確なATです。安い個体は多いですが、クラッチ、足まわり、タイヤ、内装、冷却を直すと総額が上がります。価格ではなく、買った直後にどれだけ整備が必要かで見ます。\n\n## 比較で見る\nZ31は80年代GT、Z32はハイテクGT、Z33はシンプルな復活FR、Z34は熟成型、RZ34は現代版です。Z33は価格と楽しさのバランスが強い一方、内外装の疲れた個体も増えています。安さでZ33を選ぶのではなく、Zの中で自分がどの時代の味を欲しいのかで選ぶべきです。\n\n## 関連リンク\n- [Z31 Fairlady Z](/cars/nissan-fairlady-z-z31)\n- [Z34 Fairlady Z](/cars/nissan-fairlady-z-z34)\n- [RZ34 Z](/cars/nissan-z-rz34)\n- [初めてのスポーツカー選び](/guide/how-to-choose-first-sports-car)\n- [修復歴・事故歴の見方](/guide/repair-history-used-car-checklist)\n- [フェアレディZの系譜](/heritage/nissan-fairlady-z-lineage-heritage)"
+}

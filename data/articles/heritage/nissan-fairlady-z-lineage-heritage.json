@@ -1,0 +1,360 @@
+{
+  "id": "heritage_nissan_fairlady_z_lineage",
+  "slug": "nissan-fairlady-z-lineage-heritage",
+  "type": "HERITAGE",
+  "status": "published",
+  "kind": "CAR",
+  "maker": "NISSAN",
+  "brandName": "Fairlady Z",
+  "title": "日産の象徴 -フェアレディZの歴史-",
+  "titleJa": "日産の象徴 -フェアレディZの歴史-",
+  "seoTitle": "日産の象徴 -フェアレディZの歴史- | CAR BOUTIQUE JOURNAL",
+  "seoDescription": "S30からRZ34まで。フェアレディZが手の届くスポーツカーとして始まり、高性能GT、復活、現代のZへどう変わってきたのかを辿る。",
+  "createdAt": "2026-02-02",
+  "publishedAt": "2026-02-02",
+  "updatedAt": "2026-05-17",
+  "heroTitle": "FAIRLADY Z",
+  "heroCaption": "手が届く夢として始まり、現代まで続いた日産のスポーツカー。",
+  "heroImage": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png",
+  "heroTone": null,
+  "highlights": [],
+  "sections": [
+    {
+      "id": "origin-1969",
+      "title": "1969 — 手が届くスポーツカーとしての始まり",
+      "summary": "Zの原点は、夢を遠くに置かなかったことにある。",
+      "image": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png",
+      "carSlugs": [
+        "nissan-fairlady-z-s30",
+        "nissan-fairlady-z-z31",
+        "nissan-fairlady-z-z32",
+        "nissan-fairlady-z-z33",
+        "nissan-fairlady-z-z34",
+        "nissan-z-rz34"
+      ],
+      "guideSlugs": [],
+      "columnSlugs": []
+    },
+    {
+      "id": "gt-1978",
+      "title": "1978 — S130がGTへ寄っていく",
+      "summary": "Zは、時代に合わせて快適性とGT性を強めた。",
+      "image": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png",
+      "carSlugs": [
+        "nissan-fairlady-z-s30",
+        "nissan-fairlady-z-z31",
+        "nissan-fairlady-z-z32",
+        "nissan-fairlady-z-z33",
+        "nissan-fairlady-z-z34",
+        "nissan-z-rz34"
+      ],
+      "guideSlugs": [],
+      "columnSlugs": []
+    },
+    {
+      "id": "z31-z32",
+      "title": "1983-1989 — Z31とZ32が先進性を背負う",
+      "summary": "Zは、ターボと電子制御で時代の高性能GTになった。",
+      "image": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png",
+      "carSlugs": [
+        "nissan-fairlady-z-s30",
+        "nissan-fairlady-z-z31",
+        "nissan-fairlady-z-z32",
+        "nissan-fairlady-z-z33",
+        "nissan-fairlady-z-z34",
+        "nissan-z-rz34"
+      ],
+      "guideSlugs": [],
+      "columnSlugs": []
+    },
+    {
+      "id": "z33-2002",
+      "title": "2002 — Z33が名前を買える場所へ戻す",
+      "summary": "途切れたZは、もう一度現実的なFRスポーツとして帰ってきた。",
+      "image": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png",
+      "carSlugs": [
+        "nissan-fairlady-z-s30",
+        "nissan-fairlady-z-z31",
+        "nissan-fairlady-z-z32",
+        "nissan-fairlady-z-z33",
+        "nissan-fairlady-z-z34",
+        "nissan-z-rz34"
+      ],
+      "guideSlugs": [],
+      "columnSlugs": []
+    },
+    {
+      "id": "rz34",
+      "title": "Z34とRZ34 — 伝統をどう現代に残すか",
+      "summary": "Zは、完全な過去の再現ではなく、現代の現実解として続いている。",
+      "image": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png",
+      "carSlugs": [
+        "nissan-fairlady-z-s30",
+        "nissan-fairlady-z-z31",
+        "nissan-fairlady-z-z32",
+        "nissan-fairlady-z-z33",
+        "nissan-fairlady-z-z34",
+        "nissan-z-rz34"
+      ],
+      "guideSlugs": [],
+      "columnSlugs": []
+    },
+    {
+      "id": "symbol",
+      "title": "なぜフェアレディZは日産の象徴なのか",
+      "summary": "Zは、スポーツカーを現実の近くに置き続けた名前である。",
+      "image": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png",
+      "carSlugs": [
+        "nissan-fairlady-z-s30",
+        "nissan-fairlady-z-z31",
+        "nissan-fairlady-z-z32",
+        "nissan-fairlady-z-z33",
+        "nissan-fairlady-z-z34",
+        "nissan-z-rz34"
+      ],
+      "guideSlugs": [],
+      "columnSlugs": []
+    }
+  ],
+  "body": "# FAIRLADY Z\n\nフェアレディZを、単に歴代モデルの年表として読むと見誤る。\nこの車の本質は、日産がスポーツカーをどこまで現実の近くに置けるかを試し続けたことにある。\n\n横串で見ると、Zには一貫した役割がある。\n日本のメーカーが作るFRスポーツを、北米を中心とした広い市場で成立させること。\n高級ブランドのための特別なGTではなく、普通の人が憧れとして届きうるスポーツカーにすること。\nこの役割は、S30からRZ34まで形を変えながら残っている。\n\nだからZの歴史は、速さだけの歴史ではない。\n軽さ、価格、信頼性、快適性、排出ガス規制、北米市場、ターボ化、自然吸気V6への回帰、そして現代のレトロデザインまで、毎世代で違う制約を受けながら、同じ問いに答えてきた歴史である。\n\nZはいつも、最高性能だけを追った車ではなかった。\nGT-Rのように勝つための技術を背負う名前でもない。\nそれでも日産の象徴であり続けたのは、スポーツカーを特別なショーケースではなく、販売店で買えて、道路を走れて、長く憧れ続けられる存在にしたからだ。\n\nこのHERITAGEでは、S30、Z31、Z32、Z33、Z34、RZ34を、単体の名車としてではなく、日産がZに何を背負わせ続けたのかという流れで見る。\n個別の車種を詳しく見る前に、この横串を押さえておくと、各世代の意味がかなり変わって見える。\n\n## 1. S30 — 日本のスポーツカーを世界へ持ち出した起点\n\n1969年に登場した初代フェアレディZ、いわゆるS30系は、Zの原点である。\nただし原点という言葉だけでは足りない。\nS30の本当の強さは、スポーツカーらしい姿と直列6気筒の余裕を、現実的な価格と信頼性でまとめたことにある。\n\n当時のスポーツカーは、魅力的だが高価で、維持も難しく、日常から少し離れた存在になりやすかった。\nS30はそこに別の答えを出した。\n長いノーズ、低い屋根、後ろへ引いたキャビン、FRの基本構成。\n見た目は十分にスポーツカーでありながら、買える価格と扱いやすさを失わなかった。\n\n北米でDatsun 240Zとして受け入れられた意味は大きい。\nZは日本国内だけのスポーツカーではなく、日本車が世界のスポーツカー市場で存在感を持てることを示した。\nここで生まれた成功体験が、その後のZに強く残る。\nZは日本の道だけで成立すればいい車ではなく、海外、とくに北米のユーザーに届かなければならない車になった。\n\nこの視点で見ると、S30は軽快な旧車というだけではない。\nZという名前に、北米で売れること、長距離を走れること、見た目で憧れを作れること、そして価格を遠くしすぎないことを刻み込んだ世代である。\n\nS30の個別ページでは、現代の中古車としての錆、レストア、オリジナル性、部品供給を見る必要がある。\nしかしこのHERITAGEで押さえるべきなのは、S30が単体で名車だっただけでなく、後のZすべてに残る設計思想を決めたことだ。\n\n### S30で決まったZの骨格\n\n| 視点 | 内容 |\n|---|---|\n| 市場 | 日本だけでなく北米で売れるスポーツカーになった |\n| 形 | ロングノーズとショートデッキで分かりやすい憧れを作った |\n| 価格 | 高すぎないスポーツカーという位置を取った |\n| 使い方 | 日常から完全に切り離されないGT性を持った |\n\n> CARD / S30\n> Zは、夢を遠くに置かなかった。\n> S30は、買える価格でスポーツカーらしい姿と走りを届けたことに意味がある。\n\n## 2. S130とZ31 — 原点から離れながら、時代に適応した世代\n\nZは、初代の成功だけを繰り返したわけではない。\nむしろ次の世代から、Zは何度も原点から離れる。\nそれが悪いという話ではない。\nスポーツカーが続くためには、時代の要請に合わせて変わる必要があった。\n\nS130では、ZはよりGTへ寄った。\n排出ガス規制、安全性、快適装備、北米市場の好み。\nこうした条件の中で、初代の軽さだけを守ることは難しかった。\nS130は鋭いスポーツカーというより、長距離を走れる上級クーペへ近づいた。\n\nZ31では、さらに80年代の空気が濃くなる。\n直線的なデザイン、ターボ、電子制御、デジタルな印象。\n初代のような素朴なFRスポーツとは違うが、当時の高性能車としては自然な進化だった。\nZ31は、Zが時代の先進性を背負い始めた世代である。\n\nここで大事なのは、Zが一貫して軽いスポーツカーだったわけではないという事実だ。\nZは時代によって、GTになり、ターボになり、快適装備を増やし、重くもなった。\nそれでもZであり続けたのは、FRスポーツとしての基本、長いノーズを持つクーペの記号、そして海外市場で成立する現実性を捨てなかったからである。\n\nZ31の個別ページでは、当時のターボGTとしての魅力と同時に、旧車としての電装、内装、冷却系、部品供給を確認する必要がある。\nZの歴史の中では、Z31は原点からの逸脱ではなく、Zが80年代を生きるための適応だった。\n\n### S30からZ31への変化\n\n| 世代 | 役割 |\n|---|---|\n| S30 | 手が届くスポーツカーとして世界に広がった |\n| S130 | 快適性とGT性を強めた |\n| Z31 | ターボと80年代の先進性を背負った |\n\n> CARD / Z31\n> Z31は、初代の再現ではない。\n> Zが80年代の高性能GTとして生き残るために、ターボと先進性をまとった世代だった。\n\n## 3. Z32 — 高性能GTとして頂点に近づき、同時に重くなった\n\n1989年のZ32は、Zの歴史の中でも特別に強い存在である。\n低く広いボディ、VG30DETTのツインターボ、4輪操舵、当時の日産らしい先進技術。\nZ32は、初代の身近なスポーツカーというより、世界の高性能GTと向き合うためのZだった。\n\nこの世代は、Zを大きく押し上げた。\nデザインも性能も洗練され、単なる手頃な日本製スポーツカーではなくなった。\n同時に、Zは価格も維持も重くなった。\nここにZの難しさがある。\n高性能になればなるほど、初代が持っていた身近さから遠ざかる。\n\nZ32は失敗ではない。\nむしろ、日産が当時どれほど強い技術力を持っていたかを示す車である。\nただし、Zの名前を長く続けるという意味では、難しい地点に来ていた。\n高性能GTとしては魅力的でも、買いやすく、維持しやすく、広いユーザーに届くZではなくなっていく。\n\nZ32を読むときは、単に名車として称えるだけでは足りない。\nZがどこまで高性能化できるのか、その先に何が起きるのかを示した世代として見るべきだ。\nこの反動が、後のZ33につながる。\n\n中古車としてZ32を見るなら、ターボ、冷却、電装、内装、足まわり、改造履歴の確認が重要になる。\nHERITAGEとしては、Z32は日産の先進性の象徴であると同時に、Zが身近さを失いかけた分岐点でもある。\n\n> CARD / Z32\n> Z32は、Zを世界水準の高性能GTへ押し上げた。\n> その強さの反対側で、初代が持っていた身近さは薄くなっていった。\n\n## 4. Z33 — Zをもう一度、買えるFRスポーツへ戻した\n\nZ32のあと、Zの名前は一度途切れる。\nそして2002年、Z33が登場する。\nこの世代の意味は、単なる復活ではない。\nZをもう一度、現実的に買えるFRスポーツへ戻したことにある。\n\nZ33は、初代S30の完全な再現ではない。\nプラットフォームもエンジンも時代も違う。\nそれでも、思想としてはS30に近い。\n過剰に複雑にしすぎない。\n価格を遠くしすぎない。\nFRで、自然吸気V6で、2シーターを中心に、運転する理由が分かる車にする。\n\nZ33の価値は、Z32の反動として見ると分かりやすい。\nZ32が高性能GTとして頂点に近づいたのに対し、Z33はZを市場へ戻した。\nスポーツカーの名前は、ショールームに戻ってこなければ続かない。\nZ33はその役割を果たした。\n\nもちろん、Z33には粗さもある。\n内装の質感、初期型の細かい不満、現代目線での重さ。\nそれでも、Zの歴史で見れば、Z33は極めて重要である。\nこの世代がなければ、Zは懐かしい名車の名前で終わっていた可能性がある。\n\nZ33の個別ページでは、前期後期、エンジン仕様、足まわり、整備履歴、改造歴を見る必要がある。\nHERITAGEとしては、Z33はZを手の届く場所へ戻した再起動の世代である。\n\n### Z33が戻したもの\n\n| 視点 | 内容 |\n|---|---|\n| 価格 | 高性能GTよりも買えるスポーツカーへ寄せた |\n| 構成 | 自然吸気V6、FR、2シーターを中心にした |\n| 役割 | Zの名前を市場へ戻した |\n| 意味 | 初代の思想を現代的に再解釈した |\n\n> CARD / Z33\n> Z33は、Zをもう一度近い場所へ戻した。\n> 初代の再現ではなく、Zの買えるスポーツカーという性格を現代に引き戻した世代だった。\n\n## 5. Z34とRZ34 — 伝統を残すための現実解\n\nZ34は、Z33の考え方を熟成させた世代である。\n大きく見れば、自然吸気V6、FR、2シーターという分かりやすい構成を守った。\nZ33より引き締まったボディと濃い走りを持ち、Zの名前を長く市場に残した。\n\nただし、Z34は長寿だった。\nその長さは、進化の少なさとして批判されることもある。\nしかし別の見方をすれば、スポーツカー市場が縮小していく中で、Zの名前を消さなかった世代でもある。\nこの点は重要である。\n\nそしてRZ34が出る。\nRZ34は完全な新世代プラットフォームの車ではない。\nそれでも、初代を思わせるロングノーズ、S30の記憶を重ねた意匠、3.0LツインターボV6、6速MTという要素で、現代にZを残す現実解を示した。\n\nここで見るべきなのは、RZ34が過去を完璧に再現したかどうかではない。\n現代の安全、排出ガス、開発費、販売規模の制約の中で、どこまでZらしさを残せたかである。\nその意味でRZ34は、懐古だけの車ではなく、Zを今も買える車として残すための妥協と意地の両方を持っている。\n\nZ34やRZ34の個別ページでは、スープラやGR86、輸入スポーツとの比較が重要になる。\nこのHERITAGEでは、Z34とRZ34を、Zの伝統を現代の制約下でどう残したかという視点で読む。\n\n### Z34 / RZ34の役割\n\n| 世代 | 役割 |\n|---|---|\n| Z34 | Z33の路線を熟成し、名前を市場に残した |\n| RZ34 | 初代の記憶と現代性能を重ね、Zを今も買える車にした |\n\n> CARD / RZ34\n> RZ34は、完全な過去の再現ではない。\n> それでも、初代の記憶を現代に重ね、Zという名前をもう一度前へ出した。\n\n## 6. 横串で見るZ — 速さよりも、残し方の歴史\n\nフェアレディZを横串で見ると、もっとも大きなテーマは速さではない。\nスポーツカーをどう残すかである。\n\nS30は、買えるスポーツカーとして世界へ出た。\nS130とZ31は、GT化とターボ化で時代に適応した。\nZ32は、高性能GTとして技術の頂点へ近づいた。\nZ33は、その重さを一度ほどき、買えるFRスポーツとして戻した。\nZ34は名前を市場に残し、RZ34は初代の記憶を今につないだ。\n\nこの流れで見ると、Zは一本調子ではない。\n軽くなったり、重くなったり、速くなったり、身近に戻ったりする。\nだが、その揺れこそがZの歴史である。\nもしZが常に高性能化だけを追っていたなら、どこかで消えていたかもしれない。\nもしZが初代の再現だけを続けていたなら、時代に取り残されていたかもしれない。\n\nZは、そのどちらでもなかった。\n日産はZに、スポーツカーの夢と販売上の現実の両方を背負わせた。\nだからZは、GT-Rほど純粋な戦闘機ではなく、シルビアほど若者だけの車でもなく、日産の中で少し違う位置を持つ。\n憧れと現実の中間に置かれたスポーツカーである。\n\nこの視点を持って個別Carsを読むと、S30、Z31、Z33、RZ34の見え方が変わる。\nS30は単なる旧車ではなく、Zの原点である。\nZ31は迷走ではなく、80年代への適応である。\nZ33は安い復活車ではなく、Zを買える場所へ戻した世代である。\nRZ34は懐古ではなく、現代にZを残すための現実解である。\n\n## 7. 次に読むべきZの個別Cars\n\nこのHERITAGEの次に読むなら、まずS30を見るとZの原点が分かる。\n買える価格、ロングノーズ、直列6気筒、北米での成功という基本がここにある。\n\n次にZ31を見ると、Zが80年代にどう変わったかが分かる。\nターボ、GT化、電子制御、デザインの変化を通じて、Zが時代へ適応したことが見える。\n\nZ33は、Zの復活を理解するために重要である。\nZ32で重く高性能になった名前を、もう一度現実的なFRスポーツへ戻した世代だからだ。\n\nZ34とRZ34は、現代にZを残す難しさを示している。\n完全な新規開発ではなくても、Zらしさをどう残すか。\nこの問いは、今のスポーツカー市場そのものの問いでもある。\n\n関連するGuideでは、初めてのスポーツカー選び、修復歴の見方、旧車や中古スポーツの点検ポイントを合わせて読むとよい。\nZは世代ごとに魅力が違うため、歴史だけでなく、買うときの現実も同時に見る必要がある。\n\n## 8. まとめ — Zは、日産がスポーツカーを諦めきらなかった証拠\n\nフェアレディZは、一世代だけで語る車ではない。\nS30の成功、Z31とZ32の高性能化、Z33の復活、Z34の長寿、RZ34の継承。\nその全部をつなぐと、Zは日産がスポーツカーを現実の中に残そうとしてきた証拠に見えてくる。\n\nZは常に完璧だったわけではない。\n世代によっては重く、世代によっては古く見え、世代によっては原点から遠くなった。\nそれでも名前が続いたことに価値がある。\n\nスポーツカーは、速ければ残るわけではない。\n買えること、使えること、憧れられること、時代に合わせて変われること。\nZはその条件を、何度も組み替えながら残ってきた。\n\nだからフェアレディZは、日産の象徴である。\nそれは最高性能の象徴ではなく、スポーツカーを現実の近くに置き続ける意志の象徴である。\n",
+  "tags": [
+    "Nissan",
+    "Fairlady Z",
+    "S30",
+    "Z31",
+    "Z32",
+    "Z33",
+    "Z34",
+    "RZ34",
+    "Lineage"
+  ],
+  "intentTags": [
+    "heritage",
+    "lineage",
+    "history",
+    "engineering",
+    "deep-dive"
+  ],
+  "relatedCarSlugs": [
+    "nissan-fairlady-z-s30",
+    "nissan-fairlady-z-z31",
+    "nissan-fairlady-z-z32",
+    "nissan-fairlady-z-z33",
+    "nissan-fairlady-z-z34",
+    "nissan-z-rz34"
+  ],
+  "relatedGuideSlugs": [
+    "how-to-choose-first-sports-car",
+    "repair-history-used-car-checklist",
+    "used-car-total-cost-checklist"
+  ],
+  "relatedColumnSlugs": [
+    "repair-history-how-to-judge",
+    "sports-car-is-not-only-speed"
+  ],
+  "summary": "S30からRZ34まで。フェアレディZが日産のスポーツカーとして何を守り、何を変えてきたのかを辿る。",
+  "canonicalUrl": null,
+  "ogImageUrl": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png",
+  "publicState": "index",
+  "parentPillarId": "/heritage",
+  "relatedClusterIds": [],
+  "primaryQuery": "フェアレディZ 歴史",
+  "updateReason": "HERITAGEをハブ型として再構成。S30からRZ34までの横串視点、関連Carsへの導線、購入時の現実、出典を補強。",
+  "sources": [
+    "https://www3.nissan.co.jp/vehicles/new/z.html",
+    "https://www.carsensor.net/usedcar/bNI/s026/index.html",
+    "https://www.goo-net.com/catalog/NISSAN/FAIRLADY_Z/",
+    "https://www.goo-net.com/magazine/contents/buyers-guide/194794/",
+    "https://www.qsha-oh.com/historia/article/fairlady_z_34/",
+    "https://crnavi.jp/detail/11499/",
+    "https://www.ancar.jp/channel/33581/",
+    "https://nosweb.jp/nostalgichero/articles/detail/9910",
+    "https://matome.response.jp/articles/6089",
+    "https://en.wikipedia.org/wiki/Nissan_Fairlady_Z_(S30)",
+    "https://en.wikipedia.org/wiki/Nissan_370Z",
+    "https://en.wikipedia.org/wiki/Nissan_Z_(RZ34)"
+  ],
+  "thumbnail": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png",
+  "displayTag": "日本名車の系譜",
+  "lead": "フェアレディZは、手が届くスポーツカーとして始まり、時代ごとに高性能GT、復活、現代のRZ34へと意味を変えてきた。",
+  "subtitle": "S30からRZ34まで。日産がスポーツカーをどこまで身近な場所に残せるかを示してきた名前。",
+  "readingTimeMinutes": 15,
+  "cinematicHeritage": {
+    "eyebrow": "HERITAGE / 系譜",
+    "title": "FAIRLADY Z",
+    "subtitle": "S30からRZ34まで。Zが日産のスポーツカーとして何を残してきたのかを辿る。",
+    "heroImage": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png",
+    "timelineTitle": "1969—現在 / Z Lineage",
+    "timelineLead": "フェアレディZは、手が届くスポーツカーとして始まり、高性能GT、復活、現代のRZ34へと意味を変えてきた。",
+    "showChronicleLead": false,
+    "showChronicleGenerations": false,
+    "generations": [
+      {
+        "code": "S30",
+        "years": "1969-1978",
+        "name": "Fairlady Z / 240Z",
+        "title": "手が届くスポーツカー",
+        "lead": "Zは、スポーツカーの夢を現実的な価格と品質で届けた。",
+        "body": "北米で大きく受け入れられ、日産のスポーツイメージを世界へ広げた。",
+        "image": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png"
+      },
+      {
+        "code": "S130",
+        "years": "1978-1983",
+        "name": "Fairlady Z / 280ZX",
+        "title": "GTへ寄っていくZ",
+        "lead": "快適性と長距離性能を強め、Zを大人のGTへ広げた。",
+        "body": "初代の鋭さだけでなく、GTとしての幅を持つ名前になった。",
+        "image": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png"
+      },
+      {
+        "code": "Z31/Z32",
+        "years": "1983-2000",
+        "name": "300ZX",
+        "title": "先進性を背負うZ",
+        "lead": "ターボと電子制御で、Zは時代の高性能GTになった。",
+        "body": "Z32では、世界水準の高性能GTとして存在感を強めた。",
+        "image": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png"
+      },
+      {
+        "code": "Z33",
+        "years": "2002-2008",
+        "name": "350Z",
+        "title": "買える場所へ戻ったZ",
+        "lead": "Z33は、途切れたZをもう一度現実的なFRスポーツとして戻した。",
+        "body": "過度に複雑にせず、走る理由が分かりやすいZになった。",
+        "image": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png"
+      },
+      {
+        "code": "Z34/RZ34",
+        "years": "2008-現在",
+        "name": "370Z / Z",
+        "title": "伝統を現代へつなぐZ",
+        "lead": "Z34が名前を残し、RZ34が初代の記憶を現代に重ねた。",
+        "body": "Zは、完全な過去の再現ではなく、時代ごとの現実解として続いている。",
+        "image": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png"
+      }
+    ],
+    "chapters": [
+      {
+        "id": "origin-1969",
+        "kicker": "ORIGIN / 01",
+        "title": "1969 — 手が届くスポーツカーとしての始まり",
+        "subtitle": "Zの原点は、夢を遠くに置かなかったことにある。",
+        "body": [
+          "初代Zが大きかったのは、速かったからだけではない。美しいロングノーズのクーペでありながら、現実的な価格で、日常の延長に置けるスポーツカーだった。",
+          "Zは、スポーツカーの夢を現実的な価格と品質で届けた。"
+        ],
+        "theme": "paper",
+        "image": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png"
+      },
+      {
+        "id": "gt-1978",
+        "kicker": "CHAPTER / 02",
+        "title": "1978 — S130がGTへ寄っていく",
+        "subtitle": "Zは、時代に合わせて快適性とGT性を強めた。",
+        "body": [
+          "S130は、初代の鋭さをそのまま増やした車ではない。Zを、より大人のGTへ広げた世代だった。",
+          "この幅があったから、Zは一過性のブームで終わらず、長く続く名前になった。"
+        ],
+        "theme": "dark",
+        "image": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png"
+      },
+      {
+        "id": "z31-z32",
+        "kicker": "CHAPTER / 03",
+        "title": "1983-1989 — Z31とZ32が先進性を背負う",
+        "subtitle": "Zは、ターボと電子制御で時代の高性能GTになった。",
+        "body": [
+          "Z31では、80年代らしいターボとデジタル感が前に出た。Z32では、ワイドで低いボディとツインターボによって、Zは世界水準の高性能GTへ進んだ。",
+          "高性能になった一方で、初代の身近さからは少し遠くなっていく。"
+        ],
+        "theme": "paper",
+        "image": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png"
+      },
+      {
+        "id": "z33-2002",
+        "kicker": "CHAPTER / 04",
+        "title": "2002 — Z33が名前を買える場所へ戻す",
+        "subtitle": "途切れたZは、もう一度現実的なFRスポーツとして帰ってきた。",
+        "body": [
+          "Z33の大きな意味は、Zをもう一度現実的に買えるスポーツカーへ戻したことにある。",
+          "過剰に複雑にしない。価格を遠くしすぎない。運転する理由が分かりやすいFRスポーツにする。Z33は、Zの名前を日常の近くに戻した。"
+        ],
+        "theme": "mist",
+        "image": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png"
+      },
+      {
+        "id": "rz34",
+        "kicker": "CHAPTER / 05",
+        "title": "Z34とRZ34 — 伝統をどう現代に残すか",
+        "subtitle": "Zは、完全な過去の再現ではなく、現代の現実解として続いている。",
+        "body": [
+          "Z34はZ33の路線を長く熟成させ、RZ34は初代の記憶を現代に重ねた。",
+          "現代のスポーツカー市場でZをどう残すか。RZ34は、その問いへの現実的な答えだった。"
+        ],
+        "theme": "dark",
+        "image": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png",
+        "specs": [
+          {
+            "label": "RZ34の核",
+            "value": "V6ツインターボ / FR"
+          },
+          {
+            "label": "象徴",
+            "value": "ロングノーズと初代への視線"
+          }
+        ]
+      },
+      {
+        "id": "symbol",
+        "kicker": "CLOSING / 06",
+        "title": "なぜフェアレディZは日産の象徴なのか",
+        "subtitle": "Zは、スポーツカーを現実の近くに置き続けた名前である。",
+        "body": [
+          "Zは、ひとつの世代だけで名車になったわけではない。手が届く夢として始まり、高性能化し、重くなり、途切れ、また戻ってきた。",
+          "フェアレディZとは、日産がスポーツカーをどこまで身近な場所に残せるかを示してきた名前である。"
+        ],
+        "theme": "paper",
+        "image": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png"
+      }
+    ],
+    "guideLabel": "GUIDE",
+    "guideTitle": "Zを中古で見るなら",
+    "guideLead": "世代ごとに、現実的な選び方はかなり違う。初めてならZ33/Z34、趣味性ならS30/Z32、現代性ならRZ34という整理が安全。",
+    "guideCards": [
+      {
+        "badge": "S30/S130",
+        "title": "旧車として見る",
+        "text": "雰囲気より先に錆、補修歴、部品の入手性を見る。",
+        "tone": "paper"
+      },
+      {
+        "badge": "Z33/Z34",
+        "title": "現実的な入口",
+        "text": "価格、部品、整備性のバランスが取りやすい。修復歴と消耗品は厳しく見る。",
+        "tone": "black"
+      },
+      {
+        "badge": "RZ34",
+        "title": "新しいが高い",
+        "text": "保証、整備履歴、価格のブレ、MT/ATの選択を冷静に見る。",
+        "tone": "gold"
+      }
+    ],
+    "closing": [
+      "Zは、速さだけで日産の象徴になったのではない。",
+      "スポーツカーを、現実の近くに置き続けた。",
+      "フェアレディZとは、日産がスポーツカーをどこまで身近な場所に残せるかを示してきた名前である。"
+    ],
+    "showFinalNav": true,
+    "showRelated": true
+  },
+  "relatedHeritageSlugs": [
+    "nissan-skyline-gt-r-lineage-heritage",
+    "toyota-supra-history-heritage",
+    "japan-1995-golden-age-heritage"
+  ],
+  "heritageType": "hub",
+  "pillarInsight": "フェアレディZの本質は世代ごとの速さではなく、日本のFRスポーツを北米を含む広い市場で成立させ、現実の近くにスポーツカーを残し続けた点にある。"
+}

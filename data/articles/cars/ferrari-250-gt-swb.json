@@ -1,0 +1,122 @@
+{
+  "id": "ferrari-250-gt-swb",
+  "slug": "ferrari-250-gt-swb",
+  "name": "250 GT SWB",
+  "maker": "Ferrari",
+  "releaseYear": 1959,
+  "difficulty": "advanced",
+  "bodyType": "gt-coupe",
+  "segment": "クラシックGT",
+  "heritageRefs": [
+    "ferrari-v12-gt-heritage"
+  ],
+  "category": "HERITAGE_ANCHOR",
+  "grade": "250 GT SWB",
+  "summary": "Ferrari V12 GTの原点となる短ホイールベースの名作。",
+  "summaryLong": "250 GT SWBは、1959年に登場したFerrariのgt-coupeで、FRとFront V12を軸にしたキャラクターが核にある。 走りの質は単なる数値では語れず、ステアリングの初期応答、荷重移動の素直さ、そして『もう一度踏みたくなる』加速の感触が、このモデルの価値を決める。 中古市場では個体差が大きい。購入時は整備履歴・冷却系・電装・ブッシュ/足回りの状態を中心に、専門店レベルでの点検を前提にしたい。 維持のハードルは低くないが、状態の良い一台は“文化としてのクルマ”を日常に取り戻してくれる。",
+  "heroImage": "",
+  "mainImage": "",
+  "imageUrl": "",
+  "gallery": [],
+  "engine": "Front V12",
+  "powerPs": 280,
+  "torqueNm": 325,
+  "transmission": "4MT",
+  "drive": "FR",
+  "fuel": "ハイオク",
+  "fuelEconomy": "目安: 4〜7 km/L",
+  "priceNew": "当時：$14,000〜$20,000（参考）",
+  "priceUsed": "1.5億〜4.0億円（相場変動）",
+  "strengths": [
+    "官能的なエンジンサウンドとレスポンス",
+    "時代を超える造形美とブランド価値",
+    "ステアリング応答が鋭く、操る楽しさが濃い",
+    "オーナーズクラブ/専門店の情報が豊富（維持の選択肢がある）"
+  ],
+  "weaknesses": [
+    "熱害・経年でゴム/樹脂類の劣化が出やすい",
+    "消耗品・整備単価が高い（専門店前提）",
+    "保管環境（湿度/電装）の影響が大きい"
+  ],
+  "troubleTrends": [
+    "電装系（センサー/配線）の経年",
+    "冷却系（ホース/ラジエター/ポンプ）の劣化",
+    "内装のベタつき・樹脂劣化"
+  ],
+  "costImpression": "購入価格込みで考えると、5年総額：購入価格＋1500万円〜規模を想定できない場合は維持途中で資金計画が苦しくなりやすい車です。",
+  "relatedColumnSlugs": [
+    "import-car-maintenance-cost-myth"
+  ],
+  "relatedGuideSlugs": [
+    "used-import-car-buying-guide",
+    "tax-and-fees-before-buying-import"
+  ],
+  "relatedCarSlugs": [
+    "ferrari-250-gto",
+    "ferrari-275-gtb4",
+    "ferrari-166-mm"
+  ],
+  "tags": [
+    "Ferrari",
+    "gt-coupe",
+    "クラシックGT",
+    "FR",
+    "4MT",
+    "Front V12",
+    "クラシック",
+    "イタリア",
+    "スーパーカー",
+    "V12",
+    "classic",
+    "heritage"
+  ],
+  "relatedHeritageSlugs": [
+    "ferrari-v12-front-engine-lineage-heritage",
+    "ferrari-modern-gt-lineage-heritage"
+  ],
+  "intentTags": [],
+  "purchasePriceSafe": "安全ライン：1.5億円〜（個体差・相場変動大）",
+  "maintenanceSimulation": {
+    "yearlyRoughTotal": "年間200〜400万円以上を覚悟"
+  },
+  "priceUsedYenRange": "1.5億〜4.0億円（相場変動）",
+  "maintenanceCostYenPerYear": 1200000,
+  "type": "CAR",
+  "status": "published",
+  "title": "Ferrari 250 GT SWB。",
+  "makerKey": "ferrari",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-05-16",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/ferrari",
+  "relatedClusterIds": [],
+  "primaryQuery": "250 GT SWB",
+  "updateReason": "Ferrari 250 GT SWBの250系内での役割、GTOとの関係、真正性確認、維持の現実、内部リンクを追加。",
+  "sources": [
+    "https://www.ferrari.com/en-EN/history/garage/1959/250-gt-berlinetta-passo-corto",
+    "https://it.wikipedia.org/wiki/Ferrari_250_GT_Berlinetta_passo_corto",
+    "https://fr.wikipedia.org/wiki/Ferrari_250_GT_Berlinetta_SWB"
+  ],
+  "body": "## 結論\nFerrari 250 GT SWBは、クラシックフェラーリの中でも「公道GT」と「競技車」の境界を最も美しくまとめた一台です。250 GTOほど神格化されすぎておらず、275 GTB/4ほど後年のグランドツアラー寄りでもない。短いホイールベース、3.0L級コロンボV12、レースで使える軽さを持ちながら、GTとしての品も残しているところが価値です。\n\n## 向く人 / 向かない人\n### 向く人\n- 250 GTOの前提を理解したい人\n- 公道GTとレース車の境界に惹かれる人\n- クラシックV12の均衡感を重視する人\n\n### 向かない人\n- 希少性だけで選ぼうとする人\n- 整備履歴や仕様差を読むのが苦手な人\n- 現代フェラーリの速さを期待する人\n\n## この車の役割\n### 250 GTOの前にある完成形\n250 GT SWBを理解しないと、250 GTOの意味はぼやけます。GTOは突然現れた伝説ではなく、SWBで培われた短いホイールベース、V12、競技GTの考え方をさらにホモロゲーション用途へ詰めたものです。だからSWBは、GTOの影に隠れる前段階ではなく、250系ベルリネッタの完成形として読むべきです。\n\n### 公道GTとしての魅力\n250 GT SWBは、ただ速い古いフェラーリではありません。外観は端正で、寸法は引き締まり、前にV12を置きながら過剰な大きさにはなっていない。現代の812 Superfastのような大出力GTとは違い、車体の軽さと機械の密度で魅せるタイプです。\n\n## 買う前のチェック\n### 個体差がすべて\nSWBはロード仕様、コンペティション仕様、ボディ素材、履歴によって価値が大きく変わります。高額クラシックの場合、状態より先に履歴です。どこで走ったのか、どこまで復元されているのか、オリジナル要素がどれだけ残っているのかを見ないと判断できません。\n\n### 確認すべきポイント\n- ロード仕様かコンペティション仕様か\n- アルミボディかスチール主体か\n- シャシー、エンジン、ボディの整合性\n- レース歴と所有歴\n- Ferrari Classicheなどの証明\n- 日本で保管・整備できる体制\n\n## 弱点と維持\nSWBの弱点は、壊れやすさよりも、適切に扱える人が限られることです。キャブレター、点火、冷却、ブレーキ、タイヤ、ボディ保護まで、現代車の感覚では管理できません。走らせるならイベント前後の整備、保管するなら温湿度と防錆、売買するなら来歴の透明性が重要になります。\n\n## 維持費\nこの世代のフェラーリは、年間維持費を単純な部品代だけで見ない方が安全です。保管環境、専門工場への輸送、イベント前後の点検、燃料系・点火系・冷却系の予防整備まで含めて考える必要があります。特に来歴が価値に直結する車種では、安く直すより、履歴を傷つけない整備を選ぶことが大切です。\n\n## 中古で買うなら\n中古で探すというより、専門家と一緒に来歴を精査する車です。車両価格、年式、走行距離だけでは判断できません。シャシー、エンジン、ボディ、修復履歴、証明書類、過去のイベント履歴が揃って初めて検討できます。一般的な中古フェラーリより、アートピースや文化財に近い扱いが必要です。\n\n## 比較対象\n250 GTOはより競技寄り、275 GTB/4はより後年のGT寄りです。SWBはその間で、公道GTとしての美しさとレースで戦う機能が最も均衡しています。166 MMが初期フェラーリのレース色を見せる車なら、SWBはそこからGTとしての完成度が高まった地点です。\n\n## 関連リンク\n250 GT SWBを読んだ後は、250 GTOで競技ホモロゲーションの方向を、275 GTB/4でクラシックV12 GTの完成点を確認すると理解が深まります。フェラーリV12フロントエンジン系譜の記事とあわせて読むと、250系がなぜ特別視されるのかが整理できます。",
+  "bestFor": [
+    "250 GTOの前提を理解したい人",
+    "公道GTとレース車の境界に惹かれる人",
+    "クラシックV12の均衡感を重視する人"
+  ],
+  "notFor": [
+    "希少性だけで選ぼうとする人",
+    "整備履歴や仕様差を読むのが苦手な人",
+    "現代フェラーリの速さを期待する人"
+  ],
+  "maintenanceNotes": [
+    "ロード仕様と競技仕様で整備内容が変わる",
+    "キャブレターと点火の調整が重要",
+    "ボディ素材と補修履歴を確認する"
+  ]
+}

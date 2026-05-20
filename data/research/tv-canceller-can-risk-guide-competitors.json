@@ -1,0 +1,64 @@
+{
+  "slug": "tv-canceller-can-risk-guide",
+  "topic": "TVキャンセラーのリスクと現代車のCAN通信・保証問題",
+  "createdAt": "2026-05-21",
+  "referenceCount": 10,
+  "references": [
+    {
+      "url": "https://www.iso.org/standard/67244.html",
+      "type": "official-standard",
+      "memo": "CANが自動車向けの分散リアルタイム制御と多重通信を支える通信プロトコルである点を確認。"
+    },
+    {
+      "url": "https://www.iso.org/standard/86384.html",
+      "type": "official-standard",
+      "memo": "CANのデータリンク層仕様を確認。本文では名称と通信規格の基礎に反映。"
+    },
+    {
+      "url": "https://www.bosch-mobility.com/en/solutions/vehicle-computer/central-gateway/",
+      "type": "supplier-official",
+      "memo": "ECUがCANやEthernetで中央ゲートウェイに接続される現代車の構成を確認。"
+    },
+    {
+      "url": "https://manual.toyota.jp/pdf/raize/raize_mm_202103.pdf",
+      "type": "manufacturer-manual",
+      "memo": "走行中操作の危険性と車両故障・データ破損への注意記載を確認。"
+    },
+    {
+      "url": "https://lexus.jp/models/lbx/features/equipment/",
+      "type": "manufacturer-page",
+      "memo": "走行中は一部機能が使えず、TVは安全のため映像が消え音声のみになる仕様を確認。"
+    },
+    {
+      "url": "https://221616.com/car-topics/20250122-1/",
+      "type": "secondary-explainer",
+      "memo": "テレビキャンセラーが車速信号に影響し、ナビ現在地ズレや表示不具合につながる可能性を整理。"
+    },
+    {
+      "url": "https://hondacars-imabariminami.jp/1190/",
+      "type": "dealer-explainer",
+      "memo": "社外品が原因の故障は保証対象外になりうる点、故障履歴が残る可能性を確認。"
+    },
+    {
+      "url": "https://www.bmw.com.sg/en/digital-services/bmw-maps.html",
+      "type": "manufacturer-service",
+      "memo": "現代のナビサービスが単なる地図表示ではなく車両体験と結びつく方向性を確認。"
+    },
+    {
+      "url": "https://faq.bmwusa.com/s/article/Driver-assistance-systems-General-Safety-Regulation-GSR-Speed-Limit-Info-Operating-principle-CwRz2?language=en_US",
+      "type": "manufacturer-faq",
+      "memo": "速度制限情報でナビ地図データを利用する場合があることを確認。"
+    },
+    {
+      "url": "https://static.nhtsa.gov/odi/tsbs/2018/MC-10154755-9999.pdf",
+      "type": "service-bulletin",
+      "memo": "ヘッドユニットが車両システム上の識別・診断対象になることを確認。"
+    }
+  ],
+  "commonFindings": [
+    "現代車のナビ・ヘッドユニットは単独のテレビ装置ではなく、車両の通信・表示・診断と結びつく。",
+    "走行中の映像制限は安全設計の一部であり、解除はメーカー想定外の使い方になる。",
+    "テレビキャンセラーのリスク記事は多いが、CAN通信・保証・中古車確認まで一本で整理した記事は少ない。"
+  ],
+  "articlePositioning": "単なる違法性や車検可否ではなく、現代車の通信整合性と保証リスクに焦点を絞ったGuide記事として追加。"
+}

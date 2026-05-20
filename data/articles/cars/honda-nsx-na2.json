@@ -1,0 +1,108 @@
+{
+  "id": "honda-nsx-na2",
+  "slug": "honda-nsx-na2",
+  "name": "NSX (NA2)",
+  "maker": "Honda",
+  "releaseYear": 1997,
+  "difficulty": "intermediate",
+  "bodyType": "クーペ",
+  "segment": "スーパーカー",
+  "grade": null,
+  "engine": "Midship V6",
+  "drive": "MR",
+  "transmission": "6MT / 4AT",
+  "fuel": "ハイオク",
+  "powerPs": 280,
+  "torqueNm": 305,
+  "fuelEconomy": "目安: 7〜10 km/L",
+  "summary": "Honda NSX (NA2)は、90年代のスーパーカーとして名前が挙がりやすいクーペです。",
+  "summaryLong": "Honda NSX (NA2)は、90年代のスーパーカーとして名前が挙がりやすいクーペです。スペックの数字よりも、\"どういう気分で乗るクルマか\"がはっきりしているタイプ。\n\n中古で見る順番は、(1)整備記録 (2)消耗品の更新履歴 (3)改造/後付けの質。年式が進んだ個体ほど「放置」と「保管」で差が出るので、錆・ゴム類・電装の状態は先に確認したいポイントです。\n\n価格が安い個体ほど、買ってからの“巻き返し整備”で総額が膨らみがちです。状態の良い個体を高く買うほうが、結果的に早く安心して楽しめます。",
+  "costImpression": "購入価格込みで考えると、5年総額は購入価格＋300万〜700万円規模を見込むと安全です。エアコン、冷却、足まわり、クラッチ、純正部品の確保で差が出ます。",
+  "heroImage": "",
+  "mainImage": "",
+  "tags": [
+    "Honda",
+    "クーペ",
+    "スーパーカー"
+  ],
+  "intentTags": [],
+  "relatedCarSlugs": [
+    "honda-nsx-na1",
+    "honda-nsx-r-na1",
+    "honda-s2000-ap1"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap"
+  ],
+  "relatedHeritageSlugs": [
+    "honda-nsx-everyday-supercar-heritage",
+    "japan-high-rev-na-last-dance-heritage"
+  ],
+  "strengths": [
+    "キャラクターがはっきりしている",
+    "走りと雰囲気の両立",
+    "ファンが多く情報が探しやすい"
+  ],
+  "weaknesses": [
+    "年式相応にコンディション差が大きい",
+    "部品・整備の難易度は個体で変わる",
+    "維持費は想定より上がりやすい"
+  ],
+  "troubleTrends": [
+    "消耗品の管理状況を要確認",
+    "電装系・ゴム類の劣化に注意",
+    "改造歴がある個体は内容を精査"
+  ],
+  "bestFor": [
+    "初代NSXを走らせる車として楽しみたい人",
+    "NA1より余裕のある3.2Lと6MTを重視する人",
+    "扱いやすさとスーパーカー感の両方を求める人"
+  ],
+  "notFor": [
+    "希少性だけで選び、整備履歴を軽く見てしまう人",
+    "現代車並みの安全装備や快適装備を期待する人",
+    "安く買って少しずつ直せばいいと考える人"
+  ],
+  "maintenanceNotes": [
+    "タイミングベルト、ウォーターポンプ、冷却系、エアコンの履歴を確認する",
+    "アルミボディの修復歴は専門店で確認したい",
+    "純正部品・リフレッシュ履歴・改造戻しの費用を見込む"
+  ],
+  "lengthMm": null,
+  "widthMm": null,
+  "heightMm": null,
+  "wheelbaseMm": null,
+  "weightKg": null,
+  "priceNew": "当時：1000万〜1500万円（参考）",
+  "priceUsed": "1500万〜3500万円（状態/仕様）",
+  "zeroTo100": null,
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda NSX (NA2)。",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-05-17",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "NSX (NA2)",
+  "updateReason": "NA2固有の3.2L/6MT化、NSX-RやNA1との違い、維持確認と内部リンクを追加。",
+  "sources": [
+    "https://en.wikipedia.org/wiki/Honda_NSX_(first_generation)",
+    "https://zh.wikipedia.org/wiki/%E6%9C%AC%E7%94%B0NSX"
+  ],
+  "imageUrl": "",
+  "gallery": [],
+  "body": "## 要点\nHonda NSX NA2は、初代NSXの完成度をもう一段上げた後期型です。見るべきポイントは、単に年式が新しいことではありません。3.2L化、6速MT、ブレーキや足まわりの熟成によって、NA1の軽さと緊張感に対して、NA2は少し余裕のあるNSXになっています。初代NSXを“走らせる車”として選ぶなら、NA2はかなり現実的な終着点です。\n\n## NA1と何が違うか\nNA1は、初代NSXの思想そのものを濃く味わえる世代です。一方、NA2は3.2L V6と6速MTによって、低中速の余裕とギア選択の自然さが増しました。劇的に別の車になったわけではありませんが、長く乗るほど違いが効きます。NSX-R NA1のような削ぎ落とした緊張感ではなく、日常で扱えるスーパーカーとしての完成度を求めるならNA2です。\n\n## 向く人 / 向かない人\n向くのは、初代NSXの世界観を崩さず、できるだけ完成度の高い個体を選びたい人です。向かないのは、希少性や相場だけで選ぶ人。NA2は高額化していますが、価格が高いことと状態が良いことは別です。整備履歴が曖昧なら、低走行でも慎重に見る必要があります。\n\n## 買う前のチェック\n最重要は、タイミングベルト、ウォーターポンプ、冷却系、エアコン、クラッチ、足まわり、ブレーキ、アルミボディの修復歴です。NSXは丈夫な印象で語られますが、すでにクラシックに近い年式です。修復歴の確認は普通の鋼板ボディ以上に慎重に行うべきで、[修復歴・事故歴のチェックリスト](/guide/repair-history-used-car-checklist)を使って書面と写真で確認したいところです。\n\n## 弱点・故障\n弱点は、車そのものの信頼性より、古い高額車としての部品・修復・保管の難しさです。エアコン、ゴム類、足まわり、ブレーキ、クラッチは年式相応に見る必要があります。アルミボディは雑な修復が後から響くので、事故歴の説明が曖昧な個体は避けます。\n\n## 維持の現実\nNSXは“壊れにくいスーパーカー”として知られますが、維持費が安いという意味ではありません。純正部品、エアコン、足まわり、内装、ゴム類、ブレーキをまとめて整えると負担は大きい。HondaがクラシックNSXの部品供給やリフレッシュに力を入れていることは安心材料ですが、だからこそ履歴のある個体を選ぶ意味があります。\n\n## 中古で買うなら\nおすすめは、ノーマルに近く、定期整備と修復歴の説明が明確な個体です。後期型だから安心と決めず、クラッチ、冷却、足まわり、エアコン、ブレーキを確認します。高額化した今は、価格よりも履歴と専門店での点検が優先です。\n\n## 比較で見る\nNSX-R NA1は軽さと硬さの特別仕様、NSX NA2は標準系の完成度を高めた後期型です。S2000 AP1はFRの高回転スポーツとして近い部分がありますが、NSXはミドシップの安定感と視界の良さが別物です。Z33やRX-7 FDと迷うなら、速さではなく“日常に置けるスーパーカー感”を基準にすると判断しやすくなります。\n\n## 関連リンク\n- [NSX-R NA1](/cars/honda-nsx-r-na1)\n- [NSX NA1](/cars/honda-nsx-na1)\n- [S2000 AP1](/cars/honda-s2000-ap1)\n- [修復歴・事故歴の見方](/guide/repair-history-used-car-checklist)\n- [維持費のざっくり試算](/guide/maintenance-cost-simulation)\n- [NSXが日常スーパーカーだった理由](/heritage/honda-nsx-everyday-supercar-heritage)",
+  "maintenanceCostYenPerYear": 600000
+}

@@ -1,0 +1,108 @@
+{
+  "id": "honda-nsx-r-na1",
+  "slug": "honda-nsx-r-na1",
+  "name": "NSX-R (NA1)",
+  "maker": "Honda",
+  "releaseYear": 1992,
+  "difficulty": "intermediate",
+  "bodyType": "クーペ",
+  "segment": "スーパーカー",
+  "grade": null,
+  "engine": "Midship V6",
+  "drive": "MR",
+  "transmission": "5MT",
+  "fuel": "ハイオク",
+  "powerPs": 280,
+  "torqueNm": 294,
+  "fuelEconomy": "目安: 7〜10 km/L",
+  "summary": "Honda NSX-R (NA1)は、90年代のスーパーカーとして名前が挙がりやすいクーペです。",
+  "summaryLong": "Honda NSX-R (NA1)は、90年代のスーパーカーとして名前が挙がりやすいクーペです。スペックの数字よりも、\"どういう気分で乗るクルマか\"がはっきりしているタイプ。\n\n中古で見る順番は、(1)整備記録 (2)消耗品の更新履歴 (3)改造/後付けの質。年式が進んだ個体ほど「放置」と「保管」で差が出るので、錆・ゴム類・電装の状態は先に確認したいポイントです。\n\n価格が安い個体ほど、買ってからの“巻き返し整備”で総額が膨らみがちです。状態の良い個体を高く買うほうが、結果的に早く安心して楽しめます。",
+  "costImpression": "購入価格込みで考えると、5年総額は購入価格＋500万〜1000万円規模を見込むと安全です。通常NSXより、純正度・来歴・専用部品の維持が価値に直結します。",
+  "heroImage": "",
+  "mainImage": "",
+  "tags": [
+    "Honda",
+    "クーペ",
+    "スーパーカー"
+  ],
+  "intentTags": [],
+  "relatedCarSlugs": [
+    "honda-nsx-na1",
+    "honda-nsx-na2",
+    "honda-integra-type-r-dc2"
+  ],
+  "relatedGuideSlugs": [
+    "repair-history-used-car-checklist",
+    "maintenance-cost-simulation"
+  ],
+  "relatedColumnSlugs": [
+    "usedcar-low-mileage-trap"
+  ],
+  "relatedHeritageSlugs": [
+    "honda-nsx-everyday-supercar-heritage",
+    "japan-high-rev-na-last-dance-heritage"
+  ],
+  "strengths": [
+    "キャラクターがはっきりしている",
+    "走りと雰囲気の両立",
+    "ファンが多く情報が探しやすい"
+  ],
+  "weaknesses": [
+    "年式相応にコンディション差が大きい",
+    "部品・整備の難易度は個体で変わる",
+    "維持費は想定より上がりやすい"
+  ],
+  "troubleTrends": [
+    "消耗品の管理状況を要確認",
+    "電装系・ゴム類の劣化に注意",
+    "改造歴がある個体は内容を精査"
+  ],
+  "bestFor": [
+    "初代NSXの軽量思想を最も濃く味わいたい人",
+    "快適性より応答の鋭さと希少性を重視する人",
+    "真正性・来歴・純正度を確認して買える人"
+  ],
+  "notFor": [
+    "普段使いの快適性を重視する人",
+    "相場上昇だけを見て投資対象として選ぶ人",
+    "改造歴や修復歴を軽く考える人"
+  ],
+  "maintenanceNotes": [
+    "専用部品、軽量化部位、内装の純正度を確認する",
+    "サーキット使用歴と修復歴を必ず確認する",
+    "通常NSX以上に来歴と保存状態が価格を左右する"
+  ],
+  "lengthMm": null,
+  "widthMm": null,
+  "heightMm": null,
+  "wheelbaseMm": null,
+  "weightKg": null,
+  "priceNew": "当時：1200万〜1400万円（参考）",
+  "priceUsed": "6000万〜1.2億円（相場変動）",
+  "zeroTo100": null,
+  "type": "CAR",
+  "status": "published",
+  "title": "Honda NSX-R (NA1)。",
+  "makerKey": "honda",
+  "createdAt": null,
+  "publishedAt": null,
+  "updatedAt": "2026-05-17",
+  "seoTitle": null,
+  "seoDescription": null,
+  "titleJa": null,
+  "canonicalUrl": null,
+  "ogImageUrl": null,
+  "publicState": "index",
+  "parentPillarId": "/cars/makers/honda",
+  "relatedClusterIds": [],
+  "primaryQuery": "NSX-R (NA1)",
+  "updateReason": "NSX-R NA1固有の軽量思想、通常NSXとの違い、真正性確認と関連導線を追加。",
+  "sources": [
+    "https://en.wikipedia.org/wiki/Honda_NSX_(first_generation)",
+    "https://zh.wikipedia.org/wiki/%E6%9C%AC%E7%94%B0NSX"
+  ],
+  "imageUrl": "",
+  "gallery": [],
+  "body": "## 要点\nHonda NSX-R NA1は、初代NSXの中でも“日常で使えるスーパーカー”という思想を、あえて走り側へ振った特別な一台です。標準NSXの完成度に対して、NSX-Rは快適装備や遮音を削り、応答の鋭さを優先しました。いま買うなら、速い車としてではなく、Hondaがどこまでミドシップを素直にできるかを突き詰めた記録として見るべきです。\n\n## 通常NSXとの違い\n標準のNSX NA1や後期のNSX NA2は、扱いやすさと高性能の両立が魅力です。NSX-R NA1はそこから一歩外れ、軽量化と足まわりの引き締めで、車の動きをより直接的にしています。快適なNSXが欲しいならNA2の方が合います。NSX-Rを選ぶ理由は、軽さ、応答、希少性、そして“普通のNSXとは違う緊張感”にあります。\n\n## 向く人 / 向かない人\n向くのは、保管環境、整備予算、真正性の確認まで含めて楽しめる人です。向かないのは、普段使いの快適性や気楽さを求める人。NSX-Rは高額なだけでなく、部品や来歴の確認が価値に直結します。見た目がそれらしいだけの個体や、改造戻しの説明が曖昧な個体は避けたいところです。\n\n## 買う前のチェック\n最初に確認するのは、修復歴、純正部品の残り方、サーキット使用歴、内装の状態、足まわり、ブレーキ、エンジンマウント、冷却系です。特にNSX-Rは、通常NSX以上に“どこまで本物か”が重要です。書類、写真、整備明細、過去の所有歴を含めて確認してください。修復歴の判断は[修復歴・事故歴のチェックリスト](/guide/repair-history-used-car-checklist)を基準にします。\n\n## 弱点・故障\n弱点は、通常NSXよりも状態差が価格に直結しやすいことです。専用部品の欠品、サーキット使用歴、改造戻し、外装補修の質が見えにくい個体は危険です。NSX-Rは“走れるか”だけでなく、“本来の状態をどれだけ残しているか”を見ます。\n\n## 維持の現実\nNSX-Rは、維持費というより保存と管理の車です。消耗品を替えれば終わりではなく、純正度、専用部品、内装、外装、足まわりの状態が価値に直結します。走らせて楽しい車ですが、何も気にせず距離を伸ばす車ではありません。購入後の予算は、一般的な中古スポーツの延長ではなく、コレクタブルカーとして組むべきです。\n\n## 中古で買うなら\nおすすめは、純正部品、整備記録、保管環境、過去の所有履歴が追える個体です。安さで選ぶ車ではありません。通常NSXに戻せばいいという考え方も危険で、専用品と来歴が価値を作る車だと考えるべきです。\n\n## 比較で見る\nNSX NA2は完成度、NSX-R NA1は純度。Integra Type R DC2は同じHonda Type Rの思想をFFで表した車です。S2000 AP1はFR高回転スポーツとして近い熱がありますが、NSX-Rはミドシップ、軽量化、希少性の3つが重なります。\n\n## 関連リンク\n- [NSX NA2](/cars/honda-nsx-na2)\n- [NSX NA1](/cars/honda-nsx-na1)\n- [Integra Type R DC2](/cars/honda-integra-type-r-dc2)\n- [修復歴・事故歴の見方](/guide/repair-history-used-car-checklist)\n- [維持費のざっくり試算](/guide/maintenance-cost-simulation)\n- [NSXが日常スーパーカーだった理由](/heritage/honda-nsx-everyday-supercar-heritage)",
+  "maintenanceCostYenPerYear": 900000
+}

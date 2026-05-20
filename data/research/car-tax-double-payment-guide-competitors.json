@@ -1,0 +1,122 @@
+{
+  "slug": "car-tax-double-payment-guide",
+  "createdAt": "2026-04-18",
+  "competitorCount": 30,
+  "queries": [
+    "自動車税 二重払い",
+    "自動車税 重複納付 返金",
+    "自動車税 二重納付 納税義務者"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.payment.eltax.lta.go.jp/pbuser"
+    },
+    {
+      "url": "https://www.payment.eltax.lta.go.jp/pbuser?id=kb_article_view&sysparm_article=KB0010180"
+    },
+    {
+      "url": "https://www.oss.mlit.go.jp/portal/beginner/shinsei-nagare/shinsei/zei-tesuuryou/index.html"
+    },
+    {
+      "url": "https://www.oss.mlit.go.jp/portal/beginner/shinsei-nagare/joukyoushoukai/index.html?s=9"
+    },
+    {
+      "url": "https://web.pref.hyogo.lg.jp/kk22/creditcard_nouzei.html"
+    },
+    {
+      "url": "https://web.pref.hyogo.lg.jp/kk22/smartphoneapp.html"
+    },
+    {
+      "url": "https://web.pref.hyogo.lg.jp/kk22/zidousyazei_ininnjyou.html"
+    },
+    {
+      "url": "https://www.pref.kagoshima.jp/ab07/faq/kurashi-kankyo/zei/faq_11.html"
+    },
+    {
+      "url": "https://www.pref.shimane.lg.jp/life/zei/ken/nozei/credit/faq.html"
+    },
+    {
+      "url": "https://www.pref.shimane.lg.jp/life/zei/ken/nozei/smartphone/faq.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/757395.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/654642.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/329173.html"
+    },
+    {
+      "url": "https://www.pref.hiroshima.lg.jp/site/zei/kennzeikannpu.html"
+    },
+    {
+      "url": "https://www.pref.hiroshima.lg.jp/site/zei/1305181764700.html"
+    },
+    {
+      "url": "https://www.pref.osaka.lg.jp/o050160/osakajidoshazei/kanpukin/index.html"
+    },
+    {
+      "url": "https://www.pref.gifu.lg.jp/page/5579.html"
+    },
+    {
+      "url": "https://www.pref.gunma.jp/page/135803.html"
+    },
+    {
+      "url": "https://www.pref.yamaguchi.lg.jp/soshiki/5/138346.html"
+    },
+    {
+      "url": "https://www.pref.yamaguchi.lg.jp/soshiki/5/12451.html"
+    },
+    {
+      "url": "https://www.pref.tottori.lg.jp/308737.htm"
+    },
+    {
+      "url": "https://www.pref.yamanashi.jp/kenzei-cb/jidosha_kanpujuto.html"
+    },
+    {
+      "url": "https://www.pref.yamanashi.jp/kenzei-cb/jidosha_nozeikakunin.html"
+    },
+    {
+      "url": "https://www.pref.saitama.lg.jp/a0209/z-kurashiindex/z-nouzeisyoumei-qa.html"
+    },
+    {
+      "url": "https://www.pref.saitama.lg.jp/a0209/z-kurashiindex/z-nouzeisyoumei-b.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/176.html"
+    },
+    {
+      "url": "https://www.pref.chiba.lg.jp/zeimu/faq/200.html"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a010/015.html"
+    },
+    {
+      "url": "https://www.pref.kanagawa.jp/zei/kenzei/a010/053.html"
+    },
+    {
+      "url": "https://www.pref.okayama.jp/page/438581.html"
+    }
+  ],
+  "commonTakeaways": [
+    "県の案内は還付されること自体は書いていても、実際に払った人ではなく納税義務者へ戻る点まで強く整理していないページが多い。",
+    "システム利用料や決済手数料が戻らない話と、税額本体の還付が同じ段落に埋もれていて読み分けづらい。",
+    "OSSの再納付と通常の納付書の重複納付を同じ感覚で読ませてしまい、読後の次行動が曖昧なページが多い。"
+  ],
+  "gapsFound": [
+    "取消できないことと、過誤納として後日戻る可能性があることが混ざりやすい。",
+    "家族や販売店が代わりに払った場面で、だれに戻るかを先に固定していない記事が多い。"
+  ],
+  "changesApplied": [
+    "同じ納付書の重複、OSS、代理納付の3場面に先に分ける構成へした。",
+    "戻る相手、戻らない手数料、未納への充当を別々に整理した。",
+    "通知待ちの前に残すべき資料を具体的にまとめた。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}

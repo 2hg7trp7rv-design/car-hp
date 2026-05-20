@@ -1,0 +1,121 @@
+{
+  "slug": "kei-tax-late-payment-guide",
+  "createdAt": "2026-04-17",
+  "competitorCount": 30,
+  "queries": [
+    "軽自動車税 払い忘れ 納期限後 どこで払う",
+    "軽自動車税 車検 納税証明書 軽JNKS",
+    "軽自動車税 納付書 再発行 コンビニ 期限後"
+  ],
+  "competitors": [
+    {
+      "url": "https://www.bk.mufg.jp/kariru/mycar/column/009/index.html"
+    },
+    {
+      "url": "https://www.goo-net.com/kaitori/kaitori-satei/keijidousha-gimon/9149/"
+    },
+    {
+      "url": "https://www.goo-net.com/kaitori/kaitori-satei/keijidousha-gimon/9282/"
+    },
+    {
+      "url": "https://www.goo-net.com/magazine/contents/check-point/190112/"
+    },
+    {
+      "url": "https://www.mitsui-direct.co.jp/car/guide/mycar_guide/new/lightcar-tax/"
+    },
+    {
+      "url": "https://yasashiishaken758.com/column/606/"
+    },
+    {
+      "url": "https://rakunori.idex.co.jp/column/column_74.html"
+    },
+    {
+      "url": "https://www.k-cafe.com/information/news/12433/"
+    },
+    {
+      "url": "https://www.wecars.co.jp/column/inspection/knowhow/013.html"
+    },
+    {
+      "url": "https://www.sakura-shaken.jp/case/nozeishomei.html"
+    },
+    {
+      "url": "https://www.zurich.co.jp/car/useful/guide/cc-car-tax-nonpayment/"
+    },
+    {
+      "url": "https://www.insweb.co.jp/car/kisochishiki/kiso/jidoushazei-haraiwasure.html"
+    },
+    {
+      "url": "https://carnext.jp/magazine/article/forgot_car_tax/"
+    },
+    {
+      "url": "https://www.carcon.co.jp/column/article/201909112/"
+    },
+    {
+      "url": "https://www.shakenkan.co.jp/guide/tax-delay-money/"
+    },
+    {
+      "url": "https://www.goo-net.com/kaitori/kaitori-satei/kuruma-gimon/1482/"
+    },
+    {
+      "url": "https://www.hanamaru870.net/column/automotive-tax-expired-where-to-pay/"
+    },
+    {
+      "url": "https://www.rakuten-card.co.jp/minna-money/topic/article_2112_00016/"
+    },
+    {
+      "url": "https://www.takakuureru.com/magazine/13385"
+    },
+    {
+      "url": "https://www.kobac-j.jp/news/20260312-607/"
+    },
+    {
+      "url": "https://www.e-design.net/ande/guide/column/may/"
+    },
+    {
+      "url": "https://www.cosmo-mycar.com/column/carlease/203/"
+    },
+    {
+      "url": "https://www.sbisonpo.co.jp/car/column/column142.html"
+    },
+    {
+      "url": "https://media.aupay.wallet.auone.jp/articles/4166"
+    },
+    {
+      "url": "https://www.hanamaru870.net/column/automobile-tax-seizure/"
+    },
+    {
+      "url": "https://kinto-jp.com/magazine/k20230411-1/"
+    },
+    {
+      "url": "https://www.goo-net.com/kaitori/kaitori-satei/kuruma-gimon/1841/"
+    },
+    {
+      "url": "https://www.takakuureru.com/magazine/20167"
+    },
+    {
+      "url": "https://eneos-cl.com/column/20230331-04/"
+    },
+    {
+      "url": "https://www.city.takamatsu.kagawa.jp/smph/kurashi/kurashi/tax/shoumei/shoumei/syoumeishinnsei/nouzei_kjnks.html"
+    }
+  ],
+  "commonTakeaways": [
+    "軽自動車税の記事でも、普通車の自動車税と混ざって説明される例が目立つ。",
+    "期限後はコンビニやスマホ決済が使えない可能性に触れる記事はあるが、軽JNKSと車検直前の証明実務まで踏み込む記事は少ない。",
+    "4月1日基準と月割なしを触れていても、払い忘れ後の導線に結び付けていない記事が多い。"
+  ],
+  "gapsFound": [
+    "年額課税と軽JNKSを同じ記事内で自然につないでいる記事が少ない。",
+    "納期限後の支払場所と、車検で紙証明が必要になる例外条件がバラバラに書かれている。"
+  ],
+  "changesApplied": [
+    "軽だけに絞り、自治体課税、年額課税、軽JNKSをひとつの流れで読める構成にした。",
+    "競合30本のURLログを追加した。"
+  ],
+  "qualityChecks": {
+    "no_ascii_quotes": true,
+    "no_asterisk": true,
+    "min_chars_no_ws": 3000,
+    "starts_with_kijiwa": false
+  }
+}
