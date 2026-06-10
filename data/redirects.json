@@ -1,0 +1,102 @@
+[
+  {
+    "source": "/cars/autozam-az-1",
+    "destination": "/cars/autozam-az-1-pg6sa",
+    "permanent": true
+  },
+  {
+    "source": "/cars/ferrari-275-gtb",
+    "destination": "/cars/ferrari-275-gtb4",
+    "permanent": true
+  },
+  {
+    "source": "/cars/honda-s2000-ap2",
+    "destination": "/cars/honda-s2000-ap1",
+    "permanent": true
+  },
+  {
+    "source": "/cars/lexus-lfa",
+    "destination": "/cars/lexus-lfa-2010",
+    "permanent": true
+  },
+  {
+    "source": "/cars/mazda-rx-7-fd3s-spirit-r",
+    "destination": "/cars/mazda-rx7-fd3s",
+    "permanent": true
+  },
+  {
+    "source": "/cars/mazda-rx-7-fd3s-type-r",
+    "destination": "/cars/mazda-rx7-fd3s",
+    "permanent": true
+  },
+  {
+    "source": "/cars/mitsubishi-lancer-evolution",
+    "destination": "/cars/mitsubishi-lancer-evolution-ix-gsr",
+    "permanent": true
+  },
+  {
+    "source": "/cars/mitsubishi-lancer-evolution-x-final",
+    "destination": "/cars/mitsubishi-lancer-evolution-x-gsr",
+    "permanent": true
+  },
+  {
+    "source": "/cars/nissan-fairlady-z-rz34",
+    "destination": "/cars/nissan-z-rz34",
+    "permanent": true
+  },
+  {
+    "source": "/cars/nissan-gtr-r35-nismo",
+    "destination": "/cars/nissan-gtr-r35",
+    "permanent": true
+  },
+  {
+    "source": "/cars/nissan-skyline-gt-r-bcnr33-v-spec",
+    "destination": "/cars/nissan-skyline-gtr-r33",
+    "permanent": true
+  },
+  {
+    "source": "/cars/nissan-skyline-gt-r-bnr34",
+    "destination": "/cars/nissan-skyline-gtr-r34",
+    "permanent": true
+  },
+  {
+    "source": "/cars/nissan-skyline-gt-r-r34",
+    "destination": "/cars/nissan-skyline-gtr-r34",
+    "permanent": true
+  },
+  {
+    "source": "/cars/nissan-skyline-gt-r-r34-v-spec",
+    "destination": "/cars/nissan-skyline-gtr-r34",
+    "permanent": true
+  },
+  {
+    "source": "/cars/subaru-impreza-wrx-sti",
+    "destination": "/cars/subaru-impreza-wrx-sti-v6",
+    "permanent": true
+  },
+  {
+    "source": "/cars/suzuki-cara",
+    "destination": "/cars/autozam-az-1-pg6sa",
+    "permanent": true
+  },
+  {
+    "source": "/cars/toyota-supra-jza80",
+    "destination": "/cars/toyota-supra-jza80-rz",
+    "permanent": true
+  },
+  {
+    "source": "/heritage/mazda-rx7-heritage",
+    "destination": "/heritage/mazda-rx7-fd3s-subtraction-engineering-heritage",
+    "permanent": true
+  },
+  {
+    "source": "/heritage/nissan-fairlady-z-heritage",
+    "destination": "/heritage/nissan-fairlady-z-lineage-heritage",
+    "permanent": true
+  },
+  {
+    "source": "/heritage/jdm-280ps-happy-lie-heritage",
+    "destination": "/heritage/japan-280ps-gentlemens-agreement-heritage",
+    "permanent": true
+  }
+]

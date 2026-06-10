@@ -1,0 +1,2850 @@
+.page {
+  --font-display: "Manrope", "Noto Sans JP", system-ui, -apple-system, sans-serif;
+  --font-heading: "Zen Kaku Gothic New", "Noto Sans JP", system-ui, -apple-system, sans-serif;
+  --font-serif: "Shippori Mincho", "Noto Serif JP", serif;
+  --font-sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic UI", system-ui, -apple-system, sans-serif;
+  --kinto-teal: #00708d;
+  --kinto-teal-deep: #064e63;
+  --kinto-teal-soft: #e8f3f5;
+  --kinto-teal-mist: #f4f9fa;
+  --kinto-accent: #ff5b3a;
+  --paper: #ffffff;
+  --paper-2: #f7f8f9;
+  --ink: #0d1216;
+  --ink-2: #2b3338;
+  --ink-3: #5b676f;
+  --ink-4: #97a2a9;
+  --line: #e6ebee;
+  --line-2: #eef2f4;
+  --shadow-sm: 0 1px 2px rgba(13, 18, 22, 0.04), 0 1px 0 rgba(13, 18, 22, 0.02);
+  --shadow-md: 0 8px 24px -8px rgba(13, 18, 22, 0.08), 0 2px 4px rgba(13, 18, 22, 0.04);
+  --shadow-lg: 0 30px 60px -20px rgba(0, 112, 141, 0.18), 0 12px 24px -12px rgba(13, 18, 22, 0.08);
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --content-max: 1280px;
+  --read-max: 720px;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans), "Noto Sans JP", "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font-feature-settings: "palt" 1;
+  line-height: 1.85;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.progress {
+  position: fixed;
+  inset: 0 auto auto 0;
+  z-index: 90;
+  width: 100%;
+  height: 3px;
+  pointer-events: none;
+}
+
+.progressBar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--kinto-teal), var(--kinto-accent));
+  transition: width 0.15s linear;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  border-bottom: 1px solid rgba(230, 235, 238, 0.7);
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: saturate(1.6) blur(18px);
+  -webkit-backdrop-filter: saturate(1.6) blur(18px);
+}
+
+.navInner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: min(100%, var(--content-max));
+  margin: 0 auto;
+  padding: 14px 24px;
+}
+
+.brand {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.brandIcon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--kinto-teal), var(--kinto-teal-deep));
+  color: #fff;
+  box-shadow: inset 0 -2px 6px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 112, 141, 0.25);
+  font-family: var(--font-display), Manrope, sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.brandName {
+  color: var(--ink);
+  font-family: var(--font-display), Manrope, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+
+.brandName small {
+  display: block;
+  margin-top: 3px;
+  color: var(--ink-3);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+}
+
+.navLinks {
+  display: flex;
+  gap: 6px;
+  margin-left: 24px;
+}
+
+.navLinks a {
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: var(--ink-2);
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navLinks a:hover {
+  background: var(--kinto-teal-soft);
+  color: var(--kinto-teal-deep);
+}
+
+.navCta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.navGhost {
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+
+.navPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-display), Manrope, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: transform 0.15s, background 0.2s;
+}
+
+.navPill:hover {
+  background: var(--kinto-teal-deep);
+  transform: translateY(-1px);
+}
+
+.breadcrumbStrip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: min(100%, var(--content-max));
+  margin: 0 auto;
+  padding: 18px 24px 0;
+  color: var(--ink-3);
+  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.breadcrumbStrip span {
+  color: var(--ink-4);
+}
+
+.breadcrumbStrip a:hover {
+  color: var(--kinto-teal);
+}
+
+.head {
+  width: min(100%, var(--content-max));
+  margin: 0 auto;
+  padding: 28px 24px 40px;
+}
+
+.headMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tag::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.9;
+}
+
+.tagTeal {
+  background: var(--kinto-teal);
+  color: #fff;
+}
+
+.tagSoft {
+  background: var(--kinto-teal-soft);
+  color: var(--kinto-teal-deep);
+}
+
+.tagGhost {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-3);
+}
+
+.tagGhost::before {
+  display: none;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  margin-left: auto;
+  color: var(--ink-3);
+  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.metaDot {
+  display: block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--ink-4);
+}
+
+.headTitle {
+  max-width: 18ch;
+  margin: 0 0 22px;
+  color: var(--ink);
+  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
+  font-size: clamp(34px, 5.4vw, 64px);
+  font-weight: 900;
+  font-feature-settings: "palt" 1;
+  letter-spacing: -0.01em;
+  line-height: 1.18;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  line-break: strict;
+}
+
+.titleLine {
+  display: block;
+}
+
+.headLede {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--ink-2);
+  font-family: var(--font-serif), "Shippori Mincho", serif;
+  font-size: clamp(16px, 1.5vw, 19px);
+  font-weight: 500;
+  line-height: 1.95;
+}
+
+.heroVisual {
+  position: relative;
+  width: min(100%, var(--content-max));
+  margin: 0 auto;
+  padding: 0 24px 64px;
+}
+
+.heroFrame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 8.4;
+  border-radius: var(--radius-xl);
+  background: radial-gradient(ellipse 60% 40% at 28% 38%, rgba(255, 255, 255, 0.18), transparent 60%), linear-gradient(160deg, #0b1b22 0%, #0a3a48 45%, #00708d 100%);
+  box-shadow: var(--shadow-lg);
+}
+
+.heroFrame svg {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.heroBadge {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.heroBadge span {
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-display), Manrope, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+
+.heroCaption {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+.heroCaption small {
+  opacity: 0.7;
+  font-size: 11px;
+}
+
+.authorBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  width: min(100%, var(--content-max));
+  margin: 0 auto;
+  padding: 0 24px 24px;
+}
+
+.authorCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px 10px 10px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: var(--paper-2);
+}
+
+.authorAvatar {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, var(--kinto-teal-soft) 70%, var(--kinto-teal) 200%);
+  color: var(--kinto-teal-deep);
+  font-family: var(--font-display), Manrope, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.authorWho {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.authorWho b {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.authorWho small {
+  color: var(--ink-3);
+  font-size: 11px;
+}
+
+.shareActions {
+  display: flex;
+  gap: 6px;
+}
+
+.shareActions a {
+  display: grid;
+  place-items: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink-3);
+  font-family: var(--font-display), Manrope, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  transition: all 0.2s;
+}
+
+.shareActions a:hover {
+  border-color: var(--kinto-teal);
+  background: var(--kinto-teal-mist);
+  color: var(--kinto-teal-deep);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) 200px;
+  gap: 48px;
+  width: min(100%, var(--content-max));
+  margin: 0 auto;
+  padding: 24px 24px 80px;
+}
+
+.toc,
+.rail {
+  position: sticky;
+  top: 96px;
+  align-self: start;
+  max-height: calc(100vh - 120px);
+}
+
+.toc {
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.tocTitle {
+  margin-bottom: 14px;
+  padding-left: 14px;
+  color: var(--ink-4);
+  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.toc ol {
+  list-style: none;
+  counter-reset: toc;
+  padding: 0;
+  margin: 0;
+}
+
+.toc li {
+  position: relative;
+  counter-increment: toc;
+}
+
+.tocLink {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 9px 14px;
+  border-left: 2px solid transparent;
+  border-radius: 10px;
+  margin-left: -2px;
+  color: var(--ink-3);
+  font-size: 13px;
+  line-height: 1.45;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tocLink::before {
+  content: counter(toc, decimal-leading-zero);
+  flex-shrink: 0;
+  padding-top: 1px;
+  color: var(--ink-4);
+  font-family: var(--font-display), Manrope, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+}
+
+.tocLink:hover,
+.tocLink:global(.is-active) {
+  background: var(--kinto-teal-soft);
+  color: var(--kinto-teal-deep);
+}
+
+.tocLink:global(.is-active) {
+  border-left-color: var(--kinto-teal);
+  font-weight: 600;
+}
+
+.tocLink:global(.is-active)::before {
+  color: var(--kinto-teal);
+}
+
+.rail {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.railCard {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+
+.railCard h4 {
+  margin: 0 0 10px;
+  color: var(--ink-4);
+  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.railCard p {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.railNumber {
+  color: var(--ink) !important;
+  font-family: var(--font-display), Manrope, sans-serif;
+  font-size: 22px !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.railNumber span {
+  margin-left: 6px;
+  color: var(--ink-3);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.railCardAccent {
+  border-color: var(--kinto-teal-soft);
+  background: var(--kinto-teal-mist);
+}
+
+.railCardAccent h4,
+.railCardAccent p {
+  color: var(--kinto-teal-deep) !important;
+}
+
+.content {
+  max-width: var(--read-max);
+  margin: 0 auto;
+}
+
+.richTextWrap,
+.inlineCards {
+  width: 100%;
+}
+
+.paragraph,
+.paragraphNatural,
+.leadParagraph,
+.content p {
+  margin: 0 0 1.4em;
+  color: var(--ink-2);
+  font-size: 16px;
+  letter-spacing: 0.01em;
+  line-height: 2.05;
+}
+
+.leadParagraph {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.paragraph strong,
+.leadParagraph strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.editorialSection {
+  padding-top: 64px;
+}
+
+.editorialSection:first-child {
+  padding-top: 20px;
+}
+
+.sectionHead {
+  margin: 0 0 24px;
+}
+
+.sectionEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 16px;
+  color: var(--kinto-teal);
+  font-family: var(--font-display), Manrope, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.sectionEyebrow::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--kinto-teal);
+}
+
+.sectionTitle {
+  margin: 8px 0 24px;
+  color: var(--ink);
+  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.sectionDeck {
+  max-width: 58ch;
+  margin: -8px 0 0;
+  color: var(--ink-3);
+  font-size: 15px;
+  line-height: 1.95;
+}
+
+
+.sectionBody > * + * {
+  margin-top: 24px;
+}
+
+.blockTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  color: var(--ink);
+  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.blockTitle::before {
+  content: "";
+  width: 6px;
+  height: 22px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--kinto-teal), var(--kinto-teal-deep));
+}
+
+.listCard,
+.listCardCompact {
+  margin: 24px 0 28px;
+}
+
+.listGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.listItem {
+  padding: 18px 20px;
+  border: 1px solid var(--kinto-teal-soft);
+  border-radius: var(--radius-md);
+  background: var(--kinto-teal-mist);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.listItem:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.listNumber {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 8px;
+  border: 1px solid var(--kinto-teal-soft);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--kinto-teal);
+  font-family: var(--font-display), Manrope, sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.listItemText {
+  display: block;
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.figureBlock {
+  margin: 32px 0;
+}
+
+.figureImageWrap {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--kinto-teal-mist);
+}
+
+.figureImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.figureCaption {
+  margin-top: 12px;
+  padding-left: 14px;
+  border-left: 2px solid var(--kinto-teal-soft);
+  color: var(--ink-3);
+  font-family: var(--font-serif), "Shippori Mincho", serif;
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1.7;
+}
+
+.tableBlock,
+.tableRows {
+  margin: 28px 0;
+}
+
+.tableRows {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0;
+  align-items: start;
+  padding: 16px 18px;
+  border-top: 1px solid var(--line-2);
+  background: #fff;
+}
+
+.tableRow:first-child {
+  border-top: 0;
+}
+
+.tableLabel {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.tableValue,
+.tableText {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.tablePairs {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.tablePair dt {
+  color: var(--ink-4);
+  font-family: var(--font-display), Manrope, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.tablePair dd {
+  margin: 4px 0 0;
+}
+
+.stepBlock {
+  margin: 32px 0;
+}
+
+.stepList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stepItem {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: start;
+  gap: 18px;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+
+.stepItem::before {
+  content: "";
+  position: absolute;
+  top: 62px;
+  bottom: -14px;
+  left: 46px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--kinto-teal-soft), transparent);
+}
+
+.stepItem:last-child::before {
+  display: none;
+}
+
+.stepIndex {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: var(--kinto-teal);
+  font-family: var(--font-display), Manrope, sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.stepIndex small {
+  margin-top: 4px;
+  color: var(--ink-4);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+.stepBody h4 {
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.stepBody p,
+.stepBody li {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.cardStack,
+.boardBlock {
+  display: grid;
+  gap: 12px;
+  margin: 28px 0;
+}
+
+.infoCard,
+.noteCard,
+.warnCard,
+.summaryCard {
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+
+.infoCard h4,
+.noteCard h3,
+.warnCard h3,
+.summaryCard h3 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.cardLabel,
+.relatedMeta {
+  margin: 0 0 10px;
+  color: var(--kinto-teal-deep);
+  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cardText {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.warnCard {
+  border-left: 4px solid var(--kinto-accent);
+}
+
+.summaryCard,
+.quoteBlock {
+  position: relative;
+  overflow: hidden;
+  padding: 28px 28px 28px 32px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--kinto-teal-deep), var(--kinto-teal));
+  color: #fff;
+}
+
+.summaryCard h3,
+.summaryCard p,
+.quoteBlock p,
+.quoteBlock cite {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.summaryCard h3,
+.quoteBlock p {
+  position: relative;
+  z-index: 1;
+}
+
+.quoteBlock {
+  margin: 36px 0;
+}
+
+.quoteBlock p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.quoteBlock cite {
+  display: block;
+  margin-top: 12px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.boardGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.caseRows {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0 0;
+}
+
+.caseRows div {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 12px;
+}
+
+.caseRows dt {
+  color: var(--ink-4);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.caseRows dd {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 13px;
+}
+
+.caseRows span {
+  display: block;
+  margin-top: 4px;
+  color: var(--ink-3);
+}
+
+.dividerBlock {
+  border: 0;
+  border-top: 1px dashed var(--line);
+  margin: 32px 0;
+}
+
+.blockNote {
+  margin: 12px 0 0;
+  color: var(--ink-3);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.faqSection {
+  margin: 64px 0 0;
+}
+
+.faqList {
+  border-top: 1px solid var(--line);
+}
+
+.faqItem {
+  border-bottom: 1px solid var(--line);
+}
+
+.faqQuestion {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px 4px;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.6;
+  list-style: none;
+}
+
+.faqQuestion::-webkit-details-marker {
+  display: none;
+}
+
+.faqQuestion span {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--kinto-teal);
+  color: #fff;
+  font-family: var(--font-display), Manrope, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.faqQuestion i {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink-3);
+  font-size: 14px;
+  font-style: normal;
+  transition: transform 0.25s, background 0.2s, color 0.2s;
+}
+
+.faqItem[open] .faqQuestion i {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #fff;
+  transform: rotate(45deg);
+}
+
+.faqAnswer {
+  padding: 14px 0 4px 40px;
+  color: var(--ink-2);
+  font-size: 14px;
+  line-height: 1.95;
+}
+
+ .sourcesBox,
+.updateBox {
+  width: min(100%, var(--read-max));
+  margin: 28px auto 0;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-md);
+  background: rgba(244, 249, 250, 0.58);
+  color: var(--ink-3);
+}
+
+.sourcesBox summary,
+.updateBox summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 44px;
+  padding: 12px 16px;
+  cursor: pointer;
+  list-style: none;
+  color: var(--ink-3);
+  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.sourcesBox summary::-webkit-details-marker,
+.updateBox summary::-webkit-details-marker {
+  display: none;
+}
+
+.sourcesBox summary::after,
+.updateBox summary::after {
+  content: "+";
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--kinto-teal);
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+.sourcesBox[open] summary::after,
+.updateBox[open] summary::after {
+  content: "−";
+}
+
+.sourcesBox summary span:last-child,
+.updateBox summary span:last-child {
+  margin-left: auto;
+  color: var(--ink-4);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.sourcesBox ol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 18px;
+  margin: 0;
+  padding: 0 18px 18px 34px;
+}
+
+.sourcesBox li,
+.sourcesBox a,
+.updateBox p {
+  color: var(--ink-3);
+  font-size: 11px;
+  line-height: 1.8;
+  word-break: break-all;
+}
+
+.sourcesBox a:hover {
+  color: var(--kinto-teal);
+}
+
+.updateBox p {
+  margin: 0;
+  padding: 0 18px 18px;
+}
+
+.authorBox {
+  width: min(100%, var(--read-max));
+  margin: 60px auto 0;
+  padding: 20px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-lg);
+  background: var(--paper-2);
+}
+
+.authorBox h2 {
+  margin: 4px 0 6px;
+  color: var(--ink);
+  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.authorRole {
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.authorMetaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.authorMetaGrid div {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+
+.authorMetaGrid span {
+  display: block;
+  color: var(--ink-4);
+  font-family: var(--font-display), Manrope, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.authorMetaGrid strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.relatedSection {
+  margin-top: 64px;
+  padding: 64px 0 32px;
+  border-top: 1px solid var(--line-2);
+  background: linear-gradient(180deg, var(--paper-2), #fff);
+}
+
+.relatedSection > h2,
+.relatedGrid {
+  width: min(100%, var(--content-max));
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.relatedSection > h2 {
+  margin-top: 0;
+  margin-bottom: 24px;
+  color: var(--ink);
+  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.relatedCard {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  gap: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.relatedCard:hover {
+  border-color: var(--kinto-teal-soft);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.relatedVisual {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, #0a3a48, #00708d);
+}
+
+.relatedVisual span {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  color: #7fd4e6;
+  font-family: var(--font-display), Manrope, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+.relatedVisual i {
+  position: absolute;
+  right: -40px;
+  bottom: -40px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+}
+
+.relatedVisualImage {
+  object-fit: cover;
+}
+
+.relatedBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 22px 22px;
+}
+
+.relatedBody h3 {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.relatedBody p {
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.relatedBody small {
+  margin-top: 6px;
+  color: var(--ink-3);
+  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.editorialFooter {
+  margin-top: 80px;
+  padding: 64px 0 32px;
+  background: var(--ink);
+  color: #fff;
+}
+
+.footerInner {
+  width: min(100%, var(--content-max));
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid #2a3338;
+}
+
+.footerBrand {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerMark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--kinto-teal), var(--kinto-teal-deep));
+  color: #fff;
+  font-family: var(--font-display), Manrope, sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.footerBrand strong {
+  font-family: var(--font-display), Manrope, sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.footerBrand p {
+  max-width: 30ch;
+  margin: 8px 0 0;
+  color: #9aa6ad;
+  font-size: 13px;
+  line-height: 1.85;
+}
+
+.editorialFooter h6 {
+  margin: 0 0 18px;
+  color: #9aa6ad;
+  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.editorialFooter ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.editorialFooter ul a {
+  color: #cfd6da;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+.editorialFooter ul a:hover {
+  color: var(--kinto-teal-soft);
+}
+
+.footerBottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 32px;
+  color: #6b7a82;
+  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.figureImageWrap svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 260px;
+}
+
+@supports (overflow: clip) {
+  .relatedBody p {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+}
+
+/* CBJ41: final mobile/header spacing and selected article image treatment */
+.nav {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #050507;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.brandName { color: #fff; }
+.brandName small { color: rgba(255, 255, 255, 0.58); }
+.navLinks a { color: rgba(255, 255, 255, 0.74); }
+.navLinks a:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+.navGhost { color: rgba(255, 255, 255, 0.66); }
+.navPill { border: 1px solid rgba(255, 255, 255, 0.16); background: rgba(255, 255, 255, 0.08); color: #fff; }
+.navPill:hover { background: rgba(255, 255, 255, 0.16); }
+
+.breadcrumbStrip {
+  display: block;
+  padding-top: 28px;
+  color: var(--ink-3);
+}
+.breadcrumbRoute {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  color: var(--ink-4);
+  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  line-height: 1.9;
+}
+.breadcrumbRoute a { color: var(--ink-3); }
+.breadcrumbRoute span { color: var(--ink-4); }
+.breadcrumbCurrent {
+  max-width: 68ch;
+  margin: 10px 0 0;
+  color: var(--ink-3);
+  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  line-height: 2;
+}
+.head { padding-top: 40px; padding-bottom: 54px; }
+.headMeta { gap: 12px; margin-bottom: 36px; }
+.headTitle { margin-bottom: 32px; line-height: 1.22; }
+.headLede { line-height: 2.12; }
+.heroVisual { padding-bottom: 72px; }
+.heroFrameImage { aspect-ratio: 16 / 9; border: 1px solid var(--line-2); background: #fff; }
+.heroPhoto { object-fit: contain; }
+.heroCaptionLight { color: var(--ink-2); text-shadow: 0 1px 8px rgba(255, 255, 255, 0.72); }
+.layout { padding-top: 36px; padding-bottom: 96px; }
+.paragraph, .paragraphNatural, .leadParagraph, .content p { margin-bottom: 1.65em; line-height: 2.15; }
+.editorialSection { padding-top: 76px; }
+.sectionBody > * + * { margin-top: 30px; }
+.figureBlock { margin: 42px 0; }
+@media (max-width: 720px) { .heroFrameImage { aspect-ratio: 16 / 10.5; } }
+@media (max-width: 640px) {
+  .head { padding-top: 34px; padding-bottom: 58px; }
+  .breadcrumbStrip { padding-top: 24px; }
+  .breadcrumbCurrent { margin-top: 12px; font-size: 13px; line-height: 2.05; }
+  .headTitle { line-height: 1.24; }
+}
+
+@media print {
+  .nav {
+    position: static;
+  }
+
+  .progress,
+  .toc,
+  .rail,
+  .shareActions {
+    display: none !important;
+  }
+
+  .layout {
+    display: block;
+    width: min(100%, var(--read-max));
+  }
+
+  .editorialFooter {
+    break-before: auto;
+    page-break-before: auto;
+  }
+}
+
+.page:global(.cbj-motion-ready) [data-cbj-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.8s cubic-bezier(0.16, 0.84, 0.4, 1), transform 0.8s cubic-bezier(0.16, 0.84, 0.4, 1);
+  transition-delay: var(--cbj-reveal-delay, 0ms);
+}
+
+.page:global(.cbj-motion-ready) [data-cbj-reveal]:global(.cbj-reveal-visible) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page:global(.cbj-motion-ready) [data-cbj-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .rail {
+    display: none;
+  }
+}
+
+@media (max-width: 880px) {
+  .navLinks,
+  .navGhost {
+    display: none;
+  }
+
+  .navCta {
+    margin-left: auto;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .toc {
+    display: none;
+  }
+
+  .relatedGrid,
+  .footerGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .heroFrame {
+    aspect-ratio: 4 / 4.4;
+    border-radius: var(--radius-lg);
+  }
+
+  .heroCaption {
+    font-size: 11px;
+  }
+
+  .metaRow {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .navInner,
+  .head,
+  .heroVisual,
+  .authorBar,
+  .layout,
+  .relatedSection > h2,
+  .relatedGrid,
+  .footerInner {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .brandName {
+    font-size: 12px;
+  }
+
+  .headTitle {
+    font-size: clamp(34px, 11vw, 48px);
+  }
+
+  .listGrid,
+  .boardGrid,
+  .authorMetaGrid,
+  .sourcesBox ol {
+    grid-template-columns: 1fr;
+  }
+
+  .tableRow {
+    grid-template-columns: 1fr;
+  }
+
+  .tableValue {
+    margin-top: 6px;
+    color: var(--ink-3);
+    font-size: 13px;
+  }
+
+  .caseRows div {
+    grid-template-columns: 1fr;
+  }
+
+  .sourcesBox,
+  .updateBox {
+    margin-top: 22px;
+  }
+
+  .sourcesBox summary,
+  .updateBox summary {
+    padding: 12px 14px;
+  }
+}
+
+
+/* CBJ42: use common site chrome and restore wider reading rhythm */
+.page {
+  padding-top: clamp(92px, 10svh, 112px);
+}
+
+.breadcrumbStrip {
+  padding-top: clamp(34px, 5svh, 58px);
+  padding-bottom: 6px;
+}
+
+.breadcrumbRoute {
+  row-gap: 10px;
+  line-height: 2.15;
+}
+
+.breadcrumbCurrent {
+  margin-top: 18px;
+  line-height: 2.18;
+}
+
+.head {
+  padding-top: clamp(50px, 7svh, 76px);
+  padding-bottom: clamp(70px, 9svh, 104px);
+}
+
+.headMeta {
+  gap: 14px;
+  margin-bottom: clamp(42px, 5.5svh, 64px);
+}
+
+.headTitle {
+  margin-bottom: clamp(38px, 5svh, 60px);
+  line-height: 1.28;
+}
+
+.headLede {
+  line-height: 2.24;
+}
+
+.heroVisual {
+  padding-bottom: clamp(86px, 10svh, 126px);
+}
+
+.authorBar {
+  padding-bottom: clamp(42px, 6svh, 72px);
+}
+
+.layout {
+  padding-top: clamp(56px, 7svh, 88px);
+  padding-bottom: clamp(116px, 14svh, 160px);
+}
+
+.content {
+  max-width: min(100%, 740px);
+}
+
+.paragraph,
+.paragraphNatural,
+.leadParagraph,
+.content p {
+  margin-bottom: 2em;
+  line-height: 2.28;
+}
+
+.editorialSection {
+  padding-top: clamp(92px, 11svh, 132px);
+}
+
+.editorialSection:first-child {
+  padding-top: clamp(46px, 6svh, 72px);
+}
+
+.sectionHead {
+  margin-bottom: clamp(34px, 4.6svh, 52px);
+}
+
+.sectionTitle {
+  margin-bottom: clamp(34px, 4.8svh, 56px);
+  line-height: 1.46;
+}
+
+.sectionBody > * + * {
+  margin-top: clamp(40px, 5.4svh, 64px);
+}
+
+.listCard,
+.listCardCompact,
+.tableBlock,
+.tableRows,
+.stepBlock,
+.cardStack,
+.boardBlock,
+.figureBlock,
+.quoteBlock {
+  margin-top: clamp(48px, 6svh, 72px);
+  margin-bottom: clamp(48px, 6svh, 72px);
+}
+
+.listGrid,
+.cardStack,
+.boardBlock,
+.stepList {
+  gap: 20px;
+}
+
+.listItem,
+.infoCard,
+.noteCard,
+.warnCard {
+  padding: clamp(24px, 4.4svw, 34px);
+}
+
+.listItemText,
+.cardText,
+.tableValue,
+.tableText,
+.stepBody p,
+.stepBody li {
+  line-height: 2.05;
+}
+
+.figureImageWrap {
+  background: #fff;
+}
+
+.figureImage {
+  object-fit: contain;
+}
+
+.figureCaption {
+  margin-top: 18px;
+  line-height: 1.95;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding-top: clamp(86px, 12svh, 108px);
+  }
+
+  .breadcrumbStrip {
+    padding-top: 34px;
+  }
+
+  .head {
+    padding-top: 46px;
+    padding-bottom: 76px;
+  }
+
+  .headMeta {
+    margin-bottom: 44px;
+  }
+
+  .headTitle {
+    line-height: 1.3;
+  }
+
+  .heroVisual {
+    padding-bottom: 90px;
+  }
+
+  .layout {
+    padding-top: 60px;
+  }
+
+  .paragraph,
+  .paragraphNatural,
+  .leadParagraph,
+  .content p {
+    margin-bottom: 2.05em;
+    line-height: 2.32;
+  }
+
+  .editorialSection {
+    padding-top: 96px;
+  }
+
+  .sectionBody > * + * {
+    margin-top: 46px;
+  }
+}
+
+/* CBJ20: tighter mobile reading design for heavy Guide/Column articles */
+.head {
+  padding-bottom: clamp(34px, 5svh, 58px);
+}
+.headTitle {
+  max-width: 20ch;
+  margin-bottom: clamp(22px, 3.2svh, 34px);
+}
+.headLede {
+  max-width: 42ch;
+  line-height: 2.02;
+}
+.heroVisual {
+  padding-bottom: clamp(46px, 7svh, 78px);
+}
+.heroFrameImage {
+  aspect-ratio: 16 / 10;
+}
+.heroPhoto {
+  object-fit: contain;
+  background: #fff;
+}
+@media (max-width: 640px) {
+  .head {
+    padding-top: 34px;
+    padding-bottom: 38px;
+  }
+  .headMeta {
+    margin-bottom: 28px;
+  }
+  .headTitle {
+    font-size: clamp(30px, 8.8vw, 40px);
+    line-height: 1.26;
+    margin-bottom: 22px;
+  }
+  .headLede {
+    font-size: 16px;
+    line-height: 2.02;
+  }
+  .heroVisual {
+    padding-bottom: 48px;
+  }
+  .heroFrameImage {
+    aspect-ratio: 16 / 10.4;
+  }
+}
+
+/* CBJ22: Guide/Column readable card system and wide figure treatment */
+.figureBlock {
+  width: min(920px, calc(100vw - 28px));
+  max-width: none;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.figureImageWrap {
+  border: 0;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 18px 46px rgba(6, 24, 32, 0.08);
+}
+
+.figureImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.figureCaption {
+  max-width: min(100%, var(--read-max));
+  margin: 14px auto 0;
+  padding-left: 12px;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.tableRows {
+  display: grid;
+  gap: 18px;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  margin: 18px 0 0;
+}
+
+.tableRow {
+  display: block;
+  padding: clamp(22px, 4.5vw, 34px);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(7, 25, 36, 0.05);
+}
+
+.tableRow:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.tableLabel {
+  margin: 0 0 14px;
+  color: var(--ink);
+  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
+  font-size: clamp(21px, 5.2vw, 28px);
+  font-weight: 900;
+  line-height: 1.42;
+  letter-spacing: -0.01em;
+}
+
+.tableValue,
+.tableText {
+  color: var(--ink-2);
+  font-size: clamp(16px, 4.2vw, 18px);
+  line-height: 2.05;
+}
+
+.tablePairs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+  margin: 0;
+}
+
+.tablePair {
+  padding: 16px 16px 18px;
+  border: 1px solid var(--line-2);
+  border-radius: 18px;
+  background: var(--kinto-teal-mist);
+}
+
+.tablePair dt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  color: var(--kinto-teal-deep);
+  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: none;
+}
+
+.tablePair dd {
+  margin: 0;
+}
+
+.tablePair:first-child:has(dt) {
+  background: rgba(255, 121, 78, 0.07);
+  border-color: rgba(255, 121, 78, 0.25);
+}
+
+.tablePair:first-child dt {
+  color: #a74626;
+}
+
+.tablePair:nth-child(2) {
+  background: rgba(0, 112, 141, 0.07);
+  border-color: rgba(0, 112, 141, 0.22);
+}
+
+.tablePair:nth-child(2) dt {
+  color: var(--kinto-teal-deep);
+}
+
+.blockNote {
+  max-width: 100%;
+  margin-top: 18px;
+  color: var(--ink-2);
+  font-size: clamp(16px, 4vw, 18px);
+  line-height: 2;
+}
+
+.listGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.listItem,
+.infoCard,
+.noteCard,
+.warnCard {
+  padding: clamp(22px, 4.5vw, 34px);
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(7, 25, 36, 0.05);
+}
+
+.listNumber {
+  width: auto;
+  height: auto;
+  margin-bottom: 12px;
+  border: 0;
+  background: transparent;
+  color: var(--kinto-teal);
+  font-size: 28px;
+  letter-spacing: -0.03em;
+}
+
+.listItemText,
+.cardText {
+  font-size: clamp(16px, 4.2vw, 18px);
+  line-height: 2.05;
+}
+
+.infoCard h4,
+.noteCard h3,
+.warnCard h3,
+.summaryCard h3 {
+  font-size: clamp(21px, 5.2vw, 28px);
+  line-height: 1.42;
+  margin-bottom: 14px;
+}
+
+.stepList {
+  gap: 18px;
+}
+
+.stepItem {
+  grid-template-columns: 64px 1fr;
+  gap: 18px;
+  padding: clamp(22px, 4.5vw, 34px);
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(7, 25, 36, 0.05);
+}
+
+.stepIndex span {
+  font-size: clamp(30px, 8vw, 42px);
+  line-height: 1;
+}
+
+.stepIndex small:empty {
+  display: none;
+}
+
+.stepBody h4 {
+  font-size: clamp(21px, 5.2vw, 28px);
+  line-height: 1.42;
+  margin-bottom: 10px;
+}
+
+.stepBody p,
+.stepBody li {
+  font-size: clamp(16px, 4.2vw, 18px);
+  line-height: 2.05;
+}
+
+.headTitle .cbj-sentence-line,
+.sectionTitle .cbj-sentence-line,
+.blockTitle .cbj-sentence-line,
+.tableLabel .cbj-sentence-line {
+  display: block;
+}
+
+.headLede {
+  white-space: pre-line;
+}
+
+@media (max-width: 640px) {
+  .figureBlock {
+    width: calc(100vw - 20px);
+  }
+
+  .figureImageWrap {
+    border-radius: 16px;
+  }
+
+  .figureCaption {
+    padding-left: 10px;
+    font-size: 13px;
+  }
+
+  .tableRows,
+  .stepList,
+  .listGrid,
+  .cardStack,
+  .boardBlock {
+    gap: 20px;
+  }
+
+  .tableRow,
+  .stepItem,
+  .listItem,
+  .infoCard,
+  .noteCard,
+  .warnCard {
+    padding: 24px 22px;
+  }
+}
+
+
+/* CBJ23: restore readable Guide/Column proportions after card/figure audit. */
+.figureBlock {
+  width: 100%;
+  max-width: var(--read-max);
+  margin: 26px auto;
+  transform: none;
+}
+
+.figureImageWrap {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 10px 26px rgba(6, 24, 32, 0.055);
+}
+
+.figureCaption {
+  max-width: 100%;
+  margin-top: 10px;
+  padding-left: 10px;
+  font-size: 12.5px;
+  line-height: 1.75;
+}
+
+.tableRows {
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.tableRow {
+  padding: 16px 17px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(7, 25, 36, 0.04);
+}
+
+.tableLabel {
+  margin-bottom: 8px;
+  font-size: clamp(16px, 4.1vw, 18px);
+  line-height: 1.55;
+  font-weight: 850;
+}
+
+.tableValue,
+.tableText {
+  font-size: clamp(14px, 3.75vw, 16px);
+  line-height: 1.85;
+}
+
+.tablePairs {
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.tablePair {
+  padding: 12px 13px 13px;
+  border-radius: 14px;
+}
+
+.tablePair dt {
+  margin-bottom: 7px;
+  font-size: 13px;
+}
+
+.blockNote {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.listItem,
+.infoCard,
+.noteCard,
+.warnCard {
+  padding: 16px 17px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(7, 25, 36, 0.04);
+}
+
+.listNumber {
+  margin-bottom: 8px;
+  font-size: 20px;
+}
+
+.listItemText,
+.cardText {
+  font-size: clamp(14px, 3.75vw, 16px);
+  line-height: 1.85;
+}
+
+.infoCard h4,
+.noteCard h3,
+.warnCard h3,
+.summaryCard h3 {
+  margin-bottom: 9px;
+  font-size: clamp(16px, 4.1vw, 18px);
+  line-height: 1.55;
+}
+
+.stepList {
+  gap: 12px;
+}
+
+.stepItem {
+  grid-template-columns: 48px 1fr;
+  gap: 13px;
+  padding: 16px 17px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(7, 25, 36, 0.04);
+}
+
+.stepItem::before {
+  top: 50px;
+  left: 40px;
+}
+
+.stepIndex span {
+  font-size: clamp(22px, 6.2vw, 28px);
+}
+
+.stepBody h4 {
+  margin-bottom: 7px;
+  font-size: clamp(16px, 4.1vw, 18px);
+  line-height: 1.55;
+}
+
+.stepBody p,
+.stepBody li {
+  font-size: clamp(14px, 3.75vw, 16px);
+  line-height: 1.85;
+}
+
+.faqQuestion strong {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+  .figureBlock {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .tableRows,
+  .stepList,
+  .listGrid,
+  .cardStack,
+  .boardBlock {
+    gap: 12px;
+  }
+
+  .tableRow,
+  .stepItem,
+  .listItem,
+  .infoCard,
+  .noteCard,
+  .warnCard {
+    padding: 15px 16px;
+  }
+}
+
+
+/* CBJ26: mobile rendering stability fixes.
+   - Do not hide article blocks behind scroll reveal; some mobile browsers failed to reveal SYSTEM until resize.
+   - Keep FAQ questions readable in one normal line flow.
+   - Detail pages can omit heroImage; when present, avoid card-like framing. */
+.page:global(.cbj-motion-ready) [data-cbj-reveal],
+.page:global(.cbj-motion-ready) [data-cbj-reveal]:global(.cbj-reveal-visible) {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.faqQuestion {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) 28px;
+  align-items: center;
+  column-gap: 14px;
+}
+
+.faqQuestion span {
+  grid-column: 1;
+}
+
+.faqQuestion strong {
+  grid-column: 2;
+  display: block;
+  min-width: 0;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: break-word;
+  line-break: strict;
+}
+
+.faqQuestion i {
+  grid-column: 3;
+  margin-left: 0;
+  justify-self: end;
+}
+
+.heroFrameImage {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.heroPhoto {
+  background: transparent;
+}
+
+@media (max-width: 640px) {
+  .faqQuestion {
+    grid-template-columns: 30px minmax(0, 1fr) 28px;
+    padding: 18px 0;
+  }
+
+  .faqQuestion strong {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+}
+
+/* CBJ27: hard fixes for mobile rendering regressions.
+   - Reveal blocks must never depend on resize/intersection to become visible.
+   - FAQ uses direct-child selectors only, so inline text spans are not styled as Q badges.
+   - Article figures are content images, not images trapped inside decorative frames. */
+.page:global(.cbj-motion-ready) [data-cbj-reveal],
+.page:global(.cbj-motion-ready) [data-cbj-reveal]:global(.cbj-reveal-visible),
+.page [data-cbj-reveal] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.faqQuestion {
+  display: grid !important;
+  grid-template-columns: 30px minmax(0, 1fr) 28px !important;
+  align-items: start !important;
+  gap: 14px !important;
+  width: 100% !important;
+}
+
+.faqQuestion > span {
+  grid-column: 1 !important;
+  display: grid !important;
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  place-items: center !important;
+  border-radius: 9px !important;
+  background: var(--kinto-teal) !important;
+  color: #fff !important;
+  font-family: var(--font-display), Manrope, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+}
+
+.faqQuestion strong {
+  grid-column: 2 !important;
+  display: block !important;
+  min-width: 0 !important;
+  width: auto !important;
+  max-width: 100% !important;
+  white-space: normal !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  line-break: strict !important;
+  text-wrap: pretty;
+}
+
+.faqQuestion strong span,
+.faqQuestion strong * {
+  display: inline !important;
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: inherit !important;
+  font: inherit !important;
+  letter-spacing: inherit !important;
+}
+
+.faqQuestion > i {
+  grid-column: 3 !important;
+  margin-left: 0 !important;
+  justify-self: end !important;
+}
+
+.figureBlock {
+  width: min(100%, var(--read-max)) !important;
+  max-width: var(--read-max) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  transform: none !important;
+}
+
+.figureImageWrap {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.figureImage {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border-radius: 0 !important;
+}
+
+
+@media (max-width: 640px) {
+  .faqQuestion {
+    grid-template-columns: 30px minmax(0, 1fr) 28px !important;
+    gap: 12px !important;
+    padding: 18px 0 !important;
+  }
+
+  .faqQuestion strong {
+    font-size: 15px !important;
+    line-height: 1.8 !important;
+  }
+
+  .figureBlock {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* CBJ28: FAQ text visibility fix.
+   The previous mobile CSS prevented Japanese FAQ questions from wrapping, so the text overflowed horizontally and appeared hidden.
+   Keep the Q badge isolated and let the question text wrap inside the available column. */
+.faqQuestionBadge {
+  grid-column: 1 !important;
+  display: grid !important;
+  width: 30px !important;
+  min-width: 30px !important;
+  height: 30px !important;
+  place-items: center !important;
+  border-radius: 9px !important;
+  background: var(--kinto-teal) !important;
+  color: #fff !important;
+  font-family: var(--font-display), Manrope, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+}
+
+.faqQuestionText {
+  grid-column: 2 !important;
+  display: block !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  color: var(--ink) !important;
+  background: transparent !important;
+  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif !important;
+  font-size: clamp(15px, 4vw, 17px) !important;
+  font-weight: 800 !important;
+  line-height: 1.65 !important;
+  letter-spacing: 0.01em !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: anywhere !important;
+  line-break: strict !important;
+  text-wrap: wrap !important;
+  overflow: visible !important;
+}
+
+.faqQuestionToggle {
+  grid-column: 3 !important;
+  justify-self: end !important;
+  display: grid !important;
+  width: 28px !important;
+  min-width: 28px !important;
+  height: 28px !important;
+  place-items: center !important;
+  margin-left: 0 !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 999px !important;
+  background: #fff !important;
+  color: var(--ink-3) !important;
+  font-style: normal !important;
+}
+
+.faqQuestion > span:not(.faqQuestionBadge),
+.faqQuestionText span,
+.faqQuestionText * {
+  display: inline !important;
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: inherit !important;
+  font: inherit !important;
+  letter-spacing: inherit !important;
+}
+
+/* CBJ29: article card refinement.
+   - General comparison cards use the same indexed left-rail language as the flow cards.
+   - NG / OK cards are differentiated by natural red / blue diagonal gradients and icon-only markers.
+   - These changes improve scanability on mobile without making the page feel noisy. */
+.tableRowIndexed {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: start;
+  gap: 18px;
+}
+
+.tableRowIndex {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: var(--kinto-teal);
+  font-family: var(--font-display), Manrope, sans-serif;
+  font-size: clamp(30px, 8vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.tableRowContent {
+  position: relative;
+  min-width: 0;
+}
+
+.tableRowIndexed .tableRowContent {
+  padding-left: 18px;
+}
+
+.tableRowIndexed .tableRowContent::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 0;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(207, 216, 222, 0.94), rgba(231, 236, 239, 0.74));
+}
+
+.tableRowIndexed .tableLabel {
+  margin-bottom: 10px;
+}
+
+.tableRowDecision {
+  position: relative;
+  overflow: hidden;
+}
+
+.tableRowDecision::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.tableRowDecisionNg::before {
+  background:
+    linear-gradient(135deg,
+      rgba(255, 252, 252, 0.98) 0%,
+      rgba(253, 242, 242, 0.94) 36%,
+      rgba(248, 225, 225, 0.88) 72%,
+      rgba(242, 210, 210, 0.9) 100%);
+}
+
+.tableRowDecisionOk::before {
+  background:
+    linear-gradient(135deg,
+      rgba(251, 254, 255, 0.98) 0%,
+      rgba(241, 249, 253, 0.95) 36%,
+      rgba(224, 240, 248, 0.9) 74%,
+      rgba(202, 228, 241, 0.9) 100%);
+}
+
+.tableRowDecision > * {
+  position: relative;
+  z-index: 1;
+}
+
+.tableRowContentDecision {
+  min-height: 46px;
+  padding-right: clamp(88px, 24vw, 148px);
+}
+
+.decisionCardIcon {
+  position: absolute;
+  top: clamp(14px, 3.5vw, 24px);
+  right: clamp(22px, 6vw, 42px);
+  z-index: 2;
+  display: block;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  font-family: var(--font-display), Manrope, system-ui, sans-serif;
+  font-size: clamp(66px, 17vw, 116px);
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.08em;
+  pointer-events: none;
+}
+
+.decisionCardIconNg {
+  color: rgba(210, 48, 48, 0.78);
+  transform: rotate(-11deg);
+  text-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.45),
+    0 12px 22px rgba(110, 24, 24, 0.12);
+}
+
+.decisionCardIconOk {
+  color: rgba(28, 139, 184, 0.82);
+  transform: rotate(-4deg);
+  text-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.45),
+    0 12px 22px rgba(16, 68, 96, 0.12);
+}
+
+.tableValueDecision,
+.tableValueDecision .richTextWrap,
+.tableValueDecision .tableText {
+  color: var(--ink);
+}
+
+.tableValueDecision :global(.cbj-sentence-line) {
+  font-weight: 520;
+}
+
+@media (max-width: 640px) {
+  .tableRowIndexed {
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 13px;
+  }
+
+  .tableRowIndex {
+    font-size: clamp(22px, 6.2vw, 28px);
+  }
+
+  .tableRowIndexed .tableRowContent {
+    padding-left: 14px;
+  }
+
+  .tableRowContentDecision {
+    padding-right: 92px;
+  }
+
+  .decisionCardIcon {
+    top: 12px;
+    right: 22px;
+    font-size: clamp(62px, 18vw, 92px);
+  }
+}
+
+
+/* CBJ31: keep indexed cards and article figures readable when exported to PDF. */
+.tableRow,
+.stepItem,
+.imageFigure,
+.relatedLinkCard {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+@media print {
+  .tableRowIndexed {
+    display: block;
+  }
+
+  .tableRowIndex {
+    margin-bottom: 8px;
+  }
+
+  .tableRowIndexed .tableRowContent {
+    padding-left: 0;
+  }
+
+  .tableRowIndexed .tableRowContent::before {
+    display: none;
+  }
+}
+
+/* CBJ30: Sub-section headings inside article chapters.
+   Use this for 1-1 / 2-1 level explanations that should read as part of the article flow,
+   not as separate summary cards. */
+.subheadingBlock {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: clamp(34px, 6vw, 48px) 0 12px;
+  color: var(--ink);
+  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
+  font-size: clamp(21px, 5.2vw, 28px);
+  font-weight: 900;
+  letter-spacing: -0.015em;
+  line-height: 1.45;
+}
+
+.subheadingBlock::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 7px;
+  height: 1.38em;
+  margin-top: 0.12em;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--kinto-teal), var(--kinto-teal-deep));
+}
+
+.subheadingBlock + .paragraphBlock {
+  margin-top: 10px;
+}
+
+@media (max-width: 640px) {
+  .subheadingBlock {
+    gap: 10px;
+    margin-top: 36px;
+    font-size: clamp(21px, 5.8vw, 25px);
+  }
+
+  .subheadingBlock::before {
+    width: 6px;
+  }
+}
+
+
+/* CBJ30: header tag de-duplication support and section deck preservation. */
+.sectionDeck {
+  max-width: 58ch;
+  margin: -14px 0 0;
+  color: var(--ink-3);
+  font-size: clamp(14px, 3.8vw, 16px);
+  line-height: 1.95;
+}
+
+/* CBJ30: keep NG / OK icon-only cards readable on mobile. */
+.decisionCardIcon {
+  font-size: clamp(54px, 14vw, 96px);
+}
+
+.tableRowContentDecision {
+  padding-right: clamp(76px, 20vw, 128px);
+}
+
+@media (max-width: 640px) {
+  .tableRowContentDecision {
+    padding-right: 76px;
+  }
+
+  .decisionCardIcon {
+    top: 16px;
+    right: 20px;
+    font-size: clamp(50px, 14vw, 72px);
+  }
+}
+
+/* CBJ image flow: keep approved consecutive article infographics visually connected without changing the shared card system. */
+.sectionBody .figureBlock + .figureBlock {
+  margin-top: 14px;
+}
+
+.sectionBody .figureBlock + .figureBlock .figureCaption {
+  margin-top: 8px;
+}
+
+@media (max-width: 640px) {
+  .sectionBody .figureBlock + .figureBlock {
+    margin-top: 12px;
+  }
+}

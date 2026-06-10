@@ -1,0 +1,107 @@
+# car-hp-1-47-14 car image import report
+
+## Summary
+- Index cars scanned: 94
+- Hash-locked accepted images kept unchanged: 15
+- Cars updated with generated image paths: 79
+- Unique car images now assigned: 94
+- Generated image output size: 4320x7680 JPEG for newly added generated images
+- Per-image size check: all assigned generated JPEGs are under 100MB
+
+## Kept hash-locked accepted images
+- `honda-civic-type-r-fd2`
+- `honda-s660-jw5`
+- `lamborghini-temerario`
+- `lexus-is-f-use20`
+- `lexus-lfa-2010`
+- `lotus-exige-s2`
+- `mazda-rx-8-se3p-type-s`
+- `mitsubishi-lancer-evolution-ix-gsr`
+- `mitsubishi-lancer-evolution-x-gsr`
+- `nissan-fairlady-z-z34`
+- `nissan-gt-r-r35-early`
+- `nissan-gtr-r35`
+- `nissan-z-rz34`
+- `suzuki-alto-works-ha36s`
+- `toyota-gr-supra-rz`
+
+## Updated cars
+- `aston-martin-db7-vantage` → `/images/cbj/cars/cbj-cars-aston-martin-db7-vantage-8k.jpg`
+- `autozam-az-1-pg6sa` → `/images/cbj/cars/cbj-cars-autozam-az-1-pg6sa-8k.jpg`
+- `bmw-530i-g30` → `/images/cbj/cars/cbj-cars-bmw-530i-g30-8k.jpg`
+- `daihatsu-copen-l880k` → `/images/cbj/cars/cbj-cars-daihatsu-copen-l880k-8k.jpg`
+- `ferrari-125-s` → `/images/cbj/cars/cbj-cars-ferrari-125-s-8k.jpg`
+- `ferrari-166-mm` → `/images/cbj/cars/cbj-cars-ferrari-166-mm-8k.jpg`
+- `ferrari-250-gt-swb` → `/images/cbj/cars/cbj-cars-ferrari-250-gt-swb-8k.jpg`
+- `ferrari-250-gto` → `/images/cbj/cars/cbj-cars-ferrari-250-gto-8k.jpg`
+- `ferrari-275-gtb4` → `/images/cbj/cars/cbj-cars-ferrari-275-gtb4-8k.jpg`
+- `ferrari-308-gtb` → `/images/cbj/cars/cbj-cars-ferrari-308-gtb-8k.jpg`
+- `ferrari-348-tb` → `/images/cbj/cars/cbj-cars-ferrari-348-tb-8k.jpg`
+- `ferrari-360-modena` → `/images/cbj/cars/cbj-cars-ferrari-360-modena-8k.jpg`
+- `ferrari-365-gtb4-daytona` → `/images/cbj/cars/cbj-cars-ferrari-365-gtb4-daytona-8k.jpg`
+- `ferrari-458-italia` → `/images/cbj/cars/cbj-cars-ferrari-458-italia-8k.jpg`
+- `ferrari-488-gtb` → `/images/cbj/cars/cbj-cars-ferrari-488-gtb-8k.jpg`
+- `ferrari-512-bb` → `/images/cbj/cars/cbj-cars-ferrari-512-bb-8k.jpg`
+- `ferrari-550-maranello` → `/images/cbj/cars/cbj-cars-ferrari-550-maranello-8k.jpg`
+- `ferrari-812-superfast` → `/images/cbj/cars/cbj-cars-ferrari-812-superfast-8k.jpg`
+- `ferrari-dino-246-gt` → `/images/cbj/cars/cbj-cars-ferrari-dino-246-gt-8k.jpg`
+- `ferrari-f40` → `/images/cbj/cars/cbj-cars-ferrari-f40-8k.jpg`
+- `ferrari-f430` → `/images/cbj/cars/cbj-cars-ferrari-f430-8k.jpg`
+- `ferrari-f50` → `/images/cbj/cars/cbj-cars-ferrari-f50-8k.jpg`
+- `ferrari-la-ferrari` → `/images/cbj/cars/cbj-cars-ferrari-la-ferrari-8k.jpg`
+- `ferrari-purosangue` → `/images/cbj/cars/cbj-cars-ferrari-purosangue-8k.jpg`
+- `ferrari-roma` → `/images/cbj/cars/cbj-cars-ferrari-roma-8k.jpg`
+- `ferrari-sf90-stradale` → `/images/cbj/cars/cbj-cars-ferrari-sf90-stradale-8k.jpg`
+- `ferrari-testarossa` → `/images/cbj/cars/cbj-cars-ferrari-testarossa-8k.jpg`
+- `honda-beat-pp1` → `/images/cbj/cars/cbj-cars-honda-beat-pp1-8k.jpg`
+- `honda-civic-type-r-ek9` → `/images/cbj/cars/cbj-cars-honda-civic-type-r-ek9-8k.jpg`
+- `honda-civic-type-r-ep3` → `/images/cbj/cars/cbj-cars-honda-civic-type-r-ep3-8k.jpg`
+- `honda-integra-type-r-dc2` → `/images/cbj/cars/cbj-cars-honda-integra-type-r-dc2-8k.jpg`
+- `honda-integra-type-r-dc5` → `/images/cbj/cars/cbj-cars-honda-integra-type-r-dc5-8k.jpg`
+- `honda-nsx-na1` → `/images/cbj/cars/cbj-cars-honda-nsx-na1-8k.jpg`
+- `honda-nsx-na2` → `/images/cbj/cars/cbj-cars-honda-nsx-na2-8k.jpg`
+- `honda-nsx-r-na1` → `/images/cbj/cars/cbj-cars-honda-nsx-r-na1-8k.jpg`
+- `honda-prelude-bb4-4ws` → `/images/cbj/cars/cbj-cars-honda-prelude-bb4-4ws-8k.jpg`
+- `honda-s2000-ap1` → `/images/cbj/cars/cbj-cars-honda-s2000-ap1-8k.jpg`
+- `lamborghini-diablo-vt-60` → `/images/cbj/cars/cbj-cars-lamborghini-diablo-vt-60-8k.jpg`
+- `lotus-elise-s2` → `/images/cbj/cars/cbj-cars-lotus-elise-s2-8k.jpg`
+- `lotus-esprit-v8` → `/images/cbj/cars/cbj-cars-lotus-esprit-v8-8k.jpg`
+- `mazda-roadster-na` → `/images/cbj/cars/cbj-cars-mazda-roadster-na-8k.jpg`
+- `mazda-rx7-fc3s` → `/images/cbj/cars/cbj-cars-mazda-rx7-fc3s-8k.jpg`
+- `mazda-rx7-fd3s` → `/images/cbj/cars/cbj-cars-mazda-rx7-fd3s-8k.jpg`
+- `mazda-rx7-sa22c` → `/images/cbj/cars/cbj-cars-mazda-rx7-sa22c-8k.jpg`
+- `mazda-rx8-se3p` → `/images/cbj/cars/cbj-cars-mazda-rx8-se3p-8k.jpg`
+- `mclaren-f1` → `/images/cbj/cars/cbj-cars-mclaren-f1-8k.jpg`
+- `mercedes-benz-s-class-w140` → `/images/cbj/cars/cbj-cars-mercedes-benz-s-class-w140-8k.jpg`
+- `mitsubishi-fto` → `/images/cbj/cars/cbj-cars-mitsubishi-fto-8k.jpg`
+- `mitsubishi-gto-z15a-active-aero` → `/images/cbj/cars/cbj-cars-mitsubishi-gto-z15a-active-aero-8k.jpg`
+- `mitsubishi-lancer-evolution-vi-gsr` → `/images/cbj/cars/cbj-cars-mitsubishi-lancer-evolution-vi-gsr-8k.jpg`
+- `nissan-fairlady-z-s30` → `/images/cbj/cars/cbj-cars-nissan-fairlady-z-s30-8k.jpg`
+- `nissan-fairlady-z-z31` → `/images/cbj/cars/cbj-cars-nissan-fairlady-z-z31-8k.jpg`
+- `nissan-fairlady-z-z32` → `/images/cbj/cars/cbj-cars-nissan-fairlady-z-z32-8k.jpg`
+- `nissan-fairlady-z-z33` → `/images/cbj/cars/cbj-cars-nissan-fairlady-z-z33-8k.jpg`
+- `nissan-laurel-c35-club-s-turbo` → `/images/cbj/cars/cbj-cars-nissan-laurel-c35-club-s-turbo-8k.jpg`
+- `nissan-r390-gt1-road-car` → `/images/cbj/cars/cbj-cars-nissan-r390-gt1-road-car-8k.jpg`
+- `nissan-silvia-s15` → `/images/cbj/cars/cbj-cars-nissan-silvia-s15-8k.jpg`
+- `nissan-skyline-2000gtr-kpgc10` → `/images/cbj/cars/cbj-cars-nissan-skyline-2000gtr-kpgc10-8k.jpg`
+- `nissan-skyline-2000gtr-kpgc110` → `/images/cbj/cars/cbj-cars-nissan-skyline-2000gtr-kpgc110-8k.jpg`
+- `nissan-skyline-er34-25gt-turbo-sedan` → `/images/cbj/cars/cbj-cars-nissan-skyline-er34-25gt-turbo-sedan-8k.jpg`
+- `nissan-skyline-gtr-r32` → `/images/cbj/cars/cbj-cars-nissan-skyline-gtr-r32-8k.jpg`
+- `nissan-skyline-gtr-r33` → `/images/cbj/cars/cbj-cars-nissan-skyline-gtr-r33-8k.jpg`
+- `nissan-skyline-gtr-r34` → `/images/cbj/cars/cbj-cars-nissan-skyline-gtr-r34-8k.jpg`
+- `nissan-skyline-r32-super-hicas` → `/images/cbj/cars/cbj-cars-nissan-skyline-r32-super-hicas-8k.jpg`
+- `subaru-impreza-wrx-sti-gc8-type-r` → `/images/cbj/cars/cbj-cars-subaru-impreza-wrx-sti-gc8-type-r-8k.jpg`
+- `subaru-impreza-wrx-sti-v6` → `/images/cbj/cars/cbj-cars-subaru-impreza-wrx-sti-v6-8k.jpg`
+- `suzuki-cappuccino-ea11r` → `/images/cbj/cars/cbj-cars-suzuki-cappuccino-ea11r-8k.jpg`
+- `toyota-aristo-jzs161-v300` → `/images/cbj/cars/cbj-cars-toyota-aristo-jzs161-v300-8k.jpg`
+- `toyota-celica-gt-four` → `/images/cbj/cars/cbj-cars-toyota-celica-gt-four-8k.jpg`
+- `toyota-celica-xx-2000gt` → `/images/cbj/cars/cbj-cars-toyota-celica-xx-2000gt-8k.jpg`
+- `toyota-celsior-ucf10` → `/images/cbj/cars/cbj-cars-toyota-celsior-ucf10-8k.jpg`
+- `toyota-chaser-jzx100-tourer-v` → `/images/cbj/cars/cbj-cars-toyota-chaser-jzx100-tourer-v-8k.jpg`
+- `toyota-corolla-levin-ae86` → `/images/cbj/cars/cbj-cars-toyota-corolla-levin-ae86-8k.jpg`
+- `toyota-gr-gt` → `/images/cbj/cars/cbj-cars-toyota-gr-gt-8k.jpg`
+- `toyota-mr-s-zzw30` → `/images/cbj/cars/cbj-cars-toyota-mr-s-zzw30-8k.jpg`
+- `toyota-mr2-sw20-rev3` → `/images/cbj/cars/cbj-cars-toyota-mr2-sw20-rev3-8k.jpg`
+- `toyota-supra-a70-25gt-ttr` → `/images/cbj/cars/cbj-cars-toyota-supra-a70-25gt-ttr-8k.jpg`
+- `toyota-supra-a70-turbo-a` → `/images/cbj/cars/cbj-cars-toyota-supra-a70-turbo-a-8k.jpg`
+- `toyota-supra-jza80-rz` → `/images/cbj/cars/cbj-cars-toyota-supra-jza80-rz-8k.jpg`
