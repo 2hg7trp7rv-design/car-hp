@@ -58,10 +58,11 @@ export default function EditorialPolicyPage() {
       <LegalDocHeader
         eyebrow="編集方針"
         title="確認できることと、条件で変わることを分けて書く。"
-        lead="CAR BOUTIQUE JOURNALでは、山田太郎が運営・編集責任者として記事の企画、構成、本文表現、公開後の見直しを行います。車は年式、グレード、個体差、地域、契約条件によって判断が変わるため、断定しすぎず、読者が自分の条件に置き換えられる記事を目指します。"
+        lead="CAR BOUTIQUE JOURNALでは、自動車業界経験のある山田太郎が運営・編集責任者として記事の企画、構成、本文表現、公開後の見直しを行います。車は年式、グレード、個体差、地域、契約条件によって判断が変わるため、断定しすぎず、読者が自分の条件に置き換えられる記事を目指します。"
         meta={[
           { label: "対象", value: "車種 / ガイド / コラム / 系譜" },
           { label: "編集責任", value: "山田太郎" },
+          { label: "経験", value: "自動車業界での実務経験" },
           { label: "関連", value: <Link href="/legal/sources-factcheck">出典・ファクトチェック</Link> },
         ]}
       />
