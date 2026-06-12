@@ -30,7 +30,7 @@ function resolveAuthorProfile(item: ColumnItem) {
   return {
     kind: "person" as const,
     name: "山田太郎",
-    credential: "CAR BOUTIQUE JOURNAL 運営・編集",
+    credential: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者",
   };
 }
 
@@ -58,7 +58,7 @@ function buildEditorialReviewSection(sourceCount: number): GuideDetailSection {
         type: "editorialBoard",
         eyebrow: "CBJ REVIEW",
         title: "公開前に確認していること",
-        lead: "この記事は、CAR BOUTIQUE JOURNALを運営・編集する山田太郎が、確認できる情報と条件によって変わる内容を分けながら編集しています。",
+        lead: "この記事は、自動車業界での実務経験を持つ山田太郎が、確認できる情報と条件によって変わる内容を分けながら編集しています。",
         items: [
           {
             number: "01",
@@ -105,7 +105,7 @@ function appendEditorialReviewBody(body: string | null | undefined, sourceCount:
   if (!source) return body;
   if (source.includes("## 編集・確認体制")) return body;
   const sourceText = sourceCount > 0 ? `本文末の出典・参考資料${sourceCount}件を確認対象に含めています。` : "確認できる範囲で事実関係と表現を確認しています。";
-  return `${source}\n\n## 編集・確認体制\nこの記事は、CAR BOUTIQUE JOURNALを運営・編集する山田太郎が、確認できる情報と条件によって変わる内容を分けながら編集しています。${sourceText}記事は一般的な判断材料です。個別の条件によって結果が変わる内容は、一次資料や関係先での確認を優先してください。`;
+  return `${source}\n\n## 編集・確認体制\nこの記事は、自動車業界での実務経験を持つ山田太郎が、確認できる情報と条件によって変わる内容を分けながら編集しています。${sourceText}記事は一般的な判断材料です。個別の条件によって結果が変わる内容は、一次資料や関係先での確認を優先してください。`;
 }
 
 export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) {
@@ -153,7 +153,7 @@ export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) 
     reviewedBy: {
       "@type": "Person",
       name: "山田太郎",
-      jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集",
+      jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者",
       url: authorPageUrl,
     },
     publisher: {
