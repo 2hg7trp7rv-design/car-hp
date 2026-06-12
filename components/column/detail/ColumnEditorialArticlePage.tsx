@@ -112,6 +112,7 @@ export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) 
   const siteUrl = getSiteUrl();
   const title = item.titleJa ?? item.title;
   const pageUrl = `${siteUrl}/column/${encodeURIComponent(item.slug)}`;
+  const authorPageUrl = `${siteUrl}/legal/about`;
   const sourceCount = item.sources?.length ?? 0;
   const breadcrumbTrail =
     item.breadcrumbTrail && item.breadcrumbTrail.length > 0
@@ -147,11 +148,13 @@ export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) 
       "@type": author.kind === "person" ? "Person" : "Organization",
       name: author.name,
       jobTitle: author.kind === "person" ? author.credential ?? undefined : undefined,
+      url: author.kind === "person" ? authorPageUrl : siteUrl,
     },
     reviewedBy: {
       "@type": "Person",
       name: "山田太郎",
       jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集",
+      url: authorPageUrl,
     },
     publisher: {
       "@type": "Organization",
