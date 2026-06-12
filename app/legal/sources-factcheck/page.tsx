@@ -12,7 +12,7 @@ import { getSiteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "出典・ファクトチェック",
   description:
-    "CAR BOUTIQUE JOURNALの出典・ファクトチェック方針です。参照する情報源、要約の考え方、誤りへの対応を説明します。",
+    "CAR BOUTIQUE JOURNALの出典確認方針です。どの情報を優先し、どこまで確認して記事にするかを説明します。",
   alternates: { canonical: `${getSiteUrl()}/legal/sources-factcheck` },
 };
 
@@ -57,11 +57,11 @@ export default function SourcesFactcheckPage() {
 
       <LegalDocHeader
         eyebrow="出典確認"
-        title="何を参照し、どこまで確認して書くか。"
-        lead="CAR BOUTIQUE JOURNALでは、内容の正確性を重視します。本ページは、参照する情報源と検証の基本方針を置いたもの。"
+        title="まず一次情報を見て、足りない部分を補う。"
+        lead="CAR BOUTIQUE JOURNALでは、山田太郎が出典の確認と公開後の見直しを行います。公式情報で確認できることを軸にしながら、それだけでは読者が判断しにくい部分を専門媒体や実例で補います。"
         meta={[
-          { label: "優先", value: "メーカー公式発表 / 公的機関 / 一次情報に近い資料" },
-          { label: "補足", value: "信頼できる報道機関や専門媒体で裏取り" },
+          { label: "優先", value: "メーカー公式 / 公的機関 / 取扱説明書 / 技術資料" },
+          { label: "補足", value: "専門媒体 / 報道機関 / 実例" },
           { label: "連絡", value: <Link href="/contact">誤りの報告はこちら</Link> },
         ]}
       />
@@ -69,45 +69,36 @@ export default function SourcesFactcheckPage() {
       <div className="mt-12 space-y-10">
         <LegalDocSection index="01" title="優先する情報源">
           <p>
-            可能な限り、メーカー公式発表（プレスリリース / プレスルーム）、
-            公的機関、一次情報に近い資料を優先します。
-          </p>
-          <p>
-            そのうえで、信頼できる報道機関や専門媒体を参照し、
-            表現や解釈の妥当性を確認します。
+            メーカー公式発表、取扱説明書、公的機関の公開情報、技術資料など、一次情報に近いものを優先します。
+            そのうえで、信頼できる報道機関や専門媒体を確認し、表現や解釈に無理がないかを見直します。
           </p>
         </LegalDocSection>
 
-        <LegalDocSection index="02" title="要約と表現">
+        <LegalDocSection index="02" title="実例の扱い">
           <p>
-            公式発表などの一次情報を扱う場合、原文の趣旨が変わらない範囲で要点を見ます。
-          </p>
-          <p>
-            推測や断定になりやすい部分は避け、必要に応じて「未発表」「確認できない」などの表現で区別します。
+            オーナーの投稿や実例は、読者がどこで迷うかを知る手がかりになります。
+            ただし、それだけで仕様、費用、故障原因を断定することはしません。
           </p>
         </LegalDocSection>
 
-        <LegalDocSection index="03" title="数値・仕様の扱い">
+        <LegalDocSection index="03" title="数値と条件の扱い">
           <p>
-            価格、スペック、発売時期などは変更されることがあります。
-            記事内の数値は執筆時点の情報に基づきます。
-          </p>
-          <p>
-            更新が確認できた場合は、記事本文や注記を見直します。
+            価格、スペック、発売時期、保証、売買条件などは変わることがあります。
+            記事内の数値や条件は、原則として執筆または更新時点の情報として扱います。
           </p>
         </LegalDocSection>
 
-        <LegalDocSection index="04" title="誤りの報告と修正">
+        <LegalDocSection index="04" title="誤りへの対応">
           <p>
-            誤りのご指摘は歓迎します。確認のうえ、必要に応じて修正し、
-            重要な訂正は注記します。
+            誤りや古い情報が見つかった場合は、確認のうえで本文、出典表示、更新履歴を見直します。
+            重要な訂正は、必要に応じて記事内に注記します。
           </p>
         </LegalDocSection>
 
-        <LegalDocSection index="05" title="外部リンクについて">
+        <LegalDocSection index="05" title="読者へのお願い">
           <p>
-            参照先サイトの URL や内容は、予告なく変更される場合があります。
-            リンク切れ等を確認した場合は、差し替えや削除を行います。
+            整備、保証、売買、契約に関わる内容は、車両や条件によって結果が変わります。
+            記事は判断材料として使い、最終確認が必要な内容は販売店、整備工場、各窓口で確認してください。
           </p>
         </LegalDocSection>
 
@@ -119,14 +110,14 @@ export default function SourcesFactcheckPage() {
               description: "どの姿勢で記事を作り、更新するか。",
             },
             {
+              href: "/legal/about",
+              label: "運営者情報",
+              description: "運営者と編集責任の表示。",
+            },
+            {
               href: "/legal/ads-affiliate-policy",
               label: "広告・アフィリエイト",
               description: "収益化と編集の距離感、表記ルールについて。",
-            },
-            {
-              href: "/legal/about",
-              label: "運営者情報",
-              description: "媒体の目的と運営姿勢の概要。",
             },
             {
               href: "/contact",
