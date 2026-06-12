@@ -12,7 +12,7 @@ import { getSiteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "運営者情報",
   description:
-    "CAR BOUTIQUE JOURNALの運営方針とサイトの目的、運営者情報についてのページです。",
+    "CAR BOUTIQUE JOURNALの運営方針、編集責任、確認体制、サイトの目的についてのページです。",
   alternates: { canonical: `${getSiteUrl()}/legal/about` },
 };
 
@@ -57,11 +57,12 @@ export default function AboutOperatorPage() {
 
       <LegalDocHeader
         eyebrow="運営者"
-        title="何のために運営し、どの温度で届けるか。"
-        lead="CAR BOUTIQUE JOURNALは、車のスペックや話題だけでなく、選ぶ判断と背景まで読める媒体を目指しています。ここでは、その運営姿勢と基本情報を先に開いておきます。"
+        title="誰が、何を確認して、どの責任で公開するか。"
+        lead="CAR BOUTIQUE JOURNALは、車種、整備、維持費、売買、歴史を扱う自動車メディアです。記事の読みやすさだけでなく、出典、更新日、安全上の前提、判断の限界を見える形で示すことを重視します。"
         meta={[
           { label: "サイト名", value: "CAR BOUTIQUE JOURNAL" },
-          { label: "形式", value: "個人運営の編集メディア" },
+          { label: "運営", value: "個人運営の編集メディア" },
+          { label: "編集責任", value: "CAR BOUTIQUE JOURNAL 編集部" },
           { label: "窓口", value: <Link href="/contact">お問い合わせフォーム</Link> },
         ]}
       />
@@ -69,46 +70,53 @@ export default function AboutOperatorPage() {
       <div className="mt-12 space-y-10">
         <LegalDocSection index="01" title="サイト名とコンセプト">
           <p>
-            サイト名は CAR BOUTIQUE JOURNAL です。オーナー目線の視点、車種一覧、
-            判断材料を整理するガイドを組み合わせながら、クルマ好きの媒体として運営しています。
+            サイト名は CAR BOUTIQUE JOURNAL です。車種一覧、ガイド、コラム、系譜記事を組み合わせ、
+            車を選ぶ前・買った後・維持していく途中で必要になる判断材料を整理します。
           </p>
           <p>
-            派手な演出や断定で押し切るのではなく、いま何を知ると判断しやすくなるかを、
-            読みやすい形として整えることを重視します。
+            派手な断定や煽りではなく、読者が自分の条件に当てはめて考えられる情報を残すことを重視します。
           </p>
         </LegalDocSection>
 
-        <LegalDocSection index="02" title="運営者について">
+        <LegalDocSection index="02" title="運営者と編集責任">
           <p>
-            運営者は個人です。詳細な氏名や住所は、必要に応じて
-            お問い合わせをいただいた際に開示します。
+            運営者は個人です。詳細な氏名や住所は、必要に応じてお問い合わせをいただいた際に開示します。
           </p>
           <p>
-            主な関心分野は、欧州車、プレミアムセダン、スポーツカー、
-            日常とクルマの関係、維持費やトラブルのリアルです。
+            記事の編集責任は CAR BOUTIQUE JOURNAL 編集部が負います。記事構成、本文表現、出典表示、
+            更新履歴、読者判断への影響を確認したうえで公開します。
           </p>
           <p>
-            コンテンツは、実体験や各種資料、一次情報に近い出典などをもとに、
-            独自の視点で整理・編集しています。
+            主な関心分野は、欧州車、プレミアムセダン、スポーツカー、日常と車の関係、維持費、
+            トラブル、カスタム、売買時の判断材料です。
           </p>
         </LegalDocSection>
 
-        <LegalDocSection index="03" title="このサイトで提供したい価値">
+        <LegalDocSection index="03" title="確認体制">
           <ul>
-            <li>クルマ選びの悩みを整理する材料を、短時間で把握できる形にすること。</li>
+            <li>メーカー公式発表、公的機関、取扱説明書、技術資料、信頼できる専門媒体を優先して確認します。</li>
+            <li>価格、制度、仕様、装備、保証、整備に関わる内容は、公開時点の情報として扱います。</li>
+            <li>車種、年式、地域、個体差、施工内容で結果が変わる内容は、断定ではなく条件付きで記述します。</li>
+            <li>誤記、リンク切れ、仕様変更が判明した場合は、本文または更新履歴で修正します。</li>
+          </ul>
+        </LegalDocSection>
+
+        <LegalDocSection index="04" title="このサイトで提供したい価値">
+          <ul>
+            <li>車選びの悩みを整理する材料を、短時間で把握できる形にすること。</li>
             <li>オーナー目線の本音やトラブルの実例を、必要以上に煽らずに伝えること。</li>
-            <li>維持費やお金まわりを考えるためのガイドを、ガイドの判断軸としてまとめること。</li>
+            <li>維持費、車検、保証、売買、カスタムの判断軸を、読みやすいガイドとしてまとめること。</li>
             <li>背景を読めば選び方が変わるテーマを、コラムや歴史記事でつなぐこと。</li>
           </ul>
         </LegalDocSection>
 
-        <LegalDocSection index="04" title="連絡先について">
+        <LegalDocSection index="05" title="連絡先について">
           <p>
-            サイト内容に関するご意見やご感想、車種リクエストなどがありましたら、
+            サイト内容に関するご意見、車種リクエスト、掲載内容へのご指摘は、
             <Link href="/contact">お問い合わせフォーム</Link>よりご連絡ください。
           </p>
           <p>
-            数値の誤り、リンク切れ、引用表記の確認なども同じ窓口で受け付けています。
+            数値の誤り、リンク切れ、引用表記の確認、更新が必要な情報の指摘も同じ窓口で受け付けています。
           </p>
         </LegalDocSection>
 
@@ -138,7 +146,7 @@ export default function AboutOperatorPage() {
         />
 
         <section className="rounded-[22px] border border-[var(--border-default)] bg-[rgba(238,231,222,0.42)] px-5 py-4 text-[13px] leading-[1.85] text-[var(--text-secondary)]">
-          制定日: 2025年12月1日 / CAR BOUTIQUE JOURNAL 運営
+          制定日: 2025年12月1日 / 最終更新: 2026年6月13日 / CAR BOUTIQUE JOURNAL 運営
         </section>
       </div>
     </>
