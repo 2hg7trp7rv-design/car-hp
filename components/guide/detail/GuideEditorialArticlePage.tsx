@@ -165,6 +165,7 @@ export function GuideEditorialArticlePage({ guide, related, linkIndex }: Props) 
   };
 
   const authorProfile = resolveAuthorProfile(guide);
+  const authorPageUrl = `${siteUrl}/legal/about`;
 
   const articleJsonLd = {
     "@context": "https://schema.org",
@@ -184,16 +185,19 @@ export function GuideEditorialArticlePage({ guide, related, linkIndex }: Props) 
         ? {
             "@type": "Organization",
             name: authorProfile.name,
+            url: siteUrl,
           }
         : {
             "@type": "Person",
             name: authorProfile.name,
             jobTitle: authorProfile.credential ?? undefined,
+            url: authorPageUrl,
           },
     reviewedBy: {
       "@type": "Person",
       name: "山田太郎",
       jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集",
+      url: authorPageUrl,
     },
     publisher: {
       "@type": "Organization",
