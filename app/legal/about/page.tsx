@@ -57,9 +57,9 @@ export default function AboutOperatorPage() {
       "@type": "Person",
       "@id": personId,
       name: "山田太郎",
-      jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集",
+      jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者",
       description:
-        "CAR BOUTIQUE JOURNALの運営者。車種、整備、維持費、売買、カスタム、車の系譜に関する記事の企画、編集、出典確認、公開後の見直しを行う。",
+        "CAR BOUTIQUE JOURNALの運営者。自動車業界での実務経験をもとに、車種、整備、維持費、売買、カスタム、車の系譜に関する記事の企画、編集、出典確認、公開後の見直しを行う。",
       worksFor: {
         "@type": "Organization",
         name: "CAR BOUTIQUE JOURNAL",
@@ -90,6 +90,7 @@ export default function AboutOperatorPage() {
           { label: "サイト名", value: "CAR BOUTIQUE JOURNAL" },
           { label: "運営者", value: "山田太郎" },
           { label: "編集責任", value: "山田太郎 / CAR BOUTIQUE JOURNAL 編集部" },
+          { label: "経験", value: "自動車業界での実務経験" },
           { label: "窓口", value: <Link href="/contact">お問い合わせフォーム</Link> },
         ]}
       />
@@ -107,7 +108,7 @@ export default function AboutOperatorPage() {
 
         <LegalDocSection index="02" title="運営者と編集責任">
           <p>
-            運営者は山田太郎です。CAR BOUTIQUE JOURNALの記事企画、構成、本文編集、出典確認、公開後の見直しを行っています。
+            運営者は山田太郎です。自動車業界での実務経験をもとに、CAR BOUTIQUE JOURNALの記事企画、構成、本文編集、出典確認、公開後の見直しを行っています。
           </p>
           <p>
             記事では、メーカー公式発表、公的機関、取扱説明書、技術資料、信頼できる専門媒体を優先して確認します。
@@ -121,7 +122,7 @@ export default function AboutOperatorPage() {
 
         <LegalDocSection index="03" title="編集で重視していること">
           <ul>
-            <li>公式情報で確認できる事実と、運営者の見解を混ぜすぎないこと。</li>
+            <li>公式情報で確認できる事実と、業界経験を通じた見方を混ぜすぎないこと。</li>
             <li>メリットだけでなく、維持費、保証、車検、売買時の不利な点も並べること。</li>
             <li>車種、年式、個体差、施工内容で変わる内容は、断定せず前提を添えること。</li>
             <li>古くなった情報、誤記、リンク切れが判明した場合は、本文または更新履歴で修正すること。</li>
