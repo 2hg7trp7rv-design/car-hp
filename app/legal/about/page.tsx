@@ -12,7 +12,7 @@ import { getSiteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "運営者情報",
   description:
-    "CAR BOUTIQUE JOURNALの運営方針、編集責任、確認体制、サイトの目的についてのページです。",
+    "CAR BOUTIQUE JOURNALの運営者、編集責任、確認体制、サイトの目的についてのページです。",
   alternates: { canonical: `${getSiteUrl()}/legal/about` },
 };
 
@@ -42,9 +42,22 @@ export default function AboutOperatorPage() {
     ],
   };
 
+  const operatorData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "山田太郎",
+    jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集",
+    worksFor: {
+      "@type": "Organization",
+      name: "CAR BOUTIQUE JOURNAL",
+      url: getSiteUrl(),
+    },
+  };
+
   return (
     <>
       <JsonLd id="jsonld-legal-about-breadcrumb" data={breadcrumbData} />
+      <JsonLd id="jsonld-operator-yamada-taro" data={operatorData} />
 
       <Breadcrumb
         items={[
@@ -57,56 +70,56 @@ export default function AboutOperatorPage() {
 
       <LegalDocHeader
         eyebrow="運営者"
-        title="誰が、何を確認して、どの責任で公開するか。"
-        lead="CAR BOUTIQUE JOURNALは、車種、整備、維持費、売買、歴史を扱う自動車メディアです。記事の読みやすさだけでなく、出典、更新日、安全上の前提、判断の限界を見える形で示すことを重視します。"
+        title="車を選ぶ前に、何を見ておくべきか。"
+        lead="CAR BOUTIQUE JOURNALは、車種、整備、維持費、売買、歴史を扱う自動車メディアです。車を所有し、維持していく中で生まれる疑問を出発点に、公式情報や資料で確認できることと、実際の判断で迷いやすいことを分けて整理します。"
         meta={[
           { label: "サイト名", value: "CAR BOUTIQUE JOURNAL" },
-          { label: "運営", value: "個人運営の編集メディア" },
-          { label: "編集責任", value: "CAR BOUTIQUE JOURNAL 編集部" },
+          { label: "運営者", value: "山田太郎" },
+          { label: "編集責任", value: "山田太郎 / CAR BOUTIQUE JOURNAL 編集部" },
           { label: "窓口", value: <Link href="/contact">お問い合わせフォーム</Link> },
         ]}
       />
 
       <div className="mt-12 space-y-10">
-        <LegalDocSection index="01" title="サイト名とコンセプト">
+        <LegalDocSection index="01" title="サイトについて">
           <p>
-            サイト名は CAR BOUTIQUE JOURNAL です。車種一覧、ガイド、コラム、系譜記事を組み合わせ、
-            車を選ぶ前・買った後・維持していく途中で必要になる判断材料を整理します。
+            CAR BOUTIQUE JOURNALは、車種一覧、ガイド、コラム、系譜記事を組み合わせた自動車メディアです。
+            ただスペックを並べるだけではなく、買う前、維持する途中、カスタムを考える場面で必要になる判断材料を整理します。
           </p>
           <p>
-            派手な断定や煽りではなく、読者が自分の条件に当てはめて考えられる情報を残すことを重視します。
+            速く結論を出すための記事ではなく、読者が自分の車や予算、使い方に当てはめて考えられる記事を目指しています。
           </p>
         </LegalDocSection>
 
         <LegalDocSection index="02" title="運営者と編集責任">
           <p>
-            運営者は個人です。詳細な氏名や住所は、必要に応じてお問い合わせをいただいた際に開示します。
+            運営者は山田太郎です。CAR BOUTIQUE JOURNALの企画、記事構成、本文の編集、公開後の見直しを行っています。
           </p>
           <p>
-            記事の編集責任は CAR BOUTIQUE JOURNAL 編集部が負います。記事構成、本文表現、出典表示、
-            更新履歴、読者判断への影響を確認したうえで公開します。
+            記事では、メーカー公式発表、公的機関、取扱説明書、技術資料、信頼できる専門媒体などを確認し、
+            断定できることと、条件によって変わることをできるだけ分けて書きます。
           </p>
           <p>
-            主な関心分野は、欧州車、プレミアムセダン、スポーツカー、日常と車の関係、維持費、
-            トラブル、カスタム、売買時の判断材料です。
+            整備、車検、保証、保険、売買に関わる内容は、車種、年式、地域、契約条件、施工内容によって結果が変わります。
+            そのため、記事内では一般的な判断材料を示し、最終確認が必要な内容は各窓口や現車確認を前提に扱います。
           </p>
         </LegalDocSection>
 
-        <LegalDocSection index="03" title="確認体制">
+        <LegalDocSection index="03" title="編集で重視していること">
           <ul>
-            <li>メーカー公式発表、公的機関、取扱説明書、技術資料、信頼できる専門媒体を優先して確認します。</li>
-            <li>価格、制度、仕様、装備、保証、整備に関わる内容は、公開時点の情報として扱います。</li>
-            <li>車種、年式、地域、個体差、施工内容で結果が変わる内容は、断定ではなく条件付きで記述します。</li>
-            <li>誤記、リンク切れ、仕様変更が判明した場合は、本文または更新履歴で修正します。</li>
+            <li>公式情報で確認できる事実と、運営者の見解を混ぜすぎないこと。</li>
+            <li>読者が判断を誤りやすい部分では、メリットだけでなくデメリットも並べること。</li>
+            <li>車種、年式、個体差、施工内容で変わる内容は、断定せず条件を添えること。</li>
+            <li>古くなった情報、誤記、リンク切れが判明した場合は、本文または更新履歴で修正すること。</li>
           </ul>
         </LegalDocSection>
 
         <LegalDocSection index="04" title="このサイトで提供したい価値">
           <ul>
             <li>車選びの悩みを整理する材料を、短時間で把握できる形にすること。</li>
-            <li>オーナー目線の本音やトラブルの実例を、必要以上に煽らずに伝えること。</li>
-            <li>維持費、車検、保証、売買、カスタムの判断軸を、読みやすいガイドとしてまとめること。</li>
-            <li>背景を読めば選び方が変わるテーマを、コラムや歴史記事でつなぐこと。</li>
+            <li>維持費、故障、車検、保証、売買、カスタムの判断軸を、落ち着いたガイドとしてまとめること。</li>
+            <li>車の背景や系譜を知ることで、スペック表だけでは見えない魅力を伝えること。</li>
+            <li>読者が自分の条件に置き換えて考えられるよう、前提と限界を明示すること。</li>
           </ul>
         </LegalDocSection>
 
@@ -146,7 +159,7 @@ export default function AboutOperatorPage() {
         />
 
         <section className="rounded-[22px] border border-[var(--border-default)] bg-[rgba(238,231,222,0.42)] px-5 py-4 text-[13px] leading-[1.85] text-[var(--text-secondary)]">
-          制定日: 2025年12月1日 / 最終更新: 2026年6月13日 / CAR BOUTIQUE JOURNAL 運営
+          制定日: 2025年12月1日 / 最終更新: 2026年6月13日 / 運営者: 山田太郎
         </section>
       </div>
     </>
