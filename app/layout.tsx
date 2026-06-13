@@ -4,6 +4,7 @@ import { Suspense, type ReactNode } from "react";
 
 import "./globals.css";
 import { getSiteOrigin, getSiteUrl } from "@/lib/site";
+import { CBJ_SITE_DESCRIPTION } from "@/lib/brand/cbj-copy";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { SmoothScrollProvider } from "@/components/scroll/SmoothScrollProvider";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -14,8 +15,7 @@ import { ConsentBanner } from "@/components/analytics/ConsentBanner";
 import { fontVariables } from "./fonts";
 
 const BRAND = "CAR BOUTIQUE JOURNAL";
-const BRAND_DESC =
-  "CAR BOUTIQUE JOURNALは、車選び、維持、整備修理、カスタム、売却、車やメーカーの歴史まで、車の全てを扱う自動車メディア";
+const BRAND_DESC = CBJ_SITE_DESCRIPTION;
 
 export const viewport: Viewport = {
   width: "device-width",
