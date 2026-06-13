@@ -15,7 +15,7 @@ import { fontVariables } from "./fonts";
 
 const BRAND = "CAR BOUTIQUE JOURNAL";
 const BRAND_DESC =
-  "車種、ガイド、コラム、系譜を扱う自動車メディア";
+  "CAR BOUTIQUE JOURNALは、車選び、維持、整備修理、カスタム、売却、車やメーカーの歴史まで、車の全てを扱う自動車メディア";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -99,6 +99,7 @@ const ORGANIZATION_JSON_LD = {
   name: BRAND,
   url: getSiteUrl(),
   logo: `${getSiteUrl()}/icon-512x512.png`,
+  description: BRAND_DESC,
 };
 
 type RootLayoutProps = { children: ReactNode };
