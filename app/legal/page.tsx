@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { ArchiveSectionHeading } from "@/components/archive/ArchiveSectionHeading";
 import { LEGAL_NAV_GROUPS } from "@/components/legal/legal-nav";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -46,40 +45,54 @@ export default function LegalIndexPage() {
         className="mb-8"
       />
 
-      <header className="space-y-4">
-        <p className="cb-kicker">運営と信頼</p>
-        <h2 className="text-[34px] font-semibold leading-[1.08] tracking-[-0.05em] text-[var(--text-primary)] sm:text-[42px]">
-          先に開いておくべきことを、
-          <br className="hidden sm:block" />
-          ひとつにまとめる。
-        </h2>
-        <p className="max-w-3xl text-[15px] leading-[1.95] text-[var(--text-secondary)]">
-          記事の作り方、広告との距離感、出典の扱い、個人情報、著作権。
-          読む前に知っておきたい基準を置いています。
+      <header className="rounded-[30px] border border-black/10 bg-[#f9f5ee] p-[clamp(20px,4vw,36px)]">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#00708d]">
+          TRUST HUB
         </p>
+        <div className="mt-5 grid gap-6 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:items-end">
+          <h2 className="max-w-[12ch] text-[clamp(34px,6vw,62px)] font-semibold leading-[0.98] tracking-[-0.075em] text-[#080b0d]">
+            先に開いておくべきことを、ひとつにまとめる
+          </h2>
+          <p className="max-w-[620px] text-[14px] leading-[2.05] tracking-[0.02em] text-[#3f494f] lg:justify-self-end">
+            記事の作り方、広告との距離感、出典の扱い、個人情報、著作権まで、CBJの基準をまとめた入口です
+          </p>
+        </div>
       </header>
 
-      <div className="mt-12 space-y-12">
+      <div className="mt-10 space-y-10">
         {LEGAL_NAV_GROUPS.map((group, index) => (
-          <section key={group.id}>
-            <ArchiveSectionHeading
-              eyebrow={index === 0 ? "運営基準" : "権利・法務"}
-              title={group.title}
-              lead={group.lead}
-              className="mb-6 border-t-0 pt-0"
-            />
+          <section key={group.id} className="border-t border-black/10 pt-8 first:border-t-0 first:pt-0">
+            <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-black/32">
+                  {index === 0 ? "EDITORIAL" : "USE & RIGHTS"}
+                </p>
+                <h3 className="mt-2 text-[clamp(24px,4vw,36px)] font-semibold leading-[1.05] tracking-[-0.06em] text-[#080b0d]">
+                  {group.title}
+                </h3>
+              </div>
+              <p className="max-w-[420px] text-[13px] leading-[1.85] text-[#657078]">
+                {group.lead}
+              </p>
+            </div>
 
-            <div className="grid gap-4 lg:grid-cols-2">
+            <div className="grid gap-3 lg:grid-cols-2">
               {group.items.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="rounded-[24px] border border-[var(--border-default)] bg-[rgba(251,248,243,0.82)] px-5 py-5 transition-colors duration-150 hover:border-[rgba(122,135,108,0.28)] hover:bg-[var(--surface-2)]"
+                  className="group relative overflow-hidden rounded-[24px] border border-black/10 bg-white/72 px-5 py-5 transition-colors duration-150 hover:bg-white"
                 >
-                  <div className="text-[18px] font-medium tracking-[-0.03em] text-[var(--text-primary)]">
-                    {item.label}
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,112,141,0.55),transparent)] opacity-0 transition-opacity group-hover:opacity-100" />
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="text-[18px] font-semibold tracking-[-0.04em] text-[#080b0d]">
+                      {item.label}
+                    </div>
+                    <span className="text-[18px] leading-none text-[#00708d] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                      ↗
+                    </span>
                   </div>
-                  <p className="mt-3 text-[13px] leading-[1.85] text-[var(--text-secondary)]">
+                  <p className="mt-3 text-[13px] leading-[1.85] text-[#657078]">
                     {item.description}
                   </p>
                 </Link>
@@ -88,20 +101,24 @@ export default function LegalIndexPage() {
           </section>
         ))}
 
-        <section className="rounded-[24px] border border-[rgba(122,135,108,0.18)] bg-[var(--surface-moss)] px-5 py-5 sm:px-6">
-          <div className="text-[10px] font-semibold tracking-[0.22em] text-[var(--accent-strong)] uppercase">
-            お問い合わせ
-          </div>
-          <h3 className="mt-3 text-[24px] font-semibold leading-[1.2] tracking-[-0.04em] text-[var(--text-primary)]">
-            修正依頼やご質問は、問い合わせ窓口から。
-          </h3>
-          <p className="mt-3 max-w-2xl text-[14px] leading-[1.9] text-[var(--text-secondary)]">
-            数値の誤り、リンク切れ、引用や掲載内容に関する確認などは、内容が分かるURLとあわせてご連絡ください。
-          </p>
-          <div className="mt-5">
-            <Link href="/contact" className="cb-chip">
-              お問い合わせ
-            </Link>
+        <section className="overflow-hidden rounded-[30px] border border-black/10 bg-[#080b0d] text-white">
+          <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-stretch">
+            <div className="p-5 sm:p-6">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/30">
+                CONTACT
+              </div>
+              <h3 className="mt-3 max-w-[18ch] text-[clamp(25px,4vw,40px)] font-semibold leading-[1.06] tracking-[-0.06em] text-white/92">
+                修正依頼や確認は問い合わせ窓口から
+              </h3>
+              <p className="mt-4 max-w-2xl text-[13px] leading-[1.9] text-white/46">
+                数値の誤り、リンク切れ、引用や掲載内容に関する確認などは、内容が分かるURLとあわせてご連絡ください
+              </p>
+            </div>
+            <div className="border-t border-white/10 p-5 lg:grid lg:min-w-[220px] lg:place-items-center lg:border-l lg:border-t-0">
+              <Link href="/contact" className="inline-flex min-h-11 items-center justify-center rounded-full bg-white px-5 text-[13px] font-semibold text-[#080b0d] transition-colors hover:bg-white/88">
+                お問い合わせ ↗
+              </Link>
+            </div>
           </div>
         </section>
       </div>
