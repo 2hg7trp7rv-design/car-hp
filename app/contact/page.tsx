@@ -7,7 +7,7 @@ import { getSiteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "お問い合わせ",
   description:
-    "CAR BOUTIQUE JOURNALへのご意見・ご感想、車種リクエスト、掲載内容に関するお問い合わせはこちらから。",
+    "CAR BOUTIQUE JOURNALへのご意見・ご感想、車種リクエスト、掲載内容に関するお問い合わせはこちらから",
   alternates: { canonical: `${getSiteUrl()}/contact` },
 };
 
@@ -134,7 +134,7 @@ export default function ContactPage() {
               送信フォーム
             </h2>
             <p className="mt-4 max-w-2xl text-[13px] leading-[1.9] tracking-[0.02em] text-[#657078]">
-              返信が必要な場合だけ、メールアドレスをご記入ください。件名は短く、本文には対象ページのURLがあると助かります
+              返信が必要な場合だけ、メールアドレスをご記入ください 件名は短く、本文には対象ページのURLがあると助かります
             </p>
 
             {FORM_ENDPOINT ? (
@@ -215,7 +215,7 @@ export default function ContactPage() {
               </form>
             ) : (
               <div className="mt-7 rounded-[22px] border border-black/10 bg-[#f9f5ee] p-5 text-[13px] leading-[1.9] text-[#657078]">
-                現在、お問い合わせは準備中です。記事の誤り、更新が必要な情報、掲載内容へのご連絡は、フォーム公開後に順次受け付けます
+                現在、お問い合わせは準備中です 記事の誤り、更新が必要な情報、掲載内容へのご連絡は、フォーム公開後に順次受け付けます
               </div>
             )}
           </section>
