@@ -5,7 +5,7 @@ type SummaryItem = {
 };
 
 type Props = {
-  items: SummaryItem[];
+  items: readonly SummaryItem[];
   className?: string;
 };
 
