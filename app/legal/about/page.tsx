@@ -2,9 +2,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { LegalDocHeader } from "@/components/legal/LegalDocHeader";
-import { LegalDocSection } from "@/components/legal/LegalDocSection";
 import { LegalRelatedLinks } from "@/components/legal/LegalRelatedLinks";
+import { LegalSummaryGrid } from "@/components/legal/LegalSummaryGrid";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CBJ_SITE_DESCRIPTION } from "@/lib/brand/cbj-copy";
@@ -17,6 +16,31 @@ export const metadata: Metadata = {
   alternates: { canonical: `${getSiteUrl()}/legal/about` },
 };
 
+const PROFILE_ITEMS = [
+  { label: "サイト名", value: "CAR BOUTIQUE JOURNAL" },
+  { label: "運営者", value: "山田太郎" },
+  { label: "編集責任", value: "山田太郎 / CAR BOUTIQUE JOURNAL 編集部" },
+  { label: "経験", value: "自動車業界での実務経験" },
+] as const;
+
+const STANCE_ITEMS = [
+  {
+    label: "Official",
+    title: "公式情報",
+    body: "メーカー公式発表、公的機関、取扱説明書、技術資料を優先して確認",
+  },
+  {
+    label: "Experience",
+    title: "自動車業界経験",
+    body: "実務経験から、読者が判断で迷いやすい箇所を補足",
+  },
+  {
+    label: "Condition",
+    title: "条件差",
+    body: "年式、グレード、個体差、契約条件で変わる内容を分けて扱う",
+  },
+] as const;
+
 export default function AboutOperatorPage() {
   const siteUrl = getSiteUrl();
   const pageUrl = `${siteUrl}/legal/about`;
@@ -26,24 +50,9 @@ export default function AboutOperatorPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "ホーム",
-        item: siteUrl,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "法務・運営情報",
-        item: `${siteUrl}/legal`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: "運営者情報",
-        item: pageUrl,
-      },
+      { "@type": "ListItem", position: 1, name: "ホーム", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: "法務・運営情報", item: `${siteUrl}/legal` },
+      { "@type": "ListItem", position: 3, name: "運営者情報", item: pageUrl },
     ],
   };
 
@@ -83,68 +92,92 @@ export default function AboutOperatorPage() {
         className="mb-8"
       />
 
-      <LegalDocHeader
-        eyebrow="運営者"
-        title="同じ車名でも、見るべきところは一台ごとに変わる"
-        lead={CBJ_SITE_DESCRIPTION}
-        meta={[
-          { label: "サイト名", value: "CAR BOUTIQUE JOURNAL" },
-          { label: "運営者", value: "山田太郎" },
-          { label: "編集責任", value: "山田太郎 / CAR BOUTIQUE JOURNAL 編集部" },
-          { label: "経験", value: "自動車業界での実務経験" },
-          { label: "窓口", value: <Link href="/contact">お問い合わせフォーム</Link> },
-        ]}
-      />
+      <header className="overflow-hidden rounded-[28px] border border-black/10 bg-[#f9f5ee]">
+        <div className="grid gap-0 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+          <div className="relative overflow-hidden bg-[#080b0d] p-[clamp(22px,5vw,48px)] text-white">
+            <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#00708d]/25 blur-3xl" />
+            <div className="relative">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/[0.34]">
+                OPERATOR
+              </p>
+              <h1 className="mt-5 text-[clamp(44px,8vw,84px)] font-semibold leading-[0.95] tracking-[-0.085em] text-white/[0.94]">
+                山田太郎
+              </h1>
+              <p className="mt-5 max-w-[520px] text-[14px] leading-[1.9] tracking-[0.03em] text-white/[0.54]">
+                CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者
+              </p>
+            </div>
+          </div>
 
-      <div className="mt-12 space-y-10">
-        <LegalDocSection index="01" title="サイトについて">
-          <p>{CBJ_SITE_DESCRIPTION}</p>
-          <p>
-            早く答えを出すためだけの記事ではなく、車種、年式、グレード、個体差、契約条件で何が変わるのかをできるだけ明確にします
-          </p>
-        </LegalDocSection>
+          <div className="p-[clamp(20px,4vw,40px)]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#00708d]">
+              PROFILE
+            </p>
+            <h2 className="mt-4 max-w-[14ch] text-[clamp(28px,5vw,50px)] font-semibold leading-[1.03] tracking-[-0.075em] text-[#080b0d]">
+              車を見る基準を、記事の形にする
+            </h2>
+            <p className="mt-5 text-[13px] leading-[1.95] tracking-[0.02em] text-[#657078]">
+              {CBJ_SITE_DESCRIPTION}
+            </p>
+          </div>
+        </div>
+      </header>
 
-        <LegalDocSection index="02" title="運営者と編集責任">
-          <p>
-            運営者は山田太郎です 自動車業界での実務経験をもとに、CAR BOUTIQUE JOURNALの記事企画、構成、本文編集、出典確認、公開後の見直しを行っています
-          </p>
-          <p>
-            記事では、メーカー公式発表、公的機関、取扱説明書、技術資料、信頼できる専門媒体を優先して確認します
-            そのうえで、公式情報だけでは読者が判断しにくい部分を、実例やオーナー目線の注意点で補います
-          </p>
-          <p>
-            整備、車検、保証、保険、売買に関わる内容は、車両や条件によって結果が変わります
-            記事は一般的な判断材料として作成し、個別車両の診断、契約判断、整備作業そのものの代替にはしません
-          </p>
-        </LegalDocSection>
+      <div className="mt-8 space-y-8">
+        <section className="rounded-[28px] border border-black/10 bg-white/[0.72] p-4 sm:p-5">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {PROFILE_ITEMS.map((item) => (
+              <div key={item.label} className="rounded-[20px] border border-black/10 bg-[#f9f5ee] p-4">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/[0.34]">
+                  {item.label}
+                </p>
+                <p className="mt-2 text-[14px] leading-[1.75] text-[#101519]">
+                  {item.value}
+                </p>
+              </div>
+            ))}
+            <Link href="/contact" className="rounded-[20px] border border-black/10 bg-[#080b0d] p-4 text-white transition-colors hover:bg-[#152026]">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/[0.34]">
+                窓口
+              </p>
+              <p className="mt-2 text-[14px] font-semibold leading-[1.75] text-white/[0.9]">
+                お問い合わせフォーム ↗
+              </p>
+            </Link>
+          </div>
+        </section>
 
-        <LegalDocSection index="03" title="編集で重視していること">
-          <ul>
-            <li>公式情報で確認できる事実と、業界経験を通じた見方を混ぜすぎないこと</li>
-            <li>メリットだけでなく、維持費、保証、車検、売買時の不利な点も並べること</li>
-            <li>車種、年式、個体差、施工内容で変わる内容は、断定せず前提を添えること</li>
-            <li>古くなった情報、誤記、リンク切れが判明した場合は、本文または更新履歴で修正すること</li>
-          </ul>
-        </LegalDocSection>
+        <LegalSummaryGrid items={STANCE_ITEMS} />
 
-        <LegalDocSection index="04" title="このサイトで提供したい価値">
-          <ul>
-            <li>車選びの悩みを、読者が自分の予算や使い方に置き換えやすい形にすること</li>
-            <li>維持費、故障、車検、保証、売買、カスタムの判断軸を、落ち着いたガイドとしてまとめること</li>
-            <li>車の背景や系譜を知ることで、スペック表だけでは見えない魅力を伝えること</li>
-            <li>「結局どこを確認すべきか」まで読み終えたあとに残る記事にすること</li>
-          </ul>
-        </LegalDocSection>
+        <section className="grid gap-4 lg:grid-cols-2">
+          <article className="rounded-[28px] border border-black/10 bg-[#f9f5ee] p-5 sm:p-6">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#00708d]">
+              CAN DO
+            </p>
+            <h2 className="mt-3 text-[clamp(24px,4vw,36px)] font-semibold leading-[1.08] tracking-[-0.06em] text-[#080b0d]">
+              記事でできること
+            </h2>
+            <ul className="mt-5 space-y-3 text-[13px] leading-[1.9] text-[#657078]">
+              <li>車選び、維持、整備修理、カスタム、売却、歴史の判断材料を整理すること</li>
+              <li>公式情報と条件で変わる内容を分けて示すこと</li>
+              <li>誤記や古い情報が判明した場合に見直すこと</li>
+            </ul>
+          </article>
 
-        <LegalDocSection index="05" title="連絡先について">
-          <p>
-            サイト内容に関するご意見、車種リクエスト、掲載内容へのご指摘は、
-            <Link href="/contact">お問い合わせフォーム</Link>よりご連絡ください
-          </p>
-          <p>
-            数値の誤り、リンク切れ、引用表記の確認、更新が必要な情報の指摘も同じ窓口で受け付けています
-          </p>
-        </LegalDocSection>
+          <article className="rounded-[28px] border border-black/10 bg-[#f9f5ee] p-5 sm:p-6">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#00708d]">
+              CANNOT DO
+            </p>
+            <h2 className="mt-3 text-[clamp(24px,4vw,36px)] font-semibold leading-[1.08] tracking-[-0.06em] text-[#080b0d]">
+              記事でできないこと
+            </h2>
+            <ul className="mt-5 space-y-3 text-[13px] leading-[1.9] text-[#657078]">
+              <li>個別車両の診断、契約判断、整備作業そのものの代替</li>
+              <li>価格、保証、故障原因、査定額の確定</li>
+              <li>販売店、整備工場、保険会社、専門家による確認の代替</li>
+            </ul>
+          </article>
+        </section>
 
         <LegalRelatedLinks
           items={[
@@ -170,10 +203,6 @@ export default function AboutOperatorPage() {
             },
           ]}
         />
-
-        <section className="rounded-[22px] border border-[var(--border-default)] bg-[rgba(238,231,222,0.42)] px-5 py-4 text-[13px] leading-[1.85] text-[var(--text-secondary)]">
-          制定日: 2025年12月1日 / 最終更新: 2026年6月13日 / 運営者: 山田太郎
-        </section>
       </div>
     </>
   );
