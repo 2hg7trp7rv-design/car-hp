@@ -50,16 +50,16 @@ export default function ContactPage() {
             <header className="relative overflow-hidden bg-[#080b0d] p-[clamp(24px,5vw,54px)] text-white">
               <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#00708d]/25 blur-3xl" />
               <div className="relative">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/34">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/[0.34]">
                   CONTACT DESK
                 </p>
-                <h1 className="mt-5 max-w-[12ch] text-[clamp(42px,8vw,88px)] font-semibold leading-[0.95] tracking-[-0.085em] text-white/94">
+                <h1 className="mt-5 max-w-[12ch] text-[clamp(42px,8vw,88px)] font-semibold leading-[0.95] tracking-[-0.085em] text-white/[0.94]">
                   お問い合わせ
                 </h1>
-                <p className="mt-7 max-w-[520px] text-[14px] leading-[2.05] tracking-[0.03em] text-white/54">
+                <p className="mt-7 max-w-[520px] text-[14px] leading-[2.05] tracking-[0.03em] text-white/[0.54]">
                   記事の誤り、車種リクエスト、広告掲載の相談まで、CBJへの連絡を受け付ける窓口です
                 </p>
-                <p className="mt-5 max-w-[520px] text-[12px] leading-[1.9] tracking-[0.03em] text-white/34">
+                <p className="mt-5 max-w-[520px] text-[12px] leading-[1.9] tracking-[0.03em] text-white/[0.34]">
                   個別の故障診断や緊急トラブルへの即時回答は難しい場合がありますが、記事改善の材料として確認します
                 </p>
               </div>
@@ -79,7 +79,7 @@ export default function ContactPage() {
               <div className="mt-7 grid gap-3 sm:grid-cols-2">
                 {CONTACT_TYPES.map((item) => (
                   <article key={item.label} className="rounded-[22px] border border-black/10 bg-[#f9f5ee] p-4">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/34">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/[0.34]">
                       {item.label}
                     </p>
                     <h3 className="mt-2 text-[16px] font-semibold tracking-[-0.04em] text-[#080b0d]">
@@ -105,7 +105,7 @@ export default function ContactPage() {
                 受け取れる内容
               </h2>
             </div>
-            <div className="space-y-4 p-5 text-[13px] leading-[1.9] text-white/46 sm:p-6">
+            <div className="space-y-4 p-5 text-[13px] leading-[1.9] text-white/[0.46] sm:p-6">
               <p>
                 個別車両の診断、修理可否、緊急対応、契約判断そのものの代替はできない場合があります
               </p>
@@ -113,20 +113,20 @@ export default function ContactPage() {
                 ただし、読者が迷いやすい内容は記事化や既存記事の改善に反映します
               </p>
               <div className="flex flex-wrap gap-2 pt-2">
-                <Link href="/legal/editorial-policy" className="rounded-full border border-white/14 px-3 py-2 text-[12px] text-white/62 transition-colors hover:bg-white/8 hover:text-white">
+                <Link href="/legal/editorial-policy" className="rounded-full border border-white/[0.14] px-3 py-2 text-[12px] text-white/[0.62] transition-colors hover:bg-white/[0.08] hover:text-white">
                   編集方針
                 </Link>
-                <Link href="/legal/sources-factcheck" className="rounded-full border border-white/14 px-3 py-2 text-[12px] text-white/62 transition-colors hover:bg-white/8 hover:text-white">
+                <Link href="/legal/sources-factcheck" className="rounded-full border border-white/[0.14] px-3 py-2 text-[12px] text-white/[0.62] transition-colors hover:bg-white/[0.08] hover:text-white">
                   出典方針
                 </Link>
-                <Link href="/legal/privacy" className="rounded-full border border-white/14 px-3 py-2 text-[12px] text-white/62 transition-colors hover:bg-white/8 hover:text-white">
+                <Link href="/legal/privacy" className="rounded-full border border-white/[0.14] px-3 py-2 text-[12px] text-white/[0.62] transition-colors hover:bg-white/[0.08] hover:text-white">
                   プライバシー
                 </Link>
               </div>
             </div>
           </aside>
 
-          <section className="rounded-[30px] border border-black/10 bg-white/72 p-[clamp(20px,4vw,38px)] shadow-[0_18px_70px_-58px_rgba(3,4,4,0.45)]">
+          <section className="rounded-[30px] border border-black/10 bg-white/[0.72] p-[clamp(20px,4vw,38px)] shadow-[0_18px_70px_-58px_rgba(3,4,4,0.45)]">
             <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#00708d]">
               FORM
             </p>
