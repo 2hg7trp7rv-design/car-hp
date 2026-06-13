@@ -40,52 +40,49 @@ export default function ContactPage() {
   return (
     <main className="relative isolate min-h-screen overflow-hidden bg-[#f6f1e9]">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_0%,rgba(0,112,141,0.12),transparent_32%),linear-gradient(180deg,#f9f5ee_0%,#f4eee5_58%,#eee7dc_100%)]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[linear-gradient(180deg,rgba(3,4,4,0.08),rgba(3,4,4,0))]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[320px] bg-[linear-gradient(180deg,rgba(3,4,4,0.08),rgba(3,4,4,0))]" />
 
-      <div className="mx-auto w-full max-w-[1180px] px-[clamp(20px,5vw,56px)] pb-[clamp(80px,12vw,132px)] pt-[clamp(84px,12vw,132px)]">
+      <div className="mx-auto w-full max-w-[1180px] px-[clamp(18px,4.8vw,56px)] pb-[clamp(76px,11vw,128px)] pt-[clamp(58px,9vw,112px)]">
         <Breadcrumb items={[{ label: "ホーム", href: "/" }, { label: "お問い合わせ" }]} className="mb-8" />
 
-        <section className="overflow-hidden rounded-[clamp(28px,4vw,44px)] border border-black/10 bg-white/[0.72] shadow-[0_28px_90px_-60px_rgba(3,4,4,0.45)] backdrop-blur-sm">
-          <div className="grid gap-0 lg:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)]">
-            <header className="relative overflow-hidden bg-[#080b0d] p-[clamp(24px,5vw,54px)] text-white">
-              <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#00708d]/25 blur-3xl" />
+        <section className="overflow-hidden rounded-[clamp(24px,4vw,40px)] border border-black/10 bg-white/[0.76] shadow-[0_28px_90px_-64px_rgba(3,4,4,0.42)] backdrop-blur-sm">
+          <div className="grid gap-0 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+            <header className="relative overflow-hidden bg-[#080b0d] p-[clamp(20px,5vw,44px)] text-white">
+              <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-[#00708d]/22 blur-3xl" />
               <div className="relative">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/[0.34]">
                   CONTACT DESK
                 </p>
-                <h1 className="mt-5 max-w-[12ch] text-[clamp(42px,8vw,88px)] font-semibold leading-[0.95] tracking-[-0.085em] text-white/[0.94]">
+                <h1 className="mt-4 max-w-[12ch] text-[clamp(38px,7vw,72px)] font-semibold leading-[0.96] tracking-[-0.085em] text-white/[0.94]">
                   お問い合わせ
                 </h1>
-                <p className="mt-7 max-w-[520px] text-[14px] leading-[2.05] tracking-[0.03em] text-white/[0.54]">
+                <p className="mt-5 max-w-[520px] text-[13px] leading-[1.95] tracking-[0.03em] text-white/[0.54]">
                   記事の誤り、車種リクエスト、広告掲載の相談まで、CBJへの連絡を受け付ける窓口です
-                </p>
-                <p className="mt-5 max-w-[520px] text-[12px] leading-[1.9] tracking-[0.03em] text-white/[0.34]">
-                  個別の故障診断や緊急トラブルへの即時回答は難しい場合がありますが、記事改善の材料として確認します
                 </p>
               </div>
             </header>
 
-            <div className="p-[clamp(20px,4vw,42px)]">
+            <div className="p-[clamp(18px,4vw,36px)]">
               <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#00708d]">
                 BEFORE SENDING
               </p>
-              <h2 className="mt-4 max-w-[16ch] text-[clamp(27px,4.5vw,44px)] font-semibold leading-[1.05] tracking-[-0.07em] text-[#080b0d]">
+              <h2 className="mt-3 max-w-[17ch] text-[clamp(24px,4vw,38px)] font-semibold leading-[1.08] tracking-[-0.065em] text-[#080b0d]">
                 URLと対象箇所があるほど確認しやすい
               </h2>
-              <p className="mt-5 text-[13px] leading-[1.95] tracking-[0.02em] text-[#657078]">
+              <p className="mt-4 text-[13px] leading-[1.9] tracking-[0.02em] text-[#657078]">
                 修正依頼や事実関係の指摘は、対象ページのURL、該当箇所、確認したい内容を添えてください
               </p>
 
-              <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              <div className="mt-6 grid gap-2.5 sm:grid-cols-2">
                 {CONTACT_TYPES.map((item) => (
-                  <article key={item.label} className="rounded-[22px] border border-black/10 bg-[#f9f5ee] p-4">
+                  <article key={item.label} className="rounded-[20px] border border-black/10 bg-[#f9f5ee] p-3.5 sm:p-4">
                     <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/[0.34]">
                       {item.label}
                     </p>
-                    <h3 className="mt-2 text-[16px] font-semibold tracking-[-0.04em] text-[#080b0d]">
+                    <h3 className="mt-2 text-[15px] font-semibold tracking-[-0.04em] text-[#080b0d]">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-[12px] leading-[1.8] text-[#657078]">
+                    <p className="mt-2 text-[12px] leading-[1.75] text-[#657078]">
                       {item.body}
                     </p>
                   </article>
@@ -95,42 +92,12 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:items-start">
-          <aside className="overflow-hidden rounded-[30px] border border-black/10 bg-[#080b0d] text-white">
-            <div className="border-b border-white/10 p-5 sm:p-6">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/30">
-                NOTE
-              </p>
-              <h2 className="mt-3 text-[clamp(22px,4vw,34px)] font-semibold leading-[1.08] tracking-[-0.06em] text-white/90">
-                受け取れる内容
-              </h2>
-            </div>
-            <div className="space-y-4 p-5 text-[13px] leading-[1.9] text-white/[0.46] sm:p-6">
-              <p>
-                個別車両の診断、修理可否、緊急対応、契約判断そのものの代替はできない場合があります
-              </p>
-              <p>
-                ただし、読者が迷いやすい内容は記事化や既存記事の改善に反映します
-              </p>
-              <div className="flex flex-wrap gap-2 pt-2">
-                <Link href="/legal/editorial-policy" className="rounded-full border border-white/[0.14] px-3 py-2 text-[12px] text-white/[0.62] transition-colors hover:bg-white/[0.08] hover:text-white">
-                  編集方針
-                </Link>
-                <Link href="/legal/sources-factcheck" className="rounded-full border border-white/[0.14] px-3 py-2 text-[12px] text-white/[0.62] transition-colors hover:bg-white/[0.08] hover:text-white">
-                  出典方針
-                </Link>
-                <Link href="/legal/privacy" className="rounded-full border border-white/[0.14] px-3 py-2 text-[12px] text-white/[0.62] transition-colors hover:bg-white/[0.08] hover:text-white">
-                  プライバシー
-                </Link>
-              </div>
-            </div>
-          </aside>
-
-          <section className="rounded-[30px] border border-black/10 bg-white/[0.72] p-[clamp(20px,4vw,38px)] shadow-[0_18px_70px_-58px_rgba(3,4,4,0.45)]">
+        <section className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] lg:items-start">
+          <section className="order-1 rounded-[28px] border border-black/10 bg-white/[0.76] p-[clamp(18px,4vw,34px)] shadow-[0_18px_70px_-58px_rgba(3,4,4,0.45)]">
             <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#00708d]">
               FORM
             </p>
-            <h2 className="mt-3 text-[clamp(26px,4vw,40px)] font-semibold leading-[1.08] tracking-[-0.06em] text-[#080b0d]">
+            <h2 className="mt-3 text-[clamp(24px,4vw,36px)] font-semibold leading-[1.08] tracking-[-0.06em] text-[#080b0d]">
               送信フォーム
             </h2>
             <p className="mt-4 max-w-2xl text-[13px] leading-[1.9] tracking-[0.02em] text-[#657078]">
@@ -219,6 +186,36 @@ export default function ContactPage() {
               </div>
             )}
           </section>
+
+          <aside className="order-2 overflow-hidden rounded-[28px] border border-black/10 bg-[#080b0d] text-white lg:sticky lg:top-24">
+            <div className="border-b border-white/10 p-5 sm:p-6">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/30">
+                NOTE
+              </p>
+              <h2 className="mt-3 text-[clamp(22px,4vw,32px)] font-semibold leading-[1.08] tracking-[-0.06em] text-white/90">
+                受け取れる内容
+              </h2>
+            </div>
+            <div className="space-y-4 p-5 text-[13px] leading-[1.9] text-white/[0.46] sm:p-6">
+              <p>
+                個別車両の診断、修理可否、緊急対応、契約判断そのものの代替はできない場合があります
+              </p>
+              <p>
+                ただし、読者が迷いやすい内容は記事化や既存記事の改善に反映します
+              </p>
+              <div className="flex flex-wrap gap-2 pt-2">
+                <Link href="/legal/editorial-policy" className="rounded-full border border-white/[0.14] px-3 py-2 text-[12px] text-white/[0.62] transition-colors hover:bg-white/[0.08] hover:text-white">
+                  編集方針
+                </Link>
+                <Link href="/legal/sources-factcheck" className="rounded-full border border-white/[0.14] px-3 py-2 text-[12px] text-white/[0.62] transition-colors hover:bg-white/[0.08] hover:text-white">
+                  出典方針
+                </Link>
+                <Link href="/legal/privacy" className="rounded-full border border-white/[0.14] px-3 py-2 text-[12px] text-white/[0.62] transition-colors hover:bg-white/[0.08] hover:text-white">
+                  プライバシー
+                </Link>
+              </div>
+            </div>
+          </aside>
         </section>
       </div>
     </main>
