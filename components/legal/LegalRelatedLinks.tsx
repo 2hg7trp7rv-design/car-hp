@@ -14,11 +14,11 @@ type Props = {
 
 export function LegalRelatedLinks({
   title = "関連する基準",
-  lead = "合わせて確認しておくと、運営方針の全体像が見えやすくなります。",
+  lead = "合わせて確認しておくと、運営方針の全体像が見えやすくなります",
   items,
 }: Props) {
   return (
-    <section className="overflow-hidden rounded-[30px] border border-black/10 bg-[#080b0d] text-white">
+    <section className="overflow-hidden rounded-[28px] border border-black/10 bg-[#080b0d] text-white">
       <div className="border-b border-white/10 px-5 py-5 sm:px-6">
         <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/30">
           RELATED
@@ -36,7 +36,7 @@ export function LegalRelatedLinks({
           <Link
             key={item.href}
             href={item.href}
-            className="group min-h-[132px] px-5 py-5 transition-colors duration-150 hover:bg-white/[0.06] sm:px-6"
+            className="group min-h-[116px] px-5 py-5 transition-colors duration-150 hover:bg-white/[0.06] sm:px-6"
           >
             <div className="flex items-start justify-between gap-4">
               <div className="text-[15px] font-semibold tracking-[-0.02em] text-white/[0.86] transition-colors group-hover:text-white">
