@@ -19,10 +19,10 @@ export function LegalSidebarNav() {
       className="overflow-hidden rounded-[28px] border border-black/10 bg-[#090b0d] text-white shadow-[0_24px_70px_-50px_rgba(3,4,4,0.8)]"
     >
       <div className="border-b border-white/10 px-5 py-5 sm:px-6">
-        <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/34">
+        <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/[0.34]">
           DOCUMENTS
         </div>
-        <p className="mt-3 text-[13px] leading-[1.8] tracking-[0.03em] text-white/58">
+        <p className="mt-3 text-[13px] leading-[1.8] tracking-[0.03em] text-white/[0.58]">
           運営、編集、出典、権利まわりの基準
         </p>
       </div>
@@ -30,7 +30,7 @@ export function LegalSidebarNav() {
       <div className="space-y-7 px-3 py-4 sm:px-4 sm:py-5">
         {LEGAL_NAV_GROUPS.map((group) => (
           <section key={group.id}>
-            <div className="px-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/26">
+            <div className="px-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/[0.26]">
               {group.title}
             </div>
 
@@ -47,7 +47,7 @@ export function LegalSidebarNav() {
                       "group relative rounded-[18px] px-3.5 py-3.5 transition-colors duration-150",
                       active
                         ? "bg-white text-[#050607]"
-                        : "text-white/64 hover:bg-white/[0.07] hover:text-white",
+                        : "text-white/[0.64] hover:bg-white/[0.07] hover:text-white",
                     )}
                   >
                     <span
@@ -62,7 +62,7 @@ export function LegalSidebarNav() {
                     <div
                       className={cn(
                         "mt-1.5 text-[11px] leading-[1.7]",
-                        active ? "text-black/54" : "text-white/36 group-hover:text-white/50",
+                        active ? "text-black/[0.54]" : "text-white/[0.36] group-hover:text-white/50",
                       )}
                     >
                       {item.description}
