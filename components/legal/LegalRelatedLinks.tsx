@@ -18,29 +18,36 @@ export function LegalRelatedLinks({
   items,
 }: Props) {
   return (
-    <section className="rounded-[26px] border border-[var(--border-default)] bg-[rgba(251,248,243,0.78)] p-5 sm:p-6">
-      <div className="text-[10px] font-semibold tracking-[0.22em] text-[var(--text-tertiary)] uppercase">
-        関連リンク
+    <section className="overflow-hidden rounded-[30px] border border-black/10 bg-[#080b0d] text-white">
+      <div className="border-b border-white/10 px-5 py-5 sm:px-6">
+        <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/30">
+          RELATED
+        </div>
+        <h2 className="mt-3 max-w-[16ch] text-[clamp(24px,4vw,36px)] font-semibold leading-[1.05] tracking-[-0.06em] text-white/92">
+          {title}
+        </h2>
+        <p className="mt-3 max-w-2xl text-[13px] leading-[1.9] tracking-[0.02em] text-white/48">
+          {lead}
+        </p>
       </div>
-      <h2 className="mt-3 text-[24px] font-semibold leading-[1.2] tracking-[-0.04em] text-[var(--text-primary)]">
-        {title}
-      </h2>
-      <p className="mt-3 max-w-2xl text-[14px] leading-[1.9] text-[var(--text-secondary)]">
-        {lead}
-      </p>
 
-      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+      <div className="grid divide-y divide-white/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0">
         {items.map((item) => (
           <Link
             key={item.href}
             href={item.href}
-            className="rounded-[20px] border border-[var(--border-default)] bg-[rgba(251,248,243,0.92)] px-4 py-4 transition-colors duration-150 hover:border-[rgba(122,135,108,0.28)] hover:bg-[var(--surface-2)]"
+            className="group min-h-[132px] px-5 py-5 transition-colors duration-150 hover:bg-white/[0.06] sm:px-6"
           >
-            <div className="text-[15px] font-medium tracking-[-0.02em] text-[var(--text-primary)]">
-              {item.label}
+            <div className="flex items-start justify-between gap-4">
+              <div className="text-[15px] font-semibold tracking-[-0.02em] text-white/86 transition-colors group-hover:text-white">
+                {item.label}
+              </div>
+              <span className="text-[18px] leading-none text-[#00708d] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                ↗
+              </span>
             </div>
             {item.description ? (
-              <p className="mt-2 text-[13px] leading-[1.8] text-[var(--text-secondary)]">
+              <p className="mt-3 text-[12px] leading-[1.8] text-white/38 transition-colors group-hover:text-white/52">
                 {item.description}
               </p>
             ) : null}
