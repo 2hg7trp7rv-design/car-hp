@@ -186,9 +186,7 @@ export default function ContactPage() {
             </form>
             ) : (
               <div className="rounded-[22px] border border-[var(--border-default)] bg-[var(--surface-2)] p-5 text-[13px] leading-[1.85] text-[var(--text-secondary)]">
-                お問い合わせフォームは現在設定中です。公開前に
-                <span className="font-mono"> NEXT_PUBLIC_CONTACT_FORM_ACTION </span>
-                を設定してください。
+                現在、お問い合わせは準備中です。記事の誤り、更新が必要な情報、掲載内容へのご連絡は、フォーム公開後に順次受け付けます。
               </div>
             )}
           </section>
