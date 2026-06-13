@@ -1,12 +1,12 @@
 type SourceTier = {
   label: string;
   title: string;
-  items: string[];
+  items: readonly string[];
   body: string;
 };
 
 type Props = {
-  tiers: SourceTier[];
+  tiers: readonly SourceTier[];
 };
 
 export function LegalSourceHierarchy({ tiers }: Props) {
