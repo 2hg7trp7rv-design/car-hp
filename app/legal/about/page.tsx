@@ -59,7 +59,7 @@ export default function AboutOperatorPage() {
       name: "山田太郎",
       jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者",
       description:
-        "CAR BOUTIQUE JOURNALの運営者。自動車業界での実務経験をもとに、車種、整備、維持費、売買、カスタム、車の系譜に関する記事の企画、編集、出典確認、公開後の見直しを行う。",
+        "CAR BOUTIQUE JOURNALの運営者。自動車業界での実務経験をもとに、車選び、維持、整備修理、カスタム、売却、車やメーカーの歴史に関する記事の企画、編集、出典確認、公開後の見直しを行う。",
       worksFor: {
         "@type": "Organization",
         name: "CAR BOUTIQUE JOURNAL",
@@ -85,7 +85,7 @@ export default function AboutOperatorPage() {
       <LegalDocHeader
         eyebrow="運営者"
         title="同じ車名でも、見るべきところは一台ごとに変わる。"
-        lead="CAR BOUTIQUE JOURNALは、車種、整備、維持費、売買、カスタム、車の系譜を扱う自動車メディアです。スペックや相場を並べるだけではなく、実際に車を選ぶとき、維持するとき、手を入れる前にどこで判断が分かれるのかを整理します。"
+        lead="CAR BOUTIQUE JOURNALは、車選び、維持、整備修理、カスタム、売却、車やメーカーの歴史まで、車の全てを扱う自動車メディア"
         meta={[
           { label: "サイト名", value: "CAR BOUTIQUE JOURNAL" },
           { label: "運営者", value: "山田太郎" },
@@ -98,8 +98,7 @@ export default function AboutOperatorPage() {
       <div className="mt-12 space-y-10">
         <LegalDocSection index="01" title="サイトについて">
           <p>
-            CAR BOUTIQUE JOURNALは、車種一覧、ガイド、コラム、系譜記事を組み合わせた自動車メディアです。
-            車を買う前、所有している途中、売却やカスタムを考える場面で、読者が自分の条件に引き寄せて考えられる材料を整理します。
+            CAR BOUTIQUE JOURNALは、車選び、維持、整備修理、カスタム、売却、車やメーカーの歴史まで、車の全てを扱う自動車メディア
           </p>
           <p>
             早く答えを出すためだけの記事ではなく、車種、年式、グレード、個体差、契約条件で何が変わるのかをできるだけ明確にします。
