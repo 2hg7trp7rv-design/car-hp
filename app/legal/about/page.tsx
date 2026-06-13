@@ -7,6 +7,7 @@ import { LegalDocSection } from "@/components/legal/LegalDocSection";
 import { LegalRelatedLinks } from "@/components/legal/LegalRelatedLinks";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { CBJ_SITE_DESCRIPTION } from "@/lib/brand/cbj-copy";
 import { getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -85,7 +86,7 @@ export default function AboutOperatorPage() {
       <LegalDocHeader
         eyebrow="運営者"
         title="同じ車名でも、見るべきところは一台ごとに変わる。"
-        lead="CAR BOUTIQUE JOURNALは、車選び、維持、整備修理、カスタム、売却、車やメーカーの歴史まで、車の全てを扱う自動車メディア"
+        lead={CBJ_SITE_DESCRIPTION}
         meta={[
           { label: "サイト名", value: "CAR BOUTIQUE JOURNAL" },
           { label: "運営者", value: "山田太郎" },
@@ -97,9 +98,7 @@ export default function AboutOperatorPage() {
 
       <div className="mt-12 space-y-10">
         <LegalDocSection index="01" title="サイトについて">
-          <p>
-            CAR BOUTIQUE JOURNALは、車選び、維持、整備修理、カスタム、売却、車やメーカーの歴史まで、車の全てを扱う自動車メディア
-          </p>
+          <p>{CBJ_SITE_DESCRIPTION}</p>
           <p>
             早く答えを出すためだけの記事ではなく、車種、年式、グレード、個体差、契約条件で何が変わるのかをできるだけ明確にします。
           </p>
