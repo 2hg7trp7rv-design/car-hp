@@ -5,7 +5,7 @@ type ProcessItem = {
 };
 
 type Props = {
-  items: ProcessItem[];
+  items: readonly ProcessItem[];
 };
 
 export function LegalProcessFlow({ items }: Props) {
@@ -16,7 +16,7 @@ export function LegalProcessFlow({ items }: Props) {
           PROCESS
         </p>
         <h2 className="mt-3 text-[clamp(24px,4vw,38px)] font-semibold leading-[1.06] tracking-[-0.06em] text-white/[0.92]">
-          記事が公開されるまで
+          制作フロー
         </h2>
       </div>
       <div className="grid divide-y divide-white/10 lg:grid-cols-4 lg:divide-x lg:divide-y-0">
