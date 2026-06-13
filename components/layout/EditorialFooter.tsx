@@ -34,8 +34,8 @@ export function EditorialFooter() {
           </Link>
 
           <p className="mt-[clamp(38px,6.2svh,62px)] max-w-[49rem] text-[clamp(14px,3.2svw,24px)] leading-[1.9] tracking-[0.045em] text-white/[0.34]">
-            自動車という芸術を、もっと深く。<br />
-            車種・ガイド・コラム・系譜を整理する自動車メディア。
+            車に関する全てがここにある<br />
+            車選びから売却、整備修理、カスタム、車や自動車メーカーの歴史まで見られる自動車メディア
           </p>
 
           <form
