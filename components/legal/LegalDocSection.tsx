@@ -8,17 +8,19 @@ type Props = {
 
 export function LegalDocSection({ index, title, children }: Props) {
   return (
-    <section className="border-t border-[var(--border-default)] pt-8 first:border-t-0 first:pt-0">
-      <div className="grid gap-4 lg:grid-cols-[120px_minmax(0,1fr)] lg:gap-6">
-        <div className="pt-1 text-[10px] font-semibold tracking-[0.2em] text-[var(--text-tertiary)] uppercase">
-          {index ?? "Section"}
+    <section className="group border-t border-black/10 pt-9 first:border-t-0 first:pt-0">
+      <div className="grid gap-5 lg:grid-cols-[92px_minmax(0,1fr)] lg:gap-8">
+        <div className="pt-1">
+          <div className="inline-flex min-w-12 items-center justify-center rounded-full border border-black/10 bg-[#080b0d] px-3 py-1.5 text-[10px] font-semibold tracking-[0.18em] text-white/74">
+            {index ?? "SEC"}
+          </div>
         </div>
 
         <div>
-          <h2 className="text-[24px] font-semibold leading-[1.24] tracking-[-0.03em] text-[var(--text-primary)] sm:text-[28px]">
+          <h2 className="max-w-[18ch] text-[clamp(23px,3.7vw,34px)] font-semibold leading-[1.16] tracking-[-0.055em] text-[#080b0d]">
             {title}
           </h2>
-          <div className="mt-4 space-y-4 text-[15px] leading-[1.95] text-[var(--text-secondary)] [&_a]:text-[var(--accent-strong)] [&_a]:underline [&_a]:decoration-[rgba(122,135,108,0.34)] [&_a]:underline-offset-4 [&_ol]:ml-5 [&_ol]:list-decimal [&_ol]:space-y-2 [&_strong]:font-semibold [&_strong]:text-[var(--text-primary)] [&_ul]:ml-5 [&_ul]:list-disc [&_ul]:space-y-2">
+          <div className="mt-5 space-y-4 text-[15px] leading-[2.05] tracking-[0.01em] text-[#3f494f] [&_a]:font-medium [&_a]:text-[#00708d] [&_a]:underline [&_a]:decoration-[rgba(0,112,141,0.24)] [&_a]:underline-offset-4 [&_ol]:ml-5 [&_ol]:list-decimal [&_ol]:space-y-2 [&_strong]:font-semibold [&_strong]:text-[#111619] [&_ul]:ml-5 [&_ul]:list-disc [&_ul]:space-y-2">
             {children}
           </div>
         </div>
