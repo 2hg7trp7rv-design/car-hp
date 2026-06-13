@@ -23,10 +23,10 @@ export function LegalRelatedLinks({
         <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/30">
           RELATED
         </div>
-        <h2 className="mt-3 max-w-[16ch] text-[clamp(24px,4vw,36px)] font-semibold leading-[1.05] tracking-[-0.06em] text-white/92">
+        <h2 className="mt-3 max-w-[16ch] text-[clamp(24px,4vw,36px)] font-semibold leading-[1.05] tracking-[-0.06em] text-white/[0.92]">
           {title}
         </h2>
-        <p className="mt-3 max-w-2xl text-[13px] leading-[1.9] tracking-[0.02em] text-white/48">
+        <p className="mt-3 max-w-2xl text-[13px] leading-[1.9] tracking-[0.02em] text-white/[0.48]">
           {lead}
         </p>
       </div>
@@ -39,7 +39,7 @@ export function LegalRelatedLinks({
             className="group min-h-[132px] px-5 py-5 transition-colors duration-150 hover:bg-white/[0.06] sm:px-6"
           >
             <div className="flex items-start justify-between gap-4">
-              <div className="text-[15px] font-semibold tracking-[-0.02em] text-white/86 transition-colors group-hover:text-white">
+              <div className="text-[15px] font-semibold tracking-[-0.02em] text-white/[0.86] transition-colors group-hover:text-white">
                 {item.label}
               </div>
               <span className="text-[18px] leading-none text-[#00708d] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
@@ -47,7 +47,7 @@ export function LegalRelatedLinks({
               </span>
             </div>
             {item.description ? (
-              <p className="mt-3 text-[12px] leading-[1.8] text-white/38 transition-colors group-hover:text-white/52">
+              <p className="mt-3 text-[12px] leading-[1.8] text-white/[0.38] transition-colors group-hover:text-white/[0.52]">
                 {item.description}
               </p>
             ) : null}
