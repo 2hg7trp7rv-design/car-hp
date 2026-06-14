@@ -18,6 +18,16 @@ Before adding a component, section, card, visual effect, paragraph, image, CTA, 
 
 If it is not needed, remove it or do not propose it
 
+## Awwwards visual atlas
+
+For page design, layout design, UI, landing pages, legal pages, contact pages, article pages, car pages, and SNS landing visuals, use `docs/awwwards-visual-atlas/` as an internal visual judgment layer
+
+Do not expose the atlas as public content
+
+Do not copy Awwwards sites, screenshots, design assets, animation, code, or page layouts directly
+
+Use the atlas to recognize visual patterns, reject unnecessary components, and translate award-level design discipline into CBJ's automotive editorial context
+
 ## Required checks before proposing or implementing
 
 1. Purpose
