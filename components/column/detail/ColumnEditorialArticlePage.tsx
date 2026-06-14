@@ -102,7 +102,7 @@ export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) 
           sources: item.sources,
           updateText: `${item.updatedAt ? `${formatDateDot(item.updatedAt)}：` : ""}${humanizeUpdateReason(item.updateReason)}`,
           relatedItems,
-          heroImage: item.heroImage,
+          heroImage: item.heroImage || item.thumbnail || item.ogImageUrl,
           heroAlt: item.titleJa ?? item.title,
           suppressHeroVisual: item.slug === "modern-car-custom-regret-reason-column",
         }}
