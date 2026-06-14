@@ -1,10 +1,6 @@
 import { JsonLd } from "@/components/seo/JsonLd";
-import {
-  EditorialArticlePage,
-  type EditorialArticleLabels,
-  type EditorialRelatedItem,
-} from "@/components/editorialArticle/EditorialArticlePage";
-import articleDesign from "@/components/editorialArticle/kinto-json-article.module.css";
+import { KintoJsonArticlePage } from "@/components/editorialArticle/KintoJsonArticlePage";
+import type { EditorialArticleLabels, EditorialRelatedItem } from "@/components/editorialArticle/EditorialArticlePage";
 import type { GuideItem } from "@/lib/content-types";
 import type { InternalLinkMeta } from "@/lib/content/internal-link-index";
 import { getSiteUrl } from "@/lib/site";
@@ -20,10 +16,7 @@ function formatDateDot(iso?: string | null): string {
   if (!iso) return "";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return "";
-  const y = d.getFullYear();
-  const m = `${d.getMonth() + 1}`.padStart(2, "0");
-  const day = `${d.getDate()}`.padStart(2, "0");
-  return `${y}.${m}.${day}`;
+  return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
 }
 
 function isExternalHref(href: string): boolean {
@@ -74,14 +67,11 @@ export function GuideEditorialArticlePage({ guide, related, linkIndex }: Props) 
   const siteUrl = getSiteUrl();
   const pageUrl = `${siteUrl}/guide/${encodeURIComponent(guide.slug)}`;
   const eyebrowLabel = guide.eyebrowLabel?.trim() || categoryLabel(guide);
-  const breadcrumbTrail =
-    guide.breadcrumbTrail && guide.breadcrumbTrail.length > 0
-      ? guide.breadcrumbTrail
-      : [
-          { label: "ホーム", href: "/" },
-          { label: "ガイド", href: "/guide" },
-          { label: guide.title },
-        ];
+  const breadcrumbTrail = guide.breadcrumbTrail && guide.breadcrumbTrail.length > 0
+    ? guide.breadcrumbTrail
+    : [{ label: "ホーム", href: "/" }, { label: "ガイド", href: "/guide" }, { label: guide.title }];
+  const authorProfile = resolveAuthorProfile(guide);
+  const authorPageUrl = `${siteUrl}/legal/about`;
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -94,67 +84,26 @@ export function GuideEditorialArticlePage({ guide, related, linkIndex }: Props) 
     })),
   };
 
-  const authorProfile = resolveAuthorProfile(guide);
-  const authorPageUrl = `${siteUrl}/legal/about`;
-
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": pageUrl,
-    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
     headline: guide.title,
     description: guide.description ?? guide.seoDescription ?? guide.summary ?? guide.lead ?? guide.title,
     url: pageUrl,
     inLanguage: "ja",
     datePublished: guide.publishedAt,
     dateModified: guide.updatedAt,
-    author:
-      authorProfile.kind === "organization"
-        ? {
-            "@type": "Organization",
-            name: authorProfile.name,
-            url: siteUrl,
-          }
-        : {
-            "@type": "Person",
-            name: authorProfile.name,
-            jobTitle: authorProfile.credential ?? undefined,
-            url: authorPageUrl,
-          },
-    reviewedBy: {
-      "@type": "Person",
-      name: "山田太郎",
-      jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者",
-      url: authorPageUrl,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "CAR BOUTIQUE JOURNAL",
-      url: siteUrl,
-      logo: {
-        "@type": "ImageObject",
-        url: `${siteUrl}/icon-512x512.png`,
-      },
-    },
+    author: authorProfile.kind === "organization"
+      ? { "@type": "Organization", name: authorProfile.name, url: siteUrl }
+      : { "@type": "Person", name: authorProfile.name, jobTitle: authorProfile.credential ?? undefined, url: authorPageUrl },
+    reviewedBy: { "@type": "Person", name: "山田太郎", jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者", url: authorPageUrl },
+    publisher: { "@type": "Organization", name: "CAR BOUTIQUE JOURNAL", url: siteUrl, logo: { "@type": "ImageObject", url: `${siteUrl}/icon-512x512.png` } },
   };
 
-  const faqJsonLd =
-    (guide.faq?.length ?? 0) > 0
-      ? {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: (guide.faq ?? []).map((item) => ({
-            "@type": "Question",
-            name: item.question,
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: item.answer,
-            },
-          })),
-        }
-      : null;
+  const faqJsonLd = (guide.faq?.length ?? 0) > 0
+    ? { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: (guide.faq ?? []).map((item) => ({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })) }
+    : null;
 
   const relatedItems: EditorialRelatedItem[] = related.map((item) => ({
     slug: item.slug,
@@ -181,36 +130,31 @@ export function GuideEditorialArticlePage({ guide, related, linkIndex }: Props) 
       <JsonLd id={`guide-editorial-breadcrumb-${guide.slug}`} data={breadcrumbJsonLd} />
       <JsonLd id={`guide-editorial-article-${guide.slug}`} data={articleJsonLd} />
       {faqJsonLd ? <JsonLd id={`guide-editorial-faq-${guide.slug}`} data={faqJsonLd} /> : null}
-
-      <div className={articleDesign.scope}>
-        <EditorialArticlePage
-          article={{
-            title: guide.title,
-            eyebrowLabel,
-            breadcrumbTrail,
-            author: authorProfile,
-            lead: guide.lead,
-            body: guide.body,
-            publishedAt: guide.publishedAt,
-            updatedAt: guide.updatedAt,
-            readMinutes: guide.readMinutes,
-            keyPoints: guide.keyPoints,
-            checkpoints: guide.checkpoints,
-            sections: guide.detailSections,
-            faq: guide.faq,
-            actionBox: guide.actionBox,
-            sources: guide.sources,
-            updateText: guide.updateReason
-              ? `${guide.updatedAt ? `${formatDateDot(guide.updatedAt)}：` : ""}${humanizeUpdateReason(guide.updateReason)}`
-              : null,
-            relatedItems,
-            heroImage: guide.heroImage,
-            heroAlt: guide.title,
-          }}
-          labels={labels}
-          linkIndex={linkIndex}
-        />
-      </div>
+      <KintoJsonArticlePage
+        article={{
+          title: guide.title,
+          eyebrowLabel,
+          breadcrumbTrail,
+          author: authorProfile,
+          lead: guide.lead,
+          body: guide.body,
+          publishedAt: guide.publishedAt,
+          updatedAt: guide.updatedAt,
+          readMinutes: guide.readMinutes,
+          keyPoints: guide.keyPoints,
+          checkpoints: guide.checkpoints,
+          sections: guide.detailSections,
+          faq: guide.faq,
+          actionBox: guide.actionBox,
+          sources: guide.sources,
+          updateText: guide.updateReason ? `${guide.updatedAt ? `${formatDateDot(guide.updatedAt)}：` : ""}${humanizeUpdateReason(guide.updateReason)}` : null,
+          relatedItems,
+          heroImage: guide.heroImage,
+          heroAlt: guide.title,
+        }}
+        labels={labels}
+        linkIndex={linkIndex}
+      />
     </>
   );
 }
