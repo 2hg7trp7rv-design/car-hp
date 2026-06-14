@@ -1,0 +1,47 @@
+{
+  "slug": "modern-car-custom-regret-reason-column",
+  "designSystem": "kinto-save-article-v1",
+  "classNames": {
+    "page": "pageKintoSave",
+    "hero": "layoutHeroSave",
+    "intro": "layoutIntroSave",
+    "important": "layoutImportantSave",
+    "sectionWhite": "layoutSectionWhite",
+    "sectionSoft": "layoutSectionSoft",
+    "sectionDark": "layoutSectionDark",
+    "chapter": "layoutChapterLarge",
+    "body": "layoutBodySave",
+    "figure": "layoutFigureBlueprint",
+    "checkCards": "layoutCheckCards",
+    "ngOk": "layoutNgOkCards",
+    "faq": "layoutFaqSave",
+    "related": "layoutRelatedSave"
+  },
+  "hero": {
+    "imageSrc": "/images/cbj/columns/custom-regret-kinto-hero.svg",
+    "imageAlt": "車のカスタムで後悔しやすい理由を示す保存版ビジュアル",
+    "badge": "保存版",
+    "score": "10/10",
+    "guideLabel": "GUIDE"
+  },
+  "imageOverrides": {
+    "/images/cbj/columns/custom-system-overview-article-24.webp": "/images/cbj/columns/custom-regret-system-map-kinto.svg",
+    "/images/cbj/columns/custom-intake-fuel-control-article-24.webp": "/images/cbj/columns/custom-regret-intake-flow-kinto.svg",
+    "/images/cbj/columns/custom-adas-lowered-article-24.webp": "/images/cbj/columns/custom-regret-adas-aiming-kinto.svg",
+    "/images/cbj/columns/custom-irreversible-risk-article-24.webp": "/images/cbj/columns/custom-regret-irreversible-kinto.svg",
+    "/images/cbj/columns/custom-parts-ng-ok-article-24.webp": "/images/cbj/columns/custom-regret-parts-matrix-kinto.svg",
+    "/images/cbj/columns/custom-used-car-check-article-24.webp": "/images/cbj/columns/custom-regret-used-check-kinto.svg",
+    "/images/cbj/columns/custom-step-flow-article-24.webp": "/images/cbj/columns/custom-regret-flow-kinto.svg"
+  },
+  "sections": {
+    "basics-modern-custom": { "className": "layoutSectionWhite", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" },
+    "system-intake-suspension-electronics": { "className": "layoutSectionSoft", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" },
+    "legal-actual-vehicle-state": { "className": "layoutSectionWhite", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" },
+    "irreversible-custom-risk": { "className": "layoutSectionDark", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" },
+    "parts-ng-ok-check": { "className": "layoutSectionWhite", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" },
+    "used-custom-car-check": { "className": "layoutSectionSoft", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" },
+    "safe-custom-flow": { "className": "layoutSectionWhite", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" },
+    "custom-purpose-view": { "className": "layoutSectionSoft", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" },
+    "summary-return-explain": { "className": "layoutSectionWhite", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" }
+  }
+}
