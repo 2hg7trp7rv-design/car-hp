@@ -1,38 +1,23 @@
 import { JsonLd } from "@/components/seo/JsonLd";
-import {
-  EditorialArticlePage,
-  type EditorialArticleLabels,
-  type EditorialRelatedItem,
-} from "@/components/editorialArticle/EditorialArticlePage";
-import articleDesign from "@/components/editorialArticle/kinto-json-article.module.css";
+import { KintoJsonArticlePage } from "@/components/editorialArticle/KintoJsonArticlePage";
+import type { EditorialArticleLabels, EditorialRelatedItem } from "@/components/editorialArticle/EditorialArticlePage";
 import type { ColumnItem } from "@/lib/content-types";
 import type { InternalLinkMeta } from "@/lib/content/internal-link-index";
 import { getSiteUrl } from "@/lib/site";
 import { humanizeUpdateReason } from "@/lib/update-reason";
 
-type Props = {
-  item: ColumnItem;
-  related: ColumnItem[];
-  linkIndex: Record<string, InternalLinkMeta>;
-};
+type Props = { item: ColumnItem; related: ColumnItem[]; linkIndex: Record<string, InternalLinkMeta> };
 
 function formatDateDot(iso?: string | null): string {
   if (!iso) return "";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return "";
-  const y = d.getFullYear();
-  const m = `${d.getMonth() + 1}`.padStart(2, "0");
-  const day = `${d.getDate()}`.padStart(2, "0");
-  return `${y}.${m}.${day}`;
+  return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
 }
 
 function resolveAuthorProfile(item: ColumnItem) {
   if (item.authorProfile?.name) return item.authorProfile;
-  return {
-    kind: "person" as const,
-    name: "山田太郎",
-    credential: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者",
-  };
+  return { kind: "person" as const, name: "山田太郎", credential: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者" };
 }
 
 function relatedMetaLabel(item: ColumnItem): string {
@@ -44,25 +29,15 @@ export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) 
   const title = item.titleJa ?? item.title;
   const pageUrl = `${siteUrl}/column/${encodeURIComponent(item.slug)}`;
   const authorPageUrl = `${siteUrl}/legal/about`;
-  const breadcrumbTrail =
-    item.breadcrumbTrail && item.breadcrumbTrail.length > 0
-      ? item.breadcrumbTrail
-      : [
-          { label: "ホーム", href: "/" },
-          { label: "コラム", href: "/column" },
-          { label: title },
-        ];
+  const breadcrumbTrail = item.breadcrumbTrail && item.breadcrumbTrail.length > 0
+    ? item.breadcrumbTrail
+    : [{ label: "ホーム", href: "/" }, { label: "コラム", href: "/column" }, { label: title }];
   const author = resolveAuthorProfile(item);
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: breadcrumbTrail.map((entry, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: entry.label,
-      item: entry.href ? `${siteUrl}${entry.href}` : pageUrl,
-    })),
+    itemListElement: breadcrumbTrail.map((entry, index) => ({ "@type": "ListItem", position: index + 1, name: entry.label, item: entry.href ? `${siteUrl}${entry.href}` : pageUrl })),
   };
 
   const articleJsonLd = {
@@ -74,44 +49,14 @@ export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) 
     url: pageUrl,
     datePublished: item.publishedAt ?? item.createdAt ?? undefined,
     dateModified: item.updatedAt ?? item.publishedAt ?? item.createdAt ?? undefined,
-    author: {
-      "@type": author.kind === "person" ? "Person" : "Organization",
-      name: author.name,
-      jobTitle: author.kind === "person" ? author.credential ?? undefined : undefined,
-      url: author.kind === "person" ? authorPageUrl : siteUrl,
-    },
-    reviewedBy: {
-      "@type": "Person",
-      name: "山田太郎",
-      jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者",
-      url: authorPageUrl,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "CAR BOUTIQUE JOURNAL",
-      url: siteUrl,
-      logo: {
-        "@type": "ImageObject",
-        url: `${siteUrl}/icon-512x512.png`,
-      },
-    },
+    author: { "@type": author.kind === "person" ? "Person" : "Organization", name: author.name, jobTitle: author.kind === "person" ? author.credential ?? undefined : undefined, url: author.kind === "person" ? authorPageUrl : siteUrl },
+    reviewedBy: { "@type": "Person", name: "山田太郎", jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者", url: authorPageUrl },
+    publisher: { "@type": "Organization", name: "CAR BOUTIQUE JOURNAL", url: siteUrl, logo: { "@type": "ImageObject", url: `${siteUrl}/icon-512x512.png` } },
   };
 
-  const faqJsonLd =
-    (item.faq?.length ?? 0) > 0
-      ? {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: (item.faq ?? []).map((entry) => ({
-            "@type": "Question",
-            name: entry.question,
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: entry.answer,
-            },
-          })),
-        }
-      : null;
+  const faqJsonLd = (item.faq?.length ?? 0) > 0
+    ? { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: (item.faq ?? []).map((entry) => ({ "@type": "Question", name: entry.question, acceptedAnswer: { "@type": "Answer", text: entry.answer } })) }
+    : null;
 
   const relatedItems: EditorialRelatedItem[] = related.map((entry) => ({
     slug: entry.slug,
@@ -138,35 +83,32 @@ export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) 
       <JsonLd id={`ld-breadcrumb-column-${item.slug}`} data={breadcrumbJsonLd} />
       <JsonLd id={`ld-column-${item.slug}`} data={articleJsonLd} />
       {faqJsonLd ? <JsonLd id={`ld-column-faq-${item.slug}`} data={faqJsonLd} /> : null}
-
-      <div className={articleDesign.scope}>
-        <EditorialArticlePage
-          article={{
-            title,
-            eyebrowLabel: item.eyebrowLabel ?? item.displayTag ?? "コラム",
-            breadcrumbTrail,
-            author,
-            lead: item.lead,
-            body: item.body,
-            publishedAt: item.publishedAt ?? item.createdAt,
-            updatedAt: item.updatedAt ?? item.publishedAt ?? item.createdAt,
-            readMinutes: item.readMinutes,
-            keyPoints: item.keyPoints,
-            checkpoints: item.checkpoints,
-            sections: item.detailSections,
-            faq: item.faq,
-            actionBox: item.actionBox,
-            sources: item.sources,
-            updateText: `${item.updatedAt ? `${formatDateDot(item.updatedAt)}：` : ""}${humanizeUpdateReason(item.updateReason)}`,
-            relatedItems,
-            heroImage: item.heroImage,
-            heroAlt: item.titleJa ?? item.title,
-            suppressHeroVisual: item.slug === "modern-car-custom-regret-reason-column",
-          }}
-          labels={labels}
-          linkIndex={linkIndex}
-        />
-      </div>
+      <KintoJsonArticlePage
+        article={{
+          title,
+          eyebrowLabel: item.eyebrowLabel ?? item.displayTag ?? "コラム",
+          breadcrumbTrail,
+          author,
+          lead: item.lead,
+          body: item.body,
+          publishedAt: item.publishedAt ?? item.createdAt,
+          updatedAt: item.updatedAt ?? item.publishedAt ?? item.createdAt,
+          readMinutes: item.readMinutes,
+          keyPoints: item.keyPoints,
+          checkpoints: item.checkpoints,
+          sections: item.detailSections,
+          faq: item.faq,
+          actionBox: item.actionBox,
+          sources: item.sources,
+          updateText: `${item.updatedAt ? `${formatDateDot(item.updatedAt)}：` : ""}${humanizeUpdateReason(item.updateReason)}`,
+          relatedItems,
+          heroImage: item.heroImage,
+          heroAlt: item.titleJa ?? item.title,
+          suppressHeroVisual: item.slug === "modern-car-custom-regret-reason-column",
+        }}
+        labels={labels}
+        linkIndex={linkIndex}
+      />
     </>
   );
 }
