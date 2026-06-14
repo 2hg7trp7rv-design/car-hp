@@ -4,6 +4,7 @@ import {
   type EditorialArticleLabels,
   type EditorialRelatedItem,
 } from "@/components/editorialArticle/EditorialArticlePage";
+import articleDesign from "@/components/editorialArticle/kinto-json-article.module.css";
 import type { ColumnItem } from "@/lib/content-types";
 import type { InternalLinkMeta } from "@/lib/content/internal-link-index";
 import { getSiteUrl } from "@/lib/site";
@@ -138,32 +139,34 @@ export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) 
       <JsonLd id={`ld-column-${item.slug}`} data={articleJsonLd} />
       {faqJsonLd ? <JsonLd id={`ld-column-faq-${item.slug}`} data={faqJsonLd} /> : null}
 
-      <EditorialArticlePage
-        article={{
-          title,
-          eyebrowLabel: item.eyebrowLabel ?? item.displayTag ?? "コラム",
-          breadcrumbTrail,
-          author,
-          lead: item.lead,
-          body: item.body,
-          publishedAt: item.publishedAt ?? item.createdAt,
-          updatedAt: item.updatedAt ?? item.publishedAt ?? item.createdAt,
-          readMinutes: item.readMinutes,
-          keyPoints: item.keyPoints,
-          checkpoints: item.checkpoints,
-          sections: item.detailSections,
-          faq: item.faq,
-          actionBox: item.actionBox,
-          sources: item.sources,
-          updateText: `${item.updatedAt ? `${formatDateDot(item.updatedAt)}：` : ""}${humanizeUpdateReason(item.updateReason)}`,
-          relatedItems,
-          heroImage: item.heroImage,
-          heroAlt: item.titleJa ?? item.title,
-          suppressHeroVisual: item.slug === "modern-car-custom-regret-reason-column",
-        }}
-        labels={labels}
-        linkIndex={linkIndex}
-      />
+      <div className={articleDesign.scope}>
+        <EditorialArticlePage
+          article={{
+            title,
+            eyebrowLabel: item.eyebrowLabel ?? item.displayTag ?? "コラム",
+            breadcrumbTrail,
+            author,
+            lead: item.lead,
+            body: item.body,
+            publishedAt: item.publishedAt ?? item.createdAt,
+            updatedAt: item.updatedAt ?? item.publishedAt ?? item.createdAt,
+            readMinutes: item.readMinutes,
+            keyPoints: item.keyPoints,
+            checkpoints: item.checkpoints,
+            sections: item.detailSections,
+            faq: item.faq,
+            actionBox: item.actionBox,
+            sources: item.sources,
+            updateText: `${item.updatedAt ? `${formatDateDot(item.updatedAt)}：` : ""}${humanizeUpdateReason(item.updateReason)}`,
+            relatedItems,
+            heroImage: item.heroImage,
+            heroAlt: item.titleJa ?? item.title,
+            suppressHeroVisual: item.slug === "modern-car-custom-regret-reason-column",
+          }}
+          labels={labels}
+          linkIndex={linkIndex}
+        />
+      </div>
     </>
   );
 }
