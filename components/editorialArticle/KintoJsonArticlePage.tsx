@@ -7,15 +7,31 @@ import { renderInlineMarkdown } from "@/components/content/InlineMarkdown";
 import type { InternalLinkMeta } from "@/lib/content/internal-link-index";
 import type { GuideDetailSection } from "@/lib/content-types";
 import type { EditorialArticleLabels, EditorialArticlePageProps, EditorialArticleViewModel } from "@/components/editorialArticle/EditorialArticlePage";
+import customRegretLayoutJson from "@/data/article-layouts/modern-car-custom-regret-reason-column.layout.json";
 
 import styles from "@/components/editorialArticle/kinto-json-article.module.css";
 
 type ArticleSection = GuideDetailSection & { id: string; displayTitle: string; label: string };
 type Block = Record<string, any>;
+type LayoutConfig = {
+  slug: string;
+  classNames?: Record<string, string>;
+  hero?: { imageSrc?: string; imageAlt?: string; badge?: string; score?: string; guideLabel?: string };
+  imageOverrides?: Record<string, string>;
+  sections?: Record<string, { className?: string; chapterClassName?: string; bodyClassName?: string }>;
+};
 
+const customRegretLayout = customRegretLayoutJson as LayoutConfig;
+const styleMap = styles as Record<string, string>;
 const stripNumber = (text?: string | null) => String(text ?? "").replace(/^\s*(?:第?\d{1,2}(?:章|話|部|項)|[①②③④⑤⑥⑦⑧⑨⑩])\s*[\).）．.、:：-]?\s*/u, "").replace(/^\s*\d{1,2}\s*[\).）．.、:：-]?\s*/u, "").trim();
 const compact = (text?: string | null) => String(text ?? "").replace(/\s+/g, "").trim();
 const idFrom = (text: string, index: number) => text.trim().toLowerCase().replace(/[^a-z0-9\u3040-\u30ff\u4e00-\u9faf]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || `section-${index + 1}`;
+const css = (key?: string | null) => (key ? styleMap[key] ?? "" : "");
+const cx = (...classes: Array<string | false | null | undefined>) => classes.filter(Boolean).join(" ");
+
+function layoutFor(article: EditorialArticleViewModel): LayoutConfig | null {
+  return /車のカスタムで後悔/u.test(article.title) ? customRegretLayout : null;
+}
 
 function dateDot(iso?: string | null): string {
   if (!iso) return "";
@@ -46,13 +62,8 @@ function RichText({ text, linkIndex, as = "p", className, highlights }: { text: 
   return <TextWithInternalLinkCards text={text} linkIndex={linkIndex} as={as} className={styles.richText} textClassName={className ?? styles.paragraph} cardsClassName={styles.inlineCards} highlights={highlights ?? undefined} />;
 }
 
-function mainTitle(title: string) {
-  return stripNumber(title.split(/。\n|\n/u)[0]).replace(/。$/u, "") || title;
-}
-
-function subTitle(title: string) {
-  return title.split(/。\n|\n/u).slice(1).join("。 ").replace(/。$/u, "").trim();
-}
+function mainTitle(title: string) { return stripNumber(title.split(/。\n|\n/u)[0]).replace(/。$/u, "") || title; }
+function subTitle(title: string) { return title.split(/。\n|\n/u).slice(1).join("。 ").replace(/。$/u, "").trim(); }
 
 function importantLine(article: EditorialArticleViewModel) {
   for (const section of article.sections ?? []) for (const block of ((section.blocks ?? []) as Block[])) {
@@ -62,30 +73,32 @@ function importantLine(article: EditorialArticleViewModel) {
   return article.keyPoints?.[0] ?? article.checkpoints?.[0] ?? null;
 }
 
-function Hero({ article, labels }: { article: EditorialArticleViewModel; labels: EditorialArticleLabels }) {
+function Hero({ article, labels, layout }: { article: EditorialArticleViewModel; labels: EditorialArticleLabels; layout: LayoutConfig | null }) {
   const updated = dateDot(article.updatedAt || article.publishedAt);
   const title = mainTitle(article.title);
-  return <header className={styles.hero}><div className={styles.brandBar}>KINTO</div><div className={styles.container}><div className={styles.saveRow}><span>保存版</span><i /></div><div className={styles.heroGrid}><div className={styles.heroCopy}><p className={styles.category}>{labels.footerListHref.startsWith("/column") ? "COLUMN" : "GUIDE"}</p><h1>{title.includes("後悔") ? <>{title.replace(/後悔しやすい理由/u, "")}<strong>後悔しやすい理由</strong></> : title}</h1><p className={styles.heroLead}>{subTitle(article.title) || article.lead}</p><dl className={styles.heroMeta}>{updated ? <div><dt>UPDATED</dt><dd>{updated}</dd></div> : null}{article.readMinutes ? <div><dt>READ</dt><dd>{article.readMinutes} MIN</dd></div> : null}</dl></div><div className={styles.guideArea} aria-hidden="true"><div className={styles.scoreCircle}><b>10</b><span>/10</span></div><div className={styles.guideCharacter} /></div></div></div></header>;
+  return <header className={cx(styles.hero, css(layout?.classNames?.hero))}><div className={styles.brandBar}>KINTO</div><div className={styles.container}><div className={styles.saveRow}><span>{layout?.hero?.badge ?? "保存版"}</span><i /></div><div className={styles.heroGrid}><div className={styles.heroCopy}><p className={styles.category}>{labels.footerListHref.startsWith("/column") ? "COLUMN" : "GUIDE"}</p><h1>{title.includes("後悔") ? <>{title.replace(/後悔しやすい理由/u, "")}<strong>後悔しやすい理由</strong></> : title}</h1><p className={styles.heroLead}>{subTitle(article.title) || article.lead}</p><dl className={styles.heroMeta}>{updated ? <div><dt>UPDATED</dt><dd>{updated}</dd></div> : null}{article.readMinutes ? <div><dt>READ</dt><dd>{article.readMinutes} MIN</dd></div> : null}</dl></div><div className={styles.guideArea} aria-hidden="true"><div className={styles.scoreCircle}><b>{(layout?.hero?.score ?? "10/10").split("/")[0]}</b><span>/{(layout?.hero?.score ?? "10/10").split("/")[1] ?? "10"}</span></div><div className={styles.guideCharacter} /></div></div></div></header>;
 }
 
-function Intro({ article, linkIndex }: { article: EditorialArticleViewModel; linkIndex: Record<string, InternalLinkMeta> }) {
+function Intro({ article, linkIndex, layout }: { article: EditorialArticleViewModel; linkIndex: Record<string, InternalLinkMeta>; layout: LayoutConfig | null }) {
   const line = importantLine(article);
-  return <section className={styles.introBand}><div className={styles.containerSm}>{article.lead ? <RichText text={article.lead} linkIndex={linkIndex} className={styles.introText} /> : null}{article.heroImage ? <figure className={styles.heroImage}><Image src={article.heroImage} alt={article.heroAlt || article.title} width={1600} height={1000} sizes="(max-width: 760px) 100vw, 820px" priority /></figure> : null}{line ? <aside className={styles.importantBox}><span>重要</span><p>{line}</p></aside> : null}</div></section>;
+  const heroImage = layout?.hero?.imageSrc ?? article.heroImage;
+  return <section className={cx(styles.introBand, css(layout?.classNames?.intro))}><div className={styles.containerSm}>{article.lead ? <RichText text={article.lead} linkIndex={linkIndex} className={styles.introText} /> : null}{heroImage ? <figure className={styles.heroImage}><Image src={heroImage} alt={layout?.hero?.imageAlt || article.heroAlt || article.title} width={1600} height={1000} sizes="(max-width: 760px) 100vw, 820px" priority /></figure> : null}{line ? <aside className={cx(styles.importantBox, css(layout?.classNames?.important))}><span>重要</span><p>{line}</p></aside> : null}</div></section>;
 }
 
-function renderImage(block: Block, key: string) {
-  if (!block.src) return null;
-  return <figure key={key} className={styles.figure} data-fit={block.fit ?? "cover"}><Image src={block.src} alt={block.alt || ""} width={1600} height={1000} sizes="(max-width: 760px) 100vw, 760px" />{(block.label || block.alt) ? <figcaption>{block.label || block.alt}</figcaption> : null}</figure>;
+function renderImage(block: Block, key: string, layout: LayoutConfig | null) {
+  const src = layout?.imageOverrides?.[block.src] ?? block.src;
+  if (!src) return null;
+  return <figure key={key} className={cx(styles.figure, css(layout?.classNames?.figure))} data-fit={block.fit ?? "cover"}><Image src={src} alt={block.alt || ""} width={1600} height={1000} sizes="(max-width: 760px) 100vw, 760px" />{(block.label || block.alt) ? <figcaption>{block.label || block.alt}</figcaption> : null}</figure>;
 }
 
 function renderList(items: string[] = [], key: string, linkIndex: Record<string, InternalLinkMeta>) {
   return <ol key={key} className={styles.stepList}>{items.map((item, index) => <li key={index}><span>{String(index + 1).padStart(2, "0")}</span><RichText text={item} linkIndex={linkIndex} as="span" className={styles.smallText} /></li>)}</ol>;
 }
 
-function renderTable(block: Block, key: string, linkIndex: Record<string, InternalLinkMeta>) {
+function renderTable(block: Block, key: string, linkIndex: Record<string, InternalLinkMeta>, layout: LayoutConfig | null) {
   const headers = Array.isArray(block.headers) ? block.headers.slice(1) : [];
   const ngOk = headers.some((header: string) => /NG|避けたい/.test(header)) || headers.some((header: string) => /OK|確認/.test(header));
-  return <section key={key} className={ngOk ? styles.ngOkBlock : styles.checkBlock}>{block.title ? <h3>{renderInlineMarkdown(stripNumber(block.title))}</h3> : null}<div>{(block.rows ?? []).map((row: string[], rowIndex: number) => { const title = stripNumber(row[0] ?? `${rowIndex + 1}`); const values = row.slice(1); return ngOk ? <article key={rowIndex} className={styles.ngOkCard}><h4>{title}</h4><div>{values.map((value, valueIndex) => <section key={valueIndex} className={valueIndex === 0 ? styles.ngPane : styles.okPane}><b>{valueIndex === 0 ? "NG" : "OK"}</b><RichText text={value} linkIndex={linkIndex} className={styles.smallText} /></section>)}</div></article> : <article key={rowIndex} className={styles.checkCard}><span>{String(rowIndex + 1).padStart(2, "0")}</span><div><h4>{title}</h4><RichText text={values[0] ?? ""} linkIndex={linkIndex} className={styles.smallText} /></div></article>; })}</div>{block.note ? <p className={styles.note}>{renderInlineMarkdown(block.note)}</p> : null}</section>;
+  return <section key={key} className={cx(ngOk ? styles.ngOkBlock : styles.checkBlock, css(ngOk ? layout?.classNames?.ngOk : layout?.classNames?.checkCards))}>{block.title ? <h3>{renderInlineMarkdown(stripNumber(block.title))}</h3> : null}<div>{(block.rows ?? []).map((row: string[], rowIndex: number) => { const title = stripNumber(row[0] ?? `${rowIndex + 1}`); const values = row.slice(1); return ngOk ? <article key={rowIndex} className={styles.ngOkCard}><h4>{title}</h4><div>{values.map((value, valueIndex) => <section key={valueIndex} className={valueIndex === 0 ? styles.ngPane : styles.okPane}><b>{valueIndex === 0 ? "NG" : "OK"}</b><RichText text={value} linkIndex={linkIndex} className={styles.smallText} /></section>)}</div></article> : <article key={rowIndex} className={styles.checkCard}><span>{String(rowIndex + 1).padStart(2, "0")}</span><div><h4>{title}</h4><RichText text={values[0] ?? ""} linkIndex={linkIndex} className={styles.smallText} /></div></article>; })}</div>{block.note ? <p className={styles.note}>{renderInlineMarkdown(block.note)}</p> : null}</section>;
 }
 
 function renderFlow(block: Block, key: string) {
@@ -102,16 +115,16 @@ function renderCallout(block: Block, key: string, linkIndex: Record<string, Inte
   return <aside key={key} className={block.tone === "warn" ? styles.warnCard : styles.infoCard}>{block.title ? <b>{renderInlineMarkdown(stripNumber(block.title))}</b> : null}{block.body ? <RichText text={block.body} linkIndex={linkIndex} className={styles.cardText} /> : null}{block.items?.length ? renderList(block.items, `${key}-items`, linkIndex) : null}</aside>;
 }
 
-function renderBlock(block: Block, index: number, linkIndex: Record<string, InternalLinkMeta>) {
+function renderBlock(block: Block, index: number, linkIndex: Record<string, InternalLinkMeta>, layout: LayoutConfig | null) {
   const key = `block-${index}`;
   switch (block.type) {
     case "paragraph": return <RichText key={key} text={block.text} linkIndex={linkIndex} className={index === 0 ? styles.leadParagraph : styles.paragraph} highlights={block.highlights} />;
-    case "image": return renderImage(block, key);
+    case "image": return renderImage(block, key, layout);
     case "list": return renderList(block.items, key, linkIndex);
     case "subheading": return <h3 key={key} className={styles.subheading}>{renderInlineMarkdown(stripNumber(block.title))}</h3>;
     case "quote": return <blockquote key={key} className={styles.quote}>{renderInlineMarkdown(block.text)}</blockquote>;
     case "divider": return <hr key={key} className={styles.divider} />;
-    case "comparisonTable": return renderTable(block, key, linkIndex);
+    case "comparisonTable": return renderTable(block, key, linkIndex, layout);
     case "callout": return renderCallout(block, key, linkIndex);
     case "flow": case "timeline": return renderFlow(block, key);
     case "decisionCards": case "editorialBoard": case "caseStudy": return renderCards(block, key, linkIndex);
@@ -119,15 +132,17 @@ function renderBlock(block: Block, index: number, linkIndex: Record<string, Inte
   }
 }
 
-function sectionClass(section: ArticleSection, index: number) {
+function sectionClass(section: ArticleSection, index: number, layout: LayoutConfig | null) {
+  const sectionLayout = layout?.sections?.[section.id];
   const text = compact(`${section.label} ${section.title}`);
-  return [styles.section, index % 2 === 0 ? styles.whiteSection : styles.softSection, /戻せない|負担|RISK/.test(text) ? styles.darkSection : ""].filter(Boolean).join(" ");
+  return cx(styles.section, index % 2 === 0 ? styles.whiteSection : styles.softSection, /戻せない|負担|RISK/.test(text) ? styles.darkSection : "", css(sectionLayout?.className));
 }
 
 export function KintoJsonArticlePage({ article, labels, linkIndex }: EditorialArticlePageProps) {
+  const layout = layoutFor(article);
   const sections = normalizeSections(article, labels);
   const faq = article.faq ?? [];
   const sources = (article.sources ?? []).filter(Boolean);
   const related = article.relatedItems ?? [];
-  return <main className={styles.page} data-cbj-article-page><Hero article={article} labels={labels} /><Intro article={article} linkIndex={linkIndex} />{sections.map((section, index) => <section key={section.id} id={section.id} className={sectionClass(section, index)}><div className={styles.container}><div className={styles.chapterHead}><p>CHAPTER {String(index + 1).padStart(2, "0")}</p><h2>{section.displayTitle}</h2>{section.deck ? <span>{section.deck}</span> : null}</div><div className={styles.bodyFlow}>{(section.blocks as Block[]).map((block, blockIndex) => <Fragment key={`${section.id}-${blockIndex}`}>{renderBlock(block, blockIndex, linkIndex)}</Fragment>)}</div></div></section>)}{faq.length ? <section className={styles.faqSection} id="faq"><div className={styles.container}><p>FAQ ／ よくある質問</p><h2>よくある質問</h2><div>{faq.map((item, index) => <details key={index}><summary><b>Q</b>{item.question}<i>＋</i></summary><p>{item.answer}</p></details>)}</div></div></section> : null}{(sources.length || article.updateText) ? <section className={styles.sourceSection}><div className={styles.container}>{sources.length ? <details><summary>{labels.sourcesTitle ?? "出典・参考資料"}<span>{sources.length}件</span></summary><ol>{sources.map((source, index) => <li key={index}>{source}</li>)}</ol></details> : null}{article.updateText ? <details><summary>{labels.updateTitle ?? "更新履歴"}<span>表示</span></summary><p>{article.updateText}</p></details> : null}</div></section> : null}{related.length ? <section className={styles.relatedSection}><div className={styles.container}><p>RELATED</p><h2>{labels.relatedTitle}</h2><div>{related.slice(0, 3).map((item) => <Link key={item.href} href={item.href}>{item.imageSrc ? <Image src={item.imageSrc} alt={item.imageAlt || item.title} width={640} height={400} /> : null}<small>{item.metaLabel}</small><b>{item.title}</b><span>{item.summary}</span></Link>)}</div></div></section> : null}</main>;
+  return <main className={cx(styles.page, css(layout?.classNames?.page))} data-cbj-article-page><Hero article={article} labels={labels} layout={layout} /><Intro article={article} linkIndex={linkIndex} layout={layout} />{sections.map((section, index) => { const sectionLayout = layout?.sections?.[section.id]; return <section key={section.id} id={section.id} className={sectionClass(section, index, layout)}><div className={styles.container}><div className={cx(styles.chapterHead, css(sectionLayout?.chapterClassName))}><p>CHAPTER {String(index + 1).padStart(2, "0")}</p><h2>{section.displayTitle}</h2>{section.deck ? <span>{section.deck}</span> : null}</div><div className={cx(styles.bodyFlow, css(sectionLayout?.bodyClassName))}>{(section.blocks as Block[]).map((block, blockIndex) => <Fragment key={`${section.id}-${blockIndex}`}>{renderBlock(block, blockIndex, linkIndex, layout)}</Fragment>)}</div></div></section>; })}{faq.length ? <section className={cx(styles.faqSection, css(layout?.classNames?.faq))} id="faq"><div className={styles.container}><p>FAQ ／ よくある質問</p><h2>よくある質問</h2><div>{faq.map((item, index) => <details key={index}><summary><b>Q</b>{item.question}<i>＋</i></summary><p>{item.answer}</p></details>)}</div></div></section> : null}{(sources.length || article.updateText) ? <section className={styles.sourceSection}><div className={styles.container}>{sources.length ? <details><summary>{labels.sourcesTitle ?? "出典・参考資料"}<span>{sources.length}件</span></summary><ol>{sources.map((source, index) => <li key={index}>{source}</li>)}</ol></details> : null}{article.updateText ? <details><summary>{labels.updateTitle ?? "更新履歴"}<span>表示</span></summary><p>{article.updateText}</p></details> : null}</div></section> : null}{related.length ? <section className={cx(styles.relatedSection, css(layout?.classNames?.related))}><div className={styles.container}><p>RELATED</p><h2>{labels.relatedTitle}</h2><div>{related.slice(0, 3).map((item) => <Link key={item.href} href={item.href}>{item.imageSrc ? <Image src={item.imageSrc} alt={item.imageAlt || item.title} width={640} height={400} /> : null}<small>{item.metaLabel}</small><b>{item.title}</b><span>{item.summary}</span></Link>)}</div></div></section> : null}</main>;
 }
