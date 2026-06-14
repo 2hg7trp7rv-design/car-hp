@@ -8,13 +8,13 @@ CBJ work must not wait for the user to point out obvious problems
 
 The assistant must inspect the purpose, structure, code, visible output, and past user preferences before saying that something is acceptable
 
-This applies to all CBJ-related work and adjacent production work, including articles, code, design, images, SNS posts, captions, prompts, documents, and implementation plans
+This applies to all CBJ-related work and adjacent production work, including articles, code, page design, layout design, UI, images, SNS posts, captions, prompts, documents, and implementation plans
 
 ## Core rule
 
 Do not add parts just because they look designed
 
-Before adding a component, section, card, visual effect, paragraph, image, CTA, or explanation, ask whether it is actually needed
+Before adding a component, section, card, visual effect, paragraph, image, CTA, layout wrapper, navigation block, footer block, or explanation, ask whether it is actually needed
 
 If it is not needed, remove it or do not propose it
 
@@ -26,7 +26,7 @@ If it is not needed, remove it or do not propose it
 
 2. Necessity
    - Is each section necessary
-   - Is each card, block, image, CTA, note, or paragraph necessary
+   - Is each card, block, image, CTA, note, paragraph, wrapper, nav, footer, and sidebar necessary
    - Can the same job be done better with less UI or less text
 
 3. Structure
@@ -65,6 +65,34 @@ If it is not needed, remove it or do not propose it
    - State the exact reason something is not acceptable
    - Do not answer with approval when the result only partially satisfies the goal
 
+## Page design rules
+
+Page design must be judged as a full screen and a full scroll, not as a collection of components
+
+Before implementing a page, decide the page type and the correct visual language for that type
+
+- Index pages need clear scan paths and compact links
+- Document pages need typography, rules, tables, and readable text
+- Profile pages need a strong subject and concise evidence
+- Form pages need the form to be easy to reach
+- Article pages need the article to remain the main subject
+- Landing pages need a clear first impression and a controlled conversion path
+
+Do not confuse component completeness with design quality
+
+A page can have a hero, cards, CTA, related links, nav, and footer and still be a bad page
+
+Always check:
+
+- First screen impression
+- Visual hierarchy
+- Reading order
+- Scroll weight
+- Main subject clarity
+- Footer weight
+- Navigation weight
+- Whether the page feels like a designed editorial page or a generic UI template
+
 ## Design-specific rules
 
 ### Avoid default card thinking
@@ -89,6 +117,7 @@ Common removals to consider:
 - Oversized footers
 - Decorative text that delays the main content
 - Cards used only to make a page look designed
+- Shared layout wrappers that make a page heavier than its purpose requires
 
 ### Page role decides layout
 
