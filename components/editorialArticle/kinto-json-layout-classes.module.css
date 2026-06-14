@@ -1,0 +1,27 @@
+.pageKintoSave {}
+.layoutHeroSave {}
+.layoutIntroSave {}
+.layoutImportantSave {}
+.layoutSectionWhite {}
+.layoutSectionSoft {}
+.layoutSectionDark {}
+.layoutChapterLarge {}
+.layoutBodySave {}
+.layoutFigureBlueprint {}
+.layoutLeadParagraphSave { color: #303030; font-weight: 680; }
+.layoutParagraphSave { color: #404040; }
+.layoutSubheadingSave { padding-left: 22px; border-left: 6px solid #81d8d0; }
+.layoutQuoteSave { border-left-color: #81d8d0; }
+.layoutListSave { border-top: 1px solid #e8eeee; }
+.layoutCardsSave > div { gap: 34px; }
+.layoutCardSave { box-shadow: 0 0 0 1px rgba(129,216,208,.2); }
+.layoutFlowSave { border-radius: 18px; }
+.layoutCalloutInfoSave { background: rgba(246,252,252,.98); }
+.layoutCalloutWarnSave { background: rgba(255,246,246,.98); }
+.layoutCheckCards > div { gap: 34px; }
+.layoutCheckCardSave { box-shadow: 0 0 0 1px rgba(129,216,208,.28); }
+.layoutNgOkCards > div { gap: 36px; }
+.layoutNgPaneSave { border-left-color: #ef6b63; }
+.layoutOkPaneSave { border-left-color: #81d8d0; }
+.layoutFaqSave {}
+.layoutRelatedSave {}
