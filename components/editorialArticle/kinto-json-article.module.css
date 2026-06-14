@@ -1,6 +1,6 @@
-/* KINTO save article layout. Text content is rendered from JSON fields. */
+/* KINTO save article layout. Text content, class keys, and image overrides are controlled from JSON. */
 .scope {}
-.page {
+.page, .pageKintoSave {
   --tiffany: #81d8d0;
   --tiffany-dark: #69cfc7;
   --ink: #050505;
@@ -19,7 +19,7 @@
 .container { width: min(100%, 956px); margin-inline: auto; padding-inline: clamp(28px, 5.6vw, 54px); }
 .containerSm { width: min(100%, 956px); margin-inline: auto; padding-inline: clamp(44px, 6vw, 72px); }
 .brandBar { height: 136px; display: flex; align-items: center; padding-inline: clamp(54px, 6vw, 72px); border-top: 6px solid #eefcfb; border-bottom: 1px solid var(--line); color: #080808; font-size: clamp(22px, 4vw, 38px); font-weight: 500; letter-spacing: .13em; }
-.hero { background: #fff; padding-bottom: clamp(90px, 12vw, 160px); }
+.hero, .layoutHeroSave { background: #fff; padding-bottom: clamp(90px, 12vw, 160px); }
 .saveRow { display: flex; align-items: center; gap: 36px; margin-top: clamp(76px, 9vw, 106px); margin-bottom: clamp(64px, 8vw, 92px); }
 .saveRow span { display: inline-flex; align-items: center; justify-content: center; min-width: 152px; height: 72px; padding-inline: 30px; border-radius: 999px; background: var(--tiffany); color: #fff; font-size: clamp(19px, 3.2vw, 31px); font-weight: 800; letter-spacing: .02em; }
 .saveRow i { flex: 1; height: 2px; background: var(--tiffany); opacity: .65; }
@@ -39,32 +39,32 @@
 .guideCharacter { position: absolute; right: 6px; bottom: 0; width: 76%; height: 76%; border-radius: 48% 48% 24px 24px; background: linear-gradient(180deg, #f6fbfb, #e9f8f7); box-shadow: inset 0 0 0 2px rgba(129,216,208,.38); }
 .guideCharacter::before { content: ""; position: absolute; top: 12%; left: 50%; width: 38%; aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; background: #d9a35f; box-shadow: 0 40px 0 26px #f5f5f5; }
 .guideCharacter::after { content: "GUIDE"; position: absolute; left: 50%; bottom: 12%; transform: translateX(-50%); color: var(--tiffany-dark); font-size: 12px; font-weight: 900; letter-spacing: .18em; }
-.introBand { background: var(--soft); padding: clamp(94px, 13vw, 160px) 0; }
+.introBand, .layoutIntroSave { background: var(--soft); padding: clamp(94px, 13vw, 160px) 0; }
 .introText { color: #424242; font-size: clamp(24px, 4vw, 39px); font-weight: 600; line-height: 2.05; }
 .heroImage { margin: clamp(80px, 10vw, 118px) 0 0; }
 .heroImage img, .figure img { width: 100%; border-radius: 18px; object-fit: cover; }
-.importantBox { margin-top: clamp(90px, 11vw, 130px); padding: clamp(46px, 6vw, 68px) clamp(34px, 6vw, 64px); border-left: 8px solid var(--tiffany); background: rgba(255,255,255,.5); }
+.importantBox, .layoutImportantSave { margin-top: clamp(90px, 11vw, 130px); padding: clamp(46px, 6vw, 68px) clamp(34px, 6vw, 64px); border-left: 8px solid var(--tiffany); background: rgba(255,255,255,.5); }
 .importantBox span { display: block; color: var(--tiffany-dark); font-size: clamp(22px, 3.5vw, 34px); font-weight: 900; letter-spacing: .12em; margin-bottom: 34px; }
 .importantBox p { color: var(--ink); font-size: clamp(30px, 5.2vw, 51px); font-weight: 950; line-height: 1.75; letter-spacing: -.02em; }
 .section { padding: clamp(86px, 12vw, 150px) 0; }
-.whiteSection { background: #fff; }
-.softSection { background: var(--soft); }
-.darkSection { background: #060606 !important; color: rgba(255,255,255,.76); }
-.chapterHead { margin-bottom: clamp(56px, 7vw, 92px); }
+.whiteSection, .layoutSectionWhite { background: #fff; }
+.softSection, .layoutSectionSoft { background: var(--soft); }
+.darkSection, .layoutSectionDark { background: #060606 !important; color: rgba(255,255,255,.76); }
+.chapterHead, .layoutChapterLarge { margin-bottom: clamp(56px, 7vw, 92px); }
 .chapterHead p { margin: 0 0 28px; color: var(--tiffany-dark); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: clamp(17px, 2.8vw, 27px); letter-spacing: .42em; }
 .chapterHead h2 { max-width: 830px; color: var(--ink); font-size: clamp(38px, 7vw, 72px); font-weight: 950; line-height: 1.18; letter-spacing: -.045em; }
 .chapterHead span { display: block; max-width: 780px; margin-top: 26px; color: #555; font-size: clamp(20px, 3.4vw, 31px); line-height: 1.9; }
-.darkSection .chapterHead h2 { color: #fff; }
-.darkSection .chapterHead span { color: rgba(255,255,255,.56); }
-.bodyFlow { max-width: 850px; margin-inline: auto; }
+.darkSection .chapterHead h2, .layoutSectionDark .chapterHead h2 { color: #fff; }
+.darkSection .chapterHead span, .layoutSectionDark .chapterHead span { color: rgba(255,255,255,.56); }
+.bodyFlow, .layoutBodySave { max-width: 850px; margin-inline: auto; }
 .bodyFlow > * + * { margin-top: clamp(30px, 5vw, 54px); }
 .richText, .inlineCards { width: 100%; }
 .paragraph, .leadParagraph, .smallText, .cardText { color: var(--body); font-size: clamp(22px, 3.6vw, 35px); font-weight: 500; line-height: 2.05; letter-spacing: .005em; }
 .leadParagraph { color: #333; font-weight: 650; }
 .subheading { margin-top: clamp(58px, 8vw, 90px); color: var(--ink); font-size: clamp(27px, 4.7vw, 47px); font-weight: 950; line-height: 1.45; letter-spacing: -.03em; }
-.darkSection .paragraph, .darkSection .leadParagraph, .darkSection .smallText, .darkSection .cardText { color: rgba(255,255,255,.74); }
-.darkSection .subheading { color: #fff; }
-.figure { margin: clamp(56px, 8vw, 90px) 0; }
+.darkSection .paragraph, .darkSection .leadParagraph, .darkSection .smallText, .darkSection .cardText, .layoutSectionDark .paragraph, .layoutSectionDark .leadParagraph, .layoutSectionDark .smallText, .layoutSectionDark .cardText { color: rgba(255,255,255,.74); }
+.darkSection .subheading, .layoutSectionDark .subheading { color: #fff; }
+.figure, .layoutFigureBlueprint { margin: clamp(56px, 8vw, 90px) 0; }
 .figure[data-fit="contain"] img { object-fit: contain; background: #f4fbfb; }
 .figure figcaption { margin-top: 22px; color: #7d7d7d; font-size: clamp(17px, 2.8vw, 26px); line-height: 1.75; }
 .checkBlock > h3, .ngOkBlock > h3, .cardsBlock > h3, .flowBlock > h3 { margin-bottom: 34px; color: var(--ink); font-size: clamp(28px, 4.8vw, 48px); font-weight: 950; line-height: 1.45; }
@@ -93,7 +93,7 @@
 .note { margin-top: 24px; color: var(--muted); font-size: clamp(18px, 2.8vw, 27px); line-height: 1.8; }
 .quote { padding: clamp(34px, 5vw, 58px); border-left: 8px solid var(--tiffany); background: rgba(246,252,252,.96); color: var(--ink); font-size: clamp(26px, 4.3vw, 42px); font-weight: 950; line-height: 1.85; }
 .divider { height: 1px; border: 0; background: var(--line); }
-.faqSection { padding: clamp(90px, 12vw, 150px) 0 clamp(60px, 9vw, 100px); background: #fff; }
+.faqSection, .layoutFaqSave { padding: clamp(90px, 12vw, 150px) 0 clamp(60px, 9vw, 100px); background: #fff; }
 .faqSection > div > p, .relatedSection > div > p { color: var(--tiffany-dark); font-size: clamp(17px, 2.7vw, 26px); font-weight: 950; letter-spacing: .18em; }
 .faqSection h2, .relatedSection h2 { margin: 14px 0 44px; color: var(--ink); font-size: clamp(38px, 6vw, 64px); font-weight: 950; }
 .faqSection details, .sourceSection details { border-top: 1px solid var(--line); }
@@ -105,12 +105,14 @@
 .faqSection details > p, .sourceSection details > p, .sourceSection li { padding: 0 0 28px 56px; color: var(--body); font-size: clamp(18px, 3vw, 28px); line-height: 1.9; }
 .sourceSection { padding: 0 0 clamp(80px, 10vw, 120px); background: #fff; }
 .sourceSection ol { padding-bottom: 28px; }
-.relatedSection { padding: clamp(90px, 12vw, 150px) 0; background: var(--soft); }
+.relatedSection, .layoutRelatedSave { padding: clamp(90px, 12vw, 150px) 0; background: var(--soft); }
 .relatedSection > div > div { display: grid; gap: 24px; }
 .relatedSection a { display: grid; gap: 18px; padding: 28px; border-radius: 18px; background: #fff; box-shadow: 0 0 0 1px var(--line); }
 .relatedSection img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 14px; }
 .relatedSection small { color: var(--tiffany-dark); font-size: 15px; font-weight: 950; letter-spacing: .16em; }
 .relatedSection b { color: var(--ink); font-size: clamp(22px, 3.8vw, 36px); font-weight: 950; line-height: 1.5; }
 .relatedSection a > span { color: var(--muted); font-size: clamp(18px, 3vw, 28px); line-height: 1.8; }
+.layoutCheckCards {}
+.layoutNgOkCards {}
 @media (min-width: 980px) { .guideArea { right: 16px; } .ngOkCard > div { grid-template-columns: 1fr 1fr; } .cardsBlock > div { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .brandBar { height: 86px; } .guideArea { position: relative; margin-left: auto; margin-top: 38px; width: 74vw; height: 118vw; } .heroGrid { min-height: auto; } .heroCopy h1 { font-size: clamp(38px, 11vw, 58px); } }
