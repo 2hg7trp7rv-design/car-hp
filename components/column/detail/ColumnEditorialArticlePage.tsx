@@ -85,6 +85,8 @@ export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) 
       {faqJsonLd ? <JsonLd id={`ld-column-faq-${item.slug}`} data={faqJsonLd} /> : null}
       <KintoJsonArticlePage
         article={{
+          slug: item.slug,
+          layoutId: item.slug,
           title,
           eyebrowLabel: item.eyebrowLabel ?? item.displayTag ?? "コラム",
           breadcrumbTrail,
