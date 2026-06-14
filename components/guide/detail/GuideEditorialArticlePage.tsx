@@ -4,6 +4,7 @@ import {
   type EditorialArticleLabels,
   type EditorialRelatedItem,
 } from "@/components/editorialArticle/EditorialArticlePage";
+import articleDesign from "@/components/editorialArticle/kinto-json-article.module.css";
 import type { GuideItem } from "@/lib/content-types";
 import type { InternalLinkMeta } from "@/lib/content/internal-link-index";
 import { getSiteUrl } from "@/lib/site";
@@ -181,33 +182,35 @@ export function GuideEditorialArticlePage({ guide, related, linkIndex }: Props) 
       <JsonLd id={`guide-editorial-article-${guide.slug}`} data={articleJsonLd} />
       {faqJsonLd ? <JsonLd id={`guide-editorial-faq-${guide.slug}`} data={faqJsonLd} /> : null}
 
-      <EditorialArticlePage
-        article={{
-          title: guide.title,
-          eyebrowLabel,
-          breadcrumbTrail,
-          author: authorProfile,
-          lead: guide.lead,
-          body: guide.body,
-          publishedAt: guide.publishedAt,
-          updatedAt: guide.updatedAt,
-          readMinutes: guide.readMinutes,
-          keyPoints: guide.keyPoints,
-          checkpoints: guide.checkpoints,
-          sections: guide.detailSections,
-          faq: guide.faq,
-          actionBox: guide.actionBox,
-          sources: guide.sources,
-          updateText: guide.updateReason
-            ? `${guide.updatedAt ? `${formatDateDot(guide.updatedAt)}：` : ""}${humanizeUpdateReason(guide.updateReason)}`
-            : null,
-          relatedItems,
-          heroImage: guide.heroImage,
-          heroAlt: guide.title,
-        }}
-        labels={labels}
-        linkIndex={linkIndex}
-      />
+      <div className={articleDesign.scope}>
+        <EditorialArticlePage
+          article={{
+            title: guide.title,
+            eyebrowLabel,
+            breadcrumbTrail,
+            author: authorProfile,
+            lead: guide.lead,
+            body: guide.body,
+            publishedAt: guide.publishedAt,
+            updatedAt: guide.updatedAt,
+            readMinutes: guide.readMinutes,
+            keyPoints: guide.keyPoints,
+            checkpoints: guide.checkpoints,
+            sections: guide.detailSections,
+            faq: guide.faq,
+            actionBox: guide.actionBox,
+            sources: guide.sources,
+            updateText: guide.updateReason
+              ? `${guide.updatedAt ? `${formatDateDot(guide.updatedAt)}：` : ""}${humanizeUpdateReason(guide.updateReason)}`
+              : null,
+            relatedItems,
+            heroImage: guide.heroImage,
+            heroAlt: guide.title,
+          }}
+          labels={labels}
+          linkIndex={linkIndex}
+        />
+      </div>
     </>
   );
 }
