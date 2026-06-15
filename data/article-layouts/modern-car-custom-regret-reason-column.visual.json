@@ -19,6 +19,8 @@
     "label": "CHAPTER 01",
     "title": "現代車のカスタムは\n車全体との関係で考える",
     "body": "部品単体の満足だけでなく、センサー、ECU、車両診断、保証、整備入庫、売却まで含めて考えます。",
+    "image": "/images/cbj/columns/custom-system-overview-article-24.webp",
+    "imageAlt": "現代車の制御とカスタムの関係を示す図解",
     "cards": [
       { "number": "01", "title": "吸気系", "body": "空気量、吸気温度、センサー、燃料補正まで関わります。" },
       { "number": "02", "title": "足回り", "body": "車高、アライメント、接地、ADASの前提まで変わります。" },
@@ -31,6 +33,8 @@
       "title": "吸気系カスタムの\nリスクと対策",
       "score": "7/10",
       "body": "社外インテークや剥き出し型フィルターに替えると、空気の流れや吸気温度が変わります。現代車ではセンサー情報をもとにECUが燃料噴射量を調整するため、音や見た目だけでは判断できません。",
+      "image": "/images/cbj/columns/custom-intake-engine-bay-article-23.webp",
+      "imageAlt": "吸気系カスタムのエンジンルームイメージ",
       "risks": ["熱害", "センサー読み値", "雨水", "EVAP系統"],
       "actionTitle": "どうすればいい？",
       "action": "遮熱、防水、センサー位置、純正部品の保管を先に確認します。取り付け後はアイドリング、警告灯、燃料補正の変化も見ます。",
@@ -42,6 +46,8 @@
       "title": "足回りカスタムの\nリスクと対策",
       "score": "8/10",
       "body": "車高を下げると見た目は変わりますが、タイヤの接地角度、ストローク、アライメントも変わります。現代車ではカメラやレーダー、車両姿勢の前提にも関わります。",
+      "image": "/images/cbj/columns/custom-suspension-brake-article-23.webp",
+      "imageAlt": "足回りとブレーキまわりの確認イメージ",
       "risks": ["段差で擦る", "ストローク不足", "偏摩耗", "ADAS前提のズレ"],
       "actionTitle": "どうすればいい？",
       "action": "低さや硬さだけで決めず、街乗りで使えるストロークを残します。交換後はアライメント測定と試乗確認を前提にします。",
@@ -53,6 +59,8 @@
       "title": "電装品カスタムの\nリスクと対策",
       "score": "6/10",
       "body": "TVキャンセラーや後付け電装品は便利ですが、現代車では複数のECUが通信しながら動いています。後付け部品の割り込みや配線処理が、警告灯や診断の切り分けに影響することがあります。",
+      "image": "/images/cbj/columns/custom-diagnostic-tool-article-23.webp",
+      "imageAlt": "診断機と電装系確認のイメージ",
       "risks": ["CAN通信", "警告灯", "アース不良", "常時電源"],
       "actionTitle": "どうすればいい？",
       "action": "配線を戻せる状態にし、取り付け位置と電源の取り方を記録します。整備時に説明できる状態を残します。",
@@ -60,10 +68,28 @@
       "character": "/images/cbj/columns/kinto-ref-chara-4.svg"
     }
   ],
+  "darkRisk": {
+    "label": "CHAPTER 05",
+    "title": "戻せないカスタムほど\nあとで負担になる",
+    "score": "9/10",
+    "body": "配線加工、穴あけ、ECUまわりの変更、電子制御部品のキャンセルは、あとで修理、整備、売却の場面で説明が必要になります。",
+    "image": "/images/cbj/columns/custom-irreversible-risk-article-24.webp",
+    "imageAlt": "戻せないカスタムのリスクを示すイメージ",
+    "risks": [
+      { "title": "配線加工", "body": "純正配線を切ると、戻すときに手間がかかります。" },
+      { "title": "穴あけ・カット", "body": "外装や内装に跡が残り、売却時に評価が分かれます。" },
+      { "title": "ECU変更", "body": "施工内容や戻し方が分からないと、不具合時の切り分けが難しくなります。" },
+      { "title": "ADAS周辺", "body": "カメラやレーダーの位置関係が変わると、調整が必要になる場合があります。" }
+    ],
+    "summary": "戻せない変更ほど、記録と純正戻しの想定が重要です。",
+    "character": "/images/cbj/columns/kinto-ref-chara-4.svg"
+  },
   "check": {
     "label": "CHECK",
     "title": "『車検対応』だけで\n安心材料にしない",
     "body": "部品単体では問題がなくても、車高、タイヤ、マフラー、灯火類との組み合わせで実車状態が変わります。",
+    "image": "/images/cbj/columns/custom-shaken-checkpoints-article-19.webp",
+    "imageAlt": "車検時に確認されるポイントのイメージ",
     "warning": "車検に通る状態でも、ディーラーや整備工場の入庫基準とは別に見られる場合があります。",
     "chips": ["最低地上高", "突出し", "灯火類", "干渉", "固定状態", "必要書類"]
   },
@@ -81,6 +107,8 @@
     "label": "TIPS",
     "title": "中古のカスタム車は\n派手さより戻しやすさで判断する",
     "body": "中古車でカスタム済みの車を買うときも、純正部品、施工履歴、警告灯、配線処理を確認します。",
+    "image": "/images/cbj/columns/used-custom-car-checkpoints-article-19.webp",
+    "imageAlt": "中古のカスタム車を確認するイメージ",
     "items": [
       { "title": "外装", "body": "灯火類、ホイールの出方、エアロの割れ" },
       { "title": "室内", "body": "後付け電装品、配線処理、追加スイッチ" },
@@ -90,23 +118,11 @@
       { "title": "書類", "body": "部品名、施工明細、認定書類、保証書" }
     ]
   },
-  "darkRisk": {
-    "label": "CHAPTER 05",
-    "title": "戻せないカスタムほど\nあとで負担になる",
-    "score": "9/10",
-    "body": "配線加工、穴あけ、ECUまわりの変更、電子制御部品のキャンセルは、あとで修理、整備、売却の場面で説明が必要になります。",
-    "risks": [
-      { "title": "配線加工", "body": "純正配線を切ると、戻すときに手間がかかります。" },
-      { "title": "穴あけ・カット", "body": "外装や内装に跡が残り、売却時に評価が分かれます。" },
-      { "title": "ECU変更", "body": "施工内容や戻し方が分からないと、不具合時の切り分けが難しくなります。" },
-      { "title": "ADAS周辺", "body": "カメラやレーダーの位置関係が変わると、調整が必要になる場合があります。" }
-    ],
-    "summary": "戻せない変更ほど、記録と純正戻しの想定が重要です。",
-    "character": "/images/cbj/columns/kinto-ref-chara-4.svg"
-  },
   "steps": {
     "label": "CHAPTER 06",
     "title": "失敗しにくい\n進め方",
+    "image": "/images/cbj/columns/custom-flow-chart-article-24.webp",
+    "imageAlt": "カスタムで後悔しにくい進め方のフロー",
     "items": [
       { "title": "純正の不満を言葉にする", "body": "何が不満で、何を変えたいのかを先に整理します。" },
       { "title": "純正状態を点検する", "body": "タイヤ、空気圧、消耗品、警告灯の有無を見ます。" },
@@ -125,6 +141,8 @@
     "label": "SUMMARY",
     "title": "カスタムを長く楽しむなら\n戻せることと説明できることを残す",
     "body": "見た目や音だけで決めず、車検、保証、整備、売却まで含めて考えます。",
+    "image": "/images/cbj/columns/custom-regret-card-article-20.webp",
+    "imageAlt": "カスタムで後悔しないためのまとめイメージ",
     "pillars": [
       { "number": "01", "title": "戻せること", "body": "純正復帰を想定し、不可逆な加工を避ける。" },
       { "number": "02", "title": "説明できること", "body": "何を、なぜ、どう変えたかを記録する。" },
