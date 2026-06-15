@@ -4,7 +4,7 @@
   "hero": {
     "label": "保存版",
     "category": "COLUMN",
-    "title": "車のカスタムで\n後悔しやすい理由",
+    "title": "車のカスタムで\n後悔しやすい\n理由",
     "subtitle": "現代車で純正を崩す前に考えたいこと",
     "lead": "カスタムは、車の楽しみ方のひとつです。\nただし現代車では、車検、保証、整備入庫、売却で困ることがあります。",
     "score": "10/10",
@@ -19,7 +19,7 @@
   },
   "overview": {
     "label": "CHAPTER 01",
-    "title": "現代車のカスタムは\n車全体との関係で考える",
+    "title": "現代車の\nカスタムは\n車全体で考える",
     "body": "部品単体の満足だけでなく、センサー、ECU、車両診断、保証、整備入庫、売却まで含めて考えます。",
     "image": "/images/cbj/columns/custom-system-overview-article-24.webp",
     "imageAlt": "現代車の制御とカスタムの関係を示す図解",
@@ -32,7 +32,7 @@
   "chapters": [
     {
       "label": "CHAPTER 02",
-      "title": "吸気系カスタムの\nリスクと対策",
+      "title": "吸気系の\nリスクと対策",
       "score": "7/10",
       "body": "社外インテークや剥き出し型フィルターに替えると、空気の流れや吸気温度が変わります。現代車ではセンサー情報をもとにECUが燃料噴射量を調整するため、音や見た目だけでは判断できません。",
       "image": "/images/cbj/columns/custom-intake-engine-bay-article-23.webp",
@@ -45,7 +45,7 @@
     },
     {
       "label": "CHAPTER 03",
-      "title": "足回りカスタムの\nリスクと対策",
+      "title": "足回りの\nリスクと対策",
       "score": "8/10",
       "body": "車高を下げると見た目は変わりますが、タイヤの接地角度、ストローク、アライメントも変わります。現代車ではカメラやレーダー、車両姿勢の前提にも関わります。",
       "image": "/images/cbj/columns/custom-suspension-brake-article-23.webp",
@@ -58,7 +58,7 @@
     },
     {
       "label": "CHAPTER 04",
-      "title": "電装品カスタムの\nリスクと対策",
+      "title": "電装品の\nリスクと対策",
       "score": "6/10",
       "body": "TVキャンセラーや後付け電装品は便利ですが、現代車では複数のECUが通信しながら動いています。後付け部品の割り込みや配線処理が、警告灯や診断の切り分けに影響することがあります。",
       "image": "/images/cbj/columns/custom-diagnostic-tool-article-23.webp",
@@ -72,7 +72,7 @@
   ],
   "darkRisk": {
     "label": "CHAPTER 05",
-    "title": "戻せないカスタムほど\nあとで負担になる",
+    "title": "戻せない\nカスタムほど\nあとで負担になる",
     "score": "9/10",
     "body": "配線加工、穴あけ、ECUまわりの変更、電子制御部品のキャンセルは、あとで修理、整備、売却の場面で説明が必要になります。",
     "image": "/images/cbj/columns/custom-irreversible-risk-article-24.webp",
@@ -88,7 +88,7 @@
   },
   "check": {
     "label": "CHECK",
-    "title": "『車検対応』だけで\n安心材料にしない",
+    "title": "『車検対応』だけで\n安心しない",
     "body": "部品単体では問題がなくても、車高、タイヤ、マフラー、灯火類との組み合わせで実車状態が変わります。",
     "image": "/images/cbj/columns/custom-shaken-checkpoints-article-19.webp",
     "imageAlt": "車検時に確認されるポイントのイメージ",
@@ -97,7 +97,7 @@
   },
   "guide": {
     "label": "GUIDE",
-    "title": "カスタム別に\n避けたい選び方と確認したいこと",
+    "title": "カスタム別に\n避けたい選び方と\n確認したいこと",
     "items": [
       { "category": "吸気系", "avoid": "音だけで選ぶ。遮熱や雨対策を考えない。", "check": "熱、雨、センサー位置、純正戻しを確認。" },
       { "category": "足回り", "avoid": "低さだけで選ぶ。アライメントを取らない。", "check": "段差、接地感、ストローク、測定値を確認。" },
@@ -107,7 +107,7 @@
   },
   "tips": {
     "label": "TIPS",
-    "title": "中古のカスタム車は\n派手さより戻しやすさで判断する",
+    "title": "中古カスタム車は\n派手さより\n戻しやすさで判断",
     "body": "中古車でカスタム済みの車を買うときも、純正部品、施工履歴、警告灯、配線処理を確認します。",
     "image": "/images/cbj/columns/used-custom-car-checkpoints-article-19.webp",
     "imageAlt": "中古のカスタム車を確認するイメージ",
@@ -135,13 +135,13 @@
   },
   "mindset": {
     "label": "VIEW",
-    "title": "カスタムが悪いのではなく\n目的が曖昧だとズレやすい",
+    "title": "目的が曖昧だと\nカスタムはズレやすい",
     "body": "良いカスタムは、派手な部品を足すことではありません。その車の使い方に合っていて、あとから理由を説明できることです。",
     "character": "/images/cbj/columns/kinto-ref-chara-2.svg"
   },
   "summary": {
     "label": "SUMMARY",
-    "title": "カスタムを長く楽しむなら\n戻せることと説明できることを残す",
+    "title": "長く楽しむなら\n戻せることと\n説明できること",
     "body": "見た目や音だけで決めず、車検、保証、整備、売却まで含めて考えます。",
     "image": "/images/cbj/columns/custom-regret-card-article-20.webp",
     "imageAlt": "カスタムで後悔しないためのまとめイメージ",
