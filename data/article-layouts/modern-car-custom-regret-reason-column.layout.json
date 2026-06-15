@@ -33,6 +33,8 @@
   "hero": {
     "imageSrc": "/images/cbj/columns/custom-regret-kinto-hero.svg",
     "imageAlt": "車のカスタムで後悔しやすい理由を示す保存版ビジュアル",
+    "characterSrc": "/images/cbj/columns/kinto-ref-chara-1.svg",
+    "characterAlt": "記事を案内するガイドキャラクター",
     "badge": "保存版",
     "score": "10/10",
     "guideLabel": "GUIDE"
@@ -47,14 +49,14 @@
     "/images/cbj/columns/custom-step-flow-article-24.webp": "/images/cbj/columns/custom-regret-flow-kinto.svg"
   },
   "sections": {
-    "basics-modern-custom": { "className": "layoutSectionWhite", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" },
-    "system-intake-suspension-electronics": { "className": "layoutSectionSoft", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" },
-    "legal-actual-vehicle-state": { "className": "layoutSectionWhite", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" },
-    "irreversible-custom-risk": { "className": "layoutSectionDark", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" },
+    "basics-modern-custom": { "className": "layoutSectionWhite", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave", "characterSrc": "/images/cbj/columns/kinto-ref-chara-2.svg" },
+    "system-intake-suspension-electronics": { "className": "layoutSectionSoft", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave", "characterSrc": "/images/cbj/columns/kinto-ref-chara-2.svg" },
+    "legal-actual-vehicle-state": { "className": "layoutSectionWhite", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave", "characterSrc": "/images/cbj/columns/kinto-ref-chara-3.svg" },
+    "irreversible-custom-risk": { "className": "layoutSectionDark", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave", "characterSrc": "/images/cbj/columns/kinto-ref-chara-4.svg" },
     "parts-ng-ok-check": { "className": "layoutSectionWhite", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" },
     "used-custom-car-check": { "className": "layoutSectionSoft", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" },
-    "safe-custom-flow": { "className": "layoutSectionWhite", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" },
+    "safe-custom-flow": { "className": "layoutSectionWhite", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave", "characterSrc": "/images/cbj/columns/kinto-ref-chara-2.svg" },
     "custom-purpose-view": { "className": "layoutSectionSoft", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" },
-    "summary-return-explain": { "className": "layoutSectionWhite", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave" }
+    "summary-return-explain": { "className": "layoutSectionWhite", "chapterClassName": "layoutChapterLarge", "bodyClassName": "layoutBodySave", "characterSrc": "/images/cbj/columns/kinto-ref-chara-4.svg" }
   }
 }
