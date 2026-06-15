@@ -17,6 +17,7 @@ type KintoArticle = EditorialArticleViewModel & { slug?: string | null; layoutId
 type KintoArticleProps = Omit<EditorialArticlePageProps, "article"> & { article: KintoArticle };
 type LayoutConfig = {
   slug: string;
+  designSystem?: string;
   classNames?: Record<string, string>;
   hero?: { imageSrc?: string; imageAlt?: string; badge?: string; score?: string; guideLabel?: string };
   imageOverrides?: Record<string, string>;
