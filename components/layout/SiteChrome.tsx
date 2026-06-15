@@ -47,7 +47,7 @@ export function SiteChrome({ children }: SiteChromeProps) {
               : "flex min-h-screen flex-col bg-[var(--bg-stage)]"
       }
     >
-      <Navigation />
+      {editorialArticle ? null : <Navigation />}
       <div id="cb-main" tabIndex={-1} className="flex-1 pt-0 outline-none">
         {children}
       </div>
