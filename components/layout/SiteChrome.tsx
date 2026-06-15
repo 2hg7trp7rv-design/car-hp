@@ -51,11 +51,11 @@ export function SiteChrome({ children }: SiteChromeProps) {
       <div id="cb-main" tabIndex={-1} className="flex-1 pt-0 outline-none">
         {children}
       </div>
-      <SiteFooter
-        variant={
-          carDetail ? "carArticle" : editorialArticle ? "editorialArticle" : "default"
-        }
-      />
+      {editorialArticle ? null : (
+        <SiteFooter
+          variant={carDetail ? "carArticle" : "default"}
+        />
+      )}
     </div>
   );
 }
