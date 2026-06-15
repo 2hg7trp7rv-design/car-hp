@@ -4,33 +4,120 @@ import Link from "next/link";
 import { TextWithInternalLinkCards } from "@/components/content/TextWithInternalLinkCards";
 import { renderInlineMarkdown } from "@/components/content/InlineMarkdown";
 import type { InternalLinkMeta } from "@/lib/content/internal-link-index";
-import type { EditorialArticleLabels, EditorialArticlePageProps, EditorialArticleViewModel } from "@/components/editorialArticle/EditorialArticlePage";
+import type {
+  EditorialArticleLabels,
+  EditorialArticlePageProps,
+  EditorialArticleViewModel,
+} from "@/components/editorialArticle/EditorialArticlePage";
 import customRegretVisualJson from "@/data/article-layouts/modern-car-custom-regret-reason-column.visual.json";
 import styles from "@/components/editorialArticle/kinto-json-article.module.css";
 
 type AnyRecord = Record<string, unknown>;
-type VisualArticle = EditorialArticleViewModel & { slug?: string | null; layoutId?: string | null };
-type VisualArticleProps = Omit<EditorialArticlePageProps, "article"> & { article: VisualArticle };
-type VisualCard = { number?: string; title: string; body: string; avoid?: string; check?: string; category?: string; image?: string; imageAlt?: string };
-type VisualChapter = { label: string; title: string; score?: string; body?: string; risks?: string[]; actionTitle?: string; action?: string; summary?: string; character?: string; image?: string; imageAlt?: string; dark?: boolean };
+type VisualArticle = EditorialArticleViewModel & {
+  slug?: string | null;
+  layoutId?: string | null;
+};
+type VisualArticleProps = Omit<EditorialArticlePageProps, "article"> & {
+  article: VisualArticle;
+};
+type VisualCard = {
+  number?: string;
+  title: string;
+  body: string;
+  avoid?: string;
+  check?: string;
+  category?: string;
+  image?: string;
+  imageAlt?: string;
+};
+type VisualChapter = {
+  label: string;
+  title: string;
+  score?: string;
+  body?: string;
+  risks?: string[];
+  actionTitle?: string;
+  action?: string;
+  summary?: string;
+  character?: string;
+  image?: string;
+  imageAlt?: string;
+  dark?: boolean;
+};
 type VisualRisk = { title: string; body: string };
 type VisualStep = { title: string; body: string };
 type VisualLayout = {
   slug?: string;
   template?: string;
-  hero?: { label?: string; category?: string; title?: string; subtitle?: string; lead?: string; score?: string; character?: string; image?: string; imageAlt?: string };
+  hero?: {
+    label?: string;
+    category?: string;
+    title?: string;
+    subtitle?: string;
+    lead?: string;
+    score?: string;
+    character?: string;
+    image?: string;
+    imageAlt?: string;
+  };
   intro?: { body?: string; important?: string; chips?: string[] };
-  overview?: { label?: string; title?: string; body?: string; image?: string; imageAlt?: string; cards?: VisualCard[] };
+  overview?: {
+    label?: string;
+    title?: string;
+    body?: string;
+    image?: string;
+    imageAlt?: string;
+    cards?: VisualCard[];
+  };
   chapters?: VisualChapter[];
-  check?: { label?: string; title?: string; body?: string; warning?: string; image?: string; imageAlt?: string; chips?: string[] };
+  check?: {
+    label?: string;
+    title?: string;
+    body?: string;
+    warning?: string;
+    image?: string;
+    imageAlt?: string;
+    chips?: string[];
+  };
   guide?: { label?: string; title?: string; items?: VisualCard[] };
-  tips?: { label?: string; title?: string; body?: string; image?: string; imageAlt?: string; items?: VisualCard[] };
-  darkRisk?: { label?: string; title?: string; score?: string; body?: string; image?: string; imageAlt?: string; risks?: VisualRisk[]; summary?: string; character?: string };
+  tips?: {
+    label?: string;
+    title?: string;
+    body?: string;
+    image?: string;
+    imageAlt?: string;
+    items?: VisualCard[];
+  };
+  darkRisk?: {
+    label?: string;
+    title?: string;
+    score?: string;
+    body?: string;
+    image?: string;
+    imageAlt?: string;
+    risks?: VisualRisk[];
+    summary?: string;
+    character?: string;
+  };
   steps?: { label?: string; title?: string; image?: string; imageAlt?: string; items?: VisualStep[] };
   mindset?: { label?: string; title?: string; body?: string; character?: string };
-  summary?: { label?: string; title?: string; body?: string; image?: string; imageAlt?: string; pillars?: VisualCard[] };
+  summary?: {
+    label?: string;
+    title?: string;
+    body?: string;
+    image?: string;
+    imageAlt?: string;
+    pillars?: VisualCard[];
+  };
 };
-type RawSection = { id?: string | null; title?: string | null; displayTitle?: string | null; deck?: string | null; chapterLabel?: string | null; blocks?: unknown };
+type RawSection = {
+  id?: string | null;
+  title?: string | null;
+  displayTitle?: string | null;
+  deck?: string | null;
+  chapterLabel?: string | null;
+  blocks?: unknown;
+};
 
 const customRegretVisual = customRegretVisualJson as VisualLayout;
 const characterSet = [
@@ -42,15 +129,22 @@ const characterSet = [
 const fallbackArticleImage = "/images/cbj/columns/custom-regret-card-article-20.webp";
 
 const text = (value: unknown) => (typeof value === "string" ? value.trim() : "");
-const textList = (value: unknown): string[] => (Array.isArray(value) ? value.filter((item): item is string => typeof item === "string" && item.trim().length > 0).map((item) => item.trim()) : []);
-const objectList = (value: unknown): AnyRecord[] => (Array.isArray(value) ? (value.filter((item) => item && typeof item === "object") as AnyRecord[]) : []);
-const stripNumber = (value?: string | null) => String(value ?? "").replace(/^\s*(?:第?\d{1,2}(?:章|話|部|項)|[①②③④⑤⑥⑦⑧⑨⑩]|\d{1,2})\s*[\).）．.、:：-]?\s*/u, "").trim();
+const textList = (value: unknown): string[] =>
+  Array.isArray(value)
+    ? value.filter((item): item is string => typeof item === "string" && item.trim().length > 0).map((item) => item.trim())
+    : [];
+const objectList = (value: unknown): AnyRecord[] =>
+  Array.isArray(value) ? (value.filter((item) => item && typeof item === "object") as AnyRecord[]) : [];
+const stripNumber = (value?: string | null) =>
+  String(value ?? "").replace(/^\s*(?:第?\d{1,2}(?:章|話|部|項)|[①②③④⑤⑥⑦⑧⑨⑩]|\d{1,2})\s*[\).）．.、:：-]?\s*/u, "").trim();
 const cx = (...classes: Array<string | false | null | undefined>) => classes.filter(Boolean).join(" ");
 
 function dotDate(iso?: string | null) {
   if (!iso) return "";
   const date = new Date(iso);
-  return Number.isNaN(date.getTime()) ? "" : `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
+  return Number.isNaN(date.getTime())
+    ? ""
+    : `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
 }
 function sectionTitle(section: RawSection, index: number) {
   return stripNumber(section.displayTitle || section.title) || `CHAPTER ${String(index + 1).padStart(2, "0")}`;
@@ -67,7 +161,10 @@ function firstList(section: RawSection) {
   return textList(list?.items);
 }
 function normalizeSections(article: VisualArticle): RawSection[] {
-  return ((article.sections ?? []) as unknown as RawSection[]).map((section, index) => ({ ...section, id: text(section.id) || `visual-section-${index + 1}` }));
+  return ((article.sections ?? []) as unknown as RawSection[]).map((section, index) => ({
+    ...section,
+    id: text(section.id) || `visual-section-${index + 1}`,
+  }));
 }
 function categoryFromLabels(labels: EditorialArticleLabels) {
   return labels.footerListHref.startsWith("/column") ? "COLUMN" : "GUIDE";
@@ -84,7 +181,16 @@ function compact(value?: string | null, limit = 170) {
 }
 function createAutoLayout(article: VisualArticle, labels: EditorialArticleLabels): VisualLayout {
   const sections = normalizeSections(article);
-  const overviewCards = (article.keyPoints?.length ? article.keyPoints : sections.map((section, index) => `${sectionTitle(section, index)}。${firstParagraph(section)}`)).slice(0, 3).map((body, index) => ({ number: String(index + 1).padStart(2, "0"), title: sectionTitle(sections[index] ?? {}, index), body: compact(body, 86) }));
+  const overviewCards = (article.keyPoints?.length
+    ? article.keyPoints
+    : sections.map((section, index) => `${sectionTitle(section, index)}。${firstParagraph(section)}`)
+  )
+    .slice(0, 3)
+    .map((body, index) => ({
+      number: String(index + 1).padStart(2, "0"),
+      title: sectionTitle(sections[index] ?? {}, index),
+      body: compact(body, 86),
+    }));
   const chapters = sections.slice(0, 5).map((section, index) => ({
     label: section.chapterLabel || `CHAPTER ${String(index + 2).padStart(2, "0")}`,
     title: titleLines(sectionTitle(section, index)),
@@ -92,23 +198,92 @@ function createAutoLayout(article: VisualArticle, labels: EditorialArticleLabels
     body: compact(firstParagraph(section), 190),
     risks: firstList(section).slice(0, 4),
     actionTitle: "どうすればいい？",
-    action: compact(textList((blocksOf(section).find((block) => text(block.type) === "callout") ?? {}).items).join("。") || text((blocksOf(section).find((block) => text(block.type) === "callout") ?? {}).body) || "確認する項目を先に決め、取り付け後に状態を見て、説明できる記録を残します。", 150),
+    action: compact(
+      textList((blocksOf(section).find((block) => text(block.type) === "callout") ?? {}).items).join("。") ||
+        text((blocksOf(section).find((block) => text(block.type) === "callout") ?? {}).body) ||
+        "確認する項目を先に決め、取り付け後に状態を見て、説明できる記録を残します。",
+      150,
+    ),
     summary: compact(section.deck || firstParagraph(section), 120),
     character: characterSet[(index + 1) % characterSet.length],
-    image: article.heroImage || fallbackArticleImage,
+    image: article.heroImage ?? fallbackArticleImage,
   }));
   const checkpointItems = (article.checkpoints?.length ? article.checkpoints : article.keyPoints ?? []).slice(0, 6);
   return {
-    hero: { label: "保存版", category: categoryFromLabels(labels), title: titleLines(article.title), subtitle: article.eyebrowLabel || labels.footerListLabel, lead: compact(article.lead, 145), score: "10/10", character: characterSet[0] },
-    intro: { body: compact(article.lead || article.body, 180), important: compact(article.keyPoints?.[0] || article.checkpoints?.[0] || "あとで困らない形で、戻せることと説明できることを残します。", 120), chips: checkpointItems.slice(0, 3) },
-    overview: { label: "CHAPTER 01", title: "まず全体像を\n短く整理する", body: "細かい本文に入る前に、判断に必要なポイントをカードで確認します。", image: article.heroImage || fallbackArticleImage, cards: overviewCards },
+    hero: {
+      label: "保存版",
+      category: categoryFromLabels(labels),
+      title: titleLines(article.title),
+      subtitle: article.eyebrowLabel || labels.footerListLabel,
+      lead: compact(article.lead, 145),
+      score: "10/10",
+      character: characterSet[0],
+    },
+    intro: {
+      body: compact(article.lead || article.body, 180),
+      important: compact(article.keyPoints?.[0] || article.checkpoints?.[0] || "あとで困らない形で、戻せることと説明できることを残します。", 120),
+      chips: checkpointItems.slice(0, 3),
+    },
+    overview: {
+      label: "CHAPTER 01",
+      title: "まず全体像を\n短く整理する",
+      body: "細かい本文に入る前に、判断に必要なポイントをカードで確認します。",
+      image: article.heroImage ?? fallbackArticleImage,
+      cards: overviewCards,
+    },
     chapters,
-    check: { label: "CHECK", title: "先に確認したい\nチェックポイント", body: "本文を読み進める前に、判断を左右する項目だけを先に押さえます。", warning: compact(article.checkpoints?.[0] || article.keyPoints?.[0] || "条件や状態によって判断は変わります。必ず自分の車の状態で確認します。", 120), chips: checkpointItems },
-    guide: { label: "GUIDE", title: "避けたい選び方と\n確認したいこと", items: chapters.slice(0, 4).map((chapter, index) => ({ category: stripNumber(chapter.title).split("\n")[0] || `項目${index + 1}`, title: stripNumber(chapter.title).split("\n")[0] || `項目${index + 1}`, body: chapter.body ?? "", avoid: chapter.risks?.[0] || "見た目や評判だけで決める", check: chapter.action || "自分の使い方、戻しやすさ、説明できる記録を確認する" })) },
-    tips: { label: "TIPS", title: "後悔しにくい判断材料を\n残す", body: "使い方、状態、記録、戻しやすさを残すほど、整備や売却でも説明しやすくなります。", items: checkpointItems.map((item, index) => ({ title: `確認${String(index + 1).padStart(2, "0")}`, body: compact(item, 70) })) },
-    steps: { label: "STEP", title: "失敗しにくい\n進め方", items: [{ title: "目的を言葉にする", body: "なぜ必要なのかを先に整理します。" }, { title: "現状を点検する", body: "純正状態や消耗品を確認します。" }, { title: "小さく試す", body: "戻せる範囲から始めます。" }, { title: "結果を見る", body: "取り付け後の変化を確認します。" }, { title: "記録を残す", body: "説明できる状態にします。" }] },
-    mindset: { label: "VIEW", title: "大切なのは\n理由を説明できること", body: "良い判断は、派手な要素を足すことではありません。その車の使い方に合っていて、あとから理由を説明できることです。", character: characterSet[2] },
-    summary: { label: "SUMMARY", title: "最後に残すべき\n3つの判断軸", body: "細かい内容よりも、最後は戻せること、説明できること、安全性や診断性を壊していないことを確認します。", image: article.heroImage || fallbackArticleImage, pillars: [{ number: "01", title: "戻せること", body: "元の状態へ戻せる余地を残す。" }, { number: "02", title: "説明できること", body: "理由と内容を記録しておく。" }, { number: "03", title: "壊さないこと", body: "安全性、保証、診断性を崩さない。" }] },
+    check: {
+      label: "CHECK",
+      title: "先に確認したい\nチェックポイント",
+      body: "本文を読み進める前に、判断を左右する項目だけを先に押さえます。",
+      warning: compact(article.checkpoints?.[0] || article.keyPoints?.[0] || "条件や状態によって判断は変わります。必ず自分の車の状態で確認します。", 120),
+      chips: checkpointItems,
+    },
+    guide: {
+      label: "GUIDE",
+      title: "避けたい選び方と\n確認したいこと",
+      items: chapters.slice(0, 4).map((chapter, index) => ({
+        category: stripNumber(chapter.title).split("\n")[0] || `項目${index + 1}`,
+        title: stripNumber(chapter.title).split("\n")[0] || `項目${index + 1}`,
+        body: chapter.body ?? "",
+        avoid: chapter.risks?.[0] || "見た目や評判だけで決める",
+        check: chapter.action || "自分の使い方、戻しやすさ、説明できる記録を確認する",
+      })),
+    },
+    tips: {
+      label: "TIPS",
+      title: "後悔しにくい判断材料を\n残す",
+      body: "使い方、状態、記録、戻しやすさを残すほど、整備や売却でも説明しやすくなります。",
+      items: checkpointItems.map((item, index) => ({ title: `確認${String(index + 1).padStart(2, "0")}`, body: compact(item, 70) })),
+    },
+    steps: {
+      label: "STEP",
+      title: "失敗しにくい\n進め方",
+      items: [
+        { title: "目的を言葉にする", body: "なぜ必要なのかを先に整理します。" },
+        { title: "現状を点検する", body: "純正状態や消耗品を確認します。" },
+        { title: "小さく試す", body: "戻せる範囲から始めます。" },
+        { title: "結果を見る", body: "取り付け後の変化を確認します。" },
+        { title: "記録を残す", body: "説明できる状態にします。" },
+      ],
+    },
+    mindset: {
+      label: "VIEW",
+      title: "大切なのは\n理由を説明できること",
+      body: "良い判断は、派手な要素を足すことではありません。その車の使い方に合っていて、あとから理由を説明できることです。",
+      character: characterSet[2],
+    },
+    summary: {
+      label: "SUMMARY",
+      title: "最後に残すべき\n3つの判断軸",
+      body: "細かい内容よりも、最後は戻せること、説明できること、安全性や診断性を壊していないことを確認します。",
+      image: article.heroImage ?? fallbackArticleImage,
+      pillars: [
+        { number: "01", title: "戻せること", body: "元の状態へ戻せる余地を残す。" },
+        { number: "02", title: "説明できること", body: "理由と内容を記録しておく。" },
+        { number: "03", title: "壊さないこと", body: "安全性、保証、診断性を崩さない。" },
+      ],
+    },
   };
 }
 function resolveLayout(article: VisualArticle, labels: EditorialArticleLabels) {
@@ -116,18 +291,21 @@ function resolveLayout(article: VisualArticle, labels: EditorialArticleLabels) {
   return createAutoLayout(article, labels);
 }
 function Rich({ value, linkIndex, className }: { value?: string | null; linkIndex: Record<string, InternalLinkMeta>; className?: string }) {
-  return value ? <TextWithInternalLinkCards text={value} linkIndex={linkIndex} as="p" className={styles.richText} textClassName={className ?? styles.bodyText} cardsClassName={styles.inlineCards} /> : null;
+  return value ? (
+    <TextWithInternalLinkCards text={value} linkIndex={linkIndex} as="p" className={styles.richText} textClassName={className ?? styles.bodyText} cardsClassName={styles.inlineCards} />
+  ) : null;
 }
 function Score({ value }: { value?: string }) {
   const score = String(value ?? "10/10").replace("/10", "");
   return <div className={styles.score}><span className={styles.scoreNum}>{score}</span><span className={styles.scoreDen}>/10</span></div>;
 }
 function SectionTitle({ label, title, body, dark = false }: { label?: string; title?: string; body?: string; dark?: boolean }) {
-  return <div className={styles.sectionHead}><p className={styles.sectionLabel}>{label}</p><h2 className={styles.sectionTitle}>{String(title ?? "").split("\n").map((line, index) => <span key={index}>{renderInlineMarkdown(line)}{index < String(title ?? "").split("\n").length - 1 ? <br /> : null}</span>)}</h2>{body ? <p className={cx(styles.sectionLead, dark && styles.sectionLeadDark)}>{body}</p> : null}</div>;
+  const lines = String(title ?? "").split("\n");
+  return <div className={styles.sectionHead}><p className={styles.sectionLabel}>{label}</p><h2 className={styles.sectionTitle}>{lines.map((line, index) => <span key={index}>{renderInlineMarkdown(line)}{index < lines.length - 1 ? <br /> : null}</span>)}</h2>{body ? <p className={cx(styles.sectionLead, dark && styles.sectionLeadDark)}>{body}</p> : null}</div>;
 }
-function ImageFigure({ src, alt, dark = false }: { src?: string; alt?: string; dark?: boolean }) {
+function ImageFigure({ src, alt, dark = false }: { src?: string | null; alt?: string | null; dark?: boolean }) {
   if (!src) return null;
-  return <figure className={cx(styles.mediaFrame, dark && styles.mediaFrameDark)}><Image src={src} alt={alt || ""} width={1184} height={864} /></figure>;
+  return <figure className={cx(styles.mediaFrame, dark && styles.mediaFrameDark)}><Image src={src} alt={alt ?? ""} width={1184} height={864} /></figure>;
 }
 function CharacterNote({ src, textValue, dark = false }: { src?: string; textValue?: string; dark?: boolean }) {
   if (!textValue) return null;
@@ -185,7 +363,9 @@ function Mindset({ layout }: { layout: VisualLayout }) {
 function Summary({ layout, linkIndex, article }: { layout: VisualLayout; linkIndex: Record<string, InternalLinkMeta>; article: VisualArticle }) {
   const summary = layout.summary;
   if (!summary) return null;
-  return <section className={cx(styles.section, styles.sectionWhite)}><div className={styles.container}><SectionTitle label={summary.label} title={summary.title} body={summary.body} /><div className={styles.summaryGrid}>{summary.pillars?.map((pillar, index) => <article className={styles.card} key={pillar.title}><span className={styles.cardNumber}>{pillar.number ?? String(index + 1).padStart(2, "0")}</span><h3 className={styles.cardTitle}>{pillar.title}</h3><Rich value={pillar.body} linkIndex={linkIndex} className={styles.cardBody} /></article>)}</div><ImageFigure src={summary.image || article.heroImage} alt={summary.imageAlt || article.heroAlt || article.title} /></div></section>;
+  const summaryImage = summary.image || article.heroImage || undefined;
+  const summaryAlt = summary.imageAlt || article.heroAlt || article.title;
+  return <section className={cx(styles.section, styles.sectionWhite)}><div className={styles.container}><SectionTitle label={summary.label} title={summary.title} body={summary.body} /><div className={styles.summaryGrid}>{summary.pillars?.map((pillar, index) => <article className={styles.card} key={pillar.title}><span className={styles.cardNumber}>{pillar.number ?? String(index + 1).padStart(2, "0")}</span><h3 className={styles.cardTitle}>{pillar.title}</h3><Rich value={pillar.body} linkIndex={linkIndex} className={styles.cardBody} /></article>)}</div><ImageFigure src={summaryImage} alt={summaryAlt} /></div></section>;
 }
 function MetaSection({ article, labels, related }: { article: VisualArticle; labels: EditorialArticleLabels; related: NonNullable<VisualArticle["relatedItems"]> }) {
   const sources = (article.sources ?? []).filter(Boolean);
