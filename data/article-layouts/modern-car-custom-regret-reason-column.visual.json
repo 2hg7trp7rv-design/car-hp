@@ -4,13 +4,13 @@
   "hero": {
     "label": "保存版",
     "category": "COLUMN",
-    "title": "車のカスタムで\n後悔しやすい理由",
+    "title": "車のカスタムで\n後悔しやすい\n理由",
     "subtitle": "現代車で純正を崩す前に考えたいこと",
     "lead": "現代車で純正を崩す前に考えたいこと。部品を替える前に、その変更が車全体にどう関わるかを確認する必要があります。",
     "score": "10/10",
     "image": "/images/cbj/columns/custom-regret-card-article-20.webp",
     "imageAlt": "車のカスタムで後悔しやすい理由を示すメインビジュアル",
-    "character": "/images/cbj/columns/kinto-ref-chara-1.svg"
+    "character": "/images/cbj/columns/cbj-guide-chara-1.PNG"
   },
   "intro": {
     "body": "カスタムは、車の楽しみ方のひとつです。ホイールを替える。少し車高を下げる。吸気音を変える。ただし現代車では、部品を替えたあとに車検、保証、整備入庫、売却で困ることがあります。",
@@ -41,7 +41,7 @@
       "actionTitle": "どうすればいい？",
       "action": "遮熱板の設置、防水対策、純正部品の保管を忘れずに。センサー位置の確認と、取り付け後のアイドリング調整も必須です。",
       "summary": "吸気系カスタムは、音や見た目だけで選ぶと後悔しやすい。センサー位置、熱対策、雨水対策、純正戻しまで含めて確認しよう。",
-      "character": "/images/cbj/columns/kinto-ref-chara-2.svg"
+      "character": "/images/cbj/columns/cbj-guide-chara-3.PNG"
     },
     {
       "label": "CHAPTER 03",
@@ -54,7 +54,7 @@
       "actionTitle": "どうすればいい？",
       "action": "車高調整後は必ずアライメント測定を実施。ストローク量の確認と、街乗りで使える範囲の設定が重要です。",
       "summary": "足回りは「低ければ良い」「硬ければ良い」ではない。アライメント測定とストローク確認を必ず実施しよう。",
-      "character": "/images/cbj/columns/kinto-ref-chara-2.svg"
+      "character": "/images/cbj/columns/cbj-guide-chara-3.PNG"
     },
     {
       "label": "CHAPTER 04",
@@ -67,7 +67,7 @@
       "actionTitle": "どうすればいい？",
       "action": "配線を戻せる状態に保ち、保証との関係を確認。整備時に説明できるよう、取り付け位置と電源を記録しておきましょう。",
       "summary": "電装品は便利だけど、CAN通信に介入するリスクがある。配線を戻せる状態に保ち、取り付け記録を残そう。",
-      "character": "/images/cbj/columns/kinto-ref-chara-2.svg"
+      "character": "/images/cbj/columns/cbj-guide-chara-3.PNG"
     }
   ],
   "darkRisk": {
@@ -84,7 +84,7 @@
       { "title": "ADAS関連", "body": "自動ブレーキやレーンキープはカメラ・レーダーの位置が前提。極端なローダウンや加工は認識範囲に影響。" }
     ],
     "summary": "戻せないカスタムほど後悔しやすい。配線加工、穴あけ、ECU書き換えは必ず記録を残し、純正戻しを想定しておこう。",
-    "character": "/images/cbj/columns/kinto-ref-chara-2.svg"
+    "character": "/images/cbj/columns/cbj-guide-chara-4.PNG"
   },
   "check": {
     "label": "CHECK",
@@ -133,13 +133,13 @@
       { "title": "記録を残す", "body": "施工内容、アライメント、純正部品を保管" }
     ],
     "summary": "順番が大事。まず純正の不満を洗い出し、点検してから戻せる部品から試そう。記録を残すのを忘れずに。",
-    "character": "/images/cbj/columns/kinto-ref-chara-2.svg"
+    "character": "/images/cbj/columns/cbj-guide-chara-4.PNG"
   },
   "mindset": {
     "label": "心構え",
     "title": "良いカスタムは\n理由を説明できること",
     "body": "良いカスタムは、派手な部品を足すことではありません。その車の使い方に合っていて、あとから理由を説明できることです。",
-    "character": "/images/cbj/columns/kinto-ref-chara-2.svg"
+    "character": "/images/cbj/columns/cbj-guide-chara-4.PNG"
   },
   "summary": {
     "label": "SUMMARY",
@@ -147,7 +147,7 @@
     "body": "現代車のカスタムは、自由に楽しめる一方で、昔より確認することが増えています。見た目や価格だけで選ぶと後悔しやすくなります。",
     "image": "/images/cbj/columns/custom-regret-card-article-20.webp",
     "imageAlt": "カスタムで後悔しないためのまとめイメージ",
-    "character": "/images/cbj/columns/kinto-ref-chara-2.svg",
+    "character": "/images/cbj/columns/cbj-guide-chara-4.PNG",
     "pillars": [
       { "number": "01", "title": "戻せること", "body": "純正への復元を常に想定し、不可逆な加工を避ける" },
       { "number": "02", "title": "説明できること", "body": "何を、なぜ、どう変えたのかを言語化し、記録を残す" },
