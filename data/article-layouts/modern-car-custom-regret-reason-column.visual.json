@@ -4,13 +4,13 @@
   "hero": {
     "label": "保存版",
     "category": "COLUMN",
-    "title": "車のカスタムで\n後悔しやすい理由",
+    "title": "車のカスタムで\n後悔しやすい\n理由",
     "subtitle": "現代車で純正を崩す前に考えたいこと",
     "lead": "現代車で純正を崩す前に考えたいこと。部品を替える前に、その変更が車全体にどう関わるかを確認する必要があります。",
     "score": "10/10",
     "image": "/images/cbj/columns/custom-regret-card-article-20.webp",
     "imageAlt": "車のカスタムで後悔しやすい理由を示すメインビジュアル",
-    "character": "/images/cbj/columns/kinto-ref-chara-4.svg"
+    "character": "/images/cbj/columns/kinto-ref-chara-1.svg"
   },
   "intro": {
     "body": "カスタムは、車の楽しみ方のひとつです。ホイールを替える。少し車高を下げる。吸気音を変える。ただし現代車では、部品を替えたあとに車検、保証、整備入庫、売却で困ることがあります。",
@@ -19,7 +19,7 @@
   },
   "overview": {
     "label": "CHAPTER 01",
-    "title": "現代車のカスタムは\n車全体との関係で考える",
+    "title": "現代車のカスタムは\n車全体との関係で\n考える",
     "body": "部品単体の満足だけでなく、センサー、ECU、車両診断、保証、整備入庫、売却まで含めて考えます。",
     "image": "/images/cbj/columns/custom-system-overview-article-24.webp",
     "imageAlt": "現代車の制御とカスタムの関係を示す図解",
@@ -32,7 +32,7 @@
   "chapters": [
     {
       "label": "CHAPTER 02",
-      "title": "吸気系カスタムの\nリスクと対策",
+      "title": "吸気系\nカスタムの\nリスクと対策",
       "score": "7/10",
       "body": "社外の剥き出し型フィルターやインテークに替えると、吸い込む空気の流れや温度が変わります。エアフローセンサーや吸気温度センサーの情報をもとにECUが燃料噴射量を調整しているため、思わぬ影響が出ることがあります。",
       "image": "/images/cbj/columns/custom-intake-engine-bay-article-23.webp",
@@ -41,11 +41,11 @@
       "actionTitle": "どうすればいい？",
       "action": "遮熱板の設置、防水対策、純正部品の保管を忘れずに。センサー位置の確認と、取り付け後のアイドリング調整も必須です。",
       "summary": "吸気系カスタムは、音や見た目だけで選ぶと後悔しやすい。センサー位置、熱対策、雨水対策、純正戻しまで含めて確認しよう。",
-      "character": "/images/cbj/columns/kinto-ref-chara-3.svg"
+      "character": "/images/cbj/columns/kinto-ref-chara-2.svg"
     },
     {
       "label": "CHAPTER 03",
-      "title": "足回りカスタムの\nリスクと対策",
+      "title": "足回り\nカスタムの\nリスクと対策",
       "score": "8/10",
       "body": "車高を下げると見た目は変わりますが、タイヤの接地角度やアライメントも変わります。やりすぎると段差で擦りやすくなり、乗り心地が悪化することも。現代車では運転支援機能が車体の姿勢を検知しているため、影響は大きいです。",
       "image": "/images/cbj/columns/custom-suspension-brake-article-23.webp",
@@ -54,11 +54,11 @@
       "actionTitle": "どうすればいい？",
       "action": "車高調整後は必ずアライメント測定を実施。ストローク量の確認と、街乗りで使える範囲の設定が重要です。",
       "summary": "足回りは「低ければ良い」「硬ければ良い」ではない。アライメント測定とストローク確認を必ず実施しよう。",
-      "character": "/images/cbj/columns/kinto-ref-chara-3.svg"
+      "character": "/images/cbj/columns/kinto-ref-chara-2.svg"
     },
     {
       "label": "CHAPTER 04",
-      "title": "電装品カスタムの\nリスクと対策",
+      "title": "電装品\nカスタムの\nリスクと対策",
       "score": "6/10",
       "body": "車内では複数のECUがCAN通信で繋がっています。後付け部品が介入すると、通信エラーや警告灯が出ることがあります。配線の接続が甘いと、常時電源やアース不良によって不具合につながることもあります。",
       "image": "/images/cbj/columns/custom-diagnostic-tool-article-23.webp",
@@ -67,12 +67,12 @@
       "actionTitle": "どうすればいい？",
       "action": "配線を戻せる状態に保ち、保証との関係を確認。整備時に説明できるよう、取り付け位置と電源を記録しておきましょう。",
       "summary": "電装品は便利だけど、CAN通信に介入するリスクがある。配線を戻せる状態に保ち、取り付け記録を残そう。",
-      "character": "/images/cbj/columns/kinto-ref-chara-3.svg"
+      "character": "/images/cbj/columns/kinto-ref-chara-2.svg"
     }
   ],
   "darkRisk": {
     "label": "CHAPTER 05",
-    "title": "戻せないカスタムほど\nあとで負担になる",
+    "title": "戻せない\nカスタムほど\nあとで負担になる",
     "score": "9/10",
     "body": "カスタムで後悔しやすいのは、効果を感じなかった部品だけではありません。あとから純正に戻しにくい変更も、負担になりやすい部分です。",
     "image": "/images/cbj/columns/custom-irreversible-risk-article-24.webp",
@@ -84,7 +84,7 @@
       { "title": "ADAS関連", "body": "自動ブレーキやレーンキープはカメラ・レーダーの位置が前提。極端なローダウンや加工は認識範囲に影響。" }
     ],
     "summary": "戻せないカスタムほど後悔しやすい。配線加工、穴あけ、ECU書き換えは必ず記録を残し、純正戻しを想定しておこう。",
-    "character": "/images/cbj/columns/kinto-ref-chara-4.svg"
+    "character": "/images/cbj/columns/kinto-ref-chara-2.svg"
   },
   "check": {
     "label": "CHECK",
@@ -97,7 +97,7 @@
   },
   "guide": {
     "label": "GUIDE",
-    "title": "カスタム別に避けたい選び方と\n確認したいこと",
+    "title": "カスタム別に避けたい\n選び方と\n確認したいこと",
     "items": [
       { "category": "吸気系", "avoid": "音だけで選ぶ、遮熱を考えない", "check": "熱や雨の影響、センサー位置、純正部品の保管" },
       { "category": "足回り", "avoid": "低さだけで選ぶ、硬さだけで決める", "check": "段差で擦らないか、接地感、アライメント取得" },
@@ -107,7 +107,7 @@
   },
   "tips": {
     "label": "TIPS",
-    "title": "中古のカスタム車は\n派手さより戻しやすさで判断する",
+    "title": "中古のカスタム車は\n派手さより\n戻しやすさで判断する",
     "body": "中古車でカスタム済みの車を買うときも、同じ考え方が必要です。まず確認したいのは、純正部品が残っているかどうかです。",
     "image": "/images/cbj/columns/used-custom-car-checkpoints-article-19.webp",
     "imageAlt": "中古のカスタム車を確認するイメージ",
@@ -133,7 +133,7 @@
       { "title": "記録を残す", "body": "施工内容、アライメント、純正部品を保管" }
     ],
     "summary": "順番が大事。まず純正の不満を洗い出し、点検してから戻せる部品から試そう。記録を残すのを忘れずに。",
-    "character": "/images/cbj/columns/kinto-ref-chara-4.svg"
+    "character": "/images/cbj/columns/kinto-ref-chara-2.svg"
   },
   "mindset": {
     "label": "心構え",
@@ -147,7 +147,7 @@
     "body": "現代車のカスタムは、自由に楽しめる一方で、昔より確認することが増えています。見た目や価格だけで選ぶと後悔しやすくなります。",
     "image": "/images/cbj/columns/custom-regret-card-article-20.webp",
     "imageAlt": "カスタムで後悔しないためのまとめイメージ",
-    "character": "/images/cbj/columns/kinto-ref-chara-4.svg",
+    "character": "/images/cbj/columns/kinto-ref-chara-2.svg",
     "pillars": [
       { "number": "01", "title": "戻せること", "body": "純正への復元を常に想定し、不可逆な加工を避ける" },
       { "number": "02", "title": "説明できること", "body": "何を、なぜ、どう変えたのかを言語化し、記録を残す" },
