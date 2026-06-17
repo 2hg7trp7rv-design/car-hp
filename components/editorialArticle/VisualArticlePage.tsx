@@ -44,7 +44,17 @@ const characterSet = [
 ];
 const fallbackArticleImage = "/images/cbj/columns/custom-regret-card-article-20.webp";
 const text = (value: unknown) => (typeof value === "string" ? value.trim() : "");
-const textList = (value: unknown): string[] => Array.isArray(value) ? value.filter((item): item is string => typeof item === "string" && item.trim().length > 0).map((item) => item.trim()) : [];
+const textValue = (value: unknown): string => {
+  if (typeof value === "string") return value.trim();
+  if (typeof value === "number" || typeof value === "boolean") return String(value);
+  if (!value || typeof value !== "object") return "";
+  const record = value as AnyRecord;
+  const title = textValue(record.title);
+  const description = textValue(record.description ?? record.body ?? record.text ?? record.label);
+  if (title && description) return `${title}：${description}`;
+  return title || description;
+};
+const textList = (value: unknown): string[] => Array.isArray(value) ? value.map(textValue).filter((item) => item.length > 0) : [];
 const objectList = (value: unknown): AnyRecord[] => Array.isArray(value) ? (value.filter((item) => item && typeof item === "object") as AnyRecord[]) : [];
 const stripNumber = (value?: string | null) => String(value ?? "").replace(/^\s*(?:第?\d{1,2}(?:章|話|部|項)|[①②③④⑤⑥⑦⑧⑨⑩]|\d{1,2})\s*[\).）．.、:：-]?\s*/u, "").trim();
 const cx = (...classes: Array<string | false | null | undefined>) => classes.filter(Boolean).join(" ");
@@ -88,7 +98,7 @@ function compact(value?: string | null, limit = 170) {
 }
 function createAutoLayout(article: VisualArticle, labels: EditorialArticleLabels): VisualLayout {
   const sections = normalizeSections(article);
-  const overviewCards = (article.keyPoints?.length ? article.keyPoints : sections.map((section, index) => `${sectionTitle(section, index)}。${firstParagraph(section)}`)).slice(0, 3).map((body, index) => ({ number: String(index + 1).padStart(2, "0"), title: sectionTitle(sections[index] ?? {}, index), body: compact(body, 86) }));
+  const overviewCards = (article.keyPoints?.length ? article.keyPoints : sections.map((section, index) => `${sectionTitle(section, index)}。${firstParagraph(section)}`)).slice(0, 3).map((body, index) => ({ number: String(index + 1).padStart(2, "0"), title: sectionTitle(sections[index] ?? {}, index), body: compact(textValue(body), 86) }));
   const chapters = sections.slice(0, 5).map((section, index) => ({
     label: section.chapterLabel || `CHAPTER ${String(index + 2).padStart(2, "0")}`,
     title: titleLines(sectionTitle(section, index)),
@@ -96,18 +106,18 @@ function createAutoLayout(article: VisualArticle, labels: EditorialArticleLabels
     body: compact(firstParagraph(section), 190),
     risks: firstList(section).slice(0, 4),
     actionTitle: "どうすればいい？",
-    action: compact(textList((blocksOf(section).find((block) => text(block.type) === "callout") ?? {}).items).join("。") || text((blocksOf(section).find((block) => text(block.type) === "callout") ?? {}).body) || "確認する項目を先に決め、取り付け後に状態を見て、説明できる記録を残します。", 150),
+    action: compact(textList((blocksOf(section).find((block) => text(block.type) === "callout") ?? {}).items).join("。") || textValue((blocksOf(section).find((block) => text(block.type) === "callout") ?? {}).body) || "確認する項目を先に決め、取り付け後に状態を見て、説明できる記録を残します。", 150),
     summary: compact(section.deck || firstParagraph(section), 120),
     character: characterSet[(index + 1) % characterSet.length],
     image: article.heroImage ?? fallbackArticleImage,
   }));
-  const checkpointItems = (article.checkpoints?.length ? article.checkpoints : article.keyPoints ?? []).slice(0, 6);
+  const checkpointItems = (article.checkpoints?.length ? article.checkpoints : article.keyPoints ?? []).map(textValue).filter((item) => item.length > 0).slice(0, 6);
   return {
     hero: { label: "保存版", category: categoryFromLabels(labels), title: titleLines(article.title), subtitle: article.eyebrowLabel || labels.footerListLabel, lead: compact(article.lead, 145), score: "10/10", character: characterSet[3], image: article.heroImage ?? fallbackArticleImage },
-    intro: { body: compact(article.lead || article.body, 180), important: compact(article.keyPoints?.[0] || article.checkpoints?.[0] || "あとで困らない形で、戻せることと説明できることを残します。", 120), chips: checkpointItems.slice(0, 3) },
+    intro: { body: compact(article.lead || article.body, 180), important: compact(textValue(article.keyPoints?.[0]) || textValue(article.checkpoints?.[0]) || "あとで困らない形で、戻せることと説明できることを残します。", 120), chips: checkpointItems.slice(0, 3) },
     overview: { label: "CHAPTER 01", title: "まず全体像を\n短く整理する", body: "細かい本文に入る前に、判断に必要なポイントをカードで確認します。", image: article.heroImage ?? fallbackArticleImage, cards: overviewCards },
     chapters,
-    check: { label: "CHECK", title: "先に確認したい\nチェックポイント", body: "本文を読み進める前に、判断を左右する項目だけを先に押さえます。", warning: compact(article.checkpoints?.[0] || article.keyPoints?.[0] || "条件や状態によって判断は変わります。必ず自分の車の状態で確認します。", 120), chips: checkpointItems },
+    check: { label: "CHECK", title: "先に確認したい\nチェックポイント", body: "本文を読み進める前に、判断を左右する項目だけを先に押さえます。", warning: compact(textValue(article.checkpoints?.[0]) || textValue(article.keyPoints?.[0]) || "条件や状態によって判断は変わります。必ず自分の車の状態で確認します。", 120), chips: checkpointItems },
     guide: { label: "GUIDE", title: "避けたい選び方と\n確認したいこと", items: chapters.slice(0, 4).map((chapter, index) => ({ category: stripNumber(chapter.title).split("\n")[0] || `項目${index + 1}`, title: stripNumber(chapter.title).split("\n")[0] || `項目${index + 1}`, body: chapter.body ?? "", avoid: chapter.risks?.[0] || "見た目や評判だけで決める", check: chapter.action || "自分の使い方、戻しやすさ、説明できる記録を確認する" })) },
     tips: { label: "TIPS", title: "後悔しにくい判断材料を\n残す", body: "使い方、状態、記録、戻しやすさを残すほど、整備や売却でも説明しやすくなります。", items: checkpointItems.map((item, index) => ({ title: `確認${String(index + 1).padStart(2, "0")}`, body: compact(item, 70) })) },
     steps: { label: "CHAPTER 06", title: "失敗しにくい\n進め方", items: [{ title: "目的を言葉にする", body: "なぜ必要なのかを先に整理します。" }, { title: "現状を点検する", body: "純正状態や消耗品を確認します。" }, { title: "小さく試す", body: "戻せる範囲から始めます。" }, { title: "結果を見る", body: "取り付け後の変化を確認します。" }, { title: "記録を残す", body: "説明できる状態にします。" }], character: characterSet[3], summary: "順番が大事。まず状態を確認してから、戻せる部品から試そう。記録を残すのを忘れずに。" },
