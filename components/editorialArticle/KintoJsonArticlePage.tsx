@@ -23,7 +23,7 @@ export function KintoJsonArticlePage(props: KintoJsonArticlePageProps) {
   const slug = props.article.slug ?? props.article.layoutId;
 
   if (slug === visualArticleSlug) {
-    return <VisualJsonArticlePage data={visualArticleData} />;
+    return <VisualJsonArticlePage data={visualArticleData} article={props.article} labels={props.labels} />;
   }
 
   return <VisualArticlePage {...props} />;
