@@ -15,46 +15,14 @@ import styles from "@/components/editorialArticle/kinto-json-article.module.css"
 type AnyRecord = Record<string, unknown>;
 type VisualArticle = EditorialArticleViewModel & { slug?: string | null; layoutId?: string | null };
 type VisualArticleProps = Omit<EditorialArticlePageProps, "article"> & { article: VisualArticle };
-type VisualCard = {
-  number?: string;
-  title: string;
-  body: string;
-  avoid?: string;
-  check?: string;
-  category?: string;
-  image?: string;
-  imageAlt?: string;
-};
-type VisualChapter = {
-  label: string;
-  title: string;
-  score?: string;
-  body?: string;
-  risks?: string[];
-  actionTitle?: string;
-  action?: string;
-  summary?: string;
-  character?: string;
-  image?: string;
-  imageAlt?: string;
-  dark?: boolean;
-};
+type VisualCard = { number?: string; title: string; body: string; avoid?: string; check?: string; category?: string; image?: string; imageAlt?: string };
+type VisualChapter = { label: string; title: string; score?: string; body?: string; risks?: string[]; actionTitle?: string; action?: string; summary?: string; character?: string; image?: string; imageAlt?: string; dark?: boolean };
 type VisualRisk = { title: string; body: string };
 type VisualStep = { title: string; body: string };
 type VisualLayout = {
   slug?: string;
   template?: string;
-  hero?: {
-    label?: string;
-    category?: string;
-    title?: string;
-    subtitle?: string;
-    lead?: string;
-    score?: string;
-    character?: string;
-    image?: string;
-    imageAlt?: string;
-  };
+  hero?: { label?: string; category?: string; title?: string; subtitle?: string; lead?: string; score?: string; character?: string; image?: string; imageAlt?: string };
   intro?: { body?: string; important?: string; chips?: string[] };
   overview?: { label?: string; title?: string; body?: string; image?: string; imageAlt?: string; cards?: VisualCard[] };
   chapters?: VisualChapter[];
@@ -70,24 +38,22 @@ type RawSection = { id?: string | null; title?: string | null; displayTitle?: st
 
 const customRegretVisual = customRegretVisualJson as VisualLayout;
 const characterSet = [
-  "/images/cbj/columns/kinto-ref-chara-1.svg",
-  "/images/cbj/columns/kinto-ref-chara-2.svg",
-  "/images/cbj/columns/kinto-ref-chara-3.svg",
-  "/images/cbj/columns/kinto-ref-chara-4.svg",
+  "/images/cbj/columns/cbj-guide-chara-1.PNG",
+  "/images/cbj/columns/cbj-guide-chara-2.PNG",
+  "/images/cbj/columns/cbj-guide-chara-3.PNG",
+  "/images/cbj/columns/cbj-guide-chara-4.PNG",
 ];
 const fallbackArticleImage = "/images/cbj/columns/custom-regret-card-article-20.webp";
-
 const text = (value: unknown) => (typeof value === "string" ? value.trim() : "");
-const textList = (value: unknown): string[] =>
-  Array.isArray(value)
-    ? value.filter((item): item is string => typeof item === "string" && item.trim().length > 0).map((item) => item.trim())
-    : [];
-const objectList = (value: unknown): AnyRecord[] =>
-  Array.isArray(value) ? (value.filter((item) => item && typeof item === "object") as AnyRecord[]) : [];
-const stripNumber = (value?: string | null) =>
-  String(value ?? "").replace(/^\s*(?:第?\d{1,2}(?:章|話|部|項)|[①②③④⑤⑥⑦⑧⑨⑩]|\d{1,2})\s*[\).）．.、:：-]?\s*/u, "").trim();
+const textList = (value: unknown): string[] => Array.isArray(value) ? value.filter((item): item is string => typeof item === "string" && item.trim().length > 0).map((item) => item.trim()) : [];
+const objectList = (value: unknown): AnyRecord[] => Array.isArray(value) ? (value.filter((item) => item && typeof item === "object") as AnyRecord[]) : [];
+const stripNumber = (value?: string | null) => String(value ?? "").replace(/^\s*(?:第?\d{1,2}(?:章|話|部|項)|[①②③④⑤⑥⑦⑧⑨⑩]|\d{1,2})\s*[\).）．.、:：-]?\s*/u, "").trim();
 const cx = (...classes: Array<string | false | null | undefined>) => classes.filter(Boolean).join(" ");
 
+function EagerImage({ src, alt = "", className, width, height }: { src?: string | null; alt?: string; className?: string; width: number; height: number }) {
+  if (!src) return null;
+  return <Image src={src} alt={alt} className={className} width={width} height={height} loading="eager" unoptimized />;
+}
 function sectionTitle(section: RawSection, index: number) {
   return stripNumber(section.displayTitle || section.title) || `CHAPTER ${String(index + 1).padStart(2, "0")}`;
 }
@@ -120,9 +86,7 @@ function compact(value?: string | null, limit = 170) {
 }
 function createAutoLayout(article: VisualArticle, labels: EditorialArticleLabels): VisualLayout {
   const sections = normalizeSections(article);
-  const overviewCards = (article.keyPoints?.length ? article.keyPoints : sections.map((section, index) => `${sectionTitle(section, index)}。${firstParagraph(section)}`))
-    .slice(0, 3)
-    .map((body, index) => ({ number: String(index + 1).padStart(2, "0"), title: sectionTitle(sections[index] ?? {}, index), body: compact(body, 86) }));
+  const overviewCards = (article.keyPoints?.length ? article.keyPoints : sections.map((section, index) => `${sectionTitle(section, index)}。${firstParagraph(section)}`)).slice(0, 3).map((body, index) => ({ number: String(index + 1).padStart(2, "0"), title: sectionTitle(sections[index] ?? {}, index), body: compact(body, 86) }));
   const chapters = sections.slice(0, 5).map((section, index) => ({
     label: section.chapterLabel || `CHAPTER ${String(index + 2).padStart(2, "0")}`,
     title: titleLines(sectionTitle(section, index)),
@@ -166,15 +130,15 @@ function SectionTitle({ label, title, body, dark = false }: { label?: string; ti
 }
 function ImageFigure({ src, alt, dark = false }: { src?: string | null; alt?: string | null; dark?: boolean }) {
   if (!src) return null;
-  return <figure className={cx(styles.mediaFrame, dark && styles.mediaFrameDark)}><Image src={src} alt={alt ?? ""} width={1184} height={666} /></figure>;
+  return <figure className={cx(styles.mediaFrame, dark && styles.mediaFrameDark)}><EagerImage src={src} alt={alt ?? ""} width={1184} height={666} /></figure>;
 }
 function SummaryCard({ src, label = "まとめ", textValue, dark = false }: { src?: string; label?: string; textValue?: string; dark?: boolean }) {
   if (!textValue) return null;
-  return <aside className={cx(styles.summaryCard, dark && styles.summaryCardDark)}>{src ? <Image className={styles.summaryCharacter} src={src} alt="" width={160} height={240} /> : null}<div><span>{label}</span><p>{textValue}</p></div></aside>;
+  return <aside className={cx(styles.summaryCard, dark && styles.summaryCardDark)}>{src ? <EagerImage className={styles.summaryCharacter} src={src} alt="" width={160} height={240} /> : null}<div><span>{label}</span><p>{textValue}</p></div></aside>;
 }
 function Hero({ article, labels, layout }: { article: VisualArticle; labels: EditorialArticleLabels; layout: VisualLayout }) {
   const hero = layout.hero ?? {};
-  return <header className={styles.hero}><div className={styles.container}><div className={styles.heroBadge}>{hero.label ?? "保存版"}</div><div className={styles.heroGrid}><div className={styles.heroCopy}><p className={styles.heroEyebrow}>{hero.category ?? categoryFromLabels(labels)}</p><h1 className={styles.heroTitle}>{String(hero.title ?? titleLines(article.title)).split("\n").map((line, index) => <span className={index === 1 ? styles.heroAccent : undefined} key={index}>{line}<br /></span>)}</h1>{hero.subtitle ? <p className={styles.heroSubtitle}>{hero.subtitle}</p> : null}{hero.lead ? <p className={styles.heroLead}>{hero.lead}</p> : null}</div><div className={styles.heroSide}>{hero.image ? <Image className={styles.heroPhoto} src={hero.image} alt={hero.imageAlt || article.title} width={640} height={400} priority /> : null}<Score value={hero.score} />{hero.character ? <Image className={styles.heroCharacter} src={hero.character} alt="" width={260} height={390} priority /> : null}</div></div></div></header>;
+  return <header className={styles.hero}><div className={styles.container}><div className={styles.heroBadge}>{hero.label ?? "保存版"}</div><div className={styles.heroGrid}><div className={styles.heroCopy}><p className={styles.heroEyebrow}>{hero.category ?? categoryFromLabels(labels)}</p><h1 className={styles.heroTitle}>{String(hero.title ?? titleLines(article.title)).split("\n").map((line, index) => <span className={index === 1 ? styles.heroAccent : undefined} key={index}>{line}<br /></span>)}</h1>{hero.subtitle ? <p className={styles.heroSubtitle}>{hero.subtitle}</p> : null}{hero.lead ? <p className={styles.heroLead}>{hero.lead}</p> : null}</div><div className={styles.heroSide}>{hero.image ? <EagerImage className={styles.heroPhoto} src={hero.image} alt={hero.imageAlt || article.title} width={640} height={400} /> : null}<Score value={hero.score} />{hero.character ? <EagerImage className={styles.heroCharacter} src={hero.character} alt="" width={260} height={390} /> : null}</div></div></div></header>;
 }
 function Intro({ layout, linkIndex }: { layout: VisualLayout; linkIndex: Record<string, InternalLinkMeta> }) {
   const intro = layout.intro;
@@ -184,7 +148,7 @@ function Intro({ layout, linkIndex }: { layout: VisualLayout; linkIndex: Record<
 function Overview({ layout, linkIndex }: { layout: VisualLayout; linkIndex: Record<string, InternalLinkMeta> }) {
   const overview = layout.overview;
   if (!overview) return null;
-  return <section className={cx(styles.section, styles.sectionWhite)}><div className={styles.container}><SectionTitle label={overview.label} title={overview.title} body={overview.body} /><ImageFigure src={overview.image} alt={overview.imageAlt} /><div className={styles.overviewGrid}>{overview.cards?.map((card, index) => <article className={styles.card} key={`${card.title}-${index}`}>{card.image ? <Image className={styles.cardImage} src={card.image} alt={card.imageAlt || card.title} width={640} height={420} /> : null}<span className={styles.cardNumber}>{card.number ?? String(index + 1).padStart(2, "0")}</span><h3 className={styles.cardTitle}>{card.title}</h3><Rich value={card.body} linkIndex={linkIndex} className={styles.cardBody} /></article>)}</div></div></section>;
+  return <section className={cx(styles.section, styles.sectionWhite)}><div className={styles.container}><SectionTitle label={overview.label} title={overview.title} body={overview.body} /><ImageFigure src={overview.image} alt={overview.imageAlt} /><div className={styles.overviewGrid}>{overview.cards?.map((card, index) => <article className={styles.card} key={`${card.title}-${index}`}>{card.image ? <EagerImage className={styles.cardImage} src={card.image} alt={card.imageAlt || card.title} width={640} height={420} /> : null}<span className={styles.cardNumber}>{card.number ?? String(index + 1).padStart(2, "0")}</span><h3 className={styles.cardTitle}>{card.title}</h3><Rich value={card.body} linkIndex={linkIndex} className={styles.cardBody} /></article>)}</div></div></section>;
 }
 function Chapter({ chapter, index, linkIndex }: { chapter: VisualChapter; index: number; linkIndex: Record<string, InternalLinkMeta> }) {
   const dark = Boolean(chapter.dark);
@@ -230,7 +194,6 @@ function Summary({ layout, linkIndex, article }: { layout: VisualLayout; linkInd
 function MetaSection({ labels }: { labels: EditorialArticleLabels }) {
   return <section className={styles.metaSection}><div className={styles.container}><footer className={styles.footerCompact}><b>CAR BOUTIQUE JOURNAL</b><nav className={styles.footerLinks}><Link href={labels.footerListHref}>{labels.footerListLabel}</Link><Link href="/legal/privacy">Privacy</Link><Link href="/legal/terms">Terms</Link><Link href="/contact">Contact</Link></nav><small>© 2026 CAR BOUTIQUE JOURNAL</small></footer></div></section>;
 }
-
 export function VisualArticlePage({ article, labels, linkIndex }: VisualArticleProps) {
   const layout = resolveLayout(article, labels);
   return <main className={styles.articlePage} data-cbj-visual-article><Hero article={article} labels={labels} layout={layout} /><Intro layout={layout} linkIndex={linkIndex} /><Overview layout={layout} linkIndex={linkIndex} />{layout.chapters?.map((chapter, index) => <Chapter key={`${chapter.label}-${chapter.title}`} chapter={chapter} index={index} linkIndex={linkIndex} />)}<DarkRisk layout={layout} /><CheckSection layout={layout} /><GuideCompare layout={layout} /><TipsSection layout={layout} linkIndex={linkIndex} /><Steps layout={layout} /><Mindset layout={layout} /><Summary layout={layout} linkIndex={linkIndex} article={article} /><MetaSection labels={labels} /></main>;
