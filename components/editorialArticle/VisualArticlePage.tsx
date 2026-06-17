@@ -126,7 +126,8 @@ function createAutoLayout(article: VisualArticle, labels: EditorialArticleLabels
   };
 }
 function resolveLayout(article: VisualArticle, labels: EditorialArticleLabels) {
-  if (article.slug === customRegretVisual.slug || article.layoutId === customRegretVisual.slug) return customRegretVisual;
+  const visualSlug = typeof customRegretVisual.slug === "string" && customRegretVisual.slug.trim().length > 0 ? customRegretVisual.slug : null;
+  if (visualSlug && (article.slug === visualSlug || article.layoutId === visualSlug)) return customRegretVisual;
   return createAutoLayout(article, labels);
 }
 function Rich({ value, linkIndex, className }: { value?: string | null; linkIndex: Record<string, InternalLinkMeta>; className?: string }) {
