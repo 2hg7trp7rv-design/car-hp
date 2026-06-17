@@ -17,7 +17,7 @@ type KintoJsonArticlePageProps = {
 };
 
 const visualArticleSlug = "modern-car-custom-regret-reason-column";
-const visualArticleData = articleData as VisualArticleData;
+const visualArticleData = articleData as unknown as VisualArticleData;
 
 export function KintoJsonArticlePage(props: KintoJsonArticlePageProps) {
   const slug = props.article.slug ?? props.article.layoutId;
