@@ -55,6 +55,15 @@ function RichText({ value, className }: { value: string; className?: string }) {
   })}</span>;
 }
 
+function trimUrl(url: string) {
+  return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+}
+
+function compact(value: string | undefined, limit = 120) {
+  const clean = String(value ?? "").replace(/\s+/g, " ").trim();
+  return clean.length > limit ? `${clean.slice(0, limit)}…` : clean;
+}
+
 function TopNav({ data }: { data: VisualArticleData["meta"] }) {
   return <nav className={styles.topNav}><div className={styles.topNavInner}><span className={styles.navBrand}>CAR BOUTIQUE</span><span className={styles.navLesson}><span className={styles.navLessonJp}>講座</span> / LESSON {data.lessonNumber}</span></div></nav>;
 }
@@ -92,11 +101,11 @@ function ChapterHeader({ number, title, description }: Pick<ChapterData, "number
   }
   if (lastIndex < title.length) segments.push({ text: title.slice(lastIndex), accent: false });
   if (segments.length === 0) segments.push({ text: title, accent: false });
-
   return <div className={styles.chapterHeader}><div className={styles.chapterWatermark}>{number}</div><span className={styles.chapterLabel}>CHAPTER</span><h2 className={styles.chapterTitle}>{segments.map((segment, index) => <span key={index} className={segment.accent ? styles.chapterAccent : ""}>{segment.text}</span>)}</h2><p className={styles.chapterDescription}>{description}</p></div>;
 }
 
-function SystemCards({ items }: { items: SystemCardItem[] }) {
+function SystemCards({ items }: { items?: SystemCardItem[] }) {
+  if (!items?.length) return null;
   return <div className={styles.systemList}>{items.map((sys) => <div key={sys.number} className={styles.systemCard}><Icon name={sys.icon} className={styles.systemIcon} /><div><span className={styles.systemNum}>SYSTEM {sys.number}</span><h4 className={styles.systemTitle}>{sys.title}</h4><p className={styles.systemDesc}>{sys.description}</p></div></div>)}</div>;
 }
 
@@ -136,10 +145,11 @@ function ChapterRenderer({ chapter }: { chapter: ChapterData }) {
 }
 
 function RelatedGuideSection({ article, labels }: { article?: EditorialArticleViewModel; labels?: EditorialArticleLabels }) {
-  const actions = article?.actionBox?.actions ?? [];
+  const actions = (article?.actionBox?.actions ?? []).slice(0, 3);
   const related = article?.relatedItems ?? [];
-  if (!actions.length && !related.length) return null;
-  return <section className={styles.layoutSection}><div className={styles.container}><FadeIn><SectionLabel en="RELATED GUIDE" ja={labels?.relatedTitle ?? "関連する実用ガイド"} />{article?.actionBox?.body ? <p className={styles.layoutLead}>{article.actionBox.body}</p> : null}<div className={styles.relatedGuideGrid}>{actions.map((action) => <Link key={action.href} href={action.href} className={styles.relatedGuideCard}><span>GUIDE</span><b>{action.label}</b><ArrowRightIcon className={styles.relatedGuideArrow} /></Link>)}{related.map((item) => <Link key={item.href} href={item.href} className={styles.relatedGuideCard}><span>{item.metaLabel || "RELATED"}</span><b>{item.title}</b>{item.summary ? <p>{item.summary}</p> : null}<ArrowRightIcon className={styles.relatedGuideArrow} /></Link>)}</div></FadeIn></div></section>;
+  const cards = actions.length ? actions.map((action) => ({ href: action.href, meta: "GUIDE", title: action.label })) : related.slice(0, 3).map((item) => ({ href: item.href, meta: item.metaLabel || "RELATED", title: item.title }));
+  if (!cards.length) return null;
+  return <section className={styles.layoutSection}><div className={styles.container}><FadeIn><SectionLabel en="RELATED GUIDE" ja={labels?.relatedTitle ?? "関連する実用ガイド"} />{article?.actionBox?.body ? <p className={styles.layoutLead}>{compact(article.actionBox.body, 120)}</p> : null}<div className={styles.relatedGuideGrid}>{cards.map((card) => <Link key={card.href} href={card.href} className={styles.relatedGuideCard}><span>{card.meta}</span><b>{card.title}</b><ArrowRightIcon className={styles.relatedGuideArrow} /></Link>)}</div></FadeIn></div></section>;
 }
 
 function FaqSection({ article }: { article?: EditorialArticleViewModel }) {
@@ -151,12 +161,16 @@ function FaqSection({ article }: { article?: EditorialArticleViewModel }) {
 function ReferencesSection({ article, labels }: { article?: EditorialArticleViewModel; labels?: EditorialArticleLabels }) {
   const sources = article?.sources ?? [];
   if (!sources.length) return null;
-  return <section className={styles.layoutSection}><div className={styles.container}><FadeIn><SectionLabel en="REFERENCES" ja={labels?.sourcesTitle ?? "出典・参考資料"} /><ol className={styles.referenceList}>{sources.map((source, index) => <li key={source}><span>{String(index + 1).padStart(2, "0")}</span><a href={source} target="_blank" rel="noreferrer">{source.replace(/^https?:\/\//, "").replace(/\/$/, "")}</a></li>)}</ol></FadeIn></div></section>;
+  const primary = sources.slice(0, 5);
+  const rest = sources.slice(5);
+  const renderItem = (source: string, index: number) => <li key={source}><span>{String(index + 1).padStart(2, "0")}</span><a href={source} target="_blank" rel="noreferrer">{trimUrl(source)}</a></li>;
+  return <section className={styles.layoutSection}><div className={styles.container}><FadeIn><SectionLabel en="REFERENCES" ja={labels?.sourcesTitle ?? "出典・参考資料"} /><ol className={styles.referenceList}>{primary.map(renderItem)}</ol>{rest.length ? <details className={styles.faqItem}><summary>その他の参考資料を表示</summary><ol className={styles.referenceList}>{rest.map((source, index) => renderItem(source, index + primary.length))}</ol></details> : null}</FadeIn></div></section>;
 }
 
 function UpdateNote({ article, labels }: { article?: EditorialArticleViewModel; labels?: EditorialArticleLabels }) {
   if (!article?.updateText) return null;
-  return <section className={styles.updateNoteSection}><div className={styles.container}><FadeIn><SectionLabel en="UPDATE NOTE" ja={labels?.updateTitle ?? "更新履歴"} /><div className={styles.updateNote}>{article.updateText}</div></FadeIn></div></section>;
+  const [date, ...body] = article.updateText.split("：");
+  return <section className={styles.updateNoteSection}><div className={styles.container}><FadeIn><SectionLabel en="UPDATE NOTE" ja={labels?.updateTitle ?? "更新履歴"} /><div className={styles.updateNote}><strong>{date}</strong>{body.length ? <details className={styles.faqItem}><summary>更新内容を表示</summary><p>{body.join("：")}</p></details> : null}</div></FadeIn></div></section>;
 }
 
 function Footer() {
@@ -164,5 +178,5 @@ function Footer() {
 }
 
 export function VisualJsonArticlePage({ data, article, labels }: VisualJsonArticlePageProps) {
-  return <div className={styles.page} data-cbj-visual-json-article><TopNav data={data.meta} /><Hero data={data.meta} /><section className={styles.sectionSpacing}><div className={styles.container}><FadeIn><JunaBubble data={data.junaIntro} /></FadeIn></div></section><IndexNav items={data.indexItems} /><Divider />{data.chapters.map((chapter) => <ChapterRenderer key={chapter.id} chapter={chapter} />)}<StandaloneCheck data={data.checkSection} /><Divider /><section id="chapter05" className={styles.chapter}><div className={styles.container}><FadeIn><ChapterHeader number="05" title="失敗しにくい進め方" description="順番が大事。派手さより、戻せること・説明できることを軸に。" /></FadeIn><div className={styles.chapterJuna}><FadeIn><JunaBubble data={{ text: "カスタムは自由に楽しめる。ただし、順番が大事。見た目や価格だけで選ばず、戻せることと説明できることを残す。" }} /></FadeIn></div><StepsSection items={data.steps} /><EditorNote data={data.editorNote} /><Divider /><FadeIn><FinalSummary data={data.finalSummary} /></FadeIn></div></section><RelatedGuideSection article={article} labels={labels} /><FaqSection article={article} /><ReferencesSection article={article} labels={labels} /><UpdateNote article={article} labels={labels} /><Footer /></div>;
+  return <div className={styles.page} data-cbj-visual-json-article><TopNav data={data.meta} /><Hero data={data.meta} /><section className={styles.sectionSpacing}><div className={styles.container}><FadeIn><JunaBubble data={data.junaIntro} /></FadeIn></div></section><IndexNav items={data.indexItems} /><Divider />{data.chapters.map((chapter) => <ChapterRenderer key={chapter.id} chapter={chapter} />)}<StandaloneCheck data={data.checkSection} /><Divider /><section id="chapter05" className={styles.chapter}><div className={styles.container}><FadeIn><ChapterHeader number="05" title="失敗しにくい進め方" description="順番が大事。派手さより、戻せること・説明できることを軸に。" /></FadeIn><div className={styles.chapterJuna}><FadeIn><JunaBubble data={{ text: "カスタムは自由に楽しめる。ただし、順番が大事。戻せることと説明できることを残す。" }} /></FadeIn></div><StepsSection items={data.steps} /><EditorNote data={data.editorNote} /><Divider /><FadeIn><FinalSummary data={data.finalSummary} /></FadeIn><div className={styles.chapterJuna}><FadeIn><JunaBubble data={data.finalJuna} /></FadeIn></div></div></section><RelatedGuideSection article={article} labels={labels} /><FaqSection article={article} /><ReferencesSection article={article} labels={labels} /><UpdateNote article={article} labels={labels} /><Footer /></div>;
 }
