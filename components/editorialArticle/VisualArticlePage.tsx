@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { renderInlineMarkdown } from "@/components/content/InlineMarkdown";
@@ -52,7 +51,10 @@ const cx = (...classes: Array<string | false | null | undefined>) => classes.fil
 
 function EagerImage({ src, alt = "", className, width, height }: { src?: string | null; alt?: string; className?: string; width: number; height: number }) {
   if (!src) return null;
-  return <Image src={src} alt={alt} className={className} width={width} height={height} loading="eager" unoptimized />;
+  // Native img is intentional here: full-page PDF/screenshot capture was missing Next.js optimized images.
+  // Direct public paths render synchronously and avoid the gray placeholder state.
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={src} alt={alt} className={className} width={width} height={height} loading="eager" decoding="sync" />;
 }
 function sectionTitle(section: RawSection, index: number) {
   return stripNumber(section.displayTitle || section.title) || `CHAPTER ${String(index + 1).padStart(2, "0")}`;
