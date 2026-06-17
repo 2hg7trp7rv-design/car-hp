@@ -34,7 +34,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
         setVisible(true);
         observer.disconnect();
       }
-    }, { threshold: 0.12 });
+    }, { threshold: 0.15 });
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
@@ -51,11 +51,11 @@ function RichText({ value, className }: { value: string; className?: string }) {
 }
 
 function Divider() {
-  return <div className={styles.divider} aria-hidden="true" />;
+  return <div className={styles.dividerWrap}><div className={styles.divider} aria-hidden="true" /></div>;
 }
 
 function TopNav({ data }: { data: VisualArticleData["meta"] }) {
-  return <nav className={styles.topNav}><div><b>CAR BOUTIQUE</b><span>講座 / LESSON {data.lessonNumber}</span></div></nav>;
+  return <nav className={styles.topNav}><div><b>CAR BOUTIQUE</b><span><small>講座</small> / LESSON {data.lessonNumber}</span></div></nav>;
 }
 
 function JunaBubble({ data }: { data: JunaBubbleData }) {
@@ -90,12 +90,12 @@ function Mechanism({ data }: { data: MechanismItem }) {
 
 function RiskCards({ items = [] }: { items?: RiskItem[] }) {
   if (!items.length) return null;
-  return <section className={`${styles.insightSection} ${styles.riskSection}`}><div className={styles.insightHead}><span>!</span><div><b>ここがヤバい</b><p>後から困りやすいポイント</p></div></div><div className={styles.risks}>{items.map((item) => <article key={item.title}><span>×</span><h3>{item.title}</h3><p>{item.description}</p></article>)}</div></section>;
+  return <section className={`${styles.insightSection} ${styles.riskSection}`}><div className={styles.insightHead}><span>!</span><div><b>ここがヤバい</b><p>RISKS TO WATCH</p></div></div><div className={styles.risks}>{items.map((item) => <article key={item.title}><span>×</span><h3>{item.title}</h3><p>{item.description}</p></article>)}</div></section>;
 }
 
 function CheckCards({ items = [] }: { items?: CheckItem[] }) {
   if (!items.length) return null;
-  return <section className={`${styles.insightSection} ${styles.checkCardSection}`}><div className={styles.insightHead}><span>✓</span><div><b>じゃあこうしよう</b><p>取り付け前後に残したい確認</p></div></div><div className={styles.checks}>{items.map((item) => <article key={item.title}><span>✓</span><h3>{item.title}</h3><p>{item.description}</p></article>)}</div></section>;
+  return <section className={`${styles.insightSection} ${styles.checkCardSection}`}><div className={styles.insightHead}><span>✓</span><div><b>じゃあ、こうしよう</b><p>HOW TO DO IT RIGHT</p></div></div><div className={styles.checks}>{items.map((item) => <article key={item.title}><span>✓</span><h3>{item.title}</h3><p>{item.description}</p></article>)}</div></section>;
 }
 
 function Chapter({ chapter }: { chapter: ChapterData }) {
@@ -107,11 +107,15 @@ function CheckSection({ data }: { data: VisualArticleData["checkSection"] }) {
 }
 
 function Steps({ items }: { items: StepItem[] }) {
-  return <ol className={styles.steps}>{items.map((item) => <li key={item.number}><span>+{String(item.number).padStart(1, "0")}</span><div><h3>{item.title}</h3><p>{item.description}</p></div></li>)}</ol>;
+  return <ol className={styles.steps}>{items.map((item) => <li key={item.number}><span>+{String(item.number)}</span><div><h3>{item.title}</h3><p>{item.description}</p></div></li>)}</ol>;
+}
+
+function FinalSummary({ data }: { data: VisualArticleData["finalSummary"] }) {
+  return <div className={styles.summary}><SectionLabel en={data.label} ja={data.subLabel} /><h2><span>大事なのは、</span><strong>戻せること</strong><span>と</span><strong>説明できること</strong></h2>{data.items.map((item) => <article key={item.num}><span>{item.num}</span><h3>{item.title}</h3><p>{item.desc}</p></article>)}</div>;
 }
 
 function FinalSection({ data }: { data: VisualArticleData }) {
-  return <section id="chapter05" className={styles.final}><div className={styles.container}><Reveal><ChapterHeader chapter={{ number: "05", title: "失敗しにくい進め方", description: "順番が大事。派手さより、戻せること・説明できることを軸に。" }} /></Reveal><Reveal><Steps items={data.steps} /></Reveal><Reveal><Divider /><blockquote>{data.editorNote.text.map((line, index) => <span key={line} className={data.editorNote.accentParts.includes(index) ? styles.noteAccent : undefined}>{line}</span>)}<cite>— {data.editorNote.attribution}</cite></blockquote></Reveal><Reveal><div className={styles.summary}><SectionLabel en={data.finalSummary.label} ja={data.finalSummary.subLabel} /><h2>{data.finalSummary.title}</h2>{data.finalSummary.items.map((item) => <article key={item.num}><span>{item.num}</span><h3>{item.title}</h3><p>{item.desc}</p></article>)}</div></Reveal><Reveal><JunaBubble data={data.finalJuna} /></Reveal></div></section>;
+  return <section id="chapter05" className={styles.final}><div className={styles.container}><Reveal><ChapterHeader chapter={{ number: "05", title: "失敗しにくい進め方", description: "順番が大事。派手さより、戻せること・説明できることを軸に。" }} /></Reveal><div className={styles.bubbleStack}><Reveal><JunaBubble data={{ text: "カスタムは自由に楽しめる。ただし、見た目や価格だけで選ばないこと。戻せることと説明できることを残す。" }} /></Reveal></div><Reveal><Steps items={data.steps} /></Reveal><Reveal><blockquote>{data.editorNote.text.map((line, index) => <span key={line} className={data.editorNote.accentParts.includes(index) ? styles.noteAccent : undefined}>{line}</span>)}<cite>— {data.editorNote.attribution}</cite></blockquote></Reveal><Reveal><Divider /></Reveal><Reveal><FinalSummary data={data.finalSummary} /></Reveal><Reveal><JunaBubble data={data.finalJuna} /></Reveal></div></section>;
 }
 
 function cleanUrl(url: string) {
@@ -129,9 +133,9 @@ function ArticleAppendix({ article, labels }: { article?: EditorialArticleViewMo
 }
 
 function Footer() {
-  return <footer className={styles.footer}><div><b>CAR BOUTIQUE JOURNAL</b><nav><Link href="/cars">CARS</Link><Link href="/guide">GUIDE</Link><Link href="/column">COLUMN</Link><Link href="/heritage">HERITAGE</Link></nav><small>© 2026 CAR BOUTIQUE JOURNAL</small></div></footer>;
+  return <footer className={styles.footer}><div><b>CAR BOUTIQUE JOURNAL</b><nav><Link href="/column">コラム一覧へ</Link><Link href="/legal/privacy">Privacy</Link><Link href="/legal/terms">Terms</Link><Link href="/contact">Contact</Link></nav><small>© 2026 CAR BOUTIQUE JOURNAL</small></div></footer>;
 }
 
 export function VisualJsonArticlePage({ data, article, labels }: VisualJsonArticlePageProps) {
-  return <main className={styles.page} data-cbj-visual-json-article><TopNav data={data.meta} /><Hero data={data.meta} /><section className={styles.intro}><div className={styles.container}><Reveal><JunaBubble data={data.junaIntro} /></Reveal></div></section><IndexNav items={data.indexItems} />{data.chapters.map((chapter) => <Chapter key={chapter.id} chapter={chapter} />)}<CheckSection data={data.checkSection} /><FinalSection data={data} /><ArticleAppendix article={article} labels={labels} /><Footer /></main>;
+  return <main className={styles.page} data-cbj-visual-json-article><TopNav data={data.meta} /><Hero data={data.meta} /><section className={styles.intro}><div className={styles.container}><Reveal><JunaBubble data={data.junaIntro} /></Reveal></div></section><IndexNav items={data.indexItems} /><div className={styles.container}><Reveal><Divider /></Reveal></div>{data.chapters.map((chapter) => <Chapter key={chapter.id} chapter={chapter} />)}<CheckSection data={data.checkSection} /><div className={styles.container}><Reveal><Divider /></Reveal></div><FinalSection data={data} /><ArticleAppendix article={article} labels={labels} /><Footer /></main>;
 }
