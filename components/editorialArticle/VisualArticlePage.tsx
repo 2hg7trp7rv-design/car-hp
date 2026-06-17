@@ -35,7 +35,7 @@ type VisualLayout = {
 };
 type RawSection = { id?: string | null; title?: string | null; displayTitle?: string | null; deck?: string | null; chapterLabel?: string | null; blocks?: unknown };
 
-const customRegretVisual = customRegretVisualJson as VisualLayout;
+const customRegretVisual = customRegretVisualJson as unknown as VisualLayout;
 const characterSet = [
   "/images/cbj/columns/cbj-guide-chara-1.PNG",
   "/images/cbj/columns/cbj-guide-chara-2.PNG",
