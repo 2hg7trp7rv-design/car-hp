@@ -2,11 +2,18 @@
 
 /* eslint-disable @next/next/no-img-element */
 
+import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { ChapterData, CheckItem, JunaBubbleData, MechanismItem, RiskItem, StepItem, SystemCardItem, VisualArticleData } from "@/types/visual-article";
+import type { EditorialArticleLabels, EditorialArticleViewModel } from "@/components/editorialArticle/EditorialArticlePage";
 import styles from "@/components/editorialArticle/visual-json-article.module.css";
 
 type IconProps = { className?: string };
+type VisualJsonArticlePageProps = {
+  data: VisualArticleData;
+  article?: EditorialArticleViewModel;
+  labels?: EditorialArticleLabels;
+};
 
 function Icon({ name, className }: IconProps & { name?: string }) {
   const label = name === "Zap" ? "⚡" : name === "CircleDot" ? "◎" : "〰";
@@ -41,6 +48,10 @@ function RichText({ value, className }: { value: string; className?: string }) {
     const match = part.match(/^<strong>(.*?)<\/strong>$/);
     return match ? <strong key={index}>{match[1]}</strong> : <span key={index}>{part}</span>;
   })}</span>;
+}
+
+function Divider() {
+  return <div className={styles.divider} aria-hidden="true" />;
 }
 
 function TopNav({ data }: { data: VisualArticleData["meta"] }) {
@@ -79,12 +90,12 @@ function Mechanism({ data }: { data: MechanismItem }) {
 
 function RiskCards({ items = [] }: { items?: RiskItem[] }) {
   if (!items.length) return null;
-  return <div className={styles.risks}>{items.map((item) => <article key={item.title}><span>×</span><h3>{item.title}</h3><p>{item.description}</p></article>)}</div>;
+  return <section className={`${styles.insightSection} ${styles.riskSection}`}><div className={styles.insightHead}><span>!</span><div><b>ここがヤバい</b><p>後から困りやすいポイント</p></div></div><div className={styles.risks}>{items.map((item) => <article key={item.title}><span>×</span><h3>{item.title}</h3><p>{item.description}</p></article>)}</div></section>;
 }
 
 function CheckCards({ items = [] }: { items?: CheckItem[] }) {
   if (!items.length) return null;
-  return <div className={styles.checks}>{items.map((item) => <article key={item.title}><span>✓</span><h3>{item.title}</h3><p>{item.description}</p></article>)}</div>;
+  return <section className={`${styles.insightSection} ${styles.checkCardSection}`}><div className={styles.insightHead}><span>✓</span><div><b>じゃあこうしよう</b><p>取り付け前後に残したい確認</p></div></div><div className={styles.checks}>{items.map((item) => <article key={item.title}><span>✓</span><h3>{item.title}</h3><p>{item.description}</p></article>)}</div></section>;
 }
 
 function Chapter({ chapter }: { chapter: ChapterData }) {
@@ -96,13 +107,31 @@ function CheckSection({ data }: { data: VisualArticleData["checkSection"] }) {
 }
 
 function Steps({ items }: { items: StepItem[] }) {
-  return <ol className={styles.steps}>{items.map((item) => <li key={item.number}><span>{String(item.number).padStart(2, "0")}</span><div><h3>{item.title}</h3><p>{item.description}</p></div></li>)}</ol>;
+  return <ol className={styles.steps}>{items.map((item) => <li key={item.number}><span>+{String(item.number).padStart(1, "0")}</span><div><h3>{item.title}</h3><p>{item.description}</p></div></li>)}</ol>;
 }
 
 function FinalSection({ data }: { data: VisualArticleData }) {
-  return <section id="chapter05" className={styles.final}><div className={styles.container}><Reveal><ChapterHeader chapter={{ number: "05", title: "失敗しにくい進め方", description: "順番が大事。派手さより、戻せること・説明できることを軸に。" }} /></Reveal><Reveal><Steps items={data.steps} /></Reveal><Reveal><blockquote>{data.editorNote.text.map((line, index) => <span key={line} className={data.editorNote.accentParts.includes(index) ? styles.noteAccent : undefined}>{line}</span>)}<cite>{data.editorNote.attribution}</cite></blockquote></Reveal><Reveal><div className={styles.summary}><SectionLabel en={data.finalSummary.label} ja={data.finalSummary.subLabel} /><h2>{data.finalSummary.title}</h2>{data.finalSummary.items.map((item) => <article key={item.num}><span>{item.num}</span><h3>{item.title}</h3><p>{item.desc}</p></article>)}</div></Reveal><Reveal><JunaBubble data={data.finalJuna} /></Reveal></div></section>;
+  return <section id="chapter05" className={styles.final}><div className={styles.container}><Reveal><ChapterHeader chapter={{ number: "05", title: "失敗しにくい進め方", description: "順番が大事。派手さより、戻せること・説明できることを軸に。" }} /></Reveal><Reveal><Steps items={data.steps} /></Reveal><Reveal><Divider /><blockquote>{data.editorNote.text.map((line, index) => <span key={line} className={data.editorNote.accentParts.includes(index) ? styles.noteAccent : undefined}>{line}</span>)}<cite>— {data.editorNote.attribution}</cite></blockquote></Reveal><Reveal><div className={styles.summary}><SectionLabel en={data.finalSummary.label} ja={data.finalSummary.subLabel} /><h2>{data.finalSummary.title}</h2>{data.finalSummary.items.map((item) => <article key={item.num}><span>{item.num}</span><h3>{item.title}</h3><p>{item.desc}</p></article>)}</div></Reveal><Reveal><JunaBubble data={data.finalJuna} /></Reveal></div></section>;
 }
 
-export function VisualJsonArticlePage({ data }: { data: VisualArticleData }) {
-  return <main className={styles.page} data-cbj-visual-json-article><TopNav data={data.meta} /><Hero data={data.meta} /><section className={styles.intro}><div className={styles.container}><Reveal><JunaBubble data={data.junaIntro} /></Reveal></div></section><IndexNav items={data.indexItems} />{data.chapters.map((chapter) => <Chapter key={chapter.id} chapter={chapter} />)}<CheckSection data={data.checkSection} /><FinalSection data={data} /><footer className={styles.footer}>CAR BOUTIQUE JOURNAL</footer></main>;
+function cleanUrl(url: string) {
+  return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+}
+
+function ArticleAppendix({ article, labels }: { article?: EditorialArticleViewModel; labels?: EditorialArticleLabels }) {
+  const related = article?.relatedItems ?? [];
+  const sources = article?.sources ?? [];
+  const faq = article?.faq ?? [];
+  const actions = article?.actionBox?.actions ?? [];
+  const hasAppendix = related.length > 0 || sources.length > 0 || faq.length > 0 || Boolean(article?.updateText) || actions.length > 0;
+  if (!hasAppendix) return null;
+  return <section className={styles.appendix}><div className={styles.container}>{actions.length > 0 ? <div className={styles.actionLinks}><h2>{article?.actionBox?.title ?? "関連する判断記事"}</h2>{article?.actionBox?.body ? <p>{article.actionBox.body}</p> : null}<div>{actions.map((action) => <Link href={action.href} key={action.href}>{action.label}<span>→</span></Link>)}</div></div> : null}{related.length > 0 ? <div className={styles.related}><h2>{labels?.relatedTitle ?? "関連記事"}</h2>{related.map((item) => <Link href={item.href} key={item.href}><span>{item.metaLabel}</span><b>{item.title}</b><p>{item.summary}</p></Link>)}</div> : null}{faq.length > 0 ? <div className={styles.faq}><h2>FAQ</h2>{faq.map((item) => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div> : null}{sources.length > 0 ? <div className={styles.sources}><h2>{labels?.sourcesTitle ?? "出典・参考資料"}</h2><ol>{sources.map((source) => <li key={source}><a href={source} target="_blank" rel="noreferrer">{cleanUrl(source)}</a></li>)}</ol></div> : null}{article?.updateText ? <div className={styles.update}><h2>{labels?.updateTitle ?? "更新履歴"}</h2><p>{article.updateText}</p></div> : null}</div></section>;
+}
+
+function Footer() {
+  return <footer className={styles.footer}><div><b>CAR BOUTIQUE JOURNAL</b><nav><Link href="/cars">CARS</Link><Link href="/guide">GUIDE</Link><Link href="/column">COLUMN</Link><Link href="/heritage">HERITAGE</Link></nav><small>© 2026 CAR BOUTIQUE JOURNAL</small></div></footer>;
+}
+
+export function VisualJsonArticlePage({ data, article, labels }: VisualJsonArticlePageProps) {
+  return <main className={styles.page} data-cbj-visual-json-article><TopNav data={data.meta} /><Hero data={data.meta} /><section className={styles.intro}><div className={styles.container}><Reveal><JunaBubble data={data.junaIntro} /></Reveal></div></section><IndexNav items={data.indexItems} />{data.chapters.map((chapter) => <Chapter key={chapter.id} chapter={chapter} />)}<CheckSection data={data.checkSection} /><FinalSection data={data} /><ArticleAppendix article={article} labels={labels} /><Footer /></main>;
 }
