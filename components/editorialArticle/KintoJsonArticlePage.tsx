@@ -157,7 +157,7 @@ const visualArticleFinalTuningCss = `
   padding-top: 38px !important;
 }
 [data-cbj-visual-json-article] [class*="stepsList"] {
-  gap: 28px !important;
+  gap: 46px !important;
   padding-left: 0 !important;
 }
 [data-cbj-visual-json-article] [class*="stepsList"]::before {
@@ -168,7 +168,7 @@ const visualArticleFinalTuningCss = `
 }
 [data-cbj-visual-json-article] [class*="stepItem"] {
   grid-template-columns: 40px minmax(0, 1fr) !important;
-  gap: 16px !important;
+  gap: 20px !important;
   align-items: start !important;
 }
 [data-cbj-visual-json-article] [class*="stepNumber"] {
@@ -178,13 +178,13 @@ const visualArticleFinalTuningCss = `
   font-size: 18px !important;
 }
 [data-cbj-visual-json-article] [class*="stepTitle"] {
-  font-size: 15.5px !important;
-  line-height: 1.45 !important;
+  font-size: 18px !important;
+  line-height: 1.48 !important;
 }
 [data-cbj-visual-json-article] [class*="stepDesc"] {
-  font-size: 12.5px !important;
-  line-height: 1.78 !important;
-  margin-top: 6px !important;
+  font-size: 14.5px !important;
+  line-height: 1.9 !important;
+  margin-top: 8px !important;
 }
 
 [data-cbj-visual-json-article] [class*="finalSummaryTitle"] {
@@ -243,11 +243,11 @@ const visualArticleFinalTuningCss = `
     padding: 7px 13px !important;
   }
   [data-cbj-visual-json-article] [class*="stepsList"] {
-    gap: 26px !important;
+    gap: 44px !important;
   }
   [data-cbj-visual-json-article] [class*="stepItem"] {
     grid-template-columns: 38px minmax(0, 1fr) !important;
-    gap: 14px !important;
+    gap: 18px !important;
   }
   [data-cbj-visual-json-article] [class*="stepNumber"] {
     width: 34px !important;
