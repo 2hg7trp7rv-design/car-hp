@@ -45,93 +45,95 @@ function SegmentedTitle({ title, accentParts }: { title: string; accentParts: nu
 
 function VisualPolishStyles() {
   const css = `
-    /* 1組目：RISK / CHECK を理想の紙面カード構造へ */
-    .${styles.riskSection}{background:transparent!important;border:0!important;padding:0!important;border-radius:0!important;}
-    .${styles.riskHeader}{display:grid!important;grid-template-columns:44px 1fr!important;gap:18px!important;align-items:center!important;margin-bottom:28px!important;}
-    .${styles.riskIcon}{width:34px!important;height:34px!important;border-radius:10px!important;background:transparent!important;border:2px solid #3A8B8B!important;color:#3A8B8B!important;}
-    .${styles.riskIconText}{font-size:18px!important;line-height:1!important;color:#3A8B8B!important;}
-    .${styles.riskTitle}{font-family:'Noto Serif JP',serif!important;font-size:26px!important;line-height:1.25!important;letter-spacing:.02em!important;font-weight:700!important;color:#253032!important;}
-    .${styles.riskSubtitle}{font-size:12px!important;letter-spacing:.25em!important;color:#9B958E!important;margin-top:8px!important;}
-    .${styles.riskList}{display:grid!important;gap:18px!important;}
-    .${styles.riskCard}{background:#FFFDF8!important;border:1px solid #DED6C7!important;border-left:5px solid #3A8B8B!important;border-radius:18px!important;padding:24px 24px 24px 28px!important;box-shadow:none!important;}
-    .${styles.riskCardInner}{display:grid!important;grid-template-columns:24px 1fr!important;gap:14px!important;align-items:start!important;}
-    .${styles.riskCardMark}{width:24px!important;height:24px!important;border-radius:0!important;background:transparent!important;color:#3A8B8B!important;font-size:24px!important;font-weight:400!important;line-height:1!important;}
-    .${styles.riskCardTitle}{font-family:'Noto Serif JP',serif!important;font-size:20px!important;line-height:1.5!important;color:#253032!important;font-weight:700!important;}
-    .${styles.riskCardDesc}{font-size:15px!important;line-height:2!important;color:#6D675F!important;margin-top:12px!important;}
-    .${styles.checkSection}{background:transparent!important;border:0!important;padding:0!important;border-radius:0!important;}
-    .${styles.checkHeader}{display:grid!important;grid-template-columns:44px 1fr!important;gap:18px!important;align-items:center!important;margin:0 0 26px!important;}
-    .${styles.checkIcon}{width:38px!important;height:38px!important;border-radius:12px!important;background:#4FC3BE!important;color:#fff!important;}
-    .${styles.checkTitle}{font-family:'Noto Serif JP',serif!important;font-size:28px!important;line-height:1.25!important;letter-spacing:.02em!important;color:#253032!important;}
-    .${styles.checkSubtitle}{font-size:12px!important;letter-spacing:.25em!important;color:#9B958E!important;margin-top:8px!important;}
-    .${styles.checkList}{background:#E4F7F5!important;border:2px solid #AEE8E2!important;border-radius:26px!important;padding:28px 26px!important;display:grid!important;gap:0!important;}
-    .${styles.checkItem}{background:transparent!important;border-radius:0!important;padding:0 0 24px 0!important;display:grid!important;grid-template-columns:34px 1fr!important;gap:18px!important;border-bottom:1px dashed rgba(58,139,139,.32)!important;box-shadow:none!important;}
-    .${styles.checkItem}:not(:first-child){padding-top:24px!important;}
-    .${styles.checkItem}:last-child{border-bottom:0!important;padding-bottom:0!important;}
-    .${styles.checkBox}{width:28px!important;height:28px!important;border-radius:8px!important;background:transparent!important;border:2px solid #4FBDB7!important;color:#4FBDB7!important;}
-    .${styles.checkBoxSvg}{width:17px!important;height:17px!important;}
-    .${styles.checkItemTitle}{font-family:'Noto Serif JP',serif!important;font-size:19px!important;line-height:1.55!important;color:#2C8F8D!important;font-weight:700!important;}
-    .${styles.checkItemDesc}{font-size:15px!important;line-height:1.95!important;color:#596861!important;margin-top:10px!important;}
+    /* ① RISK / CHECK を同系デザインで再調整 */
+    .${styles.riskSection}, .${styles.checkSection}{background:transparent!important;border:0!important;padding:0!important;border-radius:0!important;}
+    .${styles.riskHeader}, .${styles.checkHeader}{display:grid!important;grid-template-columns:46px 1fr!important;gap:16px!important;align-items:end!important;margin-bottom:20px!important;}
+    .${styles.riskIcon}, .${styles.checkIcon}{width:auto!important;height:auto!important;border:0!important;background:transparent!important;border-radius:0!important;display:block!important;color:inherit!important;}
+    .${styles.riskIconText}, .${styles.checkIconSvg}{display:none!important;}
+    .${styles.riskHeader}::before{content:"✕";color:#DA7E73;font-size:32px;line-height:1;font-weight:700;display:block;align-self:center;}
+    .${styles.checkHeader}::before{content:"◯";color:#5EC8C2;font-size:32px;line-height:1;font-weight:700;display:block;align-self:center;}
+    .${styles.riskTitle}, .${styles.checkTitle}{font-family:'Noto Serif JP',serif!important;font-size:24px!important;line-height:1.22!important;letter-spacing:.02em!important;color:#253032!important;}
+    .${styles.riskSubtitle}, .${styles.checkSubtitle}{font-size:11px!important;letter-spacing:.24em!important;color:#9B958E!important;margin-top:6px!important;display:block!important;}
+    .${styles.riskList}, .${styles.checkList}{display:grid!important;gap:0!important;border-radius:24px!important;padding:22px 24px!important;}
+    .${styles.riskList}{background:#FFF1EF!important;border:1px solid #F2C5C0!important;}
+    .${styles.checkList}{background:#EAF8F7!important;border:1px solid #BCEAE6!important;}
+    .${styles.riskCard}, .${styles.checkItem}{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0 0 20px 0!important;display:grid!important;grid-template-columns:34px 1fr!important;gap:14px!important;}
+    .${styles.riskCard}:not(:first-child), .${styles.checkItem}:not(:first-child){padding-top:20px!important;}
+    .${styles.riskCard}:not(:last-child), .${styles.checkItem}:not(:last-child){border-bottom:1px dashed rgba(94,200,194,.35)!important;}
+    .${styles.riskCard}:last-child, .${styles.checkItem}:last-child{padding-bottom:0!important;}
+    .${styles.riskCardInner}{display:contents!important;}
+    .${styles.riskCardMark}, .${styles.checkBox}{width:auto!important;height:auto!important;min-width:0!important;border:0!important;background:transparent!important;border-radius:0!important;display:block!important;}
+    .${styles.checkBoxSvg}{display:none!important;}
+    .${styles.riskCardMark}{color:#DA7E73!important;font-size:28px!important;line-height:1!important;font-weight:700!important;}
+    .${styles.checkBox}::before{content:"◯";color:#5EC8C2;display:block;font-size:28px;line-height:1;font-weight:700;}
+    .${styles.riskCardTitle}, .${styles.checkItemTitle}{font-family:'Noto Serif JP',serif!important;font-size:17px!important;line-height:1.5!important;font-weight:700!important;}
+    .${styles.riskCardTitle}{color:#C66358!important;}
+    .${styles.checkItemTitle}{color:#4AAEAA!important;}
+    .${styles.riskCardDesc}, .${styles.checkItemDesc}{font-size:14px!important;line-height:1.9!important;margin-top:8px!important;}
+    .${styles.riskCardDesc}{color:#A06662!important;}
+    .${styles.checkItemDesc}{color:#637471!important;}
 
-    /* 2組目：CHAPTER 05 手順を丸数字タイムラインへ */
-    .${styles.stepsSection}{padding-top:52px!important;}
-    .${styles.stepsList}{position:relative!important;display:flex!important;flex-direction:column!important;gap:46px!important;margin-left:0!important;}
-    .${styles.stepsList}::before{content:"";position:absolute;left:26px;top:28px;bottom:28px;width:4px;background:#A9E7E2;border-radius:999px;}
-    .${styles.stepItem}{position:relative!important;display:grid!important;grid-template-columns:58px 1fr!important;gap:26px!important;align-items:start!important;}
-    .${styles.stepNumber}{position:relative!important;z-index:2!important;width:54px!important;height:54px!important;min-width:54px!important;border-radius:999px!important;display:grid!important;place-items:center!important;background:#12BFB8!important;color:#fff!important;font-family:'DM Sans',sans-serif!important;font-size:27px!important;font-weight:800!important;line-height:1!important;box-shadow:0 0 0 2px rgba(255,255,255,.32) inset!important;}
-    .${styles.stepTitle}{font-family:'Noto Serif JP',serif!important;font-size:24px!important;line-height:1.45!important;color:#253032!important;font-weight:700!important;}
-    .${styles.stepDesc}{font-size:17px!important;line-height:2!important;color:#6D675F!important;margin-top:12px!important;}
+    /* ② CHECK単独カード、タイムライン、SUMMARY を前回サイズへ戻す */
+    .${styles.standaloneCheck}{background:#F5F1EB!important;padding:56px 0!important;}
+    .${styles.standaloneCheckCard}{background:#EFE8D8!important;border:2px solid #DED7C8!important;border-radius:28px!important;box-shadow:none!important;padding:34px 34px 36px!important;}
+    .${styles.standaloneCheckLabel}{font-size:12px!important;letter-spacing:.28em!important;margin-bottom:22px!important;color:#188B89!important;}
+    .${styles.standaloneCheckTitle}{font-size:clamp(28px,6.2vw,42px)!important;line-height:1.34!important;letter-spacing:-.02em!important;color:#253032!important;}
+    .${styles.standaloneCheckDesc}{font-size:16px!important;line-height:2.05!important;color:#676158!important;margin-top:22px!important;}
+    .${styles.standaloneCheckTags}{gap:14px 14px!important;margin-top:26px!important;}
+    .${styles.standaloneCheckTag}{background:transparent!important;border:2px solid #A6E1DC!important;border-radius:999px!important;color:#253032!important;font-weight:700!important;font-size:14px!important;padding:9px 18px!important;}
 
-    /* 3組目：CHECK単独カードを理想のアイボリーカード + アウトラインタグへ */
-    .${styles.standaloneCheck}{background:#F5F1EB!important;border-top:1px solid rgba(229,224,216,.72)!important;border-bottom:1px solid rgba(229,224,216,.72)!important;padding:72px 0!important;}
-    .${styles.standaloneCheckCard}{background:#EFE8D8!important;border:2px solid #DED7C8!important;border-radius:30px!important;box-shadow:none!important;padding:42px 42px 46px!important;}
-    .${styles.standaloneCheckLabel}{font-size:13px!important;letter-spacing:.32em!important;margin-bottom:26px!important;color:#188B89!important;}
-    .${styles.standaloneCheckTitle}{font-size:clamp(34px,8vw,48px)!important;line-height:1.34!important;letter-spacing:-.02em!important;color:#253032!important;}
-    .${styles.standaloneCheckDesc}{font-size:18px!important;line-height:2.15!important;color:#676158!important;margin-top:28px!important;}
-    .${styles.standaloneCheckTags}{gap:18px 18px!important;margin-top:34px!important;}
-    .${styles.standaloneCheckTag}{background:transparent!important;border:2px solid #A6E1DC!important;border-radius:999px!important;color:#253032!important;font-weight:700!important;font-size:16px!important;padding:11px 22px!important;}
+    .${styles.stepsSection}{padding-top:44px!important;}
+    .${styles.stepsList}{position:relative!important;display:flex!important;flex-direction:column!important;gap:38px!important;}
+    .${styles.stepsList}::before{content:"";position:absolute;left:22px;top:22px;bottom:22px;width:4px;background:#BDECE7;border-radius:999px;}
+    .${styles.stepItem}{position:relative!important;display:grid!important;grid-template-columns:48px 1fr!important;gap:22px!important;align-items:start!important;}
+    .${styles.stepNumber}{position:relative!important;z-index:2!important;width:44px!important;height:44px!important;min-width:44px!important;border-radius:999px!important;display:grid!important;place-items:center!important;background:#54C4BF!important;color:#fff!important;font-family:'DM Sans',sans-serif!important;font-size:22px!important;font-weight:800!important;line-height:1!important;box-shadow:0 0 0 2px rgba(255,255,255,.28) inset!important;}
+    .${styles.stepTitle}{font-family:'Noto Serif JP',serif!important;font-size:18px!important;line-height:1.45!important;color:#253032!important;font-weight:700!important;}
+    .${styles.stepDesc}{font-size:14px!important;line-height:1.95!important;color:#6D675F!important;margin-top:8px!important;}
 
-    /* 4組目：SUMMARY を理想の大見出し + 01〜03カードへ */
     .${styles.finalSummaryCard}{padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;border-radius:0!important;}
-    .${styles.finalSummaryTitle}{font-size:clamp(42px,10vw,68px)!important;line-height:1.18!important;letter-spacing:-.055em!important;margin-top:16px!important;color:#253032!important;}
-    .${styles.finalSummaryList}{margin-top:56px!important;display:grid!important;gap:24px!important;}
-    .${styles.finalSummaryItem}{display:grid!important;grid-template-columns:84px 1fr!important;gap:28px!important;align-items:start!important;padding:30px 34px!important;border:1px solid #DDD6C7!important;background:#FFFDF8!important;border-radius:26px!important;box-shadow:none!important;}
-    .${styles.finalSummaryNum}{font-family:'DM Sans',sans-serif!important;font-size:40px!important;line-height:1!important;font-weight:800!important;letter-spacing:-.05em!important;color:#10BDB7!important;min-width:0!important;white-space:nowrap!important;}
-    .${styles.finalSummaryItemTitle}{font-family:'Noto Serif JP',serif!important;font-size:28px!important;line-height:1.35!important;color:#253032!important;font-weight:700!important;}
-    .${styles.finalSummaryItemDesc}{font-size:18px!important;line-height:2!important;color:#6D675F!important;margin-top:14px!important;}
+    .${styles.finalSummaryTitle}{font-size:clamp(34px,8.5vw,54px)!important;line-height:1.12!important;letter-spacing:-.045em!important;margin-top:14px!important;color:#253032!important;}
+    .${styles.finalSummaryList}{margin-top:34px!important;display:grid!important;gap:18px!important;}
+    .${styles.finalSummaryItem}{display:grid!important;grid-template-columns:72px 1fr!important;gap:20px!important;align-items:start!important;padding:22px 24px!important;border:1px solid #DDD6C7!important;background:#FFFDF8!important;border-radius:22px!important;box-shadow:none!important;}
+    .${styles.finalSummaryNum}{font-family:'DM Sans',sans-serif!important;font-size:34px!important;line-height:1!important;font-weight:800!important;letter-spacing:-.04em!important;color:#54C4BF!important;white-space:nowrap!important;}
+    .${styles.finalSummaryItemTitle}{font-family:'Noto Serif JP',serif!important;font-size:22px!important;line-height:1.35!important;color:#253032!important;font-weight:700!important;}
+    .${styles.finalSummaryItemDesc}{font-size:15px!important;line-height:1.95!important;color:#6D675F!important;margin-top:10px!important;}
 
     .${styles.relatedGuideCard} p{display:none!important;}
     .${styles.mechanismDiagram}{display:flex!important;flex-direction:column!important;align-items:center!important;overflow:visible!important;}
-    .${styles.mechanismDiagram} img{width:auto!important;max-width:100%!important;max-height:224px!important;object-fit:contain!important;min-width:0!important;}
+    .${styles.mechanismDiagram} img{width:auto!important;max-width:100%!important;max-height:220px!important;object-fit:contain!important;min-width:0!important;}
 
     @media(max-width:560px){
       .${styles.topNavInner}{padding-left:24px!important;padding-right:24px!important;}
       .${styles.navBrand}{letter-spacing:.16em!important;}
-      .${styles.riskHeader},.${styles.checkHeader}{grid-template-columns:40px 1fr!important;gap:14px!important;}
-      .${styles.riskTitle}{font-size:24px!important;}
-      .${styles.checkTitle}{font-size:25px!important;}
-      .${styles.riskCard}{padding:22px 18px 22px 22px!important;}
-      .${styles.riskCardTitle}{font-size:18px!important;}
-      .${styles.riskCardDesc}{font-size:14px!important;}
-      .${styles.checkList}{padding:24px 20px!important;border-radius:24px!important;}
-      .${styles.checkItem}{grid-template-columns:32px 1fr!important;gap:14px!important;}
-      .${styles.checkItemTitle}{font-size:18px!important;}
-      .${styles.checkItemDesc}{font-size:14px!important;}
-      .${styles.stepsList}{gap:42px!important;}
-      .${styles.stepsList}::before{left:24px!important;}
-      .${styles.stepItem}{grid-template-columns:52px 1fr!important;gap:20px!important;}
-      .${styles.stepNumber}{width:50px!important;height:50px!important;min-width:50px!important;font-size:25px!important;}
-      .${styles.stepTitle}{font-size:22px!important;}
-      .${styles.stepDesc}{font-size:16px!important;}
-      .${styles.standaloneCheckCard}{padding:34px 30px 38px!important;}
-      .${styles.standaloneCheckTitle}{font-size:34px!important;}
-      .${styles.standaloneCheckDesc}{font-size:16px!important;}
-      .${styles.standaloneCheckTag}{font-size:14px!important;padding:9px 16px!important;}
-      .${styles.finalSummaryTitle}{font-size:40px!important;}
-      .${styles.finalSummaryList}{margin-top:40px!important;gap:20px!important;}
-      .${styles.finalSummaryItem}{grid-template-columns:58px 1fr!important;gap:18px!important;padding:24px 22px!important;border-radius:22px!important;}
-      .${styles.finalSummaryNum}{font-size:34px!important;}
-      .${styles.finalSummaryItemTitle}{font-size:23px!important;}
-      .${styles.finalSummaryItemDesc}{font-size:16px!important;}
+      .${styles.riskHeader}, .${styles.checkHeader}{grid-template-columns:38px 1fr!important;gap:12px!important;margin-bottom:16px!important;}
+      .${styles.riskHeader}::before, .${styles.checkHeader}::before{font-size:28px!important;}
+      .${styles.riskTitle}, .${styles.checkTitle}{font-size:21px!important;}
+      .${styles.riskSubtitle}, .${styles.checkSubtitle}{font-size:10px!important;}
+      .${styles.riskList}, .${styles.checkList}{padding:18px 18px!important;border-radius:20px!important;}
+      .${styles.riskCard}, .${styles.checkItem}{grid-template-columns:28px 1fr!important;gap:12px!important;padding-bottom:16px!important;}
+      .${styles.riskCard}:not(:first-child), .${styles.checkItem}:not(:first-child){padding-top:16px!important;}
+      .${styles.riskCardMark}, .${styles.checkBox}::before{font-size:24px!important;}
+      .${styles.riskCardTitle}, .${styles.checkItemTitle}{font-size:16px!important;}
+      .${styles.riskCardDesc}, .${styles.checkItemDesc}{font-size:13px!important;line-height:1.85!important;}
+
+      .${styles.standaloneCheckCard}{padding:28px 24px 30px!important;border-radius:24px!important;}
+      .${styles.standaloneCheckTitle}{font-size:clamp(26px,7.2vw,34px)!important;}
+      .${styles.standaloneCheckDesc}{font-size:15px!important;line-height:1.95!important;}
+      .${styles.standaloneCheckTag}{font-size:13px!important;padding:8px 14px!important;}
+
+      .${styles.stepsList}{gap:32px!important;}
+      .${styles.stepsList}::before{left:20px!important;top:18px!important;bottom:18px!important;}
+      .${styles.stepItem}{grid-template-columns:44px 1fr!important;gap:18px!important;}
+      .${styles.stepNumber}{width:40px!important;height:40px!important;min-width:40px!important;font-size:20px!important;}
+      .${styles.stepTitle}{font-size:16px!important;}
+      .${styles.stepDesc}{font-size:13px!important;}
+
+      .${styles.finalSummaryTitle}{font-size:34px!important;}
+      .${styles.finalSummaryList}{margin-top:28px!important;gap:16px!important;}
+      .${styles.finalSummaryItem}{grid-template-columns:58px 1fr!important;gap:16px!important;padding:18px 18px!important;border-radius:18px!important;}
+      .${styles.finalSummaryNum}{font-size:30px!important;}
+      .${styles.finalSummaryItemTitle}{font-size:19px!important;}
+      .${styles.finalSummaryItemDesc}{font-size:14px!important;line-height:1.85!important;}
       .${styles.mechanismDiagram} img{width:100%!important;max-height:none!important;}
     }
   `;
@@ -147,7 +149,7 @@ function Divider() { return <div className={styles.container}><FadeIn><div class
 function ChapterHeader({ number, title, titleAccentParts, description }: Pick<ChapterData, "number" | "title" | "titleAccentParts" | "description">) { return <div className={styles.chapterHeader}><div className={styles.chapterWatermark}>{number}</div><span className={styles.chapterLabel}>CHAPTER</span><h2 className={styles.chapterTitle}><SegmentedTitle title={title} accentParts={titleAccentParts} /></h2><p className={styles.chapterDescription}>{description}</p></div>; }
 function SystemCards({ items }: { items?: SystemCardItem[] }) { if (!items?.length) return null; return <div className={styles.systemList}>{items.map((sys) => <div key={sys.number} className={styles.systemCard}><Icon name={sys.icon} className={styles.systemIcon} /><div><span className={styles.systemNum}>SYSTEM {sys.number}</span><h4 className={styles.systemTitle}>{sys.title}</h4><p className={styles.systemDesc}>{sys.description}</p></div></div>)}</div>; }
 function MechanismBlock({ data }: { data: MechanismItem }) { const imageSrc = resolveDiagramImage(data.diagramImage); return <div className={styles.mechanism}><span className={styles.mechanismLabel}>{data.label}</span><h3 className={styles.mechanismTitle}>{data.title}</h3><p className={styles.mechanismDesc}>{data.description}</p>{imageSrc ? <div className={styles.mechanismDiagram}><img src={imageSrc} alt={data.title} loading="lazy" decoding="async" />{data.caption ? <span className={styles.mechanismCaption}>{data.caption}</span> : null}</div> : null}</div>; }
-function RiskSection({ title, subtitle = "RISKS TO WATCH", items }: { title: string; subtitle?: string; items: RiskItem[] }) { return <div className={styles.riskSection}><div className={styles.riskHeader}><div className={styles.riskIcon}><span className={styles.riskIconText}>!</span></div><div className={styles.riskTitleWrap}><h3 className={styles.riskTitle}>{title}</h3><span className={styles.riskSubtitle}>{subtitle}</span></div></div><div className={styles.riskList}>{items.map((item) => <div key={item.title} className={styles.riskCard}><div className={styles.riskCardInner}><span className={styles.riskCardMark}>×</span><div><h4 className={styles.riskCardTitle}>{item.title}</h4><p className={styles.riskCardDesc}>{item.description}</p></div></div></div>)}</div></div>; }
+function RiskSection({ title, subtitle = "RISKS TO WATCH", items }: { title: string; subtitle?: string; items: RiskItem[] }) { return <div className={styles.riskSection}><div className={styles.riskHeader}><div className={styles.riskIcon}><span className={styles.riskIconText}>!</span></div><div className={styles.riskTitleWrap}><h3 className={styles.riskTitle}>{title}</h3><span className={styles.riskSubtitle}>{subtitle}</span></div></div><div className={styles.riskList}>{items.map((item) => <div key={item.title} className={styles.riskCard}><div className={styles.riskCardInner}><span className={styles.riskCardMark}>✕</span><div><h4 className={styles.riskCardTitle}>{item.title}</h4><p className={styles.riskCardDesc}>{item.description}</p></div></div></div>)}</div></div>; }
 function CheckCards({ title, subtitle = "HOW TO DO IT RIGHT", items }: { title: string; subtitle?: string; items: CheckItem[] }) { return <div className={styles.checkSection}><div className={styles.checkHeader}><div className={styles.checkIcon}><svg className={styles.checkIconSvg} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="3 8 6.5 11.5 13 4.5" /></svg></div><div className={styles.checkTitleWrap}><h3 className={styles.checkTitle}>{title}</h3><span className={styles.checkSubtitle}>{subtitle}</span></div></div><div className={styles.checkList}>{items.map((item) => <div key={item.title} className={styles.checkItem}><div className={styles.checkBox}><svg className={styles.checkBoxSvg} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="3 8 6.5 11.5 13 4.5" /></svg></div><div><h4 className={styles.checkItemTitle}>{item.title}</h4><p className={styles.checkItemDesc}>{item.description}</p></div></div>)}</div></div>; }
 function StandaloneCheck({ data }: { data: VisualArticleData["checkSection"] }) { const title = data.title.replace("安心材料にしない", "").trim(); return <section className={styles.standaloneCheck}><div className={styles.container}><FadeIn><div className={styles.standaloneCheckCard}><span className={styles.standaloneCheckLabel}>{data.label}</span><h2 className={styles.standaloneCheckTitle}>{title}<br /><span className={styles.chapterAccent}>安心材料にしない</span></h2><p className={styles.standaloneCheckDesc}>{data.description}</p><div className={styles.standaloneCheckTags}>{data.tags.map((tag) => <span key={tag} className={styles.standaloneCheckTag}>{tag}</span>)}</div></div></FadeIn></div></section>; }
 function StepsSection({ items }: { items: StepItem[] }) { return <div className={styles.stepsSection}><div className={styles.stepsList}>{items.map((step) => <FadeIn key={step.number} delay={step.number * 60}><div className={styles.stepItem}><span className={styles.stepNumber}>{step.number}</span><div><h4 className={styles.stepTitle}>{step.title}</h4><p className={styles.stepDesc}>{step.description}</p></div></div></FadeIn>)}</div></div>; }
