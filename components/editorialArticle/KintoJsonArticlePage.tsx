@@ -23,10 +23,10 @@ const visualArticleFinalTuningCss = `
 [data-cbj-visual-json-article] [class*="riskHeader"],
 [data-cbj-visual-json-article] [class*="checkHeader"] {
   display: grid !important;
-  grid-template-columns: 34px minmax(0, 1fr) !important;
-  gap: 14px !important;
+  grid-template-columns: 30px minmax(0, 1fr) !important;
+  gap: 12px !important;
   align-items: center !important;
-  margin-bottom: 18px !important;
+  margin-bottom: 16px !important;
 }
 [data-cbj-visual-json-article] [class*="riskHeader"] > [class*="riskIcon"],
 [data-cbj-visual-json-article] [class*="checkHeader"] > [class*="checkIcon"] {
@@ -39,7 +39,7 @@ const visualArticleFinalTuningCss = `
 [data-cbj-visual-json-article] [class*="riskHeader"]::before {
   content: "✕" !important;
   color: #DA7E73 !important;
-  font-size: 28px !important;
+  font-size: 24px !important;
   line-height: 1 !important;
   font-weight: 700 !important;
   display: block !important;
@@ -49,7 +49,7 @@ const visualArticleFinalTuningCss = `
 [data-cbj-visual-json-article] [class*="checkHeader"]::before {
   content: "◯" !important;
   color: #5EC8C2 !important;
-  font-size: 28px !important;
+  font-size: 24px !important;
   line-height: 1 !important;
   font-weight: 700 !important;
   display: block !important;
@@ -62,92 +62,205 @@ const visualArticleFinalTuningCss = `
   overflow-wrap: normal !important;
   word-break: keep-all !important;
   writing-mode: horizontal-tb !important;
-  font-size: 22px !important;
-  line-height: 1.35 !important;
+  font-size: 20px !important;
+  line-height: 1.32 !important;
 }
 [data-cbj-visual-json-article] [class*="riskSubtitle"],
 [data-cbj-visual-json-article] [class*="checkSubtitle"] {
   white-space: normal !important;
   word-break: normal !important;
   font-size: 10px !important;
-  letter-spacing: .22em !important;
+  letter-spacing: .21em !important;
+  margin-top: 4px !important;
 }
 [data-cbj-visual-json-article] [class*="riskList"],
 [data-cbj-visual-json-article] [class*="checkList"] {
-  padding: 18px 20px !important;
-  border-radius: 20px !important;
+  padding: 16px 18px !important;
+  border-radius: 18px !important;
 }
 [data-cbj-visual-json-article] [class*="riskCard"],
 [data-cbj-visual-json-article] [class*="checkItem"] {
-  grid-template-columns: 28px minmax(0, 1fr) !important;
-  gap: 12px !important;
-  padding-bottom: 16px !important;
+  grid-template-columns: 26px minmax(0, 1fr) !important;
+  gap: 10px !important;
+  padding-bottom: 14px !important;
+  min-height: 0 !important;
 }
 [data-cbj-visual-json-article] [class*="riskCard"]:not(:first-child),
 [data-cbj-visual-json-article] [class*="checkItem"]:not(:first-child) {
-  padding-top: 16px !important;
+  padding-top: 14px !important;
 }
 [data-cbj-visual-json-article] [class*="riskCardMark"] {
-  font-size: 24px !important;
+  font-size: 22px !important;
 }
 [data-cbj-visual-json-article] [class*="checkBox"]::before {
-  font-size: 24px !important;
+  font-size: 22px !important;
 }
 [data-cbj-visual-json-article] [class*="riskCardTitle"],
 [data-cbj-visual-json-article] [class*="checkItemTitle"] {
-  font-size: 16px !important;
+  font-size: 15px !important;
   line-height: 1.5 !important;
 }
 [data-cbj-visual-json-article] [class*="riskCardDesc"],
 [data-cbj-visual-json-article] [class*="checkItemDesc"] {
-  font-size: 13px !important;
-  line-height: 1.85 !important;
+  font-size: 12.5px !important;
+  line-height: 1.78 !important;
+  margin-top: 6px !important;
 }
-[data-cbj-visual-json-article] [class*="stepsList"]::before {
-  bottom: 38px !important;
-}
-[data-cbj-visual-json-article] [class*="finalSummaryTitle"] {
-  font-size: clamp(32px, 8vw, 50px) !important;
-  line-height: 1.14 !important;
-}
-[data-cbj-visual-json-article] [class*="finalSummaryList"] {
-  margin-top: 28px !important;
-  gap: 16px !important;
-}
-[data-cbj-visual-json-article] [class*="finalSummaryItem"] {
-  grid-template-columns: 58px minmax(0, 1fr) !important;
-  gap: 16px !important;
-  padding: 18px 20px !important;
-  border-radius: 18px !important;
-}
-[data-cbj-visual-json-article] [class*="finalSummaryNum"] {
-  font-size: 30px !important;
-}
-[data-cbj-visual-json-article] [class*="finalSummaryItemTitle"] {
-  font-size: 19px !important;
-}
+
 [data-cbj-visual-json-article] [class*="standaloneCheck"] {
-  padding-bottom: 48px !important;
+  padding: 50px 0 42px !important;
+}
+[data-cbj-visual-json-article] [class*="standaloneCheckCard"] {
+  padding: 28px 30px 30px !important;
+  border-radius: 24px !important;
+  min-height: 0 !important;
+}
+[data-cbj-visual-json-article] [class*="standaloneCheckLabel"] {
+  font-size: 11px !important;
+  letter-spacing: .26em !important;
+  margin-bottom: 18px !important;
+}
+[data-cbj-visual-json-article] [class*="standaloneCheckTitle"] {
+  font-size: clamp(27px, 5.8vw, 38px) !important;
+  line-height: 1.32 !important;
+}
+[data-cbj-visual-json-article] [class*="standaloneCheckDesc"] {
+  font-size: 14.5px !important;
+  line-height: 1.95 !important;
+  margin-top: 20px !important;
 }
 [data-cbj-visual-json-article] [class*="standaloneCheckTags"] {
-  gap: 12px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px 12px !important;
+  margin-top: 22px !important;
+  align-items: center !important;
 }
+[data-cbj-visual-json-article] [class*="standaloneCheckTag"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  flex: 0 0 auto !important;
+  line-height: 1.25 !important;
+  white-space: nowrap !important;
+  font-size: 13px !important;
+  padding: 8px 15px !important;
+  border-radius: 999px !important;
+}
+
+[data-cbj-visual-json-article] [class*="stepsSection"] {
+  padding-top: 38px !important;
+}
+[data-cbj-visual-json-article] [class*="stepsList"] {
+  gap: 28px !important;
+  padding-left: 0 !important;
+}
+[data-cbj-visual-json-article] [class*="stepsList"]::before {
+  left: 18px !important;
+  top: 16px !important;
+  bottom: 32px !important;
+  width: 3px !important;
+}
+[data-cbj-visual-json-article] [class*="stepItem"] {
+  grid-template-columns: 40px minmax(0, 1fr) !important;
+  gap: 16px !important;
+  align-items: start !important;
+}
+[data-cbj-visual-json-article] [class*="stepNumber"] {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  font-size: 18px !important;
+}
+[data-cbj-visual-json-article] [class*="stepTitle"] {
+  font-size: 15.5px !important;
+  line-height: 1.45 !important;
+}
+[data-cbj-visual-json-article] [class*="stepDesc"] {
+  font-size: 12.5px !important;
+  line-height: 1.78 !important;
+  margin-top: 6px !important;
+}
+
+[data-cbj-visual-json-article] [class*="finalSummaryTitle"] {
+  font-size: clamp(30px, 7.6vw, 46px) !important;
+  line-height: 1.13 !important;
+  letter-spacing: -.04em !important;
+}
+[data-cbj-visual-json-article] [class*="finalSummaryList"] {
+  margin-top: 24px !important;
+  gap: 13px !important;
+}
+[data-cbj-visual-json-article] [class*="finalSummaryItem"] {
+  grid-template-columns: 52px minmax(0, 1fr) !important;
+  gap: 14px !important;
+  padding: 15px 17px !important;
+  border-radius: 16px !important;
+  min-height: 0 !important;
+  align-items: start !important;
+}
+[data-cbj-visual-json-article] [class*="finalSummaryNum"] {
+  font-size: 27px !important;
+  line-height: 1 !important;
+}
+[data-cbj-visual-json-article] [class*="finalSummaryItemTitle"] {
+  font-size: 17px !important;
+  line-height: 1.4 !important;
+}
+[data-cbj-visual-json-article] [class*="finalSummaryItemDesc"] {
+  font-size: 13px !important;
+  line-height: 1.75 !important;
+  margin-top: 6px !important;
+}
+
 @media (max-width: 560px) {
   [data-cbj-visual-json-article] [class*="riskHeader"],
   [data-cbj-visual-json-article] [class*="checkHeader"] {
-    grid-template-columns: 30px minmax(0, 1fr) !important;
-    gap: 10px !important;
+    grid-template-columns: 28px minmax(0, 1fr) !important;
+    gap: 9px !important;
   }
   [data-cbj-visual-json-article] [class*="riskHeader"]::before,
   [data-cbj-visual-json-article] [class*="checkHeader"]::before {
-    font-size: 24px !important;
+    font-size: 22px !important;
   }
   [data-cbj-visual-json-article] [class*="riskTitle"],
   [data-cbj-visual-json-article] [class*="checkTitle"] {
-    font-size: 20px !important;
+    font-size: 19px !important;
+  }
+  [data-cbj-visual-json-article] [class*="standaloneCheckCard"] {
+    padding: 26px 22px 28px !important;
+  }
+  [data-cbj-visual-json-article] [class*="standaloneCheckTitle"] {
+    font-size: 30px !important;
+  }
+  [data-cbj-visual-json-article] [class*="standaloneCheckTag"] {
+    font-size: 12.5px !important;
+    padding: 7px 13px !important;
+  }
+  [data-cbj-visual-json-article] [class*="stepsList"] {
+    gap: 26px !important;
+  }
+  [data-cbj-visual-json-article] [class*="stepItem"] {
+    grid-template-columns: 38px minmax(0, 1fr) !important;
+    gap: 14px !important;
+  }
+  [data-cbj-visual-json-article] [class*="stepNumber"] {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    font-size: 17px !important;
   }
   [data-cbj-visual-json-article] [class*="finalSummaryTitle"] {
-    font-size: 32px !important;
+    font-size: 30px !important;
+  }
+  [data-cbj-visual-json-article] [class*="finalSummaryItem"] {
+    grid-template-columns: 48px minmax(0, 1fr) !important;
+    padding: 14px 15px !important;
   }
 }
 `;
