@@ -20,9 +20,7 @@ const visualArticleSlug = "modern-car-custom-regret-reason-column";
 const visualArticleData = articleData as unknown as VisualArticleData;
 
 export function KintoJsonArticlePage(props: KintoJsonArticlePageProps) {
-  const slug = props.article.slug ?? props.article.layoutId;
-
-  if (slug === visualArticleSlug) {
+  if (props.article.slug === visualArticleSlug || props.article.layoutId === visualArticleSlug) {
     return <VisualJsonArticlePage data={visualArticleData} article={props.article} labels={props.labels} />;
   }
 
