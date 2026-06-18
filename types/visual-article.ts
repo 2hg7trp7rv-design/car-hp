@@ -6,8 +6,10 @@ export interface RiskItem { title: string; description: string }
 export interface CheckItem { title: string; description: string }
 export interface JunaBubbleData { name?: string; text: string; badge?: string }
 export interface ChapterData { id: string; number: string; title: string; titleAccentParts: number[]; description: string; junaComments: JunaBubbleData[]; systems?: SystemCardItem[]; mechanisms?: MechanismItem[]; risks?: RiskItem[]; checks?: CheckItem[] }
+export interface ProcessChapterData { id: string; number: string; title: string; titleAccentParts: number[]; description: string; juna: JunaBubbleData }
 export interface CheckSectionData { label: string; title: string; titleAccent: boolean; description: string; tags: string[] }
 export interface StepItem { number: number; title: string; description: string }
 export interface EditorNoteData { text: string[]; accentParts: number[]; attribution: string }
 export interface FinalSummaryItem { num: string; title: string; desc: string }
-export interface VisualArticleData { meta: { title: string; description: string; columnLabel: string; columnSubLabel: string; lessonNumber: string; tags: TagItem[] }; junaIntro: JunaBubbleData; indexItems: IndexItem[]; chapters: ChapterData[]; checkSection: CheckSectionData; steps: StepItem[]; editorNote: EditorNoteData; finalSummary: { label: string; subLabel: string; title: string; titleAccentParts: number[]; items: FinalSummaryItem[] }; finalJuna: JunaBubbleData }
+export interface FinalSummaryData { label: string; subLabel: string; title: string; titleAccentParts: number[]; items: FinalSummaryItem[] }
+export interface VisualArticleData { meta: { title: string; description: string; columnLabel: string; columnSubLabel: string; lessonNumber: string; tags: TagItem[] }; junaIntro: JunaBubbleData; indexItems: IndexItem[]; chapters: ChapterData[]; checkSection: CheckSectionData; processChapter: ProcessChapterData; steps: StepItem[]; editorNote: EditorNoteData; finalSummary: FinalSummaryData; finalJuna: JunaBubbleData }
