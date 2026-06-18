@@ -64,12 +64,20 @@ function compact(value: string | undefined, limit = 120) {
   return clean.length > limit ? `${clean.slice(0, limit)}…` : clean;
 }
 
+function resolveDiagramImage(src?: string) {
+  if (!src) return src;
+  if (src.includes("intake")) return "/diagram-intake.png";
+  if (src.includes("suspension")) return "/diagram-suspension.png";
+  if (src.includes("canbus") || src.includes("can-bus")) return "/diagram-canbus.png";
+  return src;
+}
+
 function TopNav({ data }: { data: VisualArticleData["meta"] }) {
   return <nav className={styles.topNav}><div className={styles.topNavInner}><span className={styles.navBrand}>CAR BOUTIQUE</span><span className={styles.navLesson}><span className={styles.navLessonJp}>講座</span> / LESSON {data.lessonNumber}</span></div></nav>;
 }
 
 function JunaBubble({ data }: { data: JunaBubbleData }) {
-  return <div className={styles.junaBubble}><img src="/images/cbj/columns/cbj-guide-chara-1.PNG" alt="JUNA" className={styles.junaAvatar} /><div className={styles.junaBubbleContent}><div className={styles.junaBubbleTriangle} /><div className={styles.junaBubbleCard}>{data.badge ? <span className={styles.junaBadge}>{data.badge}</span> : null}{data.name ? <div className={styles.junaName}>{data.name}</div> : null}<p className={styles.junaText}><RichText value={data.text} /></p></div></div></div>;
+  return <div className={styles.junaBubble}><img src="/juna-avatar.png" alt="JUNA" className={styles.junaAvatar} onError={(event) => { event.currentTarget.src = "/images/cbj/columns/cbj-guide-chara-1.PNG"; }} /><div className={styles.junaBubbleContent}><div className={styles.junaBubbleTriangle} /><div className={styles.junaBubbleCard}>{data.badge ? <span className={styles.junaBadge}>{data.badge}</span> : null}{data.name ? <div className={styles.junaName}>{data.name}</div> : null}<p className={styles.junaText}><RichText value={data.text} /></p></div></div></div>;
 }
 
 function SectionLabel({ en, ja }: { en: string; ja?: string }) {
@@ -110,7 +118,8 @@ function SystemCards({ items }: { items?: SystemCardItem[] }) {
 }
 
 function MechanismBlock({ data }: { data: MechanismItem }) {
-  return <div className={styles.mechanism}><span className={styles.mechanismLabel}>{data.label}</span><h3 className={styles.mechanismTitle}>{data.title}</h3><p className={styles.mechanismDesc}>{data.description}</p>{data.diagramImage ? <div className={styles.mechanismDiagram}><img src={data.diagramImage} alt={data.title} />{data.caption ? <span className={styles.mechanismCaption}>{data.caption}</span> : null}</div> : null}</div>;
+  const imageSrc = resolveDiagramImage(data.diagramImage);
+  return <div className={styles.mechanism}><span className={styles.mechanismLabel}>{data.label}</span><h3 className={styles.mechanismTitle}>{data.title}</h3><p className={styles.mechanismDesc}>{data.description}</p>{imageSrc ? <div className={styles.mechanismDiagram}><img src={imageSrc} alt={data.title} />{data.caption ? <span className={styles.mechanismCaption}>{data.caption}</span> : null}</div> : null}</div>;
 }
 
 function RiskSection({ title, subtitle = "RISKS TO WATCH", items }: { title: string; subtitle?: string; items: RiskItem[] }) {
