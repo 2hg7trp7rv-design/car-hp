@@ -43,14 +43,14 @@
       "id": "chapter02",
       "number": "02",
       "title": "吸気系のリスクと対策",
-      "titleAccentParts": [1],
+      "titleAccentParts": [0],
       "description": "社外の剥き出しフィルターやインテークに替えると、吸い込む空気の流れと温度が変わる。ECUはセンサーの読み値をもとに燃料を制御しているため、思わぬ影響が出る。",
       "junaComments": [
         { "text": "吸気音だけで選ぶと後悔しやすい。熱、雨、センサー、純正戻しまでセットで見る。" },
         { "badge": "この章のまとめ", "text": "吸気系は音や見た目だけで選ばない。遮熱、防水、センサー位置、純正部品の保管を確認する。" }
       ],
       "mechanisms": [
-        { "label": "MECHANISM / 何が起きてる？", "title": "外気のはずがエンジンの熱風を吸う", "description": "遮熱がなくなるとフィルターがエンジンルームの熱を吸う。吸気温が上がると点火が遅れてパワーが落ち、センサーの読み値が変われば燃調もズレる。", "diagramImage": "/diagram-intake.svg", "caption": "AIR + HEAT → SENSOR → ECU" }
+        { "label": "MECHANISM / 何が起きてる？", "title": "外気のはずがエンジンの熱風を吸う", "description": "遮熱がなくなるとフィルターがエンジンルームの熱を吸う。吸気温が上がると点火が遅れてパワーが落ち、センサーの読み値が変われば燃調もズレる。", "diagramImage": "/diagram-intake.png", "caption": "AIR + HEAT → SENSOR → ECU" }
       ],
       "risks": [
         { "title": "熱害", "description": "遮熱がないと熱風を吸い、夏の渋滞などでパワーダウンを感じやすい。" },
@@ -67,14 +67,14 @@
       "id": "chapter03",
       "number": "03",
       "title": "足回りのリスクと対策",
-      "titleAccentParts": [1],
+      "titleAccentParts": [0],
       "description": "車高を下げると見た目は変わるが、タイヤの接地角度やアライメントも変わる。現代車は運転支援が車体の姿勢を見ているため、下げすぎの影響は大きい。",
       "junaComments": [
         { "text": "低ければ良い、硬ければ良いではない。街乗りで破綻しない高さと動く余地を残す。" },
         { "badge": "この章のまとめ", "text": "足回りはアライメント測定とストローク確認をセットにする。見た目だけで決めない。" }
       ],
       "mechanisms": [
-        { "label": "MECHANISM / 何が起きてる？", "title": "下げるほど動く余地と接地が減る", "description": "車高を下げるとサスのストローク量が減り、段差で底を擦りやすい。タイヤは斜めに接地して片減りし、ADASの基準にも影響する。", "diagramImage": "/diagram-suspension.svg" }
+        { "label": "MECHANISM / 何が起きてる？", "title": "下げるほど動く余地と接地が減る", "description": "車高を下げるとサスのストローク量が減り、段差で底を擦りやすい。タイヤは斜めに接地して片減りし、ADASの基準にも影響する。", "diagramImage": "/diagram-suspension.png" }
       ],
       "risks": [
         { "title": "段差で擦る", "description": "下げすぎると底を擦り、乗り心地も悪化する。" },
@@ -91,14 +91,14 @@
       "id": "chapter04",
       "number": "04",
       "title": "電装品のリスクと対策",
-      "titleAccentParts": [1],
+      "titleAccentParts": [0],
       "description": "車内では複数のECUがCAN通信で繋がっている。後付け部品が割り込むと、通信エラーや警告灯が出ることがある。配線が甘いと常時電源やアース不良で不具合につながる。",
       "junaComments": [
         { "text": "便利な電装品でも、車両ネットワークに割り込む部品は慎重に見る。" },
         { "badge": "この章のまとめ", "text": "電装品は配線を戻せる状態に保ち、取り付け位置と電源を記録する。" }
       ],
       "mechanisms": [
-        { "label": "MECHANISM / 何が起きてる？", "title": "ECU同士の通信に割り込む", "description": "CANは複数のECUが常に通信し合うネットワーク。後付け部品がここに割り込むと、通信エラーや警告灯の原因になる。", "diagramImage": "/diagram-canbus.svg" }
+        { "label": "MECHANISM / 何が起きてる？", "title": "ECU同士の通信に割り込む", "description": "CANは複数のECUが常に通信し合うネットワーク。後付け部品がここに割り込むと、通信エラーや警告灯の原因になる。", "diagramImage": "/diagram-canbus.png" }
       ],
       "risks": [
         { "title": "CAN通信エラー", "description": "割り込みの仕方が悪いと通信が乱れ、警告灯が点くことがある。" },
@@ -118,6 +118,14 @@
     "titleAccent": true,
     "description": "車検対応や保安基準適合の表記があっても、どんな車にも問題なく使えるとは限らない。車検に通る状態でも、ディーラーや整備工場の入庫基準とは別に見られる場合がある。",
     "tags": ["最低地上高", "突出し", "灯火類", "干渉・固定", "排ガス・騒音"]
+  },
+  "processChapter": {
+    "id": "chapter05",
+    "number": "05",
+    "title": "失敗しにくい進め方",
+    "titleAccentParts": [0],
+    "description": "順番が大事。派手さより、戻せること・説明できることを軸に。",
+    "juna": { "text": "カスタムは自由に楽しめる。ただし、順番が大事。戻せることと説明できることを残す。" }
   },
   "steps": [
     { "number": 1, "title": "純正の不満を言葉にする", "description": "どこが不満で、何を変えたいのかを具体的に書き出す。" },
