@@ -226,13 +226,8 @@
   color: #8A8580;
 }
 
-.indexSection {
-  padding: 52px 0 44px;
-}
-
-.indexList {
-  border-top: 1px solid #E5E0D8;
-}
+.indexSection { padding: 52px 0 44px; }
+.indexList { border-top: 1px solid #E5E0D8; }
 
 .indexItem {
   display: grid;
@@ -265,9 +260,7 @@
   color: #3A8B8B;
 }
 
-.divider {
-  padding: 38px 0 28px;
-}
+.divider { padding: 34px 0 24px; }
 
 .dividerLine {
   width: 50px;
@@ -279,12 +272,10 @@
 .chapter,
 .standaloneCheck,
 .layoutSection,
-.updateNoteSection {
-  scroll-margin-top: 88px;
-}
+.updateNoteSection { scroll-margin-top: 88px; }
 
 .chapter {
-  padding: 84px 0;
+  padding: 76px 0;
   border-top: 1px solid rgba(229, 224, 216, 0.68);
 }
 
@@ -329,25 +320,21 @@
   color: #2D2D2D;
 }
 
-.chapterAccent {
-  color: #3A8B8B;
-}
+.chapterAccent { color: #3A8B8B; }
 
 .chapterDescription {
   position: relative;
   z-index: 1;
-  margin-top: 22px;
+  margin-top: 20px;
   font-size: 15px;
   color: #6B6B6B;
   line-height: 2;
 }
 
-.chapterJuna {
-  margin-top: 36px;
-}
+.chapterJuna { margin-top: 32px; }
 
 .systemList {
-  margin-top: 44px;
+  margin-top: 40px;
   display: grid;
   gap: 14px;
 }
@@ -393,9 +380,7 @@
   line-height: 1.85;
 }
 
-.mechanismWrap {
-  margin-top: 46px;
-}
+.mechanismWrap { margin-top: 40px; }
 
 .mechanism {
   padding: 26px;
@@ -431,13 +416,13 @@
 
 .mechanismDiagram {
   margin-top: 24px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow: visible;
 }
 
 .mechanismDiagram img {
   display: block;
   width: 100%;
+  max-width: 100%;
   min-width: 0;
   height: auto;
   border-radius: 16px;
@@ -456,9 +441,7 @@
 }
 
 .riskWrap,
-.checkWrap {
-  margin-top: 50px;
-}
+.checkWrap { margin-top: 44px; }
 
 .riskSection,
 .checkSection {
@@ -574,7 +557,7 @@
 }
 
 .standaloneCheck {
-  padding: 78px 0;
+  padding: 72px 0;
   background: #F5F1EB;
   border-top: 1px solid rgba(229, 224, 216, 0.72);
   border-bottom: 1px solid rgba(229, 224, 216, 0.72);
@@ -627,14 +610,12 @@
   color: #3A8B8B;
 }
 
-.stepsSection {
-  padding-top: 48px;
-}
+.stepsSection { padding-top: 44px; }
 
 .stepsList {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 30px;
 }
 
 .stepItem {
@@ -666,8 +647,8 @@
 }
 
 .editorNote {
-  margin-top: 56px;
-  padding-top: 48px;
+  margin-top: 52px;
+  padding-top: 44px;
   border-top: 1px solid #E5E0D8;
 }
 
@@ -679,9 +660,7 @@
   color: #2D2D2D;
 }
 
-.editorNoteAccent {
-  color: #3A8B8B;
-}
+.editorNoteAccent { color: #3A8B8B; }
 
 .editorNoteAttr {
   margin-top: 18px;
@@ -691,9 +670,7 @@
   color: #8A8580;
 }
 
-.finalSummary {
-  padding: 32px 0 0;
-}
+.finalSummary { padding: 32px 0 0; }
 
 .finalSummaryCard {
   padding: 28px;
@@ -749,7 +726,7 @@
 }
 
 .layoutSection {
-  padding: 64px 0;
+  padding: 60px 0;
   background: #F5F1EB;
   border-top: 1px solid rgba(229, 224, 216, 0.72);
 }
@@ -811,9 +788,7 @@
   color: #3A8B8B;
 }
 
-.faqList {
-  border-top: 1px solid #E5E0D8;
-}
+.faqList { border-top: 1px solid #E5E0D8; }
 
 .faqItem {
   padding: 16px 0;
@@ -918,9 +893,7 @@
   transition: color 0.2s ease;
 }
 
-.footerLink:hover {
-  color: #fff;
-}
+.footerLink:hover { color: #fff; }
 
 .footerCopy {
   margin-top: 32px;
@@ -930,9 +903,7 @@
   color: rgba(255, 255, 255, 0.3);
 }
 
-.sectionSpacing {
-  padding: 48px 0;
-}
+.sectionSpacing { padding: 48px 0; }
 
 .fadeIn,
 .fadeIn.visible {
@@ -942,12 +913,8 @@
 }
 
 @media (max-width: 560px) {
-  .page {
-    word-break: normal;
-  }
-  .hero {
-    padding-top: 90px;
-  }
+  .page { word-break: normal; }
+  .hero { padding-top: 90px; }
   .heroTitle {
     font-size: clamp(34px, 10.6vw, 48px);
     letter-spacing: -0.035em;
@@ -961,30 +928,20 @@
     height: 56px;
     padding: 4px;
   }
-  .junaBubbleCard {
-    padding: 15px 16px;
-  }
+  .junaBubbleCard { padding: 15px 16px; }
   .junaBubbleTriangle {
     bottom: auto;
     top: 26px;
   }
-  .chapter {
-    padding: 72px 0;
-  }
-  .mechanism {
-    padding: 22px;
-  }
+  .chapter { padding: 64px 0; }
+  .mechanism { padding: 22px; }
   .mechanismDiagram img {
-    min-width: 560px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
-  .editorNoteText {
-    font-size: 22px;
-  }
+  .editorNoteText { font-size: 22px; }
   .standaloneCheckCard,
-  .finalSummaryCard {
-    padding: 22px;
-  }
-  .footerLinks {
-    gap: 14px;
-  }
+  .finalSummaryCard { padding: 22px; }
+  .footerLinks { gap: 14px; }
 }
