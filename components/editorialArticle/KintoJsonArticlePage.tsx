@@ -108,32 +108,43 @@ const visualArticleFinalTuningCss = `
 }
 
 [data-cbj-visual-json-article] [class*="standaloneCheck"] {
-  padding: 50px 0 42px !important;
+  padding: 24px 0 26px !important;
 }
 [data-cbj-visual-json-article] [class*="standaloneCheckCard"] {
-  padding: 28px 30px 30px !important;
-  border-radius: 24px !important;
+  display: block !important;
+  align-content: start !important;
+  justify-content: start !important;
+  height: auto !important;
   min-height: 0 !important;
+  max-height: none !important;
+  padding: 22px 24px 24px !important;
+  border-radius: 21px !important;
 }
 [data-cbj-visual-json-article] [class*="standaloneCheckLabel"] {
-  font-size: 11px !important;
-  letter-spacing: .26em !important;
-  margin-bottom: 18px !important;
+  display: block !important;
+  font-size: 10.5px !important;
+  letter-spacing: .24em !important;
+  margin: 0 0 16px !important;
 }
 [data-cbj-visual-json-article] [class*="standaloneCheckTitle"] {
-  font-size: clamp(27px, 5.8vw, 38px) !important;
-  line-height: 1.32 !important;
+  display: block !important;
+  font-size: clamp(23px, 5.2vw, 32px) !important;
+  line-height: 1.23 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 [data-cbj-visual-json-article] [class*="standaloneCheckDesc"] {
-  font-size: 14.5px !important;
-  line-height: 1.95 !important;
-  margin-top: 20px !important;
+  font-size: 13.5px !important;
+  line-height: 1.82 !important;
+  margin: 18px 0 0 !important;
+  padding: 0 !important;
 }
 [data-cbj-visual-json-article] [class*="standaloneCheckTags"] {
   display: flex !important;
   flex-wrap: wrap !important;
-  gap: 10px 12px !important;
-  margin-top: 22px !important;
+  gap: 8px 10px !important;
+  margin: 18px 0 0 !important;
+  padding: 0 !important;
   align-items: center !important;
 }
 [data-cbj-visual-json-article] [class*="standaloneCheckTag"] {
@@ -146,10 +157,10 @@ const visualArticleFinalTuningCss = `
   min-height: 0 !important;
   max-width: none !important;
   flex: 0 0 auto !important;
-  line-height: 1.25 !important;
+  line-height: 1.18 !important;
   white-space: nowrap !important;
-  font-size: 13px !important;
-  padding: 8px 15px !important;
+  font-size: 12.5px !important;
+  padding: 6px 12px !important;
   border-radius: 999px !important;
 }
 
@@ -232,15 +243,33 @@ const visualArticleFinalTuningCss = `
   [data-cbj-visual-json-article] [class*="checkTitle"] {
     font-size: 19px !important;
   }
+  [data-cbj-visual-json-article] [class*="standaloneCheck"] {
+    padding: 18px 0 20px !important;
+  }
   [data-cbj-visual-json-article] [class*="standaloneCheckCard"] {
-    padding: 26px 22px 28px !important;
+    padding: 18px 18px 20px !important;
+    border-radius: 19px !important;
+  }
+  [data-cbj-visual-json-article] [class*="standaloneCheckLabel"] {
+    font-size: 10px !important;
+    margin-bottom: 12px !important;
   }
   [data-cbj-visual-json-article] [class*="standaloneCheckTitle"] {
-    font-size: 30px !important;
+    font-size: 23px !important;
+    line-height: 1.2 !important;
+  }
+  [data-cbj-visual-json-article] [class*="standaloneCheckDesc"] {
+    font-size: 12.8px !important;
+    line-height: 1.72 !important;
+    margin-top: 14px !important;
+  }
+  [data-cbj-visual-json-article] [class*="standaloneCheckTags"] {
+    gap: 7px 8px !important;
+    margin-top: 14px !important;
   }
   [data-cbj-visual-json-article] [class*="standaloneCheckTag"] {
-    font-size: 12.5px !important;
-    padding: 7px 13px !important;
+    font-size: 12px !important;
+    padding: 5px 10px !important;
   }
   [data-cbj-visual-json-article] [class*="stepsList"] {
     gap: 44px !important;
