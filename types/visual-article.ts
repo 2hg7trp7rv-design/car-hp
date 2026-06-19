@@ -5,8 +5,9 @@ export interface MechanismItem { label: string; title: string; description: stri
 export interface RiskItem { title: string; description: string }
 export interface CheckItem { title: string; description: string }
 export interface JunaBubbleData { name?: string; text: string; badge?: string }
-export interface ChapterData { id: string; number: string; title: string; titleAccentParts: number[]; description: string; junaComments: JunaBubbleData[]; systems?: SystemCardItem[]; mechanisms?: MechanismItem[]; risks?: RiskItem[]; checks?: CheckItem[] }
-export interface ProcessChapterData { id: string; number: string; title: string; titleAccentParts: number[]; description: string; juna: JunaBubbleData }
+export interface ChapterBodyParagraph { text: string; lead?: boolean }
+export interface ChapterData { id: string; number: string; title: string; titleAccentParts: number[]; description: string; junaComments: JunaBubbleData[]; body?: ChapterBodyParagraph[]; systems?: SystemCardItem[]; mechanisms?: MechanismItem[]; risks?: RiskItem[]; checks?: CheckItem[] }
+export interface ProcessChapterData { id: string; number: string; title: string; titleAccentParts: number[]; description: string; juna: JunaBubbleData; body?: ChapterBodyParagraph[] }
 export interface CheckSectionData { label: string; title: string; titleAccent: boolean; description: string; tags: string[] }
 export interface StepItem { number: number; title: string; description: string }
 export interface EditorNoteData { text: string[]; accentParts: number[]; attribution: string }
