@@ -107,6 +107,36 @@ const visualArticleFinalTuningCss = `
   margin-top: 6px !important;
 }
 
+[data-cbj-visual-json-article] [class*="heroTags"] {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px 12px !important;
+  margin-top: 30px !important;
+  align-items: center !important;
+}
+[data-cbj-visual-json-article] [class*="heroTag"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 38px !important;
+  padding: 0 18px !important;
+  border: 1.25px solid #DDD6C7 !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.74) !important;
+  color: #6D675F !important;
+  font-size: 13.5px !important;
+  line-height: 1 !important;
+  font-weight: 500 !important;
+  letter-spacing: .02em !important;
+  white-space: nowrap !important;
+}
+[data-cbj-visual-json-article] [class*="heroTagAccent"] {
+  border-color: #A8E2DE !important;
+  background: rgba(238, 249, 247, 0.78) !important;
+  color: #278F8D !important;
+  font-weight: 700 !important;
+}
+
 [data-cbj-visual-json-article] > section[class*="standaloneCheck"] {
   padding: 32px 0 34px !important;
 }
@@ -249,6 +279,15 @@ const visualArticleFinalTuningCss = `
   [data-cbj-visual-json-article] [class*="riskTitle"],
   [data-cbj-visual-json-article] [class*="checkTitle"] {
     font-size: 19px !important;
+  }
+  [data-cbj-visual-json-article] [class*="heroTags"] {
+    gap: 9px 10px !important;
+    margin-top: 28px !important;
+  }
+  [data-cbj-visual-json-article] [class*="heroTag"] {
+    min-height: 38px !important;
+    padding: 0 17px !important;
+    font-size: 13.5px !important;
   }
   [data-cbj-visual-json-article] > section[class*="standaloneCheck"] {
     padding: 26px 0 28px !important;
