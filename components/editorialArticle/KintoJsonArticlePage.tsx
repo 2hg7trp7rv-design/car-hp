@@ -108,7 +108,7 @@ const visualArticleFinalTuningCss = `
 }
 
 [data-cbj-visual-json-article] > section[class*="standaloneCheck"] {
-  padding: 38px 0 42px !important;
+  padding: 32px 0 34px !important;
 }
 [data-cbj-visual-json-article] [class*="standaloneCheckCard"] {
   display: block !important;
@@ -117,34 +117,40 @@ const visualArticleFinalTuningCss = `
   height: auto !important;
   min-height: 0 !important;
   max-height: none !important;
-  padding: 36px 52px 44px !important;
-  border-radius: 28px !important;
+  padding: 26px 30px 30px !important;
+  border-radius: 24px !important;
+}
+[data-cbj-visual-json-article] [class*="standaloneCheckCard"] > * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 [data-cbj-visual-json-article] [class*="standaloneCheckLabel"] {
   display: block !important;
-  font-size: 12px !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
   letter-spacing: .28em !important;
   margin: 0 0 18px !important;
 }
 [data-cbj-visual-json-article] [class*="standaloneCheckTitle"] {
   display: block !important;
-  font-size: clamp(30px, 6.2vw, 42px) !important;
-  line-height: 1.23 !important;
-  letter-spacing: -.03em !important;
+  font-size: clamp(27px, 5.5vw, 36px) !important;
+  line-height: 1.18 !important;
+  letter-spacing: -.035em !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 [data-cbj-visual-json-article] [class*="standaloneCheckDesc"] {
-  font-size: 15.5px !important;
-  line-height: 1.95 !important;
-  margin: 30px 0 0 !important;
+  font-size: 13.8px !important;
+  line-height: 1.78 !important;
+  margin: 22px 0 0 !important;
   padding: 0 !important;
 }
 [data-cbj-visual-json-article] [class*="standaloneCheckTags"] {
   display: flex !important;
   flex-wrap: wrap !important;
-  gap: 13px 14px !important;
-  margin: 34px 0 0 !important;
+  justify-content: flex-start !important;
+  gap: 9px 10px !important;
+  margin: 22px 0 0 !important;
   padding: 0 !important;
   align-items: center !important;
 }
@@ -158,10 +164,10 @@ const visualArticleFinalTuningCss = `
   min-height: 0 !important;
   max-width: none !important;
   flex: 0 0 auto !important;
-  line-height: 1.2 !important;
+  line-height: 1.18 !important;
   white-space: nowrap !important;
-  font-size: 14px !important;
-  padding: 8px 18px !important;
+  font-size: 12px !important;
+  padding: 6px 12px !important;
   border-radius: 999px !important;
 }
 
@@ -245,32 +251,33 @@ const visualArticleFinalTuningCss = `
     font-size: 19px !important;
   }
   [data-cbj-visual-json-article] > section[class*="standaloneCheck"] {
-    padding: 30px 0 34px !important;
+    padding: 26px 0 28px !important;
   }
   [data-cbj-visual-json-article] [class*="standaloneCheckCard"] {
-    padding: 30px 34px 36px !important;
-    border-radius: 24px !important;
+    padding: 24px 24px 26px !important;
+    border-radius: 22px !important;
   }
   [data-cbj-visual-json-article] [class*="standaloneCheckLabel"] {
-    font-size: 11px !important;
+    font-size: 10.5px !important;
     margin-bottom: 16px !important;
   }
   [data-cbj-visual-json-article] [class*="standaloneCheckTitle"] {
-    font-size: 31px !important;
-    line-height: 1.22 !important;
+    font-size: 27px !important;
+    line-height: 1.18 !important;
   }
   [data-cbj-visual-json-article] [class*="standaloneCheckDesc"] {
-    font-size: 15px !important;
-    line-height: 1.9 !important;
-    margin-top: 28px !important;
+    font-size: 13.4px !important;
+    line-height: 1.74 !important;
+    margin-top: 20px !important;
   }
   [data-cbj-visual-json-article] [class*="standaloneCheckTags"] {
-    gap: 12px 12px !important;
-    margin-top: 30px !important;
+    justify-content: flex-start !important;
+    gap: 8px 9px !important;
+    margin-top: 20px !important;
   }
   [data-cbj-visual-json-article] [class*="standaloneCheckTag"] {
-    font-size: 13px !important;
-    padding: 8px 16px !important;
+    font-size: 11.5px !important;
+    padding: 5.5px 10px !important;
   }
   [data-cbj-visual-json-article] [class*="stepsList"] {
     gap: 44px !important;
