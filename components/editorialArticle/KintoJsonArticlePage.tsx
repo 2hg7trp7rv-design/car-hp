@@ -113,11 +113,25 @@ const visualArticleFinalTuningCss = `
   gap: 10px 12px !important;
   margin-top: 30px !important;
   align-items: center !important;
+  justify-content: flex-start !important;
+  width: auto !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
 }
-[data-cbj-visual-json-article] [class*="heroTag"] {
+[data-cbj-visual-json-article] [class*="heroTags"] > [class*="heroTag"] {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  max-width: max-content !important;
+  min-width: 0 !important;
   min-height: 38px !important;
   padding: 0 18px !important;
   border: 1.25px solid #DDD6C7 !important;
@@ -129,8 +143,9 @@ const visualArticleFinalTuningCss = `
   font-weight: 500 !important;
   letter-spacing: .02em !important;
   white-space: nowrap !important;
+  box-shadow: none !important;
 }
-[data-cbj-visual-json-article] [class*="heroTagAccent"] {
+[data-cbj-visual-json-article] [class*="heroTags"] > [class*="heroTagAccent"] {
   border-color: #A8E2DE !important;
   background: rgba(238, 249, 247, 0.78) !important;
   color: #278F8D !important;
@@ -283,8 +298,12 @@ const visualArticleFinalTuningCss = `
   [data-cbj-visual-json-article] [class*="heroTags"] {
     gap: 9px 10px !important;
     margin-top: 28px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
   }
-  [data-cbj-visual-json-article] [class*="heroTag"] {
+  [data-cbj-visual-json-article] [class*="heroTags"] > [class*="heroTag"] {
     min-height: 38px !important;
     padding: 0 17px !important;
     font-size: 13.5px !important;
