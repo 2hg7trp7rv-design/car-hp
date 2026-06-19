@@ -107,7 +107,7 @@ const visualArticleFinalTuningCss = `
   margin-top: 6px !important;
 }
 
-[data-cbj-visual-json-article] [class*="standaloneCheck"] {
+[data-cbj-visual-json-article] > section[class*="standaloneCheck"] {
   padding: 38px 0 42px !important;
 }
 [data-cbj-visual-json-article] [class*="standaloneCheckCard"] {
@@ -244,7 +244,7 @@ const visualArticleFinalTuningCss = `
   [data-cbj-visual-json-article] [class*="checkTitle"] {
     font-size: 19px !important;
   }
-  [data-cbj-visual-json-article] [class*="standaloneCheck"] {
+  [data-cbj-visual-json-article] > section[class*="standaloneCheck"] {
     padding: 30px 0 34px !important;
   }
   [data-cbj-visual-json-article] [class*="standaloneCheckCard"] {
