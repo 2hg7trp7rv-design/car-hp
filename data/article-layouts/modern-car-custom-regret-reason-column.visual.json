@@ -42,6 +42,9 @@
         { "number": "01", "title": "吸気系", "description": "センサーや燃料制御に直結。空気の流れと温度が変わる。", "icon": "Wind" },
         { "number": "02", "title": "足回り", "description": "車高だけでなく、接地、アライメント、安全装置に関わる。", "icon": "CircleDot" },
         { "number": "03", "title": "電装品", "description": "CAN通信や診断に関わる。配線処理が甘いと不具合の元になる。", "icon": "Zap" }
+      ],
+      "mechanisms": [
+        { "label": "OVERVIEW / 全体像", "title": "一つの変更が車全体へ広がる", "description": "吸気・足回り・電装・車検・保証・売却まで、現代車のカスタムは複数の領域に関わる。まず全体像を掴んでから細部を見る。", "diagramImage": "/images/cbj/custom-regret/custom-impact-overview.svg", "caption": "CUSTOM IMPACT MAP" }
       ]
     },
     {
@@ -56,11 +59,11 @@
       ],
       "body": [
         { "lead": true, "text": "吸気系はカスタム入門の定番。社外の剥き出しエアクリーナーに交換すると<strong>音と見た目が一気に変わる</strong>から、魅力に感じるのは当然。でも、ここには意外と深い落とし穴がある。" },
-        { "text": "純正のエアクリーナーはエンジンルームの外に配置されていて、外気を取り込む構造になっている。これをエンジン近くの剥き出しフィルターに変えると、<strong>エンジンの熱を直接吸い込む</strong>。吸気温度が上がると空気密度が下がり、同じ体積でも酸素量が減る。ECUはエアフローセンサーと吸気温センサーの読み値から燃料噴射量を決めているから、センサーの読み値が変わると燃調がずれる。" },
+        { "text": "純正のエアクリーナーは、ダクトを通じて外気を取り込む構造になっている。これをエンジン近くの剥き出しフィルターに変えると、<strong>エンジンの熱を直接吸い込む</strong>。吸気温度が上がると空気密度が下がり、同じ体積でも酸素量が減る。ECUはエアフローセンサーと吸気温センサーの読み値から燃料噴射量を決めているから、センサーの読み値が変わると燃調がずれる。" },
         { "text": "さらに<strong>雨水の吸入</strong>も注意。剥き出しフィルターは雨を直接受ける位置にあることが多く、水が吸入系に入るとエンジン内部にダメージを与える。EVAP（蒸発ガス処理）系統の配管に干渉すると、車検の排ガス検査で引っかかるケースもある。" }
       ],
       "mechanisms": [
-        { "label": "MECHANISM / 何が起きてる？", "title": "外気のはずがエンジンの熱風を吸う", "description": "遮熱がなくなるとフィルターがエンジンルームの熱を吸う。吸気温が上がると点火が遅れてパワーが落ち、センサーの読み値が変われば燃調もずれる。", "diagramImage": "/diagram-intake.png", "caption": "AIR + HEAT → SENSOR → ECU" }
+        { "label": "MECHANISM / 何が起きてる？", "title": "外気のはずがエンジンの熱風を吸う", "description": "遮熱がなくなるとフィルターがエンジンルームの熱を吸う。吸気温が上がると点火が遅れてパワーが落ち、センサーの読み値が変われば燃調もずれる。", "diagramImage": "/images/cbj/custom-regret/airflow-setup.svg", "caption": "AIRFLOW / HEAT SHIELD" }
       ],
       "risks": [
         { "title": "熱害", "description": "遮熱がないと熱風を吸い、夏の渋滞などでパワーダウンを感じやすい。" },
@@ -89,7 +92,8 @@
         { "text": "現代車で特に注意なのが<strong>ADASとの関係</strong>。衝突被害軽減ブレーキやレーンキープアシストは、フロントカメラやレーダーの仰角を基準に作動している。車高を下げるとこの角度が変わり、検知のタイミングがずれたり、誤検知・未検知が起きたりする。" }
       ],
       "mechanisms": [
-        { "label": "MECHANISM / 何が起きてる？", "title": "下げるほど動く余地と接地が減る", "description": "車高を下げるとサスのストローク量が減り、段差で底を擦りやすい。タイヤは斜めに接地して片減りし、ADASの基準にも影響する。", "diagramImage": "/diagram-suspension.png" }
+        { "label": "MECHANISM / ADAS", "title": "車高変化でカメラの仰角がずれる", "description": "車高を下げると、カメラやレーダーの基準角度が変わる。検知のタイミングがずれ、歩行者や車両を想定通りに捉えにくくなる場合がある。", "diagramImage": "/images/cbj/custom-regret/adas-camera-angle.svg", "caption": "ADAS CAMERA ANGLE" },
+        { "label": "MECHANISM / 何が起きてる？", "title": "下げるほど動く余地と接地が減る", "description": "車高を下げるとサスのストローク量が減り、段差で底を擦りやすい。タイヤは斜めに接地して片減りし、ADASの基準にも影響する。", "diagramImage": "/images/cbj/custom-regret/stroke-section.svg", "caption": "SUSPENSION STROKE" }
       ],
       "risks": [
         { "title": "段差で擦る", "description": "下げすぎると底を擦り、乗り心地も悪化する。" },
@@ -119,7 +123,7 @@
         { "text": "さらに配線加工が関わる場合は、アースの取り回しや常時電源の管理も重要。アースが複数の機器で共用されている場合、電流のリターン経路にノイズが乗ってセンサー値が乱れることがある。" }
       ],
       "mechanisms": [
-        { "label": "MECHANISM / 何が起きてる？", "title": "ECU同士の通信に割り込む", "description": "CANは複数のECUが常に通信し合うネットワーク。後付け部品がここに割り込むと、通信エラーや警告灯の原因になる。", "diagramImage": "/diagram-canbus.png" }
+        { "label": "MECHANISM / 何が起きてる？", "title": "ECU同士の通信に割り込む", "description": "CANは複数のECUが常に通信し合うネットワーク。後付け部品がここに割り込むと、通信エラーや警告灯の原因になる。", "diagramImage": "/images/cbj/custom-regret/can-network-diagram.svg", "caption": "CAN NETWORK / OBD2" }
       ],
       "risks": [
         { "title": "CAN通信エラー", "description": "割り込みの仕方が悪いと通信が乱れ、警告灯が点くことがある。" },
