@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" role="img" aria-labelledby="title desc">
+  <title id="title">ADASカメラの仰角ズレ</title>
+  <desc id="desc">ノーマル車高とローダウン後で、ADASカメラの基準線と検知範囲が変わることを示す図解。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f1e7}.ink{fill:#1f2929}.sub{fill:#6f6960}.teal{fill:#0abab5}.line{stroke:#1f2929;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}.tline{stroke:#0abab5;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}.gline{stroke:#606060;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}.dash{stroke-dasharray:14 12}.panel{fill:#fffaf0;stroke:#d9d1bf;stroke-width:3}.pill{fill:#eefbf9;stroke:#0abab5;stroke-width:3}.bad{fill:#f3f1ec;stroke:#404040;stroke-width:3}.jp{font-family:'Noto Serif JP','Hiragino Mincho ProN',serif}.sans{font-family:'Noto Sans JP','Hiragino Sans',sans-serif}
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2 2 10 6 2 10z" fill="#0abab5"/></marker>
+    <marker id="arrowGray" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2 2 10 6 2 10z" fill="#444"/></marker>
+  </defs>
+  <rect class="bg" width="1200" height="1500"/>
+  <g transform="translate(70 70)"><path class="tline" d="M0 30h360"/><path class="tline" d="M700 30h360"/><rect x="520" y="14" width="32" height="32" transform="rotate(45 536 30)" fill="none" stroke="#0abab5" stroke-width="4"/></g>
+  <text x="600" y="145" text-anchor="middle" class="jp ink" font-size="66" font-weight="800">ADASカメラの仰角ズレ</text>
+  <text x="600" y="205" text-anchor="middle" class="sans sub" font-size="27" letter-spacing="2">車高変化で検知軸がずれる理由</text>
+  <g transform="translate(70 260)">
+    <rect class="panel" x="0" y="0" width="1060" height="470" rx="32"/>
+    <rect class="pill" x="36" y="34" width="210" height="70" rx="8"/><text x="141" y="82" text-anchor="middle" class="sans teal" font-size="34" font-weight="800">ノーマル</text>
+    <path class="line" d="M115 315h385l40-34h95l40 34h70v20H115z"/><circle class="line" cx="225" cy="335" r="40"/><circle class="line" cx="635" cy="335" r="40"/><path class="line" d="M150 315c35-88 115-135 260-135h190c80 0 126 42 165 135"/>
+    <rect x="512" y="180" width="22" height="14" fill="#0abab5"/>
+    <path class="tline" d="M523 187 940 96" marker-end="url(#arrow)"/><path class="tline" d="M523 187 935 360" marker-end="url(#arrow)"/><path class="tline dash" d="M523 187h410"/>
+    <path d="M523 187 940 96v264z" fill="#0abab5" opacity=".08"/>
+    <g class="line" transform="translate(765 205)"><circle cx="22" cy="24" r="16"/><path d="M22 40v70M22 65l-32 34M22 65l34 32M22 110l-28 50M22 110l38 48"/></g>
+    <g class="line" transform="translate(890 220)"><rect x="0" y="45" width="130" height="95" rx="14"/><path d="M18 78h94M28 108h74"/><circle cx="28" cy="130" r="11"/><circle cx="102" cy="130" r="11"/></g>
+    <text x="930" y="170" class="sans teal" font-size="28" font-weight="800">基準線</text><text x="930" y="245" class="sans teal" font-size="28" font-weight="800">検知範囲</text>
+    <circle cx="82" cy="410" r="34" fill="none" stroke="#0abab5" stroke-width="6"/><path class="tline" d="M64 410l16 17 31-38"/><text x="140" y="420" class="sans teal" font-size="28" font-weight="800">歩行者や車両を正しく検知</text>
+  </g>
+  <g transform="translate(70 805)">
+    <rect class="panel" x="0" y="0" width="1060" height="470" rx="32"/>
+    <rect class="bad" x="36" y="34" width="250" height="70" rx="8"/><text x="161" y="82" text-anchor="middle" class="sans ink" font-size="34" font-weight="800">ローダウン後</text>
+    <path class="line" d="M115 330h385l40-25h95l40 25h70v20H115z"/><circle class="line" cx="225" cy="350" r="39"/><circle class="line" cx="635" cy="350" r="39"/><path class="line" d="M150 330c35-70 115-110 260-110h190c80 0 126 32 165 110"/>
+    <rect x="512" y="222" width="22" height="14" fill="#444"/>
+    <path class="gline" d="M523 229 945 330" marker-end="url(#arrowGray)"/><path class="gline dash" d="M523 229h410"/><path class="gline" d="M523 229 930 410" opacity=".65"/>
+    <path d="M523 229 945 330v95z" fill="#444" opacity=".12"/>
+    <g class="line" transform="translate(770 210)"><circle cx="22" cy="24" r="16"/><path d="M22 40v70M22 65l-32 34M22 65l34 32M22 110l-28 50M22 110l38 48"/></g>
+    <g class="line" transform="translate(900 235)"><rect x="0" y="45" width="120" height="90" rx="14"/><path d="M18 78h84M28 108h64"/><circle cx="28" cy="128" r="10"/><circle cx="92" cy="128" r="10"/></g>
+    <circle cx="990" cy="96" r="38" fill="#333"/><text x="990" y="110" text-anchor="middle" fill="#fff" font-size="58" font-family="Arial" font-weight="800">×</text>
+    <text x="930" y="175" class="sans ink" font-size="28" font-weight="800">基準線</text><text x="930" y="250" class="sans ink" font-size="28" font-weight="800">検知範囲</text>
+    <rect x="44" y="370" width="970" height="70" rx="12" fill="none" stroke="#0abab5" stroke-width="3"/><text x="100" y="415" class="sans ink" font-size="24">仰角が下がると、検知範囲が下方にずれて対象を外す可能性がある。</text>
+  </g>
+</svg>
