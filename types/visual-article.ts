@@ -1,7 +1,7 @@
 export interface TagItem { label: string; accent?: boolean }
 export interface IndexItem { number: string; title: string; href: string }
 export interface SystemCardItem { number: string; title: string; description: string; icon: 'Wind' | 'CircleDot' | 'Zap' | string }
-export interface MechanismItem { label: string; title: string; description: string; diagramImage?: string; caption?: string; diagramAlt?: string; diagramCaption?: string; afterBodyIndex?: number }
+export interface MechanismItem { label: string; title: string; description: string; diagramImage?: string; caption?: string }
 export interface RiskItem { title: string; description: string }
 export interface CheckItem { title: string; description: string }
 export interface JunaBubbleData { name?: string; text: string; badge?: string }
