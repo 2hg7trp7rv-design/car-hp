@@ -5,7 +5,7 @@ on:
     branches:
       - "2"
     paths:
-      - ".tmp/rename-risk-check-labels.trigger"
+      - "trigger-label-rename.txt"
 
 permissions:
   contents: write
@@ -44,16 +44,15 @@ jobs:
 
       - name: Remove temporary files
         run: |
-          rm -f .tmp/rename-risk-check-labels.trigger
+          rm -f trigger-label-rename.txt
           rm -f .github/workflows/rename-risk-check-labels.yml
-          rmdir .tmp 2>/dev/null || true
 
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add components/editorialArticle/VisualJsonArticlePage.tsx \
-                  .tmp/rename-risk-check-labels.trigger \
+                  trigger-label-rename.txt \
                   .github/workflows/rename-risk-check-labels.yml
           git commit -m "Rename risk and check section headings"
           git push origin HEAD:2
