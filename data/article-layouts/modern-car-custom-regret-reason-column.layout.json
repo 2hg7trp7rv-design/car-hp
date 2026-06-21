@@ -1,0 +1,51 @@
+{
+  "slug": "modern-car-custom-regret-reason-column",
+  "designSystem": "kinto-journal-v29",
+  "hero": {
+    "saveTag": true,
+    "score": "10",
+    "imageSrc": "/images/cbj/columns/custom-regret-kinto-hero.svg",
+    "imageAlt": "車のカスタムで後悔しやすい理由を示す保存版ビジュアル",
+    "character": "/images/cbj/columns/kinto-ref-chara-1.svg"
+  },
+  "characterMapping": {
+    "hero": "/images/cbj/columns/kinto-ref-chara-1.svg",
+    "chapter01": "/images/cbj/columns/kinto-ref-chara-2.svg",
+    "chapter02": "/images/cbj/columns/kinto-ref-chara-3.svg",
+    "chapter03": "/images/cbj/columns/kinto-ref-chara-3.svg",
+    "chapter04": "/images/cbj/columns/kinto-ref-chara-3.svg",
+    "chapter05": "/images/cbj/columns/kinto-ref-chara-4.svg",
+    "chapter06": "/images/cbj/columns/kinto-ref-chara-2.svg"
+  },
+  "imageOverrides": {
+    "/images/cbj/columns/custom-system-overview-article-24.webp": "/images/cbj/columns/custom-regret-system-map-kinto.svg",
+    "/images/cbj/columns/custom-intake-fuel-control-article-24.webp": "/images/cbj/columns/custom-regret-intake-flow-kinto.svg",
+    "/images/cbj/columns/custom-adas-lowered-article-24.webp": "/images/cbj/columns/custom-regret-adas-aiming-kinto.svg",
+    "/images/cbj/columns/custom-irreversible-risk-article-24.webp": "/images/cbj/columns/custom-regret-irreversible-kinto.svg",
+    "/images/cbj/columns/custom-parts-ng-ok-article-24.webp": "/images/cbj/columns/custom-regret-parts-matrix-kinto.svg",
+    "/images/cbj/columns/custom-used-car-check-article-24.webp": "/images/cbj/columns/custom-regret-used-check-kinto.svg",
+    "/images/cbj/columns/custom-step-flow-article-24.webp": "/images/cbj/columns/custom-regret-flow-kinto.svg"
+  },
+  "sections": {
+    "basics-modern-custom": { "type": "chapter", "id": "ch01", "label": "CHAPTER 01", "variant": "white", "score": "01", "character": "/images/cbj/columns/kinto-ref-chara-2.svg", "summaryVariant": "light" },
+    "system-intake-suspension-electronics": { "type": "chapter", "id": "ch02", "label": "CHAPTER 02", "variant": "offwhite", "score": "02", "character": "/images/cbj/columns/kinto-ref-chara-3.svg", "summaryVariant": "offwhite" },
+    "legal-actual-vehicle-state": { "type": "check", "id": "check", "label": "CHECK", "variant": "white", "score": "03", "character": "/images/cbj/columns/kinto-ref-chara-3.svg", "summaryVariant": "light" },
+    "irreversible-custom-risk": { "type": "dark-risk", "id": "ch05", "label": "CHAPTER 05", "variant": "dark", "score": "05", "character": "/images/cbj/columns/kinto-ref-chara-4.svg", "summaryVariant": "dark" },
+    "parts-ng-ok-check": { "type": "guide", "id": "guide", "label": "GUIDE", "variant": "white", "score": "04", "character": "/images/cbj/columns/kinto-ref-chara-3.svg", "summaryVariant": "light" },
+    "used-custom-car-check": { "type": "tips", "id": "tips", "label": "TIPS", "variant": "offwhite", "score": "06", "character": "/images/cbj/columns/kinto-ref-chara-4.svg", "summaryVariant": "offwhite" },
+    "safe-custom-flow": { "type": "steps", "id": "ch06", "label": "CHAPTER 06", "variant": "white", "score": "06", "character": "/images/cbj/columns/kinto-ref-chara-2.svg", "summaryVariant": "light" },
+    "custom-purpose-view": { "type": "mindset", "id": "mindset", "label": "MINDSET", "variant": "offwhite", "score": "07" },
+    "summary-return-explain": { "type": "conclusion", "id": "summary", "label": "SUMMARY", "variant": "white", "score": "08", "character": "/images/cbj/columns/kinto-ref-chara-4.svg", "summaryVariant": "light" }
+  },
+  "mindset": {
+    "accent": "迷ったら、まず戻せるかを確認する"
+  },
+  "conclusion": {
+    "pillars": [
+      { "title": "戻せること", "body": "純正部品、施工前の状態、必要書類を残しておく。" },
+      { "title": "説明できること", "body": "車検、保証、整備入庫、売却時に変更内容を説明できる状態にする。" },
+      { "title": "安全性を壊さないこと", "body": "見た目だけでなく、診断性、接地、視界、保安基準まで確認する。" }
+    ],
+    "bottomImage": "/images/cbj/columns/custom-regret-flow-kinto.svg"
+  }
+}

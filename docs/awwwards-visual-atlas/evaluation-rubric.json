@@ -1,0 +1,89 @@
+{
+  "schema": "cbj-awwwards-visual-atlas.evaluation-rubric.v1",
+  "visibility": "internal-only",
+  "instruction": "Use this as an internal visual judgment layer. Do not surface the full checklist to the user unless asked.",
+  "scoring": {
+    "scale": "0-5",
+    "minimum_for_cbj_adoption": 4,
+    "hard_fail_any": [
+      "main subject is unclear on mobile first view",
+      "page feels like a stack of components rather than a designed page",
+      "shared footer or navigation overwhelms the page purpose",
+      "cards are used where typography, rules, rows, or tables would be better",
+      "Japanese copy becomes unnatural because of a design or style rule",
+      "visual treatment looks generic AI template or SaaS template"
+    ]
+  },
+  "axes": [
+    {
+      "id": "first_view_composition",
+      "label": "First view composition",
+      "question": "Does the first screen immediately communicate the page role and main subject",
+      "score_5": "Single clear subject, controlled nav, no secondary block steals attention",
+      "score_3": "Subject is present but competing UI blocks dilute it",
+      "score_1": "The viewer sees support UI, cards, or footer-like elements before the real subject"
+    },
+    {
+      "id": "visual_hierarchy",
+      "label": "Visual hierarchy",
+      "question": "Are title, lead, body, links, and secondary elements weighted correctly",
+      "score_5": "A clear typographic ladder and restrained emphasis guide reading",
+      "score_3": "Hierarchy works but too many blocks compete",
+      "score_1": "Every section looks equally important"
+    },
+    {
+      "id": "negative_space",
+      "label": "Negative space",
+      "question": "Does the page breathe without becoming empty or padded",
+      "score_5": "Space creates editorial calm and premium rhythm",
+      "score_3": "Spacing is clean but generic",
+      "score_1": "Space is used as padding around unnecessary cards"
+    },
+    {
+      "id": "component_restraint",
+      "label": "Component restraint",
+      "question": "Are cards, wrappers, CTAs, navs, and related blocks actually needed",
+      "score_5": "Most design value comes from typography, rules, rhythm, and strong content order",
+      "score_3": "Some unnecessary components remain but do not dominate",
+      "score_1": "The page is a stack of cards, wrappers, and black blocks"
+    },
+    {
+      "id": "scroll_rhythm",
+      "label": "Scroll rhythm",
+      "question": "Does the page feel intentional while scrolling",
+      "score_5": "Each section changes rhythm without adding noise",
+      "score_3": "Readable but a little uniform",
+      "score_1": "Scrolling feels like repeated modules"
+    },
+    {
+      "id": "mobile_order",
+      "label": "Mobile order",
+      "question": "Does mobile order match the real user task",
+      "score_5": "Hero, useful content, action, and secondary notes appear in the correct order",
+      "score_3": "Main content appears but supporting blocks interrupt",
+      "score_1": "Form, profile subject, article body, or main page purpose appears too late or out of order"
+    },
+    {
+      "id": "footer_and_nav_weight",
+      "label": "Footer and nav weight",
+      "question": "Do shared layout elements remain subordinate",
+      "score_5": "Footer and nav support the page without changing its perceived purpose",
+      "score_3": "Footer or nav is heavy but tolerable",
+      "score_1": "Footer or nav visually overwhelms the page"
+    },
+    {
+      "id": "cbj_fit",
+      "label": "CBJ fit",
+      "question": "Does the visual language feel like a premium automotive editorial media site",
+      "score_5": "Quiet, confident, car-media appropriate, not generic",
+      "score_3": "Generally acceptable but not distinctive",
+      "score_1": "Feels like a generic dashboard, SaaS site, agency template, or legal template"
+    }
+  ],
+  "decision_labels": {
+    "adopt": "Use the pattern directly after CBJ translation",
+    "adapt": "Use only the underlying visual logic",
+    "reject": "Do not use for this CBJ page type",
+    "delete": "Remove existing UI rather than replacing it"
+  }
+}
