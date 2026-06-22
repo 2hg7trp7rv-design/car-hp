@@ -1,8 +1,23 @@
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
-const DESIGN_PREVIEW_PATH =
-  "/column/modern-car-custom-regret-reason-column";
+import { ColumnEditorialArticlePage } from "@/components/column/detail/ColumnEditorialArticlePage";
+import { getInternalLinkIndex } from "@/lib/content/internal-link-index";
+import { getColumnBySlug, getRelatedColumnsV12 } from "@/lib/columns";
 
-export default function Home() {
-  redirect(DESIGN_PREVIEW_PATH);
+const DESIGN_PREVIEW_SLUG = "modern-car-custom-regret-reason-column";
+
+export default async function Home() {
+  const item = await getColumnBySlug(DESIGN_PREVIEW_SLUG);
+  if (!item) notFound();
+
+  const related = await getRelatedColumnsV12(item, 3);
+  const linkIndex = await getInternalLinkIndex();
+
+  return (
+    <ColumnEditorialArticlePage
+      item={item}
+      related={related}
+      linkIndex={linkIndex}
+    />
+  );
 }
