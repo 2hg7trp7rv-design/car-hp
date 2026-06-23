@@ -1,23 +1,30 @@
-import { notFound } from "next/navigation";
+import type { Metadata } from 'next';
 
-import { ColumnEditorialArticlePage } from "@/components/column/detail/ColumnEditorialArticlePage";
-import { getInternalLinkIndex } from "@/lib/content/internal-link-index";
-import { getColumnBySlug, getRelatedColumnsV12 } from "@/lib/columns";
+import VisualJsonArticlePage from '@/components/editorialArticle/VisualJsonArticlePage';
+import articleData from '@/data/article-layouts/modern-car-custom-regret-reason-column.visual.json';
+import type { VisualArticleData } from '@/types/visual-article';
 
-const DESIGN_PREVIEW_SLUG = "modern-car-custom-regret-reason-column";
+const TITLE = '車のカスタムで後悔しやすい理由';
+const DESCRIPTION =
+  '純正を崩す前に。その変更が、車検・保証・整備入庫・売却まで、車全体にどう関わるかを確認する。';
 
-export default async function Home() {
-  const item = await getColumnBySlug(DESIGN_PREVIEW_SLUG);
-  if (!item) notFound();
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: {
+    title: `${TITLE} | CAR BOUTIQUE JOURNAL`,
+    description: DESCRIPTION,
+    type: 'article',
+    images: ['/assets/og-image.webp'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${TITLE} | CAR BOUTIQUE JOURNAL`,
+    description: DESCRIPTION,
+    images: ['/assets/og-image.webp'],
+  },
+};
 
-  const related = await getRelatedColumnsV12(item, 3);
-  const linkIndex = await getInternalLinkIndex();
-
-  return (
-    <ColumnEditorialArticlePage
-      item={item}
-      related={related}
-      linkIndex={linkIndex}
-    />
-  );
+export default function Home() {
+  return <VisualJsonArticlePage data={articleData as VisualArticleData} />;
 }
