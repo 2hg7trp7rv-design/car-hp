@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { ColumnEditorialArticlePage } from "@/components/column/detail/ColumnEditorialArticlePage";
-import { getInternalLinkIndex } from "@/lib/content/internal-link-index";
-import { getAllColumns, getColumnBySlug, getRelatedColumnsV12 } from "@/lib/columns";
+import ColumnLesson17Page from "@/components/column/lesson17/ColumnLesson17Page";
+import { getAllColumns, getColumnBySlug } from "@/lib/columns";
 import { getSiteUrl } from "@/lib/site";
 import { resolveOgImageUrl } from "@/lib/public-assets";
 import { buildColumnDescription, buildColumnTitleBase, withBrand } from "@/lib/seo/serp";
@@ -53,8 +52,5 @@ export default async function ColumnDetailPage({ params }: PageProps) {
   const item = await getColumnBySlug(slug);
   if (!item) notFound();
 
-  const related = await getRelatedColumnsV12(item, 3);
-  const linkIndex = await getInternalLinkIndex();
-
-  return <ColumnEditorialArticlePage item={item} related={related} linkIndex={linkIndex} />;
+  return <ColumnLesson17Page />;
 }
