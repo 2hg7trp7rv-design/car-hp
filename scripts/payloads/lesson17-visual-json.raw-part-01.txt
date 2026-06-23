@@ -1,0 +1,158 @@
+{
+  "slug": "modern-car-custom-regret-reason-column",
+  "hero": {
+    "lessonNumber": "Lesson 17",
+    "title": "車のカスタムで\n後悔しやすい理由",
+    "description": "純正を崩す前に。その変更が、車検・保証・整備入庫・売却まで、車全体にどう関わるかを確認する。",
+    "readTime": "12 min read",
+    "difficulty": "初級〜中級",
+    "category": "COLUMN",
+    "characterImages": {
+      "left": "/assets/char-juna-avatar.webp",
+      "center": "/assets/car-illustration.webp",
+      "right": "/assets/char-rina-avatar.webp"
+    }
+  },
+  "sections": [
+    {
+      "id": "intro",
+      "sectionNumber": "",
+      "title": "",
+      "subtitle": "",
+      "accentColor": "",
+      "blocks": [
+        {
+          "type": "chat",
+          "character": "juna",
+          "text": "どうも〜、ジュナだよ！見た目はギャルだけど車はガチ勢。カスタムで後悔したことある人、集まれ〜！"
+        },
+        {
+          "type": "chat",
+          "character": "rina",
+          "text": "こんにちは、莉奈です。整備士の資格を持ってるんだけど、私も最初は何も知らなかったから、ジュナと一緒に勉強していこうね。"
+        },
+        {
+          "type": "chat",
+          "character": "juna",
+          "text": "この記事ではさ、カッコよく見えるカスタムが、実は車に悪影響だったりするって話をしていくよ〜。私もエアクリ変えたら警告灯ついたことあるし…"
+        },
+        {
+          "type": "paragraph",
+          "text": "現代の車は、エンジン・足回り・電気系統・安全装置がすべて電子的に繋がっている。一つ部品を変えると、思わぬところに影響が出ることがある。"
+        },
+        {
+          "type": "paragraph",
+          "text": "この記事では、吸気系・足回り・電装品の3つに焦点を当てて、「ハマりやすい罠」と「押さえるべきコツ」を解説する。"
+        },
+        {
+          "type": "summary",
+          "title": "この記事でわかること",
+          "paragraphs": [
+            "1. 吸気系カスタムの熱害リスクと対策",
+            "2. 足回り変更がADASに与える影響",
+            "3. CAN通信と電装品のトラブル防止",
+            "4. 失敗しないカスタムの進め方"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-01",
+      "sectionNumber": "01",
+      "title": "カスタムは車「全体」で考える",
+      "subtitle": "部品単体じゃなく、センサー・保証・売却まで視野に入れよう",
+      "accentColor": "#FF8C42",
+      "blocks": [
+        {
+          "type": "chat",
+          "character": "juna",
+          "text": "カスタムって、「このホイールかっこいい」とか「このマフラー音いいよね」ってパーツ単体で選びがちじゃん？"
+        },
+        {
+          "type": "chat",
+          "character": "rina",
+          "text": "そうだね、見た目で選んじゃうのはわかるよ。でも一つ変えると、意外なところまで影響することがあるんだよね。"
+        },
+        {
+          "type": "chat",
+          "character": "juna",
+          "text": "わかる〜！私も前にエアクリ変えたら、警告灯ついちゃったことあるの。"
+        },
+        {
+          "type": "chat",
+          "character": "rina",
+          "text": "あ〜、あるある！エアフローセンサーが変な数値出しちゃうパターンだね。"
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "なぜ部品単体で考えると失敗するのか"
+        },
+        {
+          "type": "paragraph",
+          "text": "現代の車はCAN（Controller Area Network）通信により、数十個のECU（電子制御ユニット）がリアルタイムでデータを交換している。"
+        },
+        {
+          "type": "paragraph",
+          "text": "吸気系の変更はエアフローセンサーの信号値を変え、それが燃料噴射量・点火時期・排ガス制御に連鎖的に影響する。単一パーツの視点では捕捉できない、システム全体の相互作用を常に意識する必要がある。"
+        },
+        {
+          "type": "paragraph",
+          "text": "エアフローセンサー（MAF）は吸入空気量をECUに伝える重要なセンサーだ。"
+        },
+        {
+          "type": "paragraph",
+          "text": "フィルター形状や口径を変えると、センサーが検出する流速分布が変わり、ECUは誤った空気量を認識してしまうことがある。"
+        },
+        {
+          "type": "illustration",
+          "src": "/assets/ch1-system-map.webp",
+          "alt": "カスタムによる車両システムへの影響関係図",
+          "caption": "図1：カスタムパーツと車両システムの影響関係マップ"
+        },
+        {
+          "type": "chat",
+          "character": "juna",
+          "text": "わかりやすい！つまり全部繋がってるんだね。"
+        },
+        {
+          "type": "chat",
+          "character": "rina",
+          "text": "その通り。次で3つの要素をまとめるね。"
+        },
+        {
+          "type": "systemCard",
+          "number": "01",
+          "title": "吸気系",
+          "paragraphs": [
+            "エアフローセンサー・燃料噴射量・点火時期・排ガス制御に直結。",
+            "エンジンルーム温度の変化はECUの学習値に影響する。"
+          ],
+          "color": "text-ch-orange",
+          "barColor": "bg-orange-400",
+          "iconName": "wind"
+        },
+        {
+          "type": "systemCard",
+          "number": "02",
+          "title": "足回り",
+          "paragraphs": [
+            "車高変更はアライメント・センサー照準・安全装置（ADAS）に波及。",
+            "ミリ波レーダー・カメラの光軸ずれは最悪の場合作動不良を招く。"
+          ],
+          "color": "text-ch-pink",
+          "barColor": "bg-pink-400",
+          "iconName": "circleDot"
+        },
+        {
+          "type": "systemCard",
+          "number": "03",
+          "title": "電装品",
+          "paragraphs": [
+            "CAN通信バスへの接続はECU間通信の信頼性に関わる。",
+            "未認証機器の接続でバス負荷上昇・エラー検出の可能性がある。"
+          ],
+          "color": "text-ch-blue",
+          "barColor": "bg-blue-400",
+          "iconName": "zap"
+        },
