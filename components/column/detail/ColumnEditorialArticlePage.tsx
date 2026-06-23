@@ -1,5 +1,6 @@
 import { JsonLd } from "@/components/seo/JsonLd";
 import { KintoJsonArticlePage } from "@/components/editorialArticle/KintoJsonArticlePage";
+import { ColumnV15ArticlePage } from "@/components/column/detail/ColumnV15ArticlePage";
 import type { EditorialArticleLabels, EditorialRelatedItem } from "@/components/editorialArticle/EditorialArticlePage";
 import type { ColumnItem } from "@/lib/content-types";
 import type { InternalLinkMeta } from "@/lib/content/internal-link-index";
@@ -7,6 +8,8 @@ import { getSiteUrl } from "@/lib/site";
 import { humanizeUpdateReason } from "@/lib/update-reason";
 
 type Props = { item: ColumnItem; related: ColumnItem[]; linkIndex: Record<string, InternalLinkMeta> };
+
+const V15_ARTICLE_SLUG = "modern-car-custom-regret-reason-column";
 
 function formatDateDot(iso?: string | null): string {
   if (!iso) return "";
@@ -83,34 +86,37 @@ export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) 
       <JsonLd id={`ld-breadcrumb-column-${item.slug}`} data={breadcrumbJsonLd} />
       <JsonLd id={`ld-column-${item.slug}`} data={articleJsonLd} />
       {faqJsonLd ? <JsonLd id={`ld-column-faq-${item.slug}`} data={faqJsonLd} /> : null}
-      <KintoJsonArticlePage
-        article={{
-          slug: item.slug,
-          layoutId: item.slug,
-          title,
-          eyebrowLabel: item.eyebrowLabel ?? item.displayTag ?? "コラム",
-          breadcrumbTrail,
-          author,
-          lead: item.lead,
-          body: item.body,
-          publishedAt: item.publishedAt ?? item.createdAt,
-          updatedAt: item.updatedAt ?? item.publishedAt ?? item.createdAt,
-          readMinutes: item.readMinutes,
-          keyPoints: item.keyPoints,
-          checkpoints: item.checkpoints,
-          sections: item.detailSections,
-          faq: item.faq,
-          actionBox: item.actionBox,
-          sources: item.sources,
-          updateText: `${item.updatedAt ? `${formatDateDot(item.updatedAt)}：` : ""}${humanizeUpdateReason(item.updateReason)}`,
-          relatedItems,
-          heroImage: item.heroImage || item.thumbnail || item.ogImageUrl,
-          heroAlt: item.titleJa ?? item.title,
-          suppressHeroVisual: item.slug === "modern-car-custom-regret-reason-column",
-        }}
-        labels={labels}
-        linkIndex={linkIndex}
-      />
+      {item.slug === V15_ARTICLE_SLUG ? (
+        <ColumnV15ArticlePage />
+      ) : (
+        <KintoJsonArticlePage
+          article={{
+            slug: item.slug,
+            layoutId: item.slug,
+            title,
+            eyebrowLabel: item.eyebrowLabel ?? item.displayTag ?? "コラム",
+            breadcrumbTrail,
+            author,
+            lead: item.lead,
+            body: item.body,
+            publishedAt: item.publishedAt ?? item.createdAt,
+            updatedAt: item.updatedAt ?? item.publishedAt ?? item.createdAt,
+            readMinutes: item.readMinutes,
+            keyPoints: item.keyPoints,
+            checkpoints: item.checkpoints,
+            sections: item.detailSections,
+            faq: item.faq,
+            actionBox: item.actionBox,
+            sources: item.sources,
+            updateText: `${item.updatedAt ? `${formatDateDot(item.updatedAt)}：` : ""}${humanizeUpdateReason(item.updateReason)}`,
+            relatedItems,
+            heroImage: item.heroImage || item.thumbnail || item.ogImageUrl,
+            heroAlt: item.titleJa ?? item.title,
+          }}
+          labels={labels}
+          linkIndex={linkIndex}
+        />
+      )}
     </>
   );
 }
