@@ -148,4 +148,4 @@
       "title": "足回りのリスクと対策",
       "subtitle": "見た目だけの車高調は、乗り心地と安全の両方を損なう",
       "accentColor": "#F06292",
-      "blocks": [
+      "blocks
