@@ -1,0 +1,729 @@
+{
+  "id": "guide-used-custom-car-check-guide",
+  "slug": "used-custom-car-check-guide",
+  "type": "GUIDE",
+  "status": "published",
+  "publicState": "index",
+  "noindex": false,
+  "title": "カスタム済み中古車の見分け方。\n純正戻し・施工履歴・警告灯で確認したいこと",
+  "titleJa": "カスタム済み中古車の見分け方。純正戻し・施工履歴・警告灯で確認したいこと",
+  "summary": "カスタム済み中古車を買う前に、純正部品、施工履歴、書類、配線加工、警告灯、異音、試乗、車検対応、修復歴表示を確認するためのGuideです。",
+  "seoTitle": "カスタム済み中古車の見分け方。純正戻し・施工履歴・警告灯の確認点",
+  "seoDescription": "カスタム済み中古車を買う前に確認したい純正部品、施工履歴、書類、外装、灯火、マフラー、配線加工、警告灯、試乗、車検対応を解説します。",
+  "description": "カスタム済み中古車の見分け方を、純正戻し、施工履歴、書類、警告灯、配線、試乗で整理します。",
+  "lead": "カスタム済み中古車は、最初からかっこよく見えて、部品代の分だけ得に見えることがあります。\nでも、見るべきなのはパーツの多さではありません。誰がどこを触ったのか、純正へ戻せるのか、車検や整備で説明できるのか、試乗で違和感がないか。\nこの記事では、見た目ではなく「買っていい寄り・保留・避ける寄り」に分けて確認します。",
+  "category": "CUSTOM",
+  "readMinutes": 11,
+  "heroImage": "/images/cbj/article-system/content/used-custom-car-check-guide/cover.webp",
+  "thumbnail": "/images/cbj/article-system/content/used-custom-car-check-guide/cover.webp",
+  "publishedAt": "2026-06-03",
+  "updatedAt": "2026-07-02",
+  "tags": [
+    "カスタム",
+    "中古車",
+    "社外パーツ",
+    "車検",
+    "純正戻し",
+    "施工履歴"
+  ],
+  "displayTag": "中古車",
+  "eyebrowLabel": "カスタム中古車",
+  "primaryQuery": "カスタム済み中古車 見分け方 純正部品 施工履歴 警告灯",
+  "parentPillarId": "/column/modern-car-custom-regret-reason-column",
+  "relatedClusterIds": [
+    "modern-car-custom-regret-reason-column",
+    "electronic-damper-coilover-risk-guide",
+    "adas-lowered-car-aiming-risk-guide"
+  ],
+  "intentTags": [
+    "used-car",
+    "custom",
+    "inspection",
+    "maintenance",
+    "guide"
+  ],
+  "monetizeKey": "used-car-check",
+  "monetizeType": "indirect",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "aftermarket-air-cleaner-risk-guide",
+    "tv-canceller-can-risk-guide",
+    "electronic-damper-coilover-risk-guide",
+    "adas-lowered-car-aiming-risk-guide"
+  ],
+  "relatedColumnSlugs": [
+    "modern-car-custom-regret-reason-column"
+  ],
+  "relatedHeritageSlugs": [],
+  "internalLinks": [
+    "modern-car-custom-regret-reason-column",
+    "car-suspension-hard-soft-merit-demerit",
+    "electronic-damper-coilover-risk-guide",
+    "adas-lowered-car-aiming-risk-guide",
+    "aftermarket-air-cleaner-risk-guide",
+    "tv-canceller-can-risk-guide"
+  ],
+  "createdAt": "2026-06-02",
+  "canonicalUrl": "https://carboutiquejournal.com/guide/used-custom-car-check-guide",
+  "ogImageUrl": "/images/cbj/article-system/content/used-custom-car-check-guide/cover.webp",
+  "updateReason": "親記事との役割差を整理し、各ガイドの判断導線・確認表・締めの要点を再構成",
+  "sources": [
+    "https://www.naltec.go.jp/faq/0004.html",
+    "https://www.naltec.go.jp/faq/0003.html",
+    "https://www.mlit.go.jp/jidosha/jidosha/tenkenseibi/huseikaizou/h1/h1-2/",
+    "https://www.aftc.or.jp/content/files/pdf/aftc_info/aftcinfo_20190326.pdf",
+    "https://www.jucda.or.jp/soudan/trouble/afterdelivery/05.html",
+    "https://www.napac.jp/cms/ja/asea/quality-auth",
+    "https://www.nhtsa.gov/vehicle-safety/tires",
+    "https://toyota.jp/after_service/support/general/"
+  ],
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "カスタム済み中古車の見分け方。純正戻し・施工履歴・警告灯で確認したいこと"
+    }
+  ],
+  "authorProfile": {
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "整備・中古車・カスタム判断編集チーム",
+    "kind": "organization"
+  },
+  "keyPoints": [
+    "カスタム済み中古車は、部品点数より取り付け状態と記録を見る。",
+    "純正部品、施工明細、保証書、アライメント記録、診断記録が残っているか確認する。",
+    "車検対応表示だけでなく、実車に付いた状態、固定、劣化、組み合わせを見る。",
+    "最後は、買っていい寄り、保留、避ける寄りに分けて判断する。"
+  ],
+  "checkpoints": [
+    "主要な純正部品が残っているか確認する。",
+    "施工明細、部品名、施工店、施工日を確認する。",
+    "認定書類、保証書、取扱説明書、アライメント結果を確認する。",
+    "配線加工、穴あけ加工、後付け電装品の戻し方を確認する。",
+    "始動時と走行中の警告灯、異音、タイヤ片減りを確認する。"
+  ],
+  "faq": [
+    {
+      "question": "カスタム済み中古車は避けた方がいいですか？",
+      "answer": "一律に避ける必要はありません。\n純正部品、施工履歴、警告灯、試乗状態、整備記録を確認して判断します。"
+    },
+    {
+      "question": "有名メーカーの部品なら安心ですか？",
+      "answer": "部品名だけでは判断できません。\n適合、取り付け状態、劣化、書類、施工履歴を確認します。"
+    },
+    {
+      "question": "純正部品がない車はやめた方がいいですか？",
+      "answer": "リスクは上がります。\n不調時の切り分け、車検、売却、仕様変更で困る可能性があるため、価格や整備状態と合わせて慎重に判断します。"
+    },
+    {
+      "question": "警告灯が消えていれば問題ありませんか？",
+      "answer": "警告灯が消えていることは確認の一つです。\nDTC、消去履歴、施工内容、再点灯の有無も確認します。"
+    },
+    {
+      "question": "試乗できない場合はどうしますか？",
+      "answer": "判断材料が不足します。\n整備記録、診断結果、下回り写真、異音確認、第三者点検などを追加で求めるべきです。"
+    }
+  ],
+  "actionBox": {
+    "title": "次に読む記事",
+    "body": "カスタム済み中古車は、装着パーツを個別に見るだけでは足りません。次は、カスタム全体の考え方や、吸気・電装・足回りの確認へ進みます。",
+    "actions": [
+      {
+        "label": "現代車カスタムの全体像を読む｜戻せる・説明できる考え方を整理する",
+        "href": "/column/modern-car-custom-regret-reason-column"
+      },
+      {
+        "label": "社外エアクリーナーのリスクを読む｜吸気系カスタム済み車の確認点を見る",
+        "href": "/guide/aftermarket-air-cleaner-risk-guide"
+      },
+      {
+        "label": "TVキャンセラーと車両通信を読む｜装着済み電装品の戻し方を見る",
+        "href": "/guide/tv-canceller-can-risk-guide"
+      }
+    ]
+  },
+  "layoutVariant": "cbj-world-v1",
+  "detailSections": [
+    {
+      "id": "section-01",
+      "kind": "explanation",
+      "chapterLabel": "BASICS",
+      "title": "カスタム済み中古車は、部品点数で判断しない",
+      "displayTitle": "部品点数ではなく\n戻せるかを見る",
+      "deck": "見た目や装着部品ではなく、戻せる・説明できる・確認できるかを基準に見る。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "有名パーツがたくさん付いてたら、得じゃない？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "得に見えることはあるね。\nでも、取り付け状態や純正部品の有無が分からないと、整備や売却で困ることがある。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "paragraph",
+          "text": "カスタム済み中古車は、同じ予算でも見た目や装備が充実して見えることがあります。\n一方で、どこを誰がどう触ったのか、純正へ戻せるのか、車検や整備で説明できるのか、保証や売却時にどう扱われるのかを確認しないと、購入後に判断が難しくなります。",
+          "flow": "natural",
+          "highlights": [
+            "どこを誰がどう触ったのか、純正へ戻せるのか、車検や整備で説明できるのかを確認します。"
+          ]
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/used-custom-car-check-guide/used-custom-car-overview.webp",
+          "alt": "カスタム済み中古車で確認する純正戻し、施工履歴、警告灯、試乗、書類を整理した図。",
+          "label": "部品点数より、戻せるか、説明できるかを基準に見る。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1200,
+          "height": 1400,
+          "aspectRatio": "1200 / 1400"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "現車確認で最初に見るもの",
+          "headers": [
+            "項目",
+            "確認すること"
+          ],
+          "rows": [
+            [
+              "純正部品",
+              "外した部品が残っているか。"
+            ],
+            [
+              "施工履歴",
+              "部品名、施工店、施工日、取り付け内容が分かるか。"
+            ],
+            [
+              "書類",
+              "認定書、保証書、取扱説明書、アライメント記録があるか。"
+            ],
+            [
+              "警告灯",
+              "始動時、走行中、再始動時に異常表示がないか。"
+            ],
+            [
+              "試乗",
+              "異音、直進性、突き上げ、ブレーキ時の違和感がないか。"
+            ]
+          ],
+          "display": "checklist",
+          "presentation": {
+            "variant": "mock-checklist",
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-02",
+      "kind": "explanation",
+      "chapterLabel": "RECORD",
+      "title": "最初に見るのは純正部品と施工書類",
+      "displayTitle": "純正部品と書類を\n先に確認する",
+      "deck": "純正部品と書類があると、購入後も状態を説明しやすい。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "純正部品って、そんなに大事？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "かなり大事だよ。\n純正状態に戻せると、不調の原因を切り分けやすいし、売却時にも説明しやすい。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/used-custom-car-check-guide/used-custom-documents-parts.webp",
+          "alt": "カスタム済み中古車で残しておきたい純正部品、説明書、施工履歴を整理した図。",
+          "label": "純正部品と書類があると、後から状態を説明しやすい。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1200,
+          "height": 1400,
+          "aspectRatio": "1200 / 1400"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "残っていると判断しやすいもの",
+          "headers": [
+            "もの",
+            "役立つ場面",
+            "確認すること"
+          ],
+          "rows": [
+            [
+              "純正部品",
+              "不調時、車検、売却、仕様変更。",
+              "欠品、破損、保管状態。"
+            ],
+            [
+              "施工明細",
+              "どこをどう触ったかを追える。",
+              "施工店、日付、作業内容。"
+            ],
+            [
+              "部品の説明書",
+              "適合、取り付け方法、保証条件を確認できる。",
+              "品番、車種適合、保証期間。"
+            ],
+            [
+              "アライメント記録",
+              "足回り変更後の状態を確認できる。",
+              "測定日、調整値、タイヤ片減り。"
+            ],
+            [
+              "診断記録",
+              "警告灯やDTCの有無を追える。",
+              "消去履歴、再発の有無。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "戻せることは、売る時だけの話ではない",
+          "body": "純正戻しは売却対策だけではありません。\n不調が出た時に、カスタムが原因かどうかを比べるためにも役立ちます。純正部品がない場合は、戻す費用と手間も購入判断に入れます。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-03",
+      "kind": "explanation",
+      "chapterLabel": "CONDITION",
+      "title": "装着状態・固定・劣化を見る",
+      "displayTitle": "装着状態・固定・劣化を\n確認する",
+      "deck": "車検対応表示だけでなく、実車に付いた状態で確認する。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "車検対応って書いてあるパーツなら、問題ないんじゃない？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "表示だけでは決められないよ。\n実際にその車へ取り付けられた状態で、位置、固定、劣化、組み合わせを確認する必要がある。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "paragraph",
+          "text": "後付け部品は、部品単体ではなく、実車に装着された状態で確認されます。\n「車検対応」と表示された製品でも、取り付け位置、固定方法、ほかの部品との組み合わせ、劣化や破損によって状態が変わることがあります。中古車では、現在の状態に加えて、過去の施工履歴と修復歴表示も確認します。",
+          "flow": "natural",
+          "highlights": [
+            "部品単体ではなく、実車に装着された状態で確認されます。"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "修復歴は、一般に車体の骨格に当たる部位の修正や交換歴を指します。\nバンパー交換や外装補修だけで必ず修復歴になるわけではありませんが、カスタム済み車では外装のきれいさだけでなく、骨格、溶接跡、左右差、修理明細も確認します。",
+          "flow": "natural",
+          "highlights": [
+            "バンパー交換や外装補修だけで必ず修復歴になるわけではありません。"
+          ]
+        },
+        {
+          "type": "comparisonTable",
+          "title": "外装で確認したいこと",
+          "headers": [
+            "場所",
+            "確認すること",
+            "避けたい状態"
+          ],
+          "rows": [
+            [
+              "エアロ",
+              "割れ、浮き、固定、最低地上高。",
+              "擦りすぎ、ビス不足、車体加工が大きい。"
+            ],
+            [
+              "灯火類",
+              "色、明るさ、点灯状態、警告灯。",
+              "保安基準に合わない色や点灯不良。"
+            ],
+            [
+              "マフラー",
+              "音量、排気漏れ、固定、書類。",
+              "認定書類なし、異音、干渉、排気漏れ。"
+            ],
+            [
+              "ホイール・タイヤ",
+              "はみ出し、干渉、片減り、サイズ。",
+              "フェンダー干渉、極端な片減り。"
+            ],
+            [
+              "車高",
+              "最低地上高、段差、輪止め。",
+              "日常使用や入庫で困る低さ。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "表示だけで判断しない",
+          "headers": [
+            "判断",
+            "特徴"
+          ],
+          "rows": [
+            [
+              "注意",
+              "車検対応表示だけで安心する。\n写真だけで状態を決める。\n部品名の有名さだけで評価する。\n実車の固定や劣化を見ない。"
+            ],
+            [
+              "確認",
+              "実車の装着状態を見る。\n書類と品番を確認する。\n異音、排気漏れ、干渉を見る。\n普段使う整備先で相談できる状態にする。"
+            ]
+          ],
+          "display": "contrast",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-04",
+      "kind": "explanation",
+      "chapterLabel": "ELECTRIC",
+      "title": "電装品と配線加工は慎重に見る",
+      "displayTitle": "電装品と配線加工は\n慎重に見る",
+      "deck": "動作だけでなく、電源の取り方、ヒューズ、アース、戻し方まで見る。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "電装品って、今ちゃんと動いていれば大丈夫そうだけど。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "見えない場所が多いからこそ注意したい。\n配線の固定、ヒューズ、アース、車両信号への接続、診断状態まで見る必要がある。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/used-custom-car-check-guide/used-custom-wiring-warning.webp",
+          "alt": "カスタム済み中古車で確認したい配線加工、警告灯、診断、復元方法を整理した図。",
+          "label": "電装品は、動作だけでなく配線、診断、戻し方まで見る。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1200,
+          "height": 1400,
+          "aspectRatio": "1200 / 1400"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "電装品で確認したいこと",
+          "headers": [
+            "項目",
+            "確認すること",
+            "注意したい状態"
+          ],
+          "rows": [
+            [
+              "電源",
+              "常時電源、ACC電源、ヒューズの取り方。",
+              "無理な分岐、容量不明、バッテリー上がり。"
+            ],
+            [
+              "アース",
+              "確実に固定されているか。",
+              "塗装面、緩み、腐食。"
+            ],
+            [
+              "配線経路",
+              "金属部や可動部と擦れていないか。",
+              "断線、ショート、内装内の雑な固定。"
+            ],
+            [
+              "車両信号",
+              "車速、シフト、ステアリング信号などへの接続。",
+              "施工内容が分からない後付け機器。"
+            ],
+            [
+              "診断",
+              "警告灯やDTCが残っていないか。",
+              "消去だけで原因不明の状態。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "電源が入ることは、取り付け完了の一部",
+          "body": "後付け電装品は、動作することだけでなく、その後も車が正常に動き、整備時に説明できることまで確認します。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-05",
+      "kind": "explanation",
+      "chapterLabel": "DECISION",
+      "title": "買っていい / 保留 / 避ける に分ける",
+      "displayTitle": "買っていい・保留・避けるを\n分ける",
+      "deck": "試乗、警告灯、施工記録、純正部品を合わせて購入判断に落とす。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "最後は雰囲気で決めちゃいそう。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "雰囲気も大事だけど、カスタム済み中古車は試乗で違和感を分けて見る。\n買いやすい個体と避けたい個体を、理由で分けよう。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/used-custom-car-check-guide/used-custom-test-drive-check.webp",
+          "alt": "カスタム済み中古車の試乗で確認する異音、直進性、突き上げ、警告灯を整理した図。",
+          "label": "試乗では、異音、直進性、突き上げ、警告灯を分けて確認する。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1200,
+          "height": 1400,
+          "aspectRatio": "1200 / 1400"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "試乗で確認すること",
+          "headers": [
+            "場面",
+            "見ること",
+            "注意したい状態"
+          ],
+          "rows": [
+            [
+              "始動時",
+              "警告灯が点灯後に正常に消えるか。",
+              "警告灯の点きっぱなし、消去直後の違和感。"
+            ],
+            [
+              "低速",
+              "段差での異音、突き上げ、干渉。",
+              "ゴトゴト音、擦れ音、跳ね。"
+            ],
+            [
+              "直進",
+              "ハンドルセンター、左右への流れ。",
+              "真っすぐ走りにくい、片減り。"
+            ],
+            [
+              "ブレーキ",
+              "振動、鳴き、左右差。",
+              "ジャダー、異音、効きの違和感。"
+            ],
+            [
+              "再始動",
+              "警告灯や不調が再発しないか。",
+              "一度消した警告の再点灯。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "買っていい / 保留 / 避ける の判断",
+          "display": "cards",
+          "headers": [
+            "判断",
+            "状態",
+            "見ること"
+          ],
+          "rows": [
+            [
+              "買っていい寄り",
+              "施工明細あり。純正部品あり。警告灯なし。試乗で違和感なし。",
+              "整備先へ施工内容を説明できる。"
+            ],
+            [
+              "保留",
+              "部品名は分かるが施工記録が薄い。純正部品が一部ない。試乗できない。",
+              "購入前に戻し費用と整備先の見解を確認する。"
+            ],
+            [
+              "避ける寄り",
+              "警告灯を消しただけ。配線加工を説明できない。純正戻し不可。異音・片減り・直進性の違和感あり。",
+              "部品代のお得感より、購入後の原因切り分けリスクを優先する。"
+            ]
+          ],
+          "presentation": {
+            "variant": "mock-checklist"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "販売店に確認する質問",
+          "headers": [
+            "質問",
+            "確認したい理由"
+          ],
+          "rows": [
+            [
+              "外した純正部品は残っていますか",
+              "不調時、車検、売却、仕様変更で戻せるかを見るため。"
+            ],
+            [
+              "施工明細や部品名は確認できますか",
+              "誰がどこを触ったかを追えるか判断するため。"
+            ],
+            [
+              "警告灯や診断履歴は確認できますか",
+              "警告灯を消しただけの個体を避けるため。"
+            ],
+            [
+              "配線加工や穴あけ加工はありますか",
+              "戻し方と整備入庫時の説明に関わるため。"
+            ],
+            [
+              "試乗または第三者点検はできますか",
+              "異音、直進性、片減り、ブレーキ違和感を見るため。"
+            ]
+          ],
+          "display": "checklist",
+          "presentation": {
+            "variant": "mock-checklist",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "CBJの判断基準",
+          "body": "カスタム済み中古車を、一律で避けるべきとは扱いません。\nただし、施工履歴がない、純正部品がない、配線加工を説明できない、試乗で違和感がある個体は、部品代のお得感よりリスクを優先して判断します。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        }
+      ]
+    }
+  ],
+  "articleDesign": {
+    "version": "cbj-world-v1",
+    "layoutPreset": "column-renewal-v1",
+    "lessonNumber": 23,
+    "difficulty": "初級〜中級",
+    "heroGradient": [
+      "#FF6B8A",
+      "#FFCA28"
+    ],
+    "heroCenterImage": "/images/cbj/article-system/car-illustration-transparent-v2.png",
+    "sectionPalette": [
+      "#FF8C42",
+      "#8BC34A",
+      "#F06292",
+      "#42A5F5",
+      "#FFCA28"
+    ],
+    "introDialogue": [
+      {
+        "character": "juna",
+        "motion": "fade-right",
+        "text": "カスタム済みの中古車って、最初からかっこよくてお得に見えるよね。",
+        "variant": "bubble"
+      },
+      {
+        "character": "rina",
+        "motion": "fade-left",
+        "text": "魅力はあるよ。\nでも、部品点数より、純正に戻せるか、施工内容を追えるか、試乗で違和感がないかを先に見る。",
+        "variant": "bubble"
+      }
+    ],
+    "sectionDialogues": {},
+    "closingDialogue": [
+      {
+        "character": "juna",
+        "text": "カスタム済み中古車は、見た目だけじゃなくて、戻せるかと説明できるかを見るんだね。",
+        "variant": "bubble",
+        "motion": "fade-right"
+      },
+      {
+        "character": "rina",
+        "text": "そう。\nお得に見える車ほど、記録、純正部品、試乗で確認してから判断しよう。",
+        "variant": "bubble",
+        "motion": "fade-left"
+      }
+    ],
+    "heroTitle": "カスタム済み中古車の\n見分け方",
+    "heroLead": "部品点数より、純正戻し・施工履歴・警告灯・試乗で判断する。",
+    "closingBlocks": [
+      {
+        "type": "callout",
+        "tone": "info",
+        "title": "最終結論",
+        "body": "カスタム済み中古車は、部品代のお得感だけで決めません。\n\n純正部品、施工履歴、警告灯、配線加工、試乗時の違和感を確認できる個体を選びます。\n\n判断できない部分が多い車は、安く見えても購入後の原因切り分けが難しくなります。",
+        "presentation": {
+          "variant": "mock-info"
+        }
+      }
+    ],
+    "heroPromise": "カスタム済み中古車を、買っていい寄り・保留・避ける寄りに分けて確認できる。"
+  }
+}

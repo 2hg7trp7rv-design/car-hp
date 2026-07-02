@@ -1,0 +1,89 @@
+{
+  "slug": "car-suspension-hard-soft-merit-demerit",
+  "createdAt": "2026-05-31",
+  "competitorCount": 13,
+  "queries": [
+    "車 足回り 硬い 柔らかい",
+    "足回り 乗り心地 試乗 見分け方",
+    "サスペンション バネレート 減衰力",
+    "車高調 乗り心地 悪い 硬い 跳ねる",
+    "タイヤ 空気圧 乗り心地"
+  ],
+  "competitors": [
+    {
+      "url": "https://kinto-jp.com/magazine/k20250725-1/",
+      "notes": "足回りの硬い・柔らかいを初心者向けに用語解説。スプリング、ダンパー、スタビライザー、ブッシュに触れている。"
+    },
+    {
+      "url": "https://www.webcartop.jp/2024/05/1344722/",
+      "notes": "柔らかければ乗り心地が良い、硬ければ安定という単純化を崩し、サスペンションの奥行きを説明。"
+    },
+    {
+      "url": "https://www.goo-net.com/magazine/carmaintenance/inspection/211877/",
+      "notes": "車高調選びで、全長調整式、複筒式、減衰力調整など乗り心地に関係する要素を整理。"
+    },
+    {
+      "url": "https://gazoo.com/guide/23/05/18/",
+      "notes": "車高調、スプリング、減衰力調整などサスペンションチューニングの基本を整理。"
+    },
+    {
+      "url": "https://www.diylabo.jp/guide.html",
+      "notes": "車高調の乗り心地悪化について、ショックのセッティングや状態別の改善策に触れている。"
+    },
+    {
+      "url": "https://www.diylabo.jp/guide.html",
+      "notes": "車高を下げすぎた際のブッシュやアームの動き、乗り心地悪化の原因を説明。"
+    },
+    {
+      "url": "https://www.yorozu-corp.co.jp/en/products/suspension/",
+      "notes": "サスペンションの役割を、車重支持、タイヤ位置、衝撃吸収、走行安定性の観点で確認。"
+    },
+    {
+      "url": "https://www.kyb.co.jp/en/products/automotive.html",
+      "notes": "自動車用ショックアブソーバーの役割と、路面入力に応じた減衰の考え方を確認。"
+    },
+    {
+      "url": "https://www.monroe.com/technical-resources/shocks-101/symptoms-worn-shock-struts.html",
+      "notes": "段差後に揺れが残る、乗り心地が悪化するなどショック/ストラット劣化症状を確認。"
+    },
+    {
+      "url": "https://www.monroe.com/en-eu/support/technical-tips/lv/shock-absorbers/symptoms-of-worn-shocks.html",
+      "notes": "ノーズダイブ、ロール、片減り、加速時の沈み込みなど、症状別の足回りチェックに利用。"
+    },
+    {
+      "url": "https://www.bridgestoneamericas.com/en/company/safety/maintaining-tires/tire-inflation",
+      "notes": "適正空気圧がタイヤ寿命、乗り心地、性能、荷重、摩耗、燃費に関係する点を確認。"
+    },
+    {
+      "url": "https://www.bridgestonetire.com/content/dam/bridgestone/consumer/bst/PDF/Bridgestone_Firestone_Maintenance_and_Safety_Manual_05-12-17.pdf",
+      "notes": "空気圧不適正による摩耗、発熱、損傷、安全リスクの説明を確認。"
+    },
+    {
+      "url": "https://www.macphersonride.com/products/bushings",
+      "notes": "ブッシュが振動・ショック・ノイズを抑え、部品位置を保持する役割を確認。"
+    }
+  ],
+  "commonTakeaways": [
+    "競合は「硬い・柔らかい」の用語説明や車高調の選び方に強いが、試乗時の見分け方と中古車確認まで一つの記事で整理しているものは少ない。",
+    "初心者向けには「接地感」より「乗り心地」「試乗」「見分け方」をタイトルに入れる方が検索意図に近い。",
+    "硬い足の失敗は、バネレートだけでなく、減衰力の強すぎ、ストローク不足、バンプタッチを視覚化すると理解しやすい。",
+    "タイヤ空気圧や扁平率は乗り心地の入口だが、サスペンション記事では軽く扱われることが多いため、図解と表で補強した。"
+  ],
+  "gapsFound": [
+    "「足回りが硬い・柔らかいとは」の親記事で、タイトルに試乗時の見分け方まで入れている競合は少ない。",
+    "車高調やローダウンで乗り心地が悪くなる流れを、ストローク不足とバンプタッチの図解で説明する余地がある。",
+    "既存の一覧カード画像は雰囲気写真寄りで、記事テーマの即時理解が弱かった。"
+  ],
+  "changesApplied": [
+    "タイトルを「メリットとデメリット」型から「乗り心地の違いと試乗での見分け方」型へ変更した。",
+    "本文を一般的な自動車メディア調に寄せ、初心者が分かりにくい部品・減衰力・空気圧・車高調の部分を表と図解で補強した。",
+    "既存の優良図解は維持し、新規に硬い足・柔らかい足の比較図、ストローク不足とバンプタッチ図、一覧カード用画像を追加した。",
+    "記事一覧ページで何の記事か分かりやすくするため、heroImage/thumbnail/ogImageUrlを新しい専用カード画像へ差し替えた。"
+  ],
+  "qualityChecks": [
+    "画像枚数に上限は設けず、本文理解に必要な箇所だけ追加した。",
+    "画像内テキストはスマホで読めるサイズにし、長文を避けた。",
+    "既存の足回り図解のトーンに合わせ、白背景、ティール、薄いグレー、少量のオレンジで統一した。",
+    "親記事として足回り全体を扱い、車高調、ダンパーへたり、空気圧、試乗などは将来的な子記事化候補として本文内で拾った。"
+  ]
+}

@@ -1,0 +1,702 @@
+{
+  "id": "guide-car-suspension-hard-soft-merit-demerit",
+  "slug": "car-suspension-hard-soft-merit-demerit",
+  "type": "GUIDE",
+  "status": "published",
+  "publicState": "index",
+  "title": "車の足回りが硬い・柔らかいとは？\n乗り心地の違いと試乗での見分け方",
+  "titleJa": "車の足回りが硬い・柔らかいとは？乗り心地の違いと試乗での見分け方",
+  "summary": "足回りの硬い・柔らかいを、段差の衝撃、揺れの収まり、タイヤの接地感、車高調やローダウン後の変化から初心者向けに整理します。",
+  "seoTitle": "車の足回りが硬い・柔らかいとは？乗り心地の違いと試乗での見分け方",
+  "seoDescription": "足回りが硬い・柔らかいとは何か。段差の突き上げ、揺れの収まり、ダンパー、タイヤ、車高調、ローダウン後の乗り心地、試乗で見るポイントを解説します。",
+  "description": "足回りの硬い・柔らかいを、段差後の収まり、ダンパー、タイヤ、車高調、試乗時の確認点で整理します。",
+  "lead": "足回りの硬い・柔らかいは、感覚の話だけで終わらせない方が判断しやすくなります。\n段差を越えた瞬間の衝撃、その後の揺れの残り方、タイヤが路面をつかむ感じ、異音や跳ね方を分けて見ます。\nこの記事では、試乗や日常走行で何を感じたら、どこを疑えばいいかを整理します。",
+  "category": "MAINTENANCE",
+  "readMinutes": 10,
+  "heroImage": "/images/cbj/article-system/content/car-suspension-hard-soft-merit-demerit/cover.webp",
+  "thumbnail": "/images/cbj/article-system/content/car-suspension-hard-soft-merit-demerit/cover.webp",
+  "publishedAt": "2026-05-25",
+  "updatedAt": "2026-07-02",
+  "tags": [
+    "足回り",
+    "サスペンション",
+    "乗り心地",
+    "ダンパー",
+    "車高調",
+    "タイヤ",
+    "試乗"
+  ],
+  "displayTag": "足回り",
+  "eyebrowLabel": "メンテナンス",
+  "primaryQuery": "車 足回り 硬い 柔らかい 乗り心地 試乗 見分け方",
+  "parentPillarId": "/column/modern-car-custom-regret-reason-column",
+  "relatedClusterIds": [],
+  "intentTags": [
+    "知りたい",
+    "選びたい",
+    "メンテナンス",
+    "中古車",
+    "試乗",
+    "車高調"
+  ],
+  "monetizeKey": null,
+  "monetizeType": "indirect",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "adas-lowered-car-aiming-risk-guide",
+    "electronic-damper-coilover-risk-guide",
+    "used-custom-car-check-guide"
+  ],
+  "relatedColumnSlugs": [
+    "modern-car-custom-regret-reason-column"
+  ],
+  "relatedHeritageSlugs": [],
+  "internalLinks": [
+    "modern-car-custom-regret-reason-column",
+    "aftermarket-air-cleaner-risk-guide",
+    "used-custom-car-check-guide"
+  ],
+  "createdAt": null,
+  "canonicalUrl": "https://carboutiquejournal.com/guide/car-suspension-hard-soft-merit-demerit",
+  "ogImageUrl": "/images/cbj/article-system/content/car-suspension-hard-soft-merit-demerit/cover.webp",
+  "updateReason": "親記事との役割差を整理し、各ガイドの判断導線・確認表・締めの要点を再構成",
+  "sources": [
+    "https://www.kyb.co.jp/en/products/automotive.html",
+    "https://www.monroe.com/technical-resources/shocks-101/symptoms-worn-shock-struts.html",
+    "https://www.bridgestoneamericas.com/en/company/safety/maintaining-tires/tire-inflation",
+    "https://www.bridgestonetire.com/content/dam/bridgestone/consumer/bst/PDF/Bridgestone_Firestone_Maintenance_and_Safety_Manual_05-12-17.pdf",
+    "https://www.yorozu-corp.co.jp/en/products/suspension/",
+    "https://www.naltec.go.jp/faq/0004.html"
+  ],
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "車の足回りが硬い・柔らかいとは？メリットとデメリットをわかりやすく解説"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "メンテナンス・中古車ガイド編集チーム"
+  },
+  "keyPoints": [
+    "硬い・柔らかいは、段差の一発目と揺れの収まりで分ける。",
+    "タイヤ、空気圧、ダンパー、ブッシュが乗り味を重ねて作る。",
+    "ローダウン車は、ストローク不足、干渉、片減りまで見る。",
+    "試乗では道・速度・席を分け、ゴツゴツ、跳ねる、揺れが残るなど症状名で判断する。"
+  ],
+  "checkpoints": [
+    "段差後の揺れがすぐ収まるか確認する。",
+    "ゴツゴツ、フワフワ、跳ねる、異音など症状を分ける。",
+    "タイヤ空気圧、摩耗、扁平率、ホイールサイズを確認する。",
+    "車高調やローダウン車は、ストローク不足、干渉、片減りを確認する。",
+    "中古車では、整備履歴、ダンパー漏れ、純正部品の有無を確認する。"
+  ],
+  "faq": [
+    {
+      "question": "足回りが硬い方が走りは良いですか？",
+      "answer": "硬ければ良いとは限りません。\n跳ねてタイヤが路面を追えないと、接地感が薄くなり扱いにくくなることがあります。"
+    },
+    {
+      "question": "柔らかい足回りは乗り心地が良いですか？",
+      "answer": "街乗りでは快適に感じることがあります。\nただし、揺れが長く残ると高速道路やカーブで落ち着きにくい場合があります。"
+    },
+    {
+      "question": "車高調にすると必ず乗り心地は悪くなりますか？",
+      "answer": "必ずではありません。\n製品、設定、車高、タイヤ、アライメント、取り付け状態で変わります。"
+    },
+    {
+      "question": "試乗で一番見るべき場所はどこですか？",
+      "answer": "低速の段差と荒れた舗装です。\n突き上げと揺れの収まりを短時間で感じやすいからです。"
+    },
+    {
+      "question": "中古車で足回りが変わっていたら避けるべきですか？",
+      "answer": "部品名だけでは判断できません。\n異音、片減り、整備履歴、アライメント記録、純正部品の有無を確認します。"
+    }
+  ],
+  "actionBox": {
+    "title": "次に読む記事",
+    "body": "足回りの感じ方を症状で分けられると、ローダウンや電子制御ダンパー付き車の判断もしやすくなります。次は、足回り変更で何を確認するかへ進みます。",
+    "actions": [
+      {
+        "label": "現代車カスタムの全体像を読む｜足回り変更の目的と戻し方を整理する",
+        "href": "/column/modern-car-custom-regret-reason-column"
+      },
+      {
+        "label": "ADAS付き車のローダウンを読む｜車高変更とセンサー前提を確認する",
+        "href": "/guide/adas-lowered-car-aiming-risk-guide"
+      },
+      {
+        "label": "電子制御ダンパー付き車の車高調を読む｜純正制御を外す影響を見る",
+        "href": "/guide/electronic-damper-coilover-risk-guide"
+      }
+    ]
+  },
+  "layoutVariant": "cbj-world-v1",
+  "detailSections": [
+    {
+      "id": "section-01",
+      "kind": "explanation",
+      "chapterLabel": "BASICS",
+      "title": "硬い・柔らかいは、感覚ではなく症状で見る",
+      "displayTitle": "硬い・柔らかいは\n症状で見る",
+      "deck": "段差の一発目と、その後の揺れを分けると、乗り心地を言葉にしやすい。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "硬い足って、スポーツっぽくて良いってこと？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "硬いだけでは良い足とは言えないよ。\n段差の衝撃が強くても、揺れがすぐ収まる車もあれば、跳ねて接地感が薄くなる車もある。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "paragraph",
+          "text": "足回りの硬い・柔らかいは、ばねの硬さだけで決まりません。\nサスペンション、ダンパー、タイヤ、ブッシュ、車重、ホイールサイズ、空気圧などが重なって、乗り心地として感じられます。ダンパーは、ばねが縮んだり伸びたりした後の揺れを収める部品です。",
+          "flow": "natural",
+          "highlights": [
+            "ばねの硬さだけで決まりません。"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "初心者がまず見るべきなのは、段差を越えた瞬間の衝撃と、その後の揺れの収まりです。\n一回でスッと落ち着くのか、何度もフワフワ揺れるのか、突き上げて跳ねるのかを分けると、硬い・柔らかいを説明しやすくなります。",
+          "flow": "natural"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/car-suspension-hard-soft-merit-demerit/suspension-hard-soft-behavior.webp",
+          "alt": "硬い足回りと柔らかい足回りで、段差後の車体の動きがどう違うかを示した図。",
+          "label": "硬さだけでなく、段差後の揺れがどう収まるかを見る。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1122,
+          "height": 1402,
+          "aspectRatio": "1122 / 1402"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "よくある感じ方",
+          "headers": [
+            "感じ方",
+            "起きている可能性",
+            "確認すること"
+          ],
+          "rows": [
+            [
+              "ゴツゴツする",
+              "入力が強く、衝撃が乗員へ伝わりやすい。",
+              "タイヤ空気圧、扁平率、減衰、車高。"
+            ],
+            [
+              "フワフワする",
+              "揺れが長く残り、車体が落ち着きにくい。",
+              "ダンパーのへたり、荷重、速度域。"
+            ],
+            [
+              "跳ねる",
+              "タイヤが路面を追いにくくなっている。",
+              "ストローク、減衰、バンプタッチ。"
+            ],
+            [
+              "一回で収まる",
+              "衝撃を受けた後の姿勢が早く落ち着く。",
+              "試乗で段差後の揺れを確認する。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "最初に見るのは硬さではなく収まり",
+          "body": "足回りは、硬いか柔らかいかだけで良し悪しを決めません。\n段差後に車体がどう動き、どれくらいで落ち着くかを見ると、乗り心地の違いを言葉にしやすくなります。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-02",
+      "kind": "explanation",
+      "chapterLabel": "PARTS",
+      "title": "サスペンション・ダンパー・タイヤで乗り味は変わる",
+      "displayTitle": "乗り味は\n複数の部品で変わる",
+      "deck": "一つの部品だけに原因を決めず、タイヤや空気圧まで分けて確認する。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "乗り心地が悪いと、車高調かサスが悪いって言われがちだよね。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "それだけで決めるのは早いよ。\nダンパー、タイヤ、空気圧、ホイールサイズ、ブッシュの状態も一緒に見る必要がある。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/car-suspension-hard-soft-merit-demerit/suspension-components-points.webp",
+          "alt": "サスペンション、ダンパー、タイヤ、ブッシュなど乗り心地に関わる部品を整理した図。",
+          "label": "乗り心地は、サスペンションだけでなく複数の部品で決まる。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1122,
+          "height": 1402,
+          "aspectRatio": "1122 / 1402"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "主な部品と確認すること",
+          "headers": [
+            "部品",
+            "役割",
+            "確認すること"
+          ],
+          "rows": [
+            [
+              "スプリング",
+              "車体を支え、沈み込み量に関わる。",
+              "硬さ、自由長、車高、へたり。"
+            ],
+            [
+              "ダンパー",
+              "揺れの収まりを調整する。",
+              "抜け、減衰力、オイル漏れ、異音。"
+            ],
+            [
+              "タイヤ",
+              "路面からの入力を受ける。",
+              "空気圧、扁平率、銘柄、摩耗。"
+            ],
+            [
+              "ブッシュ類",
+              "振動や位置ずれを抑える。",
+              "ひび割れ、劣化、異音。"
+            ],
+            [
+              "ホイール",
+              "重さやサイズが動きに関わる。",
+              "インチアップ、重量、オフセット。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "一つの部品だけで判断しない",
+          "body": "乗り心地が悪い時に、すぐ車高調やスプリングだけを原因にすると外すことがあります。\nまずはタイヤ空気圧、摩耗、異音、車高、整備履歴を分けて確認します。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-03",
+      "kind": "explanation",
+      "chapterLabel": "LOWDOWN",
+      "title": "車高調やローダウンでは、動ける量が減ることがある",
+      "displayTitle": "ローダウンでは\n動ける量を見る",
+      "deck": "低さだけではなく、サスペンションが動ける余裕を残せているかを見る。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "車高を下げると、見た目はかなり良くなるよね。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "見た目の変化は大きいね。\nただし、下げ方によってはサスペンションが動ける量が減って、突き上げや跳ねが出やすくなる。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "paragraph",
+          "text": "ローダウンで乗り心地が悪くなる理由は、ばねが硬いからだけではありません。\nサスペンションのストローク不足、バンプタッチ、アライメント変化、タイヤやフェンダーとの干渉、減衰設定のずれが重なることがあります。バンプタッチとは、サスペンションが動ける余裕を使い切り、強い突き上げが出やすい状態のことです。",
+          "flow": "natural",
+          "highlights": [
+            "バンプタッチとは、サスペンションが動ける余裕を使い切り、強い突き上げが出やすい状態のことです。"
+          ]
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/car-suspension-hard-soft-merit-demerit/suspension-stroke-bump-touch.webp",
+          "alt": "車高を下げた時にサスペンションの動ける量が減り、バンプタッチが起きるイメージ図。",
+          "label": "低さだけでなく、サスペンションが動ける量を残せているかを見る。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1122,
+          "height": 1402,
+          "aspectRatio": "1122 / 1402"
+        },
+        {
+          "type": "flow",
+          "title": "不快になりやすい流れ",
+          "steps": [
+            {
+              "title": "車高を下げる",
+              "body": "見た目は良くなるが、動ける量が減る場合がある。"
+            },
+            {
+              "title": "段差で強く入力する",
+              "body": "サスペンションが受け止めきれず、突き上げが出る。"
+            },
+            {
+              "title": "タイヤが跳ねる",
+              "body": "接地感が薄くなり、落ち着かない乗り味になる。"
+            },
+            {
+              "title": "片減りや異音が出る",
+              "body": "アライメントや干渉も確認対象になる。"
+            }
+          ],
+          "presentation": {
+            "variant": "mock-step-cards",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "ローダウン後に見ること",
+          "headers": [
+            "項目",
+            "出やすい変化",
+            "確認すること"
+          ],
+          "rows": [
+            [
+              "乗り心地",
+              "突き上げ、跳ね、底付き。",
+              "段差、荒れた路面、後席で確認する。"
+            ],
+            [
+              "直進性",
+              "ハンドルセンターずれ、左右へ流れる。",
+              "アライメント測定・調整を見る。"
+            ],
+            [
+              "タイヤ",
+              "片減り、フェンダー干渉。",
+              "内外減り、ハンドル全切り、荷物積載時。"
+            ],
+            [
+              "最低地上高",
+              "段差、駐車場、輪止めで擦る。",
+              "普段使う道で困らないか。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-04",
+      "kind": "explanation",
+      "chapterLabel": "TEST",
+      "title": "試乗では、道・速度・席を分けて乗り心地を確認する",
+      "displayTitle": "試乗では\n場面を分ける",
+      "deck": "低速段差、荒れた舗装、高速、ブレーキ時、後席で違和感を分ける。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "試乗で乗り心地を見るって、どう見ればいいの？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "同じ道だけで決めないこと。\n低速の段差、荒れた舗装、高速道路、後席で感じ方が変わるよ。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/car-suspension-hard-soft-merit-demerit/suspension-test-drive-checklist.webp",
+          "alt": "試乗で足回りを確認する場面を整理したチェックリスト図。",
+          "label": "試乗では、低速、荒れた路面、高速、後席を分けて見る。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 882,
+          "height": 1402,
+          "aspectRatio": "882 / 1402"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "試乗で確認する場面とNG寄りの症状",
+          "display": "table",
+          "headers": [
+            "試す場面",
+            "見ること",
+            "NG寄りの症状"
+          ],
+          "rows": [
+            [
+              "低速段差",
+              "一発目の衝撃",
+              "ゴツッと強く来る。異音が出る。"
+            ],
+            [
+              "荒れた舗装",
+              "跳ね方",
+              "ピョンピョン跳ねる。タイヤが路面を追わない。"
+            ],
+            [
+              "高速道路",
+              "揺れの収まり",
+              "フワフワ残る。ふらつく。"
+            ],
+            [
+              "ブレーキ時",
+              "左右差と沈み込み",
+              "片側に流れる。沈み込みが不自然。"
+            ],
+            [
+              "後席",
+              "突き上げ",
+              "前席より不快感が強い。荷物や同乗者で悪化する。"
+            ]
+          ],
+          "presentation": {
+            "variant": "mock-table"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "試乗条件を揃える",
+          "headers": [
+            "条件",
+            "理由"
+          ],
+          "rows": [
+            [
+              "タイヤ空気圧を確認する",
+              "空気圧だけでゴツゴツ感や接地感が変わるため。"
+            ],
+            [
+              "同じ道・近い速度で比べる",
+              "路面差を足回りの差と勘違いしないため。"
+            ],
+            [
+              "前席と後席で感じ方を分ける",
+              "後席の突き上げは前席より強く出ることがあるため。"
+            ],
+            [
+              "異音・片減り・直進性も同時に見る",
+              "乗り心地だけでは足回り状態を判断できないため。"
+            ]
+          ],
+          "display": "checklist",
+          "presentation": {
+            "variant": "mock-checklist",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "感想より症状を伝える",
+          "body": "「乗り心地が悪い」だけでは原因を絞りにくいです。\nゴツゴツする、跳ねる、揺れが残る、片側だけ違和感がある、段差で音が出る、という形で伝えると整備側も確認しやすくなります。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-05",
+      "kind": "explanation",
+      "chapterLabel": "DECISION",
+      "title": "硬い足と柔らかい足は、使い方で選ぶ",
+      "displayTitle": "使い方で\n足回りを選ぶ",
+      "deck": "硬い/柔らかいの二択ではなく、普段使う道で扱いやすいかを見る。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "じゃあ、硬い足と柔らかい足はどっちが正解？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "正解は使い方で変わるよ。\n街乗り中心なら快適性、走るなら接地感、見た目重視なら普段使いで困らない高さを残すことが大事。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "使い方別の選び方",
+          "headers": [
+            "使い方",
+            "優先したいこと",
+            "避けたいこと"
+          ],
+          "rows": [
+            [
+              "街乗り中心",
+              "段差の突き上げが少なく、疲れにくいこと。",
+              "低すぎる車高、硬すぎる減衰。"
+            ],
+            [
+              "高速道路が多い",
+              "揺れが長く残らず、直進安定性があること。",
+              "フワフワしすぎる足。"
+            ],
+            [
+              "ワインディング",
+              "姿勢変化が分かりやすく、接地感があること。",
+              "跳ねて路面を追えない足。"
+            ],
+            [
+              "見た目重視",
+              "フェンダーとの隙間と普段使いの両立。",
+              "干渉、最低地上高不足、入庫不可。"
+            ],
+            [
+              "中古車選び",
+              "異音、片減り、整備履歴、純正部品の有無。",
+              "部品名だけで良し悪しを決めること。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "CBJの判断基準",
+          "body": "この記事は、足回りを硬い・柔らかいの二択だけで評価しません。\n読者が試乗や日常走行で確認できるよう、衝撃、揺れの収まり、接地感、異音、タイヤ摩耗へ分けて判断します。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        }
+      ]
+    }
+  ],
+  "editorialArticleImages": {
+    "hero": "/images/cbj/article-system/content/car-suspension-hard-soft-merit-demerit/suspension-system-map.webp",
+    "card": "/images/cbj/article-system/content/car-suspension-hard-soft-merit-demerit/cover.webp",
+    "hardSoftBehavior": "/images/cbj/article-system/content/car-suspension-hard-soft-merit-demerit/suspension-hard-soft-behavior.webp",
+    "components": "/images/cbj/article-system/content/car-suspension-hard-soft-merit-demerit/suspension-components-points.webp",
+    "dampingComparison": "/images/cbj/article-system/content/car-suspension-hard-soft-merit-demerit/suspension-damping-comparison-vertical.webp",
+    "strokeBumpTouch": "/images/cbj/article-system/content/car-suspension-hard-soft-merit-demerit/suspension-stroke-bump-touch.webp",
+    "tirePressure": "/images/cbj/article-system/content/car-suspension-hard-soft-merit-demerit/tire-pressure-performance.webp",
+    "testDriveChecklist": "/images/cbj/article-system/content/car-suspension-hard-soft-merit-demerit/suspension-test-drive-checklist.webp",
+    "suspensionTypes": "/images/cbj/article-system/content/car-suspension-hard-soft-merit-demerit/suspension-types-characteristics.webp"
+  },
+  "articleDesign": {
+    "version": "cbj-world-v1",
+    "layoutPreset": "column-renewal-v1",
+    "lessonNumber": 19,
+    "difficulty": "初級〜中級",
+    "heroGradient": [
+      "#42A5F5",
+      "#7E57C2"
+    ],
+    "heroCenterImage": "/images/cbj/article-system/car-illustration-transparent-v2.png",
+    "sectionPalette": [
+      "#FF8C42",
+      "#8BC34A",
+      "#F06292",
+      "#42A5F5",
+      "#FFCA28"
+    ],
+    "introDialogue": [
+      {
+        "character": "juna",
+        "motion": "fade-right",
+        "text": "足回りが硬いとか柔らかいって、正直ちょっと感覚の話に聞こえる。",
+        "variant": "bubble"
+      },
+      {
+        "character": "rina",
+        "motion": "fade-left",
+        "text": "感覚だけで終わらせない方がいいね。\n段差の一発目、その後の揺れ、タイヤの接地感に分けると、試乗でも判断しやすくなるよ。",
+        "variant": "bubble"
+      }
+    ],
+    "sectionDialogues": {},
+    "closingDialogue": [
+      {
+        "character": "juna",
+        "text": "硬いか柔らかいかだけじゃなくて、段差後にどう収まるかを見るんだね。",
+        "variant": "bubble",
+        "motion": "fade-right"
+      },
+      {
+        "character": "rina",
+        "text": "そう。\n乗り心地は感覚だけで終わらせず、症状を分けて確認すると判断しやすくなるよ。",
+        "variant": "bubble",
+        "motion": "fade-left"
+      }
+    ],
+    "heroTitle": "足回りが硬い・\n柔らかいとは？",
+    "heroLead": "段差の衝撃、揺れの収まり、タイヤの接地感を分けて考える。",
+    "closingBlocks": [
+      {
+        "type": "callout",
+        "tone": "info",
+        "title": "最終結論",
+        "body": "足回りは、硬いほど良い、柔らかいほど快適とは言い切れません。\n\n段差を越えた瞬間の衝撃、その後の揺れの収まり、タイヤの接地感、異音や片減りの有無を分けて見ます。\n\n試乗では「乗り心地が悪い」で終わらせず、ゴツゴツする、跳ねる、揺れが残る、音が出る、真っすぐ走りにくい、という症状で判断します。",
+        "presentation": {
+          "variant": "mock-info"
+        }
+      }
+    ],
+    "heroPromise": "試乗や日常走行で、足回りの違和感を「ゴツゴツ」「跳ねる」「揺れが残る」「異音が出る」に分けて確認できる。"
+  },
+  "noindex": false
+}

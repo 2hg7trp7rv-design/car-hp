@@ -1,0 +1,721 @@
+{
+  "id": "guide-adas-lowered-car-aiming-risk-guide",
+  "slug": "adas-lowered-car-aiming-risk-guide",
+  "type": "GUIDE",
+  "status": "published",
+  "publicState": "index",
+  "noindex": false,
+  "title": "ADAS付き車をローダウンすると何が起きる？\nカメラ・レーダー・エーミングの注意点",
+  "titleJa": "ADAS付き車をローダウンすると何が起きる？カメラ・レーダー・エーミングの注意点",
+  "summary": "ADAS付き車をローダウンする前に、カメラ、レーダー、車体姿勢、アライメント、タイヤ外径、エーミング、入庫対応を、車種別の整備情報と装着後の状態で確認するGuideです。",
+  "seoTitle": "ADAS付き車をローダウンすると何が起きる？エーミングと注意点",
+  "seoDescription": "ADAS付き車をローダウンする前に確認したいカメラ、ミリ波レーダー、車体姿勢、アライメント、タイヤ外径、エーミング、入庫対応を初心者向けに解説します。",
+  "description": "ADAS付き車のローダウンで確認したいセンサー、車体姿勢、アライメント、エーミング、入庫対応を整理します。",
+  "lead": "ADAS付き車のローダウンは、低さだけを見ても判断できません。\nカメラやレーダーは、取り付け位置や車体姿勢を前提に周囲を見ています。車高、タイヤ外径、アライメント、バンパー周辺が変わると、その前提も確認対象になります。\nこの記事では、何mm下げるかより、施工前後に何を確認して記録するかを整理します。",
+  "category": "CUSTOM",
+  "readMinutes": 11,
+  "heroImage": "/images/cbj/article-system/content/adas-lowered-car-aiming-risk-guide/cover.webp",
+  "thumbnail": "/images/cbj/article-system/content/adas-lowered-car-aiming-risk-guide/cover.webp",
+  "publishedAt": "2026-06-03",
+  "updatedAt": "2026-07-02",
+  "tags": [
+    "ADAS",
+    "ローダウン",
+    "エーミング",
+    "自動ブレーキ",
+    "レーダー",
+    "カメラ",
+    "足回り",
+    "カスタム"
+  ],
+  "displayTag": "安全装置",
+  "eyebrowLabel": "ADASとローダウン",
+  "primaryQuery": "ADAS ローダウン エーミング カメラ レーダー",
+  "parentPillarId": "/column/modern-car-custom-regret-reason-column",
+  "relatedClusterIds": [],
+  "intentTags": [
+    "adas",
+    "lowered-car",
+    "aiming",
+    "custom",
+    "suspension",
+    "safety"
+  ],
+  "monetizeKey": "goods_car_wash_coating",
+  "monetizeType": "indirect",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "car-suspension-hard-soft-merit-demerit",
+    "electronic-damper-coilover-risk-guide",
+    "used-custom-car-check-guide"
+  ],
+  "relatedColumnSlugs": [
+    "modern-car-custom-regret-reason-column"
+  ],
+  "relatedHeritageSlugs": [],
+  "internalLinks": [
+    "modern-car-custom-regret-reason-column",
+    "car-suspension-hard-soft-merit-demerit",
+    "electronic-damper-coilover-risk-guide",
+    "used-custom-car-check-guide"
+  ],
+  "createdAt": "2026-06-02",
+  "canonicalUrl": "https://carboutiquejournal.com/guide/adas-lowered-car-aiming-risk-guide",
+  "ogImageUrl": "/images/cbj/article-system/content/adas-lowered-car-aiming-risk-guide/cover.webp",
+  "updateReason": "親記事との役割差を整理し、各ガイドの判断導線・確認表・締めの要点を再構成",
+  "sources": [
+    "https://www.mlit.go.jp/jidosha/jidosha_fr9_000016.html",
+    "https://www.mlit.go.jp/jidosha/jidosha_fr9_Target_vehicle.html",
+    "https://www.nhtsa.gov/vehicle-safety/driver-assistance-technologies",
+    "https://www.naltec.go.jp/faq/0004.html",
+    "https://www.naltec.go.jp/faq/0003.html",
+    "https://www.mlit.go.jp/jidosha/jidosha/tenkenseibi/huseikaizou/h1/h1-2/",
+    "https://www.jaspa.or.jp/user/remodel/exclusion.html",
+    "https://toyota.jp/after_service/support/general/"
+  ],
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "ADAS付き車をローダウンすると何が起きる？カメラ・レーダー・エーミングの注意点"
+    }
+  ],
+  "authorProfile": {
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "整備・中古車・カスタム判断編集チーム",
+    "kind": "organization"
+  },
+  "keyPoints": [
+    "ADAS付き車は、下げ幅よりもカメラやレーダーの認識前提を見る。",
+    "車高、姿勢、タイヤ外径、アライメント、バンパー周辺が関わる場合がある。",
+    "エーミング要否は全車共通のmm数ではなく、車種、装備、作業内容、整備情報で判断する。",
+    "施工後は、警告灯だけでなく診断、作動感、施工前後の記録を残す。"
+  ],
+  "checkpoints": [
+    "自分の車にあるADAS機能とセンサー位置を確認する。",
+    "施工前後の車高、タイヤサイズ、アライメント結果を残す。",
+    "バンパー、グリル、エンブレム、フロントガラス周辺でセンサーを妨げないか確認する。",
+    "アライメント、診断、必要なエーミングを確認できる整備先を決める。",
+    "純正サス、書類、施工写真を保管する。"
+  ],
+  "faq": [
+    {
+      "question": "ADAS付き車はローダウンしない方がいいですか？",
+      "answer": "一律に禁止とは言えません。\nただし、センサー、車体姿勢、アライメント、診断、必要なエーミングを確認できる状態で進めます。"
+    },
+    {
+      "question": "少し下げるだけでもエーミングは必要ですか？",
+      "answer": "全車共通の線引きはできません。\n車種、装備、下げ幅、作業内容、メーカー整備情報、施工後の姿勢や診断状態で確認します。"
+    },
+    {
+      "question": "警告灯が出なければ問題ありませんか？",
+      "answer": "警告灯が出ないことは確認の一つです。\n違和感、診断ログ、アライメント、センサー周辺の状態も確認します。"
+    },
+    {
+      "question": "タイヤ外径も関係しますか？",
+      "answer": "関係する場合があります。\nタイヤ外径が変わると車高や車速の前提が変わることがあるため、純正サイズとの差を確認します。"
+    },
+    {
+      "question": "中古でローダウン済みのADAS車は何を見ますか？",
+      "answer": "警告灯、診断記録、アライメント記録、エーミング記録、施工明細、純正部品の有無を確認します。"
+    }
+  ],
+  "actionBox": {
+    "title": "次に読む記事",
+    "body": "ADAS付き車のローダウンは、足回り・センサー・診断をまとめて考えます。次は、乗り心地や電子制御ダンパーの確認もあわせて見ます。",
+    "actions": [
+      {
+        "label": "現代車カスタムの全体像を読む｜目的・影響範囲・純正戻しを整理する",
+        "href": "/column/modern-car-custom-regret-reason-column"
+      },
+      {
+        "label": "足回りが硬い・柔らかいを読む｜ローダウン後の乗り味を症状で見る",
+        "href": "/guide/car-suspension-hard-soft-merit-demerit"
+      },
+      {
+        "label": "電子制御ダンパー付き車の車高調を読む｜制御と警告灯の扱いを見る",
+        "href": "/guide/electronic-damper-coilover-risk-guide"
+      }
+    ]
+  },
+  "layoutVariant": "cbj-world-v1",
+  "detailSections": [
+    {
+      "id": "section-01",
+      "kind": "explanation",
+      "chapterLabel": "BASICS",
+      "title": "ADAS付き車は、低さではなく認識の前提を見る",
+      "displayTitle": "ADAS付き車は\n認識の前提を見る",
+      "deck": "センサーがどの高さ・角度・姿勢を前提に周囲を見ているかを確認する。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "ローダウンって、車体が低くなるだけじゃないの？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "見た目としてはそう見えるね。\nでもADAS付き車では、車体姿勢やセンサーの高さ、向きの前提も一緒に考える必要がある。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "paragraph",
+          "text": "ADASは、衝突被害軽減ブレーキ、車線維持支援、前走車追従などの運転支援機能の総称です。\n車種によって構成は異なりますが、フロントカメラ、ミリ波レーダー、ソナーなどが周囲の情報を見ています。",
+          "flow": "natural"
+        },
+        {
+          "type": "paragraph",
+          "text": "ADASは車の操作を助ける機能であって、運転者の確認を置き換えるものではありません。\nだからこそ、ローダウン後もセンサー周辺の状態、警告表示、診断、実際の作動感を分けて確認する必要があります。",
+          "flow": "natural",
+          "highlights": [
+            "運転者の確認を置き換えるものではありません。"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "ローダウンしたから必ず不具合が出るわけではありません。\nただし、センサーの高さ、角度、車体姿勢、タイヤ外径、アライメント、バンパー周辺の形状が変わると、車が周囲を見る前提も変わる場合があります。",
+          "flow": "natural",
+          "highlights": [
+            "ローダウンしたから必ず不具合が出るわけではありません。"
+          ]
+        },
+        {
+          "type": "comparisonTable",
+          "title": "ローダウン前のADAS確認",
+          "headers": [
+            "項目",
+            "確認すること"
+          ],
+          "rows": [
+            [
+              "装備",
+              "自分の車にどのADAS機能が付いているか。"
+            ],
+            [
+              "センサー位置",
+              "カメラ、レーダー、ソナー、エンブレム周辺の位置。"
+            ],
+            [
+              "下げ幅",
+              "日常で使える高さと、センサー前提を崩しすぎない範囲。"
+            ],
+            [
+              "タイヤ外径",
+              "タイヤサイズ変更で車高や姿勢が変わらないか。"
+            ],
+            [
+              "整備対応",
+              "アライメント、エーミング、診断をどこで確認するか。"
+            ]
+          ],
+          "display": "checklist",
+          "presentation": {
+            "variant": "mock-checklist",
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-02",
+      "kind": "explanation",
+      "chapterLabel": "SENSOR",
+      "title": "ADASは、カメラやレーダーで周囲を認識している",
+      "displayTitle": "カメラ・レーダー・ソナーが\nどこを見ているか",
+      "deck": "センサーごとに見ているものと、注意する場所を分ける。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "ADASって、ざっくり自動ブレーキのこと？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "それも含まれるけど、車線や前の車、歩行者、障害物などを見る機能もある。\nだからセンサーがどこを見ているかが大事なんだ。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/adas-lowered-car-aiming-risk-guide/adas-sensor-role-overview.webp",
+          "alt": "ADASで使われるフロントカメラ、ミリ波レーダー、ソナーなどの役割を整理した図。",
+          "label": "ADASは、カメラやレーダーが集めた情報を運転支援に使う。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1122,
+          "height": 1402,
+          "aspectRatio": "1122 / 1402"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/adas-lowered-car-aiming-risk-guide/adas-detection-targets.webp",
+          "alt": "ADASが車線、先行車、歩行者などを認識していることを示す図。",
+          "label": "ADASは、車線や先行車、歩行者などを認識して支援に使う。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1122,
+          "height": 1402,
+          "aspectRatio": "1122 / 1402"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "主なセンサーと注意点",
+          "headers": [
+            "センサー",
+            "見ているもの",
+            "変更時に確認すること"
+          ],
+          "rows": [
+            [
+              "フロントカメラ",
+              "車線、車両、歩行者、標識など。",
+              "車体姿勢、フロントガラス、カメラ周辺。"
+            ],
+            [
+              "ミリ波レーダー",
+              "前方車両や障害物との距離など。",
+              "バンパー、エンブレム、取り付け角度。"
+            ],
+            [
+              "ソナー",
+              "近距離の障害物。",
+              "バンパー脱着、センサー固定、塗装や汚れ。"
+            ],
+            [
+              "車速・舵角情報",
+              "制御判断の補助情報。",
+              "タイヤ外径、アライメント、診断状態。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-03",
+      "kind": "explanation",
+      "chapterLabel": "LOWERING",
+      "title": "ローダウンで変わるのは、車高だけではない",
+      "displayTitle": "車高以外も\n一緒に変わる",
+      "deck": "車体姿勢、タイヤ外径、アライメント、バンパー周辺も確認する。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "カメラやレーダーは付けたままなのに、なんで影響するの？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "センサーが付いている位置は同じでも、車体全体の高さや角度が変わると、見ている方向の前提が変わることがあるからだよ。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/adas-lowered-car-aiming-risk-guide/adas-lowered-angle-change.webp",
+          "alt": "ローダウンで車体姿勢やセンサーの見ている方向が変わる可能性を示した図。",
+          "label": "車高が下がると、センサーの高さや向きの前提も確認対象になる。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1055,
+          "height": 1491,
+          "aspectRatio": "1055 / 1491"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "ローダウンで変わりやすい前提",
+          "headers": [
+            "項目",
+            "変化しやすいこと",
+            "確認すること"
+          ],
+          "rows": [
+            [
+              "車高",
+              "センサー高さ、最低地上高、段差の余裕。",
+              "施工前後の車高を記録する。"
+            ],
+            [
+              "車体姿勢",
+              "前後の傾き、見ている角度。",
+              "前後バランス、積載時の姿勢。"
+            ],
+            [
+              "アライメント",
+              "トー、キャンバー、直進性。",
+              "取り付け後に測定・調整する。"
+            ],
+            [
+              "タイヤ外径",
+              "速度や姿勢の前提が変わる場合。",
+              "純正外径との差を確認する。"
+            ],
+            [
+              "バンパー周辺",
+              "レーダー前の障害、エアロ、エンブレム。",
+              "センサー前を塞がないか。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "ローダウン前のNG / OK",
+          "headers": [
+            "判断",
+            "特徴"
+          ],
+          "rows": [
+            [
+              "注意",
+              "何mm下げるかだけで選ぶ。\nADASは関係ないと決める。\nアライメントや診断を後回しにする。\n純正部品や施工前の車高を残さない。"
+            ],
+            [
+              "確認",
+              "センサー位置とADAS装備を確認する。\n日常で使える高さを残す。\nアライメントと必要な確認を前提にする。\n施工前後の記録を残す。"
+            ]
+          ],
+          "display": "contrast",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-04",
+      "kind": "explanation",
+      "chapterLabel": "AIMING",
+      "title": "エーミングは全車共通の下げ幅で決めない",
+      "displayTitle": "エーミングは\n全車共通のmm数で決めない",
+      "deck": "必要性は、車種、装備、作業内容、メーカー整備情報、施工後の実車状態で確認する。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "エーミングって言葉が急に難しい。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "簡単に言うと、カメラやレーダーが正しい向きで見られるように合わせる作業だよ。\nガラス交換やバンパー脱着でも関係することがある。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "paragraph",
+          "text": "エーミングは、カメラやレーダーの向き、認識位置、基準を合わせる作業です。\n必要になる条件や方法は、車種、装備、作業内容、メーカーの整備情報によって変わります。国土交通省も、自動ブレーキなどに使われる前方監視カメラやレーダーの調整を、電子制御装置整備として扱っています。",
+          "flow": "natural"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/adas-lowered-car-aiming-risk-guide/adas-aiming-steps-1-3.webp",
+          "alt": "エーミング前に変更内容、センサー位置、診断機の状態を確認する図。",
+          "label": "エーミング前は、変更内容、センサー位置、診断状態を分けて確認する。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1122,
+          "height": 1402,
+          "aspectRatio": "1122 / 1402"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "エーミング確認が必要になりやすい場面",
+          "headers": [
+            "場面",
+            "なぜ確認するか",
+            "見ること"
+          ],
+          "rows": [
+            [
+              "フロントガラス交換",
+              "カメラ位置や取り付け状態が変わる。",
+              "カメラ固定、診断、メーカー指示。"
+            ],
+            [
+              "バンパー脱着・交換",
+              "レーダーやソナーの位置が変わる場合がある。",
+              "固定状態、取り付け角度、診断。"
+            ],
+            [
+              "事故修理",
+              "センサーや車体基準がずれる場合がある。",
+              "修理内容、測定、診断ログ。"
+            ],
+            [
+              "ローダウン",
+              "車体姿勢や高さの前提が変わる場合がある。",
+              "下げ幅、アライメント、車種別指示。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "全車共通の一律ラインは作れない",
+          "body": "何mm下げたら必ずエーミングが必要、という全車共通の線引きはできません。\nメーカー指示、車種、装備、作業内容、施工後の姿勢、診断結果で確認します。警告灯が出ないことだけを正常判断にしないでください。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-05",
+      "kind": "explanation",
+      "chapterLabel": "DECISION",
+      "title": "施工前後の診断・記録・純正戻しを残す",
+      "displayTitle": "施工前後の\n診断と記録を残す",
+      "deck": "低さより、整備できる状態と説明できる記録を優先する。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "じゃあADAS付き車は、ローダウンしない方がいいってこと？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "しない方がいいと決めつける必要はないよ。\nただ、低さを優先しすぎて、診断や調整ができない状態にするのは避けたい。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/adas-lowered-car-aiming-risk-guide/adas-lowering-prework-checklist.webp",
+          "alt": "ローダウン前に確認するセンサー位置、車高、アライメント、入庫対応を整理した図。",
+          "label": "ローダウン前は、センサー位置、車高、入庫対応まで整理する。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1122,
+          "height": 1402,
+          "aspectRatio": "1122 / 1402"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "施工前後で残す記録",
+          "headers": [
+            "項目",
+            "確認すること"
+          ],
+          "rows": [
+            [
+              "装備確認",
+              "ADAS機能とセンサー位置を確認する。"
+            ],
+            [
+              "車高記録",
+              "施工前後の車高、タイヤサイズ、アライメント結果を残す。"
+            ],
+            [
+              "製品選び",
+              "下げ幅だけでなく、ストロークと乗り心地を確認する。"
+            ],
+            [
+              "整備先",
+              "アライメント、診断、必要なエーミングを確認できる場所を決める。"
+            ],
+            [
+              "純正戻し",
+              "純正部品、書類、施工写真を残す。"
+            ]
+          ],
+          "display": "checklist",
+          "presentation": {
+            "variant": "mock-checklist",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "施工前 / 施工時 / 施工後 の確認フロー",
+          "display": "table",
+          "headers": [
+            "段階",
+            "確認すること",
+            "判断"
+          ],
+          "rows": [
+            [
+              "施工前",
+              "ADAS装備、センサー位置、タイヤ外径、施工前車高、メーカー整備情報。",
+              "エーミング要否を確認できる整備先を先に決める。"
+            ],
+            [
+              "施工時",
+              "バンパー、グリル、エンブレム、ソナー周辺、最低地上高、干渉。",
+              "センサー周辺を妨げる変更がないか見る。"
+            ],
+            [
+              "施工後",
+              "アライメント、診断、警告灯、作動感、施工前後の車高記録。",
+              "警告灯が出ないことだけで正常判断しない。"
+            ],
+            [
+              "判断不能",
+              "整備情報やエーミング要否を確認できない。",
+              "CBJでは慎重判断にする。"
+            ]
+          ],
+          "presentation": {
+            "variant": "mock-table"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "施工店に確認する質問",
+          "headers": [
+            "質問",
+            "確認したい理由"
+          ],
+          "rows": [
+            [
+              "車種別の整備情報を確認できますか",
+              "全車共通の下げ幅では判断できないため。"
+            ],
+            [
+              "エーミング要否の判断根拠を説明できますか",
+              "必要・不要の理由を施工後に説明できる状態にするため。"
+            ],
+            [
+              "施工後に診断とアライメント結果を残せますか",
+              "警告灯が出ないだけで正常判断しないため。"
+            ],
+            [
+              "タイヤ外径や車体姿勢の変更も確認しますか",
+              "車高だけでなく認識前提が変わる場合があるため。"
+            ],
+            [
+              "純正戻しや再調整が必要な時の対応はありますか",
+              "後から仕様を戻して比較できる状態を残すため。"
+            ]
+          ],
+          "display": "checklist",
+          "presentation": {
+            "variant": "mock-checklist",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "CBJの判断基準",
+          "body": "ローダウンそのものを禁止とは扱いません。\nただし、ADAS付き車では見た目の低さよりも、センサー周辺を妨げないこと、診断できること、必要な調整を説明できることを優先します。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        }
+      ]
+    }
+  ],
+  "articleDesign": {
+    "version": "cbj-world-v1",
+    "layoutPreset": "column-renewal-v1",
+    "lessonNumber": 21,
+    "difficulty": "初級〜中級",
+    "heroGradient": [
+      "#26A69A",
+      "#42A5F5"
+    ],
+    "heroCenterImage": "/images/cbj/article-system/car-illustration-transparent-v2.png",
+    "sectionPalette": [
+      "#FF8C42",
+      "#8BC34A",
+      "#F06292",
+      "#42A5F5",
+      "#FFCA28"
+    ],
+    "introDialogue": [
+      {
+        "character": "juna",
+        "motion": "fade-right",
+        "text": "ADAS付きの車って、少しローダウンするだけでも危ないの？",
+        "variant": "bubble"
+      },
+      {
+        "character": "rina",
+        "motion": "fade-left",
+        "text": "少し下げたら必ず危険、とは言えないよ。\nでも、カメラやレーダーが見ている前提が変わる場合があるから、低さだけで判断しない方がいい。",
+        "variant": "bubble"
+      }
+    ],
+    "sectionDialogues": {},
+    "closingDialogue": [
+      {
+        "character": "juna",
+        "text": "ADAS付き車は、低さだけじゃなくて、センサーの見え方まで考えるんだね。",
+        "variant": "bubble",
+        "motion": "fade-right"
+      },
+      {
+        "character": "rina",
+        "text": "そう。\nかっこよくすることと、あとから診断・調整できる状態を残すことを両立させよう。",
+        "variant": "bubble",
+        "motion": "fade-left"
+      }
+    ],
+    "heroTitle": "ADAS付き車を\nローダウンすると？",
+    "heroLead": "低さだけでなく、カメラ・レーダー・車体姿勢・エーミングまで確認する。",
+    "closingBlocks": [
+      {
+        "type": "callout",
+        "tone": "info",
+        "title": "最終結論",
+        "body": "ADAS付き車のローダウンは、下げ幅だけで判断しません。\n\nセンサー位置、車体姿勢、タイヤ外径、アライメント、診断、必要なエーミングを確認し、施工後も整備側へ説明できる状態を残します。\n\n「少しだから大丈夫」でも「下げたら必ず危険」でもなく、車種別の整備情報と実車状態で判断します。",
+        "presentation": {
+          "variant": "mock-info"
+        }
+      }
+    ],
+    "heroPromise": "ADAS付き車をローダウンする前に、センサー位置、車体姿勢、タイヤ外径、アライメント、エーミング要否を確認できる。"
+  }
+}

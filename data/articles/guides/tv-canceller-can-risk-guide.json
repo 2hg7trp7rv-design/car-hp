@@ -1,0 +1,677 @@
+{
+  "id": "guide-tv-canceller-can-risk-guide",
+  "slug": "tv-canceller-can-risk-guide",
+  "type": "GUIDE",
+  "status": "published",
+  "publicState": "index",
+  "title": "TVキャンセラーはなぜ注意が必要？\nCAN通信・警告灯・保証で確認したいこと",
+  "titleJa": "TVキャンセラーはなぜ注意が必要？CAN通信・警告灯・保証で確認したいこと",
+  "summary": "TVキャンセラーを、映るかどうかだけでなく、CAN通信、車両信号、警告灯、診断、保証、入庫対応、復元方法、安全な使い方まで含めて判断するGuideです。",
+  "seoTitle": "TVキャンセラーはなぜ注意が必要？CAN通信・警告灯・保証の確認点",
+  "seoDescription": "TVキャンセラーの注意点を、CAN通信、車両信号、物理割り込み型、コーディング型、警告灯、診断、保証、入庫対応、復元方法から解説します。",
+  "description": "TVキャンセラーの注意点を、CAN通信、警告灯、診断、保証、復元方法まで含めて整理します。",
+  "lead": "TVキャンセラーは、便利そうに見えるからこそ、安全面と技術面を分けて考えます。\nまず、運転者が走行中に映像を注視する使い方は推奨しません。\nそのうえで、後付け機器として車両信号へどう関わるか、診断時にどう見えるか、保証や入庫時に説明できるかを確認します。",
+  "category": "TROUBLE",
+  "readMinutes": 11,
+  "heroImage": "/images/cbj/article-system/content/tv-canceller-can-risk-guide/cover.webp",
+  "thumbnail": "/images/cbj/article-system/content/tv-canceller-can-risk-guide/cover.webp",
+  "publishedAt": "2026-05-20",
+  "updatedAt": "2026-07-02",
+  "tags": [
+    "TVキャンセラー",
+    "CAN通信",
+    "後付け電装品",
+    "警告灯",
+    "保証",
+    "中古車"
+  ],
+  "displayTag": "電装",
+  "eyebrowLabel": "電装とCAN",
+  "primaryQuery": "TVキャンセラー CAN通信 警告灯 保証",
+  "parentPillarId": "/column/modern-car-custom-regret-reason-column",
+  "relatedClusterIds": [
+    "modern-car-custom-regret-reason-column",
+    "used-custom-car-check-guide"
+  ],
+  "intentTags": [
+    "TVキャンセラー",
+    "CAN通信",
+    "警告灯",
+    "保証",
+    "中古車",
+    "後付け電装品"
+  ],
+  "monetizeKey": null,
+  "monetizeType": "indirect",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "used-custom-car-check-guide",
+    "adas-lowered-car-aiming-risk-guide",
+    "aftermarket-air-cleaner-risk-guide"
+  ],
+  "relatedColumnSlugs": [
+    "modern-car-custom-regret-reason-column"
+  ],
+  "relatedHeritageSlugs": [],
+  "internalLinks": [
+    "modern-car-custom-regret-reason-column",
+    "used-custom-car-check-guide",
+    "adas-lowered-car-aiming-risk-guide",
+    "electronic-damper-coilover-risk-guide"
+  ],
+  "createdAt": null,
+  "canonicalUrl": "https://carboutiquejournal.com/guide/tv-canceller-can-risk-guide",
+  "ogImageUrl": "/images/cbj/article-system/content/tv-canceller-can-risk-guide/cover.webp",
+  "updateReason": "親記事との役割差を整理し、各ガイドの判断導線・確認表・締めの要点を再構成",
+  "sources": [
+    "https://www.federalregister.gov/documents/2013/04/26/2013-09883/visual-manual-nhtsa-driver-distraction-guidelines-for-in-vehicle-electronic-devices",
+    "https://www.nhtsa.gov/vehicle-safety/distracted-driving",
+    "https://www.iso.org/standard/86384.html",
+    "https://www.iso.org/standard/67244.html",
+    "https://www.bosch-mobility.com/en/solutions/vehicle-computer/central-gateway/",
+    "https://unece.org/transport/vehicle-regulations/wp29/cyber-security-and-cyber-security-management-system",
+    "https://elaws.e-gov.go.jp/document?lawid=335AC0000000105",
+    "https://toyota.jp/after_service/support/general/",
+    "https://www.naltec.go.jp/faq/0004.html"
+  ],
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "利便性の代償。現代の車で『TVキャンセラー』を使ってはいけない本当の理由"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "中古車・トラブルガイド編集チーム"
+  },
+  "keyPoints": [
+    "まず、運転者が走行中に映像を注視する使い方は推奨しない。",
+    "次に、車速信号、CAN通信、診断、保証、復元方法を分けて見る。",
+    "目的によっては、車両側へ触れない代替案を先に考える。"
+  ],
+  "checkpoints": [
+    "運転者の走行中視聴を目的にしていないか確認する。",
+    "自分の車の年式、型式、純正ナビ、ADAS装備への適合を確認する。",
+    "カプラーオン、コーディング、割り込み型など方式と戻し方を確認する。",
+    "警告灯、診断ログ、ほかの機能への影響を確認する。",
+    "製品名、型番、施工写真、設定内容、純正状態への復元方法を残す。"
+  ],
+  "faq": [
+    {
+      "question": "TVキャンセラーは付けない方がいいですか？",
+      "answer": "一律には言えません。\nただし、車両通信や診断に関わる場合があるため、方式、適合、戻し方、入庫対応を確認します。"
+    },
+    {
+      "question": "カプラーオンなら安心ですか？",
+      "answer": "加工が少ない点では有利な場合があります。\nただし、どの信号に関わるか、診断へ影響しないか、戻せるかは別に確認します。"
+    },
+    {
+      "question": "コーディング型なら部品が残らないので安全ですか？",
+      "answer": "部品が残らないことと安全性は別です。\n変更箇所、復元方法、診断への影響、施工記録を確認します。"
+    },
+    {
+      "question": "警告灯が出なければ問題ありませんか？",
+      "answer": "警告灯は確認項目の一つです。\nDTC、診断状態、入庫時の説明、取り外し方法も確認します。"
+    },
+    {
+      "question": "中古車に付いていた場合は何を見ますか？",
+      "answer": "部品名、施工店、施工日、方式、診断結果、取り外し可否、純正状態へ戻せるかを確認します。"
+    }
+  ],
+  "actionBox": {
+    "title": "次に読む記事",
+    "body": "TVキャンセラーは、便利さだけでなく、車両通信・診断・安全面を分けて判断します。次は、電装品全体や中古車購入時の確認へつなげます。",
+    "actions": [
+      {
+        "label": "現代車カスタムの全体像を読む｜後付け部品の影響範囲を整理する",
+        "href": "/column/modern-car-custom-regret-reason-column"
+      },
+      {
+        "label": "カスタム済み中古車の見分け方を読む｜装着済み電装品の施工履歴を見る",
+        "href": "/guide/used-custom-car-check-guide"
+      },
+      {
+        "label": "社外エアクリーナーのリスクを読む｜後付け部品の戻しやすさを確認する",
+        "href": "/guide/aftermarket-air-cleaner-risk-guide"
+      }
+    ]
+  },
+  "layoutVariant": "cbj-world-v1",
+  "detailSections": [
+    {
+      "id": "section-01",
+      "kind": "explanation",
+      "chapterLabel": "SAFETY",
+      "title": "まず安全面を分ける",
+      "displayTitle": "まず安全面を\n分ける",
+      "deck": "便利かどうかの前に、運転者が走行中に映像を注視しない前提を確認する。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "電装品って、電源が入って動けば成功じゃないの？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "それは確認の一部だね。\nTVキャンセラーは、車速信号や車両通信に関わる方式があるから、動作だけで判断しない方がいい。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "paragraph",
+          "text": "TVキャンセラーは、走行中の映像表示や操作制限に関わる後付け機器として扱われることがあります。\n道路交通法上も、運転中に画像表示用装置を注視しないことが求められます。そのため、この記事では運転者の走行中視聴を推奨しません。重要なのは、便利かどうかだけではなく、車両信号へどう関わるか、診断時にどう見えるか、保証や入庫時に説明できるかです。",
+          "flow": "natural",
+          "highlights": [
+            "この記事では運転者の走行中視聴を推奨しません。",
+            "車両信号へどう関わるか、診断時にどう見えるか、保証や入庫時に説明できるか"
+          ]
+        },
+        {
+          "type": "comparisonTable",
+          "title": "取り付け前に分ける安全面と技術面",
+          "headers": [
+            "項目",
+            "確認すること"
+          ],
+          "rows": [
+            [
+              "方式",
+              "物理割り込み型か、コーディング型か。"
+            ],
+            [
+              "適合",
+              "年式、グレード、ナビ仕様、純正装備に合うか。"
+            ],
+            [
+              "復元",
+              "取り外しや初期化で元へ戻せるか。"
+            ],
+            [
+              "診断",
+              "警告灯やDTCが残らないか。"
+            ],
+            [
+              "説明",
+              "整備入庫や売却時に施工内容を説明できるか。"
+            ]
+          ],
+          "display": "checklist",
+          "presentation": {
+            "variant": "mock-checklist",
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-02",
+      "kind": "explanation",
+      "chapterLabel": "SYSTEM",
+      "title": "TVキャンセラーはナビ単体ではなく車両通信の中で考える",
+      "displayTitle": "車両通信の中で\n考える",
+      "deck": "車速信号、ナビ、診断、車両通信、保証、入庫対応を分けて見る。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "CAN通信とかゲートウェイって、急に専門的すぎる。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "全部を覚える必要はないよ。\nまずは、車のコンピューター同士が情報をやり取りしていて、後付け機器がそこへ関わる場合があると理解できれば十分。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "paragraph",
+          "text": "CAN通信は、車内のコンピューター同士が情報をやり取りする仕組みの一つです。\nゲートウェイは、車内ネットワークの中継や管理に関わる役割を持つことがあります。\n車種によって構成は異なり、「CAN対応」と書かれていても、自分の車の年式、型式、純正装備、ソフトウェア状態に合うとは限りません。",
+          "flow": "natural",
+          "highlights": [
+            "「CAN対応」と書かれていても、自分の車の年式、型式、純正装備、ソフトウェア状態に合うとは限りません。"
+          ]
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/tv-canceller-can-risk-guide/tv-canceller-network-overview.webp",
+          "alt": "TVキャンセラーをナビ単体ではなく、車両通信やゲートウェイとの関係で見るための図解。",
+          "label": "TVキャンセラーは、ナビ単体ではなく車両通信の中で考える。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1600,
+          "height": 1050,
+          "aspectRatio": "1600 / 1050"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "関わりやすい情報",
+          "headers": [
+            "情報",
+            "使われる場面",
+            "注意すること"
+          ],
+          "rows": [
+            [
+              "車速",
+              "走行中か停車中かの判断。",
+              "信号の扱いが他機能へ影響しないか。"
+            ],
+            [
+              "シフト位置",
+              "P、R、Dなどの状態判断。",
+              "バックカメラや表示制御との関係。"
+            ],
+            [
+              "ステアリング操作",
+              "スイッチ操作やメニュー操作。",
+              "純正スイッチとの連動。"
+            ],
+            [
+              "診断情報",
+              "DTCや通信状態の確認。",
+              "施工後に診断できるか。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "安全面と技術面を分けて見る",
+          "body": "運転者が走行中に画面を注視する使い方は避けるべきです。\nそれとは別に、車両通信、診断、保証、入庫対応という技術面の確認も必要です。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-03",
+      "kind": "explanation",
+      "chapterLabel": "METHOD",
+      "title": "方式ごとに戻し方が違う",
+      "displayTitle": "方式ごとに\n戻し方が違う",
+      "deck": "カプラーオン、配線割り込み、コーディングでは、記録と復元方法が変わる。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "カプラーオンなら安心って考えていい？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "加工が少ない点では有利な場合があるけど、それだけで安全とは言えないよ。\nどの信号にどう関わるか、戻す時にどうするかまで確認する。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/tv-canceller-can-risk-guide/tv-canceller-method-compare.webp",
+          "alt": "物理割り込み型とコーディング型の違いと、確認すべき記録を比較した図。",
+          "label": "方式が違っても、施工内容と復元方法の記録が必要になる。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1600,
+          "height": 1050,
+          "aspectRatio": "1600 / 1050"
+        },
+        {
+          "type": "paragraph",
+          "text": "後付け機器は、取り付け時に動いても、その後の車両側のソフトウェア更新や整備時の診断で見え方が変わる場合があります。\n方式の名前だけで選ばず、復元方法と施工記録まで確認します。",
+          "flow": "natural",
+          "highlights": [
+            "取り付け時に動いても、その後の車両側のソフトウェア更新や整備時の診断で見え方が変わる場合があります。"
+          ]
+        },
+        {
+          "type": "comparisonTable",
+          "title": "方式別に確認すること",
+          "headers": [
+            "方式",
+            "特徴",
+            "確認すること"
+          ],
+          "rows": [
+            [
+              "物理割り込み型",
+              "ハーネスやユニットを接続する方式。",
+              "配線加工の有無、固定、熱、水、取り外し方法。"
+            ],
+            [
+              "コーディング型",
+              "車両側設定を書き換える方式。",
+              "変更箇所、戻し方、診断への影響、施工店。"
+            ],
+            [
+              "スイッチ付き",
+              "機能をON/OFFできる場合がある。",
+              "OFF時に完全に純正同等へ戻るかは別途確認。"
+            ],
+            [
+              "中古車装着済み",
+              "方式や施工店が分からないことがある。",
+              "部品名、施工記録、診断結果を確認。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "方式選びのNG / OK",
+          "headers": [
+            "判断",
+            "特徴"
+          ],
+          "rows": [
+            [
+              "注意",
+              "カプラーオンなら無条件で安全と決める。\nコーディングなら部品がないから問題ないと決める。\n施工記録を残さない。\n外し方を確認しない。"
+            ],
+            [
+              "確認",
+              "方式と接続先を確認する。\n復元方法を確認する。\n施工店、施工日、部品名を残す。\n診断結果を残せるようにする。"
+            ]
+          ],
+          "display": "contrast",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-04",
+      "kind": "explanation",
+      "chapterLabel": "TROUBLE",
+      "title": "車検・保証・入庫は同じ判断ではない",
+      "displayTitle": "車検・保証・入庫は\n同じ判断ではない",
+      "deck": "警告灯が消えていても、診断と復元方法まで説明できる状態を残す。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "警告灯が出てなければ問題なさそうだけど。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "警告灯が出ないことは大事だけど、それだけでは足りないよ。\n診断機でどう見えるか、整備先に説明できるかも確認する。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/tv-canceller-can-risk-guide/tv-canceller-diagnostic-flow.webp",
+          "alt": "TVキャンセラー装着後に警告灯、DTC、診断、復元方法を確認する流れを示した図。",
+          "label": "警告灯が消えていても、診断と復元方法まで確認する。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1600,
+          "height": 1200,
+          "aspectRatio": "1600 / 1200"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "困りやすい場面",
+          "headers": [
+            "場面",
+            "困る理由",
+            "残したいもの"
+          ],
+          "rows": [
+            [
+              "警告灯",
+              "接続不良や非適合で表示が出る場合。",
+              "症状、DTC、施工内容。"
+            ],
+            [
+              "整備入庫",
+              "後付け機器が診断や作業の妨げになる場合。",
+              "部品名、接続先、取り外し方法。"
+            ],
+            [
+              "保証",
+              "変更が原因と判断される不具合は保証外になる可能性。",
+              "保証条件、施工明細、説明書。"
+            ],
+            [
+              "売却",
+              "次の所有者や販売店が施工内容を追えない。",
+              "施工履歴、戻し確認、純正状態の記録。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "車検・保証・入庫は同じ判断ではない",
+          "body": "車検で問題がないこと、メーカー保証の対象になること、整備工場で入庫できることは別の判断です。\n後付け電装品は、施工内容を説明できる状態にしておきます。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-05",
+      "kind": "explanation",
+      "chapterLabel": "DECISION",
+      "title": "目的によっては車両側へ触れない選択肢もある",
+      "displayTitle": "目的によっては\n代替案も考える",
+      "deck": "便利さを残すなら、車両通信へ介入しない方法も先に考える。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "便利なのは便利だから、どうしても使いたい人もいるよね。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "その場合も、目的を分けよう。\n後席用ならタブレット、停車中なら純正機能の範囲など、車両通信へ触れない方法で足りる場合もある。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/tv-canceller-can-risk-guide/tv-canceller-alternative-view.webp",
+          "alt": "TVキャンセラー以外の代替案として後席端末や停車中利用などを整理した図。",
+          "label": "便利さを残すなら、車両通信へ介入しない方法も先に考える。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1600,
+          "height": 1050,
+          "aspectRatio": "1600 / 1050"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "目的別に先に考えること",
+          "display": "cards",
+          "headers": [
+            "目的",
+            "先に考えること",
+            "CBJの判断"
+          ],
+          "rows": [
+            [
+              "後席で見たい",
+              "後席モニター、タブレット、スマホで足りるか。",
+              "車両側に触れない方法を先に見る。"
+            ],
+            [
+              "停車中に使いたい",
+              "純正機能の範囲で足りるか。",
+              "走行中の運転者注視につながらない使い方にする。"
+            ],
+            [
+              "中古車に付いている",
+              "方式、施工店、戻し方、診断ログを確認。",
+              "説明できない場合は慎重判断。"
+            ],
+            [
+              "入庫が不安",
+              "施工前に整備先へ確認。",
+              "車検、保証、入庫を同じ判断にしない。"
+            ],
+            [
+              "運転者が走行中に見る",
+              "走行中に画面を注視する使い方。",
+              "CBJでは推奨しない。"
+            ]
+          ],
+          "presentation": {
+            "variant": "mock-checklist"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "方式別に残す記録",
+          "headers": [
+            "方式",
+            "残す記録"
+          ],
+          "rows": [
+            [
+              "カプラーオン",
+              "製品名、型番、取り付け位置、外した時の戻し方。"
+            ],
+            [
+              "配線割り込み",
+              "接続箇所、配線色、ヒューズ、アース、復元手順。"
+            ],
+            [
+              "コーディング",
+              "変更項目、施工日、初期化方法、施工店の説明。"
+            ],
+            [
+              "中古車装着済み",
+              "方式、施工店、診断ログ、警告灯の有無。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "CBJの判断基準",
+          "body": "この記事は、TVキャンセラーの使用を積極推奨する記事ではありません。\n安全面では運転者の走行中視聴を避けること、技術面では車両信号、診断、保証、復元方法を確認することを判断基準にします。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        }
+      ]
+    }
+  ],
+  "noindex": false,
+  "articleDesign": {
+    "version": "cbj-world-v1",
+    "layoutPreset": "column-renewal-v1",
+    "lessonNumber": 22,
+    "difficulty": "初級〜中級",
+    "heroGradient": [
+      "#5C6BC0",
+      "#26C6DA"
+    ],
+    "heroCenterImage": "/images/cbj/article-system/car-illustration-transparent-v2.png",
+    "sectionPalette": [
+      "#FF8C42",
+      "#8BC34A",
+      "#F06292",
+      "#42A5F5",
+      "#FFCA28"
+    ],
+    "introDialogue": [
+      {
+        "character": "juna",
+        "motion": "fade-right",
+        "text": "TVキャンセラーって、映るようになるだけの便利グッズじゃないの？",
+        "variant": "bubble"
+      },
+      {
+        "character": "rina",
+        "motion": "fade-left",
+        "text": "便利に見えるけど、まず安全面を分ける必要があるよ。\nそのうえで、車両信号や診断、保証、戻し方まで確認する。",
+        "variant": "bubble"
+      }
+    ],
+    "sectionDialogues": {},
+    "closingDialogue": [
+      {
+        "character": "juna",
+        "text": "TVキャンセラーは、便利かどうかだけで選ぶと見落としが出るんだね。",
+        "variant": "bubble",
+        "motion": "fade-right"
+      },
+      {
+        "character": "rina",
+        "text": "そう。\n車両通信へどう関わるか、あとから戻せるかを説明できる状態にして判断しよう。",
+        "variant": "bubble",
+        "motion": "fade-left"
+      }
+    ],
+    "heroTitle": "TVキャンセラーは\nなぜ注意が必要？",
+    "heroLead": "映るかではなく、安全面・車両通信・診断・復元方法まで確認する。",
+    "closingBlocks": [
+      {
+        "type": "callout",
+        "tone": "info",
+        "title": "最終結論",
+        "body": "TVキャンセラーは、映るかどうかだけで判断しません。\n\nまず、運転者が走行中に映像を注視する使い方は推奨しません。\n\nそのうえで、技術面では車両通信へどう関わるか、診断時にどう見えるか、保証や入庫時に説明できるか、元へ戻せるかを確認します。\n\n目的によっては、車両側へ触れない代替案を先に考えます。",
+        "presentation": {
+          "variant": "mock-info"
+        }
+      }
+    ],
+    "heroPromise": "TVキャンセラーを付ける前に、運転者の走行中注視、安全な使い方、接続方式、診断、保証、戻し方を分けて確認できる。"
+  }
+}

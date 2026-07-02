@@ -1,0 +1,81 @@
+{
+  "slug": "modern-car-custom-regret-reason-column",
+  "createdAt": "2026-06-02",
+  "theme": "車のカスタムで後悔する理由。車検・保証・売却で困らないために考えたいこと",
+  "checkedCount": 12,
+  "sourcesChecked": [
+    {
+      "url": "https://www.naltec.go.jp/faq/0004.html",
+      "type": "official",
+      "point": "後付け部品単体ではなく、装着後の車両状態で保安基準適合性を考える必要があることを確認。"
+    },
+    {
+      "url": "https://www.naltec.go.jp/faq/0003.html",
+      "type": "official",
+      "point": "自動車検査では構造・装置が保安基準に適合している状態かを審査事務規程に基づいて判断することを確認。"
+    },
+    {
+      "url": "https://www.mlit.go.jp/jidosha/jidosha/tenkenseibi/huseikaizou/h1/h1-2/",
+      "type": "official",
+      "point": "灯火類、タイヤ・ホイールのはみ出しなど、不正改造につながりやすい具体例を確認。"
+    },
+    {
+      "url": "https://www.mlit.go.jp/jidosha/jidosha/tenkenseibi/huseikaizou/h2/h2-1/",
+      "type": "official",
+      "point": "不正改造車排除の運動と、整備命令等の扱いを確認。"
+    },
+    {
+      "url": "https://www.jaspa.or.jp/user/remodel/exclusion.html",
+      "type": "industry",
+      "point": "タイヤ・ホイールのはみ出し、不適切な灯火類、基準不適合マフラーなどの重要排除項目を確認。"
+    },
+    {
+      "url": "https://www.napac.jp/cms/ja/asea/quality-auth",
+      "type": "industry",
+      "point": "ASEA基準で法令遵守、安全確保、ボルトオン、保安基準適合、必要書類添付が条件として整理されていることを確認。"
+    },
+    {
+      "url": "https://www.napac.jp/cms/ja/jasma/certified-muffler-jasma",
+      "type": "industry",
+      "point": "JASMA認定マフラーでは保安基準への適合性、性能・品質、証明書の考え方を確認。"
+    },
+    {
+      "url": "https://toyota.jp/after_service/support/guarantee/ippan/index.html",
+      "type": "manufacturer",
+      "point": "一般保証の対象範囲と、トヨタ出荷後にトヨタ以外の者が装着・架装した部品・架装物の扱いを確認。"
+    },
+    {
+      "url": "https://www.toyota-mobi-tokyo.co.jp/u-car/longrun",
+      "type": "dealer",
+      "point": "中古車保証で違法改造車が対象外になる例を確認。"
+    },
+    {
+      "url": "https://www.nextage.jp/sell_guide/junbi/996330/",
+      "type": "competitor",
+      "point": "改造内容や車検非対応の改造が査定に影響しやすいという売却側の観点を確認。"
+    },
+    {
+      "url": "https://yanase-audi.com/column/used/used-car-inspection-record.html",
+      "type": "competitor",
+      "point": "中古車の点検記録簿が整備履歴や車両状態の判断材料になることを確認。"
+    },
+    {
+      "url": "https://carland-apple.jp/261/",
+      "type": "competitor",
+      "point": "中古のカスタム車では純正部品の有無がリセールや純正戻しに影響するという観点を確認。"
+    }
+  ],
+  "commonAngles": [
+    "不正改造や車検対応の説明に寄る記事が多い。",
+    "売却やリセールだけを扱う記事では、現代車の電子制御や整備入庫の話が薄い。",
+    "カスタム部品単体のメリット・デメリット記事は多いが、車検、保証、整備入庫、中古車確認まで横断する記事は少ない。"
+  ],
+  "cbjAngle": "カスタムを否定せず、現代車では戻せること、説明できること、実車状態で問題がないことを残す方が長く楽しみやすい、という考え方のコラムとして設計。",
+  "reflectedIn": [
+    "導入：装着直後ではなく、その後の維持で後悔が出るという問題提起。",
+    "車検章：車検対応品でも実車状態で判断されることを説明。",
+    "保証・整備・売却章：保証、入庫、査定で差が出る場面を具体化。",
+    "中古車章：純正部品、施工履歴、配線加工、警告灯、試乗時の違和感を確認する流れに反映。",
+    "画像設計：足回り記事と同じトーンの図解画像を本文内に7枚配置。"
+  ]
+}

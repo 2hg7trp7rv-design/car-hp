@@ -1,0 +1,87 @@
+{
+  "slug": "electronic-damper-coilover-risk-guide",
+  "createdAt": "2026-06-03",
+  "purpose": "電子制御ダンパー付き車に車高調を入れるリスクを、既存の浅い車高調記事ではなく、制御・キャンセラー・警告灯・乗り心地・純正戻しまで扱うGuideとして作るための調査メモ。",
+  "primaryQueries": [
+    "電子制御ダンパー 車高調",
+    "電子制御サスペンション 車高調",
+    "電子制御ダンパー キャンセラー",
+    "車高調 キャンセラー 警告灯",
+    "アダプティブサスペンション 車高調"
+  ],
+  "verifiedSources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Electronic_suspension",
+      "type": "technical-background",
+      "usedFor": "電子制御サスペンションがセンサー、制御ユニット、アクチュエーターで減衰やプリロードを動的に調整するという基礎説明。"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Active_suspension",
+      "type": "technical-background",
+      "usedFor": "アクティブ、アダプティブ、セミアクティブサスペンションの違いと、セミアクティブ系が減衰係数を変える考え方。"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Coilover",
+      "type": "technical-background",
+      "usedFor": "車高調が車高や減衰調整を行える一方、バネ、ダンパー、プリロード、ストロークの扱いが乗り心地に関わる点。"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/MagneRide",
+      "type": "technical-background",
+      "usedFor": "磁性流体ダンパーがセンサーとECUを使う適応型サスペンションの例。"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Toyota_Electronic_Modulated_Suspension",
+      "type": "technical-background",
+      "usedFor": "TEMSが複数の車両情報を使ってショックアブソーバーを制御する事例。"
+    },
+    {
+      "url": "https://de.wikipedia.org/wiki/Continuous_Damping_Control",
+      "type": "technical-background",
+      "usedFor": "CDCが各輪の減衰力を状況に応じて制御する概念。"
+    },
+    {
+      "url": "https://arxiv.org/abs/2503.12891",
+      "type": "research-paper",
+      "usedFor": "MRダンパーを使ったセミアクティブサスペンション制御と、乗り心地・接地側の制御価値。"
+    },
+    {
+      "url": "https://arxiv.org/abs/2010.10831",
+      "type": "research-paper",
+      "usedFor": "セミアクティブサスペンションの制御キャリブレーションが専門的であること。"
+    },
+    {
+      "url": "https://arxiv.org/abs/1411.3305",
+      "type": "research-paper",
+      "usedFor": "セミアクティブサスペンションの制御手法比較と、減衰係数制御の技術的背景。"
+    },
+    {
+      "url": "https://www.naltec.go.jp/faq/0004.html",
+      "type": "inspection-reference",
+      "usedFor": "車検・保安基準は部品単体ではなく、装着後の車両状態で判断されるという文脈。"
+    },
+    {
+      "url": "https://www.mlit.go.jp/jidosha/jidosha/tenkenseibi/huseikaizou/h1/h1-2/",
+      "type": "inspection-reference",
+      "usedFor": "不正改造、車検、保安基準に関わる一般的注意点。"
+    },
+    {
+      "url": "https://www.napac.jp/cms/ja/asea/quality-auth",
+      "type": "aftermarket-standard",
+      "usedFor": "社外パーツで法令遵守、安全性、書類確認を重視する考え方。"
+    }
+  ],
+  "contentGapsFound": [
+    "一般的な車高調記事は、低さ、減衰調整、乗り心地、価格の話に寄りやすい。",
+    "電子制御ダンパーの記事は、警告灯やキャンセラーに触れても、純正の減衰制御を失う意味まで説明しないものが多い。",
+    "キャンセラーを『警告灯対策』として説明する記事はあっても、純正制御を復元する部品ではないと明確に整理した記事は少ない。",
+    "中古車購入時に、純正ダンパー、キャンセラー固定、診断ログ、アライメント記録まで見る記事は少ない。"
+  ],
+  "howArticleWins": [
+    "親Columnの子Guideとして、電子制御ダンパー付き車の車高調化だけに検索意図を絞る。",
+    "車高調を否定せず、入れるなら何を失い、何を残すかを判断できる構成にする。",
+    "警告灯、キャンセラー、乗り心地、アライメント、純正戻し、整備入庫を1本で整理する。",
+    "図解4枚で、制御構造、純正と社外の違い、キャンセラーの役割、取り付け前チェックを視覚化する。",
+    "親Columnと足回りGuideへ相互リンクし、CBJ内の足回り・カスタムクラスタを強化する。"
+  ]
+}

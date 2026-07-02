@@ -1,0 +1,725 @@
+{
+  "id": "guide-electronic-damper-coilover-risk-guide",
+  "slug": "electronic-damper-coilover-risk-guide",
+  "type": "GUIDE",
+  "status": "published",
+  "publicState": "index",
+  "noindex": false,
+  "title": "電子制御ダンパー付き車に車高調は入れていい？\n警告灯・キャンセラー・乗り心地の注意点",
+  "titleJa": "電子制御ダンパー付き車に車高調は入れていい？警告灯・キャンセラー・乗り心地の注意点",
+  "summary": "電子制御ダンパー付き車に車高調を入れる前に、警告灯、キャンセラー、純正制御、乗り心地、アライメント、保証、純正戻し、入庫対応を確認するGuideです。",
+  "seoTitle": "電子制御ダンパー付き車に車高調は入れていい？警告灯・キャンセラーの注意点",
+  "seoDescription": "電子制御ダンパー付き車に車高調を入れる前に確認したい警告灯、キャンセラー、純正制御、乗り心地、アライメント、純正戻し、保証や入庫対応を解説します。",
+  "description": "電子制御ダンパー付き車の車高調交換で確認したい、警告灯、キャンセラー、乗り心地、アライメント、純正戻しを整理します。",
+  "lead": "電子制御ダンパー付き車は、普通のショック交換と同じ感覚だけでは判断しにくい車があります。\n車高を下げることはできても、走行モードや減衰制御、診断、保証、入庫対応まで一緒に変わる場合があります。\nこの記事では、警告灯を消す話ではなく、純正制御を外す判断として整理します。",
+  "category": "MAINTENANCE",
+  "readMinutes": 11,
+  "heroImage": "/images/cbj/article-system/content/electronic-damper-coilover-risk-guide/cover.webp",
+  "thumbnail": "/images/cbj/article-system/content/electronic-damper-coilover-risk-guide/cover.webp",
+  "publishedAt": "2026-06-03",
+  "updatedAt": "2026-07-02",
+  "tags": [
+    "電子制御ダンパー",
+    "車高調",
+    "キャンセラー",
+    "足回り",
+    "ローダウン",
+    "乗り心地",
+    "カスタム"
+  ],
+  "displayTag": "足回り",
+  "eyebrowLabel": "電子制御と車高調",
+  "primaryQuery": "電子制御ダンパー 車高調 キャンセラー 警告灯",
+  "parentPillarId": "/column/modern-car-custom-regret-reason-column",
+  "relatedClusterIds": [],
+  "intentTags": [
+    "suspension",
+    "custom",
+    "electronic-damper",
+    "coilover",
+    "warning-light",
+    "maintenance"
+  ],
+  "monetizeKey": "goods_car_wash_coating",
+  "monetizeType": "indirect",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "car-suspension-hard-soft-merit-demerit",
+    "adas-lowered-car-aiming-risk-guide",
+    "used-custom-car-check-guide"
+  ],
+  "relatedColumnSlugs": [
+    "modern-car-custom-regret-reason-column"
+  ],
+  "relatedHeritageSlugs": [],
+  "internalLinks": [
+    "modern-car-custom-regret-reason-column",
+    "car-suspension-hard-soft-merit-demerit",
+    "adas-lowered-car-aiming-risk-guide",
+    "used-custom-car-check-guide"
+  ],
+  "createdAt": "2026-06-02",
+  "canonicalUrl": "https://carboutiquejournal.com/guide/electronic-damper-coilover-risk-guide",
+  "ogImageUrl": "/images/cbj/article-system/content/electronic-damper-coilover-risk-guide/cover.webp",
+  "updateReason": "親記事との役割差を整理し、各ガイドの判断導線・確認表・締めの要点を再構成",
+  "sources": [
+    "https://www.kyb.co.jp/en/products/automotive.html",
+    "https://www.monroe.com/technical-resources/shocks-101/symptoms-worn-shock-struts.html",
+    "https://www.naltec.go.jp/faq/0004.html",
+    "https://www.mlit.go.jp/jidosha/jidosha/tenkenseibi/huseikaizou/h1/h1-2/",
+    "https://www.napac.jp/cms/ja/asea/quality-auth",
+    "https://toyota.jp/after_service/support/general/",
+    "https://toyota.jp/after_service/support/special/"
+  ],
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "電子制御ダンパー付き車に車高調は入れていい？警告灯・キャンセラー・乗り心地の注意点"
+    }
+  ],
+  "authorProfile": {
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "整備・中古車・カスタム判断編集チーム",
+    "kind": "organization"
+  },
+  "keyPoints": [
+    "電子制御ダンパー車は、車高だけでなく車両側の制御とのつながりを見る。",
+    "車高調化で、純正モード連動や電子減衰制御が使えなくなる場合がある。",
+    "キャンセラーは警告灯対策であり、純正制御を復元する部品ではない。",
+    "純正部品、配線、施工写真、DTC確認、アライメント結果を残す。"
+  ],
+  "checkpoints": [
+    "自分の車に電子制御ダンパーが付いているか確認する。",
+    "選ぶ車高調が電子制御車に対応しているか確認する。",
+    "キャンセラーの必要性、品番、取り付け方法を確認する。",
+    "純正ダンパー、配線、ボルト、説明書を保管する。",
+    "取り付け後のアライメント、警告灯、DTCを確認する。"
+  ],
+  "faq": [
+    {
+      "question": "電子制御ダンパー付き車に車高調は入れられますか？",
+      "answer": "車種と製品によります。\n対応品がある場合でも、警告灯、キャンセラー、純正制御の喪失、入庫対応、純正戻しを確認します。"
+    },
+    {
+      "question": "キャンセラーを付ければ純正と同じになりますか？",
+      "answer": "同じにはなりません。\nキャンセラーは警告灯や診断エラーを避けるために使われることがありますが、純正の減衰制御そのものを戻す部品ではありません。"
+    },
+    {
+      "question": "車高調にすると乗り心地は必ず悪くなりますか？",
+      "answer": "必ずではありません。\n製品、設定、車高、ストローク、タイヤ、アライメント、取り付け状態で変わります。"
+    },
+    {
+      "question": "純正部品は残した方がいいですか？",
+      "answer": "残すべきです。\n不調時の切り分け、売却、整備入庫、純正戻しで大きな助けになります。"
+    },
+    {
+      "question": "ディーラー入庫はできますか？",
+      "answer": "店舗や施工内容、車両状態によります。\n事前に普段使う整備先へ確認し、施工内容を説明できる状態にします。"
+    }
+  ],
+  "actionBox": {
+    "title": "次に読む記事",
+    "body": "電子制御ダンパー付き車は、足回りと車両制御を分けずに考えます。次は、乗り心地、ADAS、現代車カスタム全体の判断軸へ進みます。",
+    "actions": [
+      {
+        "label": "現代車カスタムの全体像を読む｜目的・影響範囲・純正戻しを整理する",
+        "href": "/column/modern-car-custom-regret-reason-column"
+      },
+      {
+        "label": "足回りが硬い・柔らかいを読む｜試乗で症状を分ける",
+        "href": "/guide/car-suspension-hard-soft-merit-demerit"
+      },
+      {
+        "label": "ADAS付き車のローダウンを読む｜車高変更とセンサー前提を確認する",
+        "href": "/guide/adas-lowered-car-aiming-risk-guide"
+      }
+    ]
+  },
+  "layoutVariant": "cbj-world-v1",
+  "detailSections": [
+    {
+      "id": "section-01",
+      "kind": "explanation",
+      "chapterLabel": "BASICS",
+      "title": "電子制御ダンパー付き車は、普通の車高調交換より確認が増える",
+      "displayTitle": "電子制御ダンパー車は\n普通の交換と違う",
+      "deck": "車高や見た目だけでなく、純正制御と診断の前提まで確認する。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "車高調って、ショックとスプリングを替えるだけじゃないの？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "電子制御ダンパー付き車では、それだけでは終わらないことがあるよ。\n車がダンパーの状態を見ていたり、走行モードと連動していたりする場合がある。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "paragraph",
+          "text": "電子制御ダンパーは、走行状態やモードに合わせて減衰力を変える仕組みです。\n車種によって制御の内容は異なりますが、純正状態では車両側の制御と足回りがつながっています。",
+          "flow": "natural"
+        },
+        {
+          "type": "paragraph",
+          "text": "社外車高調へ交換すると、車高や乗り味を変えられる一方で、純正の減衰制御を使えなくなる場合があります。\nそのため、警告灯、キャンセラー、乗り心地、診断、入庫対応、純正戻しまで先に確認します。",
+          "flow": "natural",
+          "highlights": [
+            "警告灯、キャンセラー、乗り心地、診断、入庫対応、純正戻しまで先に確認します。"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "電子制御ダンパーの呼び方や制御内容はメーカーや車種で異なります。\nコンフォート、スポーツなどの走行モードと連動する車もあれば、制御範囲や診断方法が異なる車もあります。この記事では、全車共通の作業手順ではなく、交換前に見る判断軸として整理します。",
+          "flow": "natural",
+          "highlights": [
+            "全車共通の作業手順ではなく、交換前に見る判断軸として整理します。"
+          ]
+        },
+        {
+          "type": "comparisonTable",
+          "title": "交換前に確認する制御と記録",
+          "headers": [
+            "項目",
+            "確認すること"
+          ],
+          "rows": [
+            [
+              "装備",
+              "自分の車に電子制御ダンパーが付いているか。"
+            ],
+            [
+              "対応",
+              "選ぶ車高調が電子制御車に対応しているか。"
+            ],
+            [
+              "キャンセラー",
+              "必要か、同梱か、別売りか、取り付け位置はどこか。"
+            ],
+            [
+              "純正戻し",
+              "純正部品を保管し、戻せる状態を作れるか。"
+            ],
+            [
+              "入庫対応",
+              "普段の整備先で診断や整備を受けられるか。"
+            ]
+          ],
+          "display": "checklist",
+          "presentation": {
+            "variant": "mock-checklist",
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-02",
+      "kind": "explanation",
+      "chapterLabel": "SYSTEM",
+      "title": "電子制御ダンパーは、乗り心地だけの装備ではない",
+      "displayTitle": "純正制御が\n何をしているか知る",
+      "deck": "走行モードや車両側の制御と足回りがつながっている場合がある。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "電子制御って、乗り心地を柔らかくしたり硬くしたりするだけ？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "それが分かりやすい部分だけど、車によっては姿勢変化や走行安定性にも関わる。\nだから外すなら、何を失うかを理解しておく必要があるよ。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/electronic-damper-coilover-risk-guide/electronic-damper-system-diagram.webp",
+          "alt": "電子制御ダンパーがセンサーや走行モードとつながり、減衰を変える仕組みを示した図。",
+          "label": "電子制御ダンパーは、車両側の情報と連動して減衰を変える。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1200,
+          "height": 1400,
+          "aspectRatio": "1200 / 1400"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "純正制御で関わりやすいこと",
+          "headers": [
+            "項目",
+            "役割",
+            "交換時の注意"
+          ],
+          "rows": [
+            [
+              "走行モード",
+              "Comfort、Sportなどで乗り味を変える。",
+              "社外車高調では使えなくなる場合がある。"
+            ],
+            [
+              "減衰制御",
+              "揺れの収まり方を変える。",
+              "固定式・手動調整式になる場合がある。"
+            ],
+            [
+              "警告表示",
+              "ダンパー異常や未接続を検知する場合がある。",
+              "キャンセラーの適合と固定を確認する。"
+            ],
+            [
+              "診断",
+              "整備時にDTCや通信状態を確認する。",
+              "施工記録と戻し方を説明できるようにする。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "キャンセラーの役割を取り違えない",
+          "body": "キャンセラーは、未接続による警告灯や診断エラーを避けるための部品として使われることがあります。\n純正ダンパーの減衰制御そのものを社外車高調へ復元する部品ではありません。車種や製品によっては、診断ログや整備時の見え方も確認対象になります。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-03",
+      "kind": "explanation",
+      "chapterLabel": "CHANGE",
+      "title": "車高調に替えると、残るものと失う可能性があるものが分かれる",
+      "displayTitle": "車高調で\n残るもの・失うもの",
+      "deck": "警告灯だけでなく、純正モード連動や整備時の見え方まで見る。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "低くなって、見た目が良くなれば成功じゃないの？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "見た目は大事だけど、それだけでは判断できないよ。\n走れるか、乗れるか、整備で説明できるかまで見ないと後で困る。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/electronic-damper-coilover-risk-guide/electronic-damper-coilover-compare.webp",
+          "alt": "純正電子制御ダンパーと社外車高調で変わる項目を比較した図。",
+          "label": "社外車高調へ替えると、車高だけでなく制御や整備対応も変わる。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1200,
+          "height": 1400,
+          "aspectRatio": "1200 / 1400"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "交換で変わること",
+          "headers": [
+            "項目",
+            "変わりやすいこと",
+            "確認すること"
+          ],
+          "rows": [
+            [
+              "車高",
+              "見た目、最低地上高、段差の通過性。",
+              "普段使う道で困らない高さか。"
+            ],
+            [
+              "減衰",
+              "純正モード連動から手動・固定へ変わる場合。",
+              "調整幅と設定方法を確認する。"
+            ],
+            [
+              "ストローク",
+              "動ける量が減ると突き上げや跳ねが出る。",
+              "バンプタッチ、底付き、車高設定を見る。"
+            ],
+            [
+              "アライメント",
+              "車高変更でトーやキャンバーが変わる。",
+              "取り付け後の測定・調整を前提にする。"
+            ],
+            [
+              "整備対応",
+              "診断や入庫で説明が必要になる。",
+              "施工記録と純正戻しを残す。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "選び方のNG / OK",
+          "headers": [
+            "判断",
+            "特徴"
+          ],
+          "rows": [
+            [
+              "注意",
+              "低さだけで車高調を選ぶ。\nキャンセラーの有無を後回しにする。\n純正ダンパーや配線を処分する。\n入庫対応を確認しない。"
+            ],
+            [
+              "確認",
+              "電子制御車対応品か確認する。\nキャンセラーの適合と固定方法を見る。\n純正部品を保管する。\n取り付け後のアライメントを前提にする。"
+            ]
+          ],
+          "display": "contrast",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "残るもの / 失う可能性があるもの / 残すべき記録",
+          "display": "table",
+          "headers": [
+            "分類",
+            "内容",
+            "注意点"
+          ],
+          "rows": [
+            [
+              "残るもの",
+              "車高調としての高さ調整、手動減衰、見た目の変化。",
+              "製品仕様と設定値を残す。"
+            ],
+            [
+              "失う可能性があるもの",
+              "純正モード連動、電子減衰制御、純正診断の整合性。",
+              "車種・製品・施工方法で変わる。"
+            ],
+            [
+              "ごまかしてはいけないこと",
+              "警告灯が消えることと、純正同等に制御されることは別。",
+              "キャンセラーの役割を説明できるようにする。"
+            ],
+            [
+              "残すべき記録",
+              "純正ダンパー、配線、施工写真、DTC確認、アライメント結果。",
+              "入庫、保証、不調切り分けに使う。"
+            ]
+          ],
+          "presentation": {
+            "variant": "mock-table"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-04",
+      "kind": "explanation",
+      "chapterLabel": "WARNING",
+      "title": "キャンセラーでできること・できないことを分ける",
+      "displayTitle": "キャンセラーで\n純正同等にはならない",
+      "deck": "警告灯が消えることと、純正同等に制御されることは別に判断する。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "キャンセラーを付けて警告灯が消えたらOK？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "それは確認の一つだね。\nでも、診断でどう見えるか、どこに何を付けたか、外す時どう戻すかも残しておきたい。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/electronic-damper-coilover-risk-guide/electronic-damper-canceller-warning.webp",
+          "alt": "電子制御ダンパー交換時の警告灯とキャンセラー、診断で確認する流れを示した図。",
+          "label": "警告灯だけでなく、診断、記録、復元方法まで残す。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1200,
+          "height": 1400,
+          "aspectRatio": "1200 / 1400"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "警告灯・診断で確認すること",
+          "headers": [
+            "項目",
+            "確認する内容",
+            "残したい記録"
+          ],
+          "rows": [
+            [
+              "警告灯",
+              "始動時、走行中、モード切替時に警告が出ないか。",
+              "施工後の表示状態。"
+            ],
+            [
+              "DTC",
+              "診断機でエラーが残っていないか。",
+              "診断結果、消去履歴。"
+            ],
+            [
+              "キャンセラー",
+              "固定が確実で、水や熱の影響を受けにくいか。",
+              "品番、取り付け位置。"
+            ],
+            [
+              "純正部品",
+              "戻す時に必要な部品が揃っているか。",
+              "保管部品、写真、書類。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "保証と入庫は、車検とは別の判断",
+          "body": "車検に通ること、メーカー保証の対象になること、整備工場で入庫できることは同じではありません。\n変更部位や変更が原因と判断された不具合は、保証対象外になる可能性があります。施工内容を説明できる記録を残してください。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-05",
+      "kind": "explanation",
+      "chapterLabel": "DECISION",
+      "title": "入れるなら、低さより説明できる状態を優先する",
+      "displayTitle": "入れていい人と\n慎重な人を分ける",
+      "deck": "見た目を変える場合でも、あとから戻せる・説明できる状態を残す。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "それでも車高調を入れたい場合は、何から決めるべき？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "まず、どこまで下げたいかより、日常で使える高さと、純正へ戻せる状態を決める。\nその上で製品を選ぶ方が失敗しにくいよ。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "車高調導入前チェック",
+          "headers": [
+            "項目",
+            "確認すること"
+          ],
+          "rows": [
+            [
+              "電子制御の有無",
+              "年式、グレード、オプションで装備を確認する。"
+            ],
+            [
+              "製品適合",
+              "電子制御ダンパー付き車への対応を確認する。"
+            ],
+            [
+              "キャンセラー",
+              "必要性、取り付け方法、耐久性、固定場所を見る。"
+            ],
+            [
+              "車高",
+              "最低地上高、段差、輪止め、積載時の余裕を考える。"
+            ],
+            [
+              "記録",
+              "純正部品、施工写真、アライメント結果、診断結果を残す。"
+            ]
+          ],
+          "display": "checklist",
+          "presentation": {
+            "variant": "mock-checklist",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "入れていい / 慎重 / 避ける の判断",
+          "display": "cards",
+          "headers": [
+            "判断",
+            "状態",
+            "確認すること"
+          ],
+          "rows": [
+            [
+              "入れてもいい寄り",
+              "純正制御が変わる前提を理解している。",
+              "施工記録、DTC確認、アライメント結果、純正部品を残せる。"
+            ],
+            [
+              "慎重",
+              "走行モードの変化を重視する。保証やディーラー入庫を優先したい。",
+              "製品適合、キャンセラーの扱い、入庫先の対応を先に確認する。"
+            ],
+            [
+              "避ける寄り",
+              "キャンセラーで純正同等だと思っている。純正ダンパーや配線を残せない。",
+              "警告灯を消すだけの施工は、あとから説明しにくい。"
+            ]
+          ],
+          "presentation": {
+            "variant": "mock-checklist"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "施工先に確認する質問",
+          "headers": [
+            "質問",
+            "確認したい理由"
+          ],
+          "rows": [
+            [
+              "純正制御が使えなくなる範囲を説明できますか",
+              "警告灯が消えることと純正同等は別だから。"
+            ],
+            [
+              "キャンセラーの品番と取り付け位置を記録できますか",
+              "診断や入庫時に施工内容を説明するため。"
+            ],
+            [
+              "施工後にDTCと警告灯を確認できますか",
+              "見た目だけでなく車両側の見え方を確認するため。"
+            ],
+            [
+              "アライメント結果と減衰設定を残せますか",
+              "乗り心地や片減りの原因を後から切り分けるため。"
+            ],
+            [
+              "純正ダンパー・配線・ボルトを返却してもらえますか",
+              "純正戻しと比較確認に使うため。"
+            ]
+          ],
+          "display": "checklist",
+          "presentation": {
+            "variant": "mock-checklist",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "CBJの判断基準",
+          "body": "電子制御ダンパー付き車への車高調を、一律NGとは扱いません。\nただし、キャンセラーで警告灯が消えることと、純正制御、保証、診断、整備対応まで問題ないことは別として判断します。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        }
+      ]
+    }
+  ],
+  "articleDesign": {
+    "version": "cbj-world-v1",
+    "layoutPreset": "column-renewal-v1",
+    "lessonNumber": 20,
+    "difficulty": "初級〜中級",
+    "heroGradient": [
+      "#FF8C42",
+      "#AB47BC"
+    ],
+    "heroCenterImage": "/images/cbj/article-system/car-illustration-transparent-v2.png",
+    "sectionPalette": [
+      "#FF8C42",
+      "#8BC34A",
+      "#F06292",
+      "#42A5F5",
+      "#FFCA28"
+    ],
+    "introDialogue": [
+      {
+        "character": "juna",
+        "motion": "fade-right",
+        "text": "電子制御ダンパー付きの車って、車高調を入れたらダメなの？",
+        "variant": "bubble"
+      },
+      {
+        "character": "rina",
+        "motion": "fade-left",
+        "text": "ダメと決めつける話ではないよ。\nただ、警告灯を消せるかより、純正制御がどう変わるか、戻せるかを先に見る必要がある。",
+        "variant": "bubble"
+      }
+    ],
+    "sectionDialogues": {},
+    "closingDialogue": [
+      {
+        "character": "juna",
+        "text": "車高調は、付くかどうかだけじゃなくて、純正制御をどう扱うかまで見るんだね。",
+        "variant": "bubble",
+        "motion": "fade-right"
+      },
+      {
+        "character": "rina",
+        "text": "そう。\n電子制御車は、低さより先に、警告灯、診断、戻しやすさを確認しよう。",
+        "variant": "bubble",
+        "motion": "fade-left"
+      }
+    ],
+    "heroTitle": "電子制御ダンパー車に\n車高調は入れていい？",
+    "heroLead": "低さだけでなく、純正制御・警告灯・診断・純正戻しまで確認する。",
+    "closingBlocks": [
+      {
+        "type": "callout",
+        "tone": "info",
+        "title": "最終結論",
+        "body": "電子制御ダンパー付き車に車高調を入れるなら、低さだけで判断しません。\n\n純正の減衰制御を外す影響、警告灯、キャンセラー、診断、保証、入庫対応、純正戻しまで含めて確認します。\n\nキャンセラーで警告灯が消えることと、純正制御が残ることは別です。見た目を変える場合でも、あとから説明できる状態を残せるかを基準にします。",
+        "presentation": {
+          "variant": "mock-info"
+        }
+      }
+    ],
+    "heroPromise": "電子制御ダンパー付き車に車高調を入れる前に、何が残り、何が使えなくなる可能性があり、何を記録として残すべきか判断できる。"
+  }
+}

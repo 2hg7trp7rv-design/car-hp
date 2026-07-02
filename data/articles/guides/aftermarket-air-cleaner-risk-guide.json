@@ -1,0 +1,733 @@
+{
+  "id": "guide-aftermarket-air-cleaner-risk-guide",
+  "slug": "aftermarket-air-cleaner-risk-guide",
+  "type": "GUIDE",
+  "status": "published",
+  "publicState": "index",
+  "title": "社外エアクリーナーは危険？\n不調・燃調・吸気温度で確認したいこと",
+  "titleJa": "社外エアクリーナーは危険？不調・燃調・吸気温度で確認したいこと",
+  "summary": "社外エアクリーナーを吸気音や見た目だけで選ばず、センサー、燃調、吸気温度、雨水、密閉性、純正戻しまで含めて確認するためのGuideです。",
+  "seoTitle": "社外エアクリーナーは危険？不調・燃調・吸気温度で確認したいこと",
+  "seoDescription": "社外エアクリーナーで後悔しないために、MAF・MAP・吸気温度、燃料補正、熱、雨水、取り付け位置、純正戻し、不調時の切り分けを初心者向けに解説します。",
+  "description": "社外エアクリーナーのリスクを、センサー、燃調、吸気温度、雨水、取り付け位置、純正戻しまで含めて整理します。",
+  "lead": "吸気音が大きくなると、交換した満足感は分かりやすいです。ボンネットを開けた時の見た目も変わります。\nただ、現代車ではそこで終わりません。空気をどこから吸うか、センサー前後の流れが乱れないか、熱や水を拾いやすくないか。\nその状態で車が空気を正しく測れているかまで見て、初めてその車に合うか判断できます。",
+  "category": "MAINTENANCE",
+  "readMinutes": 11,
+  "heroImage": "/images/cbj/article-system/content/aftermarket-air-cleaner-risk-guide/cover.webp",
+  "thumbnail": "/images/cbj/article-system/content/aftermarket-air-cleaner-risk-guide/cover.webp",
+  "publishedAt": "2026-05-21",
+  "updatedAt": "2026-07-02",
+  "tags": [
+    "社外エアクリーナー",
+    "吸気系",
+    "燃調",
+    "MAFセンサー",
+    "吸気温度",
+    "カスタム",
+    "中古車"
+  ],
+  "displayTag": "吸気",
+  "eyebrowLabel": "吸気と燃調",
+  "primaryQuery": "社外エアクリーナー 不調 燃調 吸気温度",
+  "parentPillarId": "/column/modern-car-custom-regret-reason-column",
+  "relatedClusterIds": [
+    "modern-car-custom-regret-reason-column",
+    "tv-canceller-can-risk-guide",
+    "used-custom-car-check-guide",
+    "car-suspension-hard-soft-merit-demerit"
+  ],
+  "intentTags": [
+    "custom",
+    "maintenance",
+    "trouble",
+    "used-car"
+  ],
+  "monetizeKey": null,
+  "monetizeType": "indirect",
+  "relatedCarSlugs": [],
+  "relatedGuideSlugs": [
+    "tv-canceller-can-risk-guide",
+    "used-custom-car-check-guide",
+    "car-suspension-hard-soft-merit-demerit"
+  ],
+  "relatedColumnSlugs": [
+    "modern-car-custom-regret-reason-column"
+  ],
+  "relatedHeritageSlugs": [],
+  "internalLinks": [
+    "modern-car-custom-regret-reason-column",
+    "tv-canceller-can-risk-guide",
+    "used-custom-car-check-guide",
+    "car-suspension-hard-soft-merit-demerit",
+    "electronic-damper-coilover-risk-guide",
+    "adas-lowered-car-aiming-risk-guide"
+  ],
+  "createdAt": null,
+  "canonicalUrl": "https://carboutiquejournal.com/guide/aftermarket-air-cleaner-risk-guide",
+  "ogImageUrl": "/images/cbj/article-system/content/aftermarket-air-cleaner-risk-guide/cover.webp",
+  "updateReason": "親記事との役割差を整理し、各ガイドの判断導線・確認表・締めの要点を再構成",
+  "sources": [
+    "https://www.bosch-mobility.com/en/solutions/sensors/air-mass-meter/",
+    "https://www.denso.com/global/en/products-and-services/automotive-service-parts-and-accessories/engine-management-system/air-flow-sensor/",
+    "https://www.ngkntk.com/newsroom/blog/emea/map-vs-maf-sensors/",
+    "https://www.kandn.com/faq",
+    "https://www.haltech.com/news-events/news/maf-vs-map/",
+    "https://www.naltec.go.jp/faq/0004.html",
+    "https://toyota.jp/after_service/support/general/"
+  ],
+  "breadcrumbTrail": [
+    {
+      "label": "HOME",
+      "href": "/"
+    },
+    {
+      "label": "GUIDE",
+      "href": "/guide"
+    },
+    {
+      "label": "社外エアクリーナーは危険？"
+    }
+  ],
+  "authorProfile": {
+    "kind": "organization",
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "credential": "整備・中古車・カスタム判断編集チーム"
+  },
+  "keyPoints": [
+    "音・見た目だけでなく、吸気温度とセンサー前後の流れを見る。",
+    "純正交換型、密閉型、剥き出し型で、熱・水・固定のリスクは変わる。",
+    "警告灯や不調は、接続、漏れ、汚れ、純正戻しで順番に切り分ける。",
+    "楽しむなら、純正部品と施工記録を残して比較できる状態にする。"
+  ],
+  "checkpoints": [
+    "目的を音、見た目、整備性、性能感のどれかに分けたか。",
+    "自分の型式、年式、エンジン、センサー方式への適合を確認したか。",
+    "熱源、水の通り道、センサー前後の配管条件を確認したか。",
+    "純正エアボックス、ダクト、ホース、ボルト、説明書を残せるか。",
+    "警告灯や不調が出た時に、純正戻しで比較できるか。"
+  ],
+  "faq": [
+    {
+      "question": "社外エアクリーナーは付けない方がいいですか？",
+      "answer": "付けない方がいいと一律には言えません。\n目的、適合、取り付け位置、熱対策、水対策、純正戻しを確認できるなら、楽しめるカスタムです。"
+    },
+    {
+      "question": "剥き出しタイプは必ず吸気温度が上がりますか？",
+      "answer": "一律には言えません。\n遮熱、外気導入、取り付け位置、センサー前後の形状、雨水の通り道が適切かで判断します。"
+    },
+    {
+      "question": "警告灯が出たらセンサー交換ですか？",
+      "answer": "すぐにセンサー交換と決めない方が安全です。\n接合部、配管、フィルター、DTC、純正戻し後の変化を確認してから原因を絞ります。"
+    },
+    {
+      "question": "純正交換型なら安心ですか？",
+      "answer": "純正形状を大きく崩しにくい点では有利です。\nただし、適合、フィルター状態、エアボックスの密閉、交換時期は確認します。"
+    },
+    {
+      "question": "中古車に社外エアクリーナーが付いていたら避けるべきですか？",
+      "answer": "部品だけで避ける必要はありません。\n純正部品、施工履歴、警告灯、診断記録、戻しやすさを確認して判断します。"
+    }
+  ],
+  "actionBox": {
+    "title": "次に読む記事",
+    "body": "社外エアクリーナーは、吸気系だけでなく、電装品や中古車購入時の確認ともつながります。次は、何を判断するために読むかを分けて進めます。",
+    "actions": [
+      {
+        "label": "現代車カスタムの全体像を読む｜目的・影響範囲・純正戻しを整理する",
+        "href": "/column/modern-car-custom-regret-reason-column"
+      },
+      {
+        "label": "TVキャンセラーと車両通信を読む｜後付け部品と診断の考え方を確認する",
+        "href": "/guide/tv-canceller-can-risk-guide"
+      },
+      {
+        "label": "カスタム済み中古車の見分け方を読む｜社外エアクリ付き中古車の施工履歴を見る",
+        "href": "/guide/used-custom-car-check-guide"
+      }
+    ]
+  },
+  "layoutVariant": "cbj-world-v1",
+  "detailSections": [
+    {
+      "id": "section-01",
+      "kind": "explanation",
+      "chapterLabel": "BASICS",
+      "title": "吸気音が変わるだけの部品ではない",
+      "displayTitle": "吸気音だけでなく\n空気の条件を見る",
+      "deck": "音や見た目の満足感から入りつつ、車が空気を正しく測れる状態まで見る。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "社外エアクリーナーって、結局付けない方がいいの？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "そう決めつける必要はないよ。\nただし、純正の吸気系が何を守っているかを知らないまま替えると、後から不調の原因が分かりにくくなる。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "paragraph",
+          "text": "純正の吸気系は、フィルターだけでできているわけではありません。\n外気の入口、ダクト、エアボックス、センサー、配管、固定方法まで含めて、吸気温度、ろ過性能、騒音、雨水、センサーが空気を測りやすい流れを考えて作られています。",
+          "flow": "natural",
+          "highlights": [
+            "純正の吸気系は、フィルターだけでできているわけではありません。"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "社外エアクリーナーを付けると、吸気音やエンジンルームの見た目は変わりやすくなります。\n一方で、センサー周辺の空気の流れ、熱の受け方、水の入り方、配管の密閉性も変わることがあります。",
+          "flow": "natural"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/aftermarket-air-cleaner-risk-guide/aftermarket-air-point-overview.webp",
+          "alt": "社外エアクリーナーで確認する吸気音、センサー、吸気温度、燃料補正、純正戻しを整理した図。",
+          "label": "音だけでなく、センサー、吸気温度、燃料補正、純正戻しまで見る。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1122,
+          "height": 1402,
+          "aspectRatio": "1122 / 1402"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "付ける前に見る吸気まわり",
+          "headers": [
+            "項目",
+            "確認すること"
+          ],
+          "rows": [
+            [
+              "適合",
+              "車種、型式、年式、グレード、エンジン形式まで合っているか。"
+            ],
+            [
+              "構造",
+              "純正交換型、密閉型、剥き出し型のどれか。"
+            ],
+            [
+              "位置",
+              "熱源、水の通り道、センサーからの距離に無理がないか。"
+            ],
+            [
+              "固定",
+              "配管、クランプ、ステー、接合部にガタや隙間がないか。"
+            ],
+            [
+              "戻し",
+              "純正部品を残し、不調時に純正状態と比べられるか。"
+            ]
+          ],
+          "display": "checklist",
+          "presentation": {
+            "variant": "mock-checklist",
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-02",
+      "kind": "explanation",
+      "chapterLabel": "SYSTEM",
+      "title": "純正吸気系は、空気を測りやすい流れまで含めて設計されている",
+      "displayTitle": "純正吸気系は\nフィルターだけではない",
+      "deck": "外気入口、ダクト、エアボックス、センサー、配管を一つの流れとして確認する。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "フィルターが良ければ、空気をたくさん吸えて良くなるんじゃないの？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "それだけでは決められないよ。\nエンジンに必要なのは、ただ多い空気ではなく、車が正しく把握できる空気なんだ。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "paragraph",
+          "text": "MAFセンサーは、エンジンへ入る空気量を測るために使われます。\nMAPやTMAPは、吸気圧や吸気温度からエンジンに入る空気の状態を把握するために使われます。\n車種によって方式は異なりますが、ECUはこれらの情報をもとに燃料噴射、点火、アイドリング、過給制御などを調整します。だから、センサー周辺の管径、曲がり、接合部の密閉、フィルターの汚れや過剰なオイル付着は、原因確認の対象になります。",
+          "flow": "natural",
+          "highlights": [
+            "ECUはこれらの情報をもとに燃料噴射、点火、アイドリング、過給制御などを調整します。"
+          ]
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/aftermarket-air-cleaner-risk-guide/aftermarket-air-control-flow.webp",
+          "alt": "吸気、センサー、ECU、燃料噴射、点火、アイドリング制御の流れを示した図。",
+          "label": "空気の流れは、センサーで測られ、ECUを通じて制御に反映される。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1672,
+          "height": 941,
+          "aspectRatio": "1672 / 941"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "ズレが出やすい場所",
+          "headers": [
+            "場所",
+            "起きやすいこと",
+            "確認すること"
+          ],
+          "rows": [
+            [
+              "センサー手前",
+              "空気が乱れて読み方が安定しない。",
+              "配管径、曲がり、段差、接合部を見る。"
+            ],
+            [
+              "フィルター周辺",
+              "停車中や低速時に熱気を吸いやすい。",
+              "遮熱板、外気導入口、熱源との距離を見る。"
+            ],
+            [
+              "接合部",
+              "二次エアを吸い、空燃比やアイドリングへ影響する。",
+              "クランプ、ホース、パッキン、割れを確認する。"
+            ],
+            [
+              "雨水の経路",
+              "洗車や大雨でフィルターが濡れやすくなる。",
+              "取り付け位置、水の通り道、フェンダー内の構造を見る。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "OBD数値だけで断定しない",
+          "body": "OBDでSTFTやLTFTを見る場合でも、数値ひとつで正常・異常を決めるのは危険です。\n外気温、学習状態、エンジン負荷、アイドリングか走行中かで見え方が変わるため、装着前、装着後、純正戻し後を近い条件で比べます。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-03",
+      "kind": "explanation",
+      "chapterLabel": "TYPE",
+      "title": "純正交換型・密閉型・剥き出し型は同じではない",
+      "displayTitle": "タイプ別に\n向き不向きを見る",
+      "deck": "形が違えば、音、熱、水、整備性、戻しやすさも変わる。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "剥き出しタイプの方がカスタム感は強いよね。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "そうだね。\nでも、目立つ形ほど熱や水、固定、センサー前後の条件も一緒に確認した方がいい。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "paragraph",
+          "text": "オープンタイプだから必ず悪い、純正交換型だから必ず安全、とは言い切れません。\n同じタイプでも、外気を導けるか、熱源から離れているか、遮熱板があるか、センサー前後の形が急に変わらないかで結果は変わります。",
+          "flow": "natural",
+          "highlights": [
+            "必ず悪い、純正交換型だから必ず安全、とは言い切れません。"
+          ]
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/aftermarket-air-cleaner-risk-guide/aftermarket-air-type-comparison.webp",
+          "alt": "純正交換型、密閉型、剥き出し型の違いを比較した図。",
+          "label": "純正交換型、密閉型、剥き出し型では、確認する場所が変わる。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1122,
+          "height": 1402,
+          "aspectRatio": "1122 / 1402"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "タイプ別に見ること",
+          "headers": [
+            "タイプ",
+            "向きやすい目的",
+            "注意したいこと"
+          ],
+          "rows": [
+            [
+              "純正交換型",
+              "純正形状を大きく崩さず、手軽に交換したい。",
+              "体感変化は大きくない場合がある。\n純正ボックスの状態も確認する。"
+            ],
+            [
+              "密閉型",
+              "吸気音と熱対策のバランスを取りたい。",
+              "外気導入、密閉性、車種別設計を確認する。"
+            ],
+            [
+              "剥き出し型",
+              "吸気音、見た目、交換した感を重視したい。",
+              "熱、水、乱流、固定、センサー位置を慎重に見る。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "選び方のNG / OK",
+          "headers": [
+            "判断",
+            "特徴"
+          ],
+          "rows": [
+            [
+              "注意",
+              "有名メーカーだから絶対安全と決める。\n安いから必ず危険と決める。\n音の大きさだけで選ぶ。\n説明書や適合情報を確認しない。"
+            ],
+            [
+              "確認",
+              "自分の型式・年式への適合を見る。\n取り付け位置と遮熱を確認する。\n純正戻しできるか確認する。\n消耗品や交換部品が入手できるか確認する。"
+            ]
+          ],
+          "display": "contrast",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-04",
+      "kind": "explanation",
+      "chapterLabel": "TROUBLE",
+      "title": "警告灯や不調が出たら、部品交換より先に切り分ける",
+      "displayTitle": "不調時は\n順番に切り分ける",
+      "deck": "警告灯、アイドリング不調、熱ダレ感が出たら、症状と条件を分けて確認する。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "もし警告灯が出たら、MAFセンサー交換？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "いきなり部品交換に進まない方がいい。\nまず、いつ、どんな条件で、交換前と何が違うかを整理する。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/content/aftermarket-air-cleaner-risk-guide/aftermarket-air-diagnosis-order.webp",
+          "alt": "社外エアクリーナー装着後の不調を、症状、OBD、純正戻し、配管確認の順で切り分ける図。",
+          "label": "不調時は、症状、OBD、純正戻し、配管・センサー周辺の順で確認する。",
+          "fit": "articleWide",
+          "presentation": {
+            "width": "wide",
+            "motion": "scale-in"
+          },
+          "width": 1122,
+          "height": 1402,
+          "aspectRatio": "1122 / 1402"
+        },
+        {
+          "type": "flow",
+          "title": "不調時の切り分け順",
+          "steps": [
+            {
+              "title": "症状を分ける",
+              "body": "警告灯、アイドリング不調、加速の違和感、再始動時の不安定さなどを分ける。"
+            },
+            {
+              "title": "条件を記録する",
+              "body": "外気温、雨、渋滞、エアコン使用、冷間時、温間時を残す。"
+            },
+            {
+              "title": "接合部を確認する",
+              "body": "ホース抜け、クランプ緩み、フィルター汚れ、ステーの干渉を見る。"
+            },
+            {
+              "title": "純正に戻して比べる",
+              "body": "戻して症状が消えるか、同じ条件で比べる。"
+            },
+            {
+              "title": "整備側へ説明する",
+              "body": "部品名、施工日、症状、戻し確認の結果を伝えられるようにする。"
+            }
+          ],
+          "presentation": {
+            "variant": "mock-step-cards",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "症状別に確認すること",
+          "headers": [
+            "症状",
+            "考えられる方向",
+            "最初に見ること"
+          ],
+          "rows": [
+            [
+              "アイドリングが不安定",
+              "二次エア、センサー読み、学習状態。",
+              "接合部、DTC、純正戻し。"
+            ],
+            [
+              "暑い日に力が落ちた気がする",
+              "吸気温度、熱気の吸い込み。",
+              "遮熱、外気導入口、停車後の温度。"
+            ],
+            [
+              "雨のあと調子が悪い",
+              "フィルターの濡れ、水の通り道。",
+              "取り付け位置、フェンダー内、水滴跡。"
+            ],
+            [
+              "異音や振動が出る",
+              "配管や本体の干渉。",
+              "ステー、ボディ接触、エンジン揺れ。"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "mock-table",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "純正戻しで比べる条件",
+          "headers": [
+            "条件",
+            "揃える理由"
+          ],
+          "rows": [
+            [
+              "外気温と走行条件",
+              "吸気温度や燃料補正は条件で変わるため。"
+            ],
+            [
+              "アイドリングと走行中を分ける",
+              "停車時だけ出る症状と負荷時の症状を切り分けるため。"
+            ],
+            [
+              "警告灯とDTCを記録する",
+              "症状の印象だけで判断しないため。"
+            ],
+            [
+              "接続部とフィルター状態を確認する",
+              "センサー交換の前に漏れや汚れを除外するため。"
+            ]
+          ],
+          "display": "checklist",
+          "presentation": {
+            "variant": "mock-checklist",
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-05",
+      "kind": "explanation",
+      "chapterLabel": "DECISION",
+      "title": "付けるなら、戻せる範囲で楽しめる状態を作る",
+      "displayTitle": "付けてもいいか\n慎重に見るか分ける",
+      "deck": "社外品を否定せず、比較できる状態を作ってから進める。",
+      "blocks": [
+        {
+          "type": "dialogue",
+          "character": "juna",
+          "text": "怖がって何もしない方がいいって話ではないんだね。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "type": "dialogue",
+          "character": "rina",
+          "text": "そう。\n付けるなら、目的を決めて、影響を確認して、戻せるようにして楽しむのが現実的だよ。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "装着前に残すもの",
+          "headers": [
+            "項目",
+            "確認すること"
+          ],
+          "rows": [
+            [
+              "目的",
+              "音、見た目、整備性、性能感のどれを求めるか。"
+            ],
+            [
+              "適合",
+              "車種、型式、年式、エンジン、センサー方式に合うか。"
+            ],
+            [
+              "温度",
+              "熱源からの距離と、外気を導く経路があるか。"
+            ],
+            [
+              "水",
+              "雨、洗車、水たまりで濡れやすい位置ではないか。"
+            ],
+            [
+              "記録",
+              "純正部品、説明書、施工写真、品番を残すか。"
+            ]
+          ],
+          "display": "checklist",
+          "presentation": {
+            "variant": "mock-checklist",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "付けてもいい / 慎重 / 避ける の判断",
+          "display": "cards",
+          "headers": [
+            "判断",
+            "状態",
+            "見ること"
+          ],
+          "rows": [
+            [
+              "付けてもいい寄り",
+              "車種別適合が明確で、純正部品を残せる。",
+              "熱源、水の通り道、センサー前後の形、固定状態を確認できる。"
+            ],
+            [
+              "慎重",
+              "性能アップを前提にしている。遮熱が弱い。汎用品加工が必要。",
+              "吸気温度、配管固定、センサー周辺、警告灯時の切り分けを先に確認する。"
+            ],
+            [
+              "避ける寄り",
+              "水を吸いやすい位置に付く。純正戻し不可。施工内容を説明できない。",
+              "不調時に純正へ戻して比較できない仕様は避ける。"
+            ]
+          ],
+          "presentation": {
+            "variant": "mock-checklist"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "社外品そのものを否定しない",
+          "body": "社外エアクリーナーは、音や見た目を楽しめる部品です。\nただし、現代車ではセンサー、吸気温度、戻しやすさまで含めて選ばないと、後から不調の切り分けが難しくなります。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "CBJの判断基準",
+          "body": "社外エアクリーナーは、危険部品として一律に避けるものではありません。\nただし、性能向上を前提にせず、車種別適合、取り付け状態、吸気温度、センサー周辺、純正戻しで比較できることを判断基準にします。",
+          "presentation": {
+            "variant": "mock-info"
+          }
+        }
+      ]
+    }
+  ],
+  "articleDesign": {
+    "version": "cbj-world-v1",
+    "layoutPreset": "column-renewal-v1",
+    "lessonNumber": 18,
+    "difficulty": "初級〜中級",
+    "heroGradient": [
+      "#8BC34A",
+      "#26A69A"
+    ],
+    "heroCenterImage": "/images/cbj/article-system/car-illustration-transparent-v2.png",
+    "sectionPalette": [
+      "#FF8C42",
+      "#8BC34A",
+      "#F06292",
+      "#42A5F5",
+      "#FFCA28"
+    ],
+    "introDialogue": [
+      {
+        "character": "juna",
+        "motion": "fade-right",
+        "text": "吸気音が大きくなるエアクリって、やっぱり付けたくなるよね。\nでも、危ないって言われると急に不安になる。",
+        "variant": "bubble"
+      },
+      {
+        "character": "rina",
+        "motion": "fade-left",
+        "text": "全部が危険という話ではないよ。\nただ、音だけじゃなく、熱・水・センサー・純正戻しまで見ると、その車に合うか判断しやすい。",
+        "variant": "bubble"
+      }
+    ],
+    "sectionDialogues": {},
+    "closingDialogue": [
+      {
+        "character": "juna",
+        "text": "社外エアクリって、音だけじゃなくて、空気をどう測っているかまで見るんだね。",
+        "variant": "bubble",
+        "motion": "fade-right"
+      },
+      {
+        "character": "rina",
+        "text": "そう。\n迷ったら、戻しやすい仕様から始めて、変更前後を比べられる状態を残そう。",
+        "variant": "bubble",
+        "motion": "fade-left"
+      }
+    ],
+    "heroTitle": "社外エアクリーナーは\n危険？",
+    "heroLead": "吸気音だけでなく、センサー・熱・水・純正戻しまで確認する。",
+    "closingBlocks": [
+      {
+        "type": "callout",
+        "tone": "info",
+        "title": "最終結論",
+        "body": "社外エアクリーナーは、付けること自体が危険なのではありません。\n\nただし、吸気音や見た目だけで選ぶと、吸気温度、センサー前後の流れ、配管の密閉、水の入り方を見落としやすくなります。\n\n楽しむなら、車種別適合、取り付け状態、純正戻し、不調時の切り分けまで確認できる状態で選びます。",
+        "presentation": {
+          "variant": "mock-info"
+        }
+      }
+    ],
+    "heroPromise": "社外エアクリーナーを付ける前に、音・見た目・吸気温度・センサー前後の流れ・戻しやすさを確認できる。"
+  },
+  "noindex": false
+}

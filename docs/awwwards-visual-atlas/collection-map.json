@@ -1,0 +1,149 @@
+{
+  "schema": "cbj-awwwards-visual-atlas.collection-map.v1",
+  "visibility": "internal-only",
+  "do_not_render_publicly": true,
+  "source_basis": {
+    "platform": "Awwwards",
+    "source_urls": [
+      "https://www.awwwards.com/websites/nominees/",
+      "https://www.awwwards.com/websites/sites_of_the_day/",
+      "https://www.awwwards.com/websites/",
+      "https://www.awwwards.com/awwwards/collections/"
+    ],
+    "note": "Use official discovery pages for categorization. Do not copy screenshots, design assets, code, or site-specific artwork into CBJ."
+  },
+  "award_streams": [
+    {
+      "id": "nominees",
+      "label": "Nominees",
+      "use_for": "early trend scan and weak-signal pattern detection",
+      "cbj_caution": "higher noise; do not treat as award-level proof"
+    },
+    {
+      "id": "sotd",
+      "label": "Sites of the Day",
+      "use_for": "high-quality contemporary visual grammar",
+      "cbj_caution": "often interaction-heavy; translate rather than imitate"
+    },
+    {
+      "id": "sotm",
+      "label": "Sites of the Month",
+      "use_for": "stronger pattern validation across daily winners",
+      "cbj_caution": "may privilege novelty over editorial clarity"
+    },
+    {
+      "id": "soty",
+      "label": "Sites of the Year",
+      "use_for": "highest ambition and long-form experience patterns",
+      "cbj_caution": "usually too campaign-like for routine CBJ pages"
+    },
+    {
+      "id": "annual-awards",
+      "label": "Annual Awards",
+      "use_for": "category-level excellence and macro trends",
+      "cbj_caution": "use as taste calibration, not as layout template"
+    }
+  ],
+  "category_lenses": [
+    {
+      "id": "magazine-newspaper-blog",
+      "label": "Magazine / Newspaper / Blog",
+      "cbj_relevance": "high",
+      "look_for": ["editorial rhythm", "article index systems", "typographic hierarchy", "text-image balance"],
+      "avoid": ["template article grids", "excessive card stacks", "weak article body rhythm"]
+    },
+    {
+      "id": "business-corporate",
+      "label": "Business & Corporate",
+      "cbj_relevance": "medium-high",
+      "look_for": ["trust pages", "about pages", "quiet authority", "company profile layout"],
+      "avoid": ["generic SaaS cards", "oversized feature blocks", "stock-corporate feel"]
+    },
+    {
+      "id": "luxury",
+      "label": "Luxury",
+      "cbj_relevance": "high-for-tone",
+      "look_for": ["restraint", "black-white contrast", "image-led hero", "slow premium pacing"],
+      "avoid": ["fashion-only abstraction", "unreadable microtype", "overly precious spacing"]
+    },
+    {
+      "id": "photography",
+      "label": "Photography",
+      "cbj_relevance": "high-for-cars",
+      "look_for": ["image dominance", "caption restraint", "gallery rhythm", "full-bleed contrast"],
+      "avoid": ["image dumping", "poor text overlays", "carousel fatigue"]
+    },
+    {
+      "id": "architecture",
+      "label": "Architecture",
+      "cbj_relevance": "medium",
+      "look_for": ["grid discipline", "white space", "spatial calm", "thin-rule systems"],
+      "avoid": ["cold emptiness", "too many micro labels", "abstract navigation"]
+    },
+    {
+      "id": "design-agencies",
+      "label": "Design Agencies",
+      "cbj_relevance": "medium",
+      "look_for": ["case-study storytelling", "project page rhythm", "large type confidence"],
+      "avoid": ["self-indulgent animation", "agency jargon", "portfolio tropes"]
+    },
+    {
+      "id": "ecommerce",
+      "label": "E-Commerce",
+      "cbj_relevance": "low-medium",
+      "look_for": ["product clarity", "filter rhythm", "pricing or spec presentation"],
+      "avoid": ["shopping-card logic for editorial pages", "too many product tiles"]
+    },
+    {
+      "id": "experimental",
+      "label": "Experimental / Web & Interactive",
+      "cbj_relevance": "low-for-core-pages",
+      "look_for": ["interaction ideas", "transition feel", "memorable first view"],
+      "avoid": ["navigation confusion", "performance burden", "article readability damage"]
+    }
+  ],
+  "tag_lenses": [
+    "About Page",
+    "Contact Page",
+    "Content architecture",
+    "Footer Design",
+    "Forms and Input",
+    "Fullscreen",
+    "Header Design",
+    "Horizontal Layout",
+    "Minimal",
+    "Navigation Menu",
+    "Project Page",
+    "Responsive",
+    "Scrolling",
+    "Storytelling",
+    "Typography",
+    "UI design"
+  ],
+  "technology_lenses": [
+    {
+      "id": "gsap-scroll",
+      "label": "GSAP / Scrolling",
+      "cbj_use": "sparingly for premium transitions only",
+      "risk": "motion becomes the content"
+    },
+    {
+      "id": "react-next-tailwind",
+      "label": "React / Next.js / Tailwind",
+      "cbj_use": "implementation compatibility",
+      "risk": "component thinking replaces page design"
+    },
+    {
+      "id": "three-webgl-3d",
+      "label": "Three.js / WebGL / 3D",
+      "cbj_use": "rare hero or special feature only",
+      "risk": "too heavy for editorial utility"
+    },
+    {
+      "id": "webflow-framer-readymag",
+      "label": "Webflow / Framer / Readymag",
+      "cbj_use": "visual pacing reference",
+      "risk": "template-like blocks and trendy sameness"
+    }
+  ]
+}

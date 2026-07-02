@@ -1,0 +1,32 @@
+{
+  "id": "tax-cluster-quality-audit-2026-04-24",
+  "createdAt": "2026-04-24",
+  "scope": {
+    "guideFiles": 88,
+    "taxClusterFiles": 41
+  },
+  "checks": [
+    "JSON parse and slug/filename consistency",
+    "canonical URL and publicState consistency",
+    "relatedGuideSlugs/internalLinks existence and duplicate scan",
+    "普通車/軽自動車の対記事ペア存在チェック",
+    "tax cluster source count sanity check",
+    "sitemap guide lastmod refresh for changed articles"
+  ],
+  "fixes": [
+    {
+      "file": "data/articles/guides/tax-and-fees-before-buying-import.json",
+      "reason": "税クラスタ拡張後、輸入車の税金・諸費用記事だけ関連記事導線が相対的に薄くなっていたため、購入時期・重量税・納付方法・還付・軽の購入年税制への導線を補強。"
+    },
+    {
+      "file": "data/articles/guides/car-weight-tax-guide.json",
+      "reason": "重量税記事の関連記事と内部リンクの不一致を解消し、車検切れ・購入時期・還付・納付方法への導線を追加。"
+    }
+  ],
+  "result": {
+    "missingLinkedGuides": [],
+    "duplicateLinkedGuides": [],
+    "taxClusterWarnings": []
+  },
+  "note": "このファイルは品質管理の作業ログであり、公開ページ生成対象ではない。"
+}
