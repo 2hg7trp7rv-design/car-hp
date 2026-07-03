@@ -1,0 +1,118 @@
+// lib/seo/indexability.ts
+//
+// Indexing policy:
+// - publicState/status/noindex を正として、公開可否だけで index/noindex を決める。
+// - 文字数・見出し数・関連リンク数などの品質ゲートは noindex 理由にしない。
+
+import type { ColumnItem, GuideItem, PublicState } from "@/lib/content-types";
+import {
+  countDecisionMarkdownHeadings,
+  getDecisionColumnAuditBody,
+  getDecisionGuideAuditBody,
+  isDecisionColumn,
+  isDecisionGuide,
+} from "@/lib/decision-article";
+
+export type IndexabilityResult = {
+  indexable: boolean;
+  reasons: string[];
+  metrics: Record<string, number | string | boolean | null | undefined>;
+};
+
+function countMarkdownHeadings(body: string): number {
+  const lines = body.split(/\r?\n/);
+  let count = 0;
+  for (const line of lines) {
+    if (/^#{2,3}\s+/.test(line.trim())) count += 1;
+  }
+  return count;
+}
+
+function isPublished(status?: string | null): boolean {
+  return !status || status === "published";
+}
+
+function getPublicState(item: { publicState?: unknown } | null | undefined): PublicState | null {
+  const s = typeof item?.publicState === "string" ? item.publicState.trim().toLowerCase() : null;
+  if (s === "index" || s === "noindex" || s === "draft" || s === "redirect") return s as PublicState;
+  return null;
+}
+
+function evaluatePolicyGate(
+  item: { status?: string | null; noindex?: boolean | null; publicState?: unknown } | null | undefined,
+  reasons: string[],
+): { published: boolean; state: PublicState | null; allowIndex: boolean } {
+  const published = isPublished(item?.status ?? null);
+  const explicitState = getPublicState(item);
+  const state: PublicState = explicitState ?? (published ? "index" : "draft");
+
+  if (!published) reasons.push("status:not_published");
+  if (!explicitState) reasons.push("missing:publicState:auto_index");
+  if (state !== "index") reasons.push(`publicState:${state}`);
+  if (item?.noindex === true) reasons.push("flag:noindex");
+
+  const allowIndex = published && state === "index" && item?.noindex !== true;
+  return { published, state, allowIndex };
+}
+
+export function evaluateColumnIndexability(column: ColumnItem): IndexabilityResult {
+  const reasons: string[] = [];
+  if (!column) return { indexable: false, reasons: ["missing:column"], metrics: {} };
+
+  const slug = (column.slug ?? "").trim();
+  const title = (column.title ?? "").trim();
+  const explicitBody = (column.body ?? "").trim();
+  const body = isDecisionColumn(column) || (!explicitBody && column.articleDesign?.version === "cbj-world-v1")
+    ? getDecisionColumnAuditBody(column)
+    : explicitBody;
+
+  if (!slug) reasons.push("missing:slug");
+  if (!title) reasons.push("missing:title");
+
+  const { state, allowIndex } = evaluatePolicyGate(column, reasons);
+  const bodyLen = body.length;
+  const headings = isDecisionColumn(column) ? countDecisionMarkdownHeadings(body) : countMarkdownHeadings(body);
+
+  if (bodyLen === 0) reasons.push("empty:body");
+
+  return {
+    indexable: Boolean(slug) && Boolean(title) && allowIndex && bodyLen > 0,
+    reasons,
+    metrics: { slug, state, bodyLen, headings },
+  };
+}
+
+export function isIndexableColumn(column: ColumnItem): boolean {
+  return evaluateColumnIndexability(column).indexable;
+}
+
+export function evaluateGuideIndexability(guide: GuideItem): IndexabilityResult {
+  const reasons: string[] = [];
+  if (!guide) return { indexable: false, reasons: ["missing:guide"], metrics: {} };
+
+  const slug = (guide.slug ?? "").trim();
+  const title = (guide.title ?? "").trim();
+  const explicitBody = (guide.body ?? "").trim();
+  const body = isDecisionGuide(guide) || (!explicitBody && guide.articleDesign?.version === "cbj-world-v1")
+    ? getDecisionGuideAuditBody(guide)
+    : explicitBody;
+
+  if (!slug) reasons.push("missing:slug");
+  if (!title) reasons.push("missing:title");
+
+  const { state, allowIndex } = evaluatePolicyGate(guide, reasons);
+  const bodyLen = body.length;
+  const headings = isDecisionGuide(guide) ? countDecisionMarkdownHeadings(body) : countMarkdownHeadings(body);
+
+  if (bodyLen === 0) reasons.push("empty:body");
+
+  return {
+    indexable: Boolean(slug) && Boolean(title) && allowIndex && bodyLen > 0,
+    reasons,
+    metrics: { slug, state, bodyLen, headings },
+  };
+}
+
+export function isIndexableGuide(guide: GuideItem): boolean {
+  return evaluateGuideIndexability(guide).indexable;
+}

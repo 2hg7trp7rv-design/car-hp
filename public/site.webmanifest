@@ -1,0 +1,21 @@
+{
+  "name": "CAR BOUTIQUE",
+  "short_name": "CAR BOUTIQUE",
+  "description": "カスタム・整備・維持判断を、初心者にも迷わず読める形で整理するCAR BOUTIQUE JOURNAL",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

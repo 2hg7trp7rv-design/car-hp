@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">エアクリの種類を分ける図解</title>
+  <desc id="desc">純正交換タイプ、むき出しタイプ、ボックス型の違いを、純正の箱を残すかどうかで比較する図。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#fff8ef"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#7b4f24" flood-opacity="0.12"/></filter>
+  </defs>
+  <rect width="1280" height="640" rx="50" fill="url(#bg)"/>
+  <circle cx="96" cy="110" r="18" fill="#ffd6b0" opacity=".8"/><circle cx="1170" cy="540" r="24" fill="#bce7ff" opacity=".75"/><circle cx="1120" cy="98" r="16" fill="#ffc1d7" opacity=".75"/>
+  <text x="76" y="86" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Noto Sans JP',sans-serif" font-size="38" font-weight="900" fill="#252525">まずは「純正の箱を残すか」で分ける</text>
+  <text x="78" y="132" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Noto Sans JP',sans-serif" font-size="21" font-weight="700" fill="#6b5b52">派手さではなく、変わる範囲で見ると後悔しにくい</text>
+  <g filter="url(#shadow)" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Noto Sans JP',sans-serif">
+    <rect x="70" y="194" width="356" height="344" rx="38" fill="#fff" stroke="#ff8c42" stroke-width="4"/>
+    <circle cx="132" cy="258" r="42" fill="#fff0e3"/><text x="132" y="270" text-anchor="middle" font-size="28" font-weight="900" fill="#ff8c42">01</text>
+    <text x="194" y="250" font-size="28" font-weight="900" fill="#282828">純正交換タイプ</text>
+    <text x="194" y="286" font-size="18" font-weight="700" fill="#6d625b">純正エアボックスを残す</text>
+    <rect x="112" y="330" width="240" height="88" rx="22" fill="#fff6ee" stroke="#ffd0a7" stroke-width="3"/>
+    <text x="232" y="365" text-anchor="middle" font-size="18" font-weight="800" fill="#7d4a1d">純正の箱</text>
+    <text x="232" y="397" text-anchor="middle" font-size="17" font-weight="700" fill="#7d4a1d">中のフィルターを交換</text>
+    <text x="112" y="468" font-size="20" font-weight="900" fill="#ff8c42">嬉しいこと</text>
+    <text x="112" y="500" font-size="17" font-weight="700" fill="#67615e">変化が穏やかで始めやすい</text>
+    <text x="112" y="532" font-size="17" font-weight="700" fill="#67615e">管理・戻しやすさを残しやすい</text>
+
+    <rect x="462" y="194" width="356" height="344" rx="38" fill="#fff" stroke="#f06292" stroke-width="4"/>
+    <circle cx="524" cy="258" r="42" fill="#fff0f6"/><text x="524" y="270" text-anchor="middle" font-size="28" font-weight="900" fill="#f06292">02</text>
+    <text x="586" y="250" font-size="28" font-weight="900" fill="#282828">むき出しタイプ</text>
+    <text x="586" y="286" font-size="18" font-weight="700" fill="#6d625b">音と見た目が分かりやすい</text>
+    <g transform="translate(560 330)">
+      <circle cx="80" cy="44" r="42" fill="#fff" stroke="#f06292" stroke-width="8"/>
+      <circle cx="80" cy="44" r="19" fill="#fff7fa" stroke="#f7a2c1" stroke-width="4"/>
+      <rect x="130" y="30" width="82" height="28" rx="14" fill="#f06292" opacity=".88"/>
+    </g>
+    <text x="504" y="468" font-size="20" font-weight="900" fill="#f06292">嬉しいこと</text>
+    <text x="504" y="500" font-size="17" font-weight="700" fill="#67615e">吸気音と存在感が出やすい</text>
+    <text x="504" y="532" font-size="17" font-weight="700" fill="#67615e">熱・水・固定を見る場所が増える</text>
+
+    <rect x="854" y="194" width="356" height="344" rx="38" fill="#fff" stroke="#42a5f5" stroke-width="4"/>
+    <circle cx="916" cy="258" r="42" fill="#eef8ff"/><text x="916" y="270" text-anchor="middle" font-size="28" font-weight="900" fill="#42a5f5">03</text>
+    <text x="978" y="250" font-size="28" font-weight="900" fill="#282828">ボックス型</text>
+    <text x="978" y="286" font-size="18" font-weight="700" fill="#6d625b">囲いで吸気環境を整える</text>
+    <rect x="938" y="332" width="190" height="86" rx="22" fill="#eef8ff" stroke="#9bd2ff" stroke-width="3"/>
+    <circle cx="1000" cy="375" r="30" fill="#fff" stroke="#42a5f5" stroke-width="7"/>
+    <path d="M1040 375 H1108" stroke="#42a5f5" stroke-width="16" stroke-linecap="round"/>
+    <text x="896" y="468" font-size="20" font-weight="900" fill="#42a5f5">嬉しいこと</text>
+    <text x="896" y="500" font-size="17" font-weight="700" fill="#67615e">音・熱・外気導入のバランス狙い</text>
+    <text x="896" y="532" font-size="17" font-weight="700" fill="#67615e">構成部品と適合確認が大事</text>
+  </g>
+</svg>

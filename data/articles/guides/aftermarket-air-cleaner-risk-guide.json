@@ -1,0 +1,1355 @@
+{
+  "id": "guide-aftermarket-air-cleaner-risk-guide",
+  "slug": "aftermarket-air-cleaner-risk-guide",
+  "type": "GUIDE",
+  "status": "published",
+  "publicState": "index",
+  "noindex": false,
+  "title": "社外エアークリーナーって実際どうなの？",
+  "titleJa": "社外エアークリーナーって実際どうなの？",
+  "summary": "社外エアークリーナーは、吸気音や見た目の満足感が大きい一方で、音量、種類、熱、水、MAFセンサー、固定、フィルター管理で後悔しやすいカスタムです。メリットと後悔ポイントを初心者の言葉で整理します。",
+  "seoTitle": "社外エアークリーナーって実際どうなの？メリットと後悔ポイントを初心者向けに整理",
+  "seoDescription": "社外エアークリーナーを付けると何が嬉しいのか、どこで後悔しやすいのか。吸気音、純正交換タイプとむき出しタイプ、熱、MAFセンサー、水、隙間、不調、買う前と付けた後の見方を初心者向けに整理します。",
+  "description": "圧倒的な吸気音に憧れる人へ。エアークリーナーを自然に知り、メリットと後悔ポイントを初心者の言葉で説明できるようにするガイドです。",
+  "lead": "海外のカスタム動画で聞く、アクセルを踏んだ瞬間の強い吸気音。あれに憧れて社外エアークリーナーが気になった人へ。この記事では、エアークリーナーを以降「エアクリ」と呼びながら、付けてよかったと感じやすいこと、逆に後悔しやすいことを順番に整理します。作業手順ではなく、選ぶ前に自分の言葉で説明できるようになるためのガイドです。",
+  "category": "CUSTOM",
+  "readMinutes": 28,
+  "heroImage": "/images/cbj/article-system/custom-air-cleaner-risk-v1.svg",
+  "thumbnail": "/images/cbj/article-system/custom-air-cleaner-risk-v1.svg",
+  "publishedAt": "2026-07-03",
+  "updatedAt": "2026-07-03",
+  "tags": [
+    "社外エアークリーナー",
+    "エアクリ",
+    "吸気音",
+    "MAFセンサー",
+    "吸気温度",
+    "初心者カスタム"
+  ],
+  "displayTag": "カスタム",
+  "eyebrowLabel": "CUSTOM GUIDE",
+  "primaryQuery": "社外エアークリーナー 実際どう メリット 後悔 吸気音 MAFセンサー",
+  "parentPillarId": "/column/modern-car-custom-regret-reason-column",
+  "relatedClusterIds": [
+    "modern-car-custom-regret-reason-column",
+    "tv-canceller-can-risk-guide",
+    "adas-lowered-car-aiming-risk-guide",
+    "car-suspension-hard-soft-merit-demerit"
+  ],
+  "intentTags": [
+    "custom",
+    "aftermarket",
+    "intake",
+    "air-cleaner",
+    "beginner",
+    "warning-light"
+  ],
+  "monetizeKey": null,
+  "monetizeType": "indirect",
+  "relatedGuideSlugs": [],
+  "relatedColumnSlugs": [
+    "modern-car-custom-regret-reason-column"
+  ],
+  "internalLinks": [
+    "/column/modern-car-custom-regret-reason-column"
+  ],
+  "canonicalUrl": "/guide/aftermarket-air-cleaner-risk-guide",
+  "ogImageUrl": "/images/cbj/article-system/custom-air-cleaner-risk-v1.svg",
+  "updateReason": "読者の憧れから入り、メリットと後悔ポイントを順番に理解できる構成へ全面更新しました。",
+  "sources": [
+    "https://www.denso-am.eu/products/engine-management-systems/mass-air-flow-sensors",
+    "https://www.bosch-mobility.com/en/solutions/sensors/hotfilm-airflow-sensor/",
+    "https://www.hks-power.co.jp/en/tuning/step03.html",
+    "https://www.hks-power.co.jp/en/product/intake/spf/index.html",
+    "https://www.blitz.co.jp/support/manual/aircleaner/core_282.pdf",
+    "https://www.naltec.go.jp/faq/0004.html",
+    "https://www.napac.jp/cms/ja/asea/quality-auth",
+    "https://toyota.jp/after_service/support/general/"
+  ],
+  "layoutVariant": "cbj-world-v1",
+  "breadcrumbTrail": [
+    {
+      "label": "ホーム",
+      "href": "/"
+    },
+    {
+      "label": "ガイド",
+      "href": "/guide"
+    },
+    {
+      "label": "社外エアークリーナーって実際どうなの？"
+    }
+  ],
+  "authorProfile": {
+    "name": "CAR BOUTIQUE JOURNAL 編集部",
+    "kind": "organization",
+    "credential": "整備・中古車・カスタム判断編集チーム"
+  },
+  "keyPoints": [
+    "エアークリーナー、以降エアクリは、**音を出す部品ではなくエンジンに入る空気の入口を整える部品**だと理解できる。",
+    "社外エアクリを付けてよかったと感じやすい理由は、**吸気音・見た目・カスタムした実感・車の仕組みに興味が出ること**にある。",
+    "後悔しやすいポイントは、**音量、種類選び、熱、MAFセンサー、水・汚れ・隙間・固定、不調時の説明しづらさ**に分けて考えられる。",
+    "「危険か安全か」ではなく、**自分の車と使い方に合うか**を初心者の言葉で説明できるようになる。"
+  ],
+  "checkpoints": [
+    "エアークリーナーを以降エアクリと呼ぶ理由と、エンジンの空気の入口にある部品だと説明できる。",
+    "社外エアクリのメリットを、吸気音、見た目、カスタム感、仕組みへの興味に分けて言える。",
+    "純正交換タイプ、むき出しタイプ、ボックス型の違いを「純正の箱を残すかどうか」でざっくり分けられる。",
+    "吸気音が大きいことと、部品が当たる音・吸気漏れっぽい音・アイドリング不安定を分けて考えられる。",
+    "熱、水、MAFセンサー、隙間、固定、フィルター管理が後悔ポイントになり得る理由を説明できる。",
+    "買う前に、車名だけでなく型式、年式、エンジン、グレード、説明書、構成部品、交換フィルターを確認する意味が分かる。",
+    "付けた後に、音の楽しさだけでなく日常で使いやすいか、雨の日や暑い日も不安がないかを見られる。",
+    "合わない時に純正へ戻すことを失敗ではなく、比較と次の仕様を考える材料として捉えられる。"
+  ],
+  "faq": [
+    {
+      "question": "社外エアークリーナーを付けると必ず車に悪いですか？",
+      "answer": "必ず悪いとは言えません。吸気音や見た目を楽しめるカスタムですが、種類、適合、取り付け位置、熱、水、MAFセンサー周辺、固定、フィルター管理によって満足度が変わります。"
+    },
+    {
+      "question": "エアクリという言い方は正式名称ですか？",
+      "answer": "正式にはエアークリーナーです。車好きの会話では「エアクリ」と略して呼ばれることが多いため、この記事では初出で説明したうえでエアクリと呼んでいます。"
+    },
+    {
+      "question": "吸気音が大きいほど速くなりますか？",
+      "answer": "吸気音が大きいことと、必ず速くなることは別です。入口や箱の形が変わって音が聞こえやすくなっている場合もあります。音の楽しさは価値ですが、性能アップを断定しない方が安全です。"
+    },
+    {
+      "question": "初心者は純正交換タイプとむき出しタイプのどちらがいいですか？",
+      "answer": "一概には決められません。変化を穏やかにしたいなら純正交換タイプ、吸気音や見た目の変化を強く楽しみたいならむき出しタイプが候補になります。ただし、むき出しタイプは熱、水、固定、センサー周辺を見る場所が増えます。"
+    },
+    {
+      "question": "MAFセンサーは初心者も気にした方がいいですか？",
+      "answer": "細かい測定や診断までは不要です。ただし、MAFセンサーが車の吸った空気量を読む部品で、その情報が燃料計算に使われることは知っておくと、社外エアクリの見方がかなり分かりやすくなります。"
+    },
+    {
+      "question": "雨の日に走ると危ないですか？",
+      "answer": "少し濡れただけで必ず壊れるわけではありません。ただし、低い位置から水を吸いやすい配置、大量の水がかかる状況、洗車時の水のかけ方には注意が必要です。気になる場合は施工店や整備工場へ相談してください。"
+    },
+    {
+      "question": "中古の社外エアクリを買っても大丈夫ですか？",
+      "answer": "状態と構成部品を確認できるなら候補になりますが、初心者は注意が必要です。ステー、ホース、クランプ、遮熱板、センサーアダプター、説明書、交換フィルターの有無が分からないと、安く買っても後で困ることがあります。"
+    },
+    {
+      "question": "合わなかったら純正に戻すのは失敗ですか？",
+      "answer": "失敗ではありません。純正へ戻して比べられる状態は、不調時の確認や次の仕様選びに役立ちます。純正部品や説明書、施工写真を残しておくことが大切です。"
+    }
+  ],
+  "actionBox": {
+    "title": "次に読むと理解がつながる記事",
+    "body": "エアクリのメリットと後悔ポイントを理解したら、親コラムでカスタム全体の考え方を確認すると、ほかの部品を選ぶ時にも同じ失敗を減らしやすくなります。",
+    "actions": [
+      {
+        "label": "親コラムで全体像を読む｜車のカスタムで後悔しやすい理由",
+        "href": "/column/modern-car-custom-regret-reason-column"
+      }
+    ]
+  },
+  "detailSections": [
+    {
+      "id": "what-is-air-cleaner",
+      "title": "エアークリーナー、以降エアクリって何？",
+      "displayTitle": "エアークリーナー、以降エアクリって何？",
+      "deck": "最初は名前と役割だけでいい。音の前に、空気の入口として見る。",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "ボンネットを開けた時に見えるフィルター。アクセルを踏んだ時に聞こえる吸気音。そこから社外エアークリーナーに興味を持つ人は多いと思います。",
+          "highlights": [
+            "社外エアークリーナー"
+          ],
+          "presentation": {
+            "motion": "fade-up",
+            "variant": "leadText"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "正式には**エアークリーナー**。この記事では、車好きがよく使う略し方に合わせて、ここからは**エアクリ**と呼びます。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "エアクリは、ざっくり言うと**エンジンに入る空気の入口にあるフィルター**です。車は燃料だけで走っているわけではありません。空気を吸い、燃料と混ぜ、それを燃やして力を出しています。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "ただ、外の空気にはホコリや砂、細かい汚れが混ざっています。そのままエンジンに入れたくないものを止めながら、必要な空気を通す。これがエアクリの基本の仕事です。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "エアクリは、エンジンのマスクみたいなもの",
+          "body": "人間も空気は吸いたいけれど、砂ぼこりをそのまま吸いたくはありません。エンジンも同じです。エアクリは、空気を通しながら、入れたくない汚れを止めるための入口です。",
+          "presentation": {
+            "motion": "fade-up",
+            "variant": "infoBox"
+          }
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/custom-air-cleaner-risk-v1.svg",
+          "alt": "エアークリーナーからMAFセンサー、エンジンまでの空気の流れ",
+          "fit": "articleWide",
+          "width": 1280,
+          "height": 640,
+          "presentation": {
+            "motion": "fade-up"
+          },
+          "label": "エアクリは単体ではなく、外気からエンジンまでの空気の通り道の一部として見る。"
+        },
+        {
+          "type": "paragraph",
+          "text": "ここで大事なのは、エアクリは**音を出すためだけの部品ではない**ことです。音が変わることはあります。でも本来は、エンジンに入る空気の入口を整える部品です。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "good-points",
+      "title": "付けると何が嬉しい？エアクリ交換のメリット",
+      "displayTitle": "付けると何が嬉しい？エアクリ交換のメリット",
+      "deck": "まずポジティブをちゃんと見る。楽しいから気になる、その気持ちは否定しない。",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "社外エアクリは、怖がるだけの部品ではありません。付けてよかったと感じる人がいるのは、ちゃんと理由があります。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "付けて嬉しい4つの変化",
+          "headers": [
+            "見るポイント",
+            "初心者向けの説明"
+          ],
+          "rows": [
+            [
+              "吸気音が楽しい",
+              "アクセルを踏んだ時に、今まで聞こえにくかった空気を吸う音が聞こえやすくなることがあります。運転していて「車が反応している感じ」が出やすい変化です。"
+            ],
+            [
+              "見た目が変わる",
+              "純正の黒い箱から、フィルターやパイプが見える形になると、エンジンルームの印象が一気に変わります。"
+            ],
+            [
+              "カスタムした実感がある",
+              "音と見た目が分かりやすいため、初めてのカスタムでも変化を感じやすいところがあります。"
+            ],
+            [
+              "仕組みに興味が出る",
+              "空気がどこから入り、どこを通って、エンジンへ向かうのか。エアクリは車の仕組みへ入りやすい入口になります。"
+            ]
+          ],
+          "display": "cards",
+          "presentation": {
+            "variant": "dataTable",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "subheading",
+          "title": "音が楽しいのは、ちゃんとしたメリット",
+          "level": 3,
+          "presentation": {
+            "variant": "sectionTitle",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "吸気音は、車を触る楽しさの一つです。アクセルを踏んだ時に、空気を吸う音が聞こえる。運転していて、車と会話しているような感覚になる。これは数字だけでは測れない満足感です。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "ただし、ここで一つだけ分けておきます。**音が大きいことと、必ず速くなることは別**です。入口や箱の形が変わって、今まで聞こえにくかった音が聞こえやすくなっている場合もあります。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "CBJでは、音の楽しさを否定しない",
+          "body": "「性能が上がるか」だけでカスタムを見ると、吸気音や見た目の楽しさが置き去りになります。エアクリは、車を楽しむきっかけとして魅力があります。ただ、長く楽しむためには後悔ポイントも一緒に知っておきたい、という立場で進めます。",
+          "presentation": {
+            "motion": "fade-up",
+            "variant": "infoBox"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "ここまでが、付けてよかったと感じやすい部分です。次からは逆に、実際に取り付けたあとで「思っていたのと違った」となりやすい場所を見ていきます。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "types",
+      "title": "種類でかなり違う：純正交換タイプとむき出しタイプ",
+      "displayTitle": "種類でかなり違う：純正交換タイプとむき出しタイプ",
+      "deck": "全部がキノコ型ではない。まずは純正の箱を残すかどうかで分ける。",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "社外エアクリと聞くと、大きなキノコのようなフィルターを想像しやすいかもしれません。でも実際には、いくつか種類があります。初心者は、まず**純正の箱を残すか、外すか**で分けると理解しやすくなります。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/custom-air-cleaner-types-v1.svg",
+          "alt": "純正交換タイプ、むき出しタイプ、ボックス型エアクリーナーの違い",
+          "fit": "articleWide",
+          "width": 1280,
+          "height": 640,
+          "presentation": {
+            "motion": "fade-up"
+          },
+          "label": "派手さではなく、純正の箱を残すかどうかで見ると分かりやすい。"
+        },
+        {
+          "type": "comparisonTable",
+          "title": "エアクリの大まかな種類",
+          "headers": [
+            "種類",
+            "ざっくり説明",
+            "メリット",
+            "後悔しやすいところ"
+          ],
+          "rows": [
+            [
+              "純正交換タイプ",
+              "純正エアボックスの中のフィルターを替える",
+              "変化が穏やかで、純正の通り道を残しやすい",
+              "音や見た目の変化は控えめ。湿式・乾式や交換時期は確認したい"
+            ],
+            [
+              "むき出しタイプ",
+              "フィルターが外から見える形になる",
+              "吸気音と見た目の変化が分かりやすい",
+              "熱、水、固定、センサー周辺など見る場所が増える"
+            ],
+            [
+              "ボックス型・ケース型",
+              "フィルターを箱やケースで囲い、外気導入や遮熱を狙う",
+              "音、見た目、吸気環境のバランスを狙いやすい",
+              "価格や構成部品が増えやすく、適合確認がより大事"
+            ],
+            [
+              "汎用品",
+              "車種専用ではない部品を合わせる",
+              "選択肢は広い",
+              "初心者には難しめ。ステー、ホース、センサー位置まで考える必要がある"
+            ]
+          ],
+          "display": "table",
+          "note": "どれが正解というより、「自分が何を楽しみたいか」と「自分の車で無理なく使えるか」で見る。",
+          "presentation": {
+            "variant": "dataTable",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "派手な方が悪い、ではない",
+          "body": "むき出しタイプが悪いという話ではありません。吸気音や見た目を楽しみやすいぶん、熱・水・固定・センサー周辺まで見る場所が増える、という理解が大切です。",
+          "presentation": {
+            "motion": "fade-up",
+            "variant": "infoBox"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "ここを知らないまま「社外エアクリ」とひとまとめにすると、話が混ざります。純正交換タイプで起きやすい後悔と、むき出しタイプで起きやすい後悔は、同じではありません。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sound-regret",
+      "title": "後悔ポイント1：音が思ったより大きい",
+      "displayTitle": "後悔ポイント1：音が思ったより大きい",
+      "deck": "憧れの吸気音が、毎日の使い方では疲れる音になることもある。",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "社外エアクリで一番分かりやすいメリットは、吸気音です。でも、そのメリットがそのまま後悔ポイントになることもあります。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "動画で聞く吸気音は、一番気持ちいい場面だけを切り取っていることが多いです。実際の街乗りでは、低速、渋滞、住宅街、同乗者がいる時、深夜に帰る時もあります。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "楽しい音と、気になる音を分ける",
+          "headers": [
+            "音の種類",
+            "どう考えるか"
+          ],
+          "rows": [
+            [
+              "アクセルを踏んだ時の吸気音",
+              "狙った変化であることが多い。楽しいと感じる人も多い"
+            ],
+            [
+              "低速で毎回大きく聞こえる音",
+              "使い方によっては疲れることがある"
+            ],
+            [
+              "カタカタ、擦れる、当たる音",
+              "吸気音ではなく、固定や干渉を確認したい"
+            ],
+            [
+              "ホースが抜けたような音、不安定な感じとセットの音",
+              "吸気漏れや接続不良など、無理せず相談したい"
+            ]
+          ],
+          "display": "table",
+          "note": "吸気音が大きいこと自体は不調とは限らない。ただし、狙った音と違和感のある音は分ける。",
+          "presentation": {
+            "variant": "dataTable",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "動画の音と、毎日の音は違って聞こえる",
+          "body": "動画では一瞬の加速音がかっこよく聞こえます。でも自分の車では、通勤、買い物、住宅街、同乗者ありの場面でもその音と付き合います。音の満足度は、車だけでなく使い方でも変わります。",
+          "presentation": {
+            "motion": "fade-up",
+            "variant": "infoBox"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "吸気音は楽しんでいい。ただ、**音が楽しいかどうか**と、**毎日使って疲れないか**は別です。ここを分けておくと、後悔しにくくなります。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "heat-regret",
+      "title": "後悔ポイント2：熱い空気で期待外れになることがある",
+      "displayTitle": "後悔ポイント2：熱い空気で期待外れになることがある",
+      "deck": "吸えればいい、ではなく、どんな空気を吸うかも見る。",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "エンジンルームの中は、想像以上に熱くなります。むき出しタイプのエアクリは、取り付け位置によっては、その熱い空気を吸いやすくなることがあります。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "熱い空気は、同じ量に見えても中身が薄いイメージ",
+          "body": "冷たい空気はぎゅっと詰まっている。熱い空気はふわっとしている。厳密な計算を覚える必要はありませんが、エンジンにとっては「どれだけ吸うか」だけでなく「どんな空気を吸うか」も大事です。",
+          "presentation": {
+            "motion": "fade-up",
+            "variant": "infoBox"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "熱で見たい4つ",
+          "headers": [
+            "見るポイント",
+            "初心者向けの説明"
+          ],
+          "rows": [
+            [
+              "停車中は熱がこもる",
+              "渋滞や信号待ちでは、エンジンルーム内の熱が抜けにくくなります。"
+            ],
+            [
+              "フィルター位置で変わる",
+              "熱源に近い場所にフィルターがあると、吸う空気の温度が上がりやすくなります。"
+            ],
+            [
+              "遮熱と外気導入を見る",
+              "遮熱板やケース、外気を導く通り道があるかで印象が変わります。"
+            ],
+            [
+              "夏・渋滞・街乗りで感じやすい",
+              "高速道路では良くても、夏の街乗りで思ったよりだるいと感じる場合があります。"
+            ]
+          ],
+          "display": "cards",
+          "presentation": {
+            "variant": "dataTable",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "ここで大切なのは、むき出しタイプなら必ず悪い、という話ではないことです。HKSも、オープンエアフィルターは吸入量を得やすい一方、車種によっては低速走行や街乗りでエンジンルーム内の熱気を吸う場合があると説明しています。だからこそ、製品の考え方や取り付け位置を見たいのです。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "「思ったほど気持ちよくない」と感じる時は、部品が悪いと決めつける前に、熱、走る場面、取り付け位置を分けて考えると整理しやすくなります。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "maf-sensor",
+      "title": "後悔ポイント3：MAFセンサーで急に難しく感じる",
+      "displayTitle": "後悔ポイント3：MAFセンサーで急に難しく感じる",
+      "deck": "怖い名前に見えるけど、まずは「空気の受付係」でいい。",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "社外エアクリの話で急に出てくるのが、**MAFセンサー**です。名前だけで難しく感じますが、この記事では「空気の受付係」と覚えれば十分です。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "MAFセンサーは、車が吸った空気の量を読むための部品です。DENSOの説明でも、一般的なMAFセンサーはエアフィルターとスロットルボディの間の吸気ダクト内にあり、吸入空気量や吸気温度の情報をECUへ送る部品として説明されています。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "image",
+          "src": "/images/cbj/article-system/custom-air-cleaner-maf-v1.svg",
+          "alt": "MAFセンサーを空気の受付係として理解する図解",
+          "fit": "articleWide",
+          "width": 1280,
+          "height": 640,
+          "presentation": {
+            "motion": "fade-up"
+          },
+          "label": "空気を読めるから、車は燃料をどれくらい混ぜるか考えられる。"
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "MAFセンサーは、空気の受付係",
+          "body": "エンジンをレストランだとすると、MAFセンサーは入口で人数を数える受付係です。何人来たか分からないと、厨房はどれくらい料理を作ればいいか決めにくい。車も同じで、どれくらい空気が入ったか分かるから、燃料をどれくらい混ぜるか考えられます。",
+          "presentation": {
+            "motion": "fade-up",
+            "variant": "infoBox"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "MAFまわりを難しくしすぎない覚え方",
+          "headers": [
+            "用語",
+            "この記事での覚え方"
+          ],
+          "rows": [
+            [
+              "MAFセンサー",
+              "空気の受付係。吸った空気の量を車に知らせる"
+            ],
+            [
+              "ECU",
+              "車の中の判断係。センサー情報をもとに燃料などを考える"
+            ],
+            [
+              "吸気温度",
+              "空気の中身の濃さを考える材料"
+            ],
+            [
+              "吸気漏れ",
+              "受付を通らずに入ってくる空気のイメージ"
+            ]
+          ],
+          "display": "table",
+          "presentation": {
+            "variant": "dataTable",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "ここで踏み込まないことも決めておきます。センサー電圧、燃料補正値、ログ解析、ECU書き換えは、この記事の範囲ではありません。レベル2の記事として必要なのは、エアクリ交換がセンサー周辺の空気の流れに関係することを知ることです。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "空気をたくさん吸えることと、車が正しく読めることは別",
+          "body": "大きな声で注文しても、店員さんに聞き取れていなければ料理は正しく出てきません。エアクリも同じで、空気が入りやすそうに見えても、車がその空気を安定して読める状態かが大切です。",
+          "presentation": {
+            "motion": "fade-up",
+            "variant": "infoBox"
+          }
+        }
+      ]
+    },
+    {
+      "id": "water-gap-fixed",
+      "title": "後悔ポイント4：水・汚れ・隙間・固定で不調が出ることがある",
+      "displayTitle": "後悔ポイント4：水・汚れ・隙間・固定で不調が出ることがある",
+      "deck": "壊れた原因を当てるのではなく、違和感の方向を分ける。",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "不調が出た時に、初心者が自分で原因を当てる必要はありません。むしろ、決めつけない方が安全です。大事なのは、**どの方向の違和感か**を分けて説明できることです。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "違和感を方向で分ける",
+          "headers": [
+            "違和感",
+            "まず分ける方向",
+            "相談する時の言い方"
+          ],
+          "rows": [
+            [
+              "暑い日や渋滞でだるい",
+              "熱・吸気位置",
+              "暑い時だけだるく感じる。停車中と走行中で違う気がする"
+            ],
+            [
+              "アイドリングが不安定",
+              "隙間・接続・センサー周辺",
+              "取り付け後から回転が落ち着かない。警告灯はある/ない"
+            ],
+            [
+              "雨や洗車後が不安",
+              "水の通り道",
+              "雨の日や洗車後にフィルター周辺が濡れやすそう"
+            ],
+            [
+              "カタカタ・擦れる音",
+              "固定・干渉",
+              "段差や発進時にどこか当たるような音がする"
+            ],
+            [
+              "汚れが早い",
+              "位置・管理",
+              "フィルターが思ったより早く汚れる。交換部品が必要"
+            ]
+          ],
+          "display": "table",
+          "note": "原因を断定せず、「いつ」「どんな時に」「何が起きたか」を伝えられれば十分。",
+          "presentation": {
+            "variant": "dataTable",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "水についても、少し濡れただけで必ず壊れるという話ではありません。ただし、低い位置から大量の水を吸いやすい配置や、洗車時に直接強く水がかかる状況は避けたいところです。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "warn",
+          "title": "不調時にこの記事だけで診断しない",
+          "body": "警告灯、強いアイドリング不安定、異音、振動、水の吸い込みが疑われる時は、製品説明書、施工店、整備工場、車両の取扱説明書に沿って確認します。この記事は診断手順ではなく、相談前に言葉を整理するための記事です。",
+          "presentation": {
+            "motion": "fade-up",
+            "variant": "infoBox"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "ショップに相談する時は、「エアクリを付けたら調子が悪いです」だけより、「取り付け直後から」「暑い日だけ」「雨のあと」「アイドリング中」「発進時」など、場面を分けて伝えられると話が進みやすくなります。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "before-buy",
+      "title": "買う前に見ること：レビューより先に自分の車",
+      "displayTitle": "買う前に見ること：レビューより先に自分の車",
+      "deck": "評判が良い部品でも、自分の車に合わなければ後悔する。",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "社外エアクリ選びでいちばん避けたいのは、買ってから「自分の車には合わなかった」と気付くことです。レビューが良くても、有名メーカーでも、まず見るのは自分の車への適合です。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "flow",
+          "title": "買う前の5ステップ",
+          "steps": [
+            {
+              "title": "目的を決める",
+              "body": "吸気音を楽しみたいのか、見た目を変えたいのか、フィルター交換を意識したいのかを先に言葉にします。"
+            },
+            {
+              "title": "自分の車の条件を見る",
+              "body": "車名だけでなく、型式、年式、エンジン型式、グレード、マイナーチェンジ前後まで確認します。"
+            },
+            {
+              "title": "製品の適合と説明書を見る",
+              "body": "メーカーの適合表、取扱説明書、注意事項、問い合わせ先を見ます。中古なら説明書と構成部品の有無も確認します。"
+            },
+            {
+              "title": "熱・水・固定を想像する",
+              "body": "フィルター位置、遮熱、雨水、洗車水、配管やボンネットとの干渉を想像します。"
+            },
+            {
+              "title": "純正へ戻せるかを残す",
+              "body": "純正エアボックス、ダクト、ホース、クランプ、ボルト、説明書、施工写真を残せるか確認します。"
+            }
+          ],
+          "presentation": {
+            "variant": "numberedSteps",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "買う前チェックリスト",
+          "headers": [
+            "項目",
+            "見ること",
+            "初心者の言葉で言うと"
+          ],
+          "rows": [
+            [
+              "01",
+              "型式・年式・エンジンまで合っている",
+              "同じ車名でも適合が変わることがある"
+            ],
+            [
+              "02",
+              "説明書や構成部品を事前に見られる",
+              "取り付け位置、干渉、注意事項を把握しやすい"
+            ],
+            [
+              "03",
+              "交換フィルターを後から買える",
+              "消耗品管理ができないと長く使いにくい"
+            ],
+            [
+              "04",
+              "純正部品を切ったり削ったりしないで済む",
+              "純正戻しと原因切り分けがしやすい"
+            ],
+            [
+              "05",
+              "雨水や洗車水の通り道を考えられる",
+              "水を吸い込みやすい配置を避けるため"
+            ],
+            [
+              "06",
+              "中古ならステー・ホース・クランプがそろっている",
+              "本体だけでは正しく付けにくい場合がある"
+            ]
+          ],
+          "display": "checklist",
+          "note": "初心者ほど、説明書と構成部品が明確な製品を選ぶ方が後悔しにくい。",
+          "presentation": {
+            "variant": "checklistCard",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "レビューは感想。適合は条件。",
+          "body": "服のレビューが良くても、自分のサイズに合わなければ着にくい。エアクリも同じです。評判より先に、自分の車に合うかを確認します。",
+          "presentation": {
+            "motion": "fade-up",
+            "variant": "infoBox"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "NAPACのASEA基準のような業界団体の品質認定や、メーカーの説明書・適合情報は、選ぶ時の材料になります。ただし、最終的には自分の車へどう装着され、装着後にどう使えるかまで見る必要があります。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "after-install",
+      "title": "付けた後に見ること：音より日常で使えるか",
+      "displayTitle": "付けた後に見ること：音より日常で使えるか",
+      "deck": "エンジンがかかったら終わりではなく、日常で満足できるかを見る。",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "社外エアクリは、取り付けてエンジンがかかったら終わりではありません。大切なのは、日常で使い続けられるかです。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "装着後に見るタイミング",
+          "headers": [
+            "タイミング",
+            "見ること",
+            "初心者の言葉で言うと"
+          ],
+          "rows": [
+            [
+              "取り付け直後",
+              "警告灯、アイドリング、異音、振動、干渉",
+              "いつも通り落ち着いているか"
+            ],
+            [
+              "街乗り",
+              "発進時、低速、停止中の扱いやすさ",
+              "楽しいけど疲れないか"
+            ],
+            [
+              "暑い日・渋滞",
+              "だるさ、熱のこもり方",
+              "暑い時だけ違和感が強くないか"
+            ],
+            [
+              "雨の日・洗車後",
+              "水のかかり方、フィルターの濡れ",
+              "濡れ方が不安すぎないか"
+            ],
+            [
+              "数週間後",
+              "ボルト緩み、ホース抜け、汚れ、擦れ跡",
+              "最初だけでなく続けて使えそうか"
+            ],
+            [
+              "点検・売却時",
+              "部品名、型番、施工内容、純正部品",
+              "説明できる状態か"
+            ]
+          ],
+          "display": "table",
+          "note": "狙った吸気音は楽しんでよい。異音・警告灯・アイドリング不安定とは分けて見る。",
+          "presentation": {
+            "variant": "dataTable",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "flow",
+          "title": "ショップに相談する時に伝えるとよいこと",
+          "steps": [
+            {
+              "title": "いつから",
+              "body": "取り付け直後、数日後、雨の日のあと、暑い日にだけ。"
+            },
+            {
+              "title": "どんな時に",
+              "body": "アイドリング中、発進時、高速道路、渋滞中、洗車後。"
+            },
+            {
+              "title": "どんな変化",
+              "body": "警告灯、エンストしそう、異音、振動、だるさ、燃費の変化。"
+            },
+            {
+              "title": "何を付けたか",
+              "body": "メーカー、品番、車種別キットか汎用品か、中古か新品か。"
+            },
+            {
+              "title": "戻せるか",
+              "body": "純正部品、説明書、施工写真、外したホースやボルトが残っているか。"
+            }
+          ],
+          "presentation": {
+            "variant": "stepCards",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "accent",
+          "title": "良いカスタムは、説明できるカスタム",
+          "body": "「何を付けたか」「なぜ付けたか」「どこまで変わったか」「純正へ戻せるか」を説明できると、整備、車検、売却、不調時の相談がしやすくなります。",
+          "presentation": {
+            "motion": "fade-up",
+            "variant": "infoBox"
+          }
+        }
+      ]
+    },
+    {
+      "id": "enjoy-or-return",
+      "title": "それでも付けたい人へ：楽しむための考え方",
+      "displayTitle": "それでも付けたい人へ：楽しむための考え方",
+      "deck": "怖がらせて終わらない。楽しむために、戻せる状態と説明できる状態を残す。",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "ここまで読むと、「結局、社外エアクリってやめた方がいいの？」と思うかもしれません。答えは、そうではありません。エアクリは、合う車・合う使い方では楽しいカスタムです。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "comparisonTable",
+          "title": "続けやすい状態と、見直したい状態",
+          "headers": [
+            "状態",
+            "見方",
+            "次の動き"
+          ],
+          "rows": [
+            [
+              "OK",
+              "警告灯や異音がなく、日常の使い方に合い、フィルター管理ができる",
+              "そのまま楽しみやすい"
+            ],
+            [
+              "確認",
+              "暑い日だけ気になる、音量に慣れない、雨の日が少し不安",
+              "施工店や整備工場へ相談しながら様子を見る"
+            ],
+            [
+              "注意",
+              "警告灯、強いアイドリング不安定、水を吸いやすい配置、明らかな干渉がある",
+              "戻す・製品変更・取り付け見直しを考える"
+            ]
+          ],
+          "display": "contrast",
+          "presentation": {
+            "variant": "dataTable",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "純正戻しは負けではない",
+          "body": "カスタムは一度付けたら続けなければいけないものではありません。純正へ戻して比較できることは、失敗ではなく、次の仕様を考えるための材料です。",
+          "presentation": {
+            "motion": "fade-up",
+            "variant": "infoBox"
+          }
+        },
+        {
+          "type": "flow",
+          "title": "迷った時の考え方",
+          "steps": [
+            {
+              "title": "違和感を言葉にする",
+              "body": "音なのか、熱なのか、雨なのか、アイドリングなのかを分けます。"
+            },
+            {
+              "title": "取り付け状態を確認する",
+              "body": "緩み、干渉、ホース、センサーコネクタ、フィルターの汚れを見ます。作業は無理せず施工店へ相談します。"
+            },
+            {
+              "title": "純正状態と比べる",
+              "body": "純正エアボックスやダクトが残っていれば、戻して変化を比較できます。"
+            },
+            {
+              "title": "次の仕様を決める",
+              "body": "純正交換タイプへ変える、遮熱を見直す、別製品にする、純正で楽しむなど、次の選択肢を決めます。"
+            }
+          ],
+          "presentation": {
+            "variant": "numberedSteps",
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "社外エアクリは、危険だから避ける部品ではありません。音も見た目も、車を触る楽しさもあります。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "ただし、エアクリは**音の部品ではなく、エンジンに入る空気の入口を変える部品**です。だから、憧れから入っていい。でもその前に、種類、熱、水、MAFセンサー、固定、管理、戻せる状態を見ておく。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "そこまで分かれば、社外エアクリは怖いカスタムではなく、**自分の車に合うか判断できるカスタム**になります。",
+          "presentation": {
+            "motion": "fade-up"
+          }
+        }
+      ]
+    }
+  ],
+  "articleDesign": {
+    "version": "cbj-world-v1",
+    "layoutPreset": "cbj-shared-editorial-v1",
+    "lessonNumber": 18,
+    "difficulty": "初級",
+    "heroGradient": [
+      "#FF8C42",
+      "#F06292"
+    ],
+    "heroTitle": "社外エアークリーナーって実際どうなの？",
+    "heroLead": "圧倒的な吸気音に憧れる前に知っておきたいエアークリーナーのこと",
+    "heroPromise": "社外エアクリのメリットと後悔ポイントを、自分の言葉で説明できるようになる。",
+    "heroCenterImage": "/images/cbj/article-system/custom-air-cleaner-risk-v1.svg",
+    "sectionPalette": [
+      "#FF8C42",
+      "#42A5F5",
+      "#26A69A",
+      "#F06292",
+      "#FFCA28",
+      "#AB47BC",
+      "#26C6DA",
+      "#7CB342",
+      "#5C6BC0",
+      "#EF5350"
+    ],
+    "introDialogue": [
+      {
+        "character": "juna",
+        "text": "海外のカスタム動画でさ、アクセル踏んだ瞬間に**“シュッ！”**とか**“ゴォッ！”**って鳴る車あるじゃん。あれ、正直めっちゃ憧れるんだよね！",
+        "variant": "lead",
+        "motion": "fade-right"
+      },
+      {
+        "character": "rina",
+        "text": "分かる。吸気音が聞こえると、車を触った感が一気に出るよね。まずはその気持ちから入って大丈夫。そこから、何が嬉しくて、どこで後悔しやすいかを一緒に分けていこう。",
+        "variant": "lead",
+        "motion": "fade-left"
+      }
+    ],
+    "sectionDialogues": {
+      "what-is-air-cleaner": [
+        {
+          "character": "juna",
+          "text": "エアクリって、あのキノコみたいなフィルターのこと？海外動画で見て、ずっと気になってた。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "それもエアクリの一種だね。正式にはエアークリーナー。この記事では「エアクリ」って呼ぶよ。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "character": "juna",
+          "text": "エアークリーナー、以降エアクリ。まずそこからなら置いていかれないかも。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "うん。難しく考えすぎなくていい。まずは、エンジンが吸う空気の入口にあるフィルターだと思えば大丈夫。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        }
+      ],
+      "good-points": [
+        {
+          "character": "juna",
+          "text": "正直、吸気音だけでもかなり惹かれる。ボンネット開けた時の見た目も変わるし。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "そこは素直にメリットだよ。音も見た目も、カスタムした実感が出やすい。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "character": "juna",
+          "text": "じゃあ、音で選びたくなる気持ちは間違いじゃないんだ？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "間違いじゃないよ。ただ、音だけで決めると後悔しやすいことがある。楽しさと現実を両方見よう。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        }
+      ],
+      "types": [
+        {
+          "character": "juna",
+          "text": "私、エアクリって全部あのキノコみたいなやつだと思ってた。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "それを想像する人は多いと思う。でも、純正の箱を残して中のフィルターだけ替えるタイプもあるよ。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "character": "juna",
+          "text": "見た目がほぼ変わらないエアクリもあるんだ。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "ある。だからまずは「純正の箱を残すかどうか」で分けると、楽しさも確認点も整理しやすい。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        }
+      ],
+      "sound-regret": [
+        {
+          "character": "juna",
+          "text": "音が楽しいのに、音で後悔することもあるの？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "あるよ。動画では最高でも、自分の車で毎日乗ると印象が変わることがある。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "character": "juna",
+          "text": "たしかに、毎回すごい音だと家族にはうるさいって言われそう。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "そう。吸気音は楽しんでいい。でも、狙った音なのか、部品が当たる音なのかは分けて見たいね。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        }
+      ],
+      "heat-regret": [
+        {
+          "character": "juna",
+          "text": "空気って、吸えれば吸えるほどいいんじゃないの？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "そこが少しだけ落とし穴。吸う量だけじゃなくて、吸う空気の温度も関係するよ。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "character": "juna",
+          "text": "熱い空気って、そんなに違うの？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "ざっくり言うと、熱い空気はふわっとしていて、同じ大きさでも中身が薄いイメージ。夏や渋滞でだるく感じる話はここにつながる。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        }
+      ],
+      "maf-sensor": [
+        {
+          "character": "juna",
+          "text": "MAFセンサーって、名前だけでもう置いていかれる。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "大丈夫。ここでは「空気の受付係」だと思えばいいよ。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "character": "juna",
+          "text": "受付係？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "どれくらい空気が入ったかを車に伝える係。そこが分かると、燃料をどれくらい混ぜるか考えやすくなるんだ。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        }
+      ],
+      "water-gap-fixed": [
+        {
+          "character": "juna",
+          "text": "警告灯とかアイドリング不安定とか出たら、全部エアクリのせいにしちゃいそう。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "気持ちは分かる。でも原因を自分で当てなくて大丈夫。まずは「いつ」「どんな時に」「何が起きたか」を分ければ十分。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "character": "juna",
+          "text": "不調の方向を分けるってこと？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "そう。熱なのか、水なのか、隙間なのか、固定なのか。方向が分かるだけで、相談しやすくなる。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        }
+      ],
+      "before-buy": [
+        {
+          "character": "juna",
+          "text": "買う前って、メーカーと値段とレビューを見ればいいと思ってた。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "それも材料だけど、最初に見るのは自分の車に合うか。車名だけでは足りないことがあるよ。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "character": "juna",
+          "text": "中古で安いの見つけると、ちょっと欲しくなるんだよね。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "中古は構成部品不足に注意。ステーやホースが足りないと、安く買っても正しく付けにくいことがある。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        }
+      ],
+      "after-install": [
+        {
+          "character": "juna",
+          "text": "取り付けてエンジンがかかったら成功！って思っちゃいそう。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "作動確認は大事。でもそこで終わりじゃないよ。日常で普通に使えるかを見る。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "character": "juna",
+          "text": "吸気音が大きいのは、異音とは違うんだよね？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "うん。狙った音と、部品が擦れる音やホース抜けっぽい音は別。違和感があれば無理せず相談しよう。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        }
+      ],
+      "enjoy-or-return": [
+        {
+          "character": "juna",
+          "text": "ここまで聞いても、やっぱり吸気音には憧れる。付けたい気持ちは消えないかも。",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "それでいいよ。カスタムは楽しむためのものだから。大事なのは、憧れだけで突っ走らず、自分の車に合うかを見ること。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        },
+        {
+          "character": "juna",
+          "text": "もし合わなかったら、純正に戻すのは負け？",
+          "variant": "bubble",
+          "motion": "fade-right"
+        },
+        {
+          "character": "rina",
+          "text": "全然負けじゃない。戻して比べられることは、車をちゃんと見ている証拠だよ。",
+          "variant": "bubble",
+          "motion": "fade-left"
+        }
+      ]
+    },
+    "closingDialogue": [
+      {
+        "character": "juna",
+        "text": "エアクリって、音が大きくなる部品ってだけじゃなかった。付けて嬉しいこともあるけど、後悔しやすい場所もちゃんと分けて見ればいいんだね。",
+        "variant": "bubble",
+        "motion": "fade-right"
+      },
+      {
+        "character": "rina",
+        "text": "うん。危険か安全かの二択じゃなくて、自分の車と使い方に合うかで見る。それができれば、カスタムはもっと楽しくなるよ。",
+        "variant": "bubble",
+        "motion": "fade-left"
+      }
+    ],
+    "closingBlocks": [
+      {
+        "type": "callout",
+        "tone": "info",
+        "title": "最終結論",
+        "body": "社外エアクリは、圧倒的な吸気音や見た目の変化を楽しめるカスタムです。ただし、音だけで選ぶと、音量、熱、水、MAFセンサー、隙間、固定、管理で後悔することがあります。危険か安全かではなく、自分の車と使い方に合うかを見て選びましょう。",
+        "items": [
+          "エアークリーナーは、エンジンに入る空気の入口にある部品",
+          "吸気音や見た目は大きなメリットになる",
+          "純正交換タイプとむき出しタイプでは、変化と確認点が違う",
+          "熱・水・MAFセンサー・固定・管理が後悔ポイントになりやすい",
+          "合わなければ純正へ戻して比べることも大事"
+        ],
+        "presentation": {
+          "motion": "fade-up",
+          "variant": "summaryCard"
+        }
+      }
+    ]
+  },
+  "subtitle": "圧倒的な吸気音に憧れる前に知っておきたいエアークリーナーのこと"
+}
