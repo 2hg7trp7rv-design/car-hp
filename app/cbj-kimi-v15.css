@@ -1,0 +1,202 @@
+/* Targeted v15 restoration for the Kimi-style custom-regret column. */
+
+.cbj-kimi-v15 article > section > header > h2 {
+  max-width: 680px;
+  margin-bottom: 12px;
+  font-size: clamp(24px, 6.4vw, 30px) !important;
+  font-weight: 700;
+  line-height: 1.38 !important;
+  letter-spacing: .01em;
+}
+
+.cbj-kimi-v15 article > section > header > p {
+  max-width: 560px !important;
+  font-size: 15px !important;
+  line-height: 1.8 !important;
+}
+
+/* The original mock uses orange in chapter 02 and each chapter accent thereafter. */
+.cbj-kimi-v15 article > section > div:last-child > div > h4 {
+  margin-top: 26px !important;
+  margin-bottom: 11px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+
+.cbj-kimi-v15 article > section:nth-of-type(1) > div:last-child > div > h4,
+.cbj-kimi-v15 article > section:nth-of-type(2) > div:last-child > div > h4 {
+  color: #ff8c42 !important;
+}
+
+.cbj-kimi-v15 article > section:nth-of-type(3) > div:last-child > div > h4 {
+  color: #f06292 !important;
+}
+
+.cbj-kimi-v15 article > section:nth-of-type(4) > div:last-child > div > h4 {
+  color: #42a5f5 !important;
+}
+
+.cbj-kimi-v15 article > section:nth-of-type(5) > div:last-child > div > h4 {
+  color: #ffca28 !important;
+}
+
+/* Simpler textbook marker: keep the line, reduce visual noise. */
+.cbj-kimi-v15 .cbj-inline-marker {
+  padding-inline: .03em !important;
+  color: #2d2d2d !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  background-image: linear-gradient(
+    to bottom,
+    transparent 62%,
+    rgba(255, 202, 40, .45) 62%,
+    rgba(255, 202, 40, .45) 88%,
+    transparent 88%
+  ) !important;
+  background-repeat: no-repeat !important;
+  border-radius: .14em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.cbj-kimi-v15 .cbj-natural-paragraph {
+  display: block;
+  text-wrap: wrap;
+  word-break: normal;
+  line-break: strict;
+  overflow-wrap: break-word;
+}
+
+.cbj-kimi-v15 .cbj-natural-paragraph + .cbj-natural-paragraph {
+  margin-top: .66em;
+}
+
+/* Mock checklist headings are rendered conditionally in ArticleContent:
+   numeric first cells are skipped, semantic labels/questions stay visible. */
+.cbj-kimi-v15 [class*="mockChecklistCard"] h4 {
+  display: block !important;
+  margin: 0 0 2px !important;
+  color: #2d2d2d !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 1.65 !important;
+}
+
+.cbj-kimi-v15 [class*="mockChecklistCard"] h4 + p {
+  margin-top: 2px !important;
+}
+
+.cbj-kimi-v15 [class*="mockChecklistCard"] li p:first-of-type {
+  margin: 0 !important;
+  color: #2d2d2d !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.7 !important;
+}
+
+.cbj-kimi-v15 [class*="mockChecklistCard"] li p:not(:first-of-type) {
+  margin-top: 3px !important;
+  color: #6b6b6b !important;
+  font-size: 13px !important;
+  line-height: 1.7 !important;
+}
+
+/* Restore Kimi's wide data table: bigger, readable cells with finger-driven horizontal swipe. */
+@media (max-width: 560px) {
+  /* Body prose only: small readable inset without changing cards, dialogues, titles, or tables. */
+  .cbj-kimi-v15 [class*="richTextWrap"] > [class*="bodyText"],
+  .cbj-kimi-v15 [class*="richTextWrap"] > [class*="introText"] {
+    padding-inline: 4px !important;
+    line-height: 2.02 !important;
+    box-sizing: border-box !important;
+    text-wrap: wrap;
+    word-break: normal;
+    line-break: strict;
+    overflow-wrap: break-word;
+  }
+
+  .cbj-kimi-v15 .cbj-natural-paragraph + .cbj-natural-paragraph {
+    margin-top: .58em;
+  }
+
+  /* Match level-4 prose subheadings with the body text inset so the following text does not look randomly indented. */
+  .cbj-kimi-v15 article > section > div:last-child > div > h4 {
+    padding-inline: 4px !important;
+    box-sizing: border-box !important;
+  }
+
+  .cbj-kimi-v15 [class*="keyPoints"] [class*="richTextWrap"] > [class*="keyPointText"] {
+    padding-inline: 0 !important;
+    line-height: 1.8 !important;
+  }
+
+  .cbj-kimi-v15 [role="region"] {
+    width: calc(100% + 12px) !important;
+    max-width: none !important;
+    margin-right: -12px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 0 12px 9px 0 !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-inline: contain;
+    touch-action: pan-x pan-y;
+  }
+
+  .cbj-kimi-v15 [role="region"] table {
+    display: table !important;
+    width: max-content !important;
+    min-width: 760px !important;
+    table-layout: auto !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+  }
+
+  .cbj-kimi-v15 [role="region"] thead {
+    display: table-header-group !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    clip: auto !important;
+    clip-path: none !important;
+    white-space: normal !important;
+  }
+
+  .cbj-kimi-v15 [role="region"] tbody { display: table-row-group !important; }
+  .cbj-kimi-v15 [role="region"] tr { display: table-row !important; }
+
+  .cbj-kimi-v15 [role="region"] th,
+  .cbj-kimi-v15 [role="region"] td {
+    display: table-cell !important;
+    width: auto !important;
+    min-width: 172px !important;
+    padding: 15px 18px !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid #e8ddd0 !important;
+    color: #5f5f5f !important;
+    font-size: 14px !important;
+    line-height: 1.78 !important;
+    text-align: left !important;
+    vertical-align: top !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+  }
+
+  .cbj-kimi-v15 [role="region"] th {
+    min-width: 150px !important;
+    background: #f8f6f3 !important;
+    color: #2d2d2d !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
+  }
+
+  .cbj-kimi-v15 [role="region"] td::before { content: none !important; }
+  .cbj-kimi-v15 [role="region"] tr:last-child td { border-bottom: 0 !important; }
+}
+
+@media (min-width: 640px) {
+  .cbj-kimi-v15 article > section > header > h2 { font-size: 30px !important; }
+}

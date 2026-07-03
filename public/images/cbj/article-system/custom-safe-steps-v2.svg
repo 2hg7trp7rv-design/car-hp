@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">後悔しにくいカスタムの5ステップ</title>
+  <desc id="desc">目的、適合、純正保管、施工後確認、記録の順に、同じ大きさの5枚のカードで示す</desc>
+  <rect width="1600" height="900" rx="48" fill="#fffaf4"/>
+  <text x="800" y="92" text-anchor="middle" font-family="sans-serif" font-size="52" font-weight="700" fill="#2d2d2d">後悔しにくいカスタムの5ステップ</text>
+  <text x="800" y="136" text-anchor="middle" font-family="sans-serif" font-size="25" fill="#75695f">パーツ探しより先に、目的と戻し方を決める</text>
+
+  <g fill="none" stroke="#c8b7aa" stroke-width="8" stroke-linecap="round">
+    <path d="M355 380h20"/>
+    <path d="M645 380h20"/>
+    <path d="M935 380h20"/>
+    <path d="M1225 380h20"/>
+  </g>
+  <g fill="#c8b7aa">
+    <path d="M375 380l-14-11v22z"/>
+    <path d="M665 380l-14-11v22z"/>
+    <path d="M955 380l-14-11v22z"/>
+    <path d="M1245 380l-14-11v22z"/>
+  </g>
+
+  <g font-family="sans-serif" text-anchor="middle">
+    <g transform="translate(85 230)">
+      <rect width="270" height="300" rx="34" fill="#fff" stroke="#ff8c42" stroke-width="4"/>
+      <circle cx="48" cy="48" r="29" fill="#ff8c42"/>
+      <text x="48" y="57" font-size="22" font-weight="700" fill="#fff">1</text>
+      <text x="135" y="145" font-size="28" font-weight="700" fill="#2d2d2d">目的を決める</text>
+      <text x="135" y="201" font-size="20" fill="#655d56">何を変えたいか</text>
+      <text x="135" y="236" font-size="20" fill="#655d56">不満を言葉にする</text>
+    </g>
+    <g transform="translate(375 230)">
+      <rect width="270" height="300" rx="34" fill="#fff" stroke="#8bc34a" stroke-width="4"/>
+      <circle cx="48" cy="48" r="29" fill="#8bc34a"/>
+      <text x="48" y="57" font-size="22" font-weight="700" fill="#fff">2</text>
+      <text x="135" y="145" font-size="28" font-weight="700" fill="#2d2d2d">適合を確認</text>
+      <text x="135" y="201" font-size="20" fill="#655d56">型式・年式・装備</text>
+      <text x="135" y="236" font-size="20" fill="#655d56">影響範囲も見る</text>
+    </g>
+    <g transform="translate(665 230)">
+      <rect width="270" height="300" rx="34" fill="#fff" stroke="#42a5f5" stroke-width="4"/>
+      <circle cx="48" cy="48" r="29" fill="#42a5f5"/>
+      <text x="48" y="57" font-size="22" font-weight="700" fill="#fff">3</text>
+      <text x="135" y="145" font-size="28" font-weight="700" fill="#2d2d2d">純正を保管</text>
+      <text x="135" y="201" font-size="20" fill="#655d56">部品・書類・写真</text>
+      <text x="135" y="236" font-size="20" fill="#655d56">戻せる状態を残す</text>
+    </g>
+    <g transform="translate(955 230)">
+      <rect width="270" height="300" rx="34" fill="#fff" stroke="#ab47bc" stroke-width="4"/>
+      <circle cx="48" cy="48" r="29" fill="#ab47bc"/>
+      <text x="48" y="57" font-size="22" font-weight="700" fill="#fff">4</text>
+      <text x="135" y="145" font-size="28" font-weight="700" fill="#2d2d2d">施工後に確認</text>
+      <text x="135" y="201" font-size="20" fill="#655d56">警告・異音・干渉</text>
+      <text x="135" y="236" font-size="20" fill="#655d56">試乗して確かめる</text>
+    </g>
+    <g transform="translate(1245 230)">
+      <rect width="270" height="300" rx="34" fill="#fff" stroke="#26a69a" stroke-width="4"/>
+      <circle cx="48" cy="48" r="29" fill="#26a69a"/>
+      <text x="48" y="57" font-size="22" font-weight="700" fill="#fff">5</text>
+      <text x="135" y="145" font-size="28" font-weight="700" fill="#2d2d2d">記録する</text>
+      <text x="135" y="201" font-size="20" fill="#655d56">部品型番・施工日</text>
+      <text x="135" y="236" font-size="20" fill="#655d56">再点検結果を残す</text>
+    </g>
+  </g>
+
+  <rect x="270" y="625" width="1060" height="130" rx="38" fill="#fff" stroke="#e8ddd0" stroke-width="3"/>
+  <text x="800" y="682" text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="700" fill="#2d2d2d">完成ではなく、確認できる状態がゴール</text>
+  <text x="800" y="727" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#685f58">装着後に問題がないかを確かめ、次の整備や売却でも説明できるように残す</text>
+</svg>
