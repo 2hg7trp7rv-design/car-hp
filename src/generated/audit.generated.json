@@ -1,0 +1,95 @@
+{
+  "generatedAt": "2026-07-03T15:58:38.976Z",
+  "summary": {
+    "total": 7,
+    "byType": {
+      "GUIDE": 6,
+      "COLUMN": 1
+    },
+    "index": 2,
+    "noindex": 5,
+    "draft": 0,
+    "redirect": 0,
+    "errors": 0,
+    "warnings": 0
+  },
+  "items": [
+    {
+      "type": "GUIDE",
+      "url": "/guide/adas-lowered-car-aiming-risk-guide",
+      "file": "data/articles/guides/adas-lowered-car-aiming-risk-guide.json",
+      "publicState": "noindex",
+      "metrics": {
+        "bodyLen": 0
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "type": "GUIDE",
+      "url": "/guide/aftermarket-air-cleaner-risk-guide",
+      "file": "data/articles/guides/aftermarket-air-cleaner-risk-guide.json",
+      "publicState": "index",
+      "metrics": {
+        "bodyLen": 12896
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "type": "GUIDE",
+      "url": "/guide/car-suspension-hard-soft-merit-demerit",
+      "file": "data/articles/guides/car-suspension-hard-soft-merit-demerit.json",
+      "publicState": "noindex",
+      "metrics": {
+        "bodyLen": 0
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "type": "GUIDE",
+      "url": "/guide/electronic-damper-coilover-risk-guide",
+      "file": "data/articles/guides/electronic-damper-coilover-risk-guide.json",
+      "publicState": "noindex",
+      "metrics": {
+        "bodyLen": 0
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "type": "GUIDE",
+      "url": "/guide/tv-canceller-can-risk-guide",
+      "file": "data/articles/guides/tv-canceller-can-risk-guide.json",
+      "publicState": "noindex",
+      "metrics": {
+        "bodyLen": 0
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "type": "GUIDE",
+      "url": "/guide/used-custom-car-check-guide",
+      "file": "data/articles/guides/used-custom-car-check-guide.json",
+      "publicState": "noindex",
+      "metrics": {
+        "bodyLen": 0
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "type": "COLUMN",
+      "url": "/column/modern-car-custom-regret-reason-column",
+      "file": "data/articles/columns/modern-car-custom-regret-reason-column.json",
+      "publicState": "index",
+      "metrics": {
+        "bodyLen": 12134
+      },
+      "errors": [],
+      "warnings": []
+    }
+  ]
+}
