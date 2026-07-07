@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" role="img" aria-labelledby="title desc">
+  <title id="title">初心者が最後に見る5つ</title>
+  <desc id="desc">エアクリ選びで初心者が最後に確認する5つの項目。</desc>
+  <rect width="1280" height="520" rx="44" fill="#FFFFFF"/>
+  <rect x="34" y="34" width="1212" height="452" rx="36" fill="#F5FFFE" stroke="#BEECE9" stroke-width="3"/>
+  <text x="78" y="96" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif" font-size="34" font-weight="850" fill="#111827">初心者が最後に見る5つ</text>
+  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif">
+    <g transform="translate(78 145)"><circle cx="32" cy="32" r="32" fill="#0ABAB5"/><text x="32" y="42" text-anchor="middle" font-size="24" font-weight="850" fill="#fff">1</text><text x="84" y="28" font-size="22" font-weight="850" fill="#111827">自分の車に合うか</text><text x="84" y="58" font-size="16" font-weight="650" fill="#475569">型式・年式・エンジン・適合表</text></g>
+    <g transform="translate(678 145)"><circle cx="32" cy="32" r="32" fill="#0ABAB5"/><text x="32" y="42" text-anchor="middle" font-size="24" font-weight="850" fill="#fff">2</text><text x="84" y="28" font-size="22" font-weight="850" fill="#111827">部品がそろっているか</text><text x="84" y="58" font-size="16" font-weight="650" fill="#475569">ステー・ホース・説明書まで見る</text></g>
+    <g transform="translate(78 265)"><circle cx="32" cy="32" r="32" fill="#0ABAB5"/><text x="32" y="42" text-anchor="middle" font-size="24" font-weight="850" fill="#fff">3</text><text x="84" y="28" font-size="22" font-weight="850" fill="#111827">純正に戻せるか</text><text x="84" y="58" font-size="16" font-weight="650" fill="#475569">不調時の切り分けにも役立つ</text></g>
+    <g transform="translate(678 265)"><circle cx="32" cy="32" r="32" fill="#0ABAB5"/><text x="32" y="42" text-anchor="middle" font-size="24" font-weight="850" fill="#fff">4</text><text x="84" y="28" font-size="22" font-weight="850" fill="#111827">水や熱の位置</text><text x="84" y="58" font-size="16" font-weight="650" fill="#475569">毎回不安になる仕様は避ける</text></g>
+    <g transform="translate(378 385)"><circle cx="32" cy="32" r="32" fill="#0ABAB5"/><text x="32" y="42" text-anchor="middle" font-size="24" font-weight="850" fill="#fff">5</text><text x="84" y="28" font-size="22" font-weight="850" fill="#111827">管理できそうか</text><text x="84" y="58" font-size="16" font-weight="650" fill="#475569">フィルター・固定・異音をたまに見る</text></g>
+  </g>
+</svg>

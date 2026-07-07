@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="1340" viewBox="0 0 720 1340" role="img" aria-labelledby="title desc">
+<title id="title">カスタムは車全体で判断する</title>
+<desc id="desc">パーツ選択から診断、車検、整備保証売却までを一つの流れで確認するスマホ用図解</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf9"/><stop offset="1" stop-color="#fff4eb"/></linearGradient>
+  <linearGradient id="hero" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff6b8a"/><stop offset="1" stop-color="#ff8c42"/></linearGradient>
+  <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#8d7566" flood-opacity=".14"/></filter>
+  <style><![CDATA[
+    text{font-family:"Hiragino Maru Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;fill:#2d2d2d}
+    .t{font-size:42px;font-weight:700}
+    .s{font-size:22px;fill:#6f6963}
+    .h{font-size:29px;font-weight:700}
+    .p{font-size:22px;fill:#5f5751}
+    .n{font-size:22px;font-weight:700}
+    .chip{font-size:20px;font-weight:700;fill:#fff}
+    .mini{font-size:18px;fill:#6f6963}
+  ]]></style>
+</defs>
+<rect width="720" height="1340" rx="38" fill="url(#bg)"/>
+<text x="360" y="74" text-anchor="middle" class="t">カスタムは「車全体」で判断する</text>
+<text x="360" y="112" text-anchor="middle" class="s">付くかではなく、使い続けられるかを見る</text>
+
+<g transform="translate(54 156)" filter="url(#cardShadow)">
+  <rect width="612" height="236" rx="34" fill="url(#hero)"/>
+  <text x="306" y="48" text-anchor="middle" class="chip">まず見るのは装着後の実車状態</text>
+  <g transform="translate(114 74)">
+    <rect x="90" y="92" width="210" height="18" rx="9" fill="#ffffff" opacity=".24"/>
+    <path d="M20 95c14-45 43-73 89-83h173c47 10 76 38 90 83l38 18v48h-52a56 56 0 0 1-105 0h-108a56 56 0 0 1-105 0H-12v-48z" fill="#fff"/>
+    <circle cx="92" cy="160" r="24" fill="#2d2d2d"/>
+    <circle cx="280" cy="160" r="24" fill="#2d2d2d"/>
+    <circle cx="92" cy="160" r="10" fill="#ffffff" opacity=".88"/>
+    <circle cx="280" cy="160" r="10" fill="#ffffff" opacity=".88"/>
+    <path d="M85 72c24-34 55-52 94-57h78c40 5 70 23 92 57l-8 4H94z" fill="#fff" opacity=".92"/>
+    <rect x="132" y="45" width="124" height="42" rx="16" fill="#ffd9df" opacity=".65"/>
+  </g>
+  <g transform="translate(176 178)">
+    <rect width="260" height="36" rx="18" fill="#ff8d61"/>
+    <text x="130" y="24" text-anchor="middle" class="chip">装着後の実車状態</text>
+  </g>
+</g>
+
+<g stroke="#cfbdb1" stroke-width="6" stroke-linecap="round">
+  <path d="M360 408v26"/>
+  <path d="M360 634v26"/>
+  <path d="M360 860v26"/>
+  <path d="M360 1086v26"/>
+</g>
+
+<g transform="translate(48 444)" filter="url(#cardShadow)">
+  <rect width="624" height="176" rx="28" fill="#fff" stroke="#ffb58d" stroke-width="3"/>
+  <circle cx="76" cy="88" r="36" fill="#fff0e7"/><text x="76" y="96" text-anchor="middle" class="n" fill="#e8732f">01</text>
+  <text x="136" y="70" class="h">パーツ選択</text>
+  <text x="136" y="114" class="p">目的・適合・取付方法・純正復元</text>
+  <text x="136" y="146" class="mini">何を変えたいか → その部品で解決するか</text>
+</g>
+<g transform="translate(48 670)" filter="url(#cardShadow)">
+  <rect width="624" height="176" rx="28" fill="#fff" stroke="#9bd9d2" stroke-width="3"/>
+  <circle cx="76" cy="88" r="36" fill="#eaf8f6"/><text x="76" y="96" text-anchor="middle" class="n" fill="#258f84">02</text>
+  <text x="136" y="70" class="h">車両制御・診断</text>
+  <text x="136" y="114" class="p">センサー・ECU・警告灯・DTC</text>
+  <text x="136" y="146" class="mini">施工前後を比較し、異常を説明できるか</text>
+</g>
+<g transform="translate(48 896)" filter="url(#cardShadow)">
+  <rect width="624" height="176" rx="28" fill="#fff" stroke="#a9cef6" stroke-width="3"/>
+  <circle cx="76" cy="88" r="36" fill="#eef6ff"/><text x="76" y="96" text-anchor="middle" class="n" fill="#367dbb">03</text>
+  <text x="136" y="70" class="h">車検・保安基準</text>
+  <text x="136" y="114" class="p">地上高・突出・灯火・固定・表示</text>
+  <text x="136" y="146" class="mini">書類ではなく、装着後の実車状態で確認する</text>
+</g>
+<g transform="translate(48 1122)" filter="url(#cardShadow)">
+  <rect width="624" height="176" rx="28" fill="#fff" stroke="#d6b6ea" stroke-width="3"/>
+  <circle cx="76" cy="88" r="36" fill="#f7effb"/><text x="76" y="96" text-anchor="middle" class="n" fill="#8f4fa8">04</text>
+  <text x="136" y="70" class="h">整備・保証・売却</text>
+  <text x="136" y="114" class="p">施工履歴・純正部品・説明書・戻し方</text>
+  <text x="136" y="146" class="mini">あとで説明できる状態まで含めて良いカスタム</text>
+</g>
+</svg>

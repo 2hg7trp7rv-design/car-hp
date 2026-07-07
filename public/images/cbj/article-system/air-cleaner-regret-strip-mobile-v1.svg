@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="900" viewBox="0 0 720 900" role="img" aria-labelledby="title desc">
+  <title id="title">後悔ポイントの5方向</title>
+  <desc id="desc">音、熱、MAF、水と固定、不調の5方向へ分ける図解。</desc>
+  <rect width="720" height="900" rx="42" fill="#FFFFFF"/>
+  <rect x="34" y="34" width="652" height="832" rx="34" fill="#F5FFFE" stroke="#BEECE9" stroke-width="3"/>
+  <text x="72" y="96" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif" font-size="32" font-weight="850" fill="#111827">後悔ポイントは</text>
+  <text x="72" y="138" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif" font-size="32" font-weight="850" fill="#111827">5つに分ける</text>
+  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif" font-weight="800">
+    <rect x="86" y="194" width="548" height="92" rx="24" fill="#FFFFFF" stroke="#0ABAB5" stroke-width="4"/><text x="126" y="252" font-size="28" fill="#0A6F6C">音</text><text x="258" y="252" font-size="20" fill="#334155">毎日でも心地よいか</text>
+    <rect x="86" y="318" width="548" height="92" rx="24" fill="#FFFFFF" stroke="#0ABAB5" stroke-width="4"/><text x="126" y="376" font-size="28" fill="#0A6F6C">熱</text><text x="258" y="376" font-size="20" fill="#334155">どんな空気を吸うか</text>
+    <rect x="86" y="442" width="548" height="92" rx="24" fill="#FFFFFF" stroke="#0ABAB5" stroke-width="4"/><text x="126" y="500" font-size="28" fill="#0A6F6C">MAF</text><text x="258" y="500" font-size="20" fill="#334155">正しく読めるか</text>
+    <rect x="86" y="566" width="548" height="92" rx="24" fill="#FFFFFF" stroke="#0ABAB5" stroke-width="4"/><text x="126" y="624" font-size="28" fill="#0A6F6C">水・固定</text><text x="306" y="624" font-size="20" fill="#334155">位置と揺れ</text>
+    <rect x="86" y="690" width="548" height="92" rx="24" fill="#FFFFFF" stroke="#0ABAB5" stroke-width="4"/><text x="126" y="748" font-size="28" fill="#0A6F6C">不調</text><text x="258" y="748" font-size="20" fill="#334155">方向分けで伝える</text>
+  </g>
+</svg>

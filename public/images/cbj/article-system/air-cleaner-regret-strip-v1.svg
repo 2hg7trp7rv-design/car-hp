@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" role="img" aria-labelledby="title desc">
+  <title id="title">後悔ポイントの5方向</title>
+  <desc id="desc">音、熱、MAF、水と固定、不調の5方向へ分ける図解。</desc>
+  <rect width="1280" height="360" rx="40" fill="#FFFFFF"/>
+  <rect x="28" y="28" width="1224" height="304" rx="34" fill="#F5FFFE" stroke="#BEECE9" stroke-width="3"/>
+  <text x="76" y="84" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif" font-size="32" font-weight="850" fill="#111827">後悔ポイントは、5つに分けて見る</text>
+  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif">
+    <g transform="translate(72 126)"><rect width="210" height="140" rx="28" fill="#FFFFFF" stroke="#0ABAB5" stroke-width="4"/><text x="105" y="54" text-anchor="middle" font-size="28" font-weight="850" fill="#0A6F6C">音</text><text x="105" y="92" text-anchor="middle" font-size="16" font-weight="700" fill="#334155">毎日でも</text><text x="105" y="116" text-anchor="middle" font-size="16" font-weight="700" fill="#334155">心地よいか</text></g>
+    <g transform="translate(310 126)"><rect width="210" height="140" rx="28" fill="#FFFFFF" stroke="#0ABAB5" stroke-width="4"/><text x="105" y="54" text-anchor="middle" font-size="28" font-weight="850" fill="#0A6F6C">熱</text><text x="105" y="92" text-anchor="middle" font-size="16" font-weight="700" fill="#334155">どんな空気を</text><text x="105" y="116" text-anchor="middle" font-size="16" font-weight="700" fill="#334155">吸うか</text></g>
+    <g transform="translate(548 126)"><rect width="210" height="140" rx="28" fill="#FFFFFF" stroke="#0ABAB5" stroke-width="4"/><text x="105" y="54" text-anchor="middle" font-size="28" font-weight="850" fill="#0A6F6C">MAF</text><text x="105" y="92" text-anchor="middle" font-size="16" font-weight="700" fill="#334155">正しく</text><text x="105" y="116" text-anchor="middle" font-size="16" font-weight="700" fill="#334155">読めるか</text></g>
+    <g transform="translate(786 126)"><rect width="210" height="140" rx="28" fill="#FFFFFF" stroke="#0ABAB5" stroke-width="4"/><text x="105" y="54" text-anchor="middle" font-size="28" font-weight="850" fill="#0A6F6C">水・固定</text><text x="105" y="92" text-anchor="middle" font-size="16" font-weight="700" fill="#334155">位置と</text><text x="105" y="116" text-anchor="middle" font-size="16" font-weight="700" fill="#334155">揺れ</text></g>
+    <g transform="translate(1024 126)"><rect width="184" height="140" rx="28" fill="#FFFFFF" stroke="#0ABAB5" stroke-width="4"/><text x="92" y="54" text-anchor="middle" font-size="28" font-weight="850" fill="#0A6F6C">不調</text><text x="92" y="92" text-anchor="middle" font-size="16" font-weight="700" fill="#334155">方向分けで</text><text x="92" y="116" text-anchor="middle" font-size="16" font-weight="700" fill="#334155">伝える</text></g>
+  </g>
+</svg>

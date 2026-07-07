@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">エアクリの位置</title>
+  <desc id="desc">外気がエアクリを通ってエンジンへ向かう流れを示す図解。</desc>
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#0A5E5B" flood-opacity="0.12"/></filter>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="11" refY="7" orient="auto"><path d="M2 2 L12 7 L2 12 Z" fill="#0ABAB5"/></marker>
+  </defs>
+  <rect width="1280" height="640" rx="48" fill="#FFFFFF"/>
+  <rect x="32" y="32" width="1216" height="576" rx="40" fill="#F5FFFE" stroke="#BEECE9" stroke-width="3"/>
+  <text x="82" y="94" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif" font-size="38" font-weight="850" fill="#111827">エアクリは、空気の入口</text>
+  <text x="84" y="136" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif" font-size="20" font-weight="650" fill="#475569">音の部品ではなく、エンジンに入る空気をきれいにして通す場所</text>
+  <g filter="url(#shadow)" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif">
+    <rect x="86" y="245" width="210" height="118" rx="30" fill="#FFFFFF" stroke="#0ABAB5" stroke-width="5"/>
+    <text x="191" y="299" text-anchor="middle" font-size="28" font-weight="850" fill="#111827">外気</text>
+    <text x="191" y="332" text-anchor="middle" font-size="16" font-weight="650" fill="#64748B">外から入る空気</text>
+    <rect x="372" y="223" width="244" height="162" rx="34" fill="#FFFFFF" stroke="#0ABAB5" stroke-width="5"/>
+    <circle cx="494" cy="304" r="46" fill="#E9FFFD" stroke="#0ABAB5" stroke-width="7"/>
+    <circle cx="494" cy="304" r="22" fill="#FFFFFF" stroke="#7BE3DE" stroke-width="5"/>
+    <text x="494" y="418" text-anchor="middle" font-size="27" font-weight="850" fill="#111827">エアクリ</text>
+    <rect x="694" y="245" width="210" height="118" rx="30" fill="#FFFFFF" stroke="#0ABAB5" stroke-width="5"/>
+    <text x="799" y="299" text-anchor="middle" font-size="28" font-weight="850" fill="#111827">MAF</text>
+    <text x="799" y="332" text-anchor="middle" font-size="16" font-weight="650" fill="#64748B">空気を読む場所</text>
+    <rect x="982" y="245" width="210" height="118" rx="30" fill="#FFFFFF" stroke="#0ABAB5" stroke-width="5"/>
+    <text x="1087" y="299" text-anchor="middle" font-size="28" font-weight="850" fill="#111827">エンジン</text>
+    <text x="1087" y="332" text-anchor="middle" font-size="16" font-weight="650" fill="#64748B">空気と燃料を使う</text>
+  </g>
+  <path d="M312 304 H354" stroke="#0ABAB5" stroke-width="12" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M632 304 H676" stroke="#0ABAB5" stroke-width="12" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M920 304 H964" stroke="#0ABAB5" stroke-width="12" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif">
+    <rect x="118" y="478" width="1044" height="72" rx="24" fill="#FFFFFF" stroke="#BEECE9" stroke-width="3"/>
+    <text x="160" y="522" font-size="22" font-weight="800" fill="#0A6F6C">この形が変わると、音・見た目・熱・水・センサーの話につながる</text>
+  </g>
+</svg>
