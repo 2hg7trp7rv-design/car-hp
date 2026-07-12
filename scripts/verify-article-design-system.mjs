@@ -140,7 +140,13 @@ for (const relativeFile of TARGETS) {
   }
 
   for (const [index, source] of (article.sources ?? []).entries()) {
-    if (!nonEmpty(source) || !/^https:\/\//iu.test(source.trim())) fail(relativeFile, `sources[${index}] は https URL が必要です`);
+    const sourceUrl = typeof source === "string" ? source.trim() : String(source?.url ?? "").trim();
+    if (!/^https:\/\//iu.test(sourceUrl)) fail(relativeFile, `sources[${index}] は https URL が必要です`);
+    if (source && typeof source === "object") {
+      if (!nonEmpty(source.title)) fail(relativeFile, `sources[${index}].title が必要です`);
+      if (!nonEmpty(source.publisher)) fail(relativeFile, `sources[${index}].publisher が必要です`);
+      if (!nonEmpty(source.claim)) fail(relativeFile, `sources[${index}].claim が必要です`);
+    }
   }
 
   const actions = article.actionBox?.actions ?? [];

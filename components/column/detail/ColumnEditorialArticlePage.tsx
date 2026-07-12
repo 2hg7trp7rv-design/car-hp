@@ -3,21 +3,23 @@ import { CbjWorldArticlePage } from "@/components/articleDesignSystem/CbjWorldAr
 import type { ArticlePageLabels, ArticleRelatedItem } from "@/types/article-design-system";
 import type { ColumnItem } from "@/lib/content-types";
 import type { InternalLinkMeta } from "@/lib/content/internal-link-index";
+import { filterActionBoxForDiscovery } from "@/lib/content/internal-link-index";
 import { getSiteUrl } from "@/lib/site";
 import { humanizeUpdateReason } from "@/lib/update-reason";
+import {
+  cbjEditorialOrganizationJsonLd,
+  resolveVerifiedArticleAuthor,
+} from "@/lib/brand/editorial-identity";
 
 type Props = { item: ColumnItem; related: ColumnItem[]; linkIndex: Record<string, InternalLinkMeta> };
 
 function formatDateDot(iso?: string | null): string {
   if (!iso) return "";
+  const isoDate = iso.match(/^(\d{4})-(\d{2})-(\d{2})(?:$|T)/u);
+  if (isoDate) return `${isoDate[1]}.${isoDate[2]}.${isoDate[3]}`;
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return "";
   return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
-}
-
-function resolveAuthorProfile(item: ColumnItem) {
-  if (item.authorProfile?.name) return item.authorProfile;
-  return { kind: "person" as const, name: "山田太郎", credential: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者" };
 }
 
 function relatedMetaLabel(item: ColumnItem): string {
@@ -28,11 +30,10 @@ export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) 
   const siteUrl = getSiteUrl();
   const title = item.titleJa ?? item.title;
   const pageUrl = `${siteUrl}/column/${encodeURIComponent(item.slug)}`;
-  const authorPageUrl = `${siteUrl}/legal/about`;
   const breadcrumbTrail = item.breadcrumbTrail && item.breadcrumbTrail.length > 0
     ? item.breadcrumbTrail
     : [{ label: "ホーム", href: "/" }, { label: "コラム", href: "/column" }, { label: title }];
-  const author = resolveAuthorProfile(item);
+  const author = resolveVerifiedArticleAuthor(item.authorProfile);
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -49,8 +50,7 @@ export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) 
     url: pageUrl,
     datePublished: item.publishedAt ?? item.createdAt ?? undefined,
     dateModified: item.updatedAt ?? item.publishedAt ?? item.createdAt ?? undefined,
-    author: { "@type": author.kind === "person" ? "Person" : "Organization", name: author.name, jobTitle: author.kind === "person" ? author.credential ?? undefined : undefined, url: author.kind === "person" ? authorPageUrl : siteUrl },
-    reviewedBy: { "@type": "Person", name: "山田太郎", jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者", url: authorPageUrl },
+    author: cbjEditorialOrganizationJsonLd(siteUrl),
     publisher: { "@type": "Organization", name: "CAR BOUTIQUE JOURNAL", url: siteUrl, logo: { "@type": "ImageObject", url: `${siteUrl}/icon-512x512.png` } },
   };
 
@@ -99,7 +99,7 @@ export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) 
           checkpoints: item.checkpoints,
           sections: item.detailSections,
           faq: item.faq,
-          actionBox: item.actionBox,
+          actionBox: filterActionBoxForDiscovery(item.actionBox, linkIndex),
           sources: item.sources,
           updateText: `${item.updatedAt ? `${formatDateDot(item.updatedAt)}：` : ""}${humanizeUpdateReason(item.updateReason)}`,
           relatedItems,

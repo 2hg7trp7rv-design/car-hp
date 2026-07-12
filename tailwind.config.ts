@@ -33,7 +33,7 @@ const config: Config = {
         brand: { white: "#F4EFE7", vapor: "#211E1A", blue: "#8FA7B0", black: "#11110F", slate: "#8E867B", light: "#39342D" },
       },
       fontFamily: {
-        sans: ["var(--font-noto-sans-jp)", "var(--font-inter)", "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "system-ui", "sans-serif"],
+        sans: ["Zen Maru Gothic", "var(--font-noto-sans-jp)", "var(--font-inter)", "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "system-ui", "sans-serif"],
         serif: ["var(--font-noto-serif-jp)", "Hiragino Mincho ProN", "Yu Mincho", "ui-serif", "serif"],
         editorial: ["var(--font-cormorant)", "Georgia", "ui-serif", "serif"],
         mono: ["var(--font-geist-mono)", "SF Mono", "monospace"],

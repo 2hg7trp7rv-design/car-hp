@@ -19,18 +19,18 @@ import type { ArticleDesignPageProps, ArticleViewModel } from "@/types/article-d
 import styles from "@/components/articleDesignSystem/article-design-system.module.css";
 
 const DEFAULT_PALETTE = [
-  "#FF8C42",
-  "#8BC34A",
-  "#F06292",
-  "#42A5F5",
-  "#FFCA28",
-  "#AB47BC",
-  "#26A69A",
-  "#FF6B8A",
-  "#5C6BC0",
-  "#EF5350",
-  "#7CB342",
-  "#26C6DA",
+  "#007F7B",
+  "#277A5B",
+  "#9A6C00",
+  "#2F6F9F",
+  "#D49A12",
+  "#5C6F7B",
+  "#0ABAB5",
+  "#006E6B",
+  "#475A8A",
+  "#B23A3A",
+  "#538C3D",
+  "#198CA0",
 ];
 
 const KIMI_V15_HIGHLIGHTS: Record<string, string[]> = {};
@@ -175,10 +175,10 @@ export function CbjWorldArticlePage({ article, labels, linkIndex }: ArticleDesig
         <DialogueGroup items={article.articleDesign?.closingDialogue} />
         <ArticleBlockStack blocks={article.articleDesign?.closingBlocks} linkIndex={linkIndex} />
         <Checkpoints items={article.checkpoints} />
+        <FaqSection article={article} />
         <ActionBox article={article} />
         <AuthorCard article={article} />
         <RelatedSection article={article} labels={labels} />
-        <FaqSection article={article} />
         <SourcesSection article={article} labels={labels} />
       </div>
       <ArticleFooter labels={labels} />

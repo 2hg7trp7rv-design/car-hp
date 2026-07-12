@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-07-04T23:08:35.057Z",
+  "generatedAt": "2026-07-12T03:12:19.152Z",
   "summary": {
-    "total": 7,
+    "total": 8,
     "byType": {
-      "GUIDE": 6,
+      "GUIDE": 7,
       "COLUMN": 1
     },
-    "index": 2,
+    "index": 3,
     "noindex": 5,
     "draft": 0,
     "redirect": 0,
@@ -31,7 +31,7 @@
       "file": "data/articles/guides/aftermarket-air-cleaner-risk-guide.json",
       "publicState": "index",
       "metrics": {
-        "bodyLen": 17432
+        "bodyLen": 16126
       },
       "errors": [],
       "warnings": []
@@ -43,6 +43,17 @@
       "publicState": "noindex",
       "metrics": {
         "bodyLen": 0
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "type": "GUIDE",
+      "url": "/guide/coilover-beginner-decision-guide",
+      "file": "data/articles/guides/coilover-beginner-decision-guide.json",
+      "publicState": "index",
+      "metrics": {
+        "bodyLen": 13701
       },
       "errors": [],
       "warnings": []
@@ -86,7 +97,7 @@
       "file": "data/articles/columns/modern-car-custom-regret-reason-column.json",
       "publicState": "index",
       "metrics": {
-        "bodyLen": 12145
+        "bodyLen": 12051
       },
       "errors": [],
       "warnings": []

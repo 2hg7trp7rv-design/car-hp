@@ -82,7 +82,7 @@ export function ConsentBanner() {
             <button
               type="button"
               onClick={accept}
-              className="inline-flex min-h-[42px] items-center justify-center rounded-full border border-[rgba(122,135,108,0.24)] bg-[rgba(122,135,108,0.12)] px-4 text-[12px] font-semibold tracking-[0.08em] text-[var(--accent-strong)] transition hover:border-[rgba(122,135,108,0.34)] hover:bg-[rgba(122,135,108,0.18)]"
+              className="inline-flex min-h-[42px] items-center justify-center rounded-full border border-[rgba(10,186,181,0.26)] bg-[rgba(10,186,181,0.12)] px-4 text-[12px] font-semibold tracking-[0.08em] text-[var(--accent-strong)] transition hover:border-[rgba(10,186,181,0.42)] hover:bg-[rgba(10,186,181,0.18)]"
             >
               許可
             </button>

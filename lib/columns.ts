@@ -10,6 +10,7 @@ import {
   findColumnBySlug as repoFindColumnBySlug,
 } from "@/lib/repository/columns-repository";
 import { isRedirectSourcePath } from "@/lib/seo/redirects";
+import { isArticleDiscoverable } from "@/lib/content/discoverability";
 
 // 既存互換用のエクスポート
 export type ColumnItem = ColumnItemBase;
@@ -74,11 +75,11 @@ function uniqBySlug(items: ColumnItem[]): ColumnItem[] {
 }
 
 type ColumnIndex = {
-  // 公開済みコラム全件(公開日降順)
-  allPublishedSorted: ColumnItem[];
+  // 発見可能なコラム全件（index・本文あり／公開日降順）
+  allDiscoverableSorted: ColumnItem[];
   // 全件(ステータス問わず)
   allSorted: ColumnItem[];
-  // slug→1件（公開済みのみが入る）
+  // slug→1件（発見可能な記事のみが入る）
   bySlug: Map<string, ColumnItem>;
   // カテゴリ→配列
   byCategory: Map<ColumnCategory, ColumnItem[]>;
@@ -95,11 +96,11 @@ function buildColumnIndex(): ColumnIndex {
 
   const allSorted = [...rawAll].sort(compareByPublishedDesc);
 
-  // 公開済みのみ
-  const published = rawAll.filter((c) => isPublished(c.status));
+  // 一覧・検索・関連記事に出せる記事のみ
+  const discoverable = rawAll.filter((c) => isArticleDiscoverable(c));
 
   // 公開日降順
-  const sorted = [...published].sort(compareByPublishedDesc);
+  const sorted = [...discoverable].sort(compareByPublishedDesc);
 
   const bySlug = new Map<string, ColumnItem>();
   const byCategory = new Map<ColumnCategory, ColumnItem[]>();
@@ -145,7 +146,7 @@ function buildColumnIndex(): ColumnIndex {
   }
 
   return {
-    allPublishedSorted: sorted,
+    allDiscoverableSorted: sorted,
     allSorted,
     bySlug,
     byCategory,
@@ -170,9 +171,9 @@ export function __resetColumnCacheForTest(): void {
 // 公開API(Domain層)
 // ----------------------------------------
 
-// 全コラム一覧(公開済みのみ/公開日降順)
+// 発見可能なコラム一覧（index・本文あり／公開日降順）
 export async function getAllColumns(): Promise<ColumnItem[]> {
-  return ensureColumnIndex().allPublishedSorted;
+  return ensureColumnIndex().allDiscoverableSorted;
 }
 
 // 全件（ステータス問わず）
@@ -200,7 +201,7 @@ export async function getColumnBySlugIncludingNonPublished(
 
 // 最新n件を取得
 export async function getLatestColumns(limit: number): Promise<ColumnItem[]> {
-  const all = ensureColumnIndex().allPublishedSorted;
+  const all = ensureColumnIndex().allDiscoverableSorted;
   return all.slice(0, Math.max(0, limit));
 }
 
@@ -264,8 +265,8 @@ export async function getRelatedColumnsV12(
   base: ColumnItem,
   limit = 4,
 ): Promise<ColumnItem[]> {
-  const { allPublishedSorted } = ensureColumnIndex();
-  const pool = allPublishedSorted.filter((c) => c.slug !== base.slug);
+  const { allDiscoverableSorted } = ensureColumnIndex();
+  const pool = allDiscoverableSorted.filter((c) => c.slug !== base.slug);
 
   const picked: ColumnItem[] = [];
   const seen = new Set<string>();
@@ -350,12 +351,12 @@ export async function getRelatedColumns(
   base: ColumnItem,
   limit = 4,
 ): Promise<ColumnItem[]> {
-  const { allPublishedSorted } = ensureColumnIndex();
+  const { allDiscoverableSorted } = ensureColumnIndex();
 
   const baseTags = base.tags ?? [];
   const baseCategory = base.category ?? null;
 
-  const scored = allPublishedSorted
+  const scored = allDiscoverableSorted
     .filter((c) => c.id !== base.id)
     .map((c) => {
       let score = 0;
@@ -396,8 +397,8 @@ export async function getColumnsBySlugs(
   slugs: string[],
   limit?: number,
 ): Promise<ColumnItem[]> {
-  const { allPublishedSorted } = ensureColumnIndex();
-  const map = new Map(allPublishedSorted.map((c) => [c.slug, c] as const));
+  const { allDiscoverableSorted } = ensureColumnIndex();
+  const map = new Map(allDiscoverableSorted.map((c) => [c.slug, c] as const));
 
   const out: ColumnItem[] = [];
   const seen = new Set<string>();
@@ -429,14 +430,14 @@ export async function searchColumns(
   const limit = options?.limit ?? 20;
   const categoryFilter = options?.category;
 
-  const { allPublishedSorted } = ensureColumnIndex();
+  const { allDiscoverableSorted } = ensureColumnIndex();
 
   if (!q) {
     // キーワード未指定なら単純に最新からlimit件
-    return allPublishedSorted.slice(0, Math.max(0, limit));
+    return allDiscoverableSorted.slice(0, Math.max(0, limit));
   }
 
-  const results = allPublishedSorted
+  const results = allDiscoverableSorted
     .filter((c) => {
       if (categoryFilter && c.category !== categoryFilter) return false;
       return true;

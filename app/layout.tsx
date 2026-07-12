@@ -14,7 +14,6 @@ import { CBJ_SITE_DESCRIPTION } from "@/lib/brand/cbj-copy";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { SmoothScrollProvider } from "@/components/scroll/SmoothScrollProvider";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { AuthorProfileLinkEnhancer } from "@/components/seo/AuthorProfileLinkEnhancer";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { PageViewTracker } from "@/components/analytics/PageViewTracker";
 import { ConsentBanner } from "@/components/analytics/ConsentBanner";
@@ -124,8 +123,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </Suspense>
         <JsonLd id="jsonld-website" data={WEBSITE_JSON_LD} />
         <JsonLd id="jsonld-organization" data={ORGANIZATION_JSON_LD} />
-        <AuthorProfileLinkEnhancer />
-
         <SmoothScrollProvider>
           <SiteChrome>{children}</SiteChrome>
         </SmoothScrollProvider>

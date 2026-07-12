@@ -82,7 +82,13 @@ function getDecisionStats(item) {
   const actionLinks = Array.isArray(item?.actionBox?.actions)
     ? item.actionBox.actions.filter((action) => safeString(action?.label) && safeString(action?.href))
     : [];
-  const sources = normalizeStringList(item?.sources);
+  const sources = Array.isArray(item?.sources)
+    ? item.sources.filter((source) =>
+        typeof source === "string"
+          ? Boolean(safeString(source))
+          : Boolean(safeString(source?.url) && safeString(source?.title)),
+      )
+    : [];
 
   return {
     keyPointsCount: keyPoints.length,

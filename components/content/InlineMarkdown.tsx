@@ -1,4 +1,5 @@
 import { Fragment, type ReactNode } from "react";
+import Link from "next/link";
 
 type InlineToken =
   | { type: "text"; value: string }
@@ -160,9 +161,13 @@ export function renderInlineMarkdown(text: string): ReactNode {
 
         if (href.startsWith("/")) {
           return (
-            <span key={idx} className="font-medium text-[var(--text-primary)]">
+            <Link
+              key={idx}
+              href={href}
+              className="font-medium text-[var(--text-primary)] underline decoration-[rgba(122,135,108,0.42)] underline-offset-4 transition-colors duration-120 hover:text-[var(--accent-strong)] hover:decoration-[var(--accent-base)]"
+            >
               {label}
-            </span>
+            </Link>
           );
         }
 

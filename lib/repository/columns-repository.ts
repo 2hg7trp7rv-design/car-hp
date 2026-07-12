@@ -17,6 +17,7 @@ import { readColumnsJsonDir } from "./data-dir";
 import { coerceArticleDesign } from "@/lib/article/coerce-article-design";
 
 import type {
+  ArticleSource,
   ColumnItem,
   ColumnCategory,
   ContentStatus,
@@ -134,6 +135,30 @@ const asStringArray = (v: unknown): string[] => {
     return s.length > 0 ? [s] : [];
   }
   return [];
+};
+
+const asArticleSources = (v: unknown): ArticleSource[] => {
+  if (!Array.isArray(v)) return asStringArray(v);
+  const sources: ArticleSource[] = [];
+  for (const entry of v) {
+    if (typeof entry === "string") {
+      const url = entry.trim();
+      if (url) sources.push(url);
+      continue;
+    }
+    const record = asRecord(entry);
+    const url = record ? asString(record.url) : null;
+    const title = record ? asString(record.title) : null;
+    if (!url || !title) continue;
+    sources.push({
+      url,
+      title,
+      publisher: record ? asString(record.publisher) : null,
+      claim: record ? asString(record.claim) : null,
+      accessedAt: record ? asString(record.accessedAt) : null,
+    });
+  }
+  return sources;
 };
 
 const asOptionalStringArray = (v: unknown): string[] | undefined => {
@@ -554,7 +579,7 @@ function normalizeColumn(raw: RawColumnRecord, index: number): ColumnItem {
     relatedClusterIds: asStringArray(raw.relatedClusterIds),
     primaryQuery: asString(raw.primaryQuery) ?? (title ?? slug ?? ""),
     updateReason: asString(raw.updateReason) ?? "initial-import",
-    sources: asStringArray(raw.sources),
+    sources: asArticleSources(raw.sources),
 
     title,
     titleJa: titleJa ?? null,

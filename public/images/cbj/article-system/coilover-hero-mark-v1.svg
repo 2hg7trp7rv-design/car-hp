@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" role="img" aria-labelledby="title desc">
+  <title id="title">車高調のイラスト</title>
+  <desc id="desc">スプリングとダンパーが一体になった車高調を簡潔に表した図</desc>
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#0ABAB5"/>
+      <stop offset="1" stop-color="#006E6B"/>
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-30%" width="200%" height="180%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#003F3D" flood-opacity=".24"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <rect x="116" y="22" width="88" height="24" rx="12" fill="#F5FFFE" stroke="#005E5B" stroke-width="6"/>
+    <rect x="146" y="42" width="28" height="43" rx="12" fill="#D7F4F2" stroke="#005E5B" stroke-width="6"/>
+    <rect x="132" y="75" width="56" height="166" rx="24" fill="url(#body)" stroke="#004F4D" stroke-width="7"/>
+    <path d="M105 89h110M105 116h110M105 143h110M105 170h110M105 197h110" fill="none" stroke="#F5FFFE" stroke-width="12" stroke-linecap="round"/>
+    <path d="M111 89l-18 14 18 13-18 14 18 13-18 14 18 13-18 14 18 13" fill="none" stroke="#0ABAB5" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M209 89l18 14-18 13 18 14-18 13 18 14-18 13 18 14-18 13" fill="none" stroke="#0ABAB5" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="105" y="210" width="110" height="18" rx="9" fill="#D09A21" stroke="#7D5900" stroke-width="5"/>
+    <rect x="105" y="235" width="110" height="18" rx="9" fill="#F4C65B" stroke="#7D5900" stroke-width="5"/>
+    <rect x="139" y="250" width="42" height="48" rx="15" fill="#F5FFFE" stroke="#005E5B" stroke-width="6"/>
+    <circle cx="160" cy="276" r="8" fill="#0ABAB5"/>
+  </g>
+</svg>

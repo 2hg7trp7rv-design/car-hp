@@ -10,6 +10,7 @@ import {
   findGuideBySlug as repoFindGuideBySlug,
 } from "@/lib/repository/guides-repository";
 import { isRedirectSourcePath } from "@/lib/seo/redirects";
+import { isArticleDiscoverable } from "@/lib/content/discoverability";
 
 // 既存インポート互換用エクスポート
 export type GuideItem = GuideItemBase;
@@ -47,7 +48,7 @@ function compareByPublishedDesc(a: GuideItem, b: GuideItem): number {
 
 type GuideIndex = {
   allSorted: GuideItem[];
-  allPublishedSorted: GuideItem[];
+  allDiscoverableSorted: GuideItem[];
   bySlug: Map<string, GuideItem>;
   byCategory: Map<GuideCategory, GuideItem[]>;
 };
@@ -59,13 +60,13 @@ function buildGuideIndex(): GuideIndex {
 
   const allSorted = [...rawAll].sort(compareByPublishedDesc);
 
-  const published = rawAll.filter((g) => isPublished(g.status));
-  const publishedSorted = [...published].sort(compareByPublishedDesc);
+  const discoverable = rawAll.filter((g) => isArticleDiscoverable(g));
+  const discoverableSorted = [...discoverable].sort(compareByPublishedDesc);
 
   const bySlug = new Map<string, GuideItem>();
   const byCategory = new Map<GuideCategory, GuideItem[]>();
 
-  for (const g of publishedSorted) {
+  for (const g of discoverableSorted) {
     bySlug.set(g.slug, g);
 
     if (g.category) {
@@ -78,7 +79,7 @@ function buildGuideIndex(): GuideIndex {
 
   return {
     allSorted,
-    allPublishedSorted: publishedSorted,
+    allDiscoverableSorted: discoverableSorted,
     bySlug,
     byCategory,
   };
@@ -219,9 +220,9 @@ function rankRelatedGuidesFromPool(pool: GuideItem[], input: RankInputs): GuideI
 // 公開API(Domain層)
 // ----------------------------------------
 
-// 全GUIDE一覧(公開済みのみ/公開日降順)
+// 発見可能なGUIDE一覧（index・本文あり／公開日降順）
 export async function getAllGuides(): Promise<GuideItem[]> {
-  return ensureGuideIndex().allPublishedSorted;
+  return ensureGuideIndex().allDiscoverableSorted;
 }
 
 // 全GUIDE（ステータス問わず）
@@ -247,9 +248,9 @@ export async function getGuideBySlugIncludingNonPublished(
   return g ?? null;
 }
 
-// 最新n件
+// 発見可能な記事の最新n件
 export async function getLatestGuides(limit: number): Promise<GuideItem[]> {
-  const all = ensureGuideIndex().allPublishedSorted;
+  const all = ensureGuideIndex().allDiscoverableSorted;
   return all.slice(0, limit);
 }
 
@@ -277,8 +278,8 @@ export async function getRelatedGuidesV12(
   base: GuideItem,
   limit = 4,
 ): Promise<GuideItem[]> {
-  const { allPublishedSorted } = ensureGuideIndex();
-  const pool = allPublishedSorted.filter((g) => g.slug !== base.slug && g.publicState === "index" && g.noindex !== true);
+  const { allDiscoverableSorted } = ensureGuideIndex();
+  const pool = allDiscoverableSorted.filter((g) => g.slug !== base.slug);
 
   const result = rankRelatedGuidesFromPool(pool, {
     explicitSlugs: base.relatedGuideSlugs ?? [],
@@ -299,12 +300,12 @@ export async function getRelatedGuides(
   base: GuideItem,
   limit = 4,
 ): Promise<GuideItem[]> {
-  const { allPublishedSorted } = ensureGuideIndex();
+  const { allDiscoverableSorted } = ensureGuideIndex();
 
   const baseTags = base.tags ?? [];
   const baseCategory = base.category ?? null;
 
-  const scored = allPublishedSorted
+  const scored = allDiscoverableSorted
     .filter((g) => g.id !== base.id)
     .map((g) => {
       let score = 0;
@@ -342,8 +343,8 @@ export async function getGuidesBySlugs(
   slugs: string[],
   limit?: number,
 ): Promise<GuideItem[]> {
-  const { allPublishedSorted } = ensureGuideIndex();
-  const map = new Map(allPublishedSorted.map((g) => [g.slug, g] as const));
+  const { allDiscoverableSorted } = ensureGuideIndex();
+  const map = new Map(allDiscoverableSorted.map((g) => [g.slug, g] as const));
 
   const out: GuideItem[] = [];
   const seen = new Set<string>();
@@ -387,12 +388,12 @@ function scoreByKeywords(g: GuideItem, keywords: string[]): number {
 /**
  * HUB 用 Guide リスト
  * - kind ごとに、monetizeKey / category / tags / intentTags からスコアリング
- * - 公開済みのみ対象
+ * - 発見可能な記事のみ対象
  */
 export async function getGuidesForHub(
   inputs: HubGuideInputs,
 ): Promise<GuideItem[]> {
-  const { allPublishedSorted } = ensureGuideIndex();
+  const { allDiscoverableSorted } = ensureGuideIndex();
   const limit = Math.max(1, Math.min(24, inputs.limit ?? 12));
 
   const kind = inputs.kind;
@@ -420,7 +421,7 @@ export async function getGuidesForHub(
   const preferCats = new Set(preferredCategoriesByKind[kind]);
   const preferKeys = new Set(preferredMonetizeKeyByKind[kind]);
 
-  const scored = allPublishedSorted.map((g) => {
+  const scored = allDiscoverableSorted.map((g) => {
     let score = 0;
 
     if (g.category && preferCats.has(g.category as any)) score += 2;

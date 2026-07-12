@@ -177,7 +177,10 @@ export function TextWithInternalLinkCards({
   const { text: cleaned, internalHrefs } = extractInternalLinksFromText(text, {
     labelResolver: (href) => inlineLabelResolver(linkIndex, href),
   });
-  const hrefs = internalHrefs.filter(Boolean);
+  // Only article paths present in the public link index may become cards.
+  // The index is built from discoverable content, so noindex/title-only stubs
+  // cannot leak back into article navigation.
+  const hrefs = internalHrefs.filter((href) => Boolean(href && linkIndex[href]));
 
   const TextTag: any = as;
 

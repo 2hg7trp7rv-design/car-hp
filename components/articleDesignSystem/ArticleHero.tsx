@@ -8,7 +8,7 @@ import styles from "@/components/articleDesignSystem/article-design-system.modul
 const JUNA_IMAGE = "/images/cbj/article-system/juna-avatar.webp";
 const RINA_IMAGE = "/images/cbj/article-system/rina-avatar.webp";
 const CAR_IMAGE = "/images/cbj/article-system/car-illustration-transparent-v2.png";
-const DEFAULT_GRADIENT = ["#FF6B8A", "#FF8E53"] as const;
+const DEFAULT_GRADIENT = ["#006E6B", "#004F4D"] as const;
 const cx = (...values: Array<string | false | null | undefined>) => values.filter(Boolean).join(" ");
 
 export function ArticleHero({ article, kind }: { article: ArticleViewModel; kind: "COLUMN" | "GUIDE" }) {
@@ -63,4 +63,3 @@ export function ArticleHero({ article, kind }: { article: ArticleViewModel; kind
     </section>
   );
 }
-

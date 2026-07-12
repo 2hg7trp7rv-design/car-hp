@@ -242,8 +242,8 @@ function FigureBlock({
       )}
     >
       <picture className={styles.figurePicture}>
-        {MOBILE_FIGURE_SOURCES[block.src] ? (
-          <source media="(max-width: 560px)" srcSet={MOBILE_FIGURE_SOURCES[block.src]} />
+        {block.srcMobile || MOBILE_FIGURE_SOURCES[block.src] ? (
+          <source media="(max-width: 560px)" srcSet={block.srcMobile || MOBILE_FIGURE_SOURCES[block.src]} />
         ) : null}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -542,7 +542,7 @@ function DecisionCards({
   variant?: string | null;
 }) {
   const isMockSystem = variant === "mock-system";
-  const colors = ["#FF8C42", "#F06292", "#42A5F5"];
+  const colors = ["#007F7B", "#9A6C00", "#2F6F9F"];
   const icons = ["wind", "circleDot", "zap"] as const;
   return (
     <section

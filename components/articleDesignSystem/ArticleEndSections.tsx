@@ -2,23 +2,27 @@ import Link from "next/link";
 
 import { ArticleIcon } from "@/components/articleDesignSystem/icons";
 import { renderInlineMarkdown } from "@/components/content/InlineMarkdown";
+import type { ArticleSource } from "@/lib/content-types";
 import type { ArticlePageLabels, ArticleViewModel } from "@/types/article-design-system";
 
 import styles from "@/components/articleDesignSystem/article-design-system.module.css";
 
 function formatDateDot(value?: string | null): string {
   if (!value) return "";
+  const isoDate = value.match(/^(\d{4})-(\d{2})-(\d{2})(?:$|T)/u);
+  if (isoDate) return `${isoDate[1]}.${isoDate[2]}.${isoDate[3]}`;
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value.replace(/-/g, ".");
   return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
 }
 
 type SourceDisplay = {
+  url: string;
   title: string;
   meta: string;
 };
 
-const SOURCE_LABELS: Array<[RegExp, SourceDisplay]> = [
+const SOURCE_LABELS: Array<[RegExp, Omit<SourceDisplay, "url">]> = [
   [/naltec\.go\.jp\/faq\/0004\.html$/u, { title: "自動車技術総合機構｜後付け部品に関するFAQ", meta: "公的機関 / 装着状態での審査" }],
   [/naltec\.go\.jp\/faq\/0003\.html$/u, { title: "自動車技術総合機構｜保安基準・検査に関するFAQ", meta: "公的機関 / 検査・保安基準" }],
   [/mlit\.go\.jp\/.*\/huseikaizou\/h1\/h1-2\/?$/u, { title: "国土交通省｜不正改造防止に関する資料", meta: "公的機関 / 保安基準・不正改造" }],
@@ -61,17 +65,24 @@ const SOURCE_LABELS: Array<[RegExp, SourceDisplay]> = [
   [/fcc\.gov\/oet\/ea\/rfdevice$/u, { title: "FCC｜RF機器の認可制度", meta: "公的機関 / 電波機器認可" }],
 ];
 
-function sourceDisplay(value: string): SourceDisplay {
+function sourceDisplay(value: ArticleSource): SourceDisplay {
+  if (typeof value !== "string") {
+    return {
+      url: value.url,
+      title: value.title,
+      meta: [value.publisher, value.claim].filter(Boolean).join(" / ") || "参考資料",
+    };
+  }
   try {
     const url = new URL(value);
     const host = url.hostname.replace(/^www\./u, "");
     const path = url.pathname === "/" ? "" : url.pathname;
     const key = `${host}${path}${url.search}`;
     const matched = SOURCE_LABELS.find(([pattern]) => pattern.test(key));
-    if (matched) return matched[1];
-    return { title: host, meta: "参考資料" };
+    if (matched) return { url: value, ...matched[1] };
+    return { url: value, title: host, meta: "参考資料" };
   } catch {
-    return { title: value, meta: "参考資料" };
+    return { url: value, title: value, meta: "参考資料" };
   }
 }
 
@@ -104,9 +115,9 @@ export function ActionBox({ article }: { article: ArticleViewModel }) {
 export function AuthorCard({ article }: { article: ArticleViewModel }) {
   return (
     <section className={styles.authorCard}>
-      <div className={styles.authorIcon}><ArticleIcon name="person" /></div>
+      <div className={styles.authorIcon}><ArticleIcon name="book" /></div>
       <div>
-        <span>AUTHOR / EDITOR</span>
+        <span>EDITORIAL</span>
         <h2>{article.author.name}</h2>
         {article.author.credential ? <p>{article.author.credential}</p> : null}
         <dl>
@@ -159,9 +170,9 @@ export function SourcesSection({ article, labels }: { article: ArticleViewModel;
       {sources.length ? <ol>{sources.map((source, index) => {
         const display = sourceDisplay(source);
         return (
-          <li key={source}>
+          <li key={`${display.url}-${index}`}>
             <span>{String(index + 1).padStart(2, "0")}</span>
-            <a href={source} target="_blank" rel="noreferrer">
+            <a href={display.url} target="_blank" rel="noreferrer">
               <strong>{display.title}</strong>
               {display.meta ? <small>{display.meta}</small> : null}
             </a>
@@ -190,4 +201,3 @@ export function ArticleFooter({ labels }: { labels: ArticlePageLabels }) {
     </footer>
   );
 }
-

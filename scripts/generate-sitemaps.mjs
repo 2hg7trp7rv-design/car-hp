@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import fsSync from "node:fs";
 import path from "node:path";
+import { isArticleDiscoverable } from "./lib/article-publication.mjs";
 
 const ROOT = process.cwd();
 const DEFAULT_SITE_URL = "https://carboutiquejournal.com";
@@ -47,46 +48,6 @@ async function readArticleDir(relDir) {
     if (item && typeof item === "object") out.push({ ...item, __file: path.posix.join(relDir, name) });
   }
   return out;
-}
-
-function collectText(value, out = []) {
-  if (value == null) return out;
-  if (typeof value === "string") {
-    const s = value.trim();
-    if (s) out.push(s);
-    return out;
-  }
-  if (Array.isArray(value)) {
-    for (const item of value) collectText(item, out);
-    return out;
-  }
-  if (typeof value === "object") {
-    for (const item of Object.values(value)) collectText(item, out);
-  }
-  return out;
-}
-
-function isPublished(item) {
-  return !item?.status || String(item.status) === "published";
-}
-
-function isIndexAllowed(item) {
-  return Boolean(item?.slug) && isPublished(item) && String(item?.publicState ?? "").toLowerCase() === "index" && item?.noindex !== true;
-}
-
-function articleHasPublicBody(item) {
-  const text = collectText({
-    body: item?.body,
-    lead: item?.lead,
-    summary: item?.summary,
-    keyPoints: item?.keyPoints,
-    checkpoints: item?.checkpoints,
-    detailSections: item?.detailSections,
-    faq: item?.faq,
-    actionBox: item?.actionBox,
-    articleDesign: item?.articleDesign,
-  }).join("\n");
-  return text.trim().length > 0;
 }
 
 function articleLastmod(item) {
@@ -141,12 +102,12 @@ async function main() {
   ].filter((p) => !redirectSources.has(p));
 
   const guides = (await readArticleDir("data/articles/guides"))
-    .filter((item) => isIndexAllowed(item) && articleHasPublicBody(item))
+    .filter((item) => isArticleDiscoverable(item))
     .map((item) => ({ path: `/guide/${item.slug}`, lastmod: articleLastmod(item) }))
     .filter((entry) => !redirectSources.has(entry.path));
 
   const columns = (await readArticleDir("data/articles/columns"))
-    .filter((item) => isIndexAllowed(item) && articleHasPublicBody(item))
+    .filter((item) => isArticleDiscoverable(item))
     .map((item) => ({ path: `/column/${item.slug}`, lastmod: articleLastmod(item) }))
     .filter((entry) => !redirectSources.has(entry.path));
 

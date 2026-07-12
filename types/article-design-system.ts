@@ -1,5 +1,6 @@
 import type {
   ArticleDesignSpec,
+  ArticleSource,
   GuideActionBox,
   GuideAuthorProfile,
   GuideBreadcrumbItem,
@@ -44,7 +45,7 @@ export type ArticleViewModel = {
   sections?: GuideDetailSection[] | null;
   faq?: GuideFaqItem[] | null;
   actionBox?: GuideActionBox | null;
-  sources?: string[] | null;
+  sources?: ArticleSource[] | null;
   updateText?: string | null;
   relatedItems?: ArticleRelatedItem[] | null;
   heroImage?: string | null;

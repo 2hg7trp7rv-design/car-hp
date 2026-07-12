@@ -18,6 +18,7 @@ import { readGuidesJsonDir } from "./data-dir";
 import { coerceArticleDesign } from "@/lib/article/coerce-article-design";
 
 import type {
+  ArticleSource,
   ContentStatus,
   CtaVariant,
   GuideActionBox,
@@ -78,6 +79,9 @@ type RawGuideRecord = {
   createdAt?: string | null;
   publishedAt?: string | null;
   updatedAt?: string | null;
+  canonicalUrl?: unknown;
+  ogImageUrl?: unknown;
+  noindex?: unknown;
 
   tags?: unknown;
   displayTag?: unknown;
@@ -157,6 +161,31 @@ function coerceStringArray(value: unknown): string[] {
     return v.length > 0 ? [v] : [];
   }
   return [];
+}
+
+function coerceArticleSources(value: unknown): ArticleSource[] {
+  if (!Array.isArray(value)) return coerceStringArray(value);
+  const sources: ArticleSource[] = [];
+  for (const entry of value) {
+    if (typeof entry === "string") {
+      const url = entry.trim();
+      if (url) sources.push(url);
+      continue;
+    }
+    if (!entry || typeof entry !== "object") continue;
+    const record = entry as Record<string, unknown>;
+    const url = coerceString(record.url);
+    const title = coerceString(record.title);
+    if (!url || !title) continue;
+    sources.push({
+      url,
+      title,
+      publisher: coerceString(record.publisher),
+      claim: coerceString(record.claim),
+      accessedAt: coerceString(record.accessedAt),
+    });
+  }
+  return sources;
 }
 
 function coerceMatrix(value: unknown): string[][] {
@@ -453,6 +482,7 @@ function coerceGuideDetailBlocks(value: unknown): GuideDetailBlock[] {
       pushBlock({
         type: "image",
         src,
+        srcMobile: coerceString(rec.srcMobile) ?? coerceString(rec.mobileSrc),
         alt: coerceString(rec.alt) ?? "CAR BOUTIQUE JOURNAL editorial image",
         label: coerceString(rec.label),
         fit,
@@ -775,6 +805,10 @@ function normalizeGuide(raw: RawGuideRecord, index: number): GuideItem {
   const readMinutes = typeof raw.readMinutes === "number" ? raw.readMinutes : null;
   const heroImage = coerceString(raw.heroImage);
   const thumbnail = coerceString(raw.thumbnail);
+  const canonicalUrl = coerceString(raw.canonicalUrl);
+  const ogImageUrl = coerceString(raw.ogImageUrl);
+  const publicState = coercePublicState(raw.publicState, status);
+  const noindex = coerceBoolean(raw.noindex) ?? publicState === "noindex";
 
   const layoutVariant = (coerceString(raw.layoutVariant) ?? null) as GuideLayoutVariant | null;
   const eyebrowLabel = coerceString(raw.eyebrowLabel);
@@ -827,12 +861,12 @@ function normalizeGuide(raw: RawGuideRecord, index: number): GuideItem {
     slug,
     type: "GUIDE",
     status,
-    publicState: coercePublicState(raw.publicState, status),
+    publicState,
     parentPillarId: coerceString(raw.parentPillarId) ?? "/guide",
     relatedClusterIds: coerceStringArray(raw.relatedClusterIds),
     primaryQuery: coerceString(raw.primaryQuery) ?? title,
     updateReason: coerceString(raw.updateReason) ?? "initial-import",
-    sources: coerceStringArray(raw.sources),
+    sources: coerceArticleSources(raw.sources),
 
     title,
     titleJa,
@@ -863,6 +897,9 @@ function normalizeGuide(raw: RawGuideRecord, index: number): GuideItem {
     createdAt,
     publishedAt,
     updatedAt,
+    canonicalUrl,
+    ogImageUrl,
+    noindex,
 
     tags,
     displayTag,

@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { isArticleDiscoverable } from "./lib/article-publication.mjs";
 
 const ROOT = process.cwd();
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || "https://carboutiquejournal.com").replace(/\/+$/, "");
@@ -61,33 +62,6 @@ function locToPath(loc) {
   return normalizePath(url.pathname);
 }
 
-function isPublished(item) {
-  return !item?.status || String(item.status) === "published";
-}
-
-function isIndexAllowed(item) {
-  return Boolean(item?.slug) && isPublished(item) && safeString(item?.publicState).toLowerCase() === "index" && item?.noindex !== true;
-}
-
-function collectText(value, out = []) {
-  if (value == null) return out;
-  if (typeof value === "string") {
-    const s = value.trim();
-    if (s) out.push(s);
-    return out;
-  }
-  if (Array.isArray(value)) {
-    for (const item of value) collectText(item, out);
-    return out;
-  }
-  if (typeof value === "object") for (const item of Object.values(value)) collectText(item, out);
-  return out;
-}
-
-function articleHasContent(item) {
-  return collectText({ body: item?.body, lead: item?.lead, summary: item?.summary, detailSections: item?.detailSections, faq: item?.faq, actionBox: item?.actionBox, articleDesign: item?.articleDesign }).join("\n").trim().length > 0;
-}
-
 const VERCEL_ENV = (process.env.VERCEL_ENV || "").toLowerCase();
 const NODE_ENV = (process.env.NODE_ENV || "").toLowerCase();
 const isExplicitPreviewOrDev = (VERCEL_ENV && VERCEL_ENV !== "production") || (!VERCEL_ENV && NODE_ENV === "development");
@@ -130,7 +104,7 @@ for (const group of ARTICLE_GROUPS) {
     const item = readJson(file);
     if (!item?.slug) continue;
     const p = `${group.prefix}/${item.slug}`;
-    const shouldIndex = isIndexAllowed(item) && articleHasContent(item);
+    const shouldIndex = isArticleDiscoverable(item);
     const inSitemap = allSitemapPaths.has(p);
     if (shouldIndex && !inSitemap) missing.push(`${file} -> ${p}`);
     if (!shouldIndex && inSitemap) unexpected.push(`${file} -> ${p}`);

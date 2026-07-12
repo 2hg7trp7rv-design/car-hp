@@ -3,6 +3,7 @@
 
 import { getAllColumns } from "@/lib/columns";
 import { getAllGuides } from "@/lib/guides";
+import type { GuideActionBox } from "@/lib/content-types";
 
 export type InternalLinkKind = "GUIDE" | "COLUMN" | "PAGE";
 
@@ -53,4 +54,31 @@ export function inferKindFromHref(href: string): InternalLinkKind {
   if (h.startsWith("/guide")) return "GUIDE";
   if (h.startsWith("/column")) return "COLUMN";
   return "PAGE";
+}
+
+function normalizedArticleDetailHref(raw: string): string | null {
+  const href = String(raw ?? "").trim().split("#")[0]?.split("?")[0] ?? "";
+  if (!/^\/(guide|column)\/[^/]+\/?$/u.test(href)) return null;
+  return href.replace(/\/+$/u, "");
+}
+
+export function isDiscoverableArticleHref(
+  href: string,
+  linkIndex: Record<string, InternalLinkMeta>,
+): boolean {
+  const articleHref = normalizedArticleDetailHref(href);
+  return !articleHref || Boolean(linkIndex[articleHref]);
+}
+
+/** Defense in depth for data-driven NEXT ACTION links. */
+export function filterActionBoxForDiscovery(
+  actionBox: GuideActionBox | null | undefined,
+  linkIndex: Record<string, InternalLinkMeta>,
+): GuideActionBox | null {
+  if (!actionBox) return null;
+  const actions = actionBox.actions.filter(
+    (action) => action.external === true || isDiscoverableArticleHref(action.href, linkIndex),
+  );
+  if (actions.length === 0) return null;
+  return { ...actionBox, actions };
 }

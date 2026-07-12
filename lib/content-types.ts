@@ -15,6 +15,16 @@ export type PublicState = "index" | "noindex" | "draft" | "redirect";
 // ----------------------------------------
 export type ContentType = "GUIDE" | "COLUMN" | string;
 
+export type ArticleSource =
+  | string
+  | {
+      url: string;
+      title: string;
+      publisher?: string | null;
+      claim?: string | null;
+      accessedAt?: string | null;
+    };
+
 // ----------------------------------------
 // 共通メタ(BaseContentMeta)
 // ----------------------------------------
@@ -42,7 +52,7 @@ export type BaseContentMeta = {
   /** 更新理由（例: "initial-import" / "pricing-update"） */
   updateReason: string;
   /** 参照元（一次情報URLなど） */
-  sources: string[];
+  sources: ArticleSource[];
 
   title: string;
 
@@ -308,6 +318,8 @@ type GuideDetailBlockCore =
   | {
       type: "image";
       src: string;
+      /** Optional portrait/mobile composition selected by the picture element. */
+      srcMobile?: string | null;
       alt: string;
       label?: string | null;
       fit?: "cover" | "contain" | "bleed" | "articleWide" | null;

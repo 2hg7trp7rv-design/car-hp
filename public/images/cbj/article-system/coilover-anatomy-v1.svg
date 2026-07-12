@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">車高調の基本構成</title>
+  <desc id="desc">スプリング、ダンパー、調整部、取り付け部を一体で確認する図</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFFDF9"/><stop offset="1" stop-color="#EDFAF8"/></linearGradient>
+    <linearGradient id="damper" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#0ABAB5"/><stop offset="1" stop-color="#006E6B"/></linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#315C59" flood-opacity=".15"/></filter>
+    <style>text{font-family:"Zen Maru Gothic","Hiragino Sans","Yu Gothic",sans-serif;fill:#202726}.h{font-size:44px;font-weight:700}.sub{font-size:22px;fill:#52605E}.card{font-size:28px;font-weight:700}.body{font-size:18px;fill:#52605E}.num{font-size:18px;font-weight:700;fill:#fff}.note{font-size:22px;font-weight:700;fill:#005E5B}</style>
+  </defs>
+  <rect width="1280" height="720" rx="42" fill="url(#bg)"/>
+  <text x="640" y="70" text-anchor="middle" class="h">車高調は「バネ」と「揺れを抑える部品」を一緒に見る</text>
+  <text x="640" y="108" text-anchor="middle" class="sub">高さだけでなく、動き方・調整範囲・取り付け状態までが一つのセット</text>
+  <g transform="translate(112 145)" filter="url(#shadow)">
+    <rect x="92" y="0" width="132" height="30" rx="15" fill="#fff" stroke="#005E5B" stroke-width="6"/>
+    <rect x="142" y="26" width="32" height="58" rx="14" fill="#D6F2F0" stroke="#005E5B" stroke-width="6"/>
+    <rect x="126" y="72" width="64" height="310" rx="28" fill="url(#damper)" stroke="#004F4D" stroke-width="7"/>
+    <path d="M85 94h146M85 139h146M85 184h146M85 229h146M85 274h146" stroke="#fff" stroke-width="13" stroke-linecap="round"/>
+    <path d="M89 94L63 116l26 23-26 22 26 23-26 22 26 23-26 22 26 23" fill="none" stroke="#0ABAB5" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M227 94l26 22-26 23 26 22-26 23 26 22-26 23 26 22-26 23" fill="none" stroke="#0ABAB5" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="74" y="294" width="168" height="24" rx="12" fill="#D09A21" stroke="#7D5900" stroke-width="5"/>
+    <rect x="74" y="326" width="168" height="24" rx="12" fill="#F4C65B" stroke="#7D5900" stroke-width="5"/>
+    <rect x="132" y="374" width="52" height="92" rx="17" fill="#fff" stroke="#005E5B" stroke-width="7"/>
+    <circle cx="158" cy="433" r="10" fill="#0ABAB5"/>
+  </g>
+  <g transform="translate(485 150)">
+    <g filter="url(#shadow)"><rect width="680" height="112" rx="24" fill="#fff" stroke="#0ABAB5" stroke-width="3"/><circle cx="56" cy="56" r="28" fill="#006E6B"/><text x="56" y="63" text-anchor="middle" class="num">01</text><text x="105" y="40" class="card">スプリング</text><text x="105" y="70" class="body"><tspan x="105">車体を支え、縮んだあとに戻ろうとする。</tspan><tspan x="105" dy="24">硬さだけで乗り心地は決まらない。</tspan></text></g>
+    <g transform="translate(0 132)" filter="url(#shadow)"><rect width="680" height="112" rx="24" fill="#fff" stroke="#0ABAB5" stroke-width="3"/><circle cx="56" cy="56" r="28" fill="#006E6B"/><text x="56" y="63" text-anchor="middle" class="num">02</text><text x="105" y="40" class="card">ダンパー</text><text x="105" y="70" class="body"><tspan x="105">スプリングの揺れを収める。減衰力調整は便利でも、</tspan><tspan x="105" dy="24">乗り心地を自由に作る万能なつまみではない。</tspan></text></g>
+    <g transform="translate(0 264)" filter="url(#shadow)"><rect width="680" height="112" rx="24" fill="#fff" stroke="#C49422" stroke-width="3"/><circle cx="56" cy="56" r="28" fill="#9A6C00"/><text x="56" y="63" text-anchor="middle" class="num">03</text><text x="105" y="40" class="card">車高・スプリング調整部</text><text x="105" y="70" class="body"><tspan x="105">製品構造によって調整方法が違う。車高とプリロードを</tspan><tspan x="105" dy="24">同じものとして扱わない。</tspan></text></g>
+    <g transform="translate(0 396)" filter="url(#shadow)"><rect width="680" height="112" rx="24" fill="#fff" stroke="#55706D" stroke-width="3"/><circle cx="56" cy="56" r="28" fill="#3F5D59"/><text x="56" y="63" text-anchor="middle" class="num">04</text><text x="105" y="40" class="card">取り付け部・周辺部品</text><text x="105" y="70" class="body"><tspan x="105">アッパーマウント、ブッシュ、リンク、タイヤとの</tspan><tspan x="105" dy="24">組み合わせまで装着状態で確認する。</tspan></text></g>
+  </g>
+  <rect x="176" y="650" width="928" height="46" rx="23" fill="#DDF5F3"/><text x="640" y="680" text-anchor="middle" class="note">車高調＝低くする部品、だけではない。車を支え、動かし、揺れを収める部品。</text>
+</svg>

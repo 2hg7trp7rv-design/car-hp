@@ -5,8 +5,14 @@ import { ArticleFooter } from "@/components/articleDesignSystem/ArticleEndSectio
 import type { ArticlePageLabels, ArticleRelatedItem } from "@/types/article-design-system";
 import type { GuideItem } from "@/lib/content-types";
 import type { InternalLinkMeta } from "@/lib/content/internal-link-index";
+import { filterActionBoxForDiscovery } from "@/lib/content/internal-link-index";
 import { getSiteUrl } from "@/lib/site";
 import { humanizeUpdateReason } from "@/lib/update-reason";
+import {
+  cbjEditorialOrganizationJsonLd,
+  resolveVerifiedArticleAuthor,
+} from "@/lib/brand/editorial-identity";
+import { hasSubstantiveArticleContent } from "@/lib/content/discoverability";
 
 type Props = {
   guide: GuideItem;
@@ -16,6 +22,8 @@ type Props = {
 
 function formatDateDot(iso?: string | null): string {
   if (!iso) return "";
+  const isoDate = iso.match(/^(\d{4})-(\d{2})-(\d{2})(?:$|T)/u);
+  if (isoDate) return `${isoDate[1]}.${isoDate[2]}.${isoDate[3]}`;
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return "";
   return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
@@ -52,36 +60,8 @@ function categoryLabel(guide: GuideItem): string {
   }
 }
 
-function resolveAuthorProfile(guide: GuideItem) {
-  if (guide.authorProfile?.name) return guide.authorProfile;
-  return {
-    kind: "person" as const,
-    name: "山田太郎",
-    credential: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者",
-  };
-}
-
-
-function hasItems<T>(items?: T[] | null): boolean {
-  return Array.isArray(items) && items.length > 0;
-}
-
-function hasText(value?: string | null): boolean {
-  return typeof value === "string" && value.trim().length > 0;
-}
-
 function isTitleOnlyGuide(guide: GuideItem): boolean {
-  return (
-    !hasText(guide.lead) &&
-    !hasText(guide.body) &&
-    !hasItems(guide.keyPoints) &&
-    !hasItems(guide.checkpoints) &&
-    !hasItems(guide.detailSections) &&
-    !hasItems(guide.faq) &&
-    !guide.actionBox &&
-    !guide.articleDesign &&
-    !hasItems(guide.sources)
-  );
+  return !hasSubstantiveArticleContent(guide);
 }
 
 function relatedMetaLabel(guide: GuideItem): string {
@@ -95,8 +75,7 @@ export function GuideEditorialArticlePage({ guide, related, linkIndex }: Props) 
   const breadcrumbTrail = guide.breadcrumbTrail && guide.breadcrumbTrail.length > 0
     ? guide.breadcrumbTrail
     : [{ label: "ホーム", href: "/" }, { label: "ガイド", href: "/guide" }, { label: guide.title }];
-  const authorProfile = resolveAuthorProfile(guide);
-  const authorPageUrl = `${siteUrl}/legal/about`;
+  const authorProfile = resolveVerifiedArticleAuthor(guide.authorProfile);
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -122,10 +101,7 @@ export function GuideEditorialArticlePage({ guide, related, linkIndex }: Props) 
     inLanguage: "ja",
     datePublished: guide.publishedAt,
     dateModified: guide.updatedAt,
-    author: authorProfile.kind === "organization"
-      ? { "@type": "Organization", name: authorProfile.name, url: siteUrl }
-      : { "@type": "Person", name: authorProfile.name, jobTitle: authorProfile.credential ?? undefined, url: authorPageUrl },
-    reviewedBy: { "@type": "Person", name: "山田太郎", jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者", url: authorPageUrl },
+    author: cbjEditorialOrganizationJsonLd(siteUrl),
     publisher: { "@type": "Organization", name: "CAR BOUTIQUE JOURNAL", url: siteUrl, logo: { "@type": "ImageObject", url: `${siteUrl}/icon-512x512.png` } },
   };
 
@@ -193,7 +169,7 @@ export function GuideEditorialArticlePage({ guide, related, linkIndex }: Props) 
           checkpoints: guide.checkpoints,
           sections: guide.detailSections,
           faq: guide.faq,
-          actionBox: guide.actionBox,
+          actionBox: filterActionBoxForDiscovery(guide.actionBox, linkIndex),
           sources: guide.sources,
           updateText: guide.updateReason ? `${guide.updatedAt ? `${formatDateDot(guide.updatedAt)}：` : ""}${humanizeUpdateReason(guide.updateReason)}` : null,
           relatedItems,

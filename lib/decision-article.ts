@@ -1,4 +1,4 @@
-import type { ColumnItem, GuideItem } from "@/lib/content-types";
+import type { ArticleSource, ColumnItem, GuideItem } from "@/lib/content-types";
 
 export const DECISION_COLUMN_MIN = {
   bodyLen: 1200,
@@ -56,7 +56,7 @@ function getDecisionStats(item: {
   faq?: Array<{ question: string; answer: string }> | null;
   detailSections?: Array<{ title: string; blocks: unknown[] }> | null;
   actionBox?: { title: string; actions: Array<{ label: string; href: string }> } | null;
-  sources?: string[] | null;
+  sources?: ArticleSource[] | null;
 } | null | undefined): DecisionStats {
   const keyPoints = normalizeStringList(item?.keyPoints);
   const checkpoints = normalizeStringList(item?.checkpoints);
@@ -76,7 +76,7 @@ function getDecisionStats(item: {
   const actionLinks = Array.isArray(item?.actionBox?.actions)
     ? item.actionBox.actions.filter((action) => safeString(action?.label) && safeString(action?.href))
     : [];
-  const sources = normalizeStringList(item?.sources);
+  const sources = Array.isArray(item?.sources) ? item.sources.filter(Boolean) : [];
 
   return {
     keyPointsCount: keyPoints.length,
@@ -270,4 +270,3 @@ export function getDecisionGuideAuditBody(guide: GuideItem): string {
   if (rawBody) return rawBody;
   return buildDecisionBody(guide);
 }
-

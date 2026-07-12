@@ -6,6 +6,10 @@
 
 import type { ColumnItem, GuideItem, PublicState } from "@/lib/content-types";
 import {
+  hasSubstantiveArticleContent,
+  isArticleDiscoverable,
+} from "@/lib/content/discoverability";
+import {
   countDecisionMarkdownHeadings,
   getDecisionColumnAuditBody,
   getDecisionGuideAuditBody,
@@ -66,14 +70,14 @@ export function evaluateColumnIndexability(column: ColumnItem): IndexabilityResu
   if (!slug) reasons.push("missing:slug");
   if (!title) reasons.push("missing:title");
 
-  const { state, allowIndex } = evaluatePolicyGate(column, reasons);
+  const { state } = evaluatePolicyGate(column, reasons);
   const bodyLen = body.length;
   const headings = isDecisionColumn(column) ? countDecisionMarkdownHeadings(body) : countMarkdownHeadings(body);
 
-  if (bodyLen === 0) reasons.push("empty:body");
+  if (!hasSubstantiveArticleContent(column)) reasons.push("empty:body");
 
   return {
-    indexable: Boolean(slug) && Boolean(title) && allowIndex && bodyLen > 0,
+    indexable: isArticleDiscoverable(column),
     reasons,
     metrics: { slug, state, bodyLen, headings },
   };
@@ -94,14 +98,14 @@ export function evaluateGuideIndexability(guide: GuideItem): IndexabilityResult 
   if (!slug) reasons.push("missing:slug");
   if (!title) reasons.push("missing:title");
 
-  const { state, allowIndex } = evaluatePolicyGate(guide, reasons);
+  const { state } = evaluatePolicyGate(guide, reasons);
   const bodyLen = body.length;
   const headings = isDecisionGuide(guide) ? countDecisionMarkdownHeadings(body) : countMarkdownHeadings(body);
 
-  if (bodyLen === 0) reasons.push("empty:body");
+  if (!hasSubstantiveArticleContent(guide)) reasons.push("empty:body");
 
   return {
-    indexable: Boolean(slug) && Boolean(title) && allowIndex && bodyLen > 0,
+    indexable: isArticleDiscoverable(guide),
     reasons,
     metrics: { slug, state, bodyLen, headings },
   };

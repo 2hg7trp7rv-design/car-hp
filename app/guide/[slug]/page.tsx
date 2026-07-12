@@ -3,37 +3,16 @@ import { notFound } from "next/navigation";
 
 import { GuideEditorialArticlePage } from "@/components/guide/detail/GuideEditorialArticlePage";
 import { getInternalLinkIndex } from "@/lib/content/internal-link-index";
-import { getAllGuides, getGuideBySlug, getRelatedGuidesV12, type GuideItem } from "@/lib/guides";
+import { getAllGuides, getGuideBySlug, getRelatedGuidesV12 } from "@/lib/guides";
 import { getSiteUrl } from "@/lib/site";
 import { resolveOgImageUrl } from "@/lib/public-assets";
 import { buildGuideDescription, buildGuideTitleBase, withBrand } from "@/lib/seo/serp";
 import { isIndexableGuide } from "@/lib/seo/indexability";
 import { INDEX_ROBOTS, NOINDEX_ROBOTS } from "@/lib/seo/robots";
+import { hasSubstantiveArticleContent } from "@/lib/content/discoverability";
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
-
-function hasText(value?: string | null): boolean {
-  return typeof value === "string" && value.trim().length > 0;
-}
-
-function hasItems<T>(items?: T[] | null): boolean {
-  return Array.isArray(items) && items.length > 0;
-}
-
-function isTitleOnlyGuide(guide: GuideItem): boolean {
-  return (
-    !hasText(guide.lead) &&
-    !hasText(guide.body) &&
-    !hasItems(guide.keyPoints) &&
-    !hasItems(guide.checkpoints) &&
-    !hasItems(guide.detailSections) &&
-    !hasItems(guide.faq) &&
-    !guide.actionBox &&
-    !guide.articleDesign &&
-    !hasItems(guide.sources)
-  );
-}
 
 export async function generateStaticParams() {
   const guides = await getAllGuides();
@@ -56,7 +35,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const titleFull = withBrand(titleBase);
   const description = buildGuideDescription(guide);
   const url = `${getSiteUrl()}/guide/${encodeURIComponent(guide.slug)}`;
-  const rawImage = ((guide as any).ogImageUrl ?? guide.heroImage ?? guide.thumbnail ?? null) as string | null;
+  const rawImage = guide.ogImageUrl ?? guide.heroImage ?? guide.thumbnail ?? null;
   const image = resolveOgImageUrl(rawImage, getSiteUrl());
 
   return {
@@ -74,7 +53,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
   const guide = await getGuideBySlug(slug);
   if (!guide) notFound();
 
-  const titleOnly = isTitleOnlyGuide(guide);
+  const titleOnly = !hasSubstantiveArticleContent(guide);
   const related = titleOnly ? [] : await getRelatedGuidesV12(guide, 3);
   const linkIndex = titleOnly ? {} : await getInternalLinkIndex();
 
