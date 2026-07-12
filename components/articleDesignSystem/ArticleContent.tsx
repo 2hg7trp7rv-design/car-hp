@@ -542,7 +542,7 @@ function DecisionCards({
   variant?: string | null;
 }) {
   const isMockSystem = variant === "mock-system";
-  const colors = ["#007F7B", "#9A6C00", "#2F6F9F"];
+  const colors = ["#FF8C42", "#F06292", "#42A5F5"];
   const icons = ["wind", "circleDot", "zap"] as const;
   return (
     <section

@@ -881,12 +881,12 @@
     "layoutPreset": "cbj-shared-editorial-v1",
     "lessonNumber": 18,
     "difficulty": "初級〜中級",
-    "heroGradient": ["#006E6B", "#004F4D"],
+    "heroGradient": ["#0ABAB5", "#078C8A"],
     "heroTitle": "社外エアークリーナーって\n実際どうなの？",
     "heroLead": "圧倒的な吸気音に憧れる前に知っておきたいエアークリーナーのこと",
     "heroPromise": "吸気音の楽しさと、熱・水・MAFセンサー・固定で後悔しないための見方を、自分の言葉で説明できるようになる。",
-    "heroCenterImage": "/images/cbj/article-system/air-cleaner-hero-mark-v1.svg",
-    "sectionPalette": ["#006E6B", "#277A5B", "#9A6C00", "#2F6F9F", "#007F7B"],
+    "heroCenterImage": "/images/cbj/article-system/air-cleaner-position-v4.svg",
+    "sectionPalette": ["#0ABAB5", "#078C8A", "#12C7C1", "#5CCFCA", "#2AA7A3"],
     "introDialogue": [
       {
         "character": "juna",

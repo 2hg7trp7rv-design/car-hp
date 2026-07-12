@@ -26,7 +26,7 @@ const article: ArticleViewModel = {
     difficulty: "開発用",
     heroTitle: "記事デザインの\n部品カタログ",
     heroLead: "文字だけを差し替える固定テンプレートではなく、意味に合うデザインを箱から選ぶ。",
-    heroGradient: ["#006E6B", "#004F4D"],
+    heroGradient: ["#FF6B8A", "#FF8E53"],
     introDialogue: [
       { character: "juna", text: "カードを使う場所も、会話の数も、記事ごとに変えていいんだよね。", variant: "lead", motion: "fade-left" },
       { character: "rina", text: "そう。内容の役割を先に決めて、その役割に合う部品を選ぶための一覧だよ。", variant: "bubble", motion: "fade-right" },
@@ -146,7 +146,7 @@ const flowItems = sections.map((section, index) => ({
   id: section.id,
   number: String(index + 1).padStart(2, "0"),
   title: section.displayTitle,
-  color: ["#007F7B", "#9A6C00", "#2F6F9F"][index],
+  color: ["#FF8C42", "#8BC34A", "#42A5F5"][index],
 }));
 
 const dialogues = {

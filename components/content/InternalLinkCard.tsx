@@ -25,22 +25,22 @@ function badgeLabel(kind: InternalLinkKind): string {
 function worldAccent(kind: InternalLinkKind): string {
   switch (kind) {
     case "GUIDE":
-      return "border-l-[#0ABAB5] bg-white hover:border-[#0ABAB5]/45";
+      return "border-l-[#26A69A] bg-white hover:border-[#26A69A]/45";
     case "COLUMN":
-      return "border-l-[#006E6B] bg-white hover:border-[#006E6B]/45";
+      return "border-l-[#FF4081] bg-white hover:border-[#FF4081]/45";
     default:
-      return "border-l-[#9A6C00] bg-white hover:border-[#9A6C00]/45";
+      return "border-l-[#FF8C42] bg-white hover:border-[#FF8C42]/45";
   }
 }
 
 function worldBadge(kind: InternalLinkKind): string {
   switch (kind) {
     case "GUIDE":
-      return "bg-[#E7F8F7] text-[#006E6B]";
+      return "bg-[#E8F5F3] text-[#168F84]";
     case "COLUMN":
-      return "bg-[#E3F5F3] text-[#005E5B]";
+      return "bg-[#FFF0F3] text-[#E63170]";
     default:
-      return "bg-[#FFF8E6] text-[#7A5A14]";
+      return "bg-[#FFF3E9] text-[#E8752E]";
   }
 }
 
@@ -64,7 +64,7 @@ export function InternalLinkCard({ href, title, kind, className, variant = "defa
             {title}
           </p>
           <span
-            className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#E7F8F7] text-[16px] text-[#006E6B] transition group-hover:translate-x-[2px] group-hover:bg-[#006E6B] group-hover:text-white"
+            className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#FFF3E9] text-[16px] text-[#FF8C42] transition group-hover:translate-x-[2px] group-hover:bg-[#FF8C42] group-hover:text-white"
             aria-hidden
           >
             →
@@ -79,7 +79,7 @@ export function InternalLinkCard({ href, title, kind, className, variant = "defa
       href={href}
       className={cn(
         "group block overflow-hidden rounded-[24px] border border-[var(--border-default)] bg-[rgba(251,248,243,0.88)] p-4 shadow-soft-card transition",
-        "hover:-translate-y-[1px] hover:border-[rgba(10,186,181,0.34)] hover:bg-[rgba(251,248,243,0.96)]",
+        "hover:-translate-y-[1px] hover:border-[rgba(122,135,108,0.32)] hover:bg-[rgba(251,248,243,0.96)]",
         className,
       )}
     >

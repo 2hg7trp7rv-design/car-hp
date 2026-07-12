@@ -115,9 +115,9 @@ export function ActionBox({ article }: { article: ArticleViewModel }) {
 export function AuthorCard({ article }: { article: ArticleViewModel }) {
   return (
     <section className={styles.authorCard}>
-      <div className={styles.authorIcon}><ArticleIcon name="book" /></div>
+      <div className={styles.authorIcon}><ArticleIcon name="person" /></div>
       <div>
-        <span>EDITORIAL</span>
+        <span>AUTHOR / EDITOR</span>
         <h2>{article.author.name}</h2>
         {article.author.credential ? <p>{article.author.credential}</p> : null}
         <dl>

@@ -154,20 +154,20 @@
     "lessonNumber": 19,
     "difficulty": "初級〜中級",
     "heroGradient": [
-      "#006E6B",
-      "#004F4D"
+      "#0ABAB5",
+      "#078C8A"
     ],
     "heroTitle": "車高調って\n実際どうなの？",
     "heroLead": "ダウンサスとの違い、乗り心地、段差、アライメント。低さだけでは決められない車高調のこと。",
     "heroPromise": "欲しい見た目と守りたい日常を分けて、自分に車高調が必要かを順番に判断できるようになる。",
     "heroCenterImage": "/images/cbj/article-system/coilover-hero-mark-v1.svg",
     "sectionPalette": [
-      "#006E6B",
-      "#007F7B",
-      "#0A8F8A",
-      "#7A5A14",
-      "#3F5D59",
-      "#006E6B"
+      "#0ABAB5",
+      "#078C8A",
+      "#12C7C1",
+      "#5CCFCA",
+      "#2AA7A3",
+      "#0ABAB5"
     ],
     "introDialogue": [
       {

@@ -842,9 +842,9 @@
     "version": "cbj-world-v1",
     "lessonNumber": 17,
     "difficulty": "初級〜中級",
-    "heroGradient": ["#006E6B", "#004F4D"],
+    "heroGradient": ["#FF6B8A", "#FF8E53"],
     "heroCenterImage": "/images/cbj/article-system/car-illustration-transparent-v2.png",
-    "sectionPalette": ["#006E6B", "#277A5B", "#9A6C00", "#2F6F9F", "#007F7B"],
+    "sectionPalette": ["#FF8C42", "#8BC34A", "#F06292", "#42A5F5", "#FFCA28"],
     "introDialogue": [
       {
         "character": "juna",

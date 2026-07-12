@@ -17,7 +17,7 @@
   --font-noto-serif-jp: "Noto Serif JP";
 
   /* ------ Fonts ------ */
-  --font-sans: "Zen Maru Gothic", var(--font-noto-sans-jp), var(--font-inter),
+  --font-sans: var(--font-noto-sans-jp), var(--font-inter),
     "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
   --font-editorial: var(--font-cormorant), "Georgia", ui-serif, serif;
   --font-serif: var(--font-noto-serif-jp),
@@ -34,8 +34,8 @@
   --surface-1: #FBF8F3;
   --surface-2: #EEE7DE;
   --surface-3: #E4DBCF;
-  --surface-moss: #E3F5F3;
-  --surface-clay: #F3EBDD;
+  --surface-moss: #E4EBE0;
+  --surface-clay: #F1E2D8;
   --surface-slate: #E5EBEF;
   --footer-bg: #1F1C19;
   --footer-surface: #2A2520;
@@ -48,19 +48,19 @@
   --text-secondary: #4C453D;
   --text-tertiary: #6B655D;
 
-  --accent-base: #0ABAB5;
-  --accent-strong: #006E6B;
-  --accent-subtle: rgba(10, 186, 181, 0.12);
-  --accent-clay: #9A6C00;
+  --accent-base: #7A876C;
+  --accent-strong: #5E6A52;
+  --accent-subtle: rgba(122, 135, 108, 0.12);
+  --accent-clay: #C07C59;
   --accent-slate: #8798A6;
   --accent-taupe: #8D7E72;
 
-  --state-success: #277A5B;
-  --state-warning: #9A6C00;
-  --state-danger: #B23A3A;
+  --state-success: #7A876C;
+  --state-warning: #C07C59;
+  --state-danger: #AE6B5B;
 
   /* Legacy compat */
-  --cb-tiffany: 10 186 181;
+  --cb-tiffany: 122 135 108;
   --cb-porcelain: 251 248 243;
   --cb-ink: 31 28 25;
 
@@ -87,7 +87,7 @@ html {
 body {
   background-color: var(--bg-stage);
   color: var(--text-primary);
-  font-family: var(--font-sans) !important;
+  font-family: var(--font-sans);
   line-height: 1.9;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -216,7 +216,7 @@ a {
 }
 
 .cb-card:hover {
-  border-color: rgba(10, 186, 181, 0.4);
+  border-color: rgba(122, 135, 108, 0.4);
   transform: translateY(-2px);
 }
 
