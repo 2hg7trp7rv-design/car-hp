@@ -201,20 +201,25 @@ function coerceMatrix(value: unknown): string[][] {
   return rows;
 }
 
+const ALLOWED_CONTENT_STATUS = new Set<ContentStatus>(["draft", "published", "archived"]);
 const ALLOWED_PUBLIC_STATE = new Set(["index", "noindex", "draft", "redirect"]);
+
+function coerceContentStatus(val: unknown): ContentStatus {
+  return typeof val === "string" && ALLOWED_CONTENT_STATUS.has(val as ContentStatus)
+    ? (val as ContentStatus)
+    : "draft";
+}
 
 function coercePublicState(
   val: unknown,
-  status: ContentStatus,
 ): "index" | "noindex" | "draft" | "redirect" {
   const s = coerceString(val);
   if (s && ALLOWED_PUBLIC_STATE.has(s)) {
     return s as "index" | "noindex" | "draft" | "redirect";
   }
-  // published は原則 index。明示 publicState がある場合だけ上で尊重する。
-  // publicState 入れ忘れで公開記事が noindex になる事故を防ぐ。
-  if (status !== "published") return "draft";
-  return "index";
+  // Publication fields are fail-closed. The Registry reports the raw error;
+  // the repository fallback only prevents bypassing consumers from publishing.
+  return "draft";
 }
 
 function coerceRecordOfString(value: unknown): Record<string, string> | null {
@@ -461,6 +466,39 @@ function coerceGuideDetailBlocks(value: unknown): GuideDetailBlock[] {
     const presentation = coerceBlockPresentation(rec.presentation);
     const pushBlock = (block: GuideDetailBlock) => out.push({ ...block, presentation });
 
+    if (type === "dialogue") {
+      const character = coerceString(rec.character);
+      const text = coerceString(rec.text);
+      if ((character !== "juna" && character !== "rina") || !text) continue;
+      const variantRaw = coerceString(rec.variant);
+      const variant =
+        variantRaw === "bubble" ||
+        variantRaw === "lead" ||
+        variantRaw === "aside" ||
+        variantRaw === "compact"
+          ? variantRaw
+          : null;
+      const motionRaw = coerceString(rec.motion);
+      const motion =
+        motionRaw === "none" ||
+        motionRaw === "fade-up" ||
+        motionRaw === "fade-left" ||
+        motionRaw === "fade-right" ||
+        motionRaw === "scale-in"
+          ? motionRaw
+          : null;
+      pushBlock({
+        type: "dialogue",
+        character,
+        text,
+        variant,
+        image: coerceString(rec.image),
+        label: coerceString(rec.label),
+        motion,
+      });
+      continue;
+    }
+
     if (type === "paragraph") {
       const text = coerceString(rec.text);
       const flowRaw = coerceString(rec.flow);
@@ -651,6 +689,8 @@ function coerceGuideDetailSections(value: unknown): GuideDetailSection[] | null 
 
 function blockText(block: GuideDetailBlock): string[] {
   switch (block.type) {
+    case "dialogue":
+      return [block.text];
     case "paragraph":
       return [block.text];
     case "image":
@@ -784,7 +824,7 @@ function monetizeTypeCompat(value: string): MonetizeType | null {
 function normalizeGuide(raw: RawGuideRecord, index: number): GuideItem {
   const id = coerceString(raw.id) ?? `guide-${index + 1}`;
   const slug = coerceString(raw.slug) ?? id;
-  const status: ContentStatus = raw.status ?? "published";
+  const status = coerceContentStatus(raw.status);
 
   const title = coerceString(raw.title) ?? slug;
   const titleJa = raw.titleJa ?? null;
@@ -807,8 +847,8 @@ function normalizeGuide(raw: RawGuideRecord, index: number): GuideItem {
   const thumbnail = coerceString(raw.thumbnail);
   const canonicalUrl = coerceString(raw.canonicalUrl);
   const ogImageUrl = coerceString(raw.ogImageUrl);
-  const publicState = coercePublicState(raw.publicState, status);
-  const noindex = coerceBoolean(raw.noindex) ?? publicState === "noindex";
+  const publicState = coercePublicState(raw.publicState);
+  const noindex = coerceBoolean(raw.noindex) ?? true;
 
   const layoutVariant = (coerceString(raw.layoutVariant) ?? null) as GuideLayoutVariant | null;
   const eyebrowLabel = coerceString(raw.eyebrowLabel);

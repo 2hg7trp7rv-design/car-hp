@@ -36,10 +36,11 @@ function stableNoise(seed: string, slug: string): number {
 
 function isVisibleIndexable(item: MaybeIndexable): boolean {
   if (!item?.slug) return false;
-  if (item.status && item.status !== "published") return false;
-  if (item.publicState && item.publicState !== "index") return false;
-  if (item.noindex === true) return false;
-  return true;
+  return (
+    item.status === "published" &&
+    item.publicState === "index" &&
+    item.noindex === false
+  );
 }
 
 export function pickRelatedSameGroup<T extends MaybeIndexable>(

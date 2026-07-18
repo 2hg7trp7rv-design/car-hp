@@ -6,14 +6,19 @@ import { usePathname } from "next/navigation";
 import Navigation from "@/app/components/Navigation";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 
-type SiteChromeProps = { children: ReactNode };
+type SiteChromeProps = {
+  children: ReactNode;
+  editorialPaths: readonly string[];
+};
 
-const isEditorialArticlePath = (pathname: string) =>
-  /^\/(?:guide|column)\/[^/]+\/?$/.test(pathname) || pathname === "/article-system-preview";
-
-export function SiteChrome({ children }: SiteChromeProps) {
+export function SiteChrome({ children, editorialPaths }: SiteChromeProps) {
   const pathname = usePathname();
-  const editorialArticle = isEditorialArticlePath(pathname);
+  // The URL shape alone cannot prove that an article exists. On an unknown
+  // /guide/:slug or /column/:slug, the server renders a 404 while the browser
+  // still sees the requested pathname; guessing from a regex therefore causes
+  // the two trees to disagree during hydration. The server-owned publication
+  // Registry supplies the exact paths that may use article chrome.
+  const editorialArticle = editorialPaths.includes(pathname.replace(/\/$/u, ""));
 
   if (pathname === "/") {
     return (

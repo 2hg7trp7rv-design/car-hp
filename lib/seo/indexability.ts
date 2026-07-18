@@ -33,7 +33,7 @@ function countMarkdownHeadings(body: string): number {
 }
 
 function isPublished(status?: string | null): boolean {
-  return !status || status === "published";
+  return status === "published";
 }
 
 function getPublicState(item: { publicState?: unknown } | null | undefined): PublicState | null {
@@ -48,14 +48,15 @@ function evaluatePolicyGate(
 ): { published: boolean; state: PublicState | null; allowIndex: boolean } {
   const published = isPublished(item?.status ?? null);
   const explicitState = getPublicState(item);
-  const state: PublicState = explicitState ?? (published ? "index" : "draft");
+  const state = explicitState;
 
   if (!published) reasons.push("status:not_published");
-  if (!explicitState) reasons.push("missing:publicState:auto_index");
+  if (!explicitState) reasons.push("missing:publicState");
   if (state !== "index") reasons.push(`publicState:${state}`);
   if (item?.noindex === true) reasons.push("flag:noindex");
+  if (item?.noindex !== true && item?.noindex !== false) reasons.push("missing:noindex");
 
-  const allowIndex = published && state === "index" && item?.noindex !== true;
+  const allowIndex = published && state === "index" && item?.noindex === false;
   return { published, state, allowIndex };
 }
 

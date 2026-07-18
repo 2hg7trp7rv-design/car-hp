@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "approvals": [
+    {
+      "type": "GUIDE",
+      "slug": "aftermarket-air-cleaner-risk-guide",
+      "disposition": "public"
+    },
+    {
+      "type": "GUIDE",
+      "slug": "coilover-beginner-decision-guide",
+      "disposition": "public"
+    },
+    {
+      "type": "COLUMN",
+      "slug": "modern-car-custom-regret-reason-column",
+      "disposition": "public"
+    },
+    {
+      "type": "GUIDE",
+      "slug": "adas-lowered-car-aiming-risk-guide",
+      "disposition": "preview"
+    },
+    {
+      "type": "GUIDE",
+      "slug": "car-suspension-hard-soft-merit-demerit",
+      "disposition": "preview"
+    },
+    {
+      "type": "GUIDE",
+      "slug": "electronic-damper-coilover-risk-guide",
+      "disposition": "preview"
+    },
+    {
+      "type": "GUIDE",
+      "slug": "tv-canceller-can-risk-guide",
+      "disposition": "preview"
+    },
+    {
+      "type": "GUIDE",
+      "slug": "used-custom-car-check-guide",
+      "disposition": "preview"
+    }
+  ]
+}

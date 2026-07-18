@@ -1,13 +1,13 @@
 import type { ArticleLike } from "@/lib/content-types";
+import {
+  evaluatePublicationContract,
+  hasSubstantivePublicationContent,
+} from "@/lib/content/publication-contract";
 
 type DiscoveryCandidate = Pick<
   ArticleLike,
   "slug" | "title" | "status" | "publicState" | "noindex" | "body" | "detailSections"
 >;
-
-function hasText(value: unknown): boolean {
-  return typeof value === "string" && value.trim().length > 0;
-}
 
 /**
  * Returns true only when an article contains an actual readable body.
@@ -18,33 +18,16 @@ function hasText(value: unknown): boolean {
 export function hasSubstantiveArticleContent(
   item: Pick<DiscoveryCandidate, "body" | "detailSections"> | null | undefined,
 ): boolean {
-  if (!item) return false;
-  if (hasText(item.body)) return true;
-
-  return (item.detailSections ?? []).some(
-    (section) =>
-      hasText(section?.title) &&
-      Array.isArray(section?.blocks) &&
-      section.blocks.some(Boolean),
-  );
+  return hasSubstantivePublicationContent(item);
 }
 
 /**
- * Single policy used by archives, search, site maps, recommendations and
- * generated CTA/link indexes. Direct routes intentionally do not use this
- * predicate, so a published noindex placeholder can still be previewed by URL.
+ * Compatibility predicate. The actual decision belongs to the shared
+ * publication contract; archives, search and related content consume Registry
+ * output, while this remains for SEO diagnostics and legacy call sites.
  */
 export function isArticleDiscoverable(
   item: DiscoveryCandidate | null | undefined,
 ): boolean {
-  if (!item) return false;
-
-  return (
-    hasText(item.slug) &&
-    hasText(item.title) &&
-    item.status === "published" &&
-    item.publicState === "index" &&
-    item.noindex !== true &&
-    hasSubstantiveArticleContent(item)
-  );
+  return evaluatePublicationContract(item).disposition === "public";
 }

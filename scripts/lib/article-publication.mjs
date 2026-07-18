@@ -25,7 +25,7 @@ export function isArticleDiscoverable(item) {
     safeString(item?.title) &&
     item?.status === "published" &&
     item?.publicState === "index" &&
-    item?.noindex !== true &&
+    item?.noindex === false &&
     hasSubstantiveArticleContent(item),
   );
 }

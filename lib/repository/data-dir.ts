@@ -37,10 +37,9 @@ function readStaticJsonDir<T = unknown>(cacheKey: KnownJsonDir, absDir: string):
       const parsed = JSON.parse(raw) as T;
       list.push(parsed);
     } catch (err) {
-      // 1ファイルの壊れで全体が落ちると運用が止まるため、ログだけ出してスキップ
-      // （audit / prebuild で検出して落とす）
-      // eslint-disable-next-line no-console
-      console.error(`[readJsonDir] Failed to read: ${cacheKey}/${file}`, err);
+      // A partial content set is more dangerous than a failed build: silently
+      // skipping one file can remove a route while every remaining page builds.
+      throw new Error(`[readJsonDir] Failed to read: ${cacheKey}/${file}`, { cause: err });
     }
   }
 

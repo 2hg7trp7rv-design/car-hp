@@ -471,19 +471,18 @@ const asNumberOrNull = (v: unknown): number | null => {
 const asContentStatus = (v: unknown): ContentStatus => {
   const s = asString(v);
   if (s === "draft" || s === "published" || s === "archived") return s;
-  return "published";
+  return "draft";
 };
 
 const ALLOWED_PUBLIC_STATE = new Set(["index", "noindex", "draft", "redirect"]);
 
-const asPublicState = (v: unknown, status: ContentStatus, noindex?: boolean): any => {
+const asPublicState = (v: unknown): "index" | "noindex" | "draft" | "redirect" => {
   const s = asString(v);
-  if (s && ALLOWED_PUBLIC_STATE.has(s)) return s;
-  // published は原則 index。明示 publicState / noindex がある場合だけ除外する。
-  // publicState 入れ忘れで公開記事が noindex になる事故を防ぐ。
-  if (status !== "published") return "draft";
-  if (noindex) return "noindex";
-  return "index";
+  if (s && ALLOWED_PUBLIC_STATE.has(s)) {
+    return s as "index" | "noindex" | "draft" | "redirect";
+  }
+  // Never infer indexability from another field.
+  return "draft";
 };
 
 
@@ -529,7 +528,7 @@ function normalizeColumn(raw: RawColumnRecord, index: number): ColumnItem {
 
   const canonicalUrl = asString(raw.canonicalUrl);
   const ogImageUrl = asString(raw.ogImageUrl);
-  const noindex = asBooleanOrUndefined(raw.noindex);
+  const noindex = asBooleanOrUndefined(raw.noindex) ?? true;
 
   const category: ColumnCategory =
     (asString(raw.category) as ColumnCategory) ?? "TECHNICAL";
@@ -574,7 +573,7 @@ function normalizeColumn(raw: RawColumnRecord, index: number): ColumnItem {
     slug,
     type: "COLUMN",
     status,
-    publicState: asPublicState(raw.publicState, status, noindex),
+    publicState: asPublicState(raw.publicState),
     parentPillarId: asString(raw.parentPillarId) ?? "/column",
     relatedClusterIds: asStringArray(raw.relatedClusterIds),
     primaryQuery: asString(raw.primaryQuery) ?? (title ?? slug ?? ""),

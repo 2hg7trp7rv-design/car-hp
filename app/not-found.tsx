@@ -10,6 +10,7 @@ import { StatusPanel } from "@/components/system/StatusPanel";
 export const metadata: Metadata = {
   title: "404｜ページが見つかりません",
   description: "指定されたページが見つかりませんでした。",
+  alternates: { canonical: null },
   robots: NOINDEX_ROBOTS,
 };
 

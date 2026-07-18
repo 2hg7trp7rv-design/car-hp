@@ -3,14 +3,15 @@
 import type {
   GuideItem as GuideItemBase,
   GuideCategory as GuideCategoryBase,
-  ContentStatus,
 } from "@/lib/content-types";
 import {
   findAllGuides,
   findGuideBySlug as repoFindGuideBySlug,
 } from "@/lib/repository/guides-repository";
-import { isRedirectSourcePath } from "@/lib/seo/redirects";
-import { isArticleDiscoverable } from "@/lib/content/discoverability";
+import {
+  __resetArticleRegistryForTest,
+  getArticleRegistry,
+} from "@/lib/content/article-registry";
 
 // 既存インポート互換用エクスポート
 export type GuideItem = GuideItemBase;
@@ -19,10 +20,6 @@ export type GuideCategory = GuideCategoryBase;
 // ----------------------------------------
 // 内部ユーティリティ
 // ----------------------------------------
-
-function isPublished(status: ContentStatus): boolean {
-  return status === "published";
-}
 
 function toTime(value?: string | null): number {
   if (!value) return 0;
@@ -56,12 +53,10 @@ type GuideIndex = {
 let guideIndexCache: GuideIndex | null = null;
 
 function buildGuideIndex(): GuideIndex {
-  const rawAll = findAllGuides().filter((g) => !isRedirectSourcePath("/guide/" + g.slug));
+  const rawAll = findAllGuides();
 
   const allSorted = [...rawAll].sort(compareByPublishedDesc);
-
-  const discoverable = rawAll.filter((g) => isArticleDiscoverable(g));
-  const discoverableSorted = [...discoverable].sort(compareByPublishedDesc);
+  const discoverableSorted = [...getArticleRegistry().publicGuides].sort(compareByPublishedDesc);
 
   const bySlug = new Map<string, GuideItem>();
   const byCategory = new Map<GuideCategory, GuideItem[]>();
@@ -95,6 +90,7 @@ function ensureGuideIndex(): GuideIndex {
 // App Routerのホットリロードなどで再構築したい場合に備えたリセット関数(今は未使用)
 export function __resetGuideCacheForTest(): void {
   guideIndexCache = null;
+  __resetArticleRegistryForTest();
 }
 
 // ----------------------------------------
@@ -233,11 +229,8 @@ export async function getAllGuidesIncludingNonPublished(): Promise<GuideItem[]> 
 
 // slug指定で1件取得(公開済みのみ)
 export async function getGuideBySlug(slug: string): Promise<GuideItem | null> {
-  const index = ensureGuideIndex();
-  const guide = index.bySlug.get(slug) ?? repoFindGuideBySlug(slug);
-  if (!guide) return null;
-  if (!isPublished(guide.status)) return null;
-  return guide;
+  const entry = getArticleRegistry().getRouteEntry("GUIDE", slug);
+  return entry?.article.type === "GUIDE" ? (entry.article as GuideItem) : null;
 }
 
 // slug指定で1件取得（非公開も許可）

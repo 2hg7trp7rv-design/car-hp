@@ -14,6 +14,12 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
+// Only Registry-approved public slugs are emitted by generateStaticParams.
+// Reject every other slug at the router boundary to avoid streamed soft-404s.
+// Next.js currently logs a false-positive NoFallbackError for rejected params
+// (vercel/next.js#90537), but the strict 404 boundary remains the safer policy.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const guides = await getAllGuides();
   return guides.map((guide) => ({ slug: guide.slug }));

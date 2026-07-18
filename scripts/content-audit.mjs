@@ -41,7 +41,7 @@ async function readJson(rel) {
 }
 
 function isPublished(item) {
-  return !item?.status || String(item.status) === "published";
+  return String(item?.status ?? "") === "published";
 }
 
 function publicState(item) {
@@ -81,16 +81,24 @@ for (const group of ARTICLE_GROUPS) {
       errors.push(`JSON parse failed: ${error.message}`);
       item = {};
     }
+    if (!item || typeof item !== "object" || Array.isArray(item)) {
+      errors.push("article file must contain exactly one JSON object");
+      item = {};
+    }
 
     const slug = asString(item?.slug);
     const title = asString(item?.title);
-    const state = publicState(item) || (isPublished(item) ? "index" : "draft");
+    const state = publicState(item);
     const text = contentText(item);
     const bodyLen = text.length;
     const url = slug ? `${group.prefix}/${slug}` : group.prefix;
 
     if (!slug) errors.push("missing slug");
     if (!title) errors.push("missing title");
+    if (!Object.prototype.hasOwnProperty.call(item, "status")) errors.push("missing status");
+    if (!Object.prototype.hasOwnProperty.call(item, "publicState")) errors.push("missing publicState");
+    if (!Object.prototype.hasOwnProperty.call(item, "noindex")) errors.push("missing noindex");
+    else if (typeof item.noindex !== "boolean") errors.push("noindex must be boolean");
     if (!isPublished(item)) warnings.push("status is not published");
     if (!["index", "noindex", "draft", "redirect"].includes(state)) errors.push(`invalid publicState: ${state}`);
     if (state === "index" && bodyLen === 0) errors.push("index article has no public body");

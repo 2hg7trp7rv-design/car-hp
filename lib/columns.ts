@@ -3,14 +3,15 @@
 import type {
   ColumnItem as ColumnItemBase,
   ColumnCategory as ColumnCategoryBase,
-  ContentStatus,
 } from "@/lib/content-types";
 import {
   findAllColumns,
   findColumnBySlug as repoFindColumnBySlug,
 } from "@/lib/repository/columns-repository";
-import { isRedirectSourcePath } from "@/lib/seo/redirects";
-import { isArticleDiscoverable } from "@/lib/content/discoverability";
+import {
+  __resetArticleRegistryForTest,
+  getArticleRegistry,
+} from "@/lib/content/article-registry";
 
 // 既存互換用のエクスポート
 export type ColumnItem = ColumnItemBase;
@@ -19,10 +20,6 @@ export type ColumnCategory = ColumnCategoryBase;
 // ----------------------------------------
 // 内部ユーティリティ
 // ----------------------------------------
-
-function isPublished(status: ContentStatus): boolean {
-  return status === "published";
-}
 
 // 日付→timestamp(数値)に正規化
 function toTime(value?: string | null): number {
@@ -92,15 +89,10 @@ type ColumnIndex = {
 let columnIndexCache: ColumnIndex | null = null;
 
 function buildColumnIndex(): ColumnIndex {
-  const rawAll = findAllColumns().filter((c) => !isRedirectSourcePath("/column/" + c.slug));
+  const rawAll = findAllColumns();
 
   const allSorted = [...rawAll].sort(compareByPublishedDesc);
-
-  // 一覧・検索・関連記事に出せる記事のみ
-  const discoverable = rawAll.filter((c) => isArticleDiscoverable(c));
-
-  // 公開日降順
-  const sorted = [...discoverable].sort(compareByPublishedDesc);
+  const sorted = [...getArticleRegistry().publicColumns].sort(compareByPublishedDesc);
 
   const bySlug = new Map<string, ColumnItem>();
   const byCategory = new Map<ColumnCategory, ColumnItem[]>();
@@ -165,6 +157,7 @@ function ensureColumnIndex(): ColumnIndex {
 // テストや将来の再構築用
 export function __resetColumnCacheForTest(): void {
   columnIndexCache = null;
+  __resetArticleRegistryForTest();
 }
 
 // ----------------------------------------
@@ -184,11 +177,8 @@ export async function getAllColumnsIncludingNonPublished(): Promise<ColumnItem[]
 // slug指定で1件取得(公開済みのみ)
 // ※非公開や存在しないslugはnull
 export async function getColumnBySlug(slug: string): Promise<ColumnItem | null> {
-  const index = ensureColumnIndex();
-  const column = index.bySlug.get(slug) ?? repoFindColumnBySlug(slug);
-  if (!column) return null;
-  if (!isPublished(column.status)) return null;
-  return column;
+  const entry = getArticleRegistry().getRouteEntry("COLUMN", slug);
+  return entry?.article.type === "COLUMN" ? (entry.article as ColumnItem) : null;
 }
 
 // slug指定で1件取得（非公開も許可）

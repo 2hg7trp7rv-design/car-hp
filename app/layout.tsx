@@ -18,6 +18,7 @@ import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { PageViewTracker } from "@/components/analytics/PageViewTracker";
 import { ConsentBanner } from "@/components/analytics/ConsentBanner";
 import { fontVariables } from "./fonts";
+import { getArticleRegistry } from "@/lib/content/article-registry";
 
 const BRAND = "CAR BOUTIQUE JOURNAL";
 const BRAND_DESC = CBJ_SITE_DESCRIPTION;
@@ -110,6 +111,11 @@ const ORGANIZATION_JSON_LD = {
 type RootLayoutProps = { children: ReactNode };
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  const editorialPaths = getArticleRegistry().publicArticles.map((article) =>
+    `${article.type === "GUIDE" ? "/guide" : "/column"}/${article.slug}`,
+  );
+  if (process.env.NODE_ENV !== "production") editorialPaths.push("/article-system-preview");
+
   return (
     <html lang="ja" className={fontVariables}>
       <body className="overflow-x-hidden bg-[var(--bg-stage)] font-sans text-[var(--text-primary)] antialiased">
@@ -124,7 +130,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <JsonLd id="jsonld-website" data={WEBSITE_JSON_LD} />
         <JsonLd id="jsonld-organization" data={ORGANIZATION_JSON_LD} />
         <SmoothScrollProvider>
-          <SiteChrome>{children}</SiteChrome>
+          <SiteChrome editorialPaths={editorialPaths}>{children}</SiteChrome>
         </SmoothScrollProvider>
       </body>
     </html>

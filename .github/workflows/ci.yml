@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - codex
+  pull_request:
+    branches:
+      - codex
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CI: "true"
+  NEXT_TELEMETRY_DISABLED: "1"
+  npm_config_audit: "false"
+  npm_config_fund: "false"
+
+defaults:
+  run:
+    shell: bash --noprofile --norc -euo pipefail {0}
+
+jobs:
+  build:
+    name: Build and verify generated files
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+          show-progress: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: package-lock.json
+          check-latest: false
+
+      - name: Set up npm 10
+        run: |
+          npm install --global npm@10.9.4
+          node -e 'if (Number(process.versions.node.split(".")[0]) !== 22) process.exit(1)'
+          npm --version | grep -E '^10\.'
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build and verify generated files
+        run: npm run ci

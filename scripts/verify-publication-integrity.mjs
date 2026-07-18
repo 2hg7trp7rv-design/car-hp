@@ -22,6 +22,8 @@ const ALLOWED_AUTHOR_NAMES = new Set(["CAR BOUTIQUE JOURNAL 編集部"]);
 const RASTER_EXTENSIONS = new Set([".avif", ".jpg", ".jpeg", ".png", ".webp"]);
 const SOURCE_DIRS = ["app", "components", "lib", "data"];
 const SOURCE_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".json"]);
+const CONTENT_STATUSES = new Set(["draft", "published", "archived"]);
+const PUBLIC_STATES = new Set(["index", "noindex", "draft", "redirect"]);
 const errors = [];
 
 function fail(file, message) {
@@ -73,9 +75,26 @@ async function verifyOgImage(record) {
 
 const records = await listArticleRecords(ROOT);
 const discoverablePaths = new Set(records.filter((record) => isArticleDiscoverable(record.item)).map(articlePath));
+const slugOwners = new Map();
+
+for (const record of records) {
+  const slug = safeString(record.item?.slug);
+  if (!slug) continue;
+  const owners = slugOwners.get(slug) ?? [];
+  owners.push(record.file);
+  slugOwners.set(slug, owners);
+}
+
+for (const [slug, owners] of slugOwners) {
+  if (owners.length > 1) fail(owners.join(", "), `duplicate slug is forbidden: ${slug}`);
+}
 
 for (const record of records) {
   const { item, file, group, name } = record;
+  if (!item || typeof item !== "object" || Array.isArray(item)) {
+    fail(file, "article file must contain exactly one JSON object");
+    continue;
+  }
   const expectedSlug = name.replace(/\.json$/u, "");
   const tag = safeString(item?.displayTag);
 
@@ -83,7 +102,35 @@ for (const record of records) {
   if (safeString(item?.slug) !== expectedSlug) fail(file, `filename and slug differ (${expectedSlug} != ${safeString(item?.slug)})`);
   if (tag && !ALLOWED_DISPLAY_TAGS.has(tag)) fail(file, `unknown displayTag: ${tag}`);
 
-  const claimsIndex = item?.status === "published" && item?.publicState === "index" && item?.noindex !== true;
+  const hasStatus = Object.prototype.hasOwnProperty.call(item, "status");
+  const hasPublicState = Object.prototype.hasOwnProperty.call(item, "publicState");
+  const hasNoindex = Object.prototype.hasOwnProperty.call(item, "noindex");
+  if (!hasStatus) fail(file, "status must be explicit");
+  else if (!CONTENT_STATUSES.has(item.status)) fail(file, `invalid status: ${String(item.status)}`);
+  if (!hasPublicState) fail(file, "publicState must be explicit");
+  else if (!PUBLIC_STATES.has(item.publicState)) fail(file, `invalid publicState: ${String(item.publicState)}`);
+  if (!hasNoindex) fail(file, "noindex must be explicit");
+  else if (typeof item.noindex !== "boolean") fail(file, "noindex must be a boolean");
+
+  if (
+    hasStatus && CONTENT_STATUSES.has(item.status) &&
+    hasPublicState && PUBLIC_STATES.has(item.publicState) &&
+    hasNoindex && typeof item.noindex === "boolean"
+  ) {
+    const coherentState =
+      (item.status === "published" && item.publicState === "index" && item.noindex === false) ||
+      (item.status === "published" && item.publicState === "noindex" && item.noindex === true) ||
+      ((item.status === "draft" || item.status === "archived") && item.publicState === "draft" && item.noindex === true) ||
+      (item.status === "archived" && item.publicState === "redirect" && item.noindex === true);
+    if (!coherentState) {
+      fail(
+        file,
+        `inconsistent publication state: status=${item.status}, publicState=${item.publicState}, noindex=${String(item.noindex)}`,
+      );
+    }
+  }
+
+  const claimsIndex = item?.status === "published" && item?.publicState === "index" && item?.noindex === false;
   if (claimsIndex && !hasSubstantiveArticleContent(item)) fail(file, "index article has no substantive body/detailSections");
 
   if (isArticleDiscoverable(item)) {

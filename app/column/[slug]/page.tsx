@@ -15,6 +15,12 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
+// Preview/private records require a future protected preview route. They must
+// never fall through this public dynamic route in production.
+// Next.js currently logs a false-positive NoFallbackError for rejected params
+// (vercel/next.js#90537), but the strict 404 boundary remains the safer policy.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const columns = await getAllColumns();
   return columns.map((column) => ({ slug: column.slug }));
