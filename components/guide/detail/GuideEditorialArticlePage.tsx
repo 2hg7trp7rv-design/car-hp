@@ -1,9 +1,13 @@
 import { JsonLd } from "@/components/seo/JsonLd";
 import { KintoJsonArticlePage } from "@/components/editorialArticle/KintoJsonArticlePage";
+import { GuideMonetizeBlock } from "@/components/guide/GuideMonetizeBlock";
+import { MonetizePrBadge } from "@/components/monetize/MonetizePrBadge";
 import type { EditorialArticleLabels, EditorialRelatedItem } from "@/components/editorialArticle/EditorialArticlePage";
 import type { GuideItem } from "@/lib/content-types";
 import type { InternalLinkMeta } from "@/lib/content/internal-link-index";
 import { getSiteUrl } from "@/lib/site";
+import { getOperator } from "@/lib/operator";
+import { canRenderGuideMonetizeBlock } from "@/lib/monetize";
 import { humanizeUpdateReason } from "@/lib/update-reason";
 
 type Props = {
@@ -52,10 +56,11 @@ function categoryLabel(guide: GuideItem): string {
 
 function resolveAuthorProfile(guide: GuideItem) {
   if (guide.authorProfile?.name) return guide.authorProfile;
+  const operator = getOperator();
   return {
     kind: "person" as const,
-    name: "山田太郎",
-    credential: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者",
+    name: operator.name,
+    credential: operator.credential,
   };
 }
 
@@ -71,7 +76,13 @@ export function GuideEditorialArticlePage({ guide, related, linkIndex }: Props) 
     ? guide.breadcrumbTrail
     : [{ label: "ホーム", href: "/" }, { label: "ガイド", href: "/guide" }, { label: guide.title }];
   const authorProfile = resolveAuthorProfile(guide);
+  const operator = getOperator();
   const authorPageUrl = `${siteUrl}/legal/about`;
+
+  // 景表法対応: バッジとCTAブロックは同じ表示条件を共有する
+  const showMonetize = canRenderGuideMonetizeBlock({
+    monetizeKey: guide.monetizeKey ?? null,
+  });
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -97,7 +108,7 @@ export function GuideEditorialArticlePage({ guide, related, linkIndex }: Props) 
     author: authorProfile.kind === "organization"
       ? { "@type": "Organization", name: authorProfile.name, url: siteUrl }
       : { "@type": "Person", name: authorProfile.name, jobTitle: authorProfile.credential ?? undefined, url: authorPageUrl },
-    reviewedBy: { "@type": "Person", name: "山田太郎", jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者", url: authorPageUrl },
+    reviewedBy: { "@type": "Person", name: operator.name, jobTitle: operator.credential, url: authorPageUrl },
     publisher: { "@type": "Organization", name: "CAR BOUTIQUE JOURNAL", url: siteUrl, logo: { "@type": "ImageObject", url: `${siteUrl}/icon-512x512.png` } },
   };
 
@@ -130,6 +141,9 @@ export function GuideEditorialArticlePage({ guide, related, linkIndex }: Props) 
       <JsonLd id={`guide-editorial-breadcrumb-${guide.slug}`} data={breadcrumbJsonLd} />
       <JsonLd id={`guide-editorial-article-${guide.slug}`} data={articleJsonLd} />
       {faqJsonLd ? <JsonLd id={`guide-editorial-faq-${guide.slug}`} data={faqJsonLd} /> : null}
+      {showMonetize ? (
+        <MonetizePrBadge className="mx-auto w-full max-w-[920px] px-[clamp(24px,5.8svw,58px)] pt-6" />
+      ) : null}
       <KintoJsonArticlePage
         article={{
           title: guide.title,
@@ -155,6 +169,16 @@ export function GuideEditorialArticlePage({ guide, related, linkIndex }: Props) 
         labels={labels}
         linkIndex={linkIndex}
       />
+      {showMonetize ? (
+        <div className="mx-auto w-full max-w-[920px] px-[clamp(24px,5.8svw,58px)] pb-10">
+          <GuideMonetizeBlock
+            monetizeKey={guide.monetizeKey ?? null}
+            position="guide_bottom"
+            pageType="guide"
+            contentId={guide.slug}
+          />
+        </div>
+      ) : null}
     </>
   );
 }
