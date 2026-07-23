@@ -328,6 +328,7 @@ const isIndexableGuide = (guide) => {
   const title = safeString(guide.title);
   const body = isDecisionGuide(guide) ? getDecisionGuideAuditBody(guide) : safeString(guide.body);
 
+
   // 品質ゲートは audit 専用。sitemap は公開状態で判断する。
   return Boolean(slug) && title.length > 0 && body.length > 0;
 };
@@ -379,6 +380,7 @@ const main = async () => {
     "/cars/body-types",
     "/cars/segments",
     "/guide",
+    "/decide",
     "/column",
     "/heritage",
     "/site-map",
