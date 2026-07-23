@@ -7,7 +7,7 @@ import { GlassCard } from "@/components/GlassCard";
 import { Reveal } from "@/components/animation/Reveal";
 import { Button } from "@/components/ui/button";
 
-import { trackOutboundClick, trackCtaImpression } from "@/lib/analytics/events";
+import { trackOutboundClick, trackAffiliateClick, trackCtaImpression } from "@/lib/analytics/events";
 import { usePageContext } from "@/lib/analytics/pageContext";
 import { ENABLE_MONETIZATION } from "@/lib/feature-flags";
 
@@ -19,7 +19,10 @@ type HubCtaCardProps = {
     | "amazon"
     | "nagara_carwash"
     | "carclub"
-    | "hidya";
+    | "hidya"
+    | "sell_ikkatsu"
+    | "shaken_rakuten"
+    | "insurance_compare";
   href: string;
   heading: string;
   body: string[];
@@ -149,6 +152,17 @@ export function HubCtaCard(props: HubCtaCardProps) {
                       url: href,
                       cta_position: ctaPosition,
                       monetize_key: monetizeKeyForEvent,
+                      variant,
+                    });
+
+                    trackAffiliateClick({
+                      partner,
+                      position: ctaPosition,
+                      content_id,
+                      page_type: "hub",
+                      monetize_key: monetizeKeyForEvent,
+                      cta_id: monetizeKeyForEvent,
+                      url: href,
                       variant,
                     });
                   }}
