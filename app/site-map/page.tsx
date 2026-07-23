@@ -61,6 +61,7 @@ export default async function SiteMapPage() {
   { href: "/", label: "ホーム", description: "" },
   { href: "/cars", label: "車種", description: "メーカーや価格帯から候補を探す" },
   { href: "/guide", label: "ガイド", description: "車選び・整備・カスタムの実用記事" },
+  { href: "/decide", label: "判断ハブ", description: "売却・査定・車検・保険の比較の進め方" },
   { href: "/column", label: "コラム", description: "車選び・カスタム・維持費の読み物" },
   { href: "/heritage", label: "系譜", description: "年代別に読む" },
 ];
@@ -92,6 +93,7 @@ export default async function SiteMapPage() {
 
       <div className="page-shell pb-24 pt-24">
         <div className="porcelain porcelain-panel rounded-[20px] border border-[var(--border-default)] bg-[var(--surface-1)] text-[var(--text-primary)] shadow-soft-card p-6 sm:p-8">
+
 
           <Breadcrumb items={[{ label: "ホーム", href: "/" }, { label: "サイトマップ" }]} className="mb-6" />
         <header className="mb-10">
