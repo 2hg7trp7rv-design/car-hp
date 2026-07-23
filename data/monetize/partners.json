@@ -1,0 +1,53 @@
+{
+  "_note": "アフィリエイトパートナーのリンク管理（プレースホルダー）。ASP提携後に url を差し替える。差し替え手順は docs/monetization.md を参照。url が '#' のものは未提携。",
+  "sell_ikkatsu": {
+    "label": "車一括査定（買取比較）",
+    "url": "#",
+    "partner": "sell_ikkatsu"
+  },
+  "sell_import": {
+    "label": "輸入車・高級車に強い買取",
+    "url": "#",
+    "partner": "sell_import"
+  },
+  "sell_loan": {
+    "label": "ローン残債あり相談可の買取",
+    "url": "#",
+    "partner": "sell_loan"
+  },
+  "shaken_rakuten": {
+    "label": "車検比較・予約",
+    "url": "#",
+    "partner": "shaken_rakuten"
+  },
+  "insurance_compare": {
+    "label": "自動車保険一括見積もり",
+    "url": "#",
+    "partner": "insurance_compare"
+  },
+  "insurance_consult": {
+    "label": "自動車保険相談",
+    "url": "#",
+    "partner": "insurance_consult"
+  },
+  "insurance_biz": {
+    "label": "法人向け自動車保険相談",
+    "url": "#",
+    "partner": "insurance_biz"
+  },
+  "sompo_noru": {
+    "label": "定額カーリース",
+    "url": "#",
+    "partner": "sompo_noru"
+  },
+  "enkilo": {
+    "label": "距離連動カーリース",
+    "url": "#",
+    "partner": "enkilo"
+  },
+  "amazon": {
+    "label": "カー用品（Amazon）",
+    "url": "#",
+    "partner": "amazon"
+  }
+}

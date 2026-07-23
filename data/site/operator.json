@@ -1,0 +1,10 @@
+{
+  "name": "要設定",
+  "title": "要設定",
+  "credential": "要設定",
+  "bio": "要設定",
+  "expertise": ["要設定"],
+  "sns": [
+    { "label": "要設定", "url": "要設定" }
+  ]
+}
