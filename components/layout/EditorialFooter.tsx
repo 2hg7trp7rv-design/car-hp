@@ -2,11 +2,15 @@
 
 import Link from "next/link";
 
+import { trackInternalNavClick, type InternalToType } from "@/lib/analytics/events";
+import { usePageContext } from "@/lib/analytics/pageContext";
+
 const CONTENT_LINKS = [
-  { href: "/cars", label: "車種一覧" },
-  { href: "/guide", label: "ガイド" },
-  { href: "/column", label: "コラム" },
-  { href: "/heritage", label: "系譜特集" },
+  { href: "/cars", label: "車種一覧", toType: "cars" },
+  { href: "/guide", label: "ガイド", toType: "guide" },
+  { href: "/decide", label: "売却・車検・保険の判断", toType: "hub" },
+  { href: "/column", label: "コラム", toType: "column" },
+  { href: "/heritage", label: "系譜特集", toType: "heritage" },
 ] as const;
 
 const SITE_LINKS = [
@@ -17,6 +21,20 @@ const SITE_LINKS = [
 ] as const;
 
 export function EditorialFooter() {
+  const { page_type, content_id } = usePageContext();
+
+  const trackFooterNav = (href: string, label: string, toType?: InternalToType) => {
+    trackInternalNavClick({
+      from_type: page_type,
+      from_id: content_id,
+      to_type: toType ?? "top",
+      to_id: href,
+      nav_id: `footer_${href.replace(/\//g, "_")}`,
+      to_title: label,
+      shelf_id: "site_footer",
+    });
+  };
+
   return (
     <footer
       data-cbj-editorial-footer
@@ -67,6 +85,7 @@ export function EditorialFooter() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={() => trackFooterNav(item.href, item.label, item.toType)}
                   className="text-[clamp(16px,4.2svw,28px)] leading-none tracking-[0.055em] text-white/[0.38] transition-colors hover:text-white/[0.82]"
                 >
                   {item.label}
@@ -82,6 +101,7 @@ export function EditorialFooter() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={() => trackFooterNav(item.href, item.label)}
                   className="text-[clamp(16px,4.2svw,28px)] leading-none tracking-[0.04em] text-white/[0.38] transition-colors hover:text-white/[0.82]"
                 >
                   {item.label}
