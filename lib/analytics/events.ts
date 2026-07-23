@@ -35,6 +35,7 @@ export type InternalToType =
 // ---- イベント名 ----
 export type EventName =
   | "outbound_click"
+  | "affiliate_click"
   | "internal_nav_click"
   | "internal_nav_impression"
   | "cta_impression"
@@ -293,6 +294,51 @@ export const trackOutboundClick = (params: OutboundClickParams) => {
     href,
     ctaId,
     shelfId,
+  });
+};
+
+// ---- Affiliate ----
+// アフィリエイトリンク専用のクリックイベント。
+// outbound_click と併発させる（どちらか一方だけにすると分析軸が欠けるため）。
+export type AffiliateClickParams = {
+  /** 提携先識別子（例: "sell_ikkatsu", "insurance_compare", "amazon"） */
+  partner: string;
+  /** 画面上の位置（例: "guide_bottom", "hub_top"） */
+  position: string;
+  /** コンテンツ識別子（記事スラッグ等） */
+  content_id: string;
+
+  page_type?: PageType | string;
+  monetize_key?: string;
+  url?: string;
+  cta_id?: string;
+  variant?: string;
+
+  // camelCase 互換
+  pageType?: PageType;
+  contentId?: string;
+  monetizeKey?: string;
+  ctaId?: string;
+
+  [key: string]: any;
+};
+
+export const trackAffiliateClick = (params: AffiliateClickParams) => {
+  const pageType = (params.pageType ?? params.page_type ?? "other") as PageType;
+  const contentId = params.contentId ?? params.content_id ?? "";
+  const monetizeKey = params.monetizeKey ?? params.monetize_key ?? "";
+  const ctaId = params.ctaId ?? params.cta_id ?? "";
+
+  sendGAEvent("affiliate_click", {
+    partner: params.partner,
+    position: params.position,
+    content_id: contentId,
+
+    page_type: pageType,
+    monetize_key: monetizeKey,
+    url: params.url ?? "",
+    cta_id: ctaId,
+    variant: params.variant ?? "default",
   });
 };
 
