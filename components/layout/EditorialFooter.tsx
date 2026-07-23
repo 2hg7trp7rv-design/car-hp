@@ -5,6 +5,7 @@ import Link from "next/link";
 const CONTENT_LINKS = [
   { href: "/guide", label: "ガイド" },
   { href: "/column", label: "コラム" },
+  { href: "/decide", label: "売却・車検・保険の判断ハブ" },
 ] as const;
 
 const SITE_LINKS = [

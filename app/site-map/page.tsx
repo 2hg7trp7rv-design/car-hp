@@ -44,6 +44,7 @@ export default async function SiteMapPage() {
     { href: "/", label: "ホーム" },
     { href: "/guide", label: "ガイド", description: "車の仕組み・整備・カスタム判断の実用記事" },
     { href: "/column", label: "コラム", description: "車のカスタム・維持判断を読み解く親記事" },
+    { href: "/decide", label: "判断ハブ", description: "売却・査定、車検、自動車保険の比較の軸を整理" },
     { href: "/search", label: "検索", description: "キーワードからガイドとコラムを横断検索" },
   ];
 
