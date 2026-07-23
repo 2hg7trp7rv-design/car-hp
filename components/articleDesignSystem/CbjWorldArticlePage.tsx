@@ -13,6 +13,7 @@ import {
 } from "@/components/articleDesignSystem/ArticleEndSections";
 import { ArticleHero } from "@/components/articleDesignSystem/ArticleHero";
 import { resolveArticleToyBox } from "@/components/articleDesignSystem/article-toybox";
+import { ENABLE_MONETIZATION } from "@/lib/feature-flags";
 import type { GuideDetailBlock, GuideDetailSection } from "@/lib/content-types";
 import type { ArticleDesignPageProps, ArticleViewModel } from "@/types/article-design-system";
 
@@ -152,6 +153,9 @@ export function CbjWorldArticlePage({ article, labels, linkIndex }: ArticleDesig
       <ArticleHeader />
       <ArticleHero article={article} kind={kind} />
       <div className={styles.contentColumn}>
+        {ENABLE_MONETIZATION ? (
+          <p className={styles.prBadge}>この記事には広告・PRを含みます</p>
+        ) : null}
         <section className={styles.introSection}>
           <DialogueGroup items={article.articleDesign?.introDialogue} />
           {article.lead ? (
