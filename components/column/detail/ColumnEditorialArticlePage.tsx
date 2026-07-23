@@ -5,6 +5,7 @@ import type { EditorialArticleLabels, EditorialRelatedItem } from "@/components/
 import type { ColumnItem } from "@/lib/content-types";
 import type { InternalLinkMeta } from "@/lib/content/internal-link-index";
 import { getSiteUrl } from "@/lib/site";
+import { getOperator } from "@/lib/operator";
 import { humanizeUpdateReason } from "@/lib/update-reason";
 
 type Props = { item: ColumnItem; related: ColumnItem[]; linkIndex: Record<string, InternalLinkMeta> };
@@ -20,7 +21,8 @@ function formatDateDot(iso?: string | null): string {
 
 function resolveAuthorProfile(item: ColumnItem) {
   if (item.authorProfile?.name) return item.authorProfile;
-  return { kind: "person" as const, name: "山田太郎", credential: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者" };
+  const operator = getOperator();
+  return { kind: "person" as const, name: operator.name, credential: operator.credential };
 }
 
 function relatedMetaLabel(item: ColumnItem): string {
@@ -53,7 +55,7 @@ export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) 
     datePublished: item.publishedAt ?? item.createdAt ?? undefined,
     dateModified: item.updatedAt ?? item.publishedAt ?? item.createdAt ?? undefined,
     author: { "@type": author.kind === "person" ? "Person" : "Organization", name: author.name, jobTitle: author.kind === "person" ? author.credential ?? undefined : undefined, url: author.kind === "person" ? authorPageUrl : siteUrl },
-    reviewedBy: { "@type": "Person", name: "山田太郎", jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者", url: authorPageUrl },
+    reviewedBy: { "@type": "Person", name: getOperator().name, jobTitle: getOperator().credential, url: authorPageUrl },
     publisher: { "@type": "Organization", name: "CAR BOUTIQUE JOURNAL", url: siteUrl, logo: { "@type": "ImageObject", url: `${siteUrl}/icon-512x512.png` } },
   };
 
