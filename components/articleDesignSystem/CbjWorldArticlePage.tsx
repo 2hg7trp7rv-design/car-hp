@@ -131,6 +131,29 @@ function normalizeSections(article: ArticleViewModel): Array<GuideDetailSection 
   });
 }
 
+// 景表法対応のPRバッジ（記事デザインシステムのトークンに合わせたピル表示）
+const PR_BADGE_STYLE: React.CSSProperties = {
+  margin: "24px 0 0",
+  display: "inline-flex",
+  alignItems: "center",
+  gap: 7,
+  padding: "6px 14px",
+  border: "1px solid var(--border)",
+  borderRadius: 999,
+  background: "var(--surface)",
+  color: "var(--muted)",
+  fontSize: ".7rem",
+  fontWeight: 700,
+  letterSpacing: ".05em",
+};
+
+const PR_BADGE_DOT_STYLE: React.CSSProperties = {
+  width: 7,
+  height: 7,
+  borderRadius: "50%",
+  background: "linear-gradient(135deg, #ff6b8a, #ff8e53)",
+};
+
 export function CbjWorldArticlePage({ article, labels, linkIndex }: ArticleDesignPageProps) {
   const sections = normalizeSections(article);
   const kind = labels.footerListHref.startsWith("/column") ? "COLUMN" : "GUIDE";
@@ -154,7 +177,10 @@ export function CbjWorldArticlePage({ article, labels, linkIndex }: ArticleDesig
       <ArticleHero article={article} kind={kind} />
       <div className={styles.contentColumn}>
         {ENABLE_MONETIZATION ? (
-          <p className={styles.prBadge}>この記事には広告・PRを含みます</p>
+          <p style={PR_BADGE_STYLE}>
+            <span style={PR_BADGE_DOT_STYLE} />
+            この記事には広告・PRを含みます
+          </p>
         ) : null}
         <section className={styles.introSection}>
           <DialogueGroup items={article.articleDesign?.introDialogue} />
