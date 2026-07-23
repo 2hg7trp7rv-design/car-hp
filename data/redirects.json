@@ -98,5 +98,20 @@
     "source": "/heritage/jdm-280ps-happy-lie-heritage",
     "destination": "/heritage/japan-280ps-gentlemens-agreement-heritage",
     "permanent": true
+  },
+  {
+    "source": "/news",
+    "destination": "/column",
+    "permanent": true
+  },
+  {
+    "source": "/guide/hub-import-trouble",
+    "destination": "/guide",
+    "permanent": true
+  },
+  {
+    "source": "/guide/hub-usedcar",
+    "destination": "/guide",
+    "permanent": true
   }
 ]

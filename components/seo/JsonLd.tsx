@@ -2,6 +2,7 @@
 import React from 'react';
 
 import { getSiteUrl } from '@/lib/site';
+import { getOperator } from '@/lib/operator';
 
 type JsonLdType = 'Article' | 'Product' | 'BreadcrumbList';
 
@@ -22,10 +23,11 @@ function isArticleType(value?: unknown): boolean {
 
 function buildCbjPerson() {
   const siteUrl = getSiteUrl();
+  const operator = getOperator();
   return {
     '@type': 'Person',
-    name: '山田太郎',
-    jobTitle: 'CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者',
+    name: operator.name,
+    jobTitle: operator.credential,
     url: `${siteUrl}/legal/about`,
   };
 }

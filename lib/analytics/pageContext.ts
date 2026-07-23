@@ -117,6 +117,12 @@ export function usePageContext(): PageContext {
     return { page_type: "hub", content_id, pageType: "hub", pageId: content_id };
   }
 
+  // /decide（判断ハブ）は hub として計測する
+  if (section === "decide") {
+    const content_id = isSectionRoot ? "decide" : slug;
+    return { page_type: "hub", content_id, pageType: "hub", pageId: content_id };
+  }
+
   if (section === "search") {
     const content_id = isSectionRoot ? INDEX_ID : slug;
     return { page_type: "search", content_id, pageType: "search", pageId: content_id };

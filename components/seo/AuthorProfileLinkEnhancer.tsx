@@ -2,12 +2,15 @@
 
 import { useEffect } from "react";
 
+import { getOperator } from "@/lib/operator";
+
 const AUTHOR_PROFILE_PATH = "/legal/about";
 
 function findAuthorCards(): HTMLElement[] {
+  const operatorName = getOperator().name;
   const cards: HTMLElement[] = [];
   const authorNames = Array.from(document.querySelectorAll("b")).filter(
-    (node) => node.textContent?.trim() === "山田太郎",
+    (node) => node.textContent?.trim() === operatorName,
   );
 
   for (const nameNode of authorNames) {
@@ -32,7 +35,7 @@ export function AuthorProfileLinkEnhancer() {
         card.dataset.authorProfileLink = "true";
         card.setAttribute("role", "link");
         card.setAttribute("tabindex", "0");
-        card.setAttribute("aria-label", "山田太郎の運営者情報を見る");
+        card.setAttribute("aria-label", `${getOperator().name}の運営者情報を見る`);
         card.style.cursor = "pointer";
 
         const openProfile = () => {
