@@ -9,6 +9,7 @@ import { LegalRelatedLinks } from "@/components/legal/LegalRelatedLinks";
 import { LegalSummaryGrid } from "@/components/legal/LegalSummaryGrid";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { getOperator } from "@/lib/operator";
 import { getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -58,10 +59,10 @@ export default function EditorialPolicyPage() {
       <LegalDocHeader
         eyebrow="編集方針"
         title="確認できることと、条件で変わることを分けて書く"
-        lead="CAR BOUTIQUE JOURNALでは、自動車業界経験のある山田太郎が運営・編集責任者として記事の企画、構成、本文表現、公開後の見直しを行います"
+        lead={`CAR BOUTIQUE JOURNALでは、自動車業界経験のある${getOperator().name}が運営・編集責任者として記事の企画、構成、本文表現、公開後の見直しを行います`}
         meta={[
           { label: "対象", value: "車種 / ガイド / コラム / 系譜" },
-          { label: "編集責任", value: "山田太郎" },
+          { label: "編集責任", value: getOperator().name },
           { label: "経験", value: "自動車業界での実務経験" },
           { label: "関連", value: <Link href="/legal/sources-factcheck">出典・ファクトチェック</Link> },
         ]}
