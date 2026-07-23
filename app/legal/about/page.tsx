@@ -7,6 +7,7 @@ import { LegalSummaryGrid } from "@/components/legal/LegalSummaryGrid";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CBJ_SITE_DESCRIPTION } from "@/lib/brand/cbj-copy";
+import { OPERATOR } from "@/lib/operator";
 import { getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -17,11 +18,21 @@ export const metadata: Metadata = {
 };
 
 const PROFILE_ITEMS = [
-  { label: "サイト名", value: "CAR BOUTIQUE JOURNAL" },
-  { label: "運営", value: "CAR BOUTIQUE JOURNAL" },
-  { label: "編集責任", value: "CAR BOUTIQUE JOURNAL 編集部" },
+  { label: "サイト名", value: OPERATOR.siteName },
+  { label: "運営", value: OPERATOR.operatorName },
+  { label: "編集責任", value: `${OPERATOR.siteName} 編集部` },
   { label: "確認軸", value: "公式情報・一次資料" },
 ] as const;
+
+const OPERATOR_DETAIL_ITEMS: Array<{ label: string; value: string }> = [
+  { label: "運営者名", value: OPERATOR.operatorName },
+  { label: "運営形態", value: OPERATOR.operatorType },
+  { label: "代表者", value: OPERATOR.representative },
+  { label: "所在地", value: OPERATOR.address },
+  { label: "連絡先メールアドレス", value: OPERATOR.contactEmail },
+  { label: "運営開始", value: OPERATOR.established },
+  { label: "事業内容", value: OPERATOR.businessDescription },
+];
 
 const STANCE_ITEMS = [
   {
@@ -140,6 +151,42 @@ export default function AboutOperatorPage() {
               </p>
             </Link>
           </div>
+        </section>
+
+        <section className="rounded-[28px] border border-black/10 bg-white/[0.72] p-5 sm:p-6">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#00708d]">
+            OPERATOR DETAIL
+          </p>
+          <h2 className="mt-3 text-[clamp(24px,4vw,36px)] font-semibold leading-[1.08] tracking-[-0.06em] text-[#080b0d]">
+            運営者情報
+          </h2>
+          <p className="mt-4 text-[13px] leading-[1.9] text-[#657078]">
+            運営者情報は data/site/operator.json を単一ソースとして管理しています。未設定の項目は「要設定」と表示されます。
+          </p>
+          <dl className="mt-6 grid gap-3 sm:grid-cols-2">
+            {OPERATOR_DETAIL_ITEMS.map((item) => (
+              <div key={item.label} className="rounded-[20px] border border-black/10 bg-[#f9f5ee] p-4">
+                <dt className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/[0.34]">
+                  {item.label}
+                </dt>
+                <dd className="mt-2 text-[14px] leading-[1.75] text-[#101519]">
+                  {item.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <section className="rounded-[28px] border border-black/10 bg-[#f9f5ee] p-5 sm:p-6">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#00708d]">
+            CHARACTERS
+          </p>
+          <h2 className="mt-3 text-[clamp(24px,4vw,36px)] font-semibold leading-[1.08] tracking-[-0.06em] text-[#080b0d]">
+            登場キャラクターについて
+          </h2>
+          <p className="mt-4 text-[13px] leading-[1.95] text-[#657078]">
+            記事に登場する「莉奈（りな）」と「JUNA（じゅな）」は、読みやすさのために設計された架空のキャラクターです。対話の内容は編集部が一次資料に基づいて作成したものであり、キャラクターの発言そのものが事実の根拠になるわけではありません。記事の事実確認と正確性への責任は、すべて運営者と各記事に記載された一次資料（出典）に帰属します。
+          </p>
         </section>
 
         <LegalSummaryGrid items={STANCE_ITEMS} />
