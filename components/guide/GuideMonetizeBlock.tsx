@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 
 import {
   trackOutboundClick,
+  trackAffiliateClick,
   trackCtaImpression,
   trackInternalNavClick,
   type PageType,
@@ -16,6 +17,7 @@ import {
 import { usePageContext } from "@/lib/analytics/pageContext";
 import { resolveAffiliateLinksForGuide } from "@/lib/affiliate";
 import { ENABLE_MONETIZATION } from "@/lib/feature-flags";
+import { canRenderGuideMonetizeBlock } from "@/lib/monetize";
 
 // 既存の型定義を拡張して、ドット記法でアクセスできるようにする
 type AffiliateLinksMap = Record<string, string> & {
@@ -163,6 +165,11 @@ export function GuideMonetizeBlock(props: GuideMonetizeBlockProps) {
     });
   }, [canTrack, content_id, href, page_type, position, resolvedCtaId, resolvedMonetizeKey, variant]);
 
+  // 表示条件の第一ゲートは lib/monetize.ts と共有（PRバッジと条件を揃える）
+  if (!canRenderGuideMonetizeBlock({ monetizeKey, affiliateLinks: (affiliateLinks ?? null) as any })) {
+    return null;
+  }
+
   if (!ENABLE_MONETIZATION || !resolvedMonetizeKey || !config || !href) {
     return null;
   }
@@ -249,6 +256,17 @@ export function GuideMonetizeBlock(props: GuideMonetizeBlockProps) {
                       url: href,
                       // 旧フィールド互換
                       cta_position: position,
+                    });
+
+                    trackAffiliateClick({
+                      partner: config.partner ?? "unknown",
+                      position,
+                      content_id,
+                      page_type,
+                      monetize_key: resolvedMonetizeKey,
+                      cta_id: resolvedCtaId,
+                      url: href,
+                      variant,
                     });
                   }}
                 >
