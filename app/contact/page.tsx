@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
+import { ContactForm } from "@/components/contact/ContactForm";
 import { getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -105,84 +106,12 @@ export default function ContactPage() {
             </p>
 
             {FORM_ENDPOINT ? (
-              <form action={FORM_ENDPOINT} method="POST" className="mt-7 space-y-5">
-                <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="cb-field-label" htmlFor="contact-name">
-                      NAME
-                    </label>
-                    <input
-                      id="contact-name"
-                      name="name"
-                      type="text"
-                      autoComplete="name"
-                      className="cb-input"
-                      placeholder="お名前 任意"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="cb-field-label" htmlFor="contact-email">
-                      EMAIL
-                    </label>
-                    <input
-                      id="contact-email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
-                      className="cb-input"
-                      placeholder="返信が必要な場合のみ"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="cb-field-label" htmlFor="contact-subject">
-                    SUBJECT
-                  </label>
-                  <input
-                    id="contact-subject"
-                    name="subject"
-                    type="text"
-                    className="cb-input"
-                    placeholder="例 BMW 530iの記事について"
-                  />
-                </div>
-
-                <div>
-                  <label className="cb-field-label" htmlFor="contact-message">
-                    MESSAGE
-                  </label>
-                  <textarea
-                    id="contact-message"
-                    name="message"
-                    rows={8}
-                    className="cb-textarea min-h-[210px]"
-                    placeholder="内容 URLがある場合は貼ってください"
-                  />
-                </div>
-
-                <div className="rounded-[22px] border border-black/10 bg-[#f9f5ee] px-4 py-4 text-[12px] leading-[1.8] text-[#657078]">
-                  個人情報の取り扱いは
-                  <Link href="/legal/privacy" className="mx-1 font-medium text-[#00708d] underline underline-offset-4">
-                    プライバシーポリシー
-                  </Link>
-                  に従います
-                </div>
-
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <p className="text-[12px] leading-[1.8] text-[#7b858b]">
-                    返信が必要な場合は、メールアドレスをご記入ください
-                  </p>
-                  <button type="submit" className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#080b0d] px-6 text-[13px] font-semibold text-white transition-colors hover:bg-[#152026]">
-                    送信する ↗
-                  </button>
-                </div>
-              </form>
+              <ContactForm endpoint={FORM_ENDPOINT} />
             ) : (
               <div className="mt-7 rounded-[22px] border border-black/10 bg-[#f9f5ee] p-5 text-[13px] leading-[1.9] text-[#657078]">
-                現在、お問い合わせは準備中です 記事の誤り、更新が必要な情報、掲載内容へのご連絡は、フォーム公開後に順次受け付けます
+                現在、フォームからのお問い合わせを一時的に停止しています
+                受付を再開する準備が整い次第、このページでご案内します
+                記事の誤りや更新が必要な情報にお気づきの場合は、再開後にぜひお知らせください
               </div>
             )}
           </section>
