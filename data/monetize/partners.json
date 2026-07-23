@@ -1,0 +1,28 @@
+{
+  "partners": [
+    {
+      "id": "sell_appraisal",
+      "category": "sell",
+      "name": "要設定（売却・査定パートナー）",
+      "url": "#",
+      "ctaLabel": "買取相場を確認する",
+      "description": "売却・一括査定カテゴリの掲載パートナー。正式なアフィリエイトURLが決まり次第差し替える。"
+    },
+    {
+      "id": "shaken_booking",
+      "category": "inspection",
+      "name": "要設定（車検パートナー）",
+      "url": "#",
+      "ctaLabel": "車検費用を比較する",
+      "description": "車検カテゴリの掲載パートナー。正式なアフィリエイトURLが決まり次第差し替える。"
+    },
+    {
+      "id": "insurance_compare",
+      "category": "insurance",
+      "name": "要設定（保険パートナー）",
+      "url": "#",
+      "ctaLabel": "保険料を比較する",
+      "description": "自動車保険カテゴリの掲載パートナー。正式なアフィリエイトURLが決まり次第差し替える。"
+    }
+  ]
+}

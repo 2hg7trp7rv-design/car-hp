@@ -1,1 +1,7 @@
-[]
+[
+  { "source": "/news", "destination": "/column", "permanent": true },
+  { "source": "/cars", "destination": "/column", "permanent": true },
+  { "source": "/heritage", "destination": "/column", "permanent": true },
+  { "source": "/guide/hub-import-trouble", "destination": "/guide", "permanent": true },
+  { "source": "/guide/hub-usedcar", "destination": "/guide", "permanent": true }
+]
