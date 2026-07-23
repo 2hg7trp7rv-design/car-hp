@@ -28,6 +28,7 @@ export type InternalToType =
 // ---- イベント名 ----
 export type EventName =
   | "outbound_click"
+  | "affiliate_click"
   | "internal_nav_click"
   | "internal_nav_impression"
   | "cta_impression"
@@ -278,6 +279,42 @@ export const trackCtaImpression = (params: CtaImpressionParams) => {
     cta_id: ctaId,
     position: params.position,
     variant: params.variant,
+  });
+};
+
+// ---- Affiliate Click ----
+// マネタイズCTA（アフィリエイト/PRリンク）のクリック計測。
+// partner / position / content_id を必須軸にし、データ汚染を避けるため
+// 空値・"unknown" の content_id は送信しない。
+export type AffiliateClickParams = {
+  partner: string;
+  position: string;
+  content_id?: string;
+  contentId?: string;
+  page_type?: PageType | string;
+  pageType?: PageType;
+  monetize_key?: string;
+  monetizeKey?: string;
+  url?: string;
+  cta_id?: string;
+  [key: string]: any;
+};
+
+export const trackAffiliateClick = (params: AffiliateClickParams) => {
+  // データ汚染回避: "unknown" は空扱いにする
+  const rawContentId = params.contentId ?? params.content_id ?? "";
+  const contentId = rawContentId.trim() === "unknown" ? "" : rawContentId;
+  const pageType = (params.pageType ?? params.page_type ?? "other") as PageType;
+  const monetizeKey = params.monetizeKey ?? params.monetize_key ?? "";
+
+  sendGAEvent("affiliate_click", {
+    partner: params.partner,
+    position: params.position,
+    content_id: contentId,
+    page_type: pageType,
+    monetize_key: monetizeKey,
+    url: params.url,
+    cta_id: params.cta_id,
   });
 };
 

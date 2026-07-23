@@ -90,6 +90,7 @@ async function main() {
     "/guide",
     "/column",
     "/site-map",
+    "/decide",
     "/contact",
     "/legal",
     "/legal/about",
