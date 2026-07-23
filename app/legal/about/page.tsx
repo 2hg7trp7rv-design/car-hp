@@ -7,6 +7,7 @@ import { LegalSummaryGrid } from "@/components/legal/LegalSummaryGrid";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CBJ_SITE_DESCRIPTION } from "@/lib/brand/cbj-copy";
+import { getOperator } from "@/lib/operator";
 import { getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -16,35 +17,18 @@ export const metadata: Metadata = {
   alternates: { canonical: `${getSiteUrl()}/legal/about` },
 };
 
-const PROFILE_ITEMS = [
-  { label: "サイト名", value: "CAR BOUTIQUE JOURNAL" },
-  { label: "運営者", value: "山田太郎" },
-  { label: "編集責任", value: "山田太郎 / CAR BOUTIQUE JOURNAL 編集部" },
-  { label: "経験", value: "自動車業界での実務経験" },
-] as const;
-
-const STANCE_ITEMS = [
-  {
-    label: "Official",
-    title: "公式情報",
-    body: "メーカー公式発表、公的機関、取扱説明書、技術資料を優先して確認",
-  },
-  {
-    label: "Experience",
-    title: "自動車業界経験",
-    body: "実務経験から、読者が判断で迷いやすい箇所を補足",
-  },
-  {
-    label: "Condition",
-    title: "条件差",
-    body: "年式、グレード、個体差、契約条件で変わる内容を分けて扱う",
-  },
-] as const;
-
 export default function AboutOperatorPage() {
+  const operator = getOperator();
   const siteUrl = getSiteUrl();
   const pageUrl = `${siteUrl}/legal/about`;
-  const personId = `${pageUrl}#yamada-taro`;
+  const personId = `${pageUrl}#operator`;
+
+  const PROFILE_ITEMS = [
+    { label: "サイト名", value: "CAR BOUTIQUE JOURNAL" },
+    { label: "運営者", value: operator.name },
+    { label: "編集責任", value: `${operator.name} / CAR BOUTIQUE JOURNAL 編集部` },
+    { label: "専門領域", value: operator.expertise.join("、") },
+  ] as const;
 
   const breadcrumbData = {
     "@context": "https://schema.org",
@@ -61,15 +45,15 @@ export default function AboutOperatorPage() {
     "@type": "ProfilePage",
     "@id": pageUrl,
     url: pageUrl,
-    name: "山田太郎 - CAR BOUTIQUE JOURNAL 運営者情報",
+    name: `${operator.name} - CAR BOUTIQUE JOURNAL 運営者情報`,
     dateModified: "2026-06-13",
     mainEntity: {
       "@type": "Person",
       "@id": personId,
-      name: "山田太郎",
-      jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者",
-      description:
-        "CAR BOUTIQUE JOURNALの運営者 自動車業界での実務経験をもとに、車選び、維持、整備修理、カスタム、売却、車やメーカーの歴史に関する記事の企画、編集、出典確認、公開後の見直しを行う",
+      name: operator.name,
+      jobTitle: operator.credential,
+      description: operator.bio,
+      knowsAbout: operator.expertise,
       worksFor: {
         "@type": "Organization",
         name: "CAR BOUTIQUE JOURNAL",
@@ -78,10 +62,28 @@ export default function AboutOperatorPage() {
     },
   };
 
+  const STANCE_ITEMS = [
+    {
+      label: "Official",
+      title: "公式情報",
+      body: "メーカー公式発表、公的機関、取扱説明書、技術資料を優先して確認",
+    },
+    {
+      label: "Experience",
+      title: "自動車業界経験",
+      body: "実務経験から、読者が判断で迷いやすい箇所を補足",
+    },
+    {
+      label: "Condition",
+      title: "条件差",
+      body: "年式、グレード、個体差、契約条件で変わる内容を分けて扱う",
+    },
+  ] as const;
+
   return (
     <>
       <JsonLd id="jsonld-legal-about-breadcrumb" data={breadcrumbData} />
-      <JsonLd id="jsonld-operator-profile-yamada-taro" data={operatorProfileData} />
+      <JsonLd id="jsonld-operator-profile" data={operatorProfileData} />
 
       <Breadcrumb
         items={[
@@ -101,10 +103,10 @@ export default function AboutOperatorPage() {
                 OPERATOR
               </p>
               <h1 className="mt-5 text-[clamp(44px,8vw,84px)] font-semibold leading-[0.95] tracking-[-0.085em] text-white/[0.94]">
-                山田太郎
+                {operator.name}
               </h1>
               <p className="mt-5 max-w-[520px] text-[14px] leading-[1.9] tracking-[0.03em] text-white/[0.54]">
-                CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者
+                {operator.credential}
               </p>
             </div>
           </div>
@@ -148,6 +150,70 @@ export default function AboutOperatorPage() {
         </section>
 
         <LegalSummaryGrid items={STANCE_ITEMS} />
+
+        <section className="rounded-[28px] border border-black/10 bg-white/[0.72] p-5 sm:p-6">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#00708d]">
+            OPERATOR PROFILE
+          </p>
+          <h2 className="mt-3 text-[clamp(24px,4vw,36px)] font-semibold leading-[1.08] tracking-[-0.06em] text-[#080b0d]">
+            運営者について
+          </h2>
+          <p className="mt-5 text-[13px] leading-[1.95] tracking-[0.02em] text-[#657078]">
+            {operator.bio}
+          </p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            <div className="rounded-[20px] border border-black/10 bg-[#f9f5ee] p-4">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/[0.34]">
+                肩書き
+              </p>
+              <p className="mt-2 text-[14px] leading-[1.75] text-[#101519]">
+                {operator.title}
+              </p>
+            </div>
+            <div className="rounded-[20px] border border-black/10 bg-[#f9f5ee] p-4">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/[0.34]">
+                SNS・外部リンク
+              </p>
+              {operator.sns.length > 0 ? (
+                <ul className="mt-2 space-y-1.5 text-[14px] leading-[1.75] text-[#101519]">
+                  {operator.sns.map((item) => (
+                    <li key={`${item.label}-${item.url}`}>
+                      {item.url.startsWith("http") ? (
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-medium text-[#00708d] underline underline-offset-4"
+                        >
+                          {item.label}
+                        </a>
+                      ) : (
+                        <span>{item.label}</span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="mt-2 text-[14px] leading-[1.75] text-[#101519]">要設定</p>
+              )}
+            </div>
+          </div>
+        </section>
+
+        <section className="rounded-[28px] border border-black/10 bg-[#f9f5ee] p-5 sm:p-6">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#00708d]">
+            CHARACTERS
+          </p>
+          <h2 className="mt-3 text-[clamp(24px,4vw,36px)] font-semibold leading-[1.08] tracking-[-0.06em] text-[#080b0d]">
+            架空キャラクターと運営者の区別
+          </h2>
+          <p className="mt-5 text-[13px] leading-[1.95] tracking-[0.02em] text-[#657078]">
+            一部のコラム記事には「莉奈（りな）」「JUNA（ジュナ）」という架空のキャラクターが登場します。会話形式で読みやすくするための編集上の演出であり、実在の人物ではありません。
+          </p>
+          <p className="mt-4 text-[13px] leading-[1.95] tracking-[0.02em] text-[#657078]">
+            記事の企画、事実確認、公開後の見直しは、すべて上記の実在の運営者が責任を持って行っています。キャラクターの発言内容も運営者が確認した情報に基づきます。
+          </p>
+        </section>
 
         <section className="grid gap-4 lg:grid-cols-2">
           <article className="rounded-[28px] border border-black/10 bg-[#f9f5ee] p-5 sm:p-6">
