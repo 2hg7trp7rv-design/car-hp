@@ -4,6 +4,7 @@ import { ArticleIcon } from "@/components/articleDesignSystem/icons";
 import { renderInlineMarkdown } from "@/components/content/InlineMarkdown";
 import { TextWithInternalLinkCards } from "@/components/content/TextWithInternalLinkCards";
 import type {
+  ArticleAnswerFirst,
   ArticleDesignDialogue,
   GuideCaseStudyItem,
   GuideDecisionCard,
@@ -130,6 +131,43 @@ export function DialogueGroup({
         />
       ))}
     </div>
+  );
+}
+
+export function AnswerFirstBlock({
+  answerFirst,
+  linkIndex,
+}: {
+  answerFirst?: ArticleAnswerFirst | null;
+  linkIndex: Record<string, InternalLinkMeta>;
+}) {
+  const summary = answerFirst?.summary?.trim();
+  const points = (answerFirst?.points ?? []).filter(Boolean);
+  if (!summary || !points.length) return null;
+  return (
+    <section className={styles.answerFirst} aria-label="この記事の結論">
+      <span className={styles.answerFirstEyebrow}>ANSWER FIRST</span>
+      <h2>この記事の結論</h2>
+      <RichParagraph
+        text={summary}
+        linkIndex={linkIndex}
+        className={styles.answerFirstSummary}
+        lineMode="natural"
+      />
+      <ol>
+        {points.map((point, index) => (
+          <li key={`${index}-${point}`}>
+            <span>{index + 1}</span>
+            <RichParagraph
+              text={point}
+              linkIndex={linkIndex}
+              className={styles.answerFirstPoint}
+              lineMode="natural"
+            />
+          </li>
+        ))}
+      </ol>
+    </section>
   );
 }
 
