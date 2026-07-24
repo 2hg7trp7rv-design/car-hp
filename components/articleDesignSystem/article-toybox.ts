@@ -21,6 +21,15 @@ export type ResolvedArticleToyBox = {
 };
 
 export function resolveArticleToyBox(design?: ArticleDesignSpec | null): ResolvedArticleToyBox {
+  // v2では新デザイントークンを適用するため、v1のモック再現レイヤーを無効化する。
+  if (design?.version === "cbj-world-v2") {
+    return {
+      enabled: false,
+      id: "standard",
+      pageClassName: "",
+      compactFlowTitles: false,
+    };
+  }
   const preset = design?.layoutPreset?.trim() ?? "";
   const enabled = SHARED_TOYBOX_LAYOUT_PRESETS.has(preset);
 

@@ -47,6 +47,17 @@ function asDialogueArray(value: unknown): ArticleDesignDialogue[] | null {
   return items.length ? items : null;
 }
 
+function asAnswerFirst(value: unknown): ArticleAnswerFirst | null {
+  const record = asRecord(value);
+  if (!record) return null;
+  const summary = asString(record.summary);
+  const points = Array.isArray(record.points)
+    ? record.points.map(asString).filter((entry): entry is string => Boolean(entry))
+    : [];
+  if (!summary || points.length === 0) return null;
+  return { summary, points };
+}
+
 export function coerceArticleDesign(value: unknown): ArticleDesignSpec | null {
   const record = asRecord(value);
   if (!record) return null;
@@ -76,26 +87,14 @@ export function coerceArticleDesign(value: unknown): ArticleDesignSpec | null {
     }
   }
 
-  const answerFirstRecord = asRecord(record.answerFirst);
-  const answerFirstPoints = Array.isArray(answerFirstRecord?.points)
-    ? answerFirstRecord.points.map(asString).filter((entry): entry is string => Boolean(entry))
-    : [];
-  const answerFirstSummary = answerFirstRecord ? asString(answerFirstRecord.summary) : null;
-  const answerFirst: ArticleAnswerFirst | null =
-    answerFirstSummary && answerFirstPoints.length
-      ? { summary: answerFirstSummary, points: answerFirstPoints }
-      : null;
-
-  const themeRaw = asString(record.theme);
-
   return {
     version,
     layoutPreset: asString(record.layoutPreset),
     lessonNumber,
     difficulty: asString(record.difficulty),
-    theme: themeRaw === "guide" || themeRaw === "column" ? themeRaw : null,
-    answerFirst,
     heroGradient: heroGradient.length === 2 ? [heroGradient[0], heroGradient[1]] : null,
+    theme: asString(record.theme),
+    answerFirst: asAnswerFirst(record.answerFirst),
     heroTitle: asString(record.heroTitle),
     heroLead: asString(record.heroLead),
     heroPromise: asString(record.heroPromise),

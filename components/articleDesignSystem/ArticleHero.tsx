@@ -9,17 +9,31 @@ const JUNA_IMAGE = "/images/cbj/article-system/juna-avatar.webp";
 const RINA_IMAGE = "/images/cbj/article-system/rina-avatar.webp";
 const CAR_IMAGE = "/images/cbj/article-system/car-illustration-transparent-v2.png";
 const DEFAULT_GRADIENT = ["#FF6B8A", "#FF8E53"] as const;
-// v2: heroGradient は theme から自動決定する（JSON側の heroGradient 値は無視）
-const THEME_GRADIENTS: Record<string, readonly [string, string]> = {
+/** v2テーマ別ヒーローグラデーション（JSONのheroGradientは無視する）。 */
+const V2_THEME_GRADIENTS = {
   guide: ["#0E7C7B", "#0A5F5E"],
   column: ["#E5604C", "#C74B39"],
-};
+} as const;
 const cx = (...values: Array<string | false | null | undefined>) => values.filter(Boolean).join(" ");
+
+function formatDateDot(value?: string | null): string {
+  const match = String(value ?? "").match(/^(\d{4})-(\d{2})-(\d{2})/u);
+  return match ? `${match[1]}.${match[2]}.${match[3]}` : "";
+}
+
+function resolveHeroGradient(article: ArticleViewModel, kind: "COLUMN" | "GUIDE"): readonly [string, string] {
+  const design = article.articleDesign;
+  if (design?.version === "cbj-world-v2") {
+    const theme = design.theme === "column" ? "column" : design.theme === "guide" ? "guide" : kind === "COLUMN" ? "column" : "guide";
+    return V2_THEME_GRADIENTS[theme];
+  }
+  return design?.heroGradient?.length === 2 ? design.heroGradient : DEFAULT_GRADIENT;
+}
 
 export function ArticleHero({ article, kind }: { article: ArticleViewModel; kind: "COLUMN" | "GUIDE" }) {
   const design = article.articleDesign;
-  const themeGradient = design?.theme ? THEME_GRADIENTS[design.theme] : undefined;
-  const [from, to] = themeGradient ?? (design?.heroGradient?.length === 2 ? design.heroGradient : DEFAULT_GRADIENT);
+  const isV2 = design?.version === "cbj-world-v2";
+  const [from, to] = resolveHeroGradient(article, kind);
   const lesson = design?.lessonNumber ? `Lesson ${String(design.lessonNumber).padStart(2, "0")}` : kind === "COLUMN" ? "COLUMN" : "GUIDE";
   const difficulty = design?.difficulty || (kind === "COLUMN" ? "初級〜中級" : "実用ガイド");
   const heroStyle = { "--hero-from": from, "--hero-to": to } as CSSProperties;
@@ -57,11 +71,19 @@ export function ArticleHero({ article, kind }: { article: ArticleViewModel; kind
         <div className={styles.heroMeta}>
           <span><ArticleIcon name="clock" />{article.readMinutes ? `${article.readMinutes} min read` : "読みもの"}</span>
           <i />
+          {isV2 && article.updatedAt ? (
+            <>
+              <span>更新 {formatDateDot(article.updatedAt)}</span>
+              <i />
+            </>
+          ) : null}
           <span>{difficulty}</span>
           <i />
           <span>{kind}</span>
         </div>
-        <p className={styles.heroNote}>一次資料・公式情報を基準に編集部が監修しています</p>
+        {isV2 ? (
+          <p className={styles.heroSupervision}>監修方針：一次資料（公的機関・メーカー公式）を基準に編集しています</p>
+        ) : null}
       </div>
       <div className={styles.scrollGuide} aria-hidden="true">
         <span>スクロールして読む</span>
