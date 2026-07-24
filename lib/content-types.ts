@@ -215,11 +215,29 @@ export type ArticleDesignDialogue = {
   motion?: ArticleMotionPreset | null;
 };
 
+/**
+ * Answer First ブロック（v2必須）。
+ * 記事全体の結論をヒーロー直下に自己完結する形で提示する。
+ */
+export type ArticleAnswerFirst = {
+  /** 記事全体の要約（120字以内）。 */
+  summary: string;
+  /** 要点3点（各40字以内）。 */
+  points: string[];
+};
+
 export type ArticleDesignSpec = {
-  version: "cbj-world-v1" | string;
+  version: "cbj-world-v1" | "cbj-world-v2" | string;
   layoutPreset?: "column-renewal-v1" | string | null;
   lessonNumber?: number | null;
   difficulty?: string | null;
+  /**
+   * v2: ヒーローのグラデーションテーマ。
+   * theme から描画側で色を自動決定するため、JSONの heroGradient 値は無視される。
+   */
+  theme?: "guide" | "column" | string | null;
+  /** v2必須: Answer First ブロック。 */
+  answerFirst?: ArticleAnswerFirst | null;
   heroGradient?: [string, string] | null;
   heroTitle?: string | null;
   heroLead?: string | null;
