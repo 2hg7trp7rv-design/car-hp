@@ -215,14 +215,10 @@ export type ArticleDesignDialogue = {
   motion?: ArticleMotionPreset | null;
 };
 
-/**
- * Answer First ブロック（v2必須）。
- * 記事全体の結論をヒーロー直下に自己完結する形で提示する。
- */
 export type ArticleAnswerFirst = {
-  /** 記事全体の要約（120字以内）。 */
+  /** 記事全体の結論を120字以内で自己完結する要約にする。 */
   summary: string;
-  /** 要点3点（各40字以内）。 */
+  /** 結論を支える3点の箇条書き（各40字以内）。 */
   points: string[];
 };
 
@@ -232,13 +228,14 @@ export type ArticleDesignSpec = {
   lessonNumber?: number | null;
   difficulty?: string | null;
   /**
-   * v2: ヒーローのグラデーションテーマ。
-   * theme から描画側で色を自動決定するため、JSONの heroGradient 値は無視される。
+   * v1専用。v2ではJSON側の値を無視し、themeから自動決定する
+   * （guide: #0E7C7B→#0A5F5E / column: #E5604C→#C74B39）。
    */
-  theme?: "guide" | "column" | string | null;
-  /** v2必須: Answer First ブロック。 */
-  answerFirst?: ArticleAnswerFirst | null;
   heroGradient?: [string, string] | null;
+  /** v2のテーマ。ヒーローグラデーションとアクセント色を自動決定する。 */
+  theme?: "guide" | "column" | string | null;
+  /** v2必須。ヒーロー直下に出すAnswer Firstブロック。 */
+  answerFirst?: ArticleAnswerFirst | null;
   heroTitle?: string | null;
   heroLead?: string | null;
   /** ヒーロー内で「この記事で判断できること」を1文で示す。 */
