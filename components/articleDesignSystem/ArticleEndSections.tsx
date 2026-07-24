@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { ArticleIcon } from "@/components/articleDesignSystem/icons";
 import { renderInlineMarkdown } from "@/components/content/InlineMarkdown";
-import type { ArticleSource } from "@/lib/content-types";
+import type { ArticleAnswerFirst, ArticleSource } from "@/lib/content-types";
 import type { ArticlePageLabels, ArticleViewModel } from "@/types/article-design-system";
 
 import styles from "@/components/articleDesignSystem/article-design-system.module.css";
@@ -20,6 +20,10 @@ type SourceDisplay = {
   url: string;
   title: string;
   meta: string;
+  /** この出典が支える記事内の主張（v2で表示）。 */
+  claim?: string | null;
+  /** 出典の確認日（v2で表示）。 */
+  accessedAt?: string | null;
 };
 
 const SOURCE_LABELS: Array<[RegExp, Omit<SourceDisplay, "url">]> = [
@@ -39,7 +43,7 @@ const SOURCE_LABELS: Array<[RegExp, Omit<SourceDisplay, "url">]> = [
   [/jucda\.or\.jp\/soudan\/trouble\/afterdelivery\/05\.html$/u, { title: "日本中古自動車販売協会連合会｜購入後トラブル相談", meta: "業界団体 / 中古車購入後の確認" }],
   [/bosch-mobility\.com\/en\/solutions\/sensors\/air-mass-meter\/?$/u, { title: "Bosch Mobility｜Air mass meter", meta: "メーカー公式 / 吸入空気量センサー" }],
   [/denso\.com\/.*\/air-flow-sensor\/?$/u, { title: "DENSO｜Air Flow Sensor", meta: "メーカー公式 / エアフローセンサー" }],
-  [/densoautoparts\.com\/engine-management-sensors-mass-air-flow-sensors\/?$/u, { title: "DENSO Auto Parts｜Mass Air Flow Sensors", meta: "メーカー公式 / MAFセンサー" }],
+  [/densoautoparts\.com\/engine-management-sensors\/mass-air-flow-sensors\/?$/u, { title: "DENSO Auto Parts｜Mass Air Flow Sensors", meta: "メーカー公式 / MAFセンサー" }],
   [/denso-am\.eu\/products\/engine-management-systems\/mass-air-flow-sensors\/?$/u, { title: "DENSO Europe｜Mass Air Flow Sensors", meta: "メーカー公式 / MAFセンサー・吸気温度" }],
   [/bosch-mobility\.com\/en\/solutions\/sensors\/hotfilm-airflow-sensor\/?$/u, { title: "Bosch Mobility｜Hot-film air-mass meter", meta: "メーカー公式 / 吸入空気量センサー" }],
   [/hks-power\.co\.jp\/en\/tuning\/step03\.html$/u, { title: "HKS｜Tuning Step 03 Intake", meta: "メーカー公式 / 吸気チューニング" }],
@@ -70,7 +74,9 @@ function sourceDisplay(value: ArticleSource): SourceDisplay {
     return {
       url: value.url,
       title: value.title,
-      meta: [value.publisher, value.claim].filter(Boolean).join(" / ") || "参考資料",
+      meta: value.publisher || "参考資料",
+      claim: value.claim ?? null,
+      accessedAt: value.accessedAt ?? null,
     };
   }
   try {
@@ -84,6 +90,33 @@ function sourceDisplay(value: ArticleSource): SourceDisplay {
   } catch {
     return { url: value, title: value, meta: "参考資料" };
   }
+}
+
+/**
+ * Answer First ブロック（v2新設）。
+ * ヒーロー直下・導入対話の前に、記事全体の結論を要約+3点箇条書きで提示する。
+ */
+export function AnswerFirstSection({ answerFirst }: { answerFirst?: ArticleAnswerFirst | null }) {
+  const summary = answerFirst?.summary?.trim();
+  const points = (answerFirst?.points ?? []).map((point) => point.trim()).filter(Boolean);
+  if (!summary || !points.length) return null;
+  return (
+    <section className={styles.answerFirst} aria-label="この記事の結論">
+      <header>
+        <span>ANSWER FIRST</span>
+        <h2>この記事の結論</h2>
+      </header>
+      <p>{renderInlineMarkdown(summary)}</p>
+      <ul>
+        {points.map((point) => (
+          <li key={point}>
+            <ArticleIcon name="check" />
+            <span>{renderInlineMarkdown(point)}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
 }
 
 export function Checkpoints({ items }: { items?: string[] | null }) {
@@ -175,6 +208,8 @@ export function SourcesSection({ article, labels }: { article: ArticleViewModel;
             <a href={display.url} target="_blank" rel="noreferrer">
               <strong>{display.title}</strong>
               {display.meta ? <small>{display.meta}</small> : null}
+              {display.claim ? <em>この出典が支える主張：{display.claim}</em> : null}
+              {display.accessedAt ? <small>確認日：{formatDateDot(display.accessedAt)}</small> : null}
             </a>
           </li>
         );

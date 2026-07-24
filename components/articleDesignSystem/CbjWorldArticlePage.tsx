@@ -4,6 +4,7 @@ import { BackToTop } from "@/components/articleDesignSystem/BackToTop";
 import { ArticleBlockStack, Chapter, DialogueGroup, KeyPoints, RichParagraph } from "@/components/articleDesignSystem/ArticleContent";
 import {
   ActionBox,
+  AnswerFirstSection,
   ArticleFooter,
   AuthorCard,
   Checkpoints,
@@ -152,6 +153,7 @@ export function CbjWorldArticlePage({ article, labels, linkIndex }: ArticleDesig
       <ArticleHeader />
       <ArticleHero article={article} kind={kind} />
       <div className={styles.contentColumn}>
+        <AnswerFirstSection answerFirst={article.articleDesign?.answerFirst} />
         <section className={styles.introSection}>
           <DialogueGroup items={article.articleDesign?.introDialogue} />
           {article.lead ? (
