@@ -9,11 +9,17 @@ const JUNA_IMAGE = "/images/cbj/article-system/juna-avatar.webp";
 const RINA_IMAGE = "/images/cbj/article-system/rina-avatar.webp";
 const CAR_IMAGE = "/images/cbj/article-system/car-illustration-transparent-v2.png";
 const DEFAULT_GRADIENT = ["#FF6B8A", "#FF8E53"] as const;
+// v2: heroGradient は theme から自動決定する（JSON側の heroGradient 値は無視）
+const THEME_GRADIENTS: Record<string, readonly [string, string]> = {
+  guide: ["#0E7C7B", "#0A5F5E"],
+  column: ["#E5604C", "#C74B39"],
+};
 const cx = (...values: Array<string | false | null | undefined>) => values.filter(Boolean).join(" ");
 
 export function ArticleHero({ article, kind }: { article: ArticleViewModel; kind: "COLUMN" | "GUIDE" }) {
   const design = article.articleDesign;
-  const [from, to] = design?.heroGradient?.length === 2 ? design.heroGradient : DEFAULT_GRADIENT;
+  const themeGradient = design?.theme ? THEME_GRADIENTS[design.theme] : undefined;
+  const [from, to] = themeGradient ?? (design?.heroGradient?.length === 2 ? design.heroGradient : DEFAULT_GRADIENT);
   const lesson = design?.lessonNumber ? `Lesson ${String(design.lessonNumber).padStart(2, "0")}` : kind === "COLUMN" ? "COLUMN" : "GUIDE";
   const difficulty = design?.difficulty || (kind === "COLUMN" ? "初級〜中級" : "実用ガイド");
   const heroStyle = { "--hero-from": from, "--hero-to": to } as CSSProperties;
@@ -55,6 +61,7 @@ export function ArticleHero({ article, kind }: { article: ArticleViewModel; kind
           <i />
           <span>{kind}</span>
         </div>
+        <p className={styles.heroNote}>一次資料・公式情報を基準に編集部が監修しています</p>
       </div>
       <div className={styles.scrollGuide} aria-hidden="true">
         <span>スクロールして読む</span>

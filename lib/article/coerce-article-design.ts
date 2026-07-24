@@ -1,4 +1,5 @@
 import type {
+  ArticleAnswerFirst,
   ArticleDesignDialogue,
   ArticleDesignSpec,
   GuideDetailBlock,
@@ -75,11 +76,25 @@ export function coerceArticleDesign(value: unknown): ArticleDesignSpec | null {
     }
   }
 
+  const answerFirstRecord = asRecord(record.answerFirst);
+  const answerFirstPoints = Array.isArray(answerFirstRecord?.points)
+    ? answerFirstRecord.points.map(asString).filter((entry): entry is string => Boolean(entry))
+    : [];
+  const answerFirstSummary = answerFirstRecord ? asString(answerFirstRecord.summary) : null;
+  const answerFirst: ArticleAnswerFirst | null =
+    answerFirstSummary && answerFirstPoints.length
+      ? { summary: answerFirstSummary, points: answerFirstPoints }
+      : null;
+
+  const themeRaw = asString(record.theme);
+
   return {
     version,
     layoutPreset: asString(record.layoutPreset),
     lessonNumber,
     difficulty: asString(record.difficulty),
+    theme: themeRaw === "guide" || themeRaw === "column" ? themeRaw : null,
+    answerFirst,
     heroGradient: heroGradient.length === 2 ? [heroGradient[0], heroGradient[1]] : null,
     heroTitle: asString(record.heroTitle),
     heroLead: asString(record.heroLead),
