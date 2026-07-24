@@ -1,10 +1,11 @@
+import type { CSSProperties } from "react";
+
 import { ArticleHeader } from "@/components/articleDesignSystem/ArticleHeader";
 import { ArticleFlow } from "@/components/articleDesignSystem/ArticleFlow";
 import { BackToTop } from "@/components/articleDesignSystem/BackToTop";
-import { ArticleBlockStack, Chapter, DialogueGroup, KeyPoints, RichParagraph } from "@/components/articleDesignSystem/ArticleContent";
+import { AnswerFirstBlock, ArticleBlockStack, Chapter, DialogueGroup, KeyPoints, RichParagraph } from "@/components/articleDesignSystem/ArticleContent";
 import {
   ActionBox,
-  AnswerFirstSection,
   ArticleFooter,
   AuthorCard,
   Checkpoints,
@@ -143,17 +144,27 @@ export function CbjWorldArticlePage({ article, labels, linkIndex }: ArticleDesig
     color: palette[index % palette.length],
   }));
 
+  const isV2 = article.articleDesign?.version === "cbj-world-v2";
+  const v2Theme = article.articleDesign?.theme === "column" ? "column" : "guide";
+  const mainStyle = isV2
+    ? ({
+        "--accent": v2Theme === "column" ? "#E5604C" : "#0E7C7B",
+        "--accent-deep": v2Theme === "column" ? "#C74B39" : "#0A5F5E",
+      } as CSSProperties)
+    : undefined;
   return (
     <main
-      className={cx(styles.page, toyBox.enabled && styles.pageKimiMock, toyBox.pageClassName)}
+      className={cx(styles.page, isV2 && styles.pageV2, toyBox.enabled && styles.pageKimiMock, toyBox.pageClassName)}
+      style={mainStyle}
       id="cb-main"
       data-cbj-world-article
+      data-article-version={isV2 ? "cbj-world-v2" : "cbj-world-v1"}
       data-article-toybox={toyBox.id}
     >
       <ArticleHeader />
       <ArticleHero article={article} kind={kind} />
       <div className={styles.contentColumn}>
-        <AnswerFirstSection answerFirst={article.articleDesign?.answerFirst} />
+        <AnswerFirstBlock answerFirst={article.articleDesign?.answerFirst} linkIndex={linkIndex} />
         <section className={styles.introSection}>
           <DialogueGroup items={article.articleDesign?.introDialogue} />
           {article.lead ? (
