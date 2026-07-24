@@ -998,3 +998,293 @@
   gap: 13px;
   align-items: center;
   overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 4px 17px rgba(72,50,34,.05);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.relatedSection > div > a:hover,
+.relatedSection > div > a:focus-visible { transform: translateY(-2px); box-shadow: 0 9px 24px rgba(72,50,34,.09); }
+.relatedSection > div > a > span:first-child { position: relative; width: 116px; height: 100%; min-height: 108px; display: grid; place-items: center; overflow: hidden; }
+.relatedSection > div > a > span:first-child > span { position: absolute; z-index: 1; left: 10px; top: 9px; padding: 3px 9px; border-radius: 999px; background: rgba(255,255,255,.86); font-family: "Quicksand", sans-serif; font-size: .58rem; font-weight: 700; letter-spacing: .07em; }
+.relatedSection > div > a > span:first-child img { width: 100%; height: 100%; object-fit: cover; }
+.relatedSection > div > a > div { min-width: 0; padding: 13px 0; }
+.relatedSection > div > a > div > span { color: var(--light); font-size: .66rem; font-weight: 700; letter-spacing: .08em; }
+.relatedSection > div > a > div > p { margin: 4px 0 0; display: -webkit-box; overflow: hidden; color: var(--text); font-size: .86rem; font-weight: 600; line-height: 1.6; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.relatedSection > div > a > svg { width: 18px; height: 18px; margin-right: 13px; color: #c5b7a8; }
+
+.faqSection > div { display: grid; gap: 10px; }
+.faqSection details { border: 1px solid var(--border); border-radius: 16px; background: #fff; box-shadow: 0 3px 14px rgba(72,50,34,.04); }
+.faqSection summary { position: relative; padding: 15px 46px 15px 17px; list-style: none; color: var(--text); font-size: .9rem; font-weight: 600; line-height: 1.65; cursor: pointer; }
+.faqSection summary::-webkit-details-marker { display: none; }
+.faqSection summary::after {
+  content: "＋";
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff0e8;
+  color: var(--orange);
+  font-size: .88rem;
+  transform: translateY(-50%);
+  transition: transform 200ms ease;
+}
+.faqSection details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.faqSection details > p { margin: 0; padding: 0 17px 17px; color: var(--muted); font-size: .84rem; line-height: 1.85; white-space: pre-line; }
+
+.sourcesSection { padding: 21px; border: 1px solid var(--border); border-radius: 20px; background: #fff; }
+.sourcesSection > span { color: var(--light); font-family: "Quicksand", sans-serif; font-size: .66rem; font-weight: 700; letter-spacing: .12em; }
+.sourcesSection h2 { margin: 4px 0 12px; font-size: 1rem; }
+.sourcesSection > p { margin: 0 0 13px; color: var(--muted); font-size: .78rem; line-height: 1.8; }
+.sourcesSection ol { margin: 0; padding: 0 0 0 1.35em; color: var(--muted); font-size: .78rem; line-height: 1.85; }
+.sourcesSection li + li { margin-top: 8px; }
+.sourcesSection a { color: var(--rina); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.sourcesSection small { display: block; color: var(--light); font-size: .68rem; }
+
+.articleFooter { padding: 44px 0 58px; text-align: center; }
+.articleFooter > a { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border: 1px solid var(--border); border-radius: 999px; background: #fff; color: var(--text); font-size: .84rem; font-weight: 700; box-shadow: 0 4px 14px rgba(72,50,34,.06); transition: transform 180ms ease, box-shadow 180ms ease; }
+.articleFooter > a:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(72,50,34,.1); }
+.articleFooter > a svg { width: 17px; height: 17px; }
+.articleFooter > p { margin: 18px 0 0; color: var(--light); font-size: .72rem; letter-spacing: .04em; }
+
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+@keyframes floatSlow { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+@keyframes bounceScroll { 0%,100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(7px); opacity: .35; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInLeft { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes fadeInRight { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: scale(1); } }
+@keyframes shimmer { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .45; transform: scale(.82); } }
+
+@media (min-width: 720px) {
+  .articleHeaderInner { min-height: 66px; padding-inline: 26px; }
+  .articleMenuInner { padding: 10px 26px 16px; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 2px 10px; }
+  .heroInner { padding: 96px 30px 128px; }
+  .contentColumn { width: min(calc(100% - 48px), 720px); }
+  .dialogueContent { max-width: min(72%, 620px); }
+  .articleFlow { padding: 26px 28px; }
+  .chapterHeader { padding: 70px 20px 50px; }
+  .finalChecklist,
+  .actionBox,
+  .authorCard,
+  .relatedSection,
+  .faqSection,
+  .sourcesSection { margin: 36px 0; }
+}
+
+@media (max-width: 719px) {
+  .comparisonCards > div,
+  .decisionCards > div,
+  .editorialBoard > div { grid-template-columns: 1fr; }
+  .contrastCards > div { grid-template-columns: 1fr; }
+  .relatedSection > div > a { grid-template-columns: 96px minmax(0,1fr) 16px; }
+  .relatedSection > div > a > span:first-child { width: 96px; min-height: 96px; }
+  .caseStudies dl > div { grid-template-columns: 1fr; gap: 3px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page *,
+  .page *::before,
+  .page *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ============================================================
+   CBJ WORLD v2 overrides（DESIGN_ARTICLE_V2）
+   エディトリアルの骨格 × キャラの翻訳力。
+   角丸14px・影の最小化・色は章番号とアクセントに絞る。
+   ============================================================ */
+
+.pageV2 {
+  /* テーマアクセント（CbjWorldArticlePage が --accent を inline で指定） */
+  --accent: var(--teal);
+  --accent-deep: var(--teal-deep);
+  --orange: var(--accent);
+  --rina: var(--teal);
+  --juna: var(--coral);
+}
+
+/* ヒーロー: テーマ自動グラデ（JSONのheroGradientは使わない） */
+.pageV2 .hero {
+  min-height: min(56vh, 540px);
+  background: linear-gradient(150deg, var(--accent) 0%, var(--accent-deep) 100%);
+}
+.pageV2 .heroInner { padding: 72px 22px 96px; }
+
+/* 角丸の引き締め（18-23px → 14px 系） */
+.pageV2 .keyPoints,
+.pageV2 .articleFlow,
+.pageV2 .figure,
+.pageV2 .callout,
+.pageV2 .tableBlock,
+.pageV2 .stepBlock,
+.pageV2 .checklistCards,
+.pageV2 .comparisonCards article,
+.pageV2 .decisionCards article,
+.pageV2 .caseStudies article,
+.pageV2 .finalChecklist,
+.pageV2 .authorCard,
+.pageV2 .sourcesSection,
+.pageV2 .relatedSection > div > a,
+.pageV2 .faqSection details { border-radius: 14px; }
+
+.pageV2 .blockVariantSoft,
+.pageV2 .blockVariantOutline,
+.pageV2 .blockVariantEmphasis { border-radius: 14px; }
+
+.pageV2 .dialogueContent > div { border-radius: 16px 16px 16px 4px; }
+.pageV2 .dialogueJuna .dialogueContent > div { border-radius: 16px 16px 4px 16px; }
+
+/* 影の最小化：罫線主体のフラット・エディトリアル化 */
+.pageV2 .keyPoints,
+.pageV2 .articleFlow,
+.pageV2 .figure,
+.pageV2 .tableBlock,
+.pageV2 .stepBlock,
+.pageV2 .checklistCards,
+.pageV2 .comparisonCards article,
+.pageV2 .decisionCards article,
+.pageV2 .caseStudies article,
+.pageV2 .authorCard,
+.pageV2 .sourcesSection,
+.pageV2 .relatedSection > div > a,
+.pageV2 .faqSection details { box-shadow: 0 1px 3px rgba(31, 35, 40, .05); }
+
+.pageV2 .heroAvatar { box-shadow: 0 6px 18px rgba(20, 40, 40, .18); }
+
+/* 対話を脇役に：吹き出しを白基調・細罫線へ */
+.pageV2 .dialogueContent > div {
+  border-width: 1px;
+  border-color: var(--line);
+  background: #fff;
+}
+.pageV2 .dialogueJuna .dialogueContent > div {
+  border-color: var(--line);
+  background: #fff;
+}
+.pageV2 .dialogueContent > span {
+  background: rgba(14, 124, 123, .08);
+  color: var(--teal);
+}
+.pageV2 .dialogueJuna .dialogueContent > span {
+  background: rgba(229, 96, 76, .1);
+  color: var(--coral);
+}
+
+/* 章番号・アクセントをテーマ色へ */
+.pageV2 .chapterHeader { --chapter-color: var(--accent); }
+.pageV2 .subheading::before { background: var(--accent); }
+.pageV2 .keyPoints h2 > span,
+.pageV2 .flowNumber { background: var(--accent); }
+.pageV2 .keyPoints li > span { color: var(--accent); }
+.pageV2 .finalChecklist li > span { background: var(--accent); }
+.pageV2 .faqSection summary::after { background: rgba(14, 124, 123, .1); color: var(--accent); }
+.pageV2 .sourcesSection a { color: var(--teal); }
+.pageV2 .menuIconOrange { background: rgba(14, 124, 123, .1); color: var(--teal); }
+.pageV2 .relatedSection > span,
+.pageV2 .faqSection > span,
+.pageV2 .authorCard > div:last-child > span { color: var(--accent); }
+
+/* Answer First ブロック（新設） */
+.answerFirst {
+  margin: 34px 0 8px;
+  padding: 22px 22px 20px;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--accent);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(31, 35, 40, .05);
+}
+.answerFirst > span {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-family: "Quicksand", "Zen Maru Gothic", sans-serif;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.answerFirst > p {
+  margin: 0 0 14px;
+  color: var(--ink);
+  font-size: clamp(.96rem, 3.8vw, 1.05rem);
+  font-weight: 600;
+  line-height: 1.9;
+  text-wrap: pretty;
+}
+.answerFirst > ul {
+  margin: 0;
+  padding: 14px 0 0;
+  border-top: 1px dashed var(--line);
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+.answerFirst > ul li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--ink-soft);
+  font-size: .88rem;
+  line-height: 1.8;
+}
+.answerFirst > ul li::before {
+  content: "";
+  position: absolute;
+  top: .62em;
+  left: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* REFERENCES の claim / accessedAt 表示 */
+.sourcesSection .sourceClaim {
+  display: block;
+  margin-top: 2px;
+  color: var(--ink-soft);
+  font-size: .72rem;
+  line-height: 1.7;
+}
+.sourcesSection .sourceClaim::before {
+  content: "根拠: ";
+  color: var(--accent);
+  font-weight: 700;
+}
+.sourcesSection .sourceMeta {
+  display: block;
+  margin-top: 1px;
+  color: var(--light);
+  font-size: .66rem;
+}
+
+/* CTA（actionBox）をテーマグラデへ */
+.pageV2 .actionBox {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+  box-shadow: 0 8px 22px rgba(10, 95, 94, .16);
+}
+.pageV2 .actionBox a { color: var(--accent-deep); }
+
+/* 著者カード: 実名運営者を主役に */
+.pageV2 .authorIcon { background: rgba(14, 124, 123, .1); color: var(--teal); }
+
+/* editorialBoard は紺（--navy）へ統一 */
+.pageV2 .editorialBoard { background: var(--navy); }
+
+/* 行間・タイポの最終調整 */
+.pageV2 .bodyText { line-height: 1.95; }
+.pageV2 .hero h1 { letter-spacing: .02em; }
+
+@media (min-width: 720px) {
+  .pageV2 .heroInner { padding: 84px 30px 108px; }
+  .pageV2 .answerFirst { padding: 26px 28px 24px; }
+}
