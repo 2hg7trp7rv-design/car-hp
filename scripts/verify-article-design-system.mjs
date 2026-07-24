@@ -59,7 +59,7 @@ function listCbjWorldArticleFiles() {
     const absoluteFile = path.join(ROOT, relativeFile);
     try {
       const article = JSON.parse(fs.readFileSync(absoluteFile, "utf8"));
-      if (["cbj-world-v1", "cbj-world-v2"].includes(article?.articleDesign?.version) || article?.layoutVariant === "cbj-world-v1") {
+      if (article?.articleDesign?.version === "cbj-world-v2") {
         targets.push(relativeFile);
       }
     } catch {
@@ -89,8 +89,38 @@ for (const relativeFile of TARGETS) {
 
   const design = article.articleDesign;
   const isGuideArticle = relativeFile.includes("/guides/");
-  if (!design || !["cbj-world-v1", "cbj-world-v2"].includes(design.version)) fail(relativeFile, "articleDesign.version は cbj-world-v1 または cbj-world-v2 が必要です");
-  const isV2 = design?.version === "cbj-world-v2";
+  if (!design || design.version !== "cbj-world-v2") fail(relativeFile, "articleDesign.version は cbj-world-v2 が必要です");
+
+  // ---- v2追加ゲート: theme ----
+  const theme = String(design?.theme ?? "").trim();
+  if (theme !== "guide" && theme !== "column") {
+    fail(relativeFile, "articleDesign.theme は guide または column が必要です（heroGradientはthemeから自動決定）");
+  } else if (isGuideArticle && theme !== "guide") {
+    fail(relativeFile, "GUIDE記事の theme は guide としてください");
+  } else if (!isGuideArticle && theme !== "column") {
+    fail(relativeFile, "COLUMN記事の theme は column としてください");
+  }
+
+  // ---- v2追加ゲート: Answer First ----
+  const answerFirst = design?.answerFirst;
+  const answerSummary = String(answerFirst?.summary ?? "").trim();
+  const answerPoints = Array.isArray(answerFirst?.points) ? answerFirst.points.map((p) => String(p ?? "").trim()).filter(Boolean) : [];
+  if (!answerSummary) fail(relativeFile, "articleDesign.answerFirst.summary が必要です");
+  else if (answerSummary.length > 120) fail(relativeFile, `answerFirst.summary は120字以内にしてください（現在${answerSummary.length}字）`);
+  if (answerPoints.length !== 3) fail(relativeFile, `answerFirst.points は3点必要です（現在${answerPoints.length}点）`);
+  for (const [pointIndex, point] of answerPoints.entries()) {
+    if (point.length > 40) fail(relativeFile, `answerFirst.points[${pointIndex}] は40字以内にしてください（現在${point.length}字）`);
+  }
+  // lead ≠ heroLead ≠ answerFirst.summary（重複禁止）
+  const normalizedLead = normalizeText(article.lead);
+  const normalizedHeroLead = normalizeText(design?.heroLead);
+  const normalizedAnswer = normalizeText(answerSummary);
+  if (normalizedAnswer && normalizedAnswer === normalizedHeroLead) {
+    fail(relativeFile, "answerFirst.summary と heroLead が同義です。重複表示を避けてください");
+  }
+  if (normalizedAnswer && normalizedLead && normalizedAnswer === normalizedLead) {
+    fail(relativeFile, "answerFirst.summary と lead が同義です。重複表示を避けてください");
+  }
   if (!nonEmpty(design?.heroTitle)) fail(relativeFile, "articleDesign.heroTitle が必要です");
   if (!nonEmpty(design?.heroLead)) fail(relativeFile, "articleDesign.heroLead が必要です。ArticleHero は本文leadへフォールバックしません");
   if (isGuideArticle && !nonEmpty(design?.heroPromise)) fail(relativeFile, "articleDesign.heroPromise が必要です");
@@ -115,53 +145,6 @@ for (const relativeFile of TARGETS) {
   }
 
   if (Object.prototype.hasOwnProperty.call(article, "body")) fail(relativeFile, "旧bodyを残さずdetailSectionsを正本にしてください");
-
-  // --- v2 追加ゲート ---
-  if (isV2) {
-    // theme 必須（heroGradient は theme から自動決定し、JSON値は描画側で無視する）
-    if (!["guide", "column"].includes(design?.theme)) fail(relativeFile, "articleDesign.theme は guide または column が必要です");
-
-    // Answer First 必須・文字数チェック
-    const answerFirst = design?.answerFirst;
-    if (!answerFirst || !nonEmpty(answerFirst.summary)) {
-      fail(relativeFile, "answerFirst.summary が必要です（v2）");
-    } else if ([...answerFirst.summary].length > 120) {
-      fail(relativeFile, "answerFirst.summary は120字以内にしてください");
-    }
-    if (!Array.isArray(answerFirst?.points) || answerFirst.points.length !== 3) {
-      fail(relativeFile, "answerFirst.points は3点必要です（v2）");
-    } else {
-      for (const [index, point] of answerFirst.points.entries()) {
-        if (!nonEmpty(point)) fail(relativeFile, `answerFirst.points[${index}] が空です`);
-        else if ([...point].length > 40) fail(relativeFile, `answerFirst.points[${index}] は40字以内にしてください`);
-      }
-    }
-    // lead ≠ heroLead ≠ answerFirst.summary（重複禁止）
-    if (nonEmpty(answerFirst?.summary)) {
-      if (nonEmpty(article.lead) && normalizeText(article.lead) === normalizeText(answerFirst.summary)) {
-        fail(relativeFile, "lead と answerFirst.summary が重複しています");
-      }
-      if (nonEmpty(design?.heroLead) && normalizeText(design.heroLead) === normalizeText(answerFirst.summary)) {
-        fail(relativeFile, "heroLead と answerFirst.summary が重複しています");
-      }
-    }
-
-    // 本文中 dialogue ブロック数の上限（guide=3 / column=5）
-    const dialogueBlockCount = asArray(article.detailSections).reduce(
-      (sum, section) => sum + asArray(section?.blocks).filter((block) => block?.type === "dialogue").length,
-      0,
-    );
-    const dialogueLimit = isGuideArticle ? 3 : 5;
-    if (dialogueBlockCount > dialogueLimit) {
-      fail(relativeFile, `本文中のdialogueブロックは${dialogueLimit}個までです（現在${dialogueBlockCount}個）`);
-    }
-    // sectionDialogues はセクションあたり1往復（2件）まで
-    for (const [sectionId, dialogues] of Object.entries(design?.sectionDialogues ?? {})) {
-      if (Array.isArray(dialogues) && dialogues.length > 2) {
-        fail(relativeFile, `sectionDialogues.${sectionId} は1往復（2件）までです`);
-      }
-    }
-  }
 
   if (!nonEmpty(article.updateReason)) {
     fail(relativeFile, "updateReason が必要です");
@@ -194,7 +177,11 @@ for (const relativeFile of TARGETS) {
       if (!nonEmpty(source.title)) fail(relativeFile, `sources[${index}].title が必要です`);
       if (!nonEmpty(source.publisher)) fail(relativeFile, `sources[${index}].publisher が必要です`);
       if (!nonEmpty(source.claim)) fail(relativeFile, `sources[${index}].claim が必要です`);
-      if (isV2 && !nonEmpty(source.accessedAt)) fail(relativeFile, `sources[${index}].accessedAt（確認日）が必要です（v2）`);
+      // v2追加ゲート: 確認日（E-E-A-T）
+      if (!nonEmpty(source.accessedAt)) fail(relativeFile, `sources[${index}].accessedAt（確認日）が必要です`);
+      else if (!/^\d{4}-\d{2}-\d{2}$/u.test(String(source.accessedAt).trim())) {
+        fail(relativeFile, `sources[${index}].accessedAt は YYYY-MM-DD 形式にしてください`);
+      }
     }
   }
 
@@ -213,6 +200,21 @@ for (const relativeFile of TARGETS) {
   if (!Array.isArray(sections) || sections.length === 0) {
     fail(relativeFile, "detailSections が必要です");
     continue;
+  }
+
+  // ---- v2追加ゲート: 対話ブロック数上限（guide=3 / column=5）、sectionDialoguesは1往復まで ----
+  const dialogueBlockLimit = isGuideArticle ? 3 : 5;
+  const inlineDialogueCount = sections.reduce(
+    (count, section) => count + asArray(section?.blocks).filter((block) => block?.type === "dialogue").length,
+    0,
+  );
+  if (inlineDialogueCount > dialogueBlockLimit) {
+    fail(relativeFile, `本文中のdialogueブロックは${dialogueBlockLimit}箇所までです（現在${inlineDialogueCount}箇所）。対話は導入・翻訳・注意喚起に絞ってください`);
+  }
+  for (const [sectionId, dialogues] of Object.entries(design?.sectionDialogues ?? {})) {
+    if (asArray(dialogues).length > 2) {
+      fail(relativeFile, `sectionDialogues.${sectionId} は1往復（2件）までにしてください（現在${asArray(dialogues).length}件）`);
+    }
   }
   const sectionIds = new Set();
   const detailCallouts = [];
