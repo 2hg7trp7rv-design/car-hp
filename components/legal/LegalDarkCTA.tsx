@@ -10,7 +10,7 @@ type Props = {
 
 export function LegalDarkCTA({ eyebrow = "CONTACT", title, body, href, label }: Props) {
   return (
-    <section className="overflow-hidden rounded-[28px] border border-black/10 bg-[#080b0d] text-white">
+    <section className="overflow-hidden rounded-[28px] border border-black/10 bg-[var(--navy)] text-white">
       <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-stretch">
         <div className="p-5 sm:p-6">
           <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/30">
@@ -24,7 +24,7 @@ export function LegalDarkCTA({ eyebrow = "CONTACT", title, body, href, label }: 
           </p>
         </div>
         <div className="border-t border-white/10 p-5 lg:grid lg:min-w-[220px] lg:place-items-center lg:border-l lg:border-t-0">
-          <Link href={href} className="inline-flex min-h-11 items-center justify-center rounded-full bg-white px-5 text-[13px] font-semibold text-[#080b0d] transition-colors hover:bg-white/[0.88]">
+          <Link href={href} className="inline-flex min-h-11 items-center justify-center rounded-full bg-white px-5 text-[13px] font-semibold text-[var(--navy)] transition-colors hover:bg-white/[0.88]">
             {label} ↗
           </Link>
         </div>

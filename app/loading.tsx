@@ -20,9 +20,9 @@ export default function Loading() {
             <div className="mx-auto mt-6 h-px w-full max-w-[240px] bg-[rgba(31,28,25,0.08)]" />
 
             <div className="mt-6 flex justify-center gap-2" aria-hidden="true">
-              <span className="h-2 w-2 rounded-full bg-[rgba(122,135,108,0.22)]" />
-              <span className="h-2 w-2 rounded-full bg-[rgba(122,135,108,0.34)]" />
-              <span className="h-2 w-2 rounded-full bg-[rgba(122,135,108,0.22)]" />
+              <span className="h-2 w-2 rounded-full bg-[rgba(14,124,123,0.22)]" />
+              <span className="h-2 w-2 rounded-full bg-[rgba(14,124,123,0.34)]" />
+              <span className="h-2 w-2 rounded-full bg-[rgba(14,124,123,0.22)]" />
             </div>
           </div>
         </div>

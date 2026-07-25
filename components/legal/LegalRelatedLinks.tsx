@@ -18,7 +18,7 @@ export function LegalRelatedLinks({
   items,
 }: Props) {
   return (
-    <section className="overflow-hidden rounded-[28px] border border-black/10 bg-[#080b0d] text-white">
+    <section className="overflow-hidden rounded-[28px] border border-black/10 bg-[var(--navy)] text-white">
       <div className="border-b border-white/10 px-5 py-5 sm:px-6">
         <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/30">
           RELATED
@@ -42,7 +42,7 @@ export function LegalRelatedLinks({
               <div className="text-[15px] font-semibold tracking-[-0.02em] text-white/[0.86] transition-colors group-hover:text-white">
                 {item.label}
               </div>
-              <span className="text-[18px] leading-none text-[#00708d] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+              <span className="text-[18px] leading-none text-[var(--teal)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                 ↗
               </span>
             </div>

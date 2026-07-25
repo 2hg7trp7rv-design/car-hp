@@ -16,15 +16,15 @@ export function LegalSummaryGrid({ items, className = "" }: Props) {
         {items.map((item) => (
           <article
             key={`${item.label}-${item.title}`}
-            className="rounded-[22px] border border-black/10 bg-[#f9f5ee] p-4 sm:p-5"
+            className="rounded-[22px] border border-black/10 bg-[var(--paper)] p-4 sm:p-5"
           >
-            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#00708d]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--teal)]">
               {item.label}
             </p>
-            <h3 className="mt-3 text-[17px] font-semibold leading-[1.25] tracking-[-0.04em] text-[#080b0d]">
+            <h3 className="mt-3 text-[17px] font-semibold leading-[1.25] tracking-[-0.04em] text-[var(--navy)]">
               {item.title}
             </h3>
-            <p className="mt-2 text-[12px] leading-[1.85] text-[#657078]">
+            <p className="mt-2 text-[12px] leading-[1.85] text-[var(--ink-soft)]">
               {item.body}
             </p>
           </article>
