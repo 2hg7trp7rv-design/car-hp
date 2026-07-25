@@ -72,7 +72,7 @@ export function HubNextReadShelf({
 
   const cardClass = isDark
     ? "border border-[var(--border-default)] bg-[var(--surface-1)] p-4 text-[var(--text-primary)] hover:bg-[var(--surface-2)]"
-    : "border border-[var(--border-default)] bg-[rgba(228,219,207,0.42)] p-4 text-[var(--text-primary)] transition hover:border-[rgba(122,135,108,0.3)] hover:bg-[rgba(228,219,207,0.42)]";
+    : "border border-[var(--border-default)] bg-[rgba(228,219,207,0.42)] p-4 text-[var(--text-primary)] transition hover:border-[rgba(14,124,123,0.3)] hover:bg-[rgba(228,219,207,0.42)]";
 
   const labelClass = isDark ? "text-[var(--text-tertiary)]" : "text-[var(--text-tertiary)]";
 

@@ -16,7 +16,7 @@ function toneClass(tone: Tone) {
     case "light":
       return "bg-[var(--surface-2)] text-[var(--text-secondary)] border border-[rgba(31,28,25,0.08)]";
     default:
-      return "bg-[var(--accent-subtle)] text-[var(--accent-strong)] border border-[rgba(122,135,108,0.18)]";
+      return "bg-[var(--accent-subtle)] text-[var(--accent-strong)] border border-[rgba(14,124,123,0.18)]";
   }
 }
 
@@ -70,7 +70,7 @@ export function ContentRowCard({
       href={href}
       className={cn(
         "group block overflow-hidden rounded-[24px] border border-[var(--border-default)] bg-[rgba(251,248,243,0.9)] transition",
-        "hover:-translate-y-[2px] hover:border-[rgba(122,135,108,0.35)]",
+        "hover:-translate-y-[2px] hover:border-[rgba(14,124,123,0.35)]",
         className,
       )}
     >

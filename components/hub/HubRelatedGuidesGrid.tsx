@@ -53,7 +53,7 @@ export function HubRelatedGuidesGrid(props: Props) {
   const wrapNote = isDark ? "text-[var(--text-tertiary)]" : "text-[var(--text-secondary)]";
 
   const cardBorder = isDark ? "border-white/10" : "border-[rgba(31,28,25,0.12)]";
-  const cardHoverBorder = isDark ? "hover:border-white/20" : "hover:border-[rgba(122,135,108,0.3)]";
+  const cardHoverBorder = isDark ? "hover:border-white/20" : "hover:border-[rgba(14,124,123,0.3)]";
   const cardBg = isDark ? "bg-[var(--surface-1)]" : "bg-[rgba(228,219,207,0.42)]";
   const cardHoverBg = isDark ? "hover:bg-[var(--surface-1)]" : "hover:bg-[rgba(228,219,207,0.42)]";
 
