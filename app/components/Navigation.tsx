@@ -70,79 +70,103 @@ export default function Navigation() {
         }`}
         aria-hidden={hideHeader}
       >
-        <div className="pointer-events-auto relative overflow-hidden bg-[#111313] shadow-[0_18px_46px_rgba(0,0,0,0.22)]">
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-[radial-gradient(circle_at_18%_8%,rgba(255,255,255,0.13),transparent_35%),radial-gradient(circle_at_78%_34%,rgba(255,255,255,0.075),transparent_34%),linear-gradient(180deg,#2e3030_0%,#171919_50%,#050606_100%)] opacity-95"
-          />
-          <div className="relative mx-auto flex h-[clamp(72px,9.2svh,86px)] max-w-[1440px] items-center justify-between px-[clamp(22px,5.8svw,56px)]">
+        <div className="pointer-events-auto relative border-b border-[var(--line)] bg-white/90 backdrop-blur-md">
+          <div className="relative mx-auto flex h-[clamp(64px,8.4svh,76px)] max-w-[1440px] items-center justify-between px-[clamp(22px,5.8svw,56px)]">
             <Link
               href="/"
-              className="font-editorial text-[clamp(13px,3.45svw,22px)] uppercase leading-none tracking-[0.32em] text-white/[0.92] drop-shadow-[0_1px_6px_rgba(255,255,255,0.10)]"
+              className="font-editorial text-[clamp(13px,3.45svw,20px)] font-bold uppercase leading-none tracking-[0.32em] text-[var(--ink)]"
             >
-              CAR BOUTIQUE
+              CBJ
             </Link>
-            <button
-              type="button"
-              onClick={() => setMenuOpen(true)}
-              aria-label="メニューを開く"
-              aria-expanded={menuOpen}
-              className="-mr-1 grid h-[clamp(38px,10svw,54px)] w-[clamp(38px,10svw,54px)] place-items-center text-white/[0.82] transition-colors hover:text-white"
-            >
-              <MenuIcon size={34} strokeWidth={1.12} />
-            </button>
+            <div className="flex items-center gap-[clamp(10px,2.6svw,28px)]">
+              <div className="hidden items-center gap-[clamp(14px,2.4svw,26px)] sm:flex">
+                {navLinks.map((link) => {
+                  const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      aria-current={active ? "page" : undefined}
+                      className={`relative pb-1 text-[12px] font-medium tracking-[0.18em] transition-colors ${
+                        active
+                          ? "text-[var(--teal)] after:absolute after:inset-x-0 after:bottom-0 after:h-[2px] after:rounded-full after:bg-[var(--teal)]"
+                          : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
+              </div>
+              <button
+                type="button"
+                onClick={() => setMenuOpen(true)}
+                aria-label="メニューを開く"
+                aria-expanded={menuOpen}
+                className="-mr-1 grid h-[clamp(38px,10svw,48px)] w-[clamp(38px,10svw,48px)] place-items-center text-[var(--ink)] transition-colors hover:text-[var(--teal)]"
+              >
+                <MenuIcon size={30} strokeWidth={1.4} />
+              </button>
+            </div>
           </div>
         </div>
       </nav>
 
       <div
-        className={`fixed inset-0 z-[70] isolate overflow-y-auto overflow-x-hidden bg-[#151818]/[0.88] text-white backdrop-blur-[22px] transition-[opacity,visibility] duration-500 ${
+        className={`fixed inset-0 z-[70] isolate overflow-y-auto overflow-x-hidden bg-[var(--paper)]/[0.97] text-[var(--ink)] backdrop-blur-[18px] transition-[opacity,visibility] duration-500 ${
           menuOpen ? "visible opacity-100" : "invisible pointer-events-none opacity-0"
         }`}
         aria-hidden={!menuOpen}
       >
         <div
           aria-hidden="true"
-          className="absolute inset-0 min-h-full bg-[radial-gradient(circle_at_18%_8%,rgba(255,255,255,0.15),transparent_30%),radial-gradient(circle_at_50%_36%,rgba(255,255,255,0.10),transparent_34%),radial-gradient(circle_at_70%_78%,rgba(255,255,255,0.06),transparent_40%),linear-gradient(180deg,#343939_0%,#1b1f1f_34%,#090b0b_76%,#020303_100%)] opacity-[0.92]"
+          className="absolute inset-0 min-h-full bg-[radial-gradient(circle_at_18%_8%,rgba(14,124,123,0.07),transparent_32%),radial-gradient(circle_at_78%_80%,rgba(229,96,76,0.06),transparent_36%)]"
         />
-        <div aria-hidden="true" className="absolute inset-0 min-h-full bg-black/[0.24]" />
 
         <div className="relative flex min-h-svh flex-col">
-          <div className="flex h-[clamp(82px,11.2svh,102px)] shrink-0 items-center justify-between px-[clamp(22px,5.8svw,54px)]">
+          <div className="flex h-[clamp(76px,10.4svh,96px)] shrink-0 items-center justify-between border-b border-[var(--line)] px-[clamp(22px,5.8svw,54px)]">
             <Link
               href="/"
               onClick={() => setMenuOpen(false)}
-              className="font-editorial text-[clamp(13px,3.5svw,22px)] uppercase leading-none tracking-[0.30em] text-white/[0.70] drop-shadow-[0_1px_8px_rgba(255,255,255,0.10)]"
+              className="font-editorial text-[clamp(13px,3.5svw,20px)] font-bold uppercase leading-none tracking-[0.30em] text-[var(--ink)]"
             >
-              CAR BOUTIQUE
+              CBJ
             </Link>
             <button
               type="button"
               onClick={() => setMenuOpen(false)}
               aria-label="メニューを閉じる"
-              className="grid h-[clamp(38px,10svw,54px)] w-[clamp(38px,10svw,54px)] place-items-center text-white/[0.74] transition-colors hover:text-white"
+              className="grid h-[clamp(38px,10svw,48px)] w-[clamp(38px,10svw,48px)] place-items-center text-[var(--ink-soft)] transition-colors hover:text-[var(--ink)]"
             >
-              <CloseIcon size={28} strokeWidth={1.3} />
+              <CloseIcon size={26} strokeWidth={1.4} />
             </button>
           </div>
 
           <div className="flex flex-1 items-start justify-center px-[clamp(20px,5.6svw,54px)] pb-[calc(clamp(54px,10svh,82px)+env(safe-area-inset-bottom))] pt-[clamp(58px,8svh,84px)] text-center">
             <div className="w-full space-y-[clamp(54px,8svh,70px)]">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="group mx-auto block w-fit"
-                >
-                  <span className="block font-editorial text-[clamp(38px,10.4svw,62px)] uppercase leading-[0.92] tracking-[0.20em] text-white/[0.52] drop-shadow-[0_8px_22px_rgba(0,0,0,0.26)] transition-colors duration-300 group-hover:text-white/[0.82]">
-                    {link.labelEn}
-                  </span>
-                  <span className="mt-[clamp(12px,1.7svh,18px)] block text-[clamp(12px,3.0svw,16px)] leading-none tracking-[0.34em] text-white/[0.40] transition-colors duration-300 group-hover:text-white/[0.60]">
-                    {link.label}
-                  </span>
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    aria-current={active ? "page" : undefined}
+                    className="group mx-auto block w-fit"
+                  >
+                    <span
+                      className={`block font-editorial text-[clamp(38px,10.4svw,62px)] font-bold uppercase leading-[0.92] tracking-[0.20em] transition-colors duration-300 ${
+                        active ? "text-[var(--teal)]" : "text-[var(--ink)] group-hover:text-[var(--teal)]"
+                      }`}
+                    >
+                      {link.labelEn}
+                    </span>
+                    <span className="mt-[clamp(12px,1.7svh,18px)] block text-[clamp(12px,3.0svw,16px)] leading-none tracking-[0.34em] text-[var(--ink-soft)] transition-colors duration-300 group-hover:text-[var(--ink)]">
+                      {link.label}
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
