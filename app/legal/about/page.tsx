@@ -87,10 +87,10 @@ export default function AboutOperatorPage() {
         className="mb-8"
       />
 
-      <header className="overflow-hidden rounded-[28px] border border-black/10 bg-[#f9f5ee]">
+      <header className="overflow-hidden rounded-[28px] border border-black/10 bg-[var(--paper)]">
         <div className="grid gap-0 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-          <div className="relative overflow-hidden bg-[#080b0d] p-[clamp(22px,5vw,48px)] text-white">
-            <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#00708d]/25 blur-3xl" />
+          <div className="relative overflow-hidden bg-[var(--navy)] p-[clamp(22px,5vw,48px)] text-white">
+            <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[rgba(14,124,123,0.25)] blur-3xl" />
             <div className="relative">
               <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/[0.34]">
                 OPERATOR
@@ -105,13 +105,13 @@ export default function AboutOperatorPage() {
           </div>
 
           <div className="p-[clamp(20px,4vw,40px)]">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#00708d]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[var(--teal)]">
               PROFILE
             </p>
-            <h2 className="mt-4 max-w-[14ch] text-[clamp(28px,5vw,50px)] font-semibold leading-[1.03] tracking-[-0.075em] text-[#080b0d]">
+            <h2 className="mt-4 max-w-[14ch] text-[clamp(28px,5vw,50px)] font-semibold leading-[1.03] tracking-[-0.075em] text-[var(--navy)]">
               車を見る基準を、記事の形にする
             </h2>
-            <p className="mt-5 text-[13px] leading-[1.95] tracking-[0.02em] text-[#657078]">
+            <p className="mt-5 text-[13px] leading-[1.95] tracking-[0.02em] text-[var(--ink-soft)]">
               {CBJ_SITE_DESCRIPTION}
             </p>
           </div>
@@ -122,7 +122,7 @@ export default function AboutOperatorPage() {
         <section className="rounded-[28px] border border-black/10 bg-white/[0.72] p-4 sm:p-5">
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {PROFILE_ITEMS.map((item) => (
-              <div key={item.label} className="rounded-[20px] border border-black/10 bg-[#f9f5ee] p-4">
+              <div key={item.label} className="rounded-[20px] border border-black/10 bg-[var(--paper)] p-4">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/[0.34]">
                   {item.label}
                 </p>
@@ -131,7 +131,7 @@ export default function AboutOperatorPage() {
                 </p>
               </div>
             ))}
-            <Link href="/contact" className="rounded-[20px] border border-black/10 bg-[#080b0d] p-4 text-white transition-colors hover:bg-[#152026]">
+            <Link href="/contact" className="rounded-[20px] border border-black/10 bg-[var(--navy)] p-4 text-white transition-colors hover:bg-[var(--ink)]">
               <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/[0.34]">
                 窓口
               </p>
@@ -145,28 +145,28 @@ export default function AboutOperatorPage() {
         <LegalSummaryGrid items={STANCE_ITEMS} />
 
         <section className="grid gap-4 lg:grid-cols-2">
-          <article className="rounded-[28px] border border-black/10 bg-[#f9f5ee] p-5 sm:p-6">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#00708d]">
+          <article className="rounded-[28px] border border-black/10 bg-[var(--paper)] p-5 sm:p-6">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[var(--teal)]">
               CAN DO
             </p>
-            <h2 className="mt-3 text-[clamp(24px,4vw,36px)] font-semibold leading-[1.08] tracking-[-0.06em] text-[#080b0d]">
+            <h2 className="mt-3 text-[clamp(24px,4vw,36px)] font-semibold leading-[1.08] tracking-[-0.06em] text-[var(--navy)]">
               記事でできること
             </h2>
-            <ul className="mt-5 space-y-3 text-[13px] leading-[1.9] text-[#657078]">
+            <ul className="mt-5 space-y-3 text-[13px] leading-[1.9] text-[var(--ink-soft)]">
               <li>車選び、維持、整備修理、カスタム、売却、歴史の判断材料を整理すること</li>
               <li>公式情報と条件で変わる内容を分けて示すこと</li>
               <li>誤記や古い情報が判明した場合に見直すこと</li>
             </ul>
           </article>
 
-          <article className="rounded-[28px] border border-black/10 bg-[#f9f5ee] p-5 sm:p-6">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#00708d]">
+          <article className="rounded-[28px] border border-black/10 bg-[var(--paper)] p-5 sm:p-6">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[var(--teal)]">
               CANNOT DO
             </p>
-            <h2 className="mt-3 text-[clamp(24px,4vw,36px)] font-semibold leading-[1.08] tracking-[-0.06em] text-[#080b0d]">
+            <h2 className="mt-3 text-[clamp(24px,4vw,36px)] font-semibold leading-[1.08] tracking-[-0.06em] text-[var(--navy)]">
               記事でできないこと
             </h2>
-            <ul className="mt-5 space-y-3 text-[13px] leading-[1.9] text-[#657078]">
+            <ul className="mt-5 space-y-3 text-[13px] leading-[1.9] text-[var(--ink-soft)]">
               <li>個別車両の診断、契約判断、整備作業そのものの代替</li>
               <li>価格、保証、故障原因、査定額の確定</li>
               <li>販売店、整備工場、保険会社、専門家による確認の代替</li>
