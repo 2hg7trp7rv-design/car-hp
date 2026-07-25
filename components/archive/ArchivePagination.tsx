@@ -47,7 +47,7 @@ export function ArchivePagination({ currentPage, totalPages, hrefForPage, classN
           "inline-flex items-center rounded-full border px-4 py-2 text-[11px] font-medium transition",
           currentPage === 1
             ? "cursor-not-allowed border-[var(--border-default)] text-[rgba(107,101,93,0.5)]"
-            : "border-[var(--border-default)] bg-[rgba(251,248,243,0.9)] text-[var(--text-secondary)] hover:border-[rgba(122,135,108,0.3)] hover:text-[var(--accent-strong)]",
+            : "border-[var(--border-default)] bg-[rgba(251,248,243,0.9)] text-[var(--text-secondary)] hover:border-[rgba(14,124,123,0.3)] hover:text-[var(--accent-strong)]",
         ].join(" ")}
       >
         前へ
@@ -67,8 +67,8 @@ export function ArchivePagination({ currentPage, totalPages, hrefForPage, classN
             className={[
               "inline-flex h-10 min-w-10 items-center justify-center rounded-full border px-3 text-[11px] font-medium transition",
               item === currentPage
-                ? "border-[rgba(122,135,108,0.2)] bg-[var(--accent-subtle)] text-[var(--accent-strong)]"
-                : "border-[var(--border-default)] bg-[rgba(251,248,243,0.9)] text-[var(--text-secondary)] hover:border-[rgba(122,135,108,0.3)] hover:text-[var(--accent-strong)]",
+                ? "border-[rgba(14,124,123,0.2)] bg-[var(--accent-subtle)] text-[var(--accent-strong)]"
+                : "border-[var(--border-default)] bg-[rgba(251,248,243,0.9)] text-[var(--text-secondary)] hover:border-[rgba(14,124,123,0.3)] hover:text-[var(--accent-strong)]",
             ].join(" ")}
           >
             {item}
@@ -84,7 +84,7 @@ export function ArchivePagination({ currentPage, totalPages, hrefForPage, classN
           "inline-flex items-center rounded-full border px-4 py-2 text-[11px] font-medium transition",
           currentPage === totalPages
             ? "cursor-not-allowed border-[var(--border-default)] text-[rgba(107,101,93,0.5)]"
-            : "border-[var(--border-default)] bg-[rgba(251,248,243,0.9)] text-[var(--text-secondary)] hover:border-[rgba(122,135,108,0.3)] hover:text-[var(--accent-strong)]",
+            : "border-[var(--border-default)] bg-[rgba(251,248,243,0.9)] text-[var(--text-secondary)] hover:border-[rgba(14,124,123,0.3)] hover:text-[var(--accent-strong)]",
         ].join(" ")}
       >
         次へ

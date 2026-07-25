@@ -12,7 +12,7 @@ const buttonVariants = cva(
     "relative inline-flex items-center justify-center gap-2 overflow-hidden",
     "rounded-[16px] border text-[12px] font-medium tracking-[0.04em]",
     "transition-all duration-200 ease-[cubic-bezier(0.2,0,0,1)]",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(122,135,108,0.42)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-stage)]",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(14,124,123,0.42)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-stage)]",
     "disabled:pointer-events-none disabled:opacity-60",
     "select-none",
   ].join(" "),
@@ -31,7 +31,7 @@ const buttonVariants = cva(
         ].join(" "),
         outline: [
           "border-[var(--border-default)] bg-transparent text-[var(--text-primary)]",
-          "hover:border-[rgba(122,135,108,0.45)] hover:bg-[var(--surface-2)]",
+          "hover:border-[rgba(14,124,123,0.45)] hover:bg-[var(--surface-2)]",
           "active:scale-[0.99]",
         ].join(" "),
         subtle: [
