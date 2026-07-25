@@ -164,7 +164,7 @@ export function renderInlineMarkdown(text: string): ReactNode {
             <Link
               key={idx}
               href={href}
-              className="font-medium text-[var(--text-primary)] underline decoration-[rgba(122,135,108,0.42)] underline-offset-4 transition-colors duration-120 hover:text-[var(--accent-strong)] hover:decoration-[var(--accent-base)]"
+              className="font-medium text-[var(--text-primary)] underline decoration-[rgba(14,124,123,0.42)] underline-offset-4 transition-colors duration-120 hover:text-[var(--accent-strong)] hover:decoration-[var(--accent-base)]"
             >
               {label}
             </Link>
@@ -177,7 +177,7 @@ export function renderInlineMarkdown(text: string): ReactNode {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline decoration-[rgba(122,135,108,0.42)] underline-offset-4 transition-colors duration-120 hover:text-[var(--accent-strong)] hover:decoration-[var(--accent-base)]"
+            className="underline decoration-[rgba(14,124,123,0.42)] underline-offset-4 transition-colors duration-120 hover:text-[var(--accent-strong)] hover:decoration-[var(--accent-base)]"
           >
             {label}
           </a>

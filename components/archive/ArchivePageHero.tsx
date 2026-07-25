@@ -10,7 +10,7 @@ type PosterVariant = "guide" | "column" | "generic";
 const TONE_STYLES: Record<Tone, { wash: string; border: string; text: string }> = {
   moss: {
     wash: "bg-[var(--surface-moss)]",
-    border: "border-[rgba(122,135,108,0.18)]",
+    border: "border-[rgba(14,124,123,0.18)]",
     text: "text-[var(--accent-strong)]",
   },
   clay: {
