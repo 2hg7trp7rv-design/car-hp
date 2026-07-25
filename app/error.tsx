@@ -45,7 +45,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
 
           <Link
             href="/"
-            className="cb-tap inline-flex items-center justify-center rounded-full border border-[var(--border-default)] bg-[var(--surface-2)] px-5 py-3 text-[11px] font-semibold tracking-[0.22em] text-[var(--text-primary)] shadow-soft transition hover:border-[rgba(122,135,108,0.3)]"
+            className="cb-tap inline-flex items-center justify-center rounded-full border border-[var(--border-default)] bg-[var(--surface-2)] px-5 py-3 text-[11px] font-semibold tracking-[0.22em] text-[var(--text-primary)] shadow-soft transition hover:border-[rgba(14,124,123,0.3)]"
           >
             ホームへ戻る
           </Link>

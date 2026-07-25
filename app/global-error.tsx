@@ -42,14 +42,14 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
               <button
                 type="button"
                 onClick={reset}
-                className="inline-flex min-h-[46px] items-center justify-center rounded-full border border-[rgba(122,135,108,0.24)] bg-[rgba(122,135,108,0.12)] px-5 text-[12px] font-semibold tracking-[0.18em] text-[var(--accent-strong)] transition hover:border-[rgba(122,135,108,0.34)] hover:bg-[rgba(122,135,108,0.18)]"
+                className="inline-flex min-h-[46px] items-center justify-center rounded-full border border-[rgba(14,124,123,0.24)] bg-[rgba(14,124,123,0.12)] px-5 text-[12px] font-semibold tracking-[0.18em] text-[var(--accent-strong)] transition hover:border-[rgba(14,124,123,0.34)] hover:bg-[rgba(14,124,123,0.18)]"
               >
                 再読み込み
               </button>
 
               <Link
                 href="/"
-                className="inline-flex min-h-[46px] items-center justify-center rounded-full border border-[var(--border-default)] bg-[rgba(251,248,243,0.92)] px-5 text-[12px] font-semibold tracking-[0.18em] text-[var(--text-primary)] transition hover:border-[rgba(122,135,108,0.28)] hover:text-[var(--accent-strong)]"
+                className="inline-flex min-h-[46px] items-center justify-center rounded-full border border-[var(--border-default)] bg-[rgba(251,248,243,0.92)] px-5 text-[12px] font-semibold tracking-[0.18em] text-[var(--text-primary)] transition hover:border-[rgba(14,124,123,0.28)] hover:text-[var(--accent-strong)]"
               >
                 ホームへ戻る
               </Link>
