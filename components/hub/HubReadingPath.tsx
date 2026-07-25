@@ -56,7 +56,7 @@ export function HubReadingPath({
           >
             <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
               <div className="flex items-start gap-3">
-                <span className="mt-0.5 inline-flex h-7 items-center rounded-full bg-[rgba(122,135,108,0.08)] px-3 text-[10px] font-semibold tracking-[0.22em] text-[var(--text-secondary)]">
+                <span className="mt-0.5 inline-flex h-7 items-center rounded-full bg-[rgba(14,124,123,0.08)] px-3 text-[10px] font-semibold tracking-[0.22em] text-[var(--text-secondary)]">
                   観点 {idx + 1}
                 </span>
                 <div>

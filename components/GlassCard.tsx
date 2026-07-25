@@ -79,7 +79,7 @@ export function GlassCard(props: GlassCardProps) {
     "rounded-[20px]",
     "focus-visible:outline-none",
     "focus-visible:ring-2",
-    "focus-visible:ring-[rgba(122,135,108,0.42)]",
+    "focus-visible:ring-[rgba(14,124,123,0.42)]",
     "focus-visible:ring-offset-2",
     "focus-visible:ring-offset-[var(--bg-stage)]",
   ].join(" ");

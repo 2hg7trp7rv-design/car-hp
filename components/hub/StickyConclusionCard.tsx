@@ -41,7 +41,7 @@ export function StickyConclusionCard(props: StickyConclusionCardProps) {
         <ul className={cn("mt-4 space-y-2 text-[12px] leading-relaxed", isDark ? "text-[var(--text-tertiary)]" : "text-[var(--text-secondary)]")}>
           {bullets.slice(0, 6).map((b, i) => (
             <li key={`${b}-${i}`} className="flex gap-2">
-              <span className={cn("mt-[2px] inline-block h-1.5 w-1.5 rounded-full", isDark ? "bg-[rgba(122,135,108,0.8)]" : "bg-accent/80")} />
+              <span className={cn("mt-[2px] inline-block h-1.5 w-1.5 rounded-full", isDark ? "bg-[rgba(14,124,123,0.8)]" : "bg-accent/80")} />
               <span>{b}</span>
             </li>
           ))}
