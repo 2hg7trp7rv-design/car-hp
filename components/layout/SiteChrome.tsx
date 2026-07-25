@@ -20,16 +20,9 @@ export function SiteChrome({ children, editorialPaths }: SiteChromeProps) {
   // Registry supplies the exact paths that may use article chrome.
   const editorialArticle = editorialPaths.includes(pathname.replace(/\/$/u, ""));
 
-  if (pathname === "/") {
-    return (
-      <div id="cb-main" tabIndex={-1} className="min-h-screen bg-[#0A0A0A] text-white outline-none">
-        {children}
-      </div>
-    );
-  }
-
+  // v2: 全ページ同一クローム（記事詳細の没入レイアウトのみ現行維持）
   return (
-    <div className={editorialArticle ? "flex min-h-screen flex-col bg-white" : "flex min-h-screen flex-col bg-[var(--bg-stage)]"}>
+    <div className={editorialArticle ? "flex min-h-screen flex-col bg-white" : "flex min-h-screen flex-col bg-[var(--paper)]"}>
       {editorialArticle ? null : <Navigation />}
       <div id={editorialArticle ? undefined : "cb-main"} tabIndex={editorialArticle ? undefined : -1} className="flex-1 pt-0 outline-none">
         {children}
