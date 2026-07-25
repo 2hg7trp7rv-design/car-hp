@@ -38,8 +38,8 @@ const CONTACT_TYPES = [
 
 export default function ContactPage() {
   return (
-    <main className="relative isolate min-h-screen overflow-hidden bg-[#f6f1e9]">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_0%,rgba(0,112,141,0.12),transparent_32%),linear-gradient(180deg,#f9f5ee_0%,#f4eee5_58%,#eee7dc_100%)]" />
+    <main className="relative isolate min-h-screen overflow-hidden bg-[var(--paper)]">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_0%,rgba(14,124,123,0.12),transparent_32%),linear-gradient(180deg,var(--paper)_0%,var(--paper)_58%,var(--paper)_100%)]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[320px] bg-[linear-gradient(180deg,rgba(3,4,4,0.08),rgba(3,4,4,0))]" />
 
       <div className="mx-auto w-full max-w-[1180px] px-[clamp(18px,4.8vw,56px)] pb-[clamp(76px,11vw,128px)] pt-[clamp(58px,9vw,112px)]">
@@ -47,8 +47,8 @@ export default function ContactPage() {
 
         <section className="overflow-hidden rounded-[clamp(24px,4vw,40px)] border border-black/10 bg-white/[0.76] shadow-[0_28px_90px_-64px_rgba(3,4,4,0.42)] backdrop-blur-sm">
           <div className="grid gap-0 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-            <header className="relative overflow-hidden bg-[#080b0d] p-[clamp(20px,5vw,44px)] text-white">
-              <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-[#00708d]/22 blur-3xl" />
+            <header className="relative overflow-hidden bg-[var(--navy)] p-[clamp(20px,5vw,44px)] text-white">
+              <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-[rgba(14,124,123,0.22)] blur-3xl" />
               <div className="relative">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/[0.34]">
                   CONTACT DESK
@@ -63,26 +63,26 @@ export default function ContactPage() {
             </header>
 
             <div className="p-[clamp(18px,4vw,36px)]">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#00708d]">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[var(--teal)]">
                 BEFORE SENDING
               </p>
-              <h2 className="mt-3 max-w-[17ch] text-[clamp(24px,4vw,38px)] font-semibold leading-[1.08] tracking-[-0.065em] text-[#080b0d]">
+              <h2 className="mt-3 max-w-[17ch] text-[clamp(24px,4vw,38px)] font-semibold leading-[1.08] tracking-[-0.065em] text-[var(--navy)]">
                 URLと対象箇所があるほど確認しやすい
               </h2>
-              <p className="mt-4 text-[13px] leading-[1.9] tracking-[0.02em] text-[#657078]">
+              <p className="mt-4 text-[13px] leading-[1.9] tracking-[0.02em] text-[var(--ink-soft)]">
                 修正依頼や事実関係の指摘は、対象ページのURL、該当箇所、確認したい内容を添えてください
               </p>
 
               <div className="mt-6 grid gap-2.5 sm:grid-cols-2">
                 {CONTACT_TYPES.map((item) => (
-                  <article key={item.label} className="rounded-[20px] border border-black/10 bg-[#f9f5ee] p-3.5 sm:p-4">
+                  <article key={item.label} className="rounded-[20px] border border-black/10 bg-[var(--paper)] p-3.5 sm:p-4">
                     <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/[0.34]">
                       {item.label}
                     </p>
-                    <h3 className="mt-2 text-[15px] font-semibold tracking-[-0.04em] text-[#080b0d]">
+                    <h3 className="mt-2 text-[15px] font-semibold tracking-[-0.04em] text-[var(--navy)]">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-[12px] leading-[1.75] text-[#657078]">
+                    <p className="mt-2 text-[12px] leading-[1.75] text-[var(--ink-soft)]">
                       {item.body}
                     </p>
                   </article>
@@ -94,13 +94,13 @@ export default function ContactPage() {
 
         <section className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] lg:items-start">
           <section className="order-1 rounded-[28px] border border-black/10 bg-white/[0.76] p-[clamp(18px,4vw,34px)] shadow-[0_18px_70px_-58px_rgba(3,4,4,0.45)]">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#00708d]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[var(--teal)]">
               FORM
             </p>
-            <h2 className="mt-3 text-[clamp(24px,4vw,36px)] font-semibold leading-[1.08] tracking-[-0.06em] text-[#080b0d]">
+            <h2 className="mt-3 text-[clamp(24px,4vw,36px)] font-semibold leading-[1.08] tracking-[-0.06em] text-[var(--navy)]">
               送信フォーム
             </h2>
-            <p className="mt-4 max-w-2xl text-[13px] leading-[1.9] tracking-[0.02em] text-[#657078]">
+            <p className="mt-4 max-w-2xl text-[13px] leading-[1.9] tracking-[0.02em] text-[var(--ink-soft)]">
               返信が必要な場合だけ、メールアドレスをご記入ください 件名は短く、本文には対象ページのURLがあると助かります
             </p>
 
@@ -163,31 +163,31 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <div className="rounded-[22px] border border-black/10 bg-[#f9f5ee] px-4 py-4 text-[12px] leading-[1.8] text-[#657078]">
+                <div className="rounded-[22px] border border-black/10 bg-[var(--paper)] px-4 py-4 text-[12px] leading-[1.8] text-[var(--ink-soft)]">
                   個人情報の取り扱いは
-                  <Link href="/legal/privacy" className="mx-1 font-medium text-[#00708d] underline underline-offset-4">
+                  <Link href="/legal/privacy" className="mx-1 font-medium text-[var(--teal)] underline underline-offset-4">
                     プライバシーポリシー
                   </Link>
                   に従います
                 </div>
 
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <p className="text-[12px] leading-[1.8] text-[#7b858b]">
+                  <p className="text-[12px] leading-[1.8] text-[var(--ink-soft)]">
                     返信が必要な場合は、メールアドレスをご記入ください
                   </p>
-                  <button type="submit" className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#080b0d] px-6 text-[13px] font-semibold text-white transition-colors hover:bg-[#152026]">
+                  <button type="submit" className="inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--navy)] px-6 text-[13px] font-semibold text-white transition-colors hover:bg-[var(--ink)]">
                     送信する ↗
                   </button>
                 </div>
               </form>
             ) : (
-              <div className="mt-7 rounded-[22px] border border-black/10 bg-[#f9f5ee] p-5 text-[13px] leading-[1.9] text-[#657078]">
+              <div className="mt-7 rounded-[22px] border border-black/10 bg-[var(--paper)] p-5 text-[13px] leading-[1.9] text-[var(--ink-soft)]">
                 現在、お問い合わせは準備中です 記事の誤り、更新が必要な情報、掲載内容へのご連絡は、フォーム公開後に順次受け付けます
               </div>
             )}
           </section>
 
-          <aside className="order-2 overflow-hidden rounded-[28px] border border-black/10 bg-[#080b0d] text-white lg:sticky lg:top-24">
+          <aside className="order-2 overflow-hidden rounded-[28px] border border-black/10 bg-[var(--navy)] text-white lg:sticky lg:top-24">
             <div className="border-b border-white/10 p-5 sm:p-6">
               <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/30">
                 NOTE
