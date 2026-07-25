@@ -10,59 +10,72 @@
 :root {
   color-scheme: light;
 
-  /* ------ Local font variable fallbacks ------ */
-  --font-inter: "Inter";
-  --font-noto-sans-jp: "Noto Sans JP";
-  --font-cormorant: "Cormorant Garamond";
-  --font-noto-serif-jp: "Noto Serif JP";
+  /* ============================================================
+     CBJ Design v2 — ブランドトークン（サイト統一）
+     ============================================================ */
+  --paper: #FBF9F5;        /* 全ページ背景（唯一の背景色） */
+  --ink: #1F2328;          /* 本文 */
+  --ink-soft: #5C6470;     /* 補助 */
+  --line: #E5E0D6;         /* 罫線 */
+  --teal: #0E7C7B;         /* ブランド第一色 */
+  --teal-deep: #0A5F5E;
+  --coral: #E5604C;        /* 第二色 */
+  --coral-deep: #C74B39;
+  --navy: #23282E;         /* ダークセクション専用 */
 
-  /* ------ Fonts ------ */
-  --font-sans: var(--font-noto-sans-jp), var(--font-inter),
-    "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
-  --font-editorial: var(--font-cormorant), "Georgia", ui-serif, serif;
-  --font-serif: var(--font-noto-serif-jp),
-    "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", ui-serif, serif;
+  /* ------ Fonts（v2: Zen Maru Gothic + Quicksand 統一） ------ */
+  --font-zen: "Zen Maru Gothic";
+  --font-quick: "Quicksand";
+
+  /* next/font が提供するCSS変数（app/fonts.ts）を最優先に参照 */
+  --font-sans: var(--font-zen), "Zen Maru Gothic",
+    "Hiragino Maru Gothic ProN", "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    system-ui, sans-serif;
+  --font-editorial: var(--font-quick), "Quicksand",
+    var(--font-zen), "Zen Maru Gothic", system-ui, sans-serif;
+  --font-serif: var(--font-zen), "Zen Maru Gothic",
+    "Hiragino Maru Gothic ProN", system-ui, sans-serif;
 
   /* Tailwind compat keys（既存参照を壊さない） */
   --font-montserrat: var(--font-sans);
   --font-bodoni: var(--font-editorial);
   --font-manrope: var(--font-sans);
 
-  /* ------ Palette ------ */
-  --bg-stage: #F6F2EB;
-  --bg-stage-2: #FBF8F3;
-  --surface-1: #FBF8F3;
-  --surface-2: #EEE7DE;
-  --surface-3: #E4DBCF;
-  --surface-moss: #E4EBE0;
-  --surface-clay: #F1E2D8;
+  /* ------ Palette（v2値。旧名はエイリアスとして維持） ------ */
+  --bg-stage: var(--paper);
+  --bg-stage-2: #FFFFFF;
+  --surface-1: #FFFFFF;
+  --surface-2: #F4F0E9;
+  --surface-3: #ECE6DB;
+  --surface-moss: #E2EFEE;
+  --surface-clay: #F9E4DF;
   --surface-slate: #E5EBEF;
-  --footer-bg: #1F1C19;
-  --footer-surface: #2A2520;
+  --footer-bg: var(--paper);
+  --footer-surface: #FFFFFF;
 
-  --border-default: #D9D1C7;
-  --border-subtle: rgba(31, 28, 25, 0.08);
-  --border-strong: rgba(31, 28, 25, 0.16);
+  --border-default: var(--line);
+  --border-subtle: rgba(31, 35, 40, 0.08);
+  --border-strong: rgba(31, 35, 40, 0.16);
 
-  --text-primary: #1F1C19;
-  --text-secondary: #4C453D;
-  --text-tertiary: #6B655D;
+  --text-primary: var(--ink);
+  --text-secondary: var(--ink-soft);
+  --text-tertiary: #7A828E;
 
-  --accent-base: #7A876C;
-  --accent-strong: #5E6A52;
-  --accent-subtle: rgba(122, 135, 108, 0.12);
-  --accent-clay: #C07C59;
+  --accent-base: var(--teal);
+  --accent-strong: var(--teal-deep);
+  --accent-subtle: rgba(14, 124, 123, 0.10);
+  --accent-clay: var(--coral);
   --accent-slate: #8798A6;
   --accent-taupe: #8D7E72;
 
-  --state-success: #7A876C;
-  --state-warning: #C07C59;
-  --state-danger: #AE6B5B;
+  --state-success: var(--teal);
+  --state-warning: var(--coral);
+  --state-danger: #C74B39;
 
   /* Legacy compat */
-  --cb-tiffany: 122 135 108;
-  --cb-porcelain: 251 248 243;
-  --cb-ink: 31 28 25;
+  --cb-tiffany: 14 124 123;
+  --cb-porcelain: 251 249 245;
+  --cb-ink: 31 35 40;
 
   --duration-fast: 120ms;
   --duration-base: 180ms;
@@ -208,7 +221,8 @@ a {
 .cb-card {
   background: var(--surface-1);
   border: 1px solid var(--border-default);
-  border-radius: 22px;
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(31, 35, 40, 0.05);
   transition:
     border-color 180ms var(--ease-cbj),
     background-color 180ms var(--ease-cbj),
@@ -216,7 +230,7 @@ a {
 }
 
 .cb-card:hover {
-  border-color: rgba(122, 135, 108, 0.4);
+  border-color: rgba(14, 124, 123, 0.4);
   transform: translateY(-2px);
 }
 
@@ -243,18 +257,43 @@ a {
   color: var(--accent-strong);
 }
 
+.cb-chip--active {
+  border-color: var(--accent-base);
+  background: var(--accent-base);
+  color: #FFFFFF;
+}
+
+.cb-chip--active:hover {
+  border-color: var(--accent-strong);
+  background: var(--accent-strong);
+  color: #FFFFFF;
+}
+
+.cb-chip--ghost {
+  border-color: var(--border-default);
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.cb-chip--ghost:hover {
+  border-color: var(--accent-base);
+  color: var(--accent-strong);
+}
+
 .porcelain-panel,
 .porcelain {
   background: var(--surface-1);
   border: 1px solid var(--border-default);
-  border-radius: 22px;
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(31, 35, 40, 0.05);
   color: var(--text-primary);
 }
 
 .surface-card {
   background: var(--surface-1);
   border: 1px solid var(--border-default);
-  border-radius: 22px;
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(31, 35, 40, 0.05);
   transition:
     border-color 180ms var(--ease-cbj),
     transform 180ms var(--ease-cbj),
@@ -262,7 +301,7 @@ a {
 }
 
 .surface-card:hover {
-  border-color: rgba(122, 135, 108, 0.4);
+  border-color: rgba(14, 124, 123, 0.4);
 }
 
 
@@ -328,8 +367,8 @@ a {
 .cb-input:focus,
 .cb-select:focus,
 .cb-textarea:focus {
-  border-color: rgba(122, 135, 108, 0.55);
-  box-shadow: 0 0 0 4px rgba(122, 135, 108, 0.08);
+  border-color: rgba(14, 124, 123, 0.55);
+  box-shadow: 0 0 0 4px rgba(14, 124, 123, 0.08);
   background: rgba(251, 248, 243, 1);
 }
 
@@ -388,12 +427,12 @@ a {
    Shadows
    ============================================================ */
 
-.shadow-soft { box-shadow: 0 8px 22px rgba(31, 28, 25, 0.06); }
-.shadow-card { box-shadow: 0 14px 34px rgba(31, 28, 25, 0.08); }
-.shadow-strong { box-shadow: 0 22px 54px rgba(31, 28, 25, 0.12); }
-.shadow-soft-glow { box-shadow: 0 0 24px rgba(122, 135, 108, 0.08); }
-.shadow-soft-card { box-shadow: 0 12px 34px rgba(31, 28, 25, 0.08); }
-.shadow-glow { box-shadow: 0 0 12px rgba(122, 135, 108, 0.2); }
+.shadow-soft { box-shadow: 0 1px 3px rgba(31, 35, 40, 0.05); }
+.shadow-card { box-shadow: 0 1px 3px rgba(31, 35, 40, 0.05); }
+.shadow-strong { box-shadow: 0 4px 16px rgba(31, 35, 40, 0.08); }
+.shadow-soft-glow { box-shadow: 0 0 24px rgba(14, 124, 123, 0.08); }
+.shadow-soft-card { box-shadow: 0 1px 3px rgba(31, 35, 40, 0.05); }
+.shadow-glow { box-shadow: 0 0 12px rgba(14, 124, 123, 0.2); }
 .shadow-glass-inner { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6); }
 
 /* ============================================================
@@ -523,7 +562,7 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid rgba(122, 135, 108, 0.72);
+  outline: 2px solid rgba(14, 124, 123, 0.72);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -608,7 +647,7 @@ a {
 
 .detail-card-hover:hover {
   transform: translateY(-2px);
-  border-color: rgba(122, 135, 108, 0.3);
+  border-color: rgba(14, 124, 123, 0.3);
 }
 
 .detail-chip {
@@ -627,15 +666,15 @@ a {
 }
 
 .detail-chip-accent {
-  border-color: rgba(122, 135, 108, 0.22);
-  background: rgba(122, 135, 108, 0.12);
+  border-color: rgba(14, 124, 123, 0.22);
+  background: rgba(14, 124, 123, 0.12);
   color: var(--accent-strong);
 }
 
 .detail-chip-clay {
-  border-color: rgba(192, 124, 89, 0.22);
-  background: rgba(192, 124, 89, 0.12);
-  color: #8F5B3E;
+  border-color: rgba(229, 96, 76, 0.22);
+  background: rgba(229, 96, 76, 0.12);
+  color: #C74B39;
 }
 
 .detail-link {
@@ -666,14 +705,14 @@ a {
 }
 
 .detail-button {
-  border: 1px solid rgba(122, 135, 108, 0.22);
-  background: rgba(122, 135, 108, 0.12);
+  border: 1px solid rgba(14, 124, 123, 0.22);
+  background: rgba(14, 124, 123, 0.12);
   color: var(--accent-strong);
 }
 
 .detail-button:hover {
   transform: translateY(-1px);
-  background: rgba(122, 135, 108, 0.18);
+  background: rgba(14, 124, 123, 0.18);
 }
 
 .detail-button-secondary {
@@ -684,7 +723,7 @@ a {
 
 .detail-button-secondary:hover {
   transform: translateY(-1px);
-  border-color: rgba(122, 135, 108, 0.26);
+  border-color: rgba(14, 124, 123, 0.26);
   color: var(--text-primary);
 }
 
@@ -848,7 +887,7 @@ a {
 .cbj-pullquote {
   padding: clamp(24px, 3vw, 34px);
   border-radius: 28px;
-  border: 1px solid rgba(192, 124, 89, 0.22);
+  border: 1px solid rgba(229, 96, 76, 0.22);
   background: rgba(241, 226, 216, 0.78);
 }
 
@@ -868,7 +907,7 @@ a {
 }
 
 .cbj-check-item {
-  border: 1px solid rgba(122, 135, 108, 0.18);
+  border: 1px solid rgba(14, 124, 123, 0.18);
   border-radius: 22px;
   background: rgba(251, 248, 243, 0.76);
   padding: 16px 18px;
@@ -892,8 +931,8 @@ a {
   width: 22px;
   height: 22px;
   border-radius: 9999px;
-  border: 1px solid rgba(122, 135, 108, 0.3);
-  background: rgba(122, 135, 108, 0.08);
+  border: 1px solid rgba(14, 124, 123, 0.3);
+  background: rgba(14, 124, 123, 0.08);
   position: relative;
   transition:
     border-color var(--duration-fast) var(--ease-cbj),
@@ -911,8 +950,8 @@ a {
 }
 
 .cbj-check-input:checked + .cbj-check-label .cbj-check-box {
-  border-color: rgba(122, 135, 108, 0.5);
-  background: rgba(122, 135, 108, 0.14);
+  border-color: rgba(14, 124, 123, 0.5);
+  background: rgba(14, 124, 123, 0.14);
 }
 
 .cbj-check-input:checked + .cbj-check-label .cbj-check-box::after {
@@ -1007,12 +1046,12 @@ a {
 }
 
 
-/* CBJ v3 mock top page: dark cinematic reset */
+/* CBJ site design v2: 全ページを紙色背景に統一（黒シネマ解体） */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 html, body {
-  background: #0a0a0a;
+  background: var(--paper);
 }
 #cb-main:focus {
   outline: none;

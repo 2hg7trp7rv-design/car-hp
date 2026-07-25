@@ -4,7 +4,7 @@
   width: 100%;
   min-height: 100dvh;
   overflow: hidden;
-  background: #f5f3ed;
+  background: #FBF9F5;
   color: #111;
   isolation: isolate;
 }
@@ -17,7 +17,7 @@
   min-height: 100vh;
   min-height: 100dvh;
   overflow: hidden;
-  background: #f5f3ed;
+  background: #FBF9F5;
   isolation: isolate;
 }
 
@@ -25,7 +25,7 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: #f5f3ed;
+  background: #FBF9F5;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -551,4 +551,80 @@
 .history .body {
   color: rgba(255, 255, 255, 0.78);
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.34);
+}
+
+/* ============================================================
+   CBJ site design v2 — セクション別アクセント
+   GUIDE=ティール / COLUMN=コーラル（配色のみ、演出は既存維持）
+   ============================================================ */
+.trouble .title {
+  color: rgba(14, 124, 123, 0.30);
+  -webkit-text-fill-color: rgba(14, 124, 123, 0.14);
+  -webkit-text-stroke: 0.96px rgba(14, 124, 123, 0.88);
+}
+
+.column .title {
+  color: rgba(229, 96, 76, 0.30);
+  -webkit-text-fill-color: rgba(229, 96, 76, 0.14);
+  -webkit-text-stroke: 0.96px rgba(229, 96, 76, 0.9);
+}
+
+.trouble .sceneNumber {
+  color: rgba(10, 95, 94, 0.66);
+}
+
+.column .sceneNumber {
+  color: rgba(199, 75, 57, 0.7);
+}
+
+.trouble .cta {
+  border-color: rgba(14, 124, 123, 0.4);
+  color: #0A5F5E;
+}
+
+.trouble .cta em {
+  color: rgba(10, 95, 94, 0.72);
+}
+
+.column .cta {
+  border-color: rgba(229, 96, 76, 0.42);
+  color: #C74B39;
+}
+
+.column .cta em {
+  color: rgba(199, 75, 57, 0.74);
+}
+
+.trouble .progressRule {
+  background: rgba(14, 124, 123, 0.34);
+}
+
+.trouble .progressRule::after {
+  background: rgba(14, 124, 123, 0.72);
+}
+
+.column .progressRule {
+  background: rgba(229, 96, 76, 0.36);
+}
+
+.column .progressRule::after {
+  background: rgba(229, 96, 76, 0.74);
+}
+
+/* v2: コピーは紙色カードに載せ、写真の明度に依存しない可読性を確保 */
+.copyBlock {
+  background: rgba(251, 249, 245, 0.88);
+  border: 1px solid rgba(229, 224, 214, 0.9);
+  border-radius: 18px;
+  padding: clamp(20px, 3vw, 32px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 12px 40px rgba(31, 35, 40, 0.14);
+}
+
+.trouble .body,
+.column .body {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: none;
 }
