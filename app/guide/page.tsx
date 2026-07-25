@@ -295,29 +295,22 @@ export default async function GuideArchivePage({ searchParams }: PageProps) {
         }}
       />
 
-      <section className="relative flex min-h-[calc(100svh-64px)] flex-col overflow-hidden">
-        <div className="absolute inset-0" aria-hidden="true">
+      <section className="relative flex min-h-[calc(100svh-64px)] flex-col overflow-hidden bg-[linear-gradient(150deg,#0E7C7B,#0A5F5E)]">
+        <div className="absolute inset-0 opacity-[0.14]" aria-hidden="true">
           <Image
             src={heroImage.src}
             alt=""
             fill
-            className="object-cover blur-[18px] scale-[1.06]"
+            className="object-cover blur-[6px] scale-[1.04]"
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-[rgba(0,0,0,0.44)]" />
         </div>
-
-        <div className="absolute inset-0" aria-hidden="true">
-          <Image
-            src={heroImage.src}
-            alt=""
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.35)_0%,rgba(0,0,0,0.10)_36%,rgba(0,0,0,0.62)_100%)]" />
+        <div
+          className="absolute inset-0"
+          aria-hidden="true"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_12%,rgba(255,255,255,0.14),transparent_42%),radial-gradient(circle_at_8%_88%,rgba(10,95,94,0.55),transparent_52%)]" />
         </div>
 
         <div className="page-shell relative z-10 flex flex-1 flex-col pb-16 pt-24 text-center">
