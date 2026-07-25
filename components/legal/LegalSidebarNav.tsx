@@ -21,7 +21,7 @@ export function LegalSidebarNav({ compact = false }: Props) {
     <nav
       aria-label="法務・運営情報の一覧"
       className={cn(
-        "overflow-hidden border border-black/10 bg-[#090b0d] text-white shadow-[0_24px_70px_-50px_rgba(3,4,4,0.8)]",
+        "overflow-hidden border border-black/10 bg-[var(--navy)] text-white shadow-[0_24px_70px_-50px_rgba(3,4,4,0.8)]",
         compact ? "rounded-[24px]" : "rounded-[28px]",
       )}
     >
@@ -54,7 +54,7 @@ export function LegalSidebarNav({ compact = false }: Props) {
                       "group relative rounded-[17px] transition-colors duration-150",
                       compact ? "px-3 py-3" : "px-3.5 py-3.5",
                       active
-                        ? "bg-white text-[#050607]"
+                        ? "bg-white text-[var(--navy)]"
                         : "text-white/[0.64] hover:bg-white/[0.07] hover:text-white",
                     )}
                   >
@@ -62,7 +62,7 @@ export function LegalSidebarNav({ compact = false }: Props) {
                       className={cn(
                         "absolute left-0 top-1/2 w-[3px] -translate-y-1/2 rounded-r-full transition-opacity",
                         compact ? "h-6" : "h-7",
-                        active ? "bg-[#00708d] opacity-100" : "bg-white/20 opacity-0 group-hover:opacity-100",
+                        active ? "bg-[var(--teal)] opacity-100" : "bg-white/20 opacity-0 group-hover:opacity-100",
                       )}
                     />
                     <div className="text-[13px] font-semibold leading-[1.45] tracking-[-0.01em]">

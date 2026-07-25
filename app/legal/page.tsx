@@ -46,12 +46,12 @@ export default function LegalIndexPage() {
         className="mb-8"
       />
 
-      <header className="rounded-[28px] border border-black/10 bg-[#f9f5ee] p-[clamp(20px,4vw,36px)]">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#00708d]">
+      <header className="rounded-[28px] border border-black/10 bg-[var(--paper)] p-[clamp(20px,4vw,36px)]">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[var(--teal)]">
           TRUST HUB
         </p>
         <div className="mt-5 grid gap-6 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:items-end">
-          <h1 className="max-w-[13ch] text-[clamp(34px,6vw,62px)] font-semibold leading-[0.98] tracking-[-0.075em] text-[#080b0d]">
+          <h1 className="max-w-[13ch] text-[clamp(34px,6vw,62px)] font-semibold leading-[0.98] tracking-[-0.075em] text-[var(--navy)]">
             運営と信頼の基準
           </h1>
           <p className="max-w-[620px] text-[14px] leading-[2.05] tracking-[0.02em] text-[#3f494f] lg:justify-self-end">
@@ -68,11 +68,11 @@ export default function LegalIndexPage() {
                 <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-black/[0.32]">
                   {index === 0 ? "EDITORIAL" : "USE & RIGHTS"}
                 </p>
-                <h2 className="mt-2 text-[clamp(24px,4vw,36px)] font-semibold leading-[1.05] tracking-[-0.06em] text-[#080b0d]">
+                <h2 className="mt-2 text-[clamp(24px,4vw,36px)] font-semibold leading-[1.05] tracking-[-0.06em] text-[var(--navy)]">
                   {group.title}
                 </h2>
               </div>
-              <p className="max-w-[420px] text-[13px] leading-[1.85] text-[#657078]">
+              <p className="max-w-[420px] text-[13px] leading-[1.85] text-[var(--ink-soft)]">
                 {group.lead}
               </p>
             </div>
@@ -84,16 +84,16 @@ export default function LegalIndexPage() {
                   href={item.href}
                   className="group relative overflow-hidden rounded-[22px] border border-black/10 bg-white/[0.72] px-4 py-4 transition-colors duration-150 hover:bg-white sm:px-5 sm:py-5"
                 >
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,112,141,0.55),transparent)] opacity-0 transition-opacity group-hover:opacity-100" />
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(14,124,123,0.55),transparent)] opacity-0 transition-opacity group-hover:opacity-100" />
                   <div className="flex items-start justify-between gap-4">
-                    <div className="text-[17px] font-semibold tracking-[-0.04em] text-[#080b0d]">
+                    <div className="text-[17px] font-semibold tracking-[-0.04em] text-[var(--navy)]">
                       {item.label}
                     </div>
-                    <span className="text-[18px] leading-none text-[#00708d] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                    <span className="text-[18px] leading-none text-[var(--teal)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                       ↗
                     </span>
                   </div>
-                  <p className="mt-2 text-[12px] leading-[1.8] text-[#657078]">
+                  <p className="mt-2 text-[12px] leading-[1.8] text-[var(--ink-soft)]">
                     {item.description}
                   </p>
                 </Link>

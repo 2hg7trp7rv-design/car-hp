@@ -21,15 +21,15 @@ export function LegalDocHeader({
   meta = [],
 }: Props) {
   return (
-    <header className="relative overflow-hidden rounded-[30px] border border-black/10 bg-[#f9f5ee] p-[clamp(20px,4vw,36px)]">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,112,141,0.55),transparent)]" />
-      <div className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-[#00708d]/10 blur-3xl" />
+    <header className="relative overflow-hidden rounded-[30px] border border-black/10 bg-[var(--paper)] p-[clamp(20px,4vw,36px)]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(14,124,123,0.55),transparent)]" />
+      <div className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-[rgba(14,124,123,0.10)] blur-3xl" />
 
       <div className="relative">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#00708d]">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[var(--teal)]">
           {eyebrow}
         </p>
-        <h1 className="mt-5 max-w-[13ch] text-[clamp(34px,6vw,64px)] font-semibold leading-[0.98] tracking-[-0.075em] text-[#080b0d]">
+        <h1 className="mt-5 max-w-[13ch] text-[clamp(34px,6vw,64px)] font-semibold leading-[0.98] tracking-[-0.075em] text-[var(--navy)]">
           {title}
         </h1>
         <p className="mt-6 max-w-3xl text-[clamp(14px,2vw,17px)] leading-[2.05] tracking-[0.02em] text-[#2b343a]">

@@ -55,7 +55,7 @@ function toneClasses(tone: Tone) {
       };
     case "accent":
       return {
-        border: "border-[rgba(122,135,108,0.24)]",
+        border: "border-[rgba(14,124,123,0.24)]",
         bg: "bg-[rgba(228,235,224,0.76)]",
         title: "text-[var(--accent-strong)]",
         body: "text-[var(--text-secondary)]",
@@ -171,7 +171,7 @@ export function CbjRichBlock({ config, className }: Props) {
         <ol className="mt-3 space-y-3">
           {steps.map((s, i) => (
             <li key={i} className="flex gap-3">
-              <span className="mt-[0.15em] inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[rgba(122,135,108,0.12)] text-[var(--accent-strong)] text-[11px] font-bold">
+              <span className="mt-[0.15em] inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[rgba(14,124,123,0.12)] text-[var(--accent-strong)] text-[11px] font-bold">
                 {i + 1}
               </span>
               <span className="cb-stage-body cb-stage-body-strong">{s}</span>
@@ -201,10 +201,10 @@ export function CbjRichBlock({ config, className }: Props) {
             const badge = safeString(card?.badge);
 
             const inner = (
-              <div className="overflow-hidden rounded-[24px] border border-[var(--border-default)] bg-[rgba(251,248,243,0.92)] p-5 shadow-soft-card transition hover:-translate-y-[1px] hover:border-[rgba(122,135,108,0.32)]">
+              <div className="overflow-hidden rounded-[24px] border border-[var(--border-default)] bg-[rgba(251,248,243,0.92)] p-5 shadow-soft-card transition hover:-translate-y-[1px] hover:border-[rgba(14,124,123,0.32)]">
                 <div className="flex items-center gap-2">
                   {badge ? (
-                    <span className="inline-flex items-center rounded-full border border-[rgba(122,135,108,0.22)] bg-[rgba(122,135,108,0.12)] px-3 py-1 text-[10px] font-semibold tracking-[0.18em] text-[var(--accent-strong)]">
+                    <span className="inline-flex items-center rounded-full border border-[rgba(14,124,123,0.22)] bg-[rgba(14,124,123,0.12)] px-3 py-1 text-[10px] font-semibold tracking-[0.18em] text-[var(--accent-strong)]">
                       {badge}
                     </span>
                   ) : null}

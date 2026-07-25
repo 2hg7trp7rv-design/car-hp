@@ -34,7 +34,7 @@ export function InThisStoryToc({ items, sticky = false, className, ariaLabel }: 
     >
       <summary
         className={cn(
-          "cb-tap flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[rgba(122,135,108,0.4)]",
+          "cb-tap flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[rgba(14,124,123,0.4)]",
           "[&::-webkit-details-marker]:hidden",
         )}
       >
@@ -59,7 +59,7 @@ export function InThisStoryToc({ items, sticky = false, className, ariaLabel }: 
                 className={cn(
                   "cb-tap flex items-center justify-between gap-4 px-6 py-4 transition-colors",
                   "hover:bg-[rgba(238,231,222,0.62)]",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[rgba(122,135,108,0.4)]",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[rgba(14,124,123,0.4)]",
                 )}
               >
                 <div className="min-w-0">

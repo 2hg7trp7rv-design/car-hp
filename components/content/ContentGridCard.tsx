@@ -59,7 +59,7 @@ export function ContentGridCard({
       href={href}
       className={cn(
         "group flex h-full flex-col overflow-hidden rounded-[24px] border border-[var(--border-default)] bg-[rgba(251,248,243,0.92)] transition",
-        "hover:-translate-y-[2px] hover:border-[rgba(122,135,108,0.35)]",
+        "hover:-translate-y-[2px] hover:border-[rgba(14,124,123,0.35)]",
         className,
       )}
     >

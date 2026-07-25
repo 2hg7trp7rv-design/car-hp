@@ -27,7 +27,7 @@ export default function NotFound() {
 
           <Link
             href="/site-map"
-            className="cb-tap inline-flex items-center justify-center rounded-full border border-[var(--border-default)] bg-[var(--surface-2)] px-5 py-3 text-[11px] font-semibold tracking-[0.22em] text-[var(--text-primary)] shadow-soft transition hover:border-[rgba(122,135,108,0.3)]"
+            className="cb-tap inline-flex items-center justify-center rounded-full border border-[var(--border-default)] bg-[var(--surface-2)] px-5 py-3 text-[11px] font-semibold tracking-[0.22em] text-[var(--text-primary)] shadow-soft transition hover:border-[rgba(14,124,123,0.3)]"
           >
             サイトマップ
           </Link>
@@ -56,7 +56,7 @@ export default function NotFound() {
                   id="q"
                   name="q"
                   placeholder="キーワードで探す（例: 警告灯 / 事故 / 電装品）"
-                  className="w-full rounded-xl border border-[var(--border-default)] bg-[var(--surface-2)] px-4 py-3 text-[13px] tracking-[0.06em] text-[var(--text-primary)] placeholder:text-[rgba(107,101,93,0.7)] shadow-soft focus:outline-none focus:ring-2 focus:ring-[rgba(122,135,108,0.24)]"
+                  className="w-full rounded-xl border border-[var(--border-default)] bg-[var(--surface-2)] px-4 py-3 text-[13px] tracking-[0.06em] text-[var(--text-primary)] placeholder:text-[rgba(107,101,93,0.7)] shadow-soft focus:outline-none focus:ring-2 focus:ring-[rgba(14,124,123,0.24)]"
                 />
                 <button
                   type="submit"

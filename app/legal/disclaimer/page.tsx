@@ -105,7 +105,7 @@ export default function DisclaimerPage() {
           </LegalDocSection>
         </div>
 
-        <section className="rounded-[20px] border border-black/10 bg-[#f9f5ee] px-5 py-4 text-[13px] leading-[1.85] text-[#657078]">
+        <section className="rounded-[20px] border border-black/10 bg-[var(--paper)] px-5 py-4 text-[13px] leading-[1.85] text-[var(--ink-soft)]">
           制定日: 2025年12月1日 / CAR BOUTIQUE JOURNAL 運営
         </section>
 

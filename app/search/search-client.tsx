@@ -68,8 +68,8 @@ function FilterButton({ active, label, onClick }: { active: boolean; label: stri
       className={cn(
         "rounded-full border px-3.5 py-2 text-[11px] font-medium tracking-[0.04em] transition",
         active
-          ? "border-[rgba(122,135,108,0.32)] bg-[var(--accent-subtle)] text-[var(--accent-strong)]"
-          : "border-[var(--border-default)] bg-[rgba(251,248,243,0.82)] text-[var(--text-secondary)] hover:border-[rgba(122,135,108,0.24)] hover:bg-[var(--surface-2)] hover:text-[var(--text-primary)]",
+          ? "border-[rgba(14,124,123,0.32)] bg-[var(--accent-subtle)] text-[var(--accent-strong)]"
+          : "border-[var(--border-default)] bg-[rgba(251,248,243,0.82)] text-[var(--text-secondary)] hover:border-[rgba(14,124,123,0.24)] hover:bg-[var(--surface-2)] hover:text-[var(--text-primary)]",
       )}
     >
       {label}
@@ -86,9 +86,9 @@ function SearchResultCard({ hit }: { hit: SearchHit }) {
       shelfId="search_results"
       ctaId={`search_${hit.type}`}
     >
-      <div className="rounded-[24px] border border-[var(--border-default)] bg-[rgba(251,248,243,0.82)] p-4 transition hover:-translate-y-[1px] hover:border-[rgba(122,135,108,0.24)] hover:bg-[var(--surface-2)]">
+      <div className="rounded-[24px] border border-[var(--border-default)] bg-[rgba(251,248,243,0.82)] p-4 transition hover:-translate-y-[1px] hover:border-[rgba(14,124,123,0.24)] hover:bg-[var(--surface-2)]">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full border border-[rgba(122,135,108,0.18)] bg-[var(--surface-moss)] px-2.5 py-1 text-[10px] font-semibold tracking-[0.16em] text-[var(--accent-strong)]">
+          <span className="rounded-full border border-[rgba(14,124,123,0.18)] bg-[var(--surface-moss)] px-2.5 py-1 text-[10px] font-semibold tracking-[0.16em] text-[var(--accent-strong)]">
             {badgeLabel(hit.type)}
           </span>
           {hit.category ? (
@@ -126,7 +126,7 @@ function SuggestionBlock(props: { title: string; items: SearchDoc[] }) {
             shelfId="search_suggestions"
             ctaId={`suggest_${item.type}`}
           >
-            <div className="rounded-[20px] border border-[var(--border-default)] bg-[rgba(251,248,243,0.72)] p-3 transition hover:-translate-y-[1px] hover:border-[rgba(122,135,108,0.24)] hover:bg-[var(--surface-2)]">
+            <div className="rounded-[20px] border border-[var(--border-default)] bg-[rgba(251,248,243,0.72)] p-3 transition hover:-translate-y-[1px] hover:border-[rgba(14,124,123,0.24)] hover:bg-[var(--surface-2)]">
               <div className="line-clamp-1 text-[13px] font-medium leading-[1.5] text-[var(--text-primary)]">
                 {item.title}
               </div>
@@ -353,7 +353,7 @@ export function SearchClient(props: {
           <div className="mt-4">
             <button
               type="submit"
-              className="inline-flex items-center rounded-full border border-[var(--border-default)] bg-[rgba(251,248,243,0.88)] px-4 py-2 text-[11px] font-medium text-[var(--text-primary)] transition hover:border-[rgba(122,135,108,0.24)] hover:bg-[var(--surface-2)]"
+              className="inline-flex items-center rounded-full border border-[var(--border-default)] bg-[rgba(251,248,243,0.88)] px-4 py-2 text-[11px] font-medium text-[var(--text-primary)] transition hover:border-[rgba(14,124,123,0.24)] hover:bg-[var(--surface-2)]"
             >
               検索する
             </button>

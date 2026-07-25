@@ -72,7 +72,7 @@ function MiniCtaCard({ item, variant }: { item: MiniCard; variant: string }) {
       >
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <p className="inline-flex rounded-full border border-[rgba(122,135,108,0.24)] bg-[var(--surface-moss)] px-3 py-1 text-[10px] font-semibold tracking-[0.22em] text-[var(--accent-strong)] uppercase">
+            <p className="inline-flex rounded-full border border-[rgba(14,124,123,0.24)] bg-[var(--surface-moss)] px-3 py-1 text-[10px] font-semibold tracking-[0.22em] text-[var(--accent-strong)] uppercase">
               Alternative
             </p>
             <h3 className="mt-3 font-serif text-[18px] font-semibold tracking-tight text-[var(--text-primary)]">

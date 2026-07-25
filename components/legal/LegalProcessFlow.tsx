@@ -10,7 +10,7 @@ type Props = {
 
 export function LegalProcessFlow({ items }: Props) {
   return (
-    <section className="overflow-hidden rounded-[28px] border border-black/10 bg-[#080b0d] text-white">
+    <section className="overflow-hidden rounded-[28px] border border-black/10 bg-[var(--navy)] text-white">
       <div className="border-b border-white/10 p-5 sm:p-6">
         <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/30">
           PROCESS
@@ -22,7 +22,7 @@ export function LegalProcessFlow({ items }: Props) {
       <div className="grid divide-y divide-white/10 lg:grid-cols-4 lg:divide-x lg:divide-y-0">
         {items.map((item) => (
           <article key={item.label} className="p-5 sm:p-6">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#00708d]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--teal)]">
               {item.label}
             </p>
             <h3 className="mt-3 text-[18px] font-semibold tracking-[-0.04em] text-white/[0.9]">
