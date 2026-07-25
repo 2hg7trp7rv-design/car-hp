@@ -2,13 +2,7 @@
 import type { Metadata, Viewport } from "next";
 import { Suspense, type ReactNode } from "react";
 
-import "@fontsource/zen-maru-gothic/400.css";
-import "@fontsource/zen-maru-gothic/500.css";
-import "@fontsource/zen-maru-gothic/700.css";
-import "@fontsource/quicksand/500.css";
-import "@fontsource/quicksand/700.css";
 import "./globals.css";
-import "./cbj-kimi-v15.css";
 import { getSiteOrigin, getSiteUrl } from "@/lib/site";
 import { CBJ_SITE_DESCRIPTION } from "@/lib/brand/cbj-copy";
 import { SiteChrome } from "@/components/layout/SiteChrome";
@@ -118,7 +112,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="ja" className={fontVariables}>
-      <body className="overflow-x-hidden bg-[var(--bg-stage)] font-sans text-[var(--text-primary)] antialiased">
+      <body className="overflow-x-hidden bg-[var(--paper)] font-sans text-[var(--ink)] antialiased">
         <a href="#cb-main" className="cb-skip-link">
           本文へスキップ
         </a>

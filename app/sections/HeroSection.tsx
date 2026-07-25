@@ -55,7 +55,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full h-screen overflow-hidden bg-[#0A0A0A]">
+    <section ref={sectionRef} className="relative w-full h-screen overflow-hidden bg-[var(--paper)]">
       <div className="absolute inset-0">
         {heroImages.map((src, i) => (
           <img
@@ -66,21 +66,21 @@ export default function HeroSection() {
             style={{ opacity: i === 0 ? 1 : 0 }}
           />
         ))}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/70 via-[#0A0A0A]/30 to-[#0A0A0A]" />
-        <div className="absolute inset-0 bg-[#0A0A0A]/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FBF9F5]/80 via-[#FBF9F5]/30 to-[#FBF9F5]" />
+        <div className="absolute inset-0 bg-[#FBF9F5]/35" />
       </div>
       <div
         ref={titleRef}
         className="hero-content relative z-10 flex flex-col items-center justify-center h-full px-6"
       >
-        <p className="text-[9px] tracking-[0.6em] text-white/40 uppercase mb-8">
+        <p className="text-[10px] tracking-[0.6em] text-[var(--ink-soft)] uppercase mb-8">
           AUTOMOTIVE
         </p>
-        <h1 className="font-serif text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] leading-[0.85] tracking-tight text-center">
+        <h1 className="font-editorial text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] font-bold leading-[0.9] tracking-tight text-center">
           <span
             className="title-line block"
             style={{
-              WebkitTextStroke: '1px rgba(255,255,255,0.4)',
+              WebkitTextStroke: '1.5px rgba(31,35,40,0.72)',
               WebkitTextFillColor: 'transparent',
             }}
           >
@@ -89,7 +89,7 @@ export default function HeroSection() {
           <span
             className="title-line block"
             style={{
-              WebkitTextStroke: '1px rgba(255,255,255,0.4)',
+              WebkitTextStroke: '1.5px rgba(31,35,40,0.72)',
               WebkitTextFillColor: 'transparent',
             }}
           >
@@ -98,30 +98,33 @@ export default function HeroSection() {
           <span
             className="title-line block"
             style={{
-              WebkitTextStroke: '1px rgba(255,255,255,0.4)',
+              WebkitTextStroke: '1.5px rgba(31,35,40,0.72)',
               WebkitTextFillColor: 'transparent',
             }}
           >
             JOURNAL
           </span>
         </h1>
+        <p className="title-line mt-10 max-w-[34rem] text-center text-[clamp(15px,2.4svw,19px)] font-bold leading-[1.9] tracking-[0.04em] text-[var(--ink)]">
+          クルマの&ldquo;わからない&rdquo;を、やさしく解決する雑誌。
+        </p>
         <div className="flex gap-2 mt-10">
           {heroImages.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrentImage(i)}
               className={`h-px transition-all duration-700 ${
-                i === currentImage ? 'w-10 bg-white' : 'w-6 bg-white/30'
+                i === currentImage ? 'w-10 bg-[var(--teal)]' : 'w-6 bg-[var(--ink)]/25'
               }`}
             />
           ))}
         </div>
       </div>
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
-        <span className="text-[9px] tracking-[0.4em] text-white/40 uppercase">
+        <span className="text-[9px] tracking-[0.4em] text-[var(--ink-soft)] uppercase">
           Scroll
         </span>
-        <div className="w-px h-8 bg-gradient-to-b from-white/40 to-transparent" />
+        <div className="w-px h-8 bg-gradient-to-b from-[var(--ink)]/40 to-transparent" />
       </div>
     </section>
   );
