@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
 import { ArchiveFilterAutoApply } from "@/components/archive/ArchiveFilterAutoApply";
@@ -12,8 +11,6 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllGuides, type GuideItem } from "@/lib/guides";
 import { GUIDE_DISPLAY_TAGS, isKnownDisplayTag, resolveGuideDisplayTag } from "@/lib/display-tags";
 import { resolveGuideCardImage } from "@/lib/display-tag-media";
-import { EDITORIAL_ASSETS } from "@/lib/editorial-assets";
-import { resolveEditorialImage } from "@/lib/editorial-media";
 import { getSiteUrl } from "@/lib/site";
 import { INDEX_ROBOTS, NOINDEX_ROBOTS } from "@/lib/seo/robots";
 
@@ -278,8 +275,6 @@ export default async function GuideArchivePage({ searchParams }: PageProps) {
       : null,
   ].filter(Boolean) as { label: string; href: string }[];
 
-  const heroImage = resolveEditorialImage(EDITORIAL_ASSETS.guideHero, "guide", "desktop", "guide-hero");
-
   const jsonLdUrl = `${getSiteUrl()}/guide`;
 
   return (
@@ -295,43 +290,31 @@ export default async function GuideArchivePage({ searchParams }: PageProps) {
         }}
       />
 
-      <section className="relative flex min-h-[calc(100svh-64px)] flex-col overflow-hidden bg-[linear-gradient(150deg,#0E7C7B,#0A5F5E)]">
-        <div className="absolute inset-0 opacity-[0.14]" aria-hidden="true">
-          <Image
-            src={heroImage.src}
-            alt=""
-            fill
-            className="object-cover blur-[6px] scale-[1.04]"
-            priority
-            sizes="100vw"
-          />
-        </div>
-        <div
-          className="absolute inset-0"
-          aria-hidden="true"
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_12%,rgba(255,255,255,0.14),transparent_42%),radial-gradient(circle_at_8%_88%,rgba(10,95,94,0.55),transparent_52%)]" />
-        </div>
-
-        <div className="page-shell relative z-10 flex flex-1 flex-col pb-16 pt-24 text-center">
+      <section className="relative overflow-hidden bg-[linear-gradient(150deg,#0E7C7B,#0A5F5E)] text-white">
+        <span className="absolute -right-24 -bottom-32 h-80 w-80 rounded-full bg-white/[0.08]" aria-hidden="true" />
+        <div className="page-shell relative z-10 pb-12 pt-24 sm:pb-14">
           <Breadcrumb
             items={[
               { label: "ホーム", href: "/" },
               { label: "ガイド" },
             ]}
             tone="light"
-            className="mx-auto"
           />
-
-          <div className="mt-auto">
-            <p className="cb-font-sans text-[12px] font-semibold tracking-[0.22em] text-[rgba(251,248,243,0.78)]">
-              GUIDE
-            </p>
-            <h1 className="cb-category-hero-title">
-              GUIDE
-            </h1>
-            <p className="mx-auto mt-6 max-w-[44rem] text-[14px] leading-relaxed text-[rgba(251,248,243,0.86)] sm:text-[15px]">
-              車選びや整備、カスタムで迷ったときに見る実用記事
+          <div className="mt-8 flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="font-[family-name:var(--font-editorial)] text-[11px] font-bold uppercase tracking-[0.34em] text-white/60">
+                CAR BOUTIQUE JOURNAL
+              </p>
+              <h1 className="mt-3 font-[family-name:var(--font-editorial)] text-[clamp(40px,7svw,64px)] font-bold leading-none tracking-[0.06em]">
+                GUIDE
+              </h1>
+              <div className="mt-5 h-1 w-16 rounded-full bg-white/80" aria-hidden="true" />
+              <p className="mt-5 max-w-[42rem] text-[14px] leading-[1.9] text-white/85 sm:text-[15px]">
+                車選びや整備、カスタムで迷ったときに見る実用記事を、判断の順番まで整理しています。
+              </p>
+            </div>
+            <p className="font-[family-name:var(--font-editorial)] text-[12px] font-bold tracking-[0.22em] text-white/70">
+              全{allGuides.length}本
             </p>
           </div>
         </div>

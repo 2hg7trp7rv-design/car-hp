@@ -56,10 +56,6 @@ export function ArticleHero({ article, kind }: { article: ArticleViewModel; kind
           <span>{kind}</span>
         </div>
       </div>
-      <div className={styles.scrollGuide} aria-hidden="true">
-        <span>スクロールして読む</span>
-        <div><i /></div>
-      </div>
     </section>
   );
 }

@@ -81,7 +81,7 @@ export default async function Home() {
             <Link
               key={item.href}
               href={item.href}
-              className="group flex flex-col overflow-hidden rounded-[14px] border border-[var(--line)] bg-white shadow-[0_1px_3px_rgba(31,35,40,0.05)] transition-transform duration-200 hover:-translate-y-1"
+              className="group flex flex-col overflow-hidden rounded-[14px] border border-[var(--line)] bg-white shadow-[0_1px_3px_rgba(31,35,40,0.05)] transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-[0_14px_32px_rgba(31,35,40,0.12)]"
             >
               {item.image ? (
                 <div className="relative aspect-[16/9] overflow-hidden bg-[var(--surface-2)]">
@@ -127,7 +127,7 @@ export default async function Home() {
           <p className="font-editorial text-[11px] font-bold uppercase tracking-[0.32em] text-white/50">
             Editorial Board
           </p>
-          <h2 className="mt-4 max-w-[18ch] text-[clamp(26px,4.8svw,42px)] font-bold leading-[1.25] tracking-[-0.01em] text-white">
+          <h2 className="mt-4 text-[clamp(26px,4.8svw,42px)] font-bold leading-[1.25] tracking-[-0.01em] text-white">
             一次資料主義。断言より、確認できることを。
           </h2>
           <div className="mt-10 grid gap-8 md:grid-cols-3">
