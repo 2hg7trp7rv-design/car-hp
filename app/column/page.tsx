@@ -291,10 +291,8 @@ export default async function ColumnArchivePage({ searchParams }: PageProps) {
         }}
       />
 
-      <section className="relative overflow-hidden bg-[linear-gradient(150deg,#E5604C,#C74B39)]">
-        <div className="pointer-events-none absolute -bottom-28 -right-20 h-80 w-80 rounded-full bg-white/[0.08]" aria-hidden="true" />
-        <div className="pointer-events-none absolute -left-16 -top-16 h-56 w-56 rounded-full border border-white/15" aria-hidden="true" />
-
+      <section className="relative overflow-hidden bg-[linear-gradient(150deg,#E5604C,#C74B39)] text-white">
+        <span className="absolute -right-24 -bottom-32 h-80 w-80 rounded-full bg-white/[0.08]" aria-hidden="true" />
         <div className="page-shell relative z-10 pb-12 pt-24 sm:pb-14">
           <Breadcrumb
             items={[
@@ -303,23 +301,23 @@ export default async function ColumnArchivePage({ searchParams }: PageProps) {
             ]}
             tone="light"
           />
-
-          <p
-            className="mt-8 text-[11px] font-bold uppercase tracking-[0.34em] text-white/70"
-            style={{ fontFamily: "var(--font-quick), var(--font-zen), sans-serif" }}
-          >
-            Column
-          </p>
-          <h1 className="mt-3 text-[clamp(34px,6.4vw,56px)] font-bold leading-[1.15] tracking-[-0.01em] text-white">
-            車のコラム
-          </h1>
-          <div className="mt-5 h-1 w-14 rounded-full bg-white/50" aria-hidden="true" />
-          <p className="mt-5 max-w-[40rem] text-[14px] leading-[1.9] text-white/85 sm:text-[15px]">
-            車選びや維持費、カスタムの考え方を、少し深く読み解く記事。背景にある仕組みまで、じっくりたどれます。
-          </p>
-          <p className="mt-6 inline-flex items-center rounded-full border border-white/30 bg-white/10 px-4 py-1.5 font-editorial text-[11px] font-bold uppercase tracking-[0.2em] text-white/90">
-            全{totalItems}本
-          </p>
+          <div className="mt-8 flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="font-[family-name:var(--font-editorial)] text-[11px] font-bold uppercase tracking-[0.34em] text-white/60">
+                CAR BOUTIQUE JOURNAL
+              </p>
+              <h1 className="mt-3 font-[family-name:var(--font-editorial)] text-[clamp(40px,7svw,64px)] font-bold leading-none tracking-[0.06em]">
+                COLUMN
+              </h1>
+              <div className="mt-5 h-1 w-16 rounded-full bg-white/80" aria-hidden="true" />
+              <p className="mt-5 max-w-[42rem] text-[14px] leading-[1.9] text-white/85 sm:text-[15px]">
+                車選びや維持費、カスタムの考え方を少し深く読み解く、じっくり読めるコラム集です。
+              </p>
+            </div>
+            <p className="font-[family-name:var(--font-editorial)] text-[12px] font-bold tracking-[0.22em] text-white/70">
+              全{all.length}本
+            </p>
+          </div>
         </div>
       </section>
 
