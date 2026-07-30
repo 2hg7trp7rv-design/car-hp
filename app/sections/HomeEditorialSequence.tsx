@@ -12,25 +12,27 @@ const panels = [
     id: "guide",
     eyebrow: "01 / GUIDE",
     title: "GUIDE",
-    body: "車の仕組みと判断順を、初心者でも読める形で整理する実用ガイド。",
+    subtitle: "迷ったときに開く、実用ガイド",
+    body: "車の仕組みと判断順を、初心者でも読める形で整理する実用ガイド。維持費・故障の兆候・保険まで、一次情報をもとに手順で示します。",
     cta: "ガイド記事を見る",
     href: "/guide",
     image: "/home/urus-trouble.jpg",
-    tone: "light",
-    layout: "trouble",
     imagePosition: "52% 47%",
+    theme: "guide",
+    reverse: false,
   },
   {
     id: "column",
     eyebrow: "02 / COLUMN",
     title: "COLUMN",
-    body: "車のカスタム・整備・維持判断を、会話と図解の流れで読み解く。",
+    subtitle: "少し深く読み解く、コラム",
+    body: "車のカスタム・整備・維持判断を、会話と図解の流れで読み解く。背景にある考え方まで、じっくりたどれる読みものです。",
     cta: "コラム記事を見る",
     href: "/column",
     image: "/home/urus-column.jpg",
-    tone: "light",
-    layout: "column",
     imagePosition: "44% 50%",
+    theme: "column",
+    reverse: true,
   },
 ] as const;
 
@@ -59,26 +61,21 @@ export default function HomeEditorialSequence() {
         scrollTrigger: {
           trigger: root,
           start: "top top",
-          end: () => `+=${Math.round(window.innerHeight * panels.length * 3.35)}`,
-          scrub: 1.18,
+          end: () => `+=${Math.round(window.innerHeight * panels.length * 2.2)}`,
+          scrub: 1.1,
           pin: frame,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
       });
 
-      const sceneLength = 1.68;
+      const sceneLength = 1.4;
 
       scenePanels.forEach((panel, index) => {
         const sceneStart = index * sceneLength;
         const media = panel.querySelector<HTMLElement>("[data-cbj-sequence-media]");
         const mediaImage = panel.querySelector<HTMLElement>("[data-cbj-sequence-image]");
-        const copyBlock = panel.querySelector<HTMLElement>("[data-cbj-sequence-copy-block]");
         const copyLines = gsap.utils.toArray<HTMLElement>("[data-cbj-sequence-copy]", panel);
-        const cta = panel.querySelector<HTMLElement>("[data-cbj-sequence-cta]");
-        const rule = panel.querySelector<HTMLElement>("[data-cbj-sequence-rule]");
-        const wash = panel.querySelector<HTMLElement>("[data-cbj-sequence-wash]");
-        const sweep = panel.querySelector<HTMLElement>("[data-cbj-sequence-sweep]");
 
         timeline.set(panel, { autoAlpha: 1, pointerEvents: "auto", zIndex: index + 1 }, sceneStart);
 
@@ -86,120 +83,36 @@ export default function HomeEditorialSequence() {
           timeline
             .fromTo(
               media,
-              {
-                autoAlpha: 0,
-                yPercent: 10,
-                scale: 1.15,
-                filter: "blur(12px)",
-              },
-              {
-                autoAlpha: 1,
-                yPercent: 0,
-                scale: 1.07,
-                filter: "blur(0px)",
-                duration: 0.34,
-                ease: "power3.out",
-              },
+              { autoAlpha: 0, scale: 1.1 },
+              { autoAlpha: 1, scale: 1, duration: 0.34, ease: "power3.out" },
               sceneStart
             )
-            .to(
-              media,
-              {
-                yPercent: 0,
-                scale: 1.035,
-                autoAlpha: 1,
-                filter: "blur(0px)",
-                duration: 0.82,
-                ease: "none",
-              },
-              sceneStart + 0.34
-            )
-            .to(
-              media,
-              {
-                yPercent: -11,
-                scale: 1.068,
-                autoAlpha: 0,
-                filter: "blur(8px)",
-                duration: 0.28,
-                ease: "power2.in",
-              },
-              sceneStart + 1.26
-            );
+            .to(media, { scale: 1, autoAlpha: 1, duration: 0.72, ease: "none" }, sceneStart + 0.34)
+            .to(media, { autoAlpha: 0, scale: 1.05, duration: 0.26, ease: "power2.in" }, sceneStart + 1.12);
         }
 
         if (mediaImage) {
-          timeline
-            .fromTo(
-              mediaImage,
-              { scale: 1.055, rotateZ: -0.12 },
-              { scale: 1.008, rotateZ: 0.025, duration: 0.42, ease: "power2.out" },
-              sceneStart + 0.02
-            )
-            .to(mediaImage, { scale: 1.008, rotateZ: 0.025, duration: 0.78, ease: "none" }, sceneStart + 0.44)
-            .to(mediaImage, { scale: 1.030, rotateZ: 0.09, duration: 0.26, ease: "power1.in" }, sceneStart + 1.24);
-        }
-
-        if (wash) {
-          timeline
-            .fromTo(wash, { autoAlpha: 0.98 }, { autoAlpha: 0.12, duration: 0.36, ease: "power2.out" }, sceneStart)
-            .to(wash, { autoAlpha: 0.08, duration: 0.78, ease: "none" }, sceneStart + 0.36)
-            .to(wash, { autoAlpha: 0.98, duration: 0.30, ease: "power2.in" }, sceneStart + 1.20);
-        }
-
-        if (sweep) {
-          timeline
-            .fromTo(
-              sweep,
-              { yPercent: -150, autoAlpha: 0.82 },
-              { yPercent: 20, autoAlpha: 0.10, duration: 0.42, ease: "power2.out" },
-              sceneStart + 0.04
-            )
-            .to(sweep, { yPercent: 150, autoAlpha: 0.68, duration: 0.32, ease: "power2.in" }, sceneStart + 1.16);
-        }
-
-
-        if (copyBlock) {
-          timeline
-            .fromTo(
-              copyBlock,
-              { autoAlpha: 0, y: 72, filter: "blur(10px)" },
-              { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.24, ease: "power3.out" },
-              sceneStart + 0.24
-            )
-            .to(copyBlock, { y: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.70, ease: "none" }, sceneStart + 0.50)
-            .to(copyBlock, { y: -58, autoAlpha: 0, filter: "blur(7px)", duration: 0.22, ease: "power2.in" }, sceneStart + 1.18);
-        }
-
-        if (copyLines.length) {
           timeline.fromTo(
-            copyLines,
-            { autoAlpha: 0, y: 34 },
-            { autoAlpha: 1, y: 0, duration: 0.20, stagger: 0.045, ease: "power3.out" },
-            sceneStart + 0.28
+            mediaImage,
+            { scale: 1.08 },
+            { scale: 1.0, duration: 0.5, ease: "power2.out" },
+            sceneStart + 0.02
           );
         }
 
-        if (cta) {
+        if (copyLines.length) {
           timeline
             .fromTo(
-              cta,
-              { autoAlpha: 0, y: 48, xPercent: -50, scale: 0.965, filter: "blur(7px)" },
-              { autoAlpha: 1, y: 0, xPercent: -50, scale: 1, filter: "blur(0px)", duration: 0.20, ease: "power3.out" },
-              sceneStart + 0.46
+              copyLines,
+              { autoAlpha: 0, y: 40 },
+              { autoAlpha: 1, y: 0, duration: 0.22, stagger: 0.06, ease: "power3.out" },
+              sceneStart + 0.14
             )
-            .to(cta, { autoAlpha: 1, y: 0, xPercent: -50, scale: 1, duration: 0.66, ease: "none" }, sceneStart + 0.66)
-            .to(cta, { autoAlpha: 0, y: -28, xPercent: -50, scale: 0.982, filter: "blur(6px)", duration: 0.22, ease: "power2.in" }, sceneStart + 1.18);
+            .to(copyLines, { y: 0, autoAlpha: 1, duration: 0.6, ease: "none" }, sceneStart + 0.5)
+            .to(copyLines, { y: -32, autoAlpha: 0, duration: 0.22, ease: "power2.in" }, sceneStart + 1.1);
         }
 
-        if (rule) {
-          timeline
-            .fromTo(rule, { autoAlpha: 0, scaleY: 0, y: 24 }, { autoAlpha: 0.52, scaleY: 1, y: 0, duration: 0.18, ease: "power3.out" }, sceneStart + 0.13)
-            .to(rule, { autoAlpha: 0.44, scaleY: 1.18, y: -8, duration: 0.82, ease: "none" }, sceneStart + 0.34)
-            .to(rule, { autoAlpha: 0, scaleY: 0, y: -34, duration: 0.22, ease: "power2.in" }, sceneStart + 1.18);
-        }
-
-        timeline.set(panel, { autoAlpha: 0, pointerEvents: "none" }, sceneStart + 1.66);
+        timeline.set(panel, { autoAlpha: 0, pointerEvents: "none" }, sceneStart + 1.38);
       });
     }, root);
 
@@ -213,33 +126,31 @@ export default function HomeEditorialSequence() {
           <article
             key={panel.id}
             data-cbj-sequence-panel
-            className={`${styles.panel} ${styles[panel.tone]} ${styles[panel.layout]}`}
+            className={`${styles.panel} ${styles[panel.theme]}`}
           >
-            <div className={styles.mediaWrap} data-cbj-sequence-media>
-              <img
-                src={panel.image}
-                alt=""
-                data-cbj-sequence-image
-                className={styles.media}
-                style={{ objectPosition: panel.imagePosition }}
-                loading={panel.id === "guide" ? "eager" : "lazy"}
-              />
+            <div className={`${styles.split} ${panel.reverse ? styles.splitReverse : ""}`}>
+              <div className={styles.copySide}>
+                <p className={styles.eyebrow} data-cbj-sequence-copy>{panel.eyebrow}</p>
+                <h2 className={styles.title} data-cbj-sequence-copy>{panel.title}</h2>
+                <p className={styles.subtitle} data-cbj-sequence-copy>{panel.subtitle}</p>
+                <div className={styles.rule} data-cbj-sequence-copy aria-hidden="true" />
+                <p className={styles.body} data-cbj-sequence-copy>{panel.body}</p>
+                <a href={panel.href} className={styles.cta} data-cbj-sequence-copy>
+                  <span>{panel.cta}</span>
+                  <em aria-hidden="true">↗</em>
+                </a>
+              </div>
+              <div className={styles.photoSide} data-cbj-sequence-media>
+                <img
+                  src={panel.image}
+                  alt=""
+                  data-cbj-sequence-image
+                  className={styles.media}
+                  style={{ objectPosition: panel.imagePosition }}
+                  loading={panel.id === "guide" ? "eager" : "lazy"}
+                />
+              </div>
             </div>
-
-            <div className={styles.wash} data-cbj-sequence-wash aria-hidden="true" />
-            <div className={styles.sweep} data-cbj-sequence-sweep aria-hidden="true" />
-            <div className={styles.vignette} aria-hidden="true" />
-            <div className={styles.progressRule} data-cbj-sequence-rule aria-hidden="true" />
-
-            <div className={styles.copyBlock} data-cbj-sequence-copy-block>
-              <h2 className={styles.title} data-cbj-sequence-copy>{panel.title}</h2>
-              <p className={styles.body} data-cbj-sequence-copy>{panel.body}</p>
-            </div>
-
-            <a href={panel.href} className={styles.cta} data-cbj-sequence-cta>
-              <span>{panel.cta}</span>
-              <em aria-hidden="true">↗</em>
-            </a>
           </article>
         ))}
       </div>
