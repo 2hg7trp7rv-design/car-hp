@@ -1,31 +1,30 @@
 import type { Metadata } from "next";
 
-import ColumnLesson17Page from "@/components/column/lesson17/ColumnLesson17Page";
+import RefbookHome from "@/components/home/RefbookHome";
 
-const TITLE = "車のカスタムで後悔しやすい理由";
+const TITLE = "車の“なんで？”に、0から答える参考書";
 const DESCRIPTION =
-  "純正を崩す前に。その変更が、車検・保証・整備入庫・売却まで、車全体にどう関わるかを確認する。";
-const ARTICLE_PATH = "/column/modern-car-custom-regret-reason-column";
+  "部品の名前も知らない初学者から、もっと深く知りたいマスター候補まで。絵と図と例え話で、車の「なぜ？」が「なるほど！」に変わる自動車メディア。";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: ARTICLE_PATH },
+  alternates: { canonical: "/" },
   openGraph: {
-    title: `${TITLE} | CAR BOUTIQUE JOURNAL`,
+    title: `CAR BOUTIQUE JOURNAL — ${TITLE}`,
     description: DESCRIPTION,
-    type: "article",
-    url: ARTICLE_PATH,
+    type: "website",
+    url: "/",
     images: ["/ogp-default.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${TITLE} | CAR BOUTIQUE JOURNAL`,
+    title: `CAR BOUTIQUE JOURNAL — ${TITLE}`,
     description: DESCRIPTION,
     images: ["/ogp-default.jpg"],
   },
 };
 
 export default function Home() {
-  return <ColumnLesson17Page />;
+  return <RefbookHome />;
 }
