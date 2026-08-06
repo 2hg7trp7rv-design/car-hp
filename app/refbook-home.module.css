@@ -1,0 +1,633 @@
+.page {
+  --refbook-bg: #fffdf8;
+  --refbook-ink: #2b2b33;
+  --refbook-ink-soft: #6b6b76;
+  --refbook-shuna: #ff8fa8;
+  --refbook-shuna-soft: #ffe9ee;
+  --refbook-rina: #4a6fa5;
+  --refbook-rina-soft: #e8f0fa;
+  --refbook-accent: #ffb340;
+  --refbook-line: #efe9df;
+  --refbook-radius: 24px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--refbook-bg);
+  color: var(--refbook-ink);
+  color-scheme: light;
+  font-family: var(--font-refbook-sans), "Hiragino Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.page,
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.page * {
+  margin: 0;
+  padding: 0;
+}
+
+.page h1,
+.page h2,
+.page h3,
+.page h4 {
+  font-family: var(--font-refbook-rounded), "Hiragino Maru Gothic ProN", sans-serif;
+}
+
+.page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page ::selection {
+  background: var(--refbook-shuna);
+  color: #fff;
+}
+
+.header {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  border-bottom: 2px solid var(--refbook-line);
+  background: rgba(255, 253, 248, 0.9);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--refbook-ink);
+  font-family: var(--font-refbook-rounded), "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+.logoBadge {
+  padding: 3px 10px;
+  border-radius: 99px;
+  background: var(--refbook-ink);
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+}
+
+.topNav {
+  display: flex;
+  gap: 8px;
+}
+
+.topNav a {
+  padding: 8px 16px;
+  border-radius: 99px;
+  color: var(--refbook-ink-soft);
+  font-size: 13px;
+  font-weight: 700;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.topNav a:hover {
+  background: var(--refbook-shuna-soft);
+  color: var(--refbook-shuna);
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 24px 80px;
+  background:
+    radial-gradient(circle at 15% 20%, var(--refbook-shuna-soft) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, var(--refbook-rina-soft) 0%, transparent 40%),
+    var(--refbook-bg);
+  text-align: center;
+}
+
+.heroBadge {
+  display: inline-block;
+  margin-bottom: 32px;
+  padding: 8px 24px;
+  border: 2px solid var(--refbook-ink);
+  border-radius: 99px;
+  background: #fff;
+  box-shadow: 4px 4px 0 var(--refbook-ink);
+  font-family: var(--font-refbook-rounded), "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.hero h1 {
+  margin-bottom: 24px;
+  font-size: clamp(30px, 5.4vw, 58px);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.highlightPink {
+  padding: 0 0.15em;
+  background: linear-gradient(transparent 62%, var(--refbook-shuna-soft) 62%);
+}
+
+.highlightBlue {
+  padding: 0 0.15em;
+  background: linear-gradient(transparent 62%, var(--refbook-rina-soft) 62%);
+}
+
+.noBreak {
+  display: inline-block;
+}
+
+.lead {
+  max-width: 600px;
+  margin: 0 auto 48px;
+  color: var(--refbook-ink-soft);
+  font-size: 15px;
+}
+
+.heroCharacters {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: -8px;
+}
+
+.heroCharacters img {
+  width: clamp(150px, 22vw, 260px);
+  height: auto;
+  filter: drop-shadow(0 12px 24px rgba(43, 43, 51, 0.14));
+}
+
+.heroCharacters img:last-child {
+  margin-left: -40px;
+}
+
+.heroCta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.button {
+  padding: 16px 36px;
+  border: 2px solid var(--refbook-ink);
+  border-radius: 99px;
+  font-family: var(--font-refbook-rounded), "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+}
+
+.buttonPink {
+  background: var(--refbook-shuna);
+  box-shadow: 5px 5px 0 var(--refbook-ink);
+  color: #fff !important;
+}
+
+.buttonPink:hover {
+  box-shadow: 7px 7px 0 var(--refbook-ink);
+}
+
+.buttonWhite {
+  background: #fff;
+  box-shadow: 5px 5px 0 var(--refbook-line);
+  color: var(--refbook-ink) !important;
+}
+
+.buttonWhite:hover {
+  box-shadow: 7px 7px 0 var(--refbook-line);
+}
+
+.block {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 100px 24px;
+  scroll-margin-top: 62px;
+}
+
+.sectionHead {
+  margin-bottom: 64px;
+  text-align: center;
+}
+
+.sectionKicker {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 6px 18px;
+  border-radius: 99px;
+  font-family: var(--font-refbook-rounded), "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.kickerPink {
+  background: var(--refbook-shuna-soft);
+  color: var(--refbook-shuna);
+}
+
+.kickerBlue {
+  background: var(--refbook-rina-soft);
+  color: var(--refbook-rina);
+}
+
+.kickerYellow {
+  background: #fff3d9;
+  color: var(--refbook-accent);
+}
+
+.sectionHead h2 {
+  font-size: clamp(26px, 3.6vw, 40px);
+  font-weight: 800;
+  line-height: 1.5;
+  text-wrap: balance;
+}
+
+.sectionHead p {
+  margin-top: 12px;
+  color: var(--refbook-ink-soft);
+  font-size: 14px;
+}
+
+.pathGrid,
+.topicGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.pathCard {
+  position: relative;
+  padding: 40px 32px;
+  border: 2px solid var(--refbook-line);
+  border-radius: var(--refbook-radius);
+  background: #fff;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.pathCard:hover {
+  transform: translateY(-6px);
+  border-color: var(--refbook-ink);
+  box-shadow: 8px 8px 0 var(--refbook-line);
+}
+
+.pathNumber {
+  margin-bottom: 20px;
+  font-family: var(--font-refbook-rounded), "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.pathCard h3 {
+  margin-bottom: 12px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.pathCard p {
+  color: var(--refbook-ink-soft);
+  font-size: 13px;
+}
+
+.pathArrow {
+  position: absolute;
+  z-index: 2;
+  top: 44px;
+  right: -28px;
+  color: var(--refbook-accent);
+  font-size: 24px;
+}
+
+.stepPink .pathNumber {
+  color: var(--refbook-shuna);
+}
+
+.stepBlue .pathNumber {
+  color: var(--refbook-rina);
+}
+
+.stepYellow .pathNumber {
+  color: var(--refbook-accent);
+}
+
+.topic {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  padding: 40px 32px 32px;
+  border: 2px solid var(--refbook-line);
+  border-radius: var(--refbook-radius);
+  background: #fff;
+  color: var(--refbook-ink);
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.topic:hover {
+  transform: translateY(-6px);
+  border-color: var(--refbook-ink);
+  box-shadow: 8px 8px 0 var(--refbook-line);
+}
+
+.topic::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 8px;
+  content: "";
+}
+
+.topicPink::before {
+  background: var(--refbook-shuna);
+}
+
+.topicBlue::before {
+  background: var(--refbook-rina);
+}
+
+.topicYellow::before {
+  background: var(--refbook-accent);
+}
+
+.topicGreen::before {
+  background: #7bc98f;
+}
+
+.topicPurple::before {
+  background: #b48fd9;
+}
+
+.topicOrange::before {
+  background: #ff9e6b;
+}
+
+.topicIcon {
+  display: flex;
+  width: 64px;
+  height: 64px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  border: 2px solid var(--refbook-line);
+  border-radius: 18px;
+  background: var(--refbook-bg);
+  font-size: 30px;
+}
+
+.topicPink .topicIcon {
+  border-color: #ffd3de;
+  background: var(--refbook-shuna-soft);
+}
+
+.topicBlue .topicIcon {
+  border-color: #c9dcf2;
+  background: var(--refbook-rina-soft);
+}
+
+.topicYellow .topicIcon {
+  border-color: #ffe0a8;
+}
+
+.topicGreen .topicIcon {
+  border-color: #c4e6cf;
+  background: #e6f5ea;
+}
+
+.topicPurple .topicIcon {
+  border-color: #ddc9f0;
+  background: #f2eafa;
+}
+
+.topicOrange .topicIcon {
+  border-color: #ffd4bd;
+  background: #ffeee5;
+}
+
+.topic h3 {
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.topic p {
+  flex: 1;
+  margin-bottom: 20px;
+  color: var(--refbook-ink-soft);
+  font-size: 12px;
+}
+
+.topicMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 2px solid var(--refbook-line);
+}
+
+.topicCount,
+.badgeOpen,
+.badgeSoon {
+  font-family: var(--font-refbook-rounded), "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.topicCount {
+  color: var(--refbook-ink-soft);
+  font-size: 12px;
+}
+
+.badgeOpen,
+.badgeSoon {
+  padding: 5px 14px;
+  border-radius: 99px;
+}
+
+.badgeOpen {
+  background: var(--refbook-shuna-soft);
+  color: var(--refbook-shuna);
+}
+
+.badgeSoon {
+  background: var(--refbook-line);
+  color: var(--refbook-ink-soft);
+}
+
+.topicSoon {
+  opacity: 0.75;
+}
+
+.topicSoon:hover {
+  transform: none;
+  border-color: var(--refbook-line);
+  box-shadow: none;
+}
+
+.characterGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.characterCard {
+  position: relative;
+  overflow: hidden;
+  padding: 44px 36px;
+  border: 2px solid var(--refbook-ink);
+  border-radius: var(--refbook-radius);
+}
+
+.shunaCard {
+  background: var(--refbook-shuna-soft);
+}
+
+.rinaCard {
+  background: var(--refbook-rina-soft);
+}
+
+.characterCard h3 {
+  margin-bottom: 6px;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.characterRole {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 4px 14px;
+  border-radius: 99px;
+  background: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.characterCard p {
+  position: relative;
+  z-index: 2;
+  max-width: 55%;
+  color: var(--refbook-ink);
+  font-size: 13px;
+}
+
+.characterCard img {
+  position: absolute;
+  right: -20px;
+  bottom: -10px;
+  width: 180px;
+  height: auto;
+}
+
+.footer {
+  padding: 80px 24px 40px;
+  background: var(--refbook-ink);
+  color: #fff;
+  text-align: center;
+}
+
+.footerLogo {
+  margin-bottom: 16px;
+  font-family: var(--font-refbook-rounded), "Hiragino Maru Gothic ProN", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.footer > p {
+  color: #bdbdc6;
+  font-size: 13px;
+}
+
+.footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.footer nav a {
+  color: #bdbdc6;
+  font-size: 13px;
+}
+
+.footer nav a:hover {
+  color: var(--refbook-shuna);
+}
+
+.footer small {
+  color: #7a7a85;
+  font-size: 11px;
+}
+
+@media (max-width: 860px) {
+  .topNav {
+    display: none;
+  }
+
+  .heroCta {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pathGrid,
+  .topicGrid,
+  .characterGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pathArrow {
+    display: none;
+  }
+
+  .characterCard img {
+    right: -18px;
+    width: 140px;
+  }
+}
+
+@media (max-width: 420px) {
+  .header {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .logo {
+    gap: 8px;
+    font-size: 13px;
+    letter-spacing: 0.09em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page *,
+  .page *::before,
+  .page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

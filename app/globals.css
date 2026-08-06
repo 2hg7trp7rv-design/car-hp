@@ -1018,6 +1018,16 @@ html, body {
   outline: none;
 }
 
+html:has([data-cbj-refbook-home]) {
+  scroll-behavior: smooth;
+  background: #fffdf8;
+  color-scheme: light;
+}
+
+body:has([data-cbj-refbook-home]) {
+  background: #fffdf8;
+}
+
 /* ============================================================
    Cars detail article - PDF1 faithful mobile layout
    ============================================================ */

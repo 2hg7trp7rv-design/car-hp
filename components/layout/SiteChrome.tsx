@@ -28,7 +28,7 @@ export function SiteChrome({ children }: SiteChromeProps) {
       <div
         id="cb-main"
         tabIndex={-1}
-        className="min-h-screen bg-[#0A0A0A] text-white outline-none"
+        className="min-h-screen bg-[#fffdf8] text-[#2b2b33] outline-none"
       >
         {children}
       </div>

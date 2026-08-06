@@ -49,7 +49,7 @@ export function ConsentBanner() {
     setOpen(false);
   };
 
-  if (!open) return null;
+  if (pathname === "/" || !open) return null;
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-[90] px-4 pb-4 sm:pb-6">
