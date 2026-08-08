@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ターボチャージャーのイラスト">
+  <g stroke="#2B2B33" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 38H8v12h15v-7" fill="#A9C6E6"/>
+    <path d="M39 17h12c4 0 6 2 6 6v7H45" fill="#A9C6E6"/>
+    <path d="M45 33c0 11-8 19-19 19S7 44 7 33s8-20 19-20c10 0 18 7 19 17H33a8 8 0 1 0 1 8" fill="#86AFD8"/>
+    <circle cx="26" cy="33" r="8" fill="#E7EEF6"/>
+    <circle cx="26" cy="33" r="2.5" fill="#2B2B33" stroke="none"/>
+    <path d="m26 25 2 6 6-2M34 35l-6-2-2 6M23 40l3-7-7-2M18 27l8 6" fill="none"/>
+  </g>
+</svg>

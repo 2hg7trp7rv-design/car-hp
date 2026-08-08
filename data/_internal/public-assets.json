@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-08T23:20:10.314Z",
-  "count": 336,
+  "generatedAt": "2026-08-08T23:46:38.027Z",
+  "count": 342,
   "paths": [
     "/apple-touch-icon.png",
     "/car-corvette.jpg",
@@ -309,6 +309,12 @@
     "/images/cbj/home-hero.jpg",
     "/images/cbj/refbook/char-rina.png",
     "/images/cbj/refbook/char-shuna.png",
+    "/images/cbj/topic-icons/engine-basics.svg",
+    "/images/cbj/topic-icons/exhaust-muffler.svg",
+    "/images/cbj/topic-icons/ownership-cost.svg",
+    "/images/cbj/topic-icons/suspension.svg",
+    "/images/cbj/topic-icons/turbocharger.svg",
+    "/images/cbj/topic-icons/vehicle-inspection.svg",
     "/images/exhibit/kv-bodytypes.webp",
     "/images/exhibit/kv-search.webp",
     "/images/exhibit/kv-segments.webp",

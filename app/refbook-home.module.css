@@ -399,6 +399,13 @@
   font-size: 30px;
 }
 
+.topicIcon img {
+  display: block;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
 .topicPink .topicIcon {
   border-color: #ffd3de;
   background: var(--refbook-shuna-soft);

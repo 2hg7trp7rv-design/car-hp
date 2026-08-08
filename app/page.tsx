@@ -38,7 +38,7 @@ const learningSteps = [
 
 const topics = [
   {
-    icon: "🔧",
+    icon: "/images/cbj/topic-icons/exhaust-muffler.svg",
     title: "排気系・マフラー",
     body: "マフラーとは？から「静かなのに車検に落ちる謎」まで。排気ガスの旅を追いかける。",
     tone: styles.topicPink,
@@ -46,35 +46,35 @@ const topics = [
     href: "/guide",
   },
   {
-    icon: "💨",
+    icon: "/images/cbj/topic-icons/turbocharger.svg",
     title: "ターボ・過給機",
     body: "「空気を詰め込むと、なぜ速くなる？」NAとターボの維持費逆転の法則まで。",
     tone: styles.topicBlue,
     status: "準備中",
   },
   {
-    icon: "🛞",
+    icon: "/images/cbj/topic-icons/suspension.svg",
     title: "足回り・サスペンション",
     body: "乗り心地と走りを決める足回り。車高調とダウンサス、何が違うの？",
     tone: styles.topicYellow,
     status: "準備中",
   },
   {
-    icon: "🔋",
+    icon: "/images/cbj/topic-icons/engine-basics.svg",
     title: "エンジンの基礎",
     body: "エンジンって何してるの？4ストロークから直噴・ハイブリッドの違いまで。",
     tone: styles.topicGreen,
     status: "準備中",
   },
   {
-    icon: "📋",
+    icon: "/images/cbj/topic-icons/vehicle-inspection.svg",
     title: "車検・制度",
     body: "車検は何を見てるの？保安基準、改造と法律の境界線を正しく理解する。",
     tone: styles.topicPurple,
     status: "準備中",
   },
   {
-    icon: "💰",
+    icon: "/images/cbj/topic-icons/ownership-cost.svg",
     title: "維持費・お金",
     body: "車の本当のコスト。税金、保険、燃料、整備——「乗り続ける」の値段。",
     tone: styles.topicOrange,
@@ -86,7 +86,7 @@ function TopicCard({ topic }: { topic: (typeof topics)[number] }) {
   const content = (
     <>
       <div className={styles.topicIcon} aria-hidden="true">
-        {topic.icon}
+        <Image src={topic.icon} alt="" width={48} height={48} />
       </div>
       <h3>{topic.title}</h3>
       <p>{topic.body}</p>

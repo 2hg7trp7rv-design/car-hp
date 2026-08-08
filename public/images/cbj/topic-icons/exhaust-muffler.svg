@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="マフラーと排気管のイラスト">
+  <g stroke="#2B2B33" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 19h5c4 0 6 2 7 6l1 5" fill="none"/>
+    <path d="M7 15v8" fill="none"/>
+    <rect x="17" y="22" width="28" height="23" rx="8" fill="#F7C7D3"/>
+    <path d="M22 24v19M40 24v19" fill="none" opacity=".55"/>
+    <path d="M45 29h9c2 0 3 1 3 3v3c0 2-1 3-3 3h-9z" fill="#FF8FA8"/>
+    <path d="M54 31v5M59 31c2 0 2-1 3-2M59 36c2 0 2 1 3 2" fill="none"/>
+    <path d="M10 28c0 7 3 10 8 10" fill="none"/>
+  </g>
+</svg>
