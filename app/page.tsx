@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { refbookRounded, refbookSans } from "./refbook-fonts";
 import styles from "./refbook-home.module.css";
+import { CBJ_CHARACTERS } from "@/lib/brand/cbj-characters";
 
 export const metadata: Metadata = {
   title: {
@@ -160,7 +161,7 @@ export default function Home() {
           </p>
           <div className={styles.heroCharacters}>
             <Image
-              src="/images/cbj/refbook/char-shuna.png"
+              src={CBJ_CHARACTERS.shuna.top}
               alt="車の疑問を尋ねるシュナ"
               width={1024}
               height={1024}
@@ -168,7 +169,7 @@ export default function Home() {
               priority
             />
             <Image
-              src="/images/cbj/refbook/char-rina.png"
+              src={CBJ_CHARACTERS.rina.top}
               alt="車について解説する莉奈"
               width={1024}
               height={1024}
@@ -240,7 +241,7 @@ export default function Home() {
                 金髪ギャル。車の知識はゼロだけど「なんで？」が止まらない。みんなが聞きづらい素朴な疑問を、全力で莉奈にぶつける。
               </p>
               <Image
-                src="/images/cbj/refbook/char-shuna.png"
+                src={CBJ_CHARACTERS.shuna.card}
                 alt="シュナ"
                 width={1024}
                 height={1024}
@@ -254,7 +255,7 @@ export default function Home() {
                 黒髪お姉さん。整備から車検制度まで熟知するマスター。難しい話を図と例え話に翻訳するのが大得意。
               </p>
               <Image
-                src="/images/cbj/refbook/char-rina.png"
+                src={CBJ_CHARACTERS.rina.card}
                 alt="莉奈"
                 width={1024}
                 height={1024}

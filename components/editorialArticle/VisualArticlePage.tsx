@@ -8,6 +8,7 @@ import type {
   EditorialArticlePageProps,
   EditorialArticleViewModel,
 } from "@/components/editorialArticle/EditorialArticlePage";
+import { CBJ_CHARACTERS } from "@/lib/brand/cbj-characters";
 import customRegretVisualJson from "@/data/article-layouts/modern-car-custom-regret-reason-column.visual.json";
 import styles from "@/components/editorialArticle/kinto-json-article.module.css";
 
@@ -37,10 +38,10 @@ type RawSection = { id?: string | null; title?: string | null; displayTitle?: st
 
 const customRegretVisual = customRegretVisualJson as unknown as VisualLayout;
 const characterSet = [
-  "/images/cbj/columns/cbj-guide-chara-1.PNG",
-  "/images/cbj/columns/cbj-guide-chara-2.PNG",
-  "/images/cbj/columns/cbj-guide-chara-3.PNG",
-  "/images/cbj/columns/cbj-guide-chara-4.PNG",
+  CBJ_CHARACTERS.shuna.question,
+  CBJ_CHARACTERS.rina.explain,
+  CBJ_CHARACTERS.shuna.understood,
+  CBJ_CHARACTERS.rina.important,
 ];
 const fallbackArticleImage = "/images/cbj/columns/custom-regret-card-article-20.webp";
 const text = (value: unknown) => (typeof value === "string" ? value.trim() : "");
