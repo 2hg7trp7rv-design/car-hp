@@ -181,7 +181,7 @@ const nextConfig = {
 
   images: {
     // Article pages use 88/90 for hero and explanation figures. Keep these explicit for Next 16 image quality allowlisting.
-    qualities: [75, 88, 90],
+    qualities: [75, 88, 90, 95],
 
     // Cloudflare Pages / Workers では Next の画像最適化APIが使えないため unoptimized を有効化
     // ただし Vercel では最適化を有効にする

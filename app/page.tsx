@@ -166,7 +166,7 @@ export default function Home() {
               width={1024}
               height={1024}
               sizes="(max-width: 681px) 150px, (max-width: 1182px) 22vw, 260px"
-              quality={90}
+              quality={95}
               priority
             />
             <Image
@@ -175,7 +175,7 @@ export default function Home() {
               width={1024}
               height={1024}
               sizes="(max-width: 681px) 150px, (max-width: 1182px) 22vw, 260px"
-              quality={90}
+              quality={95}
               priority
             />
           </div>
@@ -248,7 +248,7 @@ export default function Home() {
                 width={1024}
                 height={1024}
                 sizes="(max-width: 860px) 140px, 180px"
-                quality={90}
+                quality={95}
               />
             </article>
             <article className={`${styles.characterCard} ${styles.rinaCard}`}>
@@ -263,7 +263,7 @@ export default function Home() {
                 width={1024}
                 height={1024}
                 sizes="(max-width: 860px) 140px, 180px"
-                quality={90}
+                quality={95}
               />
             </article>
           </div>
