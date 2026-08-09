@@ -163,8 +163,8 @@ export default function Home() {
             <Image
               src={CBJ_CHARACTERS.shuna.top}
               alt="車の疑問を尋ねるシュナ"
-              width={1024}
-              height={1024}
+              width={1600}
+              height={1600}
               sizes="(max-width: 681px) 150px, (max-width: 1182px) 22vw, 260px"
               quality={95}
               priority
@@ -172,8 +172,8 @@ export default function Home() {
             <Image
               src={CBJ_CHARACTERS.rina.top}
               alt="車について解説する莉奈"
-              width={1024}
-              height={1024}
+              width={1600}
+              height={1600}
               sizes="(max-width: 681px) 150px, (max-width: 1182px) 22vw, 260px"
               quality={95}
               priority
@@ -245,8 +245,8 @@ export default function Home() {
               <Image
                 src={CBJ_CHARACTERS.shuna.card}
                 alt="シュナ"
-                width={1024}
-                height={1024}
+                width={1600}
+                height={1600}
                 sizes="(max-width: 860px) 140px, 180px"
                 quality={95}
               />
@@ -260,8 +260,8 @@ export default function Home() {
               <Image
                 src={CBJ_CHARACTERS.rina.card}
                 alt="莉奈"
-                width={1024}
-                height={1024}
+                width={1600}
+                height={1600}
                 sizes="(max-width: 860px) 140px, 180px"
                 quality={95}
               />
