@@ -38,7 +38,7 @@ const learningSteps = [
 
 const topics = [
   {
-    icon: "/images/cbj/topic-icons/exhaust-muffler.svg",
+    icon: "/images/cbj/topic-icons/exhaust-muffler.png",
     title: "排気系・マフラー",
     body: "マフラーとは？から「静かなのに車検に落ちる謎」まで。排気ガスの旅を追いかける。",
     tone: styles.topicPink,
@@ -46,35 +46,35 @@ const topics = [
     href: "/guide",
   },
   {
-    icon: "/images/cbj/topic-icons/turbocharger.svg",
+    icon: "/images/cbj/topic-icons/turbocharger.png",
     title: "ターボ・過給機",
     body: "「空気を詰め込むと、なぜ速くなる？」NAとターボの維持費逆転の法則まで。",
     tone: styles.topicBlue,
     status: "準備中",
   },
   {
-    icon: "/images/cbj/topic-icons/suspension.svg",
+    icon: "/images/cbj/topic-icons/suspension.png",
     title: "足回り・サスペンション",
     body: "乗り心地と走りを決める足回り。車高調とダウンサス、何が違うの？",
     tone: styles.topicYellow,
     status: "準備中",
   },
   {
-    icon: "/images/cbj/topic-icons/engine-basics.svg",
+    icon: "/images/cbj/topic-icons/engine-basics.png",
     title: "エンジンの基礎",
     body: "エンジンって何してるの？4ストロークから直噴・ハイブリッドの違いまで。",
     tone: styles.topicGreen,
     status: "準備中",
   },
   {
-    icon: "/images/cbj/topic-icons/vehicle-inspection.svg",
+    icon: "/images/cbj/topic-icons/vehicle-inspection.png",
     title: "車検・制度",
     body: "車検は何を見てるの？保安基準、改造と法律の境界線を正しく理解する。",
     tone: styles.topicPurple,
     status: "準備中",
   },
   {
-    icon: "/images/cbj/topic-icons/ownership-cost.svg",
+    icon: "/images/cbj/topic-icons/ownership-cost.png",
     title: "維持費・お金",
     body: "車の本当のコスト。税金、保険、燃料、整備——「乗り続ける」の値段。",
     tone: styles.topicOrange,
@@ -86,7 +86,7 @@ function TopicCard({ topic }: { topic: (typeof topics)[number] }) {
   const content = (
     <>
       <div className={styles.topicIcon} aria-hidden="true">
-        <Image src={topic.icon} alt="" width={48} height={48} />
+        <Image src={topic.icon} alt="" width={192} height={192} unoptimized />
       </div>
       <h3>{topic.title}</h3>
       <p>{topic.body}</p>
@@ -165,7 +165,8 @@ export default function Home() {
               alt="車の疑問を尋ねるシュナ"
               width={1024}
               height={1024}
-              sizes="(max-width: 860px) 34vw, 22vw"
+              sizes="(max-width: 681px) 150px, (max-width: 1182px) 22vw, 260px"
+              quality={90}
               priority
             />
             <Image
@@ -173,7 +174,8 @@ export default function Home() {
               alt="車について解説する莉奈"
               width={1024}
               height={1024}
-              sizes="(max-width: 860px) 34vw, 22vw"
+              sizes="(max-width: 681px) 150px, (max-width: 1182px) 22vw, 260px"
+              quality={90}
               priority
             />
           </div>
@@ -246,6 +248,7 @@ export default function Home() {
                 width={1024}
                 height={1024}
                 sizes="(max-width: 860px) 140px, 180px"
+                quality={90}
               />
             </article>
             <article className={`${styles.characterCard} ${styles.rinaCard}`}>
@@ -260,6 +263,7 @@ export default function Home() {
                 width={1024}
                 height={1024}
                 sizes="(max-width: 860px) 140px, 180px"
+                quality={90}
               />
             </article>
           </div>

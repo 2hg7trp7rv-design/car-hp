@@ -401,8 +401,8 @@
 
 .topicIcon img {
   display: block;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   object-fit: contain;
 }
 
@@ -486,7 +486,7 @@
 }
 
 .topicSoon {
-  opacity: 0.75;
+  cursor: default;
 }
 
 .topicSoon:hover {
