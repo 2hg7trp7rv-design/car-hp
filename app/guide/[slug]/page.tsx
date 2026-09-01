@@ -18,6 +18,13 @@ export async function generateStaticParams() {
   return guides.map((guide) => ({ slug: guide.slug }));
 }
 
+// 削除済み・存在しない記事URLを「ソフト404（200で見つかりません）」にしないための設定。
+// ルートの loading.tsx により全レスポンスがストリーミング配信となり、
+// Next.js の仕様上 notFound() が 404 ではなく 200 を返してしまう。
+// 記事は全て generateStaticParams で静的生成しているため、
+// ビルド時リストに存在しないスラッグはここで確実に 404 に倒す。
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const guide = await getGuideBySlug(slug);
