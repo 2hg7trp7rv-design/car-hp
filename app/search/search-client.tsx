@@ -200,9 +200,8 @@ export function SearchClient(props: {
       updateUrl(queryTrimmed, type);
 
       const isBlank = queryTrimmed.length <= 1;
-      const hasServerSnapshot =
-        (!isBlank && queryTrimmed === initialQueryTrimmed && Array.isArray(initialResults)) ||
-        (isBlank && queryTrimmed === initialQueryTrimmed && !!initialSuggestions);
+      const hasServerSnapshot = type === initialType && queryTrimmed === initialQueryTrimmed &&
+        ((!isBlank && Array.isArray(initialResults)) || (isBlank && !!initialSuggestions));
 
       if (!didUseServerSnapshotRef.current && hasServerSnapshot) {
         didUseServerSnapshotRef.current = true;
@@ -235,6 +234,7 @@ export function SearchClient(props: {
         }
 
         const data = (await res.json()) as ApiResponse;
+        if (controller.signal.aborted) return;
         const took = typeof data.tookMs === "number" ? data.tookMs : null;
 
         if (isBlank) {
@@ -270,12 +270,15 @@ export function SearchClient(props: {
         setResults([]);
         setSuggestions(null);
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) setLoading(false);
       }
     }, 240);
 
-    return () => window.clearTimeout(handle);
-  }, [initialQueryTrimmed, initialResults, initialSuggestions, queryTrimmed, type]);
+    return () => {
+      window.clearTimeout(handle);
+      abortRef.current?.abort();
+    };
+  }, [initialQueryTrimmed, initialType, initialResults, initialSuggestions, queryTrimmed, type]);
 
   const filterButtons: Array<{ key: FilterType; label: string }> = [
     { key: "all", label: "すべて" },
@@ -305,6 +308,7 @@ export function SearchClient(props: {
             <input
               id="cbj-search-query"
               name="q"
+              maxLength={200}
               value={q}
               onChange={(event) => setQ(event.target.value)}
               placeholder="例：BMW 3シリーズ / 警告灯 / ドラレコ / ルーミー"
@@ -377,7 +381,7 @@ export function SearchClient(props: {
         <div className="space-y-4 border-t border-[rgba(31,28,25,0.08)] pt-5">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <p className="text-[13px] leading-[1.85] text-[var(--text-secondary)]">
-              人気・最新の候補を表示しています。1文字以上の入力で、その場で候補が切り替わります。
+              人気・最新の候補を表示しています。2文字以上の入力で、その場で候補が切り替わります。
             </p>
             <p className="text-[11px] text-[var(--text-tertiary)]">ショートカット: / または Ctrl/⌘ + K</p>
           </div>

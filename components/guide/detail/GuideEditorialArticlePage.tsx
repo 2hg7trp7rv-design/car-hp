@@ -1,6 +1,7 @@
+import { formatArticleDate as formatDateDot } from "@/components/editorialArticle/article-format";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { KintoJsonArticlePage } from "@/components/editorialArticle/KintoJsonArticlePage";
-import type { EditorialArticleLabels, EditorialRelatedItem } from "@/components/editorialArticle/EditorialArticlePage";
+import { EditorialArticlePage } from "@/components/editorialArticle/EditorialArticlePage";
+import type { EditorialArticleLabels, EditorialRelatedItem } from "@/components/editorialArticle/article-types";
 import type { GuideItem } from "@/lib/content-types";
 import type { InternalLinkMeta } from "@/lib/content/internal-link-index";
 import { getSiteUrl } from "@/lib/site";
@@ -12,12 +13,6 @@ type Props = {
   linkIndex: Record<string, InternalLinkMeta>;
 };
 
-function formatDateDot(iso?: string | null): string {
-  if (!iso) return "";
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return "";
-  return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
-}
 
 function isExternalHref(href: string): boolean {
   return /^https?:\/\//i.test(href);
@@ -53,9 +48,9 @@ function categoryLabel(guide: GuideItem): string {
 function resolveAuthorProfile(guide: GuideItem) {
   if (guide.authorProfile?.name) return guide.authorProfile;
   return {
-    kind: "person" as const,
-    name: "山田太郎",
-    credential: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者",
+    kind: "organization" as const,
+    name: "CAR BOUTIQUE JOURNAL 編集部",
+    credential: "",
   };
 }
 
@@ -97,7 +92,6 @@ export function GuideEditorialArticlePage({ guide, related, linkIndex }: Props) 
     author: authorProfile.kind === "organization"
       ? { "@type": "Organization", name: authorProfile.name, url: siteUrl }
       : { "@type": "Person", name: authorProfile.name, jobTitle: authorProfile.credential ?? undefined, url: authorPageUrl },
-    reviewedBy: { "@type": "Person", name: "山田太郎", jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者", url: authorPageUrl },
     publisher: { "@type": "Organization", name: "CAR BOUTIQUE JOURNAL", url: siteUrl, logo: { "@type": "ImageObject", url: `${siteUrl}/icon-512x512.png` } },
   };
 
@@ -130,7 +124,7 @@ export function GuideEditorialArticlePage({ guide, related, linkIndex }: Props) 
       <JsonLd id={`guide-editorial-breadcrumb-${guide.slug}`} data={breadcrumbJsonLd} />
       <JsonLd id={`guide-editorial-article-${guide.slug}`} data={articleJsonLd} />
       {faqJsonLd ? <JsonLd id={`guide-editorial-faq-${guide.slug}`} data={faqJsonLd} /> : null}
-      <KintoJsonArticlePage
+      <EditorialArticlePage
         article={{
           title: guide.title,
           eyebrowLabel,

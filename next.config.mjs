@@ -136,13 +136,6 @@ function securityHeaders() {
 }
 
 const nextConfig = {
-  // CI/Vercel build safety:
-  // `npm run build` already runs `typecheck` and `lint:strict` before `next build`.
-  // Avoid the duplicated Next.js internal type/lint phase hanging in constrained environments.
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-
   // Build worker tuning for large static generation on small CI/Vercel machines.
   experimental: {
     cpus: 4,
@@ -165,6 +158,7 @@ const nextConfig = {
       "./.git/**/*",
       "./.next/cache/**/*",
       "./docs/**/*",
+      "./assets/fonts/**/*",
       "./public/**/*",
       "./scripts/**/*",
     ],
@@ -187,16 +181,8 @@ const nextConfig = {
     // ただし Vercel では最適化を有効にする
     unoptimized: IS_CLOUDFLARE && !IS_VERCEL,
 
-    // remotePatterns は「絶対URLの画像を使えるようにするため」の最低限の設定
-    // - いまは https のみ許可しつつ hostname はワイルドカード
-    // - 実際に使うホストが固まったら、
-    //   ここを allowlist 方式（example.com / images.cdn.example 等）に絞る想定
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "**",
-      },
-    ],
+    // Current editorial media is self-hosted. New remote hosts require an explicit review.
+    remotePatterns: [],
   },
 
   async redirects() {

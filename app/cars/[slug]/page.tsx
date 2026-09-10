@@ -41,6 +41,8 @@ function resolveCarHeroImagePath(car: Pick<CarItem, "slug" | "heroImage" | "main
   return car.heroImage ?? car.mainImage ?? car.ogImageUrl ?? null;
 }
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const cars = await getAllCars();
   return cars.map((car) => ({ slug: car.slug }));
@@ -893,32 +895,6 @@ function pickNextReads(args: {
       badge: "系譜",
       date: heritage.updatedAt ?? heritage.publishedAt ?? null,
       imageSrc: resolveHeritageCardImage(heritage),
-    });
-  }
-
-  // 足りない場合は固定の“判断に効く”導線で埋める
-  if (out.length < 3) {
-    push({
-      href: "/guide/hub-usedcar",
-      title: "中古車の探し方",
-      excerpt: "車種選びより先に、条件と判断軸を固めるためのまとめ。",
-      badge: "ガイド",
-    });
-  }
-  if (out.length < 3) {
-    push({
-      href: "/guide/hub-shaken",
-      title: "車検と点検の考え方",
-      excerpt: "購入後の出費を読み違えないために、車検と点検の見方を整理する。",
-      badge: "ガイド",
-    });
-  }
-  if (out.length < 3) {
-    push({
-      href: "/guide/maintenance",
-      title: "メンテナンスの基本",
-      excerpt: "古い車や趣味車を長く楽しむために、消耗品と点検の優先順位を押さえる。",
-      badge: "ガイド",
     });
   }
 

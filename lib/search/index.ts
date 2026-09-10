@@ -83,6 +83,9 @@ function scoreDoc(doc: IndexedDoc, queryNorm: string, tokens: string[]): number 
     if (!title.includes(queryNorm)) return 0;
   }
 
+  // Popularity/recency rank matches; they must never create a match.
+  if (score === 0) return 0;
+
   // タイプ優先（入口に寄せる）
   switch (doc.type) {
     case "cars":
@@ -118,6 +121,11 @@ async function buildSearchIndex(): Promise<SearchIndex> {
   const docs: IndexedDoc[] = [];
 
   // --- CARS (sync cache) ---
+  const [guides, columns, heritage] = await Promise.all([
+    getAllGuides(),
+    getAllColumns(),
+    getAllHeritage(),
+  ]);
   const cars = getAllCarsSync();
   for (const car of cars) {
     const title = `${car.maker ?? ""} ${car.name ?? ""} ${car.grade ?? ""}`
@@ -167,7 +175,6 @@ async function buildSearchIndex(): Promise<SearchIndex> {
   }
 
   // --- GUIDE ---
-  const guides = await getAllGuides();
   for (const g of guides) {
     const title = (g.titleJa ?? g.title ?? "").trim();
     const description = clampForCard(
@@ -209,7 +216,6 @@ async function buildSearchIndex(): Promise<SearchIndex> {
   }
 
   // --- COLUMN ---
-  const columns = await getAllColumns();
   for (const c of columns) {
     const title = (c.titleJa ?? c.title ?? "").trim();
     const description = clampForCard(
@@ -251,7 +257,6 @@ async function buildSearchIndex(): Promise<SearchIndex> {
   }
 
   // --- HERITAGE ---
-  const heritage = await getAllHeritage();
   for (const h of heritage) {
     const title = (h.titleJa ?? h.title ?? "").trim();
     const description = clampForCard(
@@ -306,7 +311,10 @@ async function buildSearchIndex(): Promise<SearchIndex> {
 
 export async function getSearchIndex(): Promise<SearchIndex> {
   if (!indexPromise) {
-    indexPromise = buildSearchIndex();
+    indexPromise = buildSearchIndex().catch((error: unknown) => {
+      indexPromise = null;
+      throw error;
+    });
   }
   return indexPromise;
 }

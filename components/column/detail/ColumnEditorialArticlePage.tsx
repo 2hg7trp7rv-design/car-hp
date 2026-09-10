@@ -1,7 +1,7 @@
+import { formatArticleDate as formatDateDot } from "@/components/editorialArticle/article-format";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { KintoJsonArticlePage } from "@/components/editorialArticle/KintoJsonArticlePage";
-import { ColumnV15ArticlePage } from "@/components/column/detail/ColumnV15ArticlePage";
-import type { EditorialArticleLabels, EditorialRelatedItem } from "@/components/editorialArticle/EditorialArticlePage";
+import { EditorialArticlePage } from "@/components/editorialArticle/EditorialArticlePage";
+import type { EditorialArticleLabels, EditorialRelatedItem } from "@/components/editorialArticle/article-types";
 import type { ColumnItem } from "@/lib/content-types";
 import type { InternalLinkMeta } from "@/lib/content/internal-link-index";
 import { getSiteUrl } from "@/lib/site";
@@ -9,18 +9,11 @@ import { humanizeUpdateReason } from "@/lib/update-reason";
 
 type Props = { item: ColumnItem; related: ColumnItem[]; linkIndex: Record<string, InternalLinkMeta> };
 
-const V15_ARTICLE_SLUG = "modern-car-custom-regret-reason-column";
 
-function formatDateDot(iso?: string | null): string {
-  if (!iso) return "";
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return "";
-  return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
-}
 
 function resolveAuthorProfile(item: ColumnItem) {
   if (item.authorProfile?.name) return item.authorProfile;
-  return { kind: "person" as const, name: "山田太郎", credential: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者" };
+  return { kind: "organization" as const, name: "CAR BOUTIQUE JOURNAL 編集部", credential: "" };
 }
 
 function relatedMetaLabel(item: ColumnItem): string {
@@ -53,7 +46,6 @@ export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) 
     datePublished: item.publishedAt ?? item.createdAt ?? undefined,
     dateModified: item.updatedAt ?? item.publishedAt ?? item.createdAt ?? undefined,
     author: { "@type": author.kind === "person" ? "Person" : "Organization", name: author.name, jobTitle: author.kind === "person" ? author.credential ?? undefined : undefined, url: author.kind === "person" ? authorPageUrl : siteUrl },
-    reviewedBy: { "@type": "Person", name: "山田太郎", jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者", url: authorPageUrl },
     publisher: { "@type": "Organization", name: "CAR BOUTIQUE JOURNAL", url: siteUrl, logo: { "@type": "ImageObject", url: `${siteUrl}/icon-512x512.png` } },
   };
 
@@ -86,13 +78,8 @@ export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) 
       <JsonLd id={`ld-breadcrumb-column-${item.slug}`} data={breadcrumbJsonLd} />
       <JsonLd id={`ld-column-${item.slug}`} data={articleJsonLd} />
       {faqJsonLd ? <JsonLd id={`ld-column-faq-${item.slug}`} data={faqJsonLd} /> : null}
-      {item.slug === V15_ARTICLE_SLUG ? (
-        <ColumnV15ArticlePage />
-      ) : (
-        <KintoJsonArticlePage
+      <EditorialArticlePage
           article={{
-            slug: item.slug,
-            layoutId: item.slug,
             title,
             eyebrowLabel: item.eyebrowLabel ?? item.displayTag ?? "コラム",
             breadcrumbTrail,
@@ -115,8 +102,7 @@ export function ColumnEditorialArticlePage({ item, related, linkIndex }: Props) 
           }}
           labels={labels}
           linkIndex={linkIndex}
-        />
-      )}
+      />
     </>
   );
 }

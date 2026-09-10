@@ -25,16 +25,19 @@ function parseLimit(input: string | null): number {
   return Math.max(1, Math.min(50, n));
 }
 
-function stripInternal<T extends Record<string, any>>(
+function stripInternal<T extends { _title: string; _haystack: string }>(
   doc: T,
 ): Omit<T, "_title" | "_haystack"> {
-  const { _title, _haystack, ...pub } = doc as any;
+  const { _title, _haystack, ...pub } = doc;
   return pub;
 }
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q") ?? "";
+  if (q.length > 200) {
+    return NextResponse.json({ error: "検索語は200文字以内で入力してください。" }, { status: 400 });
+  }
   const type = normalizeType(url.searchParams.get("type"));
   const limit = parseLimit(url.searchParams.get("limit"));
 

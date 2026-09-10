@@ -1,116 +1,102 @@
-# CAR BOUTIQUE JOURNAL（carboutiquejournal.com）
+# CAR BOUTIQUE JOURNAL
 
-## Design System（品質規格）
-- Guide / Column 記事制作ルール：`docs/GUIDE_COLUMN_ARTICLE_RULES.md`
-- カスタムColumn 子Guide展開メモ：`docs/custom-column-child-guide-plan.md`
-- 規約：`DESIGN_SYSTEM.md`
-- トークン：`DESIGN_TOKENS.md`
-- コンポーネント仕様：`COMPONENT_SPEC.md`
-- QAチェックリスト（Definition of Done）：`DESIGN_QA_CHECKLIST.md`
+自動車のガイド・コラム・車種情報・系譜を公開する Next.js App Router サイトです。
+公開サイト: https://carboutiquejournal.com/ · 本番ブランチ: `v1`
 
-## README.md は何のための場所？
-- **リポジトリの説明書**です（GitHub のトップに表示されることが多いファイル）。
-- **サイトの表示やSEOには直接影響しません**。
-- このリポジトリでは、README を **運用メモ / 変更履歴 / SEO設定メモ** として使う想定でOKです。
+## 開発を始める
 
----
+Node.js 22 と npm 10 を使います。依存関係は `package-lock.json` で固定します。
 
-## 運用（Vercel）
-### ドメイン設定（いまの状態でOK）
-- **本番ドメイン**：`carboutiquejournal.com`（Production に接続）
-- **既定ドメイン**：`car-hp.vercel.app`
-  - これは **308 Permanent Redirect → carboutiquejournal.com** にしておくのが正解です（重複インデックス防止）。
+```sh
+nvm use
+npm ci
+cp .env.example .env.local
+npm run dev
+```
 
-### 環境変数（重要）
-- `NEXT_PUBLIC_SITE_URL`：`https://carboutiquejournal.com`（末尾スラッシュなし推奨）
-  - canonical / sitemap / OGP のURL生成に使います。
+`http://localhost:3000` を開きます。通常の開発と検査に外部サービスの認証情報は不要です。
+本番では `NEXT_PUBLIC_SITE_URL=https://carboutiquejournal.com` と
+`NEXT_PUBLIC_AFFILIATE_ENV=prod` を設定してください。解析を使う場合だけ
+`NEXT_PUBLIC_GA4_ID` を設定します。秘密情報はリポジトリに追加しません。
 
-### セキュリティヘッダー / CSP（WAVE 13）
-- すべてのレスポンスに最低限のセキュリティヘッダーを付与します（`next.config.mjs`）。
-- CSP は **Report-Only がデフォルト**です（壊しにくい）。
-  - Enforce に切り替える場合は Vercel の環境変数で `CSP_ENFORCE=1` を設定します。
-- CSP の違反レポート受け口：`/api/csp-report`
-  - いまは保存せず 204 を返します（ログ肥大化防止）。
+## 構成と責務
 
----
+| 場所 | 役割 |
+| --- | --- |
+| `data/articles/{guides,columns,cars,heritage}/` | 1記事1JSON。本文・公開状態・出典・関連先の原稿 |
+| `lib/repository/` | JSONの読み込み・型への正規化 |
+| `lib/guides.ts` など | 公開判定・並び順・関連記事の選択 |
+| `app/` | URL、メタ情報、静的生成、API |
+| `components/editorialArticle/` | Guide / Column 共通の本文表示 |
+| `article-types.ts` | 表示に必要な型 |
+| `article-blocks.tsx` | 段落・図・表・リストなどのブロック表示 |
+| `article-format.ts` | 日付・表示番号の書式 |
+| `lib/search/` | 正規化済みの検索索引と一致度による順位付け |
+| `lib/home-topics.ts` | トップのトピックと記事の対応。件数は公開記事から算出 |
+| `components/analytics/` | 同意設定・計測・Cookie設定の再表示 |
+| `scripts/`, `tests/` | 原稿・生成HTML・実際のHTTP応答の検査 |
 
-## Sitemap / Robots（現状）
-### sitemap の入口
-- `https://carboutiquejournal.com/sitemap.xml`（200 / 正）
-- `https://carboutiquejournal.com/sitemap`（308 → /sitemap.xml / 互換）
-  - robots.txt は **/sitemap.xml のみ** を参照します（重複URLのノイズ削減）。
+記事の読み込みと本文表示は Server Components が担当します。クライアントの処理は
+検索操作、同意設定、目次・読書進捗などに限定します。フッターはサーバーで生成し、
+画面切り替えを扱う `SiteChrome` には表示用のスロットとして渡します。
 
-### robots.txt
-- `https://carboutiquejournal.com/robots.txt`
-  - 本番環境は Allow、Preview 環境は Disallow で生成します（誤インデックス事故防止）。
+Guide / Column は `EditorialArticlePage` に統一しています。記事固有の巨大なテンプレートや、
+章数によって本文を切り捨てる表示は追加しません。構造化本文 `detailSections` を優先し、
+未設定の記事だけ JSON の `body` を読み取ります。FAQ・出典・更新履歴・アクションも原稿から表示します。
+`data/article-layouts/` は過去のレイアウト資料であり、公開ページの本文には使いません。
 
-### 分割 sitemap（index から辿れる）
-- `/sitemaps/sitemap-static.xml`
-- `/sitemaps/sitemap-cars.xml`
-- `/sitemaps/sitemap-makers.xml`
-- `/sitemaps/sitemap-body-types.xml`
-- `/sitemaps/sitemap-segments.xml`
-- `/sitemaps/sitemap-guides.xml`
-- `/sitemaps/sitemap-columns.xml`
-- `/sitemaps/sitemap-heritage.xml`
+## 記事を追加・更新する
 
+1. 対象の `data/articles/` にJSONを作成・編集します。型は `lib/content-types.ts` を参照します。
+2. `status` と `publicState` を明示します。既存URLの統合は `data/redirects.json` に記録します。
+3. 図や写真は `public/images/` に配置します。本文の画像パスは実在するファイルを指定します。
+4. トップに掲載するガイドは `lib/home-topics.ts` の該当トピックへ追加します。
+5. `npm run check` を実行し、プレビューで本文・図表・スマートフォン表示を確認してPRを作成します。
 
-補足:
-- `/sitemaps/sitemap-xxx`（拡張子なし）は **.xml へ 308 リダイレクト**（後方互換）。
+著者情報は確認済みの `authorProfile` を設定します。未設定時は編集部として扱い、
+人物名・資格・監修者・評価点数をコードから生成しません。
 
+## 品質検査
 
----
+```sh
+npm run check
+npm run security:audit
+```
 
-## 「Search Consoleでインデックスが進まない」時の優先チェック（技術側）
-Search Console の「未登録」は“バグ”ではなく、**クロールや選別の都合で後回し**になっているケースが多いです。
-ただし、下の項目に引っかかると止まるので、優先で確認します。
+`check` は次の順序で実行します。
 
-### 1) リダイレクトの形（ループ/多段がないか）
-- 例：`/cars/` → `/cars` の **1回だけ**のリダイレクトになるのが理想。
-- Search Console の「リダイレクト エラー」は、過去のクロール時点の状態が残っていることがあります。
-  - 設定やコードを直した後は、該当のエラーで **「修正を検証」** を回すのが次の一手です。
+- ESLint（警告も失敗として扱う）と回帰テスト。
+- ビルド前の原稿・内部リンク・画像・PNG・サイトマップ・robots検査。
+- Next.jsの本番ビルドと型検査。
+- 生成HTMLと原稿の照合。全章・段落全文・FAQ・出典・アクション・画像・目次を検査。
+- 全静的HTMLの内部リンクを検査。
+- ローカルの本番サーバーでページ、検索API、存在しない記事の404、Cookie設定、SEO関連URLを検査。
 
-### 2) canonical が本番ドメインで固定されているか
-- canonical / OGP / sitemap の base URL が `carboutiquejournal.com` で揃っていること。
-- 本番以外のドメイン（`*.vercel.app`）が残ると、重複扱いになりやすいです。
+GitHub ActionsでもPRごとに同じ検査と依存関係監査を実行します。
+`npm run build` 単独でも原稿検査と生成HTML検査が前後に実行されます。
+記事内容の編集上の警告は `npm run content:audit` に残ります。出典の信頼性や文章の正確さは
+自動検査だけでは保証できないため、編集レビューで確認します。
 
-### 3) sitemap/robots が取得できるか
-- `/sitemap.xml` が **200** で返り、`/sitemap` は **308 → /sitemap.xml** になっている
-- `robots.txt` に sitemap が記載されている
+`npm run verify:production-html` は公開サイトに対する読取専用の確認です。
+`BASE_URL` で対象、`CHECK_PATHS` で確認URLを指定できます。本番反映後の確認に使用します。
 
-### 4) 「クエリ付き一覧」を noindex にできているか（重複URL対策）
-- `/cars?maker=...` や `/column?page=...` のような URL は、内容が同じ/近いページを大量に作ります。
-- そのため一覧は **クエリ付きは noindex** に寄せています（コード側で実装済み）。
+## 画像・フォント
 
----
+画像は `next/image` で表示サイズに合わせて配信し、本文画像は遅延読込にします。
+先頭のメイン画像だけ先読みします。外部画像は現在使用していないため許可ホストは空です。
+追加する場合は `next.config.mjs` に必要なホストとパスだけを指定してください。
 
-## このリポジトリで入っているSEO対策（概要）
-- canonical / OGP のURLを `NEXT_PUBLIC_SITE_URL` 基準で固定
-- sitemap / robots を build 時に scripts で生成し public に配置（環境差で 4xx になりにくい）
-- 一覧ページの `?page= / ?tag= / ?maker=` など **クエリ付きURLは noindex**
-- フィルタ/ページネーション等のクエリ付きリンクは `rel="nofollow"`（無限にURLが増えるのを抑制）
-- `middleware.ts` で最低限の正規化（末尾スラッシュ除去、ドメイン正規化の保険）
+トップの日本語フォントは表示する文字を含むサブセットをコミットしています。
+元フォントは `assets/fonts/`、ライセンスは `app/refbook-fonts/LICENSES.txt` にあります。
+文言・ガイドタイトルの変更でテストが失敗したら再生成します。
 
+```sh
+python3 -m venv .venv-fonts
+.venv-fonts/bin/pip install -r scripts/requirements-fonts.txt
+.venv-fonts/bin/python scripts/subset-home-fonts.py
+npm test
+```
 
-### Cars / Guide / Column の本文は「JSONだけ」で運用する
-- スマホ（GitHub UI）運用前提のため、本文は **Markdownファイルを増やさず** `data/articles/**.json` の `body` だけで完結させます。
-- `content/` ディレクトリは guardrails で禁止（ビルドを落として事故を防止）。
-- 画像は `public/` に実在するものだけが描画されます（存在しないパスは自動でKVにフォールバックし、404を出さない）。
-- 追加/編集はここだけ触ればOK：
-  - Cars: `data/articles/cars/<slug>.json`
-  - Guides: `data/articles/guides/<slug>.json`
-  - Columns: `data/articles/columns/<slug>.json`
-
-
-
-### B: 統合（リダイレクト）の管理（data/redirects.json）
-- 企画書の「B: 統合（意図が被るページは統合して1URLへ）」を回すために、リダイレクトは **データファイル**で管理します。
-- 置き場所: `data/redirects.json`
-  - 形式: `[{ "source": "/guide/old", "destination": "/guide/hub-xxx", "permanent": true }, ...]`
-- 反映箇所:
-  - `next.config.mjs` がビルド時に読み込み、`redirects()` に展開します（コードを触らず追加可能）
-
-
----
-
-## 変更履歴メモ（運用メモ）
+生成された `.woff2` と `charset.json` を一緒にコミットします。
+通常のビルドやCIではPythonやフォントのダウンロードは不要です。4書体合計250KBを上限として検査します。
+ビルドキャッシュは保持し、配信ファイルへの混入は `outputFileTracingExcludes` で防ぎます。

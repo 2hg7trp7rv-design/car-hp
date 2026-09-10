@@ -638,3 +638,11 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+.lessonLinks { margin-top: 20px; padding-left: 1.2em; text-align: left; }
+.lessonLinks li + li { margin-top: 12px; }
+.lessonLinks a { text-decoration: underline; text-underline-offset: 4px; font-size: 14px; }
+.browseAll { margin-top: 28px; text-align: center; }
+.browseAll a { text-decoration: underline; text-underline-offset: 5px; }
+.footer button { border: 0; background: none; color: inherit; font: inherit; cursor: pointer; }
+.page :is(a, button):focus-visible { outline: 3px solid var(--refbook-rina); outline-offset: 4px; }
