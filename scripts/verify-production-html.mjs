@@ -37,6 +37,16 @@ const EXPECTATIONS = {
   '/sitemaps/sitemap-cars.xml': { kind: 'xml', xRobotsNoindex: true },
 };
 
+// URL serialization makes bare origins and their trailing-slash form equivalent.
+// Other path differences must still fail canonical verification.
+function normalizeUrl(value) {
+  try {
+    return new URL(value).href;
+  } catch {
+    return value;
+  }
+}
+
 function extractCanonical(html) {
   const m = html.match(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i);
   return m?.[1] || '';
@@ -83,7 +93,7 @@ for (const path of CHECK_PATHS) {
   const robots = extractRobots(html);
   const jsonLdCount = countJsonLd(html);
 
-  if (expectation.canonical && canonical !== expectation.canonical) {
+  if (expectation.canonical && normalizeUrl(canonical) !== normalizeUrl(expectation.canonical)) {
     failures.push(`${path}: canonical mismatch (${canonical || '(none)'} !== ${expectation.canonical})`);
   }
   if (expectation.index === true && robots.includes('noindex')) {
