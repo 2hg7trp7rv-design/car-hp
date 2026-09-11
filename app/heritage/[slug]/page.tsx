@@ -109,6 +109,8 @@ type CinematicHeritage = {
 const FALLBACK_HERO = "/images/cbj/car-nissan-z-rz34-hero.jpg";
 const FALLBACK_PAPER = "/images/cbj/heritage-hero.jpg";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const all = await getAllHeritage();
   return all.map((h) => ({ slug: h.slug }));

@@ -4,6 +4,11 @@ export type AnalyticsConsent = "granted" | "denied" | "unset";
 
 export const CBJ_ANALYTICS_CONSENT_KEY = "cbj_analytics_consent_v1";
 export const CBJ_ANALYTICS_CONSENT_COOKIE = "cbj_analytics_consent_v1";
+export const CONSENT_SETTINGS_EVENT = "cbj:open-consent";
+
+export function openConsentSettings(): void {
+  window.dispatchEvent(new Event(CONSENT_SETTINGS_EVENT));
+}
 
 /**
  * Read stored consent (cookie first, then localStorage).
@@ -35,13 +40,16 @@ export function setStoredAnalyticsConsent(value: Exclude<AnalyticsConsent, "unse
     // localStorage
     window.localStorage.setItem(CBJ_ANALYTICS_CONSENT_KEY, value);
 
-    // cookie (180 days)
-    const maxAge = 60 * 60 * 24 * 180;
-    document.cookie = `${CBJ_ANALYTICS_CONSENT_COOKIE}=${encodeURIComponent(
-      value,
-    )}; Path=/; Max-Age=${maxAge}; SameSite=Lax`;
   } catch {
     // ignore
+  }
+
+  // Cookie storage still works if the browser disallows localStorage.
+  try {
+    const secure = window.location.protocol === "https:" ? "; Secure" : "";
+    document.cookie = `${CBJ_ANALYTICS_CONSENT_COOKIE}=${value}; Path=/; Max-Age=${60 * 60 * 24 * 180}; SameSite=Lax${secure}`;
+  } catch {
+    // Storage may be unavailable in a restricted browsing context.
   }
 }
 

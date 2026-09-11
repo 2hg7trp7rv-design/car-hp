@@ -65,119 +65,6 @@
   transition: width 0.15s linear;
 }
 
-.nav {
-  position: sticky;
-  top: 0;
-  z-index: 80;
-  border-bottom: 1px solid rgba(230, 235, 238, 0.7);
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: saturate(1.6) blur(18px);
-  -webkit-backdrop-filter: saturate(1.6) blur(18px);
-}
-
-.navInner {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  width: min(100%, var(--content-max));
-  margin: 0 auto;
-  padding: 14px 24px;
-}
-
-.brand {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  gap: 10px;
-}
-
-.brandIcon {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--kinto-teal), var(--kinto-teal-deep));
-  color: #fff;
-  box-shadow: inset 0 -2px 6px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 112, 141, 0.25);
-  font-family: var(--font-display), Manrope, sans-serif;
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-.brandName {
-  color: var(--ink);
-  font-family: var(--font-display), Manrope, sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  line-height: 1.1;
-}
-
-.brandName small {
-  display: block;
-  margin-top: 3px;
-  color: var(--ink-3);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-}
-
-.navLinks {
-  display: flex;
-  gap: 6px;
-  margin-left: 24px;
-}
-
-.navLinks a {
-  padding: 8px 14px;
-  border-radius: 999px;
-  color: var(--ink-2);
-  font-size: 13px;
-  font-weight: 500;
-  transition: background 0.2s, color 0.2s;
-}
-
-.navLinks a:hover {
-  background: var(--kinto-teal-soft);
-  color: var(--kinto-teal-deep);
-}
-
-.navCta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-left: auto;
-}
-
-.navGhost {
-  padding: 8px 12px;
-  border-radius: 999px;
-  color: var(--ink-3);
-  font-size: 13px;
-}
-
-.navPill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 16px;
-  border-radius: 999px;
-  background: var(--ink);
-  color: #fff;
-  font-family: var(--font-display), Manrope, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  transition: transform 0.15s, background 0.2s;
-}
-
-.navPill:hover {
-  background: var(--kinto-teal-deep);
-  transform: translateY(-1px);
-}
-
 .breadcrumbStrip {
   display: flex;
   align-items: center;
@@ -328,53 +215,6 @@
   height: 100%;
 }
 
-.heroBadge {
-  position: absolute;
-  top: 24px;
-  left: 24px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--ink);
-  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-
-.heroBadge span {
-  padding: 3px 7px;
-  border-radius: 6px;
-  background: var(--ink);
-  color: #fff;
-  font-family: var(--font-display), Manrope, sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.05em;
-}
-
-.heroCaption {
-  position: absolute;
-  right: 24px;
-  bottom: 24px;
-  left: 24px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px;
-  color: rgba(255, 255, 255, 0.92);
-  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.02em;
-}
-
-.heroCaption small {
-  opacity: 0.7;
-  font-size: 11px;
-}
-
 .authorBar {
   display: flex;
   flex-wrap: wrap;
@@ -426,33 +266,6 @@
   font-size: 11px;
 }
 
-.shareActions {
-  display: flex;
-  gap: 6px;
-}
-
-.shareActions a {
-  display: grid;
-  place-items: center;
-  min-width: 38px;
-  height: 38px;
-  padding: 0 10px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: #fff;
-  color: var(--ink-3);
-  font-family: var(--font-display), Manrope, sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  transition: all 0.2s;
-}
-
-.shareActions a:hover {
-  border-color: var(--kinto-teal);
-  background: var(--kinto-teal-mist);
-  color: var(--kinto-teal-deep);
-}
-
 .layout {
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr) 200px;
@@ -476,6 +289,7 @@
 }
 
 .tocTitle {
+  cursor: pointer;
   margin-bottom: 14px;
   padding-left: 14px;
   color: var(--ink-4);
@@ -673,7 +487,6 @@
   font-size: 15px;
   line-height: 1.95;
 }
-
 
 .sectionBody > * + * {
   margin-top: 24px;
@@ -1062,16 +875,14 @@
 }
 
 .faqQuestion {
-  display: flex;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) 28px;
+  align-items: start;
   gap: 14px;
+  width: 100%;
   padding: 20px 4px;
   color: var(--ink);
   cursor: pointer;
-  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.6;
   list-style: none;
 }
 
@@ -1079,36 +890,57 @@
   display: none;
 }
 
-.faqQuestion span {
+.faqQuestionBadge {
   display: grid;
-  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
   place-items: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 8px;
+  border-radius: 9px;
   background: var(--kinto-teal);
   color: #fff;
   font-family: var(--font-display), Manrope, sans-serif;
   font-size: 12px;
   font-weight: 800;
+  line-height: 1;
 }
 
-.faqQuestion i {
+.faqQuestionText {
+  display: block;
+  min-width: 0;
+  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
+  font-size: clamp(15px, 4vw, 17px);
+  font-weight: 800;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  line-break: strict;
+}
+
+.faqQuestionToggle {
   display: grid;
-  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
   place-items: center;
-  width: 24px;
-  height: 24px;
-  margin-left: auto;
+  justify-self: end;
   border: 1px solid var(--line);
   border-radius: 50%;
+  background: #fff;
   color: var(--ink-3);
   font-size: 14px;
   font-style: normal;
   transition: transform 0.25s, background 0.2s, color 0.2s;
 }
 
-.faqItem[open] .faqQuestion i {
+@media (max-width: 640px) {
+  .faqQuestion {
+    gap: 12px;
+    padding: 18px 0;
+  }
+}
+
+.faqItem[open] .faqQuestionToggle {
   border-color: var(--ink);
   background: var(--ink);
   color: #fff;
@@ -1207,61 +1039,6 @@
 .updateBox p {
   margin: 0;
   padding: 0 18px 18px;
-}
-
-.authorBox {
-  width: min(100%, var(--read-max));
-  margin: 60px auto 0;
-  padding: 20px;
-  border: 1px solid var(--line-2);
-  border-radius: var(--radius-lg);
-  background: var(--paper-2);
-}
-
-.authorBox h2 {
-  margin: 4px 0 6px;
-  color: var(--ink);
-  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.authorRole {
-  margin: 0;
-  color: var(--ink-3);
-  font-size: 12px;
-  line-height: 1.75;
-}
-
-.authorMetaGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.authorMetaGrid div {
-  padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  background: #fff;
-}
-
-.authorMetaGrid span {
-  display: block;
-  color: var(--ink-4);
-  font-family: var(--font-display), Manrope, sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-}
-
-.authorMetaGrid strong {
-  display: block;
-  margin-top: 6px;
-  color: var(--ink);
-  font-size: 13px;
-  line-height: 1.6;
 }
 
 .relatedSection {
@@ -1379,101 +1156,6 @@
   letter-spacing: 0.04em;
 }
 
-.editorialFooter {
-  margin-top: 80px;
-  padding: 64px 0 32px;
-  background: var(--ink);
-  color: #fff;
-}
-
-.footerInner {
-  width: min(100%, var(--content-max));
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.footerGrid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  gap: 48px;
-  padding-bottom: 48px;
-  border-bottom: 1px solid #2a3338;
-}
-
-.footerBrand {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.footerMark {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--kinto-teal), var(--kinto-teal-deep));
-  color: #fff;
-  font-family: var(--font-display), Manrope, sans-serif;
-  font-size: 20px;
-  font-weight: 800;
-}
-
-.footerBrand strong {
-  font-family: var(--font-display), Manrope, sans-serif;
-  letter-spacing: 0.04em;
-}
-
-.footerBrand p {
-  max-width: 30ch;
-  margin: 8px 0 0;
-  color: #9aa6ad;
-  font-size: 13px;
-  line-height: 1.85;
-}
-
-.editorialFooter h6 {
-  margin: 0 0 18px;
-  color: #9aa6ad;
-  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.editorialFooter ul {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.editorialFooter ul a {
-  color: #cfd6da;
-  font-size: 13px;
-  transition: color 0.2s;
-}
-
-.editorialFooter ul a:hover {
-  color: var(--kinto-teal-soft);
-}
-
-.footerBottom {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  margin-top: 32px;
-  color: #6b7a82;
-  font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.04em;
-}
-
 .figureImageWrap svg {
   display: block;
   width: 100%;
@@ -1491,19 +1173,6 @@
 }
 
 /* CBJ41: final mobile/header spacing and selected article image treatment */
-.nav {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: #050507;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-.brandName { color: #fff; }
-.brandName small { color: rgba(255, 255, 255, 0.58); }
-.navLinks a { color: rgba(255, 255, 255, 0.74); }
-.navLinks a:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
-.navGhost { color: rgba(255, 255, 255, 0.66); }
-.navPill { border: 1px solid rgba(255, 255, 255, 0.16); background: rgba(255, 255, 255, 0.08); color: #fff; }
-.navPill:hover { background: rgba(255, 255, 255, 0.16); }
 
 .breadcrumbStrip {
   display: block;
@@ -1540,9 +1209,11 @@
 .heroVisual { padding-bottom: 72px; }
 .heroFrameImage { aspect-ratio: 16 / 9; border: 1px solid var(--line-2); background: #fff; }
 .heroPhoto { object-fit: contain; }
-.heroCaptionLight { color: var(--ink-2); text-shadow: 0 1px 8px rgba(255, 255, 255, 0.72); }
 .layout { padding-top: 36px; padding-bottom: 96px; }
-.paragraph, .paragraphNatural, .leadParagraph, .content p { margin-bottom: 1.65em; line-height: 2.15; }
+.paragraph,
+.paragraphNatural,
+.leadParagraph,
+.content p { margin-bottom: 1.65em; line-height: 2.15; }
 .editorialSection { padding-top: 76px; }
 .sectionBody > * + * { margin-top: 30px; }
 .figureBlock { margin: 42px 0; }
@@ -1555,25 +1226,16 @@
 }
 
 @media print {
-  .nav {
-    position: static;
-  }
 
   .progress,
-  .toc,
-  .rail,
-  .shareActions {
+.toc,
+.rail {
     display: none !important;
   }
 
   .layout {
     display: block;
     width: min(100%, var(--read-max));
-  }
-
-  .editorialFooter {
-    break-before: auto;
-    page-break-before: auto;
   }
 }
 
@@ -1609,14 +1271,6 @@
 }
 
 @media (max-width: 880px) {
-  .navLinks,
-  .navGhost {
-    display: none;
-  }
-
-  .navCta {
-    margin-left: auto;
-  }
 
   .layout {
     grid-template-columns: 1fr;
@@ -1624,11 +1278,16 @@
   }
 
   .toc {
-    display: none;
+    display: block;
+    position: static;
+    max-height: none;
+    margin-bottom: 32px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
   }
 
-  .relatedGrid,
-  .footerGrid {
+  .relatedGrid {
     grid-template-columns: 1fr;
   }
 }
@@ -1639,10 +1298,6 @@
     border-radius: var(--radius-lg);
   }
 
-  .heroCaption {
-    font-size: 11px;
-  }
-
   .metaRow {
     width: 100%;
     margin-left: 0;
@@ -1650,20 +1305,14 @@
 }
 
 @media (max-width: 640px) {
-  .navInner,
   .head,
-  .heroVisual,
-  .authorBar,
-  .layout,
-  .relatedSection > h2,
-  .relatedGrid,
-  .footerInner {
+.heroVisual,
+.authorBar,
+.layout,
+.relatedSection > h2,
+.relatedGrid {
     padding-left: 18px;
     padding-right: 18px;
-  }
-
-  .brandName {
-    font-size: 12px;
   }
 
   .headTitle {
@@ -1671,9 +1320,8 @@
   }
 
   .listGrid,
-  .boardGrid,
-  .authorMetaGrid,
-  .sourcesBox ol {
+.boardGrid,
+.sourcesBox ol {
     grid-template-columns: 1fr;
   }
 
@@ -1692,21 +1340,17 @@
   }
 
   .sourcesBox,
-  .updateBox {
+.updateBox {
     margin-top: 22px;
   }
 
   .sourcesBox summary,
-  .updateBox summary {
+.updateBox summary {
     padding: 12px 14px;
   }
 }
 
-
-/* CBJ42: use common site chrome and restore wider reading rhythm */
-.page {
-  padding-top: clamp(92px, 10svh, 112px);
-}
+/* Article routes provide their own breadcrumb header; no fixed-nav offset is needed. */
 
 .breadcrumbStrip {
   padding-top: clamp(34px, 5svh, 58px);
@@ -1838,10 +1482,6 @@
 }
 
 @media (max-width: 640px) {
-  .page {
-    padding-top: clamp(86px, 12svh, 108px);
-  }
-
   .breadcrumbStrip {
     padding-top: 34px;
   }
@@ -1868,9 +1508,9 @@
   }
 
   .paragraph,
-  .paragraphNatural,
-  .leadParagraph,
-  .content p {
+.paragraphNatural,
+.leadParagraph,
+.content p {
     margin-bottom: 2.05em;
     line-height: 2.32;
   }
@@ -2156,23 +1796,22 @@
   }
 
   .tableRows,
-  .stepList,
-  .listGrid,
-  .cardStack,
-  .boardBlock {
+.stepList,
+.listGrid,
+.cardStack,
+.boardBlock {
     gap: 20px;
   }
 
   .tableRow,
-  .stepItem,
-  .listItem,
-  .infoCard,
-  .noteCard,
-  .warnCard {
+.stepItem,
+.listItem,
+.infoCard,
+.noteCard,
+.warnCard {
     padding: 24px 22px;
   }
 }
-
 
 /* CBJ23: restore readable Guide/Column proportions after card/figure audit. */
 .figureBlock {
@@ -2305,11 +1944,6 @@
   line-height: 1.85;
 }
 
-.faqQuestion strong {
-  word-break: keep-all;
-  overflow-wrap: anywhere;
-}
-
 @media (max-width: 640px) {
   .figureBlock {
     width: 100%;
@@ -2317,60 +1951,31 @@
   }
 
   .tableRows,
-  .stepList,
-  .listGrid,
-  .cardStack,
-  .boardBlock {
+.stepList,
+.listGrid,
+.cardStack,
+.boardBlock {
     gap: 12px;
   }
 
   .tableRow,
-  .stepItem,
-  .listItem,
-  .infoCard,
-  .noteCard,
-  .warnCard {
+.stepItem,
+.listItem,
+.infoCard,
+.noteCard,
+.warnCard {
     padding: 15px 16px;
   }
 }
 
-
 /* CBJ26: mobile rendering stability fixes.
    - Do not hide article blocks behind scroll reveal; some mobile browsers failed to reveal SYSTEM until resize.
-   - Keep FAQ questions readable in one normal line flow.
    - Detail pages can omit heroImage; when present, avoid card-like framing. */
 .page:global(.cbj-motion-ready) [data-cbj-reveal],
 .page:global(.cbj-motion-ready) [data-cbj-reveal]:global(.cbj-reveal-visible) {
   opacity: 1 !important;
   transform: none !important;
   transition: none !important;
-}
-
-.faqQuestion {
-  display: grid;
-  grid-template-columns: 30px minmax(0, 1fr) 28px;
-  align-items: center;
-  column-gap: 14px;
-}
-
-.faqQuestion span {
-  grid-column: 1;
-}
-
-.faqQuestion strong {
-  grid-column: 2;
-  display: block;
-  min-width: 0;
-  white-space: normal;
-  word-break: normal;
-  overflow-wrap: break-word;
-  line-break: strict;
-}
-
-.faqQuestion i {
-  grid-column: 3;
-  margin-left: 0;
-  justify-self: end;
 }
 
 .heroFrameImage {
@@ -2383,21 +1988,8 @@
   background: transparent;
 }
 
-@media (max-width: 640px) {
-  .faqQuestion {
-    grid-template-columns: 30px minmax(0, 1fr) 28px;
-    padding: 18px 0;
-  }
-
-  .faqQuestion strong {
-    font-size: 15px;
-    line-height: 1.75;
-  }
-}
-
 /* CBJ27: hard fixes for mobile rendering regressions.
    - Reveal blocks must never depend on resize/intersection to become visible.
-   - FAQ uses direct-child selectors only, so inline text spans are not styled as Q badges.
    - Article figures are content images, not images trapped inside decorative frames. */
 .page:global(.cbj-motion-ready) [data-cbj-reveal],
 .page:global(.cbj-motion-ready) [data-cbj-reveal]:global(.cbj-reveal-visible),
@@ -2406,62 +1998,6 @@
   visibility: visible !important;
   transform: none !important;
   transition: none !important;
-}
-
-.faqQuestion {
-  display: grid !important;
-  grid-template-columns: 30px minmax(0, 1fr) 28px !important;
-  align-items: start !important;
-  gap: 14px !important;
-  width: 100% !important;
-}
-
-.faqQuestion > span {
-  grid-column: 1 !important;
-  display: grid !important;
-  width: 30px !important;
-  height: 30px !important;
-  min-width: 30px !important;
-  place-items: center !important;
-  border-radius: 9px !important;
-  background: var(--kinto-teal) !important;
-  color: #fff !important;
-  font-family: var(--font-display), Manrope, sans-serif !important;
-  font-size: 12px !important;
-  font-weight: 800 !important;
-}
-
-.faqQuestion strong {
-  grid-column: 2 !important;
-  display: block !important;
-  min-width: 0 !important;
-  width: auto !important;
-  max-width: 100% !important;
-  white-space: normal !important;
-  word-break: keep-all !important;
-  overflow-wrap: normal !important;
-  line-break: strict !important;
-  text-wrap: pretty;
-}
-
-.faqQuestion strong span,
-.faqQuestion strong * {
-  display: inline !important;
-  width: auto !important;
-  min-width: 0 !important;
-  height: auto !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  color: inherit !important;
-  font: inherit !important;
-  letter-spacing: inherit !important;
-}
-
-.faqQuestion > i {
-  grid-column: 3 !important;
-  margin-left: 0 !important;
-  justify-self: end !important;
 }
 
 .figureBlock {
@@ -2488,93 +2024,11 @@
   border-radius: 0 !important;
 }
 
-
 @media (max-width: 640px) {
-  .faqQuestion {
-    grid-template-columns: 30px minmax(0, 1fr) 28px !important;
-    gap: 12px !important;
-    padding: 18px 0 !important;
-  }
-
-  .faqQuestion strong {
-    font-size: 15px !important;
-    line-height: 1.8 !important;
-  }
-
   .figureBlock {
     width: 100% !important;
     max-width: 100% !important;
   }
-}
-
-/* CBJ28: FAQ text visibility fix.
-   The previous mobile CSS prevented Japanese FAQ questions from wrapping, so the text overflowed horizontally and appeared hidden.
-   Keep the Q badge isolated and let the question text wrap inside the available column. */
-.faqQuestionBadge {
-  grid-column: 1 !important;
-  display: grid !important;
-  width: 30px !important;
-  min-width: 30px !important;
-  height: 30px !important;
-  place-items: center !important;
-  border-radius: 9px !important;
-  background: var(--kinto-teal) !important;
-  color: #fff !important;
-  font-family: var(--font-display), Manrope, sans-serif !important;
-  font-size: 12px !important;
-  font-weight: 800 !important;
-  line-height: 1 !important;
-}
-
-.faqQuestionText {
-  grid-column: 2 !important;
-  display: block !important;
-  min-width: 0 !important;
-  max-width: 100% !important;
-  color: var(--ink) !important;
-  background: transparent !important;
-  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif !important;
-  font-size: clamp(15px, 4vw, 17px) !important;
-  font-weight: 800 !important;
-  line-height: 1.65 !important;
-  letter-spacing: 0.01em !important;
-  white-space: normal !important;
-  word-break: normal !important;
-  overflow-wrap: anywhere !important;
-  line-break: strict !important;
-  text-wrap: wrap !important;
-  overflow: visible !important;
-}
-
-.faqQuestionToggle {
-  grid-column: 3 !important;
-  justify-self: end !important;
-  display: grid !important;
-  width: 28px !important;
-  min-width: 28px !important;
-  height: 28px !important;
-  place-items: center !important;
-  margin-left: 0 !important;
-  border: 1px solid var(--line) !important;
-  border-radius: 999px !important;
-  background: #fff !important;
-  color: var(--ink-3) !important;
-  font-style: normal !important;
-}
-
-.faqQuestion > span:not(.faqQuestionBadge),
-.faqQuestionText span,
-.faqQuestionText * {
-  display: inline !important;
-  width: auto !important;
-  min-width: 0 !important;
-  height: auto !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  color: inherit !important;
-  font: inherit !important;
-  letter-spacing: inherit !important;
 }
 
 /* CBJ29: article card refinement.
@@ -2733,12 +2187,9 @@
   }
 }
 
-
 /* CBJ31: keep indexed cards and article figures readable when exported to PDF. */
 .tableRow,
-.stepItem,
-.imageFigure,
-.relatedLinkCard {
+.stepItem {
   break-inside: avoid;
   page-break-inside: avoid;
 }
@@ -2787,10 +2238,6 @@
   background: linear-gradient(180deg, var(--kinto-teal), var(--kinto-teal-deep));
 }
 
-.subheadingBlock + .paragraphBlock {
-  margin-top: 10px;
-}
-
 @media (max-width: 640px) {
   .subheadingBlock {
     gap: 10px;
@@ -2802,7 +2249,6 @@
     width: 6px;
   }
 }
-
 
 /* CBJ30: header tag de-duplication support and section deck preservation. */
 .sectionDeck {

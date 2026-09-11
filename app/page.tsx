@@ -4,6 +4,9 @@ import Link from "next/link";
 
 import { refbookRounded, refbookSans } from "./refbook-fonts";
 import styles from "./refbook-home.module.css";
+import { CookieSettingsButton } from "@/components/analytics/CookieSettingsButton";
+import { getAllGuides } from "@/lib/guides";
+import { getHomeTopics } from "@/lib/home-topics";
 import { CBJ_CHARACTERS } from "@/lib/brand/cbj-characters";
 
 export const metadata: Metadata = {
@@ -36,90 +39,30 @@ const learningSteps = [
   },
 ] as const;
 
-const topics = [
-  {
-    icon: "/images/cbj/topic-icons/exhaust-muffler.png",
-    title: "排気系・マフラー",
-    body: "マフラーとは？から「静かなのに車検に落ちる謎」まで。排気ガスの旅を追いかける。",
-    tone: styles.topicPink,
-    status: "公開中",
-    href: "/guide",
-  },
-  {
-    icon: "/images/cbj/topic-icons/turbocharger.png",
-    title: "ターボ・過給機",
-    body: "「空気を詰め込むと、なぜ速くなる？」NAとターボの維持費逆転の法則まで。",
-    tone: styles.topicBlue,
-    status: "準備中",
-  },
-  {
-    icon: "/images/cbj/topic-icons/suspension.png",
-    title: "足回り・サスペンション",
-    body: "乗り心地と走りを決める足回り。車高調とダウンサス、何が違うの？",
-    tone: styles.topicYellow,
-    status: "準備中",
-  },
-  {
-    icon: "/images/cbj/topic-icons/engine-basics.png",
-    title: "エンジンの基礎",
-    body: "エンジンって何してるの？4ストロークから直噴・ハイブリッドの違いまで。",
-    tone: styles.topicGreen,
-    status: "準備中",
-  },
-  {
-    icon: "/images/cbj/topic-icons/vehicle-inspection.png",
-    title: "車検・制度",
-    body: "車検は何を見てるの？保安基準、改造と法律の境界線を正しく理解する。",
-    tone: styles.topicPurple,
-    status: "準備中",
-  },
-  {
-    icon: "/images/cbj/topic-icons/ownership-cost.png",
-    title: "維持費・お金",
-    body: "車の本当のコスト。税金、保険、燃料、整備——「乗り続ける」の値段。",
-    tone: styles.topicOrange,
-    status: "準備中",
-  },
-] as const;
+type HomeTopic = ReturnType<typeof getHomeTopics>[number];
 
-function TopicCard({ topic }: { topic: (typeof topics)[number] }) {
-  const content = (
-    <>
+function TopicCard({ topic }: { topic: HomeTopic }) {
+  const ready = topic.lessons.length > 0;
+  return (
+    <article className={`${styles.topic} ${styles[topic.tone]} ${ready ? "" : styles.topicSoon}`}>
       <div className={styles.topicIcon} aria-hidden="true">
-        <Image src={topic.icon} alt="" width={192} height={192} unoptimized />
+        <Image src={`/images/cbj/topic-icons/${topic.icon}.png`} alt="" width={192} height={192} sizes="64px" />
       </div>
       <h3>{topic.title}</h3>
       <p>{topic.body}</p>
       <div className={styles.topicMeta}>
-        <span className={styles.topicCount}>全2レッスン</span>
-        <span
-          className={topic.status === "公開中" ? styles.badgeOpen : styles.badgeSoon}
-        >
-          {topic.status}
-        </span>
+        {ready ? <span className={styles.topicCount}>全{topic.lessons.length}レッスン</span> : null}
+        <span className={ready ? styles.badgeOpen : styles.badgeSoon}>{ready ? "公開中" : "準備中"}</span>
       </div>
-    </>
-  );
-
-  if ("href" in topic) {
-    return (
-      <Link className={`${styles.topic} ${topic.tone}`} href={topic.href}>
-        {content}
-      </Link>
-    );
-  }
-
-  return (
-    <div
-      className={`${styles.topic} ${styles.topicSoon} ${topic.tone}`}
-      aria-disabled="true"
-    >
-      {content}
-    </div>
+      {ready ? <ul className={styles.lessonLinks}>{topic.lessons.map((lesson) => (
+        <li key={lesson.href}><Link href={lesson.href}>{lesson.title} →</Link></li>
+      ))}</ul> : null}
+    </article>
   );
 }
 
-export default function Home() {
+export default async function Home() {
+  const topics = getHomeTopics(await getAllGuides());
   return (
     <div
       className={`${styles.page} ${refbookSans.variable} ${refbookRounded.variable}`}
@@ -166,8 +109,8 @@ export default function Home() {
               width={1600}
               height={1600}
               sizes="(max-width: 681px) 150px, (max-width: 1182px) 22vw, 260px"
-              quality={95}
-              priority
+              quality={88}
+              preload
             />
             <Image
               src={CBJ_CHARACTERS.rina.top}
@@ -175,8 +118,8 @@ export default function Home() {
               width={1600}
               height={1600}
               sizes="(max-width: 681px) 150px, (max-width: 1182px) 22vw, 260px"
-              quality={95}
-              priority
+              quality={88}
+              preload
             />
           </div>
           <div className={styles.heroCta}>
@@ -194,7 +137,7 @@ export default function Home() {
             <span className={`${styles.sectionKicker} ${styles.kickerPink}`}>HOW TO LEARN</span>
             <h2 id="path-title">このサイトの「階段」の登り方</h2>
             <p>
-              <span className={styles.noBreak}>どの記事も、基礎→実践→発展の3ステップ。</span>
+              <span className={styles.noBreak}>基礎から仕組み、実践へと理解を深めよう。</span>
               <span className={styles.noBreak}>気づけば難しい話まで読めてる。</span>
             </p>
           </div>
@@ -221,13 +164,14 @@ export default function Home() {
               <span className={styles.noBreak}>トピックを選んで、</span>
               <span className={styles.noBreak}>学び始めよう</span>
             </h2>
-            <p>各トピックの中に「基礎→発展」のレッスンが並んでいるよ。まずは気になる所から。</p>
+            <p>公開中のレッスンから、気になる疑問を選んでみよう。</p>
           </div>
           <div className={styles.topicGrid}>
             {topics.map((topic) => (
               <TopicCard key={topic.title} topic={topic} />
             ))}
           </div>
+          <p className={styles.browseAll}><Link href="/guide">すべてのガイドを見る →</Link></p>
         </section>
 
         <section className={styles.block} id="chars" aria-labelledby="characters-title">
@@ -248,7 +192,7 @@ export default function Home() {
                 width={1600}
                 height={1600}
                 sizes="(max-width: 860px) 140px, 180px"
-                quality={95}
+                quality={88}
               />
             </article>
             <article className={`${styles.characterCard} ${styles.rinaCard}`}>
@@ -263,7 +207,7 @@ export default function Home() {
                 width={1600}
                 height={1600}
                 sizes="(max-width: 860px) 140px, 180px"
-                quality={95}
+                quality={88}
               />
             </article>
           </div>
@@ -279,6 +223,7 @@ export default function Home() {
           <Link href="/legal/about">About</Link>
           <Link href="/contact">Contact</Link>
           <Link href="/legal/privacy">Privacy</Link>
+          <CookieSettingsButton />
         </nav>
         <small>© 2026 CAR BOUTIQUE JOURNAL</small>
       </footer>

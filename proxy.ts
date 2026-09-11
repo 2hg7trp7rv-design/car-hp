@@ -52,7 +52,8 @@ export function proxy(req: NextRequest) {
   // 1) http → https
   // - すでに https と判定できる場合は何もしない
   // - https 以外のときだけ https へ寄せる
-  if (!isHttps) {
+  const isLocalhost = ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname);
+  if (isProd && !isHttps && !isLocalhost) {
     url.protocol = "https:";
     changed = true;
   }

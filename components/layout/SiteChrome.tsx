@@ -4,9 +4,8 @@ import type { ReactNode } from "react";
 import { usePathname } from "next/navigation";
 
 import Navigation from "@/app/components/Navigation";
-import { SiteFooter } from "@/components/layout/SiteFooter";
 
-type SiteChromeProps = { children: ReactNode };
+type SiteChromeProps = { children: ReactNode; footer: ReactNode; articleFooter: ReactNode };
 
 const isCarDetailPath = (pathname: string) =>
   /^\/cars\/[^/]+\/?$/.test(pathname);
@@ -17,7 +16,7 @@ const isHeritageDetailPath = (pathname: string) =>
 const isEditorialArticlePath = (pathname: string) =>
   /^\/(?:guide|column)\/[^/]+\/?$/.test(pathname);
 
-export function SiteChrome({ children }: SiteChromeProps) {
+export function SiteChrome({ children, footer, articleFooter }: SiteChromeProps) {
   const pathname = usePathname();
   const carDetail = isCarDetailPath(pathname);
   const heritageDetail = isHeritageDetailPath(pathname);
@@ -51,11 +50,7 @@ export function SiteChrome({ children }: SiteChromeProps) {
       <div id="cb-main" tabIndex={-1} className="flex-1 pt-0 outline-none">
         {children}
       </div>
-      {editorialArticle ? null : (
-        <SiteFooter
-          variant={carDetail ? "carArticle" : "default"}
-        />
-      )}
+      {editorialArticle ? articleFooter : footer}
     </div>
   );
 }

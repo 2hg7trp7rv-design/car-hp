@@ -47,6 +47,8 @@ function formatDate(value?: string | null): string | null {
   return `${y}.${m}.${day}`;
 }
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const allCars = await getIndexCars();
   const segments = buildSegmentInfos(allCars);

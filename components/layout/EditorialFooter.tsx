@@ -1,6 +1,5 @@
-"use client";
-
 import Link from "next/link";
+import { CookieSettingsButton } from "@/components/analytics/CookieSettingsButton";
 
 const CONTENT_LINKS = [
   { href: "/cars", label: "車種一覧" },
@@ -38,25 +37,7 @@ export function EditorialFooter() {
             車選びから売却、整備修理、カスタム、車や自動車メーカーの歴史まで見られる自動車メディア
           </p>
 
-          <form
-            className="mt-[clamp(42px,6.2svh,64px)] flex h-[clamp(50px,7.2svh,82px)] w-full overflow-hidden rounded-[clamp(11px,2.2svw,15px)] border border-white/[0.18] bg-white/[0.032]"
-            action="/"
-            aria-label="メール登録"
-          >
-            <input
-              type="email"
-              placeholder="Enter your email"
-              aria-label="メールアドレス"
-              className="min-w-0 flex-1 bg-transparent px-[clamp(18px,4.6svw,40px)] text-[clamp(17px,4.1svw,28px)] text-white outline-none placeholder:text-white/[0.17]"
-            />
-            <button
-              type="submit"
-              aria-label="登録"
-              className="grid w-[clamp(58px,14.5svw,112px)] shrink-0 place-items-center bg-white text-[clamp(20px,5.1svw,32px)] leading-none text-black transition-colors hover:bg-white/[0.90]"
-            >
-              ↗
-            </button>
-          </form>
+
         </div>
 
         <div className="mt-[clamp(58px,8.8svh,94px)] grid grid-cols-1 gap-y-[clamp(70px,10svh,96px)]">
@@ -87,6 +68,7 @@ export function EditorialFooter() {
                   {item.label}
                 </Link>
               ))}
+              <CookieSettingsButton className="text-left text-sm text-white/80 underline underline-offset-4" />
             </nav>
           </section>
         </div>
