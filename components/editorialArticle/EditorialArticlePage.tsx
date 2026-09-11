@@ -559,20 +559,22 @@ function renderToc(sections: EditorialSection[], faqLength: number) {
   if (tocSections.length === 0) return null;
   return (
     <aside className={styles.toc} aria-label="目次">
-      <div className={styles.tocTitle}>CONTENTS / 目次</div>
-      <ol>
-        {tocSections.map((section) => (
-          <li key={section.id}>
-            <a
-              href={`#${section.id}`}
-              className={styles.tocLink}
-              data-cbj-toc-link
-            >
-              {renderSentenceText(section.displayTitle)}
-            </a>
-          </li>
-        ))}
-      </ol>
+      <details open>
+        <summary className={styles.tocTitle}>CONTENTS / 目次</summary>
+        <ol>
+          {tocSections.map((section) => (
+            <li key={section.id}>
+              <a
+                href={`#${section.id}`}
+                className={styles.tocLink}
+                data-cbj-toc-link
+              >
+                {renderSentenceText(section.displayTitle)}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </details>
     </aside>
   );
 }

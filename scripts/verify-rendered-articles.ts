@@ -41,6 +41,7 @@ const groups = [
 let articleCount = 0;
 let sectionCount = 0;
 let paragraphCount = 0;
+let tableCellCount = 0;
 let faqCount = 0;
 let sourceCount = 0;
 
@@ -62,6 +63,16 @@ for (const { kind, items } of groups) {
           const expected = authoredText(block.text);
           assert.ok(rendered.includes(expected), `${route}, section ${index + 1}: truncated paragraph: ${expected.slice(-80)}`);
           paragraphCount++;
+        }
+        if (block.type === "comparisonTable") {
+          for (const row of block.rows) {
+            for (const cell of row) {
+              // NG/OK cards use a visual icon with an accessible row label.
+              if (block.display === "cards" && (cell === "NG" || cell === "OK")) continue;
+              assert.ok(rendered.includes(authoredText(cell)), `${route}, section ${index + 1}: missing table cell ${cell}`);
+              tableCellCount++;
+            }
+          }
         }
         if (block.type === "image") {
           const images = elements(renderedSections[index]).filter((node) => node.tagName === "img");
@@ -126,4 +137,4 @@ for (const file of fs.readdirSync(".next/server/app", { recursive: true }).map(S
   htmlCount++;
 }
 
-console.log(`[verify-rendered] OK: ${articleCount} articles, ${sectionCount} sections, ${paragraphCount} complete paragraphs, ${faqCount} FAQs, ${sourceCount} sources; links in ${htmlCount} HTML pages`);
+console.log(`[verify-rendered] OK: ${articleCount} articles, ${sectionCount} sections, ${paragraphCount} complete paragraphs, ${tableCellCount} table cells, ${faqCount} FAQs, ${sourceCount} sources; links in ${htmlCount} HTML pages`);

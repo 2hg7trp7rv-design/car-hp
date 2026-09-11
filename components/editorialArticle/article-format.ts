@@ -4,7 +4,8 @@ export function stripLeadingDisplayNumber(text?: string | null): string {
       /^\s*(?:第?\d{1,2}(?:章|話|部|項)|[①②③④⑤⑥⑦⑧⑨⑩])\s*[\).）．.、:：-]?\s*/u,
       "",
     )
-    .replace(/^\s*\d{1,2}\s*[\).）．.、:：-]?\s*/u, "")
+    // Strip explicit list markers, preserving values such as 10万円, 2.0L and 0-100km/h.
+    .replace(/^\s*\d{1,2}(?:[).）．.、:：](?!\d)\s*|\s+[-–—]\s+)/u, "")
     .trim();
 }
 

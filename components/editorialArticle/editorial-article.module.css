@@ -289,6 +289,7 @@
 }
 
 .tocTitle {
+  cursor: pointer;
   margin-bottom: 14px;
   padding-left: 14px;
   color: var(--ink-4);
@@ -486,7 +487,6 @@
   font-size: 15px;
   line-height: 1.95;
 }
-
 
 .sectionBody > * + * {
   margin-top: 24px;
@@ -875,16 +875,14 @@
 }
 
 .faqQuestion {
-  display: flex;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) 28px;
+  align-items: start;
   gap: 14px;
+  width: 100%;
   padding: 20px 4px;
   color: var(--ink);
   cursor: pointer;
-  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.6;
   list-style: none;
 }
 
@@ -892,36 +890,57 @@
   display: none;
 }
 
-.faqQuestion span {
+.faqQuestionBadge {
   display: grid;
-  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
   place-items: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 8px;
+  border-radius: 9px;
   background: var(--kinto-teal);
   color: #fff;
   font-family: var(--font-display), Manrope, sans-serif;
   font-size: 12px;
   font-weight: 800;
+  line-height: 1;
 }
 
-.faqQuestion i {
+.faqQuestionText {
+  display: block;
+  min-width: 0;
+  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
+  font-size: clamp(15px, 4vw, 17px);
+  font-weight: 800;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  line-break: strict;
+}
+
+.faqQuestionToggle {
   display: grid;
-  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
   place-items: center;
-  width: 24px;
-  height: 24px;
-  margin-left: auto;
+  justify-self: end;
   border: 1px solid var(--line);
   border-radius: 50%;
+  background: #fff;
   color: var(--ink-3);
   font-size: 14px;
   font-style: normal;
   transition: transform 0.25s, background 0.2s, color 0.2s;
 }
 
-.faqItem[open] .faqQuestion i {
+@media (max-width: 640px) {
+  .faqQuestion {
+    gap: 12px;
+    padding: 18px 0;
+  }
+}
+
+.faqItem[open] .faqQuestionToggle {
   border-color: var(--ink);
   background: var(--ink);
   color: #fff;
@@ -1259,7 +1278,13 @@
   }
 
   .toc {
-    display: none;
+    display: block;
+    position: static;
+    max-height: none;
+    margin-bottom: 32px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
   }
 
   .relatedGrid {
@@ -1325,11 +1350,7 @@
   }
 }
 
-
-/* CBJ42: use common site chrome and restore wider reading rhythm */
-.page {
-  padding-top: clamp(92px, 10svh, 112px);
-}
+/* Article routes provide their own breadcrumb header; no fixed-nav offset is needed. */
 
 .breadcrumbStrip {
   padding-top: clamp(34px, 5svh, 58px);
@@ -1461,10 +1482,6 @@
 }
 
 @media (max-width: 640px) {
-  .page {
-    padding-top: clamp(86px, 12svh, 108px);
-  }
-
   .breadcrumbStrip {
     padding-top: 34px;
   }
@@ -1796,7 +1813,6 @@
   }
 }
 
-
 /* CBJ23: restore readable Guide/Column proportions after card/figure audit. */
 .figureBlock {
   width: 100%;
@@ -1928,11 +1944,6 @@
   line-height: 1.85;
 }
 
-.faqQuestion strong {
-  word-break: keep-all;
-  overflow-wrap: anywhere;
-}
-
 @media (max-width: 640px) {
   .figureBlock {
     width: 100%;
@@ -1957,43 +1968,14 @@
   }
 }
 
-
 /* CBJ26: mobile rendering stability fixes.
    - Do not hide article blocks behind scroll reveal; some mobile browsers failed to reveal SYSTEM until resize.
-   - Keep FAQ questions readable in one normal line flow.
    - Detail pages can omit heroImage; when present, avoid card-like framing. */
 .page:global(.cbj-motion-ready) [data-cbj-reveal],
 .page:global(.cbj-motion-ready) [data-cbj-reveal]:global(.cbj-reveal-visible) {
   opacity: 1 !important;
   transform: none !important;
   transition: none !important;
-}
-
-.faqQuestion {
-  display: grid;
-  grid-template-columns: 30px minmax(0, 1fr) 28px;
-  align-items: center;
-  column-gap: 14px;
-}
-
-.faqQuestion span {
-  grid-column: 1;
-}
-
-.faqQuestion strong {
-  grid-column: 2;
-  display: block;
-  min-width: 0;
-  white-space: normal;
-  word-break: normal;
-  overflow-wrap: break-word;
-  line-break: strict;
-}
-
-.faqQuestion i {
-  grid-column: 3;
-  margin-left: 0;
-  justify-self: end;
 }
 
 .heroFrameImage {
@@ -2006,21 +1988,8 @@
   background: transparent;
 }
 
-@media (max-width: 640px) {
-  .faqQuestion {
-    grid-template-columns: 30px minmax(0, 1fr) 28px;
-    padding: 18px 0;
-  }
-
-  .faqQuestion strong {
-    font-size: 15px;
-    line-height: 1.75;
-  }
-}
-
 /* CBJ27: hard fixes for mobile rendering regressions.
    - Reveal blocks must never depend on resize/intersection to become visible.
-   - FAQ uses direct-child selectors only, so inline text spans are not styled as Q badges.
    - Article figures are content images, not images trapped inside decorative frames. */
 .page:global(.cbj-motion-ready) [data-cbj-reveal],
 .page:global(.cbj-motion-ready) [data-cbj-reveal]:global(.cbj-reveal-visible),
@@ -2029,62 +1998,6 @@
   visibility: visible !important;
   transform: none !important;
   transition: none !important;
-}
-
-.faqQuestion {
-  display: grid !important;
-  grid-template-columns: 30px minmax(0, 1fr) 28px !important;
-  align-items: start !important;
-  gap: 14px !important;
-  width: 100% !important;
-}
-
-.faqQuestion > span {
-  grid-column: 1 !important;
-  display: grid !important;
-  width: 30px !important;
-  height: 30px !important;
-  min-width: 30px !important;
-  place-items: center !important;
-  border-radius: 9px !important;
-  background: var(--kinto-teal) !important;
-  color: #fff !important;
-  font-family: var(--font-display), Manrope, sans-serif !important;
-  font-size: 12px !important;
-  font-weight: 800 !important;
-}
-
-.faqQuestion strong {
-  grid-column: 2 !important;
-  display: block !important;
-  min-width: 0 !important;
-  width: auto !important;
-  max-width: 100% !important;
-  white-space: normal !important;
-  word-break: keep-all !important;
-  overflow-wrap: normal !important;
-  line-break: strict !important;
-  text-wrap: pretty;
-}
-
-.faqQuestion strong span,
-.faqQuestion strong * {
-  display: inline !important;
-  width: auto !important;
-  min-width: 0 !important;
-  height: auto !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  color: inherit !important;
-  font: inherit !important;
-  letter-spacing: inherit !important;
-}
-
-.faqQuestion > i {
-  grid-column: 3 !important;
-  margin-left: 0 !important;
-  justify-self: end !important;
 }
 
 .figureBlock {
@@ -2111,93 +2024,11 @@
   border-radius: 0 !important;
 }
 
-
 @media (max-width: 640px) {
-  .faqQuestion {
-    grid-template-columns: 30px minmax(0, 1fr) 28px !important;
-    gap: 12px !important;
-    padding: 18px 0 !important;
-  }
-
-  .faqQuestion strong {
-    font-size: 15px !important;
-    line-height: 1.8 !important;
-  }
-
   .figureBlock {
     width: 100% !important;
     max-width: 100% !important;
   }
-}
-
-/* CBJ28: FAQ text visibility fix.
-   The previous mobile CSS prevented Japanese FAQ questions from wrapping, so the text overflowed horizontally and appeared hidden.
-   Keep the Q badge isolated and let the question text wrap inside the available column. */
-.faqQuestionBadge {
-  grid-column: 1 !important;
-  display: grid !important;
-  width: 30px !important;
-  min-width: 30px !important;
-  height: 30px !important;
-  place-items: center !important;
-  border-radius: 9px !important;
-  background: var(--kinto-teal) !important;
-  color: #fff !important;
-  font-family: var(--font-display), Manrope, sans-serif !important;
-  font-size: 12px !important;
-  font-weight: 800 !important;
-  line-height: 1 !important;
-}
-
-.faqQuestionText {
-  grid-column: 2 !important;
-  display: block !important;
-  min-width: 0 !important;
-  max-width: 100% !important;
-  color: var(--ink) !important;
-  background: transparent !important;
-  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif !important;
-  font-size: clamp(15px, 4vw, 17px) !important;
-  font-weight: 800 !important;
-  line-height: 1.65 !important;
-  letter-spacing: 0.01em !important;
-  white-space: normal !important;
-  word-break: normal !important;
-  overflow-wrap: anywhere !important;
-  line-break: strict !important;
-  text-wrap: wrap !important;
-  overflow: visible !important;
-}
-
-.faqQuestionToggle {
-  grid-column: 3 !important;
-  justify-self: end !important;
-  display: grid !important;
-  width: 28px !important;
-  min-width: 28px !important;
-  height: 28px !important;
-  place-items: center !important;
-  margin-left: 0 !important;
-  border: 1px solid var(--line) !important;
-  border-radius: 999px !important;
-  background: #fff !important;
-  color: var(--ink-3) !important;
-  font-style: normal !important;
-}
-
-.faqQuestion > span:not(.faqQuestionBadge),
-.faqQuestionText span,
-.faqQuestionText * {
-  display: inline !important;
-  width: auto !important;
-  min-width: 0 !important;
-  height: auto !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  color: inherit !important;
-  font: inherit !important;
-  letter-spacing: inherit !important;
 }
 
 /* CBJ29: article card refinement.
@@ -2356,7 +2187,6 @@
   }
 }
 
-
 /* CBJ31: keep indexed cards and article figures readable when exported to PDF. */
 .tableRow,
 .stepItem {
@@ -2419,7 +2249,6 @@
     width: 6px;
   }
 }
-
 
 /* CBJ30: header tag de-duplication support and section deck preservation. */
 .sectionDeck {
