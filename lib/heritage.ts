@@ -12,6 +12,7 @@
  * - NextRead棚用: getNextReadHeritageV12 を提供
  */
 
+import { isPublicContent } from "@/lib/content/publication";
 import {
   findAllHeritage,
   type HeritageRecord,
@@ -358,7 +359,7 @@ function buildHeritageIndex(): HeritageIndex {
 
   const allSorted = [...mapped].sort(compareHeritageForNav);
 
-  const published = mapped.filter((h) => h.status === "published");
+  const published = mapped.filter(isPublicContent);
   const publishedSorted = [...published].sort(compareHeritageForNav);
 
   const bySlug = new Map<string, HeritageItem>();

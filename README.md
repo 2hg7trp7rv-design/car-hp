@@ -25,7 +25,10 @@ npm run dev
 | --- | --- |
 | `data/articles/{guides,columns,cars,heritage}/` | 1記事1JSON。本文・公開状態・出典・関連先の原稿 |
 | `lib/repository/` | JSONの読み込み・型への正規化 |
-| `lib/guides.ts` など | 公開判定・並び順・関連記事の選択 |
+| `lib/content/publication.ts` | 公開可否と検索エンジンへの掲載可否の共通ルール |
+| `lib/guides.ts` など | 公開ルールを適用した一覧・詳細・関連記事 |
+| `lib/content/article-text.ts` | 原稿の本文・表・FAQを検索用テキストに変換 |
+| `app/styles/` | 車種・系譜・一覧のスタイル。共通設定は `app/globals.css` |
 | `app/` | URL、メタ情報、静的生成、API |
 | `components/editorialArticle/` | Guide / Column 共通の本文表示 |
 | `article-types.ts` | 表示に必要な型 |
@@ -49,7 +52,7 @@ Guide / Column は `EditorialArticlePage` に統一しています。記事固�
 
 1. 対象の `data/articles/` にJSONを作成・編集します。型は `lib/content-types.ts` を参照します。
 2. `status` と `publicState` を明示します。既存URLの統合は `data/redirects.json` に記録します。
-3. 図や写真は `public/images/` に配置します。本文の画像パスは実在するファイルを指定します。
+3. 図や写真は `public/images/` に配置し、`npm run images:gen` を実行します。本文の画像パスは実在するファイルを指定します。
 4. トップに掲載するガイドは `lib/home-topics.ts` の該当トピックへ追加します。
 5. `npm run check` を実行し、プレビューで本文・図表・スマートフォン表示を確認してPRを作成します。
 
@@ -65,7 +68,7 @@ npm run security:audit
 
 `check` は次の順序で実行します。
 
-- ESLint（警告も失敗として扱う）と回帰テスト。
+- ESLint（警告も失敗として扱う）、未使用ソースの到達性検査、回帰テスト。
 - ビルド前の原稿・内部リンク・画像・PNG・サイトマップ・robots検査。
 - Next.jsの本番ビルドと型検査。
 - 生成HTMLと原稿の照合。全章・段落全文・FAQ・出典・アクション・画像・目次を検査。
@@ -83,6 +86,9 @@ GitHub ActionsでもPRごとに同じ検査と依存関係監査を実行しま�
 ## 画像・フォント
 
 画像は `next/image` で表示サイズに合わせて配信し、本文画像は遅延読込にします。
+`npm run images:gen` で実画像の向きを考慮した寸法を `data/_internal/image-metadata.json` に生成します。
+画像追加・差し替え時はこのファイルもコミットします。本番ビルドでも再生成し、
+回帰テストは実画像、生成HTML検査は属性値と照合します。画像ファイルをサーバー実行時に読み込む必要はありません。
 先頭のメイン画像だけ先読みします。外部画像は現在使用していないため許可ホストは空です。
 追加する場合は `next.config.mjs` に必要なホストとパスだけを指定してください。
 
@@ -100,3 +106,18 @@ npm test
 生成された `.woff2` と `charset.json` を一緒にコミットします。
 通常のビルドやCIではPythonやフォントのダウンロードは不要です。4書体合計250KBを上限として検査します。
 ビルドキャッシュは保持し、配信ファイルへの混入は `outputFileTracingExcludes` で防ぎます。
+
+## 公開と検索のルール
+
+`status: published` と `publicState: index / noindex` の両方を満たす記事だけを公開します。
+`publicState: draft / redirect`、または `status: draft / archived` の記事は、一覧・詳細・検索・関連記事に出しません。
+`noindex` は公開記事の検索エンジン掲載を止める指定であり、非公開指定ではありません。
+明示的な公開指定がない過去データは従来どおり公開扱いに正規化します。新規記事では必ず状態を明示してください。
+URLの統合元は `data/redirects.json` に従い、記事の取得対象からも外します。
+
+検索ではタイトル、概要・タグ、本文の順に重みを付けます。Guide / Columnは構造化本文とFAQを検索し、
+構造化本文がない旧形式だけ `body` を使います。検索用本文はAPIや初期表示データに含めません。
+
+`npm run verify:structure` は App Router の入口から import / re-export / 文字列指定の dynamic import を辿ります。
+使用をやめたUIや補助コードは残さず、履歴が必要な場合はGit履歴を参照してください。
+将来、Next.jsの新しい入口規約や別の実行環境を追加する場合は、検査側の入口定義も更新します。

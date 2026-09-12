@@ -1,9 +1,9 @@
 // lib/columns.ts
 
+import { isPublicContent } from "@/lib/content/publication";
 import type {
   ColumnItem as ColumnItemBase,
   ColumnCategory as ColumnCategoryBase,
-  ContentStatus,
 } from "@/lib/content-types";
 import {
   findAllColumns,
@@ -18,10 +18,6 @@ export type ColumnCategory = ColumnCategoryBase;
 // ----------------------------------------
 // 内部ユーティリティ
 // ----------------------------------------
-
-function isPublished(status: ContentStatus): boolean {
-  return status === "published";
-}
 
 // 日付→timestamp(数値)に正規化
 function toTime(value?: string | null): number {
@@ -100,7 +96,7 @@ function buildColumnIndex(): ColumnIndex {
   const allSorted = [...rawAll].sort(compareByPublishedDesc);
 
   // 公開済みのみ
-  const published = rawAll.filter((c) => isPublished(c.status));
+  const published = rawAll.filter(isPublicContent);
 
   // 公開日降順
   const sorted = [...published].sort(compareByPublishedDesc);
@@ -211,11 +207,7 @@ export async function getAllColumnsIncludingNonPublished(): Promise<ColumnItem[]
 // slug指定で1件取得(公開済みのみ)
 // ※非公開や存在しないslugはnull
 export async function getColumnBySlug(slug: string): Promise<ColumnItem | null> {
-  const index = ensureColumnIndex();
-  const column = index.bySlug.get(slug) ?? repoFindColumnBySlug(slug);
-  if (!column) return null;
-  if (!isPublished(column.status)) return null;
-  return column;
+  return ensureColumnIndex().bySlug.get(slug) ?? null;
 }
 
 // slug指定で1件取得（非公開も許可）

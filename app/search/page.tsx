@@ -10,7 +10,7 @@ import { DetailFixedBackground } from "@/components/layout/DetailFixedBackground
 
 import { getSiteUrl } from "@/lib/site";
 import { NOINDEX_ROBOTS } from "@/lib/seo/robots";
-import { getSearchIndex, searchSite } from "@/lib/search";
+import { getSearchSuggestions, searchSite } from "@/lib/search";
 import type { SearchDoc, SearchDocType, SearchHit } from "@/lib/search/types";
 
 import { SearchClient } from "./search-client";
@@ -52,11 +52,6 @@ function normalizeType(input: string): SearchDocType | "all" {
   return "all";
 }
 
-function stripInternal<T extends Record<string, any>>(doc: T): Omit<T, "_title" | "_haystack"> {
-  const { _title, _haystack, ...pub } = doc as any;
-  return pub;
-}
-
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
   const resolvedSearchParams = await resolveSearchParams(searchParams);
   const q = asString(resolvedSearchParams.q).trim();
@@ -90,20 +85,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
     if (qTrimmed.length > 1) {
       initialResults = await searchSite({ q: qTrimmed, type: typeNormalized, limit: 30 });
     } else {
-      const index = await getSearchIndex();
-
-      const pick = (t: SearchDocType, n: number) =>
-        index.docs
-          .filter((doc) => doc.type === t)
-          .slice(0, n)
-          .map((doc) => stripInternal(doc));
-
-      initialSuggestions = {
-        cars: pick("cars", 6),
-        guide: pick("guide", 6),
-        column: pick("column", 6),
-        heritage: pick("heritage", 6),
-      };
+      initialSuggestions = await getSearchSuggestions();
     }
   } catch {
     initialResults = null;
@@ -146,7 +128,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
           posterVariant="generic"
           seedKey="search"
           stats={[
-            { label: "範囲", value: "5カテゴリ横断", tone: "moss" },
+            { label: "範囲", value: "4カテゴリ横断", tone: "moss" },
             { label: "切替", value: "候補 / 結果を即切替", tone: "slate" },
             { label: "用途", value: "調べ直しの起点", tone: "clay" },
           ]}

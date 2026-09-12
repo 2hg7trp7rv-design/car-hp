@@ -5,6 +5,7 @@
 // - 文字数・見出し数・関連リンク数などの品質ゲートは noindex 理由にしない。
 // - 品質不足は scripts/content-audit.mjs 側の改善レポートで扱う。
 
+import { publicationPolicy } from "@/lib/content/publication";
 import type {
   CarItem,
   ColumnItem,
@@ -83,30 +84,17 @@ function buildCarContentText(car: CarItem): string {
   return parts.join("\n").trim();
 }
 
-function isPublished(status?: string | null): boolean {
-  return !status || status === "published";
-}
-
-function getPublicState(item: { publicState?: unknown } | null | undefined): PublicState | null {
-  const s = typeof item?.publicState === "string" ? item.publicState.trim().toLowerCase() : null;
-  if (s === "index" || s === "noindex" || s === "draft" || s === "redirect") return s as PublicState;
-  return null;
-}
-
 function evaluatePolicyGate(
   item: { status?: string | null; noindex?: boolean | null; publicState?: unknown } | null | undefined,
   reasons: string[]
 ): { published: boolean; state: PublicState | null; allowIndex: boolean } {
-  const published = isPublished(item?.status ?? null);
-  const explicitState = getPublicState(item);
-  const state: PublicState = explicitState ?? (published ? "index" : "draft");
+  const { published, explicitState, state, indexable: allowIndex } = publicationPolicy(item);
 
   if (!published) reasons.push("status:not_published");
   if (!explicitState) reasons.push("missing:publicState:auto_index");
   if (state !== "index") reasons.push(`publicState:${state}`);
   if (item?.noindex === true) reasons.push("flag:noindex");
 
-  const allowIndex = published && state === "index" && item?.noindex !== true;
   return { published, state, allowIndex };
 }
 

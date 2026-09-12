@@ -1,3 +1,4 @@
+import { imageDimensions } from "../lib/content/image-dimensions";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
@@ -76,10 +77,14 @@ for (const { kind, items } of groups) {
         }
         if (block.type === "image") {
           const images = elements(renderedSections[index]).filter((node) => node.tagName === "img");
-          assert.ok(images.some((node) => {
+          const image = images.find((node) => {
             const url = new URL(attr(node, "src") ?? "", "https://local.test");
             return (url.searchParams.get("url") ?? url.pathname) === block.src;
-          }), `${route}: missing authored image ${block.src}`);
+          });
+          assert.ok(image, `${route}: missing authored image ${block.src}`);
+          const dimensions = imageDimensions(block.src);
+          assert.equal(Number(attr(image, "width")), dimensions.width, `${route}: incorrect image width`);
+          assert.equal(Number(attr(image, "height")), dimensions.height, `${route}: incorrect image height`);
         }
       }
     }

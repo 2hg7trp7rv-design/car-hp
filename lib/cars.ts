@@ -8,6 +8,7 @@
  * 画面(App層)で扱いやすい形に整形・ソートして提供する
  */
 
+import { isPublicContent, publicationPolicy } from "@/lib/content/publication";
 import { findAllCars } from "@/lib/repository/cars-repository";
 import { findAllColumns } from "@/lib/repository/columns-repository";
 import { findAllGuides } from "@/lib/repository/guides-repository";
@@ -26,7 +27,7 @@ export type { CarItem };
 
 
 const ALL_CARS_CACHE: CarItem[] = (() => {
-  const cars = findAllCars().filter((c) => !isRedirectSourcePath("/cars/" + c.slug));
+  const cars = findAllCars().filter((c) => isPublicContent(c) && !isRedirectSourcePath("/cars/" + c.slug));
   // 発売年が新しい順、なければメーカー名順などでソート
   return [...cars].sort((a, b) => {
     const yA = a.releaseYear ?? 0;
@@ -41,13 +42,7 @@ const ALL_CARS_CACHE: CarItem[] = (() => {
 // - 企画書v4: index以外は主要導線から外す方針
 // - ただし詳細ページ自体は /cars/[slug] で参照可能（= getCarBySlug はALLから探す）
 // ----------------------------------------
-const INDEX_CARS_CACHE: CarItem[] = (() => {
-  return ALL_CARS_CACHE.filter((c) => {
-    const published = !c.status || c.status === "published";
-    const allow = c.publicState === "index" && (c as any).noindex !== true;
-    return published && allow;
-  });
-})();
+const INDEX_CARS_CACHE = ALL_CARS_CACHE.filter((car) => publicationPolicy(car).indexable);
 
 // ----------------------------------------
 // 公開API
@@ -117,7 +112,7 @@ export function getOwnershipGuidesForCarSlug(
 
   const pool = includeNonPublished
     ? allGuides
-    : allGuides.filter((g) => g.status === "published");
+    : allGuides.filter((g) => isPublicContent(g) && !isRedirectSourcePath("/guide/" + g.slug));
 
   const picked: GuideItem[] = [];
   const seen = new Set<string>();
@@ -156,7 +151,7 @@ export function getRelatedColumnsForCarSlug(
   if (!slug) return [];
 
   const all = findAllColumns();
-  const published = all.filter((c) => c.status === "published");
+  const published = all.filter((c) => isPublicContent(c) && !isRedirectSourcePath("/column/" + c.slug));
 
   const picked: ColumnItem[] = [];
   const seen = new Set<string>();
@@ -197,7 +192,7 @@ export function getRelatedHeritageForCarSlug(
   if (!slug) return [];
 
   const all = findAllHeritage();
-  const published = all.filter((h) => h.status === "published");
+  const published = all.filter((h) => isPublicContent(h) && !isRedirectSourcePath("/heritage/" + h.slug));
 
   const picked: HeritageItem[] = [];
   const seen = new Set<string>();

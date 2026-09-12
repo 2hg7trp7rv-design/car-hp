@@ -2,7 +2,7 @@
 
 import { NextResponse } from "next/server";
 
-import { getSearchIndex, searchSite } from "@/lib/search";
+import { getSearchSuggestions, searchSite } from "@/lib/search";
 import type { SearchDocType } from "@/lib/search/types";
 
 export const dynamic = "force-dynamic";
@@ -25,13 +25,6 @@ function parseLimit(input: string | null): number {
   return Math.max(1, Math.min(50, n));
 }
 
-function stripInternal<T extends { _title: string; _haystack: string }>(
-  doc: T,
-): Omit<T, "_title" | "_haystack"> {
-  const { _title, _haystack, ...pub } = doc;
-  return pub;
-}
-
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q") ?? "";
@@ -46,20 +39,7 @@ export async function GET(request: Request) {
 
   // 空/短いクエリは候補一覧を返す（内部検索UX用）
   if (trimmed.length <= 1) {
-    const index = await getSearchIndex();
-
-    const pick = (t: SearchDocType, n: number) =>
-      index.docs
-        .filter((d) => d.type === t)
-        .slice(0, n)
-        .map((d) => stripInternal(d));
-
-    const suggestions = {
-      cars: pick("cars", 6),
-      guide: pick("guide", 6),
-      column: pick("column", 6),
-      heritage: pick("heritage", 6),
-    };
+    const suggestions = await getSearchSuggestions();
 
     return NextResponse.json(
       {
