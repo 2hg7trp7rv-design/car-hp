@@ -1,0 +1,877 @@
+.car-article-page {
+  min-height: 100vh;
+  background: #050505;
+  color: #11110f;
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+}
+
+.car-article-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+}
+
+.car-article-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: #000;
+}
+
+.car-article-hero-image {
+  object-fit: cover;
+  opacity: .72;
+  filter: saturate(.88) contrast(1.04) brightness(.58);
+  transform: scale(1.01);
+}
+
+.car-article-hero-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(0,0,0,.50) 0%, rgba(0,0,0,.30) 30%, rgba(0,0,0,.62) 67%, rgba(0,0,0,.98) 100%), linear-gradient(90deg, rgba(0,0,0,.30) 0%, rgba(0,0,0,.03) 50%, rgba(0,0,0,.38) 100%);
+}
+
+.car-article-hero-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 24px 42px;
+}
+
+.car-article-crumb {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 7px;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: .02em;
+  color: rgba(255,255,255,.46);
+}
+
+.car-article-crumb a,
+.car-article-crumb span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.car-article-hero-meta {
+  margin: 25px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .27em;
+  color: rgba(255,255,255,.74);
+}
+
+.car-article-hero-title {
+  margin: 17px 0 0;
+  color: #fff;
+  font-family: var(--font-editorial), Georgia, serif;
+  font-weight: 500;
+}
+
+.car-article-hero-lead {
+  max-width: 360px;
+  margin: 31px 0 0;
+  color: rgba(255,255,255,.78);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 2.08;
+  letter-spacing: .015em;
+}
+
+.car-article-hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 31px;
+}
+
+.car-article-hero-chips span {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 21px;
+  border: 1px solid rgba(255,255,255,.42);
+  border-radius: 999px;
+  background: rgba(0,0,0,.02);
+  color: rgba(255,255,255,.88);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: .04em;
+}
+
+.car-article-paper {
+  background: #f0ebe3;
+  color: #11110f;
+}
+
+.car-article-overview {
+  padding: 67px 24px 64px;
+}
+
+.car-article-kicker,
+.car-article-takeaways > p,
+.car-article-spec-item dt {
+  color: #788290;
+}
+
+.car-article-kicker {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: .13em;
+}
+
+.car-article-overview-title {
+  margin: 26px 0 0;
+  color: #11110f;
+  font-family: var(--font-editorial), Georgia, serif;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.035em;
+}
+
+.car-article-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 48px;
+  row-gap: 28px;
+  margin-top: 58px;
+}
+
+.car-article-spec-item dt {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: .08em;
+}
+
+.car-article-spec-item dd {
+  margin: 0;
+  color: #11110f;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: -.015em;
+  overflow-wrap: anywhere;
+}
+
+.car-article-overview-links {
+  display: grid;
+  gap: 18px;
+  margin-top: 50px;
+}
+
+.car-article-overview-links a {
+  width: fit-content;
+  color: #11110f;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -.015em;
+  text-decoration: none;
+}
+
+.car-article-takeaways {
+  margin-top: 62px;
+}
+
+.car-article-takeaways > p {
+  margin: 0 0 26px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .12em;
+}
+
+.car-article-bullet-list {
+  display: grid;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.car-article-bullet-list-plain {
+  gap: 26px;
+}
+
+.car-article-bullet-list li {
+  display: grid;
+  grid-template-columns: 13px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  color: #11110f;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 2.0;
+  letter-spacing: -.015em;
+}
+
+.car-article-dot,
+.car-article-list-card .car-article-dot,
+.car-article-bullet-list-plain .car-article-dot {
+  width: 13px;
+  height: 13px;
+  margin-top: .78em;
+  border-radius: 999px;
+  background: #aab3bf;
+}
+
+.car-article-copy {
+  margin: 0;
+  color: #11110f;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 2.05;
+  letter-spacing: -.02em;
+  white-space: pre-line;
+}
+
+.car-article-text-wrap {
+  min-width: 0;
+}
+
+.car-article-open-row {
+  margin-top: 42px;
+  border: 1px solid #ddd8d0;
+  border-radius: 16px;
+  background: rgba(255,255,255,.07);
+}
+
+.car-article-open-row summary {
+  display: flex;
+  min-height: 56px;
+  cursor: pointer;
+  list-style: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  color: #11110f;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.car-article-open-row summary::-webkit-details-marker {
+  display: none;
+}
+
+.car-article-open-row summary span {
+  color: #7b8491;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.car-article-open-content {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid #ddd8d0;
+  padding: 10px 24px 16px;
+}
+
+.car-article-open-content a {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 10px;
+  padding: 10px 0;
+  color: #11110f;
+  font-size: 14px;
+  line-height: 1.6;
+  text-decoration: none;
+}
+
+.car-article-open-content span {
+  color: #a7a7a2;
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: 19px;
+}
+
+.car-article-toc {
+  border-top: 1px solid #ddd9d1;
+  padding: 55px 16px 79px;
+}
+
+.car-article-toc > p {
+  margin: 0 0 33px 8px;
+  color: #788290;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .10em;
+}
+
+.car-article-toc a {
+  display: grid;
+  grid-template-columns: 65px minmax(0, 1fr);
+  min-height: 62px;
+  align-items: center;
+  border-bottom: 1px solid #e4dfd7;
+  background: rgba(255,255,255,.045);
+  padding: 0 8px 0 8px;
+  color: #11110f;
+  text-decoration: none;
+}
+
+.car-article-toc a:first-of-type {
+  border-top: 1px solid #ece7df;
+}
+
+.car-article-toc span {
+  color: #bebbb5;
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: 29px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.03em;
+}
+
+.car-article-toc strong {
+  color: #11110f;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -.04em;
+}
+
+.car-article-main {
+  border-top: 1px solid #ddd9d1;
+}
+
+.car-article-section {
+  border-bottom: 1px solid #ddd9d1;
+  padding: 78px 24px 67px;
+}
+
+.car-article-section-no {
+  margin: 0;
+  color: #c4c1bb;
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.04em;
+}
+
+.car-article-section-title {
+  margin: 28px 0 0;
+  color: #11110f;
+  font-weight: 800;
+  line-height: 1.34;
+  letter-spacing: -.055em;
+}
+
+.car-article-rule {
+  height: 1px;
+  margin-top: 26px;
+  background: #d9d4cc;
+}
+
+.car-article-section-body {
+  display: grid;
+  gap: 36px;
+  margin-top: 40px;
+}
+
+.car-article-subheading {
+  margin: 0;
+  color: #11110f;
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.45;
+  letter-spacing: -.045em;
+}
+
+.car-article-list-card {
+  overflow: hidden;
+  border: 0;
+  border-radius: 9px;
+  background: #e8e2d8;
+  padding: 29px 24px 31px;
+}
+
+.car-article-list-card-untitled {
+  padding-top: 27px;
+}
+
+.car-article-list-card h3 {
+  margin: 0 0 25px;
+  color: #11110f;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.55;
+  letter-spacing: -.04em;
+}
+
+.car-article-list-card .car-article-bullet-list {
+  gap: 20px;
+}
+
+.car-article-list-card .car-article-copy,
+.car-article-list-card .car-article-bullet-list li {
+  font-size: 18px;
+  line-height: 2.05;
+}
+
+.car-article-details {
+  overflow: hidden;
+  border: 1px solid #ddd8d0;
+  border-radius: 9px;
+  background: rgba(255,255,255,.08);
+}
+
+.car-article-details summary {
+  display: flex;
+  min-height: 56px;
+  cursor: pointer;
+  list-style: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: #11110f;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.car-article-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.car-article-details .car-article-bullet-list {
+  border-top: 1px solid #ddd8d0;
+  padding: 24px;
+}
+
+.car-article-spec-grid-section {
+  margin-top: 0;
+  row-gap: 26px;
+}
+
+.car-article-table-wrap .cbj-table-scroll {
+  border-radius: 9px;
+  box-shadow: none;
+}
+
+.car-article-link-cards {
+  display: grid !important;
+  gap: 13px !important;
+  margin-top: 20px !important;
+}
+
+.car-article-section-body > .car-article-bullet-list .car-article-link-cards {
+  width: calc(100% + 33px);
+  margin-left: -33px;
+}
+
+.car-article-main .shadow-soft-card,
+.car-article-main [class*="shadow-soft-card"] {
+  box-shadow: none !important;
+}
+
+.car-article-main a.group.block.overflow-hidden.rounded-\[24px\],
+.car-article-link-cards a {
+  border: 1px solid #d9d4cc !important;
+  border-radius: 16px !important;
+  background: rgba(255,255,255,.14) !important;
+  padding: 22px 22px 23px !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.car-article-main a.group.block.overflow-hidden.rounded-\[24px\] > div,
+.car-article-link-cards a > div {
+  align-items: center !important;
+}
+
+.car-article-main a.group.block.overflow-hidden.rounded-\[24px\] p:first-child,
+.car-article-link-cards a p:first-child {
+  color: #788290 !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  letter-spacing: .08em !important;
+}
+
+.car-article-main a.group.block.overflow-hidden.rounded-\[24px\] p:nth-child(2),
+.car-article-link-cards a p:nth-child(2) {
+  margin-top: 11px !important;
+  color: #11110f !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  line-height: 1.55 !important;
+  letter-spacing: -.035em !important;
+}
+
+.car-article-link-cards a span,
+.car-article-main a.group.block.overflow-hidden.rounded-\[24px\] span {
+  color: #9aa4b0 !important;
+  font-size: 26px !important;
+  line-height: 1 !important;
+  transform: rotate(-45deg);
+}
+
+.car-article-inline-cards {
+  display: none;
+}
+
+.car-article-mini-card {
+  position: relative;
+  display: block;
+  border: 1px solid #d9d4cc;
+  border-radius: 16px;
+  background: rgba(255,255,255,.14);
+  padding: 22px 52px 23px 22px;
+  text-decoration: none;
+}
+
+.car-article-mini-card span {
+  display: block;
+  color: #788290;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .08em;
+}
+
+.car-article-mini-card strong {
+  display: block;
+  margin-top: 11px;
+  color: #11110f;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.55;
+  letter-spacing: -.035em;
+}
+
+.car-article-mini-card em {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  color: #9aa4b0;
+  font-size: 26px;
+  font-style: normal;
+  line-height: 1;
+  transform: rotate(-45deg);
+}
+
+.car-article-related-list {
+  display: grid;
+  gap: 0;
+  margin-top: 34px;
+}
+
+.car-article-related-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 24px;
+  gap: 14px;
+  align-items: start;
+  border-top: 1px solid #ddd8d0;
+  padding: 24px 0 25px;
+  color: #11110f;
+  text-decoration: none;
+}
+
+.car-article-related-card:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.car-article-related-card p {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 0 0 16px;
+}
+
+.car-article-related-card span {
+  display: inline-flex;
+  min-height: 26px;
+  align-items: center;
+  border: 1px solid #cfcac2;
+  border-radius: 999px;
+  padding: 0 12px;
+  color: #6e7886;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .02em;
+}
+
+.car-article-related-card time {
+  color: #9aa4b0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .02em;
+}
+
+.car-article-related-card strong {
+  display: block;
+  color: #11110f;
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.58;
+  letter-spacing: -.04em;
+}
+
+.car-article-related-card small {
+  display: -webkit-box;
+  margin-top: 10px;
+  overflow: hidden;
+  color: #687281;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.8;
+  letter-spacing: -.015em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.car-article-related-card em {
+  color: #9aa4b0;
+  font-size: 24px;
+  font-style: normal;
+  line-height: 1;
+  transform: rotate(-45deg);
+}
+
+.car-article-bottom-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  border-top: 1px solid #ddd9d1;
+  padding: 42px 24px 51px;
+}
+
+.car-article-bottom-nav a {
+  color: #11110f;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -.035em;
+  text-decoration: none;
+}
+
+@media (min-width: 431px) {
+  .car-article-page {
+    background: #050505;
+  }
+}
+
+@media (max-width: 374px) {
+  .car-article-copy,
+  .car-article-bullet-list li {
+    font-size: 17px;
+  }
+}
+
+.car-article-page {
+  background: #f0ebe3;
+}
+
+.car-article-hero,
+.car-article-hero-inner {
+  min-height: clamp(720px, 100svh, 980px);
+}
+
+.car-article-hero-title {
+  line-height: 0.96;
+  letter-spacing: clamp(-0.052em, -0.20vw, -0.026em);
+}
+
+.car-article-hero-lead,
+.car-article-list-card h3,
+.car-article-subheading,
+.car-article-related-card strong {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  line-break: strict;
+}
+
+.car-article-page {
+  min-width: 0;
+}
+
+.car-article-hero,
+.car-article-paper {
+  margin-inline: 0 !important;
+}
+
+.car-article-hero-inner {
+  box-sizing: border-box;
+  width: min(100%, 1080px) !important;
+  max-width: 100% !important;
+  margin-inline: auto !important;
+  padding-left: clamp(22px, 5.6vw, 96px) !important;
+  padding-right: clamp(22px, 5.6vw, 96px) !important;
+}
+
+@media (max-width: 640px) {
+  .car-article-hero-inner {
+    padding-left: clamp(20px, 5.6vw, 24px) !important;
+    padding-right: clamp(20px, 5.6vw, 24px) !important;
+  }
+}
+
+.car-article-page {
+  width: 100%;
+}
+
+.car-article-paper,
+.car-article-hero {
+  width: 100% !important;
+  max-width: none !important;
+  overflow-x: clip;
+}
+
+.car-article-overview,
+.car-article-toc,
+.car-article-section,
+.car-article-bottom-nav {
+  width: min(100%, 1080px) !important;
+  max-width: 100% !important;
+  margin-inline: auto !important;
+  padding-left: clamp(22px, 5.6dvw, 96px) !important;
+  padding-right: clamp(22px, 5.6dvw, 96px) !important;
+  overflow-x: clip;
+}
+
+.car-article-overview > *,
+.car-article-section-body,
+.car-article-section-body > * {
+  box-sizing: border-box;
+  width: min(100%, 760px);
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: auto;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+.car-article-copy {
+  width: min(100%, 760px);
+  margin-left: 0;
+  margin-right: auto;
+  overflow-x: clip;
+}
+
+.car-article-bullet-list,
+.car-article-list-card,
+.car-article-details,
+.car-article-inline-cards,
+.car-article-link-cards,
+.car-article-table-wrap,
+.car-article-spec-grid-section,
+.car-article-related-list {
+  box-sizing: border-box;
+  width: min(100%, 760px);
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: auto;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+.car-article-list-card .car-article-copy,
+.car-article-details,
+.car-article-related-card small {
+  word-break: normal;
+  overflow-wrap: break-word;
+  line-break: strict;
+}
+
+@media (max-width: 640px) {
+  .car-article-overview,
+  .car-article-toc,
+  .car-article-section,
+  .car-article-bottom-nav {
+    padding-left: clamp(22px, 6.1dvw, 28px) !important;
+    padding-right: clamp(22px, 6.1dvw, 28px) !important;
+  }
+
+  .car-article-overview > *,
+  .car-article-section-body,
+  .car-article-section-body > *,
+  .car-article-copy,
+  .car-article-bullet-list,
+  .car-article-list-card,
+  .car-article-details,
+  .car-article-inline-cards,
+  .car-article-link-cards,
+  .car-article-table-wrap,
+  .car-article-spec-grid-section,
+  .car-article-related-list {
+    width: 100%;
+  }
+}
+
+.car-article-page {
+  max-width: 100% !important;
+  overflow-x: clip !important;
+}
+
+.car-article-paper,
+.car-article-hero,
+.car-article-overview,
+.car-article-section,
+.car-article-toc,
+.car-article-bottom-nav {
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+}
+
+.car-article-hero-title,
+.car-article-overview-title,
+.car-article-section-title {
+  box-sizing: border-box !important;
+  display: block !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  white-space: nowrap !important;
+  text-wrap: nowrap !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  overflow: hidden !important;
+  line-break: strict !important;
+}
+
+.car-article-hero-title,
+.car-article-overview-title,
+.car-article-section-title {
+  font-size: clamp(16px, min(var(--cbj-title-vw, 6.2dvw), 7.0dvw), 74px) !important;
+}
+
+.car-article-copy,
+.car-article-bullet-list li,
+.car-article-related-card p {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  word-break: normal !important;
+  overflow-wrap: anywhere !important;
+  line-break: strict !important;
+}
+
+@media (max-width: 640px) {
+  .car-article-hero-title,
+  .car-article-overview-title,
+  .car-article-section-title {
+    font-size: clamp(16px, min(var(--cbj-title-vw, 6.0dvw), 6.8dvw), 34px) !important;
+  }
+}

@@ -1,3 +1,4 @@
+import { imageDimensions } from "@/lib/content/image-dimensions";
 import { Fragment, type ReactNode } from "react";
 import Image from "next/image";
 import type { GuideDetailBlock } from "@/lib/content-types";
@@ -147,8 +148,7 @@ function renderImage(
         <Image
           src={block.src}
           alt={block.alt || ""}
-          width={1600}
-          height={1000}
+          {...imageDimensions(block.src)}
           sizes="(max-width: 760px) 100vw, 760px"
           className={styles.figureImage}
         />

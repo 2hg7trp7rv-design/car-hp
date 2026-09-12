@@ -1,3 +1,4 @@
+import { isPublicContent } from "@/lib/content/publication";
 import type { GuideItem } from "@/lib/content-types";
 
 /** Topic membership is editorial data; counts and destinations come from published guides. */
@@ -11,7 +12,7 @@ export const HOME_TOPICS = [
 ] as const;
 
 export function getHomeTopics(guides: readonly GuideItem[]) {
-  const published = new Map(guides.filter((g) => g.status === "published" && g.publicState !== "draft" && g.publicState !== "redirect").map((g) => [g.slug, g]));
+  const published = new Map(guides.filter(isPublicContent).map((g) => [g.slug, g]));
   return HOME_TOPICS.map((topic) => ({
     ...topic,
     lessons: topic.slugs.flatMap((slug) => {

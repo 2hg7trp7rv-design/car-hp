@@ -1,9 +1,9 @@
 // lib/guides.ts
 
+import { isPublicContent } from "@/lib/content/publication";
 import type {
   GuideItem as GuideItemBase,
   GuideCategory as GuideCategoryBase,
-  ContentStatus,
 } from "@/lib/content-types";
 import {
   findAllGuides,
@@ -18,10 +18,6 @@ export type GuideCategory = GuideCategoryBase;
 // ----------------------------------------
 // 内部ユーティリティ
 // ----------------------------------------
-
-function isPublished(status: ContentStatus): boolean {
-  return status === "published";
-}
 
 function toTime(value?: string | null): number {
   if (!value) return 0;
@@ -59,7 +55,7 @@ function buildGuideIndex(): GuideIndex {
 
   const allSorted = [...rawAll].sort(compareByPublishedDesc);
 
-  const published = rawAll.filter((g) => isPublished(g.status));
+  const published = rawAll.filter(isPublicContent);
   const publishedSorted = [...published].sort(compareByPublishedDesc);
 
   const bySlug = new Map<string, GuideItem>();
@@ -232,11 +228,7 @@ export async function getAllGuidesIncludingNonPublished(): Promise<GuideItem[]> 
 
 // slug指定で1件取得(公開済みのみ)
 export async function getGuideBySlug(slug: string): Promise<GuideItem | null> {
-  const index = ensureGuideIndex();
-  const guide = index.bySlug.get(slug) ?? repoFindGuideBySlug(slug);
-  if (!guide) return null;
-  if (!isPublished(guide.status)) return null;
-  return guide;
+  return ensureGuideIndex().bySlug.get(slug) ?? null;
 }
 
 // slug指定で1件取得（非公開も許可）

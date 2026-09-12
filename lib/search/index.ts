@@ -1,5 +1,6 @@
 // lib/search/index.ts
 
+import { articleText } from "@/lib/content/article-text";
 import { getAllCarsSync } from "@/lib/cars";
 import { getAllColumns } from "@/lib/columns";
 import { getAllGuides } from "@/lib/guides";
@@ -19,6 +20,7 @@ import type { SearchDoc, SearchDocType, SearchHit } from "@/lib/search/types";
 type IndexedDoc = SearchDoc & {
   _title: string;
   _haystack: string;
+  _body: string;
 };
 
 type SearchIndex = {
@@ -70,12 +72,14 @@ function scoreDoc(doc: IndexedDoc, queryNorm: string, tokens: string[]): number 
   // フレーズ一致
   if (title.includes(queryNorm)) score += 140;
   if (hay.includes(queryNorm)) score += 70;
+  if (doc._body.includes(queryNorm)) score += 30;
 
   // トークン一致
   for (const t of tokens) {
     if (!t || t === queryNorm) continue;
     if (title.includes(t)) score += 60;
     if (hay.includes(t)) score += 24;
+    if (doc._body.includes(t)) score += 10;
   }
 
   if (isVeryShort) {
@@ -167,11 +171,10 @@ async function buildSearchIndex(): Promise<SearchIndex> {
         base.description,
         (car as any).troubleTrends?.join(" ") ?? "",
         (car as any).maintenanceNotes?.join(" ") ?? "",
-        (car as any).body ?? "",
       ].join(" "),
     );
 
-    docs.push({ ...base, _title, _haystack });
+    docs.push({ ...base, _title, _haystack, _body: normalizeText(car.body) });
   }
 
   // --- GUIDE ---
@@ -202,6 +205,7 @@ async function buildSearchIndex(): Promise<SearchIndex> {
 
     docs.push({
       ...base,
+      _body: normalizeText(articleText(g)),
       _title: normalizeText(base.title),
       _haystack: normalizeText(
         [
@@ -243,6 +247,7 @@ async function buildSearchIndex(): Promise<SearchIndex> {
 
     docs.push({
       ...base,
+      _body: normalizeText(articleText(c)),
       _title: normalizeText(base.title),
       _haystack: normalizeText(
         [
@@ -288,6 +293,7 @@ async function buildSearchIndex(): Promise<SearchIndex> {
 
     docs.push({
       ...base,
+      _body: normalizeText(h.body),
       _title: normalizeText(base.title),
       _haystack: normalizeText(
         [
@@ -309,7 +315,7 @@ async function buildSearchIndex(): Promise<SearchIndex> {
   };
 }
 
-export async function getSearchIndex(): Promise<SearchIndex> {
+async function getSearchIndex(): Promise<SearchIndex> {
   if (!indexPromise) {
     indexPromise = buildSearchIndex().catch((error: unknown) => {
       indexPromise = null;
@@ -354,8 +360,7 @@ export async function searchSite(params: {
     if (score <= 0) continue;
 
     // internal fields を落として返す
-    const { _title: _t, _haystack: _h, ...publicDoc } = doc;
-    hits.push({ ...(publicDoc as SearchDoc), score });
+    hits.push({ ...publicSearchDoc(doc), score });
   }
 
   hits.sort((a, b) => {
@@ -367,4 +372,15 @@ export async function searchSite(params: {
   });
 
   return hits.slice(0, limit);
+}
+
+function publicSearchDoc(doc: IndexedDoc): SearchDoc {
+  const { _title: _t, _haystack: _h, _body: _b, ...publicDoc } = doc;
+  return publicDoc;
+}
+
+export async function getSearchSuggestions(): Promise<Record<SearchDocType, SearchDoc[]>> {
+  const { docs } = await getSearchIndex();
+  const pick = (type: SearchDocType) => docs.filter((doc) => doc.type === type).slice(0, 6).map(publicSearchDoc);
+  return { cars: pick("cars"), guide: pick("guide"), column: pick("column"), heritage: pick("heritage") };
 }

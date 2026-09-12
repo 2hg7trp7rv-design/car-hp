@@ -72,7 +72,6 @@
   width: min(100%, var(--content-max));
   margin: 0 auto;
   padding: 18px 24px 0;
-  color: var(--ink-3);
   font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
   font-size: 12px;
   letter-spacing: 0.04em;
@@ -88,16 +87,20 @@
 
 .head {
   width: min(100%, var(--content-max));
-  margin: 0 auto;
-  padding: 28px 24px 40px;
+  margin-top: 0;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+  padding-right: 24px;
+  padding-left: 24px;
+  padding-top: clamp(50px, 7svh, 76px);
+  padding-bottom: clamp(34px, 5svh, 58px);
 }
 
 .headMeta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 22px;
 }
 
 .tag {
@@ -163,18 +166,21 @@
 }
 
 .headTitle {
-  max-width: 18ch;
-  margin: 0 0 22px;
+  margin-top: 0;
+  margin-right: 0;
+  margin-left: 0;
   color: var(--ink);
   font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
   font-size: clamp(34px, 5.4vw, 64px);
   font-weight: 900;
   font-feature-settings: "palt" 1;
   letter-spacing: -0.01em;
-  line-height: 1.18;
   word-break: keep-all;
   overflow-wrap: anywhere;
   line-break: strict;
+  line-height: 1.28;
+  max-width: 20ch;
+  margin-bottom: clamp(22px, 3.2svh, 34px);
 }
 
 .titleLine {
@@ -182,13 +188,17 @@
 }
 
 .headLede {
-  max-width: 48ch;
-  margin: 0;
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
   color: var(--ink-2);
   font-family: var(--font-serif), "Shippori Mincho", serif;
   font-size: clamp(16px, 1.5vw, 19px);
   font-weight: 500;
-  line-height: 1.95;
+  max-width: 42ch;
+  line-height: 2.02;
+  white-space: pre-line;
 }
 
 .heroVisual {
@@ -275,6 +285,15 @@
   padding: 24px 24px 80px;
 }
 
+.tocLink[aria-current="location"] {
+  border-left-color: var(--kinto-teal);
+  font-weight: 600;
+}
+
+.tocLink[aria-current="location"]::before {
+  color: var(--kinto-teal);
+}
+
 .toc,
 .rail {
   position: sticky;
@@ -337,18 +356,9 @@
 }
 
 .tocLink:hover,
-.tocLink:global(.is-active) {
+.tocLink[aria-current="location"] {
   background: var(--kinto-teal-soft);
   color: var(--kinto-teal-deep);
-}
-
-.tocLink:global(.is-active) {
-  border-left-color: var(--kinto-teal);
-  font-weight: 600;
-}
-
-.tocLink:global(.is-active)::before {
-  color: var(--kinto-teal);
 }
 
 .rail {
@@ -407,7 +417,6 @@
 }
 
 .content {
-  max-width: var(--read-max);
   margin: 0 auto;
 }
 
@@ -417,14 +426,24 @@
 }
 
 .paragraph,
-.paragraphNatural,
-.leadParagraph,
+.paragraphNatural {
+  margin: 0 0 1.4em;
+  color: var(--ink-2);
+  font-size: 16px;
+  letter-spacing: 0.01em;
+}
+
+.leadParagraph {
+  margin: 0 0 1.4em;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+}
+
 .content p {
   margin: 0 0 1.4em;
   color: var(--ink-2);
   font-size: 16px;
   letter-spacing: 0.01em;
-  line-height: 2.05;
 }
 
 .leadParagraph {
@@ -436,14 +455,6 @@
 .leadParagraph strong {
   color: var(--ink);
   font-weight: 700;
-}
-
-.editorialSection {
-  padding-top: 64px;
-}
-
-.editorialSection:first-child {
-  padding-top: 20px;
 }
 
 .sectionHead {
@@ -477,19 +488,6 @@
   font-size: clamp(26px, 3vw, 36px);
   font-weight: 900;
   letter-spacing: -0.01em;
-  line-height: 1.35;
-}
-
-.sectionDeck {
-  max-width: 58ch;
-  margin: -8px 0 0;
-  color: var(--ink-3);
-  font-size: 15px;
-  line-height: 1.95;
-}
-
-.sectionBody > * + * {
-  margin-top: 24px;
 }
 
 .blockTitle {
@@ -517,16 +515,8 @@
   margin: 24px 0 28px;
 }
 
-.listGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
 .listItem {
-  padding: 18px 20px;
   border: 1px solid var(--kinto-teal-soft);
-  border-radius: var(--radius-md);
   background: var(--kinto-teal-mist);
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -539,15 +529,9 @@
 .listNumber {
   display: inline-grid;
   place-items: center;
-  width: 24px;
-  height: 24px;
-  margin-bottom: 8px;
-  border: 1px solid var(--kinto-teal-soft);
   border-radius: 8px;
   background: #fff;
-  color: var(--kinto-teal);
   font-family: var(--font-display), Manrope, sans-serif;
-  font-size: 10px;
   font-weight: 800;
 }
 
@@ -555,47 +539,29 @@
   display: block;
   margin: 0;
   color: var(--ink-2);
-  font-size: 13px;
-  line-height: 1.75;
-}
-
-.figureBlock {
-  margin: 32px 0;
 }
 
 .figureImageWrap {
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  background: var(--kinto-teal-mist);
-}
-
-.figureImage {
-  display: block;
-  width: 100%;
-  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
 }
 
 .figureCaption {
-  margin-top: 12px;
-  padding-left: 14px;
   border-left: 2px solid var(--kinto-teal-soft);
   color: var(--ink-3);
   font-family: var(--font-serif), "Shippori Mincho", serif;
-  font-size: 12px;
   font-style: italic;
-  line-height: 1.7;
 }
 
-.tableBlock,
-.tableRows {
+.tableBlock {
   margin: 28px 0;
 }
 
 .tableRows {
   overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
 }
 
 .tableRow {
@@ -603,48 +569,12 @@
   grid-template-columns: 1fr 2fr;
   gap: 0;
   align-items: start;
-  padding: 16px 18px;
   border-top: 1px solid var(--line-2);
-  background: #fff;
-}
-
-.tableRow:first-child {
-  border-top: 0;
-}
-
-.tableLabel {
-  margin: 0;
-  color: var(--ink);
-  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
-  font-size: 14px;
-  font-weight: 700;
 }
 
 .tableValue,
 .tableText {
   margin: 0;
-  color: var(--ink-2);
-  font-size: 14px;
-  line-height: 1.8;
-}
-
-.tablePairs {
-  display: grid;
-  gap: 10px;
-  margin: 0;
-}
-
-.tablePair dt {
-  color: var(--ink-4);
-  font-family: var(--font-display), Manrope, sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.tablePair dd {
-  margin: 4px 0 0;
 }
 
 .stepBlock {
@@ -654,7 +584,6 @@
 .stepList {
   display: flex;
   flex-direction: column;
-  gap: 14px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -663,21 +592,15 @@
 .stepItem {
   position: relative;
   display: grid;
-  grid-template-columns: 64px 1fr;
   align-items: start;
-  gap: 18px;
-  padding: 20px 22px;
   border: 1px solid var(--line);
-  border-radius: var(--radius-md);
   background: #fff;
 }
 
 .stepItem::before {
   content: "";
   position: absolute;
-  top: 62px;
   bottom: -14px;
-  left: 46px;
   width: 1px;
   background: linear-gradient(180deg, var(--kinto-teal-soft), transparent);
 }
@@ -710,7 +633,6 @@
   margin: 0 0 6px;
   color: var(--ink);
   font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
-  font-size: 16px;
   font-weight: 700;
 }
 
@@ -718,35 +640,37 @@
 .stepBody li {
   margin: 0;
   color: var(--ink-2);
-  font-size: 13px;
-  line-height: 1.75;
 }
 
 .cardStack,
 .boardBlock {
   display: grid;
-  gap: 12px;
   margin: 28px 0;
 }
 
 .infoCard,
 .noteCard,
-.warnCard,
-.summaryCard {
-  padding: 18px 20px;
+.warnCard {
   border: 1px solid var(--line);
-  border-radius: var(--radius-md);
+  background: #fff;
+}
+
+.summaryCard {
   background: #fff;
 }
 
 .infoCard h4,
 .noteCard h3,
-.warnCard h3,
-.summaryCard h3 {
+.warnCard h3 {
   margin: 0 0 8px;
   color: var(--ink);
   font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
-  font-size: 16px;
+  font-weight: 700;
+}
+
+.summaryCard h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
   font-weight: 700;
 }
 
@@ -764,8 +688,6 @@
 .cardText {
   margin: 0;
   color: var(--ink-2);
-  font-size: 13px;
-  line-height: 1.8;
 }
 
 .warnCard {
@@ -857,9 +779,6 @@
 
 .blockNote {
   margin: 12px 0 0;
-  color: var(--ink-3);
-  font-size: 12px;
-  line-height: 1.7;
 }
 
 .faqSection {
@@ -954,7 +873,7 @@
   line-height: 1.95;
 }
 
- .sourcesBox,
+.sourcesBox,
 .updateBox {
   width: min(100%, var(--read-max));
   margin: 28px auto 0;
@@ -1172,13 +1091,11 @@
   }
 }
 
-/* CBJ41: final mobile/header spacing and selected article image treatment */
-
 .breadcrumbStrip {
   display: block;
-  padding-top: 28px;
   color: var(--ink-3);
 }
+
 .breadcrumbRoute {
   display: flex;
   flex-wrap: wrap;
@@ -1188,10 +1105,16 @@
   font-family: var(--font-display), Manrope, "Noto Sans JP", sans-serif;
   font-size: 12px;
   letter-spacing: 0.06em;
-  line-height: 1.9;
 }
-.breadcrumbRoute a { color: var(--ink-3); }
-.breadcrumbRoute span { color: var(--ink-4); }
+
+.breadcrumbRoute a {
+  color: var(--ink-3);
+}
+
+.breadcrumbRoute span {
+  color: var(--ink-4);
+}
+
 .breadcrumbCurrent {
   max-width: 68ch;
   margin: 10px 0 0;
@@ -1200,62 +1123,28 @@
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.03em;
-  line-height: 2;
 }
-.head { padding-top: 40px; padding-bottom: 54px; }
-.headMeta { gap: 12px; margin-bottom: 36px; }
-.headTitle { margin-bottom: 32px; line-height: 1.22; }
-.headLede { line-height: 2.12; }
-.heroVisual { padding-bottom: 72px; }
-.heroFrameImage { aspect-ratio: 16 / 9; border: 1px solid var(--line-2); background: #fff; }
-.heroPhoto { object-fit: contain; }
-.layout { padding-top: 36px; padding-bottom: 96px; }
-.paragraph,
-.paragraphNatural,
-.leadParagraph,
-.content p { margin-bottom: 1.65em; line-height: 2.15; }
-.editorialSection { padding-top: 76px; }
-.sectionBody > * + * { margin-top: 30px; }
-.figureBlock { margin: 42px 0; }
-@media (max-width: 720px) { .heroFrameImage { aspect-ratio: 16 / 10.5; } }
+
+.heroFrameImage {
+  background: #fff;
+}
+
 @media (max-width: 640px) {
-  .head { padding-top: 34px; padding-bottom: 58px; }
-  .breadcrumbStrip { padding-top: 24px; }
-  .breadcrumbCurrent { margin-top: 12px; font-size: 13px; line-height: 2.05; }
-  .headTitle { line-height: 1.24; }
+  .breadcrumbCurrent {
+    font-size: 13px;
+  }
 }
 
 @media print {
-
   .progress,
-.toc,
-.rail {
+  .toc,
+  .rail {
     display: none !important;
   }
 
   .layout {
     display: block;
     width: min(100%, var(--read-max));
-  }
-}
-
-.page:global(.cbj-motion-ready) [data-cbj-reveal] {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.8s cubic-bezier(0.16, 0.84, 0.4, 1), transform 0.8s cubic-bezier(0.16, 0.84, 0.4, 1);
-  transition-delay: var(--cbj-reveal-delay, 0ms);
-}
-
-.page:global(.cbj-motion-ready) [data-cbj-reveal]:global(.cbj-reveal-visible) {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .page:global(.cbj-motion-ready) [data-cbj-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
   }
 }
 
@@ -1271,7 +1160,6 @@
 }
 
 @media (max-width: 880px) {
-
   .layout {
     grid-template-columns: 1fr;
     gap: 0;
@@ -1306,33 +1194,23 @@
 
 @media (max-width: 640px) {
   .head,
-.heroVisual,
-.authorBar,
-.layout,
-.relatedSection > h2,
-.relatedGrid {
+  .heroVisual,
+  .authorBar,
+  .layout,
+  .relatedSection > h2,
+  .relatedGrid {
     padding-left: 18px;
     padding-right: 18px;
   }
 
-  .headTitle {
-    font-size: clamp(34px, 11vw, 48px);
-  }
-
-  .listGrid,
-.boardGrid,
-.sourcesBox ol {
-    grid-template-columns: 1fr;
-  }
-
+  .boardGrid,
+  .sourcesBox ol,
   .tableRow {
     grid-template-columns: 1fr;
   }
 
   .tableValue {
     margin-top: 6px;
-    color: var(--ink-3);
-    font-size: 13px;
   }
 
   .caseRows div {
@@ -1340,12 +1218,12 @@
   }
 
   .sourcesBox,
-.updateBox {
+  .updateBox {
     margin-top: 22px;
   }
 
   .sourcesBox summary,
-.updateBox summary {
+  .updateBox summary {
     padding: 12px 14px;
   }
 }
@@ -1367,27 +1245,9 @@
   line-height: 2.18;
 }
 
-.head {
-  padding-top: clamp(50px, 7svh, 76px);
-  padding-bottom: clamp(70px, 9svh, 104px);
-}
-
 .headMeta {
   gap: 14px;
   margin-bottom: clamp(42px, 5.5svh, 64px);
-}
-
-.headTitle {
-  margin-bottom: clamp(38px, 5svh, 60px);
-  line-height: 1.28;
-}
-
-.headLede {
-  line-height: 2.24;
-}
-
-.heroVisual {
-  padding-bottom: clamp(86px, 10svh, 126px);
 }
 
 .authorBar {
@@ -1434,51 +1294,30 @@
 
 .listCard,
 .listCardCompact,
-.tableBlock,
-.tableRows,
+.tableBlock {
+  margin-top: clamp(48px, 6svh, 72px);
+  margin-bottom: clamp(48px, 6svh, 72px);
+}
+
+.tableRows {
+  margin-bottom: clamp(48px, 6svh, 72px);
+}
+
 .stepBlock,
 .cardStack,
-.boardBlock,
-.figureBlock,
+.boardBlock {
+  margin-top: clamp(48px, 6svh, 72px);
+  margin-bottom: clamp(48px, 6svh, 72px);
+}
+
 .quoteBlock {
   margin-top: clamp(48px, 6svh, 72px);
   margin-bottom: clamp(48px, 6svh, 72px);
 }
 
-.listGrid,
 .cardStack,
-.boardBlock,
-.stepList {
+.boardBlock {
   gap: 20px;
-}
-
-.listItem,
-.infoCard,
-.noteCard,
-.warnCard {
-  padding: clamp(24px, 4.4svw, 34px);
-}
-
-.listItemText,
-.cardText,
-.tableValue,
-.tableText,
-.stepBody p,
-.stepBody li {
-  line-height: 2.05;
-}
-
-.figureImageWrap {
-  background: #fff;
-}
-
-.figureImage {
-  object-fit: contain;
-}
-
-.figureCaption {
-  margin-top: 18px;
-  line-height: 1.95;
 }
 
 @media (max-width: 640px) {
@@ -1486,31 +1325,14 @@
     padding-top: 34px;
   }
 
-  .head {
-    padding-top: 46px;
-    padding-bottom: 76px;
-  }
-
-  .headMeta {
-    margin-bottom: 44px;
-  }
-
-  .headTitle {
-    line-height: 1.3;
-  }
-
-  .heroVisual {
-    padding-bottom: 90px;
-  }
-
   .layout {
     padding-top: 60px;
   }
 
   .paragraph,
-.paragraphNatural,
-.leadParagraph,
-.content p {
+  .paragraphNatural,
+  .leadParagraph,
+  .content p {
     margin-bottom: 2.05em;
     line-height: 2.32;
   }
@@ -1524,85 +1346,55 @@
   }
 }
 
-/* CBJ20: tighter mobile reading design for heavy Guide/Column articles */
-.head {
-  padding-bottom: clamp(34px, 5svh, 58px);
-}
-.headTitle {
-  max-width: 20ch;
-  margin-bottom: clamp(22px, 3.2svh, 34px);
-}
-.headLede {
-  max-width: 42ch;
-  line-height: 2.02;
-}
 .heroVisual {
   padding-bottom: clamp(46px, 7svh, 78px);
 }
+
 .heroFrameImage {
   aspect-ratio: 16 / 10;
 }
+
 .heroPhoto {
   object-fit: contain;
   background: #fff;
 }
+
 @media (max-width: 640px) {
   .head {
     padding-top: 34px;
     padding-bottom: 38px;
   }
+
   .headMeta {
     margin-bottom: 28px;
   }
+
   .headTitle {
     font-size: clamp(30px, 8.8vw, 40px);
     line-height: 1.26;
     margin-bottom: 22px;
   }
+
   .headLede {
     font-size: 16px;
     line-height: 2.02;
   }
+
   .heroVisual {
     padding-bottom: 48px;
   }
+
   .heroFrameImage {
     aspect-ratio: 16 / 10.4;
   }
 }
 
-/* CBJ22: Guide/Column readable card system and wide figure treatment */
-.figureBlock {
-  width: min(920px, calc(100vw - 28px));
-  max-width: none;
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-
-.figureImageWrap {
-  border: 0;
-  border-radius: 18px;
-  background: #fff;
-  box-shadow: 0 18px 46px rgba(6, 24, 32, 0.08);
-}
-
-.figureImage {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
 .figureCaption {
-  max-width: min(100%, var(--read-max));
   margin: 14px auto 0;
-  padding-left: 12px;
-  font-size: 13px;
-  line-height: 1.9;
 }
 
 .tableRows {
   display: grid;
-  gap: 18px;
   overflow: visible;
   border: 0;
   border-radius: 0;
@@ -1611,11 +1403,8 @@
 
 .tableRow {
   display: block;
-  padding: clamp(22px, 4.5vw, 34px);
   border: 1px solid var(--line);
-  border-radius: 22px;
   background: #fff;
-  box-shadow: 0 12px 30px rgba(7, 25, 36, 0.05);
 }
 
 .tableRow:first-child {
@@ -1626,30 +1415,21 @@
   margin: 0 0 14px;
   color: var(--ink);
   font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
-  font-size: clamp(21px, 5.2vw, 28px);
-  font-weight: 900;
-  line-height: 1.42;
   letter-spacing: -0.01em;
 }
 
 .tableValue,
 .tableText {
   color: var(--ink-2);
-  font-size: clamp(16px, 4.2vw, 18px);
-  line-height: 2.05;
 }
 
 .tablePairs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 14px;
   margin: 0;
 }
 
 .tablePair {
-  padding: 16px 16px 18px;
   border: 1px solid var(--line-2);
-  border-radius: 18px;
   background: var(--kinto-teal-mist);
 }
 
@@ -1660,7 +1440,6 @@
   margin: 0 0 10px;
   color: var(--kinto-teal-deep);
   font-family: var(--font-heading), "Zen Kaku Gothic New", sans-serif;
-  font-size: 15px;
   font-weight: 900;
   letter-spacing: 0.03em;
   text-transform: none;
@@ -1690,10 +1469,7 @@
 
 .blockNote {
   max-width: 100%;
-  margin-top: 18px;
   color: var(--ink-2);
-  font-size: clamp(16px, 4vw, 18px);
-  line-height: 2;
 }
 
 .listGrid {
@@ -1702,131 +1478,21 @@
   gap: 18px;
 }
 
-.listItem,
-.infoCard,
-.noteCard,
-.warnCard {
-  padding: clamp(22px, 4.5vw, 34px);
-  border-radius: 22px;
-  box-shadow: 0 12px 30px rgba(7, 25, 36, 0.05);
-}
-
 .listNumber {
   width: auto;
   height: auto;
-  margin-bottom: 12px;
   border: 0;
   background: transparent;
   color: var(--kinto-teal);
-  font-size: 28px;
   letter-spacing: -0.03em;
 }
 
-.listItemText,
-.cardText {
-  font-size: clamp(16px, 4.2vw, 18px);
-  line-height: 2.05;
-}
-
-.infoCard h4,
-.noteCard h3,
-.warnCard h3,
-.summaryCard h3 {
-  font-size: clamp(21px, 5.2vw, 28px);
-  line-height: 1.42;
-  margin-bottom: 14px;
-}
-
-.stepList {
-  gap: 18px;
-}
-
-.stepItem {
-  grid-template-columns: 64px 1fr;
-  gap: 18px;
-  padding: clamp(22px, 4.5vw, 34px);
-  border-radius: 22px;
-  box-shadow: 0 12px 30px rgba(7, 25, 36, 0.05);
-}
-
 .stepIndex span {
-  font-size: clamp(30px, 8vw, 42px);
   line-height: 1;
 }
 
 .stepIndex small:empty {
   display: none;
-}
-
-.stepBody h4 {
-  font-size: clamp(21px, 5.2vw, 28px);
-  line-height: 1.42;
-  margin-bottom: 10px;
-}
-
-.stepBody p,
-.stepBody li {
-  font-size: clamp(16px, 4.2vw, 18px);
-  line-height: 2.05;
-}
-
-.headTitle .cbj-sentence-line,
-.sectionTitle .cbj-sentence-line,
-.blockTitle .cbj-sentence-line,
-.tableLabel .cbj-sentence-line {
-  display: block;
-}
-
-.headLede {
-  white-space: pre-line;
-}
-
-@media (max-width: 640px) {
-  .figureBlock {
-    width: calc(100vw - 20px);
-  }
-
-  .figureImageWrap {
-    border-radius: 16px;
-  }
-
-  .figureCaption {
-    padding-left: 10px;
-    font-size: 13px;
-  }
-
-  .tableRows,
-.stepList,
-.listGrid,
-.cardStack,
-.boardBlock {
-    gap: 20px;
-  }
-
-  .tableRow,
-.stepItem,
-.listItem,
-.infoCard,
-.noteCard,
-.warnCard {
-    padding: 24px 22px;
-  }
-}
-
-/* CBJ23: restore readable Guide/Column proportions after card/figure audit. */
-.figureBlock {
-  width: 100%;
-  max-width: var(--read-max);
-  margin: 26px auto;
-  transform: none;
-}
-
-.figureImageWrap {
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 10px 26px rgba(6, 24, 32, 0.055);
 }
 
 .figureCaption {
@@ -1945,37 +1611,22 @@
 }
 
 @media (max-width: 640px) {
-  .figureBlock {
-    width: 100%;
-    max-width: 100%;
-  }
-
   .tableRows,
-.stepList,
-.listGrid,
-.cardStack,
-.boardBlock {
+  .stepList,
+  .listGrid,
+  .cardStack,
+  .boardBlock {
     gap: 12px;
   }
 
   .tableRow,
-.stepItem,
-.listItem,
-.infoCard,
-.noteCard,
-.warnCard {
+  .stepItem,
+  .listItem,
+  .infoCard,
+  .noteCard,
+  .warnCard {
     padding: 15px 16px;
   }
-}
-
-/* CBJ26: mobile rendering stability fixes.
-   - Do not hide article blocks behind scroll reveal; some mobile browsers failed to reveal SYSTEM until resize.
-   - Detail pages can omit heroImage; when present, avoid card-like framing. */
-.page:global(.cbj-motion-ready) [data-cbj-reveal],
-.page:global(.cbj-motion-ready) [data-cbj-reveal]:global(.cbj-reveal-visible) {
-  opacity: 1 !important;
-  transform: none !important;
-  transition: none !important;
 }
 
 .heroFrameImage {
@@ -1988,53 +1639,31 @@
   background: transparent;
 }
 
-/* CBJ27: hard fixes for mobile rendering regressions.
-   - Reveal blocks must never depend on resize/intersection to become visible.
-   - Article figures are content images, not images trapped inside decorative frames. */
-.page:global(.cbj-motion-ready) [data-cbj-reveal],
-.page:global(.cbj-motion-ready) [data-cbj-reveal]:global(.cbj-reveal-visible),
-.page [data-cbj-reveal] {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-  transition: none !important;
+.figureImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0;
 }
 
 .figureBlock {
-  width: min(100%, var(--read-max)) !important;
-  max-width: var(--read-max) !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  transform: none !important;
-}
-
-.figureImageWrap {
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  overflow: visible !important;
-}
-
-.figureImage {
-  display: block !important;
-  width: 100% !important;
-  height: auto !important;
-  object-fit: contain !important;
-  border-radius: 0 !important;
+  margin-top: 26px;
+  margin-bottom: 26px;
+  width: min(100%, var(--read-max));
+  max-width: var(--read-max);
+  margin-left: auto;
+  margin-right: auto;
+  transform: none;
 }
 
 @media (max-width: 640px) {
   .figureBlock {
-    width: 100% !important;
-    max-width: 100% !important;
+    width: 100%;
+    max-width: 100%;
   }
 }
 
-/* CBJ29: article card refinement.
-   - General comparison cards use the same indexed left-rail language as the flow cards.
-   - NG / OK cards are differentiated by natural red / blue diagonal gradients and icon-only markers.
-   - These changes improve scanability on mobile without making the page feel noisy. */
 .tableRowIndexed {
   display: grid;
   grid-template-columns: 64px minmax(0, 1fr);
@@ -2090,21 +1719,11 @@
 }
 
 .tableRowDecisionNg::before {
-  background:
-    linear-gradient(135deg,
-      rgba(255, 252, 252, 0.98) 0%,
-      rgba(253, 242, 242, 0.94) 36%,
-      rgba(248, 225, 225, 0.88) 72%,
-      rgba(242, 210, 210, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(255, 252, 252, 0.98) 0%, rgba(253, 242, 242, 0.94) 36%, rgba(248, 225, 225, 0.88) 72%, rgba(242, 210, 210, 0.9) 100%);
 }
 
 .tableRowDecisionOk::before {
-  background:
-    linear-gradient(135deg,
-      rgba(251, 254, 255, 0.98) 0%,
-      rgba(241, 249, 253, 0.95) 36%,
-      rgba(224, 240, 248, 0.9) 74%,
-      rgba(202, 228, 241, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(251, 254, 255, 0.98) 0%, rgba(241, 249, 253, 0.95) 36%, rgba(224, 240, 248, 0.9) 74%, rgba(202, 228, 241, 0.9) 100%);
 }
 
 .tableRowDecision > * {
@@ -2114,7 +1733,6 @@
 
 .tableRowContentDecision {
   min-height: 46px;
-  padding-right: clamp(88px, 24vw, 148px);
 }
 
 .decisionCardIcon {
@@ -2129,7 +1747,6 @@
   background: transparent;
   box-shadow: none;
   font-family: var(--font-display), Manrope, system-ui, sans-serif;
-  font-size: clamp(66px, 17vw, 116px);
   font-weight: 900;
   line-height: 0.85;
   letter-spacing: -0.08em;
@@ -2139,27 +1756,19 @@
 .decisionCardIconNg {
   color: rgba(210, 48, 48, 0.78);
   transform: rotate(-11deg);
-  text-shadow:
-    0 2px 0 rgba(255, 255, 255, 0.45),
-    0 12px 22px rgba(110, 24, 24, 0.12);
+  text-shadow: 0 2px 0 rgba(255, 255, 255, 0.45), 0 12px 22px rgba(110, 24, 24, 0.12);
 }
 
 .decisionCardIconOk {
   color: rgba(28, 139, 184, 0.82);
   transform: rotate(-4deg);
-  text-shadow:
-    0 2px 0 rgba(255, 255, 255, 0.45),
-    0 12px 22px rgba(16, 68, 96, 0.12);
+  text-shadow: 0 2px 0 rgba(255, 255, 255, 0.45), 0 12px 22px rgba(16, 68, 96, 0.12);
 }
 
 .tableValueDecision,
 .tableValueDecision .richTextWrap,
 .tableValueDecision .tableText {
   color: var(--ink);
-}
-
-.tableValueDecision :global(.cbj-sentence-line) {
-  font-weight: 520;
 }
 
 @media (max-width: 640px) {
@@ -2175,19 +1784,8 @@
   .tableRowIndexed .tableRowContent {
     padding-left: 14px;
   }
-
-  .tableRowContentDecision {
-    padding-right: 92px;
-  }
-
-  .decisionCardIcon {
-    top: 12px;
-    right: 22px;
-    font-size: clamp(62px, 18vw, 92px);
-  }
 }
 
-/* CBJ31: keep indexed cards and article figures readable when exported to PDF. */
 .tableRow,
 .stepItem {
   break-inside: avoid;
@@ -2212,9 +1810,6 @@
   }
 }
 
-/* CBJ30: Sub-section headings inside article chapters.
-   Use this for 1-1 / 2-1 level explanations that should read as part of the article flow,
-   not as separate summary cards. */
 .subheadingBlock {
   display: flex;
   align-items: flex-start;
@@ -2250,7 +1845,6 @@
   }
 }
 
-/* CBJ30: header tag de-duplication support and section deck preservation. */
 .sectionDeck {
   max-width: 58ch;
   margin: -14px 0 0;
@@ -2259,7 +1853,6 @@
   line-height: 1.95;
 }
 
-/* CBJ30: keep NG / OK icon-only cards readable on mobile. */
 .decisionCardIcon {
   font-size: clamp(54px, 14vw, 96px);
 }
@@ -2281,6 +1874,7 @@
 }
 
 /* CBJ image flow: keep approved consecutive article infographics visually connected without changing the shared card system. */
+
 .sectionBody .figureBlock + .figureBlock {
   margin-top: 14px;
 }
@@ -2293,4 +1887,8 @@
   .sectionBody .figureBlock + .figureBlock {
     margin-top: 12px;
   }
+}
+
+.tableValueDecision :global(.cbj-sentence-line) {
+  font-weight: 520;
 }
