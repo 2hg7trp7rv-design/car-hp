@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-10T16:03:09.033Z",
+  "generatedAt": "2026-09-22T10:41:24.787Z",
   "summary": {
     "totals": {
       "CAR": 111,
       "GUIDE": 6,
-      "COLUMN": 1,
+      "COLUMN": 2,
       "HERITAGE": 31
     },
     "all": {
-      "total": 149,
-      "index": 131
+      "total": 150,
+      "index": 132
     },
     "errorCount": 0,
     "warningCount": 94
@@ -6400,6 +6400,28 @@
         "decisionBlocks": 60,
         "decisionActionLinks": 3,
         "decisionSources": 13
+      }
+    },
+    {
+      "type": "COLUMN",
+      "slug": "spare-key-missing-negotiation",
+      "id": "column-spare-key-missing-negotiation",
+      "title": "スペアキーなしの中古車は値引きできる？納車までに決めたいキーの条件",
+      "status": "published",
+      "publicState": "index",
+      "url": "/column/spare-key-missing-negotiation",
+      "file": "data/articles/columns/spare-key-missing-negotiation.json",
+      "issues": [],
+      "metrics": {
+        "bodyLen": 4934,
+        "headings": 15,
+        "decisionKeyPoints": 3,
+        "decisionCheckpoints": 4,
+        "decisionFaq": 5,
+        "decisionSections": 6,
+        "decisionBlocks": 21,
+        "decisionActionLinks": 1,
+        "decisionSources": 6
       }
     },
     {

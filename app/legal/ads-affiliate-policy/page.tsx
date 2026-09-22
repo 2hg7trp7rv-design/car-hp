@@ -66,6 +66,7 @@ export default function AdsAffiliatePolicyPage() {
             <p>
               リンクを経由して商品やサービスが購入・申込された場合、サイトに報酬が発生することがあります
             </p>
+            <p>Amazonのアソシエイトとして、CAR BOUTIQUE JOURNALは適格販売により収入を得ています。</p>
           </LegalDocSection>
 
           <LegalDocSection index="02" title="表記について">

@@ -22,11 +22,9 @@ export function SiteChrome({ children, footer, articleFooter }: SiteChromeProps)
   const heritageDetail = isHeritageDetailPath(pathname);
   const editorialArticle = isEditorialArticlePath(pathname);
 
-  if (pathname === "/") {
+  if (pathname === "/" || pathname === "/learn" || pathname.startsWith("/learn/") || pathname === "/choose" || pathname.startsWith("/choose/") || pathname === "/glossary") {
     return (
       <div
-        id="cb-main"
-        tabIndex={-1}
         className="min-h-screen bg-[#fffdf8] text-[#2b2b33] outline-none"
       >
         {children}

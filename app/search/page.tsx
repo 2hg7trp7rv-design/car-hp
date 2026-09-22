@@ -22,6 +22,7 @@ type Suggestions = {
   guide: SearchDoc[];
   column: SearchDoc[];
   heritage: SearchDoc[];
+  learn: SearchDoc[];
 };
 
 type SearchPageParams = {
@@ -49,6 +50,7 @@ function normalizeType(input: string): SearchDocType | "all" {
   if (t === "guide" || t === "guides") return "guide";
   if (t === "column" || t === "columns") return "column";
   if (t === "heritage") return "heritage";
+  if (t === "learn" || t === "learning") return "learn";
   return "all";
 }
 
@@ -60,7 +62,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   return {
     title,
     description:
-      "車種・症状・キーワードで、車種・ガイド・コラム・系譜を横断して探せます。",
+      "車種・症状・キーワードで、学習レッスン・車種・ガイド・コラム・系譜を横断して探せます。",
     alternates: {
       canonical: `${getSiteUrl()}/search`,
     },
@@ -122,17 +124,18 @@ export default async function SearchPage({ searchParams }: PageProps) {
         <ArchivePageHero
           eyebrow="検索"
           title="SEARCH"
-          lead="車種名・症状・維持費・歴史などカテゴリをまたいで検索。ショートカット: / または Ctrl/⌘+K"
+          lead="車のしくみ・車種名・症状・維持費・歴史を、本文まで検索。"
           imageSrc="/images/hero-top-desktop.jpeg"
           imageAlt="道路と車のある風景"
           posterVariant="generic"
           seedKey="search"
           stats={[
-            { label: "範囲", value: "4カテゴリ横断", tone: "moss" },
+            { label: "範囲", value: "5カテゴリ横断", tone: "moss" },
             { label: "切替", value: "候補 / 結果を即切替", tone: "slate" },
             { label: "用途", value: "調べ直しの起点", tone: "clay" },
           ]}
           links={[
+            { href: "/learn", label: "車のしくみを学ぶ" },
             { href: "/cars", label: "車種から探す" },
             { href: "/guide", label: "ガイドを読む" },
             { href: "/column", label: "コラムを読む" },
@@ -146,7 +149,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
             <ArchiveSectionHeading
               eyebrow="サイト内検索"
               title="SEARCH"
-              lead="車種名・症状・維持費・歴史などカテゴリをまたいで検索。"
+              lead="車のしくみ・車種名・症状・維持費・歴史を、本文まで検索。"
               className="mb-6 border-t-0 pt-0"
             />
 
@@ -204,6 +207,9 @@ export default async function SearchPage({ searchParams }: PageProps) {
                 カテゴリから見る
               </h2>
               <div className="mt-5 flex flex-wrap gap-2">
+                <Button asChild variant="outline" size="sm">
+                  <Link href="/learn">車のしくみを学ぶ</Link>
+                </Button>
                 <Button asChild variant="outline" size="sm">
                   <Link href="/cars">車種を見る</Link>
                 </Button>

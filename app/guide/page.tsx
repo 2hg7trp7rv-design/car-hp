@@ -281,6 +281,7 @@ export default async function GuideArchivePage({ searchParams }: PageProps) {
   const heroImage = resolveEditorialImage(EDITORIAL_ASSETS.guideHero, "guide", "desktop", "guide-hero");
 
   const jsonLdUrl = `${getSiteUrl()}/guide`;
+  const filterValues = { q, category, displayTag, tag: normalizedLegacy && !isKnownDisplayTag(legacyTag) ? legacyTag : "" };
 
   return (
     <main className="min-h-screen bg-[var(--paper)]">
@@ -351,10 +352,11 @@ export default async function GuideArchivePage({ searchParams }: PageProps) {
             キーワードで探す
           </h2>
 
-          <ArchiveFilterAutoApply formId="guide-filter-form" />
+          <ArchiveFilterAutoApply formId="guide-filter-form" filterValues={filterValues} />
 
           <form
             id="guide-filter-form"
+            data-filter-values={JSON.stringify(filterValues)}
             action="/guide"
             method="get"
             className="mt-6 space-y-6"

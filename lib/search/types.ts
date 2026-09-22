@@ -1,4 +1,4 @@
-export type SearchDocType = "cars" | "guide" | "column" | "heritage";
+export type SearchDocType = "cars" | "guide" | "column" | "heritage" | "learn";
 
 export type SearchDoc = {
   type: SearchDocType;

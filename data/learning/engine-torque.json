@@ -1,0 +1,303 @@
+{
+  "slug": "engine-torque",
+  "topic": "engine",
+  "title": "エンジンの力を読み解く",
+  "description": "トルクと出力は何が違う？ 回る力の意味からカタログの単位、回転数と出力の関係までを、会話と計算例でつなぎます。",
+  "status": "published",
+  "publicState": "index",
+  "updatedAt": "2026-09-22",
+  "verifiedAt": "2026-09-22",
+  "outcomes": [
+    "トルクと回転数を区別できる",
+    "性能表示を単位と回転数まで読める",
+    "計算の仮定と実車の性能を分けられる"
+  ],
+  "sources": [
+    {
+      "id": "nidec-torque",
+      "title": "ニデック｜トルク、回転力",
+      "url": "https://www.nidec.com/jp/technology/motor/glossary/item/torque/",
+      "note": "回転軸のトルクと、力・半径を用いる測定の説明。モーターの資料から回転力学の基礎を参照。"
+    },
+    {
+      "id": "nidec-power",
+      "title": "ニデック グレスナー｜精密直交軸減速機 総合カタログ",
+      "url": "https://www.nidec.com/files/user/www-nidec-com/nidec-drivetechnology/product/download/catalogs_pdf/GRAESSNER/GRAESSNER_Digest_71100.pdf#page=79",
+      "note": "冊子78ページ（PDF79ページ）の選定手順。トルク、kW、回転数の換算式を参照し、減速機の製品条件を車へ流用しない。"
+    },
+    {
+      "id": "honda-nbox",
+      "title": "Honda｜N-BOX 性能・安全",
+      "url": "https://www.honda.co.jp/Nbox/webcatalog/performance/",
+      "note": "確認日時点のi-VTECエンジンとターボエンジンの性能表示。掲載車種の数値を全車へ一般化しない。"
+    }
+  ],
+  "lessons": [
+    {
+      "slug": "turning-force",
+      "title": "トルクって、回る速さのこと？",
+      "stage": "start",
+      "goal": "軸を回す作用の大きさと、回転する速さを分けて説明できる。",
+      "prerequisites": [],
+      "blocks": [
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "エンジンの説明に「トルクが大きい」ってあったよ。すごい速さで回るってこと？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "回る速さとは別なんだ。トルクは、軸を回そうとする作用の大きさ。回転数は、一定の時間に何回まわるかを表しているよ。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "回す力と、何回まわるか。似ているけど別の数字なんだね。トルクは何で決まるの？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "たとえば取っ手を押して軸を回すなら、押す力と、軸から力を加える場所までの距離が関係する。ここでは取っ手に直角に押す例で考えよう。"
+        },
+        {
+          "type": "comparison",
+          "title": "回す作用と、回る速さを分ける",
+          "headers": [
+            "言葉",
+            "見ているもの",
+            "単位の例"
+          ],
+          "rows": [
+            [
+              "トルク",
+              "軸を回そうとする作用の大きさ",
+              "N・m"
+            ],
+            [
+              "回転数",
+              "1分間に何回まわるか",
+              "rpm"
+            ]
+          ],
+          "note": "取っ手の例は回転力学を理解するためのたとえ。エンジン内部の構造や、車全体の加速を表す実測ではありません。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "長い取っ手なら、同じ強さで押しても回そうとする作用が大きいんだ！"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "そう。この場合は、力の大きさに軸からの距離を掛ける。力をN（ニュートン）、距離をm（メートル）で表すと、トルクの単位はN・mになるよ。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "じゃあN・mが大きいだけでは、何回転しているかまでは分からないんだね。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "そのとおり。エンジンを比べるときも、トルクの数字だけでなく、どの回転数で出している値かを一緒に読む。次はカタログの表示をほどいてみよう。"
+        }
+      ],
+      "takeaways": [
+        "トルクと回転数は別の量。",
+        "N・mは力と距離に関係する単位。",
+        "性能表示では、値に付く条件も読む。"
+      ],
+      "checkpoint": {
+        "question": "「トルクが大きいから、いつも回転数も高い」。この説明は合っている？",
+        "answer": "合っていない。トルクは軸を回す作用の大きさで、回転数は回る速さ。片方だけを知っても、もう片方の値は決まらない。",
+        "review": "turning-force"
+      },
+      "sources": [
+        "nidec-torque",
+        "honda-nbox"
+      ]
+    },
+    {
+      "slug": "reading-specifications",
+      "title": "kW・N・m・rpm、カタログをどう読む？",
+      "stage": "mechanism",
+      "goal": "最高出力と最大トルクの単位、発生回転数を取り違えずに読める。",
+      "prerequisites": [
+        "turning-force"
+      ],
+      "blocks": [
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "最高出力と最大トルク、どっちが本当のエンジンの力なの？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "どちらも大切な違う見方だよ。出力は、仕事をする速さを表す量。回転軸の出力は、そのときのトルクと回転数に関係する。単位はkW（キロワット）などを使う。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "「43kW / 7,300rpm」の斜め線は、何かを割る計算？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "カタログでは、その出力を示すときの回転数を区切って書いているんだ。ここなら最高出力43kWを7,300rpmで発生する、という意味で読もう。"
+        },
+        {
+          "type": "comparison",
+          "title": "一つのエンジンの、二つのピーク表示",
+          "headers": [
+            "項目",
+            "数値",
+            "その値を発生する回転数"
+          ],
+          "rows": [
+            [
+              "最高出力",
+              "43kW",
+              "7,300rpm"
+            ],
+            [
+              "最大トルク",
+              "65N・m",
+              "4,800rpm"
+            ]
+          ],
+          "note": "Honda N-BOXのターボ車を除くi-VTECエンジンについて、2026年9月22日確認の公式掲載値。別モデルへの推奨値ではなく、表示を読むための例です。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "同じエンジンなのに、最大トルクの横は4,800rpmだ。数字が合っていなくてもいいの？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "いいんだよ。最高出力になる回転数と、最大トルクになる回転数は同じとは限らない。二つのピーク値が、別々の運転点を指しているからね。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "じゃあ「65N・m」と「7,300rpm」を組み合わせて計算しちゃだめ？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "その回転数でも65N・mを出している、という情報がないからね。エンジンの回転数ごとの値を並べた性能曲線が必要になる。最大値の二つを、そのまま同時の値にしないのがコツだよ。"
+        }
+      ],
+      "takeaways": [
+        "出力の単位と、回転数の単位を分けて読む。",
+        "最高出力と最大トルクは異なる回転数で示されることがある。",
+        "ピーク値だけから全回転域の性能曲線は復元できない。"
+      ],
+      "checkpoint": {
+        "question": "最大トルクの回転数しか分からないとき、最高出力が出る回転数のトルクを同じ値としてよい？",
+        "answer": "同じとは言えない。ピークを過ぎてトルクがどう変わるかは、二つの最大値だけでは分からない。その回転数でのトルクや性能曲線を確かめる必要がある。",
+        "review": "reading-specifications"
+      },
+      "sources": [
+        "honda-nbox",
+        "nidec-power"
+      ]
+    },
+    {
+      "slug": "power-at-one-point",
+      "title": "回転数が倍なら、出力も倍になる？",
+      "stage": "evaluation",
+      "goal": "同じ運転点のトルクと回転数から出力を計算し、仮定の範囲を説明できる。",
+      "prerequisites": [
+        "turning-force",
+        "reading-specifications"
+      ],
+      "blocks": [
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "出力はトルクと回転数に関係するんだよね。回転数を上げたら、そのまま出力も増える？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "トルクがどう変わるかも必要だよ。同じ軸の同じ運転点なら、出力kWは「トルクN・m × 回転数rpm ÷ 9550」で求められる。9550は、この単位の組み合わせに合わせた換算の数だよ。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "まずトルクが変わらないと仮定すれば、回転数だけの影響を見られるんだね。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "そう。ここではAは200N・m、Bは100N・mをどちらの回転数でも出すと仮定しよう。実車を測った値ではなく、式の関係をつかむ計算例だよ。"
+        },
+        {
+          "type": "measurements",
+          "title": "トルク一定と仮定した出力の計算",
+          "unit": "kW",
+          "xLabel": "回転数（rpm）",
+          "yLabel": "計算上の軸出力",
+          "rounds": [
+            "3000rpm",
+            "6000rpm"
+          ],
+          "series": [
+            {
+              "name": "A：200N・m一定",
+              "values": [
+                62.8,
+                125.7
+              ]
+            },
+            {
+              "name": "B：100N・m一定",
+              "values": [
+                31.4,
+                62.8
+              ]
+            }
+          ],
+          "note": "仮定に基づく計算例で、実測データや特定車種の性能曲線ではありません。各系列は両方の回転数で同じトルクを保つと仮定し、P=T×n/9550で計算、小数第1位に丸めています。線は計算点の関係を示します。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "Aは回転数が倍で、出力もほぼ倍。Bも同じだ！"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "丸める前の計算ではちょうど倍になる。この結果を使えるのは、同じトルクが保たれるという仮定の中だよ。実際のエンジンで、その条件が成立するかは別に確かめる。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "本物のエンジンでトルクが下がったら、回転数だけ見ても出力は決まらないね。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "そのとおり。計算式が正しくても、入れた値や条件が実車に合っていなければ、実車の性能は説明できない。グラフが実測なのか、仮定からの計算なのかも読み分けよう。"
+        }
+      ],
+      "takeaways": [
+        "計算には同じ軸・同じ運転点の値を使う。",
+        "トルク一定という仮定なら、出力は回転数に比例する。",
+        "式からの計算例と実測された性能を分ける。"
+      ],
+      "checkpoint": {
+        "question": "あるエンジンが3,000rpmで200N・mを出した。6,000rpmで125.7kWを出すと、この情報だけで言える？",
+        "answer": "言えない。6,000rpmでも200N・mを出すと仮定すれば約125.7kWになるが、その回転数のトルクはまだ分からない。性能曲線や測定結果を確認する必要がある。",
+        "review": "power-at-one-point"
+      },
+      "sources": [
+        "nidec-power",
+        "honda-nbox"
+      ]
+    }
+  ]
+}

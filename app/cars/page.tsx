@@ -433,6 +433,12 @@ export default async function CarsPage({ searchParams }: PageProps) {
 
   ].filter(Boolean) as Array<{ label: string; href: string }>;
 
+  const filterValues = {
+    q: rawQ, maker: makerKeyFilter, bodyType: bodyTypeFilter, segment: segmentFilter,
+    minYear: rawMinYear, maxYear: rawMaxYear, minPrice: rawMinPrice, maxPrice: rawMaxPrice,
+    priceBand: priceBandFilter, perPage: perPage === 24 ? "24" : perPage === 48 ? "48" : "",
+  };
+
   return (
     <main className="min-h-screen bg-[var(--bg-stage)] text-[var(--text-primary)]">
       <JsonLd id="jsonld-cars-index-breadcrumb" data={breadcrumbData} />
@@ -510,7 +516,11 @@ export default async function CarsPage({ searchParams }: PageProps) {
               条件で絞り込む
             </h2>
 
-            <form id="cars-filter-form" method="get" action="/cars" className="mt-6 space-y-6">
+            <form
+              id="cars-filter-form"
+              data-filter-values={JSON.stringify(filterValues)}
+              method="get" action="/cars" className="mt-6 space-y-6"
+            >
               <input type="hidden" name="sort" value={sortKey} disabled={!sortKey} />
               <input type="hidden" name="view" value="list" disabled={viewMode !== "list"} />
               {includeNoindex ? <input type="hidden" name="includeNoindex" value="1" /> : null}
@@ -765,7 +775,7 @@ export default async function CarsPage({ searchParams }: PageProps) {
               </details>
             </form>
 
-            <CarsFilterAutoApply formId="cars-filter-form" />
+            <CarsFilterAutoApply formId="cars-filter-form" filterValues={filterValues} />
 
           </div>
         </section>

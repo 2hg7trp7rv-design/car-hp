@@ -33,6 +33,7 @@ type Props = {
   title: string;
   date?: string | null;
   imageSrc?: string | null;
+  showImage?: boolean;
   eyebrow?: string | null;
   excerpt?: string | null;
   aspect?: Aspect;
@@ -46,6 +47,7 @@ export function ContentGridCard({
   title,
   date,
   imageSrc,
+  showImage = true,
   eyebrow,
   excerpt,
   aspect = "landscape",
@@ -53,7 +55,7 @@ export function ContentGridCard({
   posterVariant = "generic",
   className,
 }: Props) {
-  const resolvedImage = resolveEditorialImage(imageSrc ?? null, posterVariant, "card", seedKey ?? href ?? title);
+  const resolvedImage = showImage ? resolveEditorialImage(imageSrc ?? null, posterVariant, "card", seedKey ?? href ?? title) : null;
   const displayEyebrow = eyebrow?.trim() || VARIANT_LABEL[posterVariant];
 
   return (
@@ -65,7 +67,7 @@ export function ContentGridCard({
         className,
       )}
     >
-      <div className={cn("relative bg-[var(--surface-2)]", aspectClass(aspect))}>
+      {resolvedImage ? <div className={cn("relative bg-[var(--surface-2)]", aspectClass(aspect))}>
         <Image
           src={resolvedImage.src}
           alt={title}
@@ -98,9 +100,10 @@ export function ContentGridCard({
             <span className="text-[10px] tracking-[0.16em] text-[rgba(31,28,25,0.56)]">イメージ</span>
           ) : null}
         </div>
-      </div>
+      </div> : null}
 
       <div className="flex flex-1 flex-col p-5">
+        {!showImage ? <span className="mb-2 text-[10px] font-semibold tracking-[0.18em] text-[var(--text-secondary)]">{displayEyebrow}</span> : null}
         {date ? (
           <div className="text-[10px] tracking-[0.16em] text-[var(--text-tertiary)]">{date}</div>
         ) : null}

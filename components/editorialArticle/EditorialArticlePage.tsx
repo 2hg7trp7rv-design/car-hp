@@ -709,7 +709,7 @@ export function EditorialArticlePage({
               <h2>{article.actionBox.title}</h2>
               {article.actionBox.body ? <p>{article.actionBox.body}</p> : null}
               <ul>{article.actionBox.actions.map((action) => (
-                <li key={action.href}><Link href={action.href}>{action.label}</Link></li>
+                <li key={`${action.href}:${action.label}`}><Link href={action.href}>{action.label}</Link></li>
               ))}</ul>
             </section>
           ) : null}

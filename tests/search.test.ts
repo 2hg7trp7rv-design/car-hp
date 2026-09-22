@@ -57,3 +57,36 @@ test("search results and empty-query suggestions never serialize index text", as
     assert.ok(!/"_(body|title|haystack)"/.test(json));
   }
 });
+
+test("learning fulltext includes dialogue, comparison cells and exercise answers", async () => {
+  const { learningHref, learningLessonText, getLearningCourses } = await import("../lib/learning");
+  for (const [q, slug] of [["シール不良", "filter-life"], ["通過量", "filtration-and-restriction"], ["因果関係", "read-the-evidence"]]) {
+    const hits = await searchSite({ q, type: "learn", limit: 50 });
+    assert.ok(hits.some((hit) => hit.href === learningHref("air-cleaner", slug)), q);
+    assert.ok(hits.every((hit) => hit.type === "learn" && Object.keys(hit).every((key) => !key.startsWith("_"))));
+  }
+  assert.ok((await getSearchSuggestions()).learn.length > 0);
+  for (const course of getLearningCourses()) {
+    for (const lesson of course.lessons) assert.ok(learningLessonText(lesson).includes(lesson.checkpoint.answer));
+  }
+  const response = await GET(new Request("https://example.test/api/search?q=" + encodeURIComponent("シール不良") + "&type=learn&limit=2"));
+  const payload = await response.json();
+  assert.equal(payload.type, "learn");
+  assert.ok(payload.results.length > 0 && payload.results.length <= 2);
+  assert.ok(payload.results.every((hit: { type: string }) => hit.type === "learn"));
+});
+
+test("learning text extraction covers graph axes, values and each block variant", async () => {
+  const { learningLessonText, DIAGRAM_TEXT, getLearningCourses } = await import("../lib/learning");
+  for (const course of getLearningCourses()) for (const lesson of course.lessons) {
+    const body = learningLessonText(lesson);
+    for (const block of lesson.blocks) {
+      const phrases = block.type === "dialogue" ? [block.text]
+        : block.type === "flow" ? [block.title, ...block.steps.flatMap((step) => [step.title, step.body]), block.note]
+        : block.type === "comparison" ? [block.title, ...block.headers, ...block.rows.flat(), block.note]
+        : block.type === "measurements" ? [block.title, block.unit, block.xLabel, block.yLabel, ...block.rounds, ...block.series.flatMap((series) => [series.name, ...series.values.map(String)]), block.note]
+        : [block.title ?? DIAGRAM_TEXT[block.kind], block.note];
+      for (const phrase of phrases.filter((value): value is string => Boolean(value))) assert.ok(body.includes(phrase), `${course.slug}/${lesson.slug}: ${phrase}`);
+    }
+  }
+});

@@ -15,6 +15,7 @@ function normalizeType(input: string | null): SearchDocType | "all" {
   if (t === "guide" || t === "guides") return "guide";
   if (t === "column" || t === "columns") return "column";
   if (t === "heritage") return "heritage";
+  if (t === "learn" || t === "learning") return "learn";
 
   return "all";
 }

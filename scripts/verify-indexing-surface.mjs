@@ -10,6 +10,9 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { tsImport } from "tsx/esm/api";
+
+const { publicationPolicy } = await tsImport("../lib/content/publication.ts", import.meta.url);
 
 const ROOT = process.cwd();
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || "https://carboutiquejournal.com").replace(/\/+$/, "");
@@ -86,17 +89,10 @@ function locToPath(loc) {
   return normalizePath(url.pathname);
 }
 
-function isPublished(item) {
-  return !item?.status || String(item.status) === "published";
-}
-
 function publicState(item) {
-  return safeString(item?.publicState).toLowerCase();
+  return publicationPolicy(item).state;
 }
-
-function isIndexAllowed(item) {
-  return Boolean(item) && isPublished(item) && publicState(item) === "index" && item?.noindex !== true;
-}
+const isIndexAllowed = (item) => publicationPolicy(item).indexable;
 
 function normalizeList(values) {
   if (!Array.isArray(values)) return [];
@@ -164,7 +160,7 @@ function extractInternalPaths(text) {
   const absRe = /https?:\/\/(?:www\.)?carboutiquejournal\.com\/[^\s)"']+/gi;
   for (const m of s.matchAll(absRe)) hits.add(normalizePath(stripTrailingPunct(m[0])));
 
-  const relRe = /\/(?:cars|guide|column|heritage|contact|privacy|site-map)(?:\/[A-Za-z0-9_-]+)*/g;
+  const relRe = /\/(?:cars|guide|column|heritage|learn|choose|glossary|contact|privacy|site-map)(?:\/[A-Za-z0-9_-]+)*/g;
   for (const m of s.matchAll(relRe)) {
     const idx = typeof m.index === "number" ? m.index : -1;
     if (idx > 0 && /[A-Za-z0-9._-]/.test(s[idx - 1])) continue;
@@ -264,9 +260,35 @@ const invalidArticleSitemap = Array.from(actualArticlePaths)
   .sort();
 if (invalidArticleSitemap.length > 0) die("non-indexable/unknown article URLs found in article sitemaps", invalidArticleSitemap);
 
+// Learning has nested course/lesson routes; compare the entire shard, including noindex exclusion.
+const expectedLearningPaths = new Set();
+for (const rel of listJson("data/learning")) {
+  const course = readJson(rel);
+  if (!publicationPolicy(course).indexable) continue;
+  if (!course.slug || !course.lessons?.length) die("indexable learning course is empty", [rel]);
+  for (const slug of [course.slug, ...course.lessons.map((lesson) => `${course.slug}/${lesson.slug}`)]) {
+    const pathname = `/learn/${slug.split("/").map(encodeURIComponent).join("/")}`;
+    if (!redirectSources.has(pathname)) expectedLearningPaths.add(pathname);
+  }
+}
+const learningLocs = extractLocs(readText("public/sitemaps/sitemap-learning.xml"));
+const actualLearningPaths = new Set(learningLocs.map(locToPath));
+if (learningLocs.length !== actualLearningPaths.size) die("duplicate learning sitemap URL");
+const learningProblems = [
+  ...[...expectedLearningPaths].filter((p) => !actualLearningPaths.has(p)).map((p) => `missing: ${p}`),
+  ...[...actualLearningPaths].filter((p) => !expectedLearningPaths.has(p)).map((p) => `non-indexable or unknown: ${p}`),
+];
+if (learningProblems.length) die("learning sitemap does not match publication policy", learningProblems);
+if (expectedLearningPaths.size && !extractLocs(sitemapIndex).includes(`${SITE_URL}/sitemaps/sitemap-learning.xml`)) {
+  die("learning sitemap shard missing from sitemap index");
+}
+for (const pathname of ["/learn", "/choose", "/choose/drive-recorder", "/choose/car-wash", "/choose/air-filter", "/glossary"]) {
+  if (!allSitemapPaths.has(pathname)) die("public learning/selection hub missing from sitemap", [pathname]);
+}
+
 // 5) 記事本文・構造化本文から redirect 元URLへ内部リンクしない
 const redirectLinkProblems = [];
-for (const group of ARTICLE_GROUPS) {
+for (const group of [...ARTICLE_GROUPS, { dir: "data/learning" }]) {
   for (const rel of listJson(group.dir)) {
     const raw = readText(rel);
     for (const p of extractInternalPaths(raw)) {
@@ -279,5 +301,5 @@ for (const group of ARTICLE_GROUPS) {
 if (redirectLinkProblems.length > 0) die("internal links point to redirect sources", redirectLinkProblems);
 
 console.log(
-  `[verify-indexing-surface] ✅ OK (index articles=${expectedArticlePaths.size}, sitemap URLs=${allSitemapPaths.size}, redirects=${redirectSources.size})`,
+  `[verify-indexing-surface] ✅ OK (index articles=${expectedArticlePaths.size}, learning URLs=${expectedLearningPaths.size}, sitemap URLs=${allSitemapPaths.size}, redirects=${redirectSources.size})`,
 );
