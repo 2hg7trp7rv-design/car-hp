@@ -13,6 +13,10 @@ import {
   TurboIntakePath,
 } from "./air-cleaner";
 import { AWeighting, ExhaustPath, ProximityMeasurement, SilencerStructures, SoundRms } from "./sound";
+import { CameraAndRadar, RecognitionConditions, SensingChain } from "./driving-support";
+import { InspectVsReplace, IntervalConditions, OilLabel } from "./maintenance";
+import { DamperVelocity, HardRideCauses, SpringAndDamper } from "./suspension";
+import { BrakeToRoad, TirePressure, WearPatterns } from "./tires";
 import {
   CatalogAnatomy,
   DriveForceBySpeed,
@@ -51,4 +55,16 @@ export const FIGURES: Record<DiagramKind, ComponentType> = {
   "silencer-structures": SilencerStructures,
   "proximity-measurement": ProximityMeasurement,
   "a-weighting": AWeighting,
+  "spring-and-damper": SpringAndDamper,
+  "hard-ride-causes": HardRideCauses,
+  "damper-velocity": DamperVelocity,
+  "brake-to-road": BrakeToRoad,
+  "tire-pressure": TirePressure,
+  "wear-patterns": WearPatterns,
+  "sensing-chain": SensingChain,
+  "camera-and-radar": CameraAndRadar,
+  "recognition-conditions": RecognitionConditions,
+  "inspect-vs-replace": InspectVsReplace,
+  "oil-label": OilLabel,
+  "interval-conditions": IntervalConditions,
 };
