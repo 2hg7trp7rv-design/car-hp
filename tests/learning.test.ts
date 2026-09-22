@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   DIAGRAM_KINDS,
   DIAGRAM_TEXT,
+  DIALOGUE_EXPRESSIONS,
   getLearningCourses,
   LEARNING_STAGES,
   LEARNING_TOPICS,
@@ -104,6 +105,14 @@ test("authored courses have valid progression, complete exercises and resolvable
         if (block.type === "dialogue") {
           assert.ok(["shuna", "rina"].includes(block.speaker));
           assert.ok(block.text.trim());
+          if (block.expression) {
+            assert.ok(
+              (DIALOGUE_EXPRESSIONS as readonly string[]).includes(block.expression),
+              `${lesson.slug}: unknown expression ${block.expression}`,
+            );
+            const portrait = `public/images/cbj/learning/${block.speaker}-${block.expression}.webp`;
+            assert.ok(fs.existsSync(portrait), `${lesson.slug}: add the illustration at ${portrait}`);
+          }
           speakers.add(block.speaker);
         } else if (block.type === "comparison") {
           figures++;

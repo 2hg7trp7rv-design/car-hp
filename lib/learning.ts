@@ -62,8 +62,20 @@ export const DIAGRAM_KINDS = [
   "interval-conditions",
 ] as const;
 export type DiagramKind = (typeof DIAGRAM_KINDS)[number];
+/**
+ * Face variants for the two hosts. A line without an expression uses the default portrait,
+ * so illustrations can be added one at a time; the contract test checks that every
+ * expression used in the data has an image at /images/cbj/learning/<speaker>-<expression>.webp.
+ */
+export const DIALOGUE_EXPRESSIONS = ["normal", "surprised", "thinking", "happy"] as const;
+export type DialogueExpression = (typeof DIALOGUE_EXPRESSIONS)[number];
 export type LearningBlock =
-  | { type: "dialogue"; speaker: "shuna" | "rina"; text: string }
+  | {
+      type: "dialogue";
+      speaker: "shuna" | "rina";
+      expression?: DialogueExpression;
+      text: string;
+    }
   | {
       type: "flow";
       title: string;

@@ -5,7 +5,7 @@ import { LearningDiagram } from "./LearningDiagram";
 import { MeasurementFigure } from "./MeasurementFigure";
 import styles from "@/app/learn/learning.module.css";
 export function LessonBlock({block}:{block:Block}){
- if(block.type==='dialogue') return <div className={styles.dialogue} data-dialogue-speaker={block.speaker}><Image src={`/images/cbj/learning/${block.speaker}.webp`} alt="" width={72} height={72} sizes="72px"/><div><strong>{block.speaker==='shuna'?'シュナ':'莉奈'}</strong><p>{block.text}</p></div></div>;
+ if(block.type==='dialogue') return <div className={styles.dialogue} data-dialogue-speaker={block.speaker}><Image src={`/images/cbj/learning/${block.expression?`${block.speaker}-${block.expression}`:block.speaker}.webp`} alt="" width={72} height={72} sizes="72px"/><div><strong>{block.speaker==='shuna'?'シュナ':'莉奈'}</strong><p>{block.text}</p></div></div>;
  if(block.type==='diagram')return <div className={styles.figureWrap}><LearningDiagram kind={block.kind}/><p className={styles.diagramDescription}>{block.title??DIAGRAM_TEXT[block.kind]}{block.note?` ${block.note}`:''}</p></div>;
  if(block.type==='measurements')return <MeasurementFigure block={block}/>;
  if(block.type==='flow')return <figure className={styles.figure}><figcaption>{block.title}</figcaption><ol className={styles.flow}>{block.steps.map(s=><li key={s.title}><strong>{s.title}</strong><p>{s.body}</p></li>)}</ol><p className={styles.note}>{block.note}</p></figure>;
