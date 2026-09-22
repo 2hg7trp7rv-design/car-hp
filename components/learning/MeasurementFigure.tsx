@@ -4,7 +4,10 @@ type Measurements=Extract<LearningBlock,{type:"measurements"}>;
 const colors=['#207d8b','#e25368','#4659a4'];
 export function MeasurementFigure({block}:{block:Measurements}){
  const values=block.series.flatMap(s=>s.values);
- const low=Math.floor(Math.min(...values))-1, high=Math.ceil(Math.max(...values))+1;
+ // The axis starts at 0 unless the data says otherwise, so the drawn height matches the value.
+ // Scales that have no meaningful zero (dB, temperature) set yMin in the block.
+ const low=block.yMin??Math.min(0,Math.floor(Math.min(...values)));
+ const high=block.yMax??Math.max(low+1,Math.ceil(Math.max(...values)*1.08));
  const x=(i:number)=>82+i*380/Math.max(1,block.rounds.length-1);
  const y=(v:number)=>224-(v-low)*162/(high-low);
  const label=block.yLabel??'値';

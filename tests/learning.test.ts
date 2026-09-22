@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
 import {
+  DIAGRAM_KINDS,
+  DIAGRAM_TEXT,
   getLearningCourses,
   LEARNING_STAGES,
   LEARNING_TOPICS,
@@ -130,10 +132,10 @@ test("authored courses have valid progression, complete exercises and resolvable
         } else if (block.type === "diagram") {
           figures++;
           assert.ok(
-            ["air-and-fuel", "pleated-media", "installation-types", "sound-rms"].includes(
-              block.kind,
-            ),
+            (DIAGRAM_KINDS as readonly string[]).includes(block.kind),
+            `${course.slug}/${lesson.slug}: unknown diagram kind ${block.kind}`,
           );
+          assert.ok(DIAGRAM_TEXT[block.kind]?.trim(), `${block.kind}: needs a text description`);
         } else assert.fail(`Unknown learning block: ${JSON.stringify(block)}`);
       }
       assert.deepEqual([...speakers].sort(), ["rina", "shuna"]);
