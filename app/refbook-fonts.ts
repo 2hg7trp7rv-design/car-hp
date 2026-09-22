@@ -1,28 +1,9 @@
 import localFont from "next/font/local";
 
-export const refbookSans = localFont({
-  src: [
-    {
-      path: "./refbook-fonts/noto-sans-jp-400-subset.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "./refbook-fonts/noto-sans-jp-500-subset.woff2",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "./refbook-fonts/noto-sans-jp-700-subset.woff2",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-  variable: "--font-refbook-sans",
-  display: "swap",
-  fallback: ["Hiragino Kaku Gothic ProN", "Hiragino Sans", "sans-serif"],
-});
-
+// Body text uses the reader's system Japanese face. A subset web font for body copy
+// has to carry every character the site can render; anything it misses falls back
+// mid-sentence and the mismatch is visible. Headings keep the rounded face below,
+// whose subset is generated from every reference surface by scripts/subset-refbook-fonts.py.
 export const refbookRounded = localFont({
   src: [
     {

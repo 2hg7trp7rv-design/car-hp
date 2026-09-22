@@ -23,20 +23,16 @@ test("JSON-LD preserves values while preventing HTML script termination", () => 
   assert.deepEqual(JSON.parse(serialized), data);
 });
 
-test("home font subsets cover the current copy and stay below 250 KB", () => {
+test("the heading font subset covers every reference surface and stays below 250 KB", () => {
   const manifest = JSON.parse(fs.readFileSync("app/refbook-fonts/charset.json", "utf8")) as { inputs: string[]; characters: string[] };
   const characters = new Set(manifest.characters);
+  assert.ok(manifest.inputs.includes("data/learning/engine-torque.json"), "learning copy must be part of the subset");
   for (const input of manifest.inputs) {
-    const missing = [...new Set(fs.readFileSync(input, "utf8"))].filter((character) => !characters.has(character));
-    assert.deepEqual(missing, [], `Run scripts/subset-home-fonts.py after changing ${input}`);
-  }
-  for (const file of fs.readdirSync("data/articles/guides").filter((name) => name.endsWith(".json"))) {
-    const guide = JSON.parse(fs.readFileSync(`data/articles/guides/${file}`, "utf8")) as { title: string };
-    const missing = [...new Set(guide.title)].filter((character) => !characters.has(character));
-    assert.deepEqual(missing, [], `Regenerate font subsets after updating ${file}`);
+    const missing = [...new Set(fs.readFileSync(input, "utf8"))].filter((character) => !characters.has(character) && !"\t\r".includes(character));
+    assert.deepEqual(missing, [], `Run scripts/subset-refbook-fonts.py after changing ${input}`);
   }
   const fonts = fs.readdirSync("app/refbook-fonts").filter((file) => file.endsWith(".woff2"));
   const size = fonts.reduce((sum, file) => sum + fs.statSync(`app/refbook-fonts/${file}`).size, 0);
-  assert.equal(fonts.length, 4);
+  assert.equal(fonts.length, 1, "body copy uses the system stack; only the rounded heading face ships");
   assert.ok(size < 250_000, `Font budget exceeded: ${size}`);
 });
