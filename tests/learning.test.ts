@@ -49,7 +49,7 @@ test("authored courses have valid progression, complete exercises and resolvable
       assert.ok(Number.isFinite(Date.parse(course.verifiedAt)));
     }
     if (course.relatedGuideSlug) assert.ok(await getGuideBySlug(course.relatedGuideSlug), `${course.slug}: public related guide missing`);
-    if (course.selectionHref) assert.ok(["/choose", "/choose/air-filter", "/choose/drive-recorder", "/choose/car-wash"].includes(course.selectionHref));
+    if (course.selectionHref) assert.ok(["/choose", "/choose/air-filter", "/choose/drive-recorder", "/choose/car-wash", "/choose/shaken"].includes(course.selectionHref));
     assert.ok(course.outcomes.length > 0 && course.outcomes.every((value) => value.trim()));
     assert.ok(course.lessons.length > 0);
     assert.equal(

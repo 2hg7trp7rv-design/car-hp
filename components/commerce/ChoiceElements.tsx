@@ -1,6 +1,15 @@
+import Image from "next/image";
 import Link from "next/link";
-import { AMAZON_DISCLOSURE, getAmazonSearchOffer, type AmazonOfferKey } from "@/lib/commerce";
+import type { ReactNode } from "react";
+import {
+  AMAZON_DISCLOSURE,
+  getAmazonSearchOffer,
+  getServiceOffer,
+  type AmazonOfferKey,
+  type ServiceOfferKey,
+} from "@/lib/commerce";
 import { AmazonSearchLink } from "./AmazonSearchLink";
+import { ServiceLink } from "./ServiceLink";
 import styles from "@/app/choose/choose.module.css";
 
 export function ChoiceHeader({ title, theme, description, learningHref, learningLabel }: {
@@ -42,4 +51,34 @@ export function ChoiceSources({ sources }: { sources: { title: string; href: str
     <p>仕様と使い方の根拠を確認できます。製品ごとの条件は、購入する型番の取扱説明書と適合情報で確かめてください。</p>
     <ul>{sources.map(source => <li key={source.href}><a href={source.href}>{source.title} ↗</a><span>{source.note}</span></li>)}</ul>
   </section>;
+}
+
+export function ChoiceTalk({ lines }: { lines: { speaker: "shuna" | "rina"; text: string }[] }) {
+  return <div className={styles.talk}>
+    {lines.map((line, index) => <div key={index} className={styles.talkLine} data-speaker={line.speaker}>
+      <Image src={`/images/cbj/learning/${line.speaker}.webp`} alt="" width={56} height={56} sizes="56px" />
+      <p><strong>{line.speaker === "shuna" ? "シュナ" : "莉奈"}</strong>{line.text}</p>
+    </div>)}
+  </div>;
+}
+
+export function ChoiceFigure({ caption, note, children }: { caption: string; note: string; children: ReactNode }) {
+  return <figure className={styles.figure} tabIndex={0} role="region" aria-label={`${caption}（横にスクロールできます）`}>
+    <figcaption>{caption}</figcaption>
+    {children}
+    <p className={styles.note}>{note}</p>
+  </figure>;
+}
+
+export function ServiceCandidates({ offerKey, contentId, heading, description, label, note }: {
+  offerKey: ServiceOfferKey; contentId: string; heading: string; description: string; label: string; note: string;
+}) {
+  const offer = getServiceOffer(offerKey);
+  if (!offer) return null;
+  return <div className={styles.candidates}>
+    <p className={styles.kicker}>{offer.sponsored ? "広告 · PR" : "参考リンク"}</p>
+    <h3>{heading}</h3><p>{description}</p>
+    <ServiceLink offer={offer} label={label} contentId={contentId} className={styles.amazonLink} />
+    <p className={styles.disclosure}>{note}</p>
+  </div>;
 }

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { referenceMetadata } from "@/lib/learning-metadata";
-import { AmazonCandidates, ChoiceHeader, ChoiceSources, CriteriaTable } from "@/components/commerce/ChoiceElements";
+import { AmazonCandidates, ChoiceHeader, ChoiceSources, ChoiceTalk, CriteriaTable } from "@/components/commerce/ChoiceElements";
 import styles from "../choose.module.css";
 
 export const metadata = referenceMetadata(
@@ -12,6 +12,10 @@ export const metadata = referenceMetadata(
 export default function CarWashChoice() {
   return <main className={styles.page}>
     <ChoiceHeader title="洗車用品" theme="メンテナンス" description="最初から洗剤を何種類もそろえる必要はありません。洗う場所と表面の状態に合うものを選び、汚れを落として、すすぎ、水滴を拭き取るところまでを準備しましょう。" learningHref="/learn/maintenance" learningLabel="車の指定と点検の考え方を学ぶ" />
+    <ChoiceTalk lines={[
+      { speaker: "shuna", text: "洗車用品って種類が多すぎる！ とりあえず人気のやつでいい？" },
+      { speaker: "rina", text: "先に自分の車の塗装とコーティングを確認しよう。合わない洗剤を使うと、せっかくの被膜を落としてしまうことがあるからね。" },
+    ]} />
     <section id="conditions" className={styles.section}>
       <h2>ボディの状態を、先に確認</h2>
       <ol><li><strong>どこを洗う？</strong> 塗装面、ガラス、樹脂、ホイールは、製品が使える場所を分けて確認します。</li><li><strong>何が施工されている？</strong> コーティング、ワックス、フィルムなどがあれば、その施工元の手入れ指定を優先します。</li><li><strong>特別な仕上げや傷みはある？</strong> つや消し塗装、再塗装、劣化した塗膜などは、通常の「全色対応」だけで判断せず、車両・施工元と用品双方の適合を確認します。</li></ol>

@@ -300,6 +300,6 @@
       ]
     }
   ],
-  "selectionHref": "/choose/car-wash",
-  "selectionLabel": "手入れの道具を選ぶ：洗車用品"
+  "selectionHref": "/choose/shaken",
+  "selectionLabel": "車検の受け先を選ぶ"
 }

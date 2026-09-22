@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { referenceMetadata } from "@/lib/learning-metadata";
-import { ChoiceHeader, ChoiceSources, CriteriaTable } from "@/components/commerce/ChoiceElements";
+import { ChoiceHeader, ChoiceSources, ChoiceTalk, CriteriaTable } from "@/components/commerce/ChoiceElements";
 import styles from "../choose.module.css";
 
 export const metadata = referenceMetadata(
@@ -12,6 +12,10 @@ export const metadata = referenceMetadata(
 export default function AirFilterChoice() {
   return <main className={styles.page}>
     <ChoiceHeader title="エアフィルター" theme="吸気・排気" description="交換時期だから整備するのか、吸気の特性を変えたいのか。目的を分けると、純正を保つ選択と、社外品で変わる範囲を落ち着いて比較できます。" learningHref="/learn/air-cleaner" learningLabel="エアクリーナーの役割から学ぶ" />
+    <ChoiceTalk lines={[
+      { speaker: "shuna", text: "エアフィルターを替えたら、速くなったりする？" },
+      { speaker: "rina", text: "まず「何のために替えるのか」だよ。汚れてきたから戻すのか、別の性能を狙うのか。目的で、見るところがまるごと変わるの。" },
+    ]} />
     <section id="conditions" className={styles.section}>
       <h2>交換したい理由を、先に言葉にする</h2>
       <p>劣化や汚れに対応する整備なら、車両指定の純正フィルターへ交換し、純正の箱や配管を維持する選択が出発点になります。今の状態に不具合がなく、変えたい目的もないなら、指定どおりの点検と交換を続ける選び方もあります。</p>

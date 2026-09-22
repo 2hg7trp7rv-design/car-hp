@@ -5,7 +5,7 @@ import styles from "./choose.module.css";
 
 export const metadata = referenceMetadata(
   "選ぶ｜しくみを知って、自分に合う用品へ",
-  "ドラレコ、洗車用品、エアフィルター。使う目的と車の条件から比較し、必要な商品候補を探すための選び方。",
+  "ドラレコ、洗車用品、エアフィルター、車検の受け先。使う目的と車の条件から比べて、次の一手を決めるための選び方。",
   "/choose",
 );
 

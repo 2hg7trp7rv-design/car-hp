@@ -806,5 +806,7 @@
         "reference-video"
       ]
     }
-  ]
+  ],
+  "selectionHref": "/choose/shaken",
+  "selectionLabel": "車検の受け先を選ぶ"
 }
