@@ -37,6 +37,13 @@ export const DIAGRAM_KINDS = [
   "drive-force-by-speed",
   "torque-curve-shapes",
   "two-points-two-curves",
+  "intake-layout",
+  "filter-capture",
+  "pass-through-amount",
+  "air-density-temperature",
+  "turbo-intake-path",
+  "filter-states",
+  "air-and-information",
 ] as const;
 export type DiagramKind = (typeof DIAGRAM_KINDS)[number];
 export type LearningBlock =
@@ -177,4 +184,11 @@ export const DIAGRAM_TEXT: Record<DiagramKind, string> = {
   "drive-force-by-speed": "ギアごとのタイヤを押す力と車速の関係。低いギアほど力は大きく、出せる速度は低い。",
   "torque-curve-shapes": "自然吸気は回転とともになだらかに、過給は低い回転から平らな山を作る。形が性格を決める。",
   "two-points-two-curves": "性能表示の2点を通る曲線は一通りではない。平らな形にも尖った形にもなりうる。",
+  "intake-layout": "外の空気は取り入れ口・ダクト・ボックスの中のフィルター・配管を通ってエンジンへ。縁のすき間は、フィルターを通らない近道になる。",
+  "filter-capture": "フィルターはふるいだけではない。すき間より大きい粒を止め、勢いでぶつかった粒を捕まえ、触れた粒を表面に留める。",
+  "pass-through-amount": "集じん効率99％と99.9％の差は0.9ポイントでも、同じ量を送ったときに通過する粉じんは10倍違う。",
+  "air-density-temperature": "同じ圧力・同じ体積なら、温度が高い空気ほど中にある質量は少ない。20℃を100とすると50℃は約91。",
+  "turbo-intake-path": "ターボ車では、空気はエンジンの前に高速で回るコンプレッサーの羽根を通る。排気は別の経路でタービンを回す。",
+  "filter-states": "目詰まり・劣化や破損・シール不良は別の状態。汚れていることと、材料が傷んでいることは違う。",
+  "air-and-information": "空気はフィルターからセンサーを通ってエンジンへ。測った情報はECUへ届き、燃料の指示になる。空気と情報の流れは別。",
 };

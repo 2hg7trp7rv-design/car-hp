@@ -1,6 +1,17 @@
 import type { ComponentType } from "react";
 import type { DiagramKind } from "@/lib/learning";
-import { AirAndFuel, InstallationTypes, PleatedMedia } from "./air-cleaner";
+import {
+  AirAndFuel,
+  AirAndInformation,
+  AirDensityTemperature,
+  FilterCapture,
+  FilterStates,
+  InstallationTypes,
+  IntakeLayout,
+  PassThroughAmount,
+  PleatedMedia,
+  TurboIntakePath,
+} from "./air-cleaner";
 import { SoundRms } from "./sound";
 import {
   CatalogAnatomy,
@@ -29,4 +40,11 @@ export const FIGURES: Record<DiagramKind, ComponentType> = {
   "drive-force-by-speed": DriveForceBySpeed,
   "torque-curve-shapes": TorqueCurveShapes,
   "two-points-two-curves": TwoPointsTwoCurves,
+  "intake-layout": IntakeLayout,
+  "filter-capture": FilterCapture,
+  "pass-through-amount": PassThroughAmount,
+  "air-density-temperature": AirDensityTemperature,
+  "turbo-intake-path": TurboIntakePath,
+  "filter-states": FilterStates,
+  "air-and-information": AirAndInformation,
 };

@@ -205,7 +205,7 @@ export function TorqueAndPowerCurves() {
     <figure className={styles.diagram} tabIndex={0} role="region" aria-label="横にスクロールできるグラフ">
       <figcaption>2つのピークは、別の回転数にある</figcaption>
       <svg
-        viewBox="0 0 600 480"
+        viewBox="0 0 600 510"
         role="img"
         aria-label={`同じエンジンのトルクと出力のグラフ。トルクは3,500回転で最大100ニュートンメートル、出力は6,000回転で最大約${round(peakPower, 1)}キロワットとなり、ピークの回転数が離れている。値は続く表にも掲載。`}
       >
@@ -252,7 +252,7 @@ export function TorqueAndPowerCurves() {
             {round(rpm)}
           </text>
         ))}
-        <text x="560" y="470" textAnchor="end" className={styles.svgSmall}>
+        <text x="560" y="502" textAnchor="end" className={styles.svgSmall}>
           回転数（rpm）
         </text>
       </svg>
@@ -369,7 +369,7 @@ export function DriveForceBySpeed() {
     <figure className={styles.diagram} tabIndex={0} role="region" aria-label="横にスクロールできるグラフ">
       <figcaption>車速ごとの、タイヤを押す力</figcaption>
       <svg
-        viewBox="0 0 600 350"
+        viewBox="0 0 600 380"
         role="img"
         aria-label={`1速・3速・5速それぞれの駆動力と車速のグラフ。低いギアほど力は大きく到達速度は低い。70km/hでは3速が約${round(third.force)}ニュートン、5速が約${round(fifth.force)}ニュートン。値は続く表にも掲載。`}
       >
@@ -420,7 +420,7 @@ export function DriveForceBySpeed() {
             {speed}
           </text>
         ))}
-        <text x={right} y="342" textAnchor="end" className={styles.svgSmall}>
+        <text x={right} y="372" textAnchor="end" className={styles.svgSmall}>
           車速（km/h）
         </text>
       </svg>
@@ -452,8 +452,8 @@ export function DriveForceBySpeed() {
             </tr>
             <tr>
               <th scope="row">タイヤを押す力</th>
-              <td>約{round(third.force)} N</td>
-              <td>約{round(fifth.force)} N</td>
+              <td>約{round(Math.round(third.force / 10) * 10)} N</td>
+              <td>約{round(Math.round(fifth.force / 10) * 10)} N</td>
             </tr>
           </tbody>
         </table>
