@@ -5,11 +5,14 @@
 // - Validate redirect destinations to avoid redirect-to-404.
 //
 // Notes:
-// - This script is intentionally dependency-free.
+// - Publication follows the application policy through the existing tsx runtime.
 // - It scans `data/articles/**.json` body plus structured guide/column fields and looks for internal URLs/paths.
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { tsImport } from "tsx/esm/api";
+
+const { publicationPolicy } = await tsImport("../lib/content/publication.ts", import.meta.url);
 
 const REPO_ROOT = process.cwd();
 const APP_DIR = path.join(REPO_ROOT, "app");
@@ -65,22 +68,7 @@ function asLower(value) {
   return safeString(value).toLowerCase();
 }
 
-function isPublished(item) {
-  return !item?.status || String(item.status) === "published";
-}
-
-function getPublicState(item) {
-  const s = safeString(item?.publicState);
-  return s ? s.toLowerCase() : null;
-}
-
-function isIndexAllowed(item) {
-  if (!item) return false;
-  if (!isPublished(item)) return false;
-  if (getPublicState(item) !== "index") return false;
-  if (item?.noindex === true) return false;
-  return true;
-}
+const isIndexAllowed = (item) => publicationPolicy(item).indexable;
 
 // BodyType
 const BODY_TYPE_KEY_OVERRIDES = {
@@ -257,7 +245,7 @@ function extractInternalPaths(text) {
   }
 
   // 2) Relative paths for our main routes
-  const relRe = /\/(?:cars|guide|column|heritage|contact|privacy|site-map)(?:\/[A-Za-z0-9_-]+)*/g;
+  const relRe = /\/(?:cars|guide|column|heritage|learn|choose|glossary|contact|privacy|site-map)(?:\/[A-Za-z0-9_-]+)*/g;
   for (const m of s.matchAll(relRe)) {
     const idx = typeof m.index === "number" ? m.index : -1;
 
@@ -384,7 +372,7 @@ async function main() {
 
   for (const fp of carFiles) {
     const obj = await readJson(fp);
-    if (obj?.slug) carSlugs.add(String(obj.slug));
+    if (obj?.slug && publicationPolicy(obj).accessible) carSlugs.add(String(obj.slug));
 
     if (isIndexAllowed(obj)) {
       // taxonomy pages are generated only from index-allowed cars
@@ -403,17 +391,17 @@ async function main() {
 
   for (const fp of guideFiles) {
     const obj = await readJson(fp);
-    if (obj?.slug) guideSlugs.add(String(obj.slug));
+    if (obj?.slug && publicationPolicy(obj).accessible) guideSlugs.add(String(obj.slug));
   }
 
   for (const fp of columnFiles) {
     const obj = await readJson(fp);
-    if (obj?.slug) columnSlugs.add(String(obj.slug));
+    if (obj?.slug && publicationPolicy(obj).accessible) columnSlugs.add(String(obj.slug));
   }
 
   for (const fp of heritageFiles) {
     const obj = await readJson(fp);
-    if (obj?.slug) heritageSlugs.add(String(obj.slug));
+    if (obj?.slug && publicationPolicy(obj).accessible) heritageSlugs.add(String(obj.slug));
   }
 
 
@@ -441,6 +429,15 @@ async function main() {
   for (const slug of guideSlugs) validContentPaths.add(`/guide/${slug}`);
   for (const slug of columnSlugs) validContentPaths.add(`/column/${slug}`);
   for (const slug of heritageSlugs) validContentPaths.add(`/heritage/${slug}`);
+
+  const learningFiles = await listJsonFiles(path.join(DATA_DIR, "learning"));
+  const learning = await Promise.all(learningFiles.map(async (file) => ({ file, course: await readJson(file) })));
+  for (const { course } of learning) {
+    if (!publicationPolicy(course).accessible) continue;
+    validContentPaths.add(`/learn/${course.slug}`);
+    for (const lesson of course.lessons) validContentPaths.add(`/learn/${course.slug}/${lesson.slug}`);
+  }
+  for (const source of redirectSources) validContentPaths.delete(source);
 
   // Known dynamic hubs (taxonomy)
   // - makers/body-types/segments values must be valid keys
@@ -544,6 +541,23 @@ async function main() {
     }
   }
 
+  for (const { file, course } of learning) {
+    if (!publicationPolicy(course).accessible) continue;
+    const paths = new Set(extractInternalPaths(JSON.stringify(course)));
+    if (course.relatedGuideSlug) paths.add(`/guide/${course.relatedGuideSlug}`);
+    if (course.selectionHref) paths.add(normalizePath(course.selectionHref));
+    for (const lesson of course.lessons) {
+      for (const slug of [...lesson.prerequisites, lesson.checkpoint.review]) {
+        paths.add(`/learn/${course.slug}/${slug}`);
+      }
+    }
+    for (const pathname of paths) {
+      if (redirectSources.has(pathname) || (!staticRoutes.has(pathname) && !validContentPaths.has(pathname))) {
+        errors.push({ file, path: pathname, reason: "learning link must resolve directly to public content" });
+      }
+    }
+  }
+
   if (errors.length > 0) {
     console.error("\n[verify-internal-links] Broken internal links detected:");
     for (const e of errors.slice(0, 60)) {
@@ -555,7 +569,7 @@ async function main() {
   }
 
   console.log(
-    `[verify-internal-links] OK. staticRoutes=${staticRoutes.size}, cars=${carSlugs.size}, guides=${guideSlugs.size}, columns=${columnSlugs.size}, heritage=${heritageSlugs.size}`,
+    `[verify-internal-links] OK. staticRoutes=${staticRoutes.size}, cars=${carSlugs.size}, guides=${guideSlugs.size}, columns=${columnSlugs.size}, heritage=${heritageSlugs.size}, learning=${learning.filter(({ course }) => publicationPolicy(course).accessible).length}`,
   );
 }
 

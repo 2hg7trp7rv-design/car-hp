@@ -9,6 +9,9 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { tsImport } from "tsx/esm/api";
+
+const { publicationPolicy } = await tsImport("../lib/content/publication.ts", import.meta.url);
 
 const ROOT = process.cwd();
 const PUBLIC_DIR = path.join(ROOT, "public");
@@ -111,15 +114,37 @@ for (const loc of locs) {
     assertAllowedUrl(childLoc, `public/${relPath}`);
   }
 
+  // New learning courses can legitimately share their first publication date.
+  // Validate each date against authored metadata before allowing that case.
+  const isLearningShard = relPath === "sitemaps/sitemap-learning.xml";
+  if (isLearningShard) {
+    const expected = new Map();
+    for (const name of fs.readdirSync(path.join(ROOT, "data/learning")).filter((file) => file.endsWith(".json"))) {
+      const course = JSON.parse(readText(path.join(ROOT, "data/learning", name)));
+      if (!publicationPolicy(course).indexable) continue;
+      const date = String(course.updatedAt ?? "").slice(0, 10);
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !Number.isFinite(Date.parse(date))) die(`Invalid learning updatedAt: ${name}`);
+      for (const slug of [course.slug, ...course.lessons.map((lesson) => `${course.slug}/${lesson.slug}`)]) {
+        expected.set(`/learn/${slug.split("/").map(encodeURIComponent).join("/")}`, date);
+      }
+    }
+    for (const entry of body.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
+      const [entryLoc] = extractLocs(entry[1]);
+      const [date] = extractLastmods(entry[1]);
+      const expectedDate = expected.get(new URL(entryLoc).pathname);
+      if (!expectedDate || date !== expectedDate) die(`Learning lastmod differs from authored updatedAt: ${entryLoc} (${date} != ${expectedDate})`);
+    }
+  }
+
   const childLastmods = extractLastmods(body);
   const uniqueLastmods = new Set(childLastmods);
   if (childLastmods.length > 20 && uniqueLastmods.size === 1) {
     const onlyDate = childLastmods[0];
     const today = new Date().toISOString().slice(0, 10);
-    if (onlyDate === today) {
+    if (onlyDate === today && !isLearningShard) {
       die(`Referenced sitemap appears to use build-day lastmod for ${childLastmods.length} URLs: public/${relPath}`);
     }
-    console.warn(`[verify-sitemaps] ⚠️ ${relPath} has one repeated lastmod (${onlyDate}); verify that this comes from source data, not build time.`);
+    if (!isLearningShard) console.warn(`[verify-sitemaps] ⚠️ ${relPath} has one repeated lastmod (${onlyDate}); verify that this comes from source data, not build time.`);
   }
 
   // Soft check: avoid obviously wrong base URL in contained locs.

@@ -8,6 +8,37 @@
     <priority>1</priority>
   </url>
   <url>
+    <loc>https://carboutiquejournal.com/learn</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://carboutiquejournal.com/choose</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://carboutiquejournal.com/choose/drive-recorder</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://carboutiquejournal.com/choose/car-wash</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://carboutiquejournal.com/choose/air-filter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://carboutiquejournal.com/glossary</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://carboutiquejournal.com/cars</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>

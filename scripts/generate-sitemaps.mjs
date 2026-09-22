@@ -1,5 +1,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { tsImport } from "tsx/esm/api";
+
+const { publicationPolicy } = await tsImport("../lib/content/publication.ts", import.meta.url);
 
 import {
   getDecisionColumnAuditBody,
@@ -283,22 +286,7 @@ const buildCarContentText = (car) => {
   return parts.join("\n").trim();
 };
 
-const isPublished = (item) => !item?.status || String(item.status) === "published";
-
-const getPublicState = (item) => {
-  const s = safeString(item?.publicState);
-  return s ? s.toLowerCase() : null;
-};
-
-const isIndexAllowed = (item) => {
-  if (!item) return false;
-  if (!isPublished(item)) return false;
-  const state = getPublicState(item);
-  if (state !== "index") return false;
-  // 旧 noindex フラグも尊重（両方ある場合は noindex が優先）
-  if (item.noindex === true) return false;
-  return true;
-};
+const isIndexAllowed = (item) => publicationPolicy(item).indexable;
 
 const isIndexableCar = (car) => {
   if (!isIndexAllowed(car)) return false;
@@ -374,6 +362,12 @@ const main = async () => {
   // ---- Static routes (no params) ----
   const staticPaths = [
     "/",
+    "/learn",
+    "/choose",
+    "/choose/drive-recorder",
+    "/choose/car-wash",
+    "/choose/air-filter",
+    "/glossary",
     "/cars",
     "/cars/makers",
     "/cars/body-types",
@@ -399,6 +393,7 @@ const main = async () => {
   const guides = uniqBySlug(await readJsonGlob("data/articles/guides", /\.json$/));
   const columns = uniqBySlug(await readJsonGlob("data/articles/columns", /\.json$/));
   const heritage = uniqBySlug(await readJsonGlob("data/articles/heritage", /\.json$/));
+  const learning = uniqBySlug(await readJsonGlob("data/learning", /\.json$/)).filter(isIndexAllowed);
 
 
   const redirects = await readJson("data/redirects.json");
@@ -413,6 +408,7 @@ const main = async () => {
   // Entries
   // ──────────────────────────────────────────────
   const latestAllContentDate = maxDate10([
+    ...learning.map((course) => course.updatedAt),
     ...cars.map((c) => c.updatedAt || c.publishedAt || c.createdAt),
     ...guides.map((g) => g.updatedAt || g.publishedAt || g.createdAt),
     ...columns.map((c) => c.updatedAt || c.publishedAt || c.createdAt),
@@ -421,6 +417,7 @@ const main = async () => {
 
   const staticLastmod = {
     "/": latestAllContentDate,
+    "/learn": maxDate10(learning.map((course) => course.updatedAt)),
     "/cars": maxDate10(cars.map((c) => c.updatedAt || c.publishedAt || c.createdAt)),
     "/cars/makers": maxDate10(cars.map((c) => c.updatedAt || c.publishedAt || c.createdAt)),
     "/cars/body-types": maxDate10(cars.map((c) => c.updatedAt || c.publishedAt || c.createdAt)),
@@ -516,6 +513,13 @@ const main = async () => {
     };
   });
 
+  const learningEntries = learning.flatMap((course) =>
+    [course.slug, ...course.lessons.map((lesson) => `${course.slug}/${lesson.slug}`)]
+      .map((slug) => `/learn/${slug.split("/").map(encodeURIComponent).join("/")}`)
+      .filter((pathname) => !redirectSources.has(pathname))
+      .map((pathname) => ({ loc: `${SITE_URL}${pathname}`, lastmod: toDate10(course.updatedAt), changefreq: "monthly", priority: 0.8 })),
+  );
+
   const guideEntries = guides
     .filter((g) => !redirectSources.has("/guide/" + safeString(g.slug)))
     .filter(isIndexableGuide)
@@ -560,6 +564,7 @@ const main = async () => {
     ["sitemap-makers.xml", makerEntries],
     ["sitemap-body-types.xml", bodyTypeEntries],
     ["sitemap-segments.xml", segmentEntries],
+    ["sitemap-learning.xml", learningEntries],
     ["sitemap-guides.xml", guideEntries],
     ["sitemap-columns.xml", columnEntries],
     ["sitemap-heritage.xml", heritageEntries],
@@ -583,7 +588,7 @@ const main = async () => {
   await fs.writeFile(path.join(publicDir, "sitemap.xml"), indexXml, "utf-8");
 
   console.log(
-    `[sitemap] generated: static(${staticEntries.length}), cars(${carEntries.length}), makers(${makerEntries.length}), bodyTypes(${bodyTypeEntries.length}), segments(${segmentEntries.length}), guides(${guideEntries.length}), columns(${columnEntries.length}), heritage(${heritageEntries.length})`,
+    `[sitemap] generated: static(${staticEntries.length}), learning(${learningEntries.length}), cars(${carEntries.length}), makers(${makerEntries.length}), bodyTypes(${bodyTypeEntries.length}), segments(${segmentEntries.length}), guides(${guideEntries.length}), columns(${columnEntries.length}), heritage(${heritageEntries.length})`,
   );
 };
 

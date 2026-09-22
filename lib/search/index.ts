@@ -5,6 +5,7 @@ import { getAllCarsSync } from "@/lib/cars";
 import { getAllColumns } from "@/lib/columns";
 import { getAllGuides } from "@/lib/guides";
 import { getAllHeritage } from "@/lib/heritage";
+import { learningSearchDocuments } from "@/lib/search/learning";
 
 import {
   buildCarDescription,
@@ -92,6 +93,9 @@ function scoreDoc(doc: IndexedDoc, queryNorm: string, tokens: string[]): number 
 
   // タイプ優先（入口に寄せる）
   switch (doc.type) {
+    case "learn":
+      score += 8;
+      break;
     case "cars":
       score += 10;
       break;
@@ -309,6 +313,16 @@ async function buildSearchIndex(): Promise<SearchIndex> {
     });
   }
 
+  for (const { doc, body } of learningSearchDocuments()) {
+    docs.push({
+      ...doc,
+      description: clampForCard(doc.description, 104),
+      _title: normalizeText(doc.title),
+      _haystack: normalizeText([doc.title, doc.description, doc.category, ...(doc.tags ?? [])].join(" ")),
+      _body: normalizeText(body),
+    });
+  }
+
   return {
     docs,
     builtAt: Date.now(),
@@ -382,5 +396,5 @@ function publicSearchDoc(doc: IndexedDoc): SearchDoc {
 export async function getSearchSuggestions(): Promise<Record<SearchDocType, SearchDoc[]>> {
   const { docs } = await getSearchIndex();
   const pick = (type: SearchDocType) => docs.filter((doc) => doc.type === type).slice(0, 6).map(publicSearchDoc);
-  return { cars: pick("cars"), guide: pick("guide"), column: pick("column"), heritage: pick("heritage") };
+  return { cars: pick("cars"), guide: pick("guide"), column: pick("column"), heritage: pick("heritage"), learn: pick("learn") };
 }

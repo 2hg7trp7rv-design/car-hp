@@ -3,6 +3,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
+import { spawnSync } from "node:child_process";
 import { publicationPolicy } from "../lib/content/publication";
 
 test("publication distinguishes accessibility from search-engine indexing", () => {
@@ -79,9 +80,66 @@ test("real loaders, related shelves and search exclude private fixtures in every
     const hits = await searchSite({ q: "PublicationFixture", limit: 50 });
     assert.equal(hits.length, 8);
     assert.ok(hits.every((hit) => ["policy-index", "policy-noindex"].includes(hit.slug)));
-    assert.ok(Object.values(await getSearchSuggestions()).flat().every((hit) => ["policy-index", "policy-noindex"].includes(hit.slug)));
+    assert.ok(Object.values(await getSearchSuggestions()).flat().filter((hit) => hit.type !== "learn").every((hit) => ["policy-index", "policy-noindex"].includes(hit.slug)));
   } finally {
     process.chdir(root);
+    fs.rmSync(fixture, { recursive: true, force: true });
+  }
+});
+
+test("learning loaders and search documents share publication rules", async () => {
+  const { getLearningCourses, getLearningCourse } = await import("../lib/learning");
+  const { learningSearchDocuments } = await import("../lib/search/learning");
+  const sample = getLearningCourses()[0];
+  for (const status of ["published", "draft", "archived"] as const) {
+    for (const publicState of ["index", "noindex", "draft", "redirect"] as const) {
+      const course = { ...sample, status, publicState };
+      const policy = publicationPolicy(course);
+      assert.equal(getLearningCourses([course]).length, policy.accessible ? 1 : 0);
+      assert.equal(learningSearchDocuments([course]).length, policy.accessible ? course.lessons.length : 0);
+      assert.equal(policy.indexable, status === "published" && publicState === "index");
+    }
+  }
+  assert.equal(getLearningCourse("does-not-exist"), undefined);
+});
+
+test("learning sitemap generation keeps noindex/private courses out and verifies authored dates", () => {
+  const root = process.cwd();
+  const fixture = fs.mkdtempSync(path.join(os.tmpdir(), "cbj-learning-sitemap-test-"));
+  const run = (script: string) => spawnSync(process.execPath, [path.join(root, "scripts", script)], { cwd: fixture, encoding: "utf8" });
+  try {
+    for (const dir of ["cars", "guides", "columns", "heritage"]) fs.mkdirSync(path.join(fixture, "data/articles", dir), { recursive: true });
+    fs.mkdirSync(path.join(fixture, "data/learning"), { recursive: true });
+    fs.writeFileSync(path.join(fixture, "data/redirects.json"), "[]");
+    const today = new Date().toISOString().slice(0, 10);
+    for (const publicState of ["index", "noindex", "draft", "redirect"]) {
+      fs.writeFileSync(path.join(fixture, "data/learning", `${publicState}.json`), JSON.stringify({
+        slug: `course-${publicState}`, status: "published", publicState, updatedAt: today,
+        lessons: Array.from({ length: 21 }, (_, index) => ({ slug: `lesson-${index + 1}` })),
+      }));
+    }
+    const generated = run("generate-sitemaps.mjs");
+    assert.equal(generated.status, 0, generated.stderr);
+    const shard = path.join(fixture, "public/sitemaps/sitemap-learning.xml");
+    const xml = fs.readFileSync(shard, "utf8");
+    assert.equal((xml.match(/<loc>/g) ?? []).length, 22);
+    assert.ok(xml.includes("/learn/course-index/lesson-21"));
+    assert.ok(!/course-(noindex|draft|redirect)/.test(xml));
+    assert.equal(run("verify-sitemaps.mjs").status, 0, "A real shared publication date is valid");
+    fs.writeFileSync(shard, xml.replace(`<lastmod>${today}</lastmod>`, "<lastmod>2000-01-01</lastmod>"));
+    const changed = run("verify-sitemaps.mjs");
+    assert.notEqual(changed.status, 0);
+    assert.match(changed.stderr, /differs from authored updatedAt/);
+
+    // Keep the pre-existing guard on unexplained build-day dates in other shards.
+    fs.writeFileSync(shard, xml);
+    fs.writeFileSync(path.join(fixture, "public/sitemaps/sitemap-cars.xml"), xml.replaceAll("/learn/course-index", "/cars/fake-build-date"));
+    const sitemapIndexPath = path.join(fixture, "public/sitemap.xml");
+    fs.writeFileSync(sitemapIndexPath, fs.readFileSync(sitemapIndexPath, "utf8").replace("sitemap-learning.xml", "sitemap-cars.xml"));
+    const unexplained = run("verify-sitemaps.mjs");
+    assert.notEqual(unexplained.status, 0);
+    assert.match(unexplained.stderr, /build-day lastmod/);
+  } finally {
     fs.rmSync(fixture, { recursive: true, force: true });
   }
 });

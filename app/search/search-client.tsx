@@ -14,6 +14,7 @@ export type Suggestions = {
   guide: SearchDoc[];
   column: SearchDoc[];
   heritage: SearchDoc[];
+  learn: SearchDoc[];
 };
 
 type ApiResponse = {
@@ -31,6 +32,7 @@ function normalizeFilterType(raw: string | undefined): FilterType {
   if (t === "guide" || t === "guides") return "guide";
   if (t === "column" || t === "columns") return "column";
   if (t === "heritage") return "heritage";
+  if (t === "learn" || t === "learning") return "learn";
   return "all";
 }
 
@@ -40,6 +42,7 @@ function typeLabel(t: FilterType): string {
   if (t === "guide") return "ガイド";
   if (t === "column") return "コラム";
   if (t === "heritage") return "系譜";
+  if (t === "learn") return "学ぶ";
   return "すべて";
 }
 
@@ -48,6 +51,7 @@ function badgeLabel(t: SearchDocType): string {
   if (t === "guide") return "ガイド";
   if (t === "column") return "コラム";
   if (t === "heritage") return "系譜";
+  if (t === "learn") return "学ぶ";
   return "";
 }
 
@@ -282,6 +286,7 @@ export function SearchClient(props: {
 
   const filterButtons: Array<{ key: FilterType; label: string }> = [
     { key: "all", label: "すべて" },
+    { key: "learn", label: "学ぶ" },
     { key: "cars", label: "車種" },
     { key: "guide", label: "ガイド" },
     { key: "column", label: "コラム" },
@@ -387,6 +392,7 @@ export function SearchClient(props: {
 
           {suggestions ? (
             <div className="grid gap-6 md:grid-cols-2">
+              <SuggestionBlock title="学ぶ" items={suggestions.learn} />
               <SuggestionBlock title="車種" items={suggestions.cars} />
               <SuggestionBlock title="ガイド" items={suggestions.guide} />
               <SuggestionBlock title="コラム" items={suggestions.column} />

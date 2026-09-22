@@ -2,7 +2,6 @@ import { Reveal } from "@/components/animation/Reveal";
 import { ContentGridCard } from "@/components/content/ContentGridCard";
 import type { ColumnItem } from "@/lib/columns";
 import { resolveColumnDisplayTag } from "@/lib/display-tags";
-import { resolveColumnCardImage } from "@/lib/display-tag-media";
 
 type Props = {
   column: ColumnItem;
@@ -21,13 +20,15 @@ function formatDate(iso?: string | null): string | null {
 }
 
 export function ColumnCard({ column, delay = 0, layout = "standard" }: Props) {
+  const image = column.thumbnail?.trim() || column.heroImage?.trim() || null;
   return (
     <Reveal delay={delay}>
       <ContentGridCard
         href={`/column/${encodeURIComponent(column.slug)}`}
         title={column.title}
         date={formatDate(column.publishedAt ?? column.updatedAt ?? null)}
-        imageSrc={resolveColumnCardImage(column)}
+        imageSrc={image}
+        showImage={Boolean(image)}
         eyebrow={resolveColumnDisplayTag(column)}
         excerpt={column.summary || column.description || undefined}
         aspect={layout === "feature" ? "portrait" : "landscape"}

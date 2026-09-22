@@ -1,5 +1,5 @@
 // lib/analytics/events.ts
-
+import { hasAnalyticsConsent } from "./consent";
 
 export type PageType =
   // 互換（ざっくり）
@@ -52,6 +52,7 @@ const isGtagAvailable = () =>
   typeof window !== "undefined" && typeof (window as any).gtag === "function";
 
 export const sendGAEvent = (eventName: EventName, params: AnyRecord) => {
+  if (!hasAnalyticsConsent()) return;
   if (!isGtagAvailable()) {
     // 開発時の確認用（Vercel/本番では console は基本見えないが、落ちないように残す）
     if (typeof window !== "undefined") {
