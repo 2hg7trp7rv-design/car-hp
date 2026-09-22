@@ -85,7 +85,7 @@
   "titleJa": "マツダ RX-7（FC3S）。",
   "canonicalUrl": null,
   "ogImageUrl": null,
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/cars/makers/mazda",
   "relatedClusterIds": [],
   "primaryQuery": "RX-7 FC3S",

@@ -68,8 +68,6 @@ function asLower(value) {
   return safeString(value).toLowerCase();
 }
 
-const isIndexAllowed = (item) => publicationPolicy(item).indexable;
-
 // BodyType
 const BODY_TYPE_KEY_OVERRIDES = {
   "セダン": "sedan",
@@ -374,8 +372,9 @@ async function main() {
     const obj = await readJson(fp);
     if (obj?.slug && publicationPolicy(obj).accessible) carSlugs.add(String(obj.slug));
 
-    if (isIndexAllowed(obj)) {
-      // taxonomy pages are generated only from index-allowed cars
+    if (publicationPolicy(obj).accessible) {
+      // Taxonomy hubs list every accessible car, including noindex ones: they are
+      // navigation, and whether each page is indexable is decided by its own robots.
       const makerKey = String(obj?.makerKey ?? "").trim() || normalizeMakerKey(obj?.maker);
       if (makerKey) makerKeys.add(makerKey);
 

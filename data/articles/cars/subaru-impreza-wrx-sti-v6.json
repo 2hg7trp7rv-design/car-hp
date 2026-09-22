@@ -85,7 +85,7 @@
   "titleJa": "スバル インプレッサ WRX STI（V6）。",
   "canonicalUrl": null,
   "ogImageUrl": null,
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/cars/makers/subaru",
   "relatedClusterIds": [],
   "primaryQuery": "Subaru Impreza WRX STI Version VI (GC8)",

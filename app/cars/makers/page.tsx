@@ -6,7 +6,7 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
 import TaxonomyHubCard from "@/components/taxonomy/TaxonomyHubCard";
 
-import { getIndexCars, type CarItem } from "@/lib/cars";
+import { getListedCars, type CarItem } from "@/lib/cars";
 import { getSiteUrl } from "@/lib/site";
 import { buildMakerInfos } from "@/lib/taxonomy/makers";
 import { buildSegmentInfos } from "@/lib/taxonomy/segments";
@@ -70,7 +70,7 @@ function mostCommonLabel(values: Array<string | null | undefined>): string | nul
 }
 
 export default async function CarsMakersIndexPage() {
-  const cars = await getIndexCars();
+  const cars = await getListedCars();
   const makers = buildMakerInfos(cars).sort((a, b) => {
     if (b.count !== a.count) return b.count - a.count;
     return a.label.localeCompare(b.label, "ja");

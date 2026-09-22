@@ -367,6 +367,7 @@ const main = async () => {
     "/choose/drive-recorder",
     "/choose/car-wash",
     "/choose/air-filter",
+    "/choose/shaken",
     "/glossary",
     "/cars",
     "/cars/makers",

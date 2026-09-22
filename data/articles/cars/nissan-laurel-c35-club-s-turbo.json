@@ -103,7 +103,7 @@
   "titleJa": null,
   "canonicalUrl": null,
   "ogImageUrl": null,
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/cars/makers/nissan",
   "relatedClusterIds": [],
   "primaryQuery": "Nissan Laurel (C35) Club S Turbo",

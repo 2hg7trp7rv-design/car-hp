@@ -34,6 +34,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://carboutiquejournal.com/choose/shaken</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://carboutiquejournal.com/glossary</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

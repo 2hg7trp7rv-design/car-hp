@@ -60,7 +60,7 @@
     "gt",
     "front-engine"
   ],
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/heritage",
   "relatedClusterIds": [],
   "primaryQuery": "フェラーリ V12 フロント GT",

@@ -105,7 +105,7 @@
   "titleJa": "日産 スカイライン GT-R（R34）。",
   "canonicalUrl": null,
   "ogImageUrl": null,
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/cars/makers/nissan",
   "relatedClusterIds": [],
   "primaryQuery": "Skyline GT-R R34",

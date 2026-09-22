@@ -103,7 +103,7 @@
   "titleJa": "トヨタ スープラ（JZA80 RZ）。",
   "canonicalUrl": null,
   "ogImageUrl": null,
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/cars/makers/toyota",
   "relatedClusterIds": [],
   "primaryQuery": "Supra JZA80 RZ",

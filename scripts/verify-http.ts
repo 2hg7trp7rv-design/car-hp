@@ -40,7 +40,7 @@ try {
   const guides = (await getAllGuides()).filter((guide) => !["draft", "redirect"].includes(guide.publicState));
   const courses = getLearningCourses();
   const learningPaths = courses.flatMap((course) => [learningHref(course.slug), ...course.lessons.map((lesson) => learningHref(course.slug, lesson.slug))]);
-  for (const pathname of ["/learn", "/choose", "/choose/drive-recorder", "/choose/car-wash", "/choose/air-filter", "/glossary", ...learningPaths, "/", "/guide", "/column", "/cars", "/heritage", "/legal", "/legal/privacy", "/contact", ...guides.map((guide) => `/guide/${guide.slug}`)]) {
+  for (const pathname of ["/learn", "/choose", "/choose/drive-recorder", "/choose/car-wash", "/choose/air-filter", "/choose/shaken", "/glossary", ...learningPaths, "/", "/guide", "/column", "/cars", "/heritage", "/legal", "/legal/privacy", "/contact", ...guides.map((guide) => `/guide/${guide.slug}`)]) {
     const response = await fetchPage(pathname);
     assert.equal(response.status, 200, pathname);
     assert.ok((await response.text()).includes("Cookie設定"), `${pathname}: cookie settings not reachable`);

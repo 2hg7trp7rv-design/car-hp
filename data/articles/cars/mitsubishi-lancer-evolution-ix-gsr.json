@@ -87,7 +87,7 @@
   "titleJa": "三菱 ランサーエボリューション IX（GSR）。",
   "canonicalUrl": null,
   "ogImageUrl": null,
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/cars/makers/mitsubishi",
   "relatedClusterIds": [],
   "primaryQuery": "Lancer Evolution IX GSR",

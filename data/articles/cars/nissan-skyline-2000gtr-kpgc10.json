@@ -106,7 +106,7 @@
   "titleJa": null,
   "canonicalUrl": null,
   "ogImageUrl": null,
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/cars/makers/nissan",
   "relatedClusterIds": [],
   "primaryQuery": "Skyline GT-R KPGC10",

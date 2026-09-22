@@ -153,7 +153,7 @@
   ],
   "canonicalUrl": "/heritage/toyota-supra-history-heritage",
   "ogImageUrl": "/images/heritage/heritage-toyota-supra-history-og.jpg",
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/heritage",
   "relatedClusterIds": [],
   "primaryQuery": "スープラ 歴史",

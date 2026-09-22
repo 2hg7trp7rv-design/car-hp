@@ -10,7 +10,7 @@ import { ContentRowCard } from "@/components/content/ContentRowCard";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { InlineFaq } from "@/components/taxonomy/InlineFaq";
 
-import { getIndexCars, type CarItem } from "@/lib/cars";
+import { getListedCars, type CarItem } from "@/lib/cars";
 import { getGuideBySlug } from "@/lib/guides";
 import { resolveGuideCardImage } from "@/lib/display-tag-media";
 import { getSiteUrl } from "@/lib/site";
@@ -50,7 +50,7 @@ function formatDate(value?: string | null): string | null {
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const allCars = await getIndexCars();
+  const allCars = await getListedCars();
   const bodyTypes = buildBodyTypeInfos(allCars);
   return bodyTypes.map((bodyType) => ({ bodyType: bodyType.key }));
 }
@@ -58,7 +58,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { bodyType } = await params;
   const bodyTypeKey = String(bodyType ?? "").trim();
-  const allCars = await getIndexCars();
+  const allCars = await getListedCars();
   const bodyTypes = buildBodyTypeInfos(allCars);
   const label = resolveBodyTypeLabel(bodyTypeKey, bodyTypes);
   const cars = allCars.filter((car) => getBodyTypeKey(car.bodyType) === bodyTypeKey);
@@ -97,7 +97,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function BodyTypeHubPage({ params }: PageProps) {
   const { bodyType } = await params;
   const bodyTypeKey = String(bodyType ?? "").trim();
-  const allCars = await getIndexCars();
+  const allCars = await getListedCars();
   const bodyTypes = buildBodyTypeInfos(allCars);
   const label = resolveBodyTypeLabel(bodyTypeKey, bodyTypes);
   const cars = allCars.filter((car) => getBodyTypeKey(car.bodyType) === bodyTypeKey);

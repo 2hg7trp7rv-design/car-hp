@@ -148,7 +148,7 @@
   "summary": "ハコスカからR35まで。GT-Rが時代ごとに速さの作り方を変え、日産の象徴になっていった流れを辿る。",
   "canonicalUrl": null,
   "ogImageUrl": "",
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/heritage",
   "relatedClusterIds": [],
   "primaryQuery": "スカイライン GT-R 歴史",

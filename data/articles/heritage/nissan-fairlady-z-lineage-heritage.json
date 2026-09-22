@@ -148,7 +148,7 @@
   "summary": "S30からRZ34まで。フェアレディZが日産のスポーツカーとして何を守り、何を変えてきたのかを辿る。",
   "canonicalUrl": null,
   "ogImageUrl": "/images/cbj/cars/CBJ_KV_Nissan_Fairlady_Z_Z34_accepted.png",
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/heritage",
   "relatedClusterIds": [],
   "primaryQuery": "フェアレディZ 歴史",

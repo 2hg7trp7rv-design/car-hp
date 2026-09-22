@@ -90,7 +90,7 @@
   "titleJa": null,
   "canonicalUrl": null,
   "ogImageUrl": null,
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/cars/makers/honda",
   "relatedClusterIds": [],
   "primaryQuery": "Honda Civic Type R (FD2)",
