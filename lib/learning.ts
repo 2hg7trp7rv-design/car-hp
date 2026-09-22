@@ -44,6 +44,10 @@ export const DIAGRAM_KINDS = [
   "turbo-intake-path",
   "filter-states",
   "air-and-information",
+  "exhaust-path",
+  "silencer-structures",
+  "proximity-measurement",
+  "a-weighting",
 ] as const;
 export type DiagramKind = (typeof DIAGRAM_KINDS)[number];
 export type LearningBlock =
@@ -191,4 +195,8 @@ export const DIAGRAM_TEXT: Record<DiagramKind, string> = {
   "turbo-intake-path": "ターボ車では、空気はエンジンの前に高速で回るコンプレッサーの羽根を通る。排気は別の経路でタービンを回す。",
   "filter-states": "目詰まり・劣化や破損・シール不良は別の状態。汚れていることと、材料が傷んでいることは違う。",
   "air-and-information": "空気はフィルターからセンサーを通ってエンジンへ。測った情報はECUへ届き、燃料の指示になる。空気と情報の流れは別。",
+  "exhaust-path": "排気はエンジンから排気管・触媒、消音器を通って出口へ。浄化と消音は別々の仕事で、静かさから排気のきれいさは分からない。",
+  "silencer-structures": "ストレート構造は穴あき管の周りの吸音材で、リアクティブ構造は部屋と管の配置で音を抑える。まっすぐでも空っぽではない。",
+  "proximity-measurement": "近接排気騒音は、排気口から0.5m・軸線に対して45度の位置で測る。回転数の決め方は適用する規程で異なる。",
+  "a-weighting": "A特性は低い音ほど大きく差し引く重み付け。1kHzで0、31.5Hzでは約−39dB。同じ総合レベルでも分布で値が変わる。",
 };

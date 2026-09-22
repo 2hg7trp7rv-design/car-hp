@@ -12,7 +12,7 @@ import {
   PleatedMedia,
   TurboIntakePath,
 } from "./air-cleaner";
-import { SoundRms } from "./sound";
+import { AWeighting, ExhaustPath, ProximityMeasurement, SilencerStructures, SoundRms } from "./sound";
 import {
   CatalogAnatomy,
   DriveForceBySpeed,
@@ -47,4 +47,8 @@ export const FIGURES: Record<DiagramKind, ComponentType> = {
   "turbo-intake-path": TurboIntakePath,
   "filter-states": FilterStates,
   "air-and-information": AirAndInformation,
+  "exhaust-path": ExhaustPath,
+  "silencer-structures": SilencerStructures,
+  "proximity-measurement": ProximityMeasurement,
+  "a-weighting": AWeighting,
 };
