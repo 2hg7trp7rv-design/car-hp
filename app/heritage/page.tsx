@@ -287,6 +287,7 @@ export default async function HeritageArchivePage({ searchParams }: PageProps) {
   ].filter(Boolean) as { label: string; href: string }[];
 
   const heroImage = resolveEditorialImage(EDITORIAL_ASSETS.heritageHero, "heritage", "desktop", "heritage-hero");
+  const filterValues = { q, decade, displayTag };
 
   return (
     <main className="min-h-screen bg-[var(--paper)]">
@@ -368,10 +369,11 @@ export default async function HeritageArchivePage({ searchParams }: PageProps) {
             条件で絞り込む
           </h2>
 
-          <ArchiveFilterAutoApply formId="heritage-filter-form" />
+          <ArchiveFilterAutoApply formId="heritage-filter-form" filterValues={filterValues} />
 
           <form
             id="heritage-filter-form"
+            data-filter-values={JSON.stringify(filterValues)}
             action="/heritage"
             method="get"
             className="mt-6 space-y-6"

@@ -122,7 +122,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
         <ArchivePageHero
           eyebrow="検索"
           title="SEARCH"
-          lead="車種名・症状・維持費・歴史などカテゴリをまたいで検索。ショートカット: / または Ctrl/⌘+K"
+          lead="車種名・症状・維持費・歴史などカテゴリをまたいで検索。"
           imageSrc="/images/hero-top-desktop.jpeg"
           imageAlt="道路と車のある風景"
           posterVariant="generic"

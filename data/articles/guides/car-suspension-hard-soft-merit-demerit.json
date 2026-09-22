@@ -129,16 +129,16 @@
     "body": "足回りの違和感は、タイヤ選び、中古車チェック、整備相談の判断ともつながります。硬さだけでなく、段差後の収まり方とタイヤの落ち着き方を基準に関連ガイドも確認できます。",
     "actions": [
       {
-        "label": "タイヤ交換費用の目安を見る",
-        "href": "/guide"
+        "label": "電子制御ダンパーと車高調の注意点を読む",
+        "href": "/guide/electronic-damper-coilover-risk-guide"
       },
       {
-        "label": "修復歴車の見分け方を見る",
-        "href": "/guide"
+        "label": "カスタム済み中古車の確認ポイントを読む",
+        "href": "/guide/used-custom-car-check-guide"
       },
       {
-        "label": "ロードサービスの選び方を見る",
-        "href": "/guide"
+        "label": "ローダウンと安全装備の関係を読む",
+        "href": "/guide/adas-lowered-car-aiming-risk-guide"
       }
     ]
   },

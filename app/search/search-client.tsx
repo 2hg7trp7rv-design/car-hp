@@ -383,7 +383,6 @@ export function SearchClient(props: {
             <p className="text-[13px] leading-[1.85] text-[var(--text-secondary)]">
               人気・最新の候補を表示しています。2文字以上の入力で、その場で候補が切り替わります。
             </p>
-            <p className="text-[11px] text-[var(--text-tertiary)]">ショートカット: / または Ctrl/⌘ + K</p>
           </div>
 
           {suggestions ? (

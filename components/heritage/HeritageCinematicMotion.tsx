@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -8,43 +8,7 @@ function toArray(selector: string): HTMLElement[] {
   return Array.from(document.querySelectorAll<HTMLElement>(selector));
 }
 
-function PageTransition({ active }: { active: boolean }) {
-  const [visible, setVisible] = useState(active);
-
-  useEffect(() => {
-    if (active) {
-      setVisible(true);
-      return;
-    }
-    const timer = window.setTimeout(() => setVisible(false), 680);
-    return () => window.clearTimeout(timer);
-  }, [active]);
-
-  if (!visible) return null;
-
-  return (
-    <div className="cbj-heritage-page-transition" aria-hidden="true">
-      {[0, 1, 2].map((index) => (
-        <span
-          key={index}
-          style={{
-            transform: active ? "translateY(0%)" : "translateY(-100%)",
-            transitionDelay: `${index * 80}ms`,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
 export function HeritageCinematicMotion() {
-  const [transitionActive, setTransitionActive] = useState(true);
-
-  useEffect(() => {
-    const transitionTimer = window.setTimeout(() => setTransitionActive(false), 720);
-    return () => window.clearTimeout(transitionTimer);
-  }, []);
-
   useEffect(() => {
     const root = document.documentElement;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -269,5 +233,5 @@ export function HeritageCinematicMotion() {
     };
   }, []);
 
-  return <PageTransition active={transitionActive} />;
+  return null;
 }

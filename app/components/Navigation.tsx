@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CloseIcon, MenuIcon } from "@/components/CinemaIcons";
@@ -12,54 +12,44 @@ const navLinks = [
   { label: "系譜特集", labelEn: "HERITAGE", href: "/heritage", long: true },
 ] as const;
 
-function isFooterInView() {
-  if (typeof window === "undefined") return false;
-  const footer = document.querySelector<HTMLElement>("[data-cbj-editorial-footer]");
-  if (!footer) return false;
-  const rect = footer.getBoundingClientRect();
-  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-  return rect.top <= viewportHeight && rect.bottom >= 0;
-}
-
 export default function Navigation() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [footerVisible, setFooterVisible] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  const openMenu = () => {
+    dialogRef.current?.showModal();
+    setMenuOpen(true);
+  };
+  const closeMenu = () => {
+    dialogRef.current?.close();
+    setMenuOpen(false);
+  };
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
+    if (!menuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
     };
   }, [menuOpen]);
 
   useEffect(() => {
+    dialogRef.current?.close();
     setMenuOpen(false);
   }, [pathname]);
 
   useEffect(() => {
-    let raf = 0;
-
-    const update = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        setFooterVisible(isFooterInView());
-      });
-    };
-
-    const mutationObserver = new MutationObserver(update);
-    mutationObserver.observe(document.body, { childList: true, subtree: true });
-
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-
-    return () => {
-      cancelAnimationFrame(raf);
-      mutationObserver.disconnect();
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
+    setFooterVisible(false);
+    const footer = document.querySelector<HTMLElement>("[data-cbj-editorial-footer]");
+    if (!footer) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      setFooterVisible(entry.isIntersecting);
+    });
+    observer.observe(footer);
+    return () => observer.disconnect();
   }, [pathname]);
 
   const hideHeader = menuOpen || footerVisible;
@@ -70,7 +60,8 @@ export default function Navigation() {
         className={`pointer-events-none fixed inset-x-0 top-0 z-50 transition-[opacity,transform] duration-300 ${
           hideHeader ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
         }`}
-        aria-hidden={hideHeader}
+        aria-hidden={footerVisible && !menuOpen}
+        inert={footerVisible && !menuOpen}
       >
         <div className="pointer-events-auto relative overflow-hidden bg-[#111313] shadow-[0_18px_46px_rgba(0,0,0,0.22)]">
           <div
@@ -86,9 +77,11 @@ export default function Navigation() {
             </Link>
             <button
               type="button"
-              onClick={() => setMenuOpen(true)}
+              onClick={openMenu}
               aria-label="メニューを開く"
               aria-expanded={menuOpen}
+              aria-controls="cbj-site-menu"
+              aria-haspopup="dialog"
               className="-mr-1 grid h-[clamp(38px,10svw,54px)] w-[clamp(38px,10svw,54px)] place-items-center text-white/[0.82] transition-colors hover:text-white"
             >
               <MenuIcon size={34} strokeWidth={1.12} />
@@ -97,11 +90,13 @@ export default function Navigation() {
         </div>
       </nav>
 
-      <div
-        className={`fixed inset-0 z-[70] isolate overflow-y-auto overflow-x-hidden bg-[#151818]/[0.88] text-white backdrop-blur-[22px] transition-[opacity,visibility] duration-500 ${
-          menuOpen ? "visible opacity-100" : "invisible pointer-events-none opacity-0"
-        }`}
-        aria-hidden={!menuOpen}
+      <dialog
+        id="cbj-site-menu"
+        ref={dialogRef}
+        aria-label="サイトメニュー"
+        onCancel={() => setMenuOpen(false)}
+        onClose={() => setMenuOpen(false)}
+        className="fixed inset-0 z-[70] m-0 h-[100dvh] max-h-none w-screen max-w-none isolate overflow-y-auto overflow-x-hidden border-0 bg-[#151818]/[0.88] p-0 text-white backdrop-blur-[22px] backdrop:bg-black/50"
       >
         <div
           aria-hidden="true"
@@ -113,14 +108,14 @@ export default function Navigation() {
           <div className="flex h-[clamp(82px,11.2svh,102px)] shrink-0 items-center justify-between px-[clamp(22px,5.8svw,54px)]">
             <Link
               href="/"
-              onClick={() => setMenuOpen(false)}
+              onClick={closeMenu}
               className="font-editorial text-[clamp(13px,3.5svw,22px)] uppercase leading-none tracking-[0.30em] text-white/[0.70] drop-shadow-[0_1px_8px_rgba(255,255,255,0.10)]"
             >
               CAR BOUTIQUE
             </Link>
             <button
               type="button"
-              onClick={() => setMenuOpen(false)}
+              onClick={closeMenu}
               aria-label="メニューを閉じる"
               className="grid h-[clamp(38px,10svw,54px)] w-[clamp(38px,10svw,54px)] place-items-center text-white/[0.74] transition-colors hover:text-white"
             >
@@ -134,7 +129,7 @@ export default function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={closeMenu}
                   className="group mx-auto block w-fit"
                 >
                   <span
@@ -154,7 +149,7 @@ export default function Navigation() {
             </div>
           </div>
         </div>
-      </div>
+      </dialog>
     </>
   );
 }

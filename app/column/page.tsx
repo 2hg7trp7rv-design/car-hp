@@ -282,6 +282,7 @@ export default async function ColumnArchivePage({ searchParams }: PageProps) {
   ].filter(Boolean) as { label: string; href: string }[];
 
   const heroImage = resolveEditorialImage(EDITORIAL_ASSETS.columnHero, "column", "desktop", "column-hero");
+  const filterValues = { q, category, displayTag, tag: legacyTag && !isKnownDisplayTag(legacyTag) ? legacyTag : "" };
 
   return (
     <main className="min-h-screen bg-[var(--paper)]">
@@ -350,9 +351,13 @@ export default async function ColumnArchivePage({ searchParams }: PageProps) {
             キーワードで探す
           </h2>
 
-          <ArchiveFilterAutoApply formId="column-filter-form" />
+          <ArchiveFilterAutoApply formId="column-filter-form" filterValues={filterValues} />
 
-          <form id="column-filter-form" action="/column" method="get" className="mt-6 space-y-6">
+          <form
+            id="column-filter-form"
+            data-filter-values={JSON.stringify(filterValues)}
+            action="/column" method="get" className="mt-6 space-y-6"
+          >
             <div>
               <label htmlFor="column-q" className="cb-field-label">
                 キーワード
