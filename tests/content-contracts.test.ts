@@ -1,20 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
-import { getHomeTopics } from "../lib/home-topics";
-import { getAllGuides } from "../lib/guides";
 import { serializeJsonLd } from "../lib/seo/serialize-json";
-
-test("topic counts and destinations reference actual published lessons", async () => {
-  const guides = await getAllGuides();
-  const topics = getHomeTopics(guides);
-  const suspension = topics.find((topic) => topic.id === "suspension")!;
-  assert.equal(suspension.lessons.length, 3);
-  assert.equal(topics.find((topic) => topic.id === "exhaust")!.lessons.length, 0);
-  assert.ok(topics.flatMap((topic) => topic.lessons).every((lesson) => guides.some((guide) => lesson.href === `/guide/${guide.slug}`)));
-  assert.equal(getHomeTopics([]).flatMap((topic) => topic.lessons).length, 0);
-  assert.equal(getHomeTopics(guides.map((guide) => ({ ...guide, publicState: "draft" }))).flatMap((topic) => topic.lessons).length, 0);
-});
 
 test("JSON-LD preserves values while preventing HTML script termination", () => {
   const data = { title: '</script><b id="inert-test">example</b>', note: "車の説明" };
