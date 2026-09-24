@@ -160,5 +160,5 @@ test("authored courses have valid progression, complete exercises and resolvable
 });
 
 test("the three learning stages use reader-facing names instead of score ranges", () => {
-  assert.deepEqual(Object.values(LEARNING_STAGES).map((stage) => stage.label), ["はじめて", "しくみと選び方", "深く読み解く"]);
+  assert.deepEqual(Object.values(LEARNING_STAGES).map((stage) => stage.label), ["初級", "中級", "上級"]);
 });
