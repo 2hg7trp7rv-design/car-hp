@@ -1,12 +1,14 @@
 import { useId } from "react";
 import type { LearningBlock } from "@/lib/learning";
 import styles from "@/app/learn/learning.module.css";
+import { FoundationDiagram } from "./FoundationDiagram";
 export function LearningDiagram({
   kind,
 }: {
   kind: Extract<LearningBlock, { type: "diagram" }>["kind"];
 }) {
   const id = useId().replace(/:/g, "");
+  if (kind === "four-strokes" || kind === "displacement" || kind === "two-air-paths" || kind === "exhaust-parts" || kind === "suspension-parts" || kind === "tire-markings" || kind === "disc-brake" || kind === "battery-roles") return <FoundationDiagram kind={kind}/>;
   if (kind === "sound-rms") {
     const wave = Array.from({ length: 181 }, (_, i) => `${40+i*2.8},${125-65*Math.sin(i*Math.PI/30)}`).join(" ");
     return <figure className={styles.diagram}><figcaption>波の高さと、RMSは違う</figcaption><svg viewBox="0 0 600 285" role="img" aria-label="正弦波の説明用模式図。縦軸は相対音圧、横軸は時間。瞬時値は正負に変化するが、二乗してから平均するRMSは正の値になる。">

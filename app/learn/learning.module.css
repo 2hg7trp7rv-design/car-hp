@@ -3,6 +3,27 @@
 @media(max-width:760px){.index,.course,.lesson{padding:18px 20px}.breadcrumb{font-size:10px;margin-bottom:18px}.indexHead{padding:4px 0 20px}.indexHead h1,.courseHero h1,.lessonHead h1{font-size:28px}.indexHead>p:last-child{font-size:13px}.filterGroup{font-size:11px;gap:6px;margin-bottom:10px}.filterGroup a{padding:5px 10px}.courseGrid{grid-template-columns:1fr;gap:15px}.resultTitle{font-size:17px;align-items:baseline}.courseCardHead>img{width:65px;height:65px}.courseCard h2{font-size:22px}.courseCard>p{font-size:13px}.courseCard li a{font-size:13px;gap:7px}.courseCard li a>.badge{font-size:9px;padding:2px 7px}.hostNote{gap:9px;font-size:11px;align-items:flex-start}.hostNote img{width:44px;height:44px}.hostNote img:last-child{display:none}.courseHero{gap:12px;padding:4px 0 25px;align-items:start}.courseHero>img{width:82px;height:120px}.courseHero>div>p:not(.kicker){font-size:13px}.courseHero h1{font-size:26px}.primary{font-size:13px;padding:11px 16px;gap:15px}.outcomes{padding:16px 20px}.outcomes h2{font-size:17px}.outcomes ul{font-size:13px}.outlineStage h3{display:block;font-size:19px}.outlineStage h3>span{display:block;font-size:11px}.outlineStage li a{padding:13px 35px 13px 15px}.outlineStage strong{font-size:14px}.outlineStage li span{font-size:11px}.outlineStage b{right:12px}.lessonLayout{display:block}.lessonMeta{font-size:10px;gap:8px}.lessonHead{margin-bottom:22px}.lessonHead h1{font-size:27px;margin-top:12px}.goal{font-size:14px}.prerequisites{font-size:10px}.dialogue,.paired .dialogue{gap:9px;margin-bottom:15px}.dialogue>img,.paired .dialogue>img{width:45px;height:45px}.dialogue p,.paired .dialogue p{font-size:15px;line-height:1.9;padding:12px}.dialogue strong{font-size:10px}.figure,.diagram{padding:14px}.figure figcaption,.diagram figcaption{font-size:16px}.figure .chartScroll svg{min-width:390px}.tableScroll table{font-size:12px;min-width:400px}.tableScroll th,.tableScroll td{padding:9px}.installations{grid-template-columns:1fr}.installations>div{display:grid;grid-template-columns:100px 1fr}.diagram svg{min-width:400px}.teachingGroup{margin-bottom:20px}.takeaways{padding:18px}.takeaways h2{font-size:18px}.takeaways ul{font-size:14px}.checkpoint{padding:20px 17px}.checkpoint h2{font-size:19px}.checkpoint details>p{font-size:14px}.lessonPager{gap:9px}.lessonPager a{padding:13px}.lessonPager strong{font-size:13px}.lessonRail{position:static;border-left:0;padding:22px 0 0;margin-top:30px;border-top:1px solid #dbe3e8}.lessonRail li a{padding:10px;font-size:12px;display:flex;align-items:baseline;gap:12px}.lessonRail li .badge{display:inline-block;flex-shrink:0}.lessonRail ol{background:#fff;border-radius:7px;margin-top:12px}.lessonRail>a{font-size:13px}.airSteps svg,.airSteps img{height:105px}.airFigure{padding:12px}.airSteps strong{font-size:10px;padding:2px 6px}.airSteps p{font-size:9px}.airSteps>span{font-size:19px}.airSteps{grid-template-columns:1fr 16px 1fr 16px 1fr}.airFigure figcaption{font-size:16px}}
 
 /* Technical examples must remain readable beside the dialogue and on phones. */
+.lessonSummary{font-size:17px;line-height:2;max-width:850px;color:#304962}
+.lessonContents{border-block:1px solid #dce5eb;padding:14px 0;margin:0 0 30px}
+.lessonContents>p{font-weight:700;font-size:14px;margin:0 0 8px}
+.lessonContents ol{margin:0;padding-left:24px;display:grid;gap:8px;font-size:14px;line-height:1.8}
+.lessonContents a{color:#245d79;text-underline-offset:4px}
+.lessonSectionTitle{scroll-margin-top:30px;font-size:23px;line-height:1.65;border-left:5px solid #ec6278;padding-left:14px;margin:30px 0 8px}
+.sectionSources{font-size:12px;line-height:1.8;color:#60748a;margin:0 0 20px}
+.sectionSources a{display:inline-block;margin-right:12px;color:inherit;text-underline-offset:3px}
+.sources li{scroll-margin-top:30px}
+.foundation .paired{grid-template-columns:minmax(0,1fr);gap:8px}
+.foundation .dialogue p{font-size:16px}
+.foundationFigure{margin:0;background:#fffdf7;border:1px solid #dce4e8;border-radius:10px;padding:20px;color:#183357}
+.foundationFigure figcaption{font-weight:700;font-size:19px;line-height:1.7;margin:0 0 18px}
+.foundationFigure svg{display:block;width:100%;max-width:410px;height:auto;margin:auto;font-family:inherit;font-size:15px}
+.drawingGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.drawingGrid h3{font-size:16px;margin:0 0 6px;color:#246477}
+.drawingCaption{font-size:14px;line-height:1.9;margin:8px 0}
+.diagramKey{margin:0;align-self:center;font-size:14px;line-height:1.7}
+.diagramKey>div{display:grid;grid-template-columns:42px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid #e5e9e8}
+.diagramKey dt{font-weight:700;color:#a1435a}.diagramKey dd{margin:0}
+@media(max-width:600px){.drawingGrid{grid-template-columns:1fr;gap:22px}.foundationFigure{padding:15px}.foundationFigure figcaption{font-size:17px}.lessonSectionTitle{font-size:21px}.lessonSummary{font-size:16px}}
 .dialogue p,.paired .dialogue p{font-size:16px;line-height:1.95}
 .note,.diagramDescription,.sources li p,.editorNote{font-size:13px;line-height:1.9}
 .flow p,.tableScroll table,.tableScroll thead th{font-size:14px;line-height:1.85}

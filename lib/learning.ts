@@ -1,3 +1,5 @@
+import { DIAGRAM_TEXT } from "./learning-diagrams";
+export { DIAGRAM_TEXT } from "./learning-diagrams";
 import airCleaner from "@/data/learning/air-cleaner.json";
 import engine from "@/data/learning/engine-torque.json";
 import suspension from "@/data/learning/suspension.json";
@@ -24,6 +26,7 @@ export type LearningTopic = keyof typeof LEARNING_TOPICS;
 export type LearningStage = keyof typeof LEARNING_STAGES;
 export type LearningBlock =
   | { type: "dialogue"; speaker: "shuna" | "rina"; text: string }
+  | { type: "heading"; id: string; title: string; sources: string[] }
   | {
       type: "flow";
       title: string;
@@ -51,7 +54,7 @@ export type LearningBlock =
     }
   | {
       type: "diagram";
-      kind: "air-and-fuel" | "pleated-media" | "installation-types" | "sound-rms";
+      kind: keyof typeof DIAGRAM_TEXT;
       title?: string;
       note?: string;
     };
@@ -60,6 +63,7 @@ export type LearningLesson = {
   title: string;
   stage: LearningStage;
   goal: string;
+  summary?: string;
   prerequisites: string[];
   blocks: LearningBlock[];
   takeaways: string[];
@@ -100,6 +104,8 @@ export function learningHref(course: string, lesson?: string) {
 export function learningLessonText(lesson: LearningLesson) {
   const blocks = lesson.blocks.flatMap((block) => {
     switch (block.type) {
+      case "heading":
+        return [block.title];
       case "dialogue":
         return [block.text];
       case "flow":
@@ -138,16 +144,10 @@ export function learningLessonText(lesson: LearningLesson) {
   });
   return [
     lesson.goal,
+    lesson.summary ?? "",
     ...blocks,
     ...lesson.takeaways,
     lesson.checkpoint.question,
     lesson.checkpoint.answer,
   ].join(" ");
 }
-
-export const DIAGRAM_TEXT = {
-  "air-and-fuel": "エアクリーナーのはたらき。外の空気からフィルターで異物を減らし、エンジンへ送る。燃料は別の経路で加わる。",
-  "pleated-media": "折りひだを広げると、同じ箱の中に広いろ材の面積を収められる。",
-  "installation-types": "純正交換型はボックスを残す。密閉型は箱を含めて交換する。露出型はフィルターが外に出る。",
-  "sound-rms": "正負に変わる音圧の波形。RMSは音圧を二乗して平均し平方根を取る。波の瞬間の最大値とは異なる。",
-} as const;

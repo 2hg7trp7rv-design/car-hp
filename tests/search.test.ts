@@ -82,6 +82,7 @@ test("learning text extraction covers graph axes, values and each block variant"
     const body = learningLessonText(lesson);
     for (const block of lesson.blocks) {
       const phrases = block.type === "dialogue" ? [block.text]
+        : block.type === "heading" ? [block.title]
         : block.type === "flow" ? [block.title, ...block.steps.flatMap((step) => [step.title, step.body]), block.note]
         : block.type === "comparison" ? [block.title, ...block.headers, ...block.rows.flat(), block.note]
         : block.type === "measurements" ? [block.title, block.unit, block.xLabel, block.yLabel, ...block.rounds, ...block.series.flatMap((series) => [series.name, ...series.values.map(String)]), block.note]
