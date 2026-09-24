@@ -8,9 +8,9 @@ import muffler from "@/data/learning/muffler-sound.json";
 import { isPublicContent } from "@/lib/content/publication";
 
 export const LEARNING_STAGES = {
-  start: { label: "はじめて", description: "名前と役割がわかる" },
-  mechanism: { label: "しくみと選び方", description: "車屋さんの説明がわかる" },
-  evaluation: { label: "深く読み解く", description: "条件とデータで考えられる" },
+  start: { label: "初級", description: "名前と役割がわかる" },
+  mechanism: { label: "中級", description: "車屋さんの説明がわかる" },
+  evaluation: { label: "上級", description: "条件とデータで考えられる" },
 } as const;
 export const LEARNING_TOPICS = {
   engine: { title: "エンジン", description: "動力を生み出す、クルマの心臓。", image: "/images/cbj/topic-icons/engine-basics.png" },

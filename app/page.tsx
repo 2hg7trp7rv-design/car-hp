@@ -41,7 +41,7 @@ export default function Home() {
     </section>
     <section className={styles.lessonPreview} aria-labelledby="sample-title">
       <div className={styles.sampleCopy}>
-        <div className={styles.tags}><span>図解レッスンの一例</span><span>はじめて</span><span>吸気・排気</span></div>
+        <div className={styles.tags}><span>図解レッスンの一例</span><span>{LEARNING_STAGES.start.label}</span><span>吸気・排気</span></div>
         <h2 id="sample-title">エアクリーナーって、なに？</h2>
         <p className={styles.goal}>この回のゴール：役割をひとことで説明できる</p>
         <div className={styles.dialogue}><Image src="/images/cbj/learning/shuna.webp" alt="" width={80} height={80}/><div><strong>シュナ</strong><p>エンジンに、どうして<br/>フィルターが必要なの？</p></div></div>
