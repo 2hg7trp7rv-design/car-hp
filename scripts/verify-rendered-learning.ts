@@ -29,10 +29,25 @@ const attr = (node: Element, name: string) =>
   node.attrs.find((item) => item.name === name)?.value;
 // These are the abandoned public-facing level labels, not technical values/units.
 const numericLevelLabel = /(?<![0-9])(?:0\s*[〜～~→⇒–−-]\s*1|1\s*[〜～~→⇒–−-]\s*70|70\s*[〜～~→⇒–−-]\s*90)(?![0-9])/u;
+function hasNumericLevelLabel(value: string): boolean {
+  // MeasurementFigure prints physical axis bounds, which are not learning levels.
+  // Only exempt a named axis with numeric bounds and a physical unit; keep the
+  // rest of the page, including figure titles and surrounding prose, in scope.
+  const prose = value.normalize("NFKC").replace(
+    /縦軸:\s*-?\d+(?:\.\d+)?\s*〜\s*-?\d+(?:\.\d+)?\s+(?:mm|cm|km|m|kW|PS|kPa|Pa|N|dB|Hz|rpm|ms|s|kg|g|K|°C|%|ppm)(?![A-Za-z])/gu,
+    "",
+  );
+  return numericLevelLabel.test(prose);
+}
+assert.equal(hasNumericLevelLabel("縦軸：0〜1 m。"), false);
+assert.equal(hasNumericLevelLabel("縦軸：1〜70 N。"), false);
+for (const label of ["入門 0〜1", "理解 1→70", "専門 70〜90", "縦軸：0〜1 m。知識0〜1"]) {
+  assert.equal(hasNumericLevelLabel(label), true, `Forbidden level label: ${label}`);
+}
 function readPage(route: string, indexable = true) {
   const document = parse(fs.readFileSync(`.next/server/app${route === "/" ? "/index" : route}.html`, "utf8"));
   const nodes = elements(document);
-  assert.ok(!numericLevelLabel.test(text(document).normalize("NFKC")), `${route}: numeric learning-level label visible`);
+  assert.ok(!hasNumericLevelLabel(text(document)), `${route}: numeric learning-level label visible`);
   assert.ok(nodes.some((node) => node.tagName === "link" && attr(node, "rel") === "canonical" && [`${getSiteUrl()}${route}`, ...(route === "/" ? [getSiteUrl()] : [])].includes(attr(node, "href") ?? "")), `${route}: canonical`);
   const robots = nodes.find((node) => node.tagName === "meta" && attr(node, "name") === "robots");
   assert.equal((robots ? attr(robots, "content") ?? "" : "").includes("noindex"), !indexable, `${route}: robots/publication mismatch`);

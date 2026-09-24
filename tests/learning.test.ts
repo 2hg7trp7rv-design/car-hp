@@ -118,6 +118,16 @@ test("authored courses have valid progression, complete exercises and resolvable
         } else if (block.type === "measurements") {
           figures++;
           assert.ok(block.rounds.length > 1 && block.series.length > 0, `${course.slug}/${lesson.slug}: graph needs points and a named series`);
+          if (block.xValues) {
+            assert.equal(block.xValues.length, block.rounds.length);
+            assert.ok(block.xValues.every((value, index, values) => Number.isFinite(value) && (index === 0 || value > values[index - 1])), `${course.slug}/${lesson.slug}: numeric x values must increase`);
+          }
+          if (block.yRange) {
+            assert.equal(block.yRange.length, 2);
+            const [low, high] = block.yRange;
+            assert.ok(Number.isFinite(low) && Number.isFinite(high) && low < high);
+            assert.ok(block.series.flatMap(series => series.values).every(value => value >= low && value <= high), `${course.slug}/${lesson.slug}: explicit y range must contain all points`);
+          }
           assert.ok(
             block.title.trim() && block.unit.trim() && block.note.trim(),
           );

@@ -8,6 +8,7 @@ import { publicationPolicy } from "@/lib/content/publication";
 import { LessonBlock } from "@/components/learning/LessonBlock";
 import styles from "../../learning.module.css";
 type Props={params:Promise<{course:string;lesson:string}>};
+export const dynamicParams = false;
 export function generateStaticParams(){return getLearningCourses().flatMap(c=>c.lessons.map(l=>({course:c.slug,lesson:l.slug})));}
 export async function generateMetadata({params}:Props):Promise<Metadata>{const p=await params,c=getLearningCourse(p.course),l=c?.lessons.find(l=>l.slug===p.lesson);if(!c||!l)return{};return{...referenceMetadata(`${l.title}｜${c.title}`,l.goal,learningHref(c.slug,l.slug)),robots:{index:publicationPolicy(c).indexable,follow:true}};}
 function teachingGroups(blocks:LearningBlock[]){const groups:{talk:LearningBlock[];visual?:LearningBlock}[]=[];let talk:LearningBlock[]=[];for(const b of blocks){if(b.type==='dialogue')talk.push(b);else{groups.push({talk,visual:b});talk=[];}}if(talk.length)groups.push({talk});return groups;}
