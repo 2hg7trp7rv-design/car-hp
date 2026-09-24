@@ -1,8 +1,8 @@
 {
   "slug": "driving-support",
   "topic": "electronics",
-  "title": "運転支援のしくみと限界",
-  "description": "センサーの役割から、試験結果の比較と再調整の意味まで。『装備がある』と『その条件で支援できる』の違いを、会話と具体例で読み解きます。",
+  "title": "電装と運転支援の教科書",
+  "description": "12Vバッテリーと警告灯から、センサー・安全装備の違いへ。電装の基本を押さえ、運転支援に何を任せられるかを取扱説明書と評価条件で確かめます。",
   "status": "published",
   "publicState": "index",
   "updatedAt": "2026-09-25",
@@ -36,16 +36,207 @@
       "title": "OpenStax｜University Physics Volume 1, 7.2 Kinetic Energy",
       "url": "https://openstax.org/books/university-physics-volume-1/pages/7-2-kinetic-energy",
       "note": "運動エネルギーの定義E＝½mv²と基準系を確認。教材の速度比は独自の力学計算で、傷害・事故確率・車両全体の安全性を予測する式ではない。"
+    },
+    {
+      "id": "yuasa-electric",
+      "title": "GSユアサ：12Vバッテリーと車両電源系",
+      "url": "https://www.gs-yuasa.com/en/technology/technical_report/pdf/vol14_2/014_02_019.pdf#page=15",
+      "note": "資料33ページの車両電源系と、始動・充電・停車時の役割を参照。開発例の電池化学や制御を全車共通とはしない。"
+    },
+    {
+      "id": "jaf-auxiliary",
+      "title": "JAF：電動車の補機用12Vバッテリー",
+      "url": "https://jaf.or.jp/common/kuruma-qa/category-construction/subcategory-eco-car/faq046",
+      "note": "駆動用電池とは別の補機用電源、システム起動に必要な役割を参照。救援接続の手順はここでは扱わない。"
+    },
+    {
+      "id": "honda-warnings",
+      "title": "Honda ACCORD 2022：警告灯の点灯・点滅",
+      "url": "https://www.honda.co.jp/ownersmanual/webom/jpn/accord/2022/details/136181090-13970.html",
+      "note": "油圧異常・充電異常などの警告表示と対応の違いを参照。操作や待ち時間を他の車種へ一般化せず、対象車の説明書へ案内する。"
+    },
+    {
+      "id": "honda-vsa",
+      "title": "Honda：VSAの機能",
+      "url": "https://global.honda/en/tech/Vehicle_Stability_Assist_VSA/",
+      "note": "ABS、トラクション制御、横滑り抑制の役割を参照。VSAはHondaの呼称。"
+    },
+    {
+      "id": "honda-acc",
+      "title": "Honda：ACCの機能と限界",
+      "url": "https://www.honda.co.jp/hondasensing/sensing/acc/",
+      "note": "設定速度や先行車との車間維持を支援する役割を参照。作動速度や停止対応は装備ごとの説明書で確認する。"
+    },
+    {
+      "id": "honda-cmbs",
+      "title": "Honda：衝突軽減ブレーキの機能と限界",
+      "url": "https://www.honda.co.jp/hondasensing/sensing/cmbs/",
+      "note": "衝突回避・被害軽減の支援という目的を参照。全条件での停止や回避を保証する説明にはしない。"
     }
   ],
   "lessons": [
     {
-      "slug": "sensing-and-support",
-      "title": "車は前を、どうやって見ている？",
+      "slug": "battery-and-warning-lights",
+      "title": "車の12Vバッテリーは何をする？警告灯との付き合い方",
       "stage": "start",
-      "goal": "センサーが情報を集める働きと、判断・操作を支援する働きを分けられる。",
+      "summary": "12Vバッテリーは始動や電装品に必要な電気を供給します。ハイブリッド車や電気自動車でも、駆動用とは別の補機用電源が重要です。警告灯は電池残量の表示とは限りません。",
+      "goal": "始動・充電・補機用電源を区別し、警告表示から対象車の説明書を確認できる。",
       "prerequisites": [],
       "blocks": [
+        {
+          "type": "heading",
+          "id": "starting-and-charging",
+          "title": "バッテリーは、電気をつくり続ける装置？",
+          "sources": [
+            "yuasa-electric"
+          ]
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "ガソリンで走る車なのに、どうしてバッテリーが上がると動けないの？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "一般的なエンジン車では、エンジンをかける最初の回転をスターターというモーターが与えるよ。その電気や、制御装置の電源をバッテリーが供給する。燃料があっても、始動に必要な電源が足りなければ動き出せないんだ。"
+        },
+        {
+          "type": "diagram",
+          "kind": "battery-roles"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "走り始めたら、電気はどこから来るの？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "一般的なエンジン車にはオルタネーターという発電機があり、エンジンの動力を使って発電する。電装品へ供給し、条件に応じてバッテリーを充電するよ。バッテリーは発電機とは別で、電気を蓄えたり渡したりする役だね。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "しばらく乗っていない車なら、電気を使っていないから減らない？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "停車中も一部の装置が少しずつ電気を使う。長く充電されない状態や、始動を繰り返す短い移動など、使い方も関係するよ。ただし「始動しない」だけでバッテリー交換が必要とは断定できず、充電系や接続などの点検も必要なんだ。"
+        },
+        {
+          "type": "heading",
+          "id": "auxiliary-battery",
+          "title": "大きな駆動用電池があっても、補機用電源は別",
+          "sources": [
+            "jaf-auxiliary"
+          ]
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "電気自動車なら、走るための大きい電池があるから12V側は関係ない？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "駆動用の電池を使うシステムを起動するにも、補機用電源が必要な車があるよ。走行用の残量があっても、補機用電源の不足で起動できないことがある。残量表示が何の電池を示すかを分けて考えよう。"
+        },
+        {
+          "type": "comparison",
+          "title": "電池の名前を、役割で読む",
+          "headers": [
+            "呼び方",
+            "主な役割",
+            "混同しないこと"
+          ],
+          "rows": [
+            [
+              "駆動用バッテリー",
+              "走行用モーターへ電力を供給する",
+              "走行用残量があるだけで、全ての電源が正常とは限らない"
+            ],
+            [
+              "補機用バッテリー",
+              "制御装置の起動や電装品などへ電力を供給する",
+              "車によって搭載場所、電圧、種類、救援方法が異なる"
+            ]
+          ],
+          "note": "12V補機系のある車を中心にした基本の整理。端子や高電圧配線に触れる作業手順ではありません。"
+        },
+        {
+          "type": "heading",
+          "id": "warning-not-charge-meter",
+          "title": "警告灯は、絵柄だけで原因を決めない",
+          "sources": [
+            "honda-warnings"
+          ]
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "バッテリーの絵が点いたら「そろそろ充電してね」という残量計みたいなもの？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "充電系の異常を知らせる表示の場合があるよ。油差しのような絵も、単なるオイル交換のお知らせとは限らず、油圧異常なら対応が急がれる。形や色だけで意味を決めないで、表示されたメッセージと説明書の該当項目を見るんだ。"
+        },
+        {
+          "type": "flow",
+          "title": "表示が出たら、必要な情報を整理する",
+          "steps": [
+            {
+              "title": "状態を見る",
+              "body": "始動前の確認点灯か、始動後も残るか、走行中に出たか。文字のメッセージも記録する。"
+            },
+            {
+              "title": "対象車の説明を見る",
+              "body": "車名だけでなく年式・型式に合う説明書で、表示名と必要な対応を確認する。"
+            },
+            {
+              "title": "指示に従って相談する",
+              "body": "停車の指示なら安全な場所を確保。走行継続の判断に迷うときは販売店やロードサービスへ相談する。"
+            }
+          ],
+          "note": "走行中に画面や説明書を読まず、安全を確保してから確認します。始動時だけ点灯する正常な確認動作と、異常の継続表示を区別します。車種ごとの具体的な停止・再始動手順は対象車の説明書に従います。"
+        }
+      ],
+      "takeaways": [
+        "蓄電するバッテリーと、発電する装置は役割が違う。",
+        "駆動用電池と補機用電源の状態は別に考える。",
+        "警告灯の意味と対応は、車両の表示と説明書で確認する。"
+      ],
+      "checkpoint": {
+        "question": "電気自動車の走行用バッテリー残量が十分なら、補機用電源の不足による起動不能は起こらない？",
+        "answer": "起こり得る。駆動用バッテリーのエネルギーを使うシステムの起動に、別の補機用電源が必要な車がある。走行用残量だけで原因や対処を決めない。",
+        "review": "battery-and-warning-lights"
+      },
+      "sources": [
+        "yuasa-electric",
+        "jaf-auxiliary",
+        "honda-warnings"
+      ]
+    },
+    {
+      "slug": "sensing-and-support",
+      "title": "運転支援とは？カメラ・レーダーとABS・AEB・ACCの違い",
+      "stage": "start",
+      "goal": "センサーが情報を集める働きと、判断・操作を支援する働きを分けられる。",
+      "prerequisites": [
+        "battery-and-warning-lights"
+      ],
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "sense-and-control",
+          "title": "「見つける部品」と「助ける機能」を分ける",
+          "sources": [
+            "denso-sensors",
+            "toyota-safety-sense"
+          ]
+        },
         {
           "type": "dialogue",
           "speaker": "shuna",
@@ -104,6 +295,97 @@
           "type": "dialogue",
           "speaker": "rina",
           "text": "そのとおり。こうした先進運転支援システムをADASと呼ぶことがある。運転者を助けるもので、周囲の確認や安全な操作をすべて任せられるという意味ではないよ。"
+        },
+        {
+          "type": "heading",
+          "id": "functions-by-purpose",
+          "title": "似た略語を、使う場面で見分ける",
+          "sources": [
+            "honda-vsa",
+            "honda-acc",
+            "honda-cmbs"
+          ]
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "ABSもACCもAEBも、全部「自動ブレーキ」の種類に見えるよ。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "似て見えるけれど、助ける場面が違うんだ。急な制動で車輪のロックを抑えるもの、衝突のおそれに対応するもの、先行車との車間を保つものを分けよう。"
+        },
+        {
+          "type": "comparison",
+          "title": "機能名と、支援する場面",
+          "headers": [
+            "機能",
+            "主な目的",
+            "任せきりにできない理由"
+          ],
+          "rows": [
+            [
+              "ABS",
+              "強い制動で車輪がロックし続けるのを抑える",
+              "路面のグリップを増やす装置ではない"
+            ],
+            [
+              "横滑り防止（ESCなど）",
+              "車輪のブレーキや駆動力を制御し、車体の挙動を安定させる",
+              "速度や路面の限界をなくせない。メーカーで呼称が違う"
+            ],
+            [
+              "衝突被害軽減ブレーキ（AEBなど）",
+              "衝突のおそれを検知して警告や制動を支援する",
+              "全対象・全条件で回避できるとは限らない"
+            ],
+            [
+              "車間維持支援（ACC）",
+              "設定速度や先行車との車間を保つよう加減速を助ける",
+              "対象の検知や作動速度に条件があり、必要な操作は運転者が行う"
+            ]
+          ],
+          "note": "一般的な目的の整理です。全機能がカメラや前方レーダーを使うわけではなく、ABSや横滑り防止は車輪速度などの情報も使います。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "ACCがあれば、止まっている車も必ず見つけて止まれる、と考えたら危ないんだね。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "そう。停止車両への対応、作動速度、悪天候時の制限などは装備ごとに違う。「付いている」という情報だけでなく、何を支援して、どの条件で使えるかを説明書で確認しよう。"
+        },
+        {
+          "type": "heading",
+          "id": "read-equipment",
+          "title": "同じ車名でも、装備内容を確かめる",
+          "sources": [
+            "toyota-safety-sense",
+            "honda-acc"
+          ]
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "中古車の一覧で「安全装備あり」と書いてあれば、それで比較できる？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "年式・グレード・オプションで機能が違う場合があるよ。装備名称だけでなく、機能一覧、実車の表示、対象年式の取扱説明書を照合する。センサー数が多いだけで優劣を決めるのも早いね。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "まず名前の意味が分かってから、自分の車の条件を読むんだ。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "その順番なら、車屋さんにも「この年式のACCは停止まで支援するの？」など、知りたいことを具体的に聞けるよ。"
         }
       ],
       "takeaways": [
@@ -118,8 +400,12 @@
       },
       "sources": [
         "denso-sensors",
-        "toyota-safety-sense"
-      ]
+        "toyota-safety-sense",
+        "honda-vsa",
+        "honda-acc",
+        "honda-cmbs"
+      ],
+      "summary": "センサーは周囲の情報を集める部品で、運転支援はその情報などを使って警告や操作を助ける機能です。衝突軽減、車間維持、車輪のロック抑制では、目的が違います。"
     },
     {
       "slug": "read-your-equipment",

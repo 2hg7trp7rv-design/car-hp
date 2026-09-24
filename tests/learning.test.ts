@@ -5,6 +5,7 @@ import {
   getLearningCourses,
   LEARNING_STAGES,
   LEARNING_TOPICS,
+  DIAGRAM_TEXT,
   type LearningCourse,
 } from "../lib/learning";
 import { getGuideBySlug } from "../lib/guides";
@@ -97,12 +98,19 @@ test("authored courses have valid progression, complete exercises and resolvable
           lesson.sources.every((id) => sources.has(id)),
       );
       const speakers = new Set<string>();
+      const headingIds = new Set<string>();
       let figures = 0;
       for (const block of lesson.blocks) {
         if (block.type === "dialogue") {
           assert.ok(["shuna", "rina"].includes(block.speaker));
           assert.ok(block.text.trim());
           speakers.add(block.speaker);
+        } else if (block.type === "heading") {
+          assert.match(block.id, /^[a-z][a-z0-9-]+$/);
+          assert.ok(!headingIds.has(block.id), `${lesson.slug}: duplicate section anchor`);
+          headingIds.add(block.id);
+          assert.ok(block.title.trim() && block.sources.length > 0);
+          assert.ok(block.sources.every(id => lesson.sources.includes(id)), `${lesson.slug}: section source must be listed in the lesson`);
         } else if (block.type === "comparison") {
           figures++;
           assert.ok(block.rows.length > 0);
@@ -140,9 +148,7 @@ test("authored courses have valid progression, complete exercises and resolvable
         } else if (block.type === "diagram") {
           figures++;
           assert.ok(
-            ["air-and-fuel", "pleated-media", "installation-types", "sound-rms"].includes(
-              block.kind,
-            ),
+            Object.hasOwn(DIAGRAM_TEXT, block.kind),
           );
         } else assert.fail(`Unknown learning block: ${JSON.stringify(block)}`);
       }

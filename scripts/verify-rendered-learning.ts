@@ -82,6 +82,15 @@ for (const course of getLearningCourses()) {
     assert.ok(main, `${route}: missing lesson content`);
     const mainNodes = elements(main);
     const rendered = compact(text(main));
+    if (lesson.summary) assert.ok(rendered.includes(compact(lesson.summary)), `${route}: missing introductory answer`);
+    for (const heading of lesson.blocks.filter(block => block.type === "heading")) {
+      assert.ok(mainNodes.some(node => node.tagName === "h2" && attr(node, "id") === heading.id && compact(text(node)) === compact(heading.title)), `${route}: section heading/anchor missing`);
+      assert.ok(mainNodes.some(node => node.tagName === "a" && attr(node, "href") === `#${heading.id}`), `${route}: table of contents target missing`);
+      for (const id of heading.sources) {
+        assert.ok(mainNodes.some(node => attr(node, "id") === `source-${id}`), `${route}: source anchor missing`);
+        assert.ok(mainNodes.some(node => node.tagName === "a" && attr(node, "href") === `#source-${id}`), `${route}: section source link missing`);
+      }
+    }
     assert.ok(
       rendered.includes(compact(lesson.goal)),
       `${route}: missing goal`,

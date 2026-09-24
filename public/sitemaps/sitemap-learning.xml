@@ -20,6 +20,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://carboutiquejournal.com/learn/air-cleaner/engine-and-cabin-filter</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://carboutiquejournal.com/learn/air-cleaner/filter-types</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
@@ -74,6 +80,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://carboutiquejournal.com/learn/driving-support/battery-and-warning-lights</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://carboutiquejournal.com/learn/driving-support/sensing-and-support</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
@@ -110,6 +122,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://carboutiquejournal.com/learn/engine-torque/how-engine-works</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carboutiquejournal.com/learn/engine-torque/displacement-and-turbo</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://carboutiquejournal.com/learn/engine-torque/turning-force</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
@@ -141,6 +165,12 @@
   </url>
   <url>
     <loc>https://carboutiquejournal.com/learn/maintenance</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carboutiquejournal.com/learn/maintenance/daily-check-basics</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -224,6 +254,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://carboutiquejournal.com/learn/suspension/suspension-layout</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://carboutiquejournal.com/learn/suspension/spring-and-damper</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
@@ -255,6 +291,12 @@
   </url>
   <url>
     <loc>https://carboutiquejournal.com/learn/tires-brakes</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carboutiquejournal.com/learn/tires-brakes/tire-basics</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
