@@ -42,7 +42,7 @@ function readPage(route: string, indexable = true) {
 function hasLink(nodes: Element[], href: string) {
   return nodes.some((node) => node.tagName === "a" && attr(node, "href")?.split("#")[0] === href);
 }
-for (const route of ["/", "/choose", "/choose/drive-recorder", "/choose/car-wash", "/choose/air-filter", "/glossary"]) readPage(route);
+for (const route of ["/", "/choose", "/choose/drive-recorder", "/choose/car-wash", "/choose/air-filter", "/choose/shaken", "/glossary"]) readPage(route);
 let lessonCount = 0;
 let dialogueCount = 0;
 for (const course of getLearningCourses()) {

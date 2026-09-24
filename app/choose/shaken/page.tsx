@@ -99,7 +99,7 @@ export default function ShakenChoice() {
       </nav>
     </section>
     <ChoiceSources sources={[
-      { title: "国土交通省｜自動車検査登録総合ポータルサイト", href: "https://www.mlit.go.jp/jidosha/jidosha_fr6_000008.html", note: "検査・登録の制度と手続きの入口。手数料や必要書類は、ここから対象の手続きを確認する。" },
+      { title: "国土交通省｜自動車検査登録総合ポータルサイト", href: "https://www.jidoushatouroku-portal.mlit.go.jp/jidousha/kensatoroku/", note: "検査・登録の制度と手続きの入口。手数料や必要書類は、ここから対象の手続きを確認する。" },
       { title: "国土交通省｜自動車の点検・整備", href: "https://www.mlit.go.jp/jidosha/jidosha/tenkenseibi/", note: "日常点検と定期点検の考え方。車検とは別に、点検整備の義務が定められている。" },
       { title: "国土交通省｜自動車の電子的な検査（OBD検査）について", href: "https://www.mlit.go.jp/jidosha/jidosha_OBD.html", note: "対象車と開始時期。令和3年10月1日以降の新型車を対象に、令和6年10月1日以降の車検で実施（輸入車は1年後）。" },
     ]} />

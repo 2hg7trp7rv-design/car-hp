@@ -35,7 +35,6 @@ npm run dev
 | `article-blocks.tsx` | 段落・図・表・リストなどのブロック表示 |
 | `article-format.ts` | 日付・表示番号の書式 |
 | `lib/search/` | 正規化済みの検索索引と一致度による順位付け |
-| `lib/home-topics.ts` | トップのトピックと記事の対応。件数は公開記事から算出 |
 | `components/analytics/` | 同意設定・計測・Cookie設定の再表示 |
 | `scripts/`, `tests/` | 原稿・生成HTML・実際のHTTP応答の検査 |
 
@@ -53,8 +52,7 @@ Guide / Column は `EditorialArticlePage` に統一しています。記事固�
 1. 対象の `data/articles/` にJSONを作成・編集します。型は `lib/content-types.ts` を参照します。
 2. `status` と `publicState` を明示します。既存URLの統合は `data/redirects.json` に記録します。
 3. 図や写真は `public/images/` に配置し、`npm run images:gen` を実行します。本文の画像パスは実在するファイルを指定します。
-4. トップに掲載するガイドは `lib/home-topics.ts` の該当トピックへ追加します。
-5. `npm run check` を実行し、プレビューで本文・図表・スマートフォン表示を確認してPRを作成します。
+4. `npm run check` を実行し、プレビューで本文・図表・スマートフォン表示を確認してPRを作成します。
 
 著者情報は確認済みの `authorProfile` を設定します。未設定時は編集部として扱い、
 人物名・資格・監修者・評価点数をコードから生成しません。

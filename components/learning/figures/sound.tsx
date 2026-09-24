@@ -6,7 +6,7 @@ export function SoundRms() {
     (_, index) => `${40 + index * 2.8},${125 - 65 * Math.sin((index * Math.PI) / 30)}`,
   ).join(" ");
   return (
-    <figure className={styles.diagram}>
+    <figure className={styles.diagram} tabIndex={0} role="region" aria-label="横にスクロールできるグラフ">
       <figcaption>波の高さと、RMSは違う</figcaption>
       <svg
         viewBox="0 0 600 285"
@@ -17,7 +17,9 @@ export function SoundRms() {
         <path d="M40 48V210M40 125H570" fill="none" stroke="#60758b" />
         <polyline points={wave} fill="none" stroke="#278b9a" strokeWidth="3" />
         <path d="M40 79H550" stroke="#e05b70" strokeWidth="2" strokeDasharray="6 5" />
-        <text x="550" y="70" textAnchor="end" className={styles.svgSmall}>
+        {/* 波の山（y=60）が横切るため、ラベルは軸の外へ出して細い引き出し線でつなぐ */}
+        <path d="M550 46V75" stroke="#e05b70" strokeWidth="1.5" />
+        <text x="550" y="40" textAnchor="end" className={styles.svgSmall}>
           RMS（正弦波の振幅 ÷ √2）
         </text>
         <text x="565" y="147" textAnchor="end" className={styles.svgSmall}>
@@ -147,20 +149,22 @@ export function ProximityMeasurement() {
         <rect x="258" y="150" width="70" height="22" rx="10" fill="#7a8ba0" />
         <text x="150" y="150" textAnchor="middle" className={styles.svgSmall}>車両（後ろ）</text>
         <path d="M330 161 H560" stroke="#526682" strokeWidth="2" strokeDasharray="8 6" />
-        <text x="470" y="150" textAnchor="middle" className={styles.svgSmall} fill="#526682">
+        {/* 45°のラベルと重なるため、軸線の下側へ置く */}
+        <text x="500" y="186" textAnchor="middle" className={styles.svgSmall} fill="#526682">
           排気の方向（軸線）
         </text>
-        <path d="M330 161 L470 62" stroke="#e0506a" strokeWidth="3" />
-        <path d="M386 161 A56 56 0 0 0 362 118" fill="none" stroke="#e0506a" strokeWidth="2" />
-        <text x="398" y="130" className={styles.svgSmall} fill="#e0506a">
+        {/* 軸線から実際に45度（dx と dy を等しくする）。弧の終点も同じ向きの半径56の位置に置く */}
+        <path d="M330 161 L437 54" stroke="#e0506a" strokeWidth="3" />
+        <path d="M386 161 A56 56 0 0 0 369.6 121.4" fill="none" stroke="#e0506a" strokeWidth="2" />
+        <text x="392" y="140" className={styles.svgSmall} fill="#e0506a">
           45°
         </text>
-        <text x="392" y="88" className={styles.svgSmall} fill="#e0506a">
+        <text x="368" y="92" textAnchor="end" className={styles.svgSmall} fill="#e0506a">
           0.5 m
         </text>
-        <circle cx="482" cy="54" r="16" fill="#e0506a" />
-        <path d="M482 70 V104 M466 104 H498" stroke="#45536a" strokeWidth="4" />
-        <text x="516" y="60" className={styles.svgSmall}>マイク</text>
+        <circle cx="449" cy="42" r="16" fill="#e0506a" />
+        <path d="M449 58 V90 M433 90 H465" stroke="#45536a" strokeWidth="4" />
+        <text x="472" y="48" className={styles.svgSmall}>マイク</text>
         <text x="300" y="248" textAnchor="middle" className={styles.svgSmall}>
           高さは開口部に合わせる。暗騒音や反射も条件のうち。
         </text>
@@ -197,7 +201,7 @@ export function AWeighting() {
     <figure className={styles.diagram} tabIndex={0} role="region" aria-label="横にスクロールできるグラフ">
       <figcaption>A特性は、低い音を大きく差し引く</figcaption>
       <svg
-        viewBox="0 0 600 300"
+        viewBox="0 0 600 324"
         role="img"
         aria-label="A特性の重み付け。31.5ヘルツでは約マイナス39デシベル、125ヘルツで約マイナス16デシベル、1キロヘルツで0、2キロヘルツ付近でわずかにプラスになる曲線。"
       >
@@ -222,21 +226,23 @@ export function AWeighting() {
         {points.map(([hz, weight], index) => (
           <g key={hz}>
             <circle cx={px(index)} cy={py(weight)} r="5" fill="#278b9a" />
-            <text x={px(index)} y="268" textAnchor="middle" className={styles.svgSmall}>
+            <text x={px(index)} y="292" textAnchor="middle" className={styles.svgSmall}>
               {hz}
             </text>
           </g>
         ))}
-        <text x={px(0)} y={py(-39.4) - 16} textAnchor="start" className={styles.svgSmall} fill="#278b9a">
+        {/* 折れ線と目盛りを避けた位置へ置き、引き出し線で最初の点につなぐ */}
+        <path d="M128 236 L88 252" stroke="#278b9a" strokeWidth="1.5" />
+        <text x="132" y="232" textAnchor="start" className={styles.svgSmall} fill="#278b9a">
           約 −39 dB
         </text>
         <text x={px(5)} y={py(0) - 16} textAnchor="middle" className={styles.svgSmall} fill="#278b9a">
           1 kHz で 0
         </text>
-        <text x={right} y="294" textAnchor="end" className={styles.svgSmall}>
+        <text x={right} y="318" textAnchor="end" className={styles.svgSmall}>
           周波数（Hz）
         </text>
-        <text x="90" y="250" className={styles.svgSmall} fill="#5e6f82">
+        <text x="78" y="318" className={styles.svgSmall} fill="#5e6f82">
           低い音ほど、差し引かれる量が大きい
         </text>
       </svg>

@@ -65,7 +65,7 @@ export function getAllCarsSync(): CarItem[] {
 }
 
 
-/** 同期取得版（index only） */
+/** 同期取得版。一覧・ハブ向けに、公開中の車種（noindex を含む）をすべて返す。 */
 export function getListedCarsSync(): CarItem[] {
   return LISTED_CARS_CACHE;
 }

@@ -446,7 +446,9 @@ const main = async () => {
     }));
 
   // Makers / BodyTypes / Segments
-  const taxonomyCars = cars.filter(isIndexAllowed);
+  // ハブページは公開中の車種（noindex を含む）から作られるため、sitemap も同じ基準で並べる。
+  // indexable で絞ると、車種を noindex にした瞬間にハブだけ index のまま sitemap から消える。
+  const taxonomyCars = cars.filter((car) => publicationPolicy(car).accessible);
 
   const makerKeys = Array.from(
     new Set(

@@ -269,16 +269,17 @@ export function FilterCapture() {
     [132, 140],
     [80, 168],
   ];
+  // 1行はパネル幅（180）に収まる長さで書く。切り詰めると述語が落ちて意味が変わる。
   const panels = [
-    { x: 0, title: "ふるい", body: "すき間より大きい粒は、そのまま通れない。" },
-    { x: 200, title: "ぶつかる", body: "流れが曲がっても、粒は勢いで繊維へ当たる。" },
-    { x: 400, title: "くっつく", body: "触れた粒が、繊維の表面に留まる。" },
+    { x: 0, title: "ふるい", body: ["すき間より大きい粒は", "そのまま通れない"] },
+    { x: 200, title: "ぶつかる", body: ["流れが曲がっても、", "粒は勢いで当たる"] },
+    { x: 400, title: "くっつく", body: ["触れた粒が、繊維の", "表面に留まる"] },
   ];
   return (
     <figure className={styles.diagram} tabIndex={0} role="region" aria-label="横にスクロールできる概念図">
       <figcaption>細かい網、ではない捕まえ方</figcaption>
       <svg
-        viewBox="0 0 600 270"
+        viewBox="0 0 600 296"
         role="img"
         aria-label="フィルターが粒子を捕まえる三つの働き。すき間より大きい粒を通さないふるい、流れが曲がっても勢いで繊維に当たる衝突、触れた粒が表面に留まる付着。"
       >
@@ -316,9 +317,17 @@ export function FilterCapture() {
             <text x={panel.x + 100} y="228" textAnchor="middle">
               {panel.title}
             </text>
-            <text x={panel.x + 100} y="256" textAnchor="middle" className={styles.svgSmall}>
-              {panel.body.length > 16 ? `${panel.body.slice(0, 16)}…` : panel.body}
-            </text>
+            {panel.body.map((line, lineIndex) => (
+              <text
+                key={line}
+                x={panel.x + 100}
+                y={256 + lineIndex * 24}
+                textAnchor="middle"
+                className={styles.svgSmall}
+              >
+                {line}
+              </text>
+            ))}
           </g>
         ))}
       </svg>
@@ -463,10 +472,10 @@ export function TurboIntakePath() {
         <text x="350" y="192" textAnchor="middle" className={styles.svgSmall} fill="#9a6514">排気</text>
         <path d="M166 216 H110" stroke="#9a6514" strokeWidth="3" markerEnd="url(#turbo-exhaust)" />
         <text x="96" y="222" textAnchor="end" className={styles.svgSmall} fill="#9a6514">外へ</text>
-        <text x="66" y="112" textAnchor="middle" className={styles.svgSmall} fill="#e0506a">
+        <text x="8" y="170" className={styles.svgSmall} fill="#e0506a">
           ここで捕まえ損ねた異物が
         </text>
-        <text x="66" y="132" textAnchor="middle" className={styles.svgSmall} fill="#e0506a">
+        <text x="8" y="192" className={styles.svgSmall} fill="#e0506a">
           高速の羽根に当たる
         </text>
       </svg>
@@ -537,7 +546,7 @@ export function AirAndInformation() {
     <figure className={styles.diagram} tabIndex={0} role="region" aria-label="横にスクロールできる概念図">
       <figcaption>空気の流れと、情報の流れ</figcaption>
       <svg
-        viewBox="0 0 600 260"
+        viewBox="0 0 600 280"
         role="img"
         aria-label="空気はフィルターからセンサーを通ってエンジンへ流れ、センサーの測定値はECUへ、ECUの指示は燃料噴射装置へ届く。空気の流れと情報の流れは別であることを示す図。"
       >
@@ -569,8 +578,11 @@ export function AirAndInformation() {
         <text x="431" y="190" textAnchor="middle" className={styles.svgSmall}>燃料噴射装置</text>
         <path d="M506 176 H546 V110" stroke="#e0506a" strokeWidth="3" markerEnd="url(#air-info-air)" fill="none" />
         <text x="566" y="140" textAnchor="end" className={styles.svgSmall} fill="#e0506a">燃料</text>
-        <text x="300" y="242" textAnchor="middle" className={styles.svgSmall}>
-          実線は空気、破線は情報と指示。配管を替えると、センサーが見る流れ方が変わる。
+        <text x="300" y="234" textAnchor="middle" className={styles.svgSmall}>
+          実線は空気、破線は情報と指示。
+        </text>
+        <text x="300" y="258" textAnchor="middle" className={styles.svgSmall}>
+          配管を替えると、センサーが見る流れ方が変わる。
         </text>
       </svg>
       <p className={styles.note}>

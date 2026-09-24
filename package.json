@@ -30,7 +30,7 @@
     "verify:assets": "node scripts/generate-public-assets.mjs && node scripts/verify-public-asset-references.mjs && node scripts/verify-png-integrity.mjs",
     "verify:pngs": "node scripts/verify-png-integrity.mjs",
     "test": "node --import tsx --test tests/*.test.ts",
-    "verify:rendered": "node --import tsx scripts/verify-rendered-articles.ts && node --import tsx scripts/verify-rendered-learning.ts",
+    "verify:rendered": "node --import tsx scripts/verify-rendered-articles.ts && node --import tsx scripts/verify-rendered-learning.ts && node scripts/verify-figure-text.mjs",
     "verify:http": "node --import tsx scripts/verify-http.ts",
     "check": "npm run lint:strict && npm run verify:structure && npm test && npm run build && npm run verify:http",
     "images:gen": "node scripts/generate-image-metadata.mjs",

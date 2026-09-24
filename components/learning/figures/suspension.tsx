@@ -51,7 +51,7 @@ export function HardRideCauses() {
     <figure className={styles.diagram} tabIndex={0} role="region" aria-label="横にスクロールできる図">
       <figcaption>「硬い」と感じる入口は、ひとつではない</figcaption>
       <svg
-        viewBox="0 0 600 260"
+        viewBox="0 0 600 300"
         role="img"
         aria-label="段差からの入力が、ばね・ダンパー・タイヤ・ゴム部品のどれを通っても硬いという感想になりうることを示す図。"
       >
@@ -62,23 +62,24 @@ export function HardRideCauses() {
         </defs>
         <rect x="8" y="98" width="104" height="60" rx="14" fill="#eaf2fa" />
         <text x="60" y="134" textAnchor="middle" className={styles.svgSmall}>段差・路面</text>
+        {/* 部品名と補足は行を分ける。横に並べると和文が重なって両方読めない。 */}
         {causes.map((cause, index) => {
-          const y = 24 + index * 58;
+          const y = 18 + index * 62;
           return (
             <g key={cause.label}>
-              <path d={`M116 128 C160 128, 170 ${y + 22}, 214 ${y + 22}`} fill="none" stroke="#526682" strokeWidth="2" markerEnd="url(#hard-ride-arrow)" />
-              <rect x="222" y={y} width="180" height="44" rx="12" fill="#fff0ce" />
-              <text x="252" y={y + 28} className={styles.svgSmall}>{cause.label}</text>
-              <text x="394" y={y + 28} textAnchor="end" className={styles.svgSmall} fill="#5e6f82">
+              <path d={`M116 128 C160 128, 170 ${y + 24}, 214 ${y + 24}`} fill="none" stroke="#526682" strokeWidth="2" markerEnd="url(#hard-ride-arrow)" />
+              <rect x="222" y={y} width="180" height="48" rx="12" fill="#fff0ce" />
+              <text x="240" y={y + 20} className={styles.svgSmall}>{cause.label}</text>
+              <text x="240" y={y + 40} className={styles.svgSmall} fill="#5e6f82">
                 {cause.note}
               </text>
-              <path d={`M406 ${y + 22} C450 ${y + 22}, 460 128, 496 128`} fill="none" stroke="#526682" strokeWidth="2" markerEnd="url(#hard-ride-arrow)" />
+              <path d={`M406 ${y + 24} C450 ${y + 24}, 460 128, 496 128`} fill="none" stroke="#526682" strokeWidth="2" markerEnd="url(#hard-ride-arrow)" />
             </g>
           );
         })}
         <rect x="504" y="98" width="88" height="60" rx="14" fill="#ffe8ed" />
         <text x="548" y="134" textAnchor="middle" className={styles.svgSmall}>「硬い」</text>
-        <text x="300" y="250" textAnchor="middle" className={styles.svgSmall}>
+        <text x="300" y="288" textAnchor="middle" className={styles.svgSmall}>
           同じ感想でも、入口が違えば直し方も変わる
         </text>
       </svg>

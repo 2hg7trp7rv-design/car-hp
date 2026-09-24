@@ -1,10 +1,11 @@
 import styles from "@/app/learn/learning.module.css";
 
 export function SensingChain() {
+  // note は枠幅（172）に収まる長さで書く。切り詰めると述語が落ちて意味が通らない。
   const stages = [
-    { label: "検知", note: "カメラ・レーダーなどが情報を集める", fill: "#eaf2fa" },
-    { label: "判断", note: "集めた情報から、支援するかを決める", fill: "#e4f2f2" },
-    { label: "支援", note: "警報を出す、ブレーキや操舵を助ける", fill: "#fff0ce" },
+    { label: "検知", note: "情報を集める", fill: "#eaf2fa" },
+    { label: "判断", note: "支援するかを決める", fill: "#e4f2f2" },
+    { label: "支援", note: "ブレーキなどで助ける", fill: "#fff0ce" },
   ];
   return (
     <figure className={styles.diagram} tabIndex={0} role="region" aria-label="横にスクロールできる概念図">
@@ -28,7 +29,7 @@ export function SensingChain() {
                 {stage.label}
               </text>
               <text x={x + 86} y="112" textAnchor="middle" className={styles.svgSmall} fill="#5e6f82">
-                {stage.note.length > 14 ? `${stage.note.slice(0, 14)}…` : stage.note}
+                {stage.note}
               </text>
               {index < stages.length - 1 && (
                 <path d={`M${x + 176} 92 H${x + 192}`} stroke="#526682" strokeWidth="3" markerEnd="url(#sensing-arrow)" />

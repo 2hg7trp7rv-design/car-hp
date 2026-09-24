@@ -61,9 +61,10 @@ export function BrakeToRoad() {
 
 export function TirePressure() {
   const panels = [
-    { x: 8, title: "低すぎる", shape: "M40 118 Q100 150 160 118", patch: [52, 148], note: "両肩が減りやすい" },
+    // 路面は y=158。中央が路面へ近づくほど中央接地、遠ざかるほど両肩接地になる。
+    { x: 8, title: "低すぎる", shape: "M40 118 Q100 104 160 118", patch: [52, 148], note: "両肩が減りやすい" },
     { x: 205, title: "指定どおり", shape: "M40 118 Q100 128 160 118", patch: [70, 130], note: "接地が安定しやすい" },
-    { x: 402, title: "高すぎる", shape: "M40 118 Q100 104 160 118", patch: [88, 112], note: "中央が減りやすい" },
+    { x: 402, title: "高すぎる", shape: "M40 118 Q100 150 160 118", patch: [88, 112], note: "中央が減りやすい" },
   ];
   return (
     <figure className={styles.diagram} tabIndex={0} role="region" aria-label="横にスクロールできる図">
