@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 const PRINCIPLES = [
   { label: "01", title: "公式情報", body: "メーカー公式発表、公的機関、取扱説明書、技術資料を確認の軸にします" },
-  { label: "02", title: "自動車業界経験", body: "実務経験から、読者が判断で迷いやすい箇所を補足します" },
+  { label: "02", title: "根拠と説明", body: "資料で確認できる事実と、説明のための仮定・計算例を区別します" },
   { label: "03", title: "車両ごとの条件差", body: "年式、グレード、個体差、地域、契約条件による違いを前提にします" },
 ] as const;
 
@@ -58,11 +58,11 @@ export default function EditorialPolicyPage() {
       <LegalDocHeader
         eyebrow="編集方針"
         title="確認できることと、条件で変わることを分けて書く"
-        lead="CAR BOUTIQUE JOURNALでは、自動車業界経験のある山田太郎が運営・編集責任者として記事の企画、構成、本文表現、公開後の見直しを行います"
+        lead="CAR BOUTIQUE JOURNALは、車の知識や選び方を、会話・図解・資料に基づく説明で伝える自動車メディアです。記事はCAR BOUTIQUE JOURNAL 編集部の名義で制作し、出典の確認と公開後の見直しを行います"
         meta={[
-          { label: "対象", value: "車種 / ガイド / コラム / 系譜" },
-          { label: "編集責任", value: "山田太郎" },
-          { label: "経験", value: "自動車業界での実務経験" },
+          { label: "対象", value: "学習記事 / 車種 / ガイド / コラム / 系譜" },
+          { label: "編集・制作名", value: "CAR BOUTIQUE JOURNAL 編集部" },
+          { label: "確認の軸", value: "公式資料・取扱説明書・公的機関" },
           { label: "関連", value: <Link href="/legal/sources-factcheck">出典・ファクトチェック</Link> },
         ]}
       />
