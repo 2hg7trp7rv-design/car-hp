@@ -2,15 +2,15 @@
   "slug": "maintenance",
   "topic": "maintenance",
   "title": "点検とオイル選びの教科書",
-  "description": "点検と交換は何が違う？ 自分の車の取扱説明書を起点に、オイルの表示、量の確認、交換条件を読み解きます。",
+  "description": "点検と交換、粘度と品質規格を区別するところから、指定への適合と使用油分析の読み方へ。オイルの値段や色だけで判断しないための教科書です。",
   "status": "published",
   "publicState": "index",
-  "updatedAt": "2026-09-22",
-  "verifiedAt": "2026-09-22",
+  "updatedAt": "2026-09-25",
+  "verifiedAt": "2026-09-25",
   "outcomes": [
     "点検と交換の違いを説明できる",
     "オイルの粘度・規格・車両指定を確認できる",
-    "距離と期間、使用条件を分けて判断できる"
+    "交換記録と分析結果を、条件をそろえて読み取れる"
   ],
   "sources": [
     {
@@ -30,6 +30,36 @@
       "title": "Toyota｜COROLLA TOURING 2024年版 メンテナンスデータ",
       "url": "https://manual.toyota.jp/corollatouring/2404/cv/ja_JP/contents/vhch08se010401.php",
       "note": "対象車のオイル規格・粘度・容量と、暖機停止後の量の確認条件。数値や指定品を別車種へ流用しない。"
+    },
+    {
+      "id": "honda-severe",
+      "title": "Honda｜シビアコンディションとは",
+      "url": "https://www.honda.co.jp/auto-parts/severe/",
+      "note": "十分に温まらない短距離・低速・渋滞なども厳しい使用条件になりうる説明。Hondaの掲載目安を他車の一律基準にしない。"
+    },
+    {
+      "id": "api-oil-guide",
+      "title": "API｜Motor Oil Guide（2025年4月版）",
+      "url": "https://www.api.org/-/media/files/certification/engine-oil-diesel/%20publications/motor%20oil%20guide%201020.pdf",
+      "note": "2025年4月21日版のPDF3〜4ページ。SAE表示とAPI性能分類、SQ・ILSAC GF-7A/GF-7B、GF-6A/B指定に対する対応を参照。2026年9月25日に確認。規格だけで対象車の粘度・用途への適合は決まらない。"
+    },
+    {
+      "id": "blackstone-report",
+      "title": "Blackstone Laboratories｜How to Read Your Oil Report",
+      "url": "https://www.blackstone-labs.com/how-to-read-your-oil-report/",
+      "note": "使用油分析の摩耗元素、混入物、粘度、経時変化を組み合わせて読む考え方。教材の数値はこの検査機関の実測結果・判定基準ではない。"
+    },
+    {
+      "id": "blackstone-explanation",
+      "title": "Blackstone Laboratories｜Gas/Diesel Engine Report Explanation",
+      "url": "https://www.blackstone-labs.com/wp-content/uploads/2025/12/Understanding-Engine-combined.pdf",
+      "note": "公式のレポート解説PDF1〜2ページ。使用距離、補充量、同型エンジンの平均、過去の結果、ppmの欄を参照。公開サンプルの数値や個人情報は教材へ転載しない。"
+    },
+    {
+      "id": "blackstone-intervals",
+      "title": "Blackstone Laboratories｜The Oil Report, August 2017",
+      "url": "https://www.blackstone-labs.com/wp-content/uploads/2018/09/Aug-17-ENG.pdf",
+      "note": "PDF5ページの使用距離と鉄濃度を割った値の考察。交換前から残る油の影響で初期濃度がゼロとは限らず、距離で正規化した数字だけでは油の優劣を決められないという説明を参照。"
     }
   ],
   "lessons": [
@@ -247,6 +277,16 @@
           "text": "悪路や山道など、負担の大きい使用をシビアコンディションと呼ぶことがある。どんな使い方が該当するかは車の指定を読む。一般的な記事の距離だけを自分の車に当てはめないでね。"
         },
         {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "家の近くへ少しずつ乗るだけなら、負担は小さいと思っていたよ。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "Hondaの説明は、油が十分に温まらない短距離や低速の繰り返しも厳しい使用の例に挙げている。走行距離が短いことと、油にとって穏やかな使い方であることは別なんだ。"
+        },
+        {
           "type": "comparison",
           "title": "一つの数字だけで判断しない",
           "headers": [
@@ -292,6 +332,43 @@
           "type": "dialogue",
           "speaker": "rina",
           "text": "そのとおり。記録する距離と期間、車の使用条件、量を測る条件を分けよう。説明書のどの条件に当てはまるかを示せると、交換や点検の相談もしやすくなるよ。"
+        },
+        {
+          "type": "comparison",
+          "title": "架空の指定を使って、期限を判断する",
+          "headers": [
+            "記録",
+            "仮の指定との照合",
+            "判断"
+          ],
+          "rows": [
+            [
+              "交換から8か月・3,000km",
+              "10,000kmまたは6か月の早い方",
+              "距離は少ないが期間を超えている。"
+            ],
+            [
+              "交換から2か月・11,000km",
+              "同じ仮の指定",
+              "期間は短いが距離を超えている。"
+            ],
+            [
+              "交換から3か月・4,000km",
+              "同じ仮の指定",
+              "両方未到達。ただし使用条件別の指定や異常は別に確認。"
+            ]
+          ],
+          "note": "期限の読み方だけを学ぶ仮定例。10,000km・6か月は特定車種の推奨ではありません。実車の交換計画にはその車の指定を使います。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "『距離も期間も超えたら』ではなく、どちらか先に来た方を読むんだね。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "そう。交換日と走行距離を一緒に記録すると判断しやすい。油量の変化を比べるときは、測定条件もそろえる。期限の管理と油の状態の推定を、一つの数字にまとめないようにしよう。"
         }
       ],
       "takeaways": [
@@ -307,10 +384,259 @@
       "sources": [
         "toyota-daily",
         "toyota-oil",
+        "corolla-maintenance",
+        "honda-severe"
+      ]
+    },
+    {
+      "slug": "oil-specification-compatibility",
+      "title": "新しい規格のオイルなら、どの車にも使える？",
+      "stage": "evaluation",
+      "goal": "粘度・性能規格・車両固有の指定を別々に照合し、適合する候補を絞れる。",
+      "prerequisites": [
+        "oil-labels",
+        "conditions-and-records"
+      ],
+      "blocks": [
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "同じ0W-20でも、API SP、SQ、ILSACって文字が増えたよ。新しいほど何でも使える？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "まず三つの欄に分けよう。SAEは粘度分類、APIやILSACは性能規格。さらに車両側が固有の承認や条件を求める場合もある。新しい性能規格でも、指定粘度まで自動で変わるわけではないよ。"
+        },
+        {
+          "type": "flow",
+          "title": "候補を選ぶ順序",
+          "steps": [
+            {
+              "title": "車を特定する",
+              "body": "車種・年式・エンジンをそろえ、取説や整備情報の指定を読む。"
+            },
+            {
+              "title": "条件を別々に書く",
+              "body": "粘度、性能規格、必要な車両固有の承認、用途を分ける。"
+            },
+            {
+              "title": "製品表示と照合する",
+              "body": "必要な条件を一つずつ満たすか確認。足りない情報があれば保留する。"
+            }
+          ],
+          "note": "価格やブランドの比較は、適合する候補が分かってから。規格の新旧だけで粘度変更や交換期間の延長を決めません。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "SQとGF-7は、まったく同じ意味なの？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "SQはガソリンエンジン用の性能分類。APIの2025年版ガイドは、SQに省燃費などのResource Conserving条件を合わせたものとGF-7Aを対応づけている。『SQ』だけではGF-7Aの表示まで確認したことにはならないよ。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "GF-7AとGF-7Bは、Bの方が上？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "優劣の順番ではないよ。GF-7Bは0W-16だけの区分。APIはGF-6A指定にGF-7A、GF-6B指定にGF-7Bという対応を示している。GF-7Bを、あらゆるGF-6指定車へ使えるとは読まないでね。"
+        },
+        {
+          "type": "comparison",
+          "title": "仮の車両指定：0W-20・GF-6Aへの適合を考える",
+          "headers": [
+            "架空の候補",
+            "確認できた表示",
+            "判定"
+          ],
+          "rows": [
+            [
+              "候補A",
+              "0W-20・GF-7A",
+              "APIが示すGF-6Aとの対応と粘度を満たす候補。ほかの車両指定も照合する。"
+            ],
+            [
+              "候補B",
+              "0W-16・GF-7B",
+              "新しい規格でも、仮の指定粘度と異なるので選ばない。"
+            ],
+            [
+              "候補C",
+              "0W-20・『高性能』だけ",
+              "粘度は一致。ただし指定の性能規格を確認できず、適合とは決められない。"
+            ]
+          ],
+          "note": "実在製品の評価ではなく、指定を照合する演習。仮の指定が0W-16・GF-6Bなら、GF-7Bが対応する候補になります。二輪車・ディーゼル・個別の承認条件へ流用しません。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "Aを選べば交換も長く延ばせる？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "この照合で分かったのは、必要な表示条件に合う候補だということ。使用条件や交換期限は別の指定だよ。缶の規格表示から、実車の交換期間を勝手に延ばすところまでは進めない。"
+        }
+      ],
+      "takeaways": [
+        "粘度・性能規格・車両固有の指定を別の欄として読む。",
+        "A/Bなどの記号を、単純な優劣や万能な互換性と考えない。",
+        "適合する規格の確認と、交換期限の設定は別。"
+      ],
+      "checkpoint": {
+        "question": "0W-20指定の車に、最新規格の0W-16を使う根拠として『規格が新しいから』だけで十分？",
+        "answer": "不十分。性能規格が新しくても、指定粘度への適合は別に確認する。対象車の指定や許容する代替条件を調べ、粘度と規格の両方が合う候補を選ぶ。",
+        "review": "oil-specification-compatibility"
+      },
+      "sources": [
+        "api-oil-guide",
+        "toyota-oil",
         "corolla-maintenance"
       ]
+    },
+    {
+      "slug": "used-oil-analysis",
+      "title": "オイル分析の数字だけで、故障を決められる？",
+      "stage": "evaluation",
+      "goal": "濃度・粘度・使用条件の変化を合わせて読み、単発の数値から原因や寿命を断定しない。",
+      "prerequisites": [
+        "conditions-and-records",
+        "oil-specification-compatibility"
+      ],
+      "blocks": [
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "使ったオイルを分析したら、鉄が20ppmあったんだって。エンジンが削れているから故障？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "検出だけでは決められないよ。ppmは100万分の割合を表し、ここでは採取した油の鉄濃度。エンジンから削れた金属の総量ではない。同型エンジンの傾向や、その車の過去の結果も確認するよ。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "前は10ppm、今回は20ppmなら、悪化したと分かる？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "使用距離や補充量が違うかもしれない。まず、何をどの条件で採った数値かを見る。同じ20ppmでも、長く使った油と短期間の油では、同じ意味に読めないよ。"
+        },
+        {
+          "type": "comparison",
+          "title": "架空の分析記録：濃度だけで順位を付けない",
+          "headers": [
+            "記録",
+            "油の使用距離",
+            "鉄濃度",
+            "比較するときの留意点"
+          ],
+          "rows": [
+            [
+              "A",
+              "3,000km",
+              "10ppm",
+              "これを同じ車の過去の記録とする。"
+            ],
+            [
+              "B",
+              "6,000km",
+              "20ppm",
+              "距離も2倍。濃度が2倍だけでは摩耗速度の悪化と決まらない。"
+            ],
+            [
+              "C",
+              "3,000km",
+              "20ppm",
+              "Aと距離は同じ。他の条件もそろうなら変化を詳しく調べる候補。"
+            ]
+          ],
+          "note": "すべて説明用の架空値で、正常値・異常値の基準ではありません。同じ車で別々の交換期間に採った油を想定し、銘柄・採取法は同じ、補充なしと仮定しています。走行環境や油の消費量などは別途照合が必要です。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "距離で割ってみると、AもBも1,000kmあたり約3.3ppm。じゃあ同じ摩耗状態？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "その値は濃度を距離で割った比較用の数字で、摩耗した金属の量を直接測ったものではないよ。交換時に残った油の影響で、最初の鉄濃度がゼロとは限らない。油の消費や補充も比較を変える。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "新品に交換した直後を、必ずゼロからのスタートと考えるのも違うんだ。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "そう。Blackstoneも、残油の影響で短い交換間隔ほど距離当たりの値が高く見える場合を説明している。値が小さいだけで『摩耗が少ない油』と順位を付けるのは早いよ。"
+        },
+        {
+          "type": "flow",
+          "title": "一項目から結論へ飛ばず、関連する情報を合わせる",
+          "steps": [
+            {
+              "title": "条件を照合",
+              "body": "油の使用距離・期間、銘柄、補充、採取法、運転条件を過去の記録と比べる。"
+            },
+            {
+              "title": "複数の項目を見る",
+              "body": "摩耗元素だけでなく粘度や燃料・冷却液等の混入の情報を合わせる。"
+            },
+            {
+              "title": "変化を確認して相談",
+              "body": "単発の値、継続した傾向、急な変化を区別し、分析担当者や整備側の所見につなげる。"
+            }
+          ],
+          "note": "Blackstoneの分析の読み方を参照した整理。分析結果だけで実車の異音・警告・漏れなどの点検を置き換えません。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "例えば粘度が低くなっていたら、燃料が混じったと決めていいの？"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "燃料混入は候補の一つだけど、粘度だけでは確定しない。油の種類や粘度を測る温度もそろえ、燃料の検査結果などを照合する。鉄濃度から、壊れた部品や残り寿命まで決めることもできないよ。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "shuna",
+          "text": "分析は答えが一つ出る検査というより、記録を重ねて判断する材料なんだね。"
+        },
+        {
+          "type": "dialogue",
+          "speaker": "rina",
+          "text": "そう。『何ppmなら必ず故障』という一般記事より、対象の車の履歴と、複数の結果のつながりを見る。その読み方を覚えると、専門的な記事や整備の説明も追いやすくなるよ。"
+        }
+      ],
+      "takeaways": [
+        "分析の濃度は、油の使用距離・補充・採取条件と一緒に読む。",
+        "単発値より、条件をそろえた履歴と複数項目の変化を重視する。",
+        "簡単な濃度の割り算だけで、摩耗速度や寿命を確定しない。"
+      ],
+      "checkpoint": {
+        "question": "別の仮想例で、前回は2,000kmで鉄8ppm、今回は4,000kmで12ppm。1,000km当たり4ppmから3ppmになったので、『摩耗が25%減った』と言える？",
+        "answer": "言えない。8÷2=4、12÷4=3なので、距離で割った濃度の値が25%低いことは言えるが、削れた金属の量を測ったわけではない。残油、消費や補充、走行環境、採取法、ほかの分析項目を照合して判断する。",
+        "review": "used-oil-analysis"
+      },
+      "sources": [
+        "blackstone-report",
+        "blackstone-explanation",
+        "blackstone-intervals"
+      ]
     }
-  ],
-  "selectionHref": "/choose/car-wash",
-  "selectionLabel": "手入れの道具を選ぶ：洗車用品"
+  ]
 }

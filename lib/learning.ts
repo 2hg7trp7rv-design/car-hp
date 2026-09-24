@@ -44,6 +44,8 @@ export type LearningBlock =
       title: string;
       unit: string;
       rounds: string[];
+      xValues?: number[];
+      yRange?: [number, number];
       series: { name: string; values: number[] }[];
       note: string;
     }
