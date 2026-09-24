@@ -65,7 +65,7 @@ export default function SourcesFactcheckPage() {
       <LegalDocHeader
         eyebrow="出典確認"
         title="まず一次情報を見て、足りない部分を補う"
-        lead="CAR BOUTIQUE JOURNALでは、山田太郎が出典の確認と公開後の見直しを行います"
+        lead="CAR BOUTIQUE JOURNALでは、記事で参照する資料を確認し、掲載内容とその根拠が対応するように整理します。誤りや古い情報が判明した場合は、確認のうえ見直します"
         meta={[
           { label: "優先", value: "メーカー公式 / 公的機関 / 取扱説明書 / 技術資料" },
           { label: "補足", value: "専門媒体 / 報道機関 / 実例" },

@@ -12,15 +12,14 @@ import { getSiteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "運営者情報",
   description:
-    "CAR BOUTIQUE JOURNALの運営者、編集責任、確認体制、サイトの目的についてのページです",
+    "CAR BOUTIQUE JOURNALのサイト概要、編集方針、掲載内容の確認方法と連絡窓口についてのページです",
   alternates: { canonical: `${getSiteUrl()}/legal/about` },
 };
 
 const PROFILE_ITEMS = [
   { label: "サイト名", value: "CAR BOUTIQUE JOURNAL" },
-  { label: "運営者", value: "山田太郎" },
-  { label: "編集責任", value: "山田太郎 / CAR BOUTIQUE JOURNAL 編集部" },
-  { label: "経験", value: "自動車業界での実務経験" },
+  { label: "編集・制作名", value: "CAR BOUTIQUE JOURNAL 編集部" },
+  { label: "主な内容", value: "車の学習・選び方・維持管理" },
 ] as const;
 
 const STANCE_ITEMS = [
@@ -30,9 +29,9 @@ const STANCE_ITEMS = [
     body: "メーカー公式発表、公的機関、取扱説明書、技術資料を優先して確認",
   },
   {
-    label: "Experience",
-    title: "自動車業界経験",
-    body: "実務経験から、読者が判断で迷いやすい箇所を補足",
+    label: "Evidence",
+    title: "根拠と説明",
+    body: "参照した資料と、説明のために置いた条件や計算例を区別",
   },
   {
     label: "Condition",
@@ -44,7 +43,6 @@ const STANCE_ITEMS = [
 export default function AboutOperatorPage() {
   const siteUrl = getSiteUrl();
   const pageUrl = `${siteUrl}/legal/about`;
-  const personId = `${pageUrl}#yamada-taro`;
 
   const breadcrumbData = {
     "@context": "https://schema.org",
@@ -56,32 +54,9 @@ export default function AboutOperatorPage() {
     ],
   };
 
-  const operatorProfileData = {
-    "@context": "https://schema.org",
-    "@type": "ProfilePage",
-    "@id": pageUrl,
-    url: pageUrl,
-    name: "山田太郎 - CAR BOUTIQUE JOURNAL 運営者情報",
-    dateModified: "2026-06-13",
-    mainEntity: {
-      "@type": "Person",
-      "@id": personId,
-      name: "山田太郎",
-      jobTitle: "CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者",
-      description:
-        "CAR BOUTIQUE JOURNALの運営者 自動車業界での実務経験をもとに、車選び、維持、整備修理、カスタム、売却、車やメーカーの歴史に関する記事の企画、編集、出典確認、公開後の見直しを行う",
-      worksFor: {
-        "@type": "Organization",
-        name: "CAR BOUTIQUE JOURNAL",
-        url: siteUrl,
-      },
-    },
-  };
-
   return (
     <>
       <JsonLd id="jsonld-legal-about-breadcrumb" data={breadcrumbData} />
-      <JsonLd id="jsonld-operator-profile-yamada-taro" data={operatorProfileData} />
 
       <Breadcrumb
         items={[
@@ -98,13 +73,13 @@ export default function AboutOperatorPage() {
             <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#00708d]/25 blur-3xl" />
             <div className="relative">
               <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/[0.34]">
-                OPERATOR
+                ABOUT
               </p>
               <h1 className="mt-5 text-[clamp(44px,8vw,84px)] font-semibold leading-[0.95] tracking-[-0.085em] text-white/[0.94]">
-                山田太郎
+                運営・編集
               </h1>
               <p className="mt-5 max-w-[520px] text-[14px] leading-[1.9] tracking-[0.03em] text-white/[0.54]">
-                CAR BOUTIQUE JOURNAL 運営・編集 / 自動車業界経験者
+                CAR BOUTIQUE JOURNAL
               </p>
             </div>
           </div>
