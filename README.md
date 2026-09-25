@@ -92,19 +92,22 @@ GitHub ActionsでもPRごとに同じ検査と依存関係監査を実行しま�
 先頭のメイン画像だけ先読みします。外部画像は現在使用していないため許可ホストは空です。
 追加する場合は `next.config.mjs` に必要なホストとパスだけを指定してください。
 
-トップの日本語フォントは表示する文字を含むサブセットをコミットしています。
+見出しの丸ゴシックは、参考書ページ（トップ・学ぶ・選ぶ・用語）が表示しうる全文字を含む
+サブセットをコミットしています。本文は読者の環境の日本語フォントを使います。
+本文にサブセットを使うと、そこに無い文字だけ別書体で表示され、文中で書体が変わって見えます。
 元フォントは `assets/fonts/`、ライセンスは `app/refbook-fonts/LICENSES.txt` にあります。
-文言・ガイドタイトルの変更でテストが失敗したら再生成します。
+文言や学習データに新しい文字が入り、テストが失敗したら再生成します。
 
 ```sh
 python3 -m venv .venv-fonts
 .venv-fonts/bin/pip install -r scripts/requirements-fonts.txt
-.venv-fonts/bin/python scripts/subset-home-fonts.py
+.venv-fonts/bin/python scripts/subset-refbook-fonts.py
 npm test
 ```
 
 生成された `.woff2` と `charset.json` を一緒にコミットします。
-通常のビルドやCIではPythonやフォントのダウンロードは不要です。4書体合計250KBを上限として検査します。
+対象ファイルは `scripts/subset-refbook-fonts.py` の `INPUT_PATTERNS` にあります。
+通常のビルドやCIではPythonやフォントのダウンロードは不要です。合計250KBを上限として検査します。
 ビルドキャッシュは保持し、配信ファイルへの混入は `outputFileTracingExcludes` で防ぎます。
 
 ## 公開と検索のルール

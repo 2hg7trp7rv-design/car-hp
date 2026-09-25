@@ -2,10 +2,11 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
 import {
+  DIAGRAM_TEXT,
+  DIALOGUE_EXPRESSIONS,
   getLearningCourses,
   LEARNING_STAGES,
   LEARNING_TOPICS,
-  DIAGRAM_TEXT,
   type LearningCourse,
 } from "../lib/learning";
 import { getGuideBySlug } from "../lib/guides";
@@ -47,7 +48,7 @@ test("authored courses have valid progression, complete exercises and resolvable
       assert.ok(Number.isFinite(Date.parse(course.verifiedAt)));
     }
     if (course.relatedGuideSlug) assert.ok(await getGuideBySlug(course.relatedGuideSlug), `${course.slug}: public related guide missing`);
-    if (course.selectionHref) assert.ok(["/choose", "/choose/air-filter", "/choose/drive-recorder", "/choose/car-wash"].includes(course.selectionHref));
+    if (course.selectionHref) assert.ok(["/choose", "/choose/air-filter", "/choose/drive-recorder", "/choose/car-wash", "/choose/shaken"].includes(course.selectionHref));
     assert.ok(course.outcomes.length > 0 && course.outcomes.every((value) => value.trim()));
     assert.ok(course.lessons.length > 0);
     assert.equal(
@@ -104,6 +105,14 @@ test("authored courses have valid progression, complete exercises and resolvable
         if (block.type === "dialogue") {
           assert.ok(["shuna", "rina"].includes(block.speaker));
           assert.ok(block.text.trim());
+          if (block.expression) {
+            assert.ok(
+              (DIALOGUE_EXPRESSIONS as readonly string[]).includes(block.expression),
+              `${lesson.slug}: unknown expression ${block.expression}`,
+            );
+            const portrait = `public/images/cbj/learning/${block.speaker}-${block.expression}.webp`;
+            assert.ok(fs.existsSync(portrait), `${lesson.slug}: add the illustration at ${portrait}`);
+          }
           speakers.add(block.speaker);
         } else if (block.type === "heading") {
           assert.match(block.id, /^[a-z][a-z0-9-]+$/);
@@ -149,7 +158,9 @@ test("authored courses have valid progression, complete exercises and resolvable
           figures++;
           assert.ok(
             Object.hasOwn(DIAGRAM_TEXT, block.kind),
+            `${course.slug}/${lesson.slug}: unknown diagram kind ${block.kind}`,
           );
+          assert.ok(DIAGRAM_TEXT[block.kind]?.trim(), `${block.kind}: needs a text description`);
         } else assert.fail(`Unknown learning block: ${JSON.stringify(block)}`);
       }
       assert.deepEqual([...speakers].sort(), ["rina", "shuna"]);

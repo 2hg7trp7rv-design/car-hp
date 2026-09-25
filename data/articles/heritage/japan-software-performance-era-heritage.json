@@ -133,7 +133,7 @@
   "summary": "2007年、R35 GT-RとEvo Xは「物理的な速さ」の時代を終わらせ、「演算による速さ」の時代を切り開いた。タイヤのグリップ管理、駆動力の統合制御。アナログ派からの批判を跳ね返し、物理限界を超えていったデジタルの狂気を背景ごと整理する。",
   "canonicalUrl": null,
   "ogImageUrl": "",
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/heritage",
   "relatedClusterIds": [],
   "primaryQuery": "2007年、速さは「物理」から「演算」へ。R35 GT-RとエボXが切り開いた、ソフトウェア・パフォーマンスの黎明",

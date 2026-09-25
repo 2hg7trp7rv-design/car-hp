@@ -76,7 +76,9 @@ test("real loaders, related shelves and search exclude private fixtures in every
     }
     const shelves = [cars.getOwnershipGuidesForCarSlug("policy-index"), cars.getRelatedColumnsForCarSlug("policy-index"), cars.getRelatedHeritageForCarSlug("policy-index")];
     for (const shelf of shelves) assert.deepEqual(shelf.map((item) => item.slug).sort(), ["policy-index", "policy-noindex"]);
-    assert.deepEqual(cars.getIndexCarsSync().map((car) => car.slug), ["policy-index"]);
+    // 一覧・ハブには noindex の車種も出す（導線のため）。draft と redirect は出さない。
+    // 検索インデックスへ載せるかは各ページの robots が決める。
+    assert.deepEqual(cars.getListedCarsSync().map((car) => car.slug).sort(), ["policy-index", "policy-noindex"]);
     const hits = await searchSite({ q: "PublicationFixture", limit: 50 });
     assert.equal(hits.length, 8);
     assert.ok(hits.every((hit) => ["policy-index", "policy-noindex"].includes(hit.slug)));

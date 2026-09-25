@@ -24,8 +24,24 @@ export const LEARNING_TOPICS = {
 } as const;
 export type LearningTopic = keyof typeof LEARNING_TOPICS;
 export type LearningStage = keyof typeof LEARNING_STAGES;
+/** Every drawing the lessons can place. The descriptions in lib/learning-diagrams.ts define the list;
+ * components/learning/figures/index.tsx must map each one to a drawing (TypeScript enforces it). */
+export type DiagramKind = keyof typeof DIAGRAM_TEXT;
+export const DIAGRAM_KINDS = Object.keys(DIAGRAM_TEXT) as DiagramKind[];
+/**
+ * Face variants for the two hosts. A line without an expression uses the default portrait,
+ * so illustrations can be added one at a time; the contract test checks that every
+ * expression used in the data has an image at /images/cbj/learning/<speaker>-<expression>.webp.
+ */
+export const DIALOGUE_EXPRESSIONS = ["normal", "surprised", "thinking", "happy"] as const;
+export type DialogueExpression = (typeof DIALOGUE_EXPRESSIONS)[number];
 export type LearningBlock =
-  | { type: "dialogue"; speaker: "shuna" | "rina"; text: string }
+  | {
+      type: "dialogue";
+      speaker: "shuna" | "rina";
+      expression?: DialogueExpression;
+      text: string;
+    }
   | { type: "heading"; id: string; title: string; sources: string[] }
   | {
       type: "flow";
@@ -54,7 +70,7 @@ export type LearningBlock =
     }
   | {
       type: "diagram";
-      kind: keyof typeof DIAGRAM_TEXT;
+      kind: DiagramKind;
       title?: string;
       note?: string;
     };

@@ -8,7 +8,7 @@
  * 画面(App層)で扱いやすい形に整形・ソートして提供する
  */
 
-import { isPublicContent, publicationPolicy } from "@/lib/content/publication";
+import { isPublicContent } from "@/lib/content/publication";
 import { findAllCars } from "@/lib/repository/cars-repository";
 import { findAllColumns } from "@/lib/repository/columns-repository";
 import { findAllGuides } from "@/lib/repository/guides-repository";
@@ -38,11 +38,13 @@ const ALL_CARS_CACHE: CarItem[] = (() => {
 })();
 
 // ----------------------------------------
-// index用キャッシュ（publicState=index のみ）
-// - 企画書v4: index以外は主要導線から外す方針
-// - ただし詳細ページ自体は /cars/[slug] で参照可能（= getCarBySlug はALLから探す）
+// 一覧・ハブに出す車種のキャッシュ
+// - 公開されている車種（publicState=index / noindex）を、メーカー別などの導線に出す
+// - 検索インデックスへ載せるかは各ページの robots で別に判定する。
+//   ここを indexable で絞ると、noindex にした瞬間にハブごと消えてリンクが切れる
+// - redirect と draft は ALL_CARS_CACHE の時点で除かれている
 // ----------------------------------------
-const INDEX_CARS_CACHE = ALL_CARS_CACHE.filter((car) => publicationPolicy(car).indexable);
+const LISTED_CARS_CACHE = ALL_CARS_CACHE;
 
 // ----------------------------------------
 // 公開API
@@ -53,8 +55,8 @@ export async function getAllCars(): Promise<CarItem[]> {
 }
 
 
-export async function getIndexCars(): Promise<CarItem[]> {
-  return INDEX_CARS_CACHE;
+export async function getListedCars(): Promise<CarItem[]> {
+  return LISTED_CARS_CACHE;
 }
 
 /** 同期取得版 (legacy互換) */
@@ -63,9 +65,9 @@ export function getAllCarsSync(): CarItem[] {
 }
 
 
-/** 同期取得版（index only） */
-export function getIndexCarsSync(): CarItem[] {
-  return INDEX_CARS_CACHE;
+/** 同期取得版。一覧・ハブ向けに、公開中の車種（noindex を含む）をすべて返す。 */
+export function getListedCarsSync(): CarItem[] {
+  return LISTED_CARS_CACHE;
 }
 
 export async function getCarBySlug(slug: string): Promise<CarItem | undefined> {

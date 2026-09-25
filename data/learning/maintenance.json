@@ -469,6 +469,10 @@
           "text": "Wの前の数字は低温時の始動に関係する特性、後ろは高温時の粘度特性を表す。番号をそのまま使える気温の上限・下限として読むものではないよ。"
         },
         {
+          "type": "diagram",
+          "kind": "oil-label"
+        },
+        {
           "type": "comparison",
           "title": "オイルの表示を、別々の欄として読む",
           "headers": [
@@ -928,5 +932,7 @@
         "blackstone-intervals"
       ]
     }
-  ]
+  ],
+  "selectionHref": "/choose/shaken",
+  "selectionLabel": "車検の受け先を選ぶ"
 }

@@ -9,7 +9,7 @@
 
 import { getAllColumns } from "@/lib/columns";
 import { getAllGuides } from "@/lib/guides";
-import { getAllCars, getIndexCars } from "@/lib/cars";
+import { getAllCars, getListedCars } from "@/lib/cars";
 import { getAllHeritage } from "@/lib/heritage";
 import { buildBodyTypeInfos } from "@/lib/taxonomy/body-type-hubs";
 import { buildSegmentInfos } from "@/lib/taxonomy/segments";
@@ -48,7 +48,7 @@ export async function getInternalLinkIndex(): Promise<Record<string, InternalLin
     getAllColumns(),
     getAllGuides(),
     getAllCars(),
-    getIndexCars(),
+    getListedCars(),
     getAllHeritage(),
   ]);
 

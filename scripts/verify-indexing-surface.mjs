@@ -282,7 +282,7 @@ if (learningProblems.length) die("learning sitemap does not match publication po
 if (expectedLearningPaths.size && !extractLocs(sitemapIndex).includes(`${SITE_URL}/sitemaps/sitemap-learning.xml`)) {
   die("learning sitemap shard missing from sitemap index");
 }
-for (const pathname of ["/learn", "/choose", "/choose/drive-recorder", "/choose/car-wash", "/choose/air-filter", "/glossary"]) {
+for (const pathname of ["/learn", "/choose", "/choose/drive-recorder", "/choose/car-wash", "/choose/air-filter", "/choose/shaken", "/glossary"]) {
   if (!allSitemapPaths.has(pathname)) die("public learning/selection hub missing from sitemap", [pathname]);
 }
 

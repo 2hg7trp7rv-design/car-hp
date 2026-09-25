@@ -23,7 +23,7 @@ import { getEditorialCarImageBySlug } from "@/lib/editorial-assets";
 
 import {
   getAllCars,
-  getIndexCars,
+  getListedCars,
   getCarBySlug,
   getOwnershipGuidesForCarSlug,
   getRelatedColumnsForCarSlug,
@@ -917,7 +917,7 @@ export default async function CarDetailPage({ params }: Props) {
   const sections = buildSectionsFromBlocks(blocks);
   const toc = sections.map((s) => ({ id: s.id, title: s.title }));
 
-  const indexCarsForNav = await getIndexCars();
+  const indexCarsForNav = await getListedCars();
   const compareCars = pickCompareCars(indexCarsForNav, car, 3);
   const relatedCars = pickRelatedSameGroup(car, indexCarsForNav, {
     limit: 3,

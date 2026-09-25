@@ -132,7 +132,7 @@
   "summary": "1990年代、日本には「世界最小のスーパーカー」があった。ガルウィングのAZ-1、3連スロットルのビート、本格FRのカプチーノ。バブル経済とエンジニアの夢が生んだ奇跡の軽スポーツ「ABCトリオ」の全貌を、熱く語り尽くす。",
   "canonicalUrl": null,
   "ogImageUrl": "",
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/heritage",
   "relatedClusterIds": [],
   "primaryQuery": "世界最小のスーパーカーたち。AZ-1、ビート、カプチーノが駆け抜けた「64馬力の狂乱」",

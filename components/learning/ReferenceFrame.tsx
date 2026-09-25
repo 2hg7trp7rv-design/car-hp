@@ -1,11 +1,11 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { refbookRounded, refbookSans } from "@/app/refbook-fonts";
+import { refbookRounded } from "@/app/refbook-fonts";
 import { CookieSettingsButton } from "@/components/analytics/CookieSettingsButton";
 import styles from "./reference.module.css";
 
 export function ReferenceFrame({ children }: { children: ReactNode }) {
-  return <div className={`${styles.frame} ${refbookSans.variable} ${refbookRounded.variable}`} data-cbj-reference>
+  return <div className={`${styles.frame} ${refbookRounded.variable}`} data-cbj-reference>
     <header className={styles.header}>
       <Link href="/" className={styles.logo} aria-label="CAR BOUTIQUE JOURNAL ホーム">
         <svg viewBox="0 0 180 28" aria-hidden="true"><path d="M5 25c10-14 23-15 37-15C64-2 91 0 112 7l40 7 17 10" /></svg>

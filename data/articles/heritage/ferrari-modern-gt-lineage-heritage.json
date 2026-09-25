@@ -53,7 +53,7 @@
     "gt",
     "daily"
   ],
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/heritage",
   "relatedClusterIds": [],
   "primaryQuery": "フェラーリ GT ローマ",

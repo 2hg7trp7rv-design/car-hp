@@ -444,6 +444,10 @@
           "text": "基本は走行前の、タイヤが冷えている状態。これを冷間時というよ。指定された条件に合わせて測ることで、表示の数値と比べられるんだ。"
         },
         {
+          "type": "diagram",
+          "kind": "tire-pressure"
+        },
+        {
           "type": "comparison",
           "title": "空気圧と一緒に見ること",
           "headers": [
@@ -536,6 +540,10 @@
           "type": "dialogue",
           "speaker": "rina",
           "text": "メーカー資料には原因の例があるよ。両肩の減りには空気圧不足、中央の減りには空気圧過多、片側の減りには足回りの整備不良等が挙げられる。ただし診断が確定する表ではないんだ。"
+        },
+        {
+          "type": "diagram",
+          "kind": "wear-patterns"
         },
         {
           "type": "comparison",
@@ -756,6 +764,10 @@
           "type": "dialogue",
           "speaker": "rina",
           "text": "それは別の接触面だよ。パッドとローターのμを、タイヤと路面のμとして使ってはいけない。ここではμ＝0.7、g＝9.8m/s²を仮定する。0.7は、この車や晴れた道路なら必ず得られる数値ではないんだ。"
+        },
+        {
+          "type": "diagram",
+          "kind": "brake-to-road"
         },
         {
           "type": "comparison",
@@ -1135,5 +1147,7 @@
         "dixcel-pad-example"
       ]
     }
-  ]
+  ],
+  "selectionHref": "/choose/shaken",
+  "selectionLabel": "車検の受け先を選ぶ"
 }

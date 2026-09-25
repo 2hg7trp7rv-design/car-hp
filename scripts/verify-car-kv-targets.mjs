@@ -111,8 +111,10 @@ for (const target of targets) {
     failures.push({ imageNumber, slug, reason: "gallery mismatch", actual: gallery, expected: [publicPath] });
   }
 
-  if (String(car?.publicState ?? "").trim() !== "index") {
-    failures.push({ imageNumber, slug, reason: "publicState mismatch", actual: car?.publicState ?? null, expected: "index" });
+  // 画像を載せているページが公開されていることを見る。検索インデックスへ載せるかは別の判断なので、
+  // index でも noindex でも通す。draft / redirect のページに画像だけ残るのを防ぐのが目的。
+  if (!["index", "noindex"].includes(String(car?.publicState ?? "").trim())) {
+    failures.push({ imageNumber, slug, reason: "publicState mismatch", actual: car?.publicState ?? null, expected: "index または noindex" });
   }
 
   if (!sourcePdfFile || !sourcePdfEmbeddedImage) {

@@ -7,6 +7,7 @@ import { getLearningCourses,getLearningCourse,learningHref,LEARNING_STAGES,LEARN
 import { publicationPolicy } from "@/lib/content/publication";
 import styles from "../learning.module.css";
 type Props={params:Promise<{course:string}>};
+// 全講座・全回は生成時に確定するため、未知のURLはルーティングの時点で404にする。
 export const dynamicParams = false;
 export function generateStaticParams(){return getLearningCourses().map(c=>({course:c.slug}));}
 export async function generateMetadata({params}:Props):Promise<Metadata>{const c=getLearningCourse((await params).course);if(!c)return{};return {...referenceMetadata(c.title,c.description,learningHref(c.slug)),robots:{index:publicationPolicy(c).indexable,follow:true}};}

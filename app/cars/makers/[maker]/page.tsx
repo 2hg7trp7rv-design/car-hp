@@ -10,7 +10,7 @@ import { ContentRowCard } from "@/components/content/ContentRowCard";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { InlineFaq } from "@/components/taxonomy/InlineFaq";
 
-import { getIndexCars, type CarItem } from "@/lib/cars";
+import { getListedCars, type CarItem } from "@/lib/cars";
 import { getGuideBySlug } from "@/lib/guides";
 import { resolveGuideCardImage } from "@/lib/display-tag-media";
 import { getSiteUrl } from "@/lib/site";
@@ -50,7 +50,7 @@ function formatDate(value?: string | null): string | null {
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const allCars = await getIndexCars();
+  const allCars = await getListedCars();
   const makers = buildMakerInfos(allCars);
   return makers.map((maker) => ({ maker: maker.key }));
 }
@@ -58,7 +58,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { maker } = await params;
   const makerKey = normalizeMakerParamToKey(maker);
-  const allCars = await getIndexCars();
+  const allCars = await getListedCars();
   const makers = buildMakerInfos(allCars);
   const label = resolveMakerLabel(makerKey, makers);
   const cars = allCars.filter((car) => normalizeMakerParamToKey(car.makerKey ?? car.maker ?? "") === makerKey);
@@ -97,7 +97,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function MakerHubPage({ params }: PageProps) {
   const { maker } = await params;
   const makerKey = normalizeMakerParamToKey(maker);
-  const allCars = await getIndexCars();
+  const allCars = await getListedCars();
   const makers = buildMakerInfos(allCars);
   const label = resolveMakerLabel(makerKey, makers);
   const cars = allCars.filter((car) => normalizeMakerParamToKey(car.makerKey ?? car.maker ?? "") === makerKey);

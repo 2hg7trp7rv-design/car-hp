@@ -150,7 +150,7 @@
   "summary": "初代NSXから二代目まで。ホンダがスーパーカーの前提をどう変えたのかを辿る。",
   "canonicalUrl": null,
   "ogImageUrl": "",
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/heritage",
   "relatedClusterIds": [],
   "primaryQuery": "ホンダ NSX 歴史",

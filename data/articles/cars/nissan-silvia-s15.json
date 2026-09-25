@@ -84,7 +84,7 @@
   "titleJa": "日産 シルビア（S15）。",
   "canonicalUrl": null,
   "ogImageUrl": null,
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/cars/makers/nissan",
   "relatedClusterIds": [],
   "primaryQuery": "Nissan Silvia (S15)",

@@ -158,7 +158,7 @@
   "summary": "1999年は日本のスポーツカー史における頂点だった。F1に匹敵するS2000、ボディ剛性の塊R34、FRの理想形S15、WRC直系のエボ・インプ。排ガス規制直前に生まれた奇跡の世代を、その極端ななエンジニアリングと共に整理する。",
   "canonicalUrl": null,
   "ogImageUrl": "",
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/heritage",
   "relatedClusterIds": [],
   "primaryQuery": "1999年、日本車はひとつの頂点に達した。S2000, R34, S15, Evo VIが告げたアナログ時代の完結",

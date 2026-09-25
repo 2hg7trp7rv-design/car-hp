@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { referenceMetadata } from "@/lib/learning-metadata";
-import { AmazonCandidates, ChoiceHeader, ChoiceSources, CriteriaTable } from "@/components/commerce/ChoiceElements";
+import { AmazonCandidates, ChoiceHeader, ChoiceSources, ChoiceTalk, CriteriaTable } from "@/components/commerce/ChoiceElements";
 import styles from "../choose.module.css";
 
 export const metadata = referenceMetadata(
@@ -12,6 +12,10 @@ export const metadata = referenceMetadata(
 export default function DriveRecorderChoice() {
   return <main className={styles.page}>
     <ChoiceHeader title="ドライブレコーダー" theme="電装・安全装備" description="まず決めたいのは、どの場面を、どの方向まで残したいか。画素数だけで選ばず、録画の範囲と、取り付けた後の使い方まで比べましょう。" learningHref="/learn/driving-support" learningLabel="カメラと運転支援のしくみを学ぶ" />
+    <ChoiceTalk lines={[
+      { speaker: "shuna", text: "ドラレコって、画素数が高いものを選べばいいんだよね？" },
+      { speaker: "rina", text: "画素数は一つの条件でしかないよ。まず「どの場面を、どの方向まで残したいか」。そこが決まると、比べる項目が絞れるの。" },
+    ]} />
     <section id="conditions" className={styles.section}>
       <h2>残したい場面を3つに分ける</h2>
       <ol><li><strong>走行中の前後。</strong> 前後2カメラを候補に、後方カメラの取り付け位置と配線距離も確認します。</li><li><strong>側方や車内も含む範囲。</strong> 前後2カメラで側方まで常に残せるとは限りません。必要な方向が画角に入るか、設置した映像で確かめます。</li><li><strong>エンジンを止めた後。</strong> 駐車監視の録画方式、電源、録画が止まる条件をセットで確認します。</li></ol>

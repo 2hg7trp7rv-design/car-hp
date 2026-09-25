@@ -6,10 +6,6 @@
     <lastmod>2026-09-25</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://carboutiquejournal.com/sitemaps/sitemap-cars.xml</loc>
-    <lastmod>2026-05-17</lastmod>
-  </sitemap>
-  <sitemap>
     <loc>https://carboutiquejournal.com/sitemaps/sitemap-makers.xml</loc>
     <lastmod>2026-05-17</lastmod>
   </sitemap>
@@ -32,9 +28,5 @@
   <sitemap>
     <loc>https://carboutiquejournal.com/sitemaps/sitemap-columns.xml</loc>
     <lastmod>2026-09-22</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://carboutiquejournal.com/sitemaps/sitemap-heritage.xml</loc>
-    <lastmod>2026-05-17</lastmod>
   </sitemap>
 </sitemapindex>

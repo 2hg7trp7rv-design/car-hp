@@ -87,7 +87,7 @@
   "titleJa": "マツダ RX-8（SE3P）。",
   "canonicalUrl": null,
   "ogImageUrl": null,
-  "publicState": "index",
+  "publicState": "noindex",
   "parentPillarId": "/cars/makers/mazda",
   "relatedClusterIds": [],
   "primaryQuery": "RX-8 (SE3P)",

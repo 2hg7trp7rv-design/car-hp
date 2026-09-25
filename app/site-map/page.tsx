@@ -5,7 +5,7 @@ import { Reveal } from "@/components/animation/Reveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { DetailFixedBackground } from "@/components/layout/DetailFixedBackground";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
-import { getIndexCars } from "@/lib/cars";
+import { getListedCars } from "@/lib/cars";
 import { getAllColumns, type ColumnItem } from "@/lib/columns";
 import { getAllGuides, type GuideItem } from "@/lib/guides";
 import { getAllHeritage, type HeritageItem } from "@/lib/heritage";
@@ -43,7 +43,7 @@ function sortByDateDesc<
 
 export default async function SiteMapPage() {
   const [cars, guides, columns, heritage] = await Promise.all([
-    getIndexCars(),
+    getListedCars(),
     getAllGuides(),
     getAllColumns(),
     getAllHeritage(),
