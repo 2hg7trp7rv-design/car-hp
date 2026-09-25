@@ -9,6 +9,7 @@ Body text uses the system Japanese stack, so only one face ships. Builds do not 
 fonts or need Python; run this after adding copy, then commit the .woff2 and charset.json.
 The Node contract test fails when a rendered character is missing from charset.json.
 """
+import hashlib
 import json
 from pathlib import Path
 
@@ -46,6 +47,7 @@ characters = sorted(
     }
 )
 
+font_records = {}
 for name in FONTS:
     source = ROOT / "assets/fonts" / name
     font = TTFont(source, recalcTimestamp=False)
@@ -58,10 +60,17 @@ for name in FONTS:
     builder.subset(font)
     target = OUTPUT / (source.stem + "-subset.woff2")
     font.save(target)
+    # Record what the saved file actually contains, not what was requested. The contract
+    # test checks these codepoints and the file hash, so a stale .woff2 cannot slip through.
+    saved = TTFont(target)
+    font_records[target.name] = {
+        "sha256": hashlib.sha256(target.read_bytes()).hexdigest(),
+        "codepoints": sorted(saved.getBestCmap()),
+    }
     print(f"{source.name}: {source.stat().st_size:,} -> {target.stat().st_size:,} bytes")
 
 (OUTPUT / "charset.json").write_text(
-    json.dumps({"inputs": inputs, "characters": characters}, ensure_ascii=False, indent=2) + "\n",
+    json.dumps({"inputs": inputs, "characters": characters, "fonts": font_records}, ensure_ascii=False, indent=2) + "\n",
     encoding="utf-8",
 )
 print(f"charset.json: {len(inputs)} inputs, {len(characters)} characters")

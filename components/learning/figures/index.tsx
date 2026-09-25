@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import type { DiagramKind } from "@/lib/learning";
+import { FoundationDiagram, type FoundationKind } from "../FoundationDiagram";
 import {
   AirAndFuel,
   AirAndInformation,
@@ -12,38 +13,37 @@ import {
   PleatedMedia,
   TurboIntakePath,
 } from "./air-cleaner";
-import { AWeighting, ExhaustPath, ProximityMeasurement, SilencerStructures, SoundRms } from "./sound";
-import { CameraAndRadar, RecognitionConditions, SensingChain } from "./driving-support";
-import { InspectVsReplace, IntervalConditions, OilLabel } from "./maintenance";
+import { AWeighting, ProximityMeasurement, SilencerStructures, SoundRms } from "./sound";
+import { CameraAndRadar, SensingChain } from "./driving-support";
+import { OilLabel } from "./maintenance";
 import { DamperVelocity, HardRideCauses, SpringAndDamper } from "./suspension";
 import { BrakeToRoad, TirePressure, WearPatterns } from "./tires";
-import {
-  CatalogAnatomy,
-  DriveForceBySpeed,
-  DriveForceChain,
-  TorqueAndPowerCurves,
-  TorqueCurveShapes,
-  TorqueFeel,
-  TorqueLever,
-  TorqueVsRpm,
-  TwoPointsTwoCurves,
-} from "./torque";
+import { TorqueLever } from "./torque";
+
+/** The part drawings added for the beginner lessons render through one component by kind. */
+function foundation(kind: FoundationKind): ComponentType {
+  function Foundation() {
+    return <FoundationDiagram kind={kind} />;
+  }
+  Foundation.displayName = `Foundation(${kind})`;
+  return Foundation;
+}
 
 /** Every diagram kind resolves here. TypeScript flags a kind added without a drawing. */
 export const FIGURES: Record<DiagramKind, ComponentType> = {
+  "four-strokes": foundation("four-strokes"),
+  "displacement": foundation("displacement"),
+  "two-air-paths": foundation("two-air-paths"),
+  "exhaust-parts": foundation("exhaust-parts"),
+  "suspension-parts": foundation("suspension-parts"),
+  "tire-markings": foundation("tire-markings"),
+  "disc-brake": foundation("disc-brake"),
+  "battery-roles": foundation("battery-roles"),
   "air-and-fuel": AirAndFuel,
   "pleated-media": PleatedMedia,
   "installation-types": InstallationTypes,
   "sound-rms": SoundRms,
   "torque-lever": TorqueLever,
-  "torque-vs-rpm": TorqueVsRpm,
-  "torque-feel": TorqueFeel,
-  "catalog-anatomy": CatalogAnatomy,
-  "torque-and-power-curves": TorqueAndPowerCurves,
-  "drive-force-chain": DriveForceChain,
-  "drive-force-by-speed": DriveForceBySpeed,
-  "torque-curve-shapes": TorqueCurveShapes,
-  "two-points-two-curves": TwoPointsTwoCurves,
   "intake-layout": IntakeLayout,
   "filter-capture": FilterCapture,
   "pass-through-amount": PassThroughAmount,
@@ -51,7 +51,6 @@ export const FIGURES: Record<DiagramKind, ComponentType> = {
   "turbo-intake-path": TurboIntakePath,
   "filter-states": FilterStates,
   "air-and-information": AirAndInformation,
-  "exhaust-path": ExhaustPath,
   "silencer-structures": SilencerStructures,
   "proximity-measurement": ProximityMeasurement,
   "a-weighting": AWeighting,
@@ -63,8 +62,5 @@ export const FIGURES: Record<DiagramKind, ComponentType> = {
   "wear-patterns": WearPatterns,
   "sensing-chain": SensingChain,
   "camera-and-radar": CameraAndRadar,
-  "recognition-conditions": RecognitionConditions,
-  "inspect-vs-replace": InspectVsReplace,
   "oil-label": OilLabel,
-  "interval-conditions": IntervalConditions,
 };

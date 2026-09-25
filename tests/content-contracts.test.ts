@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { createHash } from "node:crypto";
 import test from "node:test";
 import { serializeJsonLd } from "../lib/seo/serialize-json";
 
@@ -11,7 +12,7 @@ test("JSON-LD preserves values while preventing HTML script termination", () => 
 });
 
 test("the heading font subset covers every reference surface and stays below 250 KB", () => {
-  const manifest = JSON.parse(fs.readFileSync("app/refbook-fonts/charset.json", "utf8")) as { inputs: string[]; characters: string[] };
+  const manifest = JSON.parse(fs.readFileSync("app/refbook-fonts/charset.json", "utf8")) as { inputs: string[]; characters: string[]; fonts: Record<string, { sha256: string; codepoints: number[] }> };
   const characters = new Set(manifest.characters);
   assert.ok(manifest.inputs.includes("data/learning/engine-torque.json"), "learning copy must be part of the subset");
   for (const input of manifest.inputs) {
@@ -21,5 +22,15 @@ test("the heading font subset covers every reference surface and stays below 250
   const fonts = fs.readdirSync("app/refbook-fonts").filter((file) => file.endsWith(".woff2"));
   const size = fonts.reduce((sum, file) => sum + fs.statSync(`app/refbook-fonts/${file}`).size, 0);
   assert.equal(fonts.length, 1, "body copy uses the system stack; only the rounded heading face ships");
+  assert.deepEqual(Object.keys(manifest.fonts).sort(), fonts.sort());
+  // The manifest records what the committed file contains. Checking the hash and the codepoints
+  // catches a font that was not regenerated together with charset.json.
+  for (const file of fonts) {
+    const record = manifest.fonts[file];
+    assert.equal(createHash("sha256").update(fs.readFileSync(`app/refbook-fonts/${file}`)).digest("hex"), record.sha256, `Regenerate actual font and manifest together: ${file}`);
+    const available = new Set(record.codepoints);
+    const missing = manifest.characters.filter((character) => /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u.test(character) && !available.has(character.codePointAt(0)!));
+    assert.deepEqual(missing, [], `${file} is missing Japanese glyphs used on the reference pages`);
+  }
   assert.ok(size < 250_000, `Font budget exceeded: ${size}`);
 });

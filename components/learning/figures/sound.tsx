@@ -39,60 +39,6 @@ export function SoundRms() {
   );
 }
 
-export function ExhaustPath() {
-  const boxes = [
-    { label: "エンジン", note: "排気を送り出す", fill: "#e8eef5" },
-    { label: "排気管・触媒", note: "有害な成分を減らす", fill: "#e4f2f2" },
-    { label: "消音器", note: "音を抑える", fill: "#fff0ce" },
-    { label: "出口", note: "車外へ導く", fill: "#e8eef5" },
-  ];
-  return (
-    <figure className={styles.diagram} tabIndex={0} role="region" aria-label="横にスクロールできる概念図">
-      <figcaption>排気の道と、それぞれの仕事</figcaption>
-      <svg
-        viewBox="0 0 600 220"
-        role="img"
-        aria-label="排気はエンジンから排気管と触媒、消音器を通って出口へ向かう。触媒は有害な成分を減らし、消音器は音を抑えるという別々の仕事をしている図。"
-      >
-        <defs>
-          <marker id="exhaust-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-            <path d="M0 0 L8 4 L0 8" fill="#526682" />
-          </marker>
-        </defs>
-        {boxes.map((box, index) => {
-          const x = 8 + index * 150;
-          return (
-            <g key={box.label}>
-              <rect x={x} y="54" width="126" height="78" rx="16" fill={box.fill} />
-              <text x={x + 63} y="88" textAnchor="middle" className={styles.svgSmall}>
-                {box.label}
-              </text>
-              <text x={x + 63} y="114" textAnchor="middle" className={styles.svgSmall} fill="#5e6f82">
-                {box.note}
-              </text>
-              {index < boxes.length - 1 && (
-                <path d={`M${x + 130} 93 H${x + 146}`} stroke="#526682" strokeWidth="3" markerEnd="url(#exhaust-arrow)" />
-              )}
-            </g>
-          );
-        })}
-        <text x="300" y="32" textAnchor="middle" className={styles.svgSmall}>
-          排気ガスの流れ →
-        </text>
-        <text x="300" y="176" textAnchor="middle" className={styles.svgSmall} fill="#167d88">
-          浄化は化学反応の仕事、消音は音のエネルギーを減らす仕事。
-        </text>
-        <text x="300" y="202" textAnchor="middle" className={styles.svgSmall} fill="#167d88">
-          静かになっても、排気がきれいになるわけではない。
-        </text>
-      </svg>
-      <p className={styles.note}>
-        役割を分けて見るための模式図です。部品の数・配置・一体化のしかたは車両で異なり、ターボなどは省略しています。
-      </p>
-    </figure>
-  );
-}
-
 export function SilencerStructures() {
   return (
     <figure className={styles.diagram} tabIndex={0} role="region" aria-label="横にスクロールできる断面図">

@@ -2,7 +2,6 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
 import {
-  DIAGRAM_KINDS,
   DIAGRAM_TEXT,
   DIALOGUE_EXPRESSIONS,
   getLearningCourses,
@@ -100,6 +99,7 @@ test("authored courses have valid progression, complete exercises and resolvable
           lesson.sources.every((id) => sources.has(id)),
       );
       const speakers = new Set<string>();
+      const headingIds = new Set<string>();
       let figures = 0;
       for (const block of lesson.blocks) {
         if (block.type === "dialogue") {
@@ -114,6 +114,12 @@ test("authored courses have valid progression, complete exercises and resolvable
             assert.ok(fs.existsSync(portrait), `${lesson.slug}: add the illustration at ${portrait}`);
           }
           speakers.add(block.speaker);
+        } else if (block.type === "heading") {
+          assert.match(block.id, /^[a-z][a-z0-9-]+$/);
+          assert.ok(!headingIds.has(block.id), `${lesson.slug}: duplicate section anchor`);
+          headingIds.add(block.id);
+          assert.ok(block.title.trim() && block.sources.length > 0);
+          assert.ok(block.sources.every(id => lesson.sources.includes(id)), `${lesson.slug}: section source must be listed in the lesson`);
         } else if (block.type === "comparison") {
           figures++;
           assert.ok(block.rows.length > 0);
@@ -129,6 +135,16 @@ test("authored courses have valid progression, complete exercises and resolvable
         } else if (block.type === "measurements") {
           figures++;
           assert.ok(block.rounds.length > 1 && block.series.length > 0, `${course.slug}/${lesson.slug}: graph needs points and a named series`);
+          if (block.xValues) {
+            assert.equal(block.xValues.length, block.rounds.length);
+            assert.ok(block.xValues.every((value, index, values) => Number.isFinite(value) && (index === 0 || value > values[index - 1])), `${course.slug}/${lesson.slug}: numeric x values must increase`);
+          }
+          if (block.yRange) {
+            assert.equal(block.yRange.length, 2);
+            const [low, high] = block.yRange;
+            assert.ok(Number.isFinite(low) && Number.isFinite(high) && low < high);
+            assert.ok(block.series.flatMap(series => series.values).every(value => value >= low && value <= high), `${course.slug}/${lesson.slug}: explicit y range must contain all points`);
+          }
           assert.ok(
             block.title.trim() && block.unit.trim() && block.note.trim(),
           );
@@ -141,7 +157,7 @@ test("authored courses have valid progression, complete exercises and resolvable
         } else if (block.type === "diagram") {
           figures++;
           assert.ok(
-            (DIAGRAM_KINDS as readonly string[]).includes(block.kind),
+            Object.hasOwn(DIAGRAM_TEXT, block.kind),
             `${course.slug}/${lesson.slug}: unknown diagram kind ${block.kind}`,
           );
           assert.ok(DIAGRAM_TEXT[block.kind]?.trim(), `${block.kind}: needs a text description`);
@@ -161,5 +177,5 @@ test("authored courses have valid progression, complete exercises and resolvable
 });
 
 test("the three learning stages use reader-facing names instead of score ranges", () => {
-  assert.deepEqual(Object.values(LEARNING_STAGES).map((stage) => stage.label), ["はじめて", "しくみと選び方", "深く読み解く"]);
+  assert.deepEqual(Object.values(LEARNING_STAGES).map((stage) => stage.label), ["初級", "中級", "上級"]);
 });
