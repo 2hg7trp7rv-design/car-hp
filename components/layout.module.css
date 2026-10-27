@@ -1,0 +1,178 @@
+/* ロゴ */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-round);
+  font-weight: 800;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.logoSmall {
+  font-size: 15px;
+  letter-spacing: 0.04em;
+}
+
+.logoIroha {
+  display: inline-flex;
+  gap: 3px;
+}
+
+.logoIroha span {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.logoIroha [data-c="coral"] {
+  background: var(--coral);
+  color: var(--paper);
+}
+.logoIroha [data-c="sun"] {
+  background: var(--sun);
+}
+.logoIroha [data-c="sky"] {
+  background: var(--sky);
+  color: var(--paper);
+}
+
+.logoLg .logoSmall {
+  font-size: 22px;
+}
+.logoLg .logoIroha span {
+  width: 52px;
+  height: 52px;
+  font-size: 30px;
+  border-width: 3px;
+}
+
+/* ヘッダー */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 246, 229, 0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: var(--border);
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 64px;
+}
+
+.homeLink {
+  text-decoration: none;
+  flex: none;
+}
+
+.nav {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 6px 2px;
+}
+
+.nav::-webkit-scrollbar {
+  display: none;
+}
+
+.nav a {
+  flex: none;
+  padding: 5px 13px;
+  border: 2.5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  font-family: var(--font-round);
+  font-weight: 800;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.12s ease;
+}
+
+.nav a:hover {
+  background: var(--sun-soft);
+}
+
+@media (max-width: 860px) {
+  .headerInner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding-top: 10px;
+  }
+
+  .nav {
+    margin-left: 0;
+    width: 100%;
+    padding-bottom: 10px;
+  }
+}
+
+/* フッター */
+.footer {
+  margin-top: 96px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 48px 0 24px;
+}
+
+.footer .logo {
+  color: var(--paper);
+}
+
+.footer .logoIroha span {
+  border-color: var(--paper);
+}
+
+.footerInner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 32px;
+}
+
+.footerBrand p {
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.footerNav {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+}
+
+.footerNav a {
+  font-size: 14px;
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.footerNav a:hover {
+  text-decoration: underline;
+}
+
+.copyright {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+@media (max-width: 720px) {
+  .footerInner {
+    grid-template-columns: 1fr;
+  }
+}

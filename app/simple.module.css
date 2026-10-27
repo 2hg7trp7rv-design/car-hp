@@ -1,0 +1,59 @@
+/* カテゴリ・サイト案内など、見出しと本文だけのページ */
+.page {
+  margin-top: 40px;
+  display: grid;
+  gap: 32px;
+}
+
+.header {
+  padding: 26px 28px;
+  background: var(--sun-soft);
+}
+
+.header[data-c="sky"] { background: var(--sky-soft); }
+.header[data-c="sun"] { background: var(--sun-soft); }
+.header[data-c="mint"] { background: var(--mint-soft); }
+.header[data-c="coral"] { background: var(--coral-soft); }
+.header[data-c="grape"] { background: var(--grape-soft); }
+
+.header h1 {
+  font-size: clamp(26px, 5vw, 36px);
+  margin: 4px 0 8px;
+}
+
+.kicker {
+  font-family: var(--font-round);
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.empty {
+  display: grid;
+  gap: 18px;
+  max-width: 640px;
+}
+
+.prose {
+  display: grid;
+  gap: 16px;
+  max-width: 760px;
+}
+
+.prose h2 {
+  font-size: 22px;
+  margin-top: 16px;
+}
+
+.prose ul {
+  margin: 0;
+  padding-left: 1.3em;
+  display: grid;
+  gap: 6px;
+}

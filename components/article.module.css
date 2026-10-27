@@ -1,0 +1,301 @@
+.blocks {
+  display: grid;
+  gap: 22px;
+}
+
+.text {
+  font-size: 17px;
+}
+
+/* 会話 */
+.talk {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.talk[data-who="rina"] {
+  flex-direction: row-reverse;
+}
+
+.avatar {
+  flex: none;
+  width: 64px;
+  height: 64px;
+  border: var(--border);
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.talk[data-who="shuna"] .avatar {
+  background: var(--sun-soft);
+}
+
+.talk[data-who="rina"] .avatar {
+  background: var(--sky-soft);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bubbleWrap {
+  display: grid;
+  justify-items: start;
+  gap: 4px;
+  max-width: min(560px, 100% - 76px);
+}
+
+.talk[data-who="rina"] .bubbleWrap {
+  justify-items: end;
+}
+
+.speaker {
+  padding: 0 10px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  font-family: var(--font-round);
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.speaker[data-c="sun"] {
+  background: var(--sun);
+}
+
+.speaker[data-c="sky"] {
+  background: var(--sky);
+}
+
+.bubble {
+  position: relative;
+  padding: 12px 16px;
+  background: var(--paper);
+  border: var(--border);
+  border-radius: 6px 20px 20px 20px;
+  box-shadow: 3px 3px 0 var(--ink);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.talk[data-who="rina"] .bubble {
+  border-radius: 20px 6px 20px 20px;
+  background: var(--sky-soft);
+}
+
+.talkLarge .avatar {
+  width: 96px;
+  height: 96px;
+}
+
+.talkLarge .bubble {
+  font-family: var(--font-round);
+  font-weight: 700;
+  font-size: 19px;
+  padding: 16px 20px;
+}
+
+/* 図 */
+.figure {
+  margin: 8px 0;
+  padding: 20px;
+}
+
+.figure svg {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  margin-inline: auto;
+  font-family: var(--font-round);
+}
+
+@media (max-width: 600px) {
+  .figure {
+    padding: 14px;
+  }
+
+  .talkLarge .avatar {
+    width: 64px;
+    height: 64px;
+  }
+
+  .talkLarge .bubble {
+    font-size: 17px;
+    padding: 14px 16px;
+  }
+}
+
+.figure figcaption {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 2px dashed var(--ink-soft);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+/* 手順 */
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  counter-reset: step;
+}
+
+.steps li {
+  display: flex;
+  gap: 14px;
+  padding: 16px 18px;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.stepNo {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: var(--border);
+  border-radius: 50%;
+  background: var(--sun);
+  font-family: var(--font-round);
+  font-weight: 800;
+  font-size: 19px;
+}
+
+.steps h3 {
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+.steps p {
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+/* 囲み */
+.boxLabel {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 2px 14px;
+  border: 2.5px solid var(--ink);
+  border-radius: 999px;
+  font-family: var(--font-round);
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.point {
+  padding: 18px 20px;
+  background: var(--sun-soft);
+}
+
+.point .boxLabel {
+  background: var(--sun);
+}
+
+.point h3 {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.ng {
+  padding: 18px 20px;
+  background: var(--coral-soft);
+}
+
+.ng .boxLabel {
+  background: var(--coral);
+  color: var(--paper);
+}
+
+.ng ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.ng li {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--paper);
+  border: 2.5px solid var(--ink);
+  border-radius: 16px;
+}
+
+.ngMark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--coral);
+  color: var(--paper);
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.ng h3 {
+  font-size: 16px;
+}
+
+.ng p {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* シェア */
+.share {
+  padding: 22px;
+  text-align: center;
+  background: var(--paper);
+  border: var(--border);
+  border-radius: var(--radius);
+}
+
+.shareTitle {
+  font-family: var(--font-round);
+  font-weight: 800;
+  font-size: 17px;
+}
+
+.shareButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.shareButtons a,
+.shareButtons button {
+  padding: 9px 18px;
+  border: var(--border);
+  border-radius: 999px;
+  box-shadow: 3px 3px 0 var(--ink);
+  font: 800 15px/1.4 var(--font-round);
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.shareButtons [data-s="line"] {
+  background: #06c755;
+}
+
+.shareButtons [data-s="copy"] {
+  background: var(--paper);
+  color: var(--ink);
+}

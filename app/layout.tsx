@@ -1,127 +1,44 @@
-// app/layout.tsx
 import type { Metadata, Viewport } from "next";
-import { Suspense, type ReactNode } from "react";
-
+import { M_PLUS_Rounded_1c } from "next/font/google";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SITE } from "@/lib/site";
 import "./globals.css";
-import "./styles/cars-article.css";
-import "./styles/heritage-article.css";
-import "./styles/archive-article.css";
-import { getSiteOrigin, getSiteUrl } from "@/lib/site";
-import { CBJ_SITE_DESCRIPTION } from "@/lib/brand/cbj-copy";
-import { ArticleFooter } from "@/components/layout/ArticleFooter";
-import { SiteFooter } from "@/components/layout/SiteFooter";
-import { SiteChrome } from "@/components/layout/SiteChrome";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
-import { PageViewTracker } from "@/components/analytics/PageViewTracker";
-import { ConsentBanner } from "@/components/analytics/ConsentBanner";
 
-const BRAND = "CAR BOUTIQUE JOURNAL";
-const BRAND_DESC = CBJ_SITE_DESCRIPTION;
-
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 5,
-  viewportFit: "cover",
-};
+const maru = M_PLUS_Rounded_1c({
+  weight: ["700", "800"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-maru",
+});
 
 export const metadata: Metadata = {
-  metadataBase: getSiteOrigin(),
+  metadataBase: new URL(SITE.url),
   title: {
-    default: BRAND,
-    template: `%s | ${BRAND}`,
+    default: `${SITE.name}｜${SITE.tagline}`,
+    template: `%s｜${SITE.name}`,
   },
-  description: BRAND_DESC,
-  alternates: {
-    canonical: getSiteUrl(),
-  },
+  description: SITE.description,
   openGraph: {
     type: "website",
-    url: getSiteUrl(),
-    siteName: BRAND,
-    title: BRAND,
-    description: BRAND_DESC,
-    images: [
-      {
-        url: "/ogp-default.jpg",
-        width: 1200,
-        height: 630,
-        alt: BRAND,
-      },
-    ],
+    siteName: SITE.name,
+    locale: "ja_JP",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: BRAND,
-    description: BRAND_DESC,
-    images: ["/ogp-default.jpg"],
-  },
-  icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icon-512x512.png", sizes: "512x512", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
-  },
-  manifest: "/site.webmanifest",
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  verification: {
-    google: "WosqURlP51rA8r-zabt5_bjCZdK1VYL7MkhoJ7txp-s",
-  },
+  twitter: { card: "summary_large_image" },
+  alternates: { canonical: "/" },
 };
 
-const WEBSITE_JSON_LD = {
-  "@type": "WebSite",
-  "@id": `${getSiteUrl()}/#website`,
-  url: getSiteUrl(),
-  name: BRAND,
-  inLanguage: "ja",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: `${getSiteUrl()}/search?q={search_term_string}`,
-    "query-input": "required name=search_term_string",
-  },
+export const viewport: Viewport = {
+  themeColor: "#fff6e5",
 };
 
-const ORGANIZATION_JSON_LD = {
-  "@type": "Organization",
-  "@id": `${getSiteUrl()}/#organization`,
-  name: BRAND,
-  url: getSiteUrl(),
-  logo: `${getSiteUrl()}/icon-512x512.png`,
-  description: BRAND_DESC,
-};
-
-type RootLayoutProps = { children: ReactNode };
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ja">
-      <body className="overflow-x-hidden bg-[var(--bg-stage)] font-sans text-[var(--text-primary)] antialiased">
-        <a href="#cb-main" className="cb-skip-link">
-          本文へスキップ
-        </a>
-        <GoogleAnalytics />
-        <Suspense fallback={null}>
-          <PageViewTracker />
-          <ConsentBanner />
-        </Suspense>
-        <JsonLd id="jsonld-website" data={WEBSITE_JSON_LD} />
-        <JsonLd id="jsonld-organization" data={ORGANIZATION_JSON_LD} />
-
-        <SiteChrome footer={<SiteFooter />} articleFooter={<ArticleFooter />}>{children}</SiteChrome>
+    <html lang="ja" className={maru.variable}>
+      <body>
+        <SiteHeader />
+        <main>{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );

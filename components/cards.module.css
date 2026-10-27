@@ -1,0 +1,80 @@
+.card {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 20px;
+  text-decoration: none;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.card:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.featured {
+  padding: 28px;
+  background: var(--sun-soft);
+}
+
+.featured .cardTitle {
+  font-size: 26px;
+}
+
+.pill {
+  justify-self: start;
+  padding: 1px 12px;
+  border: 2.5px solid var(--ink);
+  border-radius: 999px;
+  font-family: var(--font-round);
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 1.7;
+  background: var(--paper);
+}
+
+.pill[data-c="sky"] { background: var(--sky-soft); }
+.pill[data-c="sun"] { background: var(--sun-soft); }
+.pill[data-c="mint"] { background: var(--mint-soft); }
+.pill[data-c="coral"] { background: var(--coral-soft); }
+.pill[data-c="grape"] { background: var(--grape-soft); }
+
+.featured .pill {
+  background: var(--paper);
+}
+
+.cardTitle {
+  font-size: 19px;
+}
+
+.cardText {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+
+.cardMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.arrow {
+  font-family: var(--font-round);
+  font-weight: 800;
+  color: var(--coral);
+  font-size: 15px;
+}
+
+@media (max-width: 600px) {
+  .featured {
+    padding: 20px;
+  }
+
+  .featured .cardTitle {
+    font-size: 21px;
+  }
+}

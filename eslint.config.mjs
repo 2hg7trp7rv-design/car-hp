@@ -1,59 +1,21 @@
-// eslint.config.mjs
 import js from "@eslint/js";
 import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
 
 const config = [
-  {
-    linterOptions: { reportUnusedDisableDirectives: false },
-  },
-  {
-    ignores: [
-      "docs/**",
-      "scripts/oneoffs/**",
-      "node_modules/**",
-      ".next/**",
-      "**/tsconfig.tsbuildinfo",
-    ],
-  },
+  { ignores: ["node_modules/**", "node_modules.nosync/**", ".next/**", ".next.nosync/**", "next-env.d.ts"] },
   js.configs.recommended,
   ...nextCoreWebVitals,
   {
-    files: ["**/*.{js,mjs,cjs,ts,tsx,mts,cts}"],
-    rules: {
-      "@next/next/no-img-element": "off",
-      "@next/next/no-html-link-for-pages": "off",
-      "react-hooks/immutability": "off",
-      "react-hooks/purity": "off",
-      "react-hooks/set-state-in-effect": "off",
-      "react-hooks/static-components": "off",
-      "react-hooks/use-memo": "off",
-      "no-unused-vars": [
-        "error",
-        {
-          argsIgnorePattern: "^_",
-          varsIgnorePattern: "^_",
-          caughtErrorsIgnorePattern: "^_",
-        },
-      ],
-      "no-irregular-whitespace": "off",
-      "no-useless-escape": "off",
-      "no-mixed-spaces-and-tabs": "off",
-      "react/no-unescaped-entities": "off",
-      "no-constant-condition": ["error", { checkLoops: false }],
-    },
-  },
-  {
-    files: ["**/*.{ts,tsx,mts,cts}"],
+    files: ["**/*.{ts,tsx}"],
     rules: {
       "no-undef": "off",
+      "no-unused-vars": "off",
     },
   },
   {
-    files: ["**/*.d.ts"],
-    rules: {
-      "no-dupe-class-members": "off",
-      "no-unused-vars": "off",
-    },
+    // OGP画像は next/og が描画するので、next/image ではなく img を使う
+    files: ["lib/og.tsx"],
+    rules: { "@next/next/no-img-element": "off" },
   },
 ];
 

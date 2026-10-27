@@ -1,12 +1,11 @@
-// lib/site.ts
-export function getSiteUrl(): string {
-  // Prefer explicit env, fallback to production domain, then localhost for dev
-  const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-  // 末尾のスラッシュ揺れを吸収（/ が複数付いていても除去）
-  if (fromEnv) return fromEnv.replace(/\/+$/, "");
-  return "https://carboutiquejournal.com";
-}
+export const SITE = {
+  name: "クルマのいろは",
+  tagline: "はじめての人の、クルマ入門。",
+  description:
+    "はじめてクルマに乗る人のための入門サイト。シュナと莉奈の会話と図解で、給油・運転・お手入れ・お金のことを、いろはからやさしく説明します。",
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://carboutiquejournal.com").replace(/\/$/, ""),
+} as const;
 
-export function getSiteOrigin(): URL {
-  return new URL(getSiteUrl());
+export function absoluteUrl(path: string): string {
+  return `${SITE.url}${path.startsWith("/") ? path : `/${path}`}`;
 }
