@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CATEGORIES } from "@/lib/categories";
 import { SITE } from "@/lib/site";
 import { Logo } from "./Logo";
+import { Phrases } from "./Phrases";
 import styles from "./layout.module.css";
 
 export function SiteFooter() {
@@ -10,7 +11,9 @@ export function SiteFooter() {
       <div className={`wrap ${styles.footerInner}`}>
         <div className={styles.footerBrand}>
           <Logo />
-          <p>{SITE.tagline}</p>
+          <p>
+            <Phrases>{SITE.tagline}</Phrases>
+          </p>
         </div>
         <nav aria-label="カテゴリ" className={styles.footerNav}>
           {CATEGORIES.map((c) => (

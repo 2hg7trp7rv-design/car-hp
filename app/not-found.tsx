@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Talk } from "@/components/Talk";
 import styles from "./simple.module.css";
+
+export const metadata: Metadata = {
+  title: "ページが見つかりません",
+};
 
 export default function NotFound() {
   return (

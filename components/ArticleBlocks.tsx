@@ -1,5 +1,6 @@
 import type { Block } from "@/content/types";
 import { FIGURES } from "./figures";
+import { Phrases } from "./Phrases";
 import { Talk } from "./Talk";
 import styles from "./article.module.css";
 
@@ -8,13 +9,17 @@ function BlockView({ block }: { block: Block }) {
     case "talk":
       return <Talk who={block.who} text={block.text} />;
     case "text":
-      return <p className={styles.text}>{block.text}</p>;
+      return <p className={styles.text}>
+          <Phrases>{block.text}</Phrases>
+        </p>;
     case "figure": {
       const Figure = FIGURES[block.figure];
       return (
         <figure className={`sticker ${styles.figure}`}>
           <Figure />
-          <figcaption>{block.caption}</figcaption>
+          <figcaption>
+            <Phrases>{block.caption}</Phrases>
+          </figcaption>
         </figure>
       );
     }
@@ -27,8 +32,12 @@ function BlockView({ block }: { block: Block }) {
                 {i + 1}
               </span>
               <div>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
+                <h3>
+                  <Phrases>{item.title}</Phrases>
+                </h3>
+                <p>
+                  <Phrases>{item.text}</Phrases>
+                </p>
               </div>
             </li>
           ))}
@@ -38,8 +47,12 @@ function BlockView({ block }: { block: Block }) {
       return (
         <aside className={`sticker ${styles.point}`}>
           <span className={styles.boxLabel}>ここがポイント</span>
-          <h3>{block.title}</h3>
-          <p>{block.text}</p>
+          <h3>
+            <Phrases>{block.title}</Phrases>
+          </h3>
+          <p>
+            <Phrases>{block.text}</Phrases>
+          </p>
         </aside>
       );
     case "ng":
@@ -53,8 +66,12 @@ function BlockView({ block }: { block: Block }) {
                   ×
                 </span>
                 <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
+                  <h3>
+                    <Phrases>{item.title}</Phrases>
+                  </h3>
+                  <p>
+                    <Phrases>{item.text}</Phrases>
+                  </p>
                 </div>
               </li>
             ))}

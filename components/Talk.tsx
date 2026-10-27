@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { CHARACTERS, type Speaker } from "@/lib/characters";
+import { Phrases } from "./Phrases";
 import styles from "./article.module.css";
 
 export function Talk({ who, text, large = false }: { who: Speaker; text: string; large?: boolean }) {
@@ -13,7 +14,9 @@ export function Talk({ who, text, large = false }: { who: Speaker; text: string;
         <span className={styles.speaker} data-c={c.color}>
           {c.name}
         </span>
-        <p className={styles.bubble}>{text}</p>
+        <p className={styles.bubble}>
+          <Phrases>{text}</Phrases>
+        </p>
       </div>
     </div>
   );

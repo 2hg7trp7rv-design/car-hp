@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleBlocks } from "@/components/ArticleBlocks";
 import { ArticleCard } from "@/components/ArticleCard";
+import { Phrases } from "@/components/Phrases";
 import { ShareButtons } from "@/components/ShareButtons";
 import { Talk } from "@/components/Talk";
 import { getArticle, getArticles } from "@/content/articles";
@@ -93,7 +94,9 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
               {category.name}
             </span>
           )}
-          <h1 className={styles.title}>{article.title}</h1>
+          <h1 className={styles.title}>
+            <Phrases>{article.title}</Phrases>
+          </h1>
           <p className={styles.meta}>
             <span>{SITE.name} 編集部</span>
             <span>
@@ -110,7 +113,9 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
           <h2 id="learn-title">この記事でわかること</h2>
           <ul>
             {article.learn.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item}>
+                <Phrases>{item}</Phrases>
+              </li>
             ))}
           </ul>
         </section>
@@ -121,8 +126,10 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
             {article.sections.map((s, i) => (
               <li key={s.id}>
                 <a href={`#${s.id}`}>
-                  <span aria-hidden="true">{i + 1}</span>
-                  {s.title}
+                  <span aria-hidden="true" className={styles.tocNo}>
+                    {i + 1}
+                  </span>
+                  <Phrases>{s.title}</Phrases>
                 </a>
               </li>
             ))}
@@ -132,8 +139,10 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
         {article.sections.map((s, i) => (
           <section key={s.id} id={s.id} className={styles.section} aria-labelledby={`${s.id}-title`}>
             <h2 id={`${s.id}-title`} className={styles.h2}>
-              <span aria-hidden="true">{i + 1}</span>
-              {s.title}
+              <span aria-hidden="true" className={styles.sectionNo}>
+                {i + 1}
+              </span>
+              <Phrases>{s.title}</Phrases>
             </h2>
             <ArticleBlocks blocks={s.blocks} />
           </section>
@@ -143,7 +152,9 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
           <h2 id="summary-title">まとめ</h2>
           <ul>
             {article.summary.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item}>
+                <Phrases>{item}</Phrases>
+              </li>
             ))}
           </ul>
         </section>
@@ -156,9 +167,9 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
             {article.sources.map((s) => (
               <li key={s.url}>
                 <a href={s.url} target="_blank" rel="noopener noreferrer">
-                  {s.title}
+                  <Phrases>{s.title}</Phrases>
                 </a>
-                <span>
+                <span className={styles.publisher}>
                   {s.publisher}
                   {s.date ? `（${s.date}）` : ""}
                 </span>
@@ -166,7 +177,9 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
             ))}
           </ul>
           <p>
-            クルマや燃料の指定は車種ごとに違います。最後は、自分のクルマの取扱説明書と、お店の表示で確かめてください。
+            <Phrases>
+              クルマや燃料の指定は車種ごとに違います。最後は、自分のクルマの取扱説明書と、お店の表示で確かめてください。
+            </Phrases>
           </p>
         </section>
 

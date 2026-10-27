@@ -60,19 +60,15 @@ h3 {
   text-wrap: balance;
 }
 
-/* 日本語を文節で折り返し、1文字だけ次の行に残るのを防ぐ（対応ブラウザのみ） */
-h1,
-h2,
-h3,
-p,
-li,
-figcaption {
-  word-break: auto-phrase;
-}
-
 p {
   margin: 0;
   text-wrap: pretty;
+}
+
+/* 日本語を文節の区切り（<wbr>）でだけ折り返す（components/Phrases.tsx）。
+   入りきらない長い文節は、body の overflow-wrap: anywhere で折り返す */
+.phrases {
+  word-break: keep-all;
 }
 
 a {

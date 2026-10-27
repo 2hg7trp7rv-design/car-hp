@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArticleCard } from "@/components/ArticleCard";
+import { Phrases } from "@/components/Phrases";
 import { Talk } from "@/components/Talk";
 import { getArticlesByCategory } from "@/content/articles";
 import { CATEGORIES, getCategory } from "@/lib/categories";
@@ -36,7 +37,9 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
       <header className={`sticker ${styles.header}`} data-c={category.color}>
         <p className={styles.kicker}>カテゴリ</p>
         <h1>{category.name}</h1>
-        <p>{category.description}</p>
+        <p>
+          <Phrases>{category.description}</Phrases>
+        </p>
       </header>
       {articles.length > 0 ? (
         <div className={styles.grid}>

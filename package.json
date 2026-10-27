@@ -12,6 +12,7 @@
     "check": "npm run lint && npm run typecheck && npm run build"
   },
   "dependencies": {
+    "budoux": "0.9.3",
     "next": "16.3.4",
     "react": "19.2.6",
     "react-dom": "19.2.6"

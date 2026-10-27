@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Article } from "@/content/types";
 import { getCategory } from "@/lib/categories";
 import { formatDate } from "@/lib/format";
+import { Phrases } from "./Phrases";
 import styles from "./cards.module.css";
 
 export function ArticleCard({ article, featured = false }: { article: Article; featured?: boolean }) {
@@ -13,8 +14,12 @@ export function ArticleCard({ article, featured = false }: { article: Article; f
           {category.name}
         </span>
       )}
-      <h3 className={styles.cardTitle}>{article.title}</h3>
-      <p className={styles.cardText}>{article.description}</p>
+      <h3 className={styles.cardTitle}>
+        <Phrases>{article.title}</Phrases>
+      </h3>
+      <p className={styles.cardText}>
+        <Phrases>{article.description}</Phrases>
+      </p>
       <span className={styles.cardMeta}>
         <time dateTime={article.updatedAt}>{formatDate(article.updatedAt)}</time>
         <span aria-hidden="true" className={styles.arrow}>

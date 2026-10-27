@@ -8,7 +8,7 @@ export const CHARACTERS: Record<
     name: "シュナ",
     image: "/images/characters/shuna.webp",
     role: "クルマ初心者",
-    intro: "免許をとったばかり。わからないことは、その場で聞いちゃうタイプ。",
+    intro: "免許をとったばかり。わからないことは、すぐ聞いちゃうタイプ。",
     color: "sun",
   },
   rina: {

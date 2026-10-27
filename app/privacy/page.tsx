@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Phrases } from "@/components/Phrases";
 import { SITE } from "@/lib/site";
 import styles from "../simple.module.css";
 
@@ -20,17 +21,23 @@ export default function PrivacyPage() {
       <div className={styles.prose}>
         <h2>集める情報</h2>
         <p>
-          このサイトは現在、会員登録や問い合わせフォームを置いていません。アクセス解析や広告のサービスも使っていません。
+          <Phrases>
+            このサイトは現在、会員登録や問い合わせフォームを置いていません。アクセス解析や広告のサービスも使っていません。
+          </Phrases>
         </p>
 
         <h2>共有ボタン</h2>
         <p>
-          記事の「Xでシェア」「LINEで送る」を押すと、それぞれのサービスのページが開きます。開いた先での情報の扱いは、各サービスの方針に従います。押さない限り、このサイトから情報は送られません。
+          <Phrases>
+            記事の「Xでシェア」「LINEで送る」を押すと、それぞれのサービスのページが開きます。開いた先での情報の扱いは、各サービスの方針に従います。押さない限り、このサイトから情報は送られません。
+          </Phrases>
         </p>
 
         <h2>変更について</h2>
         <p>
-          アクセス解析や広告などを使い始めるときは、使うサービスと送られる情報をこのページに書き足し、更新日を変えます。
+          <Phrases>
+            アクセス解析や広告などを使い始めるときは、使うサービスと送られる情報をこのページに書き足し、更新日を変えます。
+          </Phrases>
         </p>
       </div>
     </div>

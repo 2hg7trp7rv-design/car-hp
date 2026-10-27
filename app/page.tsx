@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArticleCard } from "@/components/ArticleCard";
+import { Phrases } from "@/components/Phrases";
 import { getArticles, getArticlesByCategory } from "@/content/articles";
 import { CATEGORIES } from "@/lib/categories";
 import { CHARACTERS } from "@/lib/characters";
@@ -16,14 +17,18 @@ export default function HomePage() {
       <section className={styles.hero}>
         <div className={`wrap ${styles.heroInner}`}>
           <div className={styles.heroText}>
-            <p className={styles.eyebrow}>{SITE.tagline}</p>
+            <p className={styles.eyebrow}>
+              <Phrases>{SITE.tagline}</Phrases>
+            </p>
             <h1 className={styles.heroTitle}>
               クルマのこと、
               <br />
               <span>いろは</span>から。
             </h1>
             <p className={styles.lead}>
-              給油のしかた、メーターの見方、維持費のこと。シュナと莉奈が、会話と図でやさしく説明します。
+              <Phrases>
+                給油のしかた、メーターの見方、維持費のこと。シュナと莉奈が、会話と図でやさしく説明します。
+              </Phrases>
             </p>
             <div className={styles.heroActions}>
               {latest && (
@@ -59,7 +64,7 @@ export default function HomePage() {
 
       <section id="hosts" className={`wrap ${styles.block}`} aria-labelledby="hosts-title">
         <h2 id="hosts-title" className={styles.blockTitle}>
-          <span>教えてくれるのは、このふたり</span>
+          <Phrases>教えてくれるのは、このふたり</Phrases>
         </h2>
         <div className={styles.hosts}>
           {(["shuna", "rina"] as const).map((key) => {
@@ -70,9 +75,13 @@ export default function HomePage() {
                   <Image src={c.image} alt="" width={160} height={160} sizes="96px" />
                 </div>
                 <div>
-                  <p className={styles.hostRole}>{c.role}</p>
+                  <p className={styles.hostRole}>
+                    <Phrases>{c.role}</Phrases>
+                  </p>
                   <h3 className={styles.hostName}>{c.name}</h3>
-                  <p className={styles.hostIntro}>{c.intro}</p>
+                  <p className={styles.hostIntro}>
+                    <Phrases>{c.intro}</Phrases>
+                  </p>
                 </div>
               </div>
             );
@@ -96,7 +105,7 @@ export default function HomePage() {
 
       <section className={`wrap ${styles.block}`} aria-labelledby="categories-title">
         <h2 id="categories-title" className={styles.blockTitle}>
-          <span>知りたいことから探す</span>
+          <Phrases>知りたいことから探す</Phrases>
         </h2>
         <div className={styles.categories}>
           {CATEGORIES.map((c) => {
@@ -104,7 +113,9 @@ export default function HomePage() {
             return (
               <Link key={c.slug} href={`/category/${c.slug}`} className={`sticker ${styles.category}`} data-c={c.color}>
                 <h3>{c.name}</h3>
-                <p>{c.description}</p>
+                <p>
+                  <Phrases>{c.description}</Phrases>
+                </p>
                 <span className={styles.count}>{count > 0 ? `${count}本の記事` : "準備中"}</span>
               </Link>
             );
